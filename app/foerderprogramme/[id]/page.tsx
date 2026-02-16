@@ -16,8 +16,9 @@ export function generateStaticParams() {
 }
 
 // Metadaten für SEO
-export function generateMetadata({ params }: { params: { id: string } }) {
-  const programm = foerderprogramme.find(p => p.id === params.id);
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const programm = foerderprogramme.find(p => p.id === id);
   
   if (!programm) {
     return {
@@ -31,8 +32,9 @@ export function generateMetadata({ params }: { params: { id: string } }) {
   };
 }
 
-export default function FoerderprogrammDetailPage({ params }: { params: { id: string } }) {
-  const programm = foerderprogramme.find(p => p.id === params.id);
+export default async function FoerderprogrammDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const programm = foerderprogramme.find(p => p.id === id);
 
   if (!programm) {
     notFound();

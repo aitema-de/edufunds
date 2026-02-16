@@ -41,16 +41,23 @@
 **Beschreibung:** Plattform für Förderprogramme und KI-Antragsassistent
 
 **Tech Stack:**
-- Next.js + React + TypeScript
+- Next.js 16.1.6 + React + TypeScript
 - Tailwind CSS
 - Hetzner (Hosting - kein Cloudflare!)
-- Statischer Export → Hetzner Webserver
+- nginx (statischer Serve)
 
 **Wichtige Dateien:**
-- `data/foerderprogramme.json` - Alle Förderprogramme
+- `data/foerderprogramme.json` - Alle Förderprogramme (129 aktive)
 - `lib/foerderSchema.ts` - TypeScript Schema
-- `export-static.js` - Build-Skript (erzeugt `dist/`)
+- `SOUL.md` - Product Owner Rolle & Verantwortung
+- `current_state.md` - Aktueller Projektstand
 - `DEPLOY.md` - Deployment-Doku
+
+**Aktuelle Zahlen (16. Feb 2026):**
+- 129 aktive Förderprogramme
+- Alle Detailseiten: HTTP 200
+- Smoke-Test: PASSED (143/143)
+- Next.js 16 params-Bug: GEFIXT
 
 ---
 
@@ -141,11 +148,20 @@
 - [x] **168 Förderprogramme** - 68% über Ziel hinaus
 - [x] **Production Monitoring** - Health Checks, Alerts, Web Vitals
 
-### 🔄 In Arbeit (Priorität Hoch)
-- [ ] **Gemini API-Key** - Brauche Key von Kolja für echte KI statt Fallback
+### ✅ Abgeschlossen (16. Feb 2026)
+- [x] **Next.js 16 params-Bug gefixt** - Alle Detailseiten funktionieren
+- [x] **129 Programme bereinigt** - Abgelaufene entfernt, Links geprüft
+- [x] **Smoke-Test PASSED** - 143/143 Tests bestanden
+- [x] **Gemini API-Key eingebunden** - Im Container verfügbar (Test ausstehend)
+- [x] **nginx Static-Serving** - Deployment stabilisiert
+
+### 🔄 In Arbeit (Priorität Hoch - Qualität vor Quantität!)
+- [ ] **Alle 129 Programme: Externe Links validieren** (Subagenten)
+- [ ] **Förderhöhe pro Schule prüfen** (nicht Gesamtvolumen)
+- [ ] **Antragsfristen prüfen** - Abgelaufene als "archiviert" markieren
+- [ ] **KI-Antragsassistent testen** mit echtem Gemini-Key
 
 ### 📋 Offen (Priorität Mittel)
-- [ ] 32 zusätzliche Förderprogramme für Ziel 200
-- [ ] www.edufunds.org DNS anpassen (Cloudflare Proxy deaktivieren)
-- [ ] Zahlungssystem (Stripe/PayPal) integrieren
-- [ ] GitHub Secrets einrichten für Auto-Deployment
+- [ ] Weitere Next.js 16 Kompatibilitätsprobleme prüfen
+- [ ] Performance-Optimierung
+- [ ] Analytics einbauen

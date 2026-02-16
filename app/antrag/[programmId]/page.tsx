@@ -12,13 +12,14 @@ import { ArrowLeft, FileText } from "lucide-react";
 const foerderprogramme = foerderprogrammeData as Foerderprogramm[];
 
 interface AntragPageProps {
-  params: {
+  params: Promise<{
     programmId: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: AntragPageProps): Promise<Metadata> {
-  const programm = foerderprogramme.find(p => p.id === params.programmId);
+  const { programmId } = await params;
+  const programm = foerderprogramme.find(p => p.id === programmId);
   
   if (!programm) {
     return {
@@ -32,8 +33,9 @@ export async function generateMetadata({ params }: AntragPageProps): Promise<Met
   };
 }
 
-export default function AntragPage({ params }: AntragPageProps) {
-  const programm = foerderprogramme.find(p => p.id === params.programmId);
+export default async function AntragPage({ params }: AntragPageProps) {
+  const { programmId } = await params;
+  const programm = foerderprogramme.find(p => p.id === programmId);
 
   if (!programm) {
     notFound();

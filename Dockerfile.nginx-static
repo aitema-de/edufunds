@@ -1,0 +1,26 @@
+FROM nginx:alpine
+
+# Copy static Next.js files
+COPY .next/static /usr/share/nginx/html/_next/static
+
+# Copy HTML pages
+COPY .next/server/app/index.html /usr/share/nginx/html/
+COPY .next/server/app/404.html /usr/share/nginx/html/
+COPY .next/server/app/foerderprogramme.html /usr/share/nginx/html/
+COPY .next/server/app/preise.html /usr/share/nginx/html/
+COPY .next/server/app/ueber-uns.html /usr/share/nginx/html/
+COPY .next/server/app/kontakt.html /usr/share/nginx/html/
+COPY .next/server/app/impressum.html /usr/share/nginx/html/
+COPY .next/server/app/datenschutz.html /usr/share/nginx/html/
+COPY .next/server/app/agb.html /usr/share/nginx/html/
+
+# Copy all program detail pages
+COPY .next/server/app/foerderprogramme /usr/share/nginx/html/foerderprogramme/
+
+# Copy public assets
+COPY public /usr/share/nginx/html/
+
+# Copy nginx config
+COPY nginx-static.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
