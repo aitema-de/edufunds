@@ -2,7 +2,7 @@
 
 > **Diese Datei wird nach JEDER Session aktualisiert**
 > 
-> Letzte Aktualisierung: 16. Februar 2026, 16:50 UTC
+> Letzte Aktualisierung: 17. Februar 2026, 11:35 UTC
 
 ---
 
@@ -53,8 +53,12 @@
 - **URL:** https://edufunds.org ✅
 - **Letztes Deploy:** 16. Feb 2026, 16:45 UTC
 - **Container:** nginx (statischer Serve)
-- **Smoke-Test:** PASSED (143/143)
+- **Smoke-Test:** ✅ PASSED (143/143) - 17. Feb 2026
 - **API-Key:** Gemini API-Key eingebunden (Test ausstehend)
+
+### Staging (edufunds.aitema.de)
+- **Status:** ❌ **OFFLINE** - URL nicht erreichbar (TIMEOUT)
+- **Notiz:** HEARTBEAT.md hatte falsche URL - gefixt auf edufunds.org
 
 ### Staging
 - **Status:** ❌ Nicht eingerichtet
