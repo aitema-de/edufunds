@@ -2,16 +2,17 @@
 
 > **Diese Datei wird nach JEDER Session aktualisiert**
 > 
-> Letzte Aktualisierung: 17. Februar 2026, 14:15 UTC
+> Letzte Aktualisierung: 17. Februar 2026, 20:20 UTC
 
 ---
 
 ## 🚀 Feature-Stand
 
 ### ✅ Funktioniert
-- [x] Startseite mit Statistiken (124 Programme)
+- [x] Startseite mit Statistiken (129 Programme, 120+ Badge)
 - [x] Förderfinder mit 129 Programmen (alle geprüft)
-- [x] KI-Antragsassistent (Frontend + Fallback-Modus)
+- [x] KI-Antragsassistent (Frontend + Gemini API + Fallback)
+- [x] Staging-Umgebung (Port 3005, Node.js Server)
 - [x] PDF-Export Funktionalität
 - [x] Responsive Design
 - [x] Error Handling & Error Boundaries
@@ -24,14 +25,13 @@
 - [x] Next.js 16 params-Bug gefixt
 
 ### 🔄 In Arbeit / Zu Testen
-- [ ] KI-Antragsassistent mit echtem Gemini-Key testen
+- [x] KI-Antragsassistent mit echtem Gemini-Key testen ✅ WORKING
 - [ ] Externe Links aller 129 Programme validieren
 - [ ] Abgelaufene Programme als "archiviert" markieren
+- [ ] Design-Updates auf Production deployen
 
 ### ❌ Bekannte Probleme
-1. **KI-Antragsassistent:** Läuft im Fallback-Modus (kein echter API-Call)
-   - Ursache: Frontend-only, kein Backend
-   - Lösung: API-Route implementieren oder Key fürs Frontend
+1. ~~KI-Antragsassistent im Fallback-Modus~~ ✅ GEFIXT - Gemini API funktioniert auf Staging
 
 ---
 
@@ -123,6 +123,19 @@
 ---
 
 ## 📚 Letzte Änderungen
+
+### 17. Februar 2026, 20:20 UTC (Heartbeat-Arbeit)
+- ✅ **KI-Antragsassistent: E2E-Test ERFOLGREICH**
+  - Staging-Container läuft (Port 3005)
+  - Gemini API-Key konfiguriert
+  - API-Route `/api/generate-antrag` funktioniert
+  - Antrag generiert in ~57s (11 API-Calls)
+  - Pipeline: analyse → generation → self-review → revision → complete
+- ✅ **Design-Updates: Unterseiten auf Parchment-Design**
+  - impressum, datenschutz, agb, kontakt: Dunkel → Parchment
+  - Landing Page: 50+ → 120+ aktualisiert
+  - Source-Dateien geändert (app/)
+  - Git-Commit: `60a0e5f`
 
 ### 16. Februar 2026, 16:45 UTC
 - ✅ **Smoke-Test PASSED** (143/143)
