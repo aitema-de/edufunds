@@ -1,5 +1,3 @@
-export const dynamic = 'force-static';
-
 /**
  * API-Route für die Antragsgenerierung
  * POST /api/generate-antrag
@@ -9,6 +7,10 @@ export const dynamic = 'force-static';
  * - Falls nicht gesetzt, wird der Fallback-Modus (Template-basiert) verwendet
  */
 
+export const dynamic = 'force-dynamic';
+export const runtime = "nodejs";
+export const maxDuration = 300;
+
 import { NextRequest, NextResponse } from "next/server";
 import { createAntragPipeline, AntragPipeline, AntragError, AntragErrorCode } from "@/lib/antrag-pipeline";
 import { GenerierterAntrag, PipelineStatus } from "@/lib/programSchema";
@@ -16,11 +18,6 @@ import { GenerierterAntrag, PipelineStatus } from "@/lib/programSchema";
 // Prüfe API-Key beim Start (nur Status, nicht den Key loggen!)
 const hasGeminiKey = !!process.env.GEMINI_API_KEY;
 console.log(`[API] KI-Antragsgenerator Status: ${hasGeminiKey ? "✅ API-Key konfiguriert" : "⚠️ Fallback-Modus aktiv (kein GEMINI_API_KEY)"}`);
-
-// Konfiguration
-// Force Node.js runtime (not Edge) to avoid EvalError with Gemini API
-export const runtime = "nodejs";
-export const maxDuration = 300; // 5 Minuten Timeout
 
 interface GenerateRequest {
   programmId: string;
