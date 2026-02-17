@@ -11,7 +11,7 @@ export default function AGBPage() {
   return (
     <>
       <Header />
-      <main id="main-content" className="min-h-screen pt-24 pb-20 bg-[#0a1628]">
+      <main id="main-content" className="min-h-screen pt-24 pb-20 bg-[#f8f5f0]">
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Header */}
           <div className="text-center mb-16">
@@ -19,17 +19,17 @@ export default function AGBPage() {
               <FileText className="h-4 w-4 text-[#c9a227]" />
               <span className="text-sm font-medium text-[#c9a227]">Rechtliches</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-[#f8f5f0] mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-4">
               Allgemeine Geschäftsbedingungen
             </h1>
-            <p className="text-[#94a3b8] text-lg max-w-2xl mx-auto">
+            <p className="text-[#64748b] text-lg max-w-2xl mx-auto">
               Für die Nutzung der EduFunds Plattform
             </p>
           </div>
 
           {/* Hinweis */}
-          <div className="glass rounded-xl p-6 mb-8 border-l-4 border-[#c9a227]">
-            <p className="text-[#e2e8f0] text-base leading-relaxed">
+          <div className="bg-white rounded-xl p-6 mb-8 border-l-4 border-[#c9a227] shadow-sm">
+            <p className="text-[#0a1628]/80 text-base leading-relaxed">
               Dies ist eine Übersetzung zur Information. Die deutsche Version ist rechtsverbindlich. 
               Diese AGB gelten für Verträge zwischen der AITEMA GmbH i.G. und Unternehmern im Sinne 
               des § 14 BGB.
@@ -39,12 +39,12 @@ export default function AGBPage() {
           {/* Content */}
           <div className="space-y-8">
             {/* § 1 */}
-            <section className="glass-strong rounded-2xl p-8">
-              <h2 className="text-xl font-semibold text-[#f8f5f0] mb-4 flex items-center gap-3">
+            <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
+              <h2 className="text-xl font-semibold text-[#0a1628] mb-4 flex items-center gap-3">
                 <span className="text-[#c9a227] font-bold">§ 1</span>
                 Geltungsbereich
               </h2>
-              <div className="text-[#e2e8f0] space-y-4 leading-relaxed text-base">
+              <div className="text-[#0a1628]/80 space-y-4 leading-relaxed text-base">
                 <p>
                   (1) Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge zwischen der 
                   AITEMA GmbH i.G., Prenzlauer Allee 229, 10405 Berlin (nachfolgend „Anbieter") 

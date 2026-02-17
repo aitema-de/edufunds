@@ -11,7 +11,7 @@ export default function DatenschutzPage() {
   return (
     <>
       <Header />
-      <main id="main-content" className="min-h-screen pt-24 pb-20 bg-[#0a1628]">
+      <main id="main-content" className="min-h-screen pt-24 pb-20 bg-[#f8f5f0]">
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Header */}
           <div className="text-center mb-16">
@@ -19,10 +19,10 @@ export default function DatenschutzPage() {
               <Shield className="h-4 w-4 text-[#c9a227]" />
               <span className="text-sm font-medium text-[#c9a227]">DSGVO-konform</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-[#f8f5f0] mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-4">
               Datenschutz
             </h1>
-            <p className="text-[#94a3b8] text-lg max-w-2xl mx-auto">
+            <p className="text-[#64748b] text-lg max-w-2xl mx-auto">
               Datenschutzerklärung gemäß der Datenschutz-Grundverordnung (DSGVO)
             </p>
           </div>
@@ -30,13 +30,13 @@ export default function DatenschutzPage() {
           {/* Content */}
           <div className="space-y-8">
             {/* Überblick */}
-            <section className="glass-strong rounded-2xl p-8">
-              <h2 className="text-2xl font-semibold text-[#f8f5f0] mb-6">1. Datenschutz auf einen Blick</h2>
-              
+            <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
+              <h2 className="text-2xl font-semibold text-[#0a1628] mb-6">1. Datenschutz auf einen Blick</h2>
+
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-lg font-medium text-[#f8f5f0] mb-3">Allgemeine Hinweise</h3>
-                  <p className="text-[#e2e8f0] leading-relaxed text-base">
+                  <h3 className="text-lg font-medium text-[#0a1628] mb-3">Allgemeine Hinweise</h3>
+                  <p className="text-[#0a1628]/80 leading-relaxed text-base">
                     Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren 
                     personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene 
                     Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.
@@ -44,11 +44,11 @@ export default function DatenschutzPage() {
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-medium text-[#f8f5f0] mb-3">Datenerfassung auf dieser Website</h3>
-                  <p className="text-[#e2e8f0] leading-relaxed text-base mb-3">
-                    <strong className="text-[#f8f5f0]">Wer ist verantwortlich für die Datenerfassung auf dieser Website?</strong>
+                  <h3 className="text-lg font-medium text-[#0a1628] mb-3">Datenerfassung auf dieser Website</h3>
+                  <p className="text-[#0a1628]/80 leading-relaxed text-base mb-3">
+                    <strong className="text-[#0a1628]">Wer ist verantwortlich für die Datenerfassung auf dieser Website?</strong>
                   </p>
-                  <p className="text-[#e2e8f0] leading-relaxed text-base">
+                  <p className="text-[#0a1628]/80 leading-relaxed text-base">
                     Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. 
                     Dessen Kontaktdaten können Sie dem Abschnitt „Verantwortlicher" in dieser 
                     Datenschutzerklärung entnehmen.
@@ -58,24 +58,24 @@ export default function DatenschutzPage() {
             </section>
 
             {/* Verantwortlicher */}
-            <section className="glass rounded-2xl p-8">
+            <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-[#c9a227]/20 flex items-center justify-center">
                   <UserCheck className="h-5 w-5 text-[#c9a227]" />
                 </div>
-                <h2 className="text-xl font-semibold text-[#f8f5f0]">2. Verantwortlicher</h2>
+                <h2 className="text-xl font-semibold text-[#0a1628]">2. Verantwortlicher</h2>
               </div>
-              
-              <div className="text-[#e2e8f0] space-y-4 text-base">
+
+              <div className="text-[#0a1628]/80 space-y-4 text-base">
                 <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
-                <div className="glass-strong rounded-xl p-6 space-y-2">
-                  <p className="font-medium text-[#f8f5f0]">AITEMA GmbH i.G.</p>
+                <div className="bg-white border border-[#0a1628]/8 shadow-sm rounded-xl p-6 space-y-2">
+                  <p className="font-medium text-[#0a1628]">AITEMA GmbH i.G.</p>
                   <p>Prenzlauer Allee 229</p>
                   <p>10405 Berlin</p>
                   <p className="text-[#94a3b8]">Deutschland</p>
                   <div className="pt-2">
                     <p className="text-[#94a3b8]">Vertreten durch:</p>
-                    <p className="font-medium text-[#f8f5f0]">Kolja Schumann (Geschäftsführer)</p>
+                    <p className="font-medium text-[#0a1628]">Kolja Schumann (Geschäftsführer)</p>
                   </div>
                   <div className="pt-2">
                     <p className="text-[#94a3b8]">E-Mail:</p>
@@ -91,26 +91,26 @@ export default function DatenschutzPage() {
             </section>
 
             {/* Hosting */}
-            <section className="glass rounded-2xl p-8">
+            <section className="bg-white border border-[#0a1628]/8 shadow-sm rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-[#c9a227]/20 flex items-center justify-center">
                   <Server className="h-5 w-5 text-[#c9a227]" />
                 </div>
-                <h2 className="text-xl font-semibold text-[#f8f5f0]">3. Hosting und Content Delivery Network</h2>
+                <h2 className="text-xl font-semibold text-[#0a1628]">3. Hosting und Content Delivery Network</h2>
               </div>
 
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-lg font-medium text-[#f8f5f0] mb-3">Hetzner</h3>
-                  <p className="text-[#e2e8f0] leading-relaxed text-base">
+                  <h3 className="text-lg font-medium text-[#0a1628] mb-3">Hetzner</h3>
+                  <p className="text-[#0a1628]/80 leading-relaxed text-base">
                     Wir hosten unsere Website bei der Hetzner Online GmbH, Industriestr. 25, 
                     91710 Gunzenhausen, Deutschland. Die Server stehen ausschließlich in Deutschland.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-medium text-[#f8f5f0] mb-3">Cloudflare</h3>
-                  <p className="text-[#e2e8f0] leading-relaxed text-base">
+                  <h3 className="text-lg font-medium text-[#0a1628] mb-3">Cloudflare</h3>
+                  <p className="text-[#0a1628]/80 leading-relaxed text-base">
                     Wir nutzen das Content Delivery Network (CDN) von Cloudflare, Inc., 
                     101 Townsend St., San Francisco, CA 94107, USA. Cloudflare ist unter dem 
                     EU-US Data Privacy Framework zertifiziert.
@@ -120,15 +120,15 @@ export default function DatenschutzPage() {
             </section>
 
             {/* Kontaktformular */}
-            <section className="glass rounded-2xl p-8">
+            <section className="bg-white border border-[#0a1628]/8 shadow-sm rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-[#c9a227]/20 flex items-center justify-center">
                   <Mail className="h-5 w-5 text-[#c9a227]" />
                 </div>
-                <h2 className="text-xl font-semibold text-[#f8f5f0]">4. Kontaktformular</h2>
+                <h2 className="text-xl font-semibold text-[#0a1628]">4. Kontaktformular</h2>
               </div>
 
-              <div className="text-[#e2e8f0] space-y-4 text-base">
+              <div className="text-[#0a1628]/80 space-y-4 text-base">
                 <p className="leading-relaxed">
                   Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben 
                   aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten 
@@ -137,7 +137,7 @@ export default function DatenschutzPage() {
                 </p>
 
                 <div>
-                  <h3 className="text-lg font-medium text-[#f8f5f0] mb-3">E-Mail-Versand via Resend</h3>
+                  <h3 className="text-lg font-medium text-[#0a1628] mb-3">E-Mail-Versand via Resend</h3>
                   <p className="leading-relaxed text-base">
                     Für den Versand von E-Mails über das Kontaktformular nutzen wir den Dienst 
                     Resend (Resend, Inc., San Francisco, CA, USA). Resend ist unter dem EU-US 
@@ -148,17 +148,17 @@ export default function DatenschutzPage() {
             </section>
 
             {/* Ihre Rechte */}
-            <section className="glass rounded-2xl p-8">
+            <section className="bg-white border border-[#0a1628]/8 shadow-sm rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-[#c9a227]/20 flex items-center justify-center">
                   <FileText className="h-5 w-5 text-[#c9a227]" />
                 </div>
-                <h2 className="text-xl font-semibold text-[#f8f5f0]">5. Ihre Rechte</h2>
+                <h2 className="text-xl font-semibold text-[#0a1628]">5. Ihre Rechte</h2>
               </div>
 
-              <p className="text-[#e2e8f0] mb-4 text-base">Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:</p>
+              <p className="text-[#0a1628]/80 mb-4 text-base">Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:</p>
               
-              <ul className="space-y-3 text-[#e2e8f0] text-base">
+              <ul className="space-y-3 text-[#0a1628]/80 text-base">
                 <li className="flex items-start gap-3">
                   <span className="text-[#c9a227] mt-1">•</span>
                   <span>Recht auf Auskunft (Art. 15 DSGVO)</span>
@@ -181,7 +181,7 @@ export default function DatenschutzPage() {
                 </li>
               </ul>
 
-              <p className="text-[#e2e8f0] mt-4 text-base">
+              <p className="text-[#0a1628]/80 mt-4 text-base">
                 Zur Ausübung Ihrer Rechte kontaktieren Sie bitte:{" "}
                 <a 
                   href="mailto:office@aitema.de" 
@@ -193,15 +193,15 @@ export default function DatenschutzPage() {
             </section>
 
             {/* SSL */}
-            <section className="glass rounded-2xl p-8">
+            <section className="bg-white border border-[#0a1628]/8 shadow-sm rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-[#c9a227]/20 flex items-center justify-center">
                   <Lock className="h-5 w-5 text-[#c9a227]" />
                 </div>
-                <h2 className="text-xl font-semibold text-[#f8f5f0]">6. SSL-/TLS-Verschlüsselung</h2>
+                <h2 className="text-xl font-semibold text-[#0a1628]">6. SSL-/TLS-Verschlüsselung</h2>
               </div>
 
-              <p className="text-[#e2e8f0] leading-relaxed text-base">
+              <p className="text-[#0a1628]/80 leading-relaxed text-base">
                 Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher 
                 Inhalte eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen 
                 Sie daran, dass die Adresszeile des Browsers von „http://" auf „https://" wechselt 
