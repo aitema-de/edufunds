@@ -11,7 +11,7 @@ import { query } from '@/lib/db';
 import { isRedisAvailable, getRateLimitStatus } from '@/lib/rate-limit';
 import { apiLogger } from '@/lib/logger';
 
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-static';
 
 interface HealthCheck {
   name: string;

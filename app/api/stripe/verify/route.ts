@@ -1,50 +1,18 @@
-import { NextRequest, NextResponse } from "next/server";
+export const dynamic = 'force-static';
 
-const getStripe = async () => {
-  if (!process.env.STRIPE_SECRET_KEY) {
-    throw new Error("STRIPE_SECRET_KEY fehlt");
-  }
-  const Stripe = (await import("stripe")).default;
-  return new Stripe(process.env.STRIPE_SECRET_KEY, {
-    apiVersion: "2024-12-18.acacia" as any,
-  });
-};
+import { NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
-  const sessionId = request.nextUrl.searchParams.get("session_id");
-
-  if (!sessionId) {
-    return NextResponse.json(
-      { error: "Session ID erforderlich" },
-      { status: 400 }
-    );
-  }
-
-  try {
-    const stripe = await getStripe();
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
-
-    if (session.payment_status === "paid") {
-      return NextResponse.json({
-        success: true,
-        session: {
-          id: session.id,
-          customerEmail: session.customer_email,
-          amountTotal: session.amount_total,
-          currency: session.currency,
-        },
-      });
-    } else {
-      return NextResponse.json(
-        { error: "Zahlung nicht abgeschlossen" },
-        { status: 400 }
-      );
-    }
-  } catch (error) {
-    console.error("Stripe Verify Error:", error);
-    return NextResponse.json(
-      { error: "Fehler bei der Verifizierung" },
-      { status: 500 }
-    );
-  }
+/**
+ * GET /api/stripe/verify
+ * 
+ * NOTE: Static export - Stripe verification requires server-side processing.
+ * This endpoint returns an error message instructing users to contact support.
+ */
+export async function GET() {
+  return NextResponse.json(
+    { 
+      error: "Zahlungsverifizierung ist im Moment nicht verfügbar. Bitte kontaktieren Sie uns unter kontakt@edufunds.org." 
+    },
+    { status: 503 }
+  );
 }

@@ -1,3 +1,5 @@
+export const dynamic = 'force-static';
+
 import { NextResponse } from 'next/server';
 import { generateNewsletter } from '@/lib/newsletter';
 import { testNewsletterData } from '@/lib/newsletter-test-content';
@@ -8,10 +10,10 @@ import { testNewsletterData } from '@/lib/newsletter-test-content';
  * Returns a preview of the newsletter HTML.
  * For testing and review purposes.
  */
-export async function GET(request: Request) {
+export async function GET() {
   try {
-    const { searchParams } = new URL(request.url);
-    const format = searchParams.get('format') || 'html'; // 'html' or 'text'
+    // Static export - always return HTML format
+    const format = 'html';
     
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://edufunds.org';
     const testToken = 'preview-token-12345';
@@ -21,16 +23,6 @@ export async function GET(request: Request) {
       baseUrl,
       testToken
     );
-
-    if (format === 'text') {
-      return new Response(text, {
-        status: 200,
-        headers: {
-          'Content-Type': 'text/plain; charset=utf-8',
-          'Content-Disposition': 'inline'
-        }
-      });
-    }
 
     // Return HTML with proper styling for preview
     const previewHtml = `<!DOCTYPE html>
@@ -162,8 +154,8 @@ export async function GET(request: Request) {
         </div>
 
         <div class="tabs">
-            <a href="?format=html" class="tab ${format === 'html' ? 'active' : ''}">HTML Version</a>
-            <a href="?format=text" class="tab ${format === 'text' ? 'active' : ''}">Plain Text</a>
+            <a href="?format=html" class="tab active">HTML Version</a>
+            <a href="?format=text" class="tab">Plain Text</a>
         </div>
         
         <div class="newsletter-frame">

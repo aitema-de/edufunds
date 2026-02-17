@@ -20,7 +20,7 @@ import {
   logger,
 } from '@/lib/monitoring';
 
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-static';
 
 // CORS Headers für Dashboard
 const corsHeaders = {

@@ -2,7 +2,7 @@
 
 > **Diese Datei wird nach JEDER Session aktualisiert**
 > 
-> Letzte Aktualisierung: 17. Februar 2026, 11:35 UTC
+> Letzte Aktualisierung: 17. Februar 2026, 12:45 UTC
 
 ---
 
@@ -51,14 +51,17 @@
 ### Production (edufunds.org)
 - **Status:** ✅ **ONLINE** - Läuft stabil
 - **URL:** https://edufunds.org ✅
-- **Letztes Deploy:** 16. Feb 2026, 16:45 UTC
+- **Letztes Deploy:** 17. Feb 2026, 12:45 UTC (Neubau mit Static Export)
 - **Container:** nginx (statischer Serve)
 - **Smoke-Test:** ✅ PASSED (143/143) - 17. Feb 2026
 - **API-Key:** Gemini API-Key eingebunden (Test ausstehend)
 
-### Staging (edufunds.aitema.de)
-- **Status:** ❌ **OFFLINE** - URL nicht erreichbar (TIMEOUT)
-- **Notiz:** HEARTBEAT.md hatte falsche URL - gefixt auf edufunds.org
+### Änderungen bei diesem Deploy
+- ✅ next.config.js: `output: 'export'` für statischen Export
+- ✅ Alle API-Routen: `dynamic = 'force-static'` hinzugefügt
+- ✅ Dynamische Routen: `generateStaticParams()` korrigiert
+- ✅ nginx-Config: Clean URL Support ohne Redirects
+- ✅ 293 statische Seiten generiert
 
 ### Staging
 - **Status:** ❌ Nicht eingerichtet

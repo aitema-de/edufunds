@@ -1,3 +1,5 @@
+export const dynamic = 'force-static';
+
 /**
  * API-Route für die Antragsgenerierung
  * POST /api/generate-antrag

@@ -11,6 +11,13 @@ import { ArrowLeft, FileText } from "lucide-react";
 // Type assertion für JSON-Daten
 const foerderprogramme = foerderprogrammeData as Foerderprogramm[];
 
+// Generate static paths for all programs
+export async function generateStaticParams() {
+  return foerderprogramme.map((programm) => ({
+    programmId: programm.id,
+  }));
+}
+
 interface AntragPageProps {
   params: Promise<{
     programmId: string;

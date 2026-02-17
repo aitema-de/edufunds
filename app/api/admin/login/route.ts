@@ -1,3 +1,5 @@
+export const dynamic = 'force-static';
+
 /**
  * Admin Login API
  * 

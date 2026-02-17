@@ -1,3 +1,5 @@
+export const dynamic = 'force-static';
+
 import { z } from 'zod';
 import { NextResponse } from 'next/server';
 import { getConfirmationEmailTemplate } from '@/lib/newsletter-templates';

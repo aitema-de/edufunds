@@ -1,62 +1,29 @@
+export const dynamic = 'force-static';
+
 import { NextResponse } from 'next/server';
-import { getNewsletterEntryByUnsubscribeToken, unsubscribeNewsletterEntry } from '@/lib/db';
 
 /**
  * GET /api/newsletter/unsubscribe
  * 
  * Unsubscribes a user from the newsletter using their unique token.
  * Returns an HTML page with confirmation or error message.
+ * 
+ * NOTE: Static export - database operations not available.
+ * In production, this should be handled by a serverful deployment.
  */
-export async function GET(request: Request) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const token = searchParams.get('token');
-
-    if (!token) {
-      return new Response(getUnsubscribePageHtml('Ungültiger Abmelde-Link. Bitte überprüfen Sie die URL.', false), {
-        status: 400,
-        headers: { 'Content-Type': 'text/html; charset=utf-8' },
-      });
-    }
-
-    // Find subscriber by token
-    const subscriber = await getNewsletterEntryByUnsubscribeToken(token);
-
-    if (!subscriber) {
-      return new Response(getUnsubscribePageHtml('Dieser Abmelde-Link ist ungültig oder wurde bereits verwendet.', false), {
-        status: 404,
-        headers: { 'Content-Type': 'text/html; charset=utf-8' },
-      });
-    }
-
-    // Delete the subscription
-    const deleted = await unsubscribeNewsletterEntry(token);
-
-    if (!deleted) {
-      return new Response(getUnsubscribePageHtml('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.', false), {
-        status: 500,
-        headers: { 'Content-Type': 'text/html; charset=utf-8' },
-      });
-    }
-
-    // Success response
-    return new Response(
-      getUnsubscribePageHtml(
-        `Sie haben sich erfolgreich vom EduFunds Newsletter abgemeldet.<br><br>Ihre E-Mail-Adresse <strong>${subscriber.email}</strong> wurde aus unserem Verteiler entfernt.`,
-        true
-      ),
-      {
-        status: 200,
-        headers: { 'Content-Type': 'text/html; charset=utf-8' },
-      }
-    );
-  } catch (error) {
-    console.error('Newsletter unsubscribe error:', error);
-    return new Response(getUnsubscribePageHtml('Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.', false), {
-      status: 500,
+export async function GET() {
+  // Static export - no database access
+  // Return informational page
+  return new Response(
+    getUnsubscribePageHtml(
+      'Die Abmeldung ist im Moment nicht verfügbar. Bitte kontaktieren Sie uns direkt unter kontakt@edufunds.org.',
+      false
+    ),
+    {
+      status: 200,
       headers: { 'Content-Type': 'text/html; charset=utf-8' },
-    });
-  }
+    }
+  );
 }
 
 /**
