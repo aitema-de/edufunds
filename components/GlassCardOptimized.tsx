@@ -60,7 +60,14 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
   }, [programm.bundeslaender]);
 
   return (
-    <article className="glass rounded-2xl p-6 md:p-8 hover:border-orange-500/30 transition-all group">
+    <article 
+      className="rounded-2xl p-6 md:p-8 transition-all group card-lift"
+      style={{ 
+        backgroundColor: '#ffffff', 
+        border: '1px solid rgba(10, 22, 40, 0.08)',
+        boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)'
+      }}
+    >
       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
         <div className="flex-1 min-w-0">
           {/* Header mit Icon und Badges */}
@@ -76,51 +83,51 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
                   {typeConfig.label}
                 </span>
                 {programm.kiAntragGeeignet && (
-                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-orange-500/20 text-orange-400">
+                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-[#c9a227]/15 text-[#c9a227]">
                     KI-geeignet
                   </span>
                 )}
                 {programm.status === "aktiv" && (
-                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-green-500/20 text-green-400">
+                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-emerald-500/15 text-emerald-600">
                     Aktiv
                   </span>
                 )}
               </div>
               
               {/* Titel */}
-              <h3 className="text-xl font-bold text-slate-100 group-hover:text-orange-400 transition-colors line-clamp-2">
+              <h3 className="text-xl font-bold text-[#0a1628] group-hover:text-[#c9a227] transition-colors line-clamp-2">
                 {programm.name}
               </h3>
             </div>
           </div>
 
           {/* Fördergeber */}
-          <p className="text-slate-400 text-sm mb-3 flex items-center gap-2">
-            <Building2 className="h-4 w-4 flex-shrink-0" />
+          <p className="text-[#1e3a61] text-sm mb-3 flex items-center gap-2">
+            <Building2 className="h-4 w-4 flex-shrink-0 text-[#1e3a61]/60" />
             <span className="truncate">{programm.foerdergeber}</span>
           </p>
 
           {/* Beschreibung */}
-          <p className="text-slate-300 text-sm leading-relaxed mb-4 line-clamp-3">
+          <p className="text-[#1e3a61]/80 text-sm leading-relaxed mb-4 line-clamp-3">
             {cleanedDescription}
           </p>
 
           {/* Details */}
-          <div className="flex flex-wrap gap-4 text-sm text-slate-400 mb-4">
+          <div className="flex flex-wrap gap-4 text-sm text-[#1e3a61] mb-4">
             {programm.foerdersummeText && (
               <span className="flex items-center gap-1">
-                <Euro className="h-4 w-4 text-slate-500 flex-shrink-0" />
-                <span className="truncate">{programm.foerdersummeText}</span>
+                <Euro className="h-4 w-4 text-[#c9a227] flex-shrink-0" />
+                <span className="truncate font-medium text-[#c9a227]">{programm.foerdersummeText}</span>
               </span>
             )}
             {programm.bewerbungsfristText && (
               <span className="flex items-center gap-1">
-                <Calendar className="h-4 w-4 text-slate-500 flex-shrink-0" />
+                <Calendar className="h-4 w-4 text-[#1e3a61]/50 flex-shrink-0" />
                 <span className="truncate">{programm.bewerbungsfristText}</span>
               </span>
             )}
             <span className="flex items-center gap-1">
-              <MapPin className="h-4 w-4 text-slate-500 flex-shrink-0" />
+              <MapPin className="h-4 w-4 text-[#1e3a61]/50 flex-shrink-0" />
               {bundeslandText}
             </span>
           </div>
@@ -130,7 +137,7 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
             {programm.kategorien.slice(0, 5).map((kat) => (
               <span
                 key={kat}
-                className="px-2 py-1 rounded-md text-xs bg-slate-800 text-slate-400"
+                className="px-2 py-1 rounded-md text-xs bg-[#f8f5f0] text-[#1e3a61] border border-[#ebe5dc]"
               >
                 {kat}
               </span>

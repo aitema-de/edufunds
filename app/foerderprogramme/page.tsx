@@ -53,40 +53,40 @@ const FOERDERGEBER_TYPEN = [
 const StatsSection = memo(function StatsSection({ stats }: { stats: { total: number; bund: number; land: number; stiftung: number; eu: number } }) {
   return (
     <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
-      <div className="glass rounded-xl p-4 text-center">
-        <div className="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center mx-auto mb-2">
-          <School className="w-5 h-5 text-orange-400" />
+      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)', boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)' }}>
+        <div className="w-10 h-10 rounded-lg bg-[#c9a227]/15 flex items-center justify-center mx-auto mb-2">
+          <School className="w-5 h-5 text-[#c9a227]" />
         </div>
-        <div className="text-2xl font-bold text-orange-400">{stats.total}</div>
-        <div className="text-xs text-slate-500">Grundschul-Programme</div>
+        <div className="text-2xl font-bold text-[#c9a227]">{stats.total}</div>
+        <div className="text-xs text-[#1e3a61]">Grundschul-Programme</div>
       </div>
-      <div className="glass rounded-xl p-4 text-center">
-        <div className="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center mx-auto mb-2">
-          <Landmark className="w-5 h-5 text-cyan-400" />
+      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)', boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)' }}>
+        <div className="w-10 h-10 rounded-lg bg-[#1a4d4d]/15 flex items-center justify-center mx-auto mb-2">
+          <Landmark className="w-5 h-5 text-[#1a4d4d]" />
         </div>
-        <div className="text-2xl font-bold text-cyan-400">{stats.bund}</div>
-        <div className="text-xs text-slate-500">Bundesmittel</div>
+        <div className="text-2xl font-bold text-[#1a4d4d]">{stats.bund}</div>
+        <div className="text-xs text-[#1e3a61]">Bundesmittel</div>
       </div>
-      <div className="glass rounded-xl p-4 text-center">
-        <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center mx-auto mb-2">
-          <MapPinned className="w-5 h-5 text-purple-400" />
+      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)', boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)' }}>
+        <div className="w-10 h-10 rounded-lg bg-[#1e3a61]/15 flex items-center justify-center mx-auto mb-2">
+          <MapPinned className="w-5 h-5 text-[#1e3a61]" />
         </div>
-        <div className="text-2xl font-bold text-purple-400">{stats.land}</div>
-        <div className="text-xs text-slate-500">Landesmittel</div>
+        <div className="text-2xl font-bold text-[#1e3a61]">{stats.land}</div>
+        <div className="text-xs text-[#1e3a61]">Landesmittel</div>
       </div>
-      <div className="glass rounded-xl p-4 text-center">
-        <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center mx-auto mb-2">
-          <HeartHandshake className="w-5 h-5 text-green-400" />
+      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)', boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)' }}>
+        <div className="w-10 h-10 rounded-lg bg-[#b08d1f]/15 flex items-center justify-center mx-auto mb-2">
+          <HeartHandshake className="w-5 h-5 text-[#b08d1f]" />
         </div>
-        <div className="text-2xl font-bold text-green-400">{stats.stiftung}</div>
-        <div className="text-xs text-slate-500">Stiftungen</div>
+        <div className="text-2xl font-bold text-[#b08d1f]">{stats.stiftung}</div>
+        <div className="text-xs text-[#1e3a61]">Stiftungen</div>
       </div>
-      <div className="glass rounded-xl p-4 text-center">
-        <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center mx-auto mb-2">
-          <Globe className="w-5 h-5 text-blue-400" />
+      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)', boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)' }}>
+        <div className="w-10 h-10 rounded-lg bg-[#266666]/15 flex items-center justify-center mx-auto mb-2">
+          <Globe className="w-5 h-5 text-[#266666]" />
         </div>
-        <div className="text-2xl font-bold text-blue-400">{stats.eu}</div>
-        <div className="text-xs text-slate-500">EU-Programme</div>
+        <div className="text-2xl font-bold text-[#266666]">{stats.eu}</div>
+        <div className="text-xs text-[#1e3a61]">EU-Programme</div>
       </div>
     </div>
   );
@@ -294,10 +294,10 @@ export default function FoerderprogrammePage() {
     return (
       <>
         <Header />
-        <main id="main-content" className="min-h-screen pt-24 pb-20">
+        <main id="main-content" className="min-h-screen pt-24 pb-20" style={{ backgroundColor: '#f8f5f0' }}>
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-2xl font-bold text-red-400 mb-4">Fehler beim Laden</h1>
-            <p className="text-slate-400">Die Programme konnten nicht geladen werden. Bitte versuchen Sie es später erneut.</p>
+            <h1 className="text-2xl font-bold text-red-600 mb-4">Fehler beim Laden</h1>
+            <p className="text-[#1e3a61]">Die Programme konnten nicht geladen werden. Bitte versuchen Sie es später erneut.</p>
           </div>
         </main>
         <Footer />
@@ -308,18 +308,18 @@ export default function FoerderprogrammePage() {
   return (
     <>
       <Header />
-      <main id="main-content" className="min-h-screen pt-24 pb-20">
+      <main id="main-content" className="min-h-screen pt-24 pb-20" style={{ backgroundColor: '#f8f5f0' }}>
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 mb-6">
-              <School className="h-4 w-4 text-orange-400" />
-              <span className="text-sm font-medium text-orange-400">Förderfinder</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#c9a227]/10 border border-[#c9a227]/20 mb-6">
+              <School className="h-4 w-4 text-[#c9a227]" />
+              <span className="text-sm font-medium text-[#c9a227]">Förderfinder</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-100 mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-4">
               Förderprogramme für Grundschulen
             </h1>
-            <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+            <p className="text-[#1e3a61] max-w-2xl mx-auto text-lg">
               Finden Sie passende Förderungen für Ihre Grundschule. 
               Aktuell {isLoading ? '...' : `${stats.total}+ Programme`} im Überblick.
             </p>
@@ -329,10 +329,10 @@ export default function FoerderprogrammePage() {
           {isLoading ? (
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
               {Array.from({ length: 5 }).map((_, i) => (
-                <div key={i} className="glass rounded-xl p-4 animate-pulse">
-                  <div className="w-10 h-10 rounded-lg bg-slate-700 mx-auto mb-2" />
-                  <div className="h-8 w-12 bg-slate-700 mx-auto mb-1 rounded" />
-                  <div className="h-3 w-20 bg-slate-700 mx-auto rounded" />
+                <div key={i} className="rounded-xl p-4 animate-pulse" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)' }}>
+                  <div className="w-10 h-10 rounded-lg bg-[#ebe5dc] mx-auto mb-2" />
+                  <div className="h-8 w-12 bg-[#ebe5dc] mx-auto mb-1 rounded" />
+                  <div className="h-3 w-20 bg-[#ebe5dc] mx-auto rounded" />
                 </div>
               ))}
             </div>
@@ -341,13 +341,13 @@ export default function FoerderprogrammePage() {
           )}
 
           {/* Filter-Bereich */}
-          <div className="glass rounded-2xl p-6 mb-8">
+          <div className="rounded-2xl p-6 mb-8" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)', boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)' }}>
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <Filter className="h-5 w-5 text-orange-400" />
-                <h2 className="font-semibold text-slate-200">Filter</h2>
+                <Filter className="h-5 w-5 text-[#c9a227]" />
+                <h2 className="font-semibold text-[#0a1628]">Filter</h2>
                 {aktiveFilterCount > 0 && (
-                  <span className="px-2 py-0.5 rounded-full text-xs bg-orange-500/20 text-orange-400">
+                  <span className="px-2 py-0.5 rounded-full text-xs bg-[#c9a227]/15 text-[#c9a227]">
                     {aktiveFilterCount} aktiv
                   </span>
                 )}
@@ -357,7 +357,7 @@ export default function FoerderprogrammePage() {
                   variant="ghost"
                   size="sm"
                   onClick={resetFilter}
-                  className="text-slate-400 hover:text-orange-400"
+                  className="text-[#1e3a61] hover:text-[#c9a227]"
                 >
                   <X className="h-4 w-4" />
                   Filter zurücksetzen
@@ -369,22 +369,22 @@ export default function FoerderprogrammePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Suchfeld */}
               <div className="relative">
-                <label className="block text-xs text-slate-500 mb-1.5">Suche</label>
+                <label className="block text-xs text-[#1e3a61] mb-1.5">Suche</label>
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#1e3a61]/50" />
                   <input
                     type="text"
                     placeholder="Name, Beschreibung..."
                     value={filterState.suchbegriff}
                     onChange={(e) => handleFilterChange('suchbegriff', e.target.value)}
-                    className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-800/50 border border-slate-700 text-slate-200 text-sm placeholder:text-slate-500 focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all"
+                    className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-[#f8f5f0] border border-[#ebe5dc] text-[#0a1628] text-sm placeholder:text-[#1e3a61]/50 focus:outline-none focus:border-[#c9a227]/50 focus:ring-1 focus:ring-[#c9a227]/50 transition-all"
                   />
                   {filterState.suchbegriff && (
                     <Button
                       variant="ghost"
                       size="icon-sm"
                       onClick={() => handleFilterChange('suchbegriff', '')}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#1e3a61]/50 hover:text-[#0a1628]"
                       aria-label="Suche löschen"
                     >
                       <X className="h-4 w-4" />
@@ -395,13 +395,13 @@ export default function FoerderprogrammePage() {
 
               {/* Bundesland-Dropdown */}
               <div>
-                <label className="block text-xs text-slate-500 mb-1.5">Bundesland</label>
+                <label className="block text-xs text-[#1e3a61] mb-1.5">Bundesland</label>
                 <select
                   value={filterState.bundesland}
                   onChange={(e) => handleFilterChange('bundesland', e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-800/50 border border-slate-700 text-slate-200 text-sm focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all cursor-pointer appearance-none"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#f8f5f0] border border-[#ebe5dc] text-[#0a1628] text-sm focus:outline-none focus:border-[#c9a227]/50 focus:ring-1 focus:ring-[#c9a227]/50 transition-all cursor-pointer appearance-none"
                   style={{ 
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, 
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231e3a61' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, 
                     backgroundRepeat: 'no-repeat', 
                     backgroundPosition: 'right 12px center' 
                   }}
@@ -416,13 +416,13 @@ export default function FoerderprogrammePage() {
 
               {/* Fördergeber-Typ-Dropdown */}
               <div>
-                <label className="block text-xs text-slate-500 mb-1.5">Fördergeber</label>
+                <label className="block text-xs text-[#1e3a61] mb-1.5">Fördergeber</label>
                 <select
                   value={filterState.foerdergeberTyp}
                   onChange={(e) => handleFilterChange('foerdergeberTyp', e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-800/50 border border-slate-700 text-slate-200 text-sm focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all cursor-pointer appearance-none"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#f8f5f0] border border-[#ebe5dc] text-[#0a1628] text-sm focus:outline-none focus:border-[#c9a227]/50 focus:ring-1 focus:ring-[#c9a227]/50 transition-all cursor-pointer appearance-none"
                   style={{ 
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, 
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231e3a61' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, 
                     backgroundRepeat: 'no-repeat', 
                     backgroundPosition: 'right 12px center' 
                   }}
@@ -437,13 +437,13 @@ export default function FoerderprogrammePage() {
 
               {/* Kategorie-Dropdown */}
               <div>
-                <label className="block text-xs text-slate-500 mb-1.5">Kategorie</label>
+                <label className="block text-xs text-[#1e3a61] mb-1.5">Kategorie</label>
                 <select
                   value={filterState.kategorie}
                   onChange={(e) => handleFilterChange('kategorie', e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-800/50 border border-slate-700 text-slate-200 text-sm focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all cursor-pointer appearance-none"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#f8f5f0] border border-[#ebe5dc] text-[#0a1628] text-sm focus:outline-none focus:border-[#c9a227]/50 focus:ring-1 focus:ring-[#c9a227]/50 transition-all cursor-pointer appearance-none"
                   style={{ 
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, 
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231e3a61' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, 
                     backgroundRepeat: 'no-repeat', 
                     backgroundPosition: 'right 12px center' 
                   }}
@@ -460,9 +460,9 @@ export default function FoerderprogrammePage() {
 
           {/* Ergebnis-Anzeige */}
           <div className="mb-6">
-            <h2 className="text-2xl font-bold text-slate-100">
+            <h2 className="text-2xl font-bold text-[#0a1628]">
               {isLoading ? (
-                <span className="inline-block w-48 h-8 bg-slate-700 rounded animate-pulse" />
+                <span className="inline-block w-48 h-8 bg-[#ebe5dc] rounded animate-pulse" />
               ) : gefilterteProgramme.length === stats.total ? (
                 `Alle Programme (${stats.total})`
               ) : (
@@ -475,12 +475,12 @@ export default function FoerderprogrammePage() {
           {isLoading ? (
             <ProgramCardSkeletonGrid count={6} />
           ) : gefilterteProgramme.length === 0 ? (
-            <div className="glass rounded-2xl p-12 text-center">
-              <Search className="h-16 w-16 text-slate-600 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-slate-300 mb-2">
+            <div className="rounded-2xl p-12 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)', boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)' }}>
+              <Search className="h-16 w-16 text-[#ebe5dc] mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-[#0a1628] mb-2">
                 Keine Programme gefunden
               </h3>
-              <p className="text-slate-500 max-w-md mx-auto mb-6">
+              <p className="text-[#1e3a61] max-w-md mx-auto mb-6">
                 Versuchen Sie es mit anderen Filterkriterien oder setzen Sie die Filter zurück.
               </p>
               <Button
@@ -510,12 +510,12 @@ export default function FoerderprogrammePage() {
           )}
 
           {/* Hinweis */}
-          <div className="mt-12 glass rounded-2xl p-8 text-center">
-            <Search className="h-12 w-12 text-orange-400 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-slate-100 mb-2">
+          <div className="mt-12 rounded-2xl p-8 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)', boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)' }}>
+            <Search className="h-12 w-12 text-[#c9a227] mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-[#0a1628] mb-2">
               Mehr Programme werden ergänzt
             </h3>
-            <p className="text-slate-400 max-w-xl mx-auto">
+            <p className="text-[#1e3a61] max-w-xl mx-auto">
               Unsere Datenbank wächst stetig. Wir erfassen aktuell Programme 
               von Bund, Ländern, Stiftungen und der EU. Haben Sie ein Programm gefunden, 
               das hier fehlt? Melden Sie sich bei uns.

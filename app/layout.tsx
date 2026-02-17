@@ -1,20 +1,7 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { WebVitals } from "@/components/WebVitals";
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: {
@@ -99,7 +86,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="de" className="dark">
+    <html lang="de">
       <head>
         <script
           type="application/ld+json"
@@ -108,7 +95,8 @@ export default function RootLayout({
         <GoogleAnalytics />
       </head>
       <body
-        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}
+        className="antialiased"
+        style={{ backgroundColor: '#f8f5f0' }}
       >
         <WebVitals />
         {children}

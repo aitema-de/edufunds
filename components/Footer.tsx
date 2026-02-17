@@ -43,18 +43,18 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden">
+    <footer className="relative overflow-hidden" style={{ backgroundColor: '#050d18' }}>
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#c9a227]/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#1a4d4d]/5 rounded-full blur-3xl" />
       </div>
 
       {/* Top gradient line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/50 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c9a227]/50 to-transparent" />
 
       {/* Stats Bar */}
-      <div className="relative border-b border-slate-800/50">
+      <div className="relative border-b border-[#0f1f38]">
         <div className="container mx-auto px-4 py-8">
           <div className="grid grid-cols-3 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
             {stats.map((stat, index) => (
@@ -66,7 +66,7 @@ export function Footer() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center group"
               >
-                <div className="text-3xl md:text-4xl font-bold text-gradient group-hover:scale-105 transition-transform">
+                <div className="text-3xl md:text-4xl font-bold text-gradient-gold group-hover:scale-105 transition-transform">
                   {stat.value}
                 </div>
                 <div className="text-sm text-[#94a3b8] mt-1">{stat.label}</div>
@@ -88,8 +88,8 @@ export function Footer() {
           >
             <Link href="/" className="inline-block mb-6 group">
               <div className="flex items-center gap-2.5">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-lg group-hover:shadow-orange-500/25 transition-shadow">
-                  <span className="text-xl font-bold text-white">€</span>
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#c9a227] to-[#e4c55a] flex items-center justify-center shadow-lg group-hover:shadow-[#c9a227]/35 transition-shadow">
+                  <span className="text-xl font-bold text-[#0a1628]">€</span>
                 </div>
                 <div className="flex flex-col">
                   <span className="font-bold text-xl text-[#f8f5f0]">EduFunds</span>
@@ -177,19 +177,19 @@ export function Footer() {
           transition={{ duration: 0.6 }}
           className="relative py-10 px-8 rounded-3xl glass-strong mb-10 overflow-hidden"
         >
-          <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#c9a227]/10 rounded-full blur-3xl" />
           <div className="relative max-w-3xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 mb-4"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#c9a227]/10 border border-[#c9a227]/20 mb-4"
             >
-              <Sparkles className="h-4 w-4 text-orange-400" />
-              <span className="text-sm font-medium text-orange-400">Bleiben Sie informiert</span>
+              <Sparkles className="h-4 w-4 text-[#c9a227]" />
+              <span className="text-sm font-medium text-[#c9a227]">Bleiben Sie informiert</span>
             </motion.div>
-            <h3 className="text-2xl font-bold text-slate-100 mb-3">Newsletter abonnieren</h3>
+            <h3 className="text-2xl font-bold text-[#f8f5f0] mb-3">Newsletter abonnieren</h3>
             <p className="text-[#94a3b8] mb-6">Erhalten Sie wöchentlich Updates zu neuen Förderprogrammen, Tipps für erfolgreiche Anträge und exklusive Einblicke.</p>
             <NewsletterForm />
             <p className="text-xs text-[#94a3b8] mt-4">Kein Spam, jederzeit abmeldbar. Wir respektieren Ihre Privatsphäre.</p>
@@ -202,12 +202,12 @@ export function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-slate-800/50 text-sm text-slate-500"
+          className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-[#0f1f38] text-sm text-[#64748b]"
         >
           <div className="flex flex-wrap items-center justify-center gap-2">
             <span>© {currentYear} EduFunds.</span>
             <span>Ein Projekt der</span>
-            <a href="https://aitema.de" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:underline">AITEMA GmbH</a>
+            <a href="https://aitema.de" target="_blank" rel="noopener noreferrer" className="text-[#c9a227] hover:underline">AITEMA GmbH</a>
           </div>
           <div className="flex items-center gap-1">
             <span>Made with</span>

@@ -2,6 +2,8 @@
 
 > **⚠️ WICHTIG: Lies `rules.md` bei jedem Session-Start!**
 > 
+
+> **🚨 DRINGEND: Lies TODO.md — Neuer Entwicklungsauftrag von Kolja (17.02.2026)**
 > **Aktueller Stand: `current_state.md`**
 
 ---

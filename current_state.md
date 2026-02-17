@@ -2,7 +2,7 @@
 
 > **Diese Datei wird nach JEDER Session aktualisiert**
 > 
-> Letzte Aktualisierung: 17. Februar 2026, 12:45 UTC
+> Letzte Aktualisierung: 17. Februar 2026, 14:15 UTC
 
 ---
 
@@ -54,14 +54,21 @@
 - **Letztes Deploy:** 17. Feb 2026, 12:45 UTC (Neubau mit Static Export)
 - **Container:** nginx (statischer Serve)
 - **Smoke-Test:** ✅ PASSED (143/143) - 17. Feb 2026
-- **API-Key:** Gemini API-Key eingebunden (Test ausstehend)
+- **API-Key:** Gemini API-Key eingebunden
 
-### Änderungen bei diesem Deploy
-- ✅ next.config.js: `output: 'export'` für statischen Export
-- ✅ Alle API-Routen: `dynamic = 'force-static'` hinzugefügt
-- ✅ Dynamische Routen: `generateStaticParams()` korrigiert
-- ✅ nginx-Config: Clean URL Support ohne Redirects
-- ✅ 293 statische Seiten generiert
+### Staging (staging.edufunds.org)
+- **Status:** ✅ **ONLINE** - Node.js Server
+- **URL:** https://staging.edufunds.org ✅
+- **Container:** edufunds-staging (Node.js standalone)
+- **DB-Verbindung:** ✅ Funktioniert
+- **Gemini API:** ✅ Key verfügbar
+- **Letzter Build:** 17. Feb 2026, 14:15 UTC
+
+### Änderungen
+- ✅ Staging: Docker-Container mit DB-Verbindung repariert
+- ✅ Staging: API-Routen auf `force-dynamic` umgestellt
+- ✅ Antrags-KI: Frontend + Backend existieren
+- ✅ Git: Commit `4e32a61` gepusht
 
 ### Staging
 - **Status:** ❌ Nicht eingerichtet
