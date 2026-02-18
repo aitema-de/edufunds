@@ -8,14 +8,14 @@
 
 ## Offene Aufgaben
 
-- [ ] **CSP-Header: Google Fonts nicht aktiv (FIX GEFUNDEN - middleware.ts)**
+- [ ] **CSP-Header: Google Fonts nicht aktiv (WARTE auf GitHub Build)**
   Der CSP-Fix wurde committed (987e434), aber die Header sind noch alt.
   🔍 URSAACHE GEFUNDEN: middleware.ts überschreibt CSP-Header!
-  Fix implementiert: middleware.ts aktualisiert mit Google Fonts URLs
+  ✅ Fix implementiert: middleware.ts aktualisiert mit Google Fonts URLs
   - style-src: + https://fonts.googleapis.com
   - font-src: + https://fonts.gstatic.com
-  Status: Commit gepusht (1b62398), GitHub Actions baut neues Image
-  Nächster Schritt: In ~5-10 Min: docker pull && Container neu starten
+  Status: Commit gepusht (1b62398), aber GitHub Image noch zu alt (15:49:57)
+  Nächster Schritt: Warte auf neuen Build (sollte in ~5-10 Min fertig sein)
   VERIFIKATION: curl -sI https://app.edufunds.org | grep -c fonts.googleapis.com = 1
 
 ## Erledigte Aufgaben
