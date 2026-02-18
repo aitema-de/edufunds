@@ -8,15 +8,15 @@
 
 ## Offene Aufgaben
 
-- [ ] **CSP-Header: Google Fonts nicht aktiv (GitHub Actions erstellt)**
+- [ ] **CSP-Header: Google Fonts nicht aktiv (GitHub Actions Workflow läuft)**
   Der CSP-Fix wurde committed (987e434), aber die Header sind noch alt.
   Problem: Docker-Build auf diesem Host ignoriert Code-Änderungen (Layer-Cache-Bug).
   Lösung implementiert: GitHub Actions Workflow (.github/workflows/build-deploy.yml)
   - Baut bei jedem Push zu main/staging
   - Push zu GitHub Container Registry (ghcr.io)
   - Frische Umgebung ohne Cache-Probleme
-  Status: Workflow committed & gepusht (c3638bd), wartet auf erstes Triggern
-  Nächster Schritt: Workflow auf GitHub Actions Tab prüfen, dann Image deployen
+  Status: Workflow committed & gepusht, sollte bei diesem Push getriggert werden.
+  Nächster Schritt: In ~5-10 Min prüfen: docker pull ghcr.io/aitema-gmbh/edufunds:latest
   VERIFIKATION: curl -sI https://app.edufunds.org | grep -c fonts.googleapis.com = 1
 
 ## Erledigte Aufgaben
