@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     default: "EduFunds - Intelligente Schulförderung für Schulen",
     template: "%s | EduFunds"
   },
-  description: "Finden Sie passende Förderprogramme für Ihre Schule und erstellen Sie erfolgreiche Anträge mit KI-Unterstützung. 120 Programme im Überblick.",
+  description: "Finden Sie passende Förderprogramme für Ihre Schule und erstellen Sie erfolgreiche Anträge mit KI-Unterstützung. 130+ Programme im Überblick.",
   keywords: ["Schulförderung", "Fördermittel", "Schule", "Anträge", "KI", "Bildung", "Grundschule", "Förderprogramme"],
   authors: [{ name: "EduFunds" }],
   creator: "EduFunds",
@@ -88,6 +88,10 @@ export default function RootLayout({
   return (
     <html lang="de">
       <head>
+        {/* Fonts: DM Serif Display + Plus Jakarta Sans */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrgData) }}
