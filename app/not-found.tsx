@@ -18,21 +18,33 @@ export default function NotFound() {
   return (
     <>
       <Header />
-      <main className="min-h-screen pt-24 pb-20">
+      <main className="min-h-screen pt-24 pb-20" style={{ backgroundColor: '#f8f5f0' }}>
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             {/* 404 */}
-            <div className="text-9xl font-bold text-slate-800 mb-4">
+            <div 
+              className="text-9xl font-bold mb-4"
+              style={{ 
+                color: '#0a1628',
+                opacity: 0.15
+              }}
+            >
               404
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl font-bold text-slate-100 mb-4">
+            <h1 
+              className="text-3xl font-bold mb-4"
+              style={{ color: '#0a1628' }}
+            >
               Seite nicht gefunden
             </h1>
 
             {/* Description */}
-            <p className="text-slate-400 mb-8 max-w-md mx-auto">
+            <p 
+              className="mb-8 max-w-md mx-auto"
+              style={{ color: '#64748b' }}
+            >
               Die von Ihnen gesuchte Seite existiert leider nicht oder wurde verschoben.
             </p>
 
@@ -40,7 +52,11 @@ export default function NotFound() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link
                 href="/"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-orange-500 text-white font-medium hover:bg-orange-600 transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium transition-all hover:shadow-lg"
+                style={{ 
+                  background: 'linear-gradient(135deg, #c9a227 0%, #b08d1f 100%)',
+                  color: '#0a1628'
+                }}
               >
                 <Home className="w-5 h-5" />
                 Zur Startseite
@@ -48,7 +64,12 @@ export default function NotFound() {
               
               <Link
                 href="/foerderprogramme"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-slate-700 text-slate-300 font-medium hover:border-slate-500 hover:text-white transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border font-medium transition-all hover:shadow-md"
+                style={{ 
+                  borderColor: '#c9a227',
+                  color: '#c9a227',
+                  backgroundColor: 'transparent'
+                }}
               >
                 <Search className="w-5 h-5" />
                 Programme durchsuchen
@@ -56,7 +77,12 @@ export default function NotFound() {
               
               <Link
                 href="/kontakt"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-slate-700 text-slate-300 font-medium hover:border-slate-500 hover:text-white transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border font-medium transition-all hover:shadow-md"
+                style={{ 
+                  borderColor: '#0a1628',
+                  color: '#0a1628',
+                  backgroundColor: 'transparent'
+                }}
               >
                 <HelpCircle className="w-5 h-5" />
                 Hilfe
@@ -65,7 +91,10 @@ export default function NotFound() {
 
             {/* Alternative Programme */}
             <div className="text-left">
-              <h2 className="text-xl font-semibold text-slate-200 mb-6 text-center">
+              <h2 
+                className="text-xl font-semibold mb-6 text-center"
+                style={{ color: '#0a1628' }}
+              >
                 Vielleicht interessiert Sie das:
               </h2>
               
@@ -74,12 +103,22 @@ export default function NotFound() {
                   <Link
                     key={programm.id}
                     href={`/foerderprogramme/${programm.id}`}
-                    className="p-4 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-orange-500/30 transition-all group"
+                    className="p-4 rounded-xl border transition-all group hover:shadow-md"
+                    style={{ 
+                      backgroundColor: 'white',
+                      borderColor: 'rgba(10, 22, 40, 0.08)'
+                    }}
                   >
-                    <span className="text-xs font-medium text-orange-400 mb-2 block">
+                    <span 
+                      className="text-xs font-medium mb-2 block"
+                      style={{ color: '#c9a227' }}
+                    >
                       {programm.foerdergeberTyp.toUpperCase()}
                     </span>
-                    <h3 className="font-medium text-slate-200 group-hover:text-orange-400 transition-colors line-clamp-2">
+                    <h3 
+                      className="font-medium line-clamp-2 transition-colors"
+                      style={{ color: '#0a1628' }}
+                    >
                       {programm.name}
                     </h3>
                   </Link>

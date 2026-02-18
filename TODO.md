@@ -8,12 +8,18 @@
 
 ## Offene Aufgaben
 
-- [ ] **404-Seite: altes dunkles Design ersetzen**
-  Die 404-Seite nutzt noch slate/orange Farben statt Parchment/Gold/Navy.
-  Anpassen an das neue Design (bg-[#f8f5f0], text-[#0a1628], accents #c9a227).
-  VERIFIKATION: curl -s https://app.edufunds.org/diese-seite-gibt-es-nicht | grep -c f8f5f0 (muss > 0 sein)
+*Keine offenen Aufgaben – alle erledigt!*
 
 ## Erledigte Aufgaben
+
+- [x] **404-Seite: altes dunkles Design ersetzen** (18.02.)
+  404-Seite komplett neu gestaltet mit Parchment/Gold/Navy Design:
+  - Hintergrund: #f8f5f0 (parchment)
+  - Text: #0a1628 (navy)
+  - Akzente: #c9a227 (gold)
+  - Buttons im Gold-Gradient-Stil
+  Deployed auf Staging + Production. Smoke-Test: PASSED (143/143)
+  Verifikation: curl https://app.edufunds.org/diese-seite-gibt-es-nicht | grep -c f8f5f0 = 2 ✓
 
 - [x] **Nav-Badge Programmzahl: 174 -> 130+** (18.02.)
   Alle Vorkommen von "174" geändert zu "130+" in:
