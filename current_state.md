@@ -2,15 +2,15 @@
 
 > **Diese Datei wird nach JEDER Session aktualisiert**
 > 
-> Letzte Aktualisierung: 18. Februar 2026, 06:05 UTC
+> Letzte Aktualisierung: 18. Februar 2026, 06:35 UTC
 
 ---
 
 ## 🚀 Feature-Stand
 
 ### ✅ Funktioniert
-- [x] Startseite mit Statistiken (131 Programme, 120+ Badge)
-- [x] Förderfinder mit 131 Programmen
+- [x] Startseite mit Statistiken (129 Programme, 120+ Badge)
+- [x] Förderfinder mit 129 Programmen (bereinigt)
 - [x] Cron-Scan: Neue Programme automatisch erkennen
 - [x] KI-Antragsassistent (Frontend + Gemini API + Fallback)
 - [x] Staging-Umgebung (Port 3005, Node.js Server)
@@ -24,6 +24,8 @@
 - [x] Alle 129 Detailseiten erreichbar (HTTP 200)
 - [x] Smoke-Test: PASSED (143/143)
 - [x] Next.js 16 params-Bug gefixt
+- [x] Design-Updates: Unterseiten auf Parchment-Design
+- [x] Klaus Tschira Stiftung entfernt (kein spezifisches Programm)
 
 ### 🔄 In Arbeit / Zu Testen
 - [x] KI-Antragsassistent mit echtem Gemini-Key testen ✅ WORKING
@@ -125,12 +127,21 @@
 
 ## 📚 Letzte Änderungen
 
+### 18. Februar 2026, 06:35 UTC (Deployment & Bereinigung)
+- ✅ **Klaus Tschira Stiftung entfernt** (2 Einträge gelöscht)
+  - Kein spezifisches Förderprogramm für Schulen
+  - Nur Redirect zur allgemeinen Förderseite
+- ✅ **Neue Programme deployed**
+  - PROJEKT:KULTUR: https://edufunds.org/foerderprogramme/neumayer-projektkultur ✅
+  - Kulturfonds Bayern: https://edufunds.org/foerderprogramme/bayern-kulturfonds ✅
+- ✅ **Smoke-Test PASSED** (143/143)
+- ✅ Git commits: `0362271`, `45090df`
+
 ### 18. Februar 2026, 06:05 UTC (Cron-Scan Neue Programme)
 - ✅ **2 neue Förderprogramme durch täglichen Scan gefunden & hinzugefügt**
   - PROJEKT:KULTUR (Neumayer Stiftung): 10.000 €, Frist 31.03.2026 ⭐
   - Kulturfonds Bayern: 50.000 €, Frist 01.03.2026
 - ✅ Git commit + push: `45090df`
-- 🔄 Rebuild für statische Detailseiten ausstehend
 
 ### 17. Februar 2026, 20:20 UTC (Heartbeat-Arbeit)
 - ✅ **KI-Antragsassistent: E2E-Test ERFOLGREICH**
