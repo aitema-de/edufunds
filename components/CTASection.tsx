@@ -225,7 +225,7 @@ export function CTASection() {
           className="mt-16 grid grid-cols-3 gap-4 max-w-2xl mx-auto"
         >
           {[
-            { value: "120", label: "Förderprogramme" },
+            { value: "130+", label: "Förderprogramme" },
             { value: "100%", label: "Grundschulen" },
             { value: "16", label: "Bundesländer" },
           ].map((stat, index) => (
