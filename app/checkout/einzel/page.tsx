@@ -132,7 +132,7 @@ export default function CheckoutEinzelPage() {
                 <h1 className="text-3xl font-bold text-white mb-4">
                   Bestellung erfolgreich!
                 </h1>
-                <p className="text-slate-400">
+                <p className="text-[#64748b]">
                   Vielen Dank für Ihre Bestellung. Ihre Bestellnummer:
                 </p>
                 <p className="text-2xl font-mono text-[#c9a227] mt-2">
@@ -157,8 +157,8 @@ export default function CheckoutEinzelPage() {
                       <FileText className="w-5 h-5" />
                       <span>Rechnung wurde per E-Mail versendet</span>
                     </div>
-                    <div className="p-4 rounded-xl bg-slate-800/50">
-                      <p className="text-slate-400 text-sm mb-2">Bitte überweisen Sie den Betrag auf:</p>
+                    <div className="p-4 rounded-xl bg-[#0a1628]/5">
+                      <p className="text-[#64748b] text-sm mb-2">Bitte überweisen Sie den Betrag auf:</p>
                       <div className="space-y-1 text-sm">
                         <p className="text-white"><strong>Empfänger:</strong> {orderData.paymentInstructions.bankDetails.recipient}</p>
                         <p className="text-white"><strong>IBAN:</strong> {orderData.paymentInstructions.bankDetails.iban}</p>
@@ -166,7 +166,7 @@ export default function CheckoutEinzelPage() {
                         <p className="text-white"><strong>Bank:</strong> {orderData.paymentInstructions.bankDetails.bank}</p>
                         <p className="text-white"><strong>Verwendungszweck:</strong> {orderData.paymentInstructions.bankDetails.reference}</p>
                       </div>
-                      <p className="text-slate-400 text-sm mt-4">
+                      <p className="text-[#64748b] text-sm mt-4">
                         <strong>Zahlungsziel:</strong> {new Date(orderData.paymentInstructions.dueDate).toLocaleDateString("de-DE")}
                       </p>
                     </div>
@@ -179,12 +179,12 @@ export default function CheckoutEinzelPage() {
                       <Banknote className="w-5 h-5" />
                       <span>SEPA-Lastschriftmandat erstellt</span>
                     </div>
-                    <div className="p-4 rounded-xl bg-slate-800/50">
-                      <p className="text-slate-400 text-sm mb-2">Der Betrag wird abgebucht am:</p>
+                    <div className="p-4 rounded-xl bg-[#0a1628]/5">
+                      <p className="text-[#64748b] text-sm mb-2">Der Betrag wird abgebucht am:</p>
                       <p className="text-white text-lg font-semibold">
                         {new Date(orderData.paymentInstructions.collectionDate).toLocaleDateString("de-DE")}
                       </p>
-                      <p className="text-slate-400 text-sm mt-4">
+                      <p className="text-[#64748b] text-sm mt-4">
                         Mandatsreferenz: {orderData.mandate?.mandateReference}
                       </p>
                     </div>
@@ -192,7 +192,7 @@ export default function CheckoutEinzelPage() {
                 )}
 
                 <div className="mt-8 pt-6 border-t border-[#c9a227]/10">
-                  <p className="text-slate-400 text-sm text-center">
+                  <p className="text-[#64748b] text-sm text-center">
                     Bei Fragen kontaktieren Sie uns unter{" "}
                     <a href="mailto:office@aitema.de" className="text-[#c9a227] hover:underline">
                       office@aitema.de
@@ -326,7 +326,7 @@ export default function CheckoutEinzelPage() {
                   {/* Customer Form */}
                   <div className="space-y-4 mb-6">
                     <div>
-                      <label className="block text-sm text-slate-400 mb-1">Name *</label>
+                      <label className="block text-sm text-[#64748b] mb-1">Name *</label>
                       <input
                         type="text"
                         value={customerData.name}
@@ -337,7 +337,7 @@ export default function CheckoutEinzelPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm text-slate-400 mb-1">E-Mail *</label>
+                      <label className="block text-sm text-[#64748b] mb-1">E-Mail *</label>
                       <input
                         type="email"
                         value={customerData.email}
@@ -348,7 +348,7 @@ export default function CheckoutEinzelPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm text-slate-400 mb-1">Schule *</label>
+                      <label className="block text-sm text-[#64748b] mb-1">Schule *</label>
                       <input
                         type="text"
                         value={customerData.school}
@@ -359,7 +359,7 @@ export default function CheckoutEinzelPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm text-slate-400 mb-1">Straße *</label>
+                      <label className="block text-sm text-[#64748b] mb-1">Straße *</label>
                       <input
                         type="text"
                         value={customerData.street}
@@ -371,7 +371,7 @@ export default function CheckoutEinzelPage() {
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm text-slate-400 mb-1">PLZ *</label>
+                        <label className="block text-sm text-[#64748b] mb-1">PLZ *</label>
                         <input
                           type="text"
                           value={customerData.zip}
@@ -382,7 +382,7 @@ export default function CheckoutEinzelPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm text-slate-400 mb-1">Ort *</label>
+                        <label className="block text-sm text-[#64748b] mb-1">Ort *</label>
                         <input
                           type="text"
                           value={customerData.city}
@@ -411,7 +411,7 @@ export default function CheckoutEinzelPage() {
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <FileText className={`w-5 h-5 ${selectedPayment === "rechnung" ? "text-[#c9a227]" : "text-slate-400"}`} />
+                        <FileText className={`w-5 h-5 ${selectedPayment === "rechnung" ? "text-[#c9a227]" : "text-[#64748b]"}`} />
                         <div className="flex-1">
                           <span className={selectedPayment === "rechnung" ? "text-white font-medium" : "text-slate-300"}>
                             Rechnungskauf
@@ -434,7 +434,7 @@ export default function CheckoutEinzelPage() {
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <Banknote className={`w-5 h-5 ${selectedPayment === "lastschrift" ? "text-[#c9a227]" : "text-slate-400"}`} />
+                        <Banknote className={`w-5 h-5 ${selectedPayment === "lastschrift" ? "text-[#c9a227]" : "text-[#64748b]"}`} />
                         <div className="flex-1">
                           <span className={selectedPayment === "lastschrift" ? "text-white font-medium" : "text-slate-300"}>
                             SEPA-Lastschrift
@@ -457,7 +457,7 @@ export default function CheckoutEinzelPage() {
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <CreditCard className={`w-5 h-5 ${selectedPayment === "stripe" ? "text-[#c9a227]" : "text-slate-400"}`} />
+                        <CreditCard className={`w-5 h-5 ${selectedPayment === "stripe" ? "text-[#c9a227]" : "text-[#64748b]"}`} />
                         <div className="flex-1">
                           <span className={selectedPayment === "stripe" ? "text-white font-medium" : "text-slate-300"}>
                             Kreditkarte / Apple Pay / Google Pay
@@ -480,7 +480,7 @@ export default function CheckoutEinzelPage() {
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <svg className={`w-5 h-5 ${selectedPayment === "paypal" ? "text-[#c9a227]" : "text-slate-400"}`} viewBox="0 0 24 24" fill="currentColor">
+                        <svg className={`w-5 h-5 ${selectedPayment === "paypal" ? "text-[#c9a227]" : "text-[#64748b]"}`} viewBox="0 0 24 24" fill="currentColor">
                           <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 3.72a.77.77 0 0 1 .757-.629h6.844c2.454 0 4.352.518 5.53 1.493 1.023.84 1.46 2.077 1.271 3.628-.015.12-.044.241-.063.36-.397 2.46-1.776 4.49-3.873 5.735-1.758 1.023-3.95 1.546-6.506 1.546H9.91l-.786 5.166a.641.641 0 0 1-.633.74H7.076v-.02z"/>
                           <path d="M20.067 8.94c-.015.12-.044.241-.063.36-.397 2.46-1.776 4.49-3.873 5.735-1.758 1.023-3.95 1.546-6.506 1.546H9.91l-.786 5.166a.641.641 0 0 1-.633.74H7.076l.786-5.166h2.034c2.556 0 4.748-.523 6.506-1.546 2.097-1.245 3.476-3.275 3.873-5.735.02-.12.048-.24.063-.36.189-1.551-.248-2.788-1.271-3.628-1.178-.975-3.076-1.493-5.53-1.493H5.701l-.786 5.166h-.02L2.47 20.597a.641.641 0 0 0 .633.74h4.606l.786-5.166h2.034c2.556 0 4.748-.523 6.506-1.546 2.097-1.245 3.476-3.275 3.873-5.735.02-.12.048-.24.063-.36.189-1.551-.248-2.788-1.271-3.628-1.178-.975-3.076-1.493-5.53-1.493H5.701l-.786 5.166h-.02L2.47 20.597a.641.641 0 0 0 .633.74h4.606l.786-5.166h2.034c2.556 0 4.748-.523 6.506-1.546 2.097-1.245 3.476-3.275 3.873-5.735.02-.12.048-.24.063-.36z"/>
                         </svg>
@@ -502,11 +502,11 @@ export default function CheckoutEinzelPage() {
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
-                      className="space-y-4 mb-6 p-4 rounded-xl bg-slate-800/50"
+                      className="space-y-4 mb-6 p-4 rounded-xl bg-[#0a1628]/5"
                     >
                       <h4 className="font-medium text-white">Bankverbindung</h4>
                       <div>
-                        <label className="block text-sm text-slate-400 mb-1">IBAN *</label>
+                        <label className="block text-sm text-[#64748b] mb-1">IBAN *</label>
                         <input
                           type="text"
                           value={customerData.iban}
@@ -518,7 +518,7 @@ export default function CheckoutEinzelPage() {
                       </div>
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm text-slate-400 mb-1">BIC (optional)</label>
+                          <label className="block text-sm text-[#64748b] mb-1">BIC (optional)</label>
                           <input
                             type="text"
                             value={customerData.bic}
@@ -528,7 +528,7 @@ export default function CheckoutEinzelPage() {
                           />
                         </div>
                         <div>
-                          <label className="block text-sm text-slate-400 mb-1">Kontoinhaber *</label>
+                          <label className="block text-sm text-[#64748b] mb-1">Kontoinhaber *</label>
                           <input
                             type="text"
                             value={customerData.accountHolder || customerData.name}
