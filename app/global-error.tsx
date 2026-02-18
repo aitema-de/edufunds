@@ -90,7 +90,7 @@ export default function GlobalError({
                   Bei wiederkehrenden Problemen erreichen Sie uns unter{" "}
                   <a 
                     href="mailto:office@aitema.de" 
-                    className="text-orange-400 hover:text-orange-300"
+                    className="text-[#c9a227] hover:text-[#e4c55a]"
                   >
                     office@aitema.de
                   </a>

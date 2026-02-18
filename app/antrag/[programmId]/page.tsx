@@ -57,7 +57,7 @@ export default async function AntragPage({ params }: AntragPageProps) {
           <div className="mb-8">
             <Link 
               href={`/foerderprogramme/${programm.id}`}
-              className="inline-flex items-center gap-2 text-slate-400 hover:text-orange-400 transition-colors"
+              className="inline-flex items-center gap-2 text-slate-400 hover:text-[#c9a227] transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
               Zurück zum Programm
@@ -67,8 +67,8 @@ export default async function AntragPage({ params }: AntragPageProps) {
           {/* Header */}
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 bg-orange-500/10 rounded-lg">
-                <FileText className="h-6 w-6 text-orange-400" />
+              <div className="p-2 bg-[#c9a227]/10 rounded-lg">
+                <FileText className="h-6 w-6 text-[#c9a227]" />
               </div>
               <div>
                 <h1 className="text-3xl font-bold text-slate-100">
@@ -97,19 +97,19 @@ export default async function AntragPage({ params }: AntragPageProps) {
               </h3>
               <ul className="space-y-2 text-sm text-slate-400">
                 <li className="flex items-start gap-2">
-                  <span className="text-orange-400">•</span>
+                  <span className="text-[#c9a227]">•</span>
                   Der generierte Antrag ist ein Entwurf - überprüfen Sie ihn vor der Einreichung.
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-orange-400">•</span>
+                  <span className="text-[#c9a227]">•</span>
                   Stellen Sie sicher, dass alle Angaben zu Ihrer Schule korrekt sind.
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-orange-400">•</span>
+                  <span className="text-[#c9a227]">•</span>
                   Beachten Sie die offiziellen Antragsrichtlinien des Fördergebers.
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-orange-400">•</span>
+                  <span className="text-[#c9a227]">•</span>
                   Frist: {programm.bewerbungsfristText}
                 </li>
               </ul>

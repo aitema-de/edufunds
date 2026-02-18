@@ -81,7 +81,7 @@ export default function ErrorPage({ error, reset }: ErrorProps) {
         
         <CardContent className="space-y-6">
           {/* Fehler-ID Box */}
-          <div className="bg-gradient-to-r from-red-500/5 to-orange-500/5 border border-red-500/20 rounded-lg p-4">
+          <div className="bg-gradient-to-r from-red-500/5 to-[#c9a227]/5 border border-red-500/20 rounded-lg p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-400 mb-1">Fehler-ID (für Support)</p>

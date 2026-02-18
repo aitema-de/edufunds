@@ -57,7 +57,7 @@ export default function NotFound() {
               </p>
               <Link
                 href="/kontakt"
-                className="text-orange-400 hover:text-orange-300 transition-colors text-sm font-medium"
+                className="text-[#c9a227] hover:text-[#e4c55a] transition-colors text-sm font-medium"
               >
                 Kontaktieren Sie uns →
               </Link>

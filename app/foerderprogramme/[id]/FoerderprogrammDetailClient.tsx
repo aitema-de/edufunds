@@ -166,7 +166,7 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
           <div className="mb-6">
             <Link
               href="/foerderprogramme"
-              className="inline-flex items-center gap-2 text-slate-400 hover:text-orange-400 transition-colors"
+              className="inline-flex items-center gap-2 text-slate-400 hover:text-[#c9a227] transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
               <span>Zurück zur Übersicht</span>
@@ -176,7 +176,7 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
           {/* Hero Section */}
           <div className="relative rounded-3xl overflow-hidden mb-12">
             <div className="absolute inset-0 bg-gradient-to-br from-slate-800/80 via-slate-900/90 to-slate-900" />
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 via-transparent to-cyan-500/10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#c9a227]/10 via-transparent to-cyan-500/10" />
             
             <div className="relative p-8 md:p-12">
               <div className="flex flex-wrap items-center gap-3 mb-6">
@@ -184,7 +184,7 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
                   {foerdergeberStyle.label}
                 </span>
                 {programm.kiAntragGeeignet && (
-                  <span className="px-3 py-1.5 rounded-full text-sm font-medium bg-orange-500/20 text-orange-400 flex items-center gap-1.5">
+                  <span className="px-3 py-1.5 rounded-full text-sm font-medium bg-[#c9a227]/20 text-[#c9a227] flex items-center gap-1.5">
                     <Sparkles className="h-4 w-4" />
                     KI-geeignet
                   </span>
@@ -271,7 +271,7 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
             <div className="lg:col-span-2 space-y-8">
               <section className="glass rounded-2xl p-6 md:p-8">
                 <h2 className="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-3">
-                  <Info className="h-6 w-6 text-orange-400" />
+                  <Info className="h-6 w-6 text-[#c9a227]" />
                   Beschreibung
                 </h2>
                 <p className="text-slate-300 leading-relaxed text-lg">
@@ -279,13 +279,13 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
                 </p>
               </section>
 
-              <section className="glass rounded-2xl p-6 md:p-8 border-orange-500/20">
+              <section className="glass rounded-2xl p-6 md:p-8 border-[#c9a227]/20">
                 <h2 className="text-2xl font-bold text-slate-100 mb-6 flex items-center gap-3">
-                  <Euro className="h-6 w-6 text-orange-400" />
+                  <Euro className="h-6 w-6 text-[#c9a227]" />
                   Förderbetrag
                 </h2>
-                <div className="bg-gradient-to-br from-orange-500/10 to-orange-600/5 rounded-xl p-6 border border-orange-500/20">
-                  <div className="text-3xl md:text-4xl font-bold text-orange-400 mb-2">
+                <div className="bg-gradient-to-br from-[#c9a227]/10 to-[#b08d1f]/5 rounded-xl p-6 border border-[#c9a227]/20">
+                  <div className="text-3xl md:text-4xl font-bold text-[#c9a227] mb-2">
                     {programm.foerdersummeText}
                   </div>
                   {programm.foerdersummeMin && programm.foerdersummeMax && (
@@ -298,14 +298,14 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
 
               <section className="glass rounded-2xl p-6 md:p-8">
                 <h2 className="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-3">
-                  <Tag className="h-6 w-6 text-orange-400" />
+                  <Tag className="h-6 w-6 text-[#c9a227]" />
                   Kategorien
                 </h2>
                 <div className="flex flex-wrap gap-3">
                   {programm.kategorien.map((kategorie) => (
                     <span
                       key={kategorie}
-                      className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-sm font-medium border border-slate-700 hover:border-orange-500/30 transition-colors"
+                      className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-sm font-medium border border-slate-700 hover:border-[#c9a227]/30 transition-colors"
                     >
                       {kategorie.charAt(0).toUpperCase() + kategorie.slice(1).replace(/-/g, " ")}
                     </span>
@@ -315,7 +315,7 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
 
               <section className="glass rounded-2xl p-6 md:p-8">
                 <h2 className="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-3">
-                  <School className="h-6 w-6 text-orange-400" />
+                  <School className="h-6 w-6 text-[#c9a227]" />
                   Geeignete Schulformen
                 </h2>
                 <div className="flex flex-wrap gap-3">
@@ -333,7 +333,7 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
 
               <section className="glass rounded-2xl p-6 md:p-8">
                 <h2 className="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-3">
-                  <MapPin className="h-6 w-6 text-orange-400" />
+                  <MapPin className="h-6 w-6 text-[#c9a227]" />
                   Verfügbar in
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -357,22 +357,22 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
             </div>
 
             <div className="space-y-8">
-              <section className="glass rounded-2xl p-6 border-orange-500/20">
+              <section className="glass rounded-2xl p-6 border-[#c9a227]/20">
                 <h2 className="text-xl font-bold text-slate-100 mb-4 flex items-center gap-3">
-                  <Calendar className="h-5 w-5 text-orange-400" />
+                  <Calendar className="h-5 w-5 text-[#c9a227]" />
                   Bewerbungsfrist
                 </h2>
                 
                 <div className="space-y-4">
                   {countdown && countdown.days > 0 && (
-                    <div className={`p-4 rounded-xl ${countdown.urgent ? 'bg-red-500/10 border border-red-500/20' : 'bg-orange-500/10 border border-orange-500/20'}`}>
+                    <div className={`p-4 rounded-xl ${countdown.urgent ? 'bg-red-500/10 border border-red-500/20' : 'bg-[#c9a227]/10 border border-[#c9a227]/20'}`}>
                       <div className="flex items-center gap-2 mb-2">
-                        <Clock className={`h-5 w-5 ${countdown.urgent ? 'text-red-400' : 'text-orange-400'}`} />
-                        <span className={`text-sm font-medium ${countdown.urgent ? 'text-red-400' : 'text-orange-400'}`}>
+                        <Clock className={`h-5 w-5 ${countdown.urgent ? 'text-red-400' : 'text-[#c9a227]'}`} />
+                        <span className={`text-sm font-medium ${countdown.urgent ? 'text-red-400' : 'text-[#c9a227]'}`}>
                           {countdown.urgent ? 'Bald ablaufend!' : 'Noch Zeit'}
                         </span>
                       </div>
-                      <div className={`text-3xl font-bold ${countdown.urgent ? 'text-red-400' : 'text-orange-400'}`}>
+                      <div className={`text-3xl font-bold ${countdown.urgent ? 'text-red-400' : 'text-[#c9a227]'}`}>
                         {countdown.days} <span className="text-lg font-normal">Tage</span>
                       </div>
                       {countdown.hours > 0 && (
@@ -421,7 +421,7 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
 
               <section className="glass rounded-2xl p-6">
                 <h2 className="text-xl font-bold text-slate-100 mb-4 flex items-center gap-3">
-                  <Mail className="h-5 w-5 text-orange-400" />
+                  <Mail className="h-5 w-5 text-[#c9a227]" />
                   Kontakt
                 </h2>
                 {programm.kontaktEmail ? (
@@ -429,8 +429,8 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
                     href={`mailto:${programm.kontaktEmail}`}
                     className="flex items-center gap-3 p-4 rounded-xl bg-slate-800/50 hover:bg-slate-800 transition-colors group"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center group-hover:bg-orange-500/20 transition-colors">
-                      <Mail className="h-5 w-5 text-orange-400" />
+                    <div className="w-10 h-10 rounded-lg bg-[#c9a227]/10 flex items-center justify-center group-hover:bg-[#c9a227]/20 transition-colors">
+                      <Mail className="h-5 w-5 text-[#c9a227]" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="text-sm text-slate-500">E-Mail</div>
@@ -446,7 +446,7 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
 
               <section className="glass rounded-2xl p-6">
                 <h2 className="text-xl font-bold text-slate-100 mb-4 flex items-center gap-3">
-                  <ExternalLink className="h-5 w-5 text-orange-400" />
+                  <ExternalLink className="h-5 w-5 text-[#c9a227]" />
                   Weitere Links
                 </h2>
                 <div className="space-y-3">
@@ -488,14 +488,14 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
               </section>
 
               {programm.kiAntragGeeignet && programm.kiHinweise && (
-                <section className="glass rounded-2xl p-6 border-orange-500/20">
+                <section className="glass rounded-2xl p-6 border-[#c9a227]/20">
                   <h2 className="text-xl font-bold text-slate-100 mb-4 flex items-center gap-3">
-                    <Brain className="h-5 w-5 text-orange-400" />
+                    <Brain className="h-5 w-5 text-[#c9a227]" />
                     KI-Hinweise
                   </h2>
-                  <div className="p-4 rounded-xl bg-orange-500/10 border border-orange-500/20">
+                  <div className="p-4 rounded-xl bg-[#c9a227]/10 border border-[#c9a227]/20">
                     <div className="flex items-start gap-3">
-                      <Sparkles className="h-5 w-5 text-orange-400 mt-0.5 shrink-0" />
+                      <Sparkles className="h-5 w-5 text-[#c9a227] mt-0.5 shrink-0" />
                       <p className="text-slate-300 text-sm leading-relaxed">
                         {programm.kiHinweise}
                       </p>
@@ -509,7 +509,7 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
           {similarPrograms.length > 0 && (
             <section className="mt-16">
               <h2 className="text-2xl font-bold text-slate-100 mb-8 flex items-center gap-3">
-                <Tag className="h-6 w-6 text-orange-400" />
+                <Tag className="h-6 w-6 text-[#c9a227]" />
                 Ähnliche Programme
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -519,23 +519,23 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
                     <Link
                       key={similar.id}
                       href={`/foerderprogramme/${similar.id}`}
-                      className="glass rounded-2xl p-6 hover:border-orange-500/30 transition-all group"
+                      className="glass rounded-2xl p-6 hover:border-[#c9a227]/30 transition-all group"
                     >
                       <div className="flex items-start justify-between mb-4">
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${similarStyle.bg} ${similarStyle.text}`}>
                           {similarStyle.label}
                         </span>
                         {similar.kiAntragGeeignet && (
-                          <Sparkles className="h-4 w-4 text-orange-400" />
+                          <Sparkles className="h-4 w-4 text-[#c9a227]" />
                         )}
                       </div>
-                      <h3 className="text-lg font-bold text-slate-100 mb-2 group-hover:text-orange-400 transition-colors line-clamp-2">
+                      <h3 className="text-lg font-bold text-slate-100 mb-2 group-hover:text-[#c9a227] transition-colors line-clamp-2">
                         {similar.name}
                       </h3>
                       <p className="text-slate-400 text-sm mb-4 line-clamp-2">
                         {similar.kurzbeschreibung}
                       </p>
-                      <div className="flex items-center gap-2 text-orange-400 text-sm font-medium">
+                      <div className="flex items-center gap-2 text-[#c9a227] text-sm font-medium">
                         Details ansehen
                         <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </div>
