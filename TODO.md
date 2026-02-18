@@ -8,17 +8,20 @@
 
 ## Offene Aufgaben
 
-- [ ]
+- [ ] **CSP-Header: Google Fonts nicht aktiv (Deployment ausstehend)**
+  Der CSP-Fix wurde committed (987e434), aber die Header sind noch alt.
+  Ursache: Docker-Build hängt / CSP-Änderungen noch nicht im Container.
+  Lösung: Docker-Build ohne Cache durchführen oder Container neu erstellen.
+  VERIFIKATION: curl -sI https://app.edufunds.org | grep -c fonts.googleapis.com = 1
 
 ## Erledigte Aufgaben
 
-- [x] **Google Fonts CSP-Fix** (18.02.)
+- [x] **Google Fonts CSP-Fix (Code committed)** (18.02.)
   CSP-Header in next.config.js erweitert:
   - style-src: + https://fonts.googleapis.com
   - font-src: + https://fonts.gstatic.com
-  Behebt CSP-Errors für DM Serif Display + Plus Jakarta Sans.
   Git-Commit: 987e434
-  Status: Code committed, Build pending
+  Hinweis: Deployment noch ausstehend → siehe offene Aufgabe
 
 - [x] **404-Seite: altes dunkles Design ersetzen** (18.02.)
   404-Seite komplett neu gestaltet mit Parchment/Gold/Navy Design:
