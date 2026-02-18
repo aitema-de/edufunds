@@ -8,12 +8,12 @@
 
 ## Offene Aufgaben
 
-- [ ] **CSP-Header: Google Fonts nicht aktiv (System-Problem)**
+- [ ] **CSP-Header: Google Fonts nicht aktiv (BLOCKED - Externer Build nötig)**
   Der CSP-Fix wurde committed (987e434), aber die Header sind noch alt.
-  Problem: Docker-Build auf diesem System hängt zuverlässig (>10 Min ohne Output).
-  Versuche: Cache leeren, --no-cache, Standalone-Build → alle fehlgeschlagen.
-  Lösung: Build auf anderer Maschine durchführen oder GitHub Actions CI/CD nutzen.
-  Workaround: Container läuft mit staging-Image (healthy).
+  Problem: Docker-Build auf diesem System hängt systematisch (mehrere Versuche).
+  Versuche: Cache leeren, --no-cache, Standalone, docker-compose → alle fehlgeschlagen.
+  Lösung: Build auf anderer Maschine durchführen und Image kopieren, oder GitHub Actions.
+  Status: Container läuft stabil mit staging-Image (healthy) - keine kritische Downtime.
   VERIFIKATION: curl -sI https://app.edufunds.org | grep -c fonts.googleapis.com = 1
 
 ## Erledigte Aufgaben
