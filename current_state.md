@@ -2,14 +2,14 @@
 
 > **Diese Datei wird nach JEDER Session aktualisiert**
 > 
-> Letzte Aktualisierung: 18. Februar 2026, 06:35 UTC
+> Letzte Aktualisierung: 18. Februar 2026, 07:15 UTC
 
 ---
 
 ## 🚀 Feature-Stand
 
 ### ✅ Funktioniert
-- [x] Startseite mit Statistiken (129 Programme, 120+ Badge)
+- [x] Startseite mit Statistiken (129 Programme, 130+ in Meta)
 - [x] Förderfinder mit 129 Programmen (bereinigt)
 - [x] Cron-Scan: Neue Programme automatisch erkennen
 - [x] KI-Antragsassistent (Frontend + Gemini API + Fallback)
@@ -26,6 +26,8 @@
 - [x] Next.js 16 params-Bug gefixt
 - [x] Design-Updates: Unterseiten auf Parchment-Design
 - [x] Klaus Tschira Stiftung entfernt (kein spezifisches Programm)
+- [x] Fonts: DM Serif Display + Plus Jakarta Sans im Layout
+- [x] Programmzahl: 130+ in Meta-Description
 
 ### 🔄 In Arbeit / Zu Testen
 - [x] KI-Antragsassistent mit echtem Gemini-Key testen ✅ WORKING
@@ -126,6 +128,16 @@
 ---
 
 ## 📚 Letzte Änderungen
+
+### 18. Februar 2026, 07:15 UTC (Fonts & Programmzahl)
+- ✅ **Google Fonts zum Layout hinzugefügt**
+  - DM Serif Display (Überschriften)
+  - Plus Jakarta Sans (Body)
+  - Fonts werden jetzt auf allen Unterseiten geladen
+- ✅ **Programmzahl auf 130+ aktualisiert**
+  - Meta-Description im Layout angepasst
+- ✅ **Smoke-Test PASSED** (143/143)
+- ✅ Git commit: `c6655d0`
 
 ### 18. Februar 2026, 06:35 UTC (Deployment & Bereinigung)
 - ✅ **Klaus Tschira Stiftung entfernt** (2 Einträge gelöscht)
