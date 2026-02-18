@@ -8,11 +8,12 @@
 
 ## Offene Aufgaben
 
-- [ ] **CSP-Header: Google Fonts nicht aktiv (Build-Problem)**
+- [ ] **CSP-Header: Google Fonts nicht aktiv (Build ohne Code-Änderungen)**
   Der CSP-Fix wurde committed (987e434), aber die Header sind noch alt.
-  Problem: Docker-Build hängt zuverlässig bei ~50% (mehrere Versuche).
-  Workaround-Versuch: Standalone-Build verwenden → Fehlerhafte Dateistruktur.
-  Lösung: Docker-Build auf anderer Maschine durchführen oder npm run build optimieren.
+  Problem: Docker-Build verwendet gecachte Layers und ignoriert Code-Änderungen.
+  Versuch 1: Standalone-Build → Fehlerhafte Dateistruktur.
+  Versuch 2: Neues Image gebaut → Enthält trotzdem alten Code.
+  Lösung: `docker build --no-cache` durchführen oder Build-Cache leeren.
   VERIFIKATION: curl -sI https://app.edufunds.org | grep -c fonts.googleapis.com = 1
 
 ## Erledigte Aufgaben
