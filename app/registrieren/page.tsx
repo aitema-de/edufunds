@@ -233,7 +233,7 @@ export default function RegistrierenPage() {
             >
               {[
                 "Kostenlos für immer",
-                "174 Programme",
+                "130+ Programme",
                 "Sofortiger Zugriff",
                 "DSGVO-konform",
               ].map((benefit, i) => (

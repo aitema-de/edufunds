@@ -8,17 +8,20 @@
 
 ## Offene Aufgaben
 
-- [ ] **Nav-Badge Programmzahl: 174 -> 130+**
-  Der Header-Nav zeigt noch 174 als Badge neben Foerderprogramme.
-  Korrekter Wert: 130+ (passend zur Stats-Card).
-  VERIFIKATION: curl -s https://app.edufunds.org/ | grep -o 174 | wc -l (muss 0 sein)
-
 - [ ] **404-Seite: altes dunkles Design ersetzen**
   Die 404-Seite nutzt noch slate/orange Farben statt Parchment/Gold/Navy.
   Anpassen an das neue Design (bg-[#f8f5f0], text-[#0a1628], accents #c9a227).
   VERIFIKATION: curl -s https://app.edufunds.org/diese-seite-gibt-es-nicht | grep -c f8f5f0 (muss > 0 sein)
 
 ## Erledigte Aufgaben
+
+- [x] **Nav-Badge Programmzahl: 174 -> 130+** (18.02.)
+  Alle Vorkommen von "174" geändert zu "130+" in:
+  - components/Header.tsx (Nav-Badge)
+  - components/HeroSection.tsx (Trust-Items)
+  - app/registrieren/page.tsx (Benefits)
+  Deployed auf Staging + Production.
+  Verifikation: curl https://app.edufunds.org/ | grep -o 174 | wc -l = 0 ✓
 
 - [x] **Background Patterns auf allen Unterseiten** (18.02.)
   CSS-Patterns (geometric-grid + dots-pattern) global in layout.tsx eingebunden.

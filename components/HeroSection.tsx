@@ -200,7 +200,7 @@ export function HeroSection() {
             {[
               'Für alle Schularten',
               'DSGVO-konform',
-              '174 Programme',
+              '130+ Programme',
             ].map((item) => (
               <div key={item} className="flex items-center gap-2">
                 <svg 

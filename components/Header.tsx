@@ -18,7 +18,7 @@ const navItems = [
   {
     href: "/foerderprogramme",
     label: "Förderprogramme",
-    badge: "174",
+    badge: "130+",
     icon: Search,
   },
   {
