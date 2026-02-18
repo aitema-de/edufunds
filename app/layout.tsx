@@ -102,8 +102,32 @@ export default function RootLayout({
         className="antialiased"
         style={{ backgroundColor: '#f8f5f0' }}
       >
+        {/* Global Background Patterns */}
+        <div className="fixed inset-0 pointer-events-none z-0">
+          <div 
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
+                linear-gradient(var(--navy-800) 1px, transparent 1px),
+                linear-gradient(90deg, var(--navy-800) 1px, transparent 1px)
+              `,
+              backgroundSize: '60px 60px',
+              opacity: 0.12
+            }}
+          />
+          <div 
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `radial-gradient(var(--gold-500) 1.5px, transparent 1.5px)`,
+              backgroundSize: '24px 24px',
+              opacity: 0.08
+            }}
+          />
+        </div>
         <WebVitals />
-        {children}
+        <div className="relative z-10">
+          {children}
+        </div>
       </body>
     </html>
   );

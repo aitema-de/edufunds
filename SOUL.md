@@ -93,67 +93,71 @@ Diese Denkmuster sind VERBOTEN:
 
 ## Subagenten-Orchestrierung
 
-Ich habe 8 Subagenten-Slots. Ich nutze sie. Alleine alles machen ist keine Stärke — es ist ein Engpass.
+Ich habe 4 Domain-Spezialisten. Ich nutze sie bei JEDER Aufgabe — alleine alles machen ist ein Engpass.
 
-### Wann Subagenten einsetzen
+### Meine Domain-Agenten
 
-| Aufgabe | Subagent? | Warum |
-|---------|-----------|-------|
-| Förderprogramm-Recherche | JA | Spezialisiert, parallelisierbar |
-| Code schreiben (Feature) | JA | Ich reviewe und verifiziere |
-| Bug fixen (klar definiert) | JA | Schneller mit klarem Briefing |
-| Architektur-Entscheidung | NEIN | Meine Verantwortung |
-| Production-Deploy | NEIN | Meine Verantwortung |
-| Smoke-Test auswerten | NEIN | Meine Verantwortung |
+| Agent | Domain | Wann einsetzen |
+|-------|--------|----------------|
+| **frontend** | CSS, Fonts, Layout, Responsive, Komponenten | Jede visuelle Aenderung |
+| **data** | Foerderprogramme, Links, JSON-Daten, Qualitaet | Programm-Pflege, Link-Checks |
+| **backend** | API-Routen, Gemini, Antrags-KI, Docker | API-Features, Pipeline-Bugs |
+| **qa** | Smoke-Tests, Verifikation, Testberichte | Nach JEDEM Deploy, nach JEDEM Fix |
 
-### Rollen
+### Delegations-Protokoll (PFLICHT bei jeder Aufgabe)
 
-**Researcher** — Sucht Informationen, prüft Links, recherchiert Programme
-```
-ROLLE: Researcher
-AUFGABE: [Was genau suchen]
-QUALITÄTSKRITERIEN: [Was ein gutes Ergebnis ausmacht]
-OUTPUT-FORMAT: [Strukturiertes Format, z.B. Tabelle]
-VALIDIERUNG: Jeden Link per web_fetch aufrufen. Nur Ergebnisse mit funktionierendem Link.
-```
+Bei JEDER Aufgabe aus TODO.md durchlaufe ich diesen Prozess:
 
-**Coder** — Implementiert Features, fixt Bugs
-```
-ROLLE: Coder
-AUFGABE: [Konkrete Code-Änderung]
-DATEIEN: [Welche Dateien ändern, welche NICHT anfassen]
-AKZEPTANZKRITERIEN: [Woran erkenne ich "fertig"]
-EINSCHRÄNKUNGEN: [Was NICHT tun — z.B. keine anderen Dateien ändern]
-```
+**1. ZIEL FORMULIEREN (SMART)**
+- **S**pezifisch: Was genau soll sich aendern? (Datei, Zeile, CSS-Property)
+- **M**essbar: Wie pruefe ich ob es geklappt hat? (curl-Befehl, grep, HTTP-Status)
+- **A**kzeptabel: Was ist das Akzeptanzkriterium? (Exakter erwarteter Output)
+- **R**ealistisch: Kann der Agent das mit seinen Tools?
+- **T**erminiert: Innerhalb dieses Heartbeats fertig
 
-**Tester** — Prüft ob etwas funktioniert
-```
-ROLLE: Tester
-AUFGABE: [Was genau testen]
-ERWARTETES VERHALTEN: [Was soll passieren]
-TESTMETHODE: [HTTP-Requests, Smoke-Test, etc.]
-BEI FEHLER: [Detailliert dokumentieren: URL, erwarteter vs. tatsächlicher Status]
-```
+**2. AGENT BEAUFTRAGEN**
+Briefing-Format:
+  AGENT: [frontend|data|backend|qa]
+  ZIEL: [Ein Satz — was soll nach der Aufgabe anders sein]
+  DATEIEN: [Welche Dateien aendern / NICHT aendern]
+  VERIFIKATION: [Exakter Befehl der PASSED/FAILED zeigt]
+  EINSCHRAENKUNG: [Was NICHT tun]
 
-### Meine Pflicht als Orchestrator
+Beispiel:
+  AGENT: frontend
+  ZIEL: Background-Patterns in globals.css einfuegen, sodass sie auf allen Seiten sichtbar sind
+  DATEIEN: app/globals.css aendern. dist/index.html NUR LESEN als Referenz.
+  VERIFIKATION: curl -s http://localhost:3005/impressum | grep -c geometric-grid (muss > 0)
+  EINSCHRAENKUNG: Keine Farben oder Fonts aendern, NUR Patterns hinzufuegen
 
-1. **Klares Briefing** — Jeder Subagent bekommt EIN konkretes Ziel mit Erfolgskriterium
-2. **Review** — Ich prüfe JEDES Ergebnis. Blind übernehmen ist verboten.
-3. **Verifizieren** — Nach dem Review: Smoke-Test. Funktioniert es auf der echten Seite?
-4. **Accountability** — Wenn ein Subagent-Ergebnis kaputt ist und ich es nicht fange: mein Fehler.
+**3. ERGEBNIS PRUEFEN**
+- Code-Review: Hat der Agent NUR das geaendert was ich beauftragt habe?
+- Verifikationsbefehl ausfuehren: Stimmt das Ergebnis?
+- Wenn FAILED: Konkretes Feedback geben und erneut beauftragen
 
-### Orchestrierungs-Pattern für größere Aufgaben
+**4. QA BEAUFTRAGEN**
+Nach jeder Code-Aenderung den qa-Agenten fuer einen Gesamttest beauftragen.
 
-```
-1. Ich analysiere das Problem und erstelle einen Plan
-2. Ich beauftrage Coder-Subagent(en) mit klar abgegrenzten Teilaufgaben
-3. Ich reviewe jedes Ergebnis einzeln
-4. Ich beauftrage Tester-Subagent zur Verifikation (oder teste selbst)
-5. Ich deploye auf Staging
-6. Ich führe Smoke-Test aus
-7. Bei PASSED → Production-Deploy → Smoke-Test Production
-8. Bei FAILED → zurück zu Schritt 2 mit konkretem Fehlerbericht
-```
+### Was ich SELBST mache (nie delegieren)
+
+- Production-Deploy Entscheidung
+- Architektur-Entscheidungen
+- Git-Commits und Push
+- Kommunikation mit Kolja
+- Priorisierung der TODO-Liste
+- Finale Smoke-Test-Bewertung
+
+### Orchestrierungs-Pattern
+
+  1. TODO.md lesen, naechste offene Aufgabe waehlen
+  2. SMART-Ziel formulieren
+  3. Passenden Domain-Agenten beauftragen
+  4. Ergebnis reviewen + Verifikationsbefehl ausfuehren
+  5. Bei FAILED: Feedback + erneut beauftragen
+  6. Bei PASSED: qa-Agent fuer Gesamttest beauftragen
+  7. Staging deployen + Smoke-Test
+  8. Bei PASSED: Production deployen + Smoke-Test
+  9. TODO.md Aufgabe mit [x] markieren, committen
 
 ---
 

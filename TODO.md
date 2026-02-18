@@ -1,89 +1,65 @@
-# DRINGEND: Entwicklungsauftrag von Kolja — 17.02.2026
+# TODO — EduFunds Aufgabenliste
 
-> Lies das KOMPLETT bevor du irgendetwas tust.
-
----
-
-## KONTEXT: Was passiert ist
-
-Kolja hat die Production Landing Page (index.html) manuell ersetzt. Die neue Seite ist **statisches HTML** mit neuem Design (Parchment-Hintergrund, Gold-Akzente, Geometric Grid). **Diese Datei NICHT überschreiben!**
-
-Deine Cron-Job-Prompts für Förderprogramm-Scans wurden verschärft (kuratierte Quellen, Pflicht-Verifikation, Confidence-Scoring). Die sind bereits in deinen Cron-Jobs aktiv.
+> Milo: Bei jedem Heartbeat diese Liste lesen. Offene Aufgaben abarbeiten.
+> Eine Aufgabe ist erst erledigt wenn der Verifikationsbefehl PASSED zeigt.
+> Erledigte Aufgaben mit [x] markieren und committen.
 
 ---
 
-## KRITISCHE PROBLEME (von Koljas Review)
+## Offene Aufgaben
 
-### 1. Antrags-KI funktioniert NICHT — Architektur-Bug
-- Deine API-Route /api/generate-antrag hat `export const dynamic = 'force-static'` — das bedeutet sie wird als leere Datei exportiert und kann KEINE POST-Requests verarbeiten
-- Kein GEMINI_API_KEY in .env oder .env.local konfiguriert (nur in .env.example)
-- current_state.md sagt selbst: "Läuft im Fallback-Modus"
-- **Kernproblem:** Static HTML Export + API-Routes = geht nicht. Du musst entweder Next.js als Server laufen lassen ODER ein separates Backend für die KI aufsetzen
-- **HINWEIS:** Der GEMINI_API_KEY ist in deinem Gateway-Service konfiguriert (edufunds-gateway.service). Nutze den.
+- [ ] **Nav-Badge Programmzahl: 174 -> 130+**
+  Der Header-Nav zeigt noch 174 als Badge neben Foerderprogramme.
+  Korrekter Wert: 130+ (passend zur Stats-Card).
+  VERIFIKATION: curl -s https://app.edufunds.org/ | grep -o 174 | wc -l (muss 0 sein)
 
-### 2. Staging existiert NICHT
-- Der Container edufunds-staging-new ist weg
-- Du kannst die Antrags-KI nirgendwo testen
-- **SOFORT** Staging wieder aufsetzen!
+- [ ] **404-Seite: altes dunkles Design ersetzen**
+  Die 404-Seite nutzt noch slate/orange Farben statt Parchment/Gold/Navy.
+  Anpassen an das neue Design (bg-[#f8f5f0], text-[#0a1628], accents #c9a227).
+  VERIFIKATION: curl -s https://app.edufunds.org/diese-seite-gibt-es-nicht | grep -c f8f5f0 (muss > 0 sein)
 
-### 3. Klaus Tschira Stiftung noch in der Liste
-- Kolja hat das als Beispiel für schlechte Datenqualität genannt
-- Deine Link-Validierung markiert es als OK, aber es gibt KEIN spezifisches Förderprogramm für Schulen
-- Es redirectet nur zur allgemeinen Förderseite
-- **Entfernen oder als MEDIUM markieren**
+## Erledigte Aufgaben
 
----
-
-## AUFGABEN (Reihenfolge!)
-
-### SCHRITT 1: Staging aufsetzen (BLOCKER)
-Ohne Staging kannst du nichts entwickeln. Setze einen Next.js Dev-Server auf, der als Staging dient.
-
-### SCHRITT 2: Antrags-KI zum Laufen bringen (HAUPTAUFGABE)
-
-Das ist das HERZSTÜCK von EduFunds. Die zentrale Botschaft an Schulen:
-**"Passende Förderung finden — und den Antrag von der KI schreiben lassen. Sie prüfen nur noch."**
-
-Was funktionieren muss:
-1. **Schulprofil erfassen:** Name, Schultyp, Bundesland, Schülerzahl, Schwerpunkte
-2. **Förderprogramm wählen:** Aus der Liste oder Empfehlung basierend auf Profil
-3. **Projektidee eingeben:** 3-5 Sätze was gefördert werden soll
-4. **KI generiert den Antrag:** Projektbeschreibung, Finanzplan, Begründung — komplett
-5. **Review + Export:** User prüft, bearbeitet, exportiert als PDF
-
-Technisch:
-- GEMINI_API_KEY ist in edufunds-gateway.service vorhanden
-- Entweder: Next.js als Server (nicht static export) für API-Routes
-- Oder: Separater Express/Fastify-Endpoint für die Antragsgenerierung
-- Streaming-Response für bessere UX
-
-### SCHRITT 3: Design aller Unterseiten angleichen
-
-Alle Seiten (impressum, datenschutz, foerderprogramme, kontakt, preise, etc.) müssen zum neuen Landing Page Design passen:
-- Hintergrund: Parchment #f8f5f0 (NICHT dunkel!)
-- Primärfarbe: Gold #c9a227
-- Text: Navy #0a1628
-- Fonts: DM Serif Display + Plus Jakarta Sans
-- Patterns: geometric-grid (60px) + dots-pattern (24px gold)
-- Cards: Weißer Hintergrund, subtiler Border
-- Header: Dunkles Glass mit Euro-Logo
-- Footer: Dunkel mit Gold-Accent
-
-**Referenz-Datei:** /home/edufunds/edufunds-app/dist/index.html — LESEN, NICHT ÄNDERN
-
-### SCHRITT 4: Programmzahl in Landing Page korrigieren
-- Landing Page zeigt "50+" — tatsächlich hast du 129 Programme
-- Ändere NUR die Zahl im Stats-Card auf "120+" (gerundet)
-- Ändere auch das Nav-Badge von "50+" auf "120+"
-- SONST NICHTS an index.html ändern!
+- [x] **Background Patterns auf allen Unterseiten** (18.02.)
+  CSS-Patterns (geometric-grid + dots-pattern) global in layout.tsx eingebunden.
+  Deployed auf Staging + Production. Smoke-Test: PASSED (143/143)
+  
+- [x] Antrags-KI mit Gemini zum Laufen gebracht (17.02.)
+- [x] Staging repariert + Container healthy (17.02.)
+- [x] Design-Update Header/Footer/Features (17.02.)
+- [x] Fonts: DM Serif Display + Plus Jakarta Sans auf Unterseiten (18.02.)
+- [x] Programmzahl Stats-Card: 131 -> 130+ (18.02.)
+- [x] Klaus Tschira Stiftung entfernt (18.02.)
+- [x] 2 neue Foerderprogramme hinzugefuegt (18.02.)
 
 ---
 
-## REGELN
+## Deployment-Architektur (NICHT AENDERN\!)
 
-1. **Staging first.** Entwickle auf Staging, deploye erst nach Smoke-Test auf Production.
-2. **index.html ist tabu** (außer der Programmzahl, s.o.)
-3. **Keine Stereotype in der Sprache.** Nicht "Fachchinesisch" — stattdessen "Behördendeutsch". Merken!
-4. **Zahlen nicht erfinden.** Jede Zahl aus echten Daten.
-5. **Berichte Fortschritt via Telegram** an Kolja.
-6. **Bei Unsicherheit: fragen.**
+### 3-Tier-Setup (Stand 18.02.2026)
+
+| Container | Image | Domain | Funktion |
+|-----------|-------|--------|----------|
+| edufunds | nginx:alpine | edufunds.org | Marketing Landing Page (nginx proxy) |
+| edufunds-app | edufunds:latest | app.edufunds.org | Next.js Platform |
+| edufunds-staging | edufunds:staging | staging.edufunds.org | Staging-Clone |
+| edufunds-postgres | postgres:15-alpine | intern | Datenbank |
+
+### WICHTIGE REGELN:
+1. edufunds-Container (nginx) NIEMALS ersetzen oder umbenennen\! Er serviert die Landing Page.
+2. Beim Rebuild von edufunds-app IMMER diese Env-Vars uebergeben:
+   - DATABASE_URL=postgresql://edufunds:edufunds_secure_2024@edufunds-postgres:5432/edufunds?sslmode=disable
+   - GEMINI_API_KEY (aus bestehender Umgebung)
+   - NODE_ENV=production
+3. Traefik-Labels IMMER setzen inkl. traefik.docker.network=hetzner-stack_web
+4. NIE docker run -p 80:80 oder -p 443:443 -- Traefik verwaltet TLS\!
+5. Staging first: staging.edufunds.org testen, dann app.edufunds.org deployen
+6. Smoke-Test URLs: app.edufunds.org (Platform), edufunds.org (Landing)
+
+---
+
+## Regeln
+- Staging first: staging.edufunds.org testen, dann app.edufunds.org deployen
+- index.html ist tabu (ausser Programmzahl im Stats-Card)
+- Keine Stereotype in der Sprache
+- Zahlen nie exakt, immer gerundet mit + auf Marketing-Seiten
