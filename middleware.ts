@@ -19,8 +19,8 @@ const SECURITY_HEADERS = {
   'X-XSS-Protection': '1; mode=block',
   // HTTPS erzwingen
   'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
-  // Content Security Policy
-  'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://*.googleapis.com https://*.google-analytics.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';",
+  // Content Security Policy (mit Google Fonts für DM Serif Display + Plus Jakarta Sans)
+  'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.google-analytics.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';",
   // Referrer-Policy
   'Referrer-Policy': 'strict-origin-when-cross-origin',
   // Permissions-Policy (Feature-Policy)
