@@ -2,11 +2,11 @@
 
 🎓 **Fördermittel-Plattform für Schulen**
 
-Eine Übersicht von über 50 Förderprogrammen für Schulen in Deutschland – unterstützt durch einen KI-Antragsassistenten.
+Eine Übersicht von über 130 Förderprogrammen für Schulen in Deutschland – unterstützt durch einen KI-Antragsassistenten.
 
 ## Features
 
-- 🔍 **Förderfinder**: Durchsuche 50+ Förderprogramme
+- 🔍 **Förderfinder**: Durchsuche 130+ Förderprogramme
 - 🤖 **KI-Antragsassistent**: Hilft bei der Antragstellung
 - 📊 **Filter**: Nach Bundesland, Schulform, Kategorie
 - 🏛️ **Fördergeber**: Bund, Länder, Stiftungen, EU
