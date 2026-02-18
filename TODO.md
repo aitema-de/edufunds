@@ -8,7 +8,20 @@
 
 ## Offene Aufgaben
 
-*Keine offenen Aufgaben – alle erledigt!*
+- [x] **Google Fonts CSP-Fix** (18.02.)
+  CSP-Header in next.config.js erweitert:
+  - style-src: + https://fonts.googleapis.com
+  - font-src: + https://fonts.gstatic.com
+  Behebt CSP-Errors für DM Serif Display + Plus Jakarta Sans.
+  Git-Commit: 987e434
+  Status: Code committed, Build pending
+
+- [ ] **PLACEHOLDER**
+  Die Fonts DM Serif Display und Plus Jakarta Sans werden per Google Fonts geladen,
+  aber die Content Security Policy blockiert den Zugriff. Console zeigt 3 Errors.
+  Loesung: Entweder CSP-Header um fonts.googleapis.com + fonts.gstatic.com erweitern,
+  oder (besser fuer DSGVO) Fonts selbst hosten via next/font oder lokale Dateien.
+  VERIFIKATION: Im Browser https://app.edufunds.org oeffnen, Console pruefen — 0 Font-Errors
 
 ## Erledigte Aufgaben
 
