@@ -8,15 +8,14 @@
 
 ## Offene Aufgaben
 
-- [ ] **CSP-Header: Google Fonts nicht aktiv (BLOCKED - Next.js Build-Cache)**
+- [ ] **CSP-Header: Google Fonts nicht aktiv (FIX GEFUNDEN - middleware.ts)**
   Der CSP-Fix wurde committed (987e434), aber die Header sind noch alt.
-  Problem: GitHub Actions Image enthält zwar aktualisierte next.config.js,
-  aber Next.js gibt trotzdem alte CSP-Header aus (Build-Cache-Problem).
-  Versuche: Image neu gebaut (15:44:47), config korrekt im Container,
-  aber Server gibt alte Header (ohne fonts.googleapis.com/gstatic.com).
-  Ursache: Next.js Build-Cache oder Header-Generierung zur Build-Zeit.
-  Lösung: --experimental-app-dir entfernen oder Next.js Upgrade auf 16.2+
-  Status: Container läuft stabil mit staging-Image (healthy).
+  🔍 URSAACHE GEFUNDEN: middleware.ts überschreibt CSP-Header!
+  Fix implementiert: middleware.ts aktualisiert mit Google Fonts URLs
+  - style-src: + https://fonts.googleapis.com
+  - font-src: + https://fonts.gstatic.com
+  Status: Commit gepusht (1b62398), GitHub Actions baut neues Image
+  Nächster Schritt: In ~5-10 Min: docker pull && Container neu starten
   VERIFIKATION: curl -sI https://app.edufunds.org | grep -c fonts.googleapis.com = 1
 
 ## Erledigte Aufgaben
