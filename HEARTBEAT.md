@@ -21,4 +21,4 @@
 - HEARTBEAT_OK ohne Arbeit an offenen TODOs = Protokollverstoss
 - Staging first (staging.edufunds.org), Platform erst nach Smoke-Test (app.edufunds.org)
 - Jede Aufgabe hat einen VERIFIKATION-Befehl -- den ausfuehren und Ergebnis pruefen
-- edufunds-Container (nginx Landing Page) NIEMALS stoppen, ersetzen oder umbenennen
+- NIEMALS Container "edufunds" oder "edufunds-landing" stoppen, ersetzen oder erstellen

@@ -50,6 +50,18 @@ cat /root/hetzner-stack/docker-compose.yml
 
 ---
 
+
+## 0. DEPLOYMENT-CONTAINER — ABSOLUTES VERBOT
+**Du deployst NUR zu diesen Containern:**
+- edufunds-app (app.edufunds.org) — Production
+- edufunds-staging (staging.edufunds.org) — Staging
+
+**VERBOTEN:**
+- Einen Container namens "edufunds" erstellen (zerstoert Landing Page!)
+- edufunds-landing anfassen (wird separat verwaltet)
+- edufunds-postgres anfassen
+- docker run ohne Traefik-Labels
+
 ## 1. STAGING-FIRST — KEINE AUSNAHMEN
 
 **Grundregel:** JEDE Änderung wird ZUERST auf Staging deployed.
