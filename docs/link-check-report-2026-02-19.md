@@ -1,8 +1,8 @@
 # Link-Validierungs-Report
 
-**Datum:** 19. Februar 2026, 06:05 UTC  
+**Datum:** 19. Februar 2026, 06:07 UTC  
 **Durchgeführt von:** Milo (Heartbeat-Protokoll)  
-**Methode:** Systematische Stichprobe (25 Links aus 129 Programmen)
+**Methode:** Systematische Validierung (50 Links aus 129 Programmen)
 
 ---
 
@@ -10,11 +10,12 @@
 
 | Stichprobe | Getestet | OK | TOT | Fix |
 |------------|----------|-----|-----|-----|
-| 1 (Heartbeat 06:00) | 10 | 9 | 1 | - |
-| 2 (Heartbeat 06:03) | 15 | 14 | 1 | ✅ 1 |
-| **Gesamt** | **25** | **23** | **1** | **1** |
+| 1 (HB 06:00) | 10 | 9 | 1 | - |
+| 2 (HB 06:03) | 15 | 14 | 1 | ✅ 1 |
+| 3 (HB 06:05) | 25 | 25 | 0 | - |
+| **Gesamt** | **50** | **48** | **1** | **1** |
 
-**Erfolgsrate:** 96% (23/25 Links funktionsfähig)
+**Erfolgsrate:** 98% (48/49 aktive Links funktionsfähig)
 
 ---
 
@@ -29,33 +30,35 @@
 
 ---
 
-## Verifizierte Funktionierende Links (23)
+## Batch 3 Ergebnis (Programme 26-50) - 25/25 OK ✅
 
 | # | Programm | URL | Status |
 |---|----------|-----|--------|
-| 1 | Sportförderung Niedersachsen | sportjugend-nds.de | ✅ 200 |
-| 2 | DigitalPakt 2.0 | digitalpaktschule.de | ✅ 200 |
-| 3 | Stiftung Mercator | stiftung-mercator.de | ✅ 200 |
-| 4 | BMW Foundation | bmw-foundation.org | ✅ 200 |
-| 5 | Heinrich-Böll-Stiftung | boell.de | ✅ 200 |
-| 6 | AOK Gesundheit | aok.de | ✅ 200 |
-| 7 | Wissenschaft im Dialog | wissenschaft-im-dialog.de | ✅ 200 |
-| 8 | Kulturstiftung Bund | kulturstiftung.de | ✅ 200 |
-| 9 | DKJS Inklusion | dkhw.de | ✅ 200 |
-| 10 | Kinderschutzbund | kinderschutzbund.de | ✅ 200 |
-| 11 | Deutscher Schulpreis | deutscher-schulpreis.de | ✅ 200 |
-| 12 | Deutsche Post Schule | deutschepost.de | ✅ 200 |
-| 13 | Playmobil HOB-Preis | kinderstiftung-playmobil.de | ✅ 200 |
-| 14 | L-Bank DigitalPakt | l-bank.de | ✅ 200 |
-| 15 | SCHOTT Nachhaltigkeit | schott.com | ✅ 200 |
-| 16 | Fritz Henkel Stiftung | fritz.henkel-stiftung.de | ✅ 200 |
-| 17 | Reinhold Beitlich Stiftung | reinhold-beitlich-stiftung.de | ✅ 200 |
-| 18 | Ferry Porsche Challenge | ferry-porsche-challenge.de | ✅ 200 |
-| 19 | Berdelle Stiftung | berdelle-stiftung.de | ✅ 200 |
-| 20 | Jugend-forscht | jugend-forscht.de | ✅ 200 |
-| 21 | Telekom Stiftung | telekom-stiftung.de | ✅ 200 |
-| 22 | Joachim-Herz-Stiftung | joachim-herz-stiftung.de | ✅ 200 |
-| 23 | VCI Chemie Fonds | vci.de | ✅ 200 (gefixt) |
+| 24 | FIRST LEGO League | first-lego-league.org | ✅ 200 |
+| 25 | Hessen MINT-freundlich | kultus.hessen.de | ✅ 200 |
+| 26 | Sparkasse Lübeck Nachhilfe | gemeinnuetzige-sparkassenstiftung-luebeck.de | ✅ 200 |
+| 27 | Sparkassenstiftung | sparkassenstiftung.de | ✅ 200 |
+| 28 | Hessen ESF Praxis | foerderdatenbank.de | ✅ 200 |
+| 29 | Hessen DigitalTruck | digitale-schule.hessen.de | ✅ 200 |
+| 30 | BayWa Schulgarten | baywastiftung.de | ✅ 200 |
+| 31 | BayWa O'pflanzt is | baywastiftung.de | ✅ 200 |
+| 32 | Hamburg Kultur+Schule | hamburg.de | ✅ 200 |
+| 33 | Brandenburg Kulturelle Bildung | mbjs.brandenburg.de | ✅ 200 |
+| 34 | Berlin Startchancen | berlin.de | ✅ 200 |
+| 35 | Hamburg Schulbau | hamburg.de | ✅ 200 |
+| 36 | Bündnisse für Bildung | buendnisse-fuer-bildung.de | ✅ 200 |
+| 37 | Alfred Toepfer Stiftung | toepfer-stiftung.de | ✅ 200 |
+| 38 | BayWa Waldschule | baywastiftung.de | ✅ 200 |
+| 39 | BayWa Stiftung | baywastiftung.de | ✅ 200 |
+| 40 | BMBF Bildungskommunen | bmbfsfj.bund.de | ✅ 200 (PDF) |
+| 41 | RAG Stiftung | rag-stiftung.de | ✅ 200 |
+| 42 | ArbeiterKind.de | arbeiterkind.de | ✅ 200 |
+| 43 | Stiftung Bildung Preis | stiftungbildung.org | ✅ 200 |
+| 44 | ENSA | engagement-global.de | ✅ 200 |
+| 45 | BNE Portal | bne-portal.de | ✅ 200 |
+| 46 | Stifterverband | stifterverband.org | ✅ 200 |
+| 47 | Sparkasse Erfurt | sparkasse-mittelthueringen.de | ✅ 200 |
+| 48 | Sparkasse Elbe-Elster | spk-elbe-elster.de | ✅ 200 (archiviert) |
 
 ---
 
@@ -65,15 +68,21 @@
 |----------|--------|-------|
 | Bosch-Schulpreis | archiviert | Frist abgelaufen (31.01.2026) |
 | Playmobil HOB-Preis | archiviert | Frist abgelaufen (15.02.2026) |
+| Sparkasse Elbe-Elster | archiviert | Frist abgelaufen (31.01.2026) |
 
 ---
 
-## Empfohlene Nächste Schritte
+## Fortschritt
 
-1. **Systematische Validierung fortsetzen:** Nächste 25 Programme prüfen
-2. **Cron-Job einrichten:** Monatliche automatische Link-Validierung
-3. **Prozess etablieren:** Neue Programme nur mit verifiziertem Link aufnehmen
+```
+[████████████░░░░░░░░] 50/129 Programme geprüft (39%)
+```
+
+**Nächste Schritte:**
+- Programme 51-75 (nächster Heartbeat)
+- Programme 76-100 
+- Programme 101-129
 
 ---
 
-*Dieser Report wurde während zweier Heartbeat-Protokolle erstellt und aktualisiert.*
+*Dieser Report wird nach jedem Heartbeat aktualisiert.*
