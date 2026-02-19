@@ -150,6 +150,14 @@
 - [x] **168 Förderprogramme** - 68% über Ziel hinaus
 - [x] **Production Monitoring** - Health Checks, Alerts, Web Vitals
 
+### ✅ Abgeschlossen (19. Feb 2026) - Link-Validierung
+- [x] **Alle 129 Programme: Externe Links validiert** - Systematische Prüfung über 7 Heartbeats
+  - 120/125 aktive Links funktionsfähig (96%)
+  - 5 tote Links korrigiert (VCI, Arbeitskreis Bildung, Sachsen-Anhalt, Thüringen MINT)
+  - 6 Programme archiviert (abgelaufene Fristen oder falsche Kategorisierung)
+  - 1 JSON-Syntaxfehler behoben (trailing comma)
+  - Siehe `docs/link-check-report-2026-02-19-FINAL.md`
+
 ### ✅ Abgeschlossen (16. Feb 2026)
 - [x] **Next.js 16 params-Bug gefixt** - Alle Detailseiten funktionieren
 - [x] **129 Programme bereinigt** - Abgelaufene entfernt, Links geprüft
@@ -157,10 +165,8 @@
 - [x] **Gemini API-Key eingebunden** - Im Container verfügbar (Test ausstehend)
 - [x] **nginx Static-Serving** - Deployment stabilisiert
 
-### 🔄 In Arbeit (Priorität Hoch - Qualität vor Quantität!)
-- [ ] **Alle 129 Programme: Externe Links validieren** (Subagenten)
+### 🔄 In Arbeit (Priorität Hoch)
 - [ ] **Förderhöhe pro Schule prüfen** (nicht Gesamtvolumen)
-- [ ] **Antragsfristen prüfen** - Abgelaufene als "archiviert" markieren
 - [ ] **KI-Antragsassistent testen** mit echtem Gemini-Key
 
 ### 📋 Offen (Priorität Mittel)
