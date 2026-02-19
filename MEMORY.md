@@ -55,15 +55,27 @@
 - `current_state.md` - Aktueller Projektstand
 - `DEPLOY.md` - Deployment-Doku
 
-**Aktuelle Zahlen (16. Feb 2026):**
-- 129 aktive Förderprogramme
+**Aktuelle Zahlen (19. Feb 2026):**
+- 130 aktive Förderprogramme (+1 UK-German Connection)
 - Alle Detailseiten: HTTP 200
-- Smoke-Test: PASSED (143/143)
+- Smoke-Test: PASSED (144/144)
 - Next.js 16 params-Bug: GEFIXT
 
 ---
 
 ## Entscheidungen & Learnings
+
+### 2026-02-19: Heartbeat-Arbeit + Neues Programm
+**Erledigt:**
+- KMK PAD Fristen aktualisiert (PASCH: 15.04.2026, GAPP: 24.04.2026)
+- Neues Programm: UK-German Connection (Schulpartnerschaften UK/DE)
+  - bis 1.200 € Zuschuss
+  - Frist: 28.02.2026
+  - 130 Programme total (vorher 129)
+- Build-Fix: dist-docker/ zu .dockerignore hinzugefügt
+  - Verhindert TypeScript-Fehler von Test-Dateien im Production-Build
+- Staging + Production Deploy erfolgreich
+- Smoke-Test: PASSED (144/144)
 
 ### 2026-02-05: Sub-Agent Training
 - Parallele Dateioperationen → Race Conditions
