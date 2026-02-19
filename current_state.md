@@ -2,7 +2,7 @@
 
 > **Diese Datei wird nach JEDER Session aktualisiert**
 > 
-> Letzte Aktualisierung: 18. Februar 2026, 07:15 UTC
+> Letzte Aktualisierung: 19. Februar 2026, 08:23 UTC
 
 ---
 
@@ -31,12 +31,21 @@
 
 ### 🔄 In Arbeit / Zu Testen
 - [x] KI-Antragsassistent mit echtem Gemini-Key testen ✅ WORKING
-- [ ] Externe Links aller 129 Programme validieren
-- [ ] Abgelaufene Programme als "archiviert" markieren
+- [x] **Externe Links aller 129 Programme validiert** ✅ ABGESCHLOSSEN 19.02.
+  - 120/125 aktive Links OK (96% Erfolgsrate)
+  - 5 tote Links korrigiert (VCI, Arbeitskreis Bildung, Sachsen-Anhalt, Thüringen MINT, etc.)
+  - 6 Programme archiviert (abgelaufene Fristen/falsche Kategorisierung)
+  - Siehe `docs/link-check-report-2026-02-19-FINAL.md`
 - [ ] Design-Updates auf Production deployen
 
 ### ❌ Bekannte Probleme
-1. ~~KI-Antragsassistent im Fallback-Modus~~ ✅ GEFIXT - Gemini API funktioniert auf Staging
+*Keine kritischen Probleme bekannt*
+
+### 🆕 Neue Automatisierungen (19.02.2026)
+- **Monatliche Link-Validierung:** Cron-Job eingerichtet für 1. jeden Monats
+  - Validiert alle 129 Förderprogramm-Links automatisch
+  - Verhindert "Link-Rost" durch regelmäßige Prüfung
+  - Siehe `docs/CRON-JOBS.md`
 
 ---
 
@@ -198,8 +207,9 @@ edufunds        - nginx (statischer Serve, Port 80 internal)
 
 ### Git Status
 - Branch: `main`
-- Letzter Commit: `8b3f70e` - finale: 124 aktive Programme
+- Letzter Commit: `8a3f86c` - Monatliche Link-Validierung als Cron-Job
 - Push Status: ✅ Auf GitHub
+- Heutige Commits (19.02.): 10 Commits mit Link-Validierung, Fixes, Dokumentation
 
 ---
 
