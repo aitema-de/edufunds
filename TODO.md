@@ -8,6 +8,16 @@
 
 ## Offene Aufgaben
 
+- [x] **LdE-Grundschulpreis 2026 hinzugefügt** ✅
+  🎯 Ziel: Neues Förderprogramm in Datenbank aufnehmen und deployen
+  ✅ Programm zu data/foerderprogramme.json hinzugefügt
+  ✅ Git commit & push (80e68e4)
+  ✅ Deployment abgeschlossen
+  ✅ Verifikation: Smoke-Test PASSED (147/147)
+  Status: **ERFOLGREICH DEPLOYED**
+
+## Erledigte Aufgaben
+
 - [x] **CSP-Header: Google Fonts JETZT AKTIV! ✅**
   🔍 Problem: middleware.ts überschreibt CSP-Header
   ✅ Fix: middleware.ts aktualisiert mit Google Fonts URLs
@@ -63,13 +73,14 @@
 
 | Container | Image | Domain | Funktion |
 |-----------|-------|--------|----------|
-| edufunds | nginx:alpine | edufunds.org | Marketing Landing Page (nginx proxy) |
+| edufunds-landing | nginx:alpine | edufunds.org | Marketing Landing Page (NICHT ANFASSEN\!) |
 | edufunds-app | edufunds:latest | app.edufunds.org | Next.js Platform |
 | edufunds-staging | edufunds:staging | staging.edufunds.org | Staging-Clone |
 | edufunds-postgres | postgres:15-alpine | intern | Datenbank |
 
 ### WICHTIGE REGELN:
-1. edufunds-Container (nginx) NIEMALS ersetzen oder umbenennen\! Er serviert die Landing Page.
+1. edufunds-landing Container NIEMALS ersetzen\! Er serviert die Landing Page.
+   NIEMALS einen Container namens 'edufunds' erstellen\! (Traefik-Konflikt\!)
 2. Beim Rebuild von edufunds-app IMMER diese Env-Vars uebergeben:
    - DATABASE_URL=postgresql://edufunds:edufunds_secure_2024@edufunds-postgres:5432/edufunds?sslmode=disable
    - GEMINI_API_KEY (aus bestehender Umgebung)
