@@ -172,6 +172,14 @@
   - 1 JSON-Syntaxfehler behoben (trailing comma)
   - Siehe `docs/link-check-report-2026-02-19-FINAL.md`
 
+### ✅ Abgeschlossen (19. Feb 2026) - Neues Programm
+- [x] **LdE-Grundschulpreis 2026** hinzugefügt
+  - Stiftung Lernen durch Engagement
+  - Für Grundschulen in herausfordernder Lage (7 Bundesländer)
+  - Preisgelder: 4 × 1.500 € + 2 × 2.000 €
+  - Bewerbungsfrist: 27. März 2026
+  - 133 Programme total (+1)
+
 ### ✅ Abgeschlossen (16. Feb 2026)
 - [x] **Next.js 16 params-Bug gefixt** - Alle Detailseiten funktionieren
 - [x] **129 Programme bereinigt** - Abgelaufene entfernt, Links geprüft
