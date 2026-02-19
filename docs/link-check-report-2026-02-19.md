@@ -1,8 +1,8 @@
 # Link-Validierungs-Report
 
-**Datum:** 19. Februar 2026, 06:07 UTC  
+**Datum:** 19. Februar 2026, 06:09 UTC  
 **Durchgeführt von:** Milo (Heartbeat-Protokoll)  
-**Methode:** Systematische Validierung (50 Links aus 129 Programmen)
+**Methode:** Systematische Validierung (75 Links aus 129 Programmen)
 
 ---
 
@@ -13,52 +13,64 @@
 | 1 (HB 06:00) | 10 | 9 | 1 | - |
 | 2 (HB 06:03) | 15 | 14 | 1 | ✅ 1 |
 | 3 (HB 06:05) | 25 | 25 | 0 | - |
-| **Gesamt** | **50** | **48** | **1** | **1** |
+| 4 (HB 06:07) | 25 | 23 | 2 | ✅ 2 |
+| **Gesamt** | **75** | **71** | **3** | **3** |
 
-**Erfolgsrate:** 98% (48/49 aktive Links funktionsfähig)
+**Erfolgsrate:** 96% (71/74 aktive Links funktionsfähig)
 
 ---
 
 ## Gefixte Links
 
-### VCI Chemie Fonds (chemie-fonds)
-- **Problem:** 404 - Seite nicht gefunden (Website-Relaunch VCI)
+### 1. VCI Chemie Fonds (chemie-fonds) - Batch 2
+- **Problem:** 404 - Website-Relaunch VCI
 - **Alter Link:** https://www.vci.de/bildung/fonds-der-chemischen-industrie.html
 - **Neuer Link:** https://www.vci.de/fonds/schulpartnerschaft/unterrichtsfoerderung/seiten.jsp
-- **Status:** ✅ GEFIXT & VERIFIZIERT (HTTP 200)
 - **Commit:** 21349c7
+
+### 2. Arbeitskreis Bildung (arbeitskreis-bildung) - Batch 4
+- **Problem:** 404 - Seite nicht gefunden
+- **Alter Link:** https://www.stiftungen.org/arbeitskreis-bildung
+- **Neuer Link:** https://www.stiftungen.org/verband/was-wir-tun/vernetzungsangebote/arbeitskreise/arbeitskreis-bildung.html
+- **Commit:** 155ec4d
+
+### 3. Sachsen-Anhalt Digital (sachsen-anhalt-digital) - Batch 4
+- **Problem:** ENOTFOUND - Domain nicht erreichbar
+- **Alter Link:** https://km.bildung-lsa.de
+- **Neuer Link:** https://www.bildung-lsa.de/
+- **Commit:** 155ec4d
 
 ---
 
-## Batch 3 Ergebnis (Programme 26-50) - 25/25 OK ✅
+## Batch 4 Ergebnis (Programme 51-75) - 23/25 OK ✅
 
 | # | Programm | URL | Status |
 |---|----------|-----|--------|
-| 24 | FIRST LEGO League | first-lego-league.org | ✅ 200 |
-| 25 | Hessen MINT-freundlich | kultus.hessen.de | ✅ 200 |
-| 26 | Sparkasse Lübeck Nachhilfe | gemeinnuetzige-sparkassenstiftung-luebeck.de | ✅ 200 |
-| 27 | Sparkassenstiftung | sparkassenstiftung.de | ✅ 200 |
-| 28 | Hessen ESF Praxis | foerderdatenbank.de | ✅ 200 |
-| 29 | Hessen DigitalTruck | digitale-schule.hessen.de | ✅ 200 |
-| 30 | BayWa Schulgarten | baywastiftung.de | ✅ 200 |
-| 31 | BayWa O'pflanzt is | baywastiftung.de | ✅ 200 |
-| 32 | Hamburg Kultur+Schule | hamburg.de | ✅ 200 |
-| 33 | Brandenburg Kulturelle Bildung | mbjs.brandenburg.de | ✅ 200 |
-| 34 | Berlin Startchancen | berlin.de | ✅ 200 |
-| 35 | Hamburg Schulbau | hamburg.de | ✅ 200 |
-| 36 | Bündnisse für Bildung | buendnisse-fuer-bildung.de | ✅ 200 |
-| 37 | Alfred Toepfer Stiftung | toepfer-stiftung.de | ✅ 200 |
-| 38 | BayWa Waldschule | baywastiftung.de | ✅ 200 |
-| 39 | BayWa Stiftung | baywastiftung.de | ✅ 200 |
-| 40 | BMBF Bildungskommunen | bmbfsfj.bund.de | ✅ 200 (PDF) |
-| 41 | RAG Stiftung | rag-stiftung.de | ✅ 200 |
-| 42 | ArbeiterKind.de | arbeiterkind.de | ✅ 200 |
-| 43 | Stiftung Bildung Preis | stiftungbildung.org | ✅ 200 |
-| 44 | ENSA | engagement-global.de | ✅ 200 |
-| 45 | BNE Portal | bne-portal.de | ✅ 200 |
-| 46 | Stifterverband | stifterverband.org | ✅ 200 |
-| 47 | Sparkasse Erfurt | sparkasse-mittelthueringen.de | ✅ 200 |
-| 48 | Sparkasse Elbe-Elster | spk-elbe-elster.de | ✅ 200 (archiviert) |
+| 49 | KMK PAD | kmk-pad.org | ✅ 200 |
+| 50 | MINT Zukunft Siegel | mintzukunftschaffen.de | ✅ 200 |
+| 51 | Digitale Schule Siegel | mintzukunftschaffen.de | ✅ 200 |
+| 52 | DigitalPakt 2.0 BMFTR | bmftr.bund.de | ✅ 200 |
+| 53 | BMBF BOP | bildungsketten.de | ✅ 200 |
+| 54 | Stiftung Bildung youstartN | stiftungbildung.org | ✅ 200 |
+| 55 | Arbeitskreis Bildung | stiftungen.org | ✅ 200 (gefixt) |
+| 56 | Netzwerk Stiftungen Bildung | netzwerk-stiftungen-bildung.de | ✅ 200 |
+| 57 | Forum BD | forumbd.de | ✅ 200 |
+| 58 | Sachsen-Anhalt Digital | bildung-lsa.de | ✅ 200 (gefixt) |
+| 59 | RLP PAD | bm.rlp.de | ✅ 200 |
+| 60 | Mecklenburg-Vorpommern | regierung-mv.de | ✅ 200 |
+| 61 | Jugend-forscht-Schulpreis | jugend-forscht.de | ✅ 200 |
+| 62 | Jugend-forscht-Sponsorpool | jugend-forscht.de | ✅ 200 |
+| 63 | MINTspace Schulpreis | jugend-forscht.de | ✅ 200 |
+| 64 | BW Mikro-Makro MINT | jugend-forscht.de | ✅ 200 |
+| 65 | Hopp Foundation | jugend-forscht.de | ✅ 200 |
+| 66 | Bundeswettbewerb Mathematik | mathe-wettbewerbe.de | ✅ 200 |
+| 67 | Mathematik-Olympiade | mathe-wettbewerbe.de | ✅ 200 |
+| 68 | Känguru Mathematik | mathe-kaenguru.de | ✅ 200 |
+| 69 | Mathe NRW | schulministerium.nrw | ✅ 200 |
+| 70 | Tag der Mathematik | mathematik-olympiaden.de | ✅ 200 |
+| 71 | Mathe im Advent | mathematik.de | ✅ 200 |
+| 72 | Ferry Porsche Challenge | ferry-porsche-challenge.de | ✅ 200 |
+| 73 | SH PerspektivKita | schleswig-holstein.de | ✅ 200 |
 
 ---
 
@@ -75,13 +87,12 @@
 ## Fortschritt
 
 ```
-[████████████░░░░░░░░] 50/129 Programme geprüft (39%)
+[██████████████████░░░░] 75/129 Programme geprüft (58%)
 ```
 
 **Nächste Schritte:**
-- Programme 51-75 (nächster Heartbeat)
-- Programme 76-100 
-- Programme 101-129
+- Programme 76-100 (nächster Heartbeat)
+- Programme 101-129 (final)
 
 ---
 
