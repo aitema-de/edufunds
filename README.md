@@ -38,11 +38,12 @@ Siehe [DEPLOY.md](DEPLOY.md) für Details.
 
 Alle Förderprogramme sind in `data/foerderprogramme.json` gespeichert.
 
-**Struktur:**
-- 10 Bundesprogramme
-- 16 Landesprogramme
-- 14 Stiftungsprogramme
-- 5 EU-Programme
+**Aktueller Bestand (Februar 2026):**
+- 123 aktive Förderprogramme
+- 68 Stiftungsprogramme
+- 29 Landesprogramme  
+- 17 Bundesprogramme
+- 4 EU-Programme
 - 5 Sonstige
 
 ## Tech Stack
