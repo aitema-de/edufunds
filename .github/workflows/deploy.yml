@@ -56,22 +56,22 @@ jobs:
             docker load < /tmp/edufunds-image.tar.gz
             
             echo "🛑 Stopping old container..."
-            docker stop edufunds 2>/dev/null || true
-            docker rm edufunds 2>/dev/null || true
+            docker stop edufunds-app 2>/dev/null || true
+            docker rm edufunds-app 2>/dev/null || true
             
             echo "🚀 Starting new container..."
-            docker run -d --name edufunds \
+            docker run -d --name edufunds-app \
               --network hetzner-stack_web \
               -e NODE_ENV=production \
               -e DATABASE_URL="${{ secrets.DATABASE_URL }}" \
               -l 'traefik.enable=true' \
               -l 'traefik.docker.network=hetzner-stack_web' \
-              -l 'traefik.http.routers.edufunds.rule=Host(`edufunds.org`) || Host(`www.edufunds.org`)' \
-              -l 'traefik.http.routers.edufunds.entrypoints=websecure' \
-              -l 'traefik.http.routers.edufunds.tls=true' \
-              -l 'traefik.http.routers.edufunds.tls.certresolver=letsencrypt' \
-              -l 'traefik.http.routers.edufunds.service=edufunds-service' \
-              -l 'traefik.http.services.edufunds-service.loadbalancer.server.port=3000' \
+              -l 'traefik.http.routers.edufunds-app.rule=Host(`app.edufunds.org`)' \
+              -l 'traefik.http.routers.edufunds-app.entrypoints=websecure' \
+              -l 'traefik.http.routers.edufunds-app.tls=true' \
+              -l 'traefik.http.routers.edufunds-app.tls.certresolver=letsencrypt' \
+              -l 'traefik.http.routers.edufunds-app.service=edufunds-app-service' \
+              -l 'traefik.http.services.edufunds-app-service.loadbalancer.server.port=3000' \
               --restart unless-stopped \
               edufunds:latest
             
@@ -79,8 +79,8 @@ jobs:
             sleep 10
             
             echo "🔍 Checking container status..."
-            docker ps | grep edufunds
-            docker logs edufunds --tail 5
+            docker ps | grep edufunds-app
+            docker logs edufunds-app --tail 5
             
             echo "🧹 Cleaning up..."
             rm /tmp/edufunds-image.tar.gz
@@ -92,4 +92,4 @@ jobs:
         run: |
           echo "🏥 Running health check..."
           sleep 5
-          curl -sI https://edufunds.org | head -3 || echo "⚠️ Health check warning"
+          curl -sI https://app.edufunds.org | head -3 || echo "⚠️ Health check warning"
