@@ -162,6 +162,11 @@ export function rateLimit(request: NextRequest): {
     return { allowed: true };
   }
 
+  // Health-Check von Rate-Limiting ausschließen
+  if (pathname === '/api/health') {
+    return { allowed: true };
+  }
+
   // Bestimme Rate-Limit-Typ
   const limitType = getRateLimitType(pathname);
   const config = RATE_LIMITS[limitType];
