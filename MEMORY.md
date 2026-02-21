@@ -56,7 +56,7 @@
 - `DEPLOY.md` - Deployment-Doku
 
 **Aktuelle Zahlen (21. Feb 2026):**
-- 134 aktive Förderprogramme (+1 heute via Cron-Scan)
+- 133 aktive Förderprogramme (NABU archiviert)
 - Alle Detailseiten: HTTP 200
 - Smoke-Test: PASSED (148/148)
 - Next.js 16 params-Bug: GEFIXT
@@ -65,10 +65,18 @@
 
 ## Entscheidungen & Learnings
 
-### 2026-02-21: Heartbeat - Toter Link gefunden (NABU)
-**Status:** Nicht dringend - Programm bleibt aktiv, Link muss aktualisiert werden
+### 2026-02-21: Heartbeat - NABU-Programm archiviert
+**Status:** ✅ ERLEDIGT - Programm auf "archiviert" gesetzt
 **Problem:** `nabu-schulen` → Link https://www.nabu.de/schulen gibt 404
-**Aktion:** Bei nächster Gelegenheit recherchieren und korrigieren
+**Recherche:** NABU bietet keine direkte Finanzförderung mehr für Schulen
+**Lösung:** 
+- Status auf "archiviert" gesetzt
+- Bemerkung aktualisiert mit Hinweis auf regionale Angebote
+- Rebuild & Deploy durchgeführt
+- Smoke-Test: PASSED (148/148)
+**Ergebnis:** 133 aktive Programme (vorher 134)
+
+### 2026-02-21: Heartbeat - Toter Link gefunden (NABU)
 
 ### 2026-02-21: Heartbeat - BNE-Programm 404-Fix
 **Problem:** Neues Förderprogramm (BNE-Schulen 2026) war in JSON vorhanden, aber Detailseite gab 404
