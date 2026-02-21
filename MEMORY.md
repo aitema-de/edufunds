@@ -65,6 +65,11 @@
 
 ## Entscheidungen & Learnings
 
+### 2026-02-21: Heartbeat - Toter Link gefunden (NABU)
+**Status:** Nicht dringend - Programm bleibt aktiv, Link muss aktualisiert werden
+**Problem:** `nabu-schulen` → Link https://www.nabu.de/schulen gibt 404
+**Aktion:** Bei nächster Gelegenheit recherchieren und korrigieren
+
 ### 2026-02-21: Heartbeat - BNE-Programm 404-Fix
 **Problem:** Neues Förderprogramm (BNE-Schulen 2026) war in JSON vorhanden, aber Detailseite gab 404
 **Ursache:** Next.js statische Generierung - neue Routes erfordern Rebuild
