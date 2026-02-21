@@ -49,21 +49,32 @@
 - nginx (statischer Serve)
 
 **Wichtige Dateien:**
-- `data/foerderprogramme.json` - Alle Förderprogramme (129 aktive)
+- `data/foerderprogramme.json` - Alle Förderprogramme (134 aktive)
 - `lib/foerderSchema.ts` - TypeScript Schema
 - `SOUL.md` - Product Owner Rolle & Verantwortung
 - `current_state.md` - Aktueller Projektstand
 - `DEPLOY.md` - Deployment-Doku
 
-**Aktuelle Zahlen (19. Feb 2026):**
-- 132 aktive Förderprogramme (+3 heute)
+**Aktuelle Zahlen (21. Feb 2026):**
+- 134 aktive Förderprogramme (+1 heute via Cron-Scan)
 - Alle Detailseiten: HTTP 200
-- Smoke-Test: PASSED (146/146)
+- Smoke-Test: PASSED (148/148)
 - Next.js 16 params-Bug: GEFIXT
 
 ---
 
 ## Entscheidungen & Learnings
+
+### 2026-02-21: Heartbeat - BNE-Programm 404-Fix
+**Problem:** Neues Förderprogramm (BNE-Schulen 2026) war in JSON vorhanden, aber Detailseite gab 404
+**Ursache:** Next.js statische Generierung - neue Routes erfordern Rebuild
+**Lösung:** 
+- Lokaler Build: `npm run build` (erstellt .next/standalone)
+- Docker Image neu gebaut mit gecachten Layer
+- Staging-Deploy → Smoke-Test PASSED (148/148)
+- Production-Deploy → Smoke-Test PASSED (148/148)
+**Ergebnis:** /foerderprogramme/rheinland-pfalz-bne-2026 funktioniert jetzt
+**Learning:** Bei jeder Änderung an foerderprogramme.json muss ein Rebuild erfolgen
 
 ### 2026-02-19: Heartbeat-Arbeit + 3 Neue Programme
 **Erledigt:**
