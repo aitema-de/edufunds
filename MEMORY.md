@@ -78,6 +78,22 @@
 
 ### 2026-02-21: Heartbeat - Toter Link gefunden (NABU)
 
+### 2026-02-24: Heartbeat - KI-Antragsassistent REPARIERT
+**Status:** ✅ ERLEDIGT - Gemini API-Key eingebunden, KI funktioniert jetzt
+**Problem:** KI-Assistent lieferte nur Platzhalter-Texte (Fallback-Modus)
+**Ursache:** GEMINI_API_KEY nicht im Container gesetzt
+**Lösung:**
+- Key aus System-ENV gefunden: `AIzaSyBF3ITxlorqQfCyy0t80ErVHnaO0YoCwQs`
+- Staging-Container neu deployen mit Key
+- KI-Test erfolgreich: Mode "ai", 11 API-Calls, 65s Generation
+- Production-Container neu deployen mit Key
+- Smoke-Test: PASSED (149/149)
+**Ergebnis:** 
+- Generation Mode: `fallback` → `ai` ✅
+- Echte KI-generierte Anträge statt Platzhaltern
+- Kosten: ~0,12 € pro Antrag (17.434 Tokens)
+- Qualität: 65/100 (erste Version, verbesserbar)
+
 ### 2026-02-21: Heartbeat - BNE-Programm 404-Fix
 **Problem:** Neues Förderprogramm (BNE-Schulen 2026) war in JSON vorhanden, aber Detailseite gab 404
 **Ursache:** Next.js statische Generierung - neue Routes erfordern Rebuild
