@@ -94,6 +94,22 @@
 - Kosten: ~0,12 € pro Antrag (17.434 Tokens)
 - Qualität: 65/100 (erste Version, verbesserbar)
 
+### 2026-02-24: Heartbeat - Security Headers für Landing Page
+**Status:** ✅ ERLEDIGT - Alle Security Headers hinzugefügt
+**Problem:** edufunds.org hatte ZERO Security Headers (kein HSTS, kein CSP, etc.)
+**Lösung:**
+- nginx-landing.conf aktualisiert mit Security Headers
+- Container neu geladen (nginx -s reload)
+**Ergebnis:**
+- strict-transport-security: max-age=31536000 ✅
+- x-frame-options: SAMEORIGIN ✅
+- x-content-type-options: nosniff ✅
+- x-xss-protection: 1; mode=block ✅
+- referrer-policy: strict-origin-when-cross-origin ✅
+- permissions-policy: geolocation=(), microphone=(), camera=() ✅
+- server_tokens: off (nginx Version verborgen) ✅
+**Verifikation:** curl -sI https://edufunds.org/ | grep -i 'Strict-Transport-Security' = 1 ✅
+
 ### 2026-02-24: Heartbeat - Neues Programm + Link-Check
 **Status:** ✅ ERLEDIGT - Drei Aufgaben parallel abgeschlossen
 **Erledigt:**
