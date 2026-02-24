@@ -78,7 +78,7 @@
 
 ### 2026-02-21: Heartbeat - Toter Link gefunden (NABU)
 
-### 2026-02-24: Heartbeat - KI-Antragsassistent REPARIERT
+### 2026-02-24: Heartbeat - KI-Antragsassistent REPARIERT + Neues Programm + Link-Check
 **Status:** ✅ ERLEDIGT - Gemini API-Key eingebunden, KI funktioniert jetzt
 **Problem:** KI-Assistent lieferte nur Platzhalter-Texte (Fallback-Modus)
 **Ursache:** GEMINI_API_KEY nicht im Container gesetzt
@@ -93,6 +93,25 @@
 - Echte KI-generierte Anträge statt Platzhaltern
 - Kosten: ~0,12 € pro Antrag (17.434 Tokens)
 - Qualität: 65/100 (erste Version, verbesserbar)
+
+### 2026-02-24: Heartbeat - Neues Programm + Link-Check
+**Status:** ✅ ERLEDIGT - Drei Aufgaben parallel abgeschlossen
+**Erledigt:**
+1. **Neues Förderprogramm:** Claussen-Simon-Fonds für Schulen (Hamburg)
+   - Förderhöhe: bis 10.000 €
+   - Frist: seit 23.02.2026 offen
+   - Deployed: Smoke-Test PASSED (150/150)
+2. **Link-Validierung:** Alle 5 Links vom 19.02. geprüft
+   - VCI Chemie: ✅ OK
+   - Arbeitskreis Bildung: ✅ OK
+   - Sachsen-Anhalt Digital: ✅ OK
+   - Thüringen MINT: ✅ OK
+   - Sprache macht stark: ✅ Archiviert (korrekt)
+3. **KI-Qualitätstest:** Production getestet
+   - Mode: `ai` ✅
+   - Score: 65/100
+   - Kosten: $0.0012 (~0,11 €)
+   - Zeit: ~60 Sekunden
 
 ### 2026-02-21: Heartbeat - BNE-Programm 404-Fix
 **Problem:** Neues Förderprogramm (BNE-Schulen 2026) war in JSON vorhanden, aber Detailseite gab 404
