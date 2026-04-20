@@ -1,12 +1,13 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, FolderOpen, Sparkles } from "lucide-react";
+import { ArrowLeft, FolderOpen, Sparkles, ShieldCheck, AlertCircle } from "lucide-react";
 import foerderprogrammeData from "@/data/foerderprogramme.json";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WizardShell } from "@/components/Wizard";
+import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
 
 const foerderprogramme = foerderprogrammeData as Foerderprogramm[];
 
@@ -30,6 +31,8 @@ export default async function WizardPage({ params }: Props) {
   const { programmId } = await params;
   const programm = foerderprogramme.find((p) => p.id === programmId);
   if (!programm) notFound();
+  const richtlinie = await loadRichtlinie(programm.id);
+  const richtlinieStub = richtlinie?.version?.includes("stub") ?? false;
 
   return (
     <>
@@ -64,10 +67,28 @@ export default async function WizardPage({ params }: Props) {
             <h1 className="mb-2 text-3xl font-bold text-slate-100">
               KI-Antragswizard
             </h1>
-            <p className="max-w-2xl text-slate-400">
+            <p className="mb-4 max-w-2xl text-slate-400">
               Adaptive Befragung + Pipeline mit Selbstkritik, programmspezifisch optimiert.
               Für „{programm.name}".
             </p>
+            {richtlinie && !richtlinieStub && (
+              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-300">
+                <ShieldCheck className="h-3.5 w-3.5" />
+                Richtlinie erfasst — Antrag folgt offizieller Struktur
+              </div>
+            )}
+            {richtlinie && richtlinieStub && (
+              <div className="inline-flex items-center gap-2 rounded-full border border-orange-500/40 bg-orange-500/10 px-3 py-1 text-xs text-orange-300">
+                <AlertCircle className="h-3.5 w-3.5" />
+                Richtlinie teilweise erfasst — einige Felder generisch
+              </div>
+            )}
+            {!richtlinie && (
+              <div className="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-slate-700/30 px-3 py-1 text-xs text-slate-400">
+                <AlertCircle className="h-3.5 w-3.5" />
+                Keine Richtlinie erfasst — generische Struktur, empfohlen: offizielle Richtlinie parallel prüfen
+              </div>
+            )}
           </div>
           <WizardShell programm={programm} />
         </div>

@@ -10,6 +10,18 @@ import {
 import { nextStep } from "@/lib/wizard/interviewer";
 import type { WizardFacts } from "@/lib/wizard/types";
 import { addUsage, emptyLedger } from "@/lib/wizard/pricing";
+import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
+import type { Richtlinie } from "@/lib/wizard/richtlinien-schema";
+
+function richtlinieStatus(r: Richtlinie | null): {
+  available: boolean;
+  stub: boolean;
+  version?: string;
+} {
+  if (!r) return { available: false, stub: false };
+  const stub = r.version?.includes("stub") ?? false;
+  return { available: true, stub, version: r.version };
+}
 
 const programme = foerderprogrammeData as Foerderprogramm[];
 
@@ -39,12 +51,14 @@ export async function POST(req: NextRequest) {
       ? mergeFacts(session.data.facts, seedFacts)
       : session.data.facts;
 
+    const richtlinie = await loadRichtlinie(programm.id);
     const { step, usage } = await nextStep(
       programm,
       session.data.messages,
       initialFacts,
       0,
-      session.data.interviewer.maxQuestions
+      session.data.interviewer.maxQuestions,
+      richtlinie
     );
 
     let data = session.data;
@@ -85,6 +99,7 @@ export async function POST(req: NextRequest) {
       maxQuestions: updated.data.interviewer.maxQuestions,
       facts: updated.data.facts,
       costs: updated.data.costs ?? null,
+      richtlinieStatus: richtlinieStatus(richtlinie),
     });
   } catch (err) {
     console.error("[wizard/start] Fehler:", err);

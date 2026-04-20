@@ -9,6 +9,7 @@ import type {
 import { INTERVIEWER_SYSTEM, buildInterviewerUserPrompt } from "./prompts";
 import { MODEL_FLASH, generateJson } from "./gemini";
 import type { Usage } from "./pricing";
+import type { Richtlinie } from "./richtlinien-schema";
 
 interface RawModelResponse {
   kind: "question" | "ready";
@@ -28,7 +29,8 @@ export async function nextStep(
   messages: WizardMessage[],
   facts: WizardFacts,
   totalQuestions: number,
-  maxQuestions: number
+  maxQuestions: number,
+  richtlinie?: Richtlinie | null
 ): Promise<NextStepWithUsage> {
   if (totalQuestions >= maxQuestions) {
     const step: NextStepReady = {
@@ -45,7 +47,8 @@ export async function nextStep(
     messages,
     facts,
     totalQuestions,
-    maxQuestions
+    maxQuestions,
+    richtlinie
   );
   const { value: raw, usage } = await generateJson<RawModelResponse>(
     MODEL_FLASH,

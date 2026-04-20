@@ -2,11 +2,48 @@ import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type { WizardFacts, WizardMessage } from "./types";
 import { getGuidance } from "./geber-guidance";
 import { formatExtraGuidance, getExtraGuidance } from "./programm-kriterien";
+import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
 
 function extraGuidanceBlock(p: Foerderprogramm, label: string): string {
   const extra = getExtraGuidance(p.id);
   if (!extra) return "";
   return `\n\nKURATIERTES WISSEN ZU DIESEM SPEZIFISCHEN PROGRAMM (${label}):\n${formatExtraGuidance(extra)}\n`;
+}
+
+function richtlinieBlock(r: Richtlinie | null | undefined, kontext: "interviewer" | "section" | "revision"): string {
+  if (!r) return "";
+  const out: string[] = [];
+  out.push(`\n\nOFFIZIELLE ANTRAGSSTRUKTUR LAUT FOERDERRICHTLINIE (${r.version}):`);
+
+  if (kontext === "interviewer") {
+    out.push("Die folgenden Abschnitte muessen im Antrag vorkommen — stelle deine Fragen so, dass am Ende alle Abschnitte inhaltlich gut befuellbar sind. Du musst nicht jede Leitfrage einzeln stellen, aber sicherstellen, dass keine offene Luecke bleibt.");
+    for (const a of r.antragsstruktur.abschnitte) {
+      out.push(`\n[${a.id}] ${a.name}${a.pflicht ? " (Pflicht)" : " (optional)"}`);
+      if (a.leitfragen?.length) out.push(`  Leitfragen: ${a.leitfragen.join(" | ")}`);
+      if (a.stilhinweis) out.push(`  Stil: ${a.stilhinweis}`);
+    }
+    if (r.foerderhoehe.maxEur || r.foerderhoehe.maxProzentGesamtkosten) {
+      const h: string[] = [];
+      if (r.foerderhoehe.maxEur) h.push(`max ${r.foerderhoehe.maxEur.toLocaleString("de-DE")} EUR`);
+      if (r.foerderhoehe.maxProzentGesamtkosten)
+        h.push(`max ${r.foerderhoehe.maxProzentGesamtkosten}% der Gesamtkosten`);
+      out.push(`\nFoerderhoehe: ${h.join(", ")}`);
+    }
+    if (r.eigenmittel.pflicht && r.eigenmittel.mindestProzent) {
+      out.push(`Eigenanteil: mind. ${r.eigenmittel.mindestProzent}%`);
+    }
+  }
+  return out.join("\n");
+}
+
+export function abschnittPrompt(a: AntragsAbschnitt): string {
+  const parts: string[] = [];
+  parts.push(`Abschnitt: ${a.name}`);
+  if (a.pflicht) parts.push("(Pflichtabschnitt)");
+  if (a.maxZeichen) parts.push(`Maximal ${a.maxZeichen} Zeichen — strikt einhalten.`);
+  if (a.leitfragen?.length) parts.push(`Leitfragen, die der Abschnitt beantworten muss:\n- ${a.leitfragen.join("\n- ")}`);
+  if (a.stilhinweis) parts.push(`Stilhinweis: ${a.stilhinweis}`);
+  return parts.join("\n");
 }
 
 function programmBlock(p: Foerderprogramm): string {
@@ -75,14 +112,15 @@ export function buildInterviewerUserPrompt(
   messages: WizardMessage[],
   facts: WizardFacts,
   totalQuestions: number,
-  maxQuestions: number
+  maxQuestions: number,
+  richtlinie?: Richtlinie | null
 ): string {
   const guidance = getGuidance((programm as any).foerdergeberTyp);
   return `FÖRDERPROGRAMM (Kontext für die Fragenauswahl):
 ${programmBlock(programm)}
 
 PRIORITÄTEN FÜR DIESEN FÖRDERGEBER-TYP (${guidance.label}):
-${guidance.interviewerPriorities}${extraGuidanceBlock(programm, "Interviewer")}
+${guidance.interviewerPriorities}${extraGuidanceBlock(programm, "Interviewer")}${richtlinieBlock(richtlinie, "interviewer")}
 
 BISHERIGE FRAGEN/ANTWORTEN:
 ${historyBlock(messages)}
@@ -92,7 +130,7 @@ ${JSON.stringify(facts, null, 2)}
 
 STATUS: ${totalQuestions} von maximal ${maxQuestions} Fragen gestellt.
 
-Entscheide: Nächste Frage stellen (anhand der Prioritäten und — falls vorhanden — des kuratierten Programm-Wissens oben) ODER genug Info für einen guten Antrag? Antworte gemäß dem JSON-Schema.`;
+Entscheide: Nächste Frage stellen (anhand der Prioritäten und — falls vorhanden — der offiziellen Antragsstruktur und des kuratierten Programm-Wissens oben) ODER genug Info für einen guten Antrag? Antworte gemäß dem JSON-Schema.`;
 }
 
 // ============================================================================
@@ -154,15 +192,20 @@ export function buildSectionPrompt(
   programm: Foerderprogramm,
   facts: WizardFacts,
   abschnitt: { name: string; fokus: string },
-  titel: string
+  titel: string,
+  richtlinieAbschnitt?: AntragsAbschnitt
 ): string {
   const guidance = getGuidance((programm as any).foerdergeberTyp);
+  const detailblock = richtlinieAbschnitt
+    ? `\nOFFIZIELLE VORGABEN FUER DIESEN ABSCHNITT:\n${abschnittPrompt(richtlinieAbschnitt)}\n`
+    : "";
+
   return `PROGRAMM:
 ${programmBlock(programm)}
 
 TONALITÄT FÜR DIESEN FÖRDERGEBER-TYP (${guidance.label}):
 ${guidance.sectionStyle}
-
+${detailblock}
 ANTRAGSTITEL: ${titel}
 
 ABSCHNITT: ${abschnitt.name}

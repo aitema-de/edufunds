@@ -8,6 +8,7 @@ import {
 import { runPipeline } from "@/lib/wizard/pipeline";
 import type { WizardSessionData } from "@/lib/wizard/types";
 import { addUsage, emptyLedger } from "@/lib/wizard/pricing";
+import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
 
@@ -49,7 +50,8 @@ export async function POST(req: NextRequest) {
     await updateWizardSession(sessionToken, generatingData, "in_progress");
 
     try {
-      const { artefacts, usages } = await runPipeline(programm, session.data.facts);
+      const richtlinie = await loadRichtlinie(programm.id);
+      const { artefacts, usages } = await runPipeline(programm, session.data.facts, richtlinie);
       let costs = generatingData.costs ?? emptyLedger();
       for (const u of usages) costs = addUsage(costs, u.model, u.usage);
       const completeData: WizardSessionData = {

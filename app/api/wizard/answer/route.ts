@@ -8,6 +8,7 @@ import {
 } from "@/lib/wizard/session";
 import { nextStep } from "@/lib/wizard/interviewer";
 import { addUsage, emptyLedger } from "@/lib/wizard/pricing";
+import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
 
@@ -61,12 +62,14 @@ export async function POST(req: NextRequest) {
       meta: { factsBefore: session.data.facts },
     });
 
+    const richtlinie = await loadRichtlinie(programm.id);
     const { step, usage } = await nextStep(
       programm,
       data.messages,
       data.facts,
       data.interviewer.totalQuestions,
-      data.interviewer.maxQuestions
+      data.interviewer.maxQuestions,
+      richtlinie
     );
     data = { ...data, facts: step.updatedFacts };
 

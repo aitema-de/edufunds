@@ -12,6 +12,7 @@ import {
 } from "./prompts";
 import { MODEL_PRO, generateJson, generateText } from "./gemini";
 import type { Usage } from "./pricing";
+import type { Richtlinie } from "./richtlinien-schema";
 
 type Outline = NonNullable<GenerationArtefacts["outline"]>;
 
@@ -34,27 +35,53 @@ export interface PipelineResult {
 export async function runPipeline(
   programm: Foerderprogramm,
   facts: WizardFacts,
+  richtlinie?: Richtlinie | null,
   onEvent?: (e: PipelineEvent) => void
 ): Promise<PipelineResult> {
   const emit = (e: PipelineEvent) => onEvent?.(e);
   const usages: PipelineUsage[] = [];
 
-  emit({ stage: "outline", message: "Erstelle Gliederung" });
-  const outlineRes = await generateJson<Outline>(
-    MODEL_PRO,
-    OUTLINE_SYSTEM,
-    buildOutlinePrompt(programm, facts)
-  );
-  usages.push({ model: MODEL_PRO, usage: outlineRes.usage });
-  const outline = outlineRes.value;
+  // Wenn eine Richtlinie mit Antragsstruktur vorliegt, nutzen wir deren Abschnitte
+  // direkt als Gliederung — keine freie KI-Outline.
+  let outline: Outline;
+  if (richtlinie?.antragsstruktur?.abschnitte?.length) {
+    const titel =
+      (facts.projekt as { titel?: string } | undefined)?.titel ??
+      (facts.projekt as { kurzbeschreibung?: string } | undefined)?.kurzbeschreibung?.slice(0, 80) ??
+      `Antrag auf Foerderung: ${programm.name}`;
+    outline = {
+      titel,
+      abschnitte: richtlinie.antragsstruktur.abschnitte
+        .filter((a) => a.pflicht !== false)
+        .map((a) => ({
+          name: a.name,
+          fokus: a.leitfragen?.length
+            ? `Leitfragen: ${a.leitfragen.join(" | ")}`
+            : a.stilhinweis ?? `Pflichtabschnitt ${a.id}`,
+        })),
+    };
+    emit({ stage: "outline", message: "Uebernehme Gliederung aus Foerderrichtlinie" });
+  } else {
+    emit({ stage: "outline", message: "Erstelle Gliederung" });
+    const outlineRes = await generateJson<Outline>(
+      MODEL_PRO,
+      OUTLINE_SYSTEM,
+      buildOutlinePrompt(programm, facts)
+    );
+    usages.push({ model: MODEL_PRO, usage: outlineRes.usage });
+    outline = outlineRes.value;
+  }
 
   const sections: Array<{ name: string; text: string }> = [];
   for (const abschnitt of outline.abschnitte) {
     emit({ stage: "section", message: `Schreibe Abschnitt: ${abschnitt.name}` });
+    const rl = richtlinie?.antragsstruktur?.abschnitte?.find(
+      (a) => a.name === abschnitt.name
+    );
     const res = await generateText(
       MODEL_PRO,
       SECTION_SYSTEM,
-      buildSectionPrompt(programm, facts, abschnitt, outline.titel)
+      buildSectionPrompt(programm, facts, abschnitt, outline.titel, rl)
     );
     usages.push({ model: MODEL_PRO, usage: res.usage });
     sections.push({ name: abschnitt.name, text: res.value });
