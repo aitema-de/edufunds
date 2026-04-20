@@ -13,11 +13,12 @@ import {
 import { MODEL_PRO, generateJson, generateText } from "./gemini";
 import type { Usage } from "./pricing";
 import type { Richtlinie } from "./richtlinien-schema";
+import { generateFinanzplan } from "./finanzplan-generator";
 
 type Outline = NonNullable<GenerationArtefacts["outline"]>;
 
 export interface PipelineEvent {
-  stage: "outline" | "section" | "critique" | "revision" | "done";
+  stage: "outline" | "section" | "critique" | "revision" | "finanzplan" | "done";
   message: string;
   payload?: unknown;
 }
@@ -105,6 +106,10 @@ export async function runPipeline(
   );
   usages.push({ model: MODEL_PRO, usage: finalRes.usage });
 
+  emit({ stage: "finanzplan", message: "Finanzplan-Entwurf" });
+  const finanzRes = await generateFinanzplan(programm, facts, richtlinie);
+  usages.push(finanzRes.usage);
+
   emit({ stage: "done", message: "Fertig" });
 
   return {
@@ -113,6 +118,7 @@ export async function runPipeline(
       sections,
       critique: critiqueRes.value,
       finalText: finalRes.value,
+      finanzplan: finanzRes.plan,
     },
     usages,
   };

@@ -53,11 +53,33 @@ export interface InterviewerMeta {
   programmCriteria?: string[];
 }
 
+export interface Finanzposten {
+  id: string;
+  kategorie: "personal" | "sachkosten" | "investitionen" | "honorare" | "reisekosten" | "overhead" | "sonstiges";
+  bezeichnung: string;
+  betragEur: number;
+  /** Kurzbegruendung / Hinweis, warum dieser Posten foerderfaehig und notwendig ist. */
+  begruendung?: string;
+  /** true, wenn dieser Posten als Eigenanteil gerechnet wird (nicht aus Foerderung, sondern Traeger/Schule). */
+  eigenanteil?: boolean;
+}
+
+export interface Finanzplan {
+  posten: Finanzposten[];
+  /** ISO-Zeitstempel, wann der Plan erzeugt oder zuletzt geaendert wurde. */
+  generiertAm: string;
+  /** Gesetzt, sobald der Nutzer den Plan freigegeben hat. */
+  legitimiertAm?: string;
+  /** Kommentar des Generators, z. B. Hinweise auf offene Fragen. */
+  hinweise?: string[];
+}
+
 export interface GenerationArtefacts {
   outline?: { titel: string; abschnitte: Array<{ name: string; fokus: string }> };
   sections?: Array<{ name: string; text: string }>;
   critique?: string;
   finalText?: string;
+  finanzplan?: Finanzplan;
 }
 
 export interface WizardSessionData {

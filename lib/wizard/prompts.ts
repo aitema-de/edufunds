@@ -254,6 +254,70 @@ Begutachte.`;
 // REVISION
 // ============================================================================
 
+// ============================================================================
+// FINANZPLAN-GENERATOR
+// ============================================================================
+
+export const FINANZPLAN_SYSTEM = `Du erstellst einen konkreten, programm-spezifischen Finanzplan fuer einen Foerderantrag an einer deutschen Schule.
+
+Regeln
+- Nutze NUR Kostenkategorien und Obergrenzen, die in der mitgelieferten Richtlinie als foerderfaehig markiert sind.
+- Beziehe dich auf die tatsaechlich genannten Projektinhalte (Fakten) — keine generischen Posten wie "diverses Material".
+- Jede Position muss eine kurze Begruendung haben: warum dieser Posten, wie kommt der Betrag zustande (z. B. "15 Tablets à 450 EUR").
+- Wenn die Richtlinie einen Eigenanteil vorschreibt, fuege eigens markierte Posten hinzu, die diesen Eigenanteil abdecken (eigenanteil: true). Eigenanteil darf nicht aus anderen oeffentlichen Foerdermitteln kommen.
+- Halte dich an plausible Einzelbetraege. KEINE suspekt runden Millionenbetraege.
+- Wenn kritische Info fehlt, nenne das in "hinweise" (z. B. "Schuelerzahl unklar, Tablet-Anzahl geschaetzt").
+
+Kostenkategorien (genau diese Strings nutzen):
+- "personal"       Personalkosten fuer Traeger-/Support-Stellen
+- "sachkosten"     Material, Lizenzen, Verbrauch
+- "investitionen"  Geraete, Ausstattung mit Abschreibung
+- "honorare"       Externe Fachkraefte, Referenten
+- "reisekosten"    Fahrten, Exkursionen, Aufenthaltskosten
+- "overhead"       Verwaltungs-/Gemeinkosten des Traegers
+- "sonstiges"      Nur wenn keine andere Kategorie passt — in Begruendung erklaeren
+
+Ausgabe: AUSSCHLIESSLICH valides JSON, keine Fences:
+{
+  "posten": [
+    {
+      "kategorie": "...",
+      "bezeichnung": "Kurzname des Postens",
+      "betragEur": 1234,
+      "begruendung": "1 Satz, wie sich der Betrag zusammensetzt",
+      "eigenanteil": false
+    }
+  ],
+  "hinweise": ["optional, z. B. offene Annahmen"]
+}`;
+
+export function buildFinanzplanPrompt(
+  programm: Foerderprogramm,
+  facts: WizardFacts,
+  richtlinie: Richtlinie | null | undefined
+): string {
+  const rlBlock = richtlinie
+    ? `\n\nFOERDERRICHTLINIE (verbindlich):\n${JSON.stringify(
+        {
+          foerderhoehe: richtlinie.foerderhoehe,
+          kostenpositionen: richtlinie.kostenpositionen,
+          eigenmittel: richtlinie.eigenmittel,
+        },
+        null,
+        2
+      )}`
+    : "\n\nKEINE OFFIZIELLE RICHTLINIE ERFASST — arbeite mit ueblichen Kostenkategorien fuer diese Art Programm. Markiere in hinweise, dass der Plan generisch ist.";
+
+  return `PROGRAMM:
+${programmBlock(programm)}
+${rlBlock}
+
+PROJEKTFAKTEN:
+${JSON.stringify(facts, null, 2)}
+
+Erstelle den Finanzplan.`;
+}
+
 export const REVISION_SYSTEM = `Du bist der Antragsautor. Überarbeite den Entwurf anhand des Gutachtens. Struktur, Titel und Abschnittsreihenfolge bleiben erhalten. Verwende NUR die mitgelieferten Fakten. Füge keine neuen Behauptungen oder Zahlen ein.
 
 ## Floskeln-Verbot (nochmal!)

@@ -7,6 +7,7 @@ import { Check, Copy, Download, FileDown, Loader2, RefreshCw } from "lucide-reac
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type { GenerationArtefacts } from "@/lib/wizard/types";
 import { formatEur, type CostLedger } from "@/lib/wizard/pricing";
+import { FinanzplanView } from "./FinanzplanView";
 
 interface Props {
   programm: Foerderprogramm;
@@ -189,6 +190,11 @@ export function AntragResult({ programm, generation, costs, onRestart }: Props) 
           {text}
         </ReactMarkdown>
       </article>
+      {generation.finanzplan && (
+        <div className="mt-6">
+          <FinanzplanView plan={generation.finanzplan} />
+        </div>
+      )}
       {costs && costs.calls > 0 && (
         <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-900/40 px-4 py-2 text-xs text-slate-500">
           <span>
