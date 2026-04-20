@@ -11,10 +11,11 @@ interface Props {
  * Wir zeigen die vier Stages als Checkliste, mit einem weichen "in Arbeit"-Puls.
  */
 const STAGES = [
-  { key: "outline", label: "Gliederung strukturieren", detail: "Die KI bestimmt die Reihenfolge der Abschnitte." },
+  { key: "outline", label: "Gliederung strukturieren", detail: "Folgt der offiziellen Antragsstruktur, falls Richtlinie hinterlegt ist." },
   { key: "sections", label: "Abschnitte schreiben", detail: "Pro Abschnitt ein eigener KI-Call mit den Fakten." },
   { key: "critique", label: "Gutachten erstellen", detail: "Ein strenger Durchgang sucht Floskeln und Lücken." },
   { key: "revision", label: "Finale Fassung", detail: "Einarbeitung des Gutachtens in den Antragstext." },
+  { key: "finanzplan", label: "Finanzplan-Entwurf", detail: "Programm-spezifische Kostenpositionen nach Richtlinie." },
 ];
 
 export function GeneratingProgress({ stage }: Props) {

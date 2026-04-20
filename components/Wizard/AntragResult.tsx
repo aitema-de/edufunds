@@ -5,15 +5,18 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Check, Copy, Download, FileDown, Loader2, RefreshCw } from "lucide-react";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
-import type { GenerationArtefacts } from "@/lib/wizard/types";
+import type { Finanzplan, GenerationArtefacts } from "@/lib/wizard/types";
 import { formatEur, type CostLedger } from "@/lib/wizard/pricing";
 import { FinanzplanView } from "./FinanzplanView";
+import { FinanzplanEditor } from "./FinanzplanEditor";
 
 interface Props {
   programm: Foerderprogramm;
   generation: GenerationArtefacts;
   costs?: CostLedger | null;
+  sessionToken?: string;
   onRestart: () => void;
+  onFinanzplanChange?: (plan: Finanzplan) => void;
 }
 
 const MARKDOWN_COMPONENTS = {
@@ -82,7 +85,14 @@ async function loadHtml2pdf() {
   return (mod as { default?: unknown }).default ?? mod;
 }
 
-export function AntragResult({ programm, generation, costs, onRestart }: Props) {
+export function AntragResult({
+  programm,
+  generation,
+  costs,
+  sessionToken,
+  onRestart,
+  onFinanzplanChange,
+}: Props) {
   const [copied, setCopied] = useState(false);
   const [showCritique, setShowCritique] = useState(false);
   const [pdfBusy, setPdfBusy] = useState(false);
@@ -192,7 +202,15 @@ export function AntragResult({ programm, generation, costs, onRestart }: Props) 
       </article>
       {generation.finanzplan && (
         <div className="mt-6">
-          <FinanzplanView plan={generation.finanzplan} />
+          {sessionToken && !generation.finanzplan.legitimiertAm ? (
+            <FinanzplanEditor
+              sessionToken={sessionToken}
+              initialPlan={generation.finanzplan}
+              onChange={onFinanzplanChange}
+            />
+          ) : (
+            <FinanzplanView plan={generation.finanzplan} />
+          )}
         </div>
       )}
       {costs && costs.calls > 0 && (

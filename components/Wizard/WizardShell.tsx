@@ -362,7 +362,11 @@ export function WizardShell({ programm }: Props) {
         programm={programm}
         generation={generation}
         costs={state.costs ?? null}
+        sessionToken={state.sessionToken}
         onRestart={resetSession}
+        onFinanzplanChange={(plan) => {
+          setGeneration((g) => (g ? { ...g, finanzplan: plan } : g));
+        }}
       />
     );
   }
