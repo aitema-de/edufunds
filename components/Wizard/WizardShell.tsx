@@ -16,6 +16,11 @@ import {
   syncProfileFromFacts,
   type SchoolProfile,
 } from "@/lib/wizard/school-profile-client";
+import {
+  consumeHandoff,
+  handoffToSeedFacts,
+  type MatchHandoff,
+} from "@/lib/wizard/match-handoff-client";
 import { QuestionCard } from "./QuestionCard";
 import { ChronologySidebar } from "./ChronologySidebar";
 import { GeneratingProgress } from "./GeneratingProgress";
@@ -50,6 +55,7 @@ export function WizardShell({ programm }: Props) {
   const [generation, setGeneration] = useState<GenerationArtefacts | null>(null);
   const [generationStage, setGenerationStage] = useState<string>("");
   const [schoolProfile, setSchoolProfile] = useState<SchoolProfile | null>(null);
+  const [handoff, setHandoff] = useState<MatchHandoff | null>(null);
 
   const loadSession = useCallback(async (token: string) => {
     setBusy(true);
@@ -96,11 +102,17 @@ export function WizardShell({ programm }: Props) {
     setError(null);
     try {
       const profile = loadSchoolProfile();
-      const seedFacts = profile ? profileToSeedFacts(profile) : undefined;
+      const profileSeed = profile ? profileToSeedFacts(profile) : undefined;
+      const handoffSeed = handoff ? handoffToSeedFacts(handoff) : undefined;
+      const seedFacts = { ...(profileSeed ?? {}), ...(handoffSeed ?? {}) };
+      const hasSeed = Object.keys(seedFacts).length > 0;
       const res = await fetch("/api/wizard/start", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ programmId: programm.id, seedFacts }),
+        body: JSON.stringify({
+          programmId: programm.id,
+          seedFacts: hasSeed ? seedFacts : undefined,
+        }),
       });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
@@ -128,7 +140,7 @@ export function WizardShell({ programm }: Props) {
     } finally {
       setBusy(false);
     }
-  }, [programm.id, storageKey]);
+  }, [handoff, programm.id, storageKey]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -136,6 +148,10 @@ export function WizardShell({ programm }: Props) {
     const existing = localStorage.getItem(storageKey);
     if (existing) {
       loadSession(existing);
+    } else {
+      // Nur beim ersten Start (kein fortgesetztes Gespraech) Handoff konsumieren
+      const h = consumeHandoff();
+      if (h) setHandoff(h);
     }
   }, [storageKey, loadSession]);
 
@@ -277,6 +293,23 @@ export function WizardShell({ programm }: Props) {
           Der Wizard führt dich in 6–12 gezielten Fragen durch die relevanten Punkte für
           „{programm.name}". Anschließend schreibt eine Pipeline mit Selbstkritik den Antragsentwurf.
         </p>
+        {handoff && (
+          <div className="mx-auto mb-4 max-w-xl rounded-lg border border-orange-500/30 bg-orange-500/5 px-4 py-3 text-left text-sm text-slate-300">
+            <div className="mb-1 font-medium text-orange-300">
+              Dein Anliegen wird übernommen
+            </div>
+            <div className="text-slate-400 italic">
+              „{handoff.anliegen.length > 200
+                ? handoff.anliegen.slice(0, 200) + "…"
+                : handoff.anliegen}"
+              {handoff.fromMatchScore && (
+                <span className="ml-2 text-xs text-orange-400">
+                  · Passung {handoff.fromMatchScore} %
+                </span>
+              )}
+            </div>
+          </div>
+        )}
         {schoolProfile && (
           <div className="mx-auto mb-6 max-w-xl rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 px-4 py-3 text-left text-sm text-slate-300">
             <div className="mb-1 font-medium text-[#c9a227]">
