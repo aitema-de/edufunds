@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Check, Copy, Download, RefreshCw } from "lucide-react";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type { GenerationArtefacts } from "@/lib/wizard/types";
@@ -77,9 +79,38 @@ export function AntragResult({ programm, generation, onRestart }: Props) {
           </button>
         </div>
       </header>
-      <div className="rounded-lg border border-slate-700 bg-slate-900 p-6 text-slate-200">
-        <pre className="whitespace-pre-wrap font-sans leading-relaxed">{text}</pre>
-      </div>
+      <article className="rounded-lg border border-slate-700 bg-slate-900 p-8 text-slate-200 antrag-prose">
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          components={{
+            h1: ({ children }) => (
+              <h1 className="mb-6 text-2xl font-semibold text-slate-100">{children}</h1>
+            ),
+            h2: ({ children }) => (
+              <h2 className="mb-3 mt-8 text-lg font-semibold text-[#c9a227]">{children}</h2>
+            ),
+            h3: ({ children }) => (
+              <h3 className="mb-2 mt-6 text-base font-semibold text-slate-100">{children}</h3>
+            ),
+            p: ({ children }) => (
+              <p className="mb-4 leading-relaxed text-slate-200">{children}</p>
+            ),
+            strong: ({ children }) => (
+              <strong className="font-semibold text-slate-100">{children}</strong>
+            ),
+            em: ({ children }) => <em className="italic text-slate-200">{children}</em>,
+            ul: ({ children }) => (
+              <ul className="mb-4 ml-6 list-disc space-y-1 text-slate-200">{children}</ul>
+            ),
+            ol: ({ children }) => (
+              <ol className="mb-4 ml-6 list-decimal space-y-1 text-slate-200">{children}</ol>
+            ),
+            li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+          }}
+        >
+          {text}
+        </ReactMarkdown>
+      </article>
       {generation.critique && (
         <details
           className="mt-6 rounded-lg border border-slate-700 bg-slate-900/60 p-4"

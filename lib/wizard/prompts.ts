@@ -134,7 +134,14 @@ Begutachte.`;
 }
 
 export const REVISION_SYSTEM = `Du bist der Antragsautor. Überarbeite den Entwurf anhand des Gutachtens. Behalte Struktur und Titel bei. Verwende NUR die mitgelieferten Fakten. Keine neuen Behauptungen.
-Ausgabe: NUR der überarbeitete Volltext des Antrags, mit klaren Abschnittsüberschriften (Plain Text, keine Markdown-Syntaxzeichen wie # oder **). Leerzeile zwischen Abschnitten.`;
+
+Ausgabeformat: Der überarbeitete Volltext des Antrags in leichtem Markdown.
+- Antragstitel als erste Zeile als H1: "# Titel"
+- Abschnittsüberschriften als H2: "## Abschnittsname"
+- Absätze durch Leerzeilen getrennt
+- Fett/kursiv NUR wenn inhaltlich sinnvoll (sparsam), Listen nur wenn es der Sache dient
+- KEINE HTML-Tags, KEIN Code-Fences
+Gib nur den Antrag aus — keinerlei Kommentare oder Erklärungen davor/danach.`;
 
 export function buildRevisionPrompt(
   programm: Foerderprogramm,
