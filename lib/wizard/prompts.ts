@@ -1,6 +1,13 @@
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type { WizardFacts, WizardMessage } from "./types";
 import { getGuidance } from "./geber-guidance";
+import { formatExtraGuidance, getExtraGuidance } from "./programm-kriterien";
+
+function extraGuidanceBlock(p: Foerderprogramm, label: string): string {
+  const extra = getExtraGuidance(p.id);
+  if (!extra) return "";
+  return `\n\nKURATIERTES WISSEN ZU DIESEM SPEZIFISCHEN PROGRAMM (${label}):\n${formatExtraGuidance(extra)}\n`;
+}
 
 function programmBlock(p: Foerderprogramm): string {
   const lines: string[] = [];
@@ -75,7 +82,7 @@ export function buildInterviewerUserPrompt(
 ${programmBlock(programm)}
 
 PRIORITÄTEN FÜR DIESEN FÖRDERGEBER-TYP (${guidance.label}):
-${guidance.interviewerPriorities}
+${guidance.interviewerPriorities}${extraGuidanceBlock(programm, "Interviewer")}
 
 BISHERIGE FRAGEN/ANTWORTEN:
 ${historyBlock(messages)}
@@ -85,7 +92,7 @@ ${JSON.stringify(facts, null, 2)}
 
 STATUS: ${totalQuestions} von maximal ${maxQuestions} Fragen gestellt.
 
-Entscheide: Nächste Frage stellen (anhand der Prioritäten oben) ODER genug Info für einen guten Antrag? Antworte gemäß dem JSON-Schema.`;
+Entscheide: Nächste Frage stellen (anhand der Prioritäten und — falls vorhanden — des kuratierten Programm-Wissens oben) ODER genug Info für einen guten Antrag? Antworte gemäß dem JSON-Schema.`;
 }
 
 // ============================================================================
@@ -192,7 +199,7 @@ export function buildCritiquePrompt(
 ${programmBlock(programm)}
 
 TYPSPEZIFISCHER PRÜFFOKUS (${guidance.label}):
-${guidance.critiqueFocus}
+${guidance.critiqueFocus}${extraGuidanceBlock(programm, "Gutachter")}
 
 ANTRAGSENTWURF:
 ${draft}
@@ -228,7 +235,7 @@ export function buildRevisionPrompt(
 ${programmBlock(programm)}
 
 TONALITÄT FÜR DIESEN FÖRDERGEBER-TYP (${guidance.label}):
-${guidance.sectionStyle}
+${guidance.sectionStyle}${extraGuidanceBlock(programm, "Revision")}
 
 FAKTEN:
 ${JSON.stringify(facts, null, 2)}
