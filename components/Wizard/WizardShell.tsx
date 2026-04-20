@@ -159,7 +159,9 @@ export function WizardShell({ programm }: Props) {
       if (h) setHandoff(h);
     }
 
-    // Kumulierungs-Check gegen andere Sessions im Browser
+    // Kumulierungs-Check gegen andere Sessions im Browser (Initial-Lauf).
+    // Wenn wir bereits einen sessionToken aus localStorage haben, schicken wir
+    // den mit — sonst fehlen die eigenen Facts und Overlap-Heuristik ist blind.
     const others = listLocalSessions().filter((s) => s.programmId !== programm.id);
     if (others.length > 0) {
       fetch("/api/wizard/kumulierungs-check", {
@@ -168,6 +170,7 @@ export function WizardShell({ programm }: Props) {
         body: JSON.stringify({
           programmId: programm.id,
           otherSessionTokens: others.map((o) => o.sessionToken),
+          ...(existing ? { currentSessionToken: existing } : {}),
         }),
       })
         .then((r) => (r.ok ? r.json() : null))
@@ -175,6 +178,35 @@ export function WizardShell({ programm }: Props) {
         .catch(() => {});
     }
   }, [storageKey, loadSession, programm.id]);
+
+  // Re-Check Kumulierung, sobald Projekt-Facts sich aendern (debounced).
+  // Faengt den Fall "Ueberlappung wird erst nach 2-3 Fragen sichtbar" ab.
+  const projektKey = JSON.stringify(state?.facts?.projekt ?? null);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (!state?.sessionToken) return;
+    const projekt = state.facts?.projekt as
+      | { titel?: string; kurzbeschreibung?: string }
+      | undefined;
+    if (!projekt?.titel && !projekt?.kurzbeschreibung) return;
+    const others = listLocalSessions().filter((s) => s.programmId !== programm.id);
+    if (others.length === 0) return;
+    const timer = setTimeout(() => {
+      fetch("/api/wizard/kumulierungs-check", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          programmId: programm.id,
+          otherSessionTokens: others.map((o) => o.sessionToken),
+          currentSessionToken: state.sessionToken,
+        }),
+      })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d) => d?.conflicts && setConflicts(d.conflicts))
+        .catch(() => {});
+    }, 600);
+    return () => clearTimeout(timer);
+  }, [state?.sessionToken, projektKey, programm.id]);
 
   const submitAnswer = useCallback(async () => {
     if (!state || !answer.trim() || busy) return;
