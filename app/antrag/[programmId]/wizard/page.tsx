@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Sparkles } from "lucide-react";
+import { ArrowLeft, FolderOpen, Sparkles } from "lucide-react";
 import foerderprogrammeData from "@/data/foerderprogramme.json";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import { Header } from "@/components/Header";
@@ -36,13 +36,20 @@ export default async function WizardPage({ params }: Props) {
       <Header />
       <main className="min-h-screen bg-[#0a1628] pt-24 pb-20">
         <div className="container mx-auto px-4">
-          <div className="mb-8">
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
             <Link
               href={`/foerderprogramme/${programm.id}`}
               className="inline-flex items-center gap-2 text-slate-400 transition-colors hover:text-[#c9a227]"
             >
               <ArrowLeft className="h-4 w-4" />
               Zurück zum Programm
+            </Link>
+            <Link
+              href="/antrag/meine"
+              className="inline-flex items-center gap-2 rounded-lg border border-slate-700/60 px-3 py-1.5 text-sm text-slate-300 transition hover:border-[#c9a227]/50 hover:text-[#c9a227]"
+            >
+              <FolderOpen className="h-4 w-4" />
+              Meine Anträge
             </Link>
           </div>
           <div className="mb-10">
