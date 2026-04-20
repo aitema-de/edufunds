@@ -10,7 +10,25 @@ function extraGuidanceBlock(p: Foerderprogramm, label: string): string {
   return `\n\nKURATIERTES WISSEN ZU DIESEM SPEZIFISCHEN PROGRAMM (${label}):\n${formatExtraGuidance(extra)}\n`;
 }
 
-function richtlinieBlock(r: Richtlinie | null | undefined, kontext: "interviewer" | "section" | "revision"): string {
+function foerderhoeheLine(r: Richtlinie): string | null {
+  const h: string[] = [];
+  if (r.foerderhoehe.maxEur) h.push(`max ${r.foerderhoehe.maxEur.toLocaleString("de-DE")} EUR`);
+  if (r.foerderhoehe.maxProzentGesamtkosten)
+    h.push(`max ${r.foerderhoehe.maxProzentGesamtkosten}% der Gesamtkosten`);
+  return h.length ? h.join(", ") : null;
+}
+
+function kumulierungLine(r: Richtlinie): string | null {
+  const k = r.kumulierung;
+  if (k.erlaubt === false) return "Kumulierung mit anderen Förderprogrammen: NICHT zulässig für dieselbe Maßnahme.";
+  if (k.erlaubt === "bedingt") return "Kumulierung mit anderen Förderprogrammen: nur bedingt zulässig.";
+  return null;
+}
+
+function richtlinieBlock(
+  r: Richtlinie | null | undefined,
+  kontext: "interviewer" | "section" | "critique" | "revision"
+): string {
   if (!r) return "";
   const out: string[] = [];
   out.push(`\n\nOFFIZIELLE ANTRAGSSTRUKTUR LAUT FOERDERRICHTLINIE (${r.version}):`);
@@ -22,17 +40,63 @@ function richtlinieBlock(r: Richtlinie | null | undefined, kontext: "interviewer
       if (a.leitfragen?.length) out.push(`  Leitfragen: ${a.leitfragen.join(" | ")}`);
       if (a.stilhinweis) out.push(`  Stil: ${a.stilhinweis}`);
     }
-    if (r.foerderhoehe.maxEur || r.foerderhoehe.maxProzentGesamtkosten) {
-      const h: string[] = [];
-      if (r.foerderhoehe.maxEur) h.push(`max ${r.foerderhoehe.maxEur.toLocaleString("de-DE")} EUR`);
-      if (r.foerderhoehe.maxProzentGesamtkosten)
-        h.push(`max ${r.foerderhoehe.maxProzentGesamtkosten}% der Gesamtkosten`);
-      out.push(`\nFoerderhoehe: ${h.join(", ")}`);
-    }
+    const fh = foerderhoeheLine(r);
+    if (fh) out.push(`\nFoerderhoehe: ${fh}`);
     if (r.eigenmittel.pflicht && r.eigenmittel.mindestProzent) {
       out.push(`Eigenanteil: mind. ${r.eigenmittel.mindestProzent}%`);
     }
   }
+
+  if (kontext === "critique") {
+    out.push(
+      "Pruefe den Entwurf zusaetzlich daraufhin, dass er die Anforderungen dieser Richtlinie erfuellt. Lieber einen Finding zu viel als einen zu wenig."
+    );
+    out.push("\nPflichtabschnitte (muessen im Antrag erkennbar sein):");
+    for (const a of r.antragsstruktur.abschnitte) {
+      if (a.pflicht === false) continue;
+      const parts = [`- ${a.name}`];
+      if (a.maxZeichen) parts.push(`(max ${a.maxZeichen} Zeichen)`);
+      if (a.stilhinweis) parts.push(`— Stil: ${a.stilhinweis}`);
+      out.push(parts.join(" "));
+    }
+    const fh = foerderhoeheLine(r);
+    if (fh) out.push(`\nFoerderhoehe laut Richtlinie: ${fh}. Pruefe, dass die beantragte Summe dazu passt und der Antrag diese Obergrenze nicht ueberschreitet.`);
+    if (r.eigenmittel.pflicht) {
+      const mp = r.eigenmittel.mindestProzent ? ` (mindestens ${r.eigenmittel.mindestProzent} %)` : "";
+      out.push(`Eigenanteil verpflichtend${mp}. Pruefe, dass der Antrag das Eigenanteils-Thema adressiert.`);
+    }
+    const ku = kumulierungLine(r);
+    if (ku) out.push(ku);
+    if (r.notizen?.length) {
+      out.push("\nWichtige Richtlinien-Hinweise, die der Entwurf nicht verletzen darf:");
+      for (const n of r.notizen) out.push(`- ${n}`);
+    }
+  }
+
+  if (kontext === "revision") {
+    out.push(
+      "Halte dich bei der Ueberarbeitung strikt an diese Richtlinien-Vorgaben. Keinen Pflichtabschnitt weglassen, kein Zeichenlimit ueberschreiten."
+    );
+    out.push("\nPflichtabschnitte:");
+    for (const a of r.antragsstruktur.abschnitte) {
+      if (a.pflicht === false) continue;
+      const parts = [`- ${a.name}`];
+      if (a.maxZeichen) parts.push(`(max ${a.maxZeichen} Zeichen)`);
+      if (a.stilhinweis) parts.push(`— Stil: ${a.stilhinweis}`);
+      out.push(parts.join(" "));
+    }
+    const fh = foerderhoeheLine(r);
+    if (fh) out.push(`\nFoerderhoehe: ${fh}. Die im Antrag genannte Summe muss darunter bleiben.`);
+    if (r.eigenmittel.pflicht) {
+      const mp = r.eigenmittel.mindestProzent ? ` (mindestens ${r.eigenmittel.mindestProzent} %)` : "";
+      out.push(`Eigenanteil verpflichtend${mp} — muss im Antrag erwaehnt sein.`);
+    }
+    if (r.notizen?.length) {
+      out.push("\nZwingende Richtlinien-Hinweise:");
+      for (const n of r.notizen) out.push(`- ${n}`);
+    }
+  }
+
   return out.join("\n");
 }
 
@@ -221,28 +285,50 @@ Schreibe den Abschnitt.`;
 // CRITIQUE
 // ============================================================================
 
-export const CRITIQUE_SYSTEM = `Du bist ein strenger Gutachter für Förderanträge. Dein Ziel: den Entwurf von Floskeln, Schwächen und fehlenden Bezügen befreien — als Vorarbeit für die Revision.
+export const CRITIQUE_SYSTEM = `Du bist ein strenger Gutachter für Förderanträge. Dein Ziel: konkrete, umsetzbare Findings für die Revision — keine Allgemeinplätze, keine Wiederholung des Textes.
 
 ## Prüfe insbesondere
-1. Floskeln, Wiederholungen, unbelegte Behauptungen — mit Zitat der Stelle und konkretem Vorschlag.
-2. Fehlende Bezüge auf die offiziellen Kriterien des Fördergebers.
-3. Schwache Abschnitte (zu vage, zu generisch, austauschbar).
-4. Fehlende Quantifizierungen, wo welche möglich wären.
-5. Typ-spezifische Schwächen (siehe unten).
+1. Floskeln, Wiederholungen, unbelegte Behauptungen.
+2. Richtlinien-Verletzungen (fehlender Pflichtabschnitt, Stilverstoß, Zeichenlimit, Eigenanteil nicht adressiert).
+3. Fehlende Bezüge auf offizielle Kriterien des Fördergebers.
+4. Schwache/generische Abschnitte — austauschbar klingende Passagen.
+5. Fehlende Quantifizierungen, wo welche möglich wären.
+6. Typ-spezifische Schwächen (siehe Prüffokus im User-Prompt).
+7. Inkonsistenzen zwischen Abschnitten oder zum Finanzplan.
 
-## Format
-Nummerierte Liste konkreter Fundstellen + Verbesserungsvorschlag, max. 10 Punkte. Kein Lob, keine Wiederholung des Textes, keine Einleitung.`;
+## Ausgabe
+AUSSCHLIESSLICH valides JSON, keine Markdown-Fences:
+{
+  "zusammenfassung": "1–2 Sätze zum Gesamtstand (optional)",
+  "findings": [
+    {
+      "abschnitt": "Name des Abschnitts ODER 'global' ODER 'finanzplan'",
+      "zitat": "WÖRTLICHES Kurzzitat (max 120 Zeichen) der problematischen Stelle. Wenn Inhalt ganz fehlt: 'FEHLT'",
+      "schwere": "hoch" | "mittel" | "niedrig",
+      "kategorie": "floskel" | "belegluecke" | "richtlinie" | "inkonsistenz" | "sonstiges",
+      "vorschlag": "Was soll die Revision stattdessen tun? 1–3 konkrete Sätze."
+    }
+  ]
+}
+
+## Regeln
+- Max 10 Findings, priorisiert nach Schwere.
+- Lieber wenige scharfe Findings als viele flache.
+- "schwere: hoch" NUR bei Richtlinien-Verstoß oder ernstem Beleg-Loch.
+- Zitat ist WÖRTLICH, kein Paraphrase.
+- Keine Findings, die nur den Text loben.`;
 
 export function buildCritiquePrompt(
   programm: Foerderprogramm,
-  draft: string
+  draft: string,
+  richtlinie?: Richtlinie | null
 ): string {
   const guidance = getGuidance((programm as any).foerdergeberTyp);
   return `PROGRAMM:
 ${programmBlock(programm)}
 
 TYPSPEZIFISCHER PRÜFFOKUS (${guidance.label}):
-${guidance.critiqueFocus}${extraGuidanceBlock(programm, "Gutachter")}
+${guidance.critiqueFocus}${extraGuidanceBlock(programm, "Gutachter")}${richtlinieBlock(richtlinie, "critique")}
 
 ANTRAGSENTWURF:
 ${draft}
@@ -320,6 +406,9 @@ Erstelle den Finanzplan.`;
 
 export const REVISION_SYSTEM = `Du bist der Antragsautor. Überarbeite den Entwurf anhand des Gutachtens. Struktur, Titel und Abschnittsreihenfolge bleiben erhalten. Verwende NUR die mitgelieferten Fakten. Füge keine neuen Behauptungen oder Zahlen ein.
 
+## Umgang mit dem Gutachten
+Das Gutachten liefert nummerierte Findings mit Abschnitt, wörtlichem Zitat, Schwere und konkretem Vorschlag. Arbeite sie in dieser Reihenfolge ab: erst alle "hoch"-Findings (Richtlinien-Verstöße dürfen nicht stehenbleiben), dann "mittel", dann "niedrig". Bei "FEHLT" ergänze den fehlenden Inhalt aus den Fakten, ohne zu halluzinieren.
+
 ## Floskeln-Verbot (nochmal!)
 Keine dieser Wendungen: "fördert Teilhabe", "ganzheitlicher Ansatz", "schafft Mehrwert", "in der heutigen Zeit", "es ist unerlässlich", "innovativer Ansatz", "passgenau", "zukunftsweisend". Wenn das Gutachten solche Stellen nennt, ersetze sie durch konkrete Formulierungen.
 
@@ -331,18 +420,99 @@ Keine dieser Wendungen: "fördert Teilhabe", "ganzheitlicher Ansatz", "schafft M
 - KEINE HTML-Tags, KEIN Code-Fences
 Gib nur den Antrag aus — keinerlei Kommentare oder Erklärungen davor/danach.`;
 
+// ============================================================================
+// CONSISTENCY (Antragstext × Finanzplan)
+// ============================================================================
+
+export const CONSISTENCY_SYSTEM = `Du prüfst, ob der Antragstext und der Finanzplan inhaltlich zusammenpassen. Du bist kein Lektor — du suchst nur echte Mismatches zwischen den beiden.
+
+## Was ein Issue ist
+- "posten-ohne-textbezug": Ein Finanzposten taucht im Antrag nicht auf — weder direkt benannt noch sinngemäß in der passenden Sektion beschrieben.
+- "textbezug-ohne-posten": Der Antragstext nennt eine konkrete Kostenart (Geräte, Honorare, Fortbildungen, Fahrten), ohne dass es im Finanzplan einen entsprechenden Posten gibt.
+- "betrag-unstimmig": Im Antrag genannte Zahlen/Größen widersprechen den Beträgen im Finanzplan (z. B. "15 Tablets à 500 €" im Text, aber Finanzplan hat 20 × 400 €).
+- "sonstiges": Andere klare Widersprüche.
+
+## Was KEIN Issue ist
+- Synonym-Unterschiede ("iPads" vs. "Tablets", "Referent" vs. "Trainer").
+- Der Antrag summiert zusammen, Finanzplan splittet auf (oder umgekehrt) — solange Summen passen.
+- Der Finanzplan nennt übliche Nebenposten (z. B. Overhead), die der Text nicht explizit auflistet.
+
+## Ausgabe
+AUSSCHLIESSLICH valides JSON, keine Markdown-Fences:
+{
+  "issues": [
+    {
+      "art": "posten-ohne-textbezug" | "textbezug-ohne-posten" | "betrag-unstimmig" | "sonstiges",
+      "beschreibung": "1 Satz, was der Widerspruch ist",
+      "posten": "optional: Bezeichnung des Finanzpostens",
+      "textstelle": "optional: Kurzzitat aus dem Antrag (max 100 Zeichen)"
+    }
+  ]
+}
+
+Regeln
+- "issues": [] ist eine völlig gültige Antwort, wenn der Antrag konsistent ist.
+- Max 8 Issues.
+- Keine stilistischen Findings, nur Inhalt/Zahlen.`;
+
+export function buildConsistencyPrompt(finalText: string, finanzplanJson: string): string {
+  return `ANTRAGSTEXT (finale Fassung):
+${finalText}
+
+FINANZPLAN (JSON):
+${finanzplanJson}
+
+Beurteile die Konsistenz der beiden. Liefere die Issues-Liste.`;
+}
+
+// ============================================================================
+// RECHECK (nach Revision: wurden die Findings tatsächlich adressiert?)
+// ============================================================================
+
+export const RECHECK_SYSTEM = `Du prüfst, ob ein überarbeiteter Förderantrag die zuvor gefundenen Findings wirklich adressiert hat. Du urteilst pro Finding, nicht über den Text insgesamt.
+
+## Status pro Finding
+- "geschlossen": Die Kritik ist im überarbeiteten Text erkennbar umgesetzt. Das Zitat/die Lücke ist durch eine bessere Formulierung oder ergänzten Inhalt ersetzt.
+- "teilweise": Ein Ansatz ist erkennbar, aber das Kernproblem bleibt (z. B. Floskel ist raus, aber ohne konkreten Ersatz).
+- "offen": Die Kritik ist in der überarbeiteten Fassung unverändert oder nicht ausreichend adressiert.
+
+## Ausgabe
+AUSSCHLIESSLICH valides JSON, keine Markdown-Fences:
+{
+  "resolutions": [
+    { "index": 1, "status": "geschlossen" | "teilweise" | "offen", "kommentar": "optional, 1 Satz: warum dieser Status" }
+  ]
+}
+
+Regeln
+- Ein Eintrag pro Finding, Index beginnt bei 1 und entspricht der Nummerierung im Gutachten.
+- Keine neuen Findings erfinden — nur die gelisteten beurteilen.
+- "geschlossen" nur, wenn Revision klar handelt. Bei Unsicherheit: "teilweise".
+- Kommentar nur bei "teilweise" oder "offen" — bei "geschlossen" weglassen.`;
+
+export function buildRecheckPrompt(findingsRendered: string, finalText: string): string {
+  return `URSPRÜNGLICHE FINDINGS (aus dem Gutachten):
+${findingsRendered}
+
+ÜBERARBEITETER ANTRAG (finale Fassung):
+${finalText}
+
+Beurteile für jedes Finding den Status.`;
+}
+
 export function buildRevisionPrompt(
   programm: Foerderprogramm,
   facts: WizardFacts,
   draft: string,
-  critique: string
+  critique: string,
+  richtlinie?: Richtlinie | null
 ): string {
   const guidance = getGuidance((programm as any).foerdergeberTyp);
   return `PROGRAMM:
 ${programmBlock(programm)}
 
 TONALITÄT FÜR DIESEN FÖRDERGEBER-TYP (${guidance.label}):
-${guidance.sectionStyle}${extraGuidanceBlock(programm, "Revision")}
+${guidance.sectionStyle}${extraGuidanceBlock(programm, "Revision")}${richtlinieBlock(richtlinie, "revision")}
 
 FAKTEN:
 ${JSON.stringify(facts, null, 2)}

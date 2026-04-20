@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Check, Copy, Download, FileDown, Loader2, RefreshCw } from "lucide-react";
+import { AlertTriangle, Check, Copy, Download, FileDown, Loader2, RefreshCw } from "lucide-react";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type { Finanzplan, GenerationArtefacts } from "@/lib/wizard/types";
 import { formatEur, type CostLedger } from "@/lib/wizard/pricing";
@@ -241,6 +241,23 @@ export function AntragResult({
           )}
         </div>
       </header>
+      {(generation.hasOpenHighFindings || generation.hasConsistencyIssues) && (
+        <div className="mb-5 flex items-start gap-3 rounded-lg border border-orange-500/40 bg-orange-500/10 p-4 text-sm text-orange-100">
+          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-orange-300" />
+          <div>
+            <div className="font-semibold text-orange-100">Qualitätshinweise des KI-Prüfers</div>
+            <ul className="mt-1 list-disc pl-5 text-xs text-orange-200/80 space-y-0.5">
+              {generation.hasOpenHighFindings && (
+                <li>Mindestens ein hoch-Finding des Gutachters ist nicht vollständig adressiert.</li>
+              )}
+              {generation.hasConsistencyIssues && (
+                <li>Antragstext und Finanzplan haben Inkonsistenzen ({generation.consistencyIssues?.length ?? 0}).</li>
+              )}
+              <li>Details unten unter „KI-Gutachten" — vor Einreichung selbst prüfen.</li>
+            </ul>
+          </div>
+        </div>
+      )}
       <div className={paid ? "" : "relative"}>
         <article
           className={
@@ -288,7 +305,74 @@ export function AntragResult({
           <summary className="cursor-pointer text-sm font-medium text-slate-300">
             KI-Gutachten zum ersten Entwurf (zur Transparenz)
           </summary>
-          <pre className="mt-3 whitespace-pre-wrap text-xs text-slate-400">{generation.critique}</pre>
+          {generation.critiqueFindings && generation.critiqueFindings.length > 0 && generation.critiqueResolutions && (
+            <div className="mt-3 space-y-2 text-xs text-slate-300">
+              {generation.critiqueFindings.map((f, i) => {
+                const res = generation.critiqueResolutions?.find((r) => r.index === i + 1);
+                const status = res?.status ?? "offen";
+                const badge =
+                  status === "geschlossen"
+                    ? "border-green-500/40 text-green-300"
+                    : status === "teilweise"
+                      ? "border-yellow-500/40 text-yellow-300"
+                      : "border-red-500/40 text-red-300";
+                const schwereBadge =
+                  f.schwere === "hoch"
+                    ? "border-red-500/40 text-red-300"
+                    : f.schwere === "mittel"
+                      ? "border-orange-500/40 text-orange-300"
+                      : "border-slate-500/40 text-slate-300";
+                return (
+                  <div key={i} className="rounded border border-slate-700/60 bg-slate-900/40 p-2.5">
+                    <div className="mb-1 flex flex-wrap items-center gap-1.5">
+                      <span className={`rounded-full border px-2 py-0.5 text-[10px] uppercase ${schwereBadge}`}>
+                        {f.schwere}
+                      </span>
+                      <span className="rounded-full border border-slate-600/40 px-2 py-0.5 text-[10px] text-slate-400">
+                        {f.kategorie} · {f.abschnitt}
+                      </span>
+                      <span className={`rounded-full border px-2 py-0.5 text-[10px] uppercase ${badge}`}>
+                        {status}
+                      </span>
+                    </div>
+                    <div className="mb-1 text-slate-200">„{f.zitat}"</div>
+                    <div className="text-slate-400">→ {f.vorschlag}</div>
+                    {res?.kommentar && (
+                      <div className="mt-1 text-slate-500 italic">Re-Check: {res.kommentar}</div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          {!generation.critiqueResolutions && (
+            <pre className="mt-3 whitespace-pre-wrap text-xs text-slate-400">{generation.critique}</pre>
+          )}
+          {generation.consistencyIssues && generation.consistencyIssues.length > 0 && (
+            <div className="mt-4 border-t border-slate-700/60 pt-3">
+              <div className="mb-2 text-xs font-medium text-slate-300">
+                Konsistenz-Check Antrag × Finanzplan
+              </div>
+              <div className="space-y-2 text-xs text-slate-300">
+                {generation.consistencyIssues.map((i, idx) => (
+                  <div key={idx} className="rounded border border-slate-700/60 bg-slate-900/40 p-2.5">
+                    <div className="mb-1">
+                      <span className="rounded-full border border-amber-500/40 px-2 py-0.5 text-[10px] uppercase text-amber-300">
+                        {i.art}
+                      </span>
+                    </div>
+                    <div className="text-slate-200">{i.beschreibung}</div>
+                    {i.posten && (
+                      <div className="mt-0.5 text-slate-500">Posten: {i.posten}</div>
+                    )}
+                    {i.textstelle && (
+                      <div className="mt-0.5 text-slate-500 italic">„{i.textstelle}"</div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </details>
       )}
 

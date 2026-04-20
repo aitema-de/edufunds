@@ -13,9 +13,11 @@ interface Props {
 const STAGES = [
   { key: "outline", label: "Gliederung strukturieren", detail: "Folgt der offiziellen Antragsstruktur, falls Richtlinie hinterlegt ist." },
   { key: "sections", label: "Abschnitte schreiben", detail: "Pro Abschnitt ein eigener KI-Call mit den Fakten." },
-  { key: "critique", label: "Gutachten erstellen", detail: "Ein strenger Durchgang sucht Floskeln und Lücken." },
+  { key: "critique", label: "Gutachten erstellen", detail: "Ein strenger Durchgang sucht Floskeln, Lücken, Richtlinien-Verstöße." },
   { key: "revision", label: "Finale Fassung", detail: "Einarbeitung des Gutachtens in den Antragstext." },
+  { key: "recheck", label: "Revision prüfen", detail: "Jedes Gutachten-Finding gegen die finale Fassung geprüft." },
   { key: "finanzplan", label: "Finanzplan-Entwurf", detail: "Programm-spezifische Kostenpositionen nach Richtlinie." },
+  { key: "consistency", label: "Konsistenz prüfen", detail: "Antragstext und Finanzplan müssen zusammenpassen." },
 ];
 
 export function GeneratingProgress({ stage }: Props) {

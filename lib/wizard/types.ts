@@ -74,10 +74,69 @@ export interface Finanzplan {
   hinweise?: string[];
 }
 
+export type CritiqueSchwere = "hoch" | "mittel" | "niedrig";
+export type CritiqueKategorie =
+  | "floskel"
+  | "belegluecke"
+  | "richtlinie"
+  | "inkonsistenz"
+  | "sonstiges";
+
+export interface CritiqueFinding {
+  /** Name des betroffenen Abschnitts, oder 'global'/'finanzplan'. */
+  abschnitt: string;
+  /** Wörtliches Kurzzitat der Stelle, oder 'FEHLT' wenn der Inhalt ganz fehlt. */
+  zitat: string;
+  schwere: CritiqueSchwere;
+  kategorie: CritiqueKategorie;
+  /** Konkreter Vorschlag für die Revision. */
+  vorschlag: string;
+}
+
+export interface Critique {
+  zusammenfassung?: string;
+  findings: CritiqueFinding[];
+}
+
+export type FindingStatus = "geschlossen" | "teilweise" | "offen";
+
+export interface FindingResolution {
+  /** 1-basierter Index in critiqueFindings. */
+  index: number;
+  status: FindingStatus;
+  kommentar?: string;
+}
+
+export type ConsistencyArt =
+  | "posten-ohne-textbezug"
+  | "textbezug-ohne-posten"
+  | "betrag-unstimmig"
+  | "sonstiges";
+
+export interface ConsistencyIssue {
+  art: ConsistencyArt;
+  beschreibung: string;
+  /** Bezeichnung des betroffenen Finanzpostens, falls zuordenbar. */
+  posten?: string;
+  /** Kurzzitat aus dem Antragstext, falls zuordenbar. */
+  textstelle?: string;
+}
+
 export interface GenerationArtefacts {
   outline?: { titel: string; abschnitte: Array<{ name: string; fokus: string }> };
   sections?: Array<{ name: string; text: string }>;
+  /** Gerenderter Critique-Text (Markdown-Liste). Fuer UI-Anzeige + Revision-Input. */
   critique?: string;
+  /** Strukturierte Findings fuer spaetere Auswertung (UI, Re-Check). */
+  critiqueFindings?: CritiqueFinding[];
+  /** Ergebnis des Re-Check-Laufs: welche Findings hat die Revision geschlossen. */
+  critiqueResolutions?: FindingResolution[];
+  /** True, wenn mind. ein Finding mit schwere=hoch nicht abschliessend geschlossen ist. */
+  hasOpenHighFindings?: boolean;
+  /** Inkonsistenzen zwischen Antragstext und Finanzplan (Cross-Check). */
+  consistencyIssues?: ConsistencyIssue[];
+  /** True, wenn mindestens ein Konsistenz-Issue gefunden wurde. */
+  hasConsistencyIssues?: boolean;
   finalText?: string;
   finanzplan?: Finanzplan;
 }
