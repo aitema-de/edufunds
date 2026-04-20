@@ -22,6 +22,7 @@ export async function GET(
     facts: session.data.facts,
     interviewer: session.data.interviewer,
     generation: session.data.generation ?? null,
+    costs: session.data.costs ?? null,
     status: session.status,
     createdAt: session.createdAt,
     updatedAt: session.updatedAt,

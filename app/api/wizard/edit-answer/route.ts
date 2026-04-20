@@ -8,6 +8,7 @@ import {
   rollbackBeforeMessage,
 } from "@/lib/wizard/session";
 import { nextStep } from "@/lib/wizard/interviewer";
+import { addUsage, emptyLedger } from "@/lib/wizard/pricing";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
 
@@ -57,7 +58,7 @@ export async function POST(req: NextRequest) {
     });
 
     // Interviewer weiterfragen
-    const step = await nextStep(
+    const { step, usage } = await nextStep(
       programm,
       data.messages,
       data.facts,
@@ -65,6 +66,10 @@ export async function POST(req: NextRequest) {
       data.interviewer.maxQuestions
     );
     data = { ...data, facts: step.updatedFacts };
+
+    if (usage) {
+      data = { ...data, costs: addUsage(data.costs ?? emptyLedger(), usage.model, usage.usage) };
+    }
 
     if (step.kind === "question") {
       data = appendMessage(data, {
@@ -97,6 +102,7 @@ export async function POST(req: NextRequest) {
       totalQuestions: updated.data.interviewer.totalQuestions,
       maxQuestions: updated.data.interviewer.maxQuestions,
       facts: updated.data.facts,
+      costs: updated.data.costs ?? null,
     });
   } catch (err) {
     console.error("[wizard/edit-answer] Fehler:", err);

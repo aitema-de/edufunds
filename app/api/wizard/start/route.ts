@@ -9,6 +9,7 @@ import {
 } from "@/lib/wizard/session";
 import { nextStep } from "@/lib/wizard/interviewer";
 import type { WizardFacts } from "@/lib/wizard/types";
+import { addUsage, emptyLedger } from "@/lib/wizard/pricing";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
 
@@ -38,7 +39,7 @@ export async function POST(req: NextRequest) {
       ? mergeFacts(session.data.facts, seedFacts)
       : session.data.facts;
 
-    const step = await nextStep(
+    const { step, usage } = await nextStep(
       programm,
       session.data.messages,
       initialFacts,
@@ -48,6 +49,10 @@ export async function POST(req: NextRequest) {
 
     let data = session.data;
     data = { ...data, facts: step.updatedFacts };
+
+    if (usage) {
+      data = { ...data, costs: addUsage(data.costs ?? emptyLedger(), usage.model, usage.usage) };
+    }
 
     if (step.kind === "question") {
       data = appendMessage(data, {
@@ -79,6 +84,7 @@ export async function POST(req: NextRequest) {
       totalQuestions: updated.data.interviewer.totalQuestions,
       maxQuestions: updated.data.interviewer.maxQuestions,
       facts: updated.data.facts,
+      costs: updated.data.costs ?? null,
     });
   } catch (err) {
     console.error("[wizard/start] Fehler:", err);

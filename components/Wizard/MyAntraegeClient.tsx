@@ -8,6 +8,7 @@ import {
   removeLocalSession,
 } from "@/lib/wizard/session-index-client";
 import type { WizardPhase } from "@/lib/wizard/types";
+import { formatEur, type CostLedger } from "@/lib/wizard/pricing";
 
 interface SessionSummary {
   programmId: string;
@@ -17,6 +18,7 @@ interface SessionSummary {
   totalQuestions: number;
   maxQuestions: number;
   updatedAt: string;
+  costs?: CostLedger | null;
   missing?: boolean;
   error?: string;
 }
@@ -90,6 +92,7 @@ export function MyAntraegeClient() {
             totalQuestions: body.interviewer?.totalQuestions ?? 0,
             maxQuestions: body.interviewer?.maxQuestions ?? 12,
             updatedAt: body.updatedAt ?? new Date().toISOString(),
+            costs: body.costs ?? null,
           } satisfies SessionSummary;
         } catch (e) {
           return {
@@ -178,6 +181,11 @@ export function MyAntraegeClient() {
                   </>
                 )}
                 Letzter Stand: {formatDate(s.updatedAt)}
+                {s.costs && s.costs.calls > 0 && (
+                  <span className="ml-2 text-slate-400">
+                    · KI-Kosten: {formatEur(s.costs.eurCents)}
+                  </span>
+                )}
                 {s.error && (
                   <span className="ml-2 text-red-400">· {s.error}</span>
                 )}

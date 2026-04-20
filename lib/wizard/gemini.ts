@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import type { Usage } from "./pricing";
 
 const API_KEY = process.env.GEMINI_API_KEY ?? "";
 
@@ -11,11 +12,25 @@ const client = new GoogleGenerativeAI(API_KEY);
 export const MODEL_FLASH = "gemini-2.0-flash";
 export const MODEL_PRO = "gemini-2.5-pro";
 
+export interface LlmResult<T> {
+  value: T;
+  usage: Usage;
+}
+
+function extractUsage(response: {
+  usageMetadata?: { promptTokenCount?: number; candidatesTokenCount?: number };
+}): Usage {
+  return {
+    promptTokens: response.usageMetadata?.promptTokenCount ?? 0,
+    candidatesTokens: response.usageMetadata?.candidatesTokenCount ?? 0,
+  };
+}
+
 export async function generateJson<T>(
   model: string,
   system: string,
   user: string
-): Promise<T> {
+): Promise<LlmResult<T>> {
   const gm = client.getGenerativeModel({
     model,
     systemInstruction: system,
@@ -23,9 +38,10 @@ export async function generateJson<T>(
   });
   const res = await gm.generateContent(user);
   const text = res.response.text().trim();
+  const usage = extractUsage(res.response);
   try {
-    return JSON.parse(text) as T;
-  } catch (e) {
+    return { value: JSON.parse(text) as T, usage };
+  } catch {
     throw new Error(
       `Gemini lieferte kein valides JSON (${model}): ${text.slice(0, 300)}`
     );
@@ -36,8 +52,9 @@ export async function generateText(
   model: string,
   system: string,
   user: string
-): Promise<string> {
+): Promise<LlmResult<string>> {
   const gm = client.getGenerativeModel({ model, systemInstruction: system });
   const res = await gm.generateContent(user);
-  return res.response.text().trim();
+  const usage = extractUsage(res.response);
+  return { value: res.response.text().trim(), usage };
 }

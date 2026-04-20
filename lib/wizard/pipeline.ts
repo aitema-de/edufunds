@@ -11,6 +11,7 @@ import {
   buildRevisionPrompt,
 } from "./prompts";
 import { MODEL_PRO, generateJson, generateText } from "./gemini";
+import type { Usage } from "./pricing";
 
 type Outline = NonNullable<GenerationArtefacts["outline"]>;
 
@@ -20,50 +21,74 @@ export interface PipelineEvent {
   payload?: unknown;
 }
 
+export interface PipelineUsage {
+  model: string;
+  usage: Usage;
+}
+
+export interface PipelineResult {
+  artefacts: GenerationArtefacts;
+  usages: PipelineUsage[];
+}
+
 export async function runPipeline(
   programm: Foerderprogramm,
   facts: WizardFacts,
   onEvent?: (e: PipelineEvent) => void
-): Promise<GenerationArtefacts> {
+): Promise<PipelineResult> {
   const emit = (e: PipelineEvent) => onEvent?.(e);
+  const usages: PipelineUsage[] = [];
 
   emit({ stage: "outline", message: "Erstelle Gliederung" });
-  const outline = await generateJson<Outline>(
+  const outlineRes = await generateJson<Outline>(
     MODEL_PRO,
     OUTLINE_SYSTEM,
     buildOutlinePrompt(programm, facts)
   );
+  usages.push({ model: MODEL_PRO, usage: outlineRes.usage });
+  const outline = outlineRes.value;
 
   const sections: Array<{ name: string; text: string }> = [];
   for (const abschnitt of outline.abschnitte) {
     emit({ stage: "section", message: `Schreibe Abschnitt: ${abschnitt.name}` });
-    const text = await generateText(
+    const res = await generateText(
       MODEL_PRO,
       SECTION_SYSTEM,
       buildSectionPrompt(programm, facts, abschnitt, outline.titel)
     );
-    sections.push({ name: abschnitt.name, text });
+    usages.push({ model: MODEL_PRO, usage: res.usage });
+    sections.push({ name: abschnitt.name, text: res.value });
   }
 
   const draft = renderDraft(outline, sections);
 
   emit({ stage: "critique", message: "Gutachten wird erstellt" });
-  const critique = await generateText(
+  const critiqueRes = await generateText(
     MODEL_PRO,
     CRITIQUE_SYSTEM,
     buildCritiquePrompt(programm, draft)
   );
+  usages.push({ model: MODEL_PRO, usage: critiqueRes.usage });
 
   emit({ stage: "revision", message: "Finale Fassung" });
-  const finalText = await generateText(
+  const finalRes = await generateText(
     MODEL_PRO,
     REVISION_SYSTEM,
-    buildRevisionPrompt(programm, facts, draft, critique)
+    buildRevisionPrompt(programm, facts, draft, critiqueRes.value)
   );
+  usages.push({ model: MODEL_PRO, usage: finalRes.usage });
 
   emit({ stage: "done", message: "Fertig" });
 
-  return { outline, sections, critique, finalText };
+  return {
+    artefacts: {
+      outline,
+      sections,
+      critique: critiqueRes.value,
+      finalText: finalRes.value,
+    },
+    usages,
+  };
 }
 
 function renderDraft(

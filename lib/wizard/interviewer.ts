@@ -8,6 +8,7 @@ import type {
 } from "./types";
 import { INTERVIEWER_SYSTEM, buildInterviewerUserPrompt } from "./prompts";
 import { MODEL_FLASH, generateJson } from "./gemini";
+import type { Usage } from "./pricing";
 
 interface RawModelResponse {
   kind: "question" | "ready";
@@ -16,20 +17,27 @@ interface RawModelResponse {
   facts_update?: Partial<WizardFacts>;
 }
 
+export interface NextStepWithUsage {
+  step: NextStep;
+  /** null, wenn die Entscheidung ohne LLM-Call fiel (z. B. Max-Cap erreicht). */
+  usage: { model: string; usage: Usage } | null;
+}
+
 export async function nextStep(
   programm: Foerderprogramm,
   messages: WizardMessage[],
   facts: WizardFacts,
   totalQuestions: number,
   maxQuestions: number
-): Promise<NextStep> {
+): Promise<NextStepWithUsage> {
   if (totalQuestions >= maxQuestions) {
-    return {
+    const step: NextStepReady = {
       kind: "ready",
       summary:
         "Maximale Fragenzahl erreicht — mit den vorhandenen Informationen wird der Antrag erstellt.",
       updatedFacts: facts,
-    } satisfies NextStepReady;
+    };
+    return { step, usage: null };
   }
 
   const user = buildInterviewerUserPrompt(
@@ -39,7 +47,7 @@ export async function nextStep(
     totalQuestions,
     maxQuestions
   );
-  const raw = await generateJson<RawModelResponse>(
+  const { value: raw, usage } = await generateJson<RawModelResponse>(
     MODEL_FLASH,
     INTERVIEWER_SYSTEM,
     user
@@ -47,20 +55,17 @@ export async function nextStep(
 
   const merged = mergeFacts(facts, raw.facts_update);
 
-  if (raw.kind === "ready") {
-    return {
-      kind: "ready",
-      summary: raw.content,
-      updatedFacts: merged,
-    } satisfies NextStepReady;
-  }
+  const step: NextStep =
+    raw.kind === "ready"
+      ? ({ kind: "ready", summary: raw.content, updatedFacts: merged } satisfies NextStepReady)
+      : ({
+          kind: "question",
+          question: raw.content,
+          rationale: raw.rationale,
+          updatedFacts: merged,
+        } satisfies NextStepQuestion);
 
-  return {
-    kind: "question",
-    question: raw.content,
-    rationale: raw.rationale,
-    updatedFacts: merged,
-  } satisfies NextStepQuestion;
+  return { step, usage: { model: MODEL_FLASH, usage } };
 }
 
 function mergeFacts(

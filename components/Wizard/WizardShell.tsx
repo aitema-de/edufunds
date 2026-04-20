@@ -8,6 +8,7 @@ import type {
   WizardPhase,
   GenerationArtefacts,
 } from "@/lib/wizard/types";
+import type { CostLedger } from "@/lib/wizard/pricing";
 import {
   clearSchoolProfile,
   loadSchoolProfile,
@@ -28,6 +29,7 @@ interface WizardApiState {
   totalQuestions: number;
   maxQuestions: number;
   facts: WizardFacts;
+  costs?: CostLedger | null;
 }
 
 const STORAGE_KEY_PREFIX = "edufunds.wizard.session.";
@@ -76,6 +78,7 @@ export function WizardShell({ programm }: Props) {
         totalQuestions: body.interviewer?.totalQuestions ?? 0,
         maxQuestions: body.interviewer?.maxQuestions ?? 12,
         facts: body.facts ?? {},
+        costs: body.costs ?? null,
       });
       const synced = syncProfileFromFacts(body.facts ?? {});
       if (synced) setSchoolProfile(synced);
@@ -204,7 +207,7 @@ export function WizardShell({ programm }: Props) {
       }
       const body = await res.json();
       setGeneration(body.generation);
-      setState((s) => (s ? { ...s, phase: "complete" } : s));
+      setState((s) => (s ? { ...s, phase: "complete", costs: body.costs ?? s.costs } : s));
     } catch (e) {
       setError(e instanceof Error ? e.message : "Generierung fehlgeschlagen");
       setState((s) => (s ? { ...s, phase: "failed" } : s));
@@ -242,6 +245,7 @@ export function WizardShell({ programm }: Props) {
           totalQuestions: body.totalQuestions,
           maxQuestions: body.maxQuestions,
           facts: body.facts,
+          costs: body.costs ?? null,
         });
         const synced = syncProfileFromFacts(body.facts);
         if (synced) setSchoolProfile(synced);
@@ -323,6 +327,7 @@ export function WizardShell({ programm }: Props) {
       <AntragResult
         programm={programm}
         generation={generation}
+        costs={state.costs ?? null}
         onRestart={resetSession}
       />
     );

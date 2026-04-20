@@ -6,10 +6,12 @@ import remarkGfm from "remark-gfm";
 import { Check, Copy, Download, FileDown, Loader2, RefreshCw } from "lucide-react";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type { GenerationArtefacts } from "@/lib/wizard/types";
+import { formatEur, type CostLedger } from "@/lib/wizard/pricing";
 
 interface Props {
   programm: Foerderprogramm;
   generation: GenerationArtefacts;
+  costs?: CostLedger | null;
   onRestart: () => void;
 }
 
@@ -79,7 +81,7 @@ async function loadHtml2pdf() {
   return (mod as { default?: unknown }).default ?? mod;
 }
 
-export function AntragResult({ programm, generation, onRestart }: Props) {
+export function AntragResult({ programm, generation, costs, onRestart }: Props) {
   const [copied, setCopied] = useState(false);
   const [showCritique, setShowCritique] = useState(false);
   const [pdfBusy, setPdfBusy] = useState(false);
@@ -187,6 +189,16 @@ export function AntragResult({ programm, generation, onRestart }: Props) {
           {text}
         </ReactMarkdown>
       </article>
+      {costs && costs.calls > 0 && (
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-900/40 px-4 py-2 text-xs text-slate-500">
+          <span>
+            KI-Kosten dieses Antrags (geschätzt): <strong className="text-slate-300">{formatEur(costs.eurCents)}</strong>
+          </span>
+          <span>
+            {costs.calls} Calls · {costs.totalTokens.toLocaleString("de-DE")} Tokens
+          </span>
+        </div>
+      )}
       {generation.critique && (
         <details
           className="mt-6 rounded-lg border border-slate-700 bg-slate-900/60 p-4"

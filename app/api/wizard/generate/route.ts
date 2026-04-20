@@ -7,6 +7,7 @@ import {
 } from "@/lib/wizard/session";
 import { runPipeline } from "@/lib/wizard/pipeline";
 import type { WizardSessionData } from "@/lib/wizard/types";
+import { addUsage, emptyLedger } from "@/lib/wizard/pricing";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
 
@@ -48,17 +49,21 @@ export async function POST(req: NextRequest) {
     await updateWizardSession(sessionToken, generatingData, "in_progress");
 
     try {
-      const artefacts = await runPipeline(programm, session.data.facts);
+      const { artefacts, usages } = await runPipeline(programm, session.data.facts);
+      let costs = generatingData.costs ?? emptyLedger();
+      for (const u of usages) costs = addUsage(costs, u.model, u.usage);
       const completeData: WizardSessionData = {
         ...generatingData,
         phase: "complete",
         generation: artefacts,
+        costs,
       };
       const updated = await updateWizardSession(sessionToken, completeData, "complete");
       return NextResponse.json({
         sessionToken,
         phase: updated.data.phase,
         generation: updated.data.generation,
+        costs: updated.data.costs ?? null,
       });
     } catch (pipelineErr) {
       console.error("[wizard/generate] Pipeline-Fehler:", pipelineErr);

@@ -66,6 +66,8 @@ export interface WizardSessionData {
   facts: WizardFacts;
   interviewer: InterviewerMeta;
   generation?: GenerationArtefacts;
+  /** Token-Ledger der Gemini-Calls (siehe lib/wizard/pricing.ts). */
+  costs?: import("./pricing").CostLedger;
 }
 
 export interface WizardSession {
