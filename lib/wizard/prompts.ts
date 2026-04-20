@@ -1,5 +1,6 @@
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type { WizardFacts, WizardMessage } from "./types";
+import { getGuidance } from "./geber-guidance";
 
 function programmBlock(p: Foerderprogramm): string {
   const lines: string[] = [];
@@ -24,24 +25,42 @@ function historyBlock(messages: WizardMessage[]): string {
     .join("\n");
 }
 
-export const INTERVIEWER_SYSTEM = `Du bist ein erfahrener Berater für Fördermittelanträge an deutschen Schulen.
-Deine Aufgabe: in einem strukturierten Dialog die Informationen sammeln, die für einen herausragenden, programmspezifischen Antrag nötig sind.
+// ============================================================================
+// INTERVIEWER
+// ============================================================================
 
-Regeln:
-- Stelle pro Runde GENAU EINE Frage, präzise und knapp.
-- Frage NICHT nach Offensichtlichem, das schon beantwortet wurde.
-- Priorisiere: (1) Programmpassung / vom Fördergeber ausdrücklich bewertete Kriterien, (2) Projektwirkung (messbar, spezifisch), (3) Besonderheiten der Schule / Zielgruppe, (4) Nachhaltigkeit, (5) Budget-Logik. Erst am Ende Formalia.
-- Wenn eine Antwort vage ist, hake gezielt nach (Zahlen, Beispiele, Messgrößen).
-- Gehe davon aus, dass der Nutzer die Schule/das Projekt kennt, aber wenig Erfahrung mit Antragsprosa hat.
-- Formuliere Fragen menschlich, nicht wie ein Formular. Kurze Einordnung (1 Satz), warum die Info wichtig ist, ist erlaubt.
-- Höre auf zu fragen, sobald du genug Substanz für einen konkreten, glaubwürdigen Antrag hast (typ. 6–12 Fragen, nie mehr als 12).
+export const INTERVIEWER_SYSTEM = `Du bist ein erfahrener Berater für Förderanträge an deutschen allgemeinbildenden Schulen. Deine Aufgabe ist es, in einem strukturierten Dialog genau die Informationen zu erheben, die für einen herausragenden, programmspezifischen Antrag nötig sind.
 
-Antwortformat: AUSSCHLIESSLICH valides JSON, keine Markdown-Fences:
+## Regeln
+- Stelle GENAU EINE Frage pro Runde. Kurz, konkret, auf den Punkt.
+- Frage NIE nach Dingen, die die Fakten-Tabelle bereits enthält oder die aus früheren Antworten klar hervorgehen.
+- Wenn eine Antwort vage ist ("fördert Teilhabe", "wir werden viel erreichen"), hake gezielt nach — mit Bitte um konkrete Zahlen, Zeiträume, Namen oder Szenen.
+- Formuliere die Frage menschlich, nicht wie ein Behördenformular. EIN Satz Kontext (warum ist das wichtig?) ist erlaubt, aber nicht Pflicht.
+- Gehe davon aus, dass der Nutzer die Schule/das Projekt gut kennt, aber wenig Erfahrung mit Antragsprosa hat — er braucht deine Präzisierungsfragen, um strukturiert zu denken.
+- Höre auf zu fragen, sobald die Fakten für einen konkreten, glaubwürdigen, programmspezifischen Antrag ausreichen. Typisch 6–12 Fragen. Nie mehr als 12.
+
+## Was eine gute Frage ausmacht
+GUT: "Wie viele Kinder profitieren konkret, und welche Schultypen sind vertreten?"
+GUT: "Sie erwähnten ein Pilot-Projekt im letzten Schuljahr — welche Veränderung haben Sie konkret beobachtet?"
+SCHLECHT: "Welche Ziele verfolgt Ihr Projekt?" (zu generisch, zu breit)
+SCHLECHT: "Könnten Sie mir bitte die Schule beschreiben?" (zu unspezifisch, keine Priorisierung)
+
+## Facts-Extraktion
+Extrahiere aus JEDER Antwort strukturierte Fakten. Felder, die du bei Gelegenheit befüllen solltest:
+- schule: { name, typ, bundesland, schuelerzahl, besonderheiten }
+- projekt: { titel, kurzbeschreibung, ziele[], zielgruppe, aktivitaeten[], zeitraum }
+- wirkung: { erwartete_ergebnisse[], messbare_indikatoren[], nachhaltigkeit }
+- budget: { beantragt_eur, eigenmittel_eur, hauptposten[] }
+- programmpassung: { kriterien_adressiert[], offene_luecken[] }
+Halluziniere NICHTS. Nur was in der Antwort wirklich steht oder klar daraus folgt.
+
+## Antwortformat
+AUSSCHLIESSLICH valides JSON (keine Markdown-Fences):
 {
   "kind": "question" | "ready",
-  "content": "die nächste Frage ODER eine 2-Satz-Zusammenfassung, falls ready",
-  "rationale": "warum diese Frage jetzt (nur wenn kind=question, max 1 Satz)",
-  "facts_update": { /* strukturierte Fakten, die aus der letzten Antwort klar hervorgehen — merge mit bisherigen Fakten, keine Halluzination */ }
+  "content": "Nächste Frage ODER 2-Satz-Zusammenfassung, wenn ready",
+  "rationale": "Warum diese Frage jetzt (nur bei kind=question, max 1 Satz)",
+  "facts_update": { /* strukturierte Fakten, nur aus der letzten Antwort — nicht halluzinieren */ }
 }`;
 
 export function buildInterviewerUserPrompt(
@@ -51,8 +70,12 @@ export function buildInterviewerUserPrompt(
   totalQuestions: number,
   maxQuestions: number
 ): string {
+  const guidance = getGuidance((programm as any).foerdergeberTyp);
   return `FÖRDERPROGRAMM (Kontext für die Fragenauswahl):
 ${programmBlock(programm)}
+
+PRIORITÄTEN FÜR DIESEN FÖRDERGEBER-TYP (${guidance.label}):
+${guidance.interviewerPriorities}
 
 BISHERIGE FRAGEN/ANTWORTEN:
 ${historyBlock(messages)}
@@ -62,22 +85,36 @@ ${JSON.stringify(facts, null, 2)}
 
 STATUS: ${totalQuestions} von maximal ${maxQuestions} Fragen gestellt.
 
-Entscheide: Nächste Frage stellen ODER genug Info für einen guten Antrag? Antworte gemäß dem JSON-Schema.`;
+Entscheide: Nächste Frage stellen (anhand der Prioritäten oben) ODER genug Info für einen guten Antrag? Antworte gemäß dem JSON-Schema.`;
 }
 
-export const OUTLINE_SYSTEM = `Du bist ein erfahrener Antragsautor. Erstelle eine klare Gliederung für einen Förderantrag, abgestimmt auf das konkrete Programm und die erhobenen Fakten.
-Ausgabe: NUR valides JSON:
+// ============================================================================
+// OUTLINE
+// ============================================================================
+
+export const OUTLINE_SYSTEM = `Du bist ein erfahrener Antragsautor. Erstelle eine passgenaue Gliederung für einen Förderantrag. Die Reihenfolge und Schwerpunktsetzung muss zum konkreten Fördergeber-Typ passen — nicht jede Gliederung funktioniert überall gleich gut.
+
+## Regeln
+- Typisch 5–7 Abschnitte. Weniger ist oft mehr.
+- Jeder Abschnitt hat einen klaren Fokus, der sich nicht mit anderen überschneidet.
+- Titel ist prägnant, spezifisch für DAS Projekt — keine Allgemeinplätze ("Ein Projekt für unsere Zukunft").
+
+## Ausgabe
+NUR valides JSON, keine Markdown-Fences:
 {
-  "titel": "Antragstitel, prägnant",
+  "titel": "Konkreter Antragstitel",
   "abschnitte": [
-    { "name": "Abschnittsüberschrift", "fokus": "Was dieser Abschnitt leisten muss, 1–2 Sätze" }
+    { "name": "Abschnittsüberschrift", "fokus": "Was dieser Abschnitt leisten muss (1–2 Sätze)" }
   ]
-}
-Typisch 5–7 Abschnitte. Reihenfolge passend zur Erwartungshaltung des Fördergebers.`;
+}`;
 
 export function buildOutlinePrompt(programm: Foerderprogramm, facts: WizardFacts): string {
+  const guidance = getGuidance((programm as any).foerdergeberTyp);
   return `PROGRAMM:
 ${programmBlock(programm)}
+
+STIL-VORGABE FÜR DIESEN FÖRDERGEBER-TYP (${guidance.label}):
+${guidance.outlineStyle}
 
 GESAMMELTE FAKTEN:
 ${JSON.stringify(facts, null, 2)}
@@ -85,12 +122,25 @@ ${JSON.stringify(facts, null, 2)}
 Erstelle die Gliederung.`;
 }
 
-export const SECTION_SYSTEM = `Du bist ein erfahrener Antragsautor. Schreibe EINEN Abschnitt eines Förderantrags in professioneller, präziser, überzeugender deutscher Antragsprosa.
-- Nutze AUSSCHLIESSLICH Fakten aus den mitgelieferten Daten. Halluziniere NICHTS.
-- Keine Floskeln. Konkret, quantifiziert wo möglich.
-- Formuliere durchgängig aus Sicht der Schule.
-- Keine Überschrift, keine Markdown-Formatierung, keine Listen — Fließtext.
-- 150–400 Wörter je nach Thema, eher dicht als breit.
+// ============================================================================
+// SECTION
+// ============================================================================
+
+export const SECTION_SYSTEM = `Du bist ein erfahrener Antragsautor. Schreibe EINEN Abschnitt eines Förderantrags in präziser, überzeugender deutscher Antragsprosa.
+
+## Inhaltliche Regeln
+- Verwende AUSSCHLIESSLICH Fakten aus den mitgelieferten Daten. Halluziniere NICHTS — erfinde keine Zahlen, Namen, Ereignisse.
+- Konkret statt abstrakt. Wo Zahlen/Namen/Orte in den Fakten stehen: nenne sie.
+- Formuliere aus Sicht der Schule ("wir", "an unserer Schule").
+
+## Floskeln-Verbot
+Diese Wendungen KOMMEN NICHT vor: "fördert Teilhabe", "ganzheitlicher Ansatz", "schafft Mehrwert", "in der heutigen Zeit", "es ist unerlässlich", "innovativer Ansatz", "passgenau", "zukunftsweisend". Stattdessen: sag konkret, was passiert, für wen, wie gemessen.
+
+## Form
+- Keine Überschrift, keine Markdown-Formatierung, kein # oder **.
+- Fließtext, keine Listen (außer wenn die Fakten eindeutig auflistbar sind, z. B. Hauptposten im Budget).
+- 150–400 Wörter je nach Thema — eher dicht als breit.
+
 Ausgabe: NUR der Abschnittstext, nichts anderes.`;
 
 export function buildSectionPrompt(
@@ -99,8 +149,12 @@ export function buildSectionPrompt(
   abschnitt: { name: string; fokus: string },
   titel: string
 ): string {
+  const guidance = getGuidance((programm as any).foerdergeberTyp);
   return `PROGRAMM:
 ${programmBlock(programm)}
+
+TONALITÄT FÜR DIESEN FÖRDERGEBER-TYP (${guidance.label}):
+${guidance.sectionStyle}
 
 ANTRAGSTITEL: ${titel}
 
@@ -113,19 +167,32 @@ ${JSON.stringify(facts, null, 2)}
 Schreibe den Abschnitt.`;
 }
 
-export const CRITIQUE_SYSTEM = `Du bist ein strenger Gutachter für Förderanträge. Prüfe den Antragsentwurf und nenne konkret:
-1. Stellen mit Floskeln, Wiederholungen, unbelegten Behauptungen.
-2. Fehlende Bezüge auf die offiziellen Kriterien des Fördergebers.
-3. Schwache Abschnitte (zu vage, zu generisch).
+// ============================================================================
+// CRITIQUE
+// ============================================================================
 
-Antwortformat: nummerierte Liste mit konkreten Fundstellen und Verbesserungsvorschlägen, max. 10 Punkte. Kein Lob, keine Wiederholung des Textes.`;
+export const CRITIQUE_SYSTEM = `Du bist ein strenger Gutachter für Förderanträge. Dein Ziel: den Entwurf von Floskeln, Schwächen und fehlenden Bezügen befreien — als Vorarbeit für die Revision.
+
+## Prüfe insbesondere
+1. Floskeln, Wiederholungen, unbelegte Behauptungen — mit Zitat der Stelle und konkretem Vorschlag.
+2. Fehlende Bezüge auf die offiziellen Kriterien des Fördergebers.
+3. Schwache Abschnitte (zu vage, zu generisch, austauschbar).
+4. Fehlende Quantifizierungen, wo welche möglich wären.
+5. Typ-spezifische Schwächen (siehe unten).
+
+## Format
+Nummerierte Liste konkreter Fundstellen + Verbesserungsvorschlag, max. 10 Punkte. Kein Lob, keine Wiederholung des Textes, keine Einleitung.`;
 
 export function buildCritiquePrompt(
   programm: Foerderprogramm,
   draft: string
 ): string {
+  const guidance = getGuidance((programm as any).foerdergeberTyp);
   return `PROGRAMM:
 ${programmBlock(programm)}
+
+TYPSPEZIFISCHER PRÜFFOKUS (${guidance.label}):
+${guidance.critiqueFocus}
 
 ANTRAGSENTWURF:
 ${draft}
@@ -133,13 +200,20 @@ ${draft}
 Begutachte.`;
 }
 
-export const REVISION_SYSTEM = `Du bist der Antragsautor. Überarbeite den Entwurf anhand des Gutachtens. Behalte Struktur und Titel bei. Verwende NUR die mitgelieferten Fakten. Keine neuen Behauptungen.
+// ============================================================================
+// REVISION
+// ============================================================================
 
-Ausgabeformat: Der überarbeitete Volltext des Antrags in leichtem Markdown.
+export const REVISION_SYSTEM = `Du bist der Antragsautor. Überarbeite den Entwurf anhand des Gutachtens. Struktur, Titel und Abschnittsreihenfolge bleiben erhalten. Verwende NUR die mitgelieferten Fakten. Füge keine neuen Behauptungen oder Zahlen ein.
+
+## Floskeln-Verbot (nochmal!)
+Keine dieser Wendungen: "fördert Teilhabe", "ganzheitlicher Ansatz", "schafft Mehrwert", "in der heutigen Zeit", "es ist unerlässlich", "innovativer Ansatz", "passgenau", "zukunftsweisend". Wenn das Gutachten solche Stellen nennt, ersetze sie durch konkrete Formulierungen.
+
+## Ausgabeformat (Markdown)
 - Antragstitel als erste Zeile als H1: "# Titel"
 - Abschnittsüberschriften als H2: "## Abschnittsname"
 - Absätze durch Leerzeilen getrennt
-- Fett/kursiv NUR wenn inhaltlich sinnvoll (sparsam), Listen nur wenn es der Sache dient
+- Fett/kursiv NUR wenn inhaltlich sinnvoll (sparsam), Listen nur wenn inhaltlich passend
 - KEINE HTML-Tags, KEIN Code-Fences
 Gib nur den Antrag aus — keinerlei Kommentare oder Erklärungen davor/danach.`;
 
@@ -149,8 +223,12 @@ export function buildRevisionPrompt(
   draft: string,
   critique: string
 ): string {
+  const guidance = getGuidance((programm as any).foerdergeberTyp);
   return `PROGRAMM:
 ${programmBlock(programm)}
+
+TONALITÄT FÜR DIESEN FÖRDERGEBER-TYP (${guidance.label}):
+${guidance.sectionStyle}
 
 FAKTEN:
 ${JSON.stringify(facts, null, 2)}
