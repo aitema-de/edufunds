@@ -113,3 +113,40 @@ export function mergeFacts(
   }
   return out;
 }
+
+/**
+ * Rollt die Session zurück: alle Messages AB (inkl.) der angegebenen User-Antwort
+ * werden entfernt, Facts auf den Zustand VOR dieser Antwort zurückgesetzt.
+ * Die davorliegende KI-Frage bleibt stehen und ist damit wieder "aktuelle Frage".
+ *
+ * Benötigt, dass die User-Answer-Message beim Anlegen `meta.factsBefore` gespeichert hat.
+ */
+export function rollbackBeforeMessage(
+  data: WizardSessionData,
+  messageId: string
+): WizardSessionData {
+  const idx = data.messages.findIndex((m) => m.id === messageId);
+  if (idx < 0) throw new Error(`Message ${messageId} nicht in Session`);
+  const target = data.messages[idx];
+  if (target.role !== "user" || target.kind !== "answer") {
+    throw new Error("Nur User-Antworten sind editierbar");
+  }
+  const factsBefore = (target.meta?.factsBefore as WizardFacts | undefined) ?? {};
+
+  const keptMessages = data.messages.slice(0, idx);
+  const remainingQuestions = keptMessages.filter(
+    (m) => m.role === "ai" && m.kind === "question"
+  ).length;
+
+  return {
+    ...data,
+    phase: "interviewing",
+    messages: keptMessages,
+    facts: factsBefore,
+    interviewer: {
+      ...data.interviewer,
+      totalQuestions: remainingQuestions,
+    },
+    generation: undefined,
+  };
+}

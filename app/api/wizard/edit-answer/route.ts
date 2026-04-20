@@ -5,6 +5,7 @@ import {
   getWizardSession,
   updateWizardSession,
   appendMessage,
+  rollbackBeforeMessage,
 } from "@/lib/wizard/session";
 import { nextStep } from "@/lib/wizard/interviewer";
 
@@ -12,36 +13,28 @@ const programme = foerderprogrammeData as Foerderprogramm[];
 
 export async function POST(req: NextRequest) {
   try {
-    const { sessionToken, answer } = (await req.json()) as {
+    const { sessionToken, messageId, newAnswer } = (await req.json()) as {
       sessionToken?: string;
-      answer?: string;
+      messageId?: string;
+      newAnswer?: string;
     };
-    if (!sessionToken || typeof answer !== "string") {
+    if (!sessionToken || !messageId || typeof newAnswer !== "string") {
       return NextResponse.json(
-        { error: "sessionToken und answer (string) erforderlich" },
+        { error: "sessionToken, messageId und newAnswer (string) erforderlich" },
         { status: 400 }
       );
     }
-    const trimmed = answer.trim();
+    const trimmed = newAnswer.trim();
     if (!trimmed) {
       return NextResponse.json(
-        { error: "Antwort darf nicht leer sein" },
+        { error: "Neue Antwort darf nicht leer sein" },
         { status: 400 }
       );
     }
 
     const session = await getWizardSession(sessionToken);
     if (!session) {
-      return NextResponse.json(
-        { error: "Session nicht gefunden" },
-        { status: 404 }
-      );
-    }
-    if (session.data.phase !== "interviewing") {
-      return NextResponse.json(
-        { error: `Session ist in Phase ${session.data.phase}, keine Antwort erwartet` },
-        { status: 409 }
-      );
+      return NextResponse.json({ error: "Session nicht gefunden" }, { status: 404 });
     }
 
     const programm = programme.find((p) => p.id === session.foerderprogrammId);
@@ -52,14 +45,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // factsBefore speichern, damit wir die Antwort spaeter editierbar machen koennen
-    let data = appendMessage(session.data, {
+    // Rollback auf Zustand vor dieser Antwort
+    let data = rollbackBeforeMessage(session.data, messageId);
+
+    // Neue Antwort an der gleichen Stelle einfuegen — factsBefore jetzt = data.facts
+    data = appendMessage(data, {
       role: "user",
       kind: "answer",
       content: trimmed,
-      meta: { factsBefore: session.data.facts },
+      meta: { factsBefore: data.facts, editedAt: new Date().toISOString() },
     });
 
+    // Interviewer weiterfragen
     const step = await nextStep(
       programm,
       data.messages,
@@ -91,6 +88,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       sessionToken,
       phase: updated.data.phase,
+      messages: updated.data.messages,
       question:
         step.kind === "question"
           ? { content: step.question, rationale: step.rationale }
@@ -101,7 +99,7 @@ export async function POST(req: NextRequest) {
       facts: updated.data.facts,
     });
   } catch (err) {
-    console.error("[wizard/answer] Fehler:", err);
+    console.error("[wizard/edit-answer] Fehler:", err);
     return NextResponse.json(
       { error: err instanceof Error ? err.message : "unbekannter Fehler" },
       { status: 500 }

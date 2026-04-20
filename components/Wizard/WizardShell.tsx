@@ -213,6 +213,47 @@ export function WizardShell({ programm }: Props) {
     }
   }, [state]);
 
+  const editAnswer = useCallback(
+    async (messageId: string, newContent: string) => {
+      if (!state || busy) return;
+      setBusy(true);
+      setError(null);
+      try {
+        const res = await fetch("/api/wizard/edit-answer", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            sessionToken: state.sessionToken,
+            messageId,
+            newAnswer: newContent,
+          }),
+        });
+        if (!res.ok) {
+          const body = await res.json().catch(() => ({}));
+          throw new Error(body.error ?? `HTTP ${res.status}`);
+        }
+        const body = await res.json();
+        setMessages(body.messages ?? []);
+        setState({
+          sessionToken: state.sessionToken,
+          phase: body.phase,
+          question: body.question,
+          ready: body.ready,
+          totalQuestions: body.totalQuestions,
+          maxQuestions: body.maxQuestions,
+          facts: body.facts,
+        });
+        const synced = syncProfileFromFacts(body.facts);
+        if (synced) setSchoolProfile(synced);
+      } catch (e) {
+        setError(e instanceof Error ? e.message : "Antwort konnte nicht aktualisiert werden");
+      } finally {
+        setBusy(false);
+      }
+    },
+    [busy, state]
+  );
+
   const resetSession = useCallback(() => {
     localStorage.removeItem(storageKey);
     setState(null);
@@ -339,7 +380,13 @@ export function WizardShell({ programm }: Props) {
           </div>
         )}
       </div>
-      <ChronologySidebar messages={messages} facts={state.facts} />
+      <ChronologySidebar
+        messages={messages}
+        facts={state.facts}
+        onEditAnswer={editAnswer}
+        editBusy={busy}
+        disableEdit={state.phase !== "interviewing" && state.phase !== "ready_to_generate"}
+      />
     </div>
   );
 }
