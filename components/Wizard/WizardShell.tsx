@@ -8,6 +8,13 @@ import type {
   WizardPhase,
   GenerationArtefacts,
 } from "@/lib/wizard/types";
+import {
+  clearSchoolProfile,
+  loadSchoolProfile,
+  profileToSeedFacts,
+  syncProfileFromFacts,
+  type SchoolProfile,
+} from "@/lib/wizard/school-profile-client";
 import { QuestionCard } from "./QuestionCard";
 import { ChronologySidebar } from "./ChronologySidebar";
 import { GeneratingProgress } from "./GeneratingProgress";
@@ -39,6 +46,7 @@ export function WizardShell({ programm }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [generation, setGeneration] = useState<GenerationArtefacts | null>(null);
   const [generationStage, setGenerationStage] = useState<string>("");
+  const [schoolProfile, setSchoolProfile] = useState<SchoolProfile | null>(null);
 
   const loadSession = useCallback(async (token: string) => {
     setBusy(true);
@@ -69,6 +77,8 @@ export function WizardShell({ programm }: Props) {
         maxQuestions: body.interviewer?.maxQuestions ?? 12,
         facts: body.facts ?? {},
       });
+      const synced = syncProfileFromFacts(body.facts ?? {});
+      if (synced) setSchoolProfile(synced);
     } catch (e) {
       localStorage.removeItem(storageKey);
       setError(e instanceof Error ? e.message : "Session konnte nicht geladen werden.");
@@ -81,10 +91,12 @@ export function WizardShell({ programm }: Props) {
     setBusy(true);
     setError(null);
     try {
+      const profile = loadSchoolProfile();
+      const seedFacts = profile ? profileToSeedFacts(profile) : undefined;
       const res = await fetch("/api/wizard/start", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ programmId: programm.id }),
+        body: JSON.stringify({ programmId: programm.id, seedFacts }),
       });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
@@ -93,6 +105,8 @@ export function WizardShell({ programm }: Props) {
       const body = (await res.json()) as WizardApiState;
       setState(body);
       localStorage.setItem(storageKey, body.sessionToken);
+      const synced = syncProfileFromFacts(body.facts);
+      if (synced) setSchoolProfile(synced);
       if (body.question) {
         setMessages([
           {
@@ -113,7 +127,9 @@ export function WizardShell({ programm }: Props) {
   }, [programm.id, storageKey]);
 
   useEffect(() => {
-    const existing = typeof window !== "undefined" ? localStorage.getItem(storageKey) : null;
+    if (typeof window === "undefined") return;
+    setSchoolProfile(loadSchoolProfile());
+    const existing = localStorage.getItem(storageKey);
     if (existing) {
       loadSession(existing);
     }
@@ -147,6 +163,8 @@ export function WizardShell({ programm }: Props) {
       }
       const body = (await res.json()) as WizardApiState;
       setState(body);
+      const synced = syncProfileFromFacts(body.facts);
+      if (synced) setSchoolProfile(synced);
       const q = body.question;
       if (q) {
         setMessages((prev) => [
@@ -213,6 +231,33 @@ export function WizardShell({ programm }: Props) {
           Der Wizard führt dich in 6–12 gezielten Fragen durch die relevanten Punkte für
           „{programm.name}". Anschließend schreibt eine Pipeline mit Selbstkritik den Antragsentwurf.
         </p>
+        {schoolProfile && (
+          <div className="mx-auto mb-6 max-w-xl rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 px-4 py-3 text-left text-sm text-slate-300">
+            <div className="mb-1 font-medium text-[#c9a227]">
+              Bekanntes Schulprofil wird übernommen
+            </div>
+            <div className="text-slate-400">
+              {[
+                schoolProfile.name,
+                schoolProfile.typ,
+                schoolProfile.bundesland,
+                schoolProfile.schuelerzahl ? `${schoolProfile.schuelerzahl} Schüler` : null,
+              ]
+                .filter(Boolean)
+                .join(" · ") || "Grunddaten vorhanden"}
+              <button
+                type="button"
+                onClick={() => {
+                  clearSchoolProfile();
+                  setSchoolProfile(null);
+                }}
+                className="ml-2 text-xs text-slate-500 underline hover:text-slate-300"
+              >
+                löschen
+              </button>
+            </div>
+          </div>
+        )}
         {error && (
           <p className="mb-4 text-sm text-red-400">{error}</p>
         )}

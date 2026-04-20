@@ -5,14 +5,19 @@ import {
   createWizardSession,
   updateWizardSession,
   appendMessage,
+  mergeFacts,
 } from "@/lib/wizard/session";
 import { nextStep } from "@/lib/wizard/interviewer";
+import type { WizardFacts } from "@/lib/wizard/types";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
 
 export async function POST(req: NextRequest) {
   try {
-    const { programmId } = (await req.json()) as { programmId?: string };
+    const { programmId, seedFacts } = (await req.json()) as {
+      programmId?: string;
+      seedFacts?: Partial<WizardFacts>;
+    };
     if (!programmId) {
       return NextResponse.json({ error: "programmId fehlt" }, { status: 400 });
     }
@@ -28,10 +33,15 @@ export async function POST(req: NextRequest) {
 
     const session = await createWizardSession(programm.id, programm.name, ip);
 
+    // Seed-Facts aus dem Schul-Profil uebernehmen, bevor der Interviewer startet
+    const initialFacts = seedFacts
+      ? mergeFacts(session.data.facts, seedFacts)
+      : session.data.facts;
+
     const step = await nextStep(
       programm,
       session.data.messages,
-      session.data.facts,
+      initialFacts,
       0,
       session.data.interviewer.maxQuestions
     );
