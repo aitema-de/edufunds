@@ -91,7 +91,7 @@ function getRateLimitType(pathname: string): string {
   if (pathname.includes('/api/admin/login') || pathname.includes('/api/auth')) {
     return 'auth';
   }
-  if (pathname.includes('/api/generate-antrag') || pathname.includes('/api/assistant/generate')) {
+  if (pathname.includes('/api/assistant/generate') || pathname.includes('/api/wizard/')) {
     return 'ai';
   }
   if (pathname.includes('/api/newsletter')) {
