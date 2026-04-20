@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Pencil, Check, X } from "lucide-react";
 import type { WizardFacts, WizardMessage } from "@/lib/wizard/types";
+import { FactsPanel } from "./FactsPanel";
 
 interface Props {
   messages: WizardMessage[];
@@ -117,17 +118,9 @@ export function ChronologySidebar({
       </section>
       <section className="rounded-xl border border-slate-700/50 bg-slate-800/30 p-4">
         <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-400">
-          Erfasste Fakten
+          Das weiß die KI bisher
         </h4>
-        {Object.keys(facts).length === 0 ? (
-          <p className="text-sm text-slate-500">
-            Werden aus deinen Antworten strukturiert extrahiert.
-          </p>
-        ) : (
-          <pre className="overflow-x-auto whitespace-pre-wrap break-words rounded bg-slate-900 p-2 text-xs text-slate-300">
-{JSON.stringify(facts, null, 2)}
-          </pre>
-        )}
+        <FactsPanel facts={facts} compact />
       </section>
     </aside>
   );

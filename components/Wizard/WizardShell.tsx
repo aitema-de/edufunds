@@ -20,6 +20,7 @@ import { QuestionCard } from "./QuestionCard";
 import { ChronologySidebar } from "./ChronologySidebar";
 import { GeneratingProgress } from "./GeneratingProgress";
 import { AntragResult } from "./AntragResult";
+import { FactsPanel } from "./FactsPanel";
 
 interface WizardApiState {
   sessionToken: string;
@@ -356,14 +357,18 @@ export function WizardShell({ programm }: Props) {
           />
         )}
         {canGenerate && (
-          <div className="rounded-xl border border-orange-500/40 bg-orange-500/10 p-8 text-center">
+          <div className="rounded-xl border border-orange-500/40 bg-orange-500/10 p-8">
             <h3 className="mb-2 text-xl font-semibold text-slate-100">
               Genug Informationen gesammelt
             </h3>
-            <p className="mx-auto mb-6 max-w-md text-slate-300">
-              Die KI hat alles, was sie für einen guten Antrag braucht. Soll sie jetzt schreiben?
+            <p className="mb-6 max-w-xl text-slate-300">
+              Die KI hat aus deinen Antworten diese Fakten erfasst. Passt das, schreibt sie jetzt den Antrag — vier Schritte:
+              Gliederung → Abschnitte → Gutachten → Finalfassung. Typisch 1–3 Minuten, ca. 0,20–0,35 € KI-Kosten.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-3">
+            <div className="mb-6 rounded-lg border border-slate-700/50 bg-slate-900/40 p-4">
+              <FactsPanel facts={state.facts} compact />
+            </div>
+            <div className="flex flex-wrap items-center justify-end gap-3">
               <button
                 type="button"
                 onClick={() => {
