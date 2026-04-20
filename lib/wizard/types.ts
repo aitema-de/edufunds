@@ -1,0 +1,95 @@
+export type WizardPhase =
+  | "interviewing"
+  | "ready_to_generate"
+  | "generating"
+  | "complete"
+  | "failed";
+
+export interface WizardMessage {
+  id: string;
+  role: "ai" | "user";
+  kind: "question" | "answer" | "note";
+  content: string;
+  at: string;
+  meta?: Record<string, unknown>;
+}
+
+export interface WizardFacts {
+  schule?: {
+    name?: string;
+    typ?: string;
+    bundesland?: string;
+    schuelerzahl?: number;
+    besonderheiten?: string;
+  };
+  projekt?: {
+    titel?: string;
+    kurzbeschreibung?: string;
+    ziele?: string[];
+    zielgruppe?: string;
+    aktivitaeten?: string[];
+    zeitraum?: string;
+  };
+  wirkung?: {
+    erwartete_ergebnisse?: string[];
+    messbare_indikatoren?: string[];
+    nachhaltigkeit?: string;
+  };
+  budget?: {
+    beantragt_eur?: number;
+    eigenmittel_eur?: number;
+    hauptposten?: string[];
+  };
+  programmpassung?: {
+    kriterien_adressiert?: string[];
+    offene_luecken?: string[];
+  };
+  [k: string]: unknown;
+}
+
+export interface InterviewerMeta {
+  totalQuestions: number;
+  maxQuestions: number;
+  programmCriteria?: string[];
+}
+
+export interface GenerationArtefacts {
+  outline?: { titel: string; abschnitte: Array<{ name: string; fokus: string }> };
+  sections?: Array<{ name: string; text: string }>;
+  critique?: string;
+  finalText?: string;
+}
+
+export interface WizardSessionData {
+  phase: WizardPhase;
+  messages: WizardMessage[];
+  facts: WizardFacts;
+  interviewer: InterviewerMeta;
+  generation?: GenerationArtefacts;
+}
+
+export interface WizardSession {
+  id: number;
+  sessionToken: string;
+  foerderprogrammId: string;
+  foerderprogrammName: string;
+  status: "draft" | "in_progress" | "complete" | "submitted" | "approved" | "rejected";
+  data: WizardSessionData;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface NextStepQuestion {
+  kind: "question";
+  question: string;
+  rationale?: string;
+  updatedFacts: WizardFacts;
+}
+
+export interface NextStepReady {
+  kind: "ready";
+  summary: string;
+  updatedFacts: WizardFacts;
+}
+
+export type NextStep = NextStepQuestion | NextStepReady;

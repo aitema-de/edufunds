@@ -1,0 +1,84 @@
+import { NextRequest, NextResponse } from "next/server";
+import foerderprogrammeData from "@/data/foerderprogramme.json";
+import type { Foerderprogramm } from "@/lib/foerderSchema";
+import {
+  getWizardSession,
+  updateWizardSession,
+} from "@/lib/wizard/session";
+import { runPipeline } from "@/lib/wizard/pipeline";
+import type { WizardSessionData } from "@/lib/wizard/types";
+
+const programme = foerderprogrammeData as Foerderprogramm[];
+
+export const maxDuration = 300; // bis zu 5 Minuten für die gesamte Pipeline
+
+export async function POST(req: NextRequest) {
+  try {
+    const { sessionToken } = (await req.json()) as { sessionToken?: string };
+    if (!sessionToken) {
+      return NextResponse.json({ error: "sessionToken fehlt" }, { status: 400 });
+    }
+
+    const session = await getWizardSession(sessionToken);
+    if (!session) {
+      return NextResponse.json({ error: "Session nicht gefunden" }, { status: 404 });
+    }
+    if (
+      session.data.phase !== "ready_to_generate" &&
+      session.data.phase !== "interviewing"
+    ) {
+      return NextResponse.json(
+        { error: `Session ist in Phase ${session.data.phase}` },
+        { status: 409 }
+      );
+    }
+
+    const programm = programme.find((p) => p.id === session.foerderprogrammId);
+    if (!programm) {
+      return NextResponse.json(
+        { error: "Programm nicht mehr in Daten vorhanden" },
+        { status: 404 }
+      );
+    }
+
+    const generatingData: WizardSessionData = {
+      ...session.data,
+      phase: "generating",
+    };
+    await updateWizardSession(sessionToken, generatingData, "in_progress");
+
+    try {
+      const artefacts = await runPipeline(programm, session.data.facts);
+      const completeData: WizardSessionData = {
+        ...generatingData,
+        phase: "complete",
+        generation: artefacts,
+      };
+      const updated = await updateWizardSession(sessionToken, completeData, "complete");
+      return NextResponse.json({
+        sessionToken,
+        phase: updated.data.phase,
+        generation: updated.data.generation,
+      });
+    } catch (pipelineErr) {
+      console.error("[wizard/generate] Pipeline-Fehler:", pipelineErr);
+      const failedData: WizardSessionData = { ...generatingData, phase: "failed" };
+      await updateWizardSession(sessionToken, failedData);
+      return NextResponse.json(
+        {
+          error:
+            pipelineErr instanceof Error
+              ? pipelineErr.message
+              : "Pipeline-Fehler",
+        },
+        { status: 500 }
+      );
+    }
+  } catch (err) {
+    console.error("[wizard/generate] Fehler:", err);
+    return NextResponse.json(
+      { error: err instanceof Error ? err.message : "unbekannter Fehler" },
+      { status: 500 }
+    );
+  }
+}
