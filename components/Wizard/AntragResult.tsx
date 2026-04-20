@@ -9,6 +9,7 @@ import type { Finanzplan, GenerationArtefacts } from "@/lib/wizard/types";
 import { formatEur, type CostLedger } from "@/lib/wizard/pricing";
 import { FinanzplanView } from "./FinanzplanView";
 import { FinanzplanEditor } from "./FinanzplanEditor";
+import { renderFinanzplanMarkdown } from "@/lib/wizard/finanzplan-markdown";
 
 interface Props {
   programm: Foerderprogramm;
@@ -77,6 +78,38 @@ const PRINT_MARKDOWN_COMPONENTS = {
   li: ({ children }: { children?: React.ReactNode }) => (
     <li style={{ marginBottom: "4pt" }}>{children}</li>
   ),
+  table: ({ children }: { children?: React.ReactNode }) => (
+    <table
+      style={{
+        width: "100%",
+        borderCollapse: "collapse",
+        marginBottom: "12pt",
+        fontSize: "10pt",
+      }}
+    >
+      {children}
+    </table>
+  ),
+  thead: ({ children }: { children?: React.ReactNode }) => (
+    <thead style={{ backgroundColor: "#f3f4f6" }}>{children}</thead>
+  ),
+  th: ({ children }: { children?: React.ReactNode }) => (
+    <th
+      style={{
+        border: "1px solid #d1d5db",
+        padding: "4pt 6pt",
+        textAlign: "left",
+        fontWeight: 600,
+      }}
+    >
+      {children}
+    </th>
+  ),
+  td: ({ children }: { children?: React.ReactNode }) => (
+    <td style={{ border: "1px solid #e5e7eb", padding: "4pt 6pt", verticalAlign: "top" }}>
+      {children}
+    </td>
+  ),
 };
 
 async function loadHtml2pdf() {
@@ -98,15 +131,19 @@ export function AntragResult({
   const [pdfBusy, setPdfBusy] = useState(false);
   const printRef = useRef<HTMLDivElement>(null);
   const text = generation.finalText ?? "";
+  const finanzplanMarkdown = generation.finanzplan
+    ? renderFinanzplanMarkdown(generation.finanzplan)
+    : "";
+  const combinedText = finanzplanMarkdown ? `${text}\n${finanzplanMarkdown}\n` : text;
 
   const copy = async () => {
-    await navigator.clipboard.writeText(text);
+    await navigator.clipboard.writeText(combinedText);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   const download = (mime: string, ext: string) => {
-    const blob = new Blob([text], { type: mime });
+    const blob = new Blob([combinedText], { type: mime });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -276,7 +313,7 @@ export function AntragResult({
             remarkPlugins={[remarkGfm]}
             components={PRINT_MARKDOWN_COMPONENTS}
           >
-            {text}
+            {combinedText}
           </ReactMarkdown>
         </div>
       </div>

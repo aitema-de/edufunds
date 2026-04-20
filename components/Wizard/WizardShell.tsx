@@ -26,6 +26,8 @@ import { ChronologySidebar } from "./ChronologySidebar";
 import { GeneratingProgress } from "./GeneratingProgress";
 import { AntragResult } from "./AntragResult";
 import { FactsPanel } from "./FactsPanel";
+import { KumulierungsWarnung, type Conflict } from "./KumulierungsWarnung";
+import { listLocalSessions } from "@/lib/wizard/session-index-client";
 
 interface WizardApiState {
   sessionToken: string;
@@ -56,6 +58,7 @@ export function WizardShell({ programm }: Props) {
   const [generationStage, setGenerationStage] = useState<string>("");
   const [schoolProfile, setSchoolProfile] = useState<SchoolProfile | null>(null);
   const [handoff, setHandoff] = useState<MatchHandoff | null>(null);
+  const [conflicts, setConflicts] = useState<Conflict[]>([]);
 
   const loadSession = useCallback(async (token: string) => {
     setBusy(true);
@@ -153,7 +156,23 @@ export function WizardShell({ programm }: Props) {
       const h = consumeHandoff();
       if (h) setHandoff(h);
     }
-  }, [storageKey, loadSession]);
+
+    // Kumulierungs-Check gegen andere Sessions im Browser
+    const others = listLocalSessions().filter((s) => s.programmId !== programm.id);
+    if (others.length > 0) {
+      fetch("/api/wizard/kumulierungs-check", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          programmId: programm.id,
+          otherSessionTokens: others.map((o) => o.sessionToken),
+        }),
+      })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d) => d?.conflicts && setConflicts(d.conflicts))
+        .catch(() => {});
+    }
+  }, [storageKey, loadSession, programm.id]);
 
   const submitAnswer = useCallback(async () => {
     if (!state || !answer.trim() || busy) return;
@@ -285,7 +304,9 @@ export function WizardShell({ programm }: Props) {
 
   if (!state) {
     return (
-      <div className="rounded-xl border border-slate-700/50 bg-slate-800/30 p-8 text-center">
+      <>
+        <KumulierungsWarnung conflicts={conflicts} onDismiss={() => setConflicts([])} />
+        <div className="rounded-xl border border-slate-700/50 bg-slate-800/30 p-8 text-center">
         <h2 className="mb-2 text-2xl font-semibold text-slate-100">
           Neuer KI-Antragswizard
         </h2>
@@ -349,6 +370,7 @@ export function WizardShell({ programm }: Props) {
           {busy ? "Starte…" : "Wizard starten"}
         </button>
       </div>
+      </>
     );
   }
 
