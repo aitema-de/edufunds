@@ -10,13 +10,16 @@ import { formatEur, type CostLedger } from "@/lib/wizard/pricing";
 import { FinanzplanView } from "./FinanzplanView";
 import { FinanzplanEditor } from "./FinanzplanEditor";
 import { renderFinanzplanMarkdown } from "@/lib/wizard/finanzplan-markdown";
+import { PaywallGate } from "./PaywallGate";
 
 interface Props {
   programm: Foerderprogramm;
   generation: GenerationArtefacts;
   costs?: CostLedger | null;
   sessionToken?: string;
-  onRestart: () => void;
+  /** Wenn gesetzt, ist der Antrag bereits bezahlt — Paywall wird nicht angezeigt. */
+  paidToken?: string | null;
+  onRestart?: () => void;
   onFinanzplanChange?: (plan: Finanzplan) => void;
 }
 
@@ -123,9 +126,11 @@ export function AntragResult({
   generation,
   costs,
   sessionToken,
+  paidToken,
   onRestart,
   onFinanzplanChange,
 }: Props) {
+  const paid = !!paidToken;
   const [copied, setCopied] = useState(false);
   const [showCritique, setShowCritique] = useState(false);
   const [pdfBusy, setPdfBusy] = useState(false);
@@ -184,10 +189,12 @@ export function AntragResult({
     <div className="rounded-xl border border-orange-500/40 bg-slate-800/40 p-6">
       <header className="mb-6 flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-semibold text-slate-100">Antragsentwurf fertig</h2>
+          <h2 className="text-2xl font-semibold text-slate-100">
+            Antragsentwurf {paid ? "freigeschaltet" : "fertig"}
+          </h2>
           <p className="text-sm text-slate-400">für {programm.name}</p>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className={paid ? "flex flex-wrap gap-2" : "hidden"}>
           <button
             type="button"
             onClick={copy}
@@ -223,33 +230,45 @@ export function AntragResult({
             )}
             PDF
           </button>
-          <button
-            type="button"
-            onClick={onRestart}
-            className="inline-flex items-center gap-2 rounded-lg border border-slate-600 px-3 py-2 text-sm text-slate-200 hover:bg-slate-700"
-          >
-            <RefreshCw className="h-4 w-4" /> Neu
-          </button>
-        </div>
-      </header>
-      <article className="rounded-lg border border-slate-700 bg-slate-900 p-8 text-slate-200 antrag-prose">
-        <ReactMarkdown remarkPlugins={[remarkGfm]} components={MARKDOWN_COMPONENTS}>
-          {text}
-        </ReactMarkdown>
-      </article>
-      {generation.finanzplan && (
-        <div className="mt-6">
-          {sessionToken && !generation.finanzplan.legitimiertAm ? (
-            <FinanzplanEditor
-              sessionToken={sessionToken}
-              initialPlan={generation.finanzplan}
-              onChange={onFinanzplanChange}
-            />
-          ) : (
-            <FinanzplanView plan={generation.finanzplan} />
+          {onRestart && (
+            <button
+              type="button"
+              onClick={onRestart}
+              className="inline-flex items-center gap-2 rounded-lg border border-slate-600 px-3 py-2 text-sm text-slate-200 hover:bg-slate-700"
+            >
+              <RefreshCw className="h-4 w-4" /> Neu
+            </button>
           )}
         </div>
-      )}
+      </header>
+      <div className={paid ? "" : "relative"}>
+        <article
+          className={
+            "rounded-lg border border-slate-700 bg-slate-900 p-8 text-slate-200 antrag-prose " +
+            (paid ? "" : "max-h-[420px] overflow-hidden blur-[3px] select-none")
+          }
+        >
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={MARKDOWN_COMPONENTS}>
+            {paid ? text : text.slice(0, 1800) + (text.length > 1800 ? "\n\n…" : "")}
+          </ReactMarkdown>
+        </article>
+        {generation.finanzplan && (
+          <div className={"mt-6 " + (paid ? "" : "blur-[3px] select-none pointer-events-none")}>
+            {sessionToken && !generation.finanzplan.legitimiertAm && paid ? (
+              <FinanzplanEditor
+                sessionToken={sessionToken}
+                initialPlan={generation.finanzplan}
+                onChange={onFinanzplanChange}
+              />
+            ) : (
+              <FinanzplanView plan={generation.finanzplan} />
+            )}
+          </div>
+        )}
+        {!paid && sessionToken && (
+          <PaywallGate sessionToken={sessionToken} priceEur={29} tierLabel="Einzelantrag" />
+        )}
+      </div>
       {costs && costs.calls > 0 && (
         <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-900/40 px-4 py-2 text-xs text-slate-500">
           <span>
@@ -260,7 +279,7 @@ export function AntragResult({
           </span>
         </div>
       )}
-      {generation.critique && (
+      {paid && generation.critique && (
         <details
           className="mt-6 rounded-lg border border-slate-700 bg-slate-900/60 p-4"
           open={showCritique}
@@ -273,7 +292,8 @@ export function AntragResult({
         </details>
       )}
 
-      {/* Unsichtbarer, druckoptimierter Klon für html2pdf */}
+      {/* Unsichtbarer, druckoptimierter Klon für html2pdf — nur nach Zahlung rendern */}
+      {paid && (
       <div
         aria-hidden="true"
         style={{
@@ -317,6 +337,7 @@ export function AntragResult({
           </ReactMarkdown>
         </div>
       </div>
+      )}
     </div>
   );
 }

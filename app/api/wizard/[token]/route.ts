@@ -24,6 +24,9 @@ export async function GET(
     generation: session.data.generation ?? null,
     costs: session.data.costs ?? null,
     status: session.status,
+    paidToken: session.paidToken ?? null,
+    paidAt: session.paidAt ?? null,
+    tier: session.tier ?? null,
     createdAt: session.createdAt,
     updatedAt: session.updatedAt,
   });

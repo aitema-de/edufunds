@@ -97,10 +97,15 @@ export interface WizardSession {
   sessionToken: string;
   foerderprogrammId: string;
   foerderprogrammName: string;
-  status: "draft" | "in_progress" | "complete" | "submitted" | "approved" | "rejected";
+  status: "draft" | "in_progress" | "complete" | "paid" | "submitted" | "approved" | "rejected";
   data: WizardSessionData;
   createdAt: string;
   updatedAt: string;
+  /** Sobald bezahlt: opaker Token fuer Download-URL /antrag/download/[paid_token]. */
+  paidToken?: string;
+  paidAt?: string;
+  stripeSessionId?: string;
+  tier?: string;
 }
 
 export interface NextStepQuestion {

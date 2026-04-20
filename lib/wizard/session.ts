@@ -18,6 +18,10 @@ interface DbRow {
   antrag_data: WizardSessionData;
   created_at: Date;
   updated_at: Date;
+  paid_token: string | null;
+  paid_at: Date | null;
+  stripe_session_id: string | null;
+  tier: string | null;
 }
 
 function rowToSession(row: DbRow): WizardSession {
@@ -30,6 +34,10 @@ function rowToSession(row: DbRow): WizardSession {
     data: row.antrag_data,
     createdAt: row.created_at.toISOString(),
     updatedAt: row.updated_at.toISOString(),
+    paidToken: row.paid_token ?? undefined,
+    paidAt: row.paid_at?.toISOString(),
+    stripeSessionId: row.stripe_session_id ?? undefined,
+    tier: row.tier ?? undefined,
   };
 }
 
@@ -121,6 +129,52 @@ export function mergeFacts(
  *
  * Benötigt, dass die User-Answer-Message beim Anlegen `meta.factsBefore` gespeichert hat.
  */
+export async function getSessionByPaidToken(
+  paidToken: string
+): Promise<WizardSession | null> {
+  const res = await query<DbRow>(
+    `SELECT * FROM ki_antraege WHERE paid_token = $1 LIMIT 1`,
+    [paidToken]
+  );
+  if (res.rowCount === 0) return null;
+  return rowToSession(res.rows[0]);
+}
+
+/**
+ * Markiert eine Session als bezahlt und erzeugt einen paid_token.
+ * Idempotent: wenn bereits bezahlt, wird der bestehende Token zurueckgegeben.
+ */
+export async function markSessionPaid(
+  sessionToken: string,
+  params: { stripeSessionId?: string; stripeCustomerEmail?: string; tier?: string }
+): Promise<WizardSession> {
+  const existing = await getWizardSession(sessionToken);
+  if (!existing) throw new Error(`Session ${sessionToken} nicht gefunden`);
+  if (existing.paidToken) return existing;
+
+  const paidToken = randomUUID();
+  const res = await query<DbRow>(
+    `UPDATE ki_antraege
+       SET status = 'paid',
+           paid_token = $1,
+           paid_at = CURRENT_TIMESTAMP,
+           stripe_session_id = COALESCE($2, stripe_session_id),
+           stripe_customer_email = COALESCE($3, stripe_customer_email),
+           tier = COALESCE($4, tier),
+           updated_at = CURRENT_TIMESTAMP
+     WHERE session_token = $5
+     RETURNING *`,
+    [
+      paidToken,
+      params.stripeSessionId ?? null,
+      params.stripeCustomerEmail ?? null,
+      params.tier ?? null,
+      sessionToken,
+    ]
+  );
+  return rowToSession(res.rows[0]);
+}
+
 export function rollbackBeforeMessage(
   data: WizardSessionData,
   messageId: string

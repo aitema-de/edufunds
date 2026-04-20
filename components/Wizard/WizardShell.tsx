@@ -38,6 +38,7 @@ interface WizardApiState {
   maxQuestions: number;
   facts: WizardFacts;
   costs?: CostLedger | null;
+  paidToken?: string | null;
 }
 
 const STORAGE_KEY_PREFIX = "edufunds.wizard.session.";
@@ -89,6 +90,7 @@ export function WizardShell({ programm }: Props) {
         maxQuestions: body.interviewer?.maxQuestions ?? 12,
         facts: body.facts ?? {},
         costs: body.costs ?? null,
+        paidToken: body.paidToken ?? null,
       });
       const synced = syncProfileFromFacts(body.facts ?? {});
       if (synced) setSchoolProfile(synced);
@@ -385,6 +387,7 @@ export function WizardShell({ programm }: Props) {
         generation={generation}
         costs={state.costs ?? null}
         sessionToken={state.sessionToken}
+        paidToken={state.paidToken ?? null}
         onRestart={resetSession}
         onFinanzplanChange={(plan) => {
           setGeneration((g) => (g ? { ...g, finanzplan: plan } : g));
