@@ -27,6 +27,8 @@ import { GeneratingProgress } from "./GeneratingProgress";
 import { AntragResult } from "./AntragResult";
 import { FactsPanel } from "./FactsPanel";
 import { KumulierungsWarnung, type Conflict } from "./KumulierungsWarnung";
+import { ReadinessAmpel } from "./ReadinessAmpel";
+import type { ReadinessReport } from "@/lib/wizard/facts-readiness";
 import { listLocalSessions } from "@/lib/wizard/session-index-client";
 
 interface WizardApiState {
@@ -60,6 +62,7 @@ export function WizardShell({ programm }: Props) {
   const [schoolProfile, setSchoolProfile] = useState<SchoolProfile | null>(null);
   const [handoff, setHandoff] = useState<MatchHandoff | null>(null);
   const [conflicts, setConflicts] = useState<Conflict[]>([]);
+  const [readiness, setReadiness] = useState<ReadinessReport | null>(null);
 
   const loadSession = useCallback(async (token: string) => {
     setBusy(true);
@@ -178,6 +181,31 @@ export function WizardShell({ programm }: Props) {
         .catch(() => {});
     }
   }, [storageKey, loadSession, programm.id]);
+
+  // Readiness-Check, sobald der Wizard ready ist. Serverseitig ausgewertet,
+  // damit Richtlinien-basierte Zusatzchecks (z. B. Eigenanteils-Pflicht) mitlaufen.
+  useEffect(() => {
+    if (state?.phase !== "ready_to_generate" || !state.sessionToken) {
+      setReadiness(null);
+      return;
+    }
+    let cancelled = false;
+    fetch("/api/wizard/readiness", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sessionToken: state.sessionToken }),
+    })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!cancelled && d && typeof d === "object" && "status" in d) {
+          setReadiness(d as ReadinessReport);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [state?.phase, state?.sessionToken]);
 
   // Re-Check Kumulierung, sobald Projekt-Facts sich aendern (debounced).
   // Faengt den Fall "Ueberlappung wird erst nach 2-3 Fragen sichtbar" ab.
@@ -459,9 +487,14 @@ export function WizardShell({ programm }: Props) {
               Die KI hat aus deinen Antworten diese Fakten erfasst. Passt das, schreibt sie jetzt den Antrag — sechs Schritte:
               Gliederung → Abschnitte → Gutachten → Revision → Re-Check → Finanzplan + Konsistenzprüfung. Typisch 1–3 Minuten, ca. 0,20–0,35 € KI-Kosten.
             </p>
-            <div className="mb-6 rounded-lg border border-slate-700/50 bg-slate-900/40 p-4">
+            <div className="mb-4 rounded-lg border border-slate-700/50 bg-slate-900/40 p-4">
               <FactsPanel facts={state.facts} compact />
             </div>
+            {readiness && (
+              <div className="mb-6">
+                <ReadinessAmpel report={readiness} />
+              </div>
+            )}
             <div className="flex flex-wrap items-center justify-end gap-3">
               <button
                 type="button"
@@ -476,9 +509,21 @@ export function WizardShell({ programm }: Props) {
                 type="button"
                 disabled={busy}
                 onClick={startGeneration}
-                className="rounded-lg bg-orange-500 px-6 py-2 font-semibold text-white transition hover:bg-orange-600 disabled:opacity-50"
+                className={
+                  "rounded-lg px-6 py-2 font-semibold text-white transition disabled:opacity-50 " +
+                  (readiness?.status === "kritisch"
+                    ? "bg-amber-600 hover:bg-amber-700"
+                    : "bg-orange-500 hover:bg-orange-600")
+                }
+                title={
+                  readiness?.status === "kritisch"
+                    ? "Es fehlen Kernfakten — der Antrag wird wahrscheinlich generisch. Besser erst ergänzen."
+                    : undefined
+                }
               >
-                Antrag schreiben lassen
+                {readiness?.status === "kritisch"
+                  ? "Trotzdem generieren"
+                  : "Antrag schreiben lassen"}
               </button>
             </div>
           </div>
