@@ -1,0 +1,181 @@
+{
+  "version": "2026-04-21-manuell",
+  "quellen": [
+    "https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/foerderrichtlinie-2023-2027/foerderrichtlinie-2023-2027_node.html",
+    "https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/Kultur-macht-stark-2023-2027/Programmpartner-2023-2027/Programmpartner-2023-2027_node.html"
+  ],
+  "foerderhoehe": {
+    "minEur": 2000,
+    "bemerkung": "Untergrenze pro Einzelantrag: 2.000 EUR. Keine bundesweit einheitliche Obergrenze — wird pro Programmpartner ausgeschrieben (typisch 5.000-50.000 EUR je Projekt, Ausschreibungsdetails variieren). Gesamtprogramm: 250 Mio EUR fuer 2023-2027. Foerderform: nicht rueckzahlbarer Zuschuss als Anteilfinanzierung (Regelfall), in begruendeten Ausnahmefaellen bis zur Vollfinanzierung."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Honorare fuer paedagogische/kuenstlerische Fachkraefte, die die Projekte umsetzen",
+        "Inkl. Vor- und Nachbereitungszeiten sowie Fahrtkosten der Honorarkraefte"
+      ],
+      "beispielePasst": [
+        "Kuenstlerin fuer Theaterprojekt mit Kindern",
+        "Musikpaedagoge fuer Bandprojekt",
+        "Medienkuenstler fuer Filmwerkstatt"
+      ]
+    },
+    {
+      "kategorie": "personal",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Zusaetzliche Personalausgaben beim federfuehrenden Buendnispartner fuer die Projektdurchfuehrung",
+        "Nur Projektpersonal, keine Stammstellen"
+      ]
+    },
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": ["Verbrauchsmaterial, Verpflegung, Miete, Leihgebuehren"],
+      "beispielePasst": [
+        "Material fuer Kunstwerkstatt (Farben, Leinwaende)",
+        "Raummiete fuer Projekttage",
+        "Verpflegung waehrend Projekt-Tagen",
+        "Fahrtkosten der Teilnehmenden"
+      ]
+    },
+    {
+      "kategorie": "sonstiges",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Aufwandsentschaedigungen fuer ehrenamtliche Betreuerinnen und Betreuer",
+        "Qualifizierungsmassnahmen fuer ehrenamtlich Engagierte",
+        "Veranstaltungspauschalen fuer Vernetzungs- und Transferaktivitaeten der Buendnisse"
+      ]
+    },
+    {
+      "kategorie": "overhead",
+      "foerderfaehig": true,
+      "maxProzent": 7,
+      "bedingungen": [
+        "Verwaltungspauschale 7 % der anerkannten Ausgaben, mindestens 500 EUR",
+        "Keine Einzelaufschluesselung erforderlich"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Anschaffung dauerhafter Ausstattung nicht ueber Kultur macht stark foerderbar",
+        "Technik/Geraete nur als Leihe oder kurzfristiger Einsatzkauf zum Projekt"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": false,
+    "formenErlaubt": ["finanziell", "sachleistungen", "eigenarbeit"],
+    "bemerkung": "Eigenanteil ist nicht zwingend vorgeschrieben — die Regelform ist Anteilfinanzierung, bei der Buendnispartner 'angemessene Eigenleistungen' einbringen. Das koennen Sachleistungen, Raeume, ehrenamtliche Arbeit sein (nicht zwingend Bargeld). In begruendeten Ausnahmefaellen ist Vollfinanzierung moeglich."
+  },
+  "kumulierung": {
+    "erlaubt": "bedingt",
+    "bedingungen": [
+      "Keine Doppelfoerderung: Massnahmen, fuer die bereits oeffentliche Fördermittel bereitstehen, sind ausgeschlossen (z. B. Leistungen nach SGB VIII — Jugendhilfe).",
+      "Das Projekt muss eine 'zusaetzliche Massnahme' sein, darf keine anderweitig finanzierten Regelangebote ersetzen.",
+      "Kombination mit Stiftungs- oder Privatmitteln fuer ergaenzende Projektbestandteile ist zulaessig."
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "buendnis",
+        "name": "Buendnis-Konstellation",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche drei (oder mehr) lokalen Partner aus Kultur, Bildung und Sozialarbeit bilden das Buendnis?",
+          "Welcher Partner ist federfuehrend (Letztzuwendungsempfaenger)?",
+          "Bei laendlichen Raeumen: gibt es ueberregionale Partner mit fachlicher Expertise?",
+          "Wie sieht die Aufgabenverteilung zwischen den Buendnispartnern aus?"
+        ],
+        "stilhinweis": "Rolle jedes Partners explizit benennen. Schule ist ueblicherweise Buendnispartner, nicht Antragstellerin — der federfuehrende Partner ist oft ein Kultur- oder Bildungstraeger vor Ort."
+      },
+      {
+        "id": "zielgruppe",
+        "name": "Zielgruppe und Bedarf",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Kinder/Jugendlichen im Alter 3-18 Jahre adressiert das Projekt konkret?",
+          "Welche Risikolagen liegen vor (soziale, finanzielle, bildungsbezogene) und wie sind sie belegt?",
+          "Wie viele Teilnehmende sind geplant?",
+          "Werden Kinder/Jugendliche mit Behinderungen erreicht?"
+        ],
+        "stilhinweis": "Risikolagen konkret belegen (Sozialindex des Stadtteils, Transferleistungsquote der Familien). Keine abstrakten Formulierungen wie 'benachteiligte Kinder'."
+      },
+      {
+        "id": "konzept",
+        "name": "Inhaltliches Konzept",
+        "pflicht": true,
+        "leitfragen": [
+          "Welcher Kulturbereich (Theater, Musik, Literatur, digitale Spielekultur, Alltagskultur, Zirkus etc.)?",
+          "Welches Format (Workshop, Kurs, Ferienwoche, langfristige Begleitung)?",
+          "Welche paedagogischen Ansaetze werden verwendet?",
+          "Wie verknuepft das Projekt Kultur + Bildung + Sozialarbeit?"
+        ]
+      },
+      {
+        "id": "ausserschulisch",
+        "name": "Ausserschulischer Charakter",
+        "pflicht": true,
+        "leitfragen": [
+          "Warum ist das Projekt NICHT schulischer Regelunterricht?",
+          "Falls im Ganztag verortet: Wie grenzt sich das Projekt vom Pflichtprogramm ab?",
+          "Ist die Teilnahme freiwillig?"
+        ],
+        "stilhinweis": "KRITISCH: Abgrenzung zum Schulunterricht muss glasklar sein. Projekte, die wie Regelunterricht wirken, werden abgelehnt. Siehe Infoblatt 'Ausserschulischkeit'."
+      },
+      {
+        "id": "arbeitsplan",
+        "name": "Arbeitsplan und Mengengerüst",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Einzelaktivitaeten in welcher Reihenfolge?",
+          "Wie viele Stunden Kinder-/Jugendkontakt pro Teilnehmende*r?",
+          "Welche Meilensteine?"
+        ]
+      },
+      {
+        "id": "qualitaetssicherung",
+        "name": "Qualitätssicherung und Evaluation",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie wird die Wirkung bei den Teilnehmenden gemessen?",
+          "Wie erfolgt die Reflexion im Buendnis waehrend der Laufzeit?",
+          "Wer dokumentiert das Projekt?"
+        ]
+      },
+      {
+        "id": "finanzplan",
+        "name": "Finanzierung und Mengengerüst",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Kostenposten (Honorare, Sachkosten, Aufwandsentschaedigungen) mit Betraegen?",
+          "Welche Eigenleistungen bringen die Buendnispartner ein (Raeume, Arbeitszeit, Sachleistungen)?",
+          "Ist die 7 %-Verwaltungspauschale kalkuliert?"
+        ]
+      }
+    ],
+    "anlagen": [
+      "Buendnisvereinbarung (formlos, unterschrieben von allen Partnern)",
+      "Institutionelle Beschreibung der federfuehrenden Organisation",
+      "Erfahrungsnachweis des federfuehrenden Buendnispartners in der Zielgruppenarbeit",
+      "ggf. Konzeptpapier des Programmpartners (falls Weiterleitungsmodell)"
+    ],
+    "einreichungsweg": "NICHT direkt beim BMBF, sondern ueber einen der ca. 20 Programmpartner (Bundesverbaende wie LKJ, Deutscher Bibliotheksverband, BMVI-nahe Traeger etc.), die die Fördermittel an lokale Buendnisse weiterleiten. Alternativ: Direktmodell ueber Initiativen, die selbst federfuehrend sind. Programmpartner-Uebersicht: https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/Kultur-macht-stark-2023-2027/Programmpartner-2023-2027/",
+    "bearbeitungsdauer": "Variiert stark je Programmpartner — typisch 6-12 Wochen von Antragseinreichung bis Foerderbescheid. Einige Programmpartner arbeiten mit festen Einreichungsfristen (halbjaehrlich), andere rollierend."
+  },
+  "notizen": [
+    "Manuell aus oeffentlichen Quellen kuratiert, ohne KI-Extraktion. Zahlen konservativ gesetzt, konkrete Obergrenzen pro Projekt variieren je Programmpartner.",
+    "WICHTIGSTER STRATEGIE-PUNKT: Eine Schule kann NICHT direkt Antragstellerin sein. Sie ist typischerweise einer von mindestens drei Buendnispartnern. Der Antrag laeuft ueber einen Programmpartner (Bundesverband), der die Mittel weiterleitet.",
+    "Projekttraeger: DLR Projekttraeger, Kontakt: kultur-macht-stark@dlr.de, Tel. 0228/3821-1014.",
+    "Antragsportal fuer foermlichen Antrag (nach Skizzen-Bewilligung): https://foerderportal.bund.de/easyonline/",
+    "Programmpartner-Liste (20+ Verbaende): https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/Kultur-macht-stark-2023-2027/Programmpartner-2023-2027/",
+    "Abgrenzung zum Regel-Unterricht ist das haeufigste Ablehnungsthema — Infoblatt 'Ausserschulischkeit' des BMBF lesen, bevor das Konzept geschrieben wird.",
+    "Die Foerderrichtlinie laeuft 2023-2027. Nach 2027 ist eine Anschlussphase geplant aber nicht bestaetigt."
+  ]
+}
