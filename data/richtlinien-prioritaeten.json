@@ -1,0 +1,878 @@
+{
+  "generatedAt": "2026-04-21",
+  "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
+  "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
+  "total": 87,
+  "items": [
+    {
+      "programmId": "kfw-erp-digitalisierung",
+      "name": "ERP Digitalisierung und Innovation",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 25000000,
+      "reichweite": "alle",
+      "infoLink": "https://www.kfw.de",
+      "score": 108,
+      "status": "open"
+    },
+    {
+      "programmId": "erasmus-alliances-innovation",
+      "name": "Erasmus+ Alliances for Innovation",
+      "foerdergeberTyp": "eu",
+      "foerdersummeMax": 8000000,
+      "reichweite": "alle",
+      "infoLink": "https://erasmus-plus.ec.europa.eu",
+      "score": 96,
+      "status": "open"
+    },
+    {
+      "programmId": "erasmus-schulentwicklung",
+      "name": "Europäische Partnerschaften für Schulentwicklung",
+      "foerdergeberTyp": "eu",
+      "foerdersummeMax": 400000,
+      "reichweite": "alle",
+      "infoLink": "https://erasmusplus.schule/foerderung/europaeische-partnerschaft-fuer-die-schulentwicklung",
+      "score": 93,
+      "status": "open"
+    },
+    {
+      "programmId": "erasmus-schule-2026",
+      "name": "Erasmus+ Schulbildung 2026",
+      "foerdergeberTyp": "eu",
+      "foerdersummeMax": 300000,
+      "reichweite": "alle",
+      "infoLink": "https://erasmusplus.schule/news/erasmus-foerderung-fuer-2026",
+      "score": 91.8,
+      "status": "open"
+    },
+    {
+      "programmId": "bundesweit-ganztag",
+      "name": "Investitionsprogramm Ganztagsausbau",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 500000,
+      "reichweite": "alle",
+      "infoLink": "https://www.buendnisse-fuer-bildung.de",
+      "score": 89,
+      "status": "open"
+    },
+    {
+      "programmId": "digitalpakt-20",
+      "name": "DigitalPakt Schule 2.0",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 500000,
+      "reichweite": "alle",
+      "infoLink": "https://www.bmftr.bund.de",
+      "score": 89,
+      "status": "open"
+    },
+    {
+      "programmId": "berlin-startchancen",
+      "name": "Startchancen-Programm Berlin",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 255000,
+      "reichweite": "DE-BE",
+      "infoLink": "https://www.berlin.de/sen/bildung/unterstuetzung/startchancen-programm/",
+      "score": 88.1,
+      "status": "open"
+    },
+    {
+      "programmId": "eit-higher-education-2026",
+      "name": "EIT Higher Education Initiative",
+      "foerdergeberTyp": "eu",
+      "foerdersummeMax": 2000000,
+      "reichweite": "alle",
+      "infoLink": "https://eit-hei.eu",
+      "score": 88,
+      "status": "open"
+    },
+    {
+      "programmId": "aktion-mensch-schulkooperation",
+      "name": "Aktion Mensch - Junge Menschen stärken (Schulkooperationen)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 350000,
+      "reichweite": "alle",
+      "infoLink": "https://www.aktion-mensch.de/inklusion/bildung/foerderung/schul-kooperationen",
+      "score": 87.4,
+      "status": "done"
+    },
+    {
+      "programmId": "bmbf-digitalpakt-2",
+      "name": "DigitalPakt Schule 2.0",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 500000,
+      "reichweite": "alle",
+      "infoLink": "https://www.digitalpaktschule.de/de/digitalpakt-2-0-1874.html",
+      "score": 87,
+      "status": "done"
+    },
+    {
+      "programmId": "nrwbank-moderne-schule",
+      "name": "NRW.BANK.Moderne Schule",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 10000000,
+      "reichweite": "DE-NW",
+      "infoLink": "https://www.nrwbank.de",
+      "score": 82,
+      "status": "open"
+    },
+    {
+      "programmId": "bosch-schulpreis",
+      "name": "Deutscher Schulpreis",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 100000,
+      "reichweite": "alle",
+      "infoLink": "https://www.deutscher-schulpreis.de",
+      "score": 80,
+      "status": "done"
+    },
+    {
+      "programmId": "kultur-macht-stark",
+      "name": "Kultur macht stark - Bündnisse für Bildung",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 50000,
+      "reichweite": "alle",
+      "infoLink": "https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/foerderung/foerderung_node.html",
+      "score": 79,
+      "status": "open"
+    },
+    {
+      "programmId": "lesen-macht-stark",
+      "name": "Lesen macht stark",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 50000,
+      "reichweite": "alle",
+      "infoLink": "https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/foerderung/foerderung_node.html",
+      "score": 79,
+      "status": "open"
+    },
+    {
+      "programmId": "kmk-pad-foerderung",
+      "name": "KMK PAD Schulpartnerschaften (GAPP, PASCH, Israel)",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.kmk-pad.org/programme/",
+      "score": 77,
+      "status": "open"
+    },
+    {
+      "programmId": "ferry-porsche-challenge",
+      "name": "Ferry Porsche Challenge",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 75000,
+      "reichweite": "DE-BW/DE-SN",
+      "infoLink": "https://ferry-porsche-challenge.de",
+      "score": 76.8,
+      "status": "open"
+    },
+    {
+      "programmId": "klimalab-2026",
+      "name": "KlimaLab - Klimaschutz-Engagement (Vereine & Initiativen)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 20000,
+      "reichweite": "alle",
+      "infoLink": "https://fundraiser-magazin.de/klimalab-2026",
+      "score": 73,
+      "status": "open"
+    },
+    {
+      "programmId": "ferry-porsche-challenge-2025",
+      "name": "Ferry Porsche Challenge 2025",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 75000,
+      "reichweite": "DE-BW/DE-SN",
+      "infoLink": "https://ferry-porsche-challenge.de",
+      "score": 72.8,
+      "status": "open"
+    },
+    {
+      "programmId": "ensam-bmz",
+      "name": "ENSA - Schulpartnerschaften weltweit",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 10000,
+      "reichweite": "alle",
+      "infoLink": "https://ensa.engagement-global.de",
+      "score": 72,
+      "status": "open"
+    },
+    {
+      "programmId": "z-lab-bruchsal",
+      "name": "Z-LAB MINT-Kurse",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 75000,
+      "reichweite": "DE-BW",
+      "infoLink": "https://ferry-porsche-stiftung.de",
+      "score": 70.8,
+      "status": "open"
+    },
+    {
+      "programmId": "sprungbrett-bildung-karlsruhe",
+      "name": "Sprungbrett Bildung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 75000,
+      "reichweite": "DE-BW",
+      "infoLink": "https://ferry-porsche-stiftung.de",
+      "score": 70.8,
+      "status": "open"
+    },
+    {
+      "programmId": "playmobil-hobpreis",
+      "name": "Hob-Preis für kreative Schulen",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 25000,
+      "reichweite": "alle",
+      "infoLink": "https://www.kinderstiftung-playmobil.de/hob-preis",
+      "score": 70,
+      "status": "open"
+    },
+    {
+      "programmId": "claussen-simon-fonds-schulen-2026",
+      "name": "Claussen-Simon-Fonds für Schulen",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 10000,
+      "reichweite": "DE-HH",
+      "infoLink": "https://www.claussen-simon-stiftung.de/de/bildung-schule/claussen-simon-fonds-schulen/",
+      "score": 70,
+      "status": "open"
+    },
+    {
+      "programmId": "sh-ganztag-196mio",
+      "name": "Investitionsprogramm Ganztagsausbau SH (GGSK II)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 500000,
+      "reichweite": "DE-SH",
+      "infoLink": "https://www.ib-sh.de/produkt/investitionsprogramm-ganztagsausbau-ggsk-ii/",
+      "score": 69,
+      "status": "open"
+    },
+    {
+      "programmId": "hector-kinderakademie",
+      "name": "HECTA Kinderakademien",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 50000,
+      "reichweite": "DE-BW",
+      "infoLink": "https://www.hector-stiftung.de",
+      "score": 69,
+      "status": "open"
+    },
+    {
+      "programmId": "telekom-junior-ingenieur-2026",
+      "name": "Junior-Ingenieur-Akademie (JIA)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 10000,
+      "reichweite": "alle",
+      "infoLink": "https://www.telekom-stiftung.de/aktivitaeten/junior-ingenieur-akademie",
+      "score": 68,
+      "status": "open"
+    },
+    {
+      "programmId": "koerber-mint-regionen",
+      "name": "MINT-Regionen",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 30000,
+      "reichweite": "alle",
+      "infoLink": "https://koerber-stiftung.de/projekte/bereich-bildung",
+      "score": 66.8,
+      "status": "open"
+    },
+    {
+      "programmId": "telekom-stiftung-respect",
+      "name": "Respect Magarete",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 25000,
+      "reichweite": "alle",
+      "infoLink": "https://www.telekom-stiftung.de",
+      "score": 66,
+      "status": "open"
+    },
+    {
+      "programmId": "europaschulen-nrw-2026",
+      "name": "Landesinitiative Europa-Schecks NRW 2026",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 25000,
+      "reichweite": "DE-NW",
+      "infoLink": "https://mbeim.nrw/europa-schecks",
+      "score": 66,
+      "status": "open"
+    },
+    {
+      "programmId": "neumayer-projektkultur",
+      "name": "PROJEKT:KULTUR – Kulturarbeit an Schulen",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 10000,
+      "reichweite": "alle",
+      "infoLink": "https://www.neumayer-stiftung.de/project/kulturarbeit-an-schulen-pilotprojekt/",
+      "score": 66,
+      "status": "open"
+    },
+    {
+      "programmId": "rag-stiftung-schulprojekte",
+      "name": "RAG-Stiftung Schulprojekte",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 15000,
+      "reichweite": "DE-NW/DE-SL",
+      "infoLink": "https://www.rag-stiftung.de/foerderung/bildung/schulprojekte",
+      "score": 65.8,
+      "status": "open"
+    },
+    {
+      "programmId": "hessen-esf-praxis",
+      "name": "ESF+ Praxis und Schule (PUSCH)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 80000,
+      "reichweite": "DE-HE",
+      "infoLink": "https://www.foerderdatenbank.de/FDB/Content/DE/Foerderprogramm/Land/Hessen/praxis-und-schule.html",
+      "score": 65,
+      "status": "open"
+    },
+    {
+      "programmId": "bmbf-bop",
+      "name": "Berufsorientierungsprogramm (BOP)",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 500,
+      "reichweite": "alle",
+      "infoLink": "https://www.bildungsketten.de/bildungsketten/de/schule/praktische-berufsorientierung/praktische-berufsorientierung_node.html",
+      "score": 65,
+      "status": "open"
+    },
+    {
+      "programmId": "denkmal-aktiv-nrw",
+      "name": "denkmal aktiv - Kulturerbe macht Schule",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 1900,
+      "reichweite": "DE-NW",
+      "infoLink": "https://denkmal-aktiv.de",
+      "score": 64.8,
+      "status": "open"
+    },
+    {
+      "programmId": "denkmal-aktiv-bundesweit-2026",
+      "name": "denkmal aktiv – Kulturerbe macht Schule (Schuljahresprojekt 2026/27)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 1900,
+      "reichweite": "alle",
+      "infoLink": "https://denkmal-aktiv.de/teilnahme/",
+      "score": 64.8,
+      "status": "open"
+    },
+    {
+      "programmId": "alfred-toepfer-kultur",
+      "name": "Kulturelle Bildung in Schulen",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 15000,
+      "reichweite": "alle",
+      "infoLink": "https://www.toepfer-stiftung.de",
+      "score": 63.8,
+      "status": "open"
+    },
+    {
+      "programmId": "siemens-stiftung-mint-hub",
+      "name": "MINT-Hub & Maker Education",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 8000,
+      "reichweite": "alle",
+      "infoLink": "https://www.siemens-stiftung.org",
+      "score": 63,
+      "status": "open"
+    },
+    {
+      "programmId": "bayern-kulturfonds",
+      "name": "Kulturfonds Bayern – Kulturelle Bildung",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 50000,
+      "reichweite": "DE-BY",
+      "infoLink": "https://www.km.bayern.de/ministerium/kooperationen-und-stiftungen/kulturfonds",
+      "score": 63,
+      "status": "open"
+    },
+    {
+      "programmId": "stiftung-bildung-youstartn",
+      "name": "Förderpreis youstartN",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 12000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderpreis-youstartn",
+      "score": 62.8,
+      "status": "open"
+    },
+    {
+      "programmId": "bw-denkmal-aktiv-2026",
+      "name": "denkmal aktiv - Kulturerbe macht Schule (DEUTSCHE STIFTUNG DENKMALSCHUTZ)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 1900,
+      "reichweite": "alle",
+      "infoLink": "https://denkmal-aktiv.de",
+      "score": 62.8,
+      "status": "open"
+    },
+    {
+      "programmId": "jugendbruecke-beruflicher-austausch-2026-27",
+      "name": "Beruflicher Austausch 2026/27 (Deutsch-Türkische Jugendbrücke)",
+      "foerdergeberTyp": "programm",
+      "foerdersummeMax": 15000,
+      "reichweite": "alle",
+      "infoLink": "https://www.jugendbruecke.de/",
+      "score": 61.8,
+      "status": "open"
+    },
+    {
+      "programmId": "denkmalschutz-denkmal-aktiv",
+      "name": "denkmal aktiv – Kulturerbe macht Schule",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 1900,
+      "reichweite": "alle",
+      "infoLink": "https://denkmal-aktiv.de",
+      "score": 60.8,
+      "status": "open"
+    },
+    {
+      "programmId": "hopp-foundation-schulpreis",
+      "name": "HOPP-Foundation-Schulpreis",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 2500,
+      "reichweite": "DE-BW/DE-HE/DE-RP",
+      "infoLink": "https://www.jugend-forscht.de",
+      "score": 60,
+      "status": "open"
+    },
+    {
+      "programmId": "bw-sommerschulen-2026",
+      "name": "Sommerschulen Baden-Württemberg 2026",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 10000,
+      "reichweite": "DE-BW",
+      "infoLink": "https://km.baden-wuerttemberg.de/de/jugend-sport/sommerschulen",
+      "score": 60,
+      "status": "open"
+    },
+    {
+      "programmId": "telekom-stiftung-mint-berufsorientierung",
+      "name": "MINT-Berufsorientierung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 6000,
+      "reichweite": "alle",
+      "infoLink": "https://www.telekom-stiftung.de",
+      "score": 59.8,
+      "status": "open"
+    },
+    {
+      "programmId": "aok-gesundheit",
+      "name": "Gesunde Schule",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5500,
+      "reichweite": "alle",
+      "infoLink": "https://www.aok.de/pk/leistungen/schulen/gesundheitsprogramme/",
+      "score": 59.4,
+      "status": "open"
+    },
+    {
+      "programmId": "chemie-fonds",
+      "name": "Chemie-Fonds der Chemischen Industrie",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.vci.de/fonds/schulpartnerschaft/unterrichtsfoerderung/seiten.jsp",
+      "score": 59,
+      "status": "open"
+    },
+    {
+      "programmId": "sparkasse-elbe-elster-ausland",
+      "name": "Schulische Auslandsstipendien",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "DE-BB",
+      "infoLink": "https://www.spk-elbe-elster.de/de/home/ihre-sparkasse/Sparkassenstiftung/foerderung/auslandsstipendium.html",
+      "score": 59,
+      "status": "open"
+    },
+    {
+      "programmId": "baywa-waldschule",
+      "name": "Waldschulprojekt",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.baywastiftung.de/projekte/waldschule",
+      "score": 59,
+      "status": "open"
+    },
+    {
+      "programmId": "stiftung-bildung-preis",
+      "name": "Förderpreis 'Verein(t) für gute Kita und Schule'",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderpreis",
+      "score": 59,
+      "status": "open"
+    },
+    {
+      "programmId": "sh-perspektivkita",
+      "name": "PerspektivKita Schleswig-Holstein",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 50000,
+      "reichweite": "DE-SH",
+      "infoLink": "https://www.schleswig-holstein.de",
+      "score": 59,
+      "status": "open"
+    },
+    {
+      "programmId": "telekom-stiftung-technik-scouts",
+      "name": "Technik Scouts",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.telekom-stiftung.de",
+      "score": 59,
+      "status": "open"
+    },
+    {
+      "programmId": "ruetgers-stiftung-mint",
+      "name": "RÜTGERS Stiftung MINT-Förderung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 3000,
+      "reichweite": "alle",
+      "infoLink": "https://ruetgers-stiftung.de",
+      "score": 58.8,
+      "status": "open"
+    },
+    {
+      "programmId": "stiftung-bildung-foerderfonds",
+      "name": "Förderfonds der Stiftung Bildung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderfonds",
+      "score": 57,
+      "status": "open"
+    },
+    {
+      "programmId": "th-mint-digital",
+      "name": "MINT- und Digital-Schulen Thüringen",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 30000,
+      "reichweite": "DE-TH",
+      "infoLink": "https://mintthueringen.de",
+      "score": 56.8,
+      "status": "open"
+    },
+    {
+      "programmId": "bw-mint-digital",
+      "name": "MINT- und Digital-Schulen Baden-Württemberg",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 30000,
+      "reichweite": "DE-BW",
+      "infoLink": "https://km.baden-wuerttemberg.de",
+      "score": 56.8,
+      "status": "open"
+    },
+    {
+      "programmId": "bw-mikro-makro-mint",
+      "name": "Mikro makro mint",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 2500,
+      "reichweite": "DE-BW",
+      "infoLink": "https://www.jugend-forscht.de",
+      "score": 56,
+      "status": "open"
+    },
+    {
+      "programmId": "sn-mint-digital-37",
+      "name": "37 MINT- und Digital-Schulen Sachsen",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 25000,
+      "reichweite": "DE-SN",
+      "infoLink": "https://www.mintzukunftschaffen.de",
+      "score": 56,
+      "status": "open"
+    },
+    {
+      "programmId": "hamburg-kultur-schule",
+      "name": "Projektfonds Kultur & Schule Hamburg",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 15000,
+      "reichweite": "DE-HH",
+      "infoLink": "https://www.hamburg.de/politik-und-verwaltung/behoerden/behoerde-fuer-kultur-und-medien/themen/kulturfoerderung/projektfonds-kultur-und-schule-107046",
+      "score": 55.8,
+      "status": "open"
+    },
+    {
+      "programmId": "brandenburg-kulturelle-bildung",
+      "name": "Landesförderprogramm Kulturelle Bildung und Partizipation",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 20000,
+      "reichweite": "DE-BB",
+      "infoLink": "https://mbjs.brandenburg.de/bildung.html",
+      "score": 55,
+      "status": "open"
+    },
+    {
+      "programmId": "mintspace-schulpreis",
+      "name": "MINTSPACE-Schulpreis",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 2000,
+      "reichweite": "alle",
+      "infoLink": "https://www.jugend-forscht.de/netzwerk/informationen-fuer-schulen.html",
+      "score": 55,
+      "status": "open"
+    },
+    {
+      "programmId": "sachsen-klimaschulen-2026",
+      "name": "Klimaschulen Sachsen - Netzwerk",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 3000,
+      "reichweite": "DE-SN",
+      "infoLink": "https://www.klima.sachsen.de/klimaschulen-in-sachsen-12616.html",
+      "score": 54.8,
+      "status": "open"
+    },
+    {
+      "programmId": "sh-schule-trifft-kultur",
+      "name": "Schule trifft Kultur – Kultur trifft Schule",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 15000,
+      "reichweite": "DE-SH",
+      "infoLink": "https://kulturellebildung-sh.de/info/aktuelles/news/41",
+      "score": 53.8,
+      "status": "open"
+    },
+    {
+      "programmId": "schott-nachhaltigkeit",
+      "name": "SCHOTT Schule und Nachhaltigkeit",
+      "foerdergeberTyp": "sonstige",
+      "foerdersummeMax": 12500,
+      "reichweite": "alle",
+      "infoLink": "https://www.schott.com/de-de/news-and-media/pressemitteilungen/2025/bildung-fuer-nachhaltige-entwicklung-schott-foerdert-17-projekte-an-standorten-in-ganz-deutschland",
+      "score": 53,
+      "status": "open"
+    },
+    {
+      "programmId": "uk-german-connection",
+      "name": "UK-German Connection - Schulpartnerschaften UK/Deutschland",
+      "foerdergeberTyp": "verband",
+      "foerdersummeMax": 1200,
+      "reichweite": "alle",
+      "infoLink": "https://ukgermanconnection.org/pp/de/foerdermittel/",
+      "score": 52.8,
+      "status": "open"
+    },
+    {
+      "programmId": "rheinland-pfalz-pad",
+      "name": "PAD-Austauschprogramme",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 10000,
+      "reichweite": "DE-RP",
+      "infoLink": "https://bm.rlp.de",
+      "score": 52,
+      "status": "open"
+    },
+    {
+      "programmId": "jugend-forscht-schulpreis",
+      "name": "Jugend forscht-Schulpreis",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 1000,
+      "reichweite": "alle",
+      "infoLink": "https://www.jugend-forscht.de/teilnahme/ablauf/preise.html",
+      "score": 52,
+      "status": "open"
+    },
+    {
+      "programmId": "bayern-mint-freundliche-schulen",
+      "name": "MINT-freundliche Schulen Bayern",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 10000,
+      "reichweite": "DE-BY",
+      "infoLink": "https://www.km.bayern.de",
+      "score": 52,
+      "status": "open"
+    },
+    {
+      "programmId": "sparkasse-erfurt-exzellenz",
+      "name": "Preise für exzellente Schüler",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 300,
+      "reichweite": "DE-TH",
+      "infoLink": "https://www.sparkasse-mittelthueringen.de/de/home/ihre-sparkasse/ihre-sparkasse-vor-ort/sparkassenstiftung-erfurt.html",
+      "score": 46.8,
+      "status": "open"
+    },
+    {
+      "programmId": "niedersachsen-sport",
+      "name": "Sportförderung Niedersachsen Grundschulen (Sport Vernetzt)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 1000,
+      "reichweite": "DE-NI",
+      "infoLink": "https://www.sportjugend-nds.de/schule-kita-verein/schule-sportverein",
+      "score": 40,
+      "status": "open"
+    },
+    {
+      "programmId": "sachsen-anhalt-digital",
+      "name": "Digitale Endgeräte Sachsen-Anhalt",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 1000,
+      "reichweite": "DE-ST",
+      "infoLink": "https://www.bildung-lsa.de/",
+      "score": 40,
+      "status": "open"
+    },
+    {
+      "programmId": "bmbf-ganztag-bildungskommunen",
+      "name": "Ganztag in Bildungskommunen (BMBF ESF Plus)",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": null,
+      "reichweite": "alle",
+      "infoLink": "https://www.transferinitiative.de/ganztag.php",
+      "score": 40,
+      "status": "open"
+    },
+    {
+      "programmId": "bildungskommunen-bmbf",
+      "name": "Ganztag in Bildungskommunen",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": null,
+      "reichweite": "alle",
+      "infoLink": "https://www.bmbfsfj.bund.de/resource/blob/276378/3f45ba8ee1183000e42e3f19420b0376/bildungskommunen-de-data.pdf",
+      "score": 32,
+      "status": "open"
+    },
+    {
+      "programmId": "berdelle-naturwissenschaft",
+      "name": "Naturwissenschaften in der Schule",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "alle",
+      "infoLink": "https://berdelle-stiftung.de/foerderung/schueler/",
+      "score": 24,
+      "status": "open"
+    },
+    {
+      "programmId": "bosch-100-prozent-schulen",
+      "name": "100-Prozent-Schulen",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "alle",
+      "infoLink": "https://www.bosch-stiftung.de/de/presse/2025/05/basiskompetenzen-fuer-alle-grundschuelerinnen-start-der-bundesweiten-initiative-100",
+      "score": 24,
+      "status": "open"
+    },
+    {
+      "programmId": "reinhold-beitlich",
+      "name": "Erziehung und Bildung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "alle",
+      "infoLink": "https://www.reinhold-beitlich-stiftung.de",
+      "score": 22,
+      "status": "open"
+    },
+    {
+      "programmId": "sparkassen-schulservice",
+      "name": "Finanzielle Bildung - SchulService",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "alle",
+      "infoLink": "https://www.sparkassenstiftung.de",
+      "score": 22,
+      "status": "open"
+    },
+    {
+      "programmId": "baywa-schulgarten",
+      "name": "Schulgartenprojekt 'Gemüse pflanzen. Gesundheit ernten.'",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "alle",
+      "infoLink": "https://www.baywastiftung.de/projekte/schulgarten",
+      "score": 22,
+      "status": "open"
+    },
+    {
+      "programmId": "baywa-opflanzt",
+      "name": "O'pflanzt is!",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "alle",
+      "infoLink": "https://www.baywastiftung.de/projekte/opflanzt-is",
+      "score": 22,
+      "status": "open"
+    },
+    {
+      "programmId": "baywa-laufen-wald",
+      "name": "Laufen für den Wald",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "alle",
+      "infoLink": "https://www.baywastiftung.de",
+      "score": 22,
+      "status": "open"
+    },
+    {
+      "programmId": "stifterverband-kompass",
+      "name": "Kompass Bildungsförderung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "alle",
+      "infoLink": "https://www.stifterverband.org",
+      "score": 22,
+      "status": "open"
+    },
+    {
+      "programmId": "mint-zukunft-siegel",
+      "name": "MINT-freundliche Schule",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "alle",
+      "infoLink": "https://mintzukunftschaffen.de/mint-freundliche-schule",
+      "score": 22,
+      "status": "open"
+    },
+    {
+      "programmId": "arbeitskreis-bildung",
+      "name": "Arbeitskreis Bildung - Jahrestagung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungen.org/verband/was-wir-tun/vernetzungsangebote/arbeitskreise/arbeitskreis-bildung.html",
+      "score": 22,
+      "status": "open"
+    },
+    {
+      "programmId": "netzwerk-stiftungen-bildung",
+      "name": "Netzwerk Stiftungen und Bildung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "alle",
+      "infoLink": "https://www.netzwerk-stiftungen-bildung.de",
+      "score": 22,
+      "status": "open"
+    },
+    {
+      "programmId": "arbeiterkind-schulen",
+      "name": "ArbeiterKind.de Schulkooperation",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "alle",
+      "infoLink": "https://www.arbeiterkind.de",
+      "score": 20,
+      "status": "open"
+    },
+    {
+      "programmId": "l-bank-digitalpakt",
+      "name": "DigitalPakt Schule L-Bank (BW)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": null,
+      "reichweite": "DE-BW",
+      "infoLink": "https://www.l-bank.de/produkte/finanzhilfen/digitalpakt.html",
+      "score": 12,
+      "status": "open"
+    },
+    {
+      "programmId": "first-lego-league",
+      "name": "Digitale Schule Sachsen - FIRST LEGO League",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": null,
+      "reichweite": "DE-SN",
+      "infoLink": "https://www.first-lego-league.org/de/foerdern",
+      "score": 12,
+      "status": "open"
+    }
+  ]
+}
