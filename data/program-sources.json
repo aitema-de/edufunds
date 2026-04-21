@@ -1,0 +1,23 @@
+{
+  "description": "Quellen fuer den wöchentlichen Scanner scripts/scan-new-programs.ts. Jede Source ist eine oeffentliche Uebersichtsseite, von der Gemini Flash Programm-Einträge (Name + Detail-URL) extrahiert. Danach wird abgeglichen mit foerderprogramme.json, neue Treffer landen in data/program-candidates.json fuer manuelles Review.",
+  "sources": [
+    {
+      "id": "bildungsserver-foerderung",
+      "name": "Deutscher Bildungsserver — Fördermittel fuer Schulen",
+      "url": "https://www.bildungsserver.de/fachportal_suche.html?suchbegriff=schulfoerderung",
+      "fokus": "Bund, Laender, oeffentliche und private Traeger"
+    },
+    {
+      "id": "foerderdatenbank-schule",
+      "name": "Foerderdatenbank des Bundes — Schulische Bildung",
+      "url": "https://www.foerderdatenbank.de/SiteGlobals/FDB/Forms/Suche/Foerderfinder/Foerderfinder_Formular.html?lv2=8970232&submit=Suchen",
+      "fokus": "Bundes- und EU-Programme, verifiziert"
+    },
+    {
+      "id": "begabungslotse",
+      "name": "Begabungslotse — Foerderangebote fuer Schulen",
+      "url": "https://www.begabungslotse.de/foerderangebote",
+      "fokus": "Begabtenfoerderung, Stiftungen, bundesweit"
+    }
+  ]
+}
