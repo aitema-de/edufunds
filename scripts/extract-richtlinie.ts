@@ -220,6 +220,40 @@ Erstelle das Richtlinien-Dossier als JSON.`;
     process.exit(3);
   }
 
+  // Sanity-Check: Wenn die Quelle zu duenn war (Startseite, Fehler-Seite),
+  // liefert Gemini ein leeres Schema zurueck. In dem Fall NICHT speichern
+  // und NICHT als done markieren — sonst verschwindet das Programm aus der
+  // Queue ohne verwertbares Dossier.
+  const hatKosten = Array.isArray(parsed.kostenpositionen) && parsed.kostenpositionen.length > 0;
+  const hatAbschnitte =
+    Array.isArray(parsed.antragsstruktur?.abschnitte) &&
+    parsed.antragsstruktur.abschnitte.length > 0;
+  const hatFoerderhoehe =
+    typeof parsed.foerderhoehe?.maxEur === "number" ||
+    typeof parsed.foerderhoehe?.minEur === "number" ||
+    typeof parsed.foerderhoehe?.bemerkung === "string";
+  const substanzOk = hatKosten || hatAbschnitte || hatFoerderhoehe;
+  if (!substanzOk) {
+    console.error(
+      "FEHLER: Extrahiertes Dossier ist leer (keine Kostenpositionen, Antragsabschnitte oder Foerderhoehe)."
+    );
+    console.error(
+      `       Vermutlich zeigt der infoLink auf eine Startseite statt eine Richtlinie.`
+    );
+    if (Array.isArray(parsed.notizen) && parsed.notizen.length) {
+      console.error(`       Gemini-Notiz: ${parsed.notizen[0]}`);
+    }
+    console.error(
+      `       Programm bleibt in der Queue auf status=open, kein Dossier geschrieben.`
+    );
+    // Debug-Ausgabe nach /tmp, NICHT ins Repo — sonst wuerde der Cronjob
+    // leere Debug-Files versehentlich in einen PR aufnehmen.
+    const debugPath = path.join("/tmp", `edufunds-${programmId}.empty.debug.json`);
+    await fs.writeFile(debugPath, JSON.stringify(parsed, null, 2) + "\n");
+    console.error(`       Debug-Dump: ${debugPath}`);
+    process.exit(5);
+  }
+
   parsed.quellen = quellen;
   parsed.version = parsed.version ?? new Date().toISOString().slice(0, 10);
 
