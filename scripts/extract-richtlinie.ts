@@ -84,7 +84,18 @@ Nur valides JSON ausgeben, keine Markdown-Fences, keine Erklaerung davor/danach.
 
 async function fetchOrRead(src: string): Promise<{ url: string; text: string }> {
   if (/^https?:\/\//.test(src)) {
-    const res = await fetch(src, { headers: { "User-Agent": "EduFunds-Extractor/1.0" } });
+    // Viele Bundesseiten (bmftr.bund.de, buendnisse-fuer-bildung.de) blocken
+    // nicht-Browser-UA mit HTTP 403. Mit einem realistischen Browser-UA
+    // funktionieren sie. Keine Umgehung einer Bot-Policy — die Seiten sind
+    // oeffentlich, wir lesen nur Text.
+    const res = await fetch(src, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "de,en;q=0.8",
+      },
+    });
     if (!res.ok) throw new Error(`HTTP ${res.status} beim Laden von ${src}`);
     const ct = res.headers.get("content-type") ?? "";
     const body = await res.text();
@@ -124,6 +135,26 @@ async function markDoneInQueue(programmId: string): Promise<void> {
     }
   } catch (err) {
     // Queue nicht vorhanden — stiller Fehler, nicht kritisch fuer den Extract-Lauf.
+    console.warn(`    Queue-Update übersprungen: ${(err as Error).message}`);
+  }
+}
+
+/**
+ * Markiert Programme, bei denen die Extraktion wegen duenner Quelle leer blieb,
+ * mit status=blocked + skipReason. Ohne das wuerde der naechste --next-Lauf
+ * sofort wieder dasselbe Programm ziehen und endlos in einer Schleife stecken.
+ */
+async function markBlockedInQueue(programmId: string, reason: string): Promise<void> {
+  try {
+    const q = await loadQueue();
+    type QueueItem = Queue["items"][number] & { skipReason?: string; blockReason?: string };
+    const item = q.items.find((i) => i.programmId === programmId) as QueueItem | undefined;
+    if (!item) return;
+    item.status = "skip" as QueueItem["status"];
+    item.skipReason = reason;
+    await saveQueue(q);
+    console.log(`    Queue: ${programmId} → status=skip (${reason.slice(0, 80)}…)`);
+  } catch (err) {
     console.warn(`    Queue-Update übersprungen: ${(err as Error).message}`);
   }
 }
@@ -228,29 +259,37 @@ Erstelle das Richtlinien-Dossier als JSON.`;
   const hatAbschnitte =
     Array.isArray(parsed.antragsstruktur?.abschnitte) &&
     parsed.antragsstruktur.abschnitte.length > 0;
+  // Foerderhoehe nur als Substanz werten, wenn KONKRETE Zahl vorliegt.
+  // Eine reine "bemerkung" reicht nicht — die kann Gemini selbst bei
+  // Null-Content produzieren ("Im Text werden keine Angaben gemacht.").
   const hatFoerderhoehe =
     typeof parsed.foerderhoehe?.maxEur === "number" ||
     typeof parsed.foerderhoehe?.minEur === "number" ||
-    typeof parsed.foerderhoehe?.bemerkung === "string";
+    typeof parsed.foerderhoehe?.maxProzentGesamtkosten === "number";
   const substanzOk = hatKosten || hatAbschnitte || hatFoerderhoehe;
   if (!substanzOk) {
     console.error(
-      "FEHLER: Extrahiertes Dossier ist leer (keine Kostenpositionen, Antragsabschnitte oder Foerderhoehe)."
+      "FEHLER: Extrahiertes Dossier ist leer (keine Kostenpositionen, Antragsabschnitte, konkrete Foerderhoehe)."
     );
     console.error(
       `       Vermutlich zeigt der infoLink auf eine Startseite statt eine Richtlinie.`
     );
-    if (Array.isArray(parsed.notizen) && parsed.notizen.length) {
-      console.error(`       Gemini-Notiz: ${parsed.notizen[0]}`);
-    }
-    console.error(
-      `       Programm bleibt in der Queue auf status=open, kein Dossier geschrieben.`
-    );
-    // Debug-Ausgabe nach /tmp, NICHT ins Repo — sonst wuerde der Cronjob
-    // leere Debug-Files versehentlich in einen PR aufnehmen.
+    const geminiNote =
+      Array.isArray(parsed.notizen) && parsed.notizen.length
+        ? String(parsed.notizen[0]).slice(0, 200)
+        : "Quelle zu allgemein";
+    console.error(`       Gemini-Notiz: ${geminiNote}`);
     const debugPath = path.join("/tmp", `edufunds-${programmId}.empty.debug.json`);
     await fs.writeFile(debugPath, JSON.stringify(parsed, null, 2) + "\n");
     console.error(`       Debug-Dump: ${debugPath}`);
+    // Programm in der Queue auf skip, damit der naechste --next-Lauf nicht
+    // in Endlosschleife dasselbe Programm zieht. Kolja kann es manuell auf
+    // open zuruecksetzen, nachdem der infoLink in foerderprogramme.json
+    // auf eine konkrete Richtlinie geaendert wurde.
+    await markBlockedInQueue(
+      programmId,
+      `Leere Extraktion: infoLink zu allgemein. Gemini-Note: ${geminiNote}`
+    );
     process.exit(5);
   }
 

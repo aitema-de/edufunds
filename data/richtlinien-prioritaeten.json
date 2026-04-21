@@ -44,7 +44,7 @@
       "reichweite": "alle",
       "infoLink": "https://erasmusplus.schule/news/erasmus-foerderung-fuer-2026",
       "score": 91.8,
-      "status": "open"
+      "status": "done"
     },
     {
       "programmId": "bundesweit-ganztag",
@@ -54,7 +54,8 @@
       "reichweite": "alle",
       "infoLink": "https://www.buendnisse-fuer-bildung.de",
       "score": 89,
-      "status": "open"
+      "status": "skip",
+      "skipReason": "infoLink liefert HTTP 403 (buendnisse-fuer-bildung.de blockiert User-Agent). Alternative Quelle: offizielle BMBF-Programmseite des Ganztagsausbaus."
     },
     {
       "programmId": "digitalpakt-20",
@@ -64,7 +65,8 @@
       "reichweite": "alle",
       "infoLink": "https://www.bmftr.bund.de",
       "score": 89,
-      "status": "open"
+      "status": "skip",
+      "skipReason": "Duplikat zu bmbf-digitalpakt-2 (hat bereits Dossier). Einträge in foerderprogramme.json sollten dedupliziert werden."
     },
     {
       "programmId": "berlin-startchancen",
@@ -74,7 +76,7 @@
       "reichweite": "DE-BE",
       "infoLink": "https://www.berlin.de/sen/bildung/unterstuetzung/startchancen-programm/",
       "score": 88.1,
-      "status": "open"
+      "status": "done"
     },
     {
       "programmId": "eit-higher-education-2026",
@@ -84,7 +86,8 @@
       "reichweite": "alle",
       "infoLink": "https://eit-hei.eu",
       "score": 88,
-      "status": "open"
+      "status": "skip",
+      "skipReason": "Leere Extraktion: infoLink zu allgemein. Gemini-Note: Der bereitgestellte Text ist eine allgemeine Informations- und Marketingseite der Initiative und nicht die detaillierte Förderrichtlinie eines spezifischen Calls."
     },
     {
       "programmId": "aktion-mensch-schulkooperation",
@@ -114,7 +117,8 @@
       "reichweite": "DE-NW",
       "infoLink": "https://www.nrwbank.de",
       "score": 82,
-      "status": "open"
+      "status": "skip",
+      "skipReason": "Leere Extraktion: infoLink zu allgemein. Gemini-Note: Der bereitgestellte Volltext ist eine allgemeine Webseite der NRW.BANK und enthält keine spezifischen Informationen zum Förderprogramm 'nrwbank-moderne-schule'. Die Felder konnten daher nicht befüllt "
     },
     {
       "programmId": "bosch-schulpreis",
@@ -144,7 +148,8 @@
       "reichweite": "alle",
       "infoLink": "https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/foerderung/foerderung_node.html",
       "score": 79,
-      "status": "open"
+      "status": "skip",
+      "skipReason": "Leere Extraktion: infoLink zu allgemein. Gemini-Note: Der bereitgestellte Text ist eine allgemeine Übersichtsseite zum Programm 'Kultur macht stark. Bündnisse für Bildung' und enthält keine detaillierten Förderkonditionen."
     },
     {
       "programmId": "kmk-pad-foerderung",
@@ -154,7 +159,8 @@
       "reichweite": "alle",
       "infoLink": "https://www.kmk-pad.org/programme/",
       "score": 77,
-      "status": "open"
+      "status": "skip",
+      "skipReason": "Leere Extraktion: infoLink zu allgemein. Gemini-Note: Der vorliegende Text ist eine allgemeine Navigations- und Übersichtsseite, keine spezifische Förderrichtlinie."
     },
     {
       "programmId": "ferry-porsche-challenge",
@@ -164,7 +170,7 @@
       "reichweite": "DE-BW/DE-SN",
       "infoLink": "https://ferry-porsche-challenge.de",
       "score": 76.8,
-      "status": "open"
+      "status": "done"
     },
     {
       "programmId": "klimalab-2026",
@@ -174,7 +180,7 @@
       "reichweite": "alle",
       "infoLink": "https://fundraiser-magazin.de/klimalab-2026",
       "score": 73,
-      "status": "open"
+      "status": "done"
     },
     {
       "programmId": "ferry-porsche-challenge-2025",
@@ -184,7 +190,7 @@
       "reichweite": "DE-BW/DE-SN",
       "infoLink": "https://ferry-porsche-challenge.de",
       "score": 72.8,
-      "status": "open"
+      "status": "done"
     },
     {
       "programmId": "ensam-bmz",
@@ -204,7 +210,8 @@
       "reichweite": "DE-BW",
       "infoLink": "https://ferry-porsche-stiftung.de",
       "score": 70.8,
-      "status": "open"
+      "status": "skip",
+      "skipReason": "Leere Extraktion: infoLink zu allgemein. Gemini-Note: Die Stiftung fördert gemeinnützige Projekte in den Bereichen Soziales, Umwelt, Bildung & Wissenschaft, Kultur und Sport."
     },
     {
       "programmId": "sprungbrett-bildung-karlsruhe",
@@ -214,7 +221,8 @@
       "reichweite": "DE-BW",
       "infoLink": "https://ferry-porsche-stiftung.de",
       "score": 70.8,
-      "status": "open"
+      "status": "skip",
+      "skipReason": "Leere Extraktion: infoLink zu allgemein. Gemini-Note: Die Ferry-Porsche-Stiftung fördert gemeinnützige Projekte in den Bereichen Soziales, Umwelt, Bildung & Wissenschaft, Kultur und Sport."
     },
     {
       "programmId": "playmobil-hobpreis",
@@ -224,7 +232,8 @@
       "reichweite": "alle",
       "infoLink": "https://www.kinderstiftung-playmobil.de/hob-preis",
       "score": 70,
-      "status": "open"
+      "status": "skip",
+      "skipReason": "Leere Extraktion: infoLink zu allgemein. Gemini-Note: Es handelt sich um einen Wettbewerb ('Hob-Preis 2025/2026') für Regel- und Förderschulen der Klassenstufen 1-4."
     },
     {
       "programmId": "claussen-simon-fonds-schulen-2026",
