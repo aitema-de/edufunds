@@ -1,0 +1,112 @@
+name: Weekly Richtlinien-Dossier Extraktion
+
+# Läuft wöchentlich und extrahiert das nächste offene Programm aus
+# data/richtlinien-prioritaeten.json über das Tool
+# scripts/extract-richtlinie.ts --next. Ergebnis kommt als Pull Request
+# gegen den Default-Branch — KEIN Auto-Merge, damit Kolja den Inhalt
+# reviewen kann, bevor er in den Wizard einfließt.
+
+on:
+  schedule:
+    - cron: "0 4 * * 1" # Jeden Montag 04:00 UTC (06:00 Berlin)
+  workflow_dispatch:
+    inputs:
+      program_id:
+        description: "Optional: bestimmtes Programm aus der Queue extrahieren (sonst --next)"
+        required: false
+        type: string
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Extract next dossier
+        id: extract
+        env:
+          # github.event.inputs ist Nutzereingabe — NIE direkt in Shell interpolieren.
+          # Stattdessen via env in eine Shell-Variable laden, dann zitiert nutzen.
+          PROGRAM_ID_INPUT: ${{ github.event.inputs.program_id }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "${GEMINI_API_KEY}" ]; then
+            echo "::error::GEMINI_API_KEY Secret fehlt. Im Repo-Settings als Secret hinterlegen."
+            exit 1
+          fi
+          if [ -n "${PROGRAM_ID_INPUT}" ]; then
+            PID="${PROGRAM_ID_INPUT}"
+            LINK=$(PID="${PID}" node -e "
+              const q = require('./data/richtlinien-prioritaeten.json');
+              const it = q.items.find(i => i.programmId === process.env.PID);
+              if (!it) { console.error('Programm nicht in Queue'); process.exit(1); }
+              if (!it.infoLink) { console.error('Kein infoLink hinterlegt'); process.exit(1); }
+              console.log(it.infoLink);
+            ")
+            printf 'programm_id=%s\n' "${PID}" >> "${GITHUB_OUTPUT}"
+            npx tsx scripts/extract-richtlinie.ts "${PID}" "${LINK}"
+          else
+            PID=$(node -e "
+              const q = require('./data/richtlinien-prioritaeten.json');
+              const next = q.items.find(i => i.status === 'open' && i.infoLink);
+              if (!next) { console.error('Keine offenen Programme mit infoLink'); process.exit(2); }
+              console.log(next.programmId);
+            ")
+            printf 'programm_id=%s\n' "${PID}" >> "${GITHUB_OUTPUT}"
+            npx tsx scripts/extract-richtlinie.ts --next
+          fi
+
+      - name: Detect changes
+        id: diff
+        run: |
+          set -euo pipefail
+          if git diff --quiet data/richtlinien data/richtlinien-prioritaeten.json; then
+            echo "changed=false" >> "${GITHUB_OUTPUT}"
+            echo "Keine Änderungen in data/richtlinien — Abbruch."
+          else
+            echo "changed=true" >> "${GITHUB_OUTPUT}"
+          fi
+
+      - name: Create Pull Request
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore(richtlinien): Dossier ${{ steps.extract.outputs.programm_id }} via Cronjob"
+          branch: dossier-bot/${{ steps.extract.outputs.programm_id }}
+          delete-branch: true
+          title: "Neues Dossier: ${{ steps.extract.outputs.programm_id }}"
+          body: |
+            Automatisch vom wöchentlichen Dossier-Cron extrahiert.
+
+            **Programm:** `${{ steps.extract.outputs.programm_id }}`
+
+            ### Reviewer-Checkliste
+            - [ ] Förderhöhe / maxEur / mindestProzent stimmen mit Originalrichtlinie
+            - [ ] Pflichtabschnitte abgedeckt, Leitfragen plausibel
+            - [ ] Eigenanteil korrekt (Pflicht ja/nein, Mindest-Prozent)
+            - [ ] Kumulierung (unvereinbarMit?) angemessen
+            - [ ] Nicht-förderfähige Kosten nicht halluziniert
+            - [ ] Quellen-URLs funktionieren
+
+            KI-Extraktion hat Halluzinations-Risiko, v.a. bei Zahlen.
+            Bei Fehlern: Dossier hier im PR korrigieren (oder Queue-Status
+            in `data/richtlinien-prioritaeten.json` auf `skip` setzen, wenn
+            das Programm nicht geeignet ist), dann mergen.
+          labels: |
+            richtlinien-bot
+            auto-generated
