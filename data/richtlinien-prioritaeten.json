@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-21",
+  "generatedAt": "2026-04-23T07:35:06.411Z",
   "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
   "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
   "total": 87,
@@ -52,10 +52,9 @@
       "foerdergeberTyp": "bund",
       "foerdersummeMax": 500000,
       "reichweite": "alle",
-      "infoLink": "https://www.buendnisse-fuer-bildung.de",
+      "infoLink": "https://www.ganztagsschulen.org/de/service/investitionsprogramm-ganztagsausbau/investitionsprogramm-ganztagsausbau_node.html",
       "score": 89,
-      "status": "skip",
-      "skipReason": "infoLink liefert HTTP 403 (buendnisse-fuer-bildung.de blockiert User-Agent). Alternative Quelle: offizielle BMBF-Programmseite des Ganztagsausbaus."
+      "status": "open"
     },
     {
       "programmId": "digitalpakt-20",
@@ -115,10 +114,9 @@
       "foerdergeberTyp": "land",
       "foerdersummeMax": 10000000,
       "reichweite": "DE-NW",
-      "infoLink": "https://www.nrwbank.de",
+      "infoLink": "https://www.nrwbank.de/de/foerderung/foerderprodukte/15713/nrwbank-moderne-schule.html",
       "score": 82,
-      "status": "skip",
-      "skipReason": "Leere Extraktion: infoLink zu allgemein. Gemini-Note: Der bereitgestellte Volltext ist eine allgemeine Webseite der NRW.BANK und enthält keine spezifischen Informationen zum Förderprogramm 'nrwbank-moderne-schule'. Die Felder konnten daher nicht befüllt "
+      "status": "open"
     },
     {
       "programmId": "bosch-schulpreis",
@@ -146,10 +144,9 @@
       "foerdergeberTyp": "bund",
       "foerdersummeMax": 50000,
       "reichweite": "alle",
-      "infoLink": "https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/foerderung/foerderung_node.html",
+      "infoLink": "https://www.lesen-und-digitale-medien.de/de_DE/kultur-macht-stark",
       "score": 79,
-      "status": "skip",
-      "skipReason": "Leere Extraktion: infoLink zu allgemein. Gemini-Note: Der bereitgestellte Text ist eine allgemeine Übersichtsseite zum Programm 'Kultur macht stark. Bündnisse für Bildung' und enthält keine detaillierten Förderkonditionen."
+      "status": "open"
     },
     {
       "programmId": "kmk-pad-foerderung",
@@ -157,10 +154,9 @@
       "foerdergeberTyp": "bund",
       "foerdersummeMax": 5000,
       "reichweite": "alle",
-      "infoLink": "https://www.kmk-pad.org/programme/",
+      "infoLink": "https://www.kmk-pad.org/programme/schulpartnerschaften-der-pasch-initiative",
       "score": 77,
-      "status": "skip",
-      "skipReason": "Leere Extraktion: infoLink zu allgemein. Gemini-Note: Der vorliegende Text ist eine allgemeine Navigations- und Übersichtsseite, keine spezifische Förderrichtlinie."
+      "status": "open"
     },
     {
       "programmId": "ferry-porsche-challenge",
@@ -232,8 +228,7 @@
       "reichweite": "alle",
       "infoLink": "https://www.kinderstiftung-playmobil.de/hob-preis",
       "score": 70,
-      "status": "skip",
-      "skipReason": "Leere Extraktion: infoLink zu allgemein. Gemini-Note: Es handelt sich um einen Wettbewerb ('Hob-Preis 2025/2026') für Regel- und Förderschulen der Klassenstufen 1-4."
+      "status": "open"
     },
     {
       "programmId": "claussen-simon-fonds-schulen-2026",
