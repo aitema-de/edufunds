@@ -1,5 +1,5 @@
 {
-  "version": "2026-04-21-manuell",
+  "version": "2026-04-27-kumulierung-ids",
   "quellen": [
     "https://ensa.engagement-global.de",
     "https://ensa.engagement-global.de/begegnungsreisen.html",
@@ -69,7 +69,11 @@
   "eigenmittel": {
     "pflicht": true,
     "mindestProzent": 10,
-    "formenErlaubt": ["finanziell", "sachleistungen", "drittmittel"],
+    "formenErlaubt": [
+      "finanziell",
+      "sachleistungen",
+      "drittmittel"
+    ],
     "bemerkung": "Mind. 10 % Eigenanteil. Deckung zulaessig durch Drittmittel (Stiftungen, Foerdervereine, Sponsoring), Teilnehmendenbeitraege (Schuelerbeitrag) oder andere Fördermittel. KEINE Kombination mit anderen Bundesmitteln fuer dieselbe Massnahme."
   },
   "kumulierung": {
@@ -77,6 +81,20 @@
     "bedingungen": [
       "Kombination mit Landes-, Kommunal-, Stiftungs- oder Privatmitteln ist zulaessig, sofern Doppelfoerderung fuer identische Kostenposten ausgeschlossen ist.",
       "Kombination mit anderen Bundesmitteln (etwa Erasmus+, DAAD-Schulprogrammen, KMK-PAD) ist AUSGESCHLOSSEN fuer dieselbe Massnahme."
+    ],
+    "unvereinbarMit": [
+      {
+        "programmId": "erasmus-schule-2026",
+        "grund": "Bundesmittel-Aequivalent: ENSA und Erasmus+ Schulbildung duerfen nicht fuer dieselbe Massnahme kombiniert werden."
+      },
+      {
+        "programmId": "erasmus-schulentwicklung",
+        "grund": "Erasmus+ Partnerschaften fuer Schulentwicklung gelten als gleichgerichtete Bundes-/EU-Foerderung — Doppelfoerderung ausgeschlossen."
+      },
+      {
+        "programmId": "kmk-pad-foerderung",
+        "grund": "KMK-PAD-Programme (GAPP, PASCH, Israel) sind Bundesmittel fuer Schulpartnerschaften — Kombination fuer dieselbe Reise/Massnahme ausgeschlossen."
+      }
     ]
   },
   "antragsstruktur": {

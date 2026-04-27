@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-04-23T07:35:06.411Z",
+  "generatedAt": "2026-04-27T09:49:07.241Z",
   "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
   "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
-  "total": 87,
+  "total": 82,
   "items": [
     {
       "programmId": "kfw-erp-digitalisierung",
@@ -14,17 +14,6 @@
       "score": 108,
       "status": "skip",
       "skipReason": "Kreditprogramm fuer Unternehmen — fuer oeffentliche Schultraeger praktisch unbrauchbar. Bei Bedarf revertieren."
-    },
-    {
-      "programmId": "erasmus-alliances-innovation",
-      "name": "Erasmus+ Alliances for Innovation",
-      "foerdergeberTyp": "eu",
-      "foerdersummeMax": 8000000,
-      "reichweite": "alle",
-      "infoLink": "https://erasmus-plus.ec.europa.eu",
-      "score": 96,
-      "status": "skip",
-      "skipReason": "infoLink ist nur generisches erasmus-plus.ec.europa.eu — konkrete Ausschreibungs-URL muesste manuell in foerderprogramme.json ergaenzt werden."
     },
     {
       "programmId": "erasmus-schulentwicklung",
@@ -57,17 +46,6 @@
       "status": "open"
     },
     {
-      "programmId": "digitalpakt-20",
-      "name": "DigitalPakt Schule 2.0",
-      "foerdergeberTyp": "bund",
-      "foerdersummeMax": 500000,
-      "reichweite": "alle",
-      "infoLink": "https://www.bmftr.bund.de",
-      "score": 89,
-      "status": "skip",
-      "skipReason": "Duplikat zu bmbf-digitalpakt-2 (hat bereits Dossier). Einträge in foerderprogramme.json sollten dedupliziert werden."
-    },
-    {
       "programmId": "berlin-startchancen",
       "name": "Startchancen-Programm Berlin",
       "foerdergeberTyp": "bund",
@@ -76,17 +54,6 @@
       "infoLink": "https://www.berlin.de/sen/bildung/unterstuetzung/startchancen-programm/",
       "score": 88.1,
       "status": "done"
-    },
-    {
-      "programmId": "eit-higher-education-2026",
-      "name": "EIT Higher Education Initiative",
-      "foerdergeberTyp": "eu",
-      "foerdersummeMax": 2000000,
-      "reichweite": "alle",
-      "infoLink": "https://eit-hei.eu",
-      "score": 88,
-      "status": "skip",
-      "skipReason": "Leere Extraktion: infoLink zu allgemein. Gemini-Note: Der bereitgestellte Text ist eine allgemeine Informations- und Marketingseite der Initiative und nicht die detaillierte Förderrichtlinie eines spezifischen Calls."
     },
     {
       "programmId": "aktion-mensch-schulkooperation",
@@ -197,28 +164,6 @@
       "infoLink": "https://ensa.engagement-global.de",
       "score": 72,
       "status": "done"
-    },
-    {
-      "programmId": "z-lab-bruchsal",
-      "name": "Z-LAB MINT-Kurse",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 75000,
-      "reichweite": "DE-BW",
-      "infoLink": "https://ferry-porsche-stiftung.de",
-      "score": 70.8,
-      "status": "skip",
-      "skipReason": "Leere Extraktion: infoLink zu allgemein. Gemini-Note: Die Stiftung fördert gemeinnützige Projekte in den Bereichen Soziales, Umwelt, Bildung & Wissenschaft, Kultur und Sport."
-    },
-    {
-      "programmId": "sprungbrett-bildung-karlsruhe",
-      "name": "Sprungbrett Bildung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 75000,
-      "reichweite": "DE-BW",
-      "infoLink": "https://ferry-porsche-stiftung.de",
-      "score": 70.8,
-      "status": "skip",
-      "skipReason": "Leere Extraktion: infoLink zu allgemein. Gemini-Note: Die Ferry-Porsche-Stiftung fördert gemeinnützige Projekte in den Bereichen Soziales, Umwelt, Bildung & Wissenschaft, Kultur und Sport."
     },
     {
       "programmId": "playmobil-hobpreis",
