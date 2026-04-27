@@ -50,7 +50,7 @@ Workspace: `/home/kolja/edufunds-app/` (auf dem Production-Server liegt eine sep
 npm run dev                        # http://localhost:3101
 ```
 
-Details: [DEV-WORKFLOW.md](DEV-WORKFLOW.md). Wizard-Anknuepfen: [WIZARD_RESUME.md](WIZARD_RESUME.md) (Stand 20.04., teilweise veraltet).
+Details: [DEV-WORKFLOW.md](DEV-WORKFLOW.md). PR-Stand des Wizard-Feature-Branches: [PR_DRAFT_WIZARD.md](PR_DRAFT_WIZARD.md).
 
 ## Persistente Memory
 

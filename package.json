@@ -17,7 +17,9 @@
     "docker:prod:stop": "docker-compose -f docker-compose.prod.yml down",
     "docker:prod:logs": "docker-compose -f docker-compose.prod.yml logs -f",
     "health:check": "curl http://localhost:3101/api/health",
-    "test:smoke": "node scripts/smoke-test.js"
+    "test:smoke": "node scripts/smoke-test.js",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
@@ -53,8 +55,15 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/bcryptjs": "^2.4.6",
+    "@types/jest": "^29.5.14",
     "@types/uuid": "^10.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.4.9",
     "tsx": "^4.21.0"
   }
 }

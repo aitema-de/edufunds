@@ -39,9 +39,7 @@ cp .env.local.example .env.local   # GEMINI_API_KEY etc. eintragen
 npm run dev                        # http://localhost:3101
 ```
 
-Details und Troubleshooting: [DEV-WORKFLOW.md](DEV-WORKFLOW.md)
-
-Anknüpfen am Wizard-Feature-Branch: [WIZARD_RESUME.md](WIZARD_RESUME.md)
+Details und Troubleshooting: [DEV-WORKFLOW.md](DEV-WORKFLOW.md). Agent-Onboarding: [CLAUDE.md](CLAUDE.md).
 
 ## Deployment
 
