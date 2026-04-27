@@ -30,6 +30,7 @@ import { KumulierungsWarnung, type Conflict } from "./KumulierungsWarnung";
 import { ReadinessAmpel } from "./ReadinessAmpel";
 import type { ReadinessReport } from "@/lib/wizard/facts-readiness";
 import { listLocalSessions } from "@/lib/wizard/session-index-client";
+import { WizardErrorBlock } from "./WizardErrorBlock";
 
 interface WizardApiState {
   sessionToken: string;
@@ -421,7 +422,9 @@ export function WizardShell({ programm }: Props) {
           </div>
         )}
         {error && (
-          <p className="mb-4 text-sm text-red-400">{error}</p>
+          <div className="mx-auto mb-4 max-w-xl text-left">
+            <WizardErrorBlock message={error} onRetry={startSession} busy={busy} />
+          </div>
         )}
         <button
           type="button"
@@ -462,8 +465,8 @@ export function WizardShell({ programm }: Props) {
     <div className="grid gap-6 md:grid-cols-[1fr_320px]">
       <div>
         {error && (
-          <div className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-            {error}
+          <div className="mb-4">
+            <WizardErrorBlock message={error} />
           </div>
         )}
         {state.question && state.phase === "interviewing" && (

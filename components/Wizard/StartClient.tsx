@@ -4,12 +4,18 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnliegenForm, type AnliegenValues } from "./AnliegenForm";
 import { MatchResultList, type MatchEntry } from "./MatchResultList";
+import { WizardErrorBlock } from "./WizardErrorBlock";
 import { saveHandoff } from "@/lib/wizard/match-handoff-client";
+
+interface RawError {
+  message: string;
+  httpStatus?: number;
+}
 
 export function StartClient() {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<RawError | null>(null);
   const [matches, setMatches] = useState<MatchEntry[] | null>(null);
   const [lastInput, setLastInput] = useState<AnliegenValues | null>(null);
 
@@ -26,15 +32,21 @@ export function StartClient() {
       });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
-        throw new Error(body.error ?? `HTTP ${res.status}`);
+        const msg = body.error ?? `HTTP ${res.status}`;
+        setError({ message: String(msg), httpStatus: res.status });
+        return;
       }
       const body = await res.json();
       setMatches((body.matches ?? []) as MatchEntry[]);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Matching fehlgeschlagen");
+      setError({ message: e instanceof Error ? e.message : "Matching fehlgeschlagen" });
     } finally {
       setBusy(false);
     }
+  };
+
+  const retry = () => {
+    if (lastInput) runMatch(lastInput);
   };
 
   const startAntrag = (m: MatchEntry) => {
@@ -54,9 +66,12 @@ export function StartClient() {
     <div className="space-y-6">
       <AnliegenForm onSubmit={runMatch} busy={busy} />
       {error && (
-        <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-          {error}
-        </div>
+        <WizardErrorBlock
+          message={error.message}
+          httpStatus={error.httpStatus}
+          onRetry={retry}
+          busy={busy}
+        />
       )}
       {matches !== null && (
         <div className="pt-2">
