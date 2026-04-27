@@ -30,6 +30,7 @@ import type { Usage } from "./pricing";
 import type { Richtlinie } from "./richtlinien-schema";
 import { generateFinanzplan } from "./finanzplan-generator";
 import { buildFallbackTitle } from "./title-fallback";
+import { buildFallbackOutline } from "./outline-fallback";
 
 const SCHWERE_VALID: readonly CritiqueSchwere[] = ["hoch", "mittel", "niedrig"];
 const KATEGORIE_VALID: readonly CritiqueKategorie[] = [
@@ -193,13 +194,25 @@ export async function runPipeline(
     emit({ stage: "outline", message: "Uebernehme Gliederung aus Foerderrichtlinie" });
   } else {
     emit({ stage: "outline", message: "Erstelle Gliederung" });
-    const outlineRes = await generateJson<Outline>(
-      MODEL_PRO,
-      OUTLINE_SYSTEM,
-      buildOutlinePrompt(programm, facts)
-    );
-    usages.push({ model: MODEL_PRO, usage: outlineRes.usage });
-    outline = outlineRes.value;
+    try {
+      const outlineRes = await generateJson<Outline>(
+        MODEL_PRO,
+        OUTLINE_SYSTEM,
+        buildOutlinePrompt(programm, facts)
+      );
+      usages.push({ model: MODEL_PRO, usage: outlineRes.usage });
+      outline = outlineRes.value;
+    } catch (err) {
+      // Fallback: generische 7-Abschnitt-Standardgliederung. Section-Generierung
+      // kann immer noch scheitern, aber der Pipeline-Start crasht nicht mehr.
+      console.warn("[pipeline] Outline-LLM-Aufruf fehlgeschlagen, nutze generischen Fallback:", err);
+      emit({
+        stage: "outline",
+        message: "LLM-Aufruf fehlgeschlagen — verwende Standard-Gliederung",
+        payload: { fallback: true, reason: err instanceof Error ? err.message : String(err) },
+      });
+      outline = buildFallbackOutline(programm, facts);
+    }
   }
 
   const sections: Array<{ name: string; text: string }> = [];
