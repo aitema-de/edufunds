@@ -5,6 +5,7 @@ import { getWizardSession, updateWizardSession } from "@/lib/wizard/session";
 import type { Finanzplan, Finanzposten } from "@/lib/wizard/types";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
 import { validateFinanzplan } from "@/lib/wizard/finanzplan-validator";
+import { computeAutofixes, toMeta } from "@/lib/wizard/finanzplan-autofix";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
 
@@ -71,10 +72,17 @@ export async function POST(req: NextRequest) {
     const validation = updated.data.generation?.finanzplan
       ? validateFinanzplan(updated.data.generation.finanzplan, richtlinie)
       : null;
+    const autofixes = updated.data.generation?.finanzplan
+      ? computeAutofixes({
+          posten: updated.data.generation.finanzplan.posten,
+          richtlinie,
+        }).map(toMeta)
+      : [];
     return NextResponse.json({
       sessionToken: updated.sessionToken,
       finanzplan: updated.data.generation?.finanzplan ?? null,
       validation,
+      autofixes,
     });
   } catch (err) {
     console.error("[wizard/finanzplan] Fehler:", err);

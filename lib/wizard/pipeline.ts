@@ -29,6 +29,7 @@ import { MODEL_FLASH, MODEL_PRO, generateJson, generateText } from "./gemini";
 import type { Usage } from "./pricing";
 import type { Richtlinie } from "./richtlinien-schema";
 import { generateFinanzplan } from "./finanzplan-generator";
+import { buildFallbackTitle } from "./title-fallback";
 
 const SCHWERE_VALID: readonly CritiqueSchwere[] = ["hoch", "mittel", "niedrig"];
 const KATEGORIE_VALID: readonly CritiqueKategorie[] = [
@@ -178,12 +179,8 @@ export async function runPipeline(
   // direkt als Gliederung — keine freie KI-Outline.
   let outline: Outline;
   if (richtlinie?.antragsstruktur?.abschnitte?.length) {
-    const titel =
-      (facts.projekt as { titel?: string } | undefined)?.titel ??
-      (facts.projekt as { kurzbeschreibung?: string } | undefined)?.kurzbeschreibung?.slice(0, 80) ??
-      `Antrag auf Foerderung: ${programm.name}`;
     outline = {
-      titel,
+      titel: buildFallbackTitle(programm, facts),
       abschnitte: richtlinie.antragsstruktur.abschnitte
         .filter((a) => a.pflicht !== false)
         .map((a) => ({

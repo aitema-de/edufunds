@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { AlertCircle, Check, Download, Info, Loader2, Plus, Trash2, ShieldCheck, X } from "lucide-react";
+import { AlertCircle, Check, Download, Info, Loader2, Plus, Trash2, ShieldCheck, Wand2, X } from "lucide-react";
 import type { Finanzplan, Finanzposten } from "@/lib/wizard/types";
 
 type ValidationResult = {
@@ -13,6 +13,8 @@ type ValidationResult = {
   foerderungProzent: number;
   okFuerFreigabe: boolean;
 };
+
+type AutofixMeta = { id: string; label: string; description: string };
 
 const KATEGORIE_OPTIONS: Array<{ value: Finanzposten["kategorie"]; label: string }> = [
   { value: "personal", label: "Personalkosten" },
@@ -44,6 +46,8 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
   const [busy, setBusy] = useState(false);
   const [dirty, setDirty] = useState(false);
   const [validation, setValidation] = useState<ValidationResult | null>(null);
+  const [autofixes, setAutofixes] = useState<AutofixMeta[]>([]);
+  const [autofixBusy, setAutofixBusy] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [legitimized, setLegitimized] = useState<boolean>(!!initialPlan.legitimiertAm);
 
@@ -91,6 +95,7 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
       }
       const body = await res.json();
       setValidation(body.validation ?? null);
+      setAutofixes(Array.isArray(body.autofixes) ? body.autofixes : []);
       setDirty(false);
       if (body.finanzplan) {
         setPosten(body.finanzplan.posten);
@@ -100,6 +105,36 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
       setError(e instanceof Error ? e.message : "Speichern fehlgeschlagen");
     } finally {
       setBusy(false);
+    }
+  };
+
+  const applyAutofix = async (actionId: string) => {
+    if (dirty) {
+      await save();
+    }
+    setAutofixBusy(actionId);
+    setError(null);
+    try {
+      const res = await fetch("/api/wizard/finanzplan/autofix", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionToken, actionId }),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.error ?? `HTTP ${res.status}`);
+      }
+      const body = await res.json();
+      setValidation(body.validation ?? null);
+      setAutofixes(Array.isArray(body.autofixes) ? body.autofixes : []);
+      if (body.finanzplan) {
+        setPosten(body.finanzplan.posten);
+        onChange?.(body.finanzplan);
+      }
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Auto-Fix fehlgeschlagen");
+    } finally {
+      setAutofixBusy(null);
     }
   };
 
@@ -318,6 +353,38 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
               </div>
             );
           })}
+        </div>
+      )}
+
+      {!legitimized && autofixes.length > 0 && (
+        <div className="mt-4 rounded-lg border border-[#c9a227]/40 bg-[#c9a227]/5 p-3">
+          <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#c9a227]">
+            <Wand2 className="h-3.5 w-3.5" />
+            Auto-Fix-Vorschlaege
+          </div>
+          <ul className="space-y-2">
+            {autofixes.map((a) => (
+              <li key={a.id} className="flex flex-col gap-1 rounded-md border border-slate-700/60 bg-slate-900/40 p-2 sm:flex-row sm:items-start sm:gap-3">
+                <div className="flex-1 text-xs text-slate-300">
+                  <div className="font-medium text-slate-100">{a.label}</div>
+                  <div className="mt-0.5 text-[11px] leading-relaxed text-slate-400">{a.description}</div>
+                </div>
+                <button
+                  type="button"
+                  disabled={autofixBusy !== null || busy}
+                  onClick={() => applyAutofix(a.id)}
+                  className="inline-flex shrink-0 items-center gap-1.5 self-start rounded border border-[#c9a227]/60 bg-[#c9a227]/10 px-3 py-1.5 text-xs font-medium text-[#f5d36a] transition hover:bg-[#c9a227]/20 disabled:opacity-50"
+                >
+                  {autofixBusy === a.id ? (
+                    <Loader2 className="h-3 w-3 animate-spin" />
+                  ) : (
+                    <Wand2 className="h-3 w-3" />
+                  )}
+                  Anwenden
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
 
