@@ -36,18 +36,52 @@ export interface MatchResult {
  * Vor-Filter: Programme ausschliessen, die aufgrund harter Kriterien nicht passen.
  * Reduziert Token-Verbrauch und Halluzinationen des Matchers.
  */
+/** Vollnamen der Bundeslaender → Daten-Codes wie sie in foerderprogramme.json stehen. */
+const BUNDESLAND_NAME_TO_CODE: Record<string, string> = {
+  "BADEN-WÜRTTEMBERG": "DE-BW",
+  "BADEN-WUERTTEMBERG": "DE-BW",
+  "BAYERN": "DE-BY",
+  "BERLIN": "DE-BE",
+  "BRANDENBURG": "DE-BB",
+  "BREMEN": "DE-HB",
+  "HAMBURG": "DE-HH",
+  "HESSEN": "DE-HE",
+  "MECKLENBURG-VORPOMMERN": "DE-MV",
+  "NIEDERSACHSEN": "DE-NI",
+  "NORDRHEIN-WESTFALEN": "DE-NW",
+  "RHEINLAND-PFALZ": "DE-RP",
+  "SAARLAND": "DE-SL",
+  "SACHSEN": "DE-SN",
+  "SACHSEN-ANHALT": "DE-ST",
+  "SCHLESWIG-HOLSTEIN": "DE-SH",
+  "THÜRINGEN": "DE-TH",
+  "THUERINGEN": "DE-TH",
+};
+
+/** Akzeptiert Vollname (z. B. „Baden-Württemberg") ODER Code (z. B. „DE-BW") und liefert den Code. */
+function normalizeBundesland(raw: string | undefined): string | null {
+  if (!raw) return null;
+  const upper = raw.trim().toUpperCase();
+  if (!upper) return null;
+  // Schon Code-Form?
+  if (/^DE-[A-Z]{2}$/.test(upper)) return upper;
+  return BUNDESLAND_NAME_TO_CODE[upper] ?? null;
+}
+
 function prefilter(input: MatchInput, all: Foerderprogramm[]): Foerderprogramm[] {
-  const bl = input.bundesland?.trim().toUpperCase();
+  const blCode = normalizeBundesland(input.bundesland);
   return all.filter((p) => {
     // Abgelaufene Fristen ausschliessen
     if ((p as any).status && (p as any).status === "abgelaufen") return false;
 
     // Landesprogramme filtern: wenn User bundesland gesetzt hat und
     // Programm explizit andere Laender fordert
-    if (bl && Array.isArray((p as any).bundeslaender) && (p as any).bundeslaender.length > 0) {
-      const codes = ((p as any).bundeslaender as string[]).map((x) => x.toUpperCase());
-      // "DE-ALLE" oder leeres Array bedeutet bundesweit; sonst match auf konkretem Code
-      if (!codes.includes("DE-ALLE") && !codes.some((c) => c.endsWith(bl))) return false;
+    if (blCode && Array.isArray((p as any).bundeslaender) && (p as any).bundeslaender.length > 0) {
+      const entries = ((p as any).bundeslaender as string[]).map((x) => x.toLowerCase());
+      // "alle" bedeutet bundesweit; sonst exakter Match auf BL-Code
+      const isBundesweit = entries.includes("alle");
+      const matchesBL = entries.includes(blCode.toLowerCase());
+      if (!isBundesweit && !matchesBL) return false;
     }
 
     return true;
