@@ -1,14 +1,35 @@
 /**
- * Matching: Anliegen + Schul-Kontext → gerankte Liste passender Förderprogramme.
- * Nutzt Gemini 2.0 Flash mit JSON-Output.
+ * Matching: Anliegen + Schul-Kontext → gerankte Liste passender Foerderprogramme.
+ * Nutzt das Interview-Modell mit Plain-Text-Pipe-Format. JSON-Mode ist bei
+ * DeepSeek 5–10× langsamer (zu viel internes Reasoning um JSON-Strukturen),
+ * deshalb hier Format `id|score|begruendung` pro Zeile.
  */
 
 import foerderprogrammeData from "@/data/foerderprogramme.json";
+import prioritaetenData from "@/data/richtlinien-prioritaeten.json";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
-import { MODEL_FLASH, generateJson } from "./llm";
+import { MODEL_FLASH, generateText } from "./llm";
 import { addUsage, emptyLedger, type CostLedger } from "./pricing";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
+
+/**
+ * Map programmId → Queue-Score. Wird zum Top-N-Prefilter genutzt, damit der
+ * LLM-Prompt schlank bleibt (DeepSeek skaliert hart mit Input-Groesse).
+ */
+const QUEUE_SCORES: Map<string, number> = new Map(
+  ((prioritaetenData as { items?: Array<{ programmId: string; score: number; status?: string }> }).items ?? [])
+    .filter((q) => q.status !== "skip")
+    .map((q) => [q.programmId, q.score] as const)
+);
+
+/** Wieviele Programme maximal an den LLM uebergeben werden. */
+const MAX_LLM_CANDIDATES = 20;
+/** Wieviele Treffer der LLM maximal liefern soll. */
+const MAX_MATCHES = 3;
+/** Hard-Cap fuer Output-Tokens. Reicht satt fuer 3 Pipe-Zeilen
+ * (~150 Tokens echte Nutzlast). Notbremse, kein aktiver Cut. */
+const MATCHER_MAX_TOKENS = 400;
 
 export interface MatchInput {
   anliegen: string;
@@ -90,15 +111,14 @@ function prefilter(input: MatchInput, all: Foerderprogramm[]): Foerderprogramm[]
 
 /**
  * Baut eine kompakte Karten-Darstellung pro Programm (für den LLM-Prompt).
+ * Bewusst minimal — DeepSeek-Latency skaliert mit Input-Groesse, daher nur die
+ * Felder, die der Matcher fuer Score + Begruendung braucht. Frist/Geber/Typ/
+ * Zielgruppe werden erst spaeter (Programm-Detail-Seite) ausgespielt.
  */
 interface CompactProgrammCard {
   id: string;
   name: string;
-  typ?: string;
-  geber?: string;
-  zielgruppe?: string;
   foerdersumme?: number | string;
-  frist?: string;
   kategorien?: string[];
   kurz?: string;
 }
@@ -107,41 +127,37 @@ function toCard(p: Foerderprogramm): CompactProgrammCard {
   return {
     id: p.id,
     name: p.name,
-    typ: (p as any).foerdergeberTyp,
-    geber: (p as any).foerdergeber,
-    zielgruppe: (p as any).zielgruppeText?.substring(0, 120),
     foerdersumme: (p as any).foerdersummeMax ?? (p as any).foerdersummeText,
-    frist: (p as any).bewerbungsfristText?.substring(0, 40),
     kategorien: ((p as any).kategorien ?? []).slice(0, 4),
-    kurz: ((p as any).kurzbeschreibung ?? "").substring(0, 240),
+    kurz: ((p as any).kurzbeschreibung ?? "").substring(0, 120),
   };
 }
 
-const MATCHER_SYSTEM = `Du bist ein erfahrener Fördermittel-Berater fuer Schulen in Deutschland.
-Deine Aufgabe: ein Anliegen einer Schule mit einer Liste von Foerderprogrammen abgleichen und die 5 Programme zurueckgeben, die AM BESTEN passen.
+const MATCHER_SYSTEM = `Du bist Foerdermittel-Berater fuer Schulen in Deutschland.
+Aufgabe: Anliegen + Liste von Foerderprogrammen → die ${MAX_MATCHES} BESTEN Treffer.
 
-## Matching-Kriterien (von wichtig nach weniger wichtig)
-1. Thematische Passung: Bearbeitet das Programm genau das beschriebene Anliegen? Passt die Zielgruppe?
-2. Formale Passung: Schultyp, Bundesland, Foerdersumme realistisch erreichbar.
-3. Praktikabilitaet: Frist liegt in Zukunft, Aufwand-Nutzen-Verhaeltnis vertretbar.
-4. Wirkungstiefe: Programm mit groesserer Hebelwirkung bevorzugen, wenn es thematisch gleich passt.
+## Kriterien (Reihenfolge = Gewicht)
+1. Thematische Passung  2. Formale Passung (Schultyp, Bundesland, Summe)
+3. Praktikabilitaet  4. Wirkungstiefe
 
-## Was DU NICHT tust
-- KEINE Programme erfinden. Nur IDs aus der gelieferten Liste.
-- KEINE "passt irgendwie" Empfehlungen. Score < 50 rausfiltern.
-- KEIN Gefaelligkeits-Ranking. Wenn nichts passt, gib weniger als 5 Programme oder eine leere Liste.
+## Verboten
+- Programme erfinden (nur IDs aus der Liste)
+- Score < 50 (lieber leere Liste als Gefaelligkeit)
 
-## Ausgabeformat (valides JSON, keine Fences)
-{
-  "matches": [
-    {
-      "id": "programm-id-exakt-wie-in-liste",
-      "score": 0..100,
-      "begruendung": "1-2 Saetze, warum dieses Programm zum Anliegen passt. Konkret, mit Bezug zur Anliegen-Formulierung."
-    }
-  ]
-}
-Sortiert von höchstem zu niedrigstem Score. Maximal 5 Treffer.`;
+## AUSGABE — exakt ${MAX_MATCHES} Zeilen, Format pro Zeile:
+id|score|begruendung
+
+- id: exakt aus der Liste, kein Whitespace drum
+- score: ganze Zahl 50-100
+- begruendung: 1 Satz, MAX 15 Woerter, sachlich, mit konkretem Bezug zum Anliegen
+
+## Beispiel
+bmbf-digitalpakt-2|95|Bundesweite Foerderung digitaler Schulinfrastruktur, deckt Bibliotheks-Hardware ab.
+ferry-porsche-challenge|80|Wettbewerb fuer kreative Bildungsprojekte mit digitaler Komponente.
+kultur-macht-stark|65|Aussserschulische kulturelle Bildung, Lese- und Medienkompetenz foerderbar.
+
+KEINE Vorrede, KEINE Markdown-Bullets/Fences, KEINE Erklaerung danach.
+Sortiert nach Score absteigend. Wenn weniger als ${MAX_MATCHES} Programme passen, weniger Zeilen ausgeben.`;
 
 function buildUserPrompt(input: MatchInput, cards: CompactProgrammCard[]): string {
   const ctx: string[] = [];
@@ -154,9 +170,7 @@ function buildUserPrompt(input: MatchInput, cards: CompactProgrammCard[]): strin
     profile.push(`Geschaetztes Budget: ${input.geschaetztesBudgetEur.toLocaleString("de-DE")} EUR`);
   if (profile.length) ctx.push(`\nSCHUL-PROFIL:\n${profile.join("\n")}`);
   ctx.push(`\nKANDIDATENLISTE (${cards.length} Programme):\n${JSON.stringify(cards)}`);
-  ctx.push(
-    "\nFinde die maximal 5 passendsten und begruende. Achte darauf, dass die id exakt wie in der Liste ist."
-  );
+  ctx.push(`\nLiefere die ${MAX_MATCHES} besten Treffer im Pipe-Format. IDs exakt wie in der Liste.`);
   return ctx.join("\n");
 }
 
@@ -164,6 +178,32 @@ interface RawMatch {
   id: string;
   score: number;
   begruendung: string;
+}
+
+/**
+ * Parser fuer das Pipe-Format `id|score|begruendung`.
+ * Robust gegen Vorrede, Bullet-Praefixe, Markdown-Fences. Pipes in der
+ * Begruendung werden zusammengefuehrt (split.length-bedingt).
+ */
+function parsePipeMatches(text: string, validIds: Set<string>): RawMatch[] {
+  const out: RawMatch[] = [];
+  for (const rawLine of text.split("\n")) {
+    // Markdown-Fences und Leerzeilen verwerfen
+    if (/^\s*```/.test(rawLine) || !rawLine.trim()) continue;
+    // fuehrende Bullets/Nummern entfernen ("- ", "* ", "1. ", "1) ")
+    const cleaned = rawLine.trim().replace(/^[-*•]\s+|^\d+[.)]\s+/, "");
+    const idx1 = cleaned.indexOf("|");
+    if (idx1 < 0) continue;
+    const idx2 = cleaned.indexOf("|", idx1 + 1);
+    if (idx2 < 0) continue;
+    const id = cleaned.slice(0, idx1).trim();
+    const scoreStr = cleaned.slice(idx1 + 1, idx2).trim();
+    const begruendung = cleaned.slice(idx2 + 1).trim();
+    const score = parseInt(scoreStr, 10);
+    if (!id || !validIds.has(id) || isNaN(score)) continue;
+    out.push({ id, score, begruendung });
+  }
+  return out;
 }
 
 export async function runMatch(input: MatchInput): Promise<MatchResult> {
@@ -174,29 +214,37 @@ export async function runMatch(input: MatchInput): Promise<MatchResult> {
   }
 
   const filtered = prefilter(input, programme);
-  const cards = filtered.map(toCard);
 
-  const { value, usage } = await generateJson<{ matches: RawMatch[] }>(
+  // Top-N nach Queue-Score: aussichtsreichste Programme zuerst, Rest faellt
+  // weg. Ein Programm ohne Queue-Eintrag bekommt Score 0 (landet hinten).
+  const topN = [...filtered]
+    .sort((a, b) => (QUEUE_SCORES.get(b.id) ?? 0) - (QUEUE_SCORES.get(a.id) ?? 0))
+    .slice(0, MAX_LLM_CANDIDATES);
+  const cards = topN.map(toCard);
+
+  const { value: rawText, usage } = await generateText(
     MODEL_FLASH,
     MATCHER_SYSTEM,
-    buildUserPrompt(input, cards)
+    buildUserPrompt(input, cards),
+    { maxTokens: MATCHER_MAX_TOKENS }
   );
 
   const costs = addUsage(emptyLedger(), MODEL_FLASH, usage);
+  const validIds = new Set(programme.map((p) => p.id));
+  const rawMatches = parsePipeMatches(rawText, validIds);
 
   const matches: MatchedProgramm[] = [];
-  for (const m of value.matches ?? []) {
-    if (!m.id || typeof m.score !== "number") continue;
+  for (const m of rawMatches) {
     if (m.score < 50) continue;
     const p = programme.find((x) => x.id === m.id);
-    if (!p) continue; // KI hat halluziniert / wir haben es rausgefiltert
-    matches.push({ id: m.id, score: Math.round(m.score), begruendung: m.begruendung ?? "", programm: p });
+    if (!p) continue;
+    matches.push({ id: m.id, score: Math.round(m.score), begruendung: m.begruendung, programm: p });
   }
 
   matches.sort((a, b) => b.score - a.score);
 
   return {
-    matches: matches.slice(0, 5),
+    matches: matches.slice(0, MAX_MATCHES),
     costs,
     totalCandidates: filtered.length,
     filteredOut: programme.length - filtered.length,
