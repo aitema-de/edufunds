@@ -1,10 +1,21 @@
 /**
- * Preismodell für Gemini-Calls (Stand April 2026, Paid Tier, Region EU).
- * Alle Werte in USD pro 1 Mio Tokens. Konvertierung zu EUR per Wechselkurs-Konstante.
+ * Preismodell für LLM-Calls (Stand April 2026, USD pro 1 Mio Tokens).
+ * Konvertierung zu EUR per Wechselkurs-Konstante.
  *
- * Quellen-Hinweis: Google ändert Preise ohne Migration. Wenn Prod-Dashboard von
- * unseren Zahlen abweicht, hier nachziehen — wir berechnen eine Schätzung,
- * keine Abrechnung.
+ * Quellen-Hinweis: Anbieter aendern Preise ohne Migration. Wenn die Live-
+ * Abrechnung im Provider-Dashboard von unseren Zahlen abweicht, hier
+ * nachziehen — wir berechnen eine Schaetzung, keine Abrechnung.
+ *
+ * Gemini Paid Tier:
+ *   - gemini-2.0-flash: $0.075 / $0.30
+ *   - gemini-2.5-pro:   $1.25 / $10
+ *
+ * DeepSeek API (cache-miss-Preise, ohne Promo):
+ *   - deepseek-chat:     $0.14  / $0.28  (= v4-flash ohne Reasoning)
+ *   - deepseek-v4-flash: $0.14  / $0.28  (mit Reasoning — wir nutzen es nicht)
+ *   - deepseek-v4-pro:   $1.74  / $3.48
+ *     (Pro hat Promo bis 05.05.2026: $0.435 / $0.87 — wir
+ *      tracken hier konservativ den regulaeren Preis.)
  */
 
 export interface ModelPrice {
@@ -15,6 +26,9 @@ export interface ModelPrice {
 const USD_PER_M_TOKENS: Record<string, ModelPrice> = {
   "gemini-2.0-flash": { inputPerMTokens: 0.075, outputPerMTokens: 0.3 },
   "gemini-2.5-pro": { inputPerMTokens: 1.25, outputPerMTokens: 10 },
+  "deepseek-chat": { inputPerMTokens: 0.14, outputPerMTokens: 0.28 },
+  "deepseek-v4-flash": { inputPerMTokens: 0.14, outputPerMTokens: 0.28 },
+  "deepseek-v4-pro": { inputPerMTokens: 1.74, outputPerMTokens: 3.48 },
 };
 
 const USD_TO_EUR = 0.92;

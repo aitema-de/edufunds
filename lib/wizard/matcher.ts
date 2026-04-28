@@ -5,7 +5,7 @@
 
 import foerderprogrammeData from "@/data/foerderprogramme.json";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
-import { MODEL_FLASH, generateJson } from "./gemini";
+import { MODEL_FLASH, generateJson } from "./llm";
 import { addUsage, emptyLedger, type CostLedger } from "./pricing";
 
 const programme = foerderprogrammeData as Foerderprogramm[];

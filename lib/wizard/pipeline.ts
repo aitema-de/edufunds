@@ -25,7 +25,7 @@ import {
   buildRecheckPrompt,
   buildConsistencyPrompt,
 } from "./prompts";
-import { MODEL_FLASH, MODEL_PRO, generateJson, generateText } from "./gemini";
+import { MODEL_FLASH, MODEL_PRO, generateJson, generateText } from "./llm";
 import type { Usage } from "./pricing";
 import type { Richtlinie } from "./richtlinien-schema";
 import { generateFinanzplan } from "./finanzplan-generator";

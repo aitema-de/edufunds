@@ -2,7 +2,7 @@ import { randomUUID } from "crypto";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type { Finanzplan, Finanzposten, WizardFacts } from "./types";
 import type { Richtlinie } from "./richtlinien-schema";
-import { MODEL_PRO, generateJson } from "./gemini";
+import { MODEL_PRO, generateJson } from "./llm";
 import { FINANZPLAN_SYSTEM, buildFinanzplanPrompt } from "./prompts";
 import type { Usage } from "./pricing";
 

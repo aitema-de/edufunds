@@ -3,6 +3,9 @@ const nextConfig = {
   output: 'standalone',
   poweredByHeader: false,
   compress: true,
+  // Turbopack-Workspace-Root explizit setzen, sonst pickt Next den
+  // Eltern-Ordner /home/kolja/ als Root (dort liegen verirrte package*.json).
+  turbopack: { root: __dirname },
   images: { 
     unoptimized: true,
     formats: ['image/webp', 'image/avif'],

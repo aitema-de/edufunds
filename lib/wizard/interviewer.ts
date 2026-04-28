@@ -7,7 +7,7 @@ import type {
   WizardMessage,
 } from "./types";
 import { INTERVIEWER_SYSTEM, buildInterviewerUserPrompt } from "./prompts";
-import { MODEL_FLASH, generateJson } from "./gemini";
+import { MODEL_FLASH, generateJson } from "./llm";
 import type { Usage } from "./pricing";
 import type { Richtlinie } from "./richtlinien-schema";
 
