@@ -50,7 +50,51 @@ describe("buildFallbackTitle", () => {
 
   it("nimmt Schule allein, wenn keine Aktivitaeten/Hauptposten", () => {
     const t = buildFallbackTitle(PROGRAMM, facts({ schule: { name: "GS Musterhausen" } }));
-    expect(t).toBe("GS Musterhausen: Antrag auf Foerderung durch DigitalPakt 2.0");
+    expect(t).toBe("Foerdervorhaben an der GS Musterhausen — Antrag bei DigitalPakt 2.0");
+  });
+
+  it("entfernt Klammer-Suffix aus Aktivitaet (z.B. (ca. 6h, 12-14 Lehrkraefte))", () => {
+    const t = buildFallbackTitle(
+      PROGRAMM,
+      facts({
+        projekt: {
+          aktivitaeten: ["Tablets anschaffen (ca. 32 Geraete fuer Klassen 5/6)"],
+        },
+        schule: { name: "GS X" },
+      })
+    );
+    expect(t).toBe("Tablets anschaffen — GS X (DigitalPakt 2.0)");
+  });
+
+  it("springt zu Schule+Programm, wenn Subject Einzelaktivitaet ist und mehrere Aktivitaeten vorliegen", () => {
+    // UAT-Reproducer 28.04.: zwei Fortbildungen als Aktivitaeten — die erste taugt
+    // nicht als vorhaben-uebergreifender Antragstitel.
+    const t = buildFallbackTitle(
+      PROGRAMM,
+      facts({
+        projekt: {
+          aktivitaeten: [
+            "Fortbildung 'Apps im DaZ-Unterricht' (ca. 6h, 12-14 Lehrkraefte)",
+            "Fortbildung 'Interaktives Whiteboard und Tablet im Sachunterricht' (ca. 6h, 12-14 Lehrkraefte)",
+          ],
+        },
+        schule: { name: "Borsigwalder Grundschule" },
+      })
+    );
+    expect(t).toBe("Foerdervorhaben an der Borsigwalder Grundschule — Antrag bei DigitalPakt 2.0");
+  });
+
+  it("nimmt Einzel-Fortbildung als Titel, wenn nur eine Aktivitaet vorliegt", () => {
+    // Wenn nur EINE Aktivitaet existiert, IST sie das Vorhaben — auch wenn sie
+    // mit "Fortbildung" beginnt. Klammer-Suffix wird trotzdem entfernt.
+    const t = buildFallbackTitle(
+      PROGRAMM,
+      facts({
+        projekt: { aktivitaeten: ["Fortbildung Mediendidaktik (10 Lehrkraefte)"] },
+        schule: { name: "GS Y" },
+      })
+    );
+    expect(t).toBe("Fortbildung Mediendidaktik — GS Y (DigitalPakt 2.0)");
   });
 
   it("nutzt kurzbeschreibung wenn alles andere fehlt", () => {

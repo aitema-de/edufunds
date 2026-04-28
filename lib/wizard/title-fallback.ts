@@ -35,6 +35,27 @@ function dropTrailingPunctuation(s: string): string {
   return s.replace(/[.!?,;:]+\s*$/u, "");
 }
 
+/**
+ * Entfernt nachgestellte Klammer-Anhaengsel wie "(ca. 6h, 12-14 Lehrkraefte)"
+ * aus Aktivitaets-Strings. Solche Suffixe machen Titel laenglich und sind im
+ * Antragstitel deplaziert.
+ */
+function stripParenthetical(s: string): string {
+  return s.replace(/\s*\([^)]*\)\s*$/u, "").trim();
+}
+
+/**
+ * Erkennt Aktivitaets-Strings, die nach einer einzelnen Massnahme klingen
+ * (z. B. "Fortbildung Apps im DaZ-Unterricht") und nicht nach einem vorhaben-
+ * uebergreifenden Titel. Wenn mehrere solcher Eintraege in `aktivitaeten`
+ * stehen, ist das ein Hinweis darauf, dass keine einzelne als Antragstitel
+ * taugt — der Antrag braucht dann einen abstrakteren Titel.
+ */
+const SINGLE_ACTIVITY_PREFIX = /^(Fortbildung|Workshop|Schulung|Seminar|Beschaffung|Anschaffung|Lizenz|Ausstattung)\b/iu;
+function looksLikeSingleActivity(s: string): boolean {
+  return SINGLE_ACTIVITY_PREFIX.test(s);
+}
+
 function lowercaseFirst(s: string): string {
   if (!s) return s;
   return s[0]!.toLowerCase() + s.slice(1);
@@ -63,27 +84,38 @@ export function buildFallbackTitle(
   if (explicit) return shorten(explicit, MAX_LEN);
 
   const schule = trim(facts.schule?.name);
-  const aktivitaet = trim(pickFirst(facts.projekt?.aktivitaeten));
+  const aktivitaeten = facts.projekt?.aktivitaeten ?? [];
+  const aktivitaet = trim(pickFirst(aktivitaeten));
   const hauptposten = trim(pickFirst(facts.budget?.hauptposten));
   const kurzbeschreibung = trim(facts.projekt?.kurzbeschreibung);
 
-  const subject = aktivitaet || hauptposten;
+  // Klammer-Suffixe wie "(ca. 6h, 12-14 Lehrkraefte)" raus — gehoeren nicht in
+  // einen Antragstitel.
+  const subjectRaw = aktivitaet || hauptposten;
+  const subject = subjectRaw ? stripParenthetical(subjectRaw) : "";
+
+  // Wenn das Subjekt wie eine einzelne Massnahme klingt UND mehrere Aktivitaeten
+  // in der Liste stehen, ist die erste keine guter Antragstitel — wir wollen
+  // einen vorhaben-uebergreifenden Titel. Springe zu Stufe 4.
+  const subjectIsSingleAct = !!subject && looksLikeSingleActivity(subject);
+  const hasMultipleActivities = aktivitaeten.length >= 2;
+  const subjectTaugtAlsTitel = subject && !(subjectIsSingleAct && hasMultipleActivities);
 
   // 2. Subjekt (Aktivitaet/Hauptposten) + Schule + Programm
-  if (subject && schule) {
+  if (subjectTaugtAlsTitel && schule) {
     const s = dropTrailingPunctuation(subject);
     return shorten(`${s} — ${schule} (${programmName})`, MAX_LEN);
   }
 
   // 3. Subjekt allein + Programm
-  if (subject) {
+  if (subjectTaugtAlsTitel) {
     const s = dropTrailingPunctuation(subject);
     return shorten(`${s}: Antrag bei ${programmName}`, MAX_LEN);
   }
 
   // 4. Schule allein + Programm
   if (schule) {
-    return shorten(`${schule}: Antrag auf Foerderung durch ${programmName}`, MAX_LEN);
+    return shorten(`Foerdervorhaben an der ${schule} — Antrag bei ${programmName}`, MAX_LEN);
   }
 
   // 5. Kurzbeschreibung als Notnagel
