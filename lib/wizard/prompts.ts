@@ -35,7 +35,7 @@ function richtlinieBlock(
 
   if (kontext === "interviewer") {
     out.push("Die folgenden Abschnitte muessen im Antrag vorkommen — stelle deine Fragen so, dass am Ende alle Abschnitte inhaltlich gut befuellbar sind. Du musst nicht jede Leitfrage einzeln stellen, aber sicherstellen, dass keine offene Luecke bleibt.");
-    for (const a of r.antragsstruktur.abschnitte) {
+    for (const a of (r.antragsstruktur.abschnitte ?? [])) {
       out.push(`\n[${a.id}] ${a.name}${a.pflicht ? " (Pflicht)" : " (optional)"}`);
       if (a.leitfragen?.length) out.push(`  Leitfragen: ${a.leitfragen.join(" | ")}`);
       if (a.stilhinweis) out.push(`  Stil: ${a.stilhinweis}`);
@@ -52,7 +52,7 @@ function richtlinieBlock(
       "Pruefe den Entwurf zusaetzlich daraufhin, dass er die Anforderungen dieser Richtlinie erfuellt. Lieber einen Finding zu viel als einen zu wenig."
     );
     out.push("\nPflichtabschnitte (muessen im Antrag erkennbar sein):");
-    for (const a of r.antragsstruktur.abschnitte) {
+    for (const a of (r.antragsstruktur.abschnitte ?? [])) {
       if (a.pflicht === false) continue;
       const parts = [`- ${a.name}`];
       if (a.maxZeichen) parts.push(`(max ${a.maxZeichen} Zeichen)`);
@@ -78,7 +78,7 @@ function richtlinieBlock(
       "Halte dich bei der Ueberarbeitung strikt an diese Richtlinien-Vorgaben. Keinen Pflichtabschnitt weglassen, kein Zeichenlimit ueberschreiten."
     );
     out.push("\nPflichtabschnitte:");
-    for (const a of r.antragsstruktur.abschnitte) {
+    for (const a of (r.antragsstruktur.abschnitte ?? [])) {
       if (a.pflicht === false) continue;
       const parts = [`- ${a.name}`];
       if (a.maxZeichen) parts.push(`(max ${a.maxZeichen} Zeichen)`);
