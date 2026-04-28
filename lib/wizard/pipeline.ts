@@ -10,6 +10,7 @@ import type {
   FindingStatus,
   GenerationArtefacts,
   WizardFacts,
+  WizardMessage,
 } from "./types";
 import {
   OUTLINE_SYSTEM,
@@ -171,10 +172,18 @@ export async function runPipeline(
   programm: Foerderprogramm,
   facts: WizardFacts,
   richtlinie?: Richtlinie | null,
-  onEvent?: (e: PipelineEvent) => void
+  onEvent?: (e: PipelineEvent) => void,
+  messages?: WizardMessage[]
 ): Promise<PipelineResult> {
   const emit = (e: PipelineEvent) => onEvent?.(e);
   const usages: PipelineUsage[] = [];
+
+  // User-Antworten fuer den Halluzinations-Audit der Critique-Stage extrahieren.
+  // Die Critique braucht den Roh-Input, um zu erkennen, welche konkreten Fakten
+  // im Antragsentwurf vom User stammen und welche der LLM erfunden hat.
+  const userAnswers = messages
+    ?.filter((m) => m.role === "user" && m.kind === "answer")
+    .map((m) => m.content);
 
   // Wenn eine Richtlinie mit Antragsstruktur vorliegt, nutzen wir deren Abschnitte
   // direkt als Gliederung — keine freie KI-Outline.
@@ -236,7 +245,10 @@ export async function runPipeline(
   const critiqueRes = await generateJson<unknown>(
     MODEL_PRO,
     CRITIQUE_SYSTEM,
-    buildCritiquePrompt(programm, draft, richtlinie)
+    buildCritiquePrompt(programm, draft, richtlinie, userAnswers, facts),
+    // Geschaerfter Critique produziert ~10-15 Findings mit ausfuehrlichen
+    // vorschlag-Feldern — Default-Output-Cap reicht nicht, JSON wuerde abreissen.
+    { maxTokens: 8000 }
   );
   usages.push({ model: MODEL_PRO, usage: critiqueRes.usage });
   const critique = normalizeCritique(critiqueRes.value);

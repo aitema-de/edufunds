@@ -287,14 +287,32 @@ Schreibe den Abschnitt.`;
 
 export const CRITIQUE_SYSTEM = `Du bist ein strenger Gutachter für Förderanträge. Dein Ziel: konkrete, umsetzbare Findings für die Revision — keine Allgemeinplätze, keine Wiederholung des Textes.
 
-## Prüfe insbesondere
-1. Floskeln, Wiederholungen, unbelegte Behauptungen.
-2. Richtlinien-Verletzungen (fehlender Pflichtabschnitt, Stilverstoß, Zeichenlimit, Eigenanteil nicht adressiert).
-3. Fehlende Bezüge auf offizielle Kriterien des Fördergebers.
-4. Schwache/generische Abschnitte — austauschbar klingende Passagen.
-5. Fehlende Quantifizierungen, wo welche möglich wären.
-6. Typ-spezifische Schwächen (siehe Prüffokus im User-Prompt).
-7. Inkonsistenzen zwischen Abschnitten oder zum Finanzplan.
+## ERSTE Pflicht-Prüfung — HALLUZINATIONS-AUDIT
+Du bekommst zusätzlich zum ANTRAGSENTWURF die ROHEN USER-ANTWORTEN und die EXTRAHIERTEN FAKTEN. **Jede konkrete Tatsache im Entwurf MUSS sich auf User-Antworten ODER Fakten zurückführen lassen.** Wenn nicht: Halluzination, Schwere "hoch", Kategorie "belegluecke".
+
+Verdächtige Halluzinations-Marker — bei JEDEM solchen Element prüfen, ob es im User-Input steht:
+- **Aktenzeichen, Az., Geschäftszeichen** (z. B. "Az. 123/2026") — Schulen geben fast nie Aktenzeichen an. Wenn nicht im User-Input: ERFUNDEN.
+- **Tagesgenaue Datumsangaben für Beschlüsse, Schreiben, Termine** ("Schreiben vom 15.03.2026", "Beschluss Schulkonferenz vom 12.12.2025") — wenn User nur "demnächst" oder "vor einigen Wochen" sagte: ERFUNDEN.
+- **Präzise Prozentangaben** ("80 % der Lehrkräfte", "44 % Steigerung") — wenn nicht aus User-Input ableitbar: ERFUNDEN.
+- **Konkrete Stundenzahlen, Stückzahlen, Geldbeträge mit Komma-Genauigkeit** — gegen User-Aussagen prüfen, oft hat User Spannweiten ("30 oder 40") oder Schätzungen ("vielleicht 5.000") gegeben, die nicht zu festen Zahlen werden dürfen.
+- **Behörden-/Personennamen** (z. B. konkretes Bezirksamt, "Frau X aus Abteilung Y") — wenn User nur "der Träger" oder "das Schulamt" sagte: ERFUNDEN.
+- **Bezirks-/Ortsangaben** — wenn User nur eine Stadt nannte, darf der Bezirk nicht erfunden werden.
+- **Schülerzahlen, Klassengrößen, Lehrkräftezahlen** — exakte Zahlen müssen aus User-Antwort stammen.
+- **Methodische Konkretisierungen** ("standardisiertes Beobachtungsraster", "monatliche Hospitationen", "TV-L E9a") — wenn User nichts dergleichen sagte: ERFUNDEN.
+- **Zitate aus KMK-Strategie, Rahmenlehrplan, anderen Dokumenten** — wenn User selbst sagte "kenne ich nicht so genau": jede konkrete KMK-Verortung im Entwurf ist erfunden.
+- **Einrichtungen, die User nicht erwähnte** ("Willkommensklassen", "Fachräume Naturwissenschaften") — wenn nicht im User-Input: ERFUNDEN.
+
+## ZWEITE Prüfung — Richtlinien & Konsistenz
+1. Richtlinien-Verstöße (fehlender Pflichtabschnitt, Stilverstoß, Zeichenlimit, Eigenanteil nicht adressiert).
+2. Fehlende Bezüge auf offizielle Kriterien des Fördergebers.
+3. Inkonsistenzen zwischen Abschnitten oder Antragstext × Finanzplan-Tabelle (Beträge!).
+4. Antragstitel: muss vorhaben-übergreifender Titel sein, NICHT eine einzelne Aktivität.
+
+## DRITTE Prüfung — Schwächen
+5. Floskeln, Wiederholungen, unbelegte Behauptungen.
+6. Schwache/generische Abschnitte — austauschbar klingende Passagen.
+7. Fehlende Quantifizierungen, wo welche aus den User-Antworten ableitbar wären.
+8. Typ-spezifische Schwächen (siehe Prüffokus im User-Prompt).
 
 ## Ausgabe
 AUSSCHLIESSLICH valides JSON, keine Markdown-Fences:
@@ -312,23 +330,38 @@ AUSSCHLIESSLICH valides JSON, keine Markdown-Fences:
 }
 
 ## Regeln
-- Max 10 Findings, priorisiert nach Schwere.
-- Lieber wenige scharfe Findings als viele flache.
-- "schwere: hoch" NUR bei Richtlinien-Verstoß oder ernstem Beleg-Loch.
-- Zitat ist WÖRTLICH, kein Paraphrase.
-- Keine Findings, die nur den Text loben.`;
+- **Mindestens 5 Findings, max 15.** Lieber zu viele als zu wenige — der Antrag durchläuft danach noch eine Revision.
+- **Halluzinations-Findings sind IMMER "schwere: hoch", Kategorie "belegluecke".** Sie sind das wichtigste Output dieser Stufe.
+- Zitat ist WÖRTLICH, keine Paraphrase.
+- Keine Findings, die nur den Text loben.
+- Wenn ein Abschnitt mehrere Halluzinationen enthält, liste sie als getrennte Findings (eines pro erfundener Tatsache).`;
 
 export function buildCritiquePrompt(
   programm: Foerderprogramm,
   draft: string,
-  richtlinie?: Richtlinie | null
+  richtlinie?: Richtlinie | null,
+  userAnswers?: string[],
+  facts?: WizardFacts
 ): string {
   const guidance = getGuidance((programm as any).foerdergeberTyp);
+  const userInputBlock = (userAnswers?.length || facts)
+    ? `
+
+ROHE USER-ANTWORTEN (für Halluzinations-Audit):
+${userAnswers?.length
+  ? userAnswers.map((a, i) => `[Antwort ${i + 1}] ${a}`).join("\n\n")
+  : "(keine Antworten übergeben)"}
+
+EXTRAHIERTE FAKTEN (für Halluzinations-Audit):
+${facts ? JSON.stringify(facts, null, 2) : "(keine Fakten übergeben)"}
+
+WICHTIG: Jede konkrete Tatsache im ANTRAGSENTWURF muss sich auf die obigen USER-ANTWORTEN oder FAKTEN zurückführen lassen. Alles, was nur im Entwurf auftaucht, ist eine Halluzination — Schwere "hoch", Kategorie "belegluecke".`
+    : "";
   return `PROGRAMM:
 ${programmBlock(programm)}
 
 TYPSPEZIFISCHER PRÜFFOKUS (${guidance.label}):
-${guidance.critiqueFocus}${extraGuidanceBlock(programm, "Gutachter")}${richtlinieBlock(richtlinie, "critique")}
+${guidance.critiqueFocus}${extraGuidanceBlock(programm, "Gutachter")}${richtlinieBlock(richtlinie, "critique")}${userInputBlock}
 
 ANTRAGSENTWURF:
 ${draft}

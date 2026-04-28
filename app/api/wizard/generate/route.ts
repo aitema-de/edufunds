@@ -51,7 +51,13 @@ export async function POST(req: NextRequest) {
 
     try {
       const richtlinie = await loadRichtlinie(programm.id);
-      const { artefacts, usages } = await runPipeline(programm, session.data.facts, richtlinie);
+      const { artefacts, usages } = await runPipeline(
+        programm,
+        session.data.facts,
+        richtlinie,
+        undefined,
+        session.data.messages
+      );
       let costs = generatingData.costs ?? emptyLedger();
       for (const u of usages) costs = addUsage(costs, u.model, u.usage);
       const completeData: WizardSessionData = {
