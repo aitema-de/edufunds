@@ -7,6 +7,7 @@ import {
   appendMessage,
 } from "@/lib/wizard/session";
 import { nextStep } from "@/lib/wizard/interviewer";
+import { extractFacts } from "@/lib/wizard/facts-extractor";
 import { addUsage, emptyLedger } from "@/lib/wizard/pricing";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
 
@@ -62,6 +63,19 @@ export async function POST(req: NextRequest) {
       meta: { factsBefore: session.data.facts },
     });
 
+    // Stage 1: dedizierte Fakten-Extraktion ueber den gesamten Verlauf.
+    // Faellt sie aus, behaelt der Aufrufer den alten Stand — der Interviewer arbeitet dann
+    // wie zuvor mit teilbefuellten Facts, aber stuerzt nicht ab.
+    const extracted = await extractFacts(data.messages, data.facts);
+    data = { ...data, facts: extracted.facts };
+    if (extracted.usage) {
+      data = {
+        ...data,
+        costs: addUsage(data.costs ?? emptyLedger(), extracted.usage.model, extracted.usage.usage),
+      };
+    }
+
+    // Stage 2: Interviewer entscheidet die naechste Frage anhand des frischen Facts-Stands.
     const richtlinie = await loadRichtlinie(programm.id);
     const { step, usage } = await nextStep(
       programm,
@@ -71,6 +85,7 @@ export async function POST(req: NextRequest) {
       data.interviewer.maxQuestions,
       richtlinie
     );
+    // Interviewer kann via facts_update noch ergaenzen (Fallback), aber Extractor ist fuehrend.
     data = { ...data, facts: step.updatedFacts };
 
     if (usage) {

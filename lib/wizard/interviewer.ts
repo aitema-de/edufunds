@@ -10,11 +10,13 @@ import { INTERVIEWER_SYSTEM, buildInterviewerUserPrompt } from "./prompts";
 import { MODEL_FLASH, generateJson } from "./llm";
 import type { Usage } from "./pricing";
 import type { Richtlinie } from "./richtlinien-schema";
+import { mergeFacts } from "./facts-extractor";
 
 interface RawModelResponse {
   kind: "question" | "ready";
   content: string;
   rationale?: string;
+  /** Optionaler Fallback — die primaere Extraktion macht facts-extractor.ts. */
   facts_update?: Partial<WizardFacts>;
 }
 
@@ -71,18 +73,3 @@ export async function nextStep(
   return { step, usage: { model: MODEL_FLASH, usage } };
 }
 
-function mergeFacts(
-  base: WizardFacts,
-  update: Partial<WizardFacts> | undefined
-): WizardFacts {
-  if (!update) return base;
-  const out: WizardFacts = { ...base };
-  for (const [k, v] of Object.entries(update)) {
-    if (v && typeof v === "object" && !Array.isArray(v)) {
-      out[k] = { ...(base[k] as object | undefined), ...(v as object) };
-    } else if (v !== undefined && v !== null && v !== "") {
-      out[k] = v;
-    }
-  }
-  return out;
-}

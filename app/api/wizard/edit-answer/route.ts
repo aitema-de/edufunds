@@ -8,6 +8,7 @@ import {
   rollbackBeforeMessage,
 } from "@/lib/wizard/session";
 import { nextStep } from "@/lib/wizard/interviewer";
+import { extractFacts } from "@/lib/wizard/facts-extractor";
 import { addUsage, emptyLedger } from "@/lib/wizard/pricing";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
 
@@ -58,7 +59,17 @@ export async function POST(req: NextRequest) {
       meta: { factsBefore: data.facts, editedAt: new Date().toISOString() },
     });
 
-    // Interviewer weiterfragen
+    // Stage 1: Fakten-Extraktion ueber den (durch Rollback bereinigten) Verlauf.
+    const extracted = await extractFacts(data.messages, data.facts);
+    data = { ...data, facts: extracted.facts };
+    if (extracted.usage) {
+      data = {
+        ...data,
+        costs: addUsage(data.costs ?? emptyLedger(), extracted.usage.model, extracted.usage.usage),
+      };
+    }
+
+    // Stage 2: Interviewer weiterfragen mit frischem Facts-Stand.
     const richtlinie = await loadRichtlinie(programm.id);
     const { step, usage } = await nextStep(
       programm,

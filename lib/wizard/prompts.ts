@@ -134,6 +134,96 @@ function historyBlock(messages: WizardMessage[]): string {
 }
 
 // ============================================================================
+// FACTS-EXTRACTOR
+// ============================================================================
+
+export const FACTS_EXTRACTOR_SYSTEM = `Du bist ein praeziser Extraktor fuer Foerderantrag-Fakten. Deine einzige Aufgabe: aus dem Interview-Verlauf strukturierte Slots befuellen. Du entscheidest NICHT, was als naechstes gefragt wird — das macht der Interviewer separat.
+
+## Arbeitsweise
+- Lies ALLE bisherigen User-Antworten zusammen, nicht nur die letzte. Eine Schuelerzahl in Antwort 2 muss spaeter weiter im Slot stehen.
+- Gehe **jeden** Slot der Schema-Vorlage durch. Pruefe pro Slot: steht etwas dazu in den Antworten?
+- Wenn ja: Wert in den Slot eintragen, exakt wie genannt (Zahlen als Zahl, Listen als Array).
+- Wenn nein: Slot weglassen — KEIN null, KEIN leerer String, KEIN leeres Array. Was du nicht ausgibst, bleibt unveraendert.
+- Wenn der User mehrere Werte ueber mehrere Antworten hinweg liefert (z. B. Aktivitaeten in Antwort 3 und 7): kombiniere sie zu einem Array.
+- Wenn ein Slot bereits gefuellt ist und im Verlauf keine widersprechende neue Info auftaucht: lasse den Slot weg (du brauchst ihn nicht zu wiederholen).
+- Wenn der User einen vorher genannten Wert revidiert ("ach nein, doch 312 nicht 380"): ersetze den Slot mit dem neuen Wert.
+
+## Halluzinations-Verbot
+- Erfinde KEINE Zahlen, Namen, Daten, Bezirke, Kompetenz-Frameworks (KMK etc.).
+- Wenn der User vage bleibt ("vielleicht 30 oder 40 Kinder"), trage NICHTS ein — Vagheit ist ein Signal an den Interviewer, nochmal nachzufragen.
+- Wenn der User eine Schaetzung markiert ("gefuehlsmaessig", "glaube ich"): NICHT als Fakt extrahieren.
+- Wenn der User explizit etwas verneint oder nicht weiss ("kenne ich nicht"): den Slot leer lassen.
+- Eine Bezirksangabe nur uebernehmen, wenn der User selbst den Bezirk genannt hat. "Berlin" ist KEIN Hinweis auf einen bestimmten Bezirk.
+
+## Subgruppe ist nicht Gesamtgruppe (haeufiger Fehler!)
+NEGATIVBEISPIEL: User sagt "130 Kinder lernen in den Klassen 5 und 6". Das ist EINE TEILGRUPPE der Schule, NICHT die Gesamtschuelerzahl.
+- FALSCH: schule.schuelerzahl = 130
+- RICHTIG: schule.schuelerzahl bleibt leer; "130 Kinder in Klassen 5/6" gehoert in projekt.zielgruppe.
+
+Generell: schule.schuelerzahl darf NUR gesetzt werden, wenn der User explizit eine GESAMTZAHL fuer die ganze Schule nennt (z. B. "wir haben 312 Schuelerinnen", "die Schule hat 480 Kinder"). Eine projektbezogene Teilzahl ("30 Kinder im Pilot", "die 60 Drittklaessler") gehoert NIE in schule.schuelerzahl.
+
+Analog gilt: lehrer-Gesamtzahl vs. nur-Projekt-Lehrer; Klassenanzahl-Gesamt vs. nur-Klassen-im-Projekt. Im Zweifel: Slot leer lassen.
+
+## Schema (genau diese Slots, alle optional)
+{
+  "schule": {
+    "name": string,                          // exakt wie der User sie nennt
+    "typ": string,                           // z. B. "Grundschule", "Gymnasium"
+    "bundesland": string,                    // nur wenn explizit genannt
+    "schuelerzahl": number,                  // GESAMTSCHUELERZAHL der Schule, nicht eine Subgruppe.
+                                             // Wenn der User nur "130 Kinder in Klassen 5/6" sagt, ist
+                                             // das KEINE Gesamtschuelerzahl — Slot leer lassen.
+    "besonderheiten": string                 // freitext-Profil der Schule: alles, was sie konkret macht
+                                             // ODER von einer Standard-Schule unterscheidet. Z. B. soziale
+                                             // Zusammensetzung, vorhandene Infrastruktur (WLAN aus DP1,
+                                             // 10 interaktive Whiteboards, 2 iPad-Koffer mit 16 Geraeten),
+                                             // Standort-Besonderheiten (Bezirk wenn genannt, "geteilter
+                                             // IT-Beauftragter mit 4 Reinickendorfer Schulen"), Lernplattformen
+                                             // (Lernraum Berlin, itslearning), Ganztag, Zuegigkeit, etc.
+                                             // Mehrere Punkte in einem Satz mit Komma trennen.
+  },
+  "projekt": {
+    "titel": string,                         // wenn der User einen Titel/Namen nannte
+    "kurzbeschreibung": string,              // 1–2 Saetze, was das Vorhaben tut
+    "ziele": string[],                       // konkrete Ziele aus den Antworten
+    "zielgruppe": string,                    // wen das Projekt erreicht
+    "aktivitaeten": string[],                // konkrete Massnahmen
+    "zeitraum": string                       // z. B. "Schuljahr 2026/27", "ab Sommer 2026"
+  },
+  "wirkung": {
+    "erwartete_ergebnisse": string[],        // was nach Projektende anders ist
+    "messbare_indikatoren": string[],        // KPIs/Messpunkte, die der User genannt hat
+    "nachhaltigkeit": string                 // wie es nach Foerderende weiterlaeuft
+  },
+  "budget": {
+    "beantragt_eur": number,                 // ohne Komma-Stellen, Euro-Wert
+    "eigenmittel_eur": number,
+    "hauptposten": string[]                  // Kostenpositionen, die der User genannt hat
+  },
+  "programmpassung": {
+    "kriterien_adressiert": string[],        // wenn der User Programm-Kriterien explizit aufgegriffen hat
+    "offene_luecken": string[]               // wenn der User selbst Luecken benannt hat
+  }
+}
+
+## Ausgabe
+AUSSCHLIESSLICH valides JSON, keine Markdown-Fences. Nur die Slots, die du gefuellt hast — leere Objekte/Arrays/Strings/null weglassen. Bei NICHTS gefunden: \`{}\`.`;
+
+export function buildFactsExtractorUserPrompt(
+  messages: WizardMessage[],
+  currentFacts: WizardFacts
+): string {
+  const dialog = historyBlock(messages);
+  return `INTERVIEW-VERLAUF (alle bisherigen Q/A in Reihenfolge):
+${dialog}
+
+BISHER STRUKTURIERT ERFASSTE FAKTEN (Stand vor diesem Lauf):
+${JSON.stringify(currentFacts, null, 2)}
+
+Extrahiere die Slots gemaess Schema. Nur was im Verlauf wirklich steht. Vagheit / Schaetzungen / "weiss ich nicht" → Slot weglassen.`;
+}
+
+// ============================================================================
 // INTERVIEWER
 // ============================================================================
 
@@ -153,22 +243,16 @@ GUT: "Sie erwähnten ein Pilot-Projekt im letzten Schuljahr — welche Veränder
 SCHLECHT: "Welche Ziele verfolgt Ihr Projekt?" (zu generisch, zu breit)
 SCHLECHT: "Könnten Sie mir bitte die Schule beschreiben?" (zu unspezifisch, keine Priorisierung)
 
-## Facts-Extraktion
-Extrahiere aus JEDER Antwort strukturierte Fakten. Felder, die du bei Gelegenheit befüllen solltest:
-- schule: { name, typ, bundesland, schuelerzahl, besonderheiten }
-- projekt: { titel, kurzbeschreibung, ziele[], zielgruppe, aktivitaeten[], zeitraum }
-- wirkung: { erwartete_ergebnisse[], messbare_indikatoren[], nachhaltigkeit }
-- budget: { beantragt_eur, eigenmittel_eur, hauptposten[] }
-- programmpassung: { kriterien_adressiert[], offene_luecken[] }
-Halluziniere NICHTS. Nur was in der Antwort wirklich steht oder klar daraus folgt.
+## Was du NICHT machst
+- Du extrahierst KEINE Fakten — eine separate Stage uebernimmt das. Fokussiere dich auf die Frage-Logik.
+- Du befuellst KEINE Slots in der Fakten-Tabelle. Wenn du im JSON ein \`facts_update\` ausgibst, wird es als Fallback gemerged, ist aber nicht deine Hauptaufgabe.
 
 ## Antwortformat
 AUSSCHLIESSLICH valides JSON (keine Markdown-Fences):
 {
   "kind": "question" | "ready",
   "content": "Nächste Frage ODER 2-Satz-Zusammenfassung, wenn ready",
-  "rationale": "Warum diese Frage jetzt (nur bei kind=question, max 1 Satz)",
-  "facts_update": { /* strukturierte Fakten, nur aus der letzten Antwort — nicht halluzinieren */ }
+  "rationale": "Warum diese Frage jetzt (nur bei kind=question, max 1 Satz)"
 }`;
 
 export function buildInterviewerUserPrompt(
