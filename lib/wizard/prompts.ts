@@ -321,6 +321,22 @@ Erstelle die Gliederung.`;
 
 export const SECTION_SYSTEM = `Du bist ein erfahrener Antragsautor. Schreibe EINEN Abschnitt eines Förderantrags in präziser, überzeugender deutscher Antragsprosa.
 
+## Halluzinations-Verbot (HART)
+Du bekommst zusätzlich zu den FAKTEN die ROHEN USER-ANTWORTEN als Quellen-Anker. Du darfst AUSSCHLIESSLICH Tatsachen verwenden, die in den User-Antworten oder in den extrahierten Fakten stehen. Wenn etwas in keinem von beiden steht: NICHT in den Antrag aufnehmen. Lieber kürzer als erfunden.
+
+NIEMALS in den Antragstext aufnehmen, wenn nicht im User-Input belegt:
+- **Aktenzeichen, Geschäftszeichen, Beschluss-Nummern** (Az., G.Z., …) — Schulen geben fast nie welche an.
+- **Tagesgenaue Datumsangaben** (Beschlüsse, Schreiben, Termine) — wenn User nur "demnächst" sagte, kein "12.03.2026" daraus machen.
+- **Tarif-Stufen, Personalkosten-Berechnungen** ("TV-L E9a", "4h × 50 Wochen × 20 €/h") — nur wenn der User das selbst gerechnet hat.
+- **Bezirks-/Behördennamen** über das hinaus, was der User nannte.
+- **Phasen-Schemata mit Quartals- oder Monatsangaben** ("Phase 1: erste Monate 2026", "Q3/2026") — User-Verlauf liefert kaum solche Zeitleisten. Verwende stattdessen die vom User genannten Zeitpunkte direkt.
+- **MDM-Lösung, Rahmenverträge, Stellenpläne** — generische Antrags-Versatzstücke. Erwähne nur, wenn der User selbst MDM/Rahmenvertrag/Stellenplan-Eintrag genannt hat.
+- **Zitate aus Strategiedokumenten** (KMK-Strategie "Bildung in der digitalen Welt", Rahmenlehrplan, …) — wenn der User selbst sagte "kenne ich nicht", schreibe den Antrag NICHT so, als ob die Schule diese Strategie aktiv adressiert. Stattdessen: das Vorhaben adressiert "Medienkompetenz" / "kritischen Umgang mit Medien" (was der User selbst nannte).
+- **Externe Anbieter, Hospitations-Pläne, Multiplikatoren-Programme** — nur, wenn der User sie nannte.
+- **Konkrete Schüler-/Lehrerzahlen** über das hinaus, was im User-Input steht.
+
+Wenn ein Pflicht-Abschnitt der Richtlinie eine Information verlangt, die im User-Input nicht steht, formuliere das ehrlich: "Eine schriftliche Zusage liegt noch nicht vor", "die genaue Verteilung wird im Rahmen der …-Konzept-Überarbeitung festgelegt". KEIN Erfinden.
+
 ## Inhaltliche Regeln
 - Verwende AUSSCHLIESSLICH Fakten aus den mitgelieferten Daten. Halluziniere NICHTS — erfinde keine Zahlen, Namen, Ereignisse.
 - Konkret statt abstrakt. Wo Zahlen/Namen/Orte in den Fakten stehen: nenne sie.
@@ -341,11 +357,16 @@ export function buildSectionPrompt(
   facts: WizardFacts,
   abschnitt: { name: string; fokus: string },
   titel: string,
-  richtlinieAbschnitt?: AntragsAbschnitt
+  richtlinieAbschnitt?: AntragsAbschnitt,
+  userAnswers?: string[]
 ): string {
   const guidance = getGuidance((programm as any).foerdergeberTyp);
   const detailblock = richtlinieAbschnitt
     ? `\nOFFIZIELLE VORGABEN FUER DIESEN ABSCHNITT:\n${abschnittPrompt(richtlinieAbschnitt)}\n`
+    : "";
+  const userAnswersBlock = userAnswers?.length
+    ? `\n\nROHE USER-ANTWORTEN (Quellen-Anker — alles im Antragstext muss sich hierauf oder auf die FAKTEN zurueckfuehren lassen):
+${userAnswers.map((a, i) => `[Antwort ${i + 1}] ${a}`).join("\n\n")}`
     : "";
 
   return `PROGRAMM:
@@ -360,9 +381,9 @@ ABSCHNITT: ${abschnitt.name}
 FOKUS: ${abschnitt.fokus}
 
 FAKTEN:
-${JSON.stringify(facts, null, 2)}
+${JSON.stringify(facts, null, 2)}${userAnswersBlock}
 
-Schreibe den Abschnitt.`;
+Schreibe den Abschnitt. Erfinde KEINE Aktenzeichen, Beschluss-Daten, Tarif-Berechnungen, Phasen-Quartale, MDM-Lösungen, Rahmenverträge oder Strategie-Zitate, die nicht im User-Input belegt sind. Lieber kürzer als erfunden.`;
 }
 
 // ============================================================================
@@ -463,13 +484,23 @@ Begutachte.`;
 
 export const FINANZPLAN_SYSTEM = `Du erstellst einen konkreten, programm-spezifischen Finanzplan fuer einen Foerderantrag an einer deutschen Schule.
 
-Regeln
+## Halluzinations-Verbot (HART)
+Du bekommst zusaetzlich zu den FAKTEN die ROHEN USER-ANTWORTEN als Quellen-Anker. Jede konkrete Zahl, Tarif-Stufe, Stundensatz oder Honorar-Hoehe muss sich auf den User-Input zurueckfuehren lassen. Wenn nicht: NICHT in den Finanzplan aufnehmen.
+
+NIEMALS in Bezeichnung oder Begruendung erfinden:
+- **Tarif-Stufen** (TV-L E9, EG10, A12, …) — wenn der User keine Eingruppierung nannte: weglassen.
+- **Konkrete Honorar-/Stundensaetze** ("180 EUR Honorar", "60 EUR/Std", "75 EUR Vertretungskosten") — nur wenn der User selbst Saetze nannte. Sonst: in "hinweise" notieren, dass Saetze noch einzuholen sind, und Posten als Pauschale ohne erfundene Splittung anlegen.
+- **Marken-/Modellnamen** ("Apple Pencil", "Microsoft Surface") — wenn der User nur "Stifte" oder "Tablets" sagte: nicht spezifizieren.
+- **Erfundene Mengen-Aufschluesselungen** ("16 pro Klasse", "2 Lehrkraefte freigestellt") — nur wenn der User konkrete Mengen genannt hat.
+- **Bildungsrabatt-Annahmen** ("ca. 90 EUR in Bildungstarifen plus Versand") — wenn der User nur einen Endpreis nannte: diesen verwenden.
+
+## Regeln
 - Nutze NUR Kostenkategorien und Obergrenzen, die in der mitgelieferten Richtlinie als foerderfaehig markiert sind.
 - Beziehe dich auf die tatsaechlich genannten Projektinhalte (Fakten) — keine generischen Posten wie "diverses Material".
-- Jede Position muss eine kurze Begruendung haben: warum dieser Posten, wie kommt der Betrag zustande (z. B. "15 Tablets à 450 EUR").
+- Jede Position muss eine kurze Begruendung haben: warum dieser Posten, wie kommt der Betrag zustande (z. B. "15 Tablets à 450 EUR" — wenn der User 450 EUR genannt hat).
 - Wenn die Richtlinie einen Eigenanteil vorschreibt, fuege eigens markierte Posten hinzu, die diesen Eigenanteil abdecken (eigenanteil: true). Eigenanteil darf nicht aus anderen oeffentlichen Foerdermitteln kommen.
 - Halte dich an plausible Einzelbetraege. KEINE suspekt runden Millionenbetraege.
-- Wenn kritische Info fehlt, nenne das in "hinweise" (z. B. "Schuelerzahl unklar, Tablet-Anzahl geschaetzt").
+- Wenn kritische Info fehlt, nenne das in "hinweise" (z. B. "Schuelerzahl unklar, Tablet-Anzahl geschaetzt", "Honorar-Saetze nicht vom User genannt — Pauschale geschaetzt").
 
 Kostenkategorien (genau diese Strings nutzen):
 - "personal"       Personalkosten fuer Traeger-/Support-Stellen
@@ -497,7 +528,8 @@ Ausgabe: AUSSCHLIESSLICH valides JSON, keine Fences:
 export function buildFinanzplanPrompt(
   programm: Foerderprogramm,
   facts: WizardFacts,
-  richtlinie: Richtlinie | null | undefined
+  richtlinie: Richtlinie | null | undefined,
+  userAnswers?: string[]
 ): string {
   const rlBlock = richtlinie
     ? `\n\nFOERDERRICHTLINIE (verbindlich):\n${JSON.stringify(
@@ -510,15 +542,19 @@ export function buildFinanzplanPrompt(
         2
       )}`
     : "\n\nKEINE OFFIZIELLE RICHTLINIE ERFASST — arbeite mit ueblichen Kostenkategorien fuer diese Art Programm. Markiere in hinweise, dass der Plan generisch ist.";
+  const userAnswersBlock = userAnswers?.length
+    ? `\n\nROHE USER-ANTWORTEN (Quellen-Anker fuer Betraege/Mengen/Tarife):
+${userAnswers.map((a, i) => `[Antwort ${i + 1}] ${a}`).join("\n\n")}`
+    : "";
 
   return `PROGRAMM:
 ${programmBlock(programm)}
 ${rlBlock}
 
 PROJEKTFAKTEN:
-${JSON.stringify(facts, null, 2)}
+${JSON.stringify(facts, null, 2)}${userAnswersBlock}
 
-Erstelle den Finanzplan.`;
+Erstelle den Finanzplan. Erfinde keine Tarif-Stufen, Honorarsaetze, Marken-/Modellnamen oder Mengen-Aufschluesselungen, die nicht im User-Input belegt sind. Lieber Pauschalen mit "in hinweise erlaeutert" als erfundene Splittungen.`;
 }
 
 export const REVISION_SYSTEM = `Du bist der Antragsautor. Überarbeite den Entwurf anhand des Gutachtens. Struktur, Titel und Abschnittsreihenfolge bleiben erhalten. Verwende NUR die mitgelieferten Fakten. Füge keine neuen Behauptungen oder Zahlen ein.

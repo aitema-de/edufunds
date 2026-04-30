@@ -233,7 +233,7 @@ export async function runPipeline(
     const res = await generateText(
       MODEL_PRO,
       SECTION_SYSTEM,
-      buildSectionPrompt(programm, facts, abschnitt, outline.titel, rl)
+      buildSectionPrompt(programm, facts, abschnitt, outline.titel, rl, userAnswers)
     );
     usages.push({ model: MODEL_PRO, usage: res.usage });
     sections.push({ name: abschnitt.name, text: res.value });
@@ -281,7 +281,7 @@ export async function runPipeline(
   }
 
   emit({ stage: "finanzplan", message: "Finanzplan-Entwurf" });
-  const finanzRes = await generateFinanzplan(programm, facts, richtlinie);
+  const finanzRes = await generateFinanzplan(programm, facts, richtlinie, userAnswers);
   usages.push(finanzRes.usage);
 
   let consistencyIssues: ConsistencyIssue[] = [];

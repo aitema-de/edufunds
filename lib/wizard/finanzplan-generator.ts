@@ -55,12 +55,13 @@ export interface FinanzplanUsage {
 export async function generateFinanzplan(
   programm: Foerderprogramm,
   facts: WizardFacts,
-  richtlinie: Richtlinie | null | undefined
+  richtlinie: Richtlinie | null | undefined,
+  userAnswers?: string[]
 ): Promise<{ plan: Finanzplan; usage: FinanzplanUsage }> {
   const { value, usage } = await generateJson<RawResult>(
     MODEL_PRO,
     FINANZPLAN_SYSTEM,
-    buildFinanzplanPrompt(programm, facts, richtlinie)
+    buildFinanzplanPrompt(programm, facts, richtlinie, userAnswers)
   );
 
   const posten = (value.posten ?? [])
