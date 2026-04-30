@@ -70,30 +70,30 @@ Deferred — kommt in der Milestone nach UAT-Stabilität.
 
 ## Traceability
 
-Phasen-Mapping wird vom Roadmapper befüllt (Step 8).
+Phasen-Mapping aus ROADMAP.md (befüllt 2026-04-30 durch Roadmapper).
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| MATCH-01 | TBD | Pending |
-| MATCH-02 | TBD | Pending |
-| MATCH-03 | TBD | Pending |
-| FETCH-01 | TBD | Pending |
-| FETCH-02 | TBD | Pending |
-| FETCH-03 | TBD | Pending |
-| FETCH-04 | TBD | Pending |
-| WIZ-01 | TBD | Pending |
-| WIZ-02 | TBD | Pending |
-| WIZ-03 | TBD | Pending |
-| WIZ-04 | TBD | Pending |
-| UAT-01 | TBD | Pending |
-| UAT-02 | TBD | Pending |
-| UAT-03 | TBD | Pending |
+| MATCH-01 | Phase 1 (Eval-Korpus Matcher) | Pending |
+| MATCH-02 | Phase 2 (Matcher-Quality) | Pending |
+| MATCH-03 | Phase 2 (Matcher-Quality) | Pending |
+| FETCH-01 | Phase 3 (Programm-Pflege Foundation) | Pending |
+| FETCH-02 | Phase 4 (Programm-Pflege Vollautomation) | Pending |
+| FETCH-03 | Phase 3 (Programm-Pflege Foundation) | Pending |
+| FETCH-04 | Phase 4 (Programm-Pflege Vollautomation) | Pending |
+| WIZ-01 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Pending |
+| WIZ-02 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Pending |
+| WIZ-03 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Pending |
+| WIZ-04 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Pending |
+| UAT-01 | Phase 6 (Live-UAT mit Pilot-Schulen) | Pending |
+| UAT-02 | Phase 6 (Live-UAT mit Pilot-Schulen) | Pending |
+| UAT-03 | Phase 6 (Live-UAT mit Pilot-Schulen) | Pending |
 
 **Coverage:**
 - v1 requirements: 14 total
-- Mapped to phases: 0 (Roadmap noch nicht erstellt)
-- Unmapped: 14 ⚠️
+- Mapped to phases: 14 ✓
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-30 (brownfield onboarding from feature/wizard-adaptive HEAD 49a1102)*
-*Last updated: 2026-04-30 after initial definition*
+*Last updated: 2026-04-30 — Traceability-Sektion durch Roadmapper befüllt (6 Phasen, 100 % Coverage)*
