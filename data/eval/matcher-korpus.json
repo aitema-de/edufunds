@@ -28,5 +28,213 @@
     "expected_top3": [],
     "expected_off_target": ["bmbf-digitalpakt-2", "aktion-mensch-schulkooperation"],
     "notes": "Edge-Case (D-07): bewusst zu vag fuer ein Ranking. Erwartung: Matcher liefert leere Liste oder maximal Score-Threshold-gefilterte Top-1. Keine Top-3-Goldstandard-IDs vorhanden. Wenn der Matcher trotzdem Digital- oder Inklusion-Programm in Top-3 packt, ist das ein Off-Target-Hit."
+  },
+  {
+    "id": "ev-004",
+    "category": "ausfuehrlich",
+    "anliegen": "Wir moechten an unserer Grundschule eine Forscher-AG mit eigenem Mini-Labor aufbauen. Geplant ist ein Raum mit Mikroskopen, einfachen Chemie-Sets, Magneten und Bauteilen fuer kleine Experimente. Die AG laeuft 2-mal pro Woche nachmittags fuer Klasse 3 und 4. Wir suchen Mittel fuer Material (~3.500 Euro), 2 Fortbildungen fuer 4 Kolleginnen und einen Honorarvertrag mit einer Studentin der Naturwissenschaften ueber 12 Monate.",
+    "schulname": "Astrid-Lindgren-Grundschule",
+    "schultyp": "grundschule",
+    "bundesland": "Bayern",
+    "geschaetztesBudgetEur": 9500,
+    "expected_top3": ["stiftung-kinder-forschen", "helmholtz-schuelerlabore", "stifterverband-bildung"],
+    "expected_off_target": ["bmbf-digitalpakt-2"],
+    "notes": "Klarer MINT-Grundschul-Fokus mit Forschen+Experimentieren. DigitalPakt ist Off-Target — kein Geraete-Beschaffungs-Anliegen, sondern Naturwissenschaft + Personal."
+  },
+  {
+    "id": "ev-005",
+    "category": "ausfuehrlich",
+    "anliegen": "An unserem Gymnasium wollen wir einen Junior-Ingenieur-Kurs fuer Klassen 9-11 etablieren. Inhalte: Konstruktion mit CAD, 3D-Druck, einfache Robotik mit Arduino, Berufsorientierung mit lokalen Industrie-Partnern. Wir benoetigen einen Werkraum-Umbau (~12.000 Euro), Hardware-Set fuer 24 Schueler (~7.000 Euro) und Mentoring-Honorare fuer 2 Ingenieure aus dem Netzwerk (~6.000 Euro). Laufzeit 2 Schuljahre.",
+    "schulname": "Carl-Friedrich-Gauss-Gymnasium",
+    "schultyp": "gymnasium",
+    "bundesland": "Niedersachsen",
+    "geschaetztesBudgetEur": 25000,
+    "expected_top3": ["telekom-stiftung-jia", "telekom-junior-ingenieur-2026", "telekom-stiftung-mint-berufsorientierung"],
+    "expected_off_target": ["aktion-mensch-schulkooperation"],
+    "notes": "Sehr klares JIA-Profil (Telekom Junior-Ingenieur-Akademie). Off-Target Inklusion, weil Anliegen reine Berufsorientierung+MINT ist."
+  },
+  {
+    "id": "ev-006",
+    "category": "ausfuehrlich",
+    "anliegen": "Wir sind eine Stadtteilschule mit hohem Anteil Mehrsprachigkeit (etwa 60 Prozent). Wir wollen einen Lese- und Sprachfoerder-Schwerpunkt fuer Klasse 1-4 bauen: tutorengestuetztes Lesen in Kleingruppen, Eltern-Lesepatinnen, mehrsprachige Buchausstattung. Geplant: Anschaffung von 800 mehrsprachigen Buechern, 4 Kleingruppen-Raumtrenner, Honorare fuer 6 Studierende als Lesetutorinnen ueber ein Schuljahr.",
+    "schulname": "Stadtteilschule Wilhelmsburg",
+    "schultyp": "stadtteilschule",
+    "bundesland": "Hamburg",
+    "geschaetztesBudgetEur": 18000,
+    "expected_top3": ["lesen-macht-stark", "sprache-macht-stark", "mercator-integration"],
+    "expected_off_target": ["bmbf-digitalpakt-2"],
+    "notes": "Klassischer Sprache+Integration-Goldstandard. DigitalPakt ist Off-Target trotz Schule mit Tablet-Beduerfnis — der Antrag dreht sich um Lesen, nicht Geraete."
+  },
+  {
+    "id": "ev-007",
+    "category": "ausfuehrlich",
+    "anliegen": "Unsere Realschule moechte am Erasmus+ Programm teilnehmen und eine zweijaehrige Schulpartnerschaft mit einer Schule in Polen aufbauen. Drei Schueleraustausche pro Jahr (10 Schueler je Richtung), Lehrkraefte-Hospitationen, gemeinsames Geschichts-Projekt zu Erinnerungskultur. Wir haben bereits einen Kontakt zur Partnerschule und brauchen Reisemittel, Sachmittel, Sprachkurs-Vouchers.",
+    "schulname": "Realschule am Stadtwald",
+    "schultyp": "realschule",
+    "bundesland": "Nordrhein-Westfalen",
+    "geschaetztesBudgetEur": 22000,
+    "expected_top3": ["erasmus-schule-2026", "kmk-pad-foerderung", "europaschulen-nrw-2026"],
+    "expected_off_target": ["bmbf-digitalpakt-2"],
+    "notes": "Internationaler Austausch ist eindeutig — Erasmus+ und PAD sind die natuerlichen Treffer. NRW Europaschulen wegen BL-Match. DigitalPakt off-target weil keine IT-Komponente."
+  },
+  {
+    "id": "ev-008",
+    "category": "ausfuehrlich",
+    "anliegen": "Unsere Foerderschule plant einen barrierefreien Schulhof-Umbau mit Sinnesgarten, taktilen Elementen, einer rollstuhlgerechten Schaukel und Hochbeeten in Rollstuhl-Hoehe. 65 Schueler mit Foerderbedarf geistige Entwicklung und koerperlich-motorische Entwicklung. Wir brauchen Bau-Sachmittel (~25.000 Euro), eine Beratung durch eine Inklusions-Architektin und 2 Eltern-Workshops zur Mitgestaltung.",
+    "schulname": "Friedrich-von-Bodelschwingh-Foerderschule",
+    "schultyp": "foerderschule",
+    "bundesland": "Baden-Wuerttemberg",
+    "geschaetztesBudgetEur": 32000,
+    "expected_top3": ["aktion-mensch-schulkooperation", "fritz-henkel-inklusion-2026", "dkjs-inklusion"],
+    "expected_off_target": ["bmbf-digitalpakt-2"],
+    "notes": "Goldstandard Inklusion. DigitalPakt klar off-target. Aktion-Mensch ist hier Top-3-Pflicht (kernzielgruppe)."
+  },
+  {
+    "id": "ev-009",
+    "category": "ausfuehrlich",
+    "anliegen": "Wir wollen unsere Gesamtschule zur Klimaschule weiterentwickeln. Geplant: ein 2-Jahres-Projekt mit Energie-Audit, einer Schuelerklima-AG, einer Photovoltaik-Demoanlage auf dem Schuldach, Pflanzaktionen fuer 200 Baeume mit dem Stadtforst, einer Fortbildungsreihe fuer 12 Kolleginnen zu BNE-Didaktik. Ungefaehres Budget 35.000 Euro ueber zwei Schuljahre.",
+    "schulname": "Gesamtschule Ricarda Huch",
+    "schultyp": "gesamtschule",
+    "bundesland": "Hessen",
+    "geschaetztesBudgetEur": 35000,
+    "expected_top3": ["klimalab-2026", "schott-nachhaltigkeit", "heinrich-boell-bildung"],
+    "expected_off_target": ["aktion-mensch-schulkooperation"],
+    "notes": "Klima+BNE-Schwerpunkt. Inklusion ist Off-Target — Anliegen hat keinen Inklusionsfokus."
+  },
+  {
+    "id": "ev-010",
+    "category": "ausfuehrlich",
+    "anliegen": "Unsere Grundschule moechte ein Demokratie-Lernen-Projekt fuer Klassen 3 und 4 starten: Klassenrat-Strukturen, Kinderparlament, ein Demokratie-Curriculum von 20 Doppelstunden, Fortbildung fuer 6 Lehrkraefte, externer Coach 1 Tag pro Woche fuer 6 Monate. Schueler sollen Anliegen formulieren, abstimmen, eigene Projekte mitfinanzieren. Etwa 220 Kinder.",
+    "schulname": "Grundschule Sterntaler",
+    "schultyp": "grundschule",
+    "bundesland": "Brandenburg",
+    "geschaetztesBudgetEur": 14000,
+    "expected_top3": ["bmw-stiftung-demokratie", "heinrich-boell-bildung", "telekom-stiftung-respect"],
+    "expected_off_target": ["bmbf-digitalpakt-2"],
+    "notes": "Eindeutiges Demokratie+Partizipation-Profil. DigitalPakt ist klar off-target."
+  },
+  {
+    "id": "ev-011",
+    "category": "ausfuehrlich",
+    "anliegen": "Wir sind eine MINT-orientierte Schule und wollen in 2026/27 ein Maker-Space mit FIRST-LEGO-League-Team etablieren. Konkret: Anschaffung von 4 LEGO-SPIKE-Sets, 2 3D-Drucker, einem Lasercutter, Fortbildungen fuer 3 Kollegen, Wettbewerbs-Teilnahme-Gebuehren, Teamcoaching durch externes Robotik-Studio. Klassen 5-8, etwa 30 Kinder im AG-Pool.",
+    "schulname": "Oberschule Robert Schumann",
+    "schultyp": "oberschule",
+    "bundesland": "Sachsen",
+    "geschaetztesBudgetEur": 28000,
+    "expected_top3": ["first-lego-league", "siemens-stiftung-mint-hub", "telekom-stiftung-technik-scouts"],
+    "expected_off_target": ["aktion-mensch-schulkooperation"],
+    "notes": "Robotik+MINT-Goldstandard mit Sachsen-BL-Match (FIRST LEGO League ist DE-SN). Inklusion off-target."
+  },
+  {
+    "id": "ev-012",
+    "category": "kurz",
+    "anliegen": "Wir wollen einen Bewegungs-Pausenhof bauen und brauchen Geraete fuer 180 Grundschulkinder.",
+    "schultyp": "grundschule",
+    "bundesland": "Niedersachsen",
+    "geschaetztesBudgetEur": 12000,
+    "expected_top3": ["niedersachsen-sport", "dkjs-sport", "baywa-laufen-wald"],
+    "expected_off_target": ["bmbf-digitalpakt-2"],
+    "notes": "Kurz, klar Sport+Bewegung. Niedersachsen-Sport ist BL-Treffer."
+  },
+  {
+    "id": "ev-013",
+    "category": "kurz",
+    "anliegen": "Mathe-Wettbewerbe fuer unsere Mittelstufe ausbauen — Anmeldegebuehren, Material, Pokale.",
+    "schultyp": "gymnasium",
+    "expected_top3": ["kaenguru-der-mathematik", "mathe-im-advent", "bundeswettbewerb-mathematik"],
+    "expected_off_target": ["bmbf-digitalpakt-2"],
+    "notes": "Sehr knappes Anliegen mit klar abgegrenzter Domain (Mathe-Wettbewerbe). Kein Bundesland-Feld — testet thematischen Kern."
+  },
+  {
+    "id": "ev-014",
+    "category": "kurz",
+    "anliegen": "Theaterprojekt fuer Klasse 7-9, Honorar fuer eine Theaterpaedagogin und Buehnenbild-Material.",
+    "schultyp": "gemeinschaftsschule",
+    "bundesland": "Hamburg",
+    "geschaetztesBudgetEur": 6500,
+    "expected_top3": ["kultur-macht-stark", "hamburg-kultur-schule", "bayern-kulturfonds"],
+    "expected_off_target": ["bmbf-digitalpakt-2"],
+    "notes": "Knapper Kultur-Antrag. Hamburg-Kultur als BL-Treffer (DE-HH). Bayern-Kulturfonds darf rein, weil bundesweit foerderbar."
+  },
+  {
+    "id": "ev-015",
+    "category": "kurz",
+    "anliegen": "Wir wollen ein Schul-Aquarium und naturkundliche Exkursionen an einen NABU-Standort.",
+    "schultyp": "grundschule",
+    "expected_top3": ["nabu-schulen", "bfn-artenvielfalt", "stiftung-kinder-forschen"],
+    "expected_off_target": ["bmbf-digitalpakt-2"],
+    "notes": "Kurz, klares Natur+Umwelt-Anliegen. Kein Bundesland — thematischer Kern-Test."
+  },
+  {
+    "id": "ev-016",
+    "category": "kurz",
+    "anliegen": "Mehrsprachige Bibliothek aufbauen — 600 Buecher in Tuerkisch, Arabisch, Polnisch, Russisch.",
+    "schultyp": "grundschule",
+    "bundesland": "Nordrhein-Westfalen",
+    "geschaetztesBudgetEur": 4500,
+    "expected_top3": ["lesen-macht-stark", "sprache-macht-stark", "mercator-integration"],
+    "expected_off_target": ["aktion-mensch-schulkooperation"],
+    "notes": "Kurz, klar Sprache+Integration. Aktion-Mensch (Inklusion) als Off-Target — Mehrsprachigkeit ist nicht das gleiche wie Behinderten-Inklusion."
+  },
+  {
+    "id": "ev-017",
+    "category": "vag",
+    "anliegen": "Irgendwas Digitales fuer die Schule — Tablets vielleicht oder eine Software, das Kollegium ist da uneinig. Wir haben 320 Schueler.",
+    "schultyp": "gymnasium",
+    "bundesland": "Bayern",
+    "expected_top3": ["bmbf-digitalpakt-2", "mercator-digitalisierung", "ibm-skillsbuild"],
+    "expected_off_target": ["aktion-mensch-schulkooperation"],
+    "notes": "Vag aber klar digital. Phase-2-Klaerungsfrage-Logik soll hier nachfragen, was genau gemeint ist. Top-3 sind die naheliegendsten Digital-Programme."
+  },
+  {
+    "id": "ev-018",
+    "category": "vag",
+    "anliegen": "Wir wollen die Kinder mehr foerdern, gerade die mit Migrationshintergrund und die mit Foerderbedarf — irgendetwas Ganzheitliches mit Sprache und Inklusion zusammen.",
+    "schultyp": "grundschule",
+    "bundesland": "Berlin",
+    "geschaetztesBudgetEur": 15000,
+    "expected_top3": ["mercator-integration", "dkjs-inklusion", "berlin-startchancen"],
+    "expected_off_target": ["bmbf-digitalpakt-2"],
+    "notes": "Vag und multi-thematisch (Sprache + Inklusion). Phase-2-Klaerungsfrage soll Schwerpunkt schaerfen. Berlin-Startchancen passt wegen BL+Bildungsgerechtigkeit."
+  },
+  {
+    "id": "ev-019",
+    "category": "vag",
+    "anliegen": "Wir haben mehrere Ideen — Theater, AG fuer Naturwissenschaften, vielleicht ein Austausch nach Frankreich. Was passt wirtschaftlich?",
+    "schultyp": "gymnasium",
+    "bundesland": "Baden-Wuerttemberg",
+    "expected_top3": [],
+    "expected_off_target": ["bmbf-digitalpakt-2", "aktion-mensch-schulkooperation"],
+    "notes": "Edge-Case (D-07): bewusst widerspruechliches Multi-Anliegen ohne Schwerpunkt — kein verlaesslicher Top-3-Match moeglich. Erwartung: Matcher liefert leere Liste oder eine Mischung, die nicht eindeutig Goldstandard ist. DigitalPakt + Aktion-Mensch sind klare Off-Targets, falls sie auftauchen."
+  },
+  {
+    "id": "ev-020",
+    "category": "vag",
+    "anliegen": "Wir sind eine Sekundarschule und brauchen Geld fuer Projekte rund um Nachhaltigkeit, aber auch fuer Ausstattung — wir wissen noch nicht so genau, wie wir das aufstellen.",
+    "schultyp": "sekundarschule",
+    "bundesland": "Sachsen-Anhalt",
+    "geschaetztesBudgetEur": 18000,
+    "expected_top3": ["klimalab-2026", "heinrich-boell-bildung", "schott-nachhaltigkeit"],
+    "expected_off_target": ["aktion-mensch-schulkooperation"],
+    "notes": "Vag mit Nachhaltigkeits-Schwerpunkt. Klaerungsfrage in Phase 2: Projekt-Komponente vs Ausstattung trennen. Aktion-Mensch off-target."
+  },
+  {
+    "id": "ev-021",
+    "category": "vag",
+    "anliegen": "Wir wollen Foerdermittel fuer eine Reihe kleinerer Vorhaben akquirieren, ueber das Schuljahr verteilt — Lesefoerderung, Ausfluege, vielleicht Sport-AGs. Eher pragmatische Mittel als ein grosses Projekt.",
+    "schultyp": "grundschule",
+    "geschaetztesBudgetEur": 8000,
+    "expected_top3": ["stiftung-bildung-foerderfonds", "lesen-macht-stark", "dkjs-sport"],
+    "expected_off_target": ["bmbf-digitalpakt-2"],
+    "notes": "Vag aber mit hilfreicher Pragmatik-Fokus. Stiftung-Bildung-Foerderfonds passt fuer kleine Mittel. Klaerungsfrage: 'welcher Posten zuerst?'"
+  },
+  {
+    "id": "ev-022",
+    "category": "vag",
+    "anliegen": "Wir suchen einfach Geld. Die Schule braucht alles. Vielleicht koennen Sie uns helfen?",
+    "schultyp": "grundschule",
+    "expected_top3": [],
+    "expected_off_target": ["bmbf-digitalpakt-2", "aktion-mensch-schulkooperation"],
+    "notes": "Edge-Case (D-07): vollstaendig themenfrei. Erwartung: Matcher liefert leere Liste oder triggert Klaerungsfrage. Wenn er hier ein konkretes Programm in Top-3 packt, ist das ein Halluzinations-Indikator."
   }
 ]
