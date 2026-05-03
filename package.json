@@ -19,7 +19,8 @@
     "health:check": "curl http://localhost:3101/api/health",
     "test:smoke": "node scripts/smoke-test.js",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "eval:matcher": "tsx --env-file=.env.local scripts/eval-matcher.ts"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
