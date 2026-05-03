@@ -75,7 +75,7 @@ Phasen-Mapping aus ROADMAP.md (befüllt 2026-04-30 durch Roadmapper).
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| MATCH-01 | Phase 1 (Eval-Korpus Matcher) | Pending |
+| MATCH-01 | Phase 1 (Eval-Korpus Matcher) | Complete |
 | MATCH-02 | Phase 2 (Matcher-Quality) | Pending |
 | MATCH-03 | Phase 2 (Matcher-Quality) | Pending |
 | FETCH-01 | Phase 3 (Programm-Pflege Foundation) | Pending |

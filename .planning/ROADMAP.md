@@ -28,7 +28,7 @@ Diese Roadmap führt EduFunds vom heutigen Stand (`feature/wizard-adaptive` HEAD
   2. Jeder Korpus-Eintrag hat `expected_top3` und `expected_off_target` (kuratiert durch Kolja)
   3. Eval-Skript (`scripts/eval-matcher.ts` o. ä.) misst Top3-Trefferrate und Off-Target-Rate gegen den aktuellen `lib/wizard/matcher.ts`-Code, gibt strukturierten Report (JSON + Konsolen-Tabelle)
   4. Baseline-Score des aktuellen Matchers ist dokumentiert (Zahl + Datum) als Vergleichswert für Phase 2
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
 
 Plans:
 - [x] 01-01-PLAN.md — Eval-Skript + Korpus-Schema + 3-Eintrag-Stub (Wave 1, autonomous) ✓ 2026-05-03
@@ -100,7 +100,7 @@ Phasen werden numerisch ausgeführt: 1 → 2 → 3 → 4 → 5 → 6. Phasen 2 u
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Eval-Korpus Matcher | 2/2 | Complete — Baseline Recall@3=0.316 / Off-Target=10.5 % (Korpus n=22, Commit `06675e2`) | 2026-05-03 |
+| 1. Eval-Korpus Matcher | 2/2 | Complete    | 2026-05-03 |
 | 2. Matcher-Quality | 0/TBD | Not started | - |
 | 3. Programm-Pflege Foundation | 0/TBD | Not started | - |
 | 4. Programm-Pflege Vollautomation | 0/TBD | Not started | - |
