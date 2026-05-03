@@ -4,12 +4,12 @@ milestone: v1.0
 milestone_name: milestone
 status: planning
 stopped_at: Phase 1 context gathered
-last_updated: "2026-04-30T14:09:36.285Z"
+last_updated: "2026-04-30T15:58:16.954Z"
 last_activity: 2026-04-30 — Roadmap erstellt (14 v1-Requirements auf 6 Phasen gemappt, 100 % Coverage)
 progress:
   total_phases: 6
   completed_phases: 0
-  total_plans: 0
+  total_plans: 2
   completed_plans: 0
   percent: 0
 ---
@@ -95,3 +95,5 @@ Items aus REQUIREMENTS.md v2 / Out of Scope, bewusst nicht in dieser Milestone:
 Last session: --stopped-at
 Stopped at: Phase 1 context gathered
 Resume file: --resume-file
+
+**Planned Phase:** 1 (Eval-Korpus Matcher) — 2 plans — 2026-04-30T15:58:16.937Z
