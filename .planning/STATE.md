@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Plan 01-01 abgeschlossen — Eval-Skript + Korpus-Stub liefern Hand-off an Plan 01-02 (Korpus-Vollkuration + Baseline-Run)
-stopped_at: Plan 01-01 abgeschlossen — bereit fuer Plan 01-02
-last_updated: "2026-05-03T07:55:01.491Z"
-last_activity: 2026-05-03 — Plan 01-01 abgeschlossen (3 Tasks, ~25 Min, Live-Smoke gruen)
+status: verifying
+stopped_at: Plan 01-02 abgeschlossen — Phase 1 ready for verification
+last_updated: "2026-05-03T08:22:55.636Z"
+last_activity: 2026-05-03
 progress:
   total_phases: 6
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 2
-  completed_plans: 1
-  percent: 50
+  completed_plans: 2
+  percent: 100
 ---
 
 # Project State
@@ -27,10 +27,10 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 
 Phase: 1 (Eval-Korpus Matcher) — EXECUTING
 Plan: 2 of 2 (01-01 ✓ done, 01-02 pending)
-Status: Plan 01-01 abgeschlossen — Eval-Skript + Korpus-Stub liefern Hand-off an Plan 01-02 (Korpus-Vollkuration + Baseline-Run)
-Last activity: 2026-05-03 — Plan 01-01 abgeschlossen (3 Tasks, ~25 Min, Live-Smoke gruen)
+Status: Phase complete — ready for verification
+Last activity: 2026-05-03
 
-Progress: [█████░░░░░] 50%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -53,6 +53,7 @@ Progress: [█████░░░░░] 50%
 
 *Updated after each plan completion*
 | Phase 01-eval-korpus-matcher P01 | 25 | 3 tasks | 5 files |
+| Phase 1 P01-02 | 25 | 3 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -66,6 +67,9 @@ Decisions sind in PROJECT.md Key-Decisions-Tabelle gepflegt. Roadmap-relevante E
 - DeepSeek `deepseek-chat` als Default bleibt, Pipeline-Modell-Entscheidung vom 28.04. respektiert
 - Plan 01-01: Reports und Snapshots als transient via .gitignore ausgeschlossen — Korpus selbst bleibt versioniert, Baselines kommen separat in Plan 01-02 (data/eval/BASELINE.md)
 - Plan 01-01: LLM-Varianz im Matcher beobachtet (Off-Target-Rate Run 1 vs Run 2: 0% vs 50% bei identischem 3-Eintrag-Stub) — Plan 01-02 sollte Run-Stabilitaet evaluieren oder seed/temperature=0 erwaegen
+- Phase-1-Baseline force-committed trotz .gitignore (Threat-Model T-01-09 SHA-Zuordnung)
+- BASELINE.md mit JSON-Zahl 0.79 Cent statt Konsolen-formatEur-Display '< 0,01 €'
+- Edge-Case-Befund stehengelassen: Matcher liefert Top-3 statt Klaerungsfrage — Phase-2-MATCH-03-Auftrag
 
 ### Pending Todos
 
@@ -95,8 +99,8 @@ Items aus REQUIREMENTS.md v2 / Out of Scope, bewusst nicht in dieser Milestone:
 
 ## Session Continuity
 
-Last session: 2026-05-03T07:54:56.790Z
-Stopped at: Plan 01-01 abgeschlossen — bereit fuer Plan 01-02
+Last session: 2026-05-03T08:22:45.249Z
+Stopped at: Plan 01-02 abgeschlossen — Phase 1 ready for verification
 Resume file: None
 
 **Planned Phase:** 1 (Eval-Korpus Matcher) — 2 plans — 2026-04-30T15:58:16.937Z

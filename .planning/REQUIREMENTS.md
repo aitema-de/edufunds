@@ -9,7 +9,8 @@ Requirements für aktuelle Milestone (Live-UAT-Reife für Schulen + Schulförder
 
 ### Matching
 
-- [ ] **MATCH-01**: Eval-Korpus mit 20–30 realistischen Schul-Anliegen (kurz/ausführlich/vag), jeweils mit `expected_top3` und `expected_off_target` — kuratiert von Kolja, dient als Regressions- und Verbesserungs-Messlatte
+- [x] **MATCH-01
+**: Eval-Korpus mit 20–30 realistischen Schul-Anliegen (kurz/ausführlich/vag), jeweils mit `expected_top3` und `expected_off_target` — kuratiert von Kolja, dient als Regressions- und Verbesserungs-Messlatte
 - [ ] **MATCH-02**: Matcher liefert strukturierte Begründung pro Treffer (passt-weil + Achtung-bei) statt 15-Wort-Pauschale
 - [ ] **MATCH-03**: Matcher erkennt vages Anliegen und stellt Klärungsfrage, bevor er rankt
 

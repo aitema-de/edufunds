@@ -10,7 +10,7 @@ Diese Roadmap führt EduFunds vom heutigen Stand (`feature/wizard-adaptive` HEAD
 - Integer phases (1, 2, 3): Planned milestone work
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
-- [ ] **Phase 1: Eval-Korpus Matcher** — Messbare Regressions-Basis für jede Matcher-Iteration etablieren
+- [x] **Phase 1: Eval-Korpus Matcher** — Messbare Regressions-Basis für jede Matcher-Iteration etablieren ✓ 2026-05-03
 - [ ] **Phase 2: Matcher-Quality** — Matcher liefert strukturierte Begründungen und erkennt vage Anliegen
 - [ ] **Phase 3: Programm-Pflege Foundation** — Cron-Skripte auf DeepSeek-Wrapper migriert, Dossier-Schema um Best-Practices/Reject-Gründe/Vorbild-Formulierungen/Frist-Logik erweitert
 - [ ] **Phase 4: Programm-Pflege Vollautomation** — Scanner→Extractor→Queue voll automatisiert, alle 11 bestehenden Dossiers auf erweitertes Schema migriert
@@ -31,8 +31,8 @@ Diese Roadmap führt EduFunds vom heutigen Stand (`feature/wizard-adaptive` HEAD
 **Plans:** 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Eval-Skript + Korpus-Schema + 3-Eintrag-Stub (Wave 1, autonomous)
-- [ ] 01-02-PLAN.md — Korpus-Vollkuration durch Kolja (Checkpoint) + Baseline-Run + BASELINE.md (Wave 2)
+- [x] 01-01-PLAN.md — Eval-Skript + Korpus-Schema + 3-Eintrag-Stub (Wave 1, autonomous) ✓ 2026-05-03
+- [x] 01-02-PLAN.md — Korpus-Vollkuration durch Kolja (Checkpoint) + Baseline-Run + BASELINE.md (Wave 2) ✓ 2026-05-03
 
 ### Phase 2: Matcher-Quality
 **Goal**: Matcher liefert strukturierte Begründungen statt 15-Wort-Pauschale und erkennt vage Anliegen mit Klärungsfrage statt blindem Ranking.
@@ -100,7 +100,7 @@ Phasen werden numerisch ausgeführt: 1 → 2 → 3 → 4 → 5 → 6. Phasen 2 u
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Eval-Korpus Matcher | 1/2 | In progress (01-01 done, 01-02 pending) | - |
+| 1. Eval-Korpus Matcher | 2/2 | Complete — Baseline Recall@3=0.316 / Off-Target=10.5 % (Korpus n=22, Commit `06675e2`) | 2026-05-03 |
 | 2. Matcher-Quality | 0/TBD | Not started | - |
 | 3. Programm-Pflege Foundation | 0/TBD | Not started | - |
 | 4. Programm-Pflege Vollautomation | 0/TBD | Not started | - |
