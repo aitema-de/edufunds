@@ -1,9 +1,9 @@
 ---
 phase: 02
 slug: matcher-quality
-status: draft
-nyquist_compliant: false
-wave_0_complete: false
+status: ready
+nyquist_compliant: true
+wave_0_complete: false  # Plan 02-00 covers
 created: 2026-05-03
 ---
 
@@ -41,7 +41,17 @@ created: 2026-05-03
 
 | Task ID | Plan | Wave | Requirement | Threat Ref | Secure Behavior | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|------------|-----------------|-----------|-------------------|-------------|--------|
-| TBD     | 02-NN | N | MATCH-02 / -03 | — | — | unit / integration / eval | TBD | TBD | ⬜ pending |
+| 02-00-T1 | 02-00 | 0 | MATCH-02 | — | Skelett-Sentinel | unit (skeleton) | `npm test -- --testPathPattern='wizard/matcher\.parser' --listTests` | NO — dieser Task erstellt sie | ⬜ pending |
+| 02-00-T2 | 02-00 | 0 | MATCH-03 | — | Skelett-Sentinel | unit (skeleton) | `npm test -- --testPathPattern='wizard/matcher\.dispatch' --listTests` | NO — dieser Task erstellt sie | ⬜ pending |
+| 02-00-T3 | 02-00 | 0 | MATCH-02 / -03 | — | Skelett-Sentinel | unit (skeleton, jsdom) | `npm test -- --testPathPattern='components/MatchResultList' --listTests` | NO — dieser Task erstellt sie | ⬜ pending |
+| 02-01-T1 | 02-01 | 1 | MATCH-02 / -03 | T-02-01-04, -05, -06 | Soft-Failure-Parser, validIds-Filter, CLARIFY-First-Line-only | unit | `npm test -- --testPathPattern='wizard/matcher\.(parser\|dispatch)'` | YES (nach Plan 02-00) | ⬜ pending |
+| 02-01-T2 | 02-01 | 1 | MATCH-02 / -03 | T-02-01-01, -02 | Tagged-Union-Dispatch in API | tsc + grep | `npx tsc --noEmit` | YES | ⬜ pending |
+| 02-02-T1 | 02-02 | 2 | MATCH-02 / -03 | T-02-02-06 | Text-Render-Only fuer LLM-Output (kein dangerouslySetInnerHTML) | tsc + grep | `npx tsc --noEmit` | YES | ⬜ pending |
+| 02-02-T2 | 02-02 | 2 | MATCH-02 / -03 | T-02-02-02 | ClarificationCard + MatchResultList Rendering (kind=ranking/clarification) — isSecondRound-Loop-Guard wird via Browser-Smoke 02-02-T3 verifiziert | unit (jsdom) + manual smoke for guard | `npm test -- --testPathPattern='components/MatchResultList\|wizard/matcher'` (Unit-Coverage), Browser-Smoke 02-02-T3 (Guard-Pfad) | YES (nach Plan 02-00) | ⬜ pending |
+| 02-02-T3 | 02-02 | 2 | MATCH-02 / -03 | — | UI-Smoke alle 4 Pfade | manual (browser) | http://localhost:3101/antrag/start | n/a (manual) | ⬜ pending |
+| 02-03-T1 | 02-03 | 2 | MATCH-02 / -03 | T-02-03-04, -06 | Korpus-ID-Validation, Snapshot-Shim | tsc + replay-smoke | `npx tsc --noEmit && npm run eval:matcher -- --replay <latest>` | YES | ⬜ pending |
+| 02-03-T2 | 02-03 | 2 | MATCH-03 | — | Hybrid-Curation (Claude entwirft, Kolja kuratiert) | manual checkpoint | jq-Validation in checkpoint instructions | n/a (manual) | ⬜ pending |
+| 02-03-T3 | 02-03 | 2 | MATCH-02 / -03 | T-02-03-01, -03 | D-16 Threshold-Gate (process.exit 1 bei fail), keine API-Keys in Reports | eval (live) | `npm run eval:matcher` | YES | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -51,9 +61,9 @@ created: 2026-05-03
 
 > Filled by gsd-planner from RESEARCH.md Validation Architecture section.
 
-- [ ] `tests/wizard/matcher.parser.test.ts` — Pipe-Format-Parser-Edge-Cases (4 Spalten / weniger / mehr / leeres `achtung_bei`)
-- [ ] `tests/wizard/matcher.dispatch.test.ts` — Tagged-Union-Dispatch (CLARIFY|... vs id|score|... als erste Zeile)
-- [ ] `tests/wizard/match-result-list.test.tsx` — UI-Smoke (kind=ranking + kind=clarification rendering)
+- [ ] `__tests__/lib/wizard/matcher.parser.test.ts` — Pipe-Format-Parser-Edge-Cases (4 Spalten / weniger / mehr / leeres `achtung_bei`)
+- [ ] `__tests__/lib/wizard/matcher.dispatch.test.ts` — Tagged-Union-Dispatch (CLARIFY|... vs id|score|... als erste Zeile)
+- [ ] `__tests__/components/MatchResultList.test.tsx` — UI-Smoke (kind=ranking + kind=clarification rendering)
 - [ ] `data/eval/matcher-korpus.json` Schema-Erweiterung mit `expected_clarification` + `expected_missing_slots`
 
 *If none: "Existing infrastructure covers all phase requirements." — N/A für Phase 2 (neue Tests nötig).*
@@ -95,4 +105,4 @@ PR-Gate (D-17): `npm run eval:matcher` MUSS in PRs durchlaufen, die `lib/wizard/
 - [ ] `nyquist_compliant: true` set in frontmatter
 - [ ] Eval-Gate-Thresholds aus D-16 in `scripts/eval-matcher.ts` als Exit-Code-Gate codiert
 
-**Approval:** pending
+**Approval:** ready (planner pass complete, awaiting executor)
