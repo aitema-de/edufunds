@@ -1,0 +1,32 @@
+[
+  {
+    "id": "ev-001",
+    "category": "ausfuehrlich",
+    "anliegen": "Wir wollen an unserer Grundschule einen Schulgarten anlegen — mit Hochbeeten, einer kleinen Werkstatt fuer den Bau und einer Fortbildung fuer Kollegium und Eltern. Geplant sind 12 Hochbeete, ein wetterfester Geraeteschuppen und 3 ganztaegige Workshops. Die Schueler sollen eigenstaendig pflanzen, ernten und kochen.",
+    "schulname": "Grundschule am Buschgraben",
+    "schultyp": "grundschule",
+    "bundesland": "Berlin",
+    "geschaetztesBudgetEur": 8000,
+    "expected_top3": ["aktion-mensch-schulkooperation", "kultur-macht-stark"],
+    "expected_off_target": ["bmbf-digitalpakt-2"],
+    "notes": "Klassischer Goldstandard: klares Anliegen, BL-Match auf bundesweite Programme, Digital-Programm als Off-Target weil thematisch falsch."
+  },
+  {
+    "id": "ev-002",
+    "category": "kurz",
+    "anliegen": "Wir brauchen Tablets und WLAN fuer den Unterricht in Klasse 5 bis 10.",
+    "schultyp": "gymnasium",
+    "bundesland": "Berlin",
+    "expected_top3": ["bmbf-digitalpakt-2", "berlin-startchancen"],
+    "expected_off_target": ["aktion-mensch-schulkooperation"],
+    "notes": "Kurz, eindeutig digital. Berlin-Startchancen darf rein, weil BL-Match. Aktion-Mensch (Schulkooperation) ist Off-Target (kein Inklusionsfokus erkennbar)."
+  },
+  {
+    "id": "ev-003",
+    "category": "vag",
+    "anliegen": "Wir wollen unsere Schule besser machen und brauchen dafuer Geld. Es gibt viele Ideen, aber nichts Konkretes — vielleicht etwas mit Sport oder Kultur oder so.",
+    "expected_top3": [],
+    "expected_off_target": ["bmbf-digitalpakt-2", "aktion-mensch-schulkooperation"],
+    "notes": "Edge-Case (D-07): bewusst zu vag fuer ein Ranking. Erwartung: Matcher liefert leere Liste oder maximal Score-Threshold-gefilterte Top-1. Keine Top-3-Goldstandard-IDs vorhanden. Wenn der Matcher trotzdem Digital- oder Inklusion-Programm in Top-3 packt, ist das ein Off-Target-Hit."
+  }
+]
