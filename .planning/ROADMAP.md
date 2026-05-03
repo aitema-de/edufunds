@@ -100,7 +100,7 @@ Phasen werden numerisch ausgeführt: 1 → 2 → 3 → 4 → 5 → 6. Phasen 2 u
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Eval-Korpus Matcher | 0/TBD | Not started | - |
+| 1. Eval-Korpus Matcher | 1/2 | In progress (01-01 done, 01-02 pending) | - |
 | 2. Matcher-Quality | 0/TBD | Not started | - |
 | 3. Programm-Pflege Foundation | 0/TBD | Not started | - |
 | 4. Programm-Pflege Vollautomation | 0/TBD | Not started | - |

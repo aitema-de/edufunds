@@ -232,6 +232,18 @@ None — keine externen Services, keine neuen Env-Variablen. `DEEPSEEK_API_KEY` 
 - **MATCH-01 wird in Plan 01-02 abgeschlossen** (nicht in 01-01) — das Vollkorpus von 20–30 Einträgen ist Teil von Plan 02. Plan 01-01 liefert nur Schema + Skript + Stub.
 - **Phase 2 (Matcher-Quality) wartet auf Plan 02** für die versionierte Baseline, gegen die MATCH-02/-03-Tunings verglichen werden.
 
+## Self-Check: PASSED
+
+- `data/eval/matcher-korpus.json` — FOUND
+- `scripts/eval-matcher.ts` — FOUND
+- `.planning/phases/01-eval-korpus-matcher/01-01-SUMMARY.md` — FOUND
+- `package.json` enthält `eval:matcher`-Alias — FOUND
+- Commit `bc3980e` (Task 1, feat) — FOUND in git log
+- Commit `ec4ddca` (Task 2, feat) — FOUND in git log
+- Commit `308da2c` (Task 3, docs) — FOUND in git log
+- Live-Smoke gegen 3-Eintrag-Stub — PASSED (Recall@3=1.000, Off-Target=0%, Latenz 2.72s/Eintrag)
+- Replay-Smoke gegen Snapshot — PASSED (identische Aggregate, Latenz 0.00s, Kosten `< 0,01 € (replay-modus)`)
+
 ---
 *Phase: 01-eval-korpus-matcher*
 *Plan: 01-01 (Wave 1)*
