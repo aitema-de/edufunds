@@ -65,6 +65,11 @@ interface KorpusEntry {
   expected_clarification?: boolean;
   /** D-14: optional, fuer Slot-Coverage-Diagnose (nicht PR-Gate). */
   expected_missing_slots?: Slot[];
+  // WR-03: Snapshot-Audit-Felder fuer kuenftige D-09-Test-Eintraege.
+  /** Optional: erzwinge Ranking-Pfad (D-09 Override-Test). */
+  forceRanking?: boolean;
+  /** Optional: voriges Anliegen fuer Praezisierungs-Test (D-09). */
+  previousAnliegen?: string;
 }
 
 interface EntryResult {
@@ -258,6 +263,11 @@ function entryToMatchInput(entry: KorpusEntry): MatchInput {
   if (entry.bundesland !== undefined) input.bundesland = entry.bundesland;
   if (entry.geschaetztesBudgetEur !== undefined)
     input.geschaetztesBudgetEur = entry.geschaetztesBudgetEur;
+  // WR-03: forceRanking + previousAnliegen aus Korpus uebernehmen, damit kuenftige
+  // D-09-Test-Eintraege im Snapshot dokumentiert sind und das Replay den Override-
+  // /Praezisierungs-Pfad korrekt reproduziert.
+  if (entry.forceRanking !== undefined) input.forceRanking = entry.forceRanking;
+  if (entry.previousAnliegen !== undefined) input.previousAnliegen = entry.previousAnliegen;
   return input;
 }
 
@@ -784,6 +794,21 @@ async function main() {
   console.log("\n" + "=".repeat(80));
   console.log("D-16 Threshold-Gate (PR-Gate)");
   console.log("=".repeat(80));
+  // WR-04: Korpus-Drift-Warnung — null gilt im Gate weiterhin als pass (siehe unten),
+  // aber 0 Eintraege mit expected_clarification=true (oder =false) maskiert das
+  // Clarif-Target strukturell. Sichtbare Warnung beugt Silent-Pass nach Refactor vor.
+  if (m.nExpectedClarif === 0) {
+    console.warn(
+      `[GATE] WARNUNG: 0 Eintraege mit expected_clarification=true im Korpus. ` +
+      `Clarif-Precision-Target wird strukturell NICHT gemessen — Korpus pruefen!`
+    );
+  }
+  if (m.nExpectedNoClarif === 0) {
+    console.warn(
+      `[GATE] WARNUNG: 0 Eintraege mit expected_clarification=false im Korpus. ` +
+      `Clarif-FalschPos-Target wird strukturell NICHT gemessen — Korpus pruefen!`
+    );
+  }
   const gate: Record<string, boolean> = {
     "Recall@3 >= 0.42": m.recallAtThreeMean >= 0.42,
     "Off-Target < 5%": m.offTargetRate < 0.05,
