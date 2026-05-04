@@ -51,7 +51,7 @@ export interface MatchInput {
 
 /**
  * Ein einzelner Match-Treffer im Ranking-Pfad.
- * D-04: `begruendung` ist hart entfernt — ersetzt durch `passt_weil` + `achtung_bei`.
+ * D-04: altes Pauschal-Feld ist hart entfernt — ersetzt durch `passt_weil` + `achtung_bei`.
  */
 export interface MatchHit {
   id: string;
