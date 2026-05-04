@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ExternalLink, Star } from "lucide-react";
+import { AlertTriangle, ArrowRight, CheckCircle, ExternalLink, Star } from "lucide-react";
 
 export interface MatchEntry {
   id: string;
   score: number;
-  begruendung: string;
+  passt_weil: string;
+  achtung_bei: string;
   programm: {
     id: string;
     name: string;
@@ -90,9 +91,26 @@ export function MatchResultList({ matches, onStartAntrag }: Props) {
               {m.score}
             </div>
           </div>
-          <p className="mb-4 text-sm leading-relaxed text-slate-300">
-            {m.begruendung}
-          </p>
+          {/* Strukturierte Begruendung — D-10 (Plan 02-02): passt_weil + achtung_bei aus MatchHit */}
+          <div className="mb-4 space-y-2">
+            {/* passt_weil — gruener Block, immer gerendert */}
+            <div className="flex items-start gap-2 rounded-lg bg-green-900/30 border border-green-700/50 px-3 py-2">
+              <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-green-400" aria-hidden="true" />
+              <div>
+                <span className="text-xs font-semibold text-green-400">Passt, weil: </span>
+                <span className="text-sm text-green-200">{m.passt_weil}</span>
+              </div>
+            </div>
+            {m.achtung_bei && (
+              <div className="flex items-start gap-2 rounded-lg bg-orange-900/30 border border-orange-700/50 px-3 py-2">
+                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-orange-400" aria-hidden="true" />
+                <div>
+                  <span className="text-xs font-semibold text-orange-400">Achtung: </span>
+                  <span className="text-sm text-orange-200">{m.achtung_bei}</span>
+                </div>
+              </div>
+            )}
+          </div>
           <div className="flex flex-wrap items-center justify-between gap-3">
             <Link
               href={`/foerderprogramme/${m.programm.id}`}
