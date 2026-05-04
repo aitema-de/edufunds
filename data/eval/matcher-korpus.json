@@ -27,7 +27,9 @@
     "anliegen": "Wir wollen unsere Schule besser machen und brauchen dafuer Geld. Es gibt viele Ideen, aber nichts Konkretes — vielleicht etwas mit Sport oder Kultur oder so.",
     "expected_top3": [],
     "expected_off_target": ["bmbf-digitalpakt-2", "aktion-mensch-schulkooperation"],
-    "notes": "Edge-Case (D-07): bewusst zu vag fuer ein Ranking. Erwartung: Matcher liefert leere Liste oder maximal Score-Threshold-gefilterte Top-1. Keine Top-3-Goldstandard-IDs vorhanden. Wenn der Matcher trotzdem Digital- oder Inklusion-Programm in Top-3 packt, ist das ein Off-Target-Hit."
+    "expected_clarification": true,
+    "expected_missing_slots": ["bundesland", "zielgruppe", "thema"],
+    "notes": "Edge-Case (D-07): bewusst zu vag fuer ein Ranking. Erwartung: Matcher liefert leere Liste oder maximal Score-Threshold-gefilterte Top-1. Keine Top-3-Goldstandard-IDs vorhanden. Wenn der Matcher trotzdem Digital- oder Inklusion-Programm in Top-3 packt, ist das ein Off-Target-Hit. Phase-2 (D-13): expected_clarification gesetzt — alle 3 Slots fehlen, Klaerungsfrage erwartet."
   },
   {
     "id": "ev-004",
@@ -205,7 +207,9 @@
     "bundesland": "Baden-Wuerttemberg",
     "expected_top3": [],
     "expected_off_target": ["bmbf-digitalpakt-2", "aktion-mensch-schulkooperation"],
-    "notes": "Edge-Case (D-07): bewusst widerspruechliches Multi-Anliegen ohne Schwerpunkt — kein verlaesslicher Top-3-Match moeglich. Erwartung: Matcher liefert leere Liste oder eine Mischung, die nicht eindeutig Goldstandard ist. DigitalPakt + Aktion-Mensch sind klare Off-Targets, falls sie auftauchen."
+    "expected_clarification": true,
+    "expected_missing_slots": ["thema"],
+    "notes": "Edge-Case (D-07): bewusst widerspruechliches Multi-Anliegen ohne Schwerpunkt — kein verlaesslicher Top-3-Match moeglich. Erwartung: Matcher liefert leere Liste oder eine Mischung, die nicht eindeutig Goldstandard ist. DigitalPakt + Aktion-Mensch sind klare Off-Targets, falls sie auftauchen. Phase-2 (D-13): expected_clarification gesetzt — Schultyp + BL bekannt, aber kein Themen-Schwerpunkt. Klaerungsfrage zur Themenwahl erwartet."
   },
   {
     "id": "ev-020",
@@ -235,6 +239,86 @@
     "schultyp": "grundschule",
     "expected_top3": [],
     "expected_off_target": ["bmbf-digitalpakt-2", "aktion-mensch-schulkooperation"],
-    "notes": "Edge-Case (D-07): vollstaendig themenfrei. Erwartung: Matcher liefert leere Liste oder triggert Klaerungsfrage. Wenn er hier ein konkretes Programm in Top-3 packt, ist das ein Halluzinations-Indikator."
+    "expected_clarification": true,
+    "expected_missing_slots": ["bundesland", "thema"],
+    "notes": "Edge-Case (D-07): vollstaendig themenfrei. Erwartung: Matcher liefert leere Liste oder triggert Klaerungsfrage. Wenn er hier ein konkretes Programm in Top-3 packt, ist das ein Halluzinations-Indikator. Phase-2 (D-13): expected_clarification gesetzt — Schultyp bekannt, aber weder BL noch Thema. Klaerungsfrage zur Themenwahl + BL erwartet."
+  },
+  {
+    "id": "ev-023",
+    "category": "vag",
+    "anliegen": "Wir wollen ein Projekt starten, das Kinder motiviert und foerdert — vielleicht im kreativen Bereich.",
+    "expected_top3": [],
+    "expected_off_target": ["bmbf-digitalpakt-2"],
+    "expected_clarification": true,
+    "expected_missing_slots": ["bundesland", "zielgruppe"],
+    "notes": "Phase-2 Typ 1 (Slot-fehlt-Kombo, D-13/D-14): Thema halbwegs erkennbar (kreativ), aber kein Bundesland und kein Schultyp — 2 von 3 Pflicht-Slots fehlen. Klaerungsfrage erwartet, die nach BL + Zielgruppe fragt. Kein Ranking-Goldstandard, weil Anliegen zu vage."
+  },
+  {
+    "id": "ev-024",
+    "category": "vag",
+    "anliegen": "Wir wuerden gern etwas im Bereich Bewegung oder Sport starten, etwa eine kleine Initiative ueber das Schuljahr verteilt.",
+    "expected_top3": [],
+    "expected_off_target": ["bmbf-digitalpakt-2", "aktion-mensch-schulkooperation"],
+    "expected_clarification": true,
+    "expected_missing_slots": ["bundesland", "zielgruppe"],
+    "notes": "Phase-2 Typ 1 (Slot-fehlt-Kombo, D-13/D-14): Thema (Sport/Bewegung) ist genannt, aber kein Bundesland und kein Schultyp — 2 von 3 Pflicht-Slots fehlen. Klaerungsfrage erwartet, die nach BL + Zielgruppe fragt. Anti-Risiko: Matcher koennte vorschnell DKJS-Sport oder NABU-Schulen liefern, ohne das Schul-Profil zu kennen."
+  },
+  {
+    "id": "ev-025",
+    "category": "vag",
+    "anliegen": "Wir bewerben uns fuer alles Moegliche — Sport, Kultur, vielleicht auch was Digitales. Was bringt am meisten?",
+    "schultyp": "grundschule",
+    "bundesland": "Bayern",
+    "expected_top3": [],
+    "expected_off_target": ["bmbf-digitalpakt-2", "aktion-mensch-schulkooperation"],
+    "expected_clarification": true,
+    "expected_missing_slots": ["thema"],
+    "notes": "Phase-2 Typ 2 (Multi-Thema ohne Schwerpunkt, D-13/D-14): BL + Schultyp bekannt, aber drei widerspruechliche Themen genannt (Sport, Kultur, Digital) ohne Prioritaet. Klaerungsfrage zur Themenwahl erwartet. Kein Ranking-Goldstandard."
+  },
+  {
+    "id": "ev-026",
+    "category": "vag",
+    "anliegen": "Wir wollen unsere Schule weiterentwickeln — irgendwas zwischen Inklusion, Demokratielernen und vielleicht Internationalisierung. Wir wissen noch nicht, wo der Hebel am groessten ist.",
+    "schultyp": "gesamtschule",
+    "bundesland": "Hessen",
+    "expected_top3": [],
+    "expected_off_target": ["bmbf-digitalpakt-2"],
+    "expected_clarification": true,
+    "expected_missing_slots": ["thema"],
+    "notes": "Phase-2 Typ 2 (Multi-Thema ohne Schwerpunkt, D-13/D-14): BL + Schultyp gesetzt, aber drei sehr unterschiedliche Schwerpunkte (Inklusion, Demokratie, Internationales) konkurrieren ohne Festlegung. Klaerungsfrage zur Schwerpunktwahl erwartet."
+  },
+  {
+    "id": "ev-027",
+    "category": "vag",
+    "anliegen": "Wir suchen Foerderung fuer einen Schulchor und Konzertfahrten — Budget ca. 4.000 Euro, fuer das laufende Schuljahr.",
+    "schultyp": "gymnasium",
+    "bundesland": "Hamburg",
+    "geschaetztesBudgetEur": 4000,
+    "expected_top3": ["kultur-macht-stark", "hamburg-kultur-schule"],
+    "expected_off_target": ["bmbf-digitalpakt-2"],
+    "expected_clarification": false,
+    "notes": "Phase-2 Typ 3 (Anti-Beispiel, Falsch-Positiv-Test): kurz formuliert, aber Thema (Musik/Kultur), BL (Hamburg), Schultyp (Gymnasium) und Budget alle bekannt. Darf NICHT clarify triggern — alle 3 Pflicht-Slots gefuellt. hamburg-kultur-schule + kultur-macht-stark sind die naheliegenden Treffer. Pruefung der Falsch-Positiv-Rate."
+  },
+  {
+    "id": "ev-028",
+    "category": "vag",
+    "anliegen": "Brauchen Geld fuer Lesefoerderung in Klasse 1-2, gerne Kleingruppen mit Lesepatinnen. Etwa 12 Tausend Euro.",
+    "schultyp": "grundschule",
+    "bundesland": "Berlin",
+    "geschaetztesBudgetEur": 12000,
+    "expected_top3": ["lesen-macht-stark", "sprache-macht-stark", "berlin-startchancen"],
+    "expected_off_target": ["bmbf-digitalpakt-2"],
+    "expected_clarification": false,
+    "notes": "Phase-2 Typ 3 (Anti-Beispiel, Falsch-Positiv-Test): knapp + umgangssprachlich formuliert, aber Thema (Lesefoerderung), BL (Berlin), Schultyp (Grundschule), Klassenstufe (1-2) und Budget alle bekannt. Darf NICHT clarify triggern. lesen-macht-stark + sprache-macht-stark sind klare Treffer; berlin-startchancen wegen BL-Match."
+  },
+  {
+    "id": "ev-029",
+    "category": "vag",
+    "anliegen": "Wir wollen was im Bereich Bildung machen — keine konkrete Idee, aber Geld waere hilfreich.",
+    "expected_top3": [],
+    "expected_off_target": ["bmbf-digitalpakt-2", "aktion-mensch-schulkooperation"],
+    "expected_clarification": true,
+    "expected_missing_slots": ["bundesland", "zielgruppe", "thema"],
+    "notes": "Phase-2 Typ 1 (Slot-fehlt-Kombo, D-13/D-14): 'Bildung' ist kein konkretes Themenfeld; weder BL noch Schultyp. Alle 3 Pflicht-Slots fehlen. Klaerungsfrage zu BL + Zielgruppe + Schwerpunkt erwartet. Schaerfere Variante als ev-023, weil sogar das Thema nur vage 'Bildung' ist."
   }
 ]
