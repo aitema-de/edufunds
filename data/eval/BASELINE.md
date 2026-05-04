@@ -3,6 +3,53 @@
 > Append-only History. Phase 2+ fügt neue Einträge oben dran. Skript schreibt
 > NICHT in diese Datei — manuelle Pflege per PR.
 
+## 2026-05-04 — Phase-2-Baseline (Korpus v2, n=29)
+
+- **Matcher-Commit:** `bae73db` (HEAD von `feature/wizard-adaptive` nach Wave-2-Merges)
+- **Korpus-Version:** v2, 29 Einträge (kurz: 6, ausführlich: 9, vag: 14 — davon Edge-Cases: 10, mit `expected_clarification=true`: 8, Anti-Beispiele `expected_clarification=false`: 2)
+- **Korpus-Erweiterung gegenüber v1:** +7 neue Vague-Einträge (ev-023 bis ev-029) abdeckend D-13/D-14: 3× Slot-fehlt-Kombo (Typ 1: ev-023/024/029), 2× Multi-Thema ohne Schwerpunkt (Typ 2: ev-025/026), 2× Anti-Beispiele mit allen Slots klar (Typ 3: ev-027/028). Plus 3 D-13-Backports (ev-003, ev-019, ev-022) bekommen `expected_clarification` + `expected_missing_slots`.
+
+### Threshold-Gate (D-16/D-17 PR-Gate)
+
+| Metrik | Phase 1 (v1, n=22) | Phase 2 (v2, n=29) | D-17-Target | Status |
+|--------|---------------------|---------------------|-------------|--------|
+| **Recall@3** (Mittelwert non-edge) | 0.316 | **0.342** | ≥ 0.42 | ✗ FAIL (+0.026) |
+| **Off-Target-Rate** | 10.5 % | **0.0 %** | < 5 % | ✓ PASS (übererfüllt) |
+| **Clarif-Precision** | n/a | **62.5 %** (5/8 hits) | ≥ 80 % | ✗ FAIL |
+| **Clarif-FalschPos** | n/a | **9.5 %** (2/21) | ≤ 10 % | ✓ PASS (knapp) |
+| **Slot-Coverage** (Diagnose) | n/a | 90.0 % | — | gut |
+
+**Mechanik wirkt:** Edge-Cases triggern jetzt korrekt leere Liste (9/10 vs. 0/3 in Phase 1). Off-Target ging von 10.5 % auf 0 %. CLARIFY-Trigger funktioniert dem Grunde nach.
+
+**Tuning-Lücken:** 3 erwartete Klärungen werden gemisst (Clarif-Precision 62.5 %), und das Recall-Tuning hat sich nur marginal verbessert (+0.026). Beides sind Phase-2.1-Gap-Closure-Kandidaten.
+
+### Per-Kategorie
+
+- **kurz:** Recall 0.222 / Off-Target 0.0 % (n=6) — kein Fortschritt zur Phase 1 (war 0.222 / 16.7 %), aber Off-Target eliminiert
+- **ausfuehrlich:** Recall 0.417 / Off-Target 0.0 % (n=8) — Phase 1 war 0.370 / 11.1 %, also leicht besser
+- **vag (non-edge):** Recall 0.367 / Off-Target 0.0 % (n=5) — Phase 1 war 0.333 / 0.0 % (n=4), praktisch gleichauf
+
+### Latenz / Kosten
+
+- **Latenz/Eintrag:** 2.81s avg (Phase 1: 2.63s) — leicht höher wegen längerem MATCHER_SYSTEM-Prompt + Tagged-Union-Output
+- **Gesamtkosten:** 0,012 € (Phase 1: 0,79 ¢) — Größenordnung bleibt gleich, leichter Anstieg durch Korpus-Wachstum
+
+### Reports
+
+- JSON: `data/eval/reports/2026-05-04-08-07-48.json`
+- Markdown-Twin: `data/eval/reports/2026-05-04-08-07-48.md`
+- Snapshot: `data/eval/snapshots/2026-05-04-08-07-48/` (29 Einträge × Tagged-Union-Output)
+
+### Run-Befehl
+
+```bash
+npm run eval:matcher -- --snapshot --md-summary
+```
+
+Threshold-Gate-Fail (`process.exit(1)`) wirkt bei jedem Lauf — Phase-2.1 muss Recall@3 + Clarif-Precision auf Targets bringen, dann läuft der Gate grün.
+
+---
+
 ## 2026-05-03 — Phase-1-Baseline (Korpus v1, n=22)
 
 - **Matcher-Commit:** `06675e2` (HEAD von `feature/wizard-adaptive` zum Run-Zeitpunkt — Korpus-Generations-Commit aus Plan 01-02 Task 1a; der Matcher-Code selbst ist seit `49a1102` unverändert)
