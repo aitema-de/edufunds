@@ -1,8 +1,14 @@
 /**
- * Matching: Anliegen + Schul-Kontext → gerankte Liste passender Foerderprogramme.
+ * Matching: Anliegen + Schul-Kontext → gerankte Liste passender Foerderprogramme
+ * ODER Klaerungsfrage bei vagem Anliegen.
+ *
  * Nutzt das Interview-Modell mit Plain-Text-Pipe-Format. JSON-Mode ist bei
  * DeepSeek 5–10× langsamer (zu viel internes Reasoning um JSON-Strukturen),
- * deshalb hier Format `id|score|begruendung` pro Zeile.
+ * deshalb hier Format `id|score|passt_weil|achtung_bei` pro Zeile (4 Spalten,
+ * D-01) ODER `CLARIFY|<frage>` als erste Zeile bei vagem Anliegen (D-05).
+ *
+ * Tagged-Union-Return: `{ kind: "ranking", ... }` oder `{ kind: "clarification", ... }`
+ * (D-08). Frontend dispatched auf `kind` und rendert entsprechend.
  */
 
 import foerderprogrammeData from "@/data/foerderprogramme.json";
@@ -28,8 +34,8 @@ const MAX_LLM_CANDIDATES = 20;
 /** Wieviele Treffer der LLM maximal liefern soll. */
 const MAX_MATCHES = 3;
 /** Hard-Cap fuer Output-Tokens. Reicht satt fuer 3 Pipe-Zeilen
- * (~150 Tokens echte Nutzlast). Notbremse, kein aktiver Cut. */
-const MATCHER_MAX_TOKENS = 400;
+ * (4 Spalten + ggf. CLARIFY-Variante, ~200 Tokens echte Nutzlast). Notbremse, kein aktiver Cut. */
+const MATCHER_MAX_TOKENS = 600;
 
 export interface MatchInput {
   anliegen: string;
@@ -37,21 +43,43 @@ export interface MatchInput {
   schultyp?: string;
   bundesland?: string;
   geschaetztesBudgetEur?: number;
+  /** D-09: wenn true, unterdrueckt CLARIFY-Dispatch — der Matcher MUSS ranken. */
+  forceRanking?: boolean;
+  /** D-09: bei zweitem Aufruf nach Klaerungsfrage — urspruengliches Anliegen als Kontext. */
+  previousAnliegen?: string;
 }
 
-export interface MatchedProgramm {
+/**
+ * Ein einzelner Match-Treffer im Ranking-Pfad.
+ * D-04: `begruendung` ist hart entfernt — ersetzt durch `passt_weil` + `achtung_bei`.
+ */
+export interface MatchHit {
   id: string;
   score: number;
-  begruendung: string;
+  /** D-01: max ~25 Worte, konkreter Bezug zum Anliegen. */
+  passt_weil: string;
+  /** D-01: max ~20 Worte, kann leer sein (Trailing-Pipe im Pipe-Format). */
+  achtung_bei: string;
   programm: Foerderprogramm;
 }
 
-export interface MatchResult {
-  matches: MatchedProgramm[];
-  costs: CostLedger;
-  totalCandidates: number;
-  filteredOut: number;
-}
+/**
+ * Tagged-Union (D-08): entweder gerankte Treffer ODER Klaerungsfrage.
+ * Feldname `costs` (nicht `cost` — Codebase-Konvention, siehe pricing.ts).
+ */
+export type MatchResult =
+  | {
+      kind: "ranking";
+      matches: MatchHit[];
+      costs: CostLedger;
+      totalCandidates: number;
+      filteredOut: number;
+    }
+  | {
+      kind: "clarification";
+      question: string;
+      costs: CostLedger;
+    };
 
 /**
  * Vor-Filter: Programme ausschliessen, die aufgrund harter Kriterien nicht passen.
@@ -134,7 +162,8 @@ function toCard(p: Foerderprogramm): CompactProgrammCard {
 }
 
 const MATCHER_SYSTEM = `Du bist Foerdermittel-Berater fuer Schulen in Deutschland.
-Aufgabe: Anliegen + Liste von Foerderprogrammen → die ${MAX_MATCHES} BESTEN Treffer.
+Aufgabe: Anliegen + Liste von Foerderprogrammen → entweder die ${MAX_MATCHES} BESTEN Treffer
+oder eine kurze Klaerungsfrage, falls das Anliegen zu vage ist.
 
 ## Kriterien (Reihenfolge = Gewicht)
 1. Thematische Passung  2. Formale Passung (Schultyp, Bundesland, Summe)
@@ -143,18 +172,43 @@ Aufgabe: Anliegen + Liste von Foerderprogrammen → die ${MAX_MATCHES} BESTEN Tr
 ## Verboten
 - Programme erfinden (nur IDs aus der Liste)
 - Score < 50 (lieber leere Liste als Gefaelligkeit)
+- Pipe-Char \`|\` im Inhalt von passt_weil/achtung_bei
 
-## AUSGABE — exakt ${MAX_MATCHES} Zeilen, Format pro Zeile:
-id|score|begruendung
+## AUSGABE — zwei moegliche Formen:
 
+### Form A — wenn Anliegen VAGE (mind. 2 von 3 Pflicht-Slots fehlen):
+CLARIFY|<konkrete Frage mit konkreten Optionen>
+
+Pflicht-Slots:
+- Bundesland: gilt als gefuellt, wenn das Anliegen ODER das Schul-Profil ein konkretes Bundesland nennt
+- Zielgruppe/Schultyp: gilt als gefuellt, wenn ein Schultyp/Klassenstufe/Schuelergruppe genannt ist
+- Thematischer Fokus: gilt als gefuellt, wenn das Anliegen ein klares Themenfeld nennt
+  (z.B. "digital", "Sport", "Lesen", "Inklusion", "Kultur") — NICHT bei mehreren
+  gegensaetzlichen oder keinem.
+
+Beispiel CLARIFY:
+CLARIFY|Fuer welches Bundesland sucht ihr und welcher Schwerpunkt steht im Vordergrund — z.B. Digitalisierung, Sport, Kultur oder etwas anderes?
+
+### Form B — wenn Anliegen KLAR genug (exakt ${MAX_MATCHES} oder weniger Zeilen):
+id|score|passt_weil|achtung_bei
+
+Regeln Form B:
 - id: exakt aus der Liste, kein Whitespace drum
 - score: ganze Zahl 50-100
-- begruendung: 1 Satz, MAX 15 Woerter, sachlich, mit konkretem Bezug zum Anliegen
+- passt_weil: max ~25 Worte, sachlich, mit konkretem Bezug zum Anliegen
+- achtung_bei: max ~20 Worte, kann LEER sein — dann Trailing-Pipe (\`id|score|text|\`)
+- Genau 4 Spalten — bei leerem achtung_bei: Trailing-Pipe ist PFLICHT, sonst wird die Zeile verworfen
+- Pipe-Char \`|\` im Text VERBOTEN
 
-## Beispiel
-bmbf-digitalpakt-2|95|Bundesweite Foerderung digitaler Schulinfrastruktur, deckt Bibliotheks-Hardware ab.
-ferry-porsche-challenge|80|Wettbewerb fuer kreative Bildungsprojekte mit digitaler Komponente.
-kultur-macht-stark|65|Aussserschulische kulturelle Bildung, Lese- und Medienkompetenz foerderbar.
+Beispiele Form B:
+bmbf-digitalpakt-2|92|Bundesweite Foerderung digitaler Schulinfrastruktur, deckt Hardware ab.|Antragsfrist naht — Einreichung vor Juli pruefen.
+kultur-macht-stark|75|Foerdert ausserschulische Kulturprojekte wie Theater-AGs.|
+
+### NEGATIVBEISPIELE — was NICHT erlaubt ist:
+CLARIFY|Was wollt ihr genau?                       <- zu vage, keine Optionen
+bmbf-digitalpakt-2|90|Passt.|                      <- passt_weil zu kurz
+kultur-macht-stark|85|gut.                         <- FEHLENDE Trailing-Pipe (3 statt 4 Spalten)
+prog-x|70|Text mit | im Inhalt.|Achtung.           <- Pipe im Text verboten
 
 KEINE Vorrede, KEINE Markdown-Bullets/Fences, KEINE Erklaerung danach.
 Sortiert nach Score absteigend. Wenn weniger als ${MAX_MATCHES} Programme passen, weniger Zeilen ausgeben.`;
@@ -171,37 +225,66 @@ function buildUserPrompt(input: MatchInput, cards: CompactProgrammCard[]): strin
   if (profile.length) ctx.push(`\nSCHUL-PROFIL:\n${profile.join("\n")}`);
   ctx.push(`\nKANDIDATENLISTE (${cards.length} Programme):\n${JSON.stringify(cards)}`);
   ctx.push(`\nLiefere die ${MAX_MATCHES} besten Treffer im Pipe-Format. IDs exakt wie in der Liste.`);
+
+  // D-09: Conditional-Bloecke fuer forceRanking + previousAnliegen
+  if (input.forceRanking) {
+    ctx.push(
+      `\n[HINWEIS]: Auch wenn das Anliegen vage erscheint — KEIN CLARIFY. Direkt ranken (ggf. mit niedrigen Scores).`
+    );
+  }
+  if (input.previousAnliegen) {
+    ctx.push(
+      `\nURSPRUENGLICHES ANLIEGEN (Kontext-Referenz):\n${input.previousAnliegen.trim()}`
+    );
+  }
   return ctx.join("\n");
 }
 
+/**
+ * Internes Roh-Format nach Pipe-Parser.
+ * 4 Spalten exakt — Soft-Failure verwirft Zeilen mit !=4 Spalten (D-02).
+ */
 interface RawMatch {
   id: string;
   score: number;
-  begruendung: string;
+  passt_weil: string;
+  achtung_bei: string;
 }
 
 /**
- * Parser fuer das Pipe-Format `id|score|begruendung`.
- * Robust gegen Vorrede, Bullet-Praefixe, Markdown-Fences. Pipes in der
- * Begruendung werden zusammengefuehrt (split.length-bedingt).
+ * Parser fuer das Pipe-Format `id|score|passt_weil|achtung_bei`.
+ * D-01: exakt 4 Spalten erforderlich.
+ * D-02: Zeilen mit Spalten != 4 werden Soft-Failure (continue) verworfen — kein Throw.
+ * D-05: CLARIFY|-Zeilen werden hier ignoriert (Dispatch passiert in runMatch).
+ *
+ * Robust gegen Vorrede, Bullet-Praefixe, Markdown-Fences.
+ * Trailing-Pipe (`id|score|text|`) wird korrekt als leeres `achtung_bei: ""` geparst,
+ * da JavaScript `"a|b|c|".split("|")` 4 Elemente zurueckgibt (letztes leer).
  */
-function parsePipeMatches(text: string, validIds: Set<string>): RawMatch[] {
+export function parsePipeMatches(text: string, validIds: Set<string>): RawMatch[] {
   const out: RawMatch[] = [];
   for (const rawLine of text.split("\n")) {
     // Markdown-Fences und Leerzeilen verwerfen
     if (/^\s*```/.test(rawLine) || !rawLine.trim()) continue;
     // fuehrende Bullets/Nummern entfernen ("- ", "* ", "1. ", "1) ")
     const cleaned = rawLine.trim().replace(/^[-*•]\s+|^\d+[.)]\s+/, "");
-    const idx1 = cleaned.indexOf("|");
-    if (idx1 < 0) continue;
-    const idx2 = cleaned.indexOf("|", idx1 + 1);
-    if (idx2 < 0) continue;
-    const id = cleaned.slice(0, idx1).trim();
-    const scoreStr = cleaned.slice(idx1 + 1, idx2).trim();
-    const begruendung = cleaned.slice(idx2 + 1).trim();
+    // CLARIFY-Zeilen werden in runMatch dispatched, nicht hier
+    if (cleaned.startsWith("CLARIFY|")) continue;
+
+    const parts = cleaned.split("|");
+    // D-02: Soft-Failure bei Spalten != 4
+    if (parts.length !== 4) continue;
+
+    const [id, scoreStr, passt_weil, achtung_bei] = parts.map((s) => s.trim());
     const score = parseInt(scoreStr, 10);
     if (!id || !validIds.has(id) || isNaN(score)) continue;
-    out.push({ id, score, begruendung });
+
+    out.push({
+      id,
+      score,
+      passt_weil: passt_weil ?? "",
+      achtung_bei: achtung_bei ?? "",
+    });
   }
   return out;
 }
@@ -230,20 +313,39 @@ export async function runMatch(input: MatchInput): Promise<MatchResult> {
   );
 
   const costs = addUsage(emptyLedger(), MODEL_FLASH, usage);
+
+  // D-05/D-08/D-09: CLARIFY-Dispatch VOR Parser.
+  // Nur die ALLERERSTE Zeile zaehlt — spaetere CLARIFY|-Zeilen werden in
+  // parsePipeMatches per `continue` ignoriert.
+  // forceRanking=true unterdrueckt den Dispatch komplett.
+  const firstLine = rawText.trim().split("\n")[0]?.trim() ?? "";
+  if (!input.forceRanking && firstLine.startsWith("CLARIFY|")) {
+    const question = firstLine.slice("CLARIFY|".length).trim();
+    return { kind: "clarification", question, costs };
+  }
+
+  // Standard-Ranking-Pfad
   const validIds = new Set(programme.map((p) => p.id));
   const rawMatches = parsePipeMatches(rawText, validIds);
 
-  const matches: MatchedProgramm[] = [];
+  const matches: MatchHit[] = [];
   for (const m of rawMatches) {
     if (m.score < 50) continue;
     const p = programme.find((x) => x.id === m.id);
     if (!p) continue;
-    matches.push({ id: m.id, score: Math.round(m.score), begruendung: m.begruendung, programm: p });
+    matches.push({
+      id: m.id,
+      score: Math.round(m.score),
+      passt_weil: m.passt_weil,
+      achtung_bei: m.achtung_bei,
+      programm: p,
+    });
   }
 
   matches.sort((a, b) => b.score - a.score);
 
   return {
+    kind: "ranking",
     matches: matches.slice(0, MAX_MATCHES),
     costs,
     totalCandidates: filtered.length,
