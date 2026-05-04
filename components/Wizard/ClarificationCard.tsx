@@ -40,7 +40,7 @@ export function ClarificationCard({ question, onSubmit, onForceRanking, busy }: 
       <div className="flex items-center justify-between flex-wrap gap-3">
         <button
           type="button"
-          onClick={onForceRanking}
+          onClick={() => onForceRanking()}
           disabled={busy}
           className="text-xs text-slate-500 hover:text-slate-300 transition disabled:opacity-50"
         >
