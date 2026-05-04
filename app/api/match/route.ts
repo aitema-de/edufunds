@@ -15,13 +15,28 @@ export async function POST(req: NextRequest) {
       schultyp: body.schultyp,
       bundesland: body.bundesland,
       geschaetztesBudgetEur: body.geschaetztesBudgetEur,
+      forceRanking: body.forceRanking,
+      previousAnliegen: body.previousAnliegen,
     });
 
+    // D-08/D-09: Tagged-Union-Dispatch im JSON-Response.
+    // Frontend (Plan 02-02) liest body.kind und rendert ranking-Liste oder ClarificationCard.
+    if (result.kind === "clarification") {
+      return NextResponse.json({
+        kind: "clarification",
+        question: result.question,
+        costs: result.costs,
+      });
+    }
+
     return NextResponse.json({
+      kind: "ranking",
       matches: result.matches.map((m) => ({
         id: m.id,
         score: m.score,
-        begruendung: m.begruendung,
+        // D-04: altes Pauschal-Feld hart entfernt — strukturierte Felder ersetzen es.
+        passt_weil: m.passt_weil,
+        achtung_bei: m.achtung_bei,
         programm: {
           id: m.programm.id,
           name: m.programm.name,

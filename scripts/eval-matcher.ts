@@ -359,7 +359,15 @@ async function main() {
       await writeFile(snapPath, JSON.stringify({ input, result }, null, 2));
     }
 
-    const actualIds = result.matches.map((m) => m.id);
+    // Phase 2 Plan 02-01: MatchResult ist jetzt Tagged-Union (D-08).
+    // Clarification-Pfad wird hier vorlaeufig als Edge-Case (leeres Ranking) behandelt —
+    // Plan 02-03 erweitert das Skript um clarif-Metriken (D-15). Begruendung-Migration:
+    // `m.begruendung` ist hart entfernt (D-04), wir nehmen `passt_weil` als Ersatz.
+    const matchesArr = result.kind === "ranking" ? result.matches : [];
+    const totalCandidatesVal = result.kind === "ranking" ? result.totalCandidates : 0;
+    const filteredOutVal = result.kind === "ranking" ? result.filteredOut : 0;
+
+    const actualIds = matchesArr.map((m) => m.id);
     const recall = computeRecall(entry.expected_top3, actualIds);
     const offTargetHit = computeOffTargetHit(entry.expected_off_target, actualIds);
 
@@ -379,10 +387,12 @@ async function main() {
       category: entry.category,
       expected_top3: entry.expected_top3,
       expected_off_target: entry.expected_off_target,
-      actual_top3: result.matches.map((m) => ({
+      actual_top3: matchesArr.map((m) => ({
         id: m.id,
         score: m.score,
-        begruendung: m.begruendung,
+        // Phase 2: `begruendung` ersetzt durch `passt_weil` (D-04). Plan 02-03 migriert
+        // das EntryResult-Interface vollstaendig auf passt_weil + achtung_bei.
+        begruendung: m.passt_weil,
       })),
       recall,
       offTargetHit,
@@ -393,8 +403,8 @@ async function main() {
         calls: result.costs.calls,
         totalTokens: result.costs.totalTokens,
       },
-      totalCandidates: result.totalCandidates,
-      filteredOut: result.filteredOut,
+      totalCandidates: totalCandidatesVal,
+      filteredOut: filteredOutVal,
     });
 
     console.log(
