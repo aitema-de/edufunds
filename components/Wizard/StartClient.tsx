@@ -43,6 +43,10 @@ export function StartClient() {
     setBusy(true);
     setError(null);
     setMatchState(null);
+    // WR-02: Frischer AnliegenForm-Submit (kein forceRanking-Flag) → Multi-Round-Guard
+    // zuruecksetzen. Verhindert Sticky-Bug nach fehlgeschlagener zweiter Runde,
+    // bei der setIsSecondRound(false) im Erfolgs-Branch nicht erreicht wurde.
+    if (!values.forceRanking) setIsSecondRound(false);
     // lastInput haelt den User-sichtbaren Anliegen-Stand (ohne forceRanking-Flag),
     // damit Praezisieren auf den vorherigen Wert zurueckgreifen kann.
     setLastInput({
@@ -75,12 +79,18 @@ export function StartClient() {
           message:
             "Anliegen ist vage geblieben — bitte praezisere die Eingabe oder probiere mehr Details.",
         });
-      } else {
+      } else if (body.kind === "ranking") {
         setMatchState({
           kind: "ranking",
           matches: (body.matches ?? []) as MatchEntry[],
         });
         setIsSecondRound(false);
+      } else {
+        // WR-01: Unbekanntes body.kind als Backend-Bug behandeln, NICHT als "keine Treffer".
+        // Verhindert dass ein vergessenes kind-Feld silent als leeres Ranking durchrutscht.
+        setError({
+          message: `Unerwartetes Antwortformat (kind=${String(body.kind)}). Bitte erneut versuchen.`,
+        });
       }
     } catch (e) {
       setError({ message: e instanceof Error ? e.message : "Matching fehlgeschlagen" });
