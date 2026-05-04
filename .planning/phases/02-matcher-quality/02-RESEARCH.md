@@ -743,7 +743,7 @@ Drei Plans in einer Welle, strikt geordnet:
 
 ---
 
-## Offene Fragen
+## Offene Fragen (RESOLVED)
 
 1. **Wie wird `previousAnliegen` im zweiten `runMatch`-Call uebergeben?**
    - Was wir wissen: D-09 sagt „Frontend sendet praezisiertes Anliegen" — ob als Konkatenation im `anliegen`-Feld oder als separates Feld ist Claude's Discretion.
