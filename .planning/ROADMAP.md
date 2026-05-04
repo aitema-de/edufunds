@@ -43,8 +43,14 @@ Plans:
   2. Bei vagem Anliegen (Heuristik definiert) gibt der Matcher eine Klärungsfrage zurück und unterdrückt das Ranking — Frontend rendert die Klärungsfrage statt der Trefferliste
   3. Eval-Skript aus Phase 1 misst messbare Verbesserung gegenüber Baseline (z. B. Top3-Trefferrate steigt, Off-Target-Rate sinkt) und ist bei jeder PR Pflicht-Vorabcheck
   4. UI in `app/antrag/start/` zeigt strukturierte Begründung im Trefferblock korrekt an (`passt-weil`-Block + `achtung-bei`-Block visuell getrennt)
-**Plans**: TBD
+**Plans:** 4 plans
 **UI hint**: yes
+
+Plans:
+- [ ] 02-00-PLAN.md — Wave 0 Test-Skelette (matcher.parser/dispatch + MatchResultList) (Wave 0, autonomous)
+- [ ] 02-01-PLAN.md — Backend: Tagged Union MatchResult, parsePipeMatches 4-Spalten, CLARIFY-Dispatch, MATCHER_SYSTEM-Prompt, API-Route (Wave 1, autonomous)
+- [ ] 02-02-PLAN.md — Frontend: ClarificationCard, MatchResultList passt_weil/achtung_bei, StartClient State-Maschine, UI-Tests, Browser-Smoke-Checkpoint (Wave 2)
+- [ ] 02-03-PLAN.md — Eval-Apparat: Korpus-Erweiterung (Kolja-Checkpoint), eval-matcher.ts mit Clarif-Metriken + D-16 Threshold-Gate, BASELINE.md-Phase-2-Eintrag (Wave 2)
 
 ### Phase 3: Programm-Pflege Foundation
 **Goal**: Cron-Skripte auf den einheitlichen DeepSeek-Wrapper umstellen und das Dossier-Schema um vier qualitätskritische Felder erweitern, damit Phase 4 darauf aufbauen kann.
