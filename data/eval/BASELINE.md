@@ -3,6 +3,91 @@
 > Append-only History. Phase 2+ fügt neue Einträge oben dran. Skript schreibt
 > NICHT in diese Datei — manuelle Pflege per PR.
 
+## 2026-05-04 — Phase-2.1-Tuning (Korpus v2 unverändert, n=29)
+
+- **Matcher-Commit:** `19ccfd8` (HEAD nach Plan 02-04 Prompt-Tuning + Plan 02-05 Hardening Merges)
+- **Korpus-Version:** v2 (UNVERÄNDERT seit Phase 2 — Tuning-Hebel saßen am Prompt, nicht am Korpus)
+- **Tuning-Quelle:** Plan 02-04 (MATCHER_SYSTEM-Prompt-Verschärfung: Drift-Verbote für aktion-mensch/bmbf-digitalpakt, Slot-Heuristik-Schärfung mit GENAU-EIN-Regel + (a)-(d)-Fallliste, 2 zusätzliche CLARIFY-Positivbeispiele, 3 RECALL-Negativbeispiele aus Live-Eval-Misses, MATCHER_MAX_TOKENS-Doc-Comment 600) + Plan 02-05 (Eval-Skript-Hardening WR-03/WR-04, Frontend-Hardening WR-01/WR-02 in StartClient.tsx). Keine Korpus-Änderungen.
+
+### Threshold-Gate (D-16/D-17 PR-Gate)
+
+| Metrik | Phase 2 (vorher) | Phase 2.1 (nachher) | D-17-Target | Status |
+|--------|------------------|---------------------|-------------|--------|
+| **Recall@3** (Mittelwert non-edge) | 0.342 | **0.325** | ≥ 0.42 | ✗ FAIL (-0.017) |
+| **Off-Target-Rate** | 0.0 % | **4.8 %** | < 5 % | ✓ PASS (knapp) |
+| **Clarif-Precision** | 62.5 % (5/8 hits) | **75.0 %** (6/8 hits) | ≥ 80 % | ✗ FAIL |
+| **Clarif-FalschPos** | 9.5 % (2/21) | **0.0 %** (0/21) | ≤ 10 % | ✓ PASS (übererfüllt) |
+| **Slot-Coverage** (Diagnose) | 90.0 % | **91.7 %** | — | gut |
+
+**Mechanik wirkt teilweise:** Clarif-Precision steigt von 62.5 % → 75.0 % (+12.5 pp, ev-025/026 jetzt korrekt geklärt — die GENAU-EIN-Regel + Multi-Thema-Beispiele wirken). Clarif-FalschPos ging von 9.5 % auf 0 % runter — der GENAU-EIN-Filter hat die false positives komplett eliminiert. Slot-Coverage leicht hoch.
+
+**Tuning-Lücken:** Recall@3 hat sich NICHT verbessert (0.342 → 0.325, -0.017 statt erwarteter +0.078). Off-Target-Rate von 0 % auf 4.8 % gestiegen wegen ev-016 (`aktion-mensch-schulkooperation` als Off-Target in Top-3 trotz Drift-Verbot im Prompt). Recall@3 + Clarif-Precision verfehlen weiter Targets — Phase-2.2-Tuning-Cycle empfohlen.
+
+### Per-Kategorie
+
+- **kurz:** Recall 0.278 / Off-Target 16.7 % (n=6) — vorher 0.222 / 0.0 %. Recall leicht hoch, aber Off-Target zurück (ev-016).
+- **ausfuehrlich:** Recall 0.333 / Off-Target 0.0 % (n=9) — vorher 0.417 / 0.0 %. Recall fiel um -0.084 (ev-004/-008/-011 weiter problematisch).
+- **vag (non-edge):** Recall 0.361 / Off-Target 0.0 % (n=6) — vorher 0.367 / 0.0 % (n=5). Praktisch gleichauf (n unterschiedlich, weil ev-024 jetzt Clarif-Miss statt non-edge zählt).
+
+### Latenz / Kosten
+
+- **Latenz/Eintrag:** 3.17s avg (Phase 2: 2.81s) — höher wegen längerem MATCHER_SYSTEM-Prompt nach 02-04-Tuning (mehr Negativbeispiele, mehr Kontext)
+- **Gesamtkosten:** 0,0153 € (Phase 2: 0,012 €) — leichter Anstieg durch erweiterten Prompt + 106.766 Tokens (Phase 2: ~80k geschätzt)
+
+### Reports
+
+- JSON: `data/eval/reports/2026-05-04-12-32-24.json`
+- Markdown-Twin: `data/eval/reports/2026-05-04-12-32-24.md`
+- Snapshot: `data/eval/snapshots/2026-05-04-12-32-24/` (29 Einträge × Tagged-Union-Output)
+
+### Run-Befehl
+
+```bash
+npm run eval:matcher -- --snapshot --md-summary
+```
+
+**GATE FAILED — 2 Targets verfehlt:** Recall@3 ≥ 0.42 (Ist: 0.325) und Clarif-Precision ≥ 80 % (Ist: 75.0 %). Threshold-Gate exit code 1.
+
+### Diagnostischer Block — verbleibende Misses
+
+**Clarif-Misses (2 von 8 erwarteten Klärungen wurden gemisst):**
+
+- **ev-023 (vag, „Kinderförderung im kreativen Bereich"):** Matcher gab Top-3 zurück statt zu klären. Top-3 = `[playmobil-hobpreis (85), kultur-macht-stark (80), aktion-mensch-schulkooperation (75)]`. Der Prompt hat den Slot-fehlt-Fall (a) nicht ausreichend gegen die starke Domain-Anknüpfung „kreativ" priorisiert.
+- **ev-024 (vag, „Bewegungsprojekte"):** Matcher gab Top-3 zurück statt zu klären. Top-3 = `[erasmus-schule-2026 (75), kultur-macht-stark (65), ferry-porsche-challenge-2025 (60)]`. Zwei Programme sind off-thema (erasmus, kultur). Score-≥-60-Regel hat hier Drift verstärkt statt korrigiert.
+
+**Recall@3-Drops vs. Phase 2 (ausführlich-Klasse fiel von 0.417 → 0.333):**
+
+- **ev-004 (Forscher-AG Bayern, Recall 0.00):** Top-3 = `[siemens-stiftung-mint-hub, koerber-mint-regionen]` (nur 2 IDs!). Erwartet: `[stiftung-kinder-forschen, helmholtz-schuelerlabore, stifterverband-bildung]`. MINT-Drift in Schul-Förderprogramm-Schiene statt Forscher-AG-Programmen.
+- **ev-011 (Maker-Space MINT, Recall 0.00):** Top-3 = `[ferry-porsche-challenge-2025, bmbf-digitalpakt-2, telekom-junior-ingenieur-2026]`. Erwartet: `[first-lego-league, siemens-stiftung-mint-hub, telekom-stiftung-technik-scouts]`. DigitalPakt-Drift im Maker-Space-Anliegen — das 02-04-Drift-Verbot greift hier nicht, weil Hardware genannt ist.
+- **ev-012 (Bewegungs-Pausenhof, Recall 0.00):** Top-3 = `[bundesweit-ganztag, aktion-mensch-schulkooperation, klimalab-2026]`. Erwartet: `[niedersachsen-sport, dkjs-sport, baywa-laufen-wald]`. Sport-Programme komplett aus Top-3 — Niedersachsen-Programme nicht erkannt obwohl Bundesland im Anliegen.
+- **ev-013 (Mathe-Wettbewerbe, Recall 0.00):** Top-3 = `[]` (LEER, war auch in Phase 2 problematisch). Slot-Heuristik feuert hier statt der drei expliziten Mathe-Wettbewerbs-IDs (`kaenguru-der-mathematik`, `mathe-im-advent`, `bundeswettbewerb-mathematik`). Hinweis: das ist möglicherweise valides CLARIFY-Verhalten, aber `expected_clarification=false` im Korpus zählt es als FAIL.
+- **ev-015 (Schul-Aquarium NABU, Recall 0.00):** Top-3 = `[klimalab-2026, aktion-mensch-schulkooperation, kultur-macht-stark]`. Erwartet: `[nabu-schulen, bfn-artenvielfalt, stiftung-kinder-forschen]`. NABU-Anker im Anliegen wird vom Matcher ignoriert — kein einziges der drei Naturkunde-Programme.
+- **ev-018 (Migrationshintergrund + Förderbedarf, Recall 0.00):** Top-3 = `[aktion-mensch-schulkooperation, playmobil-hobpreis, lesen-macht-stark]`. Erwartet: `[mercator-integration, dkjs-inklusion, berlin-startchancen]`. aktion-mensch wieder als Default-Drift, mercator-integration als Mercator-Programm fehlt komplett.
+
+**Off-Target-Regression (war 0 %, jetzt 4.8 %):**
+
+- **ev-016 (Mehrsprachige Bibliothek NRW):** Top-3 = `[lesen-macht-stark, kultur-macht-stark, aktion-mensch-schulkooperation]`. `aktion-mensch-schulkooperation` ist im Korpus als `expected_off_target` gelistet — der Matcher hat das Drift-Verbot aus 02-04 ignoriert. Score 65 ist über dem 50er-Filter.
+
+### Empfehlung — Phase-2.2-Tuning-Cycle erforderlich
+
+Plan 02-04 Tuning hat **Clarif-Precision verbessert** (62.5 → 75.0 %) und **Clarif-FalschPos eliminiert** (9.5 → 0 %), aber **Recall@3 nicht gehoben** (-0.017 statt +0.078). Hypothesen für nächsten Tuning-Cycle:
+
+1. **Drift-Verbote sind nicht stark genug** — der Matcher zieht weiter `aktion-mensch-schulkooperation` und `bmbf-digitalpakt-2` als Defaults (siehe ev-016, ev-011, ev-012, ev-018). Möglicherweise harte Score-Cap (z.B. score ≤ 40 wenn keine Inklusions/Hardware-Anker im Anliegen) statt nur Prompt-Verbot.
+2. **Domain-spezifische Programme nicht im Recall** — `nabu-schulen`, `mercator-integration`, `niedersachsen-sport`, `first-lego-league` werden vom LLM nicht aus der Programm-Liste gezogen, obwohl sie thematisch perfekt passen. Hypothese: Prefilter (Top-N-Cut auf 50) entfernt sie bereits, oder die Programm-Beschreibungen im Pipe-Format sind zu knapp. Diagnose: `nabu-schulen` etc. in den Pipe-Cut-Output sichten.
+3. **Score-≥-60-Regel verstärkt Drift** — bei ev-024 hat die Regel den Matcher gezwungen, schwache Treffer mit score 60-65 in Top-3 zu listen statt zu klären. Reformulierung: Score-Untergrenze für Top-3 erhöhen oder GENAU-EIN-Regel auf Mindestscore koppeln.
+4. **Slot-Heuristik schiesst über bei klaren Anliegen** — ev-013 und Edge-Cases (`Top-3 = []` ohne Clarif) zeigen, dass der Matcher aktiv leere Liste produziert wenn er unsicher ist. Das ist nicht falsch, aber Korpus erwartet teils Ranking. Korpus-Kuratierung prüfen vs. Heuristik anpassen.
+
+**Empfehlung Plan-Sequenz für Phase-2.2:**
+
+- Plan 02-08: Score-Cap für Drift-Defaults (harter score ≤ 40 für aktion-mensch / bmbf-digitalpakt-2 ohne Domain-Anker)
+- Plan 02-09: Prefilter-Diagnose (welche Programme erreichen den Pipe-Cut für ev-015/-018? — Programm-IDs liefern wenn missing)
+- Plan 02-10: Score-≥-60-Regel reformulieren (Top-3-Mindestscore oder GENAU-EIN-Kopplung)
+- Plan 02-11: Eval-Re-Run (D-17 PR-Gate erneut)
+
+Phase 2 Mechanik (Tagged-Union, CLARIFY-Dispatch, Threshold-Gate-Codifikation) ist erreicht und stabil — die Targets selbst brauchen Phase-2.2.
+
+---
+
 ## 2026-05-04 — Phase-2-Baseline (Korpus v2, n=29)
 
 - **Matcher-Commit:** `bae73db` (HEAD von `feature/wizard-adaptive` nach Wave-2-Merges)
