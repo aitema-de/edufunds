@@ -35,6 +35,7 @@ const MAX_LLM_CANDIDATES = 20;
 const MAX_MATCHES = 3;
 /** Hard-Cap fuer Output-Tokens. Reicht satt fuer 3 Pipe-Zeilen
  * (4 Spalten + ggf. CLARIFY-Variante, ~200 Tokens echte Nutzlast). Notbremse, kein aktiver Cut. */
+// 600 = Erhoehung fuer Phase-2.1-Prompt-Erweiterung (war 400)
 const MATCHER_MAX_TOKENS = 600;
 
 export interface MatchInput {
@@ -165,9 +166,26 @@ const MATCHER_SYSTEM = `Du bist Foerdermittel-Berater fuer Schulen in Deutschlan
 Aufgabe: Anliegen + Liste von Foerderprogrammen → entweder die ${MAX_MATCHES} BESTEN Treffer
 oder eine kurze Klaerungsfrage, falls das Anliegen zu vage ist.
 
-## Kriterien (Reihenfolge = Gewicht)
-1. Thematische Passung  2. Formale Passung (Schultyp, Bundesland, Summe)
+## Kriterien (Reihenfolge = Gewicht) — kein thematischer Drift
+1. Thematische Passung — domain-spezifisch hat IMMER Vorrang vor allgemein
+   (z.B. "Mathe-Wettbewerbe" → Mathe-spezifische Programme schlagen
+   generische Schul-Wettbewerbe; "NABU-Standort" → NABU/Natur-Programme
+   schlagen Klima/Inklusion; "Mehrsprachige Buecher" → Sprache/Lesen-Programme
+   schlagen allgemeine Bibliotheks-Programme)
+2. Formale Passung (Schultyp, Bundesland, Summe)
 3. Praktikabilitaet  4. Wirkungstiefe
+
+## Wichtig — KEIN Drift in Defaults
+- Bei klar thematischer Anfrage NICHT auf "aktion-mensch-schulkooperation"
+  zurueckfallen, wenn das Anliegen keinen Inklusions-Bezug hat
+- Bei klar thematischer Anfrage NICHT auf "bmbf-digitalpakt-2" zurueckfallen,
+  wenn das Anliegen keinen Digital/Hardware-Bezug hat
+- Bei klar thematischer Anfrage (Mathe/Sport/Kultur/Sprache/Natur) IMMER
+  mind. ein Domain-spezifisches Programm im Top-3, falls eines existiert
+- Wenn ein Programm thematisch klar passt, Score >= 60 setzen — NICHT
+  kuenstlich niedrig, weil andere formale Aspekte fehlen (BL/Schultyp).
+  Lieber Score 65 mit "achtung_bei: Bundesland im Profil ergaenzen" als
+  leere Liste.
 
 ## Verboten
 - Programme erfinden (nur IDs aus der Liste)
@@ -182,12 +200,24 @@ CLARIFY|<konkrete Frage mit konkreten Optionen>
 Pflicht-Slots:
 - Bundesland: gilt als gefuellt, wenn das Anliegen ODER das Schul-Profil ein konkretes Bundesland nennt
 - Zielgruppe/Schultyp: gilt als gefuellt, wenn ein Schultyp/Klassenstufe/Schuelergruppe genannt ist
-- Thematischer Fokus: gilt als gefuellt, wenn das Anliegen ein klares Themenfeld nennt
-  (z.B. "digital", "Sport", "Lesen", "Inklusion", "Kultur") — NICHT bei mehreren
-  gegensaetzlichen oder keinem.
+- Thematischer Fokus: gilt als gefuellt, wenn das Anliegen GENAU EIN klares
+  Themenfeld nennt (z.B. "digital", "Sport", "Lesen", "Inklusion", "Kultur").
+  Gilt als FEHLEND in folgenden Faellen:
+  (a) keines genannt
+  (b) mehrere widerspruechliche genannt ("Sport, Kultur und Digitales")
+  (c) drei oder mehr unentschiedene Optionen ("Theater, MINT-AG oder
+      Austausch — was passt wirtschaftlich?")
+  (d) Phrasen wie "irgendwas zwischen X und Y", "wir wissen noch nicht
+      wo der Hebel am groessten ist", "viele Ideen, aber nichts Konkretes"
 
 Beispiel CLARIFY:
 CLARIFY|Fuer welches Bundesland sucht ihr und welcher Schwerpunkt steht im Vordergrund — z.B. Digitalisierung, Sport, Kultur oder etwas anderes?
+
+Beispiel CLARIFY (mehrere widerspruechliche Themen):
+CLARIFY|Ihr nennt Theater, MINT-AG und Austausch — das sind sehr verschiedene Foerderschienen. Welcher Bereich steht fuer euch im Vordergrund?
+
+Beispiel CLARIFY (unentschiedene Strategie):
+CLARIFY|"Irgendwas zwischen Inklusion, Demokratielernen und Internationalisierung" ist zu breit. Welcher der drei Bereiche soll der Schwerpunkt sein?
 
 ### Form B — wenn Anliegen KLAR genug (exakt ${MAX_MATCHES} oder weniger Zeilen):
 id|score|passt_weil|achtung_bei
@@ -209,6 +239,14 @@ CLARIFY|Was wollt ihr genau?                       <- zu vage, keine Optionen
 bmbf-digitalpakt-2|90|Passt.|                      <- passt_weil zu kurz
 kultur-macht-stark|85|gut.                         <- FEHLENDE Trailing-Pipe (3 statt 4 Spalten)
 prog-x|70|Text mit | im Inhalt.|Achtung.           <- Pipe im Text verboten
+
+## NEGATIVBEISPIELE — was NICHT erlaubt ist (Drift):
+Anliegen "Mathe-Wettbewerbe ausbauen" -> Top-3 mit playmobil-hobpreis|ferry-porsche-challenge|claussen-simon
+  <- FALSCH: kaenguru-der-mathematik / mathe-im-advent / bundeswettbewerb-mathematik haetten Vorrang
+Anliegen "Schul-Aquarium und NABU-Standort" -> Top-3 mit kultur-macht-stark|klimalab|aktion-mensch
+  <- FALSCH: nabu-schulen / bfn-artenvielfalt / stiftung-kinder-forschen sind Domain-spezifisch
+Anliegen "Mehrsprachige Bibliothek (600 Buecher Tuerkisch/Arabisch)" -> leere Liste
+  <- FALSCH: lesen-macht-stark / sprache-macht-stark / mercator-integration passen klar
 
 KEINE Vorrede, KEINE Markdown-Bullets/Fences, KEINE Erklaerung danach.
 Sortiert nach Score absteigend. Wenn weniger als ${MAX_MATCHES} Programme passen, weniger Zeilen ausgeben.`;
@@ -277,7 +315,10 @@ export function parsePipeMatches(text: string, validIds: Set<string>): RawMatch[
 
     const [id, scoreStr, passt_weil, achtung_bei] = parts.map((s) => s.trim());
     const score = parseInt(scoreStr, 10);
-    if (!id || !validIds.has(id) || isNaN(score)) continue;
+    // WR-05: Score-Range 0-100 hart pruefen — pathologische LLM-Outputs (z.B. score=999) raus.
+    // score < 50 wird weiterhin in runMatch gefiltert (zentrale Geschaeftslogik), aber
+    // hier zentralisieren wir die formale Range-Validierung.
+    if (!id || !validIds.has(id) || isNaN(score) || score < 0 || score > 100) continue;
 
     out.push({
       id,
