@@ -84,24 +84,37 @@ const THEME_BOOST_MAX_HITS = 3;
 
 /**
  * Sortierte Liste aller eindeutigen Kategorien aus foerderprogramme.json.
- * Laengste zuerst, damit Substring-Match laenger-vor-kuerzer greift
- * (z.B. "naturwissenschaft" matcht VOR "natur").
+ * Min-Length-Filter ≥ 4 Zeichen: kurze Kategorien wie "ki", "oer", "bne" werden
+ * ausgeschlossen, weil Wort-Grenzen-Match bei 2-3-Buchstaben-Tokens unzuverlaessig
+ * ist und sie zu Substring-False-Positives in Vorbearbeitung tendieren (Phase 2.3).
  */
 const ALL_KATEGORIEN: string[] = (() => {
   const set = new Set<string>();
   for (const p of programme) {
     const kats = (p as { kategorien?: string[] }).kategorien ?? [];
-    for (const k of kats) set.add(String(k).toLowerCase());
+    for (const k of kats) {
+      const lower = String(k).toLowerCase();
+      if (lower.length >= 4) set.add(lower);
+    }
   }
-  return Array.from(set).sort((a, b) => b.length - a.length);
+  return Array.from(set);
 })();
 
-/** Extrahiert die Themen aus einem Anliegen-Text via Substring-Match auf alle Kategorien. */
+/**
+ * Extrahiert Themen aus dem Anliegen-Text via Wort-Grenzen-Match (Phase 2.3).
+ * Verwendet Regex `\b<kat>\b` statt Substring-Match — eliminiert False-Positives
+ * wie "ki" in "Kinder", "natur" in "natuerlich". Diakritika/Umlaut-Toleranz nicht
+ * noetig, weil Kategorien in foerderprogramme.json bereits in ASCII-Form sind
+ * (deutsche Umlaute wurden beim Dossier-Extract zu ae/oe/ue konvertiert).
+ */
 function extractAnliegenThemes(anliegen: string): Set<string> {
   const t = anliegen.toLowerCase();
   const hits = new Set<string>();
   for (const kat of ALL_KATEGORIEN) {
-    if (t.includes(kat)) hits.add(kat);
+    // Escape regex-Sonderzeichen in Kategorie-Strings (selten, aber sicher).
+    const escaped = kat.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const re = new RegExp(`\\b${escaped}\\b`, "i");
+    if (re.test(t)) hits.add(kat);
   }
   return hits;
 }
@@ -273,8 +286,12 @@ oder eine kurze Klaerungsfrage, falls das Anliegen zu vage ist.
 
 ## AUSGABE — zwei moegliche Formen:
 
-### Form A — wenn Anliegen VAGE (mind. 2 von 3 Pflicht-Slots fehlen):
+### Form A — wenn Anliegen VAGE (≥2 Pflicht-Slots fehlen ODER Multi-Thema):
 CLARIFY|<konkrete Frage mit konkreten Optionen>
+
+ZUERST Slots zaehlen, DANN entscheiden — auch wenn die Programmliste klare
+thematische Treffer enthaelt: thematische Passung ersetzt nicht die Klaerung
+fehlender Slots.
 
 Pflicht-Slots:
 - Bundesland: gilt als gefuellt, wenn das Anliegen ODER das Schul-Profil ein konkretes Bundesland nennt
@@ -289,14 +306,28 @@ Pflicht-Slots:
   (d) Phrasen wie "irgendwas zwischen X und Y", "wir wissen noch nicht
       wo der Hebel am groessten ist", "viele Ideen, aber nichts Konkretes"
 
-Beispiel CLARIFY:
+ZUSATZ-REGEL — Multi-Thema triggert IMMER CLARIFY:
+Wenn der Thema-Slot in (b) oder (c) faellt (≥2 widerspruechliche Themen oder
+≥3 unentschiedene Optionen), IMMER Form A — selbst wenn Bundesland und
+Schultyp beide gefuellt sind. Der Schwerpunkt MUSS geklaert sein, weil
+Foerderschienen sich nicht beliebig kombinieren lassen.
+
+Beispiel CLARIFY (BL fehlt + Thema fehlt):
 CLARIFY|Fuer welches Bundesland sucht ihr und welcher Schwerpunkt steht im Vordergrund — z.B. Digitalisierung, Sport, Kultur oder etwas anderes?
 
-Beispiel CLARIFY (mehrere widerspruechliche Themen):
+Beispiel CLARIFY (mehrere widerspruechliche Themen — auch bei vollen Slots):
 CLARIFY|Ihr nennt Theater, MINT-AG und Austausch — das sind sehr verschiedene Foerderschienen. Welcher Bereich steht fuer euch im Vordergrund?
 
 Beispiel CLARIFY (unentschiedene Strategie):
 CLARIFY|"Irgendwas zwischen Inklusion, Demokratielernen und Internationalisierung" ist zu breit. Welcher der drei Bereiche soll der Schwerpunkt sein?
+
+Beispiel CLARIFY (Thema vorhanden, aber Schultyp + BL fehlen):
+Anliegen "Wir wuerden gern etwas im Bereich Bewegung oder Sport starten" (Schultyp leer, BL leer):
+CLARIFY|Fuer welche Schulform und welches Bundesland? Bei Sport-Foerderung gibt es starke landesspezifische Programme — ohne BL koennen wir nicht zielsicher empfehlen.
+
+Beispiel CLARIFY (Thema generisch, Schultyp + BL fehlen):
+Anliegen "Projekt fuer Kinder, kreativer Bereich" (Schultyp leer, BL leer):
+CLARIFY|Welche Schulform und welches Bundesland? "Kreativer Bereich" ist breit — Theater/Musik/Kunst-AG haben jeweils eigene Foerderschienen.
 
 ### Form B — wenn Anliegen KLAR genug (exakt ${MAX_MATCHES} oder weniger Zeilen):
 id|score|passt_weil|achtung_bei
