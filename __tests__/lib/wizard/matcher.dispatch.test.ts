@@ -167,4 +167,103 @@ describe("runMatch — costs-Feldname", () => {
 });
 
 // SECOND_VALID_ID ist als Reserve fuer kuenftige Multi-Match-Tests deklariert (Plan 02-03 Eval).
+
+describe("runMatch — Plan 02-10 Drift-Score-Cap", () => {
+  const inklusionsFreeBaseInput = {
+    anliegen:
+      "Wir wollen einen Schulgarten anlegen mit Hochbeeten und einem Insektenhotel. Berliner Grundschule.",
+  };
+  const digitalFreeBaseInput = {
+    anliegen:
+      "Wir wollen Theaterauffuehrungen einueben und brauchen Kostueme und Buehnenbild fuer die AG.",
+  };
+
+  it("cappt aktion-mensch-schulkooperation auf <50 wenn kein Inklusions-Anker — Plan 02-10", async () => {
+    mockGenerateText.mockResolvedValueOnce({
+      value: `aktion-mensch-schulkooperation|85|Inklusion-Drift.|\n${FIRST_VALID_ID}|70|Echter Match.|`,
+      usage: { promptTokens: 100, candidatesTokens: 50 },
+    });
+    const result = await runMatch(inklusionsFreeBaseInput);
+    expect(result.kind).toBe("ranking");
+    if (result.kind === "ranking") {
+      const ids = result.matches.map((m) => m.id);
+      expect(ids).not.toContain("aktion-mensch-schulkooperation");
+    }
+  });
+
+  it("cappt aktion-mensch NICHT wenn Inklusions-Anker im Anliegen — Plan 02-10", async () => {
+    mockGenerateText.mockResolvedValueOnce({
+      value: "aktion-mensch-schulkooperation|85|Inklusion legitim.|",
+      usage: { promptTokens: 100, candidatesTokens: 50 },
+    });
+    const result = await runMatch({
+      anliegen:
+        "Wir wollen die Inklusion an unserer Schule staerken — Kinder mit Foerderbedarf besser einbinden.",
+    });
+    expect(result.kind).toBe("ranking");
+    if (result.kind === "ranking") {
+      const ids = result.matches.map((m) => m.id);
+      expect(ids).toContain("aktion-mensch-schulkooperation");
+    }
+  });
+
+  it("cappt aktion-mensch NICHT wenn Inklusions-Anker im previousAnliegen — D-09", async () => {
+    mockGenerateText.mockResolvedValueOnce({
+      value: "aktion-mensch-schulkooperation|85|Inklusion aus Praezisierung.|",
+      usage: { promptTokens: 100, candidatesTokens: 50 },
+    });
+    const result = await runMatch({
+      anliegen: "Mehr Foerderprogramme fuer unsere Kinder.",
+      previousAnliegen:
+        "Inklusion und Migrationshintergrund unterstuetzen — Kinder mit Foerderbedarf.",
+    });
+    expect(result.kind).toBe("ranking");
+    if (result.kind === "ranking") {
+      const ids = result.matches.map((m) => m.id);
+      expect(ids).toContain("aktion-mensch-schulkooperation");
+    }
+  });
+
+  it("cappt bmbf-digitalpakt-2 auf <50 wenn kein Digital-Anker — Plan 02-10", async () => {
+    mockGenerateText.mockResolvedValueOnce({
+      value: `bmbf-digitalpakt-2|85|Digital-Drift.|\n${FIRST_VALID_ID}|70|Echter Match.|`,
+      usage: { promptTokens: 100, candidatesTokens: 50 },
+    });
+    const result = await runMatch(digitalFreeBaseInput);
+    expect(result.kind).toBe("ranking");
+    if (result.kind === "ranking") {
+      const ids = result.matches.map((m) => m.id);
+      expect(ids).not.toContain("bmbf-digitalpakt-2");
+    }
+  });
+
+  it("cappt bmbf-digitalpakt-2 NICHT wenn Digital-Anker im Anliegen — Plan 02-10", async () => {
+    mockGenerateText.mockResolvedValueOnce({
+      value: "bmbf-digitalpakt-2|85|Digital legitim.|",
+      usage: { promptTokens: 100, candidatesTokens: 50 },
+    });
+    const result = await runMatch({
+      anliegen:
+        "Wir wollen Tablets fuer Klasse 5-7 anschaffen und das Whiteboard erneuern.",
+    });
+    expect(result.kind).toBe("ranking");
+    if (result.kind === "ranking") {
+      const ids = result.matches.map((m) => m.id);
+      expect(ids).toContain("bmbf-digitalpakt-2");
+    }
+  });
+
+  it("cappt nur Drift-Defaults, andere Programme bleiben unveraendert — Plan 02-10", async () => {
+    mockGenerateText.mockResolvedValueOnce({
+      value: `${FIRST_VALID_ID}|85|Score bleibt.|`,
+      usage: { promptTokens: 100, candidatesTokens: 50 },
+    });
+    const result = await runMatch(inklusionsFreeBaseInput);
+    expect(result.kind).toBe("ranking");
+    if (result.kind === "ranking") {
+      expect(result.matches[0].id).toBe(FIRST_VALID_ID);
+      expect(result.matches[0].score).toBe(85);
+    }
+  });
+});
 void SECOND_VALID_ID;

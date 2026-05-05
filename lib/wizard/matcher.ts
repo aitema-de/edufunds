@@ -38,6 +38,34 @@ const MAX_MATCHES = 3;
 // 600 = Erhoehung fuer Phase-2.1-Prompt-Erweiterung (war 400)
 const MATCHER_MAX_TOKENS = 600;
 
+/**
+ * Plan 02-10 Drift-Score-Cap (Phase-2.2):
+ * Server-Side-Cap fuer aktion-mensch-schulkooperation und bmbf-digitalpakt-2.
+ * Prompt-Verbote in Phase 2.1 (MATCHER_SYSTEM-Drift-Defaults) wirken nicht
+ * zuverlaessig — der LLM zieht beide Programme weiter bei nicht-passenden
+ * Anliegen. Cap unter den 50-Score-Threshold zwingt sie aus dem Final-Set.
+ *
+ * Cap greift NUR wenn der entsprechende Anker im Anliegen (oder previousAnliegen)
+ * fehlt. Bei klarem Inklusions/Digital-Bezug bleiben die Programme legitime Treffer.
+ */
+const DRIFT_CAP_SCORE = 40;
+
+/** Inklusions-Anker fuer aktion-mensch-schulkooperation. */
+function hasInklusionsAnchor(text: string): boolean {
+  const t = text.toLowerCase();
+  return /inklusion|integration|migrationshintergrund|migrant|f(o|oe|ö)rderbedarf|barriere|sonderp(a|ae|ä)dagog|behinder|sprachf(o|oe|ö)rder/.test(
+    t
+  );
+}
+
+/** Digital/Hardware-Anker fuer bmbf-digitalpakt-2. */
+function hasDigitalAnchor(text: string): boolean {
+  const t = text.toLowerCase();
+  return /digital|tablet|ipad|hardware|laptop|notebook|whiteboard|server|software|computer|wlan|netzwerk|ger(a|ae|ä)t.*beschaff|vr.brille|ar.brille|beamer/.test(
+    t
+  );
+}
+
 export interface MatchInput {
   anliegen: string;
   schulname?: string;
@@ -369,14 +397,28 @@ export async function runMatch(input: MatchInput): Promise<MatchResult> {
   const validIds = new Set(programme.map((p) => p.id));
   const rawMatches = parsePipeMatches(rawText, validIds);
 
+  // Plan 02-10: Drift-Score-Cap auf Anliegen-Anker pruefen.
+  // previousAnliegen mitberuecksichtigen, damit Praezisierungs-Submit den Anker
+  // aus der ersten Runde nicht verliert (D-09).
+  const ankerText = `${input.anliegen} ${input.previousAnliegen ?? ""}`;
+  const hasInklusion = hasInklusionsAnchor(ankerText);
+  const hasDigital = hasDigitalAnchor(ankerText);
+
   const matches: MatchHit[] = [];
   for (const m of rawMatches) {
-    if (m.score < 50) continue;
+    let effectiveScore = m.score;
+    if (m.id === "aktion-mensch-schulkooperation" && !hasInklusion) {
+      effectiveScore = Math.min(effectiveScore, DRIFT_CAP_SCORE);
+    }
+    if (m.id === "bmbf-digitalpakt-2" && !hasDigital) {
+      effectiveScore = Math.min(effectiveScore, DRIFT_CAP_SCORE);
+    }
+    if (effectiveScore < 50) continue;
     const p = programme.find((x) => x.id === m.id);
     if (!p) continue;
     matches.push({
       id: m.id,
-      score: Math.round(m.score),
+      score: Math.round(effectiveScore),
       passt_weil: m.passt_weil,
       achtung_bei: m.achtung_bei,
       programm: p,

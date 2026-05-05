@@ -3,6 +3,52 @@
 > Append-only History. Phase 2+ fügt neue Einträge oben dran. Skript schreibt
 > NICHT in diese Datei — manuelle Pflege per PR.
 
+## 2026-05-05 — Phase-2.2 Plan 02-10 Drift-Score-Cap (Code-Aenderung matcher.ts)
+
+- **Matcher-Commit:** wird mit diesem Commit ergaenzt (matcher.ts + Tests)
+- **Korpus-Version:** v3 (unveraendert, von Plan 02-08)
+- **Tuning-Quelle:** Plan 02-10 — Server-Side-Score-Cap fuer aktion-mensch-schulkooperation und bmbf-digitalpakt-2 wenn jeweils kein Inklusions/Digital-Anker im Anliegen (oder previousAnliegen). Cap auf 40 Punkte → faellt unter den existierenden 50-Threshold. Anker via Regex-Match: hasInklusionsAnchor (inklusion|integration|migration|foerderbedarf|barriere|sonderpaedagog|behind|sprachfoerder), hasDigitalAnchor (digital|tablet|hardware|laptop|whiteboard|server|software|computer|wlan|geraet beschaff|vr/ar-brille|beamer). Reaktion auf Phase-2.2-Plan-08-Live-Befund: Off-Target von 4.8 % auf 10.5 % regressiert, Prompt-Verbote aus 02-04 wirken nicht zuverlaessig.
+
+### Threshold-Gate (D-16/D-17 PR-Gate)
+
+| Metrik | Phase 2.2 nach 02-08 | **Phase 2.2 nach 02-10** | D-17-Target | Status |
+|--------|---------------------|--------------------------|-------------|--------|
+| **Recall@3** (Mittelwert non-edge) | 0.360 | **0.380** | ≥ 0.42 | ✗ FAIL (Gap -0.04) |
+| **Off-Target-Rate** | 10.5 % | **0.0 %** | < 5 % | ✓ **PASS** |
+| **Clarif-Precision** | 75.0 % | **75.0 %** | ≥ 80 % | ✗ FAIL (Gap -5 pp) |
+| **Clarif-FalschPos** | 0.0 % | **4.8 %** | ≤ 10 % | ✓ PASS (LLM-Varianz, 1/21 Eintrag) |
+| **Slot-Coverage** (diag) | 86.1 % | **86.1 %** | — | unveraendert |
+
+**Diagnose:**
+- **Off-Target von 10.5 % auf 0.0 %** — beide Drift-Hits (ev-001 mit bmbf-digitalpakt, ev-009 mit aktion-mensch) sind nicht mehr in Top-3. ausfuehrlich-Kategorie von 25 % Off-Target auf 0 %.
+- **n von 19 Non-Edge auf 18** — ein Eintrag wurde Edge-Case (vermutlich ev-009: LLM lieferte nur aktion-mensch als einzigen Match, jetzt durch Cap geleert). Recall-Berechnung erfolgt nur noch ueber 18 Non-Edge-Eintraege.
+- **Recall +0.02** — kein nennenswerter Lift, aber kein Verlust. Score-Cap loescht Drift-Hits, ohne andere Treffer zu degradieren.
+- **Clarif-FalschPos 0 → 4.8 %** — 1 Eintrag aus 21, vermutlich LLM-Varianz (clarif-Pfad ist VOR dem Score-Cap, kann nicht durch Cap beeinflusst sein).
+
+### Per-Kategorie
+
+- **kurz:** n=5, Recall 0.333, Off-Target 0.0 % (unveraendert)
+- **ausfuehrlich:** n=7, Recall 0.333, Off-Target **0.0 %** (von 25 % → 0 %, dramatischer Gewinn) — n von 8 auf 7 wegen ev-009-Edge-Case-Effekt
+- **vag:** n=6, Recall 0.472, Off-Target 0.0 % (stabil)
+
+### Latenz / Kosten (Live-Run)
+
+- Latenz/Eintrag: 2.86 s avg (vs. 2.98 s Phase-2.2-08 — leicht schneller)
+- Gesamtkosten: 0.0154 EUR / 29 Calls = 0.05 ct/Match (Constraint OK)
+
+### Naechste Schritte
+
+**2 von 4 D-17-Targets erfuellt.** Recall + Clarif-Precision verbleiben. Plan 02-09 (Top-N 20→40 + Theme-Score-Bonus) ist jetzt sauber positioniert — Off-Target ist stabil 0 %, das gibt einen sicheren Boden fuer Recall-Lift ohne Drift-Risiko.
+
+### Pfade zu neuen Files
+
+- **JSON-Report Live (02-10):** `data/eval/reports/2026-05-05-10-26-41.json` + `.md`
+- **Snapshots Live (02-10):** `data/eval/snapshots/2026-05-05-10-26-41/` (29 Eintraege, neue Phase-2.2.10-Baseline)
+- **Code-Aenderung:** `lib/wizard/matcher.ts` (DRIFT_CAP_SCORE + 2 Anker-Funktionen + Cap-Loop)
+- **Tests:** `__tests__/lib/wizard/matcher.dispatch.test.ts` (6 neue Cases unter "Plan 02-10 Drift-Score-Cap")
+
+---
+
 ## 2026-05-05 — Phase-2.2 Plan 02-08 Korpus-Kalibrierung (Korpus v3, n=29)
 
 - **Matcher-Commit:** `26d4405` (HEAD nach Phase 2 mechanisch+visuell abgeschlossen, KEINE Code-Aenderung — nur Korpus-Edit)
