@@ -1,0 +1,1213 @@
+{
+  "meta": {
+    "generatedAt": "2026-05-05T12:13:25.600Z",
+    "korpusPath": "data/eval/matcher-korpus.json",
+    "korpusSize": 29,
+    "mode": "live+snapshot",
+    "replayDir": null,
+    "matcherFile": "lib/wizard/matcher.ts"
+  },
+  "aggregate": {
+    "n": 29,
+    "nNonEdge": 19,
+    "nEdge": 10,
+    "nErrored": 0,
+    "recallAtThreeMean": 0.5438596491228069,
+    "offTargetRate": 0,
+    "perCategory": {
+      "kurz": {
+        "n": 5,
+        "recallMean": 0.6,
+        "offTargetRate": 0
+      },
+      "ausfuehrlich": {
+        "n": 8,
+        "recallMean": 0.4583333333333333,
+        "offTargetRate": 0
+      },
+      "vag": {
+        "n": 6,
+        "recallMean": 0.611111111111111,
+        "offTargetRate": 0
+      }
+    },
+    "latencyMsMean": 3387.448275862069,
+    "totalEurCents": 2.02,
+    "totalUsdCents": 2.31,
+    "totalCalls": 29,
+    "totalTokens": 159155,
+    "edgeCaseEmptyTopK": 6,
+    "edgeCaseLeakHits": 0,
+    "nExpectedClarif": 8,
+    "nExpectedNoClarif": 21,
+    "clarifPrecision": 0.625,
+    "clarifFalschPosRate": 0,
+    "slotCoverageMean": 0.8333333333333334
+  },
+  "perEntry": [
+    {
+      "id": "ev-001",
+      "category": "ausfuehrlich",
+      "expected_top3": [
+        "aktion-mensch-schulkooperation",
+        "kultur-macht-stark"
+      ],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2"
+      ],
+      "actual_top3": [
+        {
+          "id": "stiftung-bildung-foerderfonds",
+          "score": 78,
+          "passt_weil": "Fördert Schulgärten und naturpädagogische Projekte über Fördervereine - ideal für Hochbeete, Werkstatt und Workshops.",
+          "achtung_bei": "Niedrige Summe (max. 5.000€); bei 8.000€ Budget muss ggf. aufgestockt oder weitere Töpfe kombiniert werden."
+        },
+        {
+          "id": "aok-gesundheit",
+          "score": 70,
+          "passt_weil": "Regionale Programme mit Modulen zu Ernährung und Bewegung passen zum Kochen und eigenständigen Ernten im Schulgarten.",
+          "achtung_bei": "Programm variiert je nach Bundesland; Antrag und Verfügbarkeit für Berlin prüfen."
+        },
+        {
+          "id": "berlin-startchancen",
+          "score": 65,
+          "passt_weil": "Berliner Programm mit Säule I (Investitionen in Lernumgebung) könnte Schulgarten-Ausstattung und Werkstatt finanzieren.",
+          "achtung_bei": "Startchancen ist kein klassisches Projektprogramm; konkreter Investitionsplan und Abstimmung mit Bezirk nötig."
+        }
+      ],
+      "recall": 0,
+      "offTargetHit": false,
+      "latencyMs": 4490,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5615
+      },
+      "totalCandidates": 87,
+      "filteredOut": 44,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-002",
+      "category": "kurz",
+      "expected_top3": [
+        "bmbf-digitalpakt-2",
+        "berlin-startchancen"
+      ],
+      "expected_off_target": [
+        "aktion-mensch-schulkooperation"
+      ],
+      "actual_top3": [
+        {
+          "id": "bmbf-digitalpakt-2",
+          "score": 92,
+          "passt_weil": "Bundesweite Förderung von digitaler Infrastruktur und Endgeräten (Tablets, WLAN). Deckt das Anliegen exakt ab.",
+          "achtung_bei": "Antrag über Berliner Senat; Fristen prüfen."
+        },
+        {
+          "id": "berlin-startchancen",
+          "score": 72,
+          "passt_weil": "Berliner Landesprogramm fördert Investitionen in Lernumgebung, inkl. digitale Ausstattung.",
+          "achtung_bei": "Start 2026; bezieht Tablets nur als Teil der Gesamtausstattung mit ein."
+        },
+        {
+          "id": "telekom-stiftung-technik-scouts",
+          "score": 55,
+          "passt_weil": "Fördert technikaffine Schüler als Scouts für IT-Wartung inkl. Notebooks zur Einrichtung.",
+          "achtung_bei": "Ergänzend für den Betrieb nach Beschaffung; macht Tablets/ WLAN nicht kostenlos."
+        }
+      ],
+      "recall": 1,
+      "offTargetHit": false,
+      "latencyMs": 2592,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5507
+      },
+      "totalCandidates": 87,
+      "filteredOut": 44,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-003",
+      "category": "vag",
+      "expected_top3": [],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2",
+        "aktion-mensch-schulkooperation"
+      ],
+      "actual_top3": [],
+      "recall": null,
+      "offTargetHit": null,
+      "latencyMs": 1640,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5343
+      },
+      "totalCandidates": 0,
+      "filteredOut": 0,
+      "expectedClarification": true,
+      "clarifResult": "hit",
+      "slotCoverage": 1,
+      "clarifQuestion": "Ihr habt noch keinen klaren Schwerpunkt genannt. Welcher Bereich steht für euch im Vordergrund: Sport oder Kultur oder ein anderer Fokus? Für welches Bundesland arbeitet ihr?"
+    },
+    {
+      "id": "ev-004",
+      "category": "ausfuehrlich",
+      "expected_top3": [
+        "chemie-fonds",
+        "ruetgers-stiftung-mint",
+        "mintspace-schulpreis"
+      ],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2"
+      ],
+      "actual_top3": [
+        {
+          "id": "chemie-fonds",
+          "score": 88,
+          "passt_weil": "Exakt für Experimentier-Räume und Materialien wie Mikroskope/Chemie-Sets (5.000 € alle 2 Jahre).",
+          "achtung_bei": "Höchstens alle 2 Jahre beantragbar – Fristen für Bayern prüfen."
+        },
+        {
+          "id": "ruetgers-stiftung-mint",
+          "score": 85,
+          "passt_weil": "Fördert MINT-Materialien und Experimentiergeräte für allgemeinbildende Schulen.",
+          "achtung_bei": "Fixes Budget max. 3.000 € – für Honorar + Fortbildungen ggf. Zusatzquellen nötig."
+        },
+        {
+          "id": "stiftung-bildung-foerderfonds",
+          "score": 70,
+          "passt_weil": "Niedrigschwellige Förderung für Schulfördervereine – passend für AG-Material und Honorare.",
+          "achtung_bei": "Nur über Förderverein beantragbar – Fristen und Bayern-Kompatibilität prüfen."
+        }
+      ],
+      "recall": 0.6666666666666666,
+      "offTargetHit": false,
+      "latencyMs": 3876,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5617
+      },
+      "totalCandidates": 88,
+      "filteredOut": 43,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-005",
+      "category": "ausfuehrlich",
+      "expected_top3": [
+        "telekom-stiftung-jia",
+        "telekom-junior-ingenieur-2026",
+        "telekom-stiftung-mint-berufsorientierung"
+      ],
+      "expected_off_target": [
+        "aktion-mensch-schulkooperation"
+      ],
+      "actual_top3": [
+        {
+          "id": "telekom-junior-ingenieur-2026",
+          "score": 85,
+          "passt_weil": "Junior-Ingenieur-Akademie thematisch ideal: MINT-Kurs mit CAD/Robotik, inkl. Berufsorientierung und Schulkooperation.",
+          "achtung_bei": "Bundesland nicht spezifisch ausgezeichnet, aber bundesweit verfuegbar; Foerderdeckel bei 10.000 EUR liegt unter dem Budget."
+        },
+        {
+          "id": "siemens-stiftung-mint-hub",
+          "score": 82,
+          "passt_weil": "Unterstuetzt exakt die genannten Technikbereiche Robotik/3D-Druck sowie Lehrerfortbildung in MINT.",
+          "achtung_bei": "Honorare fuer externe Ingenieure sind nicht abgedeckt; eher fuer Material/Equipment/Lehrerfortbildung."
+        },
+        {
+          "id": "telekom-stiftung-technik-scouts",
+          "score": 68,
+          "passt_weil": "Ergaenzt das Kurskonzept durch ein Peer-Learning-System fuer IT-Geraete-Wartung und Technik-Verantwortung.",
+          "achtung_bei": "Foerdert einen Scout-Prozess, nicht den Werkraumum- oder -ausbau direkt."
+        }
+      ],
+      "recall": 0.3333333333333333,
+      "offTargetHit": false,
+      "latencyMs": 4166,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5649
+      },
+      "totalCandidates": 86,
+      "filteredOut": 45,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-006",
+      "category": "ausfuehrlich",
+      "expected_top3": [
+        "lesen-macht-stark",
+        "sprache-macht-stark",
+        "mercator-integration"
+      ],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2"
+      ],
+      "actual_top3": [
+        {
+          "id": "lesen-macht-stark",
+          "score": 68,
+          "passt_weil": "Bundesweites Kultur-macht-stark-Programm des dbv; foerdert ausserschulische Lese-/Sprachprojekte exakt fuer Ihr Anliegen.",
+          "achtung_bei": "Schnell bewerben: Frist bei Erstberatung erfragen."
+        },
+        {
+          "id": "bosch-100-prozent-schulen",
+          "score": 65,
+          "passt_weil": "Fokussiert Basis-Kompetenzen Lesen/Rechnen an Grundschulen, passt zu Zielgruppe Klasse 1-4.",
+          "achtung_bei": "Cluster-Modell: mind. 5 Schulen pro Region – Kooperation mit Nachbarschulen pruefen."
+        },
+        {
+          "id": "stiftung-bildung-foerderfonds",
+          "score": 62,
+          "passt_weil": "Niedrigschwellige Foerderung ueber Schulförderverein, deckt Buchanschaffung/Tutorenmaterialien ab. Hamburg machbar.",
+          "achtung_bei": "Max. 5.000 EUR – nur ein Teil des Budgets, kombinierbar."
+        }
+      ],
+      "recall": 0.3333333333333333,
+      "offTargetHit": false,
+      "latencyMs": 4152,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5646
+      },
+      "totalCandidates": 88,
+      "filteredOut": 43,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-007",
+      "category": "ausfuehrlich",
+      "expected_top3": [
+        "erasmus-schule-2026",
+        "kmk-pad-foerderung",
+        "europaschulen-nrw-2026"
+      ],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2"
+      ],
+      "actual_top3": [
+        {
+          "id": "erasmus-schule-2026",
+          "score": 95,
+          "passt_weil": "Kernprogramm für Schulpartnerschaften in Europa, ideal für zweijährigen Austausch und Geschichtsprojekt.",
+          "achtung_bei": "Fristen für 2026 beachten — Antrag bei der Nationalen Agentur einreichen."
+        },
+        {
+          "id": "europaschulen-nrw-2026",
+          "score": 80,
+          "passt_weil": "NRW-Landesinitiative deckt Reise- und Sachmittel für Europa-Partnerschaften ab, passend zum Budget und Bundesland.",
+          "achtung_bei": "Antrag über Bezirksregierung; kombinierbar mit Erasmus+."
+        },
+        {
+          "id": "kmk-pad-foerderung",
+          "score": 55,
+          "passt_weil": "GAPP/PASCH fördern Schulpartnerschaften — inhaltlich passend, aber Schwerpunkt USA/weltweit, nicht spezifisch Polen.",
+          "achtung_bei": "Alternativ: bilaterale Programme DPJW (Deutsch-Polnische Jugendwerk) sind ggf. passgenauer."
+        }
+      ],
+      "recall": 1,
+      "offTargetHit": false,
+      "latencyMs": 4035,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5559
+      },
+      "totalCandidates": 93,
+      "filteredOut": 38,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-008",
+      "category": "ausfuehrlich",
+      "expected_top3": [
+        "aktion-mensch-schulkooperation",
+        "fritz-henkel-inklusion-2026",
+        "dkjs-inklusion"
+      ],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2"
+      ],
+      "actual_top3": [
+        {
+          "id": "aktion-mensch-schulkooperation",
+          "score": 93,
+          "passt_weil": "Foerdert inklusive Schul-Umgestaltung fuer Kinder mit/ohne Behinderung – deckt Bau, Workshops und Beratung ab.",
+          "achtung_bei": "Sachmittel-Budget von 25.000 Euro passt – Antrag auf genaue Kostenaufteilung vorbereiten."
+        },
+        {
+          "id": "playmobil-hobpreis",
+          "score": 80,
+          "passt_weil": "Thema 2025/26 ‚Bildungsgerechtigkeit‘ passt ideal zur geplanten barrierefreien Umgestaltung einer Foerderschule.",
+          "achtung_bei": "Preisgeld 2.500 Euro, deckt nur Teil der Baukosten – ggf. als Anschubfinanzierung fuer Workshops nutzen."
+        },
+        {
+          "id": "bundesweit-ganztag",
+          "score": 60,
+          "passt_weil": "Investitionsprogramm fuer Um- und Ausbau kann Schulhof-Umbau mit Sachmitteln foerdern.",
+          "achtung_bei": "Bundeslandprofil BW pruefen – Antragsfristen variieren je nach Land."
+        }
+      ],
+      "recall": 0.3333333333333333,
+      "offTargetHit": false,
+      "latencyMs": 4264,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5514
+      },
+      "totalCandidates": 96,
+      "filteredOut": 35,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-009",
+      "category": "ausfuehrlich",
+      "expected_top3": [
+        "klimalab-2026",
+        "schott-nachhaltigkeit",
+        "heinrich-boell-bildung"
+      ],
+      "expected_off_target": [
+        "aktion-mensch-schulkooperation"
+      ],
+      "actual_top3": [
+        {
+          "id": "schott-nachhaltigkeit",
+          "score": 78,
+          "passt_weil": "Praxisorientierte Schulprojekte zu Nachhaltigkeit und Klimaschutz, deckt Energieaudit und Baumpflanzaktionen ab.",
+          "achtung_bei": "Nur bis 12.500 € förderbar — Budgetlücke von ca. 22.500 € bleibt."
+        },
+        {
+          "id": "stiftung-bildung-foerderfonds",
+          "score": 65,
+          "passt_weil": "Niedrigschwellige Förderung für Nachhaltigkeitsprojekte und Schüler-AGs, passend zur Klima-AG.",
+          "achtung_bei": "Budget bei 35.000 € — Förderfonds ist mit 5.000 € nur ergänzend nutzbar."
+        },
+        {
+          "id": "klimalab-2026",
+          "score": 55,
+          "passt_weil": "Klimaschutz-Projekte für Vereine/Initiativen — könnte als Kooperation mit Förderverein beantragt werden.",
+          "achtung_bei": "Nicht direkt für Schulen — Antrag über Förderverein prüfen; Budget maximal 20.000 €."
+        }
+      ],
+      "recall": 0.6666666666666666,
+      "offTargetHit": false,
+      "latencyMs": 3872,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5591
+      },
+      "totalCandidates": 89,
+      "filteredOut": 42,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-010",
+      "category": "ausfuehrlich",
+      "expected_top3": [
+        "bmw-stiftung-demokratie",
+        "heinrich-boell-bildung",
+        "telekom-stiftung-respect"
+      ],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2"
+      ],
+      "actual_top3": [
+        {
+          "id": "telekom-stiftung-respect",
+          "score": 85,
+          "passt_weil": "Direkte Foerderung demokratischer Kultur und respektvollen Zusammenlebens, perfekt fuer Klassenrat/Kinderparlament.",
+          "achtung_bei": "Fristen und maximale Summe prufen; 14.000 EUR koennten passen."
+        },
+        {
+          "id": "stiftung-bildung-foerderfonds",
+          "score": 65,
+          "passt_weil": "Niedrigschwellige Foerderung fuer Projekte von Schulfördervereinen, auch Demokratie/Partizipation moeglich.",
+          "achtung_bei": "Maximal 5.000 EUR; Coach-Kosten nur anteilig deckbar."
+        }
+      ],
+      "recall": 0.3333333333333333,
+      "offTargetHit": false,
+      "latencyMs": 3706,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5558
+      },
+      "totalCandidates": 88,
+      "filteredOut": 43,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-011",
+      "category": "ausfuehrlich",
+      "expected_top3": [],
+      "expected_off_target": [
+        "aktion-mensch-schulkooperation"
+      ],
+      "actual_top3": [
+        {
+          "id": "first-lego-league",
+          "score": 95,
+          "passt_weil": "Spezifisches Sachsen-Programm für Robotik mit LEGO SPIKE-Sets, deckt Hardware und Wettbewerbe ab.",
+          "achtung_bei": "Antragsfrist prüfen; Materialausgabe erfolgt gebündelt über Schule als Set."
+        },
+        {
+          "id": "telekom-junior-ingenieur-2026",
+          "score": 78,
+          "passt_weil": "Fördert MINT-Kompetenzen und Berufsorientierung passend zu Robotik und Technik für Klasse 8.",
+          "achtung_bei": "Erst ab Klasse 8; Fortbildungen für Kollegen separat prüfen."
+        },
+        {
+          "id": "sn-mint-digital-37",
+          "score": 70,
+          "passt_weil": "Landesprogramm Sachsen zur Auszeichnung und Förderung von MINT- und Digital-Schulen.",
+          "achtung_bei": "Nicht direkt Hardware-Förderung; eher Anerkennung bestehender Strukturen."
+        }
+      ],
+      "recall": null,
+      "offTargetHit": false,
+      "latencyMs": 2523,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5555
+      },
+      "totalCandidates": 91,
+      "filteredOut": 40,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-012",
+      "category": "kurz",
+      "expected_top3": [
+        "niedersachsen-sport",
+        "baywa-laufen-wald",
+        "aok-gesundheit"
+      ],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2"
+      ],
+      "actual_top3": [
+        {
+          "id": "niedersachsen-sport",
+          "score": 80,
+          "passt_weil": "Sport Vernetzt fördert Bewegungsprojekte an Grundschulen in Niedersachsen mit Geraetebeschaffung.",
+          "achtung_bei": "Maximal 400 EUR/Jahr — Deckungslücke von rund 11.600 EUR bleibt."
+        },
+        {
+          "id": "aok-gesundheit",
+          "score": 65,
+          "passt_weil": "Fördert Bewegungsförderung an Grundschulen, inkl. Anschaffung von Bewegungsgeräten.",
+          "achtung_bei": "Regionale Programme variieren — Antragstellung direkt bei AOK Niedersachsen prüfen."
+        },
+        {
+          "id": "stiftung-bildung-foerderfonds",
+          "score": 60,
+          "passt_weil": "Niedrigschwellige Förderung für Bewegungsprojekte von Schulfördervereinen, passend zum Budget.",
+          "achtung_bei": "Antrag über den Förderverein der Schule stellen."
+        }
+      ],
+      "recall": 0.6666666666666666,
+      "offTargetHit": false,
+      "latencyMs": 3328,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5496
+      },
+      "totalCandidates": 86,
+      "filteredOut": 45,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-013",
+      "category": "kurz",
+      "expected_top3": [],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2"
+      ],
+      "actual_top3": [
+        {
+          "id": "jugend-forscht-schulpreis",
+          "score": 75,
+          "passt_weil": "Fördert Schulen mit nachhaltigen MINT-Strukturen und Wettbewerbsteilnahmen, passend für den Ausbau von Mathe-Wettbewerben.",
+          "achtung_bei": ""
+        },
+        {
+          "id": "bayern-mint-freundliche-schulen",
+          "score": 70,
+          "passt_weil": "Auszeichnung für MINT-Profile inkl. Wettbewerbe, ideal für Strukturaufbau von Mathe-Wettbewerben.",
+          "achtung_bei": ""
+        }
+      ],
+      "recall": null,
+      "offTargetHit": false,
+      "latencyMs": 3099,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5458
+      },
+      "totalCandidates": 131,
+      "filteredOut": 0,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-014",
+      "category": "kurz",
+      "expected_top3": [
+        "kultur-macht-stark",
+        "hamburg-kultur-schule",
+        "bayern-kulturfonds"
+      ],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2"
+      ],
+      "actual_top3": [
+        {
+          "id": "hamburg-kultur-schule",
+          "score": 95,
+          "passt_weil": "Speziell fuer Kooperationsprojekte mit Kunstschaffenden in Hamburg, passt exakt auf Theaterpaedagogin-Honorar und Buehnenmaterial.",
+          "achtung_bei": "Themenjahr beachten, Antragsfrist fuer 2026/27 vermutlich frueh im Jahr."
+        },
+        {
+          "id": "kultur-macht-stark",
+          "score": 78,
+          "passt_weil": "Foerdert bundesweit ausserschulische kulturelle Bildungsprojekte, Honorar und Material abgedeckt.",
+          "achtung_bei": "Projekt muss mit ausserschulischem Partner (Buendnis) umgesetzt werden."
+        },
+        {
+          "id": "neumayer-projektkultur",
+          "score": 70,
+          "passt_weil": "Klassenspezifisch auf Jahrgangsstufen 7-10 und Kulturprojekte ausgerichtet, inkl. Theater.",
+          "achtung_bei": "Foerdersumme geringer als Budget, ggf. Kofinanzierung noetig."
+        }
+      ],
+      "recall": 0.6666666666666666,
+      "offTargetHit": false,
+      "latencyMs": 4424,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5539
+      },
+      "totalCandidates": 88,
+      "filteredOut": 43,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-015",
+      "category": "kurz",
+      "expected_top3": [
+        "baywa-waldschule",
+        "berdelle-naturwissenschaft",
+        "baywa-opflanzt"
+      ],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2"
+      ],
+      "actual_top3": [
+        {
+          "id": "baywa-waldschule",
+          "score": 90,
+          "passt_weil": "Projekt zur Waldbildung und Naturerfahrung, passt ideal zu Schul-Aquarium und NABU-Exkursionen.",
+          "achtung_bei": "Achtung bei: Prüfen, ob Exkursionen in Waldnähe stattfinden können."
+        },
+        {
+          "id": "klimalab-2026",
+          "score": 55,
+          "passt_weil": "Fördert Klimaschutz-Engagement, könnte Naturprojekte unterstützen.",
+          "achtung_bei": "Achtung bei: Nicht direkt für Schulen, Vereine/Initiativen nötig – ggf. NABU als Partner."
+        }
+      ],
+      "recall": 0.3333333333333333,
+      "offTargetHit": false,
+      "latencyMs": 3667,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5471
+      },
+      "totalCandidates": 131,
+      "filteredOut": 0,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-016",
+      "category": "kurz",
+      "expected_top3": [
+        "lesen-macht-stark",
+        "sprache-macht-stark",
+        "mercator-integration"
+      ],
+      "expected_off_target": [
+        "aktion-mensch-schulkooperation"
+      ],
+      "actual_top3": [
+        {
+          "id": "lesen-macht-stark",
+          "score": 82,
+          "passt_weil": "Foerdert digitale Leseprojekte fuer mehrsprachige Bibliotheken – passt zu Sprachvielfalt und Grundschul-Niveau.",
+          "achtung_bei": "Achtung: Bundesfoerderung, NRW-spezifische Variante pruefen."
+        },
+        {
+          "id": "stiftung-bildung-foerderfonds",
+          "score": 70,
+          "passt_weil": "Niedrigschwellige Foerderung fuer Schulfördervereine – Aufbau einer Bibliothek ist ein klassisches Projekt.",
+          "achtung_bei": "Maximal 5.000 EUR – Budget von 4.500 EUR passt genau."
+        },
+        {
+          "id": "kultur-macht-stark",
+          "score": 65,
+          "passt_weil": "Foerdert ausserschulische Kulturprojekte mit Sprach/Lesebezug – Bündnis mit Bibliothek/Verein moeglich.",
+          "achtung_bei": "Projekt muss ausserschulisch sein – Kooperationspartner erforderlich."
+        }
+      ],
+      "recall": 0.3333333333333333,
+      "offTargetHit": false,
+      "latencyMs": 3539,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5464
+      },
+      "totalCandidates": 93,
+      "filteredOut": 38,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-017",
+      "category": "vag",
+      "expected_top3": [
+        "bmbf-digitalpakt-2",
+        "mercator-digitalisierung",
+        "ibm-skillsbuild"
+      ],
+      "expected_off_target": [
+        "aktion-mensch-schulkooperation"
+      ],
+      "actual_top3": [
+        {
+          "id": "bmbf-digitalpakt-2",
+          "score": 90,
+          "passt_weil": "Bundesweite Digitalpakt-Förderung für IT-Infrastruktur (Tablets/Software) an Gymnasien, auch in Bayern nutzbar.",
+          "achtung_bei": "Antragsfrist prüfen: Bayern erwartet Eigenanteil von 10%."
+        },
+        {
+          "id": "telekom-stiftung-technik-scouts",
+          "score": 75,
+          "passt_weil": "Fördert Schüler als IT-Scouts für Gerätewartung und Peer-Learning – passend zum Digitalisierungswunsch.",
+          "achtung_bei": "Fokus auf Peer-Teaching, weniger auf reine Hardware-Beschaffung."
+        },
+        {
+          "id": "siemens-stiftung-mint-hub",
+          "score": 65,
+          "passt_weil": "Praxisnahe Fortbildungen zu Robotik/VR/KI für Lehrkräfte – digitale Kompetenzentwicklung als sinnvolle Ergänzung.",
+          "achtung_bei": "Keine Direktförderung für Tablets; Fortbildung für Kollegium."
+        }
+      ],
+      "recall": 0.3333333333333333,
+      "offTargetHit": false,
+      "latencyMs": 4030,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5531
+      },
+      "totalCandidates": 88,
+      "filteredOut": 43,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-018",
+      "category": "vag",
+      "expected_top3": [
+        "aktion-mensch-schulkooperation",
+        "berlin-startchancen",
+        "playmobil-hobpreis"
+      ],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2"
+      ],
+      "actual_top3": [
+        {
+          "id": "aktion-mensch-schulkooperation",
+          "score": 95,
+          "passt_weil": "Fördert inklusive Projekte für Kinder mit/ohne Migrationshintergrund und Förderbedarf.",
+          "achtung_bei": "Berliner Grundschule beachten, Förderhöhe bis 350.000 EUR."
+        },
+        {
+          "id": "lesen-macht-stark",
+          "score": 85,
+          "passt_weil": "Digitale Sprach- und Leseprojekte für benachteiligte Kinder, ideal für Integration und Sprache.",
+          "achtung_bei": "Programm fördert außerschulisch, Bündnispartner nötig."
+        },
+        {
+          "id": "berlin-startchancen",
+          "score": 70,
+          "passt_weil": "Landesprogramm für Bildungsgerechtigkeit mit Fokus Sprachförderung und multiprofessionelle Teams.",
+          "achtung_bei": "Antrag über Berliner Schulverwaltung, Budget passt zu 15.000 EUR."
+        }
+      ],
+      "recall": 0.6666666666666666,
+      "offTargetHit": false,
+      "latencyMs": 3225,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5457
+      },
+      "totalCandidates": 87,
+      "filteredOut": 44,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-019",
+      "category": "vag",
+      "expected_top3": [],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2",
+        "aktion-mensch-schulkooperation"
+      ],
+      "actual_top3": [],
+      "recall": null,
+      "offTargetHit": false,
+      "latencyMs": 3396,
+      "costs": {
+        "eurCents": 0.06,
+        "usdCents": 0.07,
+        "calls": 1,
+        "totalTokens": 5258
+      },
+      "totalCandidates": 96,
+      "filteredOut": 35,
+      "expectedClarification": true,
+      "clarifResult": "miss",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-020",
+      "category": "vag",
+      "expected_top3": [
+        "klimalab-2026",
+        "heinrich-boell-bildung",
+        "schott-nachhaltigkeit"
+      ],
+      "expected_off_target": [
+        "aktion-mensch-schulkooperation"
+      ],
+      "actual_top3": [
+        {
+          "id": "schott-nachhaltigkeit",
+          "score": 78,
+          "passt_weil": "Bundesweites Programm fuer praxisorientierte Schulprojekte zu Nachhaltigkeit/SDGs, passt zu eurer Sekundarschule.",
+          "achtung_bei": "Summe bis 12.500 EUR liegt unter eurem Budget von 18.000 EUR – ggf. mit Eigenanteil kombinieren."
+        },
+        {
+          "id": "stiftung-bildung-foerderfonds",
+          "score": 72,
+          "passt_weil": "Niedrigschwellige Foerderung fuer Nachhaltigkeitsprojekte von Schulfoerdervereinen, direkt passend fuer Sekundarschule in Sachsen-Anhalt.",
+          "achtung_bei": "Max. 5.000 EUR – reicht fuer Teilprojekte, nicht fuer Gesamtausstattung."
+        },
+        {
+          "id": "klimalab-2026",
+          "score": 65,
+          "passt_weil": "Klimaschutz-Engagement fuer gemeinnuetzige Initiativen – thematisch passend zu Nachhaltigkeit, aber nicht direkt auf Schulen ausgelegt.",
+          "achtung_bei": "Nicht Schulen, sondern Vereine antragsberechtigt – Pruefung der Traegerschaft notwendig."
+        }
+      ],
+      "recall": 0.6666666666666666,
+      "offTargetHit": false,
+      "latencyMs": 3531,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5535
+      },
+      "totalCandidates": 87,
+      "filteredOut": 44,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-021",
+      "category": "vag",
+      "expected_top3": [
+        "stiftung-bildung-foerderfonds",
+        "lesen-macht-stark",
+        "dkjs-sport"
+      ],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2"
+      ],
+      "actual_top3": [
+        {
+          "id": "lesen-macht-stark",
+          "score": 82,
+          "passt_weil": "Programm fördert digitale Bildungs- und Leseprojekte außerschulisch, ideal für Leseförderung an Grundschulen.",
+          "achtung_bei": "Achtung: Nur außerschulische Projekte; ggf. Kooperationspartner nötig."
+        },
+        {
+          "id": "kultur-macht-stark",
+          "score": 75,
+          "passt_weil": "Fördert außerschulische kulturelle Bildung mit Bündnissen, deckt kleine Vorhaben wie Theater-AGs ab.",
+          "achtung_bei": ""
+        },
+        {
+          "id": "niedersachsen-sport",
+          "score": 55,
+          "passt_weil": "Spezifisch für Grundschulen in Niedersachsen, fördert Sport-AGs mit kleinen Beträgen.",
+          "achtung_bei": "Nur in Niedersachsen beantragbar; max. 400€/Jahr."
+        }
+      ],
+      "recall": 0.3333333333333333,
+      "offTargetHit": false,
+      "latencyMs": 4479,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5396
+      },
+      "totalCandidates": 131,
+      "filteredOut": 0,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-022",
+      "category": "vag",
+      "expected_top3": [],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2",
+        "aktion-mensch-schulkooperation"
+      ],
+      "actual_top3": [],
+      "recall": null,
+      "offTargetHit": null,
+      "latencyMs": 2120,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5371
+      },
+      "totalCandidates": 0,
+      "filteredOut": 0,
+      "expectedClarification": true,
+      "clarifResult": "hit",
+      "slotCoverage": 0.5,
+      "clarifQuestion": "Euer Anliegen ist sehr allgemein. Um passgenaue Förderprogramme zu finden, brauchen wir einen konkreteren Fokus. Welcher Bereich ist für eure Grundschule am wichtigsten – zum Beispiel Digitalisierung, Ganztag, Inklusion, Lesen/Schreiben oder etwas anderes?"
+    },
+    {
+      "id": "ev-023",
+      "category": "vag",
+      "expected_top3": [],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2"
+      ],
+      "actual_top3": [
+        {
+          "id": "playmobil-hobpreis",
+          "score": 65,
+          "passt_weil": "Der Hob-Preis belohnt kreative Schulprojekte, passt ideal zum Wunsch nach Förderung im kreativen Bereich.",
+          "achtung_bei": "Thema 2025/26 eng auf Bildungsgerechtigkeit fokussiert – bitte prüfen, ob euer Projekt dazu passt."
+        },
+        {
+          "id": "kultur-macht-stark",
+          "score": 60,
+          "passt_weil": "Deutschlands größtes Förderprogramm für außerschulische kulturelle Bildung, genau passend für kreative Projekte.",
+          "achtung_bei": "Antrag über einen lokalen Bildungspartner (z.B. Verein) notwendig; keine Direktförderung für Schulen."
+        },
+        {
+          "id": "alfred-toepfer-kultur",
+          "score": 55,
+          "passt_weil": "Fördert kulturelle Projekte und künstlerische Bildung an Schulen – deckt kreative Vorhaben ab.",
+          "achtung_bei": "Programm nicht bundesweit; bitte Bundesland im Profil ergänzen, um Passung zu prüfen."
+        }
+      ],
+      "recall": null,
+      "offTargetHit": false,
+      "latencyMs": 3434,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5467
+      },
+      "totalCandidates": 131,
+      "filteredOut": 0,
+      "expectedClarification": true,
+      "clarifResult": "miss",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-024",
+      "category": "vag",
+      "expected_top3": [],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2",
+        "aktion-mensch-schulkooperation"
+      ],
+      "actual_top3": [
+        {
+          "id": "niedersachsen-sport",
+          "score": 78,
+          "passt_weil": "Landesspezifisches Sportförderprogramm für Grundschulen mit Bewegungs- und Kooperationsansatz.",
+          "achtung_bei": "Nur für Niedersachsen geeignet — bitte Bundesland im Profil prüfen."
+        },
+        {
+          "id": "aok-gesundheit",
+          "score": 70,
+          "passt_weil": "Regionale Gesundheitsförderung mit Bewegungsschwerpunkt und finanzieller Unterstützung bis 5.500€.",
+          "achtung_bei": "Nicht alle Bundesländer haben gleich hohe Fördersummen."
+        },
+        {
+          "id": "ferry-porsche-challenge",
+          "score": 62,
+          "passt_weil": "Wettbewerb für benachteiligte Kinder/Jugendliche mit Bildungs- und Freizeitfokus möglich.",
+          "achtung_bei": "Bewerbung thematisch offen — Sportinitiative gut darstellbar."
+        }
+      ],
+      "recall": null,
+      "offTargetHit": false,
+      "latencyMs": 2932,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5452
+      },
+      "totalCandidates": 131,
+      "filteredOut": 0,
+      "expectedClarification": true,
+      "clarifResult": "miss",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-025",
+      "category": "vag",
+      "expected_top3": [],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2",
+        "aktion-mensch-schulkooperation"
+      ],
+      "actual_top3": [],
+      "recall": null,
+      "offTargetHit": null,
+      "latencyMs": 1584,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5341
+      },
+      "totalCandidates": 0,
+      "filteredOut": 0,
+      "expectedClarification": true,
+      "clarifResult": "hit",
+      "slotCoverage": 1,
+      "clarifQuestion": "Ihr nennt Sport, Kultur und Digitales als Optionen – das sind drei sehr unterschiedliche Förderschienen. Auf welchen Bereich soll der Hauptfokus liegen, damit ich die besten Programme für eure Grundschule in Bayern filtern kann?"
+    },
+    {
+      "id": "ev-026",
+      "category": "vag",
+      "expected_top3": [],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2"
+      ],
+      "actual_top3": [],
+      "recall": null,
+      "offTargetHit": null,
+      "latencyMs": 2502,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5360
+      },
+      "totalCandidates": 0,
+      "filteredOut": 0,
+      "expectedClarification": true,
+      "clarifResult": "hit",
+      "slotCoverage": 1,
+      "clarifQuestion": "\"Irgendwas zwischen Inklusion, Demokratielernen und Internationalisierung\" ist zu breit. Welcher dieser drei Bereiche soll der Schwerpunkt sein?"
+    },
+    {
+      "id": "ev-027",
+      "category": "vag",
+      "expected_top3": [
+        "kultur-macht-stark",
+        "hamburg-kultur-schule"
+      ],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2"
+      ],
+      "actual_top3": [
+        {
+          "id": "hamburg-kultur-schule",
+          "score": 85,
+          "passt_weil": "Exakt auf Hamburg zugeschnittenes Kulturprogramm, unterstützt Chorprojekte mit Künstlern und Konzertfahrten.",
+          "achtung_bei": "Beantragung im Rahmen des laufenden Schuljahres prüfen — Fristen variieren."
+        },
+        {
+          "id": "kultur-macht-stark",
+          "score": 72,
+          "passt_weil": "Bundesweite Förderung für außerschulische kulturelle Bildung wie Chor und Konzerte.",
+          "achtung_bei": "Eigenanteil und Kooperation mit einem außerschulischen Partner nötig."
+        }
+      ],
+      "recall": 1,
+      "offTargetHit": false,
+      "latencyMs": 3958,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5530
+      },
+      "totalCandidates": 88,
+      "filteredOut": 43,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-028",
+      "category": "vag",
+      "expected_top3": [
+        "lesen-macht-stark",
+        "sprache-macht-stark",
+        "berlin-startchancen"
+      ],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2"
+      ],
+      "actual_top3": [
+        {
+          "id": "lesen-macht-stark",
+          "score": 87,
+          "passt_weil": "Unterprogramm von Kultur macht stark, fördert außerschulische digitale Leseprojekte – ideal für Lese-AGs mit Paten in Klasse 1-2.",
+          "achtung_bei": "Antrag über öffentliche Bibliothek als Bündnispartner prüfen."
+        },
+        {
+          "id": "berlin-startchancen",
+          "score": 75,
+          "passt_weil": "Berliner Landesprogramm mit Lese-/Matheband-Säule; Kleingruppenförderung möglich und Budgetrahmen passend.",
+          "achtung_bei": "Fokus liegt auf Multiprofessionalität – Lesepaten als Honorarkräfte planbar."
+        },
+        {
+          "id": "stiftung-bildung-foerderfonds",
+          "score": 60,
+          "passt_weil": "Niedrigschwellige Förderung für Projektideen von Fördervereinen – Leseprojekte für Grundstufe sind förderfähig.",
+          "achtung_bei": "Maximal 5.000 € – ggf. mit weiteren Quellen kombinieren."
+        }
+      ],
+      "recall": 0.6666666666666666,
+      "offTargetHit": false,
+      "latencyMs": 3682,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5543
+      },
+      "totalCandidates": 87,
+      "filteredOut": 44,
+      "expectedClarification": false,
+      "clarifResult": "not_applicable",
+      "slotCoverage": null
+    },
+    {
+      "id": "ev-029",
+      "category": "vag",
+      "expected_top3": [],
+      "expected_off_target": [
+        "bmbf-digitalpakt-2",
+        "aktion-mensch-schulkooperation"
+      ],
+      "actual_top3": [],
+      "recall": null,
+      "offTargetHit": null,
+      "latencyMs": 1990,
+      "costs": {
+        "eurCents": 0.07,
+        "usdCents": 0.08,
+        "calls": 1,
+        "totalTokens": 5332
+      },
+      "totalCandidates": 0,
+      "filteredOut": 0,
+      "expectedClarification": true,
+      "clarifResult": "hit",
+      "slotCoverage": 0.6666666666666666,
+      "clarifQuestion": "Ihr sucht Fördermittel, aber habt noch keine konkrete Idee. Ist der Schwerpunkt eher auf Digitalisierung, Ausstattung, einem bestimmten Schulfach (z.B. MINT) oder einem sozialen Thema (z.B. Inklusion) ausgerichtet?"
+    }
+  ]
+}

@@ -29,8 +29,11 @@ const QUEUE_SCORES: Map<string, number> = new Map(
     .map((q) => [q.programmId, q.score] as const)
 );
 
-/** Wieviele Programme maximal an den LLM uebergeben werden. */
-const MAX_LLM_CANDIDATES = 20;
+/** Wieviele Programme maximal an den LLM uebergeben werden.
+ * Plan 02-09 Phase-2.2: 20 → 40 erhoeht — Theme-Score-Boost zieht thematisch
+ * relevante Programme mit niedrigem Queue-Score in den Cut. Latenz-Kosten
+ * vertretbar (~+0.5s pro Match). */
+const MAX_LLM_CANDIDATES = 40;
 /** Wieviele Treffer der LLM maximal liefern soll. */
 const MAX_MATCHES = 3;
 /** Hard-Cap fuer Output-Tokens. Reicht satt fuer 3 Pipe-Zeilen
@@ -64,6 +67,54 @@ function hasDigitalAnchor(text: string): boolean {
   return /digital|tablet|ipad|hardware|laptop|notebook|whiteboard|server|software|computer|wlan|netzwerk|ger(a|ae|ä)t.*beschaff|vr.brille|ar.brille|beamer/.test(
     t
   );
+}
+
+/**
+ * Plan 02-09 Theme-Score-Boost (Phase-2.2):
+ * Anliegen-spezifische Sortier-Achse zusaetzlich zum statischen Queue-Score.
+ * Vor dem Top-N-Cut: pro Programm pruefen, wie viele seiner `kategorien` im
+ * Anliegen-Text als Substring erwaehnt sind. Bonus = min(hits, 3) * 25.
+ *
+ * Hebt domain-spezifische Programme mit niedrigem Queue-Score (z.B.
+ * niedersachsen-sport Score 40, baywa-laufen-wald Score 22) in den Pipe-Cut,
+ * wenn ihre Kategorie im Anliegen erwaehnt ist.
+ */
+const THEME_BOOST_PER_HIT = 25;
+const THEME_BOOST_MAX_HITS = 3;
+
+/**
+ * Sortierte Liste aller eindeutigen Kategorien aus foerderprogramme.json.
+ * Laengste zuerst, damit Substring-Match laenger-vor-kuerzer greift
+ * (z.B. "naturwissenschaft" matcht VOR "natur").
+ */
+const ALL_KATEGORIEN: string[] = (() => {
+  const set = new Set<string>();
+  for (const p of programme) {
+    const kats = (p as { kategorien?: string[] }).kategorien ?? [];
+    for (const k of kats) set.add(String(k).toLowerCase());
+  }
+  return Array.from(set).sort((a, b) => b.length - a.length);
+})();
+
+/** Extrahiert die Themen aus einem Anliegen-Text via Substring-Match auf alle Kategorien. */
+function extractAnliegenThemes(anliegen: string): Set<string> {
+  const t = anliegen.toLowerCase();
+  const hits = new Set<string>();
+  for (const kat of ALL_KATEGORIEN) {
+    if (t.includes(kat)) hits.add(kat);
+  }
+  return hits;
+}
+
+/** Theme-Boost pro Programm: Anzahl Schnitt-Kategorien × per-Hit-Bonus, gecapped. */
+function themeBoost(programm: Foerderprogramm, anliegenThemes: Set<string>): number {
+  if (anliegenThemes.size === 0) return 0;
+  const kats = (programm as { kategorien?: string[] }).kategorien ?? [];
+  let hits = 0;
+  for (const k of kats) {
+    if (anliegenThemes.has(String(k).toLowerCase())) hits++;
+  }
+  return Math.min(hits, THEME_BOOST_MAX_HITS) * THEME_BOOST_PER_HIT;
 }
 
 export interface MatchInput {
@@ -367,11 +418,18 @@ export async function runMatch(input: MatchInput): Promise<MatchResult> {
 
   const filtered = prefilter(input, programme);
 
-  // Top-N nach Queue-Score: aussichtsreichste Programme zuerst, Rest faellt
-  // weg. Ein Programm ohne Queue-Eintrag bekommt Score 0 (landet hinten).
+  // Plan 02-09: Theme-Boost vor Top-N-Cut. Sortierung = QueueScore + ThemeBoost.
+  // previousAnliegen mitberuecksichtigen fuer D-09 Praezisierungs-Pfad.
+  const themeText = `${input.anliegen} ${input.previousAnliegen ?? ""}`;
+  const anliegenThemes = extractAnliegenThemes(themeText);
   const topN = [...filtered]
-    .sort((a, b) => (QUEUE_SCORES.get(b.id) ?? 0) - (QUEUE_SCORES.get(a.id) ?? 0))
-    .slice(0, MAX_LLM_CANDIDATES);
+    .map((p) => ({
+      programm: p,
+      sortScore: (QUEUE_SCORES.get(p.id) ?? 0) + themeBoost(p, anliegenThemes),
+    }))
+    .sort((a, b) => b.sortScore - a.sortScore)
+    .slice(0, MAX_LLM_CANDIDATES)
+    .map((entry) => entry.programm);
   const cards = topN.map(toCard);
 
   const { value: rawText, usage } = await generateText(

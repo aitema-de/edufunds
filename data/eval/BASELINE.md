@@ -3,6 +3,51 @@
 > Append-only History. Phase 2+ fügt neue Einträge oben dran. Skript schreibt
 > NICHT in diese Datei — manuelle Pflege per PR.
 
+## 2026-05-05 — Phase-2.2 Plan 02-09 Top-N + Theme-Score-Boost (Code-Aenderung matcher.ts)
+
+- **Matcher-Commit:** wird mit diesem Commit ergaenzt
+- **Korpus-Version:** v3 (unveraendert)
+- **Tuning-Quelle:** Plan 02-09 — MAX_LLM_CANDIDATES 20→40, plus anliegen-spezifischer Theme-Boost vor Top-N-Cut. Substring-Match auf 173 eindeutige Kategorien aus foerderprogramme.json, Boost = min(Schnitt-Hits, 3) × 25 (max +75). Hebt domain-spezifische Programme mit niedrigem Queue-Score (niedersachsen-sport=40, baywa-laufen-wald=22, first-lego-league=12) in den Cut, wenn ihre Kategorie im Anliegen erwaehnt ist.
+
+### Threshold-Gate (D-16/D-17 PR-Gate)
+
+| Metrik | Phase 2.2 nach 02-10 | **Phase 2.2 nach 02-09** | D-17-Target | Status |
+|--------|---------------------|--------------------------|-------------|--------|
+| **Recall@3** (Mittelwert non-edge) | 0.380 | **0.544** | ≥ 0.42 | ✓ **PASS** (+0.164) |
+| **Off-Target-Rate** | 0.0 % | **0.0 %** | < 5 % | ✓ PASS (stabil) |
+| **Clarif-Precision** | 75.0 % | **62.5 %** | ≥ 80 % | ✗ FAIL (-12.5 pp Regression) |
+| **Clarif-FalschPos** | 4.8 % | **0.0 %** | ≤ 10 % | ✓ PASS |
+| **Slot-Coverage** (diag) | 86.1 % | **83.3 %** | — | leichter Drift |
+
+**Diagnose:**
+- **Recall +0.164** — massiver Lift, alle 3 Kategorien profitieren (kurz 0.333→0.600, ausfuehrlich 0.333→0.458, vag 0.472→0.611). Theme-Boost wirkt sowohl bei thematisch knappen (kurz) als auch ausfuehrlichen Anliegen.
+- **n von 18 Non-Edge auf 19** — ein Eintrag (vermutlich ev-009) hat jetzt wieder Top-3-Treffer, weil Theme-Boost passende Programme in den Cut gezogen hat. Edge-Case-Effekt von 02-10 partial reversiert.
+- **Clarif-Precision regressiert von 75 % auf 62.5 %** — 5/8 statt 6/8 Hits. Theme-Boost erhoeht die Wahrscheinlichkeit, dass der LLM bei vagem Anliegen ranking statt clarification waehlt, weil mehr thematisch passende Kandidaten im Top-40 sichtbar sind. Side-Effect des Recall-Hebels.
+- **Latenz +0.53 s** (2.86 → 3.39 s) — innerhalb Constraint, knapp ueber 3 s.
+- **Kosten +31 %** (0.0154 → 0.0202 EUR / 29 Calls) — 0.07 ct/Match, knapp ueber Budget 0.06 ct/Match. Top-N=40 verdoppelt die Cards-JSON im Prompt.
+
+### Per-Kategorie
+
+- **kurz:** n=5, Recall **0.600**, Off-Target 0.0 % (von 0.333 → +0.267)
+- **ausfuehrlich:** n=8, Recall **0.458**, Off-Target 0.0 % (von 0.333 → +0.125, n von 7 auf 8 wieder hoch)
+- **vag:** n=6, Recall **0.611**, Off-Target 0.0 % (von 0.472 → +0.139)
+
+### Naechste Schritte
+
+**3 von 4 D-17-Targets erfuellt.** Verbleibende Luecke: Clarif-Precision 62.5 %  → 80 % (Gap -17.5 pp).
+
+Senior-Dev-Empfehlung: **Plan 02-11 Eval-Re-Run mit zweitem Live-Run** zur Stabilitaetspruefung. 1-Run-Volatilitaet bei Clarif-Precision = 12.5 pp pro Eintrag. Wenn 02-09-Run = 6/8 ein LLM-Varianz-Effekt war (vorher 6/8, davor 5/8), kann 02-11-Run wieder ueber 75 % springen — dann ist Clarif-Precision stabil bei 75 %, weiterhin unter Target, aber konsistent.
+
+Falls beide Runs konsistent unter 80 %: Phase-2.3-Auftrag fuer Clarif-Heuristik-Tuning (z.B. Theme-Boost-Cap bei 2 statt 3, oder Slot-Heuristik-Schaerfung im MATCHER_SYSTEM-Prompt).
+
+### Pfade zu neuen Files
+
+- **JSON-Report Live (02-09):** `data/eval/reports/2026-05-05-12-11-47.json` + `.md`
+- **Snapshots Live (02-09):** `data/eval/snapshots/2026-05-05-12-11-47/` (29 Eintraege, Phase-2.2.09-Baseline)
+- **Code-Aenderung:** `lib/wizard/matcher.ts` (MAX_LLM_CANDIDATES 20→40, ALL_KATEGORIEN, extractAnliegenThemes, themeBoost, Sort mit sortScore = QueueScore + Boost)
+
+---
+
 ## 2026-05-05 — Phase-2.2 Plan 02-10 Drift-Score-Cap (Code-Aenderung matcher.ts)
 
 - **Matcher-Commit:** wird mit diesem Commit ergaenzt (matcher.ts + Tests)
