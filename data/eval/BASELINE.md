@@ -3,6 +3,55 @@
 > Append-only History. Phase 2+ fügt neue Einträge oben dran. Skript schreibt
 > NICHT in diese Datei — manuelle Pflege per PR.
 
+## 2026-05-05 — Phase-2.2 Plan 02-08 Korpus-Kalibrierung (Korpus v3, n=29)
+
+- **Matcher-Commit:** `26d4405` (HEAD nach Phase 2 mechanisch+visuell abgeschlossen, KEINE Code-Aenderung — nur Korpus-Edit)
+- **Korpus-Version:** v3 (kalibriert gegen kiAntragGeeignet=true Set, 11 nicht-bedienbare IDs raus, kuratierte Alternativen rein, 2 Edge-Cases markiert)
+- **Tuning-Quelle:** Plan 02-08 — Korpus-Kalibrierung als Reaktion auf Diagnose-Spike-Befund (PHASE22-DIAGNOSIS-AND-PLANS.md). Aenderungen: ev-004/-012/-015/-018 expected_top3 mit kiAntragGeeignet=true Programmen ersetzt (chemie-fonds/ruetgers-mint/mintspace, niedersachsen-sport/baywa-laufen-wald/aok-gesundheit, baywa-waldschule/berdelle-naturwissenschaft/baywa-opflanzt, aktion-mensch/berlin-startchancen/playmobil-hobpreis). ev-011/-013 als Edge-Case mit `expected_top3=[]` (Daten-Qualitaets-Problem bei ev-011, kein bedienbarer Use-Case bei ev-013). Notes-Felder mit Kalibrierungs-Begruendung.
+
+### Threshold-Gate (D-16/D-17 PR-Gate)
+
+| Metrik | Phase 2.1 (vorher) | Phase 2.2 Replay | Phase 2.2 **Live** | D-17-Target | Status |
+|--------|---------------------|------------------|--------------------|-------------|--------|
+| **Recall@3** (Mittelwert non-edge) | 0.325 | 0.395 | **0.360** | ≥ 0.42 | ✗ FAIL (-0.06 zu Target) |
+| **Off-Target-Rate** | 4.8 % | 5.3 % | **10.5 %** | < 5 % | ✗ FAIL (+5.7 pp Regression) |
+| **Clarif-Precision** | 75.0 % | 75.0 % (Replay invariant) | **75.0 %** | ≥ 80 % | ✗ FAIL |
+| **Clarif-FalschPos** | 0.0 % | 0.0 % | **0.0 %** | ≤ 10 % | ✓ PASS (uebererfuellt) |
+| **Slot-Coverage** (diag) | 91.7 % | 91.7 % | **86.1 %** | — | leichter Drift |
+
+**Diagnose:**
+- **Recall geliftet** durch Korpus-Kalibrierung (+0.035 Live, +0.07 Replay) — eine 1-Run-Live-vs-Replay-Differenz von 0.035 setzt die DeepSeek-Varianz als Untergrenze. Plan 02-09 muss > 0.10 Lift bringen, um aus der Varianz herauszuragen.
+- **Off-Target regressiert von 4.8% auf 10.5%** — neuer Schmerzpunkt in ausfuehrlich-Kategorie (25% Off-Target, 2/8): ev-001 zieht `bmbf-digitalpakt-2`, ev-009 zieht `aktion-mensch-schulkooperation`. Beide sind klassische Drifts trotz Plan-02-04-Prompt-Verbot. Prompt-only-Hardening wirkt nicht zuverlaessig — Server-Side-Score-Cap erforderlich.
+- **vag-Kategorie** weiterhin bestes Ergebnis (Recall 0.472, Off-Target 0%). Stabil seit Phase 2.1.
+- **kurz-Kategorie** Off-Target von 16.7% auf 0% — aber 1-Run-Stichprobe, vermutlich LLM-Varianz nicht echter Fix.
+
+### Per-Kategorie
+
+- **kurz:** n=5, Recall 0.333, Off-Target 0.0 % (vorher 0.278/16.7 % — n von 6 auf 5 wegen ev-013 Edge-Case-Markierung)
+- **ausfuehrlich:** n=8, Recall 0.292, Off-Target **25.0 %** (vorher 0.333/0% — n von 9 auf 8 wegen ev-011 Edge-Case-Markierung)
+- **vag:** n=6, Recall 0.472, Off-Target 0.0 % (gleichauf zu Replay)
+
+### Latenz / Kosten (Live-Run)
+
+- Latenz/Eintrag: 2.98 s avg (vs. 2.92 s Phase 2.1 — vergleichbar, kein Constraint-Bruch)
+- Gesamtkosten: 0.0153 EUR / 29 Calls = 0.05 ct/Match (innerhalb Constraint ≤ 0.06 ct)
+
+### Naechste Schritte
+
+Plan-Sequenz **vor Live-Daten neu sortiert**:
+1. **02-10 Score-Cap** ZUERST (statt 02-09) — Off-Target-Regression ist akuter als Recall-Gap. Server-Side-Cap fuer aktion-mensch + bmbf-digitalpakt-2 ohne Domain-Anker. Erwartet: Off-Target von 10.5% → < 5%.
+2. **02-09 Top-N 20→40 + Theme-Score-Bonus** — Recall-Lift sicher gegen stabilen Off-Target. Erwartet: Recall von 0.360 → ≥ 0.42.
+3. **02-11 Eval-Re-Run** — Phase-2.2-Validierung gegen D-17-Targets, mind. 2 Live-Runs fuer Stabilitaets-Check.
+
+### Pfade zu neuen Files
+
+- **JSON-Report Replay:** `data/eval/reports/2026-05-05-09-39-42.json`
+- **JSON-Report Live:** `data/eval/reports/2026-05-05-09-40-33.json` + `.md`
+- **Snapshots Live:** `data/eval/snapshots/2026-05-05-09-40-33/` (29 Eintraege, neue Phase-2.2-Baseline)
+- **Korpus v3:** `data/eval/matcher-korpus.json` (6 Eintraege editiert: ev-004, -011, -012, -013, -015, -018)
+
+---
+
 ## 2026-05-04 — Phase-2.1-Tuning (Korpus v2 unverändert, n=29)
 
 - **Matcher-Commit:** `19ccfd8` (HEAD nach Plan 02-04 Prompt-Tuning + Plan 02-05 Hardening Merges)
