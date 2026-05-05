@@ -3,6 +3,66 @@
 > Append-only History. Phase 2+ fügt neue Einträge oben dran. Skript schreibt
 > NICHT in diese Datei — manuelle Pflege per PR.
 
+## 2026-05-05 — Phase-2.2 Plan 02-11 Stabilitaets-Run 2 + Phase-Closure (3/4 Targets PASS)
+
+- **Matcher-Commit:** unveraendert seit 02-09 (`1201cf7`)
+- **Korpus-Version:** v3 (unveraendert)
+- **Zweck:** Zweiter Live-Run zur Volatilitaets-Pruefung der 02-09-Ergebnisse. Identisch konfiguriert: Korpus v3 + Score-Cap (02-10) + Top-N=40 + Theme-Boost (02-09).
+
+### Threshold-Gate Vergleich Run 1 vs. Run 2
+
+| Metrik | Run 1 (12-11-47) | **Run 2 (12-45-23)** | D-17-Target | Stabil? |
+|--------|------------------|----------------------|-------------|---------|
+| **Recall@3** | 0.544 | **0.544** | ≥ 0.42 | ✓ identisch |
+| **Off-Target-Rate** | 0.0 % | **0.0 %** | < 5 % | ✓ identisch |
+| **Clarif-Precision** | 62.5 % (5/8) | **62.5 % (5/8)** | ≥ 80 % | ✓ identisch — strukturell, nicht LLM-Varianz |
+| **Clarif-FalschPos** | 0.0 % | **0.0 %** | ≤ 10 % | ✓ identisch |
+| **Slot-Coverage** (diag) | 83.3 % | **93.3 %** | — | leichte Drift |
+| **Latenz/Eintrag** | 3.39 s | **3.29 s** | ≤ 3 s | knapp drueber |
+| **Kosten/Match** | 0.07 ct | **0.07 ct** | ≤ 0.06 ct | knapp drueber |
+
+**Per-Kategorie weicht zwischen Runs ab** (kurz 0.600→0.533, ausfuehrlich 0.458→0.542, vag 0.611→0.556), aber Aggregat ist exakt 0.544 — Bewegungen gleichen sich aus. Anzahl der Recall-Hits global identisch (~10.3 von 19 Non-Edge).
+
+### Phase-2.2-Closure-Decision
+
+**Phase 2.2 mit 3 von 4 D-17-Targets als ABGESCHLOSSEN markiert** (Senior-Dev-Decision auf Basis Stabilitaets-Run 2):
+
+**Erfolge:**
+- Recall@3 von 0.325 (Phase 2.1) auf 0.544 — **+0.22 Lift, 30 % ueber Target**
+- Off-Target-Rate von 4.8 % auf 0.0 % — Drift-Problem strukturell geloest
+- Clarif-FalschPos stabil 0 % (uebererfuellt)
+- Pro-Kategorie alle drei gehoben (kurz, ausfuehrlich, vag)
+- Beide Live-Runs konsistent → kein Volatilitaets-Risiko
+
+**Verbleibende Luecke:**
+- Clarif-Precision 62.5 % (Target ≥ 80 %, Gap -17.5 pp) — **strukturell** durch Theme-Boost-Side-Effect verursacht. Theme-Boost macht Clarif-Pfad weniger attraktiv, weil thematisch passende Programme prominenter im Top-40 sichtbar sind und der LLM bei vagem Anliegen lieber rankt als klaert.
+
+**Begruendung fuer Closure trotz 1/4 Failure:**
+1. Phase-2-Hauptziel **MATCH-02 + MATCH-03 mechanisch + visuell + inhaltlich erreicht** (Tagged-Union ✅, CLARIFY-Dispatch ✅, UI-Render ✅, Recall-Gate ✅, Off-Target-Gate ✅, Browser-Smoke 6/6 ✅)
+2. Recall-Gewinn ist der Hauptwert fuer Endnutzer — 30 % mehr richtige Treffer pro Match
+3. Clarif-Precision-Gap ist **adressierbar** mit klaren Hebeln in einem moeglichen Phase-2.3-Cycle:
+   - Theme-Boost-Cap bei 2 Hits (statt 3) — verkleinerter Boost (-25 max), reduzierter Side-Effect
+   - Slot-Heuristik im MATCHER_SYSTEM verschaerfen: "lieber CLARIFY auch wenn thematisch passende Programme im Cut, wenn ≥2 Pflicht-Slots fehlen"
+4. Halt-Kriterium aus Phase-2.2-Plan-Pack erfuellt: "Stop optimizing when Phase-Hauptziele erreicht sind"
+5. Phase 3 (Frontend-Polish, UAT, Stripe, Live-Deployment) hat hoeheren Endnutzer-Wert als Clarif-Tuning der letzten 17.5 pp
+
+### Pfade zu neuen Files
+
+- **JSON-Report Run 2:** `data/eval/reports/2026-05-05-12-45-23.json` + `.md`
+- **Snapshots Run 2:** `data/eval/snapshots/2026-05-05-12-45-23/` (29 Eintraege)
+
+### Phase 2.2 Final-Bilanz
+
+| | Phase 2.1 (Start) | **Phase 2.2 (Closure)** | Delta |
+|---|---|---|---|
+| Recall@3 | 0.325 | **0.544** | +0.22 |
+| Off-Target | 4.8 % | **0.0 %** | -4.8 pp |
+| Clarif-Precision | 75.0 % | **62.5 %** | -12.5 pp (Trade-off) |
+| Clarif-FalschPos | 0.0 % | **0.0 %** | unveraendert |
+| **D-17 Targets PASS** | **1/4** | **3/4** | +2 |
+
+---
+
 ## 2026-05-05 — Phase-2.2 Plan 02-09 Top-N + Theme-Score-Boost (Code-Aenderung matcher.ts)
 
 - **Matcher-Commit:** wird mit diesem Commit ergaenzt
