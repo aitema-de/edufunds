@@ -7,8 +7,10 @@ import {
 } from "@/lib/wizard/session";
 import { runPipeline } from "@/lib/wizard/pipeline";
 import type { WizardSessionData } from "@/lib/wizard/types";
+import type { PipelineStage } from "@/lib/wizard/types";
 import { addUsage, emptyLedger } from "@/lib/wizard/pricing";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
+import { query } from "@/lib/db";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
 
@@ -24,6 +26,15 @@ export async function POST(req: NextRequest) {
     const session = await getWizardSession(sessionToken);
     if (!session) {
       return NextResponse.json({ error: "Session nicht gefunden" }, { status: 404 });
+    }
+    if (session.data.phase === "generating") {
+      // D-12 Idempotenz: Pipeline laeuft serverseitig schon — Frontend soll pollen, nicht neu starten.
+      return NextResponse.json({
+        sessionToken,
+        phase: "generating",
+        message: "Pipeline laeuft bereits, polle /api/wizard/[token]",
+        generation: session.data.generation ?? null,
+      });
     }
     if (
       session.data.phase !== "ready_to_generate" &&
@@ -51,11 +62,28 @@ export async function POST(req: NextRequest) {
 
     try {
       const richtlinie = await loadRichtlinie(programm.id);
+      const onEvent = async (event: { stage: PipelineStage; message: string }) => {
+        try {
+          await query(
+            `UPDATE ki_antraege
+               SET antrag_data = jsonb_set(
+                 jsonb_set(COALESCE(antrag_data, '{}'::jsonb), '{generation,stage}', to_jsonb($1::text)),
+                 '{generation,stageAt}', to_jsonb($2::text)
+               ),
+               updated_at = CURRENT_TIMESTAMP
+             WHERE session_token = $3`,
+            [event.stage, new Date().toISOString(), sessionToken]
+          );
+        } catch (e) {
+          // Best-Effort — Pipeline darf nicht wegen DB-Hick crashen.
+          console.warn("[wizard/generate] Stage-Heartbeat fehlgeschlagen:", e);
+        }
+      };
       const { artefacts, usages } = await runPipeline(
         programm,
         session.data.facts,
         richtlinie,
-        undefined,
+        onEvent,
         session.data.messages
       );
       let costs = generatingData.costs ?? emptyLedger();
