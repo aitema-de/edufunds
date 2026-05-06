@@ -87,6 +87,54 @@ export interface Foerderhoehe {
   bemerkung?: string;
 }
 
+export interface BestPractice {
+  /** Themen-Kurzlabel, 3-60 Zeichen, z. B. "Zielgruppen-Schaerfe". */
+  thema: string;
+  /** Was funktionierte konkret im Antrag (mind. 10 Zeichen). */
+  was_funktionierte: string;
+  /** Optional: warum das funktionierte (Begruendung aus der Quelle). */
+  warum?: string;
+}
+
+export interface RejectGrund {
+  /** Klartext-Grund fuer Ablehnung, mind. 5 Zeichen. */
+  grund: string;
+  /** Wie haeufig dieser Grund auftritt (ASCII-only Diskriminator). */
+  haeufigkeit?: "haeufig" | "gelegentlich";
+  /** Optional: konstruktive Vermeidungs-Empfehlung. */
+  vermeidung?: string;
+}
+
+export interface VorbildFormulierung {
+  /**
+   * FK gegen Antragsstruktur.abschnitte[].id. Validator prueft Integritaet.
+   * Wenn die Section-Stage in Phase 5 fuer Abschnitt X arbeitet, holt sie
+   * gezielt die Vorbild-Formulierungen mit abschnitt_id === X.
+   */
+  abschnitt_id: string;
+  /** Woertliche Vorbild-Formulierung aus erfolgreichem Antrag, mind. 20 Zeichen. */
+  formulierung: string;
+  /** Optionaler Kontext, z. B. Ziel-Geber-Typ oder Antragsjahr. */
+  kontext?: string;
+}
+
+/**
+ * Diskriminierte Union fuer die Bewerbungs-Frist-Logik.
+ *
+ * - rolling: jederzeit einreichbar, keine Stichtage.
+ * - fixe_stichtage: harte Termine, mind. einer noetig (ISO YYYY-MM-DD).
+ *   `jaehrlich_wiederkehrend?` deckt den haeufigen Fall „immer bis 30.06."
+ *   ab — ohne dieses Feld werden Dossiers durch Datums-Verstreichen
+ *   kontinuierlich ungueltig.
+ */
+export type FristLogik =
+  | { typ: "rolling" }
+  | {
+      typ: "fixe_stichtage";
+      stichtage: string[];
+      jaehrlich_wiederkehrend?: boolean;
+    };
+
 export interface Richtlinie {
   /** Dossier-Version. Datum wie "2026-04-20". */
   version: string;
@@ -101,4 +149,16 @@ export interface Richtlinie {
   notizen?: string[];
   /** Liegt formal abgelaufen vor? */
   veraltet?: boolean;
+  /**
+   * Best Practices erfolgreicher Antraege fuer dieses Programm.
+   * Optional, weil Phase 4 die 11 Legacy-Dossiers nicht type-blocking migrieren muss (D-06).
+   * Strict-Validator (lib/wizard/richtlinien-validator.ts) erzwingt das Feld fuer neu extrahierte Dossiers.
+   */
+  bestPractices?: BestPractice[];
+  /** Typische Reject-Gruende. Optional (D-06). */
+  rejectGruende?: RejectGrund[];
+  /** Programm-spezifische Vorbild-Formulierungen, FK auf antragsstruktur.abschnitte[].id. Optional (D-06). */
+  vorbildFormulierungen?: VorbildFormulierung[];
+  /** Discriminated Union: rolling | fixe_stichtage. Optional (D-06). */
+  fristLogik?: FristLogik;
 }
