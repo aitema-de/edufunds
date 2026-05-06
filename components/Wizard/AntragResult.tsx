@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { AlertTriangle, Check, Copy, Download, FileDown, Loader2, RefreshCw } from "lucide-react";
+import { AlertTriangle, Check, Copy, Download, FileDown, Loader2, PenLine, RefreshCw } from "lucide-react";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type { Finanzplan, GenerationArtefacts } from "@/lib/wizard/types";
 import { formatEur, type CostLedger } from "@/lib/wizard/pricing";
@@ -11,6 +11,7 @@ import { FinanzplanView } from "./FinanzplanView";
 import { FinanzplanEditor } from "./FinanzplanEditor";
 import { renderFinanzplanMarkdown } from "@/lib/wizard/finanzplan-markdown";
 import { PaywallGate } from "./PaywallGate";
+import { AntragSectionNav, slugifyHeading } from "./AntragSectionNav";
 
 interface Props {
   programm: Foerderprogramm;
@@ -23,35 +24,70 @@ interface Props {
   onFinanzplanChange?: (plan: Finanzplan) => void;
 }
 
-const MARKDOWN_COMPONENTS = {
-  h1: ({ children }: { children?: React.ReactNode }) => (
-    <h1 className="mb-6 text-2xl font-semibold text-slate-100">{children}</h1>
-  ),
-  h2: ({ children }: { children?: React.ReactNode }) => (
-    <h2 className="mb-3 mt-8 text-lg font-semibold text-[#c9a227]">{children}</h2>
-  ),
-  h3: ({ children }: { children?: React.ReactNode }) => (
-    <h3 className="mb-2 mt-6 text-base font-semibold text-slate-100">{children}</h3>
-  ),
-  p: ({ children }: { children?: React.ReactNode }) => (
-    <p className="mb-4 leading-relaxed text-slate-200">{children}</p>
-  ),
-  strong: ({ children }: { children?: React.ReactNode }) => (
-    <strong className="font-semibold text-slate-100">{children}</strong>
-  ),
-  em: ({ children }: { children?: React.ReactNode }) => (
-    <em className="italic text-slate-200">{children}</em>
-  ),
-  ul: ({ children }: { children?: React.ReactNode }) => (
-    <ul className="mb-4 ml-6 list-disc space-y-1 text-slate-200">{children}</ul>
-  ),
-  ol: ({ children }: { children?: React.ReactNode }) => (
-    <ol className="mb-4 ml-6 list-decimal space-y-1 text-slate-200">{children}</ol>
-  ),
-  li: ({ children }: { children?: React.ReactNode }) => (
-    <li className="leading-relaxed">{children}</li>
-  ),
-};
+/**
+ * Baut MARKDOWN_COMPONENTS als Closure ueber paid + programmId.
+ * h2 bekommt Anker-ID (slug) + scroll-mt-24 + on-hover PenLine-Edit-Button (nur paid=true).
+ * Duplikat-h2-Texte erhalten -2/-3-Suffix (Pitfall-5-Pattern).
+ */
+function buildMarkdownComponents(paid: boolean, programmId: string) {
+  const usedIds = new Map<string, number>();
+  return {
+    h1: ({ children }: { children?: React.ReactNode }) => (
+      <h1 className="mb-6 text-2xl font-semibold text-slate-100">{children}</h1>
+    ),
+    h2: ({ children }: { children?: React.ReactNode }) => {
+      const text =
+        typeof children === "string"
+          ? children
+          : Array.isArray(children)
+            ? children.filter((c) => typeof c === "string").join("")
+            : String(children ?? "");
+      const baseSlug = slugifyHeading(text) || "section";
+      const count = (usedIds.get(baseSlug) ?? 0) + 1;
+      usedIds.set(baseSlug, count);
+      const id = count === 1 ? baseSlug : `${baseSlug}-${count}`;
+      return (
+        <h2
+          id={id}
+          className="group mb-3 mt-8 flex items-center gap-2 text-lg font-semibold text-[#c9a227] scroll-mt-24"
+        >
+          <span>{children}</span>
+          {paid && (
+            <a
+              href={`/antrag/${programmId}/wizard?editAnswer=true`}
+              className="opacity-0 group-hover:opacity-100 text-slate-500 hover:text-slate-200 transition"
+              title="Antwort zurueck und neu beantworten"
+              aria-label="Sektion bearbeiten"
+            >
+              <PenLine className="h-3.5 w-3.5" />
+            </a>
+          )}
+        </h2>
+      );
+    },
+    h3: ({ children }: { children?: React.ReactNode }) => (
+      <h3 className="mb-2 mt-6 text-base font-semibold text-slate-100">{children}</h3>
+    ),
+    p: ({ children }: { children?: React.ReactNode }) => (
+      <p className="mb-4 leading-relaxed text-slate-200">{children}</p>
+    ),
+    strong: ({ children }: { children?: React.ReactNode }) => (
+      <strong className="font-semibold text-slate-100">{children}</strong>
+    ),
+    em: ({ children }: { children?: React.ReactNode }) => (
+      <em className="italic text-slate-200">{children}</em>
+    ),
+    ul: ({ children }: { children?: React.ReactNode }) => (
+      <ul className="mb-4 ml-6 list-disc space-y-1 text-slate-200">{children}</ul>
+    ),
+    ol: ({ children }: { children?: React.ReactNode }) => (
+      <ol className="mb-4 ml-6 list-decimal space-y-1 text-slate-200">{children}</ol>
+    ),
+    li: ({ children }: { children?: React.ReactNode }) => (
+      <li className="leading-relaxed">{children}</li>
+    ),
+  };
+}
 
 const PRINT_MARKDOWN_COMPONENTS = {
   h1: ({ children }: { children?: React.ReactNode }) => (
@@ -131,6 +167,8 @@ export function AntragResult({
   onFinanzplanChange,
 }: Props) {
   const paid = !!paidToken;
+  const markdownComponents = buildMarkdownComponents(paid, programm.id);
+  const articleRef = useRef<HTMLElement>(null);
   const [copied, setCopied] = useState(false);
   const [showCritique, setShowCritique] = useState(false);
   const [pdfBusy, setPdfBusy] = useState(false);
@@ -221,7 +259,7 @@ export function AntragResult({
             type="button"
             onClick={downloadPdf}
             disabled={pdfBusy}
-            className="inline-flex items-center gap-2 rounded-lg border border-orange-500/60 bg-orange-500/10 px-3 py-2 text-sm text-orange-200 transition hover:bg-orange-500/20 disabled:opacity-50"
+            className="inline-flex items-center gap-2 rounded-lg border border-orange-500/60 bg-orange-500/10 px-3 py-2 sm:py-3 text-sm text-orange-200 transition hover:bg-orange-500/20 disabled:opacity-50"
           >
             {pdfBusy ? (
               <Loader2 className="h-4 w-4 animate-spin" />
@@ -259,16 +297,20 @@ export function AntragResult({
         </div>
       )}
       <div className={paid ? "" : "relative"}>
-        <article
-          className={
-            "rounded-lg border border-slate-700 bg-slate-900 p-8 text-slate-200 antrag-prose " +
-            (paid ? "" : "max-h-[420px] overflow-hidden blur-[3px] select-none")
-          }
-        >
-          <ReactMarkdown remarkPlugins={[remarkGfm]} components={MARKDOWN_COMPONENTS}>
-            {paid ? text : text.slice(0, 1800) + (text.length > 1800 ? "\n\n…" : "")}
-          </ReactMarkdown>
-        </article>
+        <div className="md:grid md:grid-cols-[1fr_180px] md:gap-8">
+          <article
+            ref={articleRef}
+            className={
+              "rounded-lg border border-slate-700 bg-slate-900 p-8 text-slate-200 antrag-prose " +
+              (paid ? "" : "max-h-[420px] overflow-hidden blur-[3px] select-none")
+            }
+          >
+            <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+              {paid ? text : text.slice(0, 1800) + (text.length > 1800 ? "\n\n…" : "")}
+            </ReactMarkdown>
+          </article>
+          <AntragSectionNav articleRef={articleRef} />
+        </div>
         {generation.finanzplan && (
           <div className={"mt-6 " + (paid ? "" : "blur-[3px] select-none pointer-events-none")}>
             {sessionToken && !generation.finanzplan.legitimiertAm && paid ? (
