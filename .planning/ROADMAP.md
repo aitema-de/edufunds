@@ -12,7 +12,7 @@ Diese Roadmap führt EduFunds vom heutigen Stand (`feature/wizard-adaptive` HEAD
 
 - [x] **Phase 1: Eval-Korpus Matcher** — Messbare Regressions-Basis für jede Matcher-Iteration etablieren ✓ 2026-05-03
 - [ ] **Phase 2: Matcher-Quality** — Matcher liefert strukturierte Begründungen und erkennt vage Anliegen
-- [ ] **Phase 3: Programm-Pflege Foundation** — Cron-Skripte auf DeepSeek-Wrapper migriert, Dossier-Schema um Best-Practices/Reject-Gründe/Vorbild-Formulierungen/Frist-Logik erweitert
+- [x] **Phase 3: Programm-Pflege Foundation** — Cron-Skripte auf DeepSeek-Wrapper migriert, Dossier-Schema um Best-Practices/Reject-Gründe/Vorbild-Formulierungen/Frist-Logik erweitert ✓ 2026-05-06
 - [ ] **Phase 4: Programm-Pflege Vollautomation** — Scanner→Extractor→Queue voll automatisiert, alle 11 bestehenden Dossiers auf erweitertes Schema migriert
 - [ ] **Phase 5: Wizard-Pipeline-Tuning + UX-Lücke** — Höhere Programmkonformität, Halluzinations-Resistenz, Förderwahrscheinlichkeit; Reload-Resume geschlossen
 - [ ] **Phase 6: Live-UAT mit Pilot-Schulen** — Strukturierte UATs mit 3–5 Pilot-Anwendern, Tracker pro Session, konsolidierte Bug-Fix-Welle
@@ -89,12 +89,12 @@ Plans:
   2. GitHub-Workflows `weekly-dossier-extraction.yml` + `weekly-program-scan.yml` nutzen `DEEPSEEK_API_KEY` (Gemini-Key optional) und laufen erfolgreich gegen den neuen Wrapper (mind. 1 Test-Run grün)
   3. `lib/wizard/richtlinien-schema.ts` ist um vier Felder erweitert: (a) `bestPractices`, (b) `rejectGruende`, (c) `vorbildFormulierungen`, (d) `fristLogik` (Enum: `rolling` | `fixe_stichtage` + Stichtags-Liste)
   4. Schema-Validierung (`scripts/validate-data.ts` o. ä.) lehnt Dossiers ohne neue Pflichtfelder ab, akzeptiert Dossiers, die das alte Schema 1:1 weiternutzen (Migrations-Pfad in Phase 4 freigegeben)
-**Plans:** 3 plans
+**Plans:** 3/3 plans complete
 
 Plans:
-- [x] 03-01-schema-validator-library-PLAN.md — Schema-Erweiterung um 4 optionale Felder + Zod-Validator-Library + Wave-0-Tests (Wave 1, autonomous)
+- [x] 03-01-schema-validator-library-PLAN.md — Schema-Erweiterung um 4 optionale Felder + Zod-Validator-Library + Wave-0-Tests (Wave 1, autonomous) ✓ 2026-05-06
 - [x] 03-02-cron-migration-cli-validator-PLAN.md — Cron-Skripte auf llm.ts-Wrapper migriert + SYSTEM_PROMPT erweitert + scripts/validate-richtlinien.ts neu mit --legacy-Flag (Wave 2, autonomous, depends_on 03-01) ✓ 2026-05-06
-- [ ] 03-03-workflow-migration-test-runs-PLAN.md — GitHub-Workflows auf DEEPSEEK_API_KEY-Pflicht + LLM_PROVIDER-Input + 4 neue Reviewer-Checkpoints + Kolja-Checkpoint mit 3 Manual-Smokes (Wave 3, NOT autonomous, depends_on 03-02)
+- [x] 03-03-workflow-migration-test-runs-PLAN.md — GitHub-Workflows auf DEEPSEEK_API_KEY-Pflicht + LLM_PROVIDER-Input + 4 neue Reviewer-Checkpoints + Kolja-Checkpoint mit 3 Manual-Smokes (Wave 3, NOT autonomous, depends_on 03-02) ✓ 2026-05-06
 
 ### Phase 4: Programm-Pflege Vollautomation + Dossier-Migration
 **Goal**: Vollautomatischer Programm-Pflegeprozess (Scanner → Extractor → Queue) und Migration aller 11 bestehenden Dossiers auf das erweiterte Schema, damit Pipeline-Tuning in Phase 5 auf vollständigen Daten arbeitet.
@@ -141,7 +141,7 @@ Phasen werden numerisch ausgeführt: 1 → 2 → 3 → 4 → 5 → 6. Phasen 2 u
 |-------|----------------|--------|-----------|
 | 1. Eval-Korpus Matcher | 2/2 | Complete    | 2026-05-03 |
 | 2. Matcher-Quality | 0/TBD | Not started | - |
-| 3. Programm-Pflege Foundation | 0/3 | Not started | - |
+| 3. Programm-Pflege Foundation | 3/3 | Complete    | 2026-05-06 |
 | 4. Programm-Pflege Vollautomation | 0/TBD | Not started | - |
 | 5. Wizard-Pipeline-Tuning + UX | 0/TBD | Not started | - |
 | 6. Live-UAT mit Pilot-Schulen | 0/TBD | Not started | - |

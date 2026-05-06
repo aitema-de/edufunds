@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 03-02-cron-migration-cli-validator
-last_updated: "2026-05-06T15:58:30.095Z"
+status: phase-complete
+stopped_at: "Phase 03 (programm-pflege-foundation) abgeschlossen — alle 3 Plans done, FETCH-01 + FETCH-03 erfuellt"
+last_updated: "2026-05-06T16:40:52Z"
 last_activity: 2026-05-06
 progress:
   total_phases: 7
   completed_phases: 3
   total_plans: 19
-  completed_plans: 18
-  percent: 95
+  completed_plans: 19
+  percent: 100
 ---
 
 # Project State
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 
 ## Current Position
 
-Phase: 03 (programm-pflege-foundation) — EXECUTING
-Plan: 3 of 3
-Status: Ready to execute
+Phase: 03 (programm-pflege-foundation) — COMPLETE
+Plan: 3 of 3 done (03-01 + 03-02 + 03-03)
+Status: Phase 03 abgeschlossen
 Last activity: 2026-05-06
 
-Progress: [██████████] 95%
+Progress: [██████████] 100% (Phase 03 von 7 done; uebernaechste Phase 04 Programm-Pflege Vollautomation)
 
 ## Performance Metrics
 
@@ -57,6 +57,7 @@ Progress: [██████████] 95%
 | Phase 1 P01-02 | 25 | 3 tasks | 5 files |
 | Phase 03 P01 | 227 | 2 tasks | 4 files |
 | Phase 03 P03-02-cron-migration-cli-validator | 396 | 2 tasks | 6 files |
+| Phase 03 P03-03-workflow-migration-test-runs | 2317 | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -74,6 +75,8 @@ Decisions sind in PROJECT.md Key-Decisions-Tabelle gepflegt. Roadmap-relevante E
 - BASELINE.md mit JSON-Zahl 0.79 Cent statt Konsolen-formatEur-Display '< 0,01 €'
 - Edge-Case-Befund stehengelassen: Matcher liefert Top-3 statt Klaerungsfrage — Phase-2-MATCH-03-Auftrag
 - Plan 03-02 Auto-Fix: AntragsstrukturLegacySchema neu, validateForeignKeys mit Null-Check — sonst Bestands-Dossiers (5/11) blocken Legacy-Modus oder crashen FK-Check
+- Plan 03-03 Verfeinerung: Live-Workflow-Dispatch (D-09 #1+#2) deferred bis main-Merge — GitHub-UI zeigt workflow_dispatch nur fuer Workflows auf default branch. Static-Acceptance + Live-D-09-#3 (zwei DeepSeek-Calls + Strict-Validator) decken die Substanz ab. Backlog `live-workflow-smoke-deferred.md` (3b27aaf) traegt das Nachhol-Smoke fest.
+- Plan 03-03 Befund: Empty-Skip-Schutz triggert sauber inkl. echter LLM-Auslauf-Detektion (bundesweit-ganztag "Quelle zu allgemein" / nrwbank-moderne-schule "am 27.02.2026 ausgelaufen") — kein Bug, gewuenschtes Pre-Persist-Gate-Verhalten. Stale-Queue-Cleanup via Backlog `queue-pflege-stale-programme.md` (c49725e) fuer Phase 04.
 
 ### Roadmap Evolution
 
@@ -82,9 +85,10 @@ Decisions sind in PROJECT.md Key-Decisions-Tabelle gepflegt. Roadmap-relevante E
 
 ### Pending Todos
 
-Aus `.planning/todos/pending/` — noch keine erfasst.
+Aus `.planning/todos/pending/`:
 
-None yet.
+- **queue-pflege-stale-programme.md** (created 2026-05-06, Phase 04 Kandidat) — Stale/expired Programme aus Prio-Queue ausraeumen. Auslauf-Schutz, Frist-Pre-Check, `cleanup-expired-queue.ts`-Skript, woechentliches Reporting. Begruendung: Phase 03 D-09 #3 Smoke fand zwei stale Top-Picks (bundesweit-ganztag, nrwbank-moderne-schule).
+- **live-workflow-smoke-deferred.md** (created 2026-05-06, Phase 07 oder Pre-Live-UAT-Merge-Fenster) — Live-Workflow-Dispatch (D-09 #1 Dossier-Workflow + D-09 #2 Scanner-Workflow) sobald Branch nach main gemerged ist. Phase 03 D-09 #1+#2 sind via Static-Acceptance verifiziert; Live-Smoke nachzuholen sobald GitHub-UI workflow_dispatch zeigt.
 
 ### Blockers/Concerns
 
@@ -108,8 +112,8 @@ Items aus REQUIREMENTS.md v2 / Out of Scope, bewusst nicht in dieser Milestone:
 
 ## Session Continuity
 
-Last session: 2026-05-06T15:58:30.078Z
-Stopped at: Completed 03-02-cron-migration-cli-validator
-Resume file: None
+Last session: 2026-05-06T16:40:52Z
+Stopped at: Phase 03 (programm-pflege-foundation) abgeschlossen — alle 3 Plans done (03-01 + 03-02 + 03-03), FETCH-01 + FETCH-03 erfuellt, 2 Backlog-Items fuer Phase 04 / Pre-Live-UAT-Merge angelegt
+Resume file: Naechste Phase 04 (Programm-Pflege Vollautomation, FETCH-02 + FETCH-04)
 
-**Planned Phase:** 3 (Programm-Pflege Foundation) — 3 plans — 2026-05-06T14:55:39.979Z
+**Planned Phase:** 3 (Programm-Pflege Foundation) — 3 plans — 2026-05-06T14:55:39.979Z (COMPLETE 2026-05-06T16:40:52Z)

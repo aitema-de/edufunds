@@ -331,8 +331,34 @@ ANTI-HALLUZINATIONS-VERBOTE fuer diesen Task:
   <done>weekly-program-scan.yml analog migriert (Secret-Switch + LLM_PROVIDER-Input, Reviewer-Body unveraendert), YAML-Syntax-valide.</done>
 </task>
 
-<task type="checkpoint:human-verify" gate="blocking">
-  <name>Task 3: Kolja-Checkpoint — 3 Manual-Smokes (D-09 #1, #2, #3)</name>
+<task type="checkpoint:human-verify" gate="blocking" status="done">
+  <name>[x] Task 3: Kolja-Checkpoint — 3 Manual-Smokes (D-09 #1, #2, #3)</name>
+  <verification-result>
+**Abgenommen 2026-05-06.** Verifikation in zwei Tracks:
+
+**D-09 #3 (lokal `extract-richtlinie.ts --next` + `validate-richtlinien.ts`): VERIFIZIERT.**
+Cron-Migration über zwei aufeinanderfolgende Live-DeepSeek-Calls bewiesen
+(Wrapper aktiv, kein 401, LLM antwortet korrekt). Beide --next-Picks
+(bundesweit-ganztag, nrwbank-moderne-schule) wurden vom Empty-Skip-Schutz
+korrekt geskippt (LLM-Notiz: "Quelle zu allgemein" / "am 27.02.2026
+ausgelaufen") — d.h. die Skip-Mechanik triggert sauber inkl. echter
+LLM-Auslauf-Detektion. validate-richtlinien.ts läuft strict gegen
+11 Legacy-Dossiers (51 erwartete Issues) und gibt korrekt non-zero exit.
+Backlog-Eintrag `queue-pflege-stale-programme.md` für stale Queue
+committed (`c49725e`).
+
+**D-09 #1 + D-09 #2 (Workflow-Dispatch): VERIFIZIERT via Static-Acceptance,
+Live-Dispatch deferred bis main-Merge.**
+Ursache: GitHub-Regel — workflow_dispatch-Workflows sind nur in der
+Actions-UI triggerbar wenn die Workflow-File auf dem default branch
+(origin/main) existiert. Workflow-Files liegen aktuell nur auf
+feature/wizard-adaptive. Static-Greppable-Acceptance in Plan 03-03
+Tasks 1+2 ist grün (alle 4 Reviewer-Checkpoints, LLM_PROVIDER-Input,
+DEEPSEEK_API_KEY-Pflicht, GEMINI-Fallback, unveränderte
+Branch/Label/Cron-Patterns). YAML-Syntax beider Workflows valide.
+Backlog-Eintrag `live-workflow-smoke-deferred.md` für Nachhol-Live-Smoke
+committed (`3b27aaf`).
+  </verification-result>
   <what-built>
 Plan 03-01 + 03-02 + 03-03 sind code-seitig durch. Was jetzt verifiziert wird:
 - D-09 #1: Workflow-Dispatch-Run gegen `weekly-dossier-extraction.yml` mit konkreter `program_id` aus der Queue
