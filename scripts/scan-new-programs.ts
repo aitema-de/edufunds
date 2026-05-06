@@ -18,9 +18,8 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { generateJson, MODEL_INTERVIEW } from "../lib/wizard/llm";
 
-const MODEL = "gemini-2.0-flash";
 const SOURCES_PATH = path.join(process.cwd(), "data", "program-sources.json");
 const PROGRAMS_PATH = path.join(process.cwd(), "data", "foerderprogramme.json");
 const CANDIDATES_PATH = path.join(process.cwd(), "data", "program-candidates.json");
@@ -141,7 +140,6 @@ async function saveCandidates(c: CandidatesFile): Promise<void> {
 
 async function scanSource(
   src: Source,
-  gemini: GoogleGenerativeAI,
   verbose: boolean
 ): Promise<ScanResult["programme"]> {
   if (verbose) console.log(`  Lade ${src.url}`);
@@ -155,18 +153,16 @@ ${text}
 
 Liefere die Programm-Liste als JSON.`;
 
-  const gm = gemini.getGenerativeModel({
-    model: MODEL,
-    systemInstruction: EXTRACT_SYSTEM,
-    generationConfig: { responseMimeType: "application/json" },
-  });
-  const res = await gm.generateContent(userPrompt);
-  const raw = res.response.text().trim();
   try {
-    const parsed = JSON.parse(raw) as ScanResult;
-    return Array.isArray(parsed.programme) ? parsed.programme : [];
-  } catch {
-    console.error(`  Parse-Fehler bei ${src.id}:`, raw.slice(0, 200));
+    const result = await generateJson<ScanResult>(
+      MODEL_INTERVIEW,
+      EXTRACT_SYSTEM,
+      userPrompt,
+      { maxTokens: 4000 }
+    );
+    return Array.isArray(result.value.programme) ? result.value.programme : [];
+  } catch (err) {
+    console.error(`  Parse-Fehler bei ${src.id}:`, (err as Error).message);
     return [];
   }
 }
@@ -177,20 +173,12 @@ async function main() {
   const sourceFilterIdx = args.indexOf("--source");
   const sourceFilter = sourceFilterIdx >= 0 ? args[sourceFilterIdx + 1] : null;
 
-  const apiKey = process.env.GEMINI_API_KEY ?? "";
-  if (!apiKey) {
-    console.error("GEMINI_API_KEY fehlt in der Umgebung.");
-    process.exit(1);
-  }
-
   const sourcesFile = JSON.parse(await fs.readFile(SOURCES_PATH, "utf8")) as SourcesFile;
   const programme = JSON.parse(await fs.readFile(PROGRAMS_PATH, "utf8")) as Foerderprogramm[];
   const { names: knownNames, urls: knownUrls } = loadProgrammLookups(programme);
   const candidates = await loadCandidates();
   const candidateUrls = new Set(candidates.items.map((c) => normalizeUrl(c.detailUrl)));
   const candidateNames = new Set(candidates.items.map((c) => c.name.trim().toLowerCase()));
-
-  const gemini = new GoogleGenerativeAI(apiKey);
 
   const sourcesToScan = sourceFilter
     ? sourcesFile.sources.filter((s) => s.id === sourceFilter)
@@ -207,7 +195,7 @@ async function main() {
   for (const src of sourcesToScan) {
     console.log(`  - ${src.id} (${src.name})`);
     try {
-      const found = await scanSource(src, gemini, verbose);
+      const found = await scanSource(src, verbose);
       seenTotal += found.length;
       if (verbose) console.log(`    gefunden: ${found.length}`);
       for (const entry of found) {

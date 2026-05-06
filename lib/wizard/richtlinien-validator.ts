@@ -87,6 +87,21 @@ const AntragsstrukturSchema = z
   })
   .passthrough();
 
+/**
+ * Locker-Variante fuer Legacy-Dossiers: 5 von 11 Bestands-Dossiers haben
+ * heute leere `abschnitte: []` oder eine reine `bemerkung`-Antragsstruktur,
+ * weil die Quelle bei der Erst-Extraktion zu duenn war. Phase 4 (FETCH-04)
+ * migriert diese; bis dahin akzeptiert das Legacy-Schema sie.
+ */
+const AntragsstrukturLegacySchema = z
+  .object({
+    abschnitte: z.array(AntragsAbschnittSchema).optional(),
+    anlagen: z.array(z.string()).optional(),
+    einreichungsweg: z.string().optional(),
+    bearbeitungsdauer: z.string().optional(),
+  })
+  .passthrough();
+
 // Basis-Felder, die fuer beide Modi gelten — Pflicht im Datenmodell, aber
 // inhaltlich locker validiert (Phase 4 kann verschaerfen).
 const BaseRichtlinieShape = {
@@ -122,6 +137,9 @@ export const RichtlinieStrictSchema = z
 export const RichtlinieLegacySchema = z
   .object({
     ...BaseRichtlinieShape,
+    // Override: Legacy-Dossiers duerfen leere/reine bemerkung-Antragsstruktur
+    // mitbringen (5 von 11 Bestands-Dossiers, vor FETCH-04 Migration).
+    antragsstruktur: AntragsstrukturLegacySchema,
     bestPractices: z.array(BestPracticeSchema).optional(),
     rejectGruende: z.array(RejectGrundSchema).optional(),
     vorbildFormulierungen: z.array(VorbildFormulierungSchema).optional(),
@@ -140,7 +158,7 @@ export interface FkIssue {
 }
 
 interface FkCheckable {
-  antragsstruktur: { abschnitte: Array<{ id: string }> };
+  antragsstruktur: { abschnitte?: Array<{ id: string }> };
   vorbildFormulierungen?: Array<{ abschnitt_id: string }>;
 }
 
@@ -148,15 +166,19 @@ interface FkCheckable {
  * Prueft, dass jedes vorbildFormulierungen[].abschnitt_id auf eine
  * existierende antragsstruktur.abschnitte[].id zeigt. Gibt eine flache
  * Issues-Liste zurueck (leer = OK).
+ *
+ * Defensiv gegen Legacy-Dossiers, die `antragsstruktur.abschnitte`
+ * undefined oder leer haben (5 von 11 Bestands-Dossiers vor FETCH-04).
+ * Wenn keine Abschnitte vorliegen aber Vorbild-Formulierungen vorhanden
+ * sind, wird jede Vorbild-Formulierung als FK-Verletzung gemeldet.
  */
 export function validateForeignKeys(
   parsed: FkCheckable,
   programmId: string
 ): FkIssue[] {
   const issues: FkIssue[] = [];
-  const validIds = new Set(
-    parsed.antragsstruktur.abschnitte.map((a) => a.id)
-  );
+  const abschnitte = parsed.antragsstruktur?.abschnitte ?? [];
+  const validIds = new Set(abschnitte.map((a) => a.id));
   for (const v of parsed.vorbildFormulierungen ?? []) {
     if (!validIds.has(v.abschnitt_id)) {
       const valid = Array.from(validIds).join(", ");
