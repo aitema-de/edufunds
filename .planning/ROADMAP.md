@@ -58,13 +58,27 @@ Plans:
 
 ### Phase 02.1: Frontend-Polish + Stripe-Vorbereitung (INSERTED)
 
-**Goal:** [Urgent work - to be planned]
-**Requirements**: TBD
+**Goal**: Markt-Reife-Polish vor Live-UAT — vier UI-Polish-Items (Antrag-Detail-Lese-UX, Empty-States, Mobile-Touch, Stage-Tracking-Loading-State), Stripe-Webhook-Code-Pfade ohne Live-Account, vier UAT-Vorbereitungs-Templates und WIZ-04 Reload-Resume aus Phase 5 nach 02.1 gezogen.
 **Depends on:** Phase 2
-**Plans:** 0 plans
+**Requirements**: WIZ-04 (verschoben aus Phase 5), UI-01, UI-02, UI-03, UI-04, PAY-01-prep, UAT-PREP-01, UAT-PREP-02, UAT-PREP-03, UAT-PREP-04
+**Success Criteria** (was nach Phase TRUE sein muss):
+  1. /antrag/meine zeigt Action-orientierten Empty-State (CTA "Anliegen schildern" -> /antrag/start) und MatchResultList rendert bei 0 Treffern Empty-State mit 3 Reformulierungs-Tipps + Reset-CTA (D-05)
+  2. AntragResult rendert h2-Anker-IDs (Slug aus Heading-Text mit Umlaut-Mapping) + sticky AntragSectionNav-Sidebar nur md:+ + on-hover PenLine-Edit-Button bei paid=true (D-02 + D-14)
+  3. GeneratingProgress zeigt 7 Pipeline-Stages aus pipeline.ts mit pending/active/done-Visualisierung; phase=failed rendert Fehler-Card mit Retry-CTA (D-04 + D-15)
+  4. Reload waehrend phase=interviewing UND phase=generating fuehrt User exakt an die letzte Frage / Pipeline-Stage zurueck — keine Pipeline-Doppelstarts; Stage-Heartbeat ueber jsonb_set in antrag_data.generation persistiert (D-12 + D-13, WIZ-04 erfuellt)
+  5. Stripe-Webhook-Route ist gehaertet: 4 explizite Event-Cases (completed/expired/refunded/async_failed) mit klar markierten PAY-03/PAY-04-TODO-Stubs; Smoke-Skript via generateTestHeaderString lokal lauffaehig + STRIPE_SETUP.md erweitert (D-06 + D-07 + D-08)
+  6. Mobile-Touch-Targets (sm:py-3 / sm:min-h-[140px]) auf Critical-Paths Anliegen-Form / QuestionCard / MatchResultList / PDF-Download / MyAntraege-Card-Stack (D-03)
+  7. .planning/uat/ enthaelt 4 fertig nutzbare Markdown-Templates: UAT-PLAN-TEMPLATE.md, UAT-BEFUNDE-TEMPLATE.md, PILOTEN.md (Skelett, Kolja fuellt Namen), UAT-ANSCHREIBEN.md (Du / Sie / Follow-Up) (D-09)
+**Plans:** 6 plans
+**UI hint**: yes
 
 Plans:
-- [ ] TBD (run /gsd-plan-phase 02.1 to break down)
+- [ ] 02.1-01-PLAN.md — Wave-0 Test-Skelette + Smoke-Skript-Skelette (Wave 0, autonomous)
+- [ ] 02.1-02-PLAN.md — Stripe-Webhook-Haertung + TODO-Stubs + Smoke (Wave 1, autonomous)
+- [ ] 02.1-03-PLAN.md — UI-Polish Block A: Empty-States MyAntraege/MatchResultList + onReset + Mobile-Touch (Wave 1, autonomous)
+- [ ] 02.1-04-PLAN.md — UI-Polish Block B: Antrag-Detail Anker-Nav + AntragSectionNav neu + Edit-Button (Wave 1, autonomous)
+- [ ] 02.1-05-PLAN.md — UAT-Templates 4 Stueck (Plan/Befunde/Piloten/Anschreiben) (Wave 1, autonomous)
+- [ ] 02.1-06-PLAN.md — WIZ-04 Reload-Resume + Stage-Tracking + GeneratingProgress + failed-UI (Wave 2, autonomous)
 
 ### Phase 3: Programm-Pflege Foundation
 **Goal**: Cron-Skripte auf den einheitlichen DeepSeek-Wrapper umstellen und das Dossier-Schema um vier qualitätskritische Felder erweitern, damit Phase 4 darauf aufbauen kann.

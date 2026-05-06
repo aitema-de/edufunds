@@ -26,7 +26,29 @@ Requirements für aktuelle Milestone (Live-UAT-Reife für Schulen + Schulförder
 - [ ] **WIZ-01**: Pipeline-Tuning für höhere Programmkonformität (Eval gegen Pflichtabschnitte/Zeichenlimits aller 11 Dossiers)
 - [ ] **WIZ-02**: Pipeline-Tuning für höhere Halluzinations-Resistenz (Eval mit verschärften niedrig-qualitativen Test-Inputs)
 - [ ] **WIZ-03**: Pipeline-Tuning für höhere Förderwahrscheinlichkeit (semantische Qualität, „passt-zum-Geber"-Tonalität pro Geber-Typ)
-- [ ] **WIZ-04**: Reload-Resume in laufendem Wizard schließen (UX-Lücke aus UAT-Memo 28.04.)
+- [ ] **WIZ-04**: Reload-Resume in laufendem Wizard schließen (UX-Lücke aus UAT-Memo 28.04.) — vorgezogen nach Phase 02.1 (Stage-Heartbeat + Polling-Pattern in WizardShell, Lücken #1/#2/#3 aus 02.1-RESEARCH §2.3)
+
+### Frontend-UI-Polish
+
+Eingeführt in Phase 02.1 — adressiert UAT-Reife der Lese-/Empty-/Mobile-/Generating-UX. Liegen NICHT auf der Pipeline-Qualitäts-Achse (WIZ-01/02/03), gehören aber zu „Live-UAT-Reife" (CONTEXT D-01).
+
+- [ ] **UI-01**: Antrag-Detail-Lese-UX — Markdown-Render mit deterministischen h2-Anker-IDs, sticky Sektions-Anker-Nav (md:+) mit IntersectionObserver, on-hover PenLine-Edit-Button pro Sektion (nur bei `paid=true`, Link auf bestehenden Wizard-Edit-Pfad — KEIN neuer Endpoint) — Phase 02.1, D-02 + D-14
+- [ ] **UI-02**: Empty-States Action-orientiert — `/antrag/meine` leerer Zustand mit „Anliegen schildern"-CTA + Matcher-0-Treffer-Fall mit drei Reformulierungs-Tipps und „Anliegen neu formulieren"-Reset — Phase 02.1, D-05
+- [ ] **UI-03**: Mobile-Critical-Paths — Touch-Optimierung (min 44 px) für vier Critical-Paths (Wizard-Antwort, Match-Result-Click, Antrag-Detail-Scroll, PDF-Download) auf iPhone-Safari + Android-Chrome — Phase 02.1, D-03
+- [ ] **UI-04**: GeneratingProgress 7-Stage-Tracking — Live-Anzeige der Pipeline-Stages (outline → section → critique → revision → recheck → finanzplan → consistency → done) mit pending/active/done-Visual + failed-UI-Mini-Fix mit Fehler-Card und „Erneut versuchen"-CTA — Phase 02.1, D-04 + D-15
+
+### Stripe + Paywall
+
+- [ ] **PAY-01-prep**: Stripe-Webhook-Skeleton ohne Live-Account — Webhook-Route gehärtet (3 Events: `checkout.session.completed` + `checkout.session.expired` + `charge.refunded` + `async_payment_failed`) mit TODO-Stubs für PAY-03 (Mail/State/DB-Schema-Hooks) und Smoke-Skript via Stripe-SDK `generateTestHeaderString` — Phase 02.1, D-06 + D-07 + D-08 (Vorbereitung für PAY-01 nach Account-Anlage)
+
+### UAT-Vorbereitungs-Artefakte
+
+Eingeführt in Phase 02.1 — Templates und Tracker, die vor dem ersten Pilot-Lauf in Phase 6 fertig sein müssen. Kolja füllt die personenbezogenen Inhalte (Pilot-Liste) selbst, Plan-Phase liefert nur das Schema.
+
+- [ ] **UAT-PREP-01**: UAT-Plan-Template (`.planning/uat/UAT-PLAN-TEMPLATE.md`) — strukturierter Ablauf pro Pilot-Session (Begrüßung, Aufgabenstellung, Beobachtungs-Fokus, Abschluss-Fragen) — Phase 02.1, D-09 #1
+- [ ] **UAT-PREP-02**: Befunde-Tracker-Template (`.planning/uat/UAT-BEFUNDE-TEMPLATE.md`) — Schema für Bug-/UX-/Pipeline-Findings pro Session, analog zu `~/.claude/projects/-home-kolja/memory/edufunds-uat-pipeline-befunde-2026-04-28.md` — Phase 02.1, D-09 #2
+- [ ] **UAT-PREP-03**: Pilot-Liste mit Kandidaten-Schema (`.planning/uat/PILOTEN.md`) — Schema (≥ 5 Felder pro Kandidat: Name, Rolle, Schule/Verein, Kontakt, Anliegen-Kategorie); Inhalt durch Kolja persönlich gepflegt (Datenschutz) — Phase 02.1, D-09 #3
+- [ ] **UAT-PREP-04**: Onboarding-Mail-Vorlage (`.planning/uat/UAT-ANSCHREIBEN.md`) — Anschreiben in Du-Form + Sie-Form (Cold-Outreach) + Follow-Up-Vorlage; Tonalität „direkt, kein Werbe-Sprech" — Phase 02.1, D-09 #4
 
 ### Live-UAT
 
@@ -71,7 +93,7 @@ Deferred — kommt in der Milestone nach UAT-Stabilität.
 
 ## Traceability
 
-Phasen-Mapping aus ROADMAP.md (befüllt 2026-04-30 durch Roadmapper).
+Phasen-Mapping aus ROADMAP.md (befüllt 2026-04-30 durch Roadmapper, ergänzt 2026-05-06 durch Phase 02.1).
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
@@ -85,16 +107,25 @@ Phasen-Mapping aus ROADMAP.md (befüllt 2026-04-30 durch Roadmapper).
 | WIZ-01 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Pending |
 | WIZ-02 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Pending |
 | WIZ-03 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Pending |
-| WIZ-04 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Pending |
+| WIZ-04 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |
+| UI-01 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |
+| UI-02 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |
+| UI-03 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |
+| UI-04 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |
+| PAY-01-prep | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |
+| UAT-PREP-01 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |
+| UAT-PREP-02 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |
+| UAT-PREP-03 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |
+| UAT-PREP-04 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |
 | UAT-01 | Phase 6 (Live-UAT mit Pilot-Schulen) | Pending |
 | UAT-02 | Phase 6 (Live-UAT mit Pilot-Schulen) | Pending |
 | UAT-03 | Phase 6 (Live-UAT mit Pilot-Schulen) | Pending |
 
 **Coverage:**
-- v1 requirements: 14 total
-- Mapped to phases: 14 ✓
+- v1 requirements: 23 total (14 ursprünglich + 9 in Phase 02.1 ergänzt)
+- Mapped to phases: 23 ✓
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-30 (brownfield onboarding from feature/wizard-adaptive HEAD 49a1102)*
-*Last updated: 2026-04-30 — Traceability-Sektion durch Roadmapper befüllt (6 Phasen, 100 % Coverage)*
+*Last updated: 2026-05-06 — 9 Frontend-UI/UAT-PREP/PAY-01-prep-Requirements ergänzt durch Phase 02.1 Planner-Revision; WIZ-04 von Phase 5 nach Phase 02.1 vorgezogen*
