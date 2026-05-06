@@ -92,7 +92,7 @@ Plans:
 **Plans:** 3 plans
 
 Plans:
-- [ ] 03-01-schema-validator-library-PLAN.md — Schema-Erweiterung um 4 optionale Felder + Zod-Validator-Library + Wave-0-Tests (Wave 1, autonomous)
+- [x] 03-01-schema-validator-library-PLAN.md — Schema-Erweiterung um 4 optionale Felder + Zod-Validator-Library + Wave-0-Tests (Wave 1, autonomous)
 - [ ] 03-02-cron-migration-cli-validator-PLAN.md — Cron-Skripte auf llm.ts-Wrapper migriert + SYSTEM_PROMPT erweitert + scripts/validate-richtlinien.ts neu mit --legacy-Flag (Wave 2, autonomous, depends_on 03-01)
 - [ ] 03-03-workflow-migration-test-runs-PLAN.md — GitHub-Workflows auf DEEPSEEK_API_KEY-Pflicht + LLM_PROVIDER-Input + 4 neue Reviewer-Checkpoints + Kolja-Checkpoint mit 3 Manual-Smokes (Wave 3, NOT autonomous, depends_on 03-02)
 

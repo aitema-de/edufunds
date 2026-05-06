@@ -18,7 +18,8 @@ Requirements für aktuelle Milestone (Live-UAT-Reife für Schulen + Schulförder
 
 - [ ] **FETCH-01**: Cron-Skripte `extract-richtlinie.ts` + `scan-new-programs.ts` von Gemini-direkt auf `lib/wizard/llm.ts`-Wrapper umstellen, Default DeepSeek `deepseek-v4-flash`
 - [ ] **FETCH-02**: Vollautomatischer Programm-Pflegeprozess Scanner → Extractor → Queue (Scanner findet neue Programme, Extractor erstellt Dossier, neues Programm landet automatisch in `data/richtlinien-prioritaeten.json` mit Queue-Score)
-- [ ] **FETCH-03**: Dossier-Schema-Erweiterung um (a) Best Practices erfolgreicher Anträge, (b) typische Reject-Gründe, (c) programm-spezifische Vorbild-Formulierungen, (d) Frist-Logik (rolling vs. fixe Stichtage)
+- [x] **FETCH-03
+**: Dossier-Schema-Erweiterung um (a) Best Practices erfolgreicher Anträge, (b) typische Reject-Gründe, (c) programm-spezifische Vorbild-Formulierungen, (d) Frist-Logik (rolling vs. fixe Stichtage)
 - [ ] **FETCH-04**: Bestehende 11 Dossiers auf erweitertes Schema migrieren
 
 ### Antragswizard-Qualität
@@ -102,7 +103,7 @@ Phasen-Mapping aus ROADMAP.md (befüllt 2026-04-30 durch Roadmapper, ergänzt 20
 | MATCH-03 | Phase 2 (Matcher-Quality) | Pending |
 | FETCH-01 | Phase 3 (Programm-Pflege Foundation) | Pending |
 | FETCH-02 | Phase 4 (Programm-Pflege Vollautomation) | Pending |
-| FETCH-03 | Phase 3 (Programm-Pflege Foundation) | Pending |
+| FETCH-03 | Phase 3 (Programm-Pflege Foundation) | Complete |
 | FETCH-04 | Phase 4 (Programm-Pflege Vollautomation) | Pending |
 | WIZ-01 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Pending |
 | WIZ-02 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Pending |
