@@ -12,6 +12,15 @@ on:
   schedule:
     - cron: "30 4 * * 1" # Montag 04:30 UTC, eine halbe Stunde nach dem Dossier-Cron
   workflow_dispatch:
+    inputs:
+      llm_provider:
+        description: "LLM-Provider override (deepseek default, gemini fuer Fallback)"
+        required: false
+        type: choice
+        options:
+          - deepseek
+          - gemini
+        default: deepseek
 
 jobs:
   scan:
@@ -35,11 +44,17 @@ jobs:
 
       - name: Scan sources
         env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          LLM_PROVIDER: ${{ github.event.inputs.llm_provider || 'deepseek' }}
         run: |
           set -euo pipefail
-          if [ -z "${GEMINI_API_KEY}" ]; then
-            echo "::error::GEMINI_API_KEY Secret fehlt."
+          if [ -z "${DEEPSEEK_API_KEY}" ] && [ "${LLM_PROVIDER}" = "deepseek" ]; then
+            echo "::error::DEEPSEEK_API_KEY Secret fehlt. Im Repo-Settings hinterlegen oder LLM_PROVIDER=gemini ueber workflow_dispatch waehlen."
+            exit 1
+          fi
+          if [ -z "${GEMINI_API_KEY}" ] && [ "${LLM_PROVIDER}" = "gemini" ]; then
+            echo "::error::GEMINI_API_KEY Secret fehlt fuer LLM_PROVIDER=gemini-Override."
             exit 1
           fi
           npx tsx scripts/scan-new-programs.ts
