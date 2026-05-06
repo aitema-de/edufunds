@@ -103,7 +103,7 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
             onKeyDown={handleKey}
             placeholder="Beschreibe, was du an deiner Schule umsetzen willst — konkret, mit Zielgruppe und Wirkung. Beispiel: Wir wollen 120 Fünft- und Sechstklässlern Programmieren mit Calliope näherbringen. 80 % Migrationshintergrund, MINT-Lücke spürbar."
             rows={5}
-            className="w-full rounded-lg border border-slate-600 bg-slate-900 p-3 text-slate-100 placeholder-slate-500 focus:border-orange-500 focus:outline-none"
+            className="w-full rounded-lg border border-slate-600 bg-slate-900 p-3 sm:min-h-[140px] text-slate-100 placeholder-slate-500 focus:border-orange-500 focus:outline-none"
           />
           <div className="mt-1 flex items-center justify-between text-xs text-slate-500">
             <span>

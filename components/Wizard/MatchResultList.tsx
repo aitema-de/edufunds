@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { AlertTriangle, ArrowRight, CheckCircle, ExternalLink, Star } from "lucide-react";
+import { AlertTriangle, ArrowRight, CheckCircle, ExternalLink, SearchX, Star } from "lucide-react";
 
 export interface MatchEntry {
   id: string;
@@ -25,6 +25,8 @@ interface Props {
   matches: MatchEntry[];
   /** Wird beim Klick auf "Antrag starten" aufgerufen, damit der Wizard den Anliegen-Kontext kennt. */
   onStartAntrag: (entry: MatchEntry) => void;
+  /** D-05: Wird beim Klick auf "Anliegen neu formulieren" gerufen, setzt matchState auf null. */
+  onReset?: () => void;
 }
 
 function scoreColor(score: number): string {
@@ -33,18 +35,32 @@ function scoreColor(score: number): string {
   return "text-slate-300 bg-slate-500/10 border-slate-500/40";
 }
 
-export function MatchResultList({ matches, onStartAntrag }: Props) {
+export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
   if (matches.length === 0) {
     return (
       <div className="rounded-xl border border-slate-700/50 bg-slate-800/40 p-8 text-center">
+        <SearchX className="mx-auto mb-3 h-8 w-8 text-slate-500" />
         <h3 className="mb-2 text-lg font-semibold text-slate-200">
-          Keine passenden Programme gefunden
+          Kein Programm passt zu diesem Anliegen
         </h3>
-        <p className="mx-auto max-w-md text-sm text-slate-400">
-          Versuch es noch einmal mit einer anderen Formulierung oder mehr Details
-          (Zielgruppe, Wirkungsziel, ungefähres Budget). Manchmal hilft es, das
-          Anliegen in 2–3 Sätzen auszuschreiben.
+        <p className="mx-auto mb-4 max-w-md text-sm text-slate-400">
+          Das passiert, wenn das Anliegen zu allgemein oder sehr speziell ist.
         </p>
+        <ul className="mx-auto mb-6 max-w-md space-y-1 text-left text-sm text-slate-400">
+          <li>Nenne Zielgruppe und Zielwirkung konkreter (z. B. „Leseförderung Klasse 1–2, 30 Kinder").</li>
+          <li>Gib ein ungefähres Budget an (z. B. „5.000 bis 10.000 €").</li>
+          <li>Erkläre, was die Schule bereits hat und was fehlt.</li>
+        </ul>
+        {onReset && (
+          <button
+            type="button"
+            onClick={onReset}
+            className="inline-flex items-center gap-2 rounded-lg bg-orange-500 px-5 py-2 text-sm font-semibold text-white hover:bg-orange-600"
+          >
+            Anliegen neu formulieren
+            <ArrowRight className="h-4 w-4" />
+          </button>
+        )}
       </div>
     );
   }
@@ -122,7 +138,7 @@ export function MatchResultList({ matches, onStartAntrag }: Props) {
             <button
               type="button"
               onClick={() => onStartAntrag(m)}
-              className="inline-flex items-center gap-2 rounded-lg bg-orange-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-orange-600"
+              className="inline-flex items-center gap-2 rounded-lg bg-orange-500 px-4 py-2 sm:py-3 text-sm font-semibold text-white transition hover:bg-orange-600"
             >
               Antrag starten
               <ArrowRight className="h-4 w-4" />

@@ -135,18 +135,16 @@ export function MyAntraegeClient() {
       <div className="rounded-xl border border-slate-700/50 bg-slate-800/30 p-10 text-center">
         <FileText className="mx-auto mb-3 h-10 w-10 text-slate-500" />
         <h3 className="mb-2 text-lg font-semibold text-slate-100">
-          Noch keine Anträge
+          Noch kein Antrag begonnen
         </h3>
         <p className="mx-auto mb-6 max-w-md text-sm text-slate-400">
-          Starte über die Förderprogramm-Übersicht einen neuen Antrag mit dem
-          Wizard. Hier findest du später deine laufenden und abgeschlossenen
-          Entwürfe.
+          Schildere dein Anliegen und finde in Sekunden das passende Förderprogramm für deine Schule.
         </p>
         <Link
-          href="/foerderprogramme"
+          href="/antrag/start"
           className="inline-flex items-center gap-2 rounded-lg bg-orange-500 px-5 py-2 text-sm font-semibold text-white hover:bg-orange-600"
         >
-          Förderprogramme ansehen
+          Anliegen schildern
           <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
@@ -161,7 +159,7 @@ export function MyAntraegeClient() {
         return (
           <div
             key={s.sessionToken}
-            className="flex flex-wrap items-center gap-4 rounded-xl border border-slate-700/50 bg-slate-800/40 p-4 transition hover:border-slate-600"
+            className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 rounded-xl border border-slate-700/50 bg-slate-800/40 p-4 transition hover:border-slate-600"
           >
             <div className="min-w-0 flex-1">
               <div className="mb-1 flex flex-wrap items-center gap-2">
@@ -191,7 +189,7 @@ export function MyAntraegeClient() {
                 )}
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 sm:ml-auto">
               {!s.missing && (
                 <Link
                   href={href}

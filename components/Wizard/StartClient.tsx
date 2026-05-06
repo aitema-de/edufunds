@@ -39,6 +39,13 @@ export function StartClient() {
   // verhindert Endlos-Loop falls Backend trotz forceRanking erneut clarification liefert.
   const [isSecondRound, setIsSecondRound] = useState(false);
 
+  const handleReset = () => {
+    setMatchState(null);
+    setError(null);
+    setIsSecondRound(false);
+    // lastInput bleibt — User soll im Form-Wert weiterhin sehen, was er getippt hat
+  };
+
   const runMatch = async (values: MatchRequestValues) => {
     setBusy(true);
     setError(null);
@@ -155,7 +162,7 @@ export function StartClient() {
       {matchState !== null && (
         <div className="pt-2">
           {matchState.kind === "ranking" && (
-            <MatchResultList matches={matchState.matches} onStartAntrag={startAntrag} />
+            <MatchResultList matches={matchState.matches} onStartAntrag={startAntrag} onReset={handleReset} />
           )}
           {matchState.kind === "clarification" && (
             <ClarificationCard

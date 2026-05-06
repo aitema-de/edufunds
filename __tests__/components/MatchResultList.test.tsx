@@ -71,9 +71,9 @@ describe('MatchResultList — Ranking-Branch', () => {
     expect(hasTriangle).toBe(true);
   });
 
-  it('rendert Empty-State-Card bei matches.length===0 — D-12', () => {
+  it('rendert Empty-State-Card bei matches.length===0 — D-05', () => {
     render(<MatchResultList matches={[]} onStartAntrag={() => {}} />);
-    expect(screen.getByText('Keine passenden Programme gefunden')).toBeInTheDocument();
+    expect(screen.getByText('Kein Programm passt zu diesem Anliegen')).toBeInTheDocument();
   });
 });
 

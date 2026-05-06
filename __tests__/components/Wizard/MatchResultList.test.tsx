@@ -1,14 +1,12 @@
 /**
  * Empty-State-Tests fuer components/Wizard/MatchResultList.tsx
- * Phase 02.1 Plan 01 — Wave-0-Skelette (D-05)
- *
- * Alle it.todo werden in Plan 02.1-03 gruen gemacht (Empty-State + onReset).
+ * Phase 02.1 Plan 03 — Empty-State + onReset (D-05)
  */
 
-import { render } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { MatchResultList, type MatchEntry } from '@/components/Wizard/MatchResultList';
 
-// Beispiel-Eintrag fuer spaeteren Einsatz in Plan 02.1-03
+// Beispiel-Eintrag fuer Ranking-Branch-Tests
 const SAMPLE_ENTRY: MatchEntry = {
   id: 'bmbf-digitalpakt-2',
   score: 88,
@@ -22,20 +20,47 @@ const SAMPLE_ENTRY: MatchEntry = {
 };
 
 describe('MatchResultList — Empty-State', () => {
-  it.todo(
-    "rendert Empty-State-Heading 'Kein Programm passt zu diesem Anliegen' bei leerem matches-Array — D-05"
-    // Plan 02.1-03: rendert neues Empty-State mit Reformulierungs-Tipps statt aktuellem Fallback
+  it(
+    "rendert Empty-State-Heading 'Kein Programm passt zu diesem Anliegen' bei leerem matches-Array — D-05",
+    () => {
+      render(<MatchResultList matches={[]} onStartAntrag={jest.fn()} />);
+      expect(
+        screen.getByText(/Kein Programm passt zu diesem Anliegen/)
+      ).toBeInTheDocument();
+    }
   );
 
-  it.todo(
-    "rendert 3 Reformulierungs-Tipps als Liste — D-05"
-    // Plan 02.1-03: unskippt wenn MatchResultList den neuen Empty-State-Block erhaelt
-  );
+  it('rendert SearchX-Icon im Empty-State — D-05', () => {
+    const { container } = render(
+      <MatchResultList matches={[]} onStartAntrag={jest.fn()} />
+    );
+    // Lucide rendert SVG-Icons mit class="lucide lucide-search-x ..."
+    const svgs = container.querySelectorAll('svg');
+    expect(svgs.length).toBeGreaterThan(0);
+    const hasSearchX = Array.from(svgs).some((svg) =>
+      (svg.getAttribute('class') ?? '').toLowerCase().includes('search-x')
+    );
+    expect(hasSearchX).toBe(true);
+  });
 
-  it.todo(
-    "ruft onReset bei Klick auf 'Anliegen neu formulieren' — D-05"
-    // Plan 02.1-03: unskippt wenn onReset-Prop zu MatchResultList-Props hinzugefuegt wird
-  );
+  it('rendert genau 3 Reformulierungs-Tipps als Liste — D-05', () => {
+    render(<MatchResultList matches={[]} onStartAntrag={jest.fn()} />);
+    const items = screen.getAllByRole('listitem');
+    expect(items.length).toBeGreaterThanOrEqual(3);
+  });
+
+  it("ruft onReset bei Klick auf 'Anliegen neu formulieren' — D-05", () => {
+    const onReset = jest.fn();
+    render(
+      <MatchResultList
+        matches={[]}
+        onStartAntrag={jest.fn()}
+        onReset={onReset}
+      />
+    );
+    fireEvent.click(screen.getByText(/Anliegen neu formulieren/));
+    expect(onReset).toHaveBeenCalledTimes(1);
+  });
 });
 
 // Stellt sicher dass der Import funktioniert und der bestehende Empty-State nicht kaputt ist.
