@@ -58,6 +58,7 @@ jest.mock("@/lib/wizard/session", () => ({
 
 import { POST } from "@/app/api/stripe/webhook/route";
 import { getStripe, stripeConfigured } from "@/lib/stripe/client";
+import { markSessionPaid } from "@/lib/wizard/session";
 
 // Import des gemockten NextRequest
 import { NextRequest } from "next/server";
@@ -127,13 +128,126 @@ describe("stripe/webhook — Signatur-Pruefung (D-07)", () => {
     expect(json.error).toBeTruthy();
   });
 
-  it.todo(
-    "ruft markSessionPaid bei checkout.session.completed mit metadata.wizard_session_token — D-07"
-    // Plan 02.1-02 unskippt diesen Test
-  );
+  it("ruft markSessionPaid bei checkout.session.completed mit metadata.wizard_session_token — D-07", async () => {
+    (stripeConfigured as jest.Mock).mockReturnValue(true);
+    process.env.STRIPE_WEBHOOK_SECRET = "whsec_test";
+    (markSessionPaid as jest.Mock).mockResolvedValue({
+      paidToken: "paid_token_test",
+      sessionToken: "test-token",
+    } as never);
 
-  it.todo(
-    "ignoriert checkout.session.completed wenn payment_status != paid — D-07"
-    // Plan 02.1-02 unskippt diesen Test
-  );
+    const fakeEvent = {
+      id: "evt_test_1",
+      type: "checkout.session.completed",
+      data: {
+        object: {
+          id: "cs_test_1",
+          metadata: { wizard_session_token: "test-token", tier: "einzelantrag" },
+          payment_status: "paid",
+          customer_details: { email: "buyer@example.com" },
+        },
+      },
+    };
+    (getStripe as jest.Mock).mockReturnValue({
+      webhooks: { constructEvent: jest.fn().mockReturnValue(fakeEvent) },
+    });
+
+    const res = await POST(buildRequest("{}", { "stripe-signature": "v1=valid" }));
+
+    expect(res.status).toBe(200);
+    const json = await res.json();
+    expect(json.received).toBe(true);
+    expect(markSessionPaid).toHaveBeenCalledWith("test-token", {
+      stripeSessionId: "cs_test_1",
+      stripeCustomerEmail: "buyer@example.com",
+      tier: "einzelantrag",
+    });
+  });
+
+  it("ignoriert checkout.session.completed wenn payment_status != paid — D-07", async () => {
+    (stripeConfigured as jest.Mock).mockReturnValue(true);
+    process.env.STRIPE_WEBHOOK_SECRET = "whsec_test";
+    (markSessionPaid as jest.Mock).mockResolvedValue({
+      paidToken: "paid_token_test",
+      sessionToken: "test-token",
+    } as never);
+
+    const fakeEvent = {
+      id: "evt_test_2",
+      type: "checkout.session.completed",
+      data: {
+        object: {
+          id: "cs_test_2",
+          metadata: { wizard_session_token: "test-token", tier: "einzelantrag" },
+          payment_status: "unpaid",
+          customer_details: { email: "buyer@example.com" },
+        },
+      },
+    };
+    (getStripe as jest.Mock).mockReturnValue({
+      webhooks: { constructEvent: jest.fn().mockReturnValue(fakeEvent) },
+    });
+
+    const res = await POST(buildRequest("{}", { "stripe-signature": "v1=valid" }));
+
+    expect(res.status).toBe(200);
+    expect(markSessionPaid).not.toHaveBeenCalled();
+  });
+
+  it("ignoriert checkout.session.completed wenn metadata.wizard_session_token fehlt — D-07", async () => {
+    (stripeConfigured as jest.Mock).mockReturnValue(true);
+    process.env.STRIPE_WEBHOOK_SECRET = "whsec_test";
+    (markSessionPaid as jest.Mock).mockResolvedValue({
+      paidToken: "paid_token_test",
+      sessionToken: "test-token",
+    } as never);
+
+    const fakeEvent = {
+      id: "evt_test_3",
+      type: "checkout.session.completed",
+      data: {
+        object: {
+          id: "cs_test_3",
+          metadata: {},
+          payment_status: "paid",
+          customer_details: { email: "buyer@example.com" },
+        },
+      },
+    };
+    (getStripe as jest.Mock).mockReturnValue({
+      webhooks: { constructEvent: jest.fn().mockReturnValue(fakeEvent) },
+    });
+
+    const res = await POST(buildRequest("{}", { "stripe-signature": "v1=valid" }));
+
+    expect(res.status).toBe(200);
+    expect(markSessionPaid).not.toHaveBeenCalled();
+  });
+
+  it("gibt 500 zurueck wenn markSessionPaid wirft — D-07 + T-02.1.02-06 (Stripe-retry-Pfad)", async () => {
+    (stripeConfigured as jest.Mock).mockReturnValue(true);
+    process.env.STRIPE_WEBHOOK_SECRET = "whsec_test";
+    (markSessionPaid as jest.Mock).mockRejectedValue(new Error("Session not found"));
+
+    const fakeEvent = {
+      id: "evt_test_4",
+      type: "checkout.session.completed",
+      data: {
+        object: {
+          id: "cs_test_4",
+          metadata: { wizard_session_token: "test-token", tier: "einzelantrag" },
+          payment_status: "paid",
+          customer_details: { email: "buyer@example.com" },
+        },
+      },
+    };
+    (getStripe as jest.Mock).mockReturnValue({
+      webhooks: { constructEvent: jest.fn().mockReturnValue(fakeEvent) },
+    });
+
+    const res = await POST(buildRequest("{}", { "stripe-signature": "v1=valid" }));
+
+    // 5xx triggert Stripe-Retry, 4xx wuerde den Webhook permanent verwerfen
+    expect(res.status).toBe(500);
+  });
 });
