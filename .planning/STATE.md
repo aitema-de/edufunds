@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 02.1 UI-SPEC approved
-last_updated: "2026-05-06T10:20:21.089Z"
-last_activity: 2026-05-04 -- Phase 02 execution started
+stopped_at: Phase 02.1 execution complete (verifier pending)
+last_updated: "2026-05-06T13:55:00.000Z"
+last_activity: 2026-05-06 -- Phase 02.1 alle 6 Plans gemerged
 progress:
   total_phases: 7
-  completed_phases: 2
-  total_plans: 16
-  completed_plans: 10
-  percent: 63
+  completed_phases: 3
+  total_plans: 22
+  completed_plans: 16
+  percent: 73
 ---
 
 # Project State
@@ -25,10 +25,10 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 
 ## Current Position
 
-Phase: 02 (matcher-quality) — EXECUTING
-Plan: 1 of 8
-Status: Executing Phase 02
-Last activity: 2026-05-04 -- Phase 02 execution started
+Phase: 02.1 (frontend-polish-stripe-vorbereitung) — COMPLETE (verifier pending)
+Plan: 6 of 6 — alle gemerged auf feature/wizard-adaptive
+Status: Phase 02.1 ausgeführt, Verifier-Run + Wave-2-Hardening offen
+Last activity: 2026-05-06 -- Phase 02.1 Plans 01-06 gemerged auf f9d550a
 
 Progress: [██████████] 100%
 
@@ -75,6 +75,7 @@ Decisions sind in PROJECT.md Key-Decisions-Tabelle gepflegt. Roadmap-relevante E
 ### Roadmap Evolution
 
 - Phase 02.1 inserted after Phase 2: Frontend-Polish + Stripe-Vorbereitung (URGENT) — Markt-Blocker-Pfad (UI-Polish + Live-UAT-Vorbereitung + Stripe-Code-Pfade ohne Live-Account); Roadmap-Phase 3 (Programm-Pflege Foundation / Cron-Migration) bleibt unveraendert dahinter, wird erst akut wenn Programm-Pflege-Bedarf entsteht (2026-05-06)
+- Phase 02.1 EXECUTED 2026-05-06: 6 Plans in 2 Wellen (Welle 1: 5 Plans sequenziell wegen Test-Skelett-File-Overlap; Welle 2: WIZ-04 Reload-Resume), HEAD `f9d550a` auf feature/wizard-adaptive. 0 Test-Regressionen (34 pre-existing-Failures unveraendert). Commits: 02.1-01 Test+Smoke-Skelette, 02.1-02 Stripe-Webhook-Haertung + 7 Tests gruen, 02.1-03 Empty-States + Mobile-Touch-Targets, 02.1-04 AntragSectionNav + h2-Anker + Edit-Button, 02.1-05 4 UAT-Templates, 02.1-06 PipelineStage-Heartbeat + Reload-Detect-Polling + failed-UI-Retry. Verifier-Run + Phase-Verification noch offen.
 
 ### Pending Todos
 

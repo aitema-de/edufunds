@@ -73,12 +73,12 @@ Plans:
 **UI hint**: yes
 
 Plans:
-- [ ] 02.1-01-PLAN.md — Wave-0 Test-Skelette + Smoke-Skript-Skelette (Wave 0, autonomous)
-- [ ] 02.1-02-PLAN.md — Stripe-Webhook-Haertung + TODO-Stubs + Smoke (Wave 1, autonomous)
-- [ ] 02.1-03-PLAN.md — UI-Polish Block A: Empty-States MyAntraege/MatchResultList + onReset + Mobile-Touch (Wave 1, autonomous)
-- [ ] 02.1-04-PLAN.md — UI-Polish Block B: Antrag-Detail Anker-Nav + AntragSectionNav neu + Edit-Button (Wave 1, autonomous)
-- [ ] 02.1-05-PLAN.md — UAT-Templates 4 Stueck (Plan/Befunde/Piloten/Anschreiben) (Wave 1, autonomous)
-- [ ] 02.1-06-PLAN.md — WIZ-04 Reload-Resume + Stage-Tracking + GeneratingProgress + failed-UI (Wave 2, autonomous)
+- [x] 02.1-01-PLAN.md — Wave-0 Test-Skelette + Smoke-Skript-Skelette (Wave 0, autonomous)
+- [x] 02.1-02-PLAN.md — Stripe-Webhook-Haertung + TODO-Stubs + Smoke (Wave 1, autonomous)
+- [x] 02.1-03-PLAN.md — UI-Polish Block A: Empty-States MyAntraege/MatchResultList + onReset + Mobile-Touch (Wave 1, autonomous)
+- [x] 02.1-04-PLAN.md — UI-Polish Block B: Antrag-Detail Anker-Nav + AntragSectionNav neu + Edit-Button (Wave 1, autonomous)
+- [x] 02.1-05-PLAN.md — UAT-Templates 4 Stueck (Plan/Befunde/Piloten/Anschreiben) (Wave 1, autonomous)
+- [x] 02.1-06-PLAN.md — WIZ-04 Reload-Resume + Stage-Tracking + GeneratingProgress + failed-UI (Wave 2, autonomous)
 
 ### Phase 3: Programm-Pflege Foundation
 **Goal**: Cron-Skripte auf den einheitlichen DeepSeek-Wrapper umstellen und das Dossier-Schema um vier qualitätskritische Felder erweitern, damit Phase 4 darauf aufbauen kann.
