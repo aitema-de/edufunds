@@ -2,10 +2,10 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Phase 02.1 execution complete (verifier pending)
-last_updated: "2026-05-06T13:55:00.000Z"
-last_activity: 2026-05-06 -- Phase 02.1 alle 6 Plans gemerged
+status: idle
+stopped_at: Phase 02.1 abgeschlossen (smoke-verified) — bereit für Phase 3 Programm-Pflege Foundation
+last_updated: "2026-05-06T15:35:00.000Z"
+last_activity: 2026-05-06 -- Phase 02.1 abgeschlossen, End-to-End-Smoke durch Kolja
 progress:
   total_phases: 7
   completed_phases: 3
@@ -25,10 +25,10 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 
 ## Current Position
 
-Phase: 02.1 (frontend-polish-stripe-vorbereitung) — COMPLETE (verifier pending)
-Plan: 6 of 6 — alle gemerged auf feature/wizard-adaptive
-Status: Phase 02.1 ausgeführt, Verifier-Run + Wave-2-Hardening offen
-Last activity: 2026-05-06 -- Phase 02.1 Plans 01-06 gemerged auf f9d550a
+Phase: 02.1 (frontend-polish-stripe-vorbereitung) — ✅ COMPLETE (smoke-verified)
+Plan: 6 of 6 — alle gemerged + verified
+Status: Bereit für Phase 3 (Programm-Pflege Foundation, FETCH-01 + FETCH-03)
+Last activity: 2026-05-06 -- End-to-End-Smoke durch Kolja: Stiftung Bildung Schulgarten-Antrag generiert, Reload-Resume während interviewing implicit verified (Server-Crash-Recovery)
 
 Progress: [██████████] 100%
 
