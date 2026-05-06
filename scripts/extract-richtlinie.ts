@@ -24,10 +24,13 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { generateJson, MODEL_PIPELINE } from "../lib/wizard/llm";
+import {
+  RichtlinieStrictSchema,
+  validateForeignKeys,
+} from "../lib/wizard/richtlinien-validator";
 import type { Richtlinie } from "../lib/wizard/richtlinien-schema";
 
-const MODEL = "gemini-2.5-pro";
 const OUT_DIR = path.join(process.cwd(), "data", "richtlinien");
 const QUEUE_PATH = path.join(process.cwd(), "data", "richtlinien-prioritaeten.json");
 
@@ -77,8 +80,20 @@ JSON-Schema (exakte Feldnamen):
     "einreichungsweg": "...",
     "bearbeitungsdauer"?: "..."
   },
-  "notizen"?: string[]
+  "notizen"?: string[],
+  "bestPractices": [{ "thema": "...", "was_funktionierte": "...", "warum"?: "..." }],
+  "rejectGruende": [{ "grund": "...", "haeufigkeit"?: "haeufig" | "gelegentlich", "vermeidung"?: "..." }],
+  "vorbildFormulierungen": [{ "abschnitt_id": "id-aus-antragsstruktur.abschnitte", "formulierung": "...", "kontext"?: "..." }],
+  "fristLogik": { "typ": "rolling" } | { "typ": "fixe_stichtage", "stichtage": ["YYYY-MM-DD", ...], "jaehrlich_wiederkehrend"?: true|false }
 }
+
+REGELN GEGEN HALLUZINATION (kritisch — befolge sie strikt):
+- Wenn die Richtlinie KEINE Best-Practices, Reject-Gruende oder Vorbild-Formulierungen explizit nennt, gib leere Arrays zurueck. Erfinde NICHTS.
+- bestPractices und vorbildFormulierungen MUESSEN aus dem gelieferten Volltext belegbar sein, NICHT aus Allgemeinwissen ueber Foerderverfahren.
+- vorbildFormulierungen[].abschnitt_id MUSS exakt einer id aus antragsstruktur.abschnitte[].id im selben Output entsprechen.
+- stichtage IMMER im Format YYYY-MM-DD. Wenn Richtlinie "10. April 2026" nennt, schreibe "2026-04-10". KEIN deutsches Format wie "10.04.2026".
+- Maximal 5 Eintraege pro neuem Feld (bestPractices, rejectGruende, vorbildFormulierungen).
+- Wenn unsicher: lieber leere Liste als Erfindung. Lieber kuerzer als halluziniert.
 
 Nur valides JSON ausgeben, keine Markdown-Fences, keine Erklaerung davor/danach.`;
 
@@ -204,12 +219,6 @@ async function cmdNext(extraUrls: string[]): Promise<void> {
 }
 
 async function runExtraction(programmId: string, srcs: string[]): Promise<void> {
-  const apiKey = process.env.GEMINI_API_KEY ?? "";
-  if (!apiKey) {
-    console.error("GEMINI_API_KEY fehlt in der Umgebung.");
-    process.exit(1);
-  }
-
   console.log(`==> Sammle Quellen (${srcs.length})`);
   const quellen: string[] = [];
   const texte: string[] = [];
@@ -231,23 +240,22 @@ ${texte.join("\n\n---\n\n")}
 
 Erstelle das Richtlinien-Dossier als JSON.`;
 
-  console.log("==> Gemini Pro Extraktion laeuft");
-  const client = new GoogleGenerativeAI(apiKey);
-  const gm = client.getGenerativeModel({
-    model: MODEL,
-    systemInstruction: SYSTEM_PROMPT,
-    generationConfig: { responseMimeType: "application/json" },
-  });
-  const res = await gm.generateContent(userPrompt);
-  const raw = res.response.text().trim();
-
+  console.log("==> LLM-Extraktion laeuft (Provider: lib/wizard/llm.ts)");
   let parsed: Richtlinie;
+  let llmUsage = { promptTokens: 0, candidatesTokens: 0 };
   try {
-    parsed = JSON.parse(raw) as Richtlinie;
-  } catch {
-    console.error("Antwort war kein valides JSON, speichere als .raw.txt fuer Debug.");
-    await fs.mkdir(OUT_DIR, { recursive: true });
-    await fs.writeFile(path.join(OUT_DIR, `${programmId}.raw.txt`), raw);
+    const llmResult = await generateJson<Richtlinie>(
+      MODEL_PIPELINE,
+      SYSTEM_PROMPT,
+      userPrompt,
+      { maxTokens: 8000 }
+    );
+    parsed = llmResult.value;
+    llmUsage = llmResult.usage;
+  } catch (err) {
+    console.error(
+      `LLM-Aufruf fehlgeschlagen oder lieferte kein valides JSON: ${(err as Error).message}`
+    );
     process.exit(3);
   }
 
@@ -296,17 +304,35 @@ Erstelle das Richtlinien-Dossier als JSON.`;
   parsed.quellen = quellen;
   parsed.version = parsed.version ?? new Date().toISOString().slice(0, 10);
 
+  // Runtime-Validierung gegen erweitertes Schema (Phase 3, FETCH-03).
+  // Strict-Mode: alle 4 neuen Felder Pflicht. Bei Fehler: programmId-Status
+  // nicht auf done setzen, Skript exit 1, Workflow-PR wird nicht erstellt
+  // (CI-Step "Detect changes" findet kein Diff weil writeFile nicht passierte).
+  const strictParse = RichtlinieStrictSchema.safeParse(parsed);
+  if (!strictParse.success) {
+    console.error(`==> Strict-Schema-Validierung fehlgeschlagen fuer ${programmId}:`);
+    for (const issue of strictParse.error.issues) {
+      console.error(`    ${issue.path.join(".")}: ${issue.message}`);
+    }
+    process.exit(1);
+  }
+  const fkIssues = validateForeignKeys(parsed as never, programmId);
+  if (fkIssues.length > 0) {
+    console.error(`==> FK-Verletzungen fuer ${programmId}:`);
+    for (const issue of fkIssues) {
+      console.error(`    ${issue.abschnitt_id}: ${issue.reason}`);
+    }
+    process.exit(1);
+  }
+
   await fs.mkdir(OUT_DIR, { recursive: true });
   const outPath = path.join(OUT_DIR, `${programmId}.json`);
   await fs.writeFile(outPath, JSON.stringify(parsed, null, 2) + "\n");
 
-  const usage = res.response.usageMetadata;
   console.log(`==> Geschrieben: ${outPath}`);
-  if (usage) {
-    console.log(
-      `    Tokens: ${usage.promptTokenCount} in + ${usage.candidatesTokenCount} out`
-    );
-  }
+  console.log(
+    `    Tokens: ${llmUsage.promptTokens} in + ${llmUsage.candidatesTokens} out`
+  );
   await markDoneInQueue(programmId);
   console.log("\nBITTE REVIEW: Dossier mit Originalrichtlinie abgleichen bevor commit.\n");
 }
