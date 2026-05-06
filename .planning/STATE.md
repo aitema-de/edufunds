@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-01-schema-validator-library
-last_updated: "2026-05-06T15:47:35.151Z"
+stopped_at: Completed 03-02-cron-migration-cli-validator
+last_updated: "2026-05-06T15:58:30.095Z"
 last_activity: 2026-05-06
 progress:
   total_phases: 7
   completed_phases: 3
   total_plans: 19
-  completed_plans: 17
-  percent: 89
+  completed_plans: 18
+  percent: 95
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 ## Current Position
 
 Phase: 03 (programm-pflege-foundation) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 Status: Ready to execute
 Last activity: 2026-05-06
 
-Progress: [█████████░] 89%
+Progress: [██████████] 95%
 
 ## Performance Metrics
 
@@ -56,6 +56,7 @@ Progress: [█████████░] 89%
 | Phase 01-eval-korpus-matcher P01 | 25 | 3 tasks | 5 files |
 | Phase 1 P01-02 | 25 | 3 tasks | 5 files |
 | Phase 03 P01 | 227 | 2 tasks | 4 files |
+| Phase 03 P03-02-cron-migration-cli-validator | 396 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -72,6 +73,7 @@ Decisions sind in PROJECT.md Key-Decisions-Tabelle gepflegt. Roadmap-relevante E
 - Phase-1-Baseline force-committed trotz .gitignore (Threat-Model T-01-09 SHA-Zuordnung)
 - BASELINE.md mit JSON-Zahl 0.79 Cent statt Konsolen-formatEur-Display '< 0,01 €'
 - Edge-Case-Befund stehengelassen: Matcher liefert Top-3 statt Klaerungsfrage — Phase-2-MATCH-03-Auftrag
+- Plan 03-02 Auto-Fix: AntragsstrukturLegacySchema neu, validateForeignKeys mit Null-Check — sonst Bestands-Dossiers (5/11) blocken Legacy-Modus oder crashen FK-Check
 
 ### Roadmap Evolution
 
@@ -106,8 +108,8 @@ Items aus REQUIREMENTS.md v2 / Out of Scope, bewusst nicht in dieser Milestone:
 
 ## Session Continuity
 
-Last session: 2026-05-06T15:47:35.130Z
-Stopped at: Completed 03-01-schema-validator-library
+Last session: 2026-05-06T15:58:30.078Z
+Stopped at: Completed 03-02-cron-migration-cli-validator
 Resume file: None
 
 **Planned Phase:** 3 (Programm-Pflege Foundation) — 3 plans — 2026-05-06T14:55:39.979Z

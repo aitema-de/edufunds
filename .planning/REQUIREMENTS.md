@@ -16,7 +16,8 @@ Requirements für aktuelle Milestone (Live-UAT-Reife für Schulen + Schulförder
 
 ### Programm-Fetch + Cronjobs
 
-- [ ] **FETCH-01**: Cron-Skripte `extract-richtlinie.ts` + `scan-new-programs.ts` von Gemini-direkt auf `lib/wizard/llm.ts`-Wrapper umstellen, Default DeepSeek `deepseek-v4-flash`
+- [x] **FETCH-01
+**: Cron-Skripte `extract-richtlinie.ts` + `scan-new-programs.ts` von Gemini-direkt auf `lib/wizard/llm.ts`-Wrapper umstellen, Default DeepSeek `deepseek-v4-flash`
 - [ ] **FETCH-02**: Vollautomatischer Programm-Pflegeprozess Scanner → Extractor → Queue (Scanner findet neue Programme, Extractor erstellt Dossier, neues Programm landet automatisch in `data/richtlinien-prioritaeten.json` mit Queue-Score)
 - [x] **FETCH-03
 **: Dossier-Schema-Erweiterung um (a) Best Practices erfolgreicher Anträge, (b) typische Reject-Gründe, (c) programm-spezifische Vorbild-Formulierungen, (d) Frist-Logik (rolling vs. fixe Stichtage)
