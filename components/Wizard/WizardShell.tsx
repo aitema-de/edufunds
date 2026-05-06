@@ -7,7 +7,9 @@ import type {
   WizardMessage,
   WizardPhase,
   GenerationArtefacts,
+  PipelineStage,
 } from "@/lib/wizard/types";
+import { STAGE_LABELS } from "@/lib/wizard/stage-labels";
 import type { CostLedger } from "@/lib/wizard/pricing";
 import {
   clearSchoolProfile,
@@ -42,6 +44,7 @@ interface WizardApiState {
   facts: WizardFacts;
   costs?: CostLedger | null;
   paidToken?: string | null;
+  generation?: GenerationArtefacts | null;
 }
 
 const STORAGE_KEY_PREFIX = "edufunds.wizard.session.";
@@ -95,6 +98,7 @@ export function WizardShell({ programm }: Props) {
         facts: body.facts ?? {},
         costs: body.costs ?? null,
         paidToken: body.paidToken ?? null,
+        generation: body.generation ?? null,
       });
       const synced = syncProfileFromFacts(body.facts ?? {});
       if (synced) setSchoolProfile(synced);
@@ -206,6 +210,55 @@ export function WizardShell({ programm }: Props) {
     return () => {
       cancelled = true;
     };
+  }, [state?.phase, state?.sessionToken]);
+
+  // D-12 Reload-Resume: Bei phase=generating polle die GET-Route alle 2 Sekunden,
+  // statt /api/wizard/generate neu zu starten (Pattern S-1 aus CheckoutSuccessClient).
+  useEffect(() => {
+    if (state?.phase !== "generating" || !state.sessionToken) return;
+    let cancelled = false;
+    let consecutiveFailures = 0;
+
+    const tick = async () => {
+      if (cancelled) return;
+      try {
+        const res = await fetch(`/api/wizard/${state.sessionToken}`, { cache: "no-store" });
+        if (res.ok) {
+          consecutiveFailures = 0;
+          const body = await res.json();
+          if (cancelled) return;
+          // Stage-Heartbeat aus DB-Persistenz
+          const stageKey = body.generation?.stage as PipelineStage | undefined;
+          if (stageKey) setGenerationStage(STAGE_LABELS[stageKey] ?? stageKey);
+          // Phase-Uebergang erkennen
+          if (body.phase === "complete" && body.generation?.finalText) {
+            setGeneration(body.generation);
+            setState((s) => s ? { ...s, phase: "complete", costs: body.costs ?? s.costs, generation: body.generation } : s);
+            return; // Polling stoppt durch Effect-Re-Run (state.phase != generating)
+          }
+          if (body.phase === "failed") {
+            setState((s) => s ? { ...s, phase: "failed" } : s);
+            setError("Generierung fehlgeschlagen — bitte neu versuchen.");
+            return;
+          }
+          // Andernfalls: state.generation aktualisieren fuer GeneratingProgress.currentStage
+          if (body.generation) {
+            setState((s) => s ? { ...s, generation: body.generation } : s);
+          }
+        } else {
+          consecutiveFailures += 1;
+        }
+      } catch {
+        consecutiveFailures += 1;
+      }
+      if (consecutiveFailures >= 5) {
+        setError("Verbindung zur Server-Pipeline verloren — bitte Seite neu laden.");
+        return;
+      }
+      if (!cancelled) setTimeout(tick, 2000);
+    };
+    tick();
+    return () => { cancelled = true; };
   }, [state?.phase, state?.sessionToken]);
 
   // Re-Check Kumulierung, sobald Projekt-Facts sich aendern (debounced).
@@ -440,7 +493,23 @@ export function WizardShell({ programm }: Props) {
   }
 
   if (state.phase === "generating") {
-    return <GeneratingProgress stage={generationStage} />;
+    return <GeneratingProgress
+      stage={generationStage}
+      currentStage={state.generation?.stage as PipelineStage | undefined}
+    />;
+  }
+
+  if (state.phase === "failed") {
+    return (
+      <WizardErrorBlock
+        message={error ?? "Die Generierung ist fehlgeschlagen. Pruefe deine Verbindung und versuche es erneut."}
+        onRetry={() => {
+          setError(null);
+          setState((s) => s ? { ...s, phase: "ready_to_generate" } : s);
+        }}
+        busy={false}
+      />
+    );
   }
 
   if (state.phase === "complete" && generation?.finalText) {
