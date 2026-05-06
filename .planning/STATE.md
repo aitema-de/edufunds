@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Plan 01-02 abgeschlossen — Phase 1 ready for verification
-last_updated: "2026-05-04T09:34:28.678Z"
+stopped_at: Phase 02.1 context gathered
+last_updated: "2026-05-06T08:58:53.485Z"
 last_activity: 2026-05-04 -- Phase 02 execution started
 progress:
-  total_phases: 6
-  completed_phases: 1
+  total_phases: 7
+  completed_phases: 2
   total_plans: 10
-  completed_plans: 6
-  percent: 60
+  completed_plans: 10
+  percent: 100
 ---
 
 # Project State
@@ -72,6 +72,10 @@ Decisions sind in PROJECT.md Key-Decisions-Tabelle gepflegt. Roadmap-relevante E
 - BASELINE.md mit JSON-Zahl 0.79 Cent statt Konsolen-formatEur-Display '< 0,01 €'
 - Edge-Case-Befund stehengelassen: Matcher liefert Top-3 statt Klaerungsfrage — Phase-2-MATCH-03-Auftrag
 
+### Roadmap Evolution
+
+- Phase 02.1 inserted after Phase 2: Frontend-Polish + Stripe-Vorbereitung (URGENT) — Markt-Blocker-Pfad (UI-Polish + Live-UAT-Vorbereitung + Stripe-Code-Pfade ohne Live-Account); Roadmap-Phase 3 (Programm-Pflege Foundation / Cron-Migration) bleibt unveraendert dahinter, wird erst akut wenn Programm-Pflege-Bedarf entsteht (2026-05-06)
+
 ### Pending Todos
 
 Aus `.planning/todos/pending/` — noch keine erfasst.
@@ -100,8 +104,8 @@ Items aus REQUIREMENTS.md v2 / Out of Scope, bewusst nicht in dieser Milestone:
 
 ## Session Continuity
 
-Last session: 2026-05-03T08:22:45.249Z
-Stopped at: Plan 01-02 abgeschlossen — Phase 1 ready for verification
-Resume file: None
+Last session: --stopped-at
+Stopped at: Phase 02.1 context gathered
+Resume file: --resume-file
 
 **Planned Phase:** 02 () — 0 plans — 2026-05-04T08:47:53.526Z

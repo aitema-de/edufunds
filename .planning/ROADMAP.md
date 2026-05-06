@@ -56,6 +56,16 @@ Plans:
 - [ ] 02-06-PLAN.md — **Gap-Closure**: Live-Eval-Re-Run nach Plan 02-04 + 02-05, BASELINE.md-Phase-2.1-Eintrag (Wave 2, depends_on 04+05)
 - [ ] 02-07-PLAN.md — **Gap-Closure**: Browser-Smoke 4 UI-Pfade + Mobile + WR-02-Reset-Verifikation (Wave 2, checkpoint, depends_on 04+05)
 
+### Phase 02.1: Frontend-Polish + Stripe-Vorbereitung (INSERTED)
+
+**Goal:** [Urgent work - to be planned]
+**Requirements**: TBD
+**Depends on:** Phase 2
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd-plan-phase 02.1 to break down)
+
 ### Phase 3: Programm-Pflege Foundation
 **Goal**: Cron-Skripte auf den einheitlichen DeepSeek-Wrapper umstellen und das Dossier-Schema um vier qualitätskritische Felder erweitern, damit Phase 4 darauf aufbauen kann.
 **Depends on**: Phase 1 (parallel zu Phase 2 möglich, da unabhängiger Code-Bereich)
