@@ -15,6 +15,14 @@ on:
         description: "Optional: bestimmtes Programm aus der Queue extrahieren (sonst --next)"
         required: false
         type: string
+      llm_provider:
+        description: "LLM-Provider override (deepseek default, gemini fuer Fallback)"
+        required: false
+        type: choice
+        options:
+          - deepseek
+          - gemini
+        default: deepseek
 
 jobs:
   extract:
@@ -42,11 +50,17 @@ jobs:
           # github.event.inputs ist Nutzereingabe — NIE direkt in Shell interpolieren.
           # Stattdessen via env in eine Shell-Variable laden, dann zitiert nutzen.
           PROGRAM_ID_INPUT: ${{ github.event.inputs.program_id }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          LLM_PROVIDER: ${{ github.event.inputs.llm_provider || 'deepseek' }}
         run: |
           set -euo pipefail
-          if [ -z "${GEMINI_API_KEY}" ]; then
-            echo "::error::GEMINI_API_KEY Secret fehlt. Im Repo-Settings als Secret hinterlegen."
+          if [ -z "${DEEPSEEK_API_KEY}" ] && [ "${LLM_PROVIDER}" = "deepseek" ]; then
+            echo "::error::DEEPSEEK_API_KEY Secret fehlt. Im Repo-Settings hinterlegen oder LLM_PROVIDER=gemini ueber workflow_dispatch waehlen."
+            exit 1
+          fi
+          if [ -z "${GEMINI_API_KEY}" ] && [ "${LLM_PROVIDER}" = "gemini" ]; then
+            echo "::error::GEMINI_API_KEY Secret fehlt fuer LLM_PROVIDER=gemini-Override."
             exit 1
           fi
           if [ -n "${PROGRAM_ID_INPUT}" ]; then
@@ -102,6 +116,10 @@ jobs:
             - [ ] Kumulierung (unvereinbarMit?) angemessen
             - [ ] Nicht-förderfähige Kosten nicht halluziniert
             - [ ] Quellen-URLs funktionieren
+            - [ ] Best Practices: stehen wirklich in der Quelle (nicht halluziniert), max 5 Stück
+            - [ ] Reject-Gründe: aus Volltext belegbar, vermeidung-Feld konstruktiv
+            - [ ] Vorbild-Formulierungen: abschnitt_id zeigt auf existierende Sektion (FK ok), Formulierung wörtlich aus Quelle
+            - [ ] Frist-Logik: typ korrekt (rolling vs fixe_stichtage), Daten im ISO-Format YYYY-MM-DD
 
             KI-Extraktion hat Halluzinations-Risiko, v.a. bei Zahlen.
             Bei Fehlern: Dossier hier im PR korrigieren (oder Queue-Status
