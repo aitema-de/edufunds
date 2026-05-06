@@ -9,9 +9,11 @@ import type {
   FindingResolution,
   FindingStatus,
   GenerationArtefacts,
+  PipelineStage,
   WizardFacts,
   WizardMessage,
 } from "./types";
+export type { PipelineStage } from "./types";
 import {
   OUTLINE_SYSTEM,
   SECTION_SYSTEM,
@@ -145,15 +147,7 @@ function normalizeResolutions(raw: unknown, findingCount: number): FindingResolu
 type Outline = NonNullable<GenerationArtefacts["outline"]>;
 
 export interface PipelineEvent {
-  stage:
-    | "outline"
-    | "section"
-    | "critique"
-    | "revision"
-    | "recheck"
-    | "finanzplan"
-    | "consistency"
-    | "done";
+  stage: PipelineStage;
   message: string;
   payload?: unknown;
 }
@@ -175,7 +169,9 @@ export async function runPipeline(
   onEvent?: (e: PipelineEvent) => void,
   messages?: WizardMessage[]
 ): Promise<PipelineResult> {
-  const emit = (e: PipelineEvent) => onEvent?.(e);
+  const emit = (e: PipelineEvent) => {
+    try { onEvent?.(e); } catch (err) { console.warn("[pipeline] onEvent threw, ignoring:", err); }
+  };
   const usages: PipelineUsage[] = [];
 
   // User-Antworten fuer den Halluzinations-Audit der Critique-Stage extrahieren.

@@ -122,6 +122,20 @@ export interface ConsistencyIssue {
   textstelle?: string;
 }
 
+/**
+ * Pipeline-Stage-Identifier — Single Source of Truth (RESEARCH Open Question #4).
+ * pipeline.ts re-exportiert; GeneratingProgress importiert von hier.
+ */
+export type PipelineStage =
+  | "outline"
+  | "section"
+  | "critique"
+  | "revision"
+  | "recheck"
+  | "finanzplan"
+  | "consistency"
+  | "done";
+
 export interface GenerationArtefacts {
   outline?: { titel: string; abschnitte: Array<{ name: string; fokus: string }> };
   sections?: Array<{ name: string; text: string }>;
@@ -139,6 +153,10 @@ export interface GenerationArtefacts {
   hasConsistencyIssues?: boolean;
   finalText?: string;
   finanzplan?: Finanzplan;
+  /** D-13 — Aktueller Pipeline-Stage waehrend Generation. Bei jedem emit() in DB persistiert. */
+  stage?: PipelineStage;
+  /** D-13 — ISO-Timestamp des letzten Stage-Updates. Frontend nutzt fuer Liveness-Check. */
+  stageAt?: string;
 }
 
 export interface WizardSessionData {
