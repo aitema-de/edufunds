@@ -159,7 +159,7 @@ export function MyAntraegeClient() {
         return (
           <div
             key={s.sessionToken}
-            className="flex flex-wrap items-center gap-4 rounded-xl border border-slate-700/50 bg-slate-800/40 p-4 transition hover:border-slate-600"
+            className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 rounded-xl border border-slate-700/50 bg-slate-800/40 p-4 transition hover:border-slate-600"
           >
             <div className="min-w-0 flex-1">
               <div className="mb-1 flex flex-wrap items-center gap-2">
@@ -189,7 +189,7 @@ export function MyAntraegeClient() {
                 )}
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 sm:ml-auto">
               {!s.missing && (
                 <Link
                   href={href}

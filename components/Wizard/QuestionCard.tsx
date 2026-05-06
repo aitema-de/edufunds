@@ -65,7 +65,7 @@ export function QuestionCard({
           type="button"
           onClick={onSubmit}
           disabled={busy || !answer.trim()}
-          className="rounded-lg bg-orange-500 px-5 py-2 text-sm font-semibold text-white transition hover:bg-orange-600 disabled:opacity-50"
+          className="rounded-lg bg-orange-500 px-5 py-2 sm:py-3 text-sm font-semibold text-white transition hover:bg-orange-600 disabled:opacity-50"
         >
           {busy ? "Sende…" : "Antworten"}
         </button>
