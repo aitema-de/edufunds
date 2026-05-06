@@ -1,0 +1,205 @@
+{
+  "version": "2026-04-27-kumulierung-ids",
+  "quellen": [
+    "https://ensa.engagement-global.de",
+    "https://ensa.engagement-global.de/begegnungsreisen.html",
+    "https://ensa.engagement-global.de/begegnungsreisen-voraussetzungen.html",
+    "https://ensa.engagement-global.de/anbahnungsreisen-finanzielle-foerderung.html"
+  ],
+  "foerderhoehe": {
+    "maxEur": 14000,
+    "maxProzentGesamtkosten": 90,
+    "bemerkung": "Anteilfinanzierung: ENSA traegt max 90 % der zuwendungsfaehigen Ausgaben, gedeckelt auf 14.000 EUR pro Projekt. Bei besonderem Inklusionsbedarf Aufstockung um bis zu 1.000 EUR moeglich. Schule/Traeger muss mind. 10 % Eigenanteil aufbringen. Zwei Programmspuren mit gleicher Foerderhoehe: 'Anbahnungsreise' (neue Partnerschaft) und 'Begegnungsreise' (bestehende Partnerschaft seit min. 1 Jahr)."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Reisekosten der Teilnehmenden (Fluege, ggf. Bahn, Transfer, Visa)",
+        "Nur Reisen in Laender der OECD DAC-Liste (Globaler Sueden)",
+        "Laender mit nicht gewaehrleisteter Sicherheit ausgeschlossen",
+        "Reisezeitraum: 1. Maerz bis 31. Oktober"
+      ],
+      "beispielePasst": [
+        "Flugkosten fuer 10 Schuelerinnen und 2 Begleitpersonen",
+        "Visa-Gebuehren",
+        "Transfer Flughafen-Partnerschule"
+      ]
+    },
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Programmausgaben fuer die Projektdurchfuehrung (Material, Unterkunft, Verpflegung)",
+        "Muessen mit SDG-Themen und Partnerschafts-Zielsetzung verbunden sein"
+      ],
+      "beispielePasst": [
+        "Unterkunft waehrend des Aufenthalts",
+        "Verpflegung der Gruppe",
+        "Projektmaterial (Workshops, kreative Arbeiten)",
+        "Eintrittsgelder zu bildungsrelevanten Orten"
+      ]
+    },
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Honorare fuer externe Fachreferentinnen, Trainer, Bildungsakteure im Rahmen des Programms",
+        "NRO-Begleitung ist empfohlen und ueber Programmausgaben abrechenbar"
+      ]
+    },
+    {
+      "kategorie": "personal",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Eigene Personalkosten der Schule (Stammpersonal) sind nicht zuwendungsfaehig",
+        "Freistellung der Lehrkraefte ist Leistung des Schultraegers"
+      ]
+    },
+    {
+      "kategorie": "overhead",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Verwaltungs-/Gemeinkosten der Schule werden nicht separat erstattet",
+        "Reisezusatzkosten wie Uebergepaeck sind keine Programmausgabe"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": true,
+    "mindestProzent": 10,
+    "formenErlaubt": [
+      "finanziell",
+      "sachleistungen",
+      "drittmittel"
+    ],
+    "bemerkung": "Mind. 10 % Eigenanteil. Deckung zulaessig durch Drittmittel (Stiftungen, Foerdervereine, Sponsoring), Teilnehmendenbeitraege (Schuelerbeitrag) oder andere Fördermittel. KEINE Kombination mit anderen Bundesmitteln fuer dieselbe Massnahme."
+  },
+  "kumulierung": {
+    "erlaubt": "bedingt",
+    "bedingungen": [
+      "Kombination mit Landes-, Kommunal-, Stiftungs- oder Privatmitteln ist zulaessig, sofern Doppelfoerderung fuer identische Kostenposten ausgeschlossen ist.",
+      "Kombination mit anderen Bundesmitteln (etwa Erasmus+, DAAD-Schulprogrammen, KMK-PAD) ist AUSGESCHLOSSEN fuer dieselbe Massnahme."
+    ],
+    "unvereinbarMit": [
+      {
+        "programmId": "erasmus-schule-2026",
+        "grund": "Bundesmittel-Aequivalent: ENSA und Erasmus+ Schulbildung duerfen nicht fuer dieselbe Massnahme kombiniert werden."
+      },
+      {
+        "programmId": "erasmus-schulentwicklung",
+        "grund": "Erasmus+ Partnerschaften fuer Schulentwicklung gelten als gleichgerichtete Bundes-/EU-Foerderung — Doppelfoerderung ausgeschlossen."
+      },
+      {
+        "programmId": "kmk-pad-foerderung",
+        "grund": "KMK-PAD-Programme (GAPP, PASCH, Israel) sind Bundesmittel fuer Schulpartnerschaften — Kombination fuer dieselbe Reise/Massnahme ausgeschlossen."
+      }
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "antragsteller",
+        "name": "Antragsteller und Institution",
+        "pflicht": true,
+        "leitfragen": [
+          "Ist die antragstellende Stelle eine weiterfuehrende Schule, ein Schulfoerderverein oder eine gemeinnuetzige NRO mit Sitz in Deutschland?",
+          "Wer ist Ansprechperson an der Schule (Projektkoordination)?"
+        ],
+        "stilhinweis": "Grundschulen sind NICHT foerderberechtigt. Schuelerinnen muessen mindestens 14 Jahre alt sein."
+      },
+      {
+        "id": "partnerschaft",
+        "name": "Schulpartnerschaft",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie lange besteht die Partnerschaft bereits (Begegnungsreise: mind. 1 Jahr)?",
+          "Welches Land der OECD DAC-Liste ist Partnerland?",
+          "Wie kam die Partnerschaft zustande?",
+          "Welche regelmaessige Kommunikation gibt es zwischen den Schulen?"
+        ]
+      },
+      {
+        "id": "projektthema",
+        "name": "Projektthema und SDG-Bezug",
+        "pflicht": true,
+        "leitfragen": [
+          "An welchem der 17 UN-Nachhaltigkeitsziele (SDGs) orientiert sich das Thema?",
+          "Welche konkrete Fragestellung bearbeiten die Schuelerinnen gemeinsam mit der Partnergruppe?",
+          "Wie wird das Thema aus beiden Laender-Perspektiven beleuchtet (kein einseitiger Nord-Sued-Blick)?"
+        ],
+        "stilhinweis": "KRITISCH: Klassisches Hilfsprojekt, Workcamp oder Klassenfahrt wird abgelehnt. Der Austausch muss beide Seiten als gleichberechtigte Partner behandeln."
+      },
+      {
+        "id": "programm",
+        "name": "Programmablauf",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Aktivitaeten in welcher Reihenfolge waehrend der 10-14 Programmtage?",
+          "Welche konkreten Lernanlaesse, Begegnungs- und Reflexionsphasen?",
+          "Welche gemeinsamen Arbeiten/Ergebnisse entstehen?"
+        ]
+      },
+      {
+        "id": "teilnehmende",
+        "name": "Teilnehmendengruppe",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie viele Schuelerinnen (6-12, i.d.R. 10)?",
+          "Wie viele Begleitpersonen (i.d.R. 2)?",
+          "Wie erfolgt die Auswahl? Werden Kinder mit erschwertem Bildungszugang besonders beruecksichtigt?"
+        ]
+      },
+      {
+        "id": "vorbereitung-nachbereitung",
+        "name": "Vor- und Nachbereitung",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie werden Schuelerinnen und Lehrkraefte vor der Reise inhaltlich und interkulturell vorbereitet?",
+          "Welche Nachbereitungsformate sind geplant (Praesentation, Dokumentation, Weitergabe an Schulgemeinschaft)?",
+          "Wird die Gruppe durch eine NRO begleitet?"
+        ],
+        "stilhinweis": "NRO-Begleitung ist ein besonderes Merkmal des Programms und wird empfohlen."
+      },
+      {
+        "id": "wirkung",
+        "name": "Erwartete Wirkung",
+        "pflicht": true,
+        "leitfragen": [
+          "Was soll sich bei den Teilnehmenden durch das Projekt veraendern (Kompetenzen, Haltung, Wissen)?",
+          "Wie wirkt das Projekt in die Schulgemeinschaft zurueck?",
+          "Wie traegt es zur langfristigen Partnerschaftsentwicklung bei?"
+        ]
+      },
+      {
+        "id": "finanzplan",
+        "name": "Kosten- und Finanzierungsplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Reisekosten, Programmausgaben und Honorare (Summen)?",
+          "Welche Eigenmittel (min. 10 %) aus welchen Quellen?",
+          "Gibt es weitere Foerderquellen (keine Bundesmittel)?"
+        ]
+      }
+    ],
+    "anlagen": [
+      "Nachweis der bestehenden Schulpartnerschaft (z.B. Partnerschaftsvereinbarung, Korrespondenz)",
+      "Einverstaendnis der Schulleitung",
+      "Angebote/Kostenvoranschlaege fuer Fluege und Unterkunft (Finanzplan-Unterfütterung)",
+      "Kurz-CV der NRO-Begleitperson (falls vorgesehen)"
+    ],
+    "einreichungsweg": "Ueber die Foerderprojekt-Software der Engagement Global gGmbH (Bonn), online. Zweistufig: Projektskizze (1. Stufe) bis 30. September fuer das Folgejahr, nach Bewilligung foermlicher Antrag.",
+    "bearbeitungsdauer": "Skizzen-Ruecklauf ca. 2-3 Monate nach Fristende, foermlicher Antrag 4-8 Wochen nach Bewilligung."
+  },
+  "notizen": [
+    "Manuell aus oeffentlichen Quellen kuratiert, ohne KI-Extraktion.",
+    "NUR weiterfuehrende Schulen (allgemein- oder berufsbildend). Grundschulen sind ausgeschlossen, auch wenn foerderprogramme.json 'schulformen: grundschule' auflistet — das ist ein Datenfehler im Repo und sollte korrigiert werden.",
+    "Schuelerinnen muessen mind. 14 Jahre alt sein.",
+    "Bewerbungsfenster laeuft jaehrlich vom 1. Juli bis 30. September fuer das Folgejahr.",
+    "Reisezeitraum ist auf 1. Maerz bis 31. Oktober begrenzt.",
+    "Kombinationsverbot mit anderen Bundesmitteln ist unueblich scharf — Kolja-Hinweis fuer den Wizard: bei Kumulierungs-Check sollten Erasmus+, KMK-PAD, DAAD-Schulprogramme als unvereinbar markiert werden.",
+    "Kontakt: ensa-programm@engagement-global.de, Telefon +49 30 254 82-34 35.",
+    "Traeger: Engagement Global gGmbH im Auftrag des BMZ."
+  ]
+}

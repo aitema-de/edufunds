@@ -320,9 +320,17 @@ export default function FoerderprogrammePage() {
               Förderprogramme für Grundschulen
             </h1>
             <p className="text-[#1e3a61] max-w-2xl mx-auto text-lg">
-              Finden Sie passende Förderungen für Ihre Grundschule. 
+              Finden Sie passende Förderungen für Ihre Grundschule.
               Aktuell {isLoading ? '...' : `${stats.total}+ Programme`} im Überblick.
             </p>
+            <div className="mt-6">
+              <a
+                href="/antrag/start"
+                className="inline-flex items-center gap-2 rounded-lg bg-[#c9a227] px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-[#b8921e]"
+              >
+                Beschreib dein Anliegen → KI findet passende Programme
+              </a>
+            </div>
           </div>
 
           {/* Stats */}

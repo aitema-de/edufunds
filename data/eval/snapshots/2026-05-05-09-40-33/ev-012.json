@@ -1,0 +1,115 @@
+{
+  "input": {
+    "anliegen": "Wir wollen einen Bewegungs-Pausenhof bauen und brauchen Geraete fuer 180 Grundschulkinder.",
+    "schultyp": "grundschule",
+    "bundesland": "Niedersachsen",
+    "geschaetztesBudgetEur": 12000
+  },
+  "result": {
+    "kind": "ranking",
+    "matches": [
+      {
+        "id": "bundesweit-ganztag",
+        "score": 85,
+        "passt_weil": "Foerdert Geraeteausstattung fuer Ganztagsschulen, passt zu Bewegungs-Pausenhof fuer Grundschulkinder.",
+        "achtung_bei": "Antragsfrist und Landesprogramm Niedersachsen prüfen.",
+        "programm": {
+          "id": "bundesweit-ganztag",
+          "name": "Investitionsprogramm Ganztagsausbau",
+          "foerdergeber": "Bundesministerium für Familie",
+          "foerdergeberTyp": "bund",
+          "schulformen": [
+            "grundschule"
+          ],
+          "bundeslaender": [
+            "alle"
+          ],
+          "foerdersummeMin": 50000,
+          "foerdersummeMax": 500000,
+          "foerdersummeText": "3,5 Mrd. € Gesamtvolumen (bis 2029), individuelle Förderung je nach Projekt",
+          "kategorien": [
+            "ganztag",
+            "neubau",
+            "umbau",
+            "ausstattung"
+          ],
+          "bewerbungsfristText": "laufend bis 2029 (Verlängerung beschlossen)",
+          "bewerbungsart": "online",
+          "infoLink": "https://www.ganztagsschulen.org/de/service/investitionsprogramm-ganztagsausbau/investitionsprogramm-ganztagsausbau_node.html",
+          "kurzbeschreibung": "Bundeshilfen für Ganztagsausbau mit Rechtsanspruch ab 2026/27.",
+          "status": "aktiv",
+          "createdAt": "2025-02-11T00:00:00Z",
+          "updatedAt": "2025-01-20T00:00:00.000Z",
+          "quelle": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/kinderbetreuung/ganztagsbetreuung/",
+          "kiAntragGeeignet": true,
+          "verifiziertAm": "2026-02-12",
+          "verifiziertVon": "Web-Recherche BMFSFJ",
+          "bemerkung": "Förderung von Investitionen in Ganztagsausbau; Anträge über Länder/Kommunen"
+        }
+      },
+      {
+        "id": "aktion-mensch-schulkooperation",
+        "score": 65,
+        "passt_weil": "Unterstuetzt Bewegungs- und Spielprojekte fuer Grundschulkinder, inklusiv und teilhabeorientiert.",
+        "achtung_bei": "",
+        "programm": {
+          "id": "aktion-mensch-schulkooperation",
+          "name": "Aktion Mensch - Junge Menschen stärken (Schulkooperationen)",
+          "foerdergeber": "Aktion Mensch e.V.",
+          "foerdergeberTyp": "stiftung",
+          "schulformen": [
+            "grundschule",
+            "hauptschule",
+            "realschule",
+            "gymnasium",
+            "gesamtschule"
+          ],
+          "bundeslaender": [
+            "alle"
+          ],
+          "foerdersummeMin": 5000,
+          "foerdersummeMax": 350000,
+          "foerdersummeText": "Bis zu 350.000€ (mind. 10% Eigenanteil erforderlich)",
+          "kategorien": [
+            "inklusion",
+            "bildung",
+            "teilhabe",
+            "integration",
+            "benachteiligung"
+          ],
+          "bewerbungsfristText": "laufend",
+          "bewerbungsart": "online",
+          "infoLink": "https://www.aktion-mensch.de/inklusion/bildung/foerderung/schul-kooperationen",
+          "kurzbeschreibung": "Programm 'Junge Menschen stärken' fördert Projekte zur Stärkung von Kindern/Jugendlichen mit/ohne Behinderung. Fokus: Übergänge zwischen Bildungseinrichtungen, Inklusionsprojekte, Angebote für benachteiligte Gruppen.",
+          "status": "aktiv",
+          "createdAt": "2026-02-12T00:00:00Z",
+          "updatedAt": "2026-02-12T15:00:00.000Z",
+          "quelle": "https://www.aktion-mensch.de/inklusion/bildung/foerderung/schul-kooperationen",
+          "quelleUrl": "https://www.aktion-mensch.de/inklusion/bildung/foerderung/schul-kooperationen",
+          "kiAntragGeeignet": true,
+          "verifiziertAm": "2026-02-12",
+          "verifiziertVon": "Web-Recherche Aktion Mensch",
+          "bemerkung": "Laufzeit bis zu 5 Jahre. Beispiele: Theaterprojekte (248.000€), Schulstart-Hilfen (125.760€). Antragstellung über aktion-mensch.de/foerderung/antrag"
+        }
+      }
+    ],
+    "costs": {
+      "calls": 1,
+      "promptTokens": 3512,
+      "candidatesTokens": 155,
+      "totalTokens": 3667,
+      "usdCents": 0.05,
+      "eurCents": 0.05,
+      "entries": [
+        {
+          "model": "deepseek-chat",
+          "promptTokens": 3512,
+          "candidatesTokens": 155,
+          "usdCents": 0.05
+        }
+      ]
+    },
+    "totalCandidates": 86,
+    "filteredOut": 45
+  }
+}

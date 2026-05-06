@@ -1,0 +1,113 @@
+{
+  "input": {
+    "anliegen": "Wir wollen einen Bewegungs-Pausenhof bauen und brauchen Geraete fuer 180 Grundschulkinder.",
+    "schultyp": "grundschule",
+    "bundesland": "Niedersachsen",
+    "geschaetztesBudgetEur": 12000
+  },
+  "result": {
+    "kind": "ranking",
+    "matches": [
+      {
+        "id": "bundesweit-ganztag",
+        "score": 88,
+        "passt_weil": "Foerdert den Ausbau von Pausenhoefen und Spielgeraeten im Ganztagsausbau, passend fuer Grundschulen.",
+        "achtung_bei": "Antrag ueber den Schultraeger pruefen.",
+        "programm": {
+          "id": "bundesweit-ganztag",
+          "name": "Investitionsprogramm Ganztagsausbau",
+          "foerdergeber": "Bundesministerium für Familie",
+          "foerdergeberTyp": "bund",
+          "schulformen": [
+            "grundschule"
+          ],
+          "bundeslaender": [
+            "alle"
+          ],
+          "foerdersummeMin": 50000,
+          "foerdersummeMax": 500000,
+          "foerdersummeText": "3,5 Mrd. € Gesamtvolumen (bis 2029), individuelle Förderung je nach Projekt",
+          "kategorien": [
+            "ganztag",
+            "neubau",
+            "umbau",
+            "ausstattung"
+          ],
+          "bewerbungsfristText": "laufend bis 2029 (Verlängerung beschlossen)",
+          "bewerbungsart": "online",
+          "infoLink": "https://www.ganztagsschulen.org/de/service/investitionsprogramm-ganztagsausbau/investitionsprogramm-ganztagsausbau_node.html",
+          "kurzbeschreibung": "Bundeshilfen für Ganztagsausbau mit Rechtsanspruch ab 2026/27.",
+          "status": "aktiv",
+          "createdAt": "2025-02-11T00:00:00Z",
+          "updatedAt": "2025-01-20T00:00:00.000Z",
+          "quelle": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/kinderbetreuung/ganztagsbetreuung/",
+          "kiAntragGeeignet": true,
+          "verifiziertAm": "2026-02-12",
+          "verifiziertVon": "Web-Recherche BMFSFJ",
+          "bemerkung": "Förderung von Investitionen in Ganztagsausbau; Anträge über Länder/Kommunen"
+        }
+      },
+      {
+        "id": "klimalab-2026",
+        "score": 50,
+        "passt_weil": "Buendnisprojekte im Klimaschutz koennen naturnahe Bewegungsraeume finanziell unterstuetzen.",
+        "achtung_bei": "Nicht direkt schulgeeignet, Antrag ueber Verein.",
+        "programm": {
+          "id": "klimalab-2026",
+          "name": "KlimaLab - Klimaschutz-Engagement (Vereine & Initiativen)",
+          "foerdergeber": "KlimaLab (gefördert durch diverse Stiftungen)",
+          "foerdergeberTyp": "stiftung",
+          "schulformen": [
+            "grundschule",
+            "hauptschule",
+            "realschule",
+            "gymnasium",
+            "gesamtschule"
+          ],
+          "bundeslaender": [
+            "alle"
+          ],
+          "foerdersummeMin": 5000,
+          "foerdersummeMax": 20000,
+          "foerdersummeText": "Bis zu 20.000€ plus Beratung",
+          "kategorien": [
+            "klimaschutz",
+            "engagement",
+            "nachhaltigkeit",
+            "umwelt"
+          ],
+          "bewerbungsfristStart": "2026-01-01",
+          "bewerbungsfristEnde": "2026-02-27",
+          "bewerbungsfristText": "bis 27.02.2026 (AKTUELL!)",
+          "bewerbungsart": "online",
+          "infoLink": "https://fundraiser-magazin.de/klimalab-2026",
+          "kurzbeschreibung": "Förderung für gemeinnützige Vereine und Initiativen (nicht direkt Schulen) für Klimaschutz-Projekte. Beratung inkludiert. Schulen können über Kooperationspartner (Vereine) teilnehmen.",
+          "status": "aktiv",
+          "createdAt": "2026-02-12T00:00:00Z",
+          "updatedAt": "2026-02-12T11:21:11.135740",
+          "quelle": "foerdermittel-wissenswert.de",
+          "kiAntragGeeignet": true,
+          "verificationWarning": "Dieses Programm hat nicht verifizierte Fördersummen. Bitte prüfen Sie die Daten vor einer Antragstellung."
+        }
+      }
+    ],
+    "costs": {
+      "calls": 1,
+      "promptTokens": 3512,
+      "candidatesTokens": 147,
+      "totalTokens": 3659,
+      "usdCents": 0.05,
+      "eurCents": 0.05,
+      "entries": [
+        {
+          "model": "deepseek-chat",
+          "promptTokens": 3512,
+          "candidatesTokens": 147,
+          "usdCents": 0.05
+        }
+      ]
+    },
+    "totalCandidates": 86,
+    "filteredOut": 45
+  }
+}

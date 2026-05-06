@@ -18,6 +18,21 @@ Thumbs.db
 .idea/
 *.swp
 
+# Environment (Secrets!)
+.env
+.env.local
+.env.production
+.env.*.local
+
 # Misc
 edufunds-deploy.tar.gz
 tsconfig.tsbuildinfo
+
+# Temporaere Outputs (Smoke-Tests, A/B-Vergleiche)
+tmp/
+
+# Eval-Lauf-Artefakte (transient, je Live-Run neu erzeugt)
+# Korpus selbst (data/eval/matcher-korpus.json) bleibt versioniert.
+# Versionierte Baselines kommen separat in data/eval/BASELINE.md (Plan 01-02).
+data/eval/reports/
+data/eval/snapshots/

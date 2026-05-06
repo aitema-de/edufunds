@@ -1,0 +1,86 @@
+name: Weekly Programm-Scan
+
+# Scannt konfigurierte Quellen (data/program-sources.json) nach neuen
+# Förderprogrammen, die noch nicht in foerderprogramme.json stehen.
+# Ergebnis ist ein Update von data/program-candidates.json, das als PR
+# eröffnet wird — KEIN Auto-Merge, Kolja triagiert die Kandidaten.
+#
+# Für einen gezielten Source-Scan direkt lokal:
+#   GEMINI_API_KEY=... npx tsx scripts/scan-new-programs.ts --source <id>
+
+on:
+  schedule:
+    - cron: "30 4 * * 1" # Montag 04:30 UTC, eine halbe Stunde nach dem Dossier-Cron
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Scan sources
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "${GEMINI_API_KEY}" ]; then
+            echo "::error::GEMINI_API_KEY Secret fehlt."
+            exit 1
+          fi
+          npx tsx scripts/scan-new-programs.ts
+
+      - name: Detect changes
+        id: diff
+        run: |
+          set -euo pipefail
+          if git diff --quiet data/program-candidates.json; then
+            echo "changed=false" >> "${GITHUB_OUTPUT}"
+            echo "Keine neuen Kandidaten."
+          else
+            echo "changed=true" >> "${GITHUB_OUTPUT}"
+          fi
+
+      - name: Create Pull Request
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore(richtlinien): neue Programm-Kandidaten via Scanner"
+          branch: program-scan-bot/auto
+          delete-branch: true
+          title: "Neue Programm-Kandidaten (Scanner-Lauf)"
+          body: |
+            Automatisch vom wöchentlichen Programm-Scan gefunden.
+
+            Siehe `data/program-candidates.json` für die neuen Einträge
+            (sortiert nach `schulRelevanz`).
+
+            ### Triage pro Kandidat
+            - **Aufnehmen:** Eintrag in `data/foerderprogramme.json`
+              anlegen mit sauberen Feldern (id, name, foerdergeberTyp,
+              schulformen, bundeslaender, …). Kandidat hier als
+              `status: "duplicate"` markieren.
+            - **Verwerfen:** `status` auf `"skip"` setzen (z. B. weil
+              nicht für Schulen, bereits abgelaufen, zu regional).
+            - **Noch unklar:** `status` auf `"review"` setzen, Notiz
+              im `kurznotiz`-Feld ergänzen.
+
+            Nach Merge landet ein neu aufgenommenes Programm automatisch
+            in der Richtlinien-Prio-Queue beim nächsten Queue-Rebuild.
+          labels: |
+            richtlinien-bot
+            auto-generated

@@ -9,7 +9,11 @@
  * Konfiguration:
  * - Allgemeine API: 100 Requests / 15 Minuten pro IP
  * - Auth-Endpunkte: 10 Requests / 15 Minuten pro IP
- * - KI-Generierung: 5 Requests / Stunde pro IP
+ * - Wizard-Interview: 60 Requests / Stunde pro IP (Frage-Antwort-Cycles)
+ * - KI-Generierung: 5 Requests / Stunde pro IP (volle Pipeline-Laeufe, teuer)
+ *
+ * Dev-Bypass: localhost wird im NODE_ENV=development nicht limitiert,
+ * damit UAT-Sessions nicht blockiert werden.
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -33,10 +37,16 @@ const RATE_LIMITS: Record<string, RateLimitConfig> = {
     windowMs: 15 * 60 * 1000, // 15 Minuten
     maxRequests: 10,
   },
-  // KI-Generierung (teuer)
+  // KI-Pipeline-Generierung (sehr teuer — 1 Aufruf = ~9 LLM-Calls)
   ai: {
     windowMs: 60 * 60 * 1000, // 1 Stunde
     maxRequests: 5,
+  },
+  // Wizard-Interview-Endpoints (start, answer, edit-answer, generate-question, ...)
+  // Realistischer Antrag: 12 Frage-Antwort-Cycles + Edits + ggf. Reload — daher 60/h
+  wizard: {
+    windowMs: 60 * 60 * 1000, // 1 Stunde
+    maxRequests: 60,
   },
   // Newsletter (kostenlos, aber Spam-Gefahr)
   newsletter: {
@@ -91,8 +101,13 @@ function getRateLimitType(pathname: string): string {
   if (pathname.includes('/api/admin/login') || pathname.includes('/api/auth')) {
     return 'auth';
   }
-  if (pathname.includes('/api/generate-antrag') || pathname.includes('/api/assistant/generate')) {
+  // Pipeline-Generierung VOR der allgemeinen /api/wizard/-Klausel pruefen,
+  // damit /api/wizard/generate als 'ai' (5/h, teuer) gilt, nicht als 'wizard' (60/h).
+  if (pathname.includes('/api/assistant/generate') || pathname.includes('/api/wizard/generate')) {
     return 'ai';
+  }
+  if (pathname.includes('/api/wizard/')) {
+    return 'wizard';
   }
   if (pathname.includes('/api/newsletter')) {
     return 'newsletter';
@@ -173,6 +188,18 @@ export function rateLimit(request: NextRequest): {
 
   // Erstelle eindeutigen Identifier (IP + Route-Typ)
   const clientIP = getClientIP(request);
+
+  // Dev-Bypass: Localhost-Requests in development nicht limitieren — UAT-Sessions
+  // wuerden sonst dauernd in das Wizard- oder AI-Limit laufen. In Production
+  // laeuft alles hinter Reverse-Proxy mit echter Client-IP, der Bypass greift dort
+  // nicht (NODE_ENV=production + Header gesetzt).
+  if (
+    process.env.NODE_ENV === 'development' &&
+    (clientIP === '::1' || clientIP === '127.0.0.1' || clientIP === 'unknown')
+  ) {
+    return { allowed: true };
+  }
+
   const identifier = `${clientIP}:${limitType}`;
 
   // Prüfe Rate-Limit
@@ -213,7 +240,7 @@ export function rateLimit(request: NextRequest): {
  */
 export async function checkEndpointRateLimit(
   request: NextRequest,
-  type: 'auth' | 'ai' | 'newsletter' | 'default' = 'default'
+  type: 'auth' | 'ai' | 'wizard' | 'newsletter' | 'default' = 'default'
 ): Promise<{
   allowed: boolean;
   response?: NextResponse;
