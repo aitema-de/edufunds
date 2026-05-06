@@ -40,17 +40,33 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 })
 
-// Mock IntersectionObserver
+// Mock IntersectionObserver (Plan 02.1-01: vollstaendige Schnittstelle fuer AntragSectionNav-Tests)
 class MockIntersectionObserver {
   observe = jest.fn()
-  disconnect = jest.fn()
   unobserve = jest.fn()
+  disconnect = jest.fn()
+  takeRecords = jest.fn(() => [])
+  root = null
+  rootMargin = ""
+  thresholds: number[] = []
+  constructor(_cb: IntersectionObserverCallback, _opts?: IntersectionObserverInit) {}
 }
 
-Object.defineProperty(window, 'IntersectionObserver', {
-  writable: true,
-  value: MockIntersectionObserver,
-})
+;(global as unknown as { IntersectionObserver: typeof IntersectionObserver }).IntersectionObserver =
+  MockIntersectionObserver as unknown as typeof IntersectionObserver
+
+// Polyfill fuer fetch-API-Globals in jsdom (Node 18+ hat native Request/Response/Headers).
+// Benoetigt fuer Tests die Next.js App-Router-Routen (z.B. stripe/webhook) importieren.
+// jsdom ueberschreibt globalThis; daher explizit in global setzen.
+{
+  const g = global as unknown as Record<string, unknown>
+  if (!g.Request && typeof globalThis.Request !== 'undefined') {
+    g.Request = globalThis.Request
+    g.Response = globalThis.Response
+    g.Headers = globalThis.Headers
+    g.fetch = globalThis.fetch
+  }
+}
 
 // Mock scrollTo
 Object.defineProperty(window, 'scrollTo', {
