@@ -97,3 +97,38 @@ stripe trigger checkout.session.completed
 - [ ] Live-Webhook-Endpoint in Stripe registriert
 - [ ] Deploy via `./scripts/deploy-production.sh`
 - [ ] Ein realer 29-€-Durchlauf zur Validierung (danach via Stripe Refund zurück)
+
+## Webhook-Smoke (Plan 02.1-02)
+
+Zwei verifizierte Smoke-Pfade — beide funktionieren ohne Stripe-Live-Account.
+
+### Pfad A — Auto-Smoke über Stripe-SDK (CI-tauglich)
+
+```bash
+# Voraussetzung: Dev-Server läuft (npm run dev)
+# Voraussetzung: STRIPE_SECRET_KEY (Test-Mode reicht!) + STRIPE_WEBHOOK_SECRET in .env.local
+npx tsx --env-file=.env.local scripts/smoke-stripe-webhook.ts
+```
+
+Erwartet: `OK — Webhook-Pfad smoke-tested (3/3).`
+
+Hinweis Test 1: Wenn `smoke-fake-token` nicht in der Dev-DB existiert, gibt der Webhook 500 zurück — das ist korrekt (Stripe retried 5xx). Für einen echten 200-Durchlauf `SMOKE_SESSION_TOKEN` auf einen existierenden Token setzen.
+
+### Pfad B — Stripe-CLI manuell (Production-realistisch)
+
+```bash
+# Einmalig:
+stripe login
+
+# Terminal 1 (laufen lassen):
+stripe listen --forward-to http://localhost:3101/api/stripe/webhook
+# → "Ready! Your webhook signing secret is whsec_xxx"
+# → den whsec_xxx in .env.local als STRIPE_WEBHOOK_SECRET eintragen, Dev-Server neu starten
+
+# Terminal 2:
+stripe trigger checkout.session.completed
+stripe trigger checkout.session.expired
+stripe trigger charge.refunded
+```
+
+Erwartet: Terminal 1 zeigt jeweils 200-Response, Backend-Logs zeigen `[stripe/webhook] event.id=evt_... type=...` plus den jeweiligen Case-Branch.
