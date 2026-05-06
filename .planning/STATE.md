@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: idle
-stopped_at: Phase 02.1 abgeschlossen (smoke-verified) — bereit für Phase 3 Programm-Pflege Foundation
-last_updated: "2026-05-06T15:35:00.000Z"
-last_activity: 2026-05-06 -- Phase 02.1 abgeschlossen, End-to-End-Smoke durch Kolja
+status: Bereit für Phase 3 (Programm-Pflege Foundation, FETCH-01 + FETCH-03)
+stopped_at: Phase 3 context gathered
+last_updated: "2026-05-06T14:11:59.328Z"
+last_activity: "2026-05-06 -- End-to-End-Smoke durch Kolja: Stiftung Bildung Schulgarten-Antrag generiert, Reload-Resume während interviewing implicit verified (Server-Crash-Recovery)"
 progress:
   total_phases: 7
   completed_phases: 3
-  total_plans: 22
+  total_plans: 16
   completed_plans: 16
-  percent: 73
+  percent: 100
 ---
 
 # Project State
@@ -106,7 +106,7 @@ Items aus REQUIREMENTS.md v2 / Out of Scope, bewusst nicht in dieser Milestone:
 ## Session Continuity
 
 Last session: --stopped-at
-Stopped at: Phase 02.1 UI-SPEC approved
+Stopped at: Phase 3 context gathered
 Resume file: --resume-file
 
 **Planned Phase:** 02.1 (frontend-polish-stripe-vorbereitung) — 6 plans — 2026-05-06T10:20:21.072Z
