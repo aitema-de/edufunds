@@ -2,10 +2,10 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: phase-04-complete
-stopped_at: Phase 04 abgeschlossen (Live-E2E-Smoke deferred)
-last_updated: "2026-05-19T16:00:00.000Z"
-last_activity: 2026-05-19 -- Phase 04 complete (4/4 Plans, Strict-Validator 11/11 gruen)
+status: Phase 04 abgeschlossen — alle 11 Dossiers Strict-Schema-konform
+stopped_at: Phase 5 context gathered (11 areas discussed, 36 decisions captured)
+last_updated: "2026-05-19T19:24:47.992Z"
+last_activity: 2026-05-19 -- Phase 04 complete (Wave 3 mit deferred Live-E2E-Smoke)
 progress:
   total_phases: 7
   completed_phases: 5
@@ -112,9 +112,9 @@ Items aus REQUIREMENTS.md v2 / Out of Scope, bewusst nicht in dieser Milestone:
 
 ## Session Continuity
 
-Last session: 2026-05-19 (Phase 04 Wave 1 ausgefuehrt, Wave 2 blockiert)
-Stopped at: Phase 04 Wave 2 (Plan 04-03 Sample-First) — Sample-1 bmbf-digitalpakt-2 Migrations-Lauf produzierte Strict-Schema-Verletzung mit Gemini-2.5-pro
-Resume file: .planning/phases/04-programm-pflege-vollautomation-dossier-migration/04-CONTEXT.md
+Last session: --stopped-at
+Stopped at: Phase 5 context gathered (11 areas discussed, 36 decisions captured)
+Resume file: --resume-file
 
 **Planned Phase:** 04 (programm-pflege-vollautomation-dossier-migration) — 4 plans (Wave 1 DONE, Wave 2 BLOCKED, Wave 3 PENDING)
 
