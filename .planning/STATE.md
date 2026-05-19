@@ -4,14 +4,14 @@ milestone: v1.0
 milestone_name: milestone
 status: Phase 04 abgeschlossen — alle 11 Dossiers Strict-Schema-konform
 stopped_at: Phase 5 context gathered (11 areas discussed, 36 decisions captured)
-last_updated: "2026-05-19T19:24:47.992Z"
+last_updated: "2026-05-19T21:01:23.167Z"
 last_activity: 2026-05-19 -- Phase 04 complete (Wave 3 mit deferred Live-E2E-Smoke)
 progress:
   total_phases: 7
   completed_phases: 5
-  total_plans: 23
+  total_plans: 31
   completed_plans: 23
-  percent: 100
+  percent: 74
 ---
 
 # Project State
@@ -116,7 +116,7 @@ Last session: --stopped-at
 Stopped at: Phase 5 context gathered (11 areas discussed, 36 decisions captured)
 Resume file: --resume-file
 
-**Planned Phase:** 04 (programm-pflege-vollautomation-dossier-migration) — 4 plans (Wave 1 DONE, Wave 2 BLOCKED, Wave 3 PENDING)
+**Planned Phase:** 5 (wizard-pipeline-tuning-ux-l-cke) — 8 plans — 2026-05-19T21:01:23.132Z
 
 ### Wave-2-Blocker (entdeckt 2026-05-19)
 

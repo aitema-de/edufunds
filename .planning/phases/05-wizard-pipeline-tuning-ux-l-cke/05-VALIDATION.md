@@ -48,16 +48,35 @@ created: 2026-05-19
 
 ## Wave 0 Requirements
 
-- [ ] `__tests__/eval/eval-pipeline-scoring.test.ts` — Unit-Tests für FK-Match (WIZ-01), Marker-Regex (WIZ-02), Rubric-Aggregation (WIZ-03)
-- [ ] `__tests__/eval/eval-pipeline-snapshot.test.ts` — Snapshot/Replay-Determinismus (replay produziert identische Scores)
-- [ ] `__tests__/eval/geber-classification.test.ts` — Mapping 11 Dossiers → 4-5 strategische Cluster
-- [ ] `__tests__/eval/finanzplan-sub-metric.test.ts` — Validator-Pass-Rate + Autofix-Erfolg-Quote
-- [ ] `__tests__/eval/determinism.test.ts` — N=3-Variabilität, stddev-Plausibilität
-- [ ] `__tests__/eval/marker-false-positive.test.ts` — Cross-Check User-Antwort enthält Marker → kein FP
-- [ ] `__tests__/eval/fixtures/llm-stubs.ts` — Deterministische LLM-Stubs für Snapshot-Tests
-- [ ] Pre-Flight: `npx tsx scripts/check-dossier-coverage.ts` — Daten-Survey (Befund A5 aus RESEARCH.md: maxZeichen + vorbildFormulierungen-Coverage)
+> 12 Test-Skelette laut Plan 05-01 Task 3 + 2 Fixture-Dateien (Warning 7 Resolution: synchronisiert mit Plan 05-01 `files_modified`).
+> Alle 12 Tests sind laut RESEARCH §Validation Architecture Z.1325-1466 gerechtfertigt.
 
-*Begründung: 36 CONTEXT-Decisions + 6 Pitfalls aus RESEARCH.md erzwingen explizite Stubs, da LLM-Calls in CI nicht laufen können (`--replay`-Default).*
+**Test-Skelette (12 Dateien — werden in Wave 0 als `it.todo()` angelegt, in Wave 2 Plan 05-04 Task 1c → lebende Tests):**
+
+- [ ] `__tests__/eval/pipeline-fk-match.test.ts` — WIZ-01 FK-Match auf antragsstruktur.abschnitte[].name (7 Tests)
+- [ ] `__tests__/eval/pipeline-marker-detection.test.ts` — WIZ-02 Layer-1 Marker-Detection multi-source (5 Tests)
+- [ ] `__tests__/eval/pipeline-regex-detection.test.ts` — WIZ-02 Layer-2 Regex + False-Positive-Schutz (6 Tests)
+- [ ] `__tests__/eval/pipeline-judge-rubric.test.ts` — WIZ-03 Judge mit LLM-Stub (4 Tests)
+- [ ] `__tests__/eval/pipeline-finanzplan-sub.test.ts` — Finanzplan-Sub-Metrik (4 Tests)
+- [ ] `__tests__/eval/pipeline-determinism.test.ts` — N=3 Mean+Population-Stddev (4 Tests)
+- [ ] `__tests__/eval/pipeline-snapshot-replay.test.ts` — Snapshot/Replay-Determinismus + Schema-Version-Check (3 Tests)
+- [ ] `__tests__/eval/pipeline-aggregation.test.ts` — Per-Geber-Gruppe-Breakdown (3 Tests)
+- [ ] `__tests__/eval/pipeline-gate.test.ts` — 2σ-Threshold-Logik pro Achse (D-25; 4 Tests)
+- [ ] `__tests__/eval/geber-classification.test.ts` — Mapping 11 Dossiers → 4-5 strategische Cluster (5 Tests)
+- [ ] `__tests__/lib/wizard/config.test.ts` — Env-Var-Parsing PIPELINE_CONFIG-Flags (4 Tests)
+- [ ] `__tests__/lib/wizard/pipeline.compliance.test.ts` — Compliance-Stage mit LLM-Stub (4 Tests, lebend in Wave 3 Plan 05-06)
+
+**Fixture-Dateien (2):**
+
+- [ ] `__tests__/eval/fixtures/llm-stubs.ts` — STUB_JUDGE_RESPONSE_OEFFENTLICH + STUB_COMPLIANCE_VIOLATIONS
+- [ ] `__tests__/fixtures/pipeline-snapshot-borsigwalder.json` — UAT-28.04.-Snapshot-Fixture
+
+**Pre-Flight (Daten-Survey, vor Test-Skelett-Anlage):**
+
+- [ ] `npx tsx scripts/check-dossier-coverage.ts` — Daten-Survey (Befund A5 aus RESEARCH.md: maxZeichen + vorbildFormulierungen-Coverage)
+- [ ] Output `data/eval/dossier-coverage-baseline.md` existiert mit 11 Dossier-Zeilen
+
+*Begründung: 36 CONTEXT-Decisions + 6 Pitfalls aus RESEARCH.md erzwingen explizite Stubs, da LLM-Calls in CI nicht laufen können (`--replay`-Default). Warning 7 Resolution: 12 statt 7 Test-Files — die zusätzlichen 5 (regex-detection, judge-rubric, snapshot-replay, aggregation, gate) sind laut RESEARCH §Validation Architecture Z.1325-1466 alle gerechtfertigt (Layer-2-Regex/False-Positive, LLM-Judge-Mocking, Schema-Version-Check, Per-Cluster-Aggregation, achsen-spezifisches D-25-Gate).*
 
 ---
 
@@ -76,7 +95,7 @@ created: 2026-05-19
 
 - [ ] All tasks have `<automated>` verify or Wave 0 dependencies
 - [ ] Sampling continuity: no 3 consecutive tasks without automated verify
-- [ ] Wave 0 covers all MISSING references (Pre-Flight Daten-Survey + 7 Test-Files)
+- [ ] Wave 0 covers all MISSING references (Pre-Flight Daten-Survey + 12 Test-Files + 2 Fixtures)
 - [ ] No watch-mode flags
 - [ ] Feedback latency < 60s
 - [ ] `nyquist_compliant: true` set in frontmatter

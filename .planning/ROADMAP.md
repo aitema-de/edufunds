@@ -123,8 +123,18 @@ Plans:
   3. Pipeline-Eval-Run gegen verschärfte niedrig-qualitative Inputs zeigt für WIZ-02: 0 organisatorische Halluzinationen (keine erfundenen Rahmenverträge / Tarifsysteme / nicht-genannten Kooperationspartner) und ehrliche Lücken-Markierungen
   4. „Passt-zum-Geber"-Tonalitäts-Check (WIZ-03) liefert messbares Score-Delta gegen Baseline pro Geber-Typ (öffentlich / Stiftung / Wirtschaftspreis) — Score und Methode dokumentiert
   5. User kann den Wizard-Tab schließen und über `/antrag/meine` oder direkt über die programmspezifische Wizard-URL den Lauf an exakt der letzten Frage / Phase fortsetzen (WIZ-04) — auch nach Hard-Reload während `phase=interviewing` oder `phase=generating`
-**Plans**: TBD
+**Plans:** 8 plans
 **UI hint**: yes
+
+Plans:
+- [ ] 05-01-PLAN.md — Wave 0 Pre-Flight (ROADMAP/REQUIREMENTS-Edit D-34, Dossier-Coverage-Survey A5, 12 Test-Skelette D-32)
+- [ ] 05-02-PLAN.md — Wave 1 Korpus-Kuration (pipeline-korpus.json, 22 Eintraege, 2 Kolja-Checkpoints D-14)
+- [ ] 05-03-PLAN.md — Wave 1 geber-classification.ts + config.ts (D-22/-28, 4 Feature-Flags default OFF)
+- [ ] 05-04-PLAN.md — Wave 2 eval-pipeline.ts + Baseline-N=3-Run + BASELINE.md-Phase-5-Eintrag (D-07/-09/-15/-16)
+- [ ] 05-05-PLAN.md — Wave 3 Hebel 1+3 (sharp-prompts + dossier-injection in prompts.ts)
+- [ ] 05-06-PLAN.md — Wave 3 Hebel 2 (compliance-check-stage in pipeline.ts, loop-count=1)
+- [ ] 05-07-PLAN.md — Wave 3 Hebel 4 (geber-guidance V2 + programm-kriterien erweitert)
+- [ ] 05-08-PLAN.md — Wave 4 CI-Workflow + Doku + Pre-Closure-Smoke + Default-Hebel-Decision (D-24/-27/-35/-36)
 
 ### Phase 6: Live-UAT mit Pilot-Schulen
 **Goal**: Strukturierte UATs mit 3–5 echten Schulen / Schulfördervereinen aus Koljas Netzwerk durchführen, Befunde pro Session sauber tracken und in einer konsolidierten Bug-Fix-Welle adressieren — analog zur 28.–30.04.-Fix-Welle.
