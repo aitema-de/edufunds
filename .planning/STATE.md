@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Phase 04 Wave 2 complete, Wave 3 pending (Plan 04-04 Workflow-Refactor + E2E)
-last_updated: "2026-05-19T15:40:00.000Z"
-last_activity: 2026-05-19 -- Phase 04 Wave 2 complete (04-03 Vollmigration 11/11 strict-gruen)
+status: phase-04-complete
+stopped_at: Phase 04 abgeschlossen (Live-E2E-Smoke deferred)
+last_updated: "2026-05-19T16:00:00.000Z"
+last_activity: 2026-05-19 -- Phase 04 complete (4/4 Plans, Strict-Validator 11/11 gruen)
 progress:
   total_phases: 7
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 23
-  completed_plans: 22
-  percent: 96
+  completed_plans: 23
+  percent: 100
 ---
 
 # Project State
@@ -25,10 +25,10 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 
 ## Current Position
 
-Phase: 04 (programm-pflege-vollautomation-dossier-migration) — EXECUTING
-Plan: 3 of 4 done (04-01 + 04-02 + 04-03), Wave 3 pending (04-04 Workflow-Refactor + E2E)
-Status: Executing Phase 04 — Wave 2 complete, 11/11 Dossiers strict-validator gruen
-Last activity: 2026-05-19 -- Phase 04 Wave 2 complete (04-03 Vollmigration)
+Phase: 04 (programm-pflege-vollautomation-dossier-migration) — COMPLETE
+Plan: 4 of 4 done (04-01 + 04-02 + 04-03 + 04-04). Naechste Phase: 05 Wizard-Pipeline-Tuning + UX
+Status: Phase 04 abgeschlossen — alle 11 Dossiers Strict-Schema-konform
+Last activity: 2026-05-19 -- Phase 04 complete (Wave 3 mit deferred Live-E2E-Smoke)
 
 Progress: [██████████] 100% (Phase 03 von 7 done; uebernaechste Phase 04 Programm-Pflege Vollautomation)
 
