@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: blocked-on-llm-and-prompt-design
-stopped_at: Phase 04 Wave 2 (Plan 04-03) — LLM-Provider + Prompt-Design-Tension blockieren Sample-First
-last_updated: "2026-05-19T13:00:00.000Z"
-last_activity: 2026-05-19 -- Phase 04 Wave 2 blocked, Branch dossier-migration/phase-04 leer angelegt als Resume-Marker
+status: executing
+stopped_at: Phase 04 Wave 2 complete, Wave 3 pending (Plan 04-04 Workflow-Refactor + E2E)
+last_updated: "2026-05-19T15:40:00.000Z"
+last_activity: 2026-05-19 -- Phase 04 Wave 2 complete (04-03 Vollmigration 11/11 strict-gruen)
 progress:
   total_phases: 7
   completed_phases: 4
   total_plans: 23
-  completed_plans: 21
-  percent: 91
+  completed_plans: 22
+  percent: 96
 ---
 
 # Project State
@@ -26,9 +26,9 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 ## Current Position
 
 Phase: 04 (programm-pflege-vollautomation-dossier-migration) — EXECUTING
-Plan: 2 of 4 done (04-01 + 04-02), Wave 2 pending (04-03 Sample-First)
-Status: Executing Phase 04 — Wave 1 complete
-Last activity: 2026-05-19 -- Phase 04 Wave 1 complete (04-01 + 04-02)
+Plan: 3 of 4 done (04-01 + 04-02 + 04-03), Wave 3 pending (04-04 Workflow-Refactor + E2E)
+Status: Executing Phase 04 — Wave 2 complete, 11/11 Dossiers strict-validator gruen
+Last activity: 2026-05-19 -- Phase 04 Wave 2 complete (04-03 Vollmigration)
 
 Progress: [██████████] 100% (Phase 03 von 7 done; uebernaechste Phase 04 Programm-Pflege Vollautomation)
 
