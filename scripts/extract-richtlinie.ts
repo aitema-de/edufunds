@@ -396,7 +396,15 @@ async function main() {
   await runExtraction(programmId, srcs);
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+// Entry-Point-Guard: nur ausfuehren wenn dieses Skript direkt aufgerufen wurde,
+// nicht wenn es als Library aus einem anderen Skript importiert wird (Plan 04-04).
+const isEntryPoint = (() => {
+  const arg1 = process.argv[1] ?? "";
+  return arg1.endsWith("extract-richtlinie.ts") || arg1.endsWith("extract-richtlinie.js");
+})();
+if (isEntryPoint) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}
