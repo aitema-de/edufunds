@@ -43,6 +43,7 @@ interface QueueItem {
   infoLink?: string;
   score: number;
   status: "open" | "done" | "skip";
+  skipReason?: string;
 }
 
 interface Queue {
@@ -156,16 +157,19 @@ async function markDoneInQueue(programmId: string): Promise<void> {
 
 /**
  * Markiert Programme, bei denen die Extraktion wegen duenner Quelle leer blieb,
- * mit status=blocked + skipReason. Ohne das wuerde der naechste --next-Lauf
+ * mit status="skip" + skipReason. Ohne das wuerde der naechste --next-Lauf
  * sofort wieder dasselbe Programm ziehen und endlos in einer Schleife stecken.
+ *
+ * Hinweis: Der Status-Union erlaubt nur "open"|"done"|"skip" — ein eigener
+ * "blocked"-Status wurde bewusst nicht eingefuehrt, weil cmdNext/cmdList nur
+ * `status === "open"` filtern und `skipReason` als Diagnose-Feld genuegt.
  */
-async function markBlockedInQueue(programmId: string, reason: string): Promise<void> {
+async function markSkipInQueue(programmId: string, reason: string): Promise<void> {
   try {
     const q = await loadQueue();
-    type QueueItem = Queue["items"][number] & { skipReason?: string; blockReason?: string };
-    const item = q.items.find((i) => i.programmId === programmId) as QueueItem | undefined;
+    const item = q.items.find((i) => i.programmId === programmId);
     if (!item) return;
-    item.status = "skip" as QueueItem["status"];
+    item.status = "skip";
     item.skipReason = reason;
     await saveQueue(q);
     console.log(`    Queue: ${programmId} → status=skip (${reason.slice(0, 80)}…)`);
@@ -294,7 +298,7 @@ Erstelle das Richtlinien-Dossier als JSON.`;
     // in Endlosschleife dasselbe Programm zieht. Kolja kann es manuell auf
     // open zuruecksetzen, nachdem der infoLink in foerderprogramme.json
     // auf eine konkrete Richtlinie geaendert wurde.
-    await markBlockedInQueue(
+    await markSkipInQueue(
       programmId,
       `Leere Extraktion: infoLink zu allgemein. Gemini-Note: ${geminiNote}`
     );
