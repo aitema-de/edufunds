@@ -94,7 +94,18 @@ function stripHtml(html: string): string {
 }
 
 async function fetchHtml(url: string): Promise<string> {
-  const res = await fetch(url, { headers: { "User-Agent": "EduFunds-Scanner/1.0" } });
+  // Bot-UA wird von vielen Bundes-Hosts (bmftr.bund.de, buendnisse-fuer-bildung.de
+  // u.a.) mit HTTP 403 abgewiesen. Realistischer Browser-UA spiegelt das
+  // Vorgehen aus scripts/extract-richtlinie.ts. Die Seiten sind oeffentlich,
+  // wir lesen nur Text — keine Umgehung einer Bot-Policy.
+  const res = await fetch(url, {
+    headers: {
+      "User-Agent":
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+      Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+      "Accept-Language": "de,en;q=0.8",
+    },
+  });
   if (!res.ok) throw new Error(`HTTP ${res.status} beim Laden von ${url}`);
   return res.text();
 }
