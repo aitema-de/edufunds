@@ -58,7 +58,7 @@ interface Programm {
   kiAntragGeeignet?: boolean;
 }
 
-type QueueStatus = "open" | "done" | "skip";
+type QueueStatus = "open" | "done" | "skip" | "expired";
 
 interface QueueItem {
   programmId: string;
