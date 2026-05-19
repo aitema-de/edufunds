@@ -117,15 +117,24 @@ const BaseRichtlinieShape = {
 };
 
 // ---------------------------------------------------------------------------
-// Strict-Schema: alle 4 neuen Felder REQUIRED
+// Strict-Schema: alle 4 neuen Felder REQUIRED (Feld-Existenz strikt)
 // ---------------------------------------------------------------------------
-
+//
+// Phase-04-Lockerung (2026-05-19): Die drei array-Felder (bestPractices,
+// rejectGruende, vorbildFormulierungen) verlangen NICHT mehr min(1).
+// Begruendung: Konflikt mit dem Anti-Halluzinations-Prompt in
+// scripts/migrate-legacy-dossier.ts ("lieber leere Liste als Erfindung").
+// Bei Programmen, die in ihrer Richtlinie keine Reject-Gruende oder
+// Vorbild-Formulierungen explizit nennen, ist ein leeres Array die korrekte
+// (faktentreue) Antwort, nicht eine erfundene Mindest-Aussage. Das Schema
+// erzwingt weiterhin Feld-Existenz (statt optional) — nur die min(1)-Pflicht
+// faellt. fristLogik bleibt strikt (Discriminated Union erzwingt einen Wert).
 export const RichtlinieStrictSchema = z
   .object({
     ...BaseRichtlinieShape,
-    bestPractices: z.array(BestPracticeSchema).min(1),
-    rejectGruende: z.array(RejectGrundSchema).min(1),
-    vorbildFormulierungen: z.array(VorbildFormulierungSchema).min(1),
+    bestPractices: z.array(BestPracticeSchema),
+    rejectGruende: z.array(RejectGrundSchema),
+    vorbildFormulierungen: z.array(VorbildFormulierungSchema),
     fristLogik: FristLogikSchema,
   })
   .passthrough();
