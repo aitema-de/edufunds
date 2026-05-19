@@ -105,7 +105,13 @@ Plans:
   2. Neu gefundenes Programm landet automatisch in `data/richtlinien-prioritaeten.json` mit berechnetem Queue-Score (klare Score-Logik dokumentiert, z. B. `kiAntragGeeignet` × Aktualität × Bundesland-Coverage)
   3. Alle 11 bestehenden Dossiers in `data/richtlinien/` enthalten die vier Phase-3-Felder (Best Practices, Reject-Gründe, Vorbild-Formulierungen, Frist-Logik) — Schema-Validator läuft grün
   4. End-to-End-Smoke gegen ein neues Programm (Scanner → Dossier → Queue → Wizard-Pipeline-Lauf) liefert Antrag mit erweiterten Schema-Feldern als Pipeline-Input ohne Crash
-**Plans**: TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 04-01-queue-status-expired-cleanup-PLAN.md — lib/wizard/queue.ts neu mit Status-Enum-Erweiterung 'expired' + scripts/cleanup-expired-queue.ts mit HTTP-HEAD + Frist-Check (D-04/D-05/D-06, Wave 1, autonomous)
+- [ ] 04-02-migrate-legacy-dossier-script-PLAN.md — scripts/migrate-legacy-dossier.ts Targeted-Fill-CLI fuer einzelnes Legacy-Dossier (D-07, Wave 1, autonomous, parallel zu 04-01)
+- [ ] 04-03-sample-first-migration-vollmigration-PLAN.md — Sample-First-Migration (bmbf-digitalpakt-2 + ferry-porsche-challenge-2025) + Vollmigration aller 11 Dossiers auf Branch dossier-migration/phase-04 (D-08/D-09, Wave 2, NOT autonomous: 2 Review-Checkpoints, depends_on 04-02)
+- [ ] 04-04-vollautomations-workflow-library-refactor-e2e-PLAN.md — Single-Workflow weekly-auto-pflege.yml + scripts/auto-pflege-step.ts + extract-richtlinie Library-Refactor + Loeschungen + E2E-Dry-Run-Smoke (D-01/D-02/D-03/D-10/D-11/D-12, Wave 3, NOT autonomous, depends_on 04-01+04-03)
 
 ### Phase 5: Wizard-Pipeline-Tuning + UX-Lücke
 **Goal**: Pipeline auf höhere Programmkonformität, Halluzinations-Resistenz und Förderwahrscheinlichkeit tunen — gemessen gegen einen Pipeline-Eval-Korpus analog zu Phase 1. Reload-Resume-UX-Lücke aus dem 28.04.-UAT-Memo schließen.
@@ -142,7 +148,7 @@ Phasen werden numerisch ausgeführt: 1 → 2 → 3 → 4 → 5 → 6. Phasen 2 u
 | 1. Eval-Korpus Matcher | 2/2 | Complete    | 2026-05-03 |
 | 2. Matcher-Quality | 0/TBD | Not started | - |
 | 3. Programm-Pflege Foundation | 3/3 | Complete    | 2026-05-06 |
-| 4. Programm-Pflege Vollautomation | 0/TBD | Not started | - |
+| 4. Programm-Pflege Vollautomation | 0/4 | Not started | - |
 | 5. Wizard-Pipeline-Tuning + UX | 0/TBD | Not started | - |
 | 6. Live-UAT mit Pilot-Schulen | 0/TBD | Not started | - |
 
