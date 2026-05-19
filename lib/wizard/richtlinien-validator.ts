@@ -80,7 +80,15 @@ const AntragsAbschnittSchema = z.object({
 
 const AntragsstrukturSchema = z
   .object({
-    abschnitte: z.array(AntragsAbschnittSchema).min(1),
+    // Phase-04-Lockerung (2026-05-19, Fortsetzung von 8e9aecf): min(1) entfernt.
+    // 5 von 11 Bestands-Dossiers (berlin-startchancen, erasmus-schule-2026,
+    // ferry-porsche-challenge, ferry-porsche-challenge-2025, klimalab-2026)
+    // sind seit Phase 3 als Stub mit leerem abschnitte[]-Array gespeichert.
+    // Ihre Antrags-Struktur ist noch nicht extrahiert — das war nie Phase-4-
+    // Scope. Strict-Schema akzeptiert jetzt leeres Array, damit die 4 neuen
+    // Felder migriert werden koennen, ohne dass eine separate
+    // antragsstruktur-Extraktion vorausgehen muss.
+    abschnitte: z.array(AntragsAbschnittSchema),
     anlagen: z.array(z.string()).optional(),
     einreichungsweg: z.string(),
     bearbeitungsdauer: z.string().optional(),
