@@ -157,7 +157,7 @@ export interface FkIssue {
   reason: string;
 }
 
-interface FkCheckable {
+export interface FkCheckable {
   antragsstruktur: { abschnitte?: Array<{ id: string }> };
   vorbildFormulierungen?: Array<{ abschnitt_id: string }>;
 }

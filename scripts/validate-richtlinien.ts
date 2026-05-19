@@ -18,6 +18,7 @@ import {
   RichtlinieStrictSchema,
   RichtlinieLegacySchema,
   validateForeignKeys,
+  type FkCheckable,
 } from "../lib/wizard/richtlinien-validator";
 
 const DIR = path.join(process.cwd(), "data", "richtlinien");
@@ -51,10 +52,11 @@ function validateOne(
     }
     return issues;
   }
-  const fkData = result.data as {
-    antragsstruktur: { abschnitte: Array<{ id: string }> };
-    vorbildFormulierungen?: Array<{ abschnitt_id: string }>;
-  };
+  // Cast an die exportierte FkCheckable-Form: `abschnitte` ist optional, weil
+  // das Legacy-Schema leere/fehlende Abschnitte erlaubt. Frueherer Cast log
+  // ueber die Optionalitaet — `validateForeignKeys` faengt das defensiv ab
+  // (?? []), aber TypeScript-Compiler soll die Wahrheit kennen.
+  const fkData = result.data as FkCheckable;
   for (const fk of validateForeignKeys(fkData, programmId)) {
     issues.push({
       programmId,
