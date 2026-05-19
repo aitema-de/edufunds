@@ -98,7 +98,7 @@ REGELN GEGEN HALLUZINATION (kritisch — befolge sie strikt):
 
 Nur valides JSON ausgeben, keine Markdown-Fences, keine Erklaerung davor/danach.`;
 
-async function fetchOrRead(src: string): Promise<{ url: string; text: string }> {
+export async function fetchOrRead(src: string): Promise<{ url: string; text: string }> {
   if (/^https?:\/\//.test(src)) {
     // Viele Bundesseiten (bmftr.bund.de, buendnisse-fuer-bildung.de) blocken
     // nicht-Browser-UA mit HTTP 403. Mit einem realistischen Browser-UA
@@ -222,7 +222,22 @@ async function cmdNext(extraUrls: string[]): Promise<void> {
   await runExtraction(next.programmId, [next.infoLink, ...extraUrls]);
 }
 
-async function runExtraction(programmId: string, srcs: string[]): Promise<void> {
+/**
+ * Hauptfunktion fuer eine Einzel-Extraktion. Wird sowohl von der CLI als auch
+ * von scripts/auto-pflege-step.ts (Plan 04-04) verwendet.
+ *
+ * @param skipQueueUpdate Wenn true: weder markDoneInQueue noch markSkipInQueue
+ *   werden gerufen. Notwendig wenn ein anderer Caller (z.B. auto-pflege-step)
+ *   selbst der einzige Queue-Writer ist und Race-Conditions vermeiden muss.
+ *   Bei skipQueueUpdate=true wird im Empty-Extraktions-Fall NICHT mit exit 5
+ *   abgebrochen, sondern ein Error geworfen — der Caller entscheidet ueber
+ *   Failure-Klassifizierung.
+ */
+export async function runExtraction(
+  programmId: string,
+  srcs: string[],
+  opts: { skipQueueUpdate?: boolean } = {}
+): Promise<void> {
   console.log(`==> Sammle Quellen (${srcs.length})`);
   const quellen: string[] = [];
   const texte: string[] = [];
@@ -298,6 +313,12 @@ Erstelle das Richtlinien-Dossier als JSON.`;
     // in Endlosschleife dasselbe Programm zieht. Kolja kann es manuell auf
     // open zuruecksetzen, nachdem der infoLink in foerderprogramme.json
     // auf eine konkrete Richtlinie geaendert wurde.
+    if (opts.skipQueueUpdate) {
+      // Library-Caller (auto-pflege-step) klassifiziert + schreibt selbst.
+      throw new Error(
+        `empty-extraction: ${geminiNote}`
+      );
+    }
     await markSkipInQueue(
       programmId,
       `Leere Extraktion: infoLink zu allgemein. Gemini-Note: ${geminiNote}`
@@ -339,7 +360,9 @@ Erstelle das Richtlinien-Dossier als JSON.`;
   console.log(
     `    Tokens: ${llmUsage.promptTokens} in + ${llmUsage.candidatesTokens} out`
   );
-  await markDoneInQueue(programmId);
+  if (!opts.skipQueueUpdate) {
+    await markDoneInQueue(programmId);
+  }
   console.log("\nBITTE REVIEW: Dossier mit Originalrichtlinie abgleichen bevor commit.\n");
 }
 
