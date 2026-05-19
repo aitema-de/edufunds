@@ -1,5 +1,5 @@
 {
-  "version": "2026-04-21-manuell",
+  "version": "2026-05-19",
   "quellen": [
     "https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/foerderrichtlinie-2023-2027/foerderrichtlinie-2023-2027_node.html",
     "https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/Kultur-macht-stark-2023-2027/Programmpartner-2023-2027/Programmpartner-2023-2027_node.html"
@@ -33,7 +33,9 @@
     {
       "kategorie": "sachkosten",
       "foerderfaehig": true,
-      "bedingungen": ["Verbrauchsmaterial, Verpflegung, Miete, Leihgebuehren"],
+      "bedingungen": [
+        "Verbrauchsmaterial, Verpflegung, Miete, Leihgebuehren"
+      ],
       "beispielePasst": [
         "Material fuer Kunstwerkstatt (Farben, Leinwaende)",
         "Raummiete fuer Projekttage",
@@ -70,7 +72,11 @@
   ],
   "eigenmittel": {
     "pflicht": false,
-    "formenErlaubt": ["finanziell", "sachleistungen", "eigenarbeit"],
+    "formenErlaubt": [
+      "finanziell",
+      "sachleistungen",
+      "eigenarbeit"
+    ],
     "bemerkung": "Eigenanteil ist nicht zwingend vorgeschrieben — die Regelform ist Anteilfinanzierung, bei der Buendnispartner 'angemessene Eigenleistungen' einbringen. Das koennen Sachleistungen, Raeume, ehrenamtliche Arbeit sein (nicht zwingend Bargeld). In begruendeten Ausnahmefaellen ist Vollfinanzierung moeglich."
   },
   "kumulierung": {
@@ -177,5 +183,72 @@
     "Programmpartner-Liste (20+ Verbaende): https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/Kultur-macht-stark-2023-2027/Programmpartner-2023-2027/",
     "Abgrenzung zum Regel-Unterricht ist das haeufigste Ablehnungsthema — Infoblatt 'Ausserschulischkeit' des BMBF lesen, bevor das Konzept geschrieben wird.",
     "Die Foerderrichtlinie laeuft 2023-2027. Nach 2027 ist eine Anschlussphase geplant aber nicht bestaetigt."
-  ]
+  ],
+  "bestPractices": [
+    {
+      "thema": "Einbindung von Schulen",
+      "was_funktionierte": "Schulen als lokale Bündnispartner zu gewinnen, da sie sich als wichtiger Zugang zur Zielgruppe etabliert haben.",
+      "warum": "Schulen ermöglichen einen direkten und verlässlichen Kontakt zu Kindern und Jugendlichen, die von den Angeboten profitieren sollen."
+    },
+    {
+      "thema": "Angebote in ländlichen Räumen",
+      "was_funktionierte": "In strukturschwachen ländlichen Räumen überregionale Bündnispartner mit besonderer fachlicher Expertise einbeziehen, um durch Outreach-Projekte oder digitale Formate neue Angebote zu schaffen.",
+      "warum": "Dies kompensiert das Fehlen von spezialisierten lokalen Partnern und ermöglicht qualitativ hochwertige Projekte auch außerhalb von Ballungszentren."
+    },
+    {
+      "thema": "Pädagogischer Ansatz",
+      "was_funktionierte": "Die Projekte auf diversitätssensiblen und Empowerment-orientierten Ansätzen aufbauen, die sowohl die eigene kreative Auseinandersetzung als auch die aktive Rezeption von Kunst umfassen.",
+      "warum": "Dieser Ansatz fördert die Persönlichkeitsentwicklung, soziale Kompetenzen und das Selbstbewusstsein der Teilnehmenden besonders effektiv."
+    },
+    {
+      "thema": "Nachhaltige Vernetzung",
+      "was_funktionierte": "Die Bündnisse aktiv dabei zu unterstützen, sich in die kommunalen Bildungslandschaften und die Strukturen des kommunalen Bildungsmanagements zu vernetzen.",
+      "warum": "Dies sichert die Erfahrungen aus der Projektumsetzung nachhaltig und kann zur Verstetigung der Angebote beitragen."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Unzureichende Abgrenzung zum regulären Schulunterricht.",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Das Projekt muss als freiwilliges und zusätzliches Angebot konzipiert sein, das keinen Schulunterricht ersetzt oder ergänzt. Die Vorgaben des BMBF-Infoblatts zur 'Ausserschulischkeit' sind zwingend zu beachten."
+    },
+    {
+      "grund": "Maßnahme wird bereits durch andere öffentliche Mittel gefördert.",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Sicherstellen, dass für das Projekt keine anderweitige öffentliche Förderung, z.B. auf Grundlage des SGB VIII (Jugendhilfe), in Anspruch genommen wird."
+    },
+    {
+      "grund": "Das Projekt ersetzt ein bestehendes, anderweitig finanziertes Regelangebot.",
+      "vermeidung": "Im Antrag explizit darlegen, dass es sich um eine zusätzliche Maßnahme handelt, die nicht ein bereits existierendes Angebot substituiert."
+    },
+    {
+      "grund": "Das Bündnis besteht aus weniger als drei Partnern.",
+      "vermeidung": "Vor Antragstellung eine Kooperation von mindestens drei Akteuren aus den Bereichen Kultur, Bildung und Sozialarbeit formalisieren, z.B. durch eine Bündnisvereinbarung."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "ausserschulisch",
+      "formulierung": "Unser Angebot ist für die Teilnehmenden explizit freiwillig und wird zusätzlich zum Lehrplan durchgeführt. Es ersetzt oder ergänzt nicht den Schulunterricht, sondern schafft außerhalb des schulischen Leistungsdrucks neue Erfahrungsräume.",
+      "kontext": "Begründung des außerschulischen Charakters, insbesondere bei Projekten, die in Kooperation mit Schulen stattfinden."
+    },
+    {
+      "abschnitt_id": "konzept",
+      "formulierung": "Das pädagogische Konzept unseres Projekts verbindet kognitive, emotionale und gestalterische Handlungsprozesse. Wir legen dabei besonderen Wert auf diversitätssensible und Empowerment-orientierte Ansätze, um die Selbstwirksamkeitsüberzeugung der Teilnehmenden zu stärken.",
+      "kontext": "Beschreibung des pädagogischen Ansatzes im inhaltlichen Konzept."
+    },
+    {
+      "abschnitt_id": "buendnis",
+      "formulierung": "In unserem Bündnis bringt jeder Partner seine spezifischen Kompetenzen und angemessene Eigenleistungen ein: Der Kulturverein stellt die künstlerische Expertise, der Sozialträger den Zugang zur Zielgruppe und die Stadtteilbibliothek stellt ihre Räumlichkeiten zur Verfügung.",
+      "kontext": "Darstellung der Aufgabenverteilung und der Synergien innerhalb des lokalen Bündnisses."
+    },
+    {
+      "abschnitt_id": "zielgruppe",
+      "formulierung": "Unsere Maßnahme richtet sich gezielt an Kinder, die von einer bildungsbezogenen Risikolage betroffen sind, wie sie im nationalen Bildungsbericht beschrieben wird. Durch die enge Kooperation mit den Sozialraum-Akteuren stellen wir einen niedrigschwelligen Zugang für diese Zielgruppe sicher.",
+      "kontext": "Begründung der Zielgruppenauswahl und Beschreibung der Zugangswege."
+    }
+  ],
+  "fristLogik": {
+    "typ": "rolling"
+  }
 }

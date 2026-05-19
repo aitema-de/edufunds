@@ -1,5 +1,5 @@
 {
-  "version": "2026-04-20-stub",
+  "version": "2026-05-19",
   "quellen": [
     "https://www.digitalpaktschule.de/de/digitalpakt-2-0-1874.html"
   ],
@@ -10,7 +10,10 @@
     {
       "kategorie": "sachkosten",
       "foerderfaehig": true,
-      "bedingungen": ["Digitale Infrastruktur in Schulgebaeuden", "Bildungssoftware"],
+      "bedingungen": [
+        "Digitale Infrastruktur in Schulgebaeuden",
+        "Bildungssoftware"
+      ],
       "beispielePasst": [
         "Aufbau/Ausbau WLAN, strukturierte Verkabelung",
         "Displays, interaktive Tafeln, Praesentationstechnik",
@@ -25,7 +28,9 @@
     {
       "kategorie": "investitionen",
       "foerderfaehig": true,
-      "bedingungen": ["Mobile Endgeraete (Tablets, Laptops) sind foerderfaehig wenn Teil eines paedagogischen Konzepts"],
+      "bedingungen": [
+        "Mobile Endgeraete (Tablets, Laptops) sind foerderfaehig wenn Teil eines paedagogischen Konzepts"
+      ],
       "beispielePasst": [
         "Klassensaetze Tablets / Notebooks fuer Schuelerinnen und Schueler",
         "Stationaere Ausstattung von Fach-/Medienraeumen"
@@ -47,13 +52,17 @@
     {
       "kategorie": "overhead",
       "foerderfaehig": false,
-      "bedingungen": ["Allgemeine Verwaltungs-/Gemeinkosten der Kommune sind nicht ueber DigitalPakt foerderfaehig."]
+      "bedingungen": [
+        "Allgemeine Verwaltungs-/Gemeinkosten der Kommune sind nicht ueber DigitalPakt foerderfaehig."
+      ]
     }
   ],
   "eigenmittel": {
     "pflicht": true,
     "mindestProzent": 22,
-    "formenErlaubt": ["finanziell"],
+    "formenErlaubt": [
+      "finanziell"
+    ],
     "bemerkung": "Eigenanteil der Laender: zwei Neuntel der Bundesmittel (ca. 22 %). In der Praxis teilweise weitergegeben an Schultraeger (Kommune). Antragsstellende Schule muss sich beim Schultraeger zur Kofinanzierung abstimmen."
   },
   "kumulierung": {
@@ -137,5 +146,22 @@
     "STUB-VERSION: offizielle Richtlinien-PDF der jeweiligen Laender-Umsetzung ist nicht integriert. Konkrete Foerderquoten pro Kostenposition sowie Antragsformular-Felder mit Zeichenlimits werden erst nach Veroeffentlichung der Laender-Richtlinien ergaenzbar.",
     "Maximalbetrag pro Schule ist nicht bundesweit fix — variiert je Bundesland (typisch 500 EUR/Schueler als Sockel + Zuschlaege in DigitalPakt 1).",
     "Ausgaben seit 01.01.2025 sind rueckwirkend foerderfaehig (Zeitpunkt-Regel)."
-  ]
+  ],
+  "bestPractices": [
+    {
+      "thema": "Pauschalierte Zuweisungen",
+      "was_funktionierte": "Die Möglichkeit zu pauschalierten Zuweisungen senkt den Bürokratieaufwand sowohl auf Schulträger- als auch auf Landesebene deutlich.",
+      "warum": "Vereinfacht die Antrags- und Umsetzungsverfahren der Länder."
+    },
+    {
+      "thema": "Länderübergreifende Vorhaben (LüV)",
+      "was_funktionierte": "Ressourcen werden besser gebündelt und gemeinsame Systemlösungen geschaffen, wovon auch finanzschwächere Länder profitieren können.",
+      "warum": "Fördert ein kooperatives Miteinander der Länder und schafft mehr gemeinsame Verantwortung im Bildungsbereich."
+    }
+  ],
+  "rejectGruende": [],
+  "vorbildFormulierungen": [],
+  "fristLogik": {
+    "typ": "rolling"
+  }
 }
