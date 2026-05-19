@@ -4,14 +4,14 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 stopped_at: Phase 4 context gathered
-last_updated: "2026-05-19T10:20:10.730Z"
-last_activity: 2026-05-19 -- Phase 04 execution started
+last_updated: "2026-05-19T12:35:00.000Z"
+last_activity: 2026-05-19 -- Phase 04 Wave 1 complete (04-01 + 04-02)
 progress:
   total_phases: 7
   completed_phases: 4
   total_plans: 23
-  completed_plans: 19
-  percent: 83
+  completed_plans: 21
+  percent: 91
 ---
 
 # Project State
@@ -26,9 +26,9 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 ## Current Position
 
 Phase: 04 (programm-pflege-vollautomation-dossier-migration) — EXECUTING
-Plan: 1 of 4
-Status: Executing Phase 04
-Last activity: 2026-05-19 -- Phase 04 execution started
+Plan: 2 of 4 done (04-01 + 04-02), Wave 2 pending (04-03 Sample-First)
+Status: Executing Phase 04 — Wave 1 complete
+Last activity: 2026-05-19 -- Phase 04 Wave 1 complete (04-01 + 04-02)
 
 Progress: [██████████] 100% (Phase 03 von 7 done; uebernaechste Phase 04 Programm-Pflege Vollautomation)
 
