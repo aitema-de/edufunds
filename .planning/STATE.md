@@ -2,10 +2,10 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Phase 4 context gathered
-last_updated: "2026-05-19T12:35:00.000Z"
-last_activity: 2026-05-19 -- Phase 04 Wave 1 complete (04-01 + 04-02)
+status: blocked-on-llm-and-prompt-design
+stopped_at: Phase 04 Wave 2 (Plan 04-03) — LLM-Provider + Prompt-Design-Tension blockieren Sample-First
+last_updated: "2026-05-19T13:00:00.000Z"
+last_activity: 2026-05-19 -- Phase 04 Wave 2 blocked, Branch dossier-migration/phase-04 leer angelegt als Resume-Marker
 progress:
   total_phases: 7
   completed_phases: 4
@@ -112,8 +112,34 @@ Items aus REQUIREMENTS.md v2 / Out of Scope, bewusst nicht in dieser Milestone:
 
 ## Session Continuity
 
-Last session: --stopped-at
-Stopped at: Phase 4 context gathered
-Resume file: --resume-file
+Last session: 2026-05-19 (Phase 04 Wave 1 ausgefuehrt, Wave 2 blockiert)
+Stopped at: Phase 04 Wave 2 (Plan 04-03 Sample-First) — Sample-1 bmbf-digitalpakt-2 Migrations-Lauf produzierte Strict-Schema-Verletzung mit Gemini-2.5-pro
+Resume file: .planning/phases/04-programm-pflege-vollautomation-dossier-migration/04-CONTEXT.md
 
-**Planned Phase:** 04 (programm-pflege-vollautomation-dossier-migration) — 4 plans — 2026-05-19T10:09:15.151Z
+**Planned Phase:** 04 (programm-pflege-vollautomation-dossier-migration) — 4 plans (Wave 1 DONE, Wave 2 BLOCKED, Wave 3 PENDING)
+
+### Wave-2-Blocker (entdeckt 2026-05-19)
+
+**Drei strukturelle Issues, die vor Wave-2-Resume geklaert werden muessen:**
+
+1. **LLM-Provider DeepSeek = 0 Balance.** DeepSeek-API-Roundtrip: `{"error":{"message":"Insufficient Balance"...}}`. Project-Default-Entscheidung (28.04.) war `deepseek-chat`. Aktion: Top-Up im DeepSeek-Dashboard oder LLM_PROVIDER-Entscheidung fuer Migrations-Tooling neu treffen.
+
+2. **WSL→digitalpaktschule.de Connection-Timeout (8s+).** Quelle `bmbf-digitalpakt-2` (Sample-1) ist von WSL aus per curl nicht erreichbar (DNS OK, TCP-Connect timeout). Vom Hetzner-Server: HTTP 200 in 121ms. Workaround in Session getestet: SSH-Fetch nach `/tmp/digitalpakt-cache.html` + Temp-Patch dossier.quellen[0]. Funktional, aber Wegwerf-Hack — produktionsfertig waere CLI-Flag `--source-override` in migrate-legacy-dossier.ts.
+
+3. **STRUKTURELLE Prompt-vs-Schema-Tension (das eigentliche Problem).** SYSTEM_PROMPT in `scripts/migrate-legacy-dossier.ts` sagt explizit „leeres Array ist erlaubt wenn die Quelle nichts hergibt" + „Wenn unsicher: lieber leere Liste als Erfindung". `RichtlinieStrictSchema` in `lib/wizard/richtlinien-validator.ts` verlangt `z.array(...).min(1)` fuer bestPractices, rejectGruende, vorbildFormulierungen. Gemini-2.5-pro (MODEL_PIPELINE bei LLM_PROVIDER=gemini) folgt der Anti-Halluzinations-Direktive korrekt → empty arrays → Strict-Schema fail → exit 1 → kein writeFile. Volltext-Volumen war 13 KB (genug Material), aber Gemini gibt fuer den BMBF-Digitalpakt nichts explizit Belegbares.
+
+**Drei orthogonale Optionen, die Kolja entscheiden muss:**
+
+| Option | Was zu tun | Risiko |
+|---|---|---|
+| A — DeepSeek-Top-Up + Retry | Stripe-Charge im DeepSeek-Dashboard, dann `/gsd-execute-phase 4 --wave 2`. `deepseek-chat` hatte in Phase 3 weniger Empty-Skips → ggf. ist die Tension dort weniger sichtbar. | Loest Issue 1+3 wenn deepseek-chat fuelliger antwortet. Issue 2 bleibt (Workaround per SSH-Fetch noetig) |
+| B — SYSTEM_PROMPT loosen | Prompt-Aenderung in `scripts/migrate-legacy-dossier.ts`: ersetze „lieber leere Liste als Erfindung" durch „mindestens 1 belegbarer Eintrag pro Feld; bei Mangel das plausibelste Beispiel aus dem Volltext extrahieren" — atomic-commit fix(scripts): tune migrate-prompt for strict-schema min(1). | Bewusste Plan-Abweichung. Macht das Migrations-Tooling weniger streng als das Production-Scanner-Tooling (extract-richtlinie.ts) — dort bleibt der konservative Prompt. |
+| C — Strict-Schema lockern auf `.min(0)` | Aenderung in `lib/wizard/richtlinien-validator.ts`. Bricht Phase-3-Foundation (D-06 verlangt explizit min 1). | NICHT empfohlen — verletzt Phase-3-Decision frontal. |
+
+**Empfehlung:** Option A wenn DeepSeek-Top-Up moeglich. Sonst Option B + SSH-Fetch-Workaround als „Phase-04.1 Pre-Wave-2 Patches"-Mini-Phase einziehen.
+
+### Wave-1-Resultat (DONE)
+
+- 04-01 ✓ (HEAD a322301): lib/wizard/queue.ts + cleanup-expired-queue.ts, 3 Programme auf status=expired (incl. beider D-06-Test-Anker + Bonus hamburg-kultur-schule HTTP 404)
+- 04-02 ✓ (HEAD a322301): migrate-legacy-dossier.ts + validate-single-dossier.ts (per Plan ohne writeFile-Path bei Validator-Fail — funktioniert wie spezifiziert)
+- Branch `dossier-migration/phase-04` leer angelegt als Wave-2-Resume-Marker
