@@ -60,7 +60,7 @@ Sprache: deutsch. Zahlen in EUR als number (ohne Punkte, ohne Komma). Prozente a
 
 JSON-Schema (exakte Feldnamen):
 {
-  "version": "2026-04-21",
+  "version": "<wird vom Skript gesetzt — Feld weglassen oder leeren String liefern>",
   "quellen": ["URL1", "URL2"],
   "foerderhoehe": { "minEur"?, "maxEur"?, "maxProzentGesamtkosten"?, "bemerkung"? },
   "kostenpositionen": [
@@ -306,7 +306,9 @@ Erstelle das Richtlinien-Dossier als JSON.`;
   }
 
   parsed.quellen = quellen;
-  parsed.version = parsed.version ?? new Date().toISOString().slice(0, 10);
+  // Version IMMER vom Skript setzen, nicht vom LLM. Verhindert, dass das
+  // Beispiel-Datum aus dem SYSTEM_PROMPT in echten Dossiers landet.
+  parsed.version = new Date().toISOString().slice(0, 10);
 
   // Runtime-Validierung gegen erweitertes Schema (Phase 3, FETCH-03).
   // Strict-Mode: alle 4 neuen Felder Pflicht. Bei Fehler: programmId-Status
