@@ -80,17 +80,20 @@ const AntragsAbschnittSchema = z.object({
 
 const AntragsstrukturSchema = z
   .object({
-    // Phase-04-Lockerung (2026-05-19, Fortsetzung von 8e9aecf): min(1) entfernt.
-    // 5 von 11 Bestands-Dossiers (berlin-startchancen, erasmus-schule-2026,
-    // ferry-porsche-challenge, ferry-porsche-challenge-2025, klimalab-2026)
-    // sind seit Phase 3 als Stub mit leerem abschnitte[]-Array gespeichert.
-    // Ihre Antrags-Struktur ist noch nicht extrahiert — das war nie Phase-4-
-    // Scope. Strict-Schema akzeptiert jetzt leeres Array, damit die 4 neuen
-    // Felder migriert werden koennen, ohne dass eine separate
-    // antragsstruktur-Extraktion vorausgehen muss.
-    abschnitte: z.array(AntragsAbschnittSchema),
+    // Phase-04-Lockerung (2026-05-19, Folge-Patch zu 8e9aecf + 31208c7):
+    // - abschnitte: min(1) entfernt, plus jetzt komplett .optional() (2 von 11
+    //   Bestands-Dossiers — berlin-startchancen, erasmus-schule-2026 — haben
+    //   antragsstruktur nur als { bemerkung: "..." } gespeichert, KEIN abschnitte-
+    //   Key. Stub-State seit Phase 3; antragsstruktur-Extraktion fuer diese
+    //   Faelle ist Phase-5+-Scope, nicht Phase-4).
+    // - einreichungsweg: required → optional (gleiche 2 Stub-Faelle haben es nicht).
+    // Damit ist AntragsstrukturSchema strukturell identisch mit
+    // AntragsstrukturLegacySchema — eine bewusste Konvergenz, bis Phase 5+
+    // den antragsstruktur-Extractor baut. Die 4 NEUEN Felder bleiben streng
+    // required, das ist der Phase-4-Hauptzweck.
+    abschnitte: z.array(AntragsAbschnittSchema).optional(),
     anlagen: z.array(z.string()).optional(),
-    einreichungsweg: z.string(),
+    einreichungsweg: z.string().optional(),
     bearbeitungsdauer: z.string().optional(),
   })
   .passthrough();
