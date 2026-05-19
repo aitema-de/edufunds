@@ -164,18 +164,17 @@ ${text}
 
 Liefere die Programm-Liste als JSON.`;
 
-  try {
-    const result = await generateJson<ScanResult>(
-      MODEL_INTERVIEW,
-      EXTRACT_SYSTEM,
-      userPrompt,
-      { maxTokens: 4000 }
-    );
-    return Array.isArray(result.value.programme) ? result.value.programme : [];
-  } catch (err) {
-    console.error(`  Parse-Fehler bei ${src.id}:`, (err as Error).message);
-    return [];
-  }
+  // Parse-Fehler hier NICHT schlucken: wirft hoch zur main-Schleife, damit
+  // der dortige `scannedOk`-Counter den Fehler korrekt zaehlt. Sonst wuerden
+  // 100 % LLM-Parse-Failures als "alle Quellen ok, einfach leer" gelten und
+  // der Silent-Failure-Schutz wuerde nicht greifen.
+  const result = await generateJson<ScanResult>(
+    MODEL_INTERVIEW,
+    EXTRACT_SYSTEM,
+    userPrompt,
+    { maxTokens: 4000 }
+  );
+  return Array.isArray(result.value.programme) ? result.value.programme : [];
 }
 
 async function main() {
@@ -202,11 +201,13 @@ async function main() {
   console.log(`==> Scanne ${sourcesToScan.length} Quelle(n)`);
   let addedTotal = 0;
   let seenTotal = 0;
+  let scannedOk = 0;
 
   for (const src of sourcesToScan) {
     console.log(`  - ${src.id} (${src.name})`);
     try {
       const found = await scanSource(src, verbose);
+      scannedOk++;
       seenTotal += found.length;
       if (verbose) console.log(`    gefunden: ${found.length}`);
       for (const entry of found) {
@@ -242,6 +243,16 @@ async function main() {
   console.log(`==> Fertig. ${seenTotal} Eintraege gesehen, ${addedTotal} neue Kandidaten gespeichert.`);
   console.log(`    Datei: ${CANDIDATES_PATH}`);
   console.log(`    Total Kandidaten im Staging: ${candidates.items.length}`);
+
+  // Silent-Failure-Schutz: Wenn ALLE Quellen scheitern (HTTP-Error, Parse-Fehler),
+  // exitet das Skript mit Code 2. Sonst koennte ein wochenlanger Total-Ausfall
+  // unbemerkt bleiben, weil ohne neue Kandidaten kein PR erzeugt wird.
+  if (scannedOk === 0 && sourcesToScan.length > 0) {
+    console.error(
+      `FEHLER: Alle ${sourcesToScan.length} Quellen sind gescheitert. Workflow wird rot, kein PR.`
+    );
+    process.exit(2);
+  }
 }
 
 main().catch((err) => {
