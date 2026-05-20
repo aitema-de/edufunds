@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 05-06-PLAN.md (Hebel-2 compliance-check-Stage, 5 Tests grün, Eval-Delta WIZ-01=0/WIZ-02=+1.2/WIZ-03=+2.8)
-last_updated: "2026-05-20T12:44:32.762Z"
+status: verifying
+stopped_at: "Completed 05-08-PLAN.md (Phase-5-Closure: CI-Gate, Smoke approved, Default-Hebel [1,3,4] ON)"
+last_updated: "2026-05-20T12:58:02.543Z"
 last_activity: 2026-05-20
 progress:
   total_phases: 7
@@ -27,10 +27,10 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 
 Phase: 05 (wizard-pipeline-tuning-ux-l-cke) — EXECUTING
 Plan: 8 of 8
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-05-20
 
-Progress: [██████████] 97%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -62,6 +62,7 @@ Progress: [██████████] 97%
 | Phase 05-wizard-pipeline-tuning-ux-l-cke P03 | 420 | 2 tasks | 4 files |
 | Phase 05-wizard-pipeline-tuning-ux-l-cke P04 | 165 | 5 tasks | 10 files |
 | Phase 05-wizard-pipeline-tuning-ux-l-cke P06 | 35 | 2 tasks | 6 files |
+| Phase 05-wizard-pipeline-tuning-ux-l-cke P08 | 25 | 4 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -87,6 +88,8 @@ Decisions sind in PROJECT.md Key-Decisions-Tabelle gepflegt. Roadmap-relevante E
 - [Phase ?]: 63 statt 66 Snapshots: 3 Soft-Fails (429 Rate-Limit pv-edge-002-run2/run3, Scoring-Fehler pv-011-run1) — akzeptabel fuer Baseline
 - [Phase ?]: gemini-2.0-flash auch fuer Pipeline-Calls: 503-Service-Unavailable bei 2.5-pro macht sequenziellen Run unmoglich; Flash stabil bei gleicher Konfiguration in Wave 3
 - [Phase ?]: Plan 05-06: runComplianceCheck() deterministisch ohne LLM-Call; silent-Stage via ORDER-Auslassung; Hebel-2-Delta im 2σ-Rauschen, Default OFF
+- [Phase ?]: Default-selective [1,3,4]: sharpPrompts+useVorbildFormulierungen+geberRoutingV2 DEFAULT ON; complianceStageEnabled DEFAULT OFF — revisit nach maxZeichen-Dossier-Ausbau (Plan 05-08)
+- [Phase ?]: Phase-5-Closure abgeschlossen: Pre-Closure-Smoke approved (Berufsschule Sachsen, WIZ-01=100/WIZ-02=100), CI-Gate operativ, kein Plan 05-09
 
 ### Roadmap Evolution
 
@@ -122,8 +125,8 @@ Items aus REQUIREMENTS.md v2 / Out of Scope, bewusst nicht in dieser Milestone:
 
 ## Session Continuity
 
-Last session: 2026-05-20T12:44:32.733Z
-Stopped at: Completed 05-06-PLAN.md (Hebel-2 compliance-check-Stage, 5 Tests grün, Eval-Delta WIZ-01=0/WIZ-02=+1.2/WIZ-03=+2.8)
+Last session: 2026-05-20T12:58:02.509Z
+Stopped at: Completed 05-08-PLAN.md (Phase-5-Closure: CI-Gate, Smoke approved, Default-Hebel [1,3,4] ON)
 Resume file: None
 
 **Planned Phase:** 5 (wizard-pipeline-tuning-ux-l-cke) — 8 plans — 2026-05-19T21:01:23.132Z
