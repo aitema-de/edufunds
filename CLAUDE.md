@@ -45,6 +45,25 @@ Kurz-Briefing fuer Claude-Code-Sitzungen. Funktionale Uebersicht steht in [READM
 - `scripts/rebuild-queue.ts` — Queue aus `foerderprogramme.json` neu aufbauen
 - `scripts/deploy-{staging,production}.sh` — Deployment
 
+## Pipeline-Eval (Phase 5)
+
+Vor Aenderungen an `lib/wizard/**` oder `data/richtlinien/**`: Pipeline-Eval als PR-Pflicht-Vorabcheck (D-24).
+
+```bash
+# Lokal Replay (kein LLM-Cost):
+npx tsx scripts/eval-pipeline.ts --replay data/eval/pipeline-snapshots/baseline --md-summary
+
+# Lokal Live (~3-4 EUR, mit env-File):
+npx tsx --env-file=.env.local scripts/eval-pipeline.ts --live --N=3 --snapshot --md-summary
+```
+
+Details: [data/eval/README.md](data/eval/README.md). Threshold-Gate-Schwellwerte: [data/eval/BASELINE.md](data/eval/BASELINE.md). Tuning-Historie: [data/eval/TUNING.md](data/eval/TUNING.md).
+
+CI-Workflow: `.github/workflows/pipeline-eval.yml` — laeuft automatisch bei PRs gegen `lib/wizard/**` / `data/richtlinien/**`.
+
+WIZ-01 (Pflichtabschnitte) + WIZ-02 (Halluzinations-Detection) sind hart-blockierend bei Regression > 2σ.
+WIZ-03 (Tonalitaet) ist warning-only (LLM-Varianz zu hoch fuer hartes Gate).
+
 ## Lokale Dev-Umgebung
 
 Workspace: `/home/kolja/edufunds-app/` (auf dem Production-Server liegt eine separate Kopie unter `/home/edufunds/edufunds-app/`).

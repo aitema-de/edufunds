@@ -113,6 +113,40 @@
 - Deployment via GitHub Actions (`.github/workflows/build-deploy.yml`, `deploy-staging.yml`, `deploy.yml`) und manuelle Skripte `scripts/deploy-staging.sh` / `scripts/deploy-production.sh`
 - Wöchentliche Cron-Workflows: `weekly-dossier-extraction.yml` (Mo 04:00 UTC, Gemini-2.5-pro-Extraktion via `scripts/extract-richtlinie.ts`), `weekly-program-scan.yml` (Gemini-Flash-Scan via `scripts/scan-new-programs.ts`)
 
+## Eval-Apparat (Phase 1 + Phase 5)
+
+> Regressions-Eval fuer Matcher (Phase 1+2) und Generate-Pipeline (Phase 5).
+> Versionierte Korpora + Snapshot/Replay + Threshold-Gate-CI.
+
+### Komponenten
+
+| Komponente | Pfad | Phase | Zweck |
+|------------|------|-------|-------|
+| `scripts/eval-matcher.ts` | `scripts/` | 1+2 | Matcher-Eval: Recall@3, Off-Target-Rate, Clarif-Precision |
+| `scripts/eval-pipeline.ts` | `scripts/` | 5 | Pipeline-Eval: WIZ-01/-02/-03 + Finanzplan-Sub |
+| `lib/wizard/geber-classification.ts` | `lib/wizard/` | 5 | Programm-ID → 4-5 strategische Geber-Cluster fuer WIZ-03-Judge |
+| `lib/wizard/config.ts` | `lib/wizard/` | 5 | 4 Feature-Flags fuer Tuning-Hebel (PIPELINE_CONFIG, alle Env-Var-gesteuert) |
+| `data/eval/` | `data/` | 1+5 | Korpora, Snapshots, Reports, BASELINE, TUNING, README |
+| `.github/workflows/pipeline-eval.yml` | `.github/workflows/` | 5 | CI-Threshold-Gate fuer PRs auf lib/wizard/** und data/richtlinien/** |
+
+### Eval-Metriken Phase 5
+
+| Metrik | Achse | Gate-Typ |
+|--------|-------|----------|
+| Pflichtabschnitt-Coverage | WIZ-01 | hart (exit 1 bei > 2σ Regression) |
+| Halluzinations-Detection | WIZ-02 | mittel (exit 1 bei > 2σ + 10 % Regression) |
+| Tonalitaets-Passung (LLM-Judge) | WIZ-03 | warning-only (zu viel LLM-Varianz fuer hartes Gate) |
+| Finanzplan-Validity | Sub | warning-only |
+
+### Tuning-Hebel (Wave 3, Phase 5)
+
+| Flag | Hebel-Nummer | Betrifft |
+|------|-------------|---------|
+| `PIPELINE_SHARP_PROMPTS` | 1 | CRITIQUE/SECTION/REVISION/RECHECK-Prompts |
+| `PIPELINE_COMPLIANCE_STAGE` | 2 | Post-Recheck-Compliance-Check-Stage |
+| `PIPELINE_USE_VORBILD_FORMULIERUNGEN` | 3 | Dossier-Daten-Injection in Section/Revision |
+| `PIPELINE_GEBER_ROUTING_V2` | 4 | Geber-Guidance-Rubrics (geber-guidance.ts) |
+
 ---
 
-*Stack analysis: 2026-04-30*
+*Stack analysis: 2026-04-30 + Eval-Apparat ergaenzt 2026-05-20*
