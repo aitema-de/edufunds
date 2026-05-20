@@ -75,7 +75,7 @@ docker run -d --name edufunds-staging \
 echo "==> Healthcheck abwarten"
 for i in 1 2 3 4 5 6 7 8 9 10; do
   if docker inspect --format '{{.State.Health.Status}}' edufunds-staging 2>/dev/null | grep -q healthy; then
-    echo "    healthy nach ${i}0s"
+    echo "    healthy nach \${i}0s"
     break
   fi
   sleep 10
