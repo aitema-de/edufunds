@@ -50,7 +50,9 @@ git checkout $BRANCH
 git pull --ff-only origin $BRANCH
 
 echo "==> docker build"
-docker build -t edufunds:staging .
+# Paywall-Dev-Mock fuer Staging/UAT einbacken (kein Stripe-Account aktiv).
+# NEXT_PUBLIC_* muss zur Build-Zeit gesetzt sein — Client-Bundle-Inlining.
+docker build --build-arg NEXT_PUBLIC_PAYWALL_DEV_MOCK=1 -t edufunds:staging .
 
 echo "==> Container swap"
 docker stop edufunds-staging 2>/dev/null || true
