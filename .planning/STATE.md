@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 5 context gathered (11 areas discussed, 36 decisions captured)
-last_updated: "2026-05-20T08:50:22.854Z"
+stopped_at: "Completed 05-03-PLAN.md: geber-classification + pipeline-config module"
+last_updated: "2026-05-20T08:55:26.430Z"
 last_activity: 2026-05-20
 progress:
   total_phases: 7
   completed_phases: 5
   total_plans: 31
-  completed_plans: 25
+  completed_plans: 26
   percent: 71
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 ## Current Position
 
 Phase: 05 (wizard-pipeline-tuning-ux-l-cke) — EXECUTING
-Plan: 3 of 8
+Plan: 4 of 8
 Status: Ready to execute
 Last activity: 2026-05-20
 
-Progress: [████████░░] 81%
+Progress: [████████░░] 84%
 
 ## Performance Metrics
 
@@ -59,6 +59,7 @@ Progress: [████████░░] 81%
 | Phase 03 P03-02-cron-migration-cli-validator | 396 | 2 tasks | 6 files |
 | Phase 03 P03-03-workflow-migration-test-runs | 2317 | 3 tasks | 4 files |
 | Phase 05-wizard-pipeline-tuning-ux-l-cke P01 | 6 | 3 tasks | 19 files |
+| Phase 05-wizard-pipeline-tuning-ux-l-cke P03 | 420 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -78,6 +79,8 @@ Decisions sind in PROJECT.md Key-Decisions-Tabelle gepflegt. Roadmap-relevante E
 - Plan 03-02 Auto-Fix: AntragsstrukturLegacySchema neu, validateForeignKeys mit Null-Check — sonst Bestands-Dossiers (5/11) blocken Legacy-Modus oder crashen FK-Check
 - Plan 03-03 Verfeinerung: Live-Workflow-Dispatch (D-09 #1+#2) deferred bis main-Merge — GitHub-UI zeigt workflow_dispatch nur fuer Workflows auf default branch. Static-Acceptance + Live-D-09-#3 (zwei DeepSeek-Calls + Strict-Validator) decken die Substanz ab. Backlog `live-workflow-smoke-deferred.md` (3b27aaf) traegt das Nachhol-Smoke fest.
 - Plan 03-03 Befund: Empty-Skip-Schutz triggert sauber inkl. echter LLM-Auslauf-Detektion (bundesweit-ganztag "Quelle zu allgemein" / nrwbank-moderne-schule "am 27.02.2026 ausgelaufen") — kein Bug, gewuenschtes Pre-Persist-Gate-Verhalten. Stale-Queue-Cleanup via Backlog `queue-pflege-stale-programme.md` (c49725e) fuer Phase 04.
+- [Phase ?]: klimalab-2026 → stiftung (foerdergeberTyp verifiziert in foerderprogramme.json; nicht eu)
+- [Phase ?]: Alle 4 Pipeline-Feature-Flag-Defaults bleiben OFF (Eval-Delta-Messung Wave 3 braucht isolierte Hebel-Toggles; Threat T-05-03-01 via Test enforced)
 
 ### Roadmap Evolution
 
@@ -113,8 +116,8 @@ Items aus REQUIREMENTS.md v2 / Out of Scope, bewusst nicht in dieser Milestone:
 
 ## Session Continuity
 
-Last session: 2026-05-20T08:50:22.833Z
-Stopped at: Phase 5 context gathered (11 areas discussed, 36 decisions captured)
+Last session: 2026-05-20T08:55:26.405Z
+Stopped at: Completed 05-03-PLAN.md: geber-classification + pipeline-config module
 Resume file: None
 
 **Planned Phase:** 5 (wizard-pipeline-tuning-ux-l-cke) — 8 plans — 2026-05-19T21:01:23.132Z
