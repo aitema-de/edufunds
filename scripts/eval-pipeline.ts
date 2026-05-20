@@ -873,7 +873,16 @@ async function main() {
   console.log(`${LOG_PREFIX} Fertig in ${durationSec}s.`);
 }
 
-main().catch((e) => {
-  console.error(`${LOG_PREFIX} Crash:`, e);
-  process.exit(1);
-});
+// Nur ausfuehren wenn direkt als Skript gestartet (nicht bei import in Tests)
+const isMainModule =
+  typeof require !== "undefined"
+    ? require.main === module
+    : process.argv[1] === __filename ||
+      process.argv[1]?.replace(/\.js$/, "") === __filename?.replace(/\.js$/, "");
+
+if (isMainModule) {
+  main().catch((e) => {
+    console.error(`${LOG_PREFIX} Crash:`, e);
+    process.exit(1);
+  });
+}
