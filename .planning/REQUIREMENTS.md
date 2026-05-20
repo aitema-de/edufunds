@@ -25,9 +25,9 @@ Requirements für aktuelle Milestone (Live-UAT-Reife für Schulen + Schulförder
 
 ### Antragswizard-Qualität
 
-- [ ] **WIZ-01**: Pipeline-Tuning für höhere Programmkonformität (Eval gegen Pflichtabschnitte/Zeichenlimits aller 11 Dossiers)
-- [ ] **WIZ-02**: Pipeline-Tuning für höhere Halluzinations-Resistenz (Eval mit verschärften niedrig-qualitativen Test-Inputs)
-- [ ] **WIZ-03**: Pipeline-Tuning für höhere Förderwahrscheinlichkeit (semantische Qualität, „passt-zum-Geber"-Tonalität pro Geber-Typ)
+- [x] **WIZ-01**: Pipeline-Tuning für höhere Programmkonformität (Eval gegen Pflichtabschnitte/Zeichenlimits aller 11 Dossiers)
+- [x] **WIZ-02**: Pipeline-Tuning für höhere Halluzinations-Resistenz (Eval mit verschärften niedrig-qualitativen Test-Inputs)
+- [x] **WIZ-03**: Pipeline-Tuning für höhere Förderwahrscheinlichkeit (semantische Qualität, „passt-zum-Geber"-Tonalität pro Geber-Typ)
 
 ### Frontend-UI-Polish
 
@@ -106,9 +106,9 @@ Phasen-Mapping aus ROADMAP.md (befüllt 2026-04-30 durch Roadmapper, ergänzt 20
 | FETCH-02 | Phase 4 (Programm-Pflege Vollautomation) | Pending |
 | FETCH-03 | Phase 3 (Programm-Pflege Foundation) | Complete |
 | FETCH-04 | Phase 4 (Programm-Pflege Vollautomation) | Pending |
-| WIZ-01 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Pending |
-| WIZ-02 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Pending |
-| WIZ-03 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Pending |
+| WIZ-01 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Complete |
+| WIZ-02 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Complete |
+| WIZ-03 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Complete |
 | WIZ-04 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Complete |
 | UI-01 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |
 | UI-02 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |
