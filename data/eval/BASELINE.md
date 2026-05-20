@@ -3,6 +3,103 @@
 > Append-only History. Phase 2+ fügt neue Einträge oben dran. Skript schreibt
 > NICHT in diese Datei — manuelle Pflege per PR.
 
+---
+
+# Eval-Pipeline Baseline (Phase 5)
+
+> Phase-5-Pipeline-Baseline: Separate Eval-Schicht fuer Generate-Pipeline (lib/wizard/pipeline.ts).
+> Metriken: WIZ-01 (Pflichtabschnitt-Coverage), WIZ-02 (Halluzinations-Detection),
+> WIZ-03 (Tonalitaets-Passung via LLM-as-Judge), Finanzplan-Validity (Sub).
+> Format analog Phase-1 (append-only, neueste Eintraege oben).
+
+## 2026-05-20 — Phase-5-Pipeline-Baseline (Korpus v1, n=22)
+
+- **Pipeline-Commit:** `9ea2032` (HEAD von `feature/wizard-adaptive` nach fix(05) llm-timeout)
+- **Korpus-Version:** v1, 22 Eintraege (11 Standard-Dossier-Eintraege pv-001..pv-011, 7 Stress-Edge-Cases pv-edge-001..007, 4 Reserve pv-res-001..004)
+- **Run-Konfiguration:** N=3 pro Eintrag, judgeModel `gemini-2.0-flash` (=MODEL_INTERVIEW bei Gemini-Provider), alle Feature-Flags OFF (useVorbildFormulierungen=false, complianceStageEnabled=false, sharpPrompts=false, geberRoutingV2=false)
+- **Provider:** `LLM_PROVIDER=gemini`, Pipeline-Modell `gemini-2.0-flash` (Interview + Pipeline = Flash)
+- **Abweichung vom Plan:** Plan sah `deepseek-chat` (Default) oder `gemini-2.5-pro` als Judge vor. DeepSeek Balance=0 (Blocker). Gemini-2.5-pro lieferte dauerhaft 503 Service Unavailable (2026-05-20 Nachmittag). Fallback auf `gemini-2.0-flash` fuer alle Calls. Wave-3-Tuning-Iterationen muessen dieselbe Konfiguration verwenden (Metriken nicht direkt mit DeepSeek-Runs vergleichbar — Provider-Switch triggert neue Baseline gemaess D-26).
+- **Soft-Failure:** 3 Eintraege hatten mindestens einen fehlerhaften Run (429 Rate-Limit pv-edge-002-run2, pv-edge-002-run3 + geber-classification-Warning pv-edge-003/pv-011 wg. `niedersachsen-sport` nicht im Mapping). Soft-Failure-Runs zaehlen als 0-Score-Placeholder in der Aggregation.
+- **Methodik-Hinweis WIZ-01:** Reine **Pflichtabschnitt-Coverage** — `maxZeichen` war zum Run-Zeitpunkt in 0/11 Dossiers gesetzt (Pre-Flight-Survey in `data/eval/dossier-coverage-baseline.md`, RESEARCH §Pitfall 7). Daher WIZ-01=100% fuer fast alle Eintraege (Pflichtabschnitte werden von der Pipeline immer erzeugt). Hebel 3 (vorbildFormulierungen) wirkt nur fuer `aktion-mensch-schulkooperation` (3 Formulierungen) + `kultur-macht-stark` (4 Formulierungen) — Wave-3-Hebel-3-Plan misst Delta nur auf diesen 2 Dossiers.
+- **Methodik-Hinweis WIZ-03:** Score-Range 0-100 via LLM-Judge (5 Rubrics pro Geber-Cluster). `gemini-2.0-flash` als Judge ist weniger calibrated als `gemini-2.5-pro` / `deepseek-chat` — Wave-3-Iterationen muessen denselben Judge verwenden fuer Vergleichbarkeit.
+- **Stddev-Konvention:** Population-Stddev mit N (nicht Sample N-1), konsistent mit `aggregateNRuns()` und Phase-1-Pattern.
+
+### Haupt-Scores (mean ± stddev ueber N=3 Runs × 22 Eintraege)
+
+| Achse | Mean | Stddev | 2σ-Band | Schwellwert (D-19) | Status |
+|-------|------|--------|---------|--------------------|--------|
+| WIZ-01 (Pflichtabschnitte) | 100.0 | 0.0 | 100.0 – 100.0 | ≥ 80 % | ✓ PASS (trivial — maxZeichen=0 Dossiers) |
+| WIZ-02 (Halluzinations-Detection) | 98.3 | 4.5 | 89.3 – 107.3 | ≥ 50 % Reduktion vs. Baseline | Baseline = Anker |
+| WIZ-03 (Tonalitaets-Passung) | 46.3 | 15.8 | 14.7 – 77.9 | Score-Delta > 0 | n/a (Baseline) |
+| Finanzplan-Validity (Sub) | 92.0 | 10.8 | 70.4 – 113.6 | — | — |
+
+**Befund WIZ-01:** 100% Coverage mit 0 Stddev bedeutet, dass die Pipeline IMMER alle Pflicht-Abschnitte erzeugt. WIZ-01 ist als Differenz-Metrik in Wave 3 nur sinnvoll, wenn `maxZeichen`-Constraints in Dossiers eingetragen werden (dann koennen Ueberschreitungen gemessen werden).
+
+**Befund WIZ-02:** 98.3% Score = Halluzinations-Reduktion wirkt gut, aber baseline kennt noch keine echten Forbidden-Marker in den Eintraegen (die meisten Eintraege haben `expected_forbidden_markers=[]`). Echtes Signal kommt erst wenn Dossier-spezifische Forbidden-Marker in Korpus-Eintraegen gesetzt sind.
+
+**Befund WIZ-03:** Mean=46.3 mit Stddev=15.8 zeigt hohe Streuung. Wave-3-Hebel (Tonalitaets-Tuning per Geber-Cluster) zielt auf Steigerung des Cluster-spezifischen Means. Stiftungen (55.0) und EU (58.1) schneiden besser ab als oeffentlich (43.1) und verband-uni (39.1).
+
+### Per-Geber-Gruppe (WIZ-03 Mean)
+
+| Gruppe | n Eintraege | WIZ-01 Mean | WIZ-02 Mean | WIZ-03 Mean |
+|--------|-------------|-------------|-------------|-------------|
+| oeffentlich (bund+land) | 7 | 100.0 | 94.8 | 43.1 |
+| stiftung | 4 | 100.0 | 100.0 | 55.0 |
+| eu | 3 | 100.0 | 100.0 | 58.1 |
+| wirtschaftspreis | 4 | 100.0 | 100.0 | 51.5 |
+| verband-uni | 3 | 100.0 | 100.0 | 39.1 |
+
+*Hinweis: pv-edge-003 (niedersachsen-sport) ist `unknown`-Gruppe und nicht in Per-Geber-Aggregat enthalten.*
+
+### Per-Dossier (WIZ-01 + WIZ-02 Mean ueber N=3)
+
+| Dossier | n Eintraege | WIZ-01 Mean | WIZ-02 Mean | Notiz |
+|---------|-------------|-------------|-------------|-------|
+| aktion-mensch-schulkooperation | 3 | 100.0 | 100.0 | Hebel-3-faehig (3 vorbildFormulierungen) |
+| kultur-macht-stark | 3 | 100.0 | 100.0 | Hebel-3-faehig (4 vorbildFormulierungen) |
+| bmbf-digitalpakt-2 | 3 | 100.0 | 87.8 | UAT-28.04.-Anker; WIZ-02 niedriger (Forbidden-Marker-Pattern) |
+| berlin-startchancen | 2 | 100.0 | 100.0 | — |
+| bosch-schulpreis | 2 | 100.0 | 100.0 | — |
+| ensam-bmz | 2 | 100.0 | 100.0 | — |
+| erasmus-schule-2026 | 1 | 100.0 | 100.0 | — |
+| erasmus-schulentwicklung | 2 | 100.0 | 100.0 | — |
+| ferry-porsche-challenge | 1 | 100.0 | 100.0 | — |
+| ferry-porsche-challenge-2025 | 1 | 100.0 | 100.0 | — |
+| klimalab-2026 | 1 | 100.0 | 100.0 | — |
+| niedersachsen-sport | 1 | 100.0 | 100.0 | geber-classification=unknown (D-28 offen) |
+
+### Latenz / Kosten
+
+- **Latenz/Eintrag (Voll-Pipeline):** ca. 48s avg (Voll-Lauf 3208s / 66 Runs = 48.6s/Run)
+- **Voll-Lauf Wallclock (N=3, 22 Eintraege):** 3208s (~53 Minuten)
+- **Soft-Fails:** 3 von 66 Runs (pv-edge-002-run2 429, pv-edge-002-run3 429, pv-011-run1 fehlt wegen Soft-Fail in Score)
+- **Provider:** Gemini (LLM_PROVIDER=gemini), alle Calls gemini-2.0-flash
+- **Estimated Cost:** ~3-5 EUR (keine exakten Token-Counts in Report, da CostLedger bei 503/429-Fehlern keine Werte zurueckgibt)
+
+### Reports
+
+- JSON: `data/eval/pipeline-reports/2026-05-20T09-50-33.json` (alle 3 Runs + Aggregat)
+- Markdown: `data/eval/pipeline-reports/2026-05-20T09-50-33.md`
+- Snapshots (Lauf-Verzeichnis): `data/eval/pipeline-snapshots/2026-05-20T09-50-33/` (63 Dateien)
+- **Baseline-Anker:** `data/eval/pipeline-snapshots/baseline/` (force-committed Kopie fuer Replay-Default)
+
+### Run-Befehl
+
+```bash
+LLM_PROVIDER=gemini npx tsx --env-file=.env.local scripts/eval-pipeline.ts --live --N=3 --snapshot --md-summary
+```
+
+### Wave-3-Trigger (Tuning-Empfehlung aus Baseline-Aggregat)
+
+Datengetrieben aus den Baseline-Scores (D-21):
+
+1. **Hebel 3 (vorbildFormulierungen)** — WIZ-03 Mean bei `aktion-mensch` (55.0 avg) und `kultur-macht-stark` (56.7 avg) zeigt Raum nach oben. Hebel-3-Plan 05-05 startet als erster Wave-3-Tuning-Schritt.
+2. **WIZ-03 oeffentlich-Cluster** — Niedrigster Mean (43.1) trotz N=7 Eintraegen. Hebel 1+2 (sharpPrompts + complianceStageEnabled) koennen hier ansetzen.
+3. **WIZ-02 bmbf-digitalpakt-2** — 87.8 Mean (unter Durchschnitt). Forbidden-Marker-Analyse: pv-001 hat `expected_forbidden_markers` mit Aktenzeichen-Pattern.
+4. **geber-classification D-28** — `niedersachsen-sport` nicht gemappt → WIZ-03=0 fuer alle 3 Runs. Mapping ergaenzen vor naechstem Run.
+
+---
+
 ## 2026-05-05 — Phase-2.3 Hebel 1+2 + Stabilitaets-Run (Clarif-Precision 62.5 % → 75 %)
 
 - **Matcher-Commit:** wird mit diesem Commit ergaenzt
