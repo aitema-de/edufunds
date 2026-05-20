@@ -126,14 +126,170 @@ const KRITERIEN: Record<string, ExtraGuidance> = {
       "Junge Menschen mit Behinderung / in schwierigen Lebenslagen sind Zielgruppe — Inklusion muss substantiell sein, nicht nur Schlagwort.",
       "Selbstbestimmung und Teilhabe der Zielgruppe: wie werden junge Menschen aktiv einbezogen (Stimme, Entscheidung)?",
       "Barrierefreiheit: baulich, kommunikativ, sozial — konkret benennen, was umgesetzt wird.",
+      "Wirkungs-Narrativ mit konkreter Szene: Aktion Mensch praeferiert Geschichten ueber Statistik — ein reales Kind, eine reale Situation als Einstieg.",
     ],
     pflichten: [
-      "Partner-Organisation muss Aktion-Mensch-foerderfaehig sein (i.d.R. gemeinnuetziger Traeger).",
-      "Kofinanzierung: 30 % Eigenanteil in der Regel erforderlich.",
+      "Partner-Organisation muss Aktion-Mensch-foerderfaehig sein (i.d.R. gemeinnuetziger Traeger), Kooperationsvereinbarung als Anlage.",
+      "Mindestens 10 % Eigenanteil der foerderfaehigen Kosten — kann durch Traeger oder Kooperationspartner eingebracht werden.",
+      "Antragsberechtigt ist NUR der gemeinnuetzige Traeger, NICHT die Schule selbst.",
     ],
     fallen: [
       "Reine Schulprojekte ohne einen zusaetzlichen sozialen Traeger — nicht foerderfaehig.",
       "Tokenistische Inklusion ('auch eine Foerderschule besucht uns einmal') statt echter Ko-Konstruktion.",
+      "Unspezifische Zielgruppe ('benachteiligte Jugendliche') ohne Zahlen und konkrete Herausforderung.",
+      "PR-Glanz-Sprache ('zukunftsweisende Massnahme') — Aktion Mensch erwartet ehrliche, konkrete Beschreibung.",
+    ],
+  },
+
+  "kultur-macht-stark": {
+    gewichtet: [
+      "Buendnis aus MINDESTENS DREI lokalen Partnern (Kultur + Bildung + Sozialarbeit) ist Kern-Voraussetzung — kein Einzel-Schul-Antrag.",
+      "Ausserschulischer Charakter KRITISCH: Abgrenzung vom Regelunterricht muss glasklar sein — freiwillig, zusaetzlich, kein Pflicht-Curriculum.",
+      "Kulturbereich konkret benennen: Theater, Musik, Literatur, digitale Spielekultur, Alltagskultur, Zirkus etc. — kein generisches 'Kulturprojekt'.",
+      "Zielgruppe mit Risikolagen belegen: Sozialindex des Stadtteils, Transferleistungsquote der Familien — kein abstraktes 'benachteiligte Kinder'.",
+      "Diversitaetssensible und Empowerment-orientierte paedagogische Ansaetze sind besonders gefragt.",
+    ],
+    pflichten: [
+      "Federfuehrender Partner (Letztzuwendungsempfaenger) ist Kulturtraeger oder Bildungsorganisation, NICHT die Schule allein.",
+      "Antrag laeuft NICHT direkt beim BMBF sondern ueber einen von ca. 20 Programmpartnern (Bundesverbaende).",
+      "Buendnisvereinbarung (unterschrieben von allen mindestens drei Partnern) als Pflichtanlage.",
+      "Minimum 2.000 EUR Foerderhoehe pro Antrag; kein Zuschuss fuer dauerhafte Investitionen/Geraete.",
+    ],
+    fallen: [
+      "Unzureichende Abgrenzung zum Regelunterricht ist der haeufigste Ablehnungsgrund.",
+      "Weniger als drei Buendnispartner — formale Ablehnung.",
+      "Massnahme ersetzt ein bestehendes, oeffentlich-finanziertes Regelangebot (SGB VIII) — Doppelfoerderung.",
+      "Schule als alleinige Antragstellerin ohne Buendnis-Konstellation.",
+    ],
+  },
+
+  "ensam-bmz": {
+    gewichtet: [
+      "Gleichberechtigte Partnerschaft beider Schulen: kein einseitiger 'Entwicklungshilfe'-Ansatz — beide Seiten lernen voneinander.",
+      "SDG-Thema konkret und aus beiden Laender-Perspektiven beleuchtet — nicht nur Nord-Sicht.",
+      "Schuelerinnen-Beteiligung aktiv: Schuelerinnen gestalten die Partnerschaft, sie wird nicht nur fuer sie durchgefuehrt.",
+      "NRO-Begleitung ist starkes Qualitaetsmerkmal und wird besonders gefoerdert.",
+      "Nachhaltigkeit der Partnerschaft: langfristiger Plan, Rueckbegegnungen, Einfluss in Schulalltag.",
+    ],
+    pflichten: [
+      "Antragsberechtigt: weiterfuehrende Schule (ab Klasse 8, Schuelerinnen mind. 14 Jahre), Schulfoerderverein oder NRO aus Deutschland.",
+      "Grundschulen sind NICHT foerderberechtigt.",
+      "Partnerland muss auf der OECD DAC-Liste stehen (Globaler Sueden).",
+      "Bei Begegnungsreise: Partnerschaft muss bereits mindestens 1 Jahr bestehen.",
+      "Reisezeitraum: nur 1. Maerz bis 31. Oktober foerderfaehig.",
+      "Keine Kombination mit anderen Bundesmitteln (Erasmus+, DAAD, KMK-PAD) fuer dieselbe Massnahme.",
+    ],
+    fallen: [
+      "Klassisches Hilfsprojekt oder Workcamp-Charakter — wird abgelehnt.",
+      "Einseitige Nord-Sued-Perspektive ohne echten gegenseitigen Lerneffekt.",
+      "Reine Lehrkraefteaustausche ohne Schuelerinnen-Begegnung im Zentrum.",
+      "Infrastrukturelle Beschaffungsmassnahmen fuer Partnerschule — nicht foerderfaehig.",
+      "Kombination mit Erasmus+ oder KMK-PAD fuer dieselbe Massnahme — Foerderausschluss.",
+    ],
+  },
+
+  "erasmus-schulentwicklung": {
+    gewichtet: [
+      "Wirkung (Impact) ist der groesste Bewertungsblock: 35 von 100 Punkten — spuerbare Veraenderungen in der Schulbildung muss im Antrag klar herausgestellt sein.",
+      "Qualitaet der Projektkonzeption: 30 Punkte — konkrete Aktivitaeten, Zeitplan, Ergebnisse.",
+      "Qualitaet der Partnerschaft: 20 Punkte — Partnerrolle jeder Organisation explizit, Kooperationsvereinbarungen.",
+      "Nachweis substanzieller Verwaltungskapazitaeten als Koordinator: Finanzmittelverwaltung + Personalmittel fuer 400.000 EUR Lump-Sum-Foerderung.",
+      "Mindestpunktzahl in JEDER der vier Kategorien (>=50% der Maximalpunkte) ist Pflicht.",
+    ],
+    pflichten: [
+      "Koordinator MUSS lokale oder regionale Schulbehoerde oder Schulkoordinierungsstelle sein.",
+      "Partnerschaft umfasst mindestens sechs Organisationen.",
+      "In Staat der Antragstellers UND in mindestens einem weiteren EU-Programmstaat: je mind. 1 Schulbehoerde/-koordinierungsstelle + mind. 2 allgemeinbildende Schulen.",
+      "Pro Antragsfrist nur EINEN Antrag als Koordinator einreichen.",
+      "Projektlaufzeit fest 36 Monate ab 1. Oktober des Antragsjahres.",
+    ],
+    fallen: [
+      "Weniger als 70 Gesamtpunkte in der Bewertung — haeufigstes Ablehnungskriterium.",
+      "In einer der vier Bewertungskategorien unter 50% der Maximalpunkte.",
+      "Mehr als ein Antrag als Koordinator pro Antragsfrist.",
+      "Partnerschaft erfuellt nicht formale Mindest-Anforderungen (Anzahl Organisationen, Schulbehoerden in mind. 2 Laendern).",
+    ],
+  },
+
+  "ferry-porsche-challenge": {
+    gewichtet: [
+      "Story-driven Bewerbung: Vorhaben in wenigen praegnanten Saetzen erklaerbar — was ist das Besondere des Projekts im Themenfeld?",
+      "Klare Zuordnung zu einem Themenfeld des aktuellen Ausschreibungs-Mottos (Themenfelder variieren jaehrlich).",
+      "Konkrete Belege und Ergebnisse statt Versprechen — Jury bewertet Substanz.",
+      "Gemeinnuetzigkeit und regionales Foerdergebiet (Baden-Wuerttemberg + Sachsen) sind Grundbedingung.",
+    ],
+    pflichten: [
+      "Antragstellerin muss gemeinnuetzige Organisation oder Verein aus Baden-Wuerttemberg oder Sachsen sein.",
+      "Pro Organisation NUR EINE Bewerbung einreichen — interne Abstimmung sicherstellen.",
+      "Fruezhzeitig einreichen: nur die ersten 200 vollstaendig eingegangenen Bewerbungen werden beruecksichtigt.",
+      "Projekt muss wirksam auf mindestens eines der aktuellen Themenfelder einzahlen.",
+    ],
+    fallen: [
+      "Zu spaete Einreichung — Kontingent von 200 Bewerbungen ist haeufig vor offiziellem Fristende erschoepft.",
+      "Bewerbung ausserhalb des Foerdergebiets BW + Sachsen.",
+      "Mehr als eine Bewerbung pro Organisation.",
+      "Kein klarer Bezug zu einem der vorgegebenen Themenfelder.",
+    ],
+  },
+
+  "ferry-porsche-challenge-2025": {
+    gewichtet: [
+      "Story-driven Bewerbung: das Vorhaben in 2-3 Saetzen erklaerbar machen — was ist das Besondere, was hebt es ab?",
+      "Klare Zuordnung zu einem Themenfeld des aktuellen Ausschreibungs-Mottos (2026: 'Gemeinsam aelter — gemeinsam staerker': Schutz vor Vereinsamung, wuerdevolles Altern, Digitale Handlungskompetenzen, Brücken in den Ruhestand, Generationendialog).",
+      "Konkrete, verifizierbare Projektbeschreibung mit messbarer Wirkung — keine Versprechen.",
+      "Gemeinnuetzigkeit und regionales Foerdergebiet (Baden-Wuerttemberg + Sachsen) sind Grundbedingung.",
+    ],
+    pflichten: [
+      "Antragstellerin muss gemeinnuetzige Organisation oder Verein aus Baden-Wuerttemberg oder Sachsen sein.",
+      "Pro Organisation NUR EINE Bewerbung — interne Abstimmung sicherstellen.",
+      "Fruehzeitig einreichen: nur die ersten 200 vollstaendig eingegangenen Bewerbungen werden beruecksichtigt.",
+      "Projekt muss wirksam auf mindestens eines der aktuellen Ausschreibungs-Themenfelder einzahlen.",
+    ],
+    fallen: [
+      "Zu spaete Einreichung — das 200-Bewerbungen-Kontingent ist erfahrungsgemaess vor dem offiziellen Fristende erschoepft.",
+      "Bewerbung ausserhalb des Foerdergebiets BW + Sachsen.",
+      "Mehr als eine Bewerbung pro Organisation.",
+      "Kein klarer Bezug zu einem der vorgegebenen Themenfelder des aktuellen Mottos.",
+    ],
+  },
+
+  "klimalab-2026": {
+    gewichtet: [
+      "Klimaschutz als strukturell im Selbstverstaendnis der Organisation verankert — nicht nur als Einzelprojekt.",
+      "Konkrete organisatorische Veraenderungen geplant: neue Verantwortlichkeiten, Ablauf-Anpassungen, Leitbild-Ueberarbeitung oder strategische Partnerschaften.",
+      "Stiftung Mercator als Kooperationspartner: Foerderung kombiniert finanzielle Mittel mit Beratung und Wissenstransfer — beides nutzen.",
+      "Gemeinnuetzige Organisationen (Vereine, Verbaende) als Zielgruppe — keine Einzelpersonen oder kommerzielle Unternehmen.",
+    ],
+    pflichten: [
+      "Antragstellerin muss gemeinnuetzige Organisation (Verein, Verband) sein.",
+      "Vorhaben muss Klimaschutz strukturell in der Organisation verankern — kein reines Einzel-Schulprojekt.",
+      "Bewerbungsfrist beachten (war 27. Februar 2026 fuer 2026er Runde — Frist jaehrlich pruefen).",
+    ],
+    fallen: [
+      "Klimaschutz nur als Projekt-Thema ohne organisationalen Wandel — entspricht nicht der Foerder-Logik.",
+      "Keine gemeinnuetzige Rechtsform oder Sitz ausserhalb des Foerdergebiets.",
+      "Projektantrag ohne Bezug zur strategischen Weiterentwicklung der Organisation.",
+    ],
+  },
+
+  "berlin-startchancen": {
+    gewichtet: [
+      "Programm ist fuer Berliner Schulen mit HOHEM Anteil sozial benachteiligter Schuelerschaft — Auswahl durch das Land Berlin, keine freie Bewerbung.",
+      "Drei Saeulen unterscheiden sich inhaltlich klar: Saeule I = Investitionen (Lernraeume), Saeule II = Chancenbudget (Unterrichts-/Schulentwicklung), Saeule III = Multiprofessionelle Teams (Personal).",
+      "Kooperation mit externen Partnern (Jugendhilfe, Sozialarbeit, Jugendamt) ist konstitutiv — nicht optional.",
+      "Datenbasierte Bedarfsanalyse: demografische und soziale Kennzahlen der Schule konkret benennen.",
+      "Schul-Entwicklungsplan muss mit Programm-Ziel verknuepft sein.",
+    ],
+    pflichten: [
+      "Nur Startchancen-Schulen des Landes Berlin koennen partizipieren — Liste liegt bei der Bildungssenatsverwaltung (startchancen@senbjf.berlin.de).",
+      "Vorhaben muss einer der drei Foerdersaeulen klar zuzuordnen sein.",
+      "Multiprofessionalitaet: nicht nur Lehrkraefte, auch Schulsozialarbeit/Psychologie einbeziehen.",
+    ],
+    fallen: [
+      "Generische Aussagen ('Wir wollen Chancengleichheit foerdern') ohne konkreten Sozialraum-Bezug.",
+      "Fehlende Multiprofessionalitaet (nur Lehrkraefte, keine weiteren Professionen).",
+      "Keine Verbindung zum Schul-Entwicklungsplan.",
+      "Projekt kann keiner der drei Saeulen klar zugeordnet werden.",
     ],
   },
 };
