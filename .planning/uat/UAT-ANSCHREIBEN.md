@@ -10,20 +10,20 @@
 
 Hi {Vorname},
 
-ich baue mit aitema gerade EduFunds — eine Plattform, die KI nutzt, um Schul-Förderanträge zu schreiben (Volltext + Finanzplan, programm-spezifisch). Bevor wir live gehen, suche ich 3–5 Pilotpersonen für je eine 45-Min-Session.
+ich baue mit aitema gerade EduFunds — eine Plattform, die KI nutzt, um Schul-Förderanträge zu schreiben (Volltext + Finanzplan, programm-spezifisch). Bevor wir live gehen, suche ich 3–5 Pilotpersonen für je einen kurzen Test-Lauf.
 
 Was ich von dir bräuchte:
-- 45 Min deiner Zeit, am Bildschirm, mit Screen-Sharing
-- ein Schul-Anliegen (kann fiktiv sein, wenn du mit echten Daten zögerst)
-- ehrliches Feedback, wo der Wizard hängt
+- ca. 30–45 Min — wann es dir zeitlich passt, du machst den Test allein (kein Termin nötig)
+- ein (gern fiktives) Schul-Anliegen, das du fördern lassen würdest
+- ehrliches Feedback über ein kurzes Rückmelde-Formular
 
 Was du davon hast:
 - am Ende der Session: ein KI-generierter Antragsentwurf, deinen Anwendungsfall passend (Volltext + Finanzplan-Tabelle)
 - Pilot-Bonus: kostenlose Nutzung beim ersten echten Antrag, sobald wir live sind
 
-Datenschutz: Die Aufzeichnung bleibt bei mir, keine Daten gehen an Dritte. Wenn du nur fiktive Schul-Daten nutzen willst, kein Problem — das reicht für den Test.
+Datenschutz: Bitte nutze für den Test fiktive Schul-Daten — das reicht völlig und es entsteht gar kein Datenschutz-Thema.
 
-Wann passt's dir? Vorschlag: {3 Terminvorschläge eintragen}
+Sag mir kurz Bescheid, dann schicke ich dir einen Link und eine kurze Schritt-für-Schritt-Anleitung. Testen kannst du dann, wann immer es dir passt.
 
 Viele Grüße
 Kolja
@@ -36,20 +36,20 @@ Kolja
 
 Sehr geehrte/r {Anrede},
 
-EduFunds ist eine neue Plattform, die KI nutzt, um Schul-Förderanträge zu schreiben — programm-spezifisch (DigitalPakt 2.0, Demokratisch Handeln, Stiftungspreise und weitere). Vor dem öffentlichen Start suchen wir 3–5 Pilotpersonen aus dem Schulbetrieb, die uns 45 Min lang beim Test-Lauf begleiten.
+EduFunds ist eine neue Plattform, die KI nutzt, um Schul-Förderanträge zu schreiben — programm-spezifisch (DigitalPakt 2.0, Demokratisch Handeln, Stiftungspreise und weitere). Vor dem öffentlichen Start suchen wir 3–5 Pilotpersonen aus dem Schulbetrieb für je einen kurzen, eigenständigen Test-Lauf.
 
 Was wir von Ihnen bräuchten:
-- 45 Min Ihrer Zeit, am Bildschirm, mit Screen-Sharing
-- ein Schul-Anliegen (kann auch fiktiv sein, wenn echte Daten ungünstig sind)
-- ehrliches Feedback, wo der Wizard hängt oder unklar ist
+- ca. 30–45 Min — wann es Ihnen zeitlich passt, der Test läuft eigenständig (kein Termin nötig)
+- ein (gern fiktives) Schul-Anliegen, das Sie fördern lassen würden
+- ehrliches Feedback über ein kurzes Rückmelde-Formular
 
 Was Sie davon haben:
 - am Ende der Session: ein KI-generierter Antragsentwurf für Ihren Anwendungsfall (Volltext + Finanzplan-Tabelle)
 - Pilot-Bonus: kostenlose Nutzung beim ersten echten Antrag, sobald die Plattform live ist
 
-Datenschutz: Die Aufzeichnung bleibt bei uns, keine Daten gehen an Dritte. Wenn Sie nur fiktive Schul-Daten verwenden möchten, ist das kein Problem.
+Datenschutz: Bitte verwenden Sie für den Test fiktive Schul-Daten — das genügt vollständig und es entsteht gar kein Datenschutz-Thema.
 
-Wann passt es Ihnen? Mögliche Termine: {3 Terminvorschläge eintragen}
+Geben Sie mir kurz Bescheid, dann sende ich Ihnen einen Link und eine Schritt-für-Schritt-Anleitung. Den Test können Sie dann durchführen, wann immer es Ihnen passt.
 
 Mit freundlichen Grüßen
 Kolja Schumann
