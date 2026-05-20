@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: ready_to_plan
-stopped_at: Phase 05 complete (8/8) — ready to discuss Phase 6
-last_updated: 2026-05-20T13:17:31.163Z
+status: planning
+stopped_at: Phase 6 context gathered
+last_updated: "2026-05-20T14:53:09.652Z"
 last_activity: 2026-05-20
 progress:
   total_phases: 7
@@ -126,9 +126,9 @@ Items aus REQUIREMENTS.md v2 / Out of Scope, bewusst nicht in dieser Milestone:
 
 ## Session Continuity
 
-Last session: 2026-05-20T12:58:02.509Z
-Stopped at: Completed 05-08-PLAN.md (Phase-5-Closure: CI-Gate, Smoke approved, Default-Hebel [1,3,4] ON)
-Resume file: None
+Last session: 2026-05-20T14:53:09.628Z
+Stopped at: Phase 6 context gathered
+Resume file: .planning/phases/06-live-uat-mit-pilot-schulen/06-CONTEXT.md
 
 **Planned Phase:** 5 (wizard-pipeline-tuning-ux-l-cke) — 8 plans — 2026-05-19T21:01:23.132Z
 
