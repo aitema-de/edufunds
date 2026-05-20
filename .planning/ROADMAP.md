@@ -14,7 +14,7 @@ Diese Roadmap führt EduFunds vom heutigen Stand (`feature/wizard-adaptive` HEAD
 - [ ] **Phase 2: Matcher-Quality** — Matcher liefert strukturierte Begründungen und erkennt vage Anliegen
 - [x] **Phase 3: Programm-Pflege Foundation** — Cron-Skripte auf DeepSeek-Wrapper migriert, Dossier-Schema um Best-Practices/Reject-Gründe/Vorbild-Formulierungen/Frist-Logik erweitert ✓ 2026-05-06
 - [x] **Phase 4: Programm-Pflege Vollautomation** — Scanner→Extractor→Queue voll automatisiert, alle 11 bestehenden Dossiers auf erweitertes Schema migriert ✓ 2026-05-19 (Live-E2E-Smoke deferred)
-- [ ] **Phase 5: Wizard-Pipeline-Tuning + UX-Lücke** — Höhere Programmkonformität, Halluzinations-Resistenz, Förderwahrscheinlichkeit; Reload-Resume geschlossen
+- [x] **Phase 5: Wizard-Pipeline-Tuning + UX-Lücke** — Höhere Programmkonformität, Halluzinations-Resistenz, Förderwahrscheinlichkeit; Reload-Resume geschlossen (completed 2026-05-20)
 - [ ] **Phase 6: Live-UAT mit Pilot-Schulen** — Strukturierte UATs mit 3–5 Pilot-Anwendern, Tracker pro Session, konsolidierte Bug-Fix-Welle
 
 ## Phase Details
@@ -122,7 +122,7 @@ Plans:
   2. Pipeline-Eval-Run gegen alle 11 Dossiers zeigt für WIZ-01: **≥ 80 % der Pflichtabschnitte** aus dem Dossier sind im finalen Antrag vorhanden (Pflichtabschnitt-Coverage; maxZeichen-Check optional sobald Dossiers das Feld setzen — Stand Phase-5-Start: 0/11).
   3. Pipeline-Eval-Run gegen verschärfte niedrig-qualitative Inputs zeigt für WIZ-02: **≥ 50 % Reduktion der kuratierten Halluzinations-Marker** gegen Baseline (UAT-28.04.-Pattern: erfundene Rahmenverträge, TV-L-Codes, Aktenzeichen, Beschluss-Daten); ehrliche Lücken-Markierungen statt Erfindung.
   4. „Passt-zum-Geber"-Tonalitäts-Check (WIZ-03) liefert messbares **Score-Delta > 0** gegen Baseline pro strategischer Geber-Gruppe (öffentlich / Stiftung / EU / Wirtschaftspreis / Verband+Uni) — Methode dokumentiert (LLM-as-Judge mit Rubric, 4-5 Cluster aus D-10).
-**Plans:** 7/8 plans executed
+**Plans:** 8/8 plans complete
 
 Plans:
 - [x] 05-01-PLAN.md — Wave 0 Pre-Flight (ROADMAP/REQUIREMENTS-Edit D-34, Dossier-Coverage-Survey A5, 12 Test-Skelette D-32)
@@ -132,7 +132,7 @@ Plans:
 - [x] 05-05-PLAN.md — Wave 3 Hebel 1+3 (sharp-prompts + dossier-injection in prompts.ts)
 - [x] 05-06-PLAN.md — Wave 3 Hebel 2 (compliance-check-stage in pipeline.ts, loop-count=1)
 - [x] 05-07-PLAN.md — Wave 3 Hebel 4 (geber-guidance V2 + programm-kriterien erweitert)
-- [ ] 05-08-PLAN.md — Wave 4 CI-Workflow + Doku + Pre-Closure-Smoke + Default-Hebel-Decision (D-24/-27/-35/-36)
+- [x] 05-08-PLAN.md — Wave 4 CI-Workflow + Doku + Pre-Closure-Smoke + Default-Hebel-Decision (D-24/-27/-35/-36)
 
 ### Phase 6: Live-UAT mit Pilot-Schulen
 **Goal**: Strukturierte UATs mit 3–5 echten Schulen / Schulfördervereinen aus Koljas Netzwerk durchführen, Befunde pro Session sauber tracken und in einer konsolidierten Bug-Fix-Welle adressieren — analog zur 28.–30.04.-Fix-Welle.
@@ -157,7 +157,7 @@ Phasen werden numerisch ausgeführt: 1 → 2 → 3 → 4 → 5 → 6. Phasen 2 u
 | 2. Matcher-Quality | 0/TBD | Not started | - |
 | 3. Programm-Pflege Foundation | 3/3 | Complete    | 2026-05-06 |
 | 4. Programm-Pflege Vollautomation | 4/4 | Complete    | 2026-05-19 |
-| 5. Wizard-Pipeline-Tuning + UX | 7/8 | In Progress|  |
+| 5. Wizard-Pipeline-Tuning + UX | 8/8 | Complete   | 2026-05-20 |
 | 6. Live-UAT mit Pilot-Schulen | 0/TBD | Not started | - |
 
 ---
