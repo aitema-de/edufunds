@@ -37,6 +37,12 @@ tmp/
 data/eval/reports/
 data/eval/snapshots/
 
+# Phase 5 Pipeline-Eval (analog Phase-1-Pattern)
+# pipeline-snapshots/baseline/ ist force-committed als Replay-Anker
+/data/eval/pipeline-snapshots/*
+!/data/eval/pipeline-snapshots/baseline/
+/data/eval/pipeline-reports/
+
 # Claude Code local settings (personal allowlist)
 .claude/settings.local.json
 .claude/worktrees/
