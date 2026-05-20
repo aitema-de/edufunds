@@ -20,6 +20,8 @@ const STAGES: Array<{ key: PipelineStage; label: string; detail: string }> = [
   { key: "consistency", label: "Konsistenz prüfen", detail: "Antragstext und Finanzplan müssen zusammenpassen." },
 ];
 
+// "compliance-check" fehlt bewusst — silent stage (D-20 Hebel 2, Phase 5).
+// stageStatus() gibt "pending" zurueck wenn currentStage nicht in ORDER vorkommt → kein UI-Update.
 const ORDER: PipelineStage[] = ["outline", "section", "critique", "revision", "recheck", "finanzplan", "consistency"];
 
 function stageStatus(

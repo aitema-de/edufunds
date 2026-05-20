@@ -30,10 +30,11 @@ import {
 } from "./prompts";
 import { MODEL_FLASH, MODEL_PRO, generateJson, generateText } from "./llm";
 import type { Usage } from "./pricing";
-import type { Richtlinie } from "./richtlinien-schema";
+import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
 import { generateFinanzplan } from "./finanzplan-generator";
 import { buildFallbackTitle } from "./title-fallback";
 import { buildFallbackOutline } from "./outline-fallback";
+import { PIPELINE_CONFIG } from "./config";
 
 const SCHWERE_VALID: readonly CritiqueSchwere[] = ["hoch", "mittel", "niedrig"];
 const KATEGORIE_VALID: readonly CritiqueKategorie[] = [
@@ -146,6 +147,127 @@ function normalizeResolutions(raw: unknown, findingCount: number): FindingResolu
 
 type Outline = NonNullable<GenerationArtefacts["outline"]>;
 
+// =============================================================================
+// Phase 5 D-20 Hebel 2 — Compliance-Check-Stage
+// =============================================================================
+
+interface ComplianceViolation {
+  abschnittId: string;
+  art: "fehlt" | "ueberlaenge" | "nur-platzhalter";
+  detail: string;
+}
+
+interface ComplianceCheckResult {
+  violations: ComplianceViolation[];
+  usage: Usage;
+}
+
+/**
+ * Deterministischer FK-Check: prueft ob alle Pflicht-Abschnitte aus der
+ * Richtlinie im finalText vorkommen und die Laengengrenzen eingehalten werden.
+ *
+ * Kein LLM-Call — rein textuell. Usage ist Dummy (promptTokens=0).
+ * T-05-06-06 Mitigation: case-insensitive + whitespace-Trim + Substring-Match
+ * gegen "Finanzierung und Ausgangslage" findet "Finanzierung".
+ */
+async function runComplianceCheck(
+  finalText: string,
+  abschnitte: readonly AntragsAbschnitt[]
+): Promise<ComplianceCheckResult> {
+  const violations: ComplianceViolation[] = [];
+  const textLower = finalText.toLowerCase().trim();
+
+  for (const abschnitt of abschnitte) {
+    if (abschnitt.pflicht === false) continue;
+
+    // Section-Text durch einfaches Splitting extrahieren (naiv, reicht fuer FK-Check)
+    const abschnittNameLower = abschnitt.name.toLowerCase().trim();
+
+    // T-05-06-06: Substring-Match — "Bedarfsanalyse und Ausgangslage" enthaelt "Bedarfsanalyse"
+    const nameFound = textLower.includes(abschnittNameLower);
+
+    if (!nameFound) {
+      violations.push({
+        abschnittId: abschnitt.id,
+        art: "fehlt",
+        detail: `Pflichtabschnitt "${abschnitt.name}" (id: ${abschnitt.id}) fehlt im Antragstext.`,
+      });
+      continue;
+    }
+
+    // Laengencheck: Abschnitt-Text isolieren (von diesem Namen bis naechster Ueberschrift)
+    if (abschnitt.maxZeichen) {
+      const nameIdx = textLower.indexOf(abschnittNameLower);
+      const afterName = finalText.slice(nameIdx + abschnitt.name.length);
+      // Naechste Zeile die wie eine Ueberschrift aussieht (kurze Zeile, keine Luecke)
+      const lines = afterName.split("\n");
+      const contentLines: string[] = [];
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (trimmed.length === 0) { contentLines.push(""); continue; }
+        // Heuristik: Zeile < 60 Zeichen ohne Satzzeichen am Ende = neue Ueberschrift
+        if (contentLines.length > 0 && trimmed.length < 60 && !trimmed.endsWith(".") && !trimmed.endsWith(",")) break;
+        contentLines.push(line);
+      }
+      const sectionText = contentLines.join("\n").trim();
+
+      if (sectionText.length > abschnitt.maxZeichen) {
+        violations.push({
+          abschnittId: abschnitt.id,
+          art: "ueberlaenge",
+          detail: `Abschnitt "${abschnitt.name}" hat ${sectionText.length} Zeichen (Limit: ${abschnitt.maxZeichen}).`,
+        });
+      } else if (sectionText.length < 50) {
+        // Mindestlaenge fuer Pflichtabschnitte: 50 Zeichen
+        violations.push({
+          abschnittId: abschnitt.id,
+          art: "nur-platzhalter",
+          detail: `Abschnitt "${abschnitt.name}" hat nur ${sectionText.length} Zeichen — moeglicherweise nur Platzhalter.`,
+        });
+      }
+    }
+  }
+
+  return {
+    violations,
+    usage: { promptTokens: 0, candidatesTokens: 0 },
+  };
+}
+
+/**
+ * Baut den Revision-Prompt fuer den Compliance-Repair-Call.
+ * Wird nur getriggert wenn violations.length > 0 und complianceLoopCount === 0.
+ */
+function buildComplianceRevisionPrompt(
+  currentText: string,
+  violations: ComplianceViolation[]
+): string {
+  const violationLines = violations.map((v) => {
+    if (v.art === "fehlt") {
+      return `- FEHLT: Abschnitt "${v.abschnittId}" — ${v.detail}`;
+    }
+    if (v.art === "ueberlaenge") {
+      return `- UEBERLAENGE: Abschnitt "${v.abschnittId}" — ${v.detail} Bitte kuezen.`;
+    }
+    return `- NUR-PLATZHALTER: Abschnitt "${v.abschnittId}" — ${v.detail} Bitte inhaltlich fuellen.`;
+  }).join("\n");
+
+  return `Du hast folgenden Antragstext erhalten, der die Pflichtstruktur der Foerderrichtlinie NICHT vollstaendig erfuellt.
+
+FESTGESTELLTE VERSTÖSSE:
+${violationLines}
+
+ANTRAGSTEXT (zu korrigieren):
+${currentText}
+
+AUFGABE: Ueberarbeite den Antragstext so, dass alle genannten Verstösse behoben sind:
+- Fehlende Abschnitte mit einem inhaltlich passenden Text ergänzen (basierend auf dem vorhandenen Kontext).
+- Zu lange Abschnitte kürzen ohne inhaltlichen Verlust.
+- Platzhalter durch konkrete Inhalte ersetzen.
+
+Gib NUR den vollständigen, korrigierten Antragstext zurueck (kein JSON, keine Erklaerung).`;
+}
+
 export interface PipelineEvent {
   stage: PipelineStage;
   message: string;
@@ -251,7 +373,7 @@ export async function runPipeline(
   const critiqueRendered = renderCritique(critique);
 
   emit({ stage: "revision", message: "Finale Fassung" });
-  const finalRes = await generateText(
+  let finalRes = await generateText(
     MODEL_PRO,
     REVISION_SYSTEM,
     buildRevisionPrompt(programm, facts, draft, critiqueRendered, richtlinie)
@@ -274,6 +396,32 @@ export async function runPipeline(
       const f = critique.findings[r.index - 1];
       return f?.schwere === "hoch";
     });
+  }
+
+  // =========================================================================
+  // Phase 5 D-20 Hebel 2 — Compliance-Check-Stage (PIPELINE_COMPLIANCE_STAGE)
+  // Silent-Stage gegenueber GeneratingProgress.tsx — kein UI-Update.
+  // Loop-Count enforced: max 1 Iteration (T-05-06-01 DoS-Mitigation).
+  // =========================================================================
+  let complianceLoopCount = 0;
+  if (PIPELINE_CONFIG.complianceStageEnabled && richtlinie?.antragsstruktur?.abschnitte) {
+    emit({ stage: "compliance-check", message: "Pflichtabschnitt-Check" });
+    const cc = await runComplianceCheck(
+      finalRes.value ?? "",
+      richtlinie.antragsstruktur.abschnitte
+    );
+    usages.push({ model: "deterministic", usage: cc.usage });
+
+    if (cc.violations.length > 0 && complianceLoopCount === 0) {
+      const revFix = await generateText(
+        MODEL_PRO,
+        REVISION_SYSTEM,
+        buildComplianceRevisionPrompt(finalRes.value ?? "", cc.violations)
+      );
+      finalRes = { value: revFix.value, usage: revFix.usage };
+      usages.push({ model: MODEL_PRO, usage: revFix.usage });
+      complianceLoopCount = 1;
+    }
   }
 
   emit({ stage: "finanzplan", message: "Finanzplan-Entwurf" });

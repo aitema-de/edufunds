@@ -10,6 +10,7 @@ export const STAGE_LABELS: Record<PipelineStage, string> = {
   critique: "Gutachten",
   revision: "Finale Fassung",
   recheck: "Recheck",
+  "compliance-check": "Compliance-Pruefung",  // silent — wird NICHT in UI angezeigt (D-20 Hebel 2)
   finanzplan: "Finanzplan",
   consistency: "Konsistenz",
   done: "Fertig",

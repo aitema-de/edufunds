@@ -132,6 +132,7 @@ export type PipelineStage =
   | "critique"
   | "revision"
   | "recheck"
+  | "compliance-check"  // Phase 5 D-20 Hebel 2 — silent stage gegenueber UI
   | "finanzplan"
   | "consistency"
   | "done";
