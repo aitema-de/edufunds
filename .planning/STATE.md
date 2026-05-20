@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 6 Wave 2 — checkpoint:human-action (06-02 UAT-Sessions) wartet auf Kolja
+stopped_at: Phase 6 — Async-UAT-Pivot, Re-Planung ab 06-02 nötig (06-01 fertig)
 last_updated: "2026-05-20T15:47:21.943Z"
 last_activity: 2026-05-20
 progress:

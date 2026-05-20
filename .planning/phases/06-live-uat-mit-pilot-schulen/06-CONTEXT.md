@@ -1,7 +1,7 @@
 # Phase 6: Live-UAT mit Pilot-Schulen - Context
 
 **Gathered:** 2026-05-20
-**Status:** Ready for planning
+**Status:** Re-planning ab 06-02 — Async-UAT-Pivot 2026-05-20 (06-01 abgeschlossen)
 
 <domain>
 ## Phase Boundary
@@ -20,6 +20,20 @@ Diese Phase ist **überwiegend operativ**: Die UAT-Sessions selbst kann GSD nich
 
 <decisions>
 ## Implementation Decisions
+
+## ⚠ ASYNC-UAT-PIVOT (2026-05-20) — hat Vorrang vor den Decisions darunter
+
+Nach Abschluss von Plan 06-01 hat Kolja das UAT-Modell geändert: **asynchrone, unmoderierte Pilot-Tests** statt moderierter Screen-Sharing-Sessions. Die folgenden Pivot-Entscheidungen haben **Vorrang** vor den ursprünglichen Decisions; betroffene Alt-Decisions sind explizit benannt.
+
+- **D-26 (überschreibt D-21):** UAT-Umgebung = **Staging-Deploy**. Der Wizard-Branch `feature/wizard-adaptive` wird auf `staging.edufunds.org` deployed — Migrationen 002/003 auf die Staging-DB, `NEXT_PUBLIC_PAYWALL_DEV_MOCK=1` gesetzt, Smoke-Test nach Deployment-Safety-Regel. Piloten erreichen den Wizard über diese URL. Lokales Dev + Screen-Sharing entfällt. → braucht einen **neuen Deploy-Plan, der vor dem async-06-02 läuft**.
+- **D-27 (überschreibt D-09/D-11 und `<specifics>` Screen-Sharing):** Sessions = **async + unmoderiert**. Der Pilot testet allein, wann er Zeit hat — kein Termin, kein Moderator, kein Think-aloud. GSD pausiert weiterhin pro Pilot (Checkpoint-Mechanik bleibt), aber der Resume-Trigger ist die vom Piloten zurückgeschickte Rückmeldung, nicht eine von Kolja moderierte Session.
+- **D-28 (überschreibt D-11):** Befunde-Input = **zweistufig**. Der Pilot füllt das laienfreundliche `UAT-PILOT-RUECKMELDUNG-TEMPLATE.md` aus (Rohinput). GSD baut daraus + aus dem DB-Snapshot des Pilot-Antrags den technischen `UAT-BEFUNDE-{datum}-PILOT-{code}.md`-Tracker (UAT-BEFUNDE-TEMPLATE.md-Schema). Kolja füllt den technischen Tracker NICHT mehr selbst.
+- **D-29:** Pilot-Doku existiert bereits — `.planning/uat/UAT-PILOT-ANLEITUNG.md` (Selbst-Test-Anleitung) + `UAT-PILOT-RUECKMELDUNG-TEMPLATE.md` (Ausfüll-Formular), erstellt als 06-01-Folgearbeit (Commit `30c64a4`). `UAT-ANSCHREIBEN.md` ist auf das async-Modell umgestellt. `UAT-PLAN-TEMPLATE.md` (moderiert) ist damit nur noch optionales Kolja-internes Material.
+- **D-30 (ergänzt D-12):** `uat-pre-session-check.ts` prüft `localhost:3101` — für das async-Modell auf die Staging-URL umstellen ODER als Kolja-internes Smoke-Tool belassen. `uat-db-snapshot.ts` + `uat-session-token.ts` bleiben gültig (Pilot-Antrag aus der DB ziehen). Pilot-Run-Zuordnung läuft über die vom Piloten kopierte **Antrag-URL** (enthält die ID), nicht über einen Session-Start-Timestamp.
+
+**Plan-Status:** Plan 06-01 ist abgeschlossen (SUMMARY vorhanden) und **bleibt erhalten** — IST-STAND-CHECK, die drei Helper-Skripte und die D-22-Template-Änderung gelten weiter. Neu zu planen: ein Deploy-Plan + 06-02/03/04 im async-Modell.
+
+---
 
 ### Bug-Fix-Welle — Timing & Scope
 
@@ -142,7 +156,7 @@ Diese Phase ist **überwiegend operativ**: Die UAT-Sessions selbst kann GSD nich
 
 - **DeepSeek-AVV-Dokumentation** — für Live-Produktion vor Schul-Onboarding nötig (PROJECT.md Constraints). In Phase 6 durch fiktive-Daten-Default (D-22) umgangen, nicht gelöst. Gehört in die Vor-Production-Phase (v2).
 - **Production-Migration nach `main` + Deploy** (PROD-01/02/03) — bleibt v2; Phase 6 testet bewusst den `feature/wizard-adaptive`-Stand lokal.
-- **Staging-Deploy des Wizard-Branch** — als UAT-Umgebungs-Option erwogen, zugunsten lokalem Dev verworfen (D-21). Falls künftig ein Selbstbedienungs-Pilot-Test gewünscht ist, eigener Schritt.
+- ~~**Staging-Deploy des Wizard-Branch**~~ — ursprünglich zugunsten lokalem Dev verworfen (D-21); durch den Async-UAT-Pivot **wieder in Scope** (D-26). Selbstbedienungs-Pilot-Test ist jetzt das gewählte Modell.
 - **Phase-2-Closure (MATCH-02/03) + UI-01..04** — falls das Vorbedingungs-Gate (D-15) entscheidet, fehlende Features NICHT nachzuziehen, bleiben diese Requirements offen und müssen separat eingeplant werden.
 
 ### Offenes Risiko
