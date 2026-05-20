@@ -28,6 +28,10 @@ EduFunds ist eine adaptive KI-Antragsplattform für deutsche Schulen und Schulf�
 - ✓ **Stripe-Paywall-Stub** mit Dev-Mock (`NEXT_PUBLIC_PAYWALL_DEV_MOCK=1`) — `app/api/wizard/checkout/route.ts`
 - ✓ **Wöchentliche Cron-Skripte** für Dossier-Extraktion und Programm-Scan — `scripts/extract-richtlinie.ts`, `scripts/scan-new-programs.ts`, `.github/workflows/weekly-*.yml` (nutzen aktuell noch Gemini-direkt)
 - ✓ **Smoke-Test-Suite** mit Live-LLM-Calls (`scripts/smoke-pipeline-with-extractor.ts` etc.) — verifiziert Pipeline-Hebel End-to-End
+- ✓ **Pipeline-Eval-Apparat** (Validiert in Phase 5: Wizard-Pipeline-Tuning) — versionierter Eval-Korpus `data/eval/pipeline-korpus.json` (22 Einträge, 112 Halluzinations-Marker), `scripts/eval-pipeline.ts` mit Replay/Live-Modus, Baseline in `BASELINE.md`, CI-Gate `.github/workflows/pipeline-eval.yml`
+- ✓ **WIZ-01 Programmkonformität-Tuning** (Validiert in Phase 5) — Pflichtabschnitt-Coverage-Metrik, Baseline WIZ-01=100 %; Tuning-Hebel 1+3 (sharp-prompts, dossier-injection) config-gated, default ON
+- ✓ **WIZ-02 Halluzinations-Resistenz-Tuning** (Validiert in Phase 5) — kuratierte Marker-Detection gegen UAT-28.04.-Pattern, Baseline WIZ-02=98,3; geschärfter Verbotsblock + Compliance-Check-Stage (Hebel 2, default OFF bis Dossiers `maxZeichen` setzen)
+- ✓ **WIZ-03 Geber-Tonalitäts-Tuning** (Validiert in Phase 5) — LLM-as-Judge-Rubric pro strategischer Geber-Gruppe (`geber-classification.ts`, 11 Dossiers → 5 Cluster), Geber-Routing-V2 (Hebel 4, default ON)
 
 ### Active
 
@@ -45,10 +49,7 @@ EduFunds ist eine adaptive KI-Antragsplattform für deutsche Schulen und Schulf�
 - [ ] **FETCH-04**: Bestehende 11 Dossiers auf erweitertes Schema migrieren
 
 **Antragswizard-Qualität:**
-- [ ] **WIZ-01**: Pipeline-Tuning für noch höhere Programmkonformität (Eval gegen Pflichtabschnitte/Zeichenlimits aller 11 Dossiers)
-- [ ] **WIZ-02**: Pipeline-Tuning für noch höhere Halluzinations-Resistenz (Eval mit verschärften niedrig-qualitativen Test-Inputs)
-- [ ] **WIZ-03**: Pipeline-Tuning für höhere Förderwahrscheinlichkeit (semantische Qualität, „passt-zum-Geber"-Tonalität)
-- [ ] **WIZ-04**: Reload-Resume in laufendem Wizard schließen (UX-Lücke aus UAT-Memo)
+- [ ] **WIZ-04**: Reload-Resume in laufendem Wizard schließen (UX-Lücke aus UAT-Memo) — verschoben nach Phase 02.1
 
 **Live-UAT:**
 - [ ] **UAT-01**: Strukturiertes UAT mit 3–5 echten Schulen / Schulfördervereinen aus Koljas Netzwerk
@@ -129,4 +130,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-30 after initialization (brownfield onboarding from feature/wizard-adaptive HEAD 49a1102)*
+*Last updated: 2026-05-20 after Phase 5 completion (Wizard-Pipeline-Tuning + Eval-Apparat — WIZ-01/02/03 validiert)*
