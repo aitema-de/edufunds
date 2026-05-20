@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: "Completed 05-03-PLAN.md: geber-classification + pipeline-config module"
-last_updated: "2026-05-20T08:55:26.430Z"
+stopped_at: "Completed 05-04-PLAN.md (Wave-2-Baseline: WIZ-01=100%, WIZ-02=98.3%, WIZ-03=46.3%, 63 Snapshots force-committed)"
+last_updated: "2026-05-20T10:50:39.535Z"
 last_activity: 2026-05-20
 progress:
   total_phases: 7
   completed_phases: 5
   total_plans: 31
-  completed_plans: 26
+  completed_plans: 27
   percent: 71
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 ## Current Position
 
 Phase: 05 (wizard-pipeline-tuning-ux-l-cke) — EXECUTING
-Plan: 4 of 8
+Plan: 5 of 8
 Status: Ready to execute
 Last activity: 2026-05-20
 
-Progress: [████████░░] 84%
+Progress: [█████████░] 87%
 
 ## Performance Metrics
 
@@ -60,6 +60,7 @@ Progress: [████████░░] 84%
 | Phase 03 P03-03-workflow-migration-test-runs | 2317 | 3 tasks | 4 files |
 | Phase 05-wizard-pipeline-tuning-ux-l-cke P01 | 6 | 3 tasks | 19 files |
 | Phase 05-wizard-pipeline-tuning-ux-l-cke P03 | 420 | 2 tasks | 4 files |
+| Phase 05-wizard-pipeline-tuning-ux-l-cke P04 | 165 | 5 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -81,6 +82,9 @@ Decisions sind in PROJECT.md Key-Decisions-Tabelle gepflegt. Roadmap-relevante E
 - Plan 03-03 Befund: Empty-Skip-Schutz triggert sauber inkl. echter LLM-Auslauf-Detektion (bundesweit-ganztag "Quelle zu allgemein" / nrwbank-moderne-schule "am 27.02.2026 ausgelaufen") — kein Bug, gewuenschtes Pre-Persist-Gate-Verhalten. Stale-Queue-Cleanup via Backlog `queue-pflege-stale-programme.md` (c49725e) fuer Phase 04.
 - [Phase ?]: klimalab-2026 → stiftung (foerdergeberTyp verifiziert in foerderprogramme.json; nicht eu)
 - [Phase ?]: Alle 4 Pipeline-Feature-Flag-Defaults bleiben OFF (Eval-Delta-Messung Wave 3 braucht isolierte Hebel-Toggles; Threat T-05-03-01 via Test enforced)
+- [Phase ?]: LLM_PROVIDER=gemini (Option B): DeepSeek Balance=0, gemini-2.5-pro 503-Blocker — Gemini-Flash fuer alle Calls ist stabiler als kein Run
+- [Phase ?]: 63 statt 66 Snapshots: 3 Soft-Fails (429 Rate-Limit pv-edge-002-run2/run3, Scoring-Fehler pv-011-run1) — akzeptabel fuer Baseline
+- [Phase ?]: gemini-2.0-flash auch fuer Pipeline-Calls: 503-Service-Unavailable bei 2.5-pro macht sequenziellen Run unmoglich; Flash stabil bei gleicher Konfiguration in Wave 3
 
 ### Roadmap Evolution
 
@@ -116,8 +120,8 @@ Items aus REQUIREMENTS.md v2 / Out of Scope, bewusst nicht in dieser Milestone:
 
 ## Session Continuity
 
-Last session: 2026-05-20T08:55:26.405Z
-Stopped at: Completed 05-03-PLAN.md: geber-classification + pipeline-config module
+Last session: 2026-05-20T10:50:39.513Z
+Stopped at: Completed 05-04-PLAN.md (Wave-2-Baseline: WIZ-01=100%, WIZ-02=98.3%, WIZ-03=46.3%, 63 Snapshots force-committed)
 Resume file: None
 
 **Planned Phase:** 5 (wizard-pipeline-tuning-ux-l-cke) — 8 plans — 2026-05-19T21:01:23.132Z
