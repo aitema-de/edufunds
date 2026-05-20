@@ -171,12 +171,12 @@ Plans:
   4. Die Pipeline-Eval-Korpora aus Phase 1 + 5 sind um die UAT-Befunde erweitert (jeder gefundene Bug hat einen Test-Case, der ihn zukünftig als Regression fängt)
   5. Abschluss-Memo (Pilot-UAT-Retro) liegt vor: Welche Pilot-Anwender sind bereit für „Antrag wirklich einreichen"-Phase, welche Lücken bleiben, was muss in v2
 
-**Plans:** 4 plans
+**Plans:** 1/4 plans executed
 
 Plans:
 **Wave 1**
 
-- [ ] 06-01-PLAN.md — Vorbedingungs-Gate (D-15 Ist-Stand-Check Critical-Path-Features) + 3 UAT-Helper-Skripte (D-12) + UAT-PLAN-TEMPLATE fiktive-Daten-Default (D-22) (Wave 1, autonomous)
+- [x] 06-01-PLAN.md — Vorbedingungs-Gate (D-15 Ist-Stand-Check Critical-Path-Features) + 3 UAT-Helper-Skripte (D-12) + UAT-PLAN-TEMPLATE fiktive-Daten-Default (D-22) (Wave 1, autonomous)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -202,7 +202,7 @@ Phasen werden numerisch ausgeführt: 1 → 2 → 3 → 4 → 5 → 6. Phasen 2 u
 | 3. Programm-Pflege Foundation | 3/3 | Complete    | 2026-05-06 |
 | 4. Programm-Pflege Vollautomation | 4/4 | Complete    | 2026-05-19 |
 | 5. Wizard-Pipeline-Tuning + UX | 8/8 | Complete   | 2026-05-20 |
-| 6. Live-UAT mit Pilot-Schulen | 0/4 | Not started | - |
+| 6. Live-UAT mit Pilot-Schulen | 1/4 | In Progress|  |
 
 ---
 *Roadmap created: 2026-04-30 (brownfield, mapped 14 v1-Requirements auf 6 Phasen — Eval-First-Strategie + Pflege-Foundation-vor-Vollautomation respektiert)*

@@ -54,7 +54,7 @@ Eingeführt in Phase 02.1 — Templates und Tracker, die vor dem ersten Pilot-La
 
 ### Live-UAT
 
-- [ ] **UAT-01**: Strukturiertes UAT mit 3–5 echten Schulen / Schulfördervereinen aus Koljas Netzwerk durchführen
+- [x] **UAT-01**: Strukturiertes UAT mit 3–5 echten Schulen / Schulfördervereinen aus Koljas Netzwerk durchführen
 - [ ] **UAT-02**: UAT-Befunde-Tracker pro Live-Session (analog zu `~/.claude/projects/-home-kolja/memory/edufunds-uat-pipeline-befunde-2026-04-28.md`)
 - [ ] **UAT-03**: Bug-Fix-Welle nach UAT-Befunden konsolidieren und Pipeline iterativ schärfen (analog zur 28.–30.04.-Fix-Welle)
 
@@ -119,7 +119,7 @@ Phasen-Mapping aus ROADMAP.md (befüllt 2026-04-30 durch Roadmapper, ergänzt 20
 | UAT-PREP-02 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |
 | UAT-PREP-03 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |
 | UAT-PREP-04 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |
-| UAT-01 | Phase 6 (Live-UAT mit Pilot-Schulen) | Pending |
+| UAT-01 | Phase 6 (Live-UAT mit Pilot-Schulen) | Complete |
 | UAT-02 | Phase 6 (Live-UAT mit Pilot-Schulen) | Pending |
 | UAT-03 | Phase 6 (Live-UAT mit Pilot-Schulen) | Pending |
 
