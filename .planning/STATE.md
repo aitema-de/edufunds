@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: "Completed 05-04-PLAN.md (Wave-2-Baseline: WIZ-01=100%, WIZ-02=98.3%, WIZ-03=46.3%, 63 Snapshots force-committed)"
-last_updated: "2026-05-20T11:39:15.298Z"
+stopped_at: Completed 05-06-PLAN.md (Hebel-2 compliance-check-Stage, 5 Tests grün, Eval-Delta WIZ-01=0/WIZ-02=+1.2/WIZ-03=+2.8)
+last_updated: "2026-05-20T12:09:00.523Z"
 last_activity: 2026-05-20
 progress:
   total_phases: 7
   completed_phases: 5
   total_plans: 31
-  completed_plans: 28
+  completed_plans: 29
   percent: 71
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-04-30)
 ## Current Position
 
 Phase: 05 (wizard-pipeline-tuning-ux-l-cke) — EXECUTING
-Plan: 6 of 8
+Plan: 7 of 8
 Status: Ready to execute
 Last activity: 2026-05-20
 
-Progress: [█████████░] 90%
+Progress: [█████████░] 94%
 
 ## Performance Metrics
 
@@ -61,6 +61,7 @@ Progress: [█████████░] 90%
 | Phase 05-wizard-pipeline-tuning-ux-l-cke P01 | 6 | 3 tasks | 19 files |
 | Phase 05-wizard-pipeline-tuning-ux-l-cke P03 | 420 | 2 tasks | 4 files |
 | Phase 05-wizard-pipeline-tuning-ux-l-cke P04 | 165 | 5 tasks | 10 files |
+| Phase 05-wizard-pipeline-tuning-ux-l-cke P06 | 35 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -85,6 +86,7 @@ Decisions sind in PROJECT.md Key-Decisions-Tabelle gepflegt. Roadmap-relevante E
 - [Phase ?]: LLM_PROVIDER=gemini (Option B): DeepSeek Balance=0, gemini-2.5-pro 503-Blocker — Gemini-Flash fuer alle Calls ist stabiler als kein Run
 - [Phase ?]: 63 statt 66 Snapshots: 3 Soft-Fails (429 Rate-Limit pv-edge-002-run2/run3, Scoring-Fehler pv-011-run1) — akzeptabel fuer Baseline
 - [Phase ?]: gemini-2.0-flash auch fuer Pipeline-Calls: 503-Service-Unavailable bei 2.5-pro macht sequenziellen Run unmoglich; Flash stabil bei gleicher Konfiguration in Wave 3
+- [Phase ?]: Plan 05-06: runComplianceCheck() deterministisch ohne LLM-Call; silent-Stage via ORDER-Auslassung; Hebel-2-Delta im 2σ-Rauschen, Default OFF
 
 ### Roadmap Evolution
 
@@ -120,8 +122,8 @@ Items aus REQUIREMENTS.md v2 / Out of Scope, bewusst nicht in dieser Milestone:
 
 ## Session Continuity
 
-Last session: 2026-05-20T11:39:15.280Z
-Stopped at: Completed 05-04-PLAN.md (Wave-2-Baseline: WIZ-01=100%, WIZ-02=98.3%, WIZ-03=46.3%, 63 Snapshots force-committed)
+Last session: 2026-05-20T12:09:00.496Z
+Stopped at: Completed 05-06-PLAN.md (Hebel-2 compliance-check-Stage, 5 Tests grün, Eval-Delta WIZ-01=0/WIZ-02=+1.2/WIZ-03=+2.8)
 Resume file: None
 
 **Planned Phase:** 5 (wizard-pipeline-tuning-ux-l-cke) — 8 plans — 2026-05-19T21:01:23.132Z
