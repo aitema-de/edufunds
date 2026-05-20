@@ -3,6 +3,55 @@ import type { WizardFacts, WizardMessage } from "./types";
 import { getGuidance } from "./geber-guidance";
 import { formatExtraGuidance, getExtraGuidance } from "./programm-kriterien";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
+import { PIPELINE_CONFIG } from "./config";
+
+// ============================================================================
+// PHASE 5 WAVE 3 — HEBEL 1: SHARP_HALLU_VERBOTS_BLOCK (D-20 Hebel 1)
+// Angehängt an SECTION/CRITIQUE/REVISION/RECHECK_SYSTEM wenn
+// PIPELINE_CONFIG.sharpPrompts === true (PIPELINE_SHARP_PROMPTS=1).
+// ============================================================================
+
+const SHARP_HALLU_VERBOTS_BLOCK = `
+## VERBOTSLISTE — UAT-28.04.-Marker (Phase 5 Hebel 1)
+
+Erwaehne NIE folgende Dinge, wenn sie nicht aus den User-Antworten explizit hervorgehen:
+- Aktenzeichen, Beschluss-Daten, Geschaeftszeichen — auch nicht im Format "Az 123/2026"
+- Tarif-Eingruppierungen (TV-L E9, TVoeD etc.) ohne explizite User-Angabe
+- Geographische Spezifika (Bezirke, Stadtteile) ohne User-Bestaetigung
+- Konkrete Schueler-Zahlen wenn User "weiss nicht so genau" / "ca." gesagt hat
+- Paedagogische Spezifika (Willkommensklassen, MDM-Loesungen, Rahmenvertraege) ohne Beleg
+- Haushaltsstellen oder Buchungs-Codes — diese sind IMMER Erfindung
+- KMK-Bezuege oder Curriculum-Zitate wenn User "kenne KMK nicht" gesagt hat
+- Konkrete Partner-Namen die nicht in den User-Antworten genannt wurden
+
+**Few-Shot-Negativbeispiele (typische Halluzinationen aus UAT-Erhebung 28.04.):**
+
+SCHLECHT (erfunden):
+"Gemaess KMK-Strategie 'Bildung in der digitalen Welt' wird der Schultraeger nach TV-L E9 IT-Personal bereitstellen."
+GUT (ehrlich-vage, wenn User keine Details gab):
+"Die geplante IT-Personalstelle wird gemaess den tariflichen Vorgaben des Schultraegers eingruppiert (Details mit Schultraeger im Vergabeverfahren)."
+
+SCHLECHT:
+"Mit Schreiben des Bezirksamts Berlin-Mitte vom 12.12.2025 (Az 123/2026) wurde das Vorhaben bewilligt."
+GUT:
+"Die formale Befassung der Schulkonferenz und des Schultraegers ist im Antrags-Verfahren vorgesehen (Stand: Bewilligung steht aus)."
+
+SCHLECHT:
+"Haushaltsstelle 1234/56789, TV-L E9a, 4h × 50 Wochen × 20 EUR/h."
+GUT:
+"Die Personalkosten fuer die IT-Koordination sind im Finanzplan als Schaetzposten eingetragen — genaue Saetze werden im Vergabeverfahren eingeholt."
+
+**Wenn User-Antworten zu vag sind:** Lieber kuerzer und ehrlich als erfunden. Setze stattdessen Luecken-Marker \`[TODO: Schultraegerangabe einholen]\` ein.
+`;
+
+const RECHECK_AUDIT_BLOCK = `
+## PFLICHT-AUDIT vor RECHECK-Ende (Phase 5 Hebel 1)
+
+Bevor du das Resultat zurueckgibst, pruefe explizit:
+1. Steht im Antrag eine konkrete Schueler-Zahl, ein TV-L-Code, ein Aktenzeichen oder ein Bezirks-Name?
+2. Falls JA: kommt diese Information aus den User-Antworten? Wenn nein — Finding als "offen" markieren oder zu Luecken-Marker umschreiben.
+3. Steht ein Datum im Format DD.MM.YYYY drin? Wenn ja: ist das aus User-Antworten oder erfunden? Wenn erfunden — Finding als "offen" oder im Kommentar vermerken.
+`;
 
 function extraGuidanceBlock(p: Foerderprogramm, label: string): string {
   const extra = getExtraGuidance(p.id);
@@ -319,7 +368,7 @@ Erstelle die Gliederung.`;
 // SECTION
 // ============================================================================
 
-export const SECTION_SYSTEM = `Du bist ein erfahrener Antragsautor. Schreibe EINEN Abschnitt eines Förderantrags in präziser, überzeugender deutscher Antragsprosa.
+const SECTION_SYSTEM_BASE = `Du bist ein erfahrener Antragsautor. Schreibe EINEN Abschnitt eines Förderantrags in präziser, überzeugender deutscher Antragsprosa.
 
 ## Halluzinations-Verbot (HART)
 Du bekommst zusätzlich zu den FAKTEN die ROHEN USER-ANTWORTEN als Quellen-Anker. Du darfst AUSSCHLIESSLICH Tatsachen verwenden, die in den User-Antworten oder in den extrahierten Fakten stehen. Wenn etwas in keinem von beiden steht: NICHT in den Antrag aufnehmen. Lieber kürzer als erfunden.
@@ -352,13 +401,18 @@ Diese Wendungen KOMMEN NICHT vor: "fördert Teilhabe", "ganzheitlicher Ansatz", 
 
 Ausgabe: NUR der Abschnittstext, nichts anderes.`;
 
+export const SECTION_SYSTEM = PIPELINE_CONFIG.sharpPrompts
+  ? `${SECTION_SYSTEM_BASE}\n\n${SHARP_HALLU_VERBOTS_BLOCK}`
+  : SECTION_SYSTEM_BASE;
+
 export function buildSectionPrompt(
   programm: Foerderprogramm,
   facts: WizardFacts,
   abschnitt: { name: string; fokus: string },
   titel: string,
   richtlinieAbschnitt?: AntragsAbschnitt,
-  userAnswers?: string[]
+  userAnswers?: string[],
+  richtlinie?: Richtlinie | null
 ): string {
   const guidance = getGuidance((programm as any).foerdergeberTyp);
   const detailblock = richtlinieAbschnitt
@@ -369,7 +423,7 @@ export function buildSectionPrompt(
 ${userAnswers.map((a, i) => `[Antwort ${i + 1}] ${a}`).join("\n\n")}`
     : "";
 
-  return `PROGRAMM:
+  const basePrompt = `PROGRAMM:
 ${programmBlock(programm)}
 
 TONALITÄT FÜR DIESEN FÖRDERGEBER-TYP (${guidance.label}):
@@ -384,13 +438,46 @@ FAKTEN:
 ${JSON.stringify(facts, null, 2)}${userAnswersBlock}
 
 Schreibe den Abschnitt. Erfinde KEINE Aktenzeichen, Beschluss-Daten, Tarif-Berechnungen, Phasen-Quartale, MDM-Lösungen, Rahmenverträge oder Strategie-Zitate, die nicht im User-Input belegt sind. Lieber kürzer als erfunden.`;
+
+  // Hebel 3: Dossier-Injection (PIPELINE_USE_VORBILD_FORMULIERUNGEN)
+  if (!PIPELINE_CONFIG.useVorbildFormulierungen || !richtlinie) {
+    return basePrompt;
+  }
+
+  const abschnittId = richtlinieAbschnitt?.id;
+  const vorbilder = (richtlinie.vorbildFormulierungen ?? []).filter(
+    (v) => !abschnittId || v.abschnitt_id === abschnittId
+  );
+  const bestPractices = richtlinie.bestPractices ?? [];
+  const rejectGruende = richtlinie.rejectGruende ?? [];
+
+  if (vorbilder.length === 0 && bestPractices.length === 0 && rejectGruende.length === 0) {
+    return basePrompt;
+  }
+
+  const injectionParts: string[] = [];
+  if (vorbilder.length > 0) {
+    injectionParts.push(`## Vorbild-Formulierungen fuer "${abschnitt.name}" (aus erfolgreichem Antrag, Stil-Inspiration)`);
+    injectionParts.push(vorbilder.map((v) => `- "${v.formulierung}"${v.kontext ? ` [Kontext: ${v.kontext}]` : ""}`).join("\n"));
+  }
+  if (bestPractices.length > 0) {
+    injectionParts.push(`\n## Best Practices erfolgreicher Antraege (Programm-spezifisch)`);
+    injectionParts.push(bestPractices.slice(0, 3).map((b) => `- **${b.thema}:** ${b.was_funktionierte}${b.warum ? ` (${b.warum})` : ""}`).join("\n"));
+  }
+  if (rejectGruende.length > 0) {
+    injectionParts.push(`\n## Vermeide diese Reject-Muster (aus echten Ablehnungen)`);
+    injectionParts.push(rejectGruende.slice(0, 3).map((r) => `- ${r.grund}${r.vermeidung ? ` → ${r.vermeidung}` : ""}`).join("\n"));
+  }
+
+  const injectionBlock = injectionParts.join("\n");
+  return `${basePrompt}\n\n${injectionBlock}`;
 }
 
 // ============================================================================
 // CRITIQUE
 // ============================================================================
 
-export const CRITIQUE_SYSTEM = `Du bist ein strenger Gutachter für Förderanträge. Dein Ziel: konkrete, umsetzbare Findings für die Revision — keine Allgemeinplätze, keine Wiederholung des Textes.
+const CRITIQUE_SYSTEM_BASE = `Du bist ein strenger Gutachter für Förderanträge. Dein Ziel: konkrete, umsetzbare Findings für die Revision — keine Allgemeinplätze, keine Wiederholung des Textes.
 
 ## ERSTE Pflicht-Prüfung — HALLUZINATIONS-AUDIT
 Du bekommst zusätzlich zum ANTRAGSENTWURF die ROHEN USER-ANTWORTEN und die EXTRAHIERTEN FAKTEN. **Jede konkrete Tatsache im Entwurf MUSS sich auf User-Antworten ODER Fakten zurückführen lassen.** Wenn nicht: Halluzination, Schwere "hoch", Kategorie "belegluecke".
@@ -440,6 +527,10 @@ AUSSCHLIESSLICH valides JSON, keine Markdown-Fences:
 - Zitat ist WÖRTLICH, keine Paraphrase.
 - Keine Findings, die nur den Text loben.
 - Wenn ein Abschnitt mehrere Halluzinationen enthält, liste sie als getrennte Findings (eines pro erfundener Tatsache).`;
+
+export const CRITIQUE_SYSTEM = PIPELINE_CONFIG.sharpPrompts
+  ? `${CRITIQUE_SYSTEM_BASE}\n\n${SHARP_HALLU_VERBOTS_BLOCK}`
+  : CRITIQUE_SYSTEM_BASE;
 
 export function buildCritiquePrompt(
   programm: Foerderprogramm,
@@ -557,7 +648,7 @@ ${JSON.stringify(facts, null, 2)}${userAnswersBlock}
 Erstelle den Finanzplan. Erfinde keine Tarif-Stufen, Honorarsaetze, Marken-/Modellnamen oder Mengen-Aufschluesselungen, die nicht im User-Input belegt sind. Lieber Pauschalen mit "in hinweise erlaeutert" als erfundene Splittungen.`;
 }
 
-export const REVISION_SYSTEM = `Du bist der Antragsautor. Überarbeite den Entwurf anhand des Gutachtens. Struktur, Titel und Abschnittsreihenfolge bleiben erhalten. Verwende NUR die mitgelieferten Fakten. Füge keine neuen Behauptungen oder Zahlen ein.
+const REVISION_SYSTEM_BASE = `Du bist der Antragsautor. Überarbeite den Entwurf anhand des Gutachtens. Struktur, Titel und Abschnittsreihenfolge bleiben erhalten. Verwende NUR die mitgelieferten Fakten. Füge keine neuen Behauptungen oder Zahlen ein.
 
 ## Umgang mit dem Gutachten
 Das Gutachten liefert nummerierte Findings mit Abschnitt, wörtlichem Zitat, Schwere und konkretem Vorschlag. Arbeite sie in dieser Reihenfolge ab: erst alle "hoch"-Findings (Richtlinien-Verstöße dürfen nicht stehenbleiben), dann "mittel", dann "niedrig". Bei "FEHLT" ergänze den fehlenden Inhalt aus den Fakten, ohne zu halluzinieren.
@@ -572,6 +663,10 @@ Keine dieser Wendungen: "fördert Teilhabe", "ganzheitlicher Ansatz", "schafft M
 - Fett/kursiv NUR wenn inhaltlich sinnvoll (sparsam), Listen nur wenn inhaltlich passend
 - KEINE HTML-Tags, KEIN Code-Fences
 Gib nur den Antrag aus — keinerlei Kommentare oder Erklärungen davor/danach.`;
+
+export const REVISION_SYSTEM = PIPELINE_CONFIG.sharpPrompts
+  ? `${REVISION_SYSTEM_BASE}\n\n${SHARP_HALLU_VERBOTS_BLOCK}`
+  : REVISION_SYSTEM_BASE;
 
 // ============================================================================
 // CONSISTENCY (Antragstext × Finanzplan)
@@ -622,7 +717,7 @@ Beurteile die Konsistenz der beiden. Liefere die Issues-Liste.`;
 // RECHECK (nach Revision: wurden die Findings tatsächlich adressiert?)
 // ============================================================================
 
-export const RECHECK_SYSTEM = `Du prüfst, ob ein überarbeiteter Förderantrag die zuvor gefundenen Findings wirklich adressiert hat. Du urteilst pro Finding, nicht über den Text insgesamt.
+const RECHECK_SYSTEM_BASE = `Du prüfst, ob ein überarbeiteter Förderantrag die zuvor gefundenen Findings wirklich adressiert hat. Du urteilst pro Finding, nicht über den Text insgesamt.
 
 ## Status pro Finding
 - "geschlossen": Die Kritik ist im überarbeiteten Text erkennbar umgesetzt. Das Zitat/die Lücke ist durch eine bessere Formulierung oder ergänzten Inhalt ersetzt.
@@ -643,6 +738,10 @@ Regeln
 - "geschlossen" nur, wenn Revision klar handelt. Bei Unsicherheit: "teilweise".
 - Kommentar nur bei "teilweise" oder "offen" — bei "geschlossen" weglassen.`;
 
+export const RECHECK_SYSTEM = PIPELINE_CONFIG.sharpPrompts
+  ? `${RECHECK_SYSTEM_BASE}\n\n${SHARP_HALLU_VERBOTS_BLOCK}\n\n${RECHECK_AUDIT_BLOCK}`
+  : RECHECK_SYSTEM_BASE;
+
 export function buildRecheckPrompt(findingsRendered: string, finalText: string): string {
   return `URSPRÜNGLICHE FINDINGS (aus dem Gutachten):
 ${findingsRendered}
@@ -661,7 +760,7 @@ export function buildRevisionPrompt(
   richtlinie?: Richtlinie | null
 ): string {
   const guidance = getGuidance((programm as any).foerdergeberTyp);
-  return `PROGRAMM:
+  const basePrompt = `PROGRAMM:
 ${programmBlock(programm)}
 
 TONALITÄT FÜR DIESEN FÖRDERGEBER-TYP (${guidance.label}):
@@ -677,4 +776,34 @@ GUTACHTEN:
 ${critique}
 
 Schreibe die finale Fassung.`;
+
+  // Hebel 3: Dossier-Injection fuer Revision (Stil-Inspiration, nicht 1:1-Kopieren)
+  if (!PIPELINE_CONFIG.useVorbildFormulierungen || !richtlinie) {
+    return basePrompt;
+  }
+
+  const vorbilder = richtlinie.vorbildFormulierungen ?? [];
+  const bestPractices = richtlinie.bestPractices ?? [];
+  const rejectGruende = richtlinie.rejectGruende ?? [];
+
+  if (vorbilder.length === 0 && bestPractices.length === 0 && rejectGruende.length === 0) {
+    return basePrompt;
+  }
+
+  const injectionParts: string[] = [];
+  if (vorbilder.length > 0) {
+    injectionParts.push(`## Vorbild-Formulierungen als Stil-Inspiration (NICHT 1:1 kopieren — sinngemass adaptieren)`);
+    injectionParts.push(vorbilder.map((v) => `- "${v.formulierung}"${v.kontext ? ` [Kontext: ${v.kontext}]` : ""}`).join("\n"));
+  }
+  if (bestPractices.length > 0) {
+    injectionParts.push(`\n## Best Practices (pruefe, ob die Revision diese Qualitaetsmerkmale aufweist)`);
+    injectionParts.push(bestPractices.slice(0, 3).map((b) => `- **${b.thema}:** ${b.was_funktionierte}`).join("\n"));
+  }
+  if (rejectGruende.length > 0) {
+    injectionParts.push(`\n## Reject-Muster (stelle sicher, dass diese im revidierten Antrag NICHT vorkommen)`);
+    injectionParts.push(rejectGruende.slice(0, 3).map((r) => `- ${r.grund}${r.vermeidung ? ` → ${r.vermeidung}` : ""}`).join("\n"));
+  }
+
+  const injectionBlock = injectionParts.join("\n");
+  return `${basePrompt}\n\n${injectionBlock}`;
 }
