@@ -33,7 +33,7 @@ Requirements für aktuelle Milestone (Live-UAT-Reife für Schulen + Schulförder
 
 Eingeführt in Phase 02.1 — adressiert UAT-Reife der Lese-/Empty-/Mobile-/Generating-UX. Liegen NICHT auf der Pipeline-Qualitäts-Achse (WIZ-01/02/03), gehören aber zu „Live-UAT-Reife" (CONTEXT D-01).
 
-- [ ] **WIZ-04**: Reload-Resume in laufendem Wizard schließen (UX-Lücke aus UAT-Memo 28.04.) — vorgezogen nach Phase 02.1 (Stage-Heartbeat + Polling-Pattern in WizardShell, Lücken #1/#2/#3 aus 02.1-RESEARCH §2.3)
+- [x] **WIZ-04**: Reload-Resume in laufendem Wizard schließen (UX-Lücke aus UAT-Memo 28.04.) — vorgezogen nach Phase 02.1 (Stage-Heartbeat + Polling-Pattern in WizardShell, Lücken #1/#2/#3 aus 02.1-RESEARCH §2.3)
 - [ ] **UI-01**: Antrag-Detail-Lese-UX — Markdown-Render mit deterministischen h2-Anker-IDs, sticky Sektions-Anker-Nav (md:+) mit IntersectionObserver, on-hover PenLine-Edit-Button pro Sektion (nur bei `paid=true`, Link auf bestehenden Wizard-Edit-Pfad — KEIN neuer Endpoint) — Phase 02.1, D-02 + D-14
 - [ ] **UI-02**: Empty-States Action-orientiert — `/antrag/meine` leerer Zustand mit „Anliegen schildern"-CTA + Matcher-0-Treffer-Fall mit drei Reformulierungs-Tipps und „Anliegen neu formulieren"-Reset — Phase 02.1, D-05
 - [ ] **UI-03**: Mobile-Critical-Paths — Touch-Optimierung (min 44 px) für vier Critical-Paths (Wizard-Antwort, Match-Result-Click, Antrag-Detail-Scroll, PDF-Download) auf iPhone-Safari + Android-Chrome — Phase 02.1, D-03
@@ -109,7 +109,7 @@ Phasen-Mapping aus ROADMAP.md (befüllt 2026-04-30 durch Roadmapper, ergänzt 20
 | WIZ-01 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Pending |
 | WIZ-02 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Pending |
 | WIZ-03 | Phase 5 (Wizard-Pipeline-Tuning + UX) | Pending |
-| WIZ-04 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |
+| WIZ-04 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Complete |
 | UI-01 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |
 | UI-02 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |
 | UI-03 | Phase 02.1 (Frontend-Polish + Stripe-Vorbereitung) | Pending |

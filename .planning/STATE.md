@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Phase 04 abgeschlossen — alle 11 Dossiers Strict-Schema-konform
+status: executing
 stopped_at: Phase 5 context gathered (11 areas discussed, 36 decisions captured)
-last_updated: "2026-05-19T21:01:23.167Z"
-last_activity: 2026-05-19 -- Phase 04 complete (Wave 3 mit deferred Live-E2E-Smoke)
+last_updated: "2026-05-20T08:02:55.410Z"
+last_activity: 2026-05-20
 progress:
   total_phases: 7
   completed_phases: 5
   total_plans: 31
-  completed_plans: 23
-  percent: 74
+  completed_plans: 24
+  percent: 71
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-30)
 
 **Core value:** Programme werden nicht generisch verarbeitet — der Wizard nutzt programm-spezifisches Wissen (Dossier), um zielgerichtet zu fragen und einen Antrag zu erstellen, der zu 100 % den Förderkriterien entspricht, semantisch hochwertig ist, nicht halluziniert und maximale Förderwahrscheinlichkeit erzielt.
-**Current focus:** Phase 04 — programm-pflege-vollautomation-dossier-migration
+**Current focus:** Phase 05 — wizard-pipeline-tuning-ux-l-cke
 
 ## Current Position
 
-Phase: 04 (programm-pflege-vollautomation-dossier-migration) — COMPLETE
-Plan: 4 of 4 done (04-01 + 04-02 + 04-03 + 04-04). Naechste Phase: 05 Wizard-Pipeline-Tuning + UX
-Status: Phase 04 abgeschlossen — alle 11 Dossiers Strict-Schema-konform
-Last activity: 2026-05-19 -- Phase 04 complete (Wave 3 mit deferred Live-E2E-Smoke)
+Phase: 05 (wizard-pipeline-tuning-ux-l-cke) — EXECUTING
+Plan: 2 of 8
+Status: Ready to execute
+Last activity: 2026-05-20
 
-Progress: [██████████] 100% (Phase 03 von 7 done; uebernaechste Phase 04 Programm-Pflege Vollautomation)
+Progress: [████████░░] 77%
 
 ## Performance Metrics
 
@@ -58,6 +58,7 @@ Progress: [██████████] 100% (Phase 03 von 7 done; uebernaech
 | Phase 03 P01 | 227 | 2 tasks | 4 files |
 | Phase 03 P03-02-cron-migration-cli-validator | 396 | 2 tasks | 6 files |
 | Phase 03 P03-03-workflow-migration-test-runs | 2317 | 3 tasks | 4 files |
+| Phase 05-wizard-pipeline-tuning-ux-l-cke P01 | 6 | 3 tasks | 19 files |
 
 ## Accumulated Context
 
@@ -112,9 +113,9 @@ Items aus REQUIREMENTS.md v2 / Out of Scope, bewusst nicht in dieser Milestone:
 
 ## Session Continuity
 
-Last session: --stopped-at
+Last session: 2026-05-20T08:02:55.384Z
 Stopped at: Phase 5 context gathered (11 areas discussed, 36 decisions captured)
-Resume file: --resume-file
+Resume file: None
 
 **Planned Phase:** 5 (wizard-pipeline-tuning-ux-l-cke) — 8 plans — 2026-05-19T21:01:23.132Z
 
