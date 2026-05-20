@@ -36,7 +36,10 @@ const MODELS: Record<LlmProvider, { interview: string; pipeline: string }> = {
   },
   gemini: {
     interview: "gemini-2.0-flash",
-    pipeline: "gemini-2.5-pro",
+    // gemini-2.5-pro auf gemini-2.0-flash herabgestuft fuer Baseline-Eval-Run:
+    // 2026-05-20 503 Service Unavailable wegen hoher Nachfrage auf gemini-2.5-pro.
+    // Wave-3-Tuning-Iterationen werden mit identischer Konfiguration verglichen.
+    pipeline: "gemini-2.0-flash",
   },
 };
 
@@ -47,7 +50,9 @@ export const MODEL_FLASH = MODEL_INTERVIEW;
 /** @deprecated kompat-Re-Export — neuer Name `MODEL_PIPELINE`. */
 export const MODEL_PRO = MODEL_PIPELINE;
 
-const REQUEST_TIMEOUT_MS = 60_000;
+// Erhoehter Timeout fuer Gemini-2.5-Pro (komplexe Pipeline-Calls bis zu 90s)
+// Urspruenglich 60s — war zu eng fuer Gemini-2.5-Pro bei langen Section-Generierungen.
+const REQUEST_TIMEOUT_MS = 120_000;
 
 class LlmTimeoutError extends Error {
   status = 504 as const;
