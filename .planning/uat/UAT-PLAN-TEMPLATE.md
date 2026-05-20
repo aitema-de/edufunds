@@ -23,7 +23,9 @@
 
 "Vielen Dank, dass du dir Zeit nimmst. Ich begleite dich heute durch EduFunds — eine Plattform, die KI nutzt, um Schul-Förderanträge zu schreiben. Du bist eine von ~5 Pilotpersonen. Wir wollen herausfinden, wo der Wizard gut funktioniert und wo er hängt. Das Ziel ist NICHT, einen perfekten Antrag zu schreiben — sondern dass ich dir zugucke, wie du dich durchklickst, und dann besser machen kann.
 
-Ich werde während der Session schweigen, außer du blockst komplett. Sag bei jedem Schritt laut, was du denkst — auch wenn es banal klingt. Das ist die wertvollste Information, die ich kriegen kann."
+Ich werde während der Session schweigen, außer du blockst komplett. Sag bei jedem Schritt laut, was du denkst — auch wenn es banal klingt. Das ist die wertvollste Information, die ich kriegen kann.
+
+**Bitte nutze heute erfundene Schul-Daten** — also einen fiktiven Schulnamen, eine erfundene Schülerzahl und einen fiktiven Ort. Das schützt dich und deine Schule: Testdaten landen in unserer Entwicklungs-Datenbank und sollten keine echten Angaben enthalten. Du kannst dir zum Beispiel 'Muster-Grundschule Beispielhausen, 320 Schüler' ausdenken. Falls du lieber echte Daten verwenden möchtest, sag kurz Bescheid, und wir klären das vorab."
 
 **Vor Aufzeichnung vorlesen:** → Datenschutz-Hinweis-Block (siehe unten)
 
@@ -70,9 +72,18 @@ Ich werde während der Session schweigen, außer du blockst komplett. Sag bei je
 
 ## Datenschutz-Hinweis-Block (zum Vorlesen vor Aufzeichnung)
 
-"Ich nehme das Screen-Sharing auf, um es später zu reviewen. Die Aufzeichnung bleibt bei mir, wird nicht öffentlich. Wenn du echte Schul-Daten eingibst (Name, Schülerzahl, etc.) — die landen in unserer Dev-Datenbank, die nicht öffentlich ist. Wenn du das nicht willst, sag Bescheid, dann nutzen wir nur erfundene Daten."
+<!-- D-22: Fiktive Daten sind der empfohlene Standard. Das umgeht das noch undokumentierte
+     DeepSeek-AVV als UAT-Blocker — echte Schuldaten dürfen erst nach AVV-Klärung
+     in die Plattform fließen. Checkboxen sind entsprechend vorbefüllt. -->
 
-**Bestätigung der Pilotperson:** [ ] Aufzeichnung OK  [ ] Nur fiktive Daten
+"Ich nehme das Screen-Sharing auf, um es später zu reviewen. Die Aufzeichnung bleibt bei mir, wird nicht öffentlich.
+
+Zur Datenschutz-Frage bei den Eingaben: Ich empfehle, heute nur erfundene Schul-Daten zu verwenden — also fiktiven Schulnamen, fiktive Schülerzahl, fiktiven Ort. Die Testdaten landen in unserer Entwicklungs-Datenbank, für die noch kein Auftragsverarbeitungsvertrag mit dem KI-Anbieter vorliegt. Mit fiktiven Daten entsteht gar kein Datenschutzproblem. Falls du unbedingt echte Daten verwenden möchtest, bestätige das bitte ausdrücklich."
+
+**Bestätigung der Pilotperson:**
+- [x] Aufzeichnung OK
+- [x] Nur fiktive Daten (empfohlen — kein AVV nötig)
+- [ ] Echte Daten (nur auf ausdrücklichen Wunsch + Bestätigung)
 
 ---
 
