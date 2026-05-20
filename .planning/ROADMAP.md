@@ -114,17 +114,15 @@ Plans:
 - [x] 04-04-vollautomations-workflow-library-refactor-e2e-PLAN.md — Single-Workflow weekly-auto-pflege.yml + scripts/auto-pflege-step.ts + extract-richtlinie Library-Refactor + Loeschungen + E2E-Dry-Run-Smoke (D-01/D-02/D-03/D-10/D-11/D-12, Wave 3, NOT autonomous, depends_on 04-01+04-03) ✓ 2026-05-19 (Live-E2E-Smoke deferred → todo `auto-pflege-e2e-live-smoke-deferred.md`)
 
 ### Phase 5: Wizard-Pipeline-Tuning + UX-Lücke
-**Goal**: Pipeline auf höhere Programmkonformität, Halluzinations-Resistenz und Förderwahrscheinlichkeit tunen — gemessen gegen einen Pipeline-Eval-Korpus analog zu Phase 1. Reload-Resume-UX-Lücke aus dem 28.04.-UAT-Memo schließen.
+**Goal**: Pipeline auf höhere Programmkonformität, Halluzinations-Resistenz und Förderwahrscheinlichkeit tunen — gemessen gegen einen Pipeline-Eval-Korpus analog zu Phase 1.
 **Depends on**: Phase 4 (für vollständige Dossier-Daten als Tuning-Basis)
-**Requirements**: WIZ-01, WIZ-02, WIZ-03, WIZ-04
+**Requirements**: WIZ-01, WIZ-02, WIZ-03
 **Success Criteria** (was nach Phase TRUE sein muss):
-  1. Pipeline-Eval-Korpus (analog Matcher-Korpus aus Phase 1) liegt versioniert vor: niedrig-qualitative Test-Inputs + erwartete Halluzinations-Marker + Pflichtabschnitte/Zeichenlimits aller 11 Dossiers
-  2. Pipeline-Eval-Run gegen alle 11 Dossiers zeigt für WIZ-01: 100 % der Pflichtabschnitte aus dem Dossier sind im finalen Antrag vorhanden, Zeichenlimits werden eingehalten
-  3. Pipeline-Eval-Run gegen verschärfte niedrig-qualitative Inputs zeigt für WIZ-02: 0 organisatorische Halluzinationen (keine erfundenen Rahmenverträge / Tarifsysteme / nicht-genannten Kooperationspartner) und ehrliche Lücken-Markierungen
-  4. „Passt-zum-Geber"-Tonalitäts-Check (WIZ-03) liefert messbares Score-Delta gegen Baseline pro Geber-Typ (öffentlich / Stiftung / Wirtschaftspreis) — Score und Methode dokumentiert
-  5. User kann den Wizard-Tab schließen und über `/antrag/meine` oder direkt über die programmspezifische Wizard-URL den Lauf an exakt der letzten Frage / Phase fortsetzen (WIZ-04) — auch nach Hard-Reload während `phase=interviewing` oder `phase=generating`
+  1. Pipeline-Eval-Korpus (analog Matcher-Korpus aus Phase 1) liegt versioniert vor: niedrig-qualitative Test-Inputs + erwartete Halluzinations-Marker + Pflichtabschnitte/Zeichenlimits aller 11 Dossiers; Finanzplan-Validity als dokumentierte Sub-Metrik.
+  2. Pipeline-Eval-Run gegen alle 11 Dossiers zeigt für WIZ-01: **≥ 80 % der Pflichtabschnitte** aus dem Dossier sind im finalen Antrag vorhanden (Pflichtabschnitt-Coverage; maxZeichen-Check optional sobald Dossiers das Feld setzen — Stand Phase-5-Start: 0/11).
+  3. Pipeline-Eval-Run gegen verschärfte niedrig-qualitative Inputs zeigt für WIZ-02: **≥ 50 % Reduktion der kuratierten Halluzinations-Marker** gegen Baseline (UAT-28.04.-Pattern: erfundene Rahmenverträge, TV-L-Codes, Aktenzeichen, Beschluss-Daten); ehrliche Lücken-Markierungen statt Erfindung.
+  4. „Passt-zum-Geber"-Tonalitäts-Check (WIZ-03) liefert messbares **Score-Delta > 0** gegen Baseline pro strategischer Geber-Gruppe (öffentlich / Stiftung / EU / Wirtschaftspreis / Verband+Uni) — Methode dokumentiert (LLM-as-Judge mit Rubric, 4-5 Cluster aus D-10).
 **Plans:** 8 plans
-**UI hint**: yes
 
 Plans:
 - [ ] 05-01-PLAN.md — Wave 0 Pre-Flight (ROADMAP/REQUIREMENTS-Edit D-34, Dossier-Coverage-Survey A5, 12 Test-Skelette D-32)
