@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: "Completed 05-08-PLAN.md (Phase-5-Closure: CI-Gate, Smoke approved, Default-Hebel [1,3,4] ON)"
-last_updated: "2026-05-20T12:58:02.543Z"
+status: ready_to_plan
+stopped_at: Phase 05 complete (8/8) — ready to discuss Phase 6
+last_updated: 2026-05-20T13:17:31.163Z
 last_activity: 2026-05-20
 progress:
   total_phases: 7
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-30)
 
 **Core value:** Programme werden nicht generisch verarbeitet — der Wizard nutzt programm-spezifisches Wissen (Dossier), um zielgerichtet zu fragen und einen Antrag zu erstellen, der zu 100 % den Förderkriterien entspricht, semantisch hochwertig ist, nicht halluziniert und maximale Förderwahrscheinlichkeit erzielt.
-**Current focus:** Phase 05 — wizard-pipeline-tuning-ux-l-cke
+**Current focus:** Phase 6 — live uat mit pilot schulen
 
 ## Current Position
 
-Phase: 05 (wizard-pipeline-tuning-ux-l-cke) — EXECUTING
-Plan: 8 of 8
-Status: Phase complete — ready for verification
+Phase: 6
+Plan: Not started
+Status: Ready to plan
 Last activity: 2026-05-20
 
 Progress: [██████████] 100%
@@ -36,7 +36,7 @@ Progress: [██████████] 100%
 
 **Velocity:**
 
-- Total plans completed: 2
+- Total plans completed: 10
 - Average duration: —
 - Total execution time: 0.0 hours
 
@@ -46,6 +46,7 @@ Progress: [██████████] 100%
 |-------|-------|-------|----------|
 | — | — | — | — |
 | 1 | 2 | - | - |
+| 05 | 8 | - | - |
 
 **Recent Trend:**
 
