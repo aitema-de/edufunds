@@ -17,6 +17,7 @@ Diese Roadmap führt EduFunds vom heutigen Stand (`feature/wizard-adaptive` HEAD
 - [x] **Phase 4: Programm-Pflege Vollautomation** — Scanner→Extractor→Queue voll automatisiert, alle 11 bestehenden Dossiers auf erweitertes Schema migriert ✓ 2026-05-19 (Live-E2E-Smoke deferred)
 - [x] **Phase 5: Wizard-Pipeline-Tuning + UX-Lücke** — Höhere Programmkonformität, Halluzinations-Resistenz, Förderwahrscheinlichkeit; Reload-Resume geschlossen (completed 2026-05-20)
 - [ ] **Phase 6: Live-UAT mit Pilot-Schulen** — Strukturierte UATs mit 3–5 Pilot-Anwendern, Tracker pro Session, konsolidierte Bug-Fix-Welle
+- [ ] **Phase 7: Interaktiver Findings-Fix** — User kann offene Critique-Findings nach Antrag-Generierung gezielt nachbessern lassen (Hybrid: Klärungsfrage bei belegluecke/inkonsistenz, Auto-Revision bei floskel/richtlinie/sonstiges). Geplant **nach** mind. 1 Pilot-Wave, damit Finding-Verteilung datengestützt ist.
 
 ## Phase Details
 
@@ -203,7 +204,31 @@ Phasen werden numerisch ausgeführt: 1 → 2 → 3 → 4 → 5 → 6. Phasen 2 u
 | 4. Programm-Pflege Vollautomation | 4/4 | Complete    | 2026-05-19 |
 | 5. Wizard-Pipeline-Tuning + UX | 8/8 | Complete   | 2026-05-20 |
 | 6. Live-UAT mit Pilot-Schulen | 1/4 | In Progress|  |
+| 7. Interaktiver Findings-Fix | 0/TBD | Backlog | - |
+
+### Phase 7: Interaktiver Findings-Fix (Backlog)
+
+**Goal**: Nach Antrag-Generierung kann der User offene Critique-Findings gezielt nachbessern — direkt aus der Result-Seite, ohne den ganzen Wizard neu zu starten.
+
+**Depends on**: Phase 6 (mind. 1 Pilot-Wave) — datengestützte Finding-Verteilung als Designgrundlage
+
+**Requirements** (vorläufig, vor `/gsd:spec-phase` zu schärfen): FIX-01 (Inline-Findings-Fix), FIX-02 (Kategorie-spezifisches UX), FIX-03 (Halluzinations-Schutz bei belegluecke)
+
+**Designentscheidung (2026-05-27, Kolja)**: B+A-Hybrid — kategorieabhängig:
+- `belegluecke` + `inkonsistenz` → gezielte Klärungsfrage an User (LLM formuliert die Frage spezifisch, User antwortet, dann Revision-Pass mit Zusatzinfo). Verhindert Halluzinationen.
+- `floskel` + `richtlinie` + `sonstiges` → Auto-Revision-Pass mit Fokus-Prompt, kein User-Input.
+
+**Eckdaten (Schätzung)**:
+- LLM-Kosten pro Fix-Runde: ~0,15-0,3 ¢ USD (1 Pro-Call + ggf. 1 Flash-Call für Klärungsfrage-Formulierung)
+- Backend: neuer Endpoint `POST /api/wizard/refine-finding` mit `{sessionToken, findingIndex, userResponse?}`
+- Frontend: pro Finding-Card ein „Nachbessern"-Button, der je nach Kategorie Modal mit Klärungsfrage öffnet oder direkt Revision triggert
+- Pipeline-Erweiterung in `lib/wizard/pipeline.ts`: neue Funktion `refineSingleFinding(programm, draft, finding, userResponse?, richtlinie)` — kapselt einen Mini-Revision-Pass + Re-Check für ein Finding
+
+**Wann starten**: Nach Pilot-Wave 1 (Phase 6 Plan 06-03 oder später), wenn klar ist, welche Finding-Kategorien wirklich häufig offen bleiben. Vorher ist das Design auf Hypothesen statt Daten gegründet.
+
+**Eval-Gate**: Pipeline-Eval-Korpus (Phase 5) muss um Finding-Fix-Cases erweitert werden — sonst kein WIZ-01/02-Schutz gegen Regressionen.
 
 ---
 *Roadmap created: 2026-04-30 (brownfield, mapped 14 v1-Requirements auf 6 Phasen — Eval-First-Strategie + Pflege-Foundation-vor-Vollautomation respektiert)*
 *Phase 6 geplant: 2026-05-20 — 4 Plans in 4 Wellen (Framework-Plan mit manuellen Session-Checkpoints, D-09)*
+*Phase 7 angelegt: 2026-05-27 — Backlog, Designentscheidung B+A-Hybrid getroffen, Start nach Pilot-Wave 1*
