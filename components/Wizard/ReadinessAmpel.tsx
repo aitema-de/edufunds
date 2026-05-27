@@ -48,7 +48,7 @@ function statusMeta(status: ReadinessStatus): {
 function schwereBadge(schwere: ReadinessIssue["schwere"]): string {
   if (schwere === "hoch") return "border-red-500/40 text-red-300";
   if (schwere === "mittel") return "border-amber-500/40 text-amber-300";
-  return "border-slate-500/40 text-slate-300";
+  return "border-[#0a1628]/20 text-slate-700";
 }
 
 export function ReadinessAmpel({ report }: Props) {
@@ -60,8 +60,8 @@ export function ReadinessAmpel({ report }: Props) {
       <div className="mb-2 flex items-start gap-2">
         <Icon className={`mt-0.5 h-4 w-4 shrink-0 ${meta.iconClass}`} />
         <div>
-          <div className="text-sm font-semibold text-slate-100">{meta.title}</div>
-          <div className="text-xs text-slate-300/80">{meta.subtitle}</div>
+          <div className="text-sm font-semibold text-[#0a1628]">{meta.title}</div>
+          <div className="text-xs text-slate-700/80">{meta.subtitle}</div>
         </div>
       </div>
       {report.issues.length > 0 && (
@@ -69,7 +69,7 @@ export function ReadinessAmpel({ report }: Props) {
           {report.issues.map((i) => (
             <li
               key={i.feld}
-              className="flex flex-wrap items-start gap-2 rounded border border-slate-700/50 bg-slate-900/30 px-2.5 py-1.5 text-xs"
+              className="flex flex-wrap items-start gap-2 rounded border border-[#0a1628]/10 bg-white/80 px-2.5 py-1.5 text-xs"
             >
               <span
                 className={`rounded-full border px-1.5 py-0.5 text-[10px] uppercase ${schwereBadge(
@@ -79,8 +79,8 @@ export function ReadinessAmpel({ report }: Props) {
                 {i.schwere}
               </span>
               <div className="flex-1">
-                <div className="font-medium text-slate-200">{i.label}</div>
-                {i.hinweis && <div className="text-slate-400">{i.hinweis}</div>}
+                <div className="font-medium text-[#1e3a61]">{i.label}</div>
+                {i.hinweis && <div className="text-slate-600">{i.hinweis}</div>}
               </div>
             </li>
           ))}

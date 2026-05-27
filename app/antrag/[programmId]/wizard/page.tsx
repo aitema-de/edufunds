@@ -6,6 +6,7 @@ import foerderprogrammeData from "@/data/foerderprogramme.json";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { PageHero } from "@/components/PageHero";
 import { WizardShell } from "@/components/Wizard";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
 
@@ -37,59 +38,59 @@ export default async function WizardPage({ params }: Props) {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-[#0a1628] pt-24 pb-20">
-        <div className="container mx-auto px-4">
-          <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
+      <PageHero
+        variant="light"
+        badge={{
+          icon: <Sparkles className="w-3.5 h-3.5" style={{ color: "#c9a227" }} />,
+          text: "KI-Antragswizard · Beta",
+        }}
+        title="Adaptive Befragung +"
+        titleAccent="Pipeline mit Selbstkritik"
+        subtitle={`Programmspezifisch optimiert für „${programm.name}".`}
+      >
+        <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href={`/foerderprogramme/${programm.id}`}
-              className="inline-flex items-center gap-2 text-slate-400 transition-colors hover:text-[#c9a227]"
+              className="inline-flex items-center gap-2 text-sm text-[#1e3a61] transition hover:text-[#c9a227]"
             >
               <ArrowLeft className="h-4 w-4" />
               Zurück zum Programm
             </Link>
             <Link
               href="/antrag/meine"
-              className="inline-flex items-center gap-2 rounded-lg border border-slate-700/60 px-3 py-1.5 text-sm text-slate-300 transition hover:border-[#c9a227]/50 hover:text-[#c9a227]"
+              className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 bg-white/70 px-3 py-1.5 text-sm font-medium text-[#0a1628] backdrop-blur-sm transition hover:border-[#c9a227]/40 hover:text-[#c9a227]"
             >
               <FolderOpen className="h-4 w-4" />
               Meine Anträge
             </Link>
           </div>
-          <div className="mb-10">
-            <div className="mb-3 flex items-center gap-3">
-              <div className="rounded-lg bg-[#c9a227]/10 p-2">
-                <Sparkles className="h-6 w-6 text-[#c9a227]" />
-              </div>
-              <span className="rounded-full bg-orange-500/10 px-3 py-1 text-xs font-medium uppercase tracking-wider text-orange-300">
-                Beta
-              </span>
+          {richtlinie && !richtlinieStub && (
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-3 py-1 text-xs text-emerald-700">
+              <ShieldCheck className="h-3.5 w-3.5" />
+              Richtlinie erfasst — Antrag folgt offizieller Struktur
             </div>
-            <h1 className="mb-2 text-3xl font-bold text-slate-100">
-              KI-Antragswizard
-            </h1>
-            <p className="mb-4 max-w-2xl text-slate-400">
-              Adaptive Befragung + Pipeline mit Selbstkritik, programmspezifisch optimiert.
-              Für „{programm.name}".
-            </p>
-            {richtlinie && !richtlinieStub && (
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-300">
-                <ShieldCheck className="h-3.5 w-3.5" />
-                Richtlinie erfasst — Antrag folgt offizieller Struktur
-              </div>
-            )}
-            {richtlinie && richtlinieStub && (
-              <div className="inline-flex items-center gap-2 rounded-full border border-orange-500/40 bg-orange-500/10 px-3 py-1 text-xs text-orange-300">
-                <AlertCircle className="h-3.5 w-3.5" />
-                Richtlinie teilweise erfasst — einige Felder generisch
-              </div>
-            )}
-            {!richtlinie && (
-              <div className="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-slate-700/30 px-3 py-1 text-xs text-slate-400">
-                <AlertCircle className="h-3.5 w-3.5" />
-                Keine Richtlinie erfasst — generische Struktur, empfohlen: offizielle Richtlinie parallel prüfen
-              </div>
-            )}
-          </div>
+          )}
+          {richtlinie && richtlinieStub && (
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#c9a227]/40 bg-[#c9a227]/10 px-3 py-1 text-xs text-[#b08d1f]">
+              <AlertCircle className="h-3.5 w-3.5" />
+              Richtlinie teilweise erfasst — einige Felder generisch
+            </div>
+          )}
+          {!richtlinie && (
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#0a1628]/15 bg-white/70 px-3 py-1 text-xs text-slate-600 backdrop-blur-sm">
+              <AlertCircle className="h-3.5 w-3.5" />
+              Keine Richtlinie erfasst — generische Struktur, offizielle Richtlinie parallel prüfen
+            </div>
+          )}
+        </div>
+      </PageHero>
+      <main
+        id="main-content"
+        className="relative pb-24"
+        style={{ backgroundColor: "#f8f5f0" }}
+      >
+        <div className="container mx-auto px-4">
           <WizardShell programm={programm} />
         </div>
       </main>

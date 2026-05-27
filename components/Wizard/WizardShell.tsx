@@ -443,25 +443,25 @@ export function WizardShell({ programm }: Props) {
     return (
       <>
         <KumulierungsWarnung conflicts={conflicts} onDismiss={() => setConflicts([])} />
-        <div className="rounded-xl border border-slate-700/50 bg-slate-800/30 p-8 text-center">
-        <h2 className="mb-2 text-2xl font-semibold text-slate-100">
+        <div className="rounded-xl border border-[#0a1628]/10 bg-white/80 p-8 text-center">
+        <h2 className="mb-2 text-2xl font-semibold text-[#0a1628]">
           Neuer KI-Antragswizard
         </h2>
-        <p className="mx-auto mb-6 max-w-xl text-slate-400">
+        <p className="mx-auto mb-6 max-w-xl text-slate-600">
           Der Wizard führt dich in 6–12 gezielten Fragen durch die relevanten Punkte für
           „{programm.name}". Anschließend schreibt eine Pipeline mit Selbstkritik den Antragsentwurf.
         </p>
         {handoff && (
-          <div className="mx-auto mb-4 max-w-xl rounded-lg border border-orange-500/30 bg-orange-500/5 px-4 py-3 text-left text-sm text-slate-300">
-            <div className="mb-1 font-medium text-orange-300">
+          <div className="mx-auto mb-4 max-w-xl rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 px-4 py-3 text-left text-sm text-slate-700">
+            <div className="mb-1 font-medium text-[#c9a227]">
               Dein Anliegen wird übernommen
             </div>
-            <div className="text-slate-400 italic">
+            <div className="text-slate-600 italic">
               „{handoff.anliegen.length > 200
                 ? handoff.anliegen.slice(0, 200) + "…"
                 : handoff.anliegen}"
               {handoff.fromMatchScore && (
-                <span className="ml-2 text-xs text-orange-400">
+                <span className="ml-2 text-xs text-[#c9a227]">
                   · Passung {handoff.fromMatchScore} %
                 </span>
               )}
@@ -469,11 +469,11 @@ export function WizardShell({ programm }: Props) {
           </div>
         )}
         {schoolProfile && (
-          <div className="mx-auto mb-6 max-w-xl rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 px-4 py-3 text-left text-sm text-slate-300">
+          <div className="mx-auto mb-6 max-w-xl rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 px-4 py-3 text-left text-sm text-slate-700">
             <div className="mb-1 font-medium text-[#c9a227]">
               Bekanntes Schulprofil wird übernommen
             </div>
-            <div className="text-slate-400">
+            <div className="text-slate-600">
               {[
                 schoolProfile.name,
                 schoolProfile.typ,
@@ -488,7 +488,7 @@ export function WizardShell({ programm }: Props) {
                   clearSchoolProfile();
                   setSchoolProfile(null);
                 }}
-                className="ml-2 text-xs text-slate-500 underline hover:text-slate-300"
+                className="ml-2 text-xs text-slate-500 underline hover:text-slate-700"
               >
                 löschen
               </button>
@@ -504,7 +504,7 @@ export function WizardShell({ programm }: Props) {
           type="button"
           disabled={busy}
           onClick={startSession}
-          className="rounded-lg bg-orange-500 px-6 py-3 font-semibold text-white transition hover:bg-orange-600 disabled:opacity-50"
+          className="rounded-lg bg-[#c9a227] px-6 py-3 font-semibold text-white transition hover:bg-[#b8921e] disabled:opacity-50"
         >
           {busy ? "Starte…" : "Wizard starten"}
         </button>
@@ -572,15 +572,15 @@ export function WizardShell({ programm }: Props) {
           />
         )}
         {canGenerate && (
-          <div className="rounded-xl border border-orange-500/40 bg-orange-500/10 p-8">
-            <h3 className="mb-2 text-xl font-semibold text-slate-100">
+          <div className="rounded-xl border border-[#c9a227]/40 bg-[#c9a227]/10 p-8">
+            <h3 className="mb-2 text-xl font-semibold text-[#0a1628]">
               Genug Informationen gesammelt
             </h3>
-            <p className="mb-6 max-w-xl text-slate-300">
+            <p className="mb-6 max-w-xl text-slate-700">
               Die KI hat aus deinen Antworten diese Fakten erfasst. Passt das, schreibt sie jetzt den Antrag — sechs Schritte:
               Gliederung → Abschnitte → Gutachten → Revision → Re-Check → Finanzplan + Konsistenzprüfung. Typisch 1–3 Minuten, ca. 0,20–0,35 € KI-Kosten.
             </p>
-            <div className="mb-4 rounded-lg border border-slate-700/50 bg-slate-900/40 p-4">
+            <div className="mb-4 rounded-lg border border-[#0a1628]/10 bg-[#f8f5f0] p-4">
               <FactsPanel facts={state.facts} compact />
             </div>
             {readiness && (
@@ -594,7 +594,7 @@ export function WizardShell({ programm }: Props) {
                 onClick={() => {
                   setState((s) => (s ? { ...s, phase: "interviewing" } : s));
                 }}
-                className="rounded-lg border border-slate-600 px-5 py-2 text-slate-200 transition hover:bg-slate-700"
+                className="rounded-lg border border-[#0a1628]/15 px-5 py-2 text-[#1e3a61] transition hover:bg-slate-100"
               >
                 Noch mehr ergänzen
               </button>
@@ -606,7 +606,7 @@ export function WizardShell({ programm }: Props) {
                   "rounded-lg px-6 py-2 font-semibold text-white transition disabled:opacity-50 " +
                   (readiness?.status === "kritisch"
                     ? "bg-amber-600 hover:bg-amber-700"
-                    : "bg-orange-500 hover:bg-orange-600")
+                    : "bg-[#c9a227] hover:bg-[#b8921e]")
                 }
                 title={
                   readiness?.status === "kritisch"

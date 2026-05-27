@@ -69,7 +69,7 @@ export function FactsPanel({ facts, compact }: Props) {
         );
         if (entries.length === 0) return null;
         return (
-          <div key={key} className="rounded-lg border border-slate-700/40 bg-slate-900/40 p-3">
+          <div key={key} className="rounded-lg border border-[#0a1628]/10 bg-[#f8f5f0] p-3">
             <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#c9a227]">
               <Icon className="h-3.5 w-3.5" />
               {label}
@@ -78,7 +78,7 @@ export function FactsPanel({ facts, compact }: Props) {
               {entries.map(([k, v]) => (
                 <div key={k} className="contents">
                   <dt className="text-slate-500">{humanizeKey(k)}</dt>
-                  <dd className="text-slate-300">{formatValue(v)}</dd>
+                  <dd className="text-slate-700">{formatValue(v)}</dd>
                 </div>
               ))}
             </dl>

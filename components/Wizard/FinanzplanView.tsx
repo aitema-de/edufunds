@@ -39,21 +39,21 @@ export function FinanzplanView({ plan }: Props) {
   }
 
   return (
-    <div className="rounded-xl border border-[#c9a227]/30 bg-slate-900/40 p-5">
+    <div className="rounded-xl border border-[#c9a227]/30 bg-[#f8f5f0] p-5">
       <div className="mb-4 flex items-center gap-2">
         <Wallet className="h-5 w-5 text-[#c9a227]" />
-        <h3 className="text-lg font-semibold text-slate-100">Finanzplan-Entwurf</h3>
+        <h3 className="text-lg font-semibold text-[#0a1628]">Finanzplan-Entwurf</h3>
       </div>
 
       {plan.posten.length === 0 ? (
-        <p className="text-sm text-slate-400">
+        <p className="text-sm text-slate-600">
           Kein Finanzplan erzeugt — ggf. fehlten Richtlinien-Daten.
         </p>
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-slate-700 text-left text-xs uppercase tracking-wider text-slate-500">
+              <tr className="border-b border-[#0a1628]/15 text-left text-xs uppercase tracking-wider text-slate-500">
                 <th className="pb-2 pr-4">Posten</th>
                 <th className="pb-2 pr-4">Kategorie</th>
                 <th className="pb-2 pr-4">Typ</th>
@@ -63,36 +63,36 @@ export function FinanzplanView({ plan }: Props) {
             <tbody>
               {[...byKategorie.entries()].flatMap(([kat, posten]) =>
                 posten.map((p) => (
-                  <tr key={p.id} className="border-b border-slate-800 align-top">
+                  <tr key={p.id} className="border-b border-[#0a1628]/10 align-top">
                       <td className="py-2 pr-4">
-                        <div className="text-slate-200">{p.bezeichnung}</div>
+                        <div className="text-[#1e3a61]">{p.bezeichnung}</div>
                         {p.begruendung && (
                           <div className="text-xs text-slate-500">{p.begruendung}</div>
                         )}
                       </td>
-                      <td className="py-2 pr-4 text-slate-400">{KATEGORIE_LABEL[kat]}</td>
+                      <td className="py-2 pr-4 text-slate-600">{KATEGORIE_LABEL[kat]}</td>
                       <td className="py-2 pr-4">
                         {p.eigenanteil ? (
-                          <span className="rounded bg-slate-700 px-1.5 py-0.5 text-xs text-slate-300">
+                          <span className="rounded bg-slate-100 px-1.5 py-0.5 text-xs text-slate-700">
                             Eigenanteil
                           </span>
                         ) : (
                           <span className="text-xs text-emerald-400">Förderung</span>
                         )}
                       </td>
-                      <td className="py-2 text-right tabular-nums text-slate-200">
+                      <td className="py-2 text-right tabular-nums text-[#1e3a61]">
                         {formatEur(p.betragEur)}
                       </td>
                     </tr>
                 ))
               )}
-              <tr className="border-t-2 border-slate-600">
-                <td colSpan={2} className="pt-3 text-slate-400">Gesamtvolumen</td>
+              <tr className="border-t-2 border-[#0a1628]/15">
+                <td colSpan={2} className="pt-3 text-slate-600">Gesamtvolumen</td>
                 <td className="pt-3 text-xs text-slate-500">
                   davon Förderung: {formatEur(foerderung)}
                   {eigen > 0 && " · Eigenanteil: " + formatEur(eigen)}
                 </td>
-                <td className="pt-3 text-right font-semibold tabular-nums text-slate-100">
+                <td className="pt-3 text-right font-semibold tabular-nums text-[#0a1628]">
                   {formatEur(gesamt)}
                 </td>
               </tr>
@@ -102,11 +102,11 @@ export function FinanzplanView({ plan }: Props) {
       )}
 
       {plan.hinweise && plan.hinweise.length > 0 && (
-        <div className="mt-4 rounded-lg border border-orange-500/30 bg-orange-500/5 p-3">
-          <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-orange-300">
+        <div className="mt-4 rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 p-3">
+          <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-[#c9a227]">
             Hinweise der KI
           </div>
-          <ul className="list-disc space-y-1 pl-5 text-xs text-slate-300">
+          <ul className="list-disc space-y-1 pl-5 text-xs text-slate-700">
             {plan.hinweise.map((h, i) => (
               <li key={i}>{h}</li>
             ))}

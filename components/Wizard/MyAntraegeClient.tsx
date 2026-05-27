@@ -27,7 +27,7 @@ const PHASE_META: Record<
   WizardPhase,
   { label: string; className: string }
 > = {
-  interviewing: { label: "In Bearbeitung", className: "bg-orange-500/15 text-orange-300 border-orange-500/40" },
+  interviewing: { label: "In Bearbeitung", className: "bg-[#c9a227]/15 text-[#c9a227] border-[#c9a227]/40" },
   ready_to_generate: { label: "Bereit zur Generierung", className: "bg-blue-500/15 text-blue-300 border-blue-500/40" },
   generating: { label: "Wird geschrieben…", className: "bg-purple-500/15 text-purple-300 border-purple-500/40" },
   complete: { label: "Fertig", className: "bg-emerald-500/15 text-emerald-300 border-emerald-500/40" },
@@ -123,8 +123,8 @@ export function MyAntraegeClient() {
 
   if (sessions === null) {
     return (
-      <div className="flex items-center gap-3 rounded-xl border border-slate-700/50 bg-slate-800/30 p-6 text-slate-300">
-        <Loader2 className="h-5 w-5 animate-spin text-orange-400" />
+      <div className="flex items-center gap-3 rounded-xl border border-[#0a1628]/10 bg-white/80 p-6 text-slate-700">
+        <Loader2 className="h-5 w-5 animate-spin text-[#c9a227]" />
         Lade Sessions…
       </div>
     );
@@ -132,17 +132,17 @@ export function MyAntraegeClient() {
 
   if (sessions.length === 0) {
     return (
-      <div className="rounded-xl border border-slate-700/50 bg-slate-800/30 p-10 text-center">
+      <div className="rounded-xl border border-[#0a1628]/10 bg-white/80 p-10 text-center">
         <FileText className="mx-auto mb-3 h-10 w-10 text-slate-500" />
-        <h3 className="mb-2 text-lg font-semibold text-slate-100">
+        <h3 className="mb-2 text-lg font-semibold text-[#0a1628]">
           Noch kein Antrag begonnen
         </h3>
-        <p className="mx-auto mb-6 max-w-md text-sm text-slate-400">
+        <p className="mx-auto mb-6 max-w-md text-sm text-slate-600">
           Schildere dein Anliegen und finde in Sekunden das passende Förderprogramm für deine Schule.
         </p>
         <Link
           href="/antrag/start"
-          className="inline-flex items-center gap-2 rounded-lg bg-orange-500 px-5 py-2 text-sm font-semibold text-white hover:bg-orange-600"
+          className="inline-flex items-center gap-2 rounded-lg bg-[#c9a227] px-5 py-2 text-sm font-semibold text-white hover:bg-[#b8921e]"
         >
           Anliegen schildern
           <ArrowRight className="h-4 w-4" />
@@ -159,11 +159,11 @@ export function MyAntraegeClient() {
         return (
           <div
             key={s.sessionToken}
-            className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 rounded-xl border border-slate-700/50 bg-slate-800/40 p-4 transition hover:border-slate-600"
+            className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 rounded-xl border border-[#0a1628]/10 bg-white p-4 transition hover:border-[#0a1628]/15"
           >
             <div className="min-w-0 flex-1">
               <div className="mb-1 flex flex-wrap items-center gap-2">
-                <h3 className="truncate text-base font-semibold text-slate-100">
+                <h3 className="truncate text-base font-semibold text-[#0a1628]">
                   {s.programmName}
                 </h3>
                 <span
@@ -180,7 +180,7 @@ export function MyAntraegeClient() {
                 )}
                 Letzter Stand: {formatDate(s.updatedAt)}
                 {s.costs && s.costs.calls > 0 && (
-                  <span className="ml-2 text-slate-400">
+                  <span className="ml-2 text-slate-600">
                     · KI-Kosten: {formatEur(s.costs.eurCents)}
                   </span>
                 )}
@@ -193,7 +193,7 @@ export function MyAntraegeClient() {
               {!s.missing && (
                 <Link
                   href={href}
-                  className="inline-flex items-center gap-2 rounded-lg border border-orange-500/50 bg-orange-500/10 px-3 py-2 text-sm font-medium text-orange-200 hover:bg-orange-500/20"
+                  className="inline-flex items-center gap-2 rounded-lg border border-[#c9a227]/50 bg-[#c9a227]/10 px-3 py-2 text-sm font-medium text-[#1e3a61] hover:bg-[#c9a227]/20"
                 >
                   Öffnen
                   <ArrowRight className="h-4 w-4" />
@@ -203,7 +203,7 @@ export function MyAntraegeClient() {
                 type="button"
                 onClick={() => handleRemove(s.programmId)}
                 title="Aus Browser entfernen"
-                className="rounded-lg border border-slate-600 p-2 text-slate-400 hover:border-red-500/50 hover:text-red-300"
+                className="rounded-lg border border-[#0a1628]/15 p-2 text-slate-600 hover:border-red-500/50 hover:text-red-300"
               >
                 <Trash2 className="h-4 w-4" />
               </button>

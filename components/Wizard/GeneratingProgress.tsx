@@ -40,14 +40,14 @@ function stageStatus(
 
 export function GeneratingProgress({ stage, currentStage }: Props) {
   return (
-    <div className="rounded-xl border border-orange-500/40 bg-slate-800/40 p-10">
+    <div className="rounded-xl border border-[#c9a227]/40 bg-white p-10">
       <div className="mb-6 flex items-center gap-3">
-        <Loader2 className="h-8 w-8 animate-spin text-orange-400" />
+        <Loader2 className="h-8 w-8 animate-spin text-[#c9a227]" />
         <div>
-          <h3 className="text-xl font-semibold text-slate-100">
+          <h3 className="text-xl font-semibold text-[#0a1628]">
             Pipeline schreibt deinen Antrag
           </h3>
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-slate-600">
             Typisch 1–3 Minuten. Bleib auf der Seite — das Ergebnis erscheint automatisch.
           </p>
         </div>
@@ -58,19 +58,19 @@ export function GeneratingProgress({ stage, currentStage }: Props) {
           const status = stageStatus(s.key, currentStage);
           const containerClass =
             status === "active"
-              ? "flex items-start gap-3 rounded-lg border border-orange-500/40 bg-orange-500/5 p-3"
+              ? "flex items-start gap-3 rounded-lg border border-[#c9a227]/40 bg-[#c9a227]/5 p-3"
               : status === "done"
-                ? "flex items-start gap-3 rounded-lg border border-slate-700/40 bg-emerald-500/5 p-3"
-                : "flex items-start gap-3 rounded-lg border border-slate-700/40 bg-slate-900/40 p-3";
+                ? "flex items-start gap-3 rounded-lg border border-[#0a1628]/10 bg-emerald-500/5 p-3"
+                : "flex items-start gap-3 rounded-lg border border-[#0a1628]/10 bg-[#f8f5f0] p-3";
           return (
             <li key={s.key} className={containerClass}>
               <div className="mt-0.5">
                 {status === "pending" && <Circle className="h-5 w-5 text-slate-600" />}
-                {status === "active" && <Loader2 className="h-5 w-5 animate-spin text-orange-400" />}
+                {status === "active" && <Loader2 className="h-5 w-5 animate-spin text-[#c9a227]" />}
                 {status === "done" && <CheckCircle className="h-5 w-5 text-emerald-400" />}
               </div>
               <div className="flex-1">
-                <div className="text-sm font-medium text-slate-200">{s.label}</div>
+                <div className="text-sm font-medium text-[#1e3a61]">{s.label}</div>
                 <div className="text-xs text-slate-500">{s.detail}</div>
               </div>
             </li>
@@ -79,7 +79,7 @@ export function GeneratingProgress({ stage, currentStage }: Props) {
       </ul>
 
       {stage && (
-        <p className="mt-6 text-center text-sm text-orange-300">{stage}</p>
+        <p className="mt-6 text-center text-sm text-[#c9a227]">{stage}</p>
       )}
     </div>
   );

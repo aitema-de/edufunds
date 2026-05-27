@@ -203,16 +203,16 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
   }, []);
 
   return (
-    <div className="rounded-xl border border-[#c9a227]/30 bg-slate-900/40 p-5">
+    <div className="rounded-xl border border-[#c9a227]/30 bg-[#f8f5f0] p-5">
       <header className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <h3 className="text-lg font-semibold text-slate-100">
+        <h3 className="text-lg font-semibold text-[#0a1628]">
           {legitimized ? "Finanzplan (freigegeben)" : "Finanzplan bearbeiten"}
         </h3>
         <div className="flex items-center gap-2">
           <button
             type="button"
             onClick={exportCsv}
-            className="inline-flex items-center gap-2 rounded-lg border border-slate-600 px-3 py-1.5 text-xs text-slate-200 hover:bg-slate-700"
+            className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-3 py-1.5 text-xs text-[#1e3a61] hover:bg-slate-100"
           >
             <Download className="h-3.5 w-3.5" />
             CSV
@@ -229,7 +229,7 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-slate-700 text-left text-xs uppercase tracking-wider text-slate-500">
+            <tr className="border-b border-[#0a1628]/15 text-left text-xs uppercase tracking-wider text-slate-500">
               <th className="pb-2 pr-3">Bezeichnung</th>
               <th className="pb-2 pr-3">Kategorie</th>
               <th className="pb-2 pr-3">Typ</th>
@@ -239,7 +239,7 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
           </thead>
           <tbody>
             {posten.map((p) => (
-              <tr key={p.id} className="border-b border-slate-800 align-top">
+              <tr key={p.id} className="border-b border-[#0a1628]/10 align-top">
                 <td className="py-2 pr-3">
                   <input
                     type="text"
@@ -247,7 +247,7 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
                     disabled={legitimized}
                     onChange={(e) => updatePosten(p.id, { bezeichnung: e.target.value })}
                     placeholder="z. B. 15 Tablets für Klassensatz"
-                    className="w-full rounded border border-slate-700 bg-slate-800 p-1.5 text-slate-100 placeholder-slate-500 disabled:opacity-60"
+                    className="w-full rounded border border-[#0a1628]/15 bg-white p-1.5 text-[#0a1628] placeholder-slate-400 disabled:opacity-60"
                   />
                   <input
                     type="text"
@@ -255,7 +255,7 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
                     disabled={legitimized}
                     onChange={(e) => updatePosten(p.id, { begruendung: e.target.value })}
                     placeholder="Kurzbegründung (optional)"
-                    className="mt-1 w-full rounded border border-slate-700 bg-slate-800/50 p-1 text-xs text-slate-400 placeholder-slate-600 disabled:opacity-60"
+                    className="mt-1 w-full rounded border border-[#0a1628]/15 bg-white p-1 text-xs text-slate-600 placeholder-slate-600 disabled:opacity-60"
                   />
                 </td>
                 <td className="py-2 pr-3">
@@ -263,7 +263,7 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
                     value={p.kategorie}
                     disabled={legitimized}
                     onChange={(e) => updatePosten(p.id, { kategorie: e.target.value as Finanzposten["kategorie"] })}
-                    className="rounded border border-slate-700 bg-slate-800 p-1.5 text-slate-100 disabled:opacity-60"
+                    className="rounded border border-[#0a1628]/15 bg-white p-1.5 text-[#0a1628] disabled:opacity-60"
                   >
                     {KATEGORIE_OPTIONS.map((o) => (
                       <option key={o.value} value={o.value}>
@@ -273,7 +273,7 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
                   </select>
                 </td>
                 <td className="py-2 pr-3">
-                  <label className="inline-flex items-center gap-1.5 text-xs text-slate-300">
+                  <label className="inline-flex items-center gap-1.5 text-xs text-slate-700">
                     <input
                       type="checkbox"
                       checked={!!p.eigenanteil}
@@ -291,7 +291,7 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
                     value={p.betragEur}
                     disabled={legitimized}
                     onChange={(e) => updatePosten(p.id, { betragEur: Number(e.target.value) || 0 })}
-                    className="w-32 rounded border border-slate-700 bg-slate-800 p-1.5 text-right tabular-nums text-slate-100 disabled:opacity-60"
+                    className="w-32 rounded border border-[#0a1628]/15 bg-white p-1.5 text-right tabular-nums text-[#0a1628] disabled:opacity-60"
                   />
                 </td>
                 <td className="py-2">
@@ -308,13 +308,13 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
                 </td>
               </tr>
             ))}
-            <tr className="border-t-2 border-slate-600">
-              <td colSpan={2} className="pt-3 font-medium text-slate-300">Gesamtvolumen</td>
+            <tr className="border-t-2 border-[#0a1628]/15">
+              <td colSpan={2} className="pt-3 font-medium text-slate-700">Gesamtvolumen</td>
               <td className="pt-3 text-xs text-slate-500">
                 Förderung {formatEur(foerder)}
                 {eigen > 0 && " · Eigenanteil " + formatEur(eigen)}
               </td>
-              <td className="pt-3 text-right font-semibold tabular-nums text-slate-100">
+              <td className="pt-3 text-right font-semibold tabular-nums text-[#0a1628]">
                 {formatEur(gesamt)}
               </td>
               <td></td>
@@ -328,7 +328,7 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
           <button
             type="button"
             onClick={addPosten}
-            className="inline-flex items-center gap-1.5 rounded border border-slate-600 px-3 py-1.5 text-xs text-slate-300 hover:bg-slate-800"
+            className="inline-flex items-center gap-1.5 rounded border border-[#0a1628]/15 px-3 py-1.5 text-xs text-slate-700 hover:bg-white"
           >
             <Plus className="h-3.5 w-3.5" />
             Posten hinzufügen
@@ -344,8 +344,8 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
               w.level === "error"
                 ? "border-red-500/30 bg-red-500/10 text-red-300"
                 : w.level === "warning"
-                  ? "border-orange-500/30 bg-orange-500/10 text-orange-300"
-                  : "border-slate-600 bg-slate-800/60 text-slate-300";
+                  ? "border-[#c9a227]/30 bg-[#c9a227]/10 text-[#c9a227]"
+                  : "border-[#0a1628]/15 bg-white text-slate-700";
             return (
               <div key={i} className={`flex items-start gap-2 rounded-lg border p-2 text-xs ${bg}`}>
                 <Icon className="mt-0.5 h-3.5 w-3.5 shrink-0" />
@@ -364,10 +364,10 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
           </div>
           <ul className="space-y-2">
             {autofixes.map((a) => (
-              <li key={a.id} className="flex flex-col gap-1 rounded-md border border-slate-700/60 bg-slate-900/40 p-2 sm:flex-row sm:items-start sm:gap-3">
-                <div className="flex-1 text-xs text-slate-300">
-                  <div className="font-medium text-slate-100">{a.label}</div>
-                  <div className="mt-0.5 text-[11px] leading-relaxed text-slate-400">{a.description}</div>
+              <li key={a.id} className="flex flex-col gap-1 rounded-md border border-[#0a1628]/15 bg-[#f8f5f0] p-2 sm:flex-row sm:items-start sm:gap-3">
+                <div className="flex-1 text-xs text-slate-700">
+                  <div className="font-medium text-[#0a1628]">{a.label}</div>
+                  <div className="mt-0.5 text-[11px] leading-relaxed text-slate-600">{a.description}</div>
                 </div>
                 <button
                   type="button"
@@ -394,7 +394,7 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
             type="button"
             disabled={busy || !dirty}
             onClick={save}
-            className="rounded-lg border border-slate-600 px-4 py-2 text-sm text-slate-200 transition hover:bg-slate-700 disabled:opacity-50"
+            className="rounded-lg border border-[#0a1628]/15 px-4 py-2 text-sm text-[#1e3a61] transition hover:bg-slate-100 disabled:opacity-50"
           >
             {busy && dirty ? "Speichere…" : dirty ? "Änderungen speichern" : "Gespeichert"}
           </button>

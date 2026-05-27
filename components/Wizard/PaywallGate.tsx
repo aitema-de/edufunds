@@ -107,22 +107,22 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
       {/* Dunkler Verlauf ueber dem Content — erwartet, dass der Eltern-Container `relative` ist. */}
       <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-[#0a1628]/40 via-[#0a1628]/80 to-[#0a1628]" />
       <div className="absolute inset-0 z-20 flex items-center justify-center p-6">
-        <div className="max-w-lg rounded-xl border border-[#c9a227]/40 bg-slate-900/95 p-8 text-center shadow-2xl">
+        <div className="max-w-lg rounded-xl border border-[#c9a227]/40 bg-white/95 p-8 text-center shadow-2xl">
           <div className="mb-4 inline-flex rounded-full bg-[#c9a227]/10 p-3">
             <Lock className="h-6 w-6 text-[#c9a227]" />
           </div>
-          <h3 className="mb-2 text-2xl font-semibold text-slate-100">
+          <h3 className="mb-2 text-2xl font-semibold text-[#0a1628]">
             Antrag + Finanzplan freischalten
           </h3>
-          <p className="mb-5 text-sm text-slate-400">
+          <p className="mb-5 text-sm text-slate-600">
             Dein Antragstext und der Finanzplan sind fertig. Mit dem{" "}
-            <strong className="text-slate-200">{tierLabel}</strong> bekommst du den
+            <strong className="text-[#1e3a61]">{tierLabel}</strong> bekommst du den
             vollstaendigen Text und alle Downloads.
           </p>
 
           <ul className="mb-6 space-y-1.5 text-left">
             {BENEFITS.map((b) => (
-              <li key={b} className="flex items-start gap-2 text-sm text-slate-300">
+              <li key={b} className="flex items-start gap-2 text-sm text-slate-700">
                 <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
                 <span>{b}</span>
               </li>
@@ -130,15 +130,15 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
           </ul>
 
           <div className="mb-6 flex items-baseline justify-center gap-2">
-            <span className="text-4xl font-bold text-slate-100">{priceEur} €</span>
-            <span className="text-sm text-slate-400">einmalig</span>
+            <span className="text-4xl font-bold text-[#0a1628]">{priceEur} €</span>
+            <span className="text-sm text-slate-600">einmalig</span>
           </div>
 
           {errorState && (
             <div
               className={`mb-4 rounded-lg border p-3 text-left text-sm ${
                 isStripeDown
-                  ? "border-orange-500/40 bg-orange-500/10 text-orange-200"
+                  ? "border-[#c9a227]/40 bg-[#c9a227]/10 text-[#1e3a61]"
                   : "border-red-500/40 bg-red-500/10 text-red-200"
               }`}
             >
@@ -148,7 +148,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                   type="button"
                   onClick={startCheckout}
                   disabled={busy}
-                  className="mt-2 inline-flex items-center gap-1.5 rounded border border-slate-500 bg-slate-800/60 px-3 py-1 text-xs text-slate-200 hover:bg-slate-700 disabled:opacity-50"
+                  className="mt-2 inline-flex items-center gap-1.5 rounded border border-[#0a1628]/20 bg-white px-3 py-1 text-xs text-[#1e3a61] hover:bg-slate-100 disabled:opacity-50"
                 >
                   <RefreshCw className="h-3 w-3" />
                   Erneut versuchen
@@ -183,7 +183,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
               type="button"
               onClick={devMockPay}
               disabled={busy}
-              className="mt-3 w-full rounded-lg border border-slate-600 px-4 py-2 text-xs text-slate-400 hover:bg-slate-800 disabled:opacity-50"
+              className="mt-3 w-full rounded-lg border border-[#0a1628]/15 px-4 py-2 text-xs text-slate-600 hover:bg-white disabled:opacity-50"
               title="Nur im Entwicklungsmodus — simuliert eine erfolgreiche Zahlung ohne Stripe"
             >
               Dev-Mock: als bezahlt markieren

@@ -89,8 +89,8 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
     return (
       <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-8 text-center">
         <CheckCircle2 className="mx-auto mb-3 h-10 w-10 text-emerald-400" />
-        <h1 className="mb-2 text-xl font-semibold text-slate-100">Zahlung bestaetigt</h1>
-        <p className="mb-4 text-sm text-slate-300">Dein Antrag wird gleich geoeffnet.</p>
+        <h1 className="mb-2 text-xl font-semibold text-[#0a1628]">Zahlung bestaetigt</h1>
+        <p className="mb-4 text-sm text-slate-700">Dein Antrag wird gleich geoeffnet.</p>
         <Link
           href={`/antrag/download/${paidToken}`}
           className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-600"
@@ -103,16 +103,16 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
 
   if (status === "timeout") {
     return (
-      <div className="rounded-xl border border-orange-500/40 bg-orange-500/10 p-8 text-center">
-        <AlertCircle className="mx-auto mb-3 h-10 w-10 text-orange-400" />
-        <h1 className="mb-2 text-xl font-semibold text-slate-100">
+      <div className="rounded-xl border border-[#c9a227]/40 bg-[#c9a227]/10 p-8 text-center">
+        <AlertCircle className="mx-auto mb-3 h-10 w-10 text-[#c9a227]" />
+        <h1 className="mb-2 text-xl font-semibold text-[#0a1628]">
           Freischaltung braucht noch einen Moment
         </h1>
-        <p className="mb-4 text-sm text-slate-300">
+        <p className="mb-4 text-sm text-slate-700">
           Die Zahlung ist durch, aber die Bestaetigung vom Zahlungsanbieter ist noch nicht
           bei uns angekommen. Das passiert normalerweise innerhalb einer Minute.
         </p>
-        <p className="mb-5 text-xs text-slate-400">
+        <p className="mb-5 text-xs text-slate-600">
           Du kannst diese Seite schliessen — sobald die Bestaetigung kommt, ist der Antrag
           unter „Meine Antraege" erreichbar. Oder du wartest hier weiter:
         </p>
@@ -120,14 +120,14 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
           <button
             type="button"
             onClick={restart}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-500 bg-slate-800 px-4 py-2 text-sm text-slate-100 hover:bg-slate-700"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-[#0a1628]/20 bg-white px-4 py-2 text-sm text-[#0a1628] hover:bg-slate-100"
           >
             <RefreshCw className="h-3.5 w-3.5" />
             Weiter warten
           </button>
           <Link
             href="/antrag/meine"
-            className="inline-flex items-center gap-2 rounded-lg border border-slate-600 px-4 py-2 text-sm text-slate-200 hover:bg-slate-800"
+            className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-4 py-2 text-sm text-[#1e3a61] hover:bg-white"
           >
             Zu meinen Antraegen
           </Link>
@@ -140,10 +140,10 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
     return (
       <div className="rounded-xl border border-red-500/40 bg-red-500/10 p-8 text-center">
         <AlertCircle className="mx-auto mb-3 h-10 w-10 text-red-400" />
-        <h1 className="mb-2 text-xl font-semibold text-slate-100">
+        <h1 className="mb-2 text-xl font-semibold text-[#0a1628]">
           Verbindungsproblem
         </h1>
-        <p className="mb-3 text-sm text-slate-300">
+        <p className="mb-3 text-sm text-slate-700">
           Wir konnten den Zahlungs-Status mehrfach hintereinander nicht abfragen. Pruefe
           deine Verbindung — die Zahlung selbst ist bei Stripe sicher und wird beim
           naechsten Versuch erkannt.
@@ -167,15 +167,15 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
     return (
       <div className="rounded-xl border border-red-500/40 bg-red-500/10 p-8 text-center">
         <AlertCircle className="mx-auto mb-3 h-10 w-10 text-red-400" />
-        <h1 className="mb-2 text-xl font-semibold text-slate-100">
+        <h1 className="mb-2 text-xl font-semibold text-[#0a1628]">
           Kein Session-Token uebermittelt
         </h1>
-        <p className="text-sm text-slate-300">
+        <p className="text-sm text-slate-700">
           Bitte oeffne den Antrag ueber „Meine Antraege".
         </p>
         <Link
           href="/antrag/meine"
-          className="mt-4 inline-flex items-center gap-2 rounded-lg border border-slate-600 px-4 py-2 text-sm text-slate-200 hover:bg-slate-800"
+          className="mt-4 inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-4 py-2 text-sm text-[#1e3a61] hover:bg-white"
         >
           Zu meinen Antraegen
         </Link>
@@ -187,14 +187,14 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
   const elapsedSec = Math.floor(elapsedMs / 1000);
   const progressPct = Math.min(100, (elapsedMs / MAX_WAIT_MS) * 100);
   return (
-    <div className="rounded-xl border border-slate-700/50 bg-slate-800/40 p-8 text-center">
+    <div className="rounded-xl border border-[#0a1628]/10 bg-white p-8 text-center">
       <Loader2 className="mx-auto mb-3 h-10 w-10 animate-spin text-[#c9a227]" />
-      <h1 className="mb-2 text-xl font-semibold text-slate-100">Zahlung wird bestaetigt</h1>
-      <p className="mb-4 text-sm text-slate-400">
+      <h1 className="mb-2 text-xl font-semibold text-[#0a1628]">Zahlung wird bestaetigt</h1>
+      <p className="mb-4 text-sm text-slate-600">
         Stripe sendet uns gleich die Bestaetigung. Diese Seite leitet automatisch weiter,
         sobald sie da ist — meist nach wenigen Sekunden.
       </p>
-      <div className="mx-auto mb-1 h-1 w-full max-w-xs overflow-hidden rounded-full bg-slate-700/50">
+      <div className="mx-auto mb-1 h-1 w-full max-w-xs overflow-hidden rounded-full bg-[#f8f5f0]">
         <div
           className="h-full bg-[#c9a227] transition-all duration-300 ease-linear"
           style={{ width: `${progressPct}%` }}
