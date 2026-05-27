@@ -51,13 +51,13 @@ export default async function AntragPage({ params }: AntragPageProps) {
   return (
     <>
       <Header />
-      <main className="min-h-screen pt-24 pb-20 bg-[#0a1628]">
+      <main className="min-h-screen pt-24 pb-20 bg-[#f8f5f0]">
         <div className="container mx-auto px-4">
           {/* Breadcrumb */}
           <div className="mb-8">
             <Link 
               href={`/foerderprogramme/${programm.id}`}
-              className="inline-flex items-center gap-2 text-slate-400 hover:text-[#c9a227] transition-colors"
+              className="inline-flex items-center gap-2 text-slate-600 hover:text-[#c9a227] transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
               Zurück zum Programm
@@ -71,15 +71,15 @@ export default async function AntragPage({ params }: AntragPageProps) {
                 <FileText className="h-6 w-6 text-[#c9a227]" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-slate-100">
+                <h1 className="text-3xl font-bold text-[#0a1628]">
                   Förderantrag erstellen
                 </h1>
-                <p className="text-slate-400">
+                <p className="text-slate-600">
                   für {programm.name}
                 </p>
               </div>
             </div>
-            <p className="text-slate-400 max-w-2xl">
+            <p className="text-slate-600 max-w-2xl">
               Unser KI-Antragsassistent hilft Ihnen, einen professionellen und 
               überzeugenden Förderantrag zu erstellen. Basierend auf den Details 
               von „{programm.name}" generiert die KI einen maßgeschneiderten Antragstext.
@@ -91,11 +91,11 @@ export default async function AntragPage({ params }: AntragPageProps) {
 
           {/* Hinweise */}
           <div className="mt-12 max-w-2xl mx-auto">
-            <div className="p-6 rounded-xl bg-slate-800/50 border border-slate-700/50">
-              <h3 className="font-semibold text-slate-200 mb-3">
+            <div className="p-6 rounded-xl bg-white border border-[#0a1628]/10">
+              <h3 className="font-semibold text-[#1e3a61] mb-3">
                 Wichtige Hinweise
               </h3>
-              <ul className="space-y-2 text-sm text-slate-400">
+              <ul className="space-y-2 text-sm text-slate-600">
                 <li className="flex items-start gap-2">
                   <span className="text-[#c9a227]">•</span>
                   Der generierte Antrag ist ein Entwurf - überprüfen Sie ihn vor der Einreichung.

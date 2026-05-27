@@ -6,6 +6,7 @@ import foerderprogrammeData from "@/data/foerderprogramme.json";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { PageHero } from "@/components/PageHero";
 import { AntragResult } from "@/components/Wizard/AntragResult";
 import { getSessionByPaidToken } from "@/lib/wizard/session";
 
@@ -31,31 +32,32 @@ export default async function DownloadPage({ params }: Props) {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-[#0a1628] pt-24 pb-20">
+      <PageHero
+        variant="light"
+        badge={{
+          icon: <CheckCircle2 className="w-3.5 h-3.5" style={{ color: "#10b981" }} />,
+          text: "Bezahlt · Freigeschaltet",
+        }}
+        title="Dein Antrag —"
+        titleAccent="einsatzbereit"
+        subtitle="Kopiere den Volltext + Finanzplan in einem Rutsch ins Antrags-Portal oder lade eine der Dateien herunter. Dieser Download-Link bleibt 30 Tage aktiv — lege dir ein Bookmark an."
+      >
+        <div className="flex justify-center">
+          <Link
+            href="/antrag/meine"
+            className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 bg-white/70 px-4 py-2 text-sm font-medium text-[#0a1628] backdrop-blur-sm transition hover:border-[#c9a227]/40 hover:text-[#c9a227]"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Meine Anträge
+          </Link>
+        </div>
+      </PageHero>
+      <main
+        id="main-content"
+        className="relative pb-24"
+        style={{ backgroundColor: "#f8f5f0" }}
+      >
         <div className="container mx-auto px-4">
-          <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
-            <Link
-              href="/antrag/meine"
-              className="inline-flex items-center gap-2 text-slate-400 transition-colors hover:text-[#c9a227]"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Meine Anträge
-            </Link>
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-300">
-              <CheckCircle2 className="h-3.5 w-3.5" />
-              Bezahlt · freigeschaltet
-            </div>
-          </div>
-          <div className="mb-8">
-            <h1 className="mb-2 text-3xl font-bold text-slate-100">
-              Dein Antrag — einsatzbereit
-            </h1>
-            <p className="max-w-2xl text-slate-400">
-              Kopiere den Volltext + Finanzplan in einem Rutsch ins Antrags-Portal oder
-              lade eine der Dateien herunter. Dieser Download-Link bleibt 30 Tage
-              aktiv — lege dir ein Bookmark an.
-            </p>
-          </div>
           <AntragResult
             programm={programm}
             generation={session.data.generation}

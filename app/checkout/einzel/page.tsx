@@ -157,7 +157,7 @@ export default function CheckoutEinzelPage() {
                       <FileText className="w-5 h-5" />
                       <span>Rechnung wurde per E-Mail versendet</span>
                     </div>
-                    <div className="p-4 rounded-xl bg-[#0a1628]/5">
+                    <div className="p-4 rounded-xl bg-[#f8f5f0]/5">
                       <p className="text-[#64748b] text-sm mb-2">Bitte überweisen Sie den Betrag auf:</p>
                       <div className="space-y-1 text-sm">
                         <p className="text-white"><strong>Empfänger:</strong> {orderData.paymentInstructions.bankDetails.recipient}</p>
@@ -179,7 +179,7 @@ export default function CheckoutEinzelPage() {
                       <Banknote className="w-5 h-5" />
                       <span>SEPA-Lastschriftmandat erstellt</span>
                     </div>
-                    <div className="p-4 rounded-xl bg-[#0a1628]/5">
+                    <div className="p-4 rounded-xl bg-[#f8f5f0]/5">
                       <p className="text-[#64748b] text-sm mb-2">Der Betrag wird abgebucht am:</p>
                       <p className="text-white text-lg font-semibold">
                         {new Date(orderData.paymentInstructions.collectionDate).toLocaleDateString("de-DE")}
@@ -331,7 +331,7 @@ export default function CheckoutEinzelPage() {
                         type="text"
                         value={customerData.name}
                         onChange={(e) => setCustomerData({ ...customerData, name: e.target.value })}
-                        className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:border-[#c9a227] focus:outline-none"
+                        className="w-full px-4 py-2 rounded-lg bg-white border border-[#0a1628]/15 text-white focus:border-[#c9a227] focus:outline-none"
                         placeholder="Max Mustermann"
                         required
                       />
@@ -342,7 +342,7 @@ export default function CheckoutEinzelPage() {
                         type="email"
                         value={customerData.email}
                         onChange={(e) => setCustomerData({ ...customerData, email: e.target.value })}
-                        className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:border-[#c9a227] focus:outline-none"
+                        className="w-full px-4 py-2 rounded-lg bg-white border border-[#0a1628]/15 text-white focus:border-[#c9a227] focus:outline-none"
                         placeholder="max@schule.de"
                         required
                       />
@@ -353,7 +353,7 @@ export default function CheckoutEinzelPage() {
                         type="text"
                         value={customerData.school}
                         onChange={(e) => setCustomerData({ ...customerData, school: e.target.value })}
-                        className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:border-[#c9a227] focus:outline-none"
+                        className="w-full px-4 py-2 rounded-lg bg-white border border-[#0a1628]/15 text-white focus:border-[#c9a227] focus:outline-none"
                         placeholder="Grundschule Musterstadt"
                         required
                       />
@@ -364,7 +364,7 @@ export default function CheckoutEinzelPage() {
                         type="text"
                         value={customerData.street}
                         onChange={(e) => setCustomerData({ ...customerData, street: e.target.value })}
-                        className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:border-[#c9a227] focus:outline-none"
+                        className="w-full px-4 py-2 rounded-lg bg-white border border-[#0a1628]/15 text-white focus:border-[#c9a227] focus:outline-none"
                         placeholder="Musterstraße 123"
                         required
                       />
@@ -376,7 +376,7 @@ export default function CheckoutEinzelPage() {
                           type="text"
                           value={customerData.zip}
                           onChange={(e) => setCustomerData({ ...customerData, zip: e.target.value })}
-                          className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:border-[#c9a227] focus:outline-none"
+                          className="w-full px-4 py-2 rounded-lg bg-white border border-[#0a1628]/15 text-white focus:border-[#c9a227] focus:outline-none"
                           placeholder="12345"
                           required
                         />
@@ -387,7 +387,7 @@ export default function CheckoutEinzelPage() {
                           type="text"
                           value={customerData.city}
                           onChange={(e) => setCustomerData({ ...customerData, city: e.target.value })}
-                          className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:border-[#c9a227] focus:outline-none"
+                          className="w-full px-4 py-2 rounded-lg bg-white border border-[#0a1628]/15 text-white focus:border-[#c9a227] focus:outline-none"
                           placeholder="Musterstadt"
                           required
                         />
@@ -407,13 +407,13 @@ export default function CheckoutEinzelPage() {
                       className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
                         selectedPayment === "rechnung"
                           ? "border-[#c9a227] bg-[#c9a227]/5"
-                          : "border-slate-700 hover:border-slate-600"
+                          : "border-[#0a1628]/15 hover:border-[#0a1628]/15"
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <FileText className={`w-5 h-5 ${selectedPayment === "rechnung" ? "text-[#c9a227]" : "text-[#64748b]"}`} />
                         <div className="flex-1">
-                          <span className={selectedPayment === "rechnung" ? "text-white font-medium" : "text-slate-300"}>
+                          <span className={selectedPayment === "rechnung" ? "text-white font-medium" : "text-slate-700"}>
                             Rechnungskauf
                           </span>
                           <p className="text-xs text-slate-500">14 Tage Zahlungsziel</p>
@@ -430,13 +430,13 @@ export default function CheckoutEinzelPage() {
                       className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
                         selectedPayment === "lastschrift"
                           ? "border-[#c9a227] bg-[#c9a227]/5"
-                          : "border-slate-700 hover:border-slate-600"
+                          : "border-[#0a1628]/15 hover:border-[#0a1628]/15"
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <Banknote className={`w-5 h-5 ${selectedPayment === "lastschrift" ? "text-[#c9a227]" : "text-[#64748b]"}`} />
                         <div className="flex-1">
-                          <span className={selectedPayment === "lastschrift" ? "text-white font-medium" : "text-slate-300"}>
+                          <span className={selectedPayment === "lastschrift" ? "text-white font-medium" : "text-slate-700"}>
                             SEPA-Lastschrift
                           </span>
                           <p className="text-xs text-slate-500">Automatischer Einzug</p>
@@ -453,13 +453,13 @@ export default function CheckoutEinzelPage() {
                       className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
                         selectedPayment === "stripe"
                           ? "border-[#c9a227] bg-[#c9a227]/5"
-                          : "border-slate-700 hover:border-slate-600"
+                          : "border-[#0a1628]/15 hover:border-[#0a1628]/15"
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <CreditCard className={`w-5 h-5 ${selectedPayment === "stripe" ? "text-[#c9a227]" : "text-[#64748b]"}`} />
                         <div className="flex-1">
-                          <span className={selectedPayment === "stripe" ? "text-white font-medium" : "text-slate-300"}>
+                          <span className={selectedPayment === "stripe" ? "text-white font-medium" : "text-slate-700"}>
                             Kreditkarte / Apple Pay / Google Pay
                           </span>
                           <p className="text-xs text-slate-500">Sichere Stripe-Zahlung</p>
@@ -476,7 +476,7 @@ export default function CheckoutEinzelPage() {
                       className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
                         selectedPayment === "paypal"
                           ? "border-[#c9a227] bg-[#c9a227]/5"
-                          : "border-slate-700 hover:border-slate-600"
+                          : "border-[#0a1628]/15 hover:border-[#0a1628]/15"
                       }`}
                     >
                       <div className="flex items-center gap-3">
@@ -485,7 +485,7 @@ export default function CheckoutEinzelPage() {
                           <path d="M20.067 8.94c-.015.12-.044.241-.063.36-.397 2.46-1.776 4.49-3.873 5.735-1.758 1.023-3.95 1.546-6.506 1.546H9.91l-.786 5.166a.641.641 0 0 1-.633.74H7.076l.786-5.166h2.034c2.556 0 4.748-.523 6.506-1.546 2.097-1.245 3.476-3.275 3.873-5.735.02-.12.048-.24.063-.36.189-1.551-.248-2.788-1.271-3.628-1.178-.975-3.076-1.493-5.53-1.493H5.701l-.786 5.166h-.02L2.47 20.597a.641.641 0 0 0 .633.74h4.606l.786-5.166h2.034c2.556 0 4.748-.523 6.506-1.546 2.097-1.245 3.476-3.275 3.873-5.735.02-.12.048-.24.063-.36.189-1.551-.248-2.788-1.271-3.628-1.178-.975-3.076-1.493-5.53-1.493H5.701l-.786 5.166h-.02L2.47 20.597a.641.641 0 0 0 .633.74h4.606l.786-5.166h2.034c2.556 0 4.748-.523 6.506-1.546 2.097-1.245 3.476-3.275 3.873-5.735.02-.12.048-.24.063-.36z"/>
                         </svg>
                         <div className="flex-1">
-                          <span className={selectedPayment === "paypal" ? "text-white font-medium" : "text-slate-300"}>
+                          <span className={selectedPayment === "paypal" ? "text-white font-medium" : "text-slate-700"}>
                             PayPal
                           </span>
                           <p className="text-xs text-slate-500">Schnell & sicher bezahlen</p>
@@ -502,7 +502,7 @@ export default function CheckoutEinzelPage() {
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
-                      className="space-y-4 mb-6 p-4 rounded-xl bg-[#0a1628]/5"
+                      className="space-y-4 mb-6 p-4 rounded-xl bg-[#f8f5f0]/5"
                     >
                       <h4 className="font-medium text-white">Bankverbindung</h4>
                       <div>
@@ -511,7 +511,7 @@ export default function CheckoutEinzelPage() {
                           type="text"
                           value={customerData.iban}
                           onChange={(e) => setCustomerData({ ...customerData, iban: e.target.value })}
-                          className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:border-[#c9a227] focus:outline-none"
+                          className="w-full px-4 py-2 rounded-lg bg-white border border-[#0a1628]/15 text-white focus:border-[#c9a227] focus:outline-none"
                           placeholder="DE00 0000 0000 0000 0000 00"
                           required
                         />
@@ -523,7 +523,7 @@ export default function CheckoutEinzelPage() {
                             type="text"
                             value={customerData.bic}
                             onChange={(e) => setCustomerData({ ...customerData, bic: e.target.value })}
-                            className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:border-[#c9a227] focus:outline-none"
+                            className="w-full px-4 py-2 rounded-lg bg-white border border-[#0a1628]/15 text-white focus:border-[#c9a227] focus:outline-none"
                             placeholder="BIC"
                           />
                         </div>
@@ -533,7 +533,7 @@ export default function CheckoutEinzelPage() {
                             type="text"
                             value={customerData.accountHolder || customerData.name}
                             onChange={(e) => setCustomerData({ ...customerData, accountHolder: e.target.value })}
-                            className="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:border-[#c9a227] focus:outline-none"
+                            className="w-full px-4 py-2 rounded-lg bg-white border border-[#0a1628]/15 text-white focus:border-[#c9a227] focus:outline-none"
                             placeholder={customerData.name}
                             required
                           />

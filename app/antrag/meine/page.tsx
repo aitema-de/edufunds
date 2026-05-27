@@ -14,12 +14,12 @@ export default function MyAntraegePage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-[#0a1628] pt-24 pb-20">
+      <main className="min-h-screen bg-[#f8f5f0] pt-24 pb-20">
         <div className="container mx-auto max-w-4xl px-4">
           <div className="mb-8">
             <Link
               href="/foerderprogramme"
-              className="inline-flex items-center gap-2 text-slate-400 transition-colors hover:text-[#c9a227]"
+              className="inline-flex items-center gap-2 text-slate-600 transition-colors hover:text-[#c9a227]"
             >
               <ArrowLeft className="h-4 w-4" />
               Zur Förderprogramm-Übersicht
@@ -31,8 +31,8 @@ export default function MyAntraegePage() {
                 <FolderOpen className="h-6 w-6 text-[#c9a227]" />
               </div>
             </div>
-            <h1 className="mb-2 text-3xl font-bold text-slate-100">Meine Anträge</h1>
-            <p className="max-w-2xl text-slate-400">
+            <h1 className="mb-2 text-3xl font-bold text-[#0a1628]">Meine Anträge</h1>
+            <p className="max-w-2xl text-slate-600">
               Alle Wizard-Sessions, die du in diesem Browser gestartet hast.
               Ohne Login — deshalb nur lokal. Cross-Device-Sync folgt in einer späteren Phase.
             </p>

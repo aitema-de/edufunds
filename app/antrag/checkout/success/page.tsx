@@ -18,7 +18,7 @@ export default async function CheckoutSuccessPage({ searchParams }: Props) {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-[#0a1628] pt-24 pb-20">
+      <main className="min-h-screen bg-[#f8f5f0] pt-24 pb-20">
         <div className="container mx-auto max-w-xl px-4">
           <CheckoutSuccessClient sessionToken={session_token ?? ""} />
         </div>

@@ -38,12 +38,12 @@ export default function GlobalError({
               </div>
 
               {/* Title */}
-              <h1 className="text-3xl font-bold text-slate-100 mb-4">
+              <h1 className="text-3xl font-bold text-[#0a1628] mb-4">
                 Ein Fehler ist aufgetreten
               </h1>
 
               {/* Description */}
-              <p className="text-slate-400 mb-8 max-w-md mx-auto">
+              <p className="text-slate-600 mb-8 max-w-md mx-auto">
                 Es tut uns leid, aber etwas ist schiefgelaufen. 
                 Unser Team wurde automatisch benachrichtigt.
               </p>
@@ -85,8 +85,8 @@ export default function GlobalError({
               </div>
 
               {/* Support Info */}
-              <div className="mt-12 p-6 rounded-2xl bg-slate-900/50 border border-slate-800">
-                <p className="text-slate-400 text-sm">
+              <div className="mt-12 p-6 rounded-2xl bg-white/50 border border-[#0a1628]/10">
+                <p className="text-slate-600 text-sm">
                   Bei wiederkehrenden Problemen erreichen Sie uns unter{" "}
                   <a 
                     href="mailto:office@aitema.de" 
