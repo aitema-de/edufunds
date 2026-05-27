@@ -32,7 +32,7 @@ export default function UeberUnsPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen" style={{ backgroundColor: "#0a1628" }}>
+      <main className="min-h-screen" style={{ backgroundColor: "#f8f5f0" }}>
         {/* Hero */}
         <section className="relative pt-32 pb-20 overflow-hidden">
           <div className="absolute inset-0 opacity-10">

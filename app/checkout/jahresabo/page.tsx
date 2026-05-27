@@ -37,7 +37,7 @@ export default function CheckoutJahresaboPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen pt-32 pb-20" style={{ backgroundColor: "#0a1628" }}>
+      <main className="min-h-screen pt-32 pb-20" style={{ backgroundColor: "#f8f5f0" }}>
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             {/* Back Link */}

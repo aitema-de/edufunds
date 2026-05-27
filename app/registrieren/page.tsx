@@ -34,7 +34,7 @@ export default function RegistrierenPage() {
     return (
       <>
         <Header />
-        <main className="min-h-screen pt-32 pb-20" style={{ backgroundColor: "#0a1628" }}>
+        <main className="min-h-screen pt-32 pb-20" style={{ backgroundColor: "#f8f5f0" }}>
           <div className="container mx-auto px-6 max-w-md">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -77,7 +77,7 @@ export default function RegistrierenPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen pt-32 pb-20" style={{ backgroundColor: "#0a1628" }}>
+      <main className="min-h-screen pt-32 pb-20" style={{ backgroundColor: "#f8f5f0" }}>
         <div className="container mx-auto px-6">
           <div className="max-w-md mx-auto">
             {/* Header */}
