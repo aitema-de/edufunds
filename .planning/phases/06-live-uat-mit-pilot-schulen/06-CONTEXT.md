@@ -25,13 +25,18 @@ Diese Phase ist **überwiegend operativ**: Die UAT-Sessions selbst kann GSD nich
 
 Nach Abschluss von Plan 06-01 hat Kolja das UAT-Modell geändert: **asynchrone, unmoderierte Pilot-Tests** statt moderierter Screen-Sharing-Sessions. Die folgenden Pivot-Entscheidungen haben **Vorrang** vor den ursprünglichen Decisions; betroffene Alt-Decisions sind explizit benannt.
 
-- **D-26 (überschreibt D-21):** UAT-Umgebung = **Staging-Deploy**. Der Wizard-Branch `feature/wizard-adaptive` wird auf `staging.edufunds.org` deployed — Migrationen 002/003 auf die Staging-DB, `NEXT_PUBLIC_PAYWALL_DEV_MOCK=1` gesetzt, Smoke-Test nach Deployment-Safety-Regel. Piloten erreichen den Wizard über diese URL. Lokales Dev + Screen-Sharing entfällt. → braucht einen **neuen Deploy-Plan, der vor dem async-06-02 läuft**.
+- **D-26 (überschreibt D-21):** UAT-Umgebung = **Staging-Deploy**. Der Wizard-Branch `feature/wizard-adaptive` wird auf `staging.edufunds.org` deployed — Migrationen 002/003 auf die Staging-DB, `NEXT_PUBLIC_PAYWALL_DEV_MOCK=1` gesetzt, Smoke-Test nach Deployment-Safety-Regel. Piloten erreichen den Wizard über diese URL. Lokales Dev + Screen-Sharing entfällt. **Stand 2026-05-27: Initial-Deploy 2026-05-20 erfolgt; redeployt 2026-05-27 mit BEFUND-1+2-Fixes; E2E Playwright-Verifikation bestanden (Session `6dcdac50-…`). Kein separater Deploy-Plan mehr nötig — die Infrastruktur ist live.**
 - **D-27 (überschreibt D-09/D-11 und `<specifics>` Screen-Sharing):** Sessions = **async + unmoderiert**. Der Pilot testet allein, wann er Zeit hat — kein Termin, kein Moderator, kein Think-aloud. GSD pausiert weiterhin pro Pilot (Checkpoint-Mechanik bleibt), aber der Resume-Trigger ist die vom Piloten zurückgeschickte Rückmeldung, nicht eine von Kolja moderierte Session.
 - **D-28 (überschreibt D-11):** Befunde-Input = **zweistufig**. Der Pilot füllt das laienfreundliche `UAT-PILOT-RUECKMELDUNG-TEMPLATE.md` aus (Rohinput). GSD baut daraus + aus dem DB-Snapshot des Pilot-Antrags den technischen `UAT-BEFUNDE-{datum}-PILOT-{code}.md`-Tracker (UAT-BEFUNDE-TEMPLATE.md-Schema). Kolja füllt den technischen Tracker NICHT mehr selbst.
 - **D-29:** Pilot-Doku existiert bereits — `.planning/uat/UAT-PILOT-ANLEITUNG.md` (Selbst-Test-Anleitung) + `UAT-PILOT-RUECKMELDUNG-TEMPLATE.md` (Ausfüll-Formular), erstellt als 06-01-Folgearbeit (Commit `30c64a4`). `UAT-ANSCHREIBEN.md` ist auf das async-Modell umgestellt. `UAT-PLAN-TEMPLATE.md` (moderiert) ist damit nur noch optionales Kolja-internes Material.
 - **D-30 (ergänzt D-12):** `uat-pre-session-check.ts` prüft `localhost:3101` — für das async-Modell auf die Staging-URL umstellen ODER als Kolja-internes Smoke-Tool belassen. `uat-db-snapshot.ts` + `uat-session-token.ts` bleiben gültig (Pilot-Antrag aus der DB ziehen). Pilot-Run-Zuordnung läuft über die vom Piloten kopierte **Antrag-URL** (enthält die ID), nicht über einen Session-Start-Timestamp.
 
-**Plan-Status:** Plan 06-01 ist abgeschlossen (SUMMARY vorhanden) und **bleibt erhalten** — IST-STAND-CHECK, die drei Helper-Skripte und die D-22-Template-Änderung gelten weiter. Neu zu planen: ein Deploy-Plan + 06-02/03/04 im async-Modell.
+**Plan-Status (2026-05-27):**
+- Plan 06-01 ist abgeschlossen (SUMMARY vorhanden) und **bleibt erhalten** — IST-STAND-CHECK, die drei Helper-Skripte und die D-22-Template-Änderung gelten weiter.
+- Plan 06-02 ist **auf async-Modell umgestellt** (2026-05-27): Task 1 + Task 2 + Objective + Threat-Tabelle reflektieren D-26..D-30. Read-First-Liste verweist jetzt auf UAT-PILOT-ANLEITUNG.md + UAT-PILOT-RUECKMELDUNG-TEMPLATE.md statt UAT-PLAN-TEMPLATE.md. Resume-Signal ist die eingehende Pilot-Rückmeldung mit Antrag-URL.
+- Plan 06-03 (konsolidierte Bug-Fix-Welle) ist modell-agnostisch — bleibt unverändert. Arbeitet auf den UAT-BEFUNDE-PILOT-*.md-Trackern, die Task 2 aus 06-02 erzeugt.
+- Plan 06-04 (Baseline-Eintrag + Retro) ist modell-agnostisch — bleibt unverändert.
+- **Separater Deploy-Plan wurde NICHT geschrieben** — der Staging-Deploy ist durch die 2026-05-20-Initial-Deployment + 2026-05-27-Redeploy mit BEFUND-1+2-Fixes implizit erfolgt. Live-Verifikation E2E bestanden.
 
 ---
 

@@ -1,6 +1,4 @@
-<!-- KOLJA: Vor dem Versand zwei Platzhalter ersetzen:
-     1. {STAGING-URL}  -> echte URL nach dem Staging-Deploy (vermutlich https://staging.edufunds.org)
-     2. {ANTWORT-MAIL} -> die Mail-Adresse, an die Piloten die Rueckmeldung schicken sollen
+<!-- 2026-05-27: Platzhalter aufgeloest, Anleitung versandbereit.
      Diese Anleitung gibst du dem Piloten zusammen mit UAT-PILOT-RUECKMELDUNG-TEMPLATE.md mit. -->
 
 # EduFunds testen — deine Anleitung
@@ -40,7 +38,7 @@ Grund: Die Testdaten landen in unserer Entwicklungs-Datenbank. Mit erfundenen Da
 
 ## So testest du — Schritt für Schritt
 
-**Starte hier:** {STAGING-URL}/antrag/start
+**Starte hier:** https://staging.edufunds.org/antrag/start
 
 ### Schritt 1 — Anliegen schildern
 Beschreib in eigenen Worten, was deine (fiktive) Schule fördern lassen möchte. Schreib so, wie du es einem Kollegen erzählen würdest. Das Feld verlangt mindestens ein paar Sätze.
@@ -81,7 +79,7 @@ Fehlermeldung, weiße Seite, oder es hängt länger als ~1 Minute ohne dass sich
 
 ## Danach: kurze Rückmeldung geben
 
-Fülle das beiliegende Dokument **„UAT-PILOT-RUECKMELDUNG"** aus (dauert ~10 Min, Stichworte reichen) und schick es an: **{ANTWORT-MAIL}**
+Fülle das beiliegende Dokument **„UAT-PILOT-RUECKMELDUNG"** aus (dauert ~10 Min, Stichworte reichen) und schick es an: **office@aitema.de**
 
 **Ein Punkt ist besonders wichtig:** Sobald dein Antrag fertig ist, **kopiere die Adresse aus der Browser-Zeile** (oben im Browser) und füge sie in die Rückmeldung ein. Darüber können wir deinen Antrag später nachvollziehen.
 
