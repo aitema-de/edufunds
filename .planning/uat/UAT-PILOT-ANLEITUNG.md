@@ -72,6 +72,11 @@ Am Ende erscheint ein Schritt mit **29 €**. **Im Test ist das simuliert — du
 Fehlermeldung, weiße Seite, oder es hängt länger als ~1 Minute ohne dass sich etwas tut?
 → Notier dir **kurz, was passiert ist** (ein Screenshot hilft sehr), und versuche dann weiterzumachen oder neu zu starten. Genau solche Stellen wollen wir finden — das ist kein Fehler von dir.
 
+**Spezieller Tipp für Schritt 4 (Antrag wird erstellt):** Falls die Fehlermeldung *„Etwas ist schiefgelaufen"* erscheint, obwohl die Fortschrittsanzeige eigentlich noch lief:
+- Lade die Seite einmal neu (Strg+R / Cmd+R).
+- Sehr wahrscheinlich ist dein Antrag im Hintergrund trotzdem fertig geworden und du landest direkt auf der Antrag-Lesen-Seite.
+- Falls nicht: das ist genau eine der Stellen, die wir verbessern wollen — bitte in die Rückmeldung schreiben.
+
 ---
 
 ## Danach: kurze Rückmeldung geben

@@ -224,6 +224,8 @@ export function WizardShell({ programm }: Props) {
       try {
         const res = await fetch(`/api/wizard/${state.sessionToken}`, { cache: "no-store" });
         if (res.ok) {
+          // Recovery: vorherige Connection-Hicccups (BEFUND-2) waren transient — Banner wegnehmen.
+          if (consecutiveFailures > 0) setError(null);
           consecutiveFailures = 0;
           const body = await res.json();
           if (cancelled) return;
@@ -251,11 +253,15 @@ export function WizardShell({ programm }: Props) {
       } catch {
         consecutiveFailures += 1;
       }
-      if (consecutiveFailures >= 5) {
-        setError("Verbindung zur Server-Pipeline verloren — bitte Seite neu laden.");
-        return;
+      // BEFUND-2 (2026-05-27): Statt komplett zu stoppen, in Degraded-Mode wechseln.
+      // Server-Pipeline läuft im Hintergrund weiter (idempotent durch phase=complete-Check);
+      // die Verbindung kann sich erholen (Cloudflare/Traefik-Hicccup, kurzfristiger TCP-Reset).
+      if (consecutiveFailures === 5) {
+        setError("Server-Verbindung instabil — Pipeline läuft im Hintergrund weiter. Falls dein Antrag nicht binnen 2 Minuten erscheint, lade die Seite neu (deine Eingaben bleiben gespeichert).");
       }
-      if (!cancelled) setTimeout(tick, 2000);
+      // Erstmal 2s zwischen Polls, ab dem 5. failure auf 8s drosseln (degraded mode).
+      const nextInterval = consecutiveFailures >= 5 ? 8000 : 2000;
+      if (!cancelled) setTimeout(tick, nextInterval);
     };
     tick();
     return () => { cancelled = true; };
@@ -354,6 +360,12 @@ export function WizardShell({ programm }: Props) {
         body: JSON.stringify({ sessionToken: state.sessionToken }),
       });
       if (!res.ok) {
+        // 409 = Pipeline lief schon durch (Idempotenz / Reload-Race). D-12-Polling
+        // (Z. 217 ff.) erkennt phase=complete beim nächsten Tick.
+        if (res.status === 409) {
+          setBusy(false);
+          return;
+        }
         const body = await res.json().catch(() => ({}));
         throw new Error(body.error ?? `HTTP ${res.status}`);
       }
@@ -361,6 +373,15 @@ export function WizardShell({ programm }: Props) {
       setGeneration(body.generation);
       setState((s) => (s ? { ...s, phase: "complete", costs: body.costs ?? s.costs } : s));
     } catch (e) {
+      // BEFUND-2 (2026-05-27): Browser-Fetch wirft TypeError bei Netzwerk-Fehlern
+      // (ERR_CONNECTION_REFUSED, ECONNRESET, abgeschnittene Cloudflare-Connection).
+      // Die Pipeline läuft serverseitig oft trotzdem weiter — D-12-Polling-Effect
+      // (Z. 217 ff.) holt das Ergebnis nach, solange phase=generating bleibt.
+      // Daher: bei TypeError phase=generating LASSEN, Polling übernimmt.
+      if (e instanceof TypeError) {
+        setBusy(false);
+        return;
+      }
       setError(e instanceof Error ? e.message : "Generierung fehlgeschlagen");
       setState((s) => (s ? { ...s, phase: "failed" } : s));
     } finally {
