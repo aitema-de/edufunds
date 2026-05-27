@@ -108,10 +108,20 @@
     background-color: var(--parchment);
   }
   
+  /* DM Serif Display ist nur in Weight 400 verfuegbar (Google Fonts). Wenn
+   * eine Komponente Tailwind `font-bold` (700) oder `font-semibold` (600) auf
+   * eine Headline anwendet, faked der Browser "fauxbold" durch Glyph-Verdickung —
+   * Display-Serifs verschwimmen dann an den Raendern. Deshalb erzwingen wir
+   * Weight 400 mit !important fuer alle Headings global; einzelne Komponenten
+   * koennen ihre `font-bold`-Tailwind-Klassen behalten (sind dann No-Op fuer
+   * Headings, wirken weiter bei <div>/<span>/<p>). Letter-Spacing leicht
+   * weniger straff (war -0.02em) fuer bessere Lesbarkeit bei groesseren
+   * Schriftgraden. (Befund 2026-05-27, BEFUND-UI-1 Pre-Pilot-Audit.)
+   */
   h1, h2, h3, h4 {
-    font-family: 'DM Serif Display', Georgia, serif;
-    font-weight: 400;
-    letter-spacing: -0.02em;
+    font-family: 'DM Serif Display', Georgia, serif !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.015em;
     color: hsl(var(--foreground));
   }
   
