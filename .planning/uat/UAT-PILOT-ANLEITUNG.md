@@ -75,6 +75,17 @@ Fehlermeldung, weiße Seite, oder es hängt länger als ~1 Minute ohne dass sich
 - Sehr wahrscheinlich ist dein Antrag im Hintergrund trotzdem fertig geworden und du landest direkt auf der Antrag-Lesen-Seite.
 - Falls nicht: das ist genau eine der Stellen, die wir verbessern wollen — bitte in die Rückmeldung schreiben.
 
+## Schneller Bug melden: der „Feedback"-Button
+
+Rechts unten auf jeder Seite findest du einen dunklen **„Feedback"-Button**. Klick draufzu, sobald dir etwas auffällt — egal ob Fehler, fehlende Funktion oder einfach eine Frage. Es geht in 30 Sekunden:
+
+1. Auswahl **Fehler** / **Idee** / **Frage**.
+2. Kurz beschreiben, was los war — Stichworte reichen.
+3. Optional: deine E-Mail, dann bekommst du eine Bestätigung mit Ticket-Nummer.
+4. **Absenden** — der Bug landet sofort bei uns im System.
+
+Das ist parallel zur Rückmeldung am Ende sehr hilfreich, weil wir Bugs damit sofort einsortieren können (während die Rückmeldung am Ende den großen Eindruck zusammenfasst).
+
 ---
 
 ## Danach: kurze Rückmeldung geben

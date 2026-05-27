@@ -7,6 +7,7 @@ import type { Foerderprogramm } from "@/lib/foerderSchema";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
+import { FeedbackButton } from "@/components/FeedbackButton";
 import { WizardShell } from "@/components/Wizard";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
 
@@ -95,6 +96,7 @@ export default async function WizardPage({ params }: Props) {
         </div>
       </main>
       <Footer />
+      <FeedbackButton />
     </>
   );
 }
