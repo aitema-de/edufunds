@@ -30,23 +30,23 @@ interface Props {
 }
 
 function scoreColor(score: number): string {
-  if (score >= 85) return "text-emerald-300 bg-emerald-500/10 border-emerald-500/40";
-  if (score >= 70) return "text-orange-300 bg-orange-500/10 border-orange-500/40";
-  return "text-slate-300 bg-slate-500/10 border-slate-500/40";
+  if (score >= 85) return "text-emerald-700 bg-emerald-50 border-emerald-200";
+  if (score >= 70) return "text-[#c9a227] bg-[#c9a227]/10 border-[#c9a227]/30";
+  return "text-slate-600 bg-slate-100 border-slate-200";
 }
 
 export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
   if (matches.length === 0) {
     return (
-      <div className="rounded-xl border border-slate-700/50 bg-slate-800/40 p-8 text-center">
-        <SearchX className="mx-auto mb-3 h-8 w-8 text-slate-500" />
-        <h3 className="mb-2 text-lg font-semibold text-slate-200">
+      <div className="rounded-2xl border border-[#0a1628]/8 bg-white p-8 text-center shadow-[0_4px_20px_-4px_rgba(10,22,40,0.06)]">
+        <SearchX className="mx-auto mb-3 h-8 w-8 text-slate-400" />
+        <h3 className="mb-2 text-lg font-semibold text-[#0a1628]">
           Kein Programm passt zu diesem Anliegen
         </h3>
-        <p className="mx-auto mb-4 max-w-md text-sm text-slate-400">
+        <p className="mx-auto mb-4 max-w-md text-sm text-slate-600">
           Das passiert, wenn das Anliegen zu allgemein oder sehr speziell ist.
         </p>
-        <ul className="mx-auto mb-6 max-w-md space-y-1 text-left text-sm text-slate-400">
+        <ul className="mx-auto mb-6 max-w-md space-y-1 text-left text-sm text-slate-600">
           <li>Nenne Zielgruppe und Zielwirkung konkreter (z. B. „Leseförderung Klasse 1–2, 30 Kinder").</li>
           <li>Gib ein ungefähres Budget an (z. B. „5.000 bis 10.000 €").</li>
           <li>Erkläre, was die Schule bereits hat und was fehlt.</li>
@@ -55,7 +55,7 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
           <button
             type="button"
             onClick={onReset}
-            className="inline-flex items-center gap-2 rounded-lg bg-orange-500 px-5 py-2 text-sm font-semibold text-white hover:bg-orange-600"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#c9a227] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#b8921e]"
           >
             Anliegen neu formulieren
             <ArrowRight className="h-4 w-4" />
@@ -67,25 +67,25 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
 
   return (
     <div className="space-y-4">
-      <div className="text-sm text-slate-400">
+      <div className="text-sm text-slate-600">
         {matches.length} Programm{matches.length === 1 ? "" : "e"} passen zu deinem Anliegen. Sortiert nach Passung:
       </div>
       {matches.map((m) => (
         <article
           key={m.id}
-          className="rounded-xl border border-slate-700/50 bg-slate-800/40 p-5 transition hover:border-slate-600"
+          className="rounded-2xl border border-[#0a1628]/8 bg-white p-5 shadow-[0_4px_20px_-4px_rgba(10,22,40,0.06)] transition hover:border-[#c9a227]/30 hover:shadow-[0_8px_28px_-6px_rgba(10,22,40,0.1)]"
         >
           <div className="mb-3 flex flex-wrap items-start justify-between gap-3">
             <div className="min-w-0 flex-1">
-              <h3 className="mb-1 text-lg font-semibold text-slate-100">
+              <h3 className="mb-1 text-lg font-semibold text-[#0a1628]">
                 {m.programm.name}
               </h3>
-              <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400">
+              <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600">
                 {m.programm.foerdergeber && (
                   <span>{m.programm.foerdergeber}</span>
                 )}
                 {m.programm.foerdergeberTyp && (
-                  <span className="rounded-full border border-slate-600 px-2 py-0.5 capitalize">
+                  <span className="rounded-full border border-[#0a1628]/15 px-2 py-0.5 capitalize text-[#1e3a61]">
                     {m.programm.foerdergeberTyp}
                   </span>
                 )}
@@ -109,20 +109,19 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
           </div>
           {/* Strukturierte Begruendung — D-10 (Plan 02-02): passt_weil + achtung_bei aus MatchHit */}
           <div className="mb-4 space-y-2">
-            {/* passt_weil — gruener Block, immer gerendert */}
-            <div className="flex items-start gap-2 rounded-lg bg-green-900/30 border border-green-700/50 px-3 py-2">
-              <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-green-400" aria-hidden="true" />
+            <div className="flex items-start gap-2 rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-2">
+              <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" aria-hidden="true" />
               <div>
-                <span className="text-xs font-semibold text-green-400">Passt, weil: </span>
-                <span className="text-sm text-green-200">{m.passt_weil}</span>
+                <span className="text-xs font-semibold text-emerald-700">Passt, weil: </span>
+                <span className="text-sm text-emerald-900">{m.passt_weil}</span>
               </div>
             </div>
             {m.achtung_bei && (
-              <div className="flex items-start gap-2 rounded-lg bg-orange-900/30 border border-orange-700/50 px-3 py-2">
-                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-orange-400" aria-hidden="true" />
+              <div className="flex items-start gap-2 rounded-lg bg-[#c9a227]/10 border border-[#c9a227]/30 px-3 py-2">
+                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#c9a227]" aria-hidden="true" />
                 <div>
-                  <span className="text-xs font-semibold text-orange-400">Achtung: </span>
-                  <span className="text-sm text-orange-200">{m.achtung_bei}</span>
+                  <span className="text-xs font-semibold text-[#b08d1f]">Achtung: </span>
+                  <span className="text-sm text-[#1e3a61]">{m.achtung_bei}</span>
                 </div>
               </div>
             )}
@@ -130,7 +129,7 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <Link
               href={`/foerderprogramme/${m.programm.id}`}
-              className="inline-flex items-center gap-1.5 text-xs text-slate-400 transition hover:text-[#c9a227]"
+              className="inline-flex items-center gap-1.5 text-xs text-slate-600 transition hover:text-[#c9a227]"
             >
               <ExternalLink className="h-3.5 w-3.5" />
               Programm-Details ansehen
@@ -138,7 +137,7 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
             <button
               type="button"
               onClick={() => onStartAntrag(m)}
-              className="inline-flex items-center gap-2 rounded-lg bg-orange-500 px-4 py-2 sm:py-3 text-sm font-semibold text-white transition hover:bg-orange-600"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#c9a227] px-4 py-2 sm:py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#b8921e]"
             >
               Antrag starten
               <ArrowRight className="h-4 w-4" />
