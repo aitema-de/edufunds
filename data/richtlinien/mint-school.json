@@ -1,0 +1,249 @@
+{
+  "version": "2026-06-01",
+  "quellen": [
+    "https://vector-stiftung.de/ausschreibungen/mintschool/",
+    "https://vector-stiftung.de/mintschool/",
+    "https://vector-stiftung.de/foerderbereiche/",
+    "https://foerderdatenbank.d-s-e-e.de/foerderprogramme/mint-school"
+  ],
+  "foerderhoehe": {
+    "bemerkung": "Foerderhoehe variabel, keine festen Min/Max-Betraege veroeffentlicht. Hoehe richtet sich nach Projektumfang und der eingereichten groben Kostenaufstellung. Geldzuschuss, Auszahlung ueber das kommunale Schulkonto oder das Konto des Foerdervereins."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Externe MINT-Experten/Referenten mit klarem MINT-Bezug zum Projekt"
+      ],
+      "beispielePasst": [
+        "Honorar fuer externen Robotik-Coach einer MINT-AG",
+        "Workshop-Leitung durch eine externe Fachkraft (z.B. Programmieren, Chemie-Experimente)"
+      ],
+      "beispielePasstNicht": [
+        "Verguetung von Lehrkraeften der eigenen Schule fuer regulaere Dienstaufgaben"
+      ]
+    },
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Direkt fuer das beschriebene MINT-Projekt benoetigtes Material und Verbrauchsmaterial"
+      ],
+      "beispielePasst": [
+        "Bauteile und Sensoren fuer einen Roboter-Wettbewerb",
+        "Experimentier- und Verbrauchsmaterial fuer eine Chemie-/Physik-AG"
+      ],
+      "beispielePasstNicht": [
+        "Allgemeine Schulausstattung ohne MINT-Projektbezug",
+        "Bueromaterial der Schulverwaltung"
+      ]
+    },
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Exkursionen mit klarem MINT-Charakter"
+      ],
+      "beispielePasst": [
+        "Busfahrt zu einem Schuelerlabor oder Forschungsinstitut",
+        "Eintritt und Anreise zu einer MINT-Exkursion"
+      ],
+      "beispielePasstNicht": [
+        "Klassenfahrt ohne MINT-Schwerpunkt"
+      ]
+    },
+    {
+      "kategorie": "sonstiges",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Teilnahme an MINT-Wettbewerben"
+      ],
+      "beispielePasst": [
+        "Anmeldegebuehren und Materialkosten fuer einen MINT-Wettbewerb (z.B. Jugend forscht, First Lego League)"
+      ],
+      "beispielePasstNicht": [
+        "Preisgelder oder Belohnungen fuer Schueler"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Nur wenn die Anschaffung dem konkreten MINT-Projekt dient und in der Kostenaufstellung begruendet ist"
+      ],
+      "beispielePasst": [
+        "Anschaffung von Robotik-Baukaesten fuer eine dauerhafte MINT-AG"
+      ],
+      "beispielePasstNicht": [
+        "Allgemeine IT-Grundausstattung der Schule"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": false,
+    "formenErlaubt": [
+      "finanziell",
+      "eigenarbeit",
+      "drittmittel"
+    ],
+    "bemerkung": "Die Stiftung veroeffentlicht keine Eigenmittel-Pflicht. Eigenleistung der Schule (Betreuung durch Lehrkraefte, vorhandene Raeume) wirkt jedoch glaubwuerdigkeitsfoerdernd."
+  },
+  "kumulierung": {
+    "erlaubt": "bedingt",
+    "bedingungen": [
+      "Keine Doppelfoerderung derselben Kostenposition durch andere Foerdergeber",
+      "Vorhandene weitere Mittel transparent in der Kostenaufstellung ausweisen"
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "projekttitel-schule",
+        "name": "Projekttitel und antragstellende Schule",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie lautet der Titel des MINT-Projekts?",
+          "Welche allgemeinbildende Schule in Baden-Wuerttemberg stellt den Antrag?",
+          "Wer ist Bewilligungsempfaenger - die Schule (kommunales Schulkonto) oder der Foerderverein?"
+        ],
+        "stilhinweis": "Knapp und sachlich; klare Zuordnung von Schule, Ansprechpartner und Kontoinhaber."
+      },
+      {
+        "id": "projektbeschreibung",
+        "name": "Kurze Projektbeschreibung",
+        "pflicht": true,
+        "leitfragen": [
+          "Was ist das konkrete MINT-Vorhaben (AG, Exkursion, Wettbewerbsteilnahme, Material)?",
+          "Welcher MINT-Bezug (Mathematik, Informatik, Naturwissenschaften, Technik) steht im Mittelpunkt?",
+          "Wie laeuft das Projekt zeitlich und organisatorisch ab?"
+        ],
+        "stilhinweis": "Kurz, konkret und unkompliziert - die Stiftung wuenscht ausdruecklich eine knappe Beschreibung."
+      },
+      {
+        "id": "zielgruppe-wirkung",
+        "name": "Zielgruppe und Wirkung",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche und wie viele Schuelerinnen und Schueler werden erreicht?",
+          "Welche Klassenstufen bzw. Altersgruppen profitieren?",
+          "Welche MINT-Kompetenzen oder welche Begeisterung sollen gefoerdert werden?"
+        ],
+        "stilhinweis": "Wirkung konkret und nachvollziehbar darstellen, moeglichst mit Teilnehmerzahl."
+      },
+      {
+        "id": "kostenaufstellung",
+        "name": "Grobe Kostenaufstellung",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Einzelposten fallen an (Honorare, Material, Reise/Exkursion, Wettbewerbsgebuehren)?",
+          "Wie hoch ist die beantragte Gesamtsumme?",
+          "Gibt es Eigenmittel oder weitere Foerderungen, die einzubeziehen sind?"
+        ],
+        "stilhinweis": "Uebersichtliche Liste mit Einzelpositionen und Summe; grob, aber plausibel und vollstaendig."
+      },
+      {
+        "id": "nachhaltigkeit",
+        "name": "Nachhaltigkeit und Fortfuehrung",
+        "pflicht": false,
+        "leitfragen": [
+          "Wie wird das Projekt nach der Foerderung fortgefuehrt?",
+          "Werden angeschaffte Materialien weiter genutzt?",
+          "Lassen sich Ergebnisse auf weitere Klassen oder Schuljahre uebertragen?"
+        ],
+        "stilhinweis": "Optional, staerkt den Antrag durch eine Perspektive ueber die einmalige Foerderung hinaus."
+      },
+      {
+        "id": "anlagen-nachweise",
+        "name": "Anlagen und Nachweise",
+        "pflicht": false,
+        "leitfragen": [
+          "Liegt bei Antragstellung durch den Foerderverein der Gemeinnuetzigkeitsnachweis als Scan bei?",
+          "Sind Angebote oder Kostenvoranschlaege fuer groessere Posten beigefuegt?"
+        ],
+        "stilhinweis": "Nur erforderliche Nachweise hochladen; bei Foerderverein ist der Gemeinnuetzigkeitsnachweis Pflicht."
+      }
+    ],
+    "anlagen": [
+      "Kurze Projektbeschreibung mit grober Kostenaufstellung",
+      "Bei Foerderverein als Bewilligungsempfaenger: Scan des Gemeinnuetzigkeitsnachweises (Freistellungsbescheid)",
+      "Optional: Kostenvoranschlaege/Angebote fuer groessere Posten"
+    ],
+    "einreichungsweg": "Online ueber das Antragsportal der Vector Stiftung (https://portal.vector-stiftung.de/login), Ausschreibung 'MINT@School'",
+    "bearbeitungsdauer": "Nicht veroeffentlicht; durch fristloses, unkompliziertes Verfahren in der Regel zeitnah"
+  },
+  "notizen": [
+    "Reine Landingpage /foerderbereiche/ ist nur Einstieg; massgeblich ist die Ausschreibungsseite /ausschreibungen/mintschool/ und das Portal.",
+    "Programm ist strikt auf allgemeinbildende Schulen in Baden-Wuerttemberg begrenzt; Berufsschulen sind in der Ausschreibung nicht explizit genannt.",
+    "Antragsteller ist die Schule selbst; Foerderverein kann reiner Bewilligungsempfaenger/Kontoinhaber sein - dadurch auch ueber Foerderverein realisierbar."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Klarer MINT-Bezug",
+      "was_funktionierte": "Das Vorhaben wurde eindeutig einem oder mehreren MINT-Feldern zugeordnet und der naturwissenschaftlich-technische Lerninhalt konkret benannt.",
+      "warum": "Die Stiftung foerdert ausschliesslich Projekte mit klarem MINT-Charakter; ein eindeutiger Bezug erleichtert die Bewilligung."
+    },
+    {
+      "thema": "Knappe, konkrete Projektbeschreibung",
+      "was_funktionierte": "Statt langer Ausfuehrungen wurde das Projekt in wenigen praezisen Saetzen mit Ablauf, Zielgruppe und Ergebnis beschrieben.",
+      "warum": "Die Stiftung wuenscht ausdruecklich eine kurze Beschreibung und ein unkompliziertes Verfahren."
+    },
+    {
+      "thema": "Plausible Kostenaufstellung",
+      "was_funktionierte": "Die Einzelposten (Honorare, Material, Exkursion) waren nachvollziehbar aufgelistet und summierten sich schluessig zur beantragten Summe.",
+      "warum": "Eine grobe, aber realistische Kostenaufstellung ist die zentrale Pflichtangabe und Grundlage der Bewilligungsentscheidung."
+    },
+    {
+      "thema": "Klarung des Bewilligungsempfaengers",
+      "was_funktionierte": "Es wurde von Anfang an festgelegt, ob die Auszahlung ueber das Schulkonto oder den Foerderverein laeuft, und der Gemeinnuetzigkeitsnachweis lag im Foerderverein-Fall direkt bei.",
+      "warum": "Die Abwicklung erfolgt ueber Schul- oder Fördervereinskonto; eine fehlende Kontoklarung oder ein fehlender Nachweis verzoegert die Auszahlung."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Fehlender oder schwacher MINT-Bezug des Projekts",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Den naturwissenschaftlich-technischen Kern des Vorhabens explizit benennen und einem MINT-Feld zuordnen."
+    },
+    {
+      "grund": "Antragsteller ist keine allgemeinbildende Schule in Baden-Wuerttemberg",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Vorab pruefen, ob die Schule zum berechtigten Kreis gehoert; ausserschulische Traeger ohne Schulanbindung sind nicht antragsberechtigt."
+    },
+    {
+      "grund": "Unklare oder unvollstaendige Kostenaufstellung",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Alle Einzelposten auflisten und zu einer nachvollziehbaren Gesamtsumme zusammenfuehren."
+    },
+    {
+      "grund": "Bei Foerderverein als Empfaenger fehlt der Gemeinnuetzigkeitsnachweis",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Den Scan des Freistellungsbescheids dem Antrag von vornherein als Anlage beifuegen."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "projektbeschreibung",
+      "formulierung": "Im Rahmen einer woechentlichen Robotik-AG bauen und programmieren 15 Schuelerinnen und Schueler der Klassen 7 und 8 autonome Roboter und bereiten sich auf die Teilnahme an einem regionalen MINT-Wettbewerb vor.",
+      "kontext": "Kurze, konkrete Projektbeschreibung mit klarem MINT-Bezug und Zielgruppe."
+    },
+    {
+      "abschnitt_id": "kostenaufstellung",
+      "formulierung": "Beantragt werden insgesamt 1.800 Euro: 900 Euro Honorar fuer einen externen Robotik-Coach (10 Termine), 600 Euro fuer Roboter-Baukaesten und Sensoren sowie 300 Euro Anmelde- und Fahrtkosten zum Wettbewerb.",
+      "kontext": "Grobe, aber plausible Aufschluesselung der Einzelposten zur Gesamtsumme."
+    },
+    {
+      "abschnitt_id": "zielgruppe-wirkung",
+      "formulierung": "Erreicht werden rund 15 Jugendliche, die ueber das praktische Programmieren und Konstruieren nachhaltig fuer Informatik und Technik begeistert werden sollen.",
+      "kontext": "Wirkung konkret mit Teilnehmerzahl und Kompetenzziel."
+    },
+    {
+      "abschnitt_id": "projekttitel-schule",
+      "formulierung": "Antragstellende Schule ist das Musterschule-Gymnasium in Musterstadt; Bewilligungsempfaenger ist der gemeinnuetzige Foerderverein der Schule e.V., der den Zuschuss treuhaenderisch fuer das Projekt verwaltet.",
+      "kontext": "Klare Zuordnung von Schule und Bewilligungsempfaenger."
+    }
+  ],
+  "fristLogik": {
+    "typ": "rolling"
+  }
+}

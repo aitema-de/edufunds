@@ -1,0 +1,261 @@
+{
+  "version": "2026-06-01",
+  "quellen": [
+    "https://bass.schule.nrw/7060.htm",
+    "https://www.bra.nrw.de/bildung-schule/finanzielle-foerderung/landesprogramm-kultur-und-schule",
+    "https://kultur-und-schule.de/de_DE/foerderungen",
+    "https://www.mkw.nrw/themen/kultur/kunst-und-kulturfoerderung/landesprogramm-kultur-und-schule"
+  ],
+  "foerderhoehe": {
+    "minEur": 4200,
+    "maxEur": 8400,
+    "maxProzentGesamtkosten": 80,
+    "bemerkung": "Festbetragsfinanzierung: Grundfoerderung 3.360 EUR Landesanteil (80 Prozent) zzgl. 840 EUR kommunaler Eigenanteil (20 Prozent) = 4.200 EUR pro Einzelprojekt (Umfang ca. 40 Einheiten a 90 Minuten ueber ein Schuljahr). Ausnahmsweise bis 8.400 EUR fuer Doppelprojekte. Foerdersatz 80 Prozent der zuwendungsfaehigen Ausgaben."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "maxEur": 3300,
+      "bedingungen": [
+        "Honorar fuer die durchfuehrende Kuenstlerin / den Kuenstler bzw. Kulturschaffende",
+        "Projekt umfasst in der Regel rund 40 Einheiten a 90 Minuten ueber ein Schuljahr inkl. 5 Einheiten Vor- und Nachbereitung"
+      ],
+      "beispielePasst": [
+        "Honorar einer Theaterpaedagogin fuer ein Schuljahres-Theaterprojekt",
+        "Honorar eines Musikers fuer eine woechentliche Band-AG"
+      ],
+      "beispielePasstNicht": [
+        "Gehalt einer fest an der Schule angestellten Lehrkraft",
+        "Honorar fuer ein einmaliges Tageskonzert ohne kontinuierliche Projektarbeit"
+      ]
+    },
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "maxEur": 900,
+      "bedingungen": [
+        "Sachkosten, Material, Fahrtkosten und Praesentation im Rahmen des Projekts",
+        "Anteil typischerweise rund 900 EUR innerhalb des 4.200-EUR-Rahmens"
+      ],
+      "beispielePasst": [
+        "Buehnenmaterial und Kostuemstoffe",
+        "Mal- und Bastelmaterial fuer ein Kunstprojekt",
+        "Fahrtkosten der Kuenstlerin zur Schule"
+      ],
+      "beispielePasstNicht": [
+        "Anschaffung dauerhafter Investitionsgueter wie Beamer oder Instrumente",
+        "Verpflegung und Catering"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Dauerhafte Anschaffungen / Investitionen sind nicht Gegenstand der Projektfoerderung"
+      ],
+      "beispielePasst": [],
+      "beispielePasstNicht": [
+        "Kauf von Musikinstrumenten zum Verbleib an der Schule",
+        "Technik-Ausstattung"
+      ]
+    },
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Fahrtkosten im Zusammenhang mit der Projektdurchfuehrung innerhalb des Sachkostenanteils"
+      ],
+      "beispielePasst": [
+        "Anfahrt der Kunstschaffenden zu den Projektterminen"
+      ],
+      "beispielePasstNicht": [
+        "Klassenfahrten oder Exkursionen ohne Bezug zum gefoerderten Projekt"
+      ]
+    },
+    {
+      "kategorie": "overhead",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Allgemeine Verwaltungskosten der Schule sind nicht zuwendungsfaehig"
+      ],
+      "beispielePasst": [],
+      "beispielePasstNicht": [
+        "Verwaltungspauschale der Schule",
+        "Raummiete schuleigener Raeume"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": true,
+    "mindestProzent": 20,
+    "formenErlaubt": [
+      "finanziell",
+      "drittmittel"
+    ],
+    "bemerkung": "Kommunaler Eigenanteil von 20 Prozent (840 EUR bei der Grundfoerderung) wird vom Schultraeger / der Kommune getragen. Das Land foerdert 80 Prozent als Festbetrag."
+  },
+  "kumulierung": {
+    "erlaubt": "bedingt",
+    "bedingungen": [
+      "Doppelfoerderung desselben Vorhabens aus anderen Landesmitteln ist ausgeschlossen",
+      "Ergaenzende Mittel Dritter sind im Projektdatenblatt offenzulegen"
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "projekttitel-und-sparte",
+        "name": "Projekttitel und kuenstlerische Sparte",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie lautet der Arbeitstitel des Projekts?",
+          "Welcher kuenstlerischen Sparte ist das Projekt zuzuordnen (Theater, Musik, Tanz, Literatur, Bildende Kunst, Film/digitale Medien)?",
+          "An welcher Schule und mit welcher Schulform/Jahrgangsstufe findet das Projekt statt?"
+        ],
+        "stilhinweis": "Praezise und konkret; Titel sollte den kreativen Kern erkennen lassen."
+      },
+      {
+        "id": "projektidee-und-ziele",
+        "name": "Projektidee, Inhalte und Ziele",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche kuenstlerisch-kulturelle Idee steht im Mittelpunkt?",
+          "Welche Faehigkeiten und welche Kreativitaet der Schuelerinnen und Schueler werden gefoerdert?",
+          "Wie ergaenzt das Projekt den schulischen Bildungsauftrag ueber den Regelunterricht hinaus?"
+        ],
+        "stilhinweis": "Kindgerechtes, kreativitaetsfoerderndes Profil betonen; kein reiner Unterrichtsersatz."
+      },
+      {
+        "id": "durchfuehrung-und-ablauf",
+        "name": "Durchfuehrung, Zeitplan und Umfang",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie verteilen sich die rund 40 Einheiten a 90 Minuten ueber das Schuljahr?",
+          "Wie sind Vor- und Nachbereitung (ca. 5 Einheiten) eingeplant?",
+          "In welchem Rahmen (AG, Projektwoche, fester Wochentag) findet das Projekt statt?"
+        ],
+        "stilhinweis": "Konkreter, realistischer Ablaufplan ueber das Schuljahr."
+      },
+      {
+        "id": "kunstschaffende",
+        "name": "Beteiligte Kunstschaffende und Qualifikation",
+        "pflicht": true,
+        "leitfragen": [
+          "Wer fuehrt das Projekt durch und welche kuenstlerische bzw. paedagogische Qualifikation bringt die Person mit?",
+          "Welche Erfahrung besteht in der Arbeit mit Kindern und Jugendlichen?",
+          "Wie ist die Zusammenarbeit mit der betreuenden Lehrkraft organisiert?"
+        ],
+        "stilhinweis": "Profil und Eignung der Kunstschaffenden nachvollziehbar darstellen."
+      },
+      {
+        "id": "finanzplan",
+        "name": "Finanzierungsplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie verteilt sich der Foerderbetrag auf Kuenstlerhonorar und Sachkosten/Fahrt/Praesentation?",
+          "Ist der kommunale Eigenanteil von 20 Prozent gesichert?",
+          "Werden weitere Mittel Dritter eingesetzt?"
+        ],
+        "stilhinweis": "Plausible Aufteilung innerhalb des 4.200-EUR-Rahmens (Honorar ca. 3.300 EUR, Sachkosten ca. 900 EUR)."
+      },
+      {
+        "id": "praesentation-und-nachhaltigkeit",
+        "name": "Praesentation und Wirkung",
+        "pflicht": false,
+        "leitfragen": [
+          "Wie werden die Ergebnisse oeffentlich praesentiert (Auffuehrung, Ausstellung, Schulfest)?",
+          "Wie wirkt das Projekt in den Schulalltag hinein?",
+          "Ist eine Dokumentation (z. B. Video ueber kultur.web) vorgesehen?"
+        ],
+        "stilhinweis": "Sichtbares Ergebnis und Breitenwirkung an der Schule hervorheben."
+      }
+    ],
+    "anlagen": [
+      "Ausgefuelltes und unterschriebenes Projektdatenblatt (Muster 1) ueber das Online-Portal kultur.web",
+      "Kurzprofil / Qualifikationsnachweis der durchfuehrenden Kunstschaffenden",
+      "Bestaetigung von Schule und Schultraeger ueber den kommunalen Eigenanteil"
+    ],
+    "einreichungsweg": "Projektdatenblatt online ueber das Portal kultur.web (www.kultur.web.nrw.de); Einreichung durch Schule/Schultraeger bis 31. Maerz, kommunale Jury-Auswahl bis 30. Juni, Foerderantrag durch den Zuwendungsempfaenger (Kommune/Schultraeger) an die zustaendige Bezirksregierung bis 31. Mai.",
+    "bearbeitungsdauer": "Juryentscheidung auf kommunaler Ebene bis 30. Juni; Foerderung gilt fuer das beginnende Schuljahr."
+  },
+  "notizen": [
+    "Antragstellung und Zuwendungsempfaenger sind formal Kommune/Schultraeger bzw. anerkannter Ersatzschultraeger - eine einzelne Schule beteiligt sich ueber den Schultraeger; das Projektdatenblatt wird gemeinsam von Schule und Kunstschaffenden entwickelt und eingereicht.",
+    "Foerdersatz ist ein Festbetrag (80 Prozent Land / 20 Prozent kommunaler Eigenanteil), kein frei kalkulierbarer Anteil.",
+    "Der jaehrliche Orientierungsrahmen des MKW verteilt Kontingente nach Schueler- und Schulzahlen je Kommune; ein Rechtsanspruch auf Foerderung besteht nicht."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Kontinuierliche Projektarbeit statt Einzelevent",
+      "was_funktionierte": "Ein ueber das ganze Schuljahr laufendes Projekt mit ca. 40 woechentlichen Einheiten und klarem roten Faden",
+      "warum": "Das Programm foerdert nachhaltige kuenstlerisch-kulturelle Bildung, nicht punktuelle Einzelveranstaltungen."
+    },
+    {
+      "thema": "Qualifizierte Kunstschaffende mit Schulerfahrung",
+      "was_funktionierte": "Benennung einer Kunstschaffenden mit nachweisbarer kuenstlerischer Qualifikation UND Erfahrung in der Arbeit mit Kindern",
+      "warum": "Die Jury bewertet kuenstlerische Qualitaet und paedagogische Eignung gemeinsam."
+    },
+    {
+      "thema": "Sichtbares Ergebnis fuer die Schulgemeinschaft",
+      "was_funktionierte": "Geplante oeffentliche Praesentation (Auffuehrung, Ausstellung, Schulfest) am Ende des Projekts",
+      "warum": "Breitenwirkung und Sichtbarkeit in der Schule erhoehen die Foerderwuerdigkeit und den Nutzen fuer die Schule."
+    },
+    {
+      "thema": "Fruehzeitige Abstimmung mit Schultraeger und Kulturbuero",
+      "was_funktionierte": "Klaerung des 20-Prozent-Eigenanteils und Einreichung des Projektdatenblatts deutlich vor dem 31. Maerz",
+      "warum": "Ohne gesicherten kommunalen Eigenanteil und fristgerechtes Datenblatt kann das Projekt nicht in die Juryauswahl gelangen."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Projekt ist eine einmalige Veranstaltung ohne kontinuierliche Projektarbeit ueber das Schuljahr",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Projekt als durchgehende Reihe ueber das Schuljahr mit rund 40 Einheiten anlegen."
+    },
+    {
+      "grund": "Kommunaler Eigenanteil von 20 Prozent nicht gesichert oder nicht nachgewiesen",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Vor Einreichung schriftliche Zusage von Schule/Schultraeger zum Eigenanteil einholen."
+    },
+    {
+      "grund": "Projektdatenblatt unvollstaendig oder nach Frist (31. Maerz) eingereicht",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Vollstaendig ausgefuelltes Online-Datenblatt rechtzeitig ueber kultur.web einreichen."
+    },
+    {
+      "grund": "Vorhaben ersetzt Regelunterricht oder beschafft dauerhafte Investitionsgueter statt kuenstlerischer Projektarbeit",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Projekt klar als ergaenzende kuenstlerisch-kulturelle Bildung ausserhalb des Regelunterrichts profilieren; nur Honorar und Sachkosten kalkulieren."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "projektidee-und-ziele",
+      "formulierung": "In dem Theaterprojekt entwickeln die Schuelerinnen und Schueler ueber ein Schuljahr hinweg gemeinsam mit einer Theaterpaedagogin ein eigenes Buehnenstueck und staerken dabei Ausdrucksfaehigkeit, Selbstvertrauen und Teamfaehigkeit.",
+      "kontext": "Beschreibung der kuenstlerischen Idee und ihres Bildungswerts"
+    },
+    {
+      "abschnitt_id": "durchfuehrung-und-ablauf",
+      "formulierung": "Das Projekt findet von September bis Juni woechentlich in 40 Einheiten zu je 90 Minuten statt; fuenf Einheiten sind fuer Vor- und Nachbereitung sowie die Abschlusspraesentation reserviert.",
+      "kontext": "Konkreter Zeitplan ueber das Schuljahr"
+    },
+    {
+      "abschnitt_id": "finanzplan",
+      "formulierung": "Von der Gesamtfoerderung in Hoehe von 4.200 Euro entfallen 3.300 Euro auf das Kuenstlerhonorar und 900 Euro auf Material-, Fahrt- und Praesentationskosten; der kommunale Eigenanteil von 840 Euro ist durch den Schultraeger zugesagt.",
+      "kontext": "Aufteilung des Festbetrags und Nachweis des Eigenanteils"
+    },
+    {
+      "abschnitt_id": "kunstschaffende",
+      "formulierung": "Die durchfuehrende Kuenstlerin ist ausgebildete Schauspielerin mit mehrjaehriger Erfahrung in der theaterpaedagogischen Arbeit mit Grundschulkindern und arbeitet eng mit der betreuenden Lehrkraft zusammen.",
+      "kontext": "Nachweis kuenstlerischer und paedagogischer Eignung"
+    }
+  ],
+  "fristLogik": {
+    "typ": "fixe_stichtage",
+    "stichtage": [
+      "2027-03-31",
+      "2027-05-31"
+    ],
+    "jaehrlich_wiederkehrend": true
+  }
+}

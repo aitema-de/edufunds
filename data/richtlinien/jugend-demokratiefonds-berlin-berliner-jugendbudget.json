@@ -1,0 +1,254 @@
+{
+  "version": "2026-06-01",
+  "quellen": [
+    "https://stark-gemacht.de/",
+    "https://stark-gemacht.de/foerderung/berliner-jugendbudget/",
+    "https://jup.berlin/jdf",
+    "https://jfsb.de/projektbuero-berlin/jugend-demokratiefonds-stark-gemacht-de/index.php"
+  ],
+  "foerderhoehe": {
+    "minEur": 500,
+    "maxEur": 20000,
+    "bemerkung": "Zwei Foerderlinien: Berliner Jugendbudget bis 20.000 EUR (lokal oder berlinweit bedeutsame Beteiligungsprojekte), Jugend-Demokratiefonds-Projektfoerderung bis 15.000 EUR. Daneben kleinere Linien (Berliner Jugendjury bis 3.000 EUR, Bezirkliche Jugendjurys bis 1.000 EUR). Foerderung ist projektgebundener Zuschuss nach Berliner Landesregeln (Kosten muessen angemessen kalkuliert sein)."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Angemessen kalkuliert nach Berliner Landesregeln",
+        "Bezug zur Projektdurchfuehrung erforderlich"
+      ],
+      "beispielePasst": [
+        "Honorar fuer Workshop-Leitung mit Jugendlichen",
+        "Honorar fuer kuenstlerische oder politische Bildungsangebote"
+      ],
+      "beispielePasstNicht": [
+        "Daueranstellung ohne Projektbezug"
+      ]
+    },
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Direkt fuer das Projekt benoetigt",
+        "Wirtschaftlich und angemessen kalkuliert"
+      ],
+      "beispielePasst": [
+        "Material fuer Aktionen und oeffentliche Praesentation",
+        "Raum- und Verpflegungskosten fuer Beteiligungs-Veranstaltungen",
+        "Druck und Gestaltung von Projektmaterial"
+      ],
+      "beispielePasstNicht": [
+        "Laufende Vereins-Betriebskosten ohne Projektbezug"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Nur wenn fuer Projektdurchfuehrung erforderlich",
+        "Angemessen kalkuliert"
+      ],
+      "beispielePasst": [
+        "Anschaffung von Technik fuer ein Medienprojekt der Jugendlichen"
+      ],
+      "beispielePasstNicht": [
+        "Dauerhafte Grossanschaffungen ohne Projektbezug"
+      ]
+    },
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Im Rahmen des Projekts und der Beteiligung von Jugendlichen"
+      ],
+      "beispielePasst": [
+        "Fahrtkosten der jugendlichen Projektgruppe innerhalb Berlins",
+        "Exkursion mit Bezug zum Projektthema"
+      ]
+    },
+    {
+      "kategorie": "overhead",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Programm foerdert projektbezogene Kosten, keine allgemeine Verwaltungspauschale"
+      ],
+      "beispielePasstNicht": [
+        "Pauschale Verwaltungskosten des Traegers"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": true,
+    "formenErlaubt": [
+      "finanziell",
+      "sachleistungen",
+      "eigenarbeit"
+    ],
+    "bemerkung": "Das Programm setzt einen Eigenanteil / Eigenleistung des Antragstellers voraus (Matching). Kein fester Prozentsatz oeffentlich festgelegt; Eigenleistung kann auch in Form von ehrenamtlicher Eigenarbeit der Jugendlichen eingebracht werden. Konkrete Hoehe im Beratungsgespraech mit dem Projektbuero klaeren."
+  },
+  "kumulierung": {
+    "erlaubt": "bedingt",
+    "bedingungen": [
+      "Keine Doppelfoerderung derselben Kostenpositionen aus anderen Landes- oder Bundesmitteln",
+      "Mischfinanzierung mit Drittmitteln im Finanzplan transparent ausweisen"
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "projektidee-und-ziel",
+        "name": "Projektidee und Ziel",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche konkrete Projektidee wollt ihr umsetzen und welches Ziel verfolgt ihr?",
+          "Wie staerkt das Projekt demokratische Beteiligung, Vielfalt und Respekt von Jugendlichen?",
+          "Was ist das erkennbar Neue oder Innovative an eurem Vorhaben?"
+        ],
+        "stilhinweis": "Konkret und greifbar formulieren, ausgehend von der Lebenswelt der Jugendlichen statt abstrakter Programmsprache."
+      },
+      {
+        "id": "jugendbeteiligung",
+        "name": "Beteiligung der Jugendlichen",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie haben Jugendliche (12-21 Jahre) das Projekt mitentwickelt und mitgestaltet?",
+          "Welche Entscheidungen treffen die Jugendlichen selbst waehrend der Umsetzung?",
+          "Wie wird sichergestellt, dass die Beteiligung ueber alltaegliche Beteiligungsformate hinausgeht?"
+        ],
+        "stilhinweis": "Echte Mitbestimmung belegen, nicht nur Teilnahme; konkrete Rollen der Jugendlichen benennen."
+      },
+      {
+        "id": "zielgruppe-wirkung",
+        "name": "Zielgruppe und Wirkung",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Jugendlichen erreicht ihr, und wie bezieht ihr auch marginalisierte Gruppen ein?",
+          "Welche lokale oder berlinweite Bedeutung hat das Projekt?",
+          "Welche Wirkung wollt ihr erreichen und wie macht ihr sie sichtbar?"
+        ],
+        "stilhinweis": "Reichweite und Relevanz belegen; nicht uebertreiben, sondern realistisch und ueberpruefbar darstellen."
+      },
+      {
+        "id": "umsetzung-zeitplan",
+        "name": "Umsetzung und Zeitplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Arbeitsschritte und Meilensteine plant ihr, und in welchem Zeitraum?",
+          "Wer ist fuer welche Aufgaben verantwortlich (Traeger, Kooperationspartner, Jugendliche)?",
+          "Wie ist die oeffentliche Praesentation der Ergebnisse vorgesehen?"
+        ],
+        "stilhinweis": "Realistischer, nachvollziehbarer Ablauf mit klaren Zustaendigkeiten."
+      },
+      {
+        "id": "finanzplan",
+        "name": "Finanzplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie setzen sich die beantragten Kosten zusammen (Honorare, Sachkosten, Material)?",
+          "Welchen Eigenanteil bzw. welche Eigenleistung bringt ihr ein?",
+          "Sind die Kosten angemessen und wirtschaftlich kalkuliert?"
+        ],
+        "stilhinweis": "Transparent und plausibel; jede Position mit Projektbezug begruenden."
+      },
+      {
+        "id": "traeger-kooperation",
+        "name": "Traeger und Kooperation",
+        "pflicht": true,
+        "leitfragen": [
+          "Wer ist Antragsteller (Foerderverein/e.V. oder freier Traeger der Jugendhilfe)?",
+          "Bei Schulprojekten: mit welchem gemeinnuetzigen Jugendtraeger kooperiert ihr und warum ist das Projekt ausserschulisch/nicht-curricular?",
+          "Welche Erfahrung bringt der Traeger fuer die Umsetzung mit?"
+        ],
+        "stilhinweis": "Antragsberechtigung sauber belegen, da Schulen in staatlicher Traegerschaft nicht direkt antragsberechtigt sind."
+      }
+    ],
+    "anlagen": [
+      "Detaillierter Finanz-/Kostenplan",
+      "Nachweis der Gemeinnuetzigkeit / Vereinsregisterauszug des Traegers",
+      "Bei Schulprojekten: Kooperationsnachweis mit gemeinnuetzigem Jugendtraeger"
+    ],
+    "einreichungsweg": "Ausschliesslich ueber das Online-Antragsformular auf www.stark-gemacht.de waehrend einer aktiven Ausschreibungsrunde; Beratung vorab per E-Mail an go@stark-gemacht.de",
+    "bearbeitungsdauer": "Foerderentscheidung der Jury einige Wochen nach Fristende (z.B. 1. Runde 2026 Frist 14.01., Entscheidung Ende Februar)"
+  },
+  "notizen": [
+    "Schulen in staatlicher Traegerschaft sind NICHT direkt antragsberechtigt. Eine Schule beantragt realistisch ueber ihren Foerderverein (gemeinnuetziger e.V.) oder in Kooperation mit einem freien/gemeinnuetzigen Jugendtraeger, fuer ein ausserschulisches, nicht-curriculares Projekt.",
+    "Zielgruppe sind Jugendliche von 12 bis 21 Jahren - Grundschulprojekte passen nur, wenn aeltere Jugendliche im Zentrum stehen.",
+    "Jury besteht aus Erwachsenen und Jugendlichen (z.B. 3 Erwachsene, 4 Jugendliche) - die Antragssprache sollte auch fuer junge Jury-Mitglieder verstaendlich sein."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Echte Jugend-Mitbestimmung sichtbar machen",
+      "was_funktionierte": "Projekte, in denen Jugendliche die Idee selbst entwickelt haben und ueber Budget und Inhalte mitentscheiden, ueberzeugen die Jury klar staerker als reine Angebote fuer Jugendliche.",
+      "warum": "Mitgestaltung durch Jugendliche ist ein Kernkriterium des Fonds; eine zur Haelfte jugendliche Jury erkennt Pseudo-Beteiligung sofort."
+    },
+    {
+      "thema": "Innovationspotenzial herausarbeiten",
+      "was_funktionierte": "Klar benennen, was ueber alltaegliche Beteiligungsformate hinausgeht und neu fuer den Kiez oder Berlin ist, mit konkretem Beispiel.",
+      "warum": "Das Berliner Jugendbudget foerdert ausdruecklich Vorhaben mit erkennbarem Innovationspotenzial, nicht Routine-Angebote."
+    },
+    {
+      "thema": "Marginalisierte Gruppen aktiv einbeziehen",
+      "was_funktionierte": "Konkret beschreiben, wie schwerer erreichbare Jugendliche angesprochen und einbezogen werden (Sprache, Orte, Zugaenge).",
+      "warum": "Der Fonds zielt auf Vielfalt und Demokratiestaerkung; Erreichbarkeit marginalisierter Gruppen ist ein explizites Bewertungskriterium."
+    },
+    {
+      "thema": "Oeffentliche Praesentation einplanen",
+      "was_funktionierte": "Von Anfang an eine sichtbare Abschluss-Praesentation der Ergebnisse einplanen und im Antrag konkret beschreiben.",
+      "warum": "Die oeffentliche Sichtbarmachung der Ergebnisse gehoert zu den erwarteten Projektelementen und erhoeht Wirkung wie Bewilligungschance."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Antragsteller ist eine Schule in staatlicher Traegerschaft ohne berechtigten Traeger",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Ueber den Foerderverein (e.V.) beantragen oder mit einem gemeinnuetzigen Jugendtraeger kooperieren und das Projekt ausserschulisch/nicht-curricular anlegen."
+    },
+    {
+      "grund": "Jugendliche werden nur als Teilnehmende, nicht als Mitgestaltende eingebunden",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Konkrete Entscheidungsrollen der Jugendlichen in Konzeption und Umsetzung beschreiben und belegen."
+    },
+    {
+      "grund": "Projekt ist ein regulaeres Routine- oder Unterrichtsangebot ohne erkennbares Neues",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Das Innovationspotenzial und den Mehrwert ueber alltaegliche Formate hinaus klar herausarbeiten."
+    },
+    {
+      "grund": "Finanzplan unplausibel oder Kosten nicht angemessen kalkuliert",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Kosten wirtschaftlich und nachvollziehbar kalkulieren, Eigenanteil ausweisen und jede Position mit Projektbezug begruenden."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "jugendbeteiligung",
+      "formulierung": "Die Projektidee wurde von einer Gruppe von neun Jugendlichen (14-18 Jahre) in zwei Ideenwerkstaetten selbst entwickelt; sie entscheiden eigenstaendig ueber Programm, Themen und die Verwendung von rund 60 Prozent des Budgets.",
+      "kontext": "Beleg echter Mitbestimmung statt blosser Teilnahme."
+    },
+    {
+      "abschnitt_id": "projektidee-und-ziel",
+      "formulierung": "Mit dem Projekt schaffen wir erstmals im Kiez ein von Jugendlichen selbst moderiertes Demokratie-Forum, das marginalisierte Jugendliche mit lokalen Entscheidungstraegern ins direkte Gespraech bringt.",
+      "kontext": "Verbindet konkretes Ziel mit Innovationspotenzial."
+    },
+    {
+      "abschnitt_id": "zielgruppe-wirkung",
+      "formulierung": "Wir erreichen gezielt Jugendliche mit wenig Beteiligungserfahrung, indem wir die Treffen an vertrauten Orten im Kiez veranstalten und mehrsprachig einladen; die Ergebnisse praesentieren wir oeffentlich im Stadtteilzentrum.",
+      "kontext": "Zeigt Erreichbarkeit marginalisierter Gruppen und oeffentliche Wirkung."
+    },
+    {
+      "abschnitt_id": "finanzplan",
+      "formulierung": "Die beantragten 12.500 EUR verteilen sich auf Honorare fuer Workshop-Leitungen (5.500 EUR), Material und Technik (4.000 EUR) sowie Raum- und Verpflegungskosten (3.000 EUR); als Eigenleistung bringen wir rund 200 ehrenamtliche Arbeitsstunden der Jugendlichen ein.",
+      "kontext": "Plausibler, projektbezogener Finanzplan mit Eigenleistung."
+    }
+  ],
+  "fristLogik": {
+    "typ": "fixe_stichtage",
+    "stichtage": [
+      "2026-01-14",
+      "2026-04-22"
+    ],
+    "jaehrlich_wiederkehrend": true
+  }
+}

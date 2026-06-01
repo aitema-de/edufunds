@@ -2,7 +2,7 @@
   "generatedAt": "2026-04-27T10:09:58.688Z",
   "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
   "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
-  "total": 130,
+  "total": 142,
   "items": [
     {
       "programmId": "kfw-erp-digitalisierung",
@@ -1305,6 +1305,122 @@
       "reichweite": "DE-NI",
       "infoLink": "https://www.mk.niedersachsen.de/startseite/aktuelles/presseinformationen/ermoglichungsbudget-niedersachsen-stellt-schulen-350-000-euro-fur-innovative-schul-und-unterrichtsentwicklung-zur-verfugung-242870.html",
       "score": 72,
+      "status": "done"
+    },
+    {
+      "programmId": "ewe-stiftung-mint-und-umweltbildung",
+      "name": "EWE Stiftung - MINT- und Umweltbildung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 20000,
+      "reichweite": "DE-NI",
+      "infoLink": "https://www.ewe-stiftung.de/aktuelles/mint-und-umweltbildung/",
+      "score": 75,
+      "status": "done"
+    },
+    {
+      "programmId": "ewe-stiftung-foerderantrag",
+      "name": "EWE Stiftung Foerderantrag",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 10000,
+      "reichweite": "DE-NI",
+      "infoLink": "https://www.ewe-stiftung.de/foerderantrag/foerderkriterien/",
+      "score": 72,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderlinie-psychische-gesundheit",
+      "name": "Foerderlinie Psychische Gesundheit",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 25000,
+      "reichweite": "DE-HE",
+      "infoLink": "https://sptg.de/foerderung/psychische-gesundheit",
+      "score": 74,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderrichtlinie-medienbildung-medienbildung-sachsen-rl",
+      "name": "Foerderrichtlinie Medienbildung (Medienbildung.Sachsen)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 0,
+      "reichweite": "DE-SN",
+      "infoLink": "https://www.medienbildung.sachsen.de/foerderrichtlinie-6552.html",
+      "score": 60,
+      "status": "done"
+    },
+    {
+      "programmId": "gruen-macht-schule",
+      "name": "Gruen macht Schule",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 10000,
+      "reichweite": "DE-BE",
+      "infoLink": "https://www.gruen-macht-schule.de/de/foerderung/foerderantrag",
+      "score": 70,
+      "status": "done"
+    },
+    {
+      "programmId": "jugend-demokratiefonds-berlin-berliner-jugendbudget",
+      "name": "Jugend-Demokratiefonds Berlin / Berliner Jugendbudget (STARK gemacht!)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 20000,
+      "reichweite": "DE-BE",
+      "infoLink": "https://stark-gemacht.de/",
+      "score": 73,
+      "status": "done"
+    },
+    {
+      "programmId": "kunstvoll-projektpartnerschaften-zwischen-schulen-und",
+      "name": "KUNSTVOLL - Projektpartnerschaften zwischen Schulen und Kunstschaffenden (Hessen / Frankfurt RheinMain)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 15000,
+      "reichweite": "DE-HE",
+      "infoLink": "https://kulturberatung-hessen.de/aktuelles/foerderprogramm-kunstvoll-projektpartnerschaften-zwischen-schulen-und-kunstschaffenden",
+      "score": 74,
+      "status": "done"
+    },
+    {
+      "programmId": "landesprogramm-kultur-und-schule-nrw",
+      "name": "Landesprogramm Kultur und Schule (NRW)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 8400,
+      "reichweite": "DE-NW",
+      "infoLink": "https://www.mkw.nrw/themen/kultur/kunst-und-kulturfoerderung/landesprogramm-kultur-und-schule",
+      "score": 69,
+      "status": "done"
+    },
+    {
+      "programmId": "landesprogramm-weltoffenes-sachsen-fuer-demokratie",
+      "name": "Landesprogramm Weltoffenes Sachsen fuer Demokratie und Toleranz (WOS)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 10000,
+      "reichweite": "DE-SN",
+      "infoLink": "https://www.politische.bildung.sachsen.de/partner-und-programme-4030.html",
+      "score": 70,
+      "status": "done"
+    },
+    {
+      "programmId": "lernen-in-langenhorn",
+      "name": "Lernen in Langenhorn",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "DE-HH",
+      "infoLink": "https://www.joachim-herz-stiftung.de/foerdern/ganzjaehrige-ausschreibungen",
+      "score": 69,
+      "status": "done"
+    },
+    {
+      "programmId": "mint-regionalfonds-rheinland-pfalz",
+      "skipReason": "Der MINT-Regionalfonds ist ein Anschub-/Strukturinstrument fuer MINT-Regionen und MINT-Initiativen zum Aufbau eines regionalen Public-Private-Partnership-Finanzierungsmodells. Antragsberechtigt sind regionale Koordinierungsstellen bzw. Projekttraeger (z.B. Hochschulen wie TH Bingen, Ausbildungszentren), nicht einzelne Schulen oder Foerdervereine. Der Antrag ist ausdruecklich formlos mit individueller Beratung, Foerderhoehen und Fristen sind nicht oeffentlich beziffert und es existiert keine definierte schriftliche Antragsstruktur fuer den Wizard. Schulbezogene Projektfoerderung laeuft ueber separate Programme (MINT-Foerdermassnahmen/Wettbewerbe fuer Schulen), nicht ueber diesen Fonds.",
+      "name": "mint-regionalfonds-rheinland-pfalz",
+      "status": "skip"
+    },
+    {
+      "programmId": "mint-school",
+      "name": "MINT@School",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 0,
+      "reichweite": "DE-BW",
+      "infoLink": "https://vector-stiftung.de/foerderbereiche/",
+      "score": 60,
       "status": "done"
     }
   ]
