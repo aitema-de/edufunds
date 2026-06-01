@@ -2,7 +2,7 @@
   "generatedAt": "2026-04-27T10:09:58.688Z",
   "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
   "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
-  "total": 94,
+  "total": 106,
   "items": [
     {
       "programmId": "kfw-erp-digitalisierung",
@@ -970,6 +970,118 @@
       "infoLink": "https://www.deutsche-stiftung-engagement-und-ehrenamt.de/foerderung/aktuelle-programme/",
       "score": 60,
       "status": "done"
+    },
+    {
+      "programmId": "dslk-schulpreis-bildung-fuer-nachhaltige",
+      "name": "DSLK-Schulpreis Bildung fuer nachhaltige Entwicklung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 10000,
+      "reichweite": "alle",
+      "infoLink": "https://deutscher-schulleitungskongress.de/nachhaltigkeitspreis/",
+      "score": 70,
+      "status": "done"
+    },
+    {
+      "programmId": "energiesparmeister",
+      "name": "Energiesparmeister",
+      "foerdergeberTyp": "sonstige",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.energiesparmeister.de/",
+      "score": 62,
+      "status": "done"
+    },
+    {
+      "programmId": "energiesparmeister-wettbewerb",
+      "skipReason": "Reiner Jury-Wettbewerb/Auszeichnung: Schulen/Lehrkraefte/Schueler reichen eine Beschreibung eines bereits umgesetzten Klimaschutzprojekts ein, eine Expertenjury kuert je Bundesland einen Sieger (2.500 EUR Preisgeld, Bundessieger +2.500 EUR, Sonderpreis 1.000 EUR). Das Preisgeld ist eine Ehrung fuer bereits geleistetes Engagement, keine projektgebundene Antrags-Foerderung fuer ein konkret geplantes Vorhaben (keine Zweckbindung erkennbar). Damit faellt es unter reine Preise/Auszeichnungen und passt nicht zum Antrags-Wizard.",
+      "name": "energiesparmeister-wettbewerb",
+      "status": "skip"
+    },
+    {
+      "programmId": "feb-foerderprogramm-entwicklungspolitische-bildung",
+      "name": "FEB - Foerderprogramm Entwicklungspolitische Bildung",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 20000,
+      "reichweite": "alle",
+      "infoLink": "https://feb.engagement-global.de/antragstellung.html",
+      "score": 83,
+      "status": "done"
+    },
+    {
+      "programmId": "fonds-fuer-antisemitismus-bekaempfung-und",
+      "name": "Fonds fuer Antisemitismus-Bekaempfung und Aufklaerung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 50000,
+      "reichweite": "alle",
+      "infoLink": "https://www.ghst.de/en/fund-for-anti-semitism-prevention-and-education",
+      "score": 77,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderfonds-demokratie",
+      "name": "Foerderfonds Demokratie",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.foerderfonds-demokratie.de/ausschreibung",
+      "score": 65,
+      "status": "done"
+    },
+    {
+      "programmId": "gate-german-apprenticeship-training-exchange",
+      "name": "GATE - German Apprenticeship Training Exchange",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 20000,
+      "reichweite": "alle",
+      "infoLink": "https://www.joachim-herz-stiftung.de/foerdern/ganzjaehrige-ausschreibungen",
+      "score": 63,
+      "status": "done"
+    },
+    {
+      "programmId": "heinz-nixdorf-stiftung-projektfoerderung-mint",
+      "name": "Heinz Nixdorf Stiftung - Projektfoerderung (MINT/Digitale Bildung)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 15000,
+      "reichweite": "alle",
+      "infoLink": "https://www.heinz-nixdorf-stiftung.de/",
+      "score": 72,
+      "status": "done"
+    },
+    {
+      "programmId": "ideeninitiative-kulturelle-vielfalt-mit-musik",
+      "name": "Ideeninitiative Kulturelle Vielfalt mit Musik",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 7500,
+      "reichweite": "alle",
+      "infoLink": "https://bewerbung.kultur-und-musikstiftung.de/",
+      "score": 69,
+      "status": "done"
+    },
+    {
+      "programmId": "innogy-stiftung-fuer-energie-und",
+      "name": "innogy Stiftung fuer Energie und Gesellschaft - Projektfoerderung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 0,
+      "reichweite": "alle",
+      "infoLink": "https://innogy-stiftung.com/ueber-die-stiftung/foerderantraege/",
+      "score": 60,
+      "status": "done"
+    },
+    {
+      "programmId": "ki-schulpreis",
+      "name": "KI-Schulpreis",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 40000,
+      "reichweite": "alle",
+      "infoLink": "https://ki-schulpreis.land-der-ideen.de/",
+      "score": 76,
+      "status": "done"
+    },
+    {
+      "programmId": "kindertiger-drehbuchpreis-im-rahmen-der",
+      "skipReason": "Reine Branchen-Auszeichnung der Filmwirtschaft: Antragsberechtigt sind ausschliesslich Drehbuchautor*innen, Produzent*innen und Verleiher*innen bereits verfilmter Kinderfilm-Drehbuecher; das Preisgeld (5.000 + 15.000 EUR) geht an die Autor*innen und ist an die Entwicklung eines neuen Drehbuchs gebunden. Schulen koennen NICHT beantragen (Kinder wirken nur als Jury mit, Verleihung im Rahmen der SchulKinoWochen). Keine projektgebundene Antrags-Foerderung fuer Schulen/Foerdervereine.",
+      "name": "kindertiger-drehbuchpreis-im-rahmen-der",
+      "status": "skip"
     }
   ]
 }
