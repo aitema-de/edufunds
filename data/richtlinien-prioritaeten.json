@@ -2,7 +2,7 @@
   "generatedAt": "2026-04-27T10:09:58.688Z",
   "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
   "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
-  "total": 118,
+  "total": 130,
   "items": [
     {
       "programmId": "kfw-erp-digitalisierung",
@@ -1190,6 +1190,122 @@
       "skipReason": "Reine Jury-Auszeichnung fuer bereits abgeschlossene, ueberwiegend ehrenamtlich getragene Projekte (Best-Practice-Wuerdigung) statt projektgebundener Antrags-Foerderung. Laufende/geplante Vorhaben sind ausdruecklich ausgeschlossen, es wird kein Projektkonzept fuer ein neues Vorhaben eingereicht und das Preisgeld ist nicht zweckgebunden an ein geplantes Projekt. Zudem sind Schulunterrichtsprojekte und rein hauptamtliche Durchfuehrung explizit ausgeschlossen - passt nicht zum EduFunds-Antrags-Wizard.",
       "name": "wettbewerb-aktiv-fuer-demokratie-und",
       "status": "skip"
+    },
+    {
+      "programmId": "aktionsprogramm-hauptsache-musik-niedersachsen",
+      "name": "Aktionsprogramm HAUPTSACHE:MUSIK (Niedersachsen)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 15000,
+      "reichweite": "DE-NI",
+      "infoLink": "https://www.mk.niedersachsen.de/startseite/schule/schulerinnen_und_schuler_eltern/hauptsache_musik/aktionsprogramm-hauptsache-musik-5772.html",
+      "score": 70,
+      "status": "done"
+    },
+    {
+      "programmId": "bayern-alltagskompetenzen-schule-fuers-leben",
+      "name": "Bayern: Alltagskompetenzen - Schule fuers Leben",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 910,
+      "reichweite": "DE-BY",
+      "infoLink": "https://www.bayernportal.de/dokumente/leistung/4656588570168",
+      "score": 60,
+      "status": "done"
+    },
+    {
+      "programmId": "berliner-projektfonds-kulturelle-bildung",
+      "name": "Berliner Projektfonds Kulturelle Bildung",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 25000,
+      "reichweite": "DE-BE",
+      "infoLink": "https://www.kulturformen.berlin/foerdern/berliner-projektfonds-kulturelle-bildung/",
+      "score": 74,
+      "status": "done"
+    },
+    {
+      "programmId": "bildung-durch-bewegung",
+      "name": "Bildung durch Bewegung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 800000,
+      "reichweite": "DE-BW",
+      "infoLink": "https://dietmar-hopp-stiftung.de/foerderbereiche/bildung.html",
+      "score": 91,
+      "status": "done"
+    },
+    {
+      "programmId": "brandenburg-foerderung-aus-lottomitteln-mbjs",
+      "name": "Brandenburg: Foerderung aus Lottomitteln (MBJS)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 30000,
+      "reichweite": "DE-BB",
+      "infoLink": "https://mbjs-fachportal.brandenburg.de/und-mehr/foerderung-aus-lottomitteln.html",
+      "score": 75,
+      "status": "done"
+    },
+    {
+      "programmId": "brandenburg-inisek-i-initiative-sekundarstufe",
+      "skipReason": "Zuwendungsempfaenger sind ausschliesslich die zwei zentral per ILB-Ausschreibung ausgewaehlten INISEK-Regionalpartner (juristische Personen des Privatrechts), nicht Schulen. Schulen stellen keinen eigenen Foerderantrag, sondern melden nur ihren Bedarf an den Regionalpartner. Eine einzelne Schule oder ihr Foerderverein kann INISEK I nicht selbst beantragen - damit kein schriftlicher, von der Schule einreichbarer Projektantrag. Zudem ESF-2014-2020-Periode ausgelaufen, aktuell keine Antraege.",
+      "name": "brandenburg-inisek-i-initiative-sekundarstufe",
+      "status": "skip"
+    },
+    {
+      "programmId": "bremen-gewoba-stiftung-zur-foerderung",
+      "name": "Bremen: GEWOBA-Stiftung zur Foerderung der Bildung im oeffentlichen Schulwesen",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 4000,
+      "reichweite": "DE-HB",
+      "infoLink": "https://www.foerdersuche.org/foerderung/gewoba-stiftung-zur-foerderung-der-bildung-im-oeffentlichen-schulwesen",
+      "score": 68,
+      "status": "done"
+    },
+    {
+      "programmId": "bremen-swb-bildungsinitiative",
+      "name": "Bremen: swb-Bildungsinitiative",
+      "foerdergeberTyp": "sonstige",
+      "foerdersummeMax": 0,
+      "reichweite": "DE-HB",
+      "infoLink": "https://www.swb-bildungsinitiative.de/foerderung.php",
+      "score": 57,
+      "status": "done"
+    },
+    {
+      "programmId": "deine-idee-deine-schule-dein",
+      "name": "Deine Idee? Deine Schule. Dein Klima!",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 4500,
+      "reichweite": "DE-SN",
+      "infoLink": "https://www.saechsische-jugendstiftung.de/",
+      "score": 69,
+      "status": "done"
+    },
+    {
+      "programmId": "demokratie-verstaerker-innen-2026",
+      "name": "Demokratie-Verstaerker*innen 2026",
+      "foerdergeberTyp": "sonstige",
+      "foerdersummeMax": 10000,
+      "reichweite": "DE-HE",
+      "infoLink": "https://www.ekkw.de/kirche/aktuell/jetzt-bewerben-demokratie-verstaerkerinnen-2026",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "demokratische-beteiligung-von-schuelerinnen-und",
+      "name": "Demokratische Beteiligung von Schuelerinnen und Schuelern (Niedersachsen)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 10000,
+      "reichweite": "DE-NI",
+      "infoLink": "https://www.aewb-nds.de/themen/dbs",
+      "score": 70,
+      "status": "done"
+    },
+    {
+      "programmId": "ermoeglichungsbudget-fuer-innovative-schul-und",
+      "name": "Ermoeglichungsbudget fuer innovative Schul- und Unterrichtsentwicklung (Niedersachsen)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 15000,
+      "reichweite": "DE-NI",
+      "infoLink": "https://www.mk.niedersachsen.de/startseite/aktuelles/presseinformationen/ermoglichungsbudget-niedersachsen-stellt-schulen-350-000-euro-fur-innovative-schul-und-unterrichtsentwicklung-zur-verfugung-242870.html",
+      "score": 72,
+      "status": "done"
     }
   ]
 }

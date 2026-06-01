@@ -1,0 +1,259 @@
+{
+  "version": "2026-06-01",
+  "quellen": [
+    "https://www.mk.niedersachsen.de/startseite/aktuelles/presseinformationen/ermoglichungsbudget-niedersachsen-stellt-schulen-350-000-euro-fur-innovative-schul-und-unterrichtsentwicklung-zur-verfugung-242870.html",
+    "https://www.spdnds.de/2025/07/01/ermoeglichungsbudget-niedersachsen-stellt-schulen-350-000-euro-fuer-innovative-schul-und-unterrichtsentwicklung-zur-verfuegung/",
+    "https://bildungsklick.de/schule/detail/niedersachsen-schule-foederung-unterrichtsentwicklung-budget"
+  ],
+  "foerderhoehe": {
+    "minEur": 2000,
+    "maxEur": 15000,
+    "bemerkung": "Vollzuschuss als Festbetrag pro Schule: mindestens 2.000 EUR pro Antrag, maximal 15.000 EUR pro Schule. Gesamtvolumen 350.000 EUR landesweit. Mittel mussten im jeweiligen Haushaltsjahr (urspruenglich bis Ende 2025) verbraucht werden. Bewilligung erfolgt in der Reihenfolge des Eingangs nach fachlicher Pruefung."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Externe Expertise zur paedagogischen Weiterentwicklung",
+        "Referenten fuer schulinterne Fortbildungen (SchiLF)"
+      ],
+      "beispielePasst": [
+        "Honorar fuer Fortbildungs-Referenten",
+        "Beratungshonorar fuer Schulentwicklungsbegleitung",
+        "Honorar fuer Kooperation mit ausserschulischem Partner"
+      ],
+      "beispielePasstNicht": [
+        "Verguetung des eigenen Schulpersonals"
+      ]
+    },
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Reisekosten im Rahmen von Hospitationen / Unterrichtsbesuchen an anderen Schulen"
+      ],
+      "beispielePasst": [
+        "Fahrtkosten zu einer Hospitation an einer Modellschule",
+        "Reisekosten fuer Unterrichtsbesuche im Rahmen der Konzeptentwicklung"
+      ],
+      "beispielePasstNicht": [
+        "Klassenfahrten oder Schuelerausfluege ohne Entwicklungsbezug"
+      ]
+    },
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Entwicklung von Lehr- und Lernmaterialien",
+        "Durchfuehrung von Veranstaltungen zur paedagogischen Weiterentwicklung"
+      ],
+      "beispielePasst": [
+        "Materialkosten fuer die Entwicklung neuer Lernmaterialien",
+        "Sachkosten einer Entwicklungs-Veranstaltung"
+      ],
+      "beispielePasstNicht": [
+        "Bauliche Massnahmen oder Ausstattung in Traegerzustaendigkeit"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Vorhaben in Schultraeger-Zustaendigkeit sind nicht foerderfaehig (z.B. Gebaeude, IT-Grundausstattung)"
+      ],
+      "beispielePasstNicht": [
+        "Anschaffung von Tablets/Hardware",
+        "Moeblierung",
+        "Renovierung von Raeumen"
+      ]
+    },
+    {
+      "kategorie": "sonstiges",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Kooperationen mit ausserschulischen Partnern",
+        "Beratungsangebote"
+      ],
+      "beispielePasst": [
+        "Kosten der Zusammenarbeit mit einem ausserschulischen Bildungspartner",
+        "Externe Beratung zur Unterrichtsentwicklung"
+      ],
+      "beispielePasstNicht": [
+        "Laufende Betriebskosten der Schule"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": false,
+    "formenErlaubt": [
+      "finanziell",
+      "eigenarbeit"
+    ],
+    "bemerkung": "Keine Eigenmittel-Pflicht bekannt; das Budget ist als unbuerokratischer Vollzuschuss konzipiert. Eigenleistung in Form von Arbeitszeit des Kollegiums ist ueblich, aber nicht als formaler Kofinanzierungsanteil gefordert."
+  },
+  "kumulierung": {
+    "erlaubt": "bedingt",
+    "bedingungen": [
+      "Schulen im Startchancen-Programm sind ausgeschlossen",
+      "Keine Foerderung von Vorhaben, die bereits in Schultraeger-Zustaendigkeit finanziert werden",
+      "Doppelfoerderung derselben Kostenposition aus anderen Landesmitteln vermeiden"
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "vorhaben-titel-ziel",
+        "name": "Vorhaben und Zielsetzung",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche konkrete Innovation in Schul- oder Unterrichtsentwicklung wollen Sie umsetzen?",
+          "Welches paedagogische Ziel verfolgt das Vorhaben?",
+          "Wie fuegt sich das Vorhaben in den Freiraeumeprozess und in Ihr Schulkonzept ein?"
+        ],
+        "stilhinweis": "Praegnant und konkret formulieren - ein klar umrissenes Vorhaben statt allgemeiner Absichtserklaerungen."
+      },
+      {
+        "id": "ausgangslage-bedarf",
+        "name": "Ausgangslage und Bedarf",
+        "pflicht": true,
+        "leitfragen": [
+          "Welcher konkrete Entwicklungsbedarf besteht an Ihrer Schule?",
+          "Warum ist externe Expertise oder zusaetzliche Ressource hierfuer notwendig?",
+          "Welche Schuelerinnen und Schueler bzw. welcher Bereich profitiert?"
+        ],
+        "stilhinweis": "Bedarf datenbasiert oder aus konkreten Beobachtungen herleiten, nicht abstrakt."
+      },
+      {
+        "id": "massnahmen-umsetzung",
+        "name": "Geplante Massnahmen und Umsetzung",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche konkreten Massnahmen (Fortbildung, Beratung, Hospitation, Kooperation, Materialentwicklung) planen Sie?",
+          "Wer setzt das Vorhaben um und welche externen Partner sind beteiligt?",
+          "In welchem Zeitraum erfolgt die Umsetzung, damit die Mittel im Haushaltsjahr verbraucht werden?"
+        ],
+        "stilhinweis": "Massnahmen so konkret beschreiben, dass die fachliche Pruefung den Innovationscharakter erkennt."
+      },
+      {
+        "id": "finanzplan",
+        "name": "Finanz- und Kostenplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie verteilt sich die beantragte Summe (2.000 bis 15.000 EUR) auf Honorare, Reisekosten und Sachkosten?",
+          "Sind alle Positionen foerderfaehig (keine Traegerzustaendigkeit)?",
+          "Wie ist die Summe nachvollziehbar kalkuliert?"
+        ],
+        "stilhinweis": "Klar gegliederte Kostenaufstellung; nur foerderfaehige Positionen aufnehmen."
+      },
+      {
+        "id": "wirkung-nachhaltigkeit",
+        "name": "Erwartete Wirkung und Nachhaltigkeit",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Veraenderung in Unterricht oder Schulkultur erwarten Sie?",
+          "Wie wird das Erreichte im Kollegium verankert und weitergegeben?",
+          "Wie laesst sich der Erfolg erkennen?"
+        ],
+        "stilhinweis": "Wirkung auf Schul-/Unterrichtsebene betonen, nicht nur Aktivitaeten."
+      },
+      {
+        "id": "gemeinsamer-antrag",
+        "name": "Angaben zum gemeinsamen Antrag (falls zutreffend)",
+        "pflicht": false,
+        "leitfragen": [
+          "Beantragen mehrere Schulen ein gemeinsames Vorhaben?",
+          "Welche Schulen sind beteiligt und wie ist die Rollenverteilung?",
+          "Wie werden die Mittel zwischen den Schulen aufgeteilt?"
+        ],
+        "stilhinweis": "Nur ausfuellen bei Sammelantraegen; Koordination und Mehrwert der Kooperation darstellen."
+      }
+    ],
+    "anlagen": [
+      "Kurze Vorhabenbeschreibung",
+      "Kostenplan / Kalkulation",
+      "ggf. Angebote oder Honorarschaetzungen externer Anbieter",
+      "bei Sammelantraegen: Liste der beteiligten Schulen"
+    ],
+    "einreichungsweg": "Antrag an das zustaendige Regionale Landesamt fuer Schule und Bildung (RLSB); konkretes Formular und Postfach beim RLSB erfragen.",
+    "bearbeitungsdauer": "zeitnahe Bewilligung in der Reihenfolge des Eingangs nach fachlicher Pruefung"
+  },
+  "notizen": [
+    "Programm war fuer das Haushaltsjahr 2025 ausgeschrieben (Antragsschluss 15.10.2025, Mittelverbrauch bis Jahresende). Vor erneuter Antragstellung pruefen, ob das Ermoeglichungsbudget fuer ein Folgejahr neu aufgelegt wurde - beim RLSB bzw. Kultusministerium nachfragen.",
+    "Vorhaben in Schultraeger-Zustaendigkeit (Gebaeude, Ausstattung, IT-Infrastruktur) sind explizit ausgeschlossen.",
+    "Schulen im Startchancen-Programm sind nicht antragsberechtigt."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Klar umrissenes Innovationsvorhaben",
+      "was_funktionierte": "Ein einzelnes, konkret beschriebenes Entwicklungsvorhaben (z.B. Einfuehrung eines neuen Feedback-Konzepts mit externer Begleitung) statt einer Sammlung unverbundener Wuensche.",
+      "warum": "Die fachliche Pruefung erkennt den Innovationscharakter und Bezug zum Freiraeumeprozess leichter, was die zeitnahe Bewilligung beguenstigt."
+    },
+    {
+      "thema": "Foerderfaehige Kostenarten gezielt nutzen",
+      "was_funktionierte": "Mittel ausschliesslich fuer Honorare, Beratung, Hospitations-Reisekosten und Materialentwicklung kalkuliert - keine Hardware oder bauliche Massnahmen.",
+      "warum": "Vorhaben in Schultraeger-Zustaendigkeit sind ausgeschlossen; ein sauberer Kostenplan vermeidet Rueckfragen und Kuerzungen."
+    },
+    {
+      "thema": "Frueh einreichen",
+      "was_funktionierte": "Antrag deutlich vor dem Stichtag eingereicht, da Bewilligung in der Reihenfolge des Eingangs erfolgt.",
+      "warum": "Das Gesamtbudget von 350.000 EUR ist gedeckelt; bei begrenztem Topf entscheidet der Eingangszeitpunkt mit ueber den Erfolg."
+    },
+    {
+      "thema": "Kooperation als Hebel",
+      "was_funktionierte": "Gemeinsamer Antrag mehrerer Schulen fuer ein geteiltes Vorhaben, z.B. eine gemeinsame Fortbildungsreihe.",
+      "warum": "Sammelantraege sind ausdruecklich zugelassen, erhoehen die Wirkung pro eingesetztem Euro und zeigen Vernetzung."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Beantragte Kosten fallen in die Zustaendigkeit des Schultraegers (Bau, Ausstattung, IT-Grundausstattung)",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Nur paedagogisch-konzeptionelle Kosten (Honorare, Beratung, Reisekosten, Materialentwicklung) beantragen und die Abgrenzung zur Traegerzustaendigkeit klar benennen."
+    },
+    {
+      "grund": "Vorhaben ist kein erkennbares Innovations-/Entwicklungsvorhaben, sondern Deckung laufender Betriebskosten",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Den Entwicklungs- und Innovationscharakter im Bezug zum Freiraeumeprozess explizit herausarbeiten."
+    },
+    {
+      "grund": "Antrag der Schule liegt ausserhalb der Antragsberechtigung (z.B. Startchancen-Schule)",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Vor Antragstellung die eigene Antragsberechtigung beim RLSB klaeren."
+    },
+    {
+      "grund": "Kostenplan unklar oder Summe ausserhalb des Rahmens 2.000 bis 15.000 EUR",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Nachvollziehbaren, gegliederten Kostenplan vorlegen und die Antragssumme innerhalb der Spanne halten."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "vorhaben-titel-ziel",
+      "formulierung": "Mit dem Vorhaben fuehren wir ein kompetenzorientiertes Feedback-Konzept im Jahrgang 7/8 ein und nutzen den Gestaltungsspielraum des Freiraeumeprozesses, um Unterricht beduerfnisorientiert weiterzuentwickeln.",
+      "kontext": "Einstieg, der Innovation und Bezug zum Programm-Leitbild verbindet."
+    },
+    {
+      "abschnitt_id": "massnahmen-umsetzung",
+      "formulierung": "Wir binden eine externe Fachberatung fuer drei schulinterne Fortbildungstage ein und finanzieren Hospitations-Reisekosten zu zwei Referenzschulen, um das Konzept fundiert in das Kollegium zu tragen.",
+      "kontext": "Verknuepft foerderfaehige Kostenarten mit dem Umsetzungsweg."
+    },
+    {
+      "abschnitt_id": "finanzplan",
+      "formulierung": "Die beantragten 9.800 EUR verteilen sich auf Beratungs- und Referentenhonorare (7.200 EUR), Hospitations-Reisekosten (1.600 EUR) und Materialentwicklung (1.000 EUR); bauliche oder ausstattungsbezogene Kosten in Traegerzustaendigkeit sind nicht enthalten.",
+      "kontext": "Zeigt sauberen, foerderfaehigen Kostenplan innerhalb der Spanne."
+    },
+    {
+      "abschnitt_id": "wirkung-nachhaltigkeit",
+      "formulierung": "Das Feedback-Konzept wird nach der Pilotphase in einer Handreichung dokumentiert und ueber die Fachkonferenzen auf weitere Jahrgaenge uebertragen, sodass die Entwicklung dauerhaft im Schulalltag verankert bleibt.",
+      "kontext": "Belegt Nachhaltigkeit ueber das Foerderjahr hinaus."
+    }
+  ],
+  "fristLogik": {
+    "typ": "fixe_stichtage",
+    "stichtage": [
+      "2025-10-15"
+    ],
+    "jaehrlich_wiederkehrend": false
+  }
+}
