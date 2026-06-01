@@ -1,0 +1,243 @@
+{
+  "quellen": [
+    "https://www.domino1.stuttgart.de/web/ksd/KSDRedSystem.nsf/72557906d85ac74c412569e5005d382f/6c3abbbed9fd20dfc125793600478d40/$FILE/Vergaberichtlinie%20Hector-Kinderakademie.pdf",
+    "https://www.begabungslotse.de/foerderangebote/hector-kinderakademien",
+    "https://hector-kinderakademie.de/hochbegabtenfoerderung-hector-kinderakademie/",
+    "https://hector-stiftung.com/wissenschaft-bildung/hector-kinderakademien/",
+    "http://www.hector-kinderakademie.de/,Lde/Startseite/Service/Antragstellung",
+    "https://hector-kinderakademie.de/akademieleitungen-lehrkraefte/kursleitung-werden/"
+  ],
+  "foerderhoehe": {
+    "bemerkung": "Die Hector-Stiftung II finanziert die Begabtenfoerderung gemeinsam mit dem Kultusministerium Baden-Wuerttemberg. Konkrete Foerderbbetraege werden nicht oeffentlich als feste Pauschale veroeffentlicht, sondern pro Standort/Traeger ueber die Vereinbarung und das jaehrliche Budget geregelt. Gefoerdert werden insbesondere Honorare fuer externe Kursleitungen, Anrechnungsstunden fuer die Geschaeftsfuehrung (4 Std. bei 20-30 Kursen, 5 Std. bei 30-40, 6 Std. ueber 40 Kursen) sowie Sach- und Materialkosten. Die Teilnahme der Kinder ist bis auf Materialkosten kostenlos. Maximalsumme im Programm-Datensatz (50.000 EUR) ist als Orientierung zu verstehen, nicht als publizierte Richtliniengrenze."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Externe Kursleitungen (Eltern, Dozenten, Studierende, Fachkraefte ausserhalb des Grund- und Hauptschuldienstes) arbeiten auf Honorarbasis",
+        "Honorarvertraege schliesst der Traeger ab und verwaltet das Budget ordnungsgemaess"
+      ],
+      "beispielePasst": [
+        "Honorar fuer eine externe Naturwissenschafts-Kursleitung",
+        "Verguetung einer Dozentin fuer einen Robotik-Workshop"
+      ],
+      "beispielePasstNicht": [
+        "Verguetung interner Lehrkraefte des Grund-/Hauptschuldienstes (diese wirken im Rahmen ihres Deputats mit, nicht ueber Honorar)"
+      ]
+    },
+    {
+      "kategorie": "personal",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Geschaeftsfuehrung erhaelt Anrechnungsstunden statt Geldzahlung, gestaffelt nach Kurszahl",
+        "Aufgaben: Organisation, Koordination, Gewinnung von Lehrkraeften, Kursausschreibung, Kinderauswahl und -einteilung, Mitwirkung an Fortbildungen"
+      ],
+      "beispielePasst": [
+        "4 Anrechnungsstunden fuer die Akademieleitung bei 20-30 Kursangeboten"
+      ],
+      "beispielePasstNicht": [
+        "Zusaetzliche Verwaltungsstelle ohne Bezug zur Akademieleitung"
+      ]
+    },
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Materialkosten fuer Kurse und Workshops",
+        "Sachkosten in vertretbarem Rahmen, vom Traeger budgetiert"
+      ],
+      "beispielePasst": [
+        "Verbrauchsmaterial fuer einen Experimentier-Kurs",
+        "Bastel- und Bauteile fuer einen Technik-Workshop"
+      ],
+      "beispielePasstNicht": [
+        "Materialkosten, die anteilig auf die Familien umgelegt werden (diese tragen die Eltern selbst)"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Das Programm finanziert laufenden Kursbetrieb (Honorare, Anrechnung, Material), keine groesseren Anschaffungen oder Baumassnahmen"
+      ]
+    },
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": false
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": false,
+    "formenErlaubt": [
+      "sachleistungen",
+      "eigenarbeit"
+    ],
+    "bemerkung": "Es ist keine finanzielle Eigenmittelquote vorgeschrieben. Der Traeger (Schule, Kommune, Bildungsregion oder Foerderverein) bringt jedoch faktisch Eigenleistungen ein: Raeume ausserhalb der regulaeren Schulzeit, Mitwirkung interner Lehrkraefte im Deputat sowie Verwaltungsleistung. Eine Kooperation mit regionalen Anbietern (Musikschule, VHS, Museen) wird erwartet."
+  },
+  "kumulierung": {
+    "erlaubt": "bedingt",
+    "bemerkung": "Die Foerderung erfolgt im Rahmen einer Vereinbarung zwischen Hector-Stiftung II und Land Baden-Wuerttemberg. Eine Doppelfinanzierung derselben Honorar-/Sachkosten aus anderen Quellen ist auszuschliessen; ergaenzende Drittmittel (z.B. kommunale Mittel, Kooperationsbeitraege) sind moeglich, sofern sie nicht dieselben Positionen abdecken."
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "traeger-und-einzugsbereich",
+        "name": "Traeger, Standort und Einzugsbereich",
+        "pflicht": true,
+        "leitfragen": [
+          "Wer ist Antragsteller und kuenftiger Traeger (Schule, Kommune, Bildungsregion, Foerderverein)?",
+          "Welcher Einzugsbereich (zustaendiges Staatliches Schulamt) wird abgedeckt und wie viele Grundschulen/Kinder umfasst er?",
+          "Welche Raeume stehen ausserhalb der regulaeren Schulzeit zur Verfuegung?"
+        ],
+        "stilhinweis": "Sachlich und belegt: Traegerstruktur, Unterschriftsberechtigte (Traeger, Schulamt, Schule) und Reichweite konkret mit Zahlen benennen.",
+        "maxZeichen": 2500
+      },
+      {
+        "id": "bedarf-zielgruppe",
+        "name": "Bedarf und Zielgruppe",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie gross ist die Zielgruppe besonders begabter, motivierter und kreativer Grundschulkinder im Einzugsbereich?",
+          "Wie wird das Ziel erreicht, Enrichment-Angebote fuer bis zu 10 % eines Jahrgangs zu ermoeglichen?",
+          "Wie wird Chancengerechtigkeit ueber unterschiedliche soziale Herkuenfte sichergestellt?"
+        ],
+        "stilhinweis": "Bezug auf die Richtlinien-Zielgruppe herstellen; Chancengerechtigkeit (Artikel 11 Landesverfassung) konkret auf die Region beziehen, nicht nur zitieren.",
+        "maxZeichen": 2500
+      },
+      {
+        "id": "kurskonzept",
+        "name": "Kurs- und Workshop-Konzept",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Kurse und Workshops sind geplant und wie decken sie ein breites Spektrum (Technik, Musik, Naturwissenschaft, Sprachen, Informatik, Geschichte) ab?",
+          "Wie wird ab dem zweiten Jahr das Minimum von 20 Kursangeboten je Halbjahresrhythmus erreicht?",
+          "Wie gehen die Angebote inhaltlich ueber den regulaeren Unterricht hinaus und foerdern entdeckendes, selbststaendiges Arbeiten?"
+        ],
+        "stilhinweis": "Konkret und vielfaeltig: Beispielkurse mit Niveau-Begruendung statt allgemeiner Schlagworte. Gruppengroesse 6-10 Kinder beachten.",
+        "maxZeichen": 3500
+      },
+      {
+        "id": "lehrkraefte-kooperation",
+        "name": "Gewinnung von Lehrkraeften und Kooperationen",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie werden interne (Deputat) und externe Lehrkraefte (Honorar) gewonnen?",
+          "Welche regionalen Kooperationspartner (Musikschule, VHS, Jugendkunstschule, Museen, Hochschulen) sind eingebunden?",
+          "Wie wird Kontinuitaet bei Kursangebot und Kursteilnehmern gesichert?"
+        ],
+        "stilhinweis": "Partner namentlich und mit Rolle nennen; Verbindlichkeit der Kooperationen belegen (Absichtserklaerungen), nicht nur Absichten formulieren.",
+        "maxZeichen": 2500
+      },
+      {
+        "id": "organisation-geschaeftsfuehrung",
+        "name": "Organisation und Geschaeftsfuehrung",
+        "pflicht": true,
+        "leitfragen": [
+          "Wer uebernimmt die Geschaeftsfuehrung und welche Qualifikation bringt diese Person mit?",
+          "Wie werden Anmeldung der Kinder ueber das Schulamt, Auswahl und Kurseinteilung organisiert?",
+          "Wie wird die ordnungsgemaesse Budget- und Honorarverwaltung durch den Traeger sichergestellt?"
+        ],
+        "stilhinweis": "Klare Verantwortlichkeiten und Prozesse darstellen; Anrechnungsstaffel der Geschaeftsfuehrung der geplanten Kurszahl zuordnen.",
+        "maxZeichen": 2500
+      },
+      {
+        "id": "evaluation-wissenschaft",
+        "name": "Mitwirkung an Evaluation und wissenschaftlicher Begleitung",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie wird die jaehrliche Evaluation bis 30.11. unterstuetzt?",
+          "Wie werden Eltern, Kinder und Lehrende in das Prae-Post-Follow-Up-Design der wissenschaftlichen Begleitung eingebunden?",
+          "Wie wird der Datenschutz bei der Datenerhebung gewaehrleistet?"
+        ],
+        "stilhinweis": "Bereitschaft zur Mitwirkung verbindlich zusagen; Datenschutz nach Vorgabe des Kultusministeriums adressieren.",
+        "maxZeichen": 2000
+      }
+    ],
+    "anlagen": [
+      "Vollstaendig ausgefuelltes KM-Antragsformular Hector-Kinderakademie",
+      "Unterschriften von Traeger (i.d.R. Kommune), Staatlichem Schulamt und Schule",
+      "ggf. Kooperationsvereinbarungen mit regionalen Anbietern"
+    ],
+    "einreichungsweg": "Postalisch nach vorheriger Abstimmung mit dem zustaendigen Staatlichen Schulamt und der Kommune an das Ministerium fuer Kultus, Jugend und Sport Baden-Wuerttemberg in Stuttgart. Einrichtung neuer Standorte erfolgt auf Antrag der Traeger und mit Zustimmung des Beirats.",
+    "bearbeitungsdauer": "Keine feste Bearbeitungsfrist veroeffentlicht; Entscheidung ueber neue Standorte trifft der Beirat des Programms."
+  },
+  "notizen": [
+    "Antragsberechtigt sind Schulen, Kommunen, Bildungsregionen oder Foerdervereine als kuenftige Traeger - nicht Eltern und nicht einzelne Kinder.",
+    "Wichtige Abgrenzung: Die Schueler-Anmeldung (Nominierung durch Klassenlehrkraft ueber das Schulamt) ist NICHT die Foerderbewerbung. Die Foerderung im Sinne dieses Dossiers ist der Antrag eines Traegers auf Einrichtung/Weiterfoerderung einer Akademie.",
+    "Die Akademie muss ab dem zweiten Jahr (nach einjaehriger Versuchsphase) mindestens 20 Kurse je Rhythmus anbieten.",
+    "Weiterfoerderung haengt an der jaehrlichen wissenschaftlichen Evaluation: Kann kein positiver Foerdereffekt dokumentiert werden, entfaellt der Foerderanspruch (Beirat kann in Ausnahmefaellen ein Jahr verlaengern).",
+    "Gefoerderte Akademien muessen unter dem Namen 'Hector-Kinderakademie' oeffentlich auftreten.",
+    "Programm ist landesspezifisch auf Baden-Wuerttemberg begrenzt (DE-BW)."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Belastbare Trohwerte zur Reichweite",
+      "was_funktionierte": "Antraege, die Schuelerzahlen, Anzahl Grundschulen und das 10-Prozent-Ziel des Jahrgangs konkret mit Zahlen fuer den Einzugsbereich hinterlegen, statt nur Begabtenfoerderung allgemein zu beschreiben.",
+      "warum": "Die Richtlinie definiert die Zielgruppe ueber den Einzugsbereich des Schulamts und ein Enrichment-Ziel von bis zu 10 % eines Jahrgangs - ein quantifizierter Bedarf macht die Dimensionierung (mind. 20 Kurse) plausibel."
+    },
+    {
+      "thema": "Breite und Niveau des Kursprogramms zeigen",
+      "was_funktionierte": "Konkrete Beispielkurse aus mehreren Domaenen (Technik, Naturwissenschaft, Musik, Sprachen, Informatik) mit kurzer Begruendung, warum sie ueber den Regelunterricht hinausgehen.",
+      "warum": "Die Richtlinie verlangt ein breites, vielfaeltiges Spektrum mit Anspruchsniveau deutlich oberhalb des Normalunterrichts; konkrete Beispiele belegen, dass die Akademie das leisten kann."
+    },
+    {
+      "thema": "Verbindliche regionale Kooperationen",
+      "was_funktionierte": "Frueh eingeholte Absichtserklaerungen von Musikschule, VHS, Museen oder Hochschulen, die als Anlage beiliegen.",
+      "warum": "Die Richtlinie strebt Kooperationen mit regionalen Anbietern an; belegte Partnerschaften sichern Kursvielfalt und Kontinuitaet und entlasten das Honorarbudget."
+    },
+    {
+      "thema": "Klare Traeger- und Geschaeftsfuehrungsstruktur",
+      "was_funktionierte": "Benennung einer qualifizierten Geschaeftsfuehrung samt zugeordneter Anrechnungsstaffel und Darstellung einer sauberen Budget- und Honorarverwaltung durch den Traeger.",
+      "warum": "Die Richtlinie macht die Geschaeftsfuehrung verantwortlich fuer die Einhaltung der Vergaberichtlinie und den Traeger fuer die Budgetverwaltung - eine klare Struktur signalisiert Foerderfaehigkeit und Verstetigung."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Antrag durch nicht-antragsberechtigte Stelle (z.B. Eltern, Einzelperson) statt durch Traeger mit den drei erforderlichen Unterschriften",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Antrag als Schule/Kommune/Bildungsregion/Foerderverein stellen und vorab Schulamt und Kommune einbinden; alle drei Unterschriften (Traeger, Schulamt, Schule) einholen."
+    },
+    {
+      "grund": "Kursprogramm zu duenn oder nicht ueber Regelunterricht hinausgehend, Minimum von 20 Kursangeboten nicht plausibel",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Konkret mind. 20 anspruchsvolle Kurse je Rhythmus mit Domaenenvielfalt und Niveau-Begruendung darlegen, gestuetzt durch gewonnene interne/externe Lehrkraefte."
+    },
+    {
+      "grund": "Fehlender Nachweis von Reichweite und Chancengerechtigkeit im Einzugsbereich",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Einzugsbereich, beteiligte Grundschulen und das 10-Prozent-Jahrgangsziel quantifizieren und Massnahmen zur Erreichung sozial breiter Zielgruppen benennen."
+    },
+    {
+      "grund": "Keine Bereitschaft bzw. unklare Zusage zur wissenschaftlichen Begleitung und jaehrlichen Evaluation",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Verbindlich die Mitwirkung an Evaluation (bis 30.11.), Prae-Post-Follow-Up-Design und Datenschutzvorgaben des Kultusministeriums zusagen; Weiterfoerderung haengt am dokumentierten Foerdereffekt."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "bedarf-zielgruppe",
+      "formulierung": "Im Einzugsbereich des Staatlichen Schulamts [Ort] besuchen rund [X] Kinder die [N] Grundschulen. Mit einem Enrichment-Angebot fuer bis zu 10 % eines Jahrgangs adressieren wir rechnerisch etwa [Y] besonders befaehigte, motivierte und kreative Kinder pro Jahrgang - unabhaengig von Herkunft oder wirtschaftlicher Lage.",
+      "kontext": "Konkretisiert das Richtlinien-Ziel (bis zu 10 % eines Jahrgangs, Chancengerechtigkeit) mit belegbaren Regionalzahlen statt allgemeiner Begabtenrhetorik."
+    },
+    {
+      "abschnitt_id": "kurskonzept",
+      "formulierung": "Geplant sind ab dem zweiten Jahr mindestens 20 Kurse je Halbjahr, u.a. 'Programmieren mit Mikrocontrollern', 'Experimente zur Optik', 'Alte Sprachen entdecken' und 'Komposition und Klang' - jeweils mit einem Anspruchsniveau, das deutlich ueber den Grundschulunterricht hinausgeht und entdeckendes, selbststaendiges Arbeiten in Gruppen von sechs bis zehn Kindern foerdert.",
+      "kontext": "Erfuellt die Richtlinienvorgaben Mindestkurszahl, Domaenenvielfalt, Niveau und Gruppengroesse mit konkreten Beispielen."
+    },
+    {
+      "abschnitt_id": "lehrkraefte-kooperation",
+      "formulierung": "Fuer die Kursleitung kombinieren wir interne Lehrkraefte im Rahmen ihres Deputats mit externen Honorarkraeften (Dozentinnen, Studierende, Fachleute) und kooperieren verbindlich mit der Musikschule [Ort], der Volkshochschule [Ort] sowie dem [Museum] - entsprechende Absichtserklaerungen liegen als Anlage bei.",
+      "kontext": "Setzt die in der Richtlinie angestrebte Kooperation mit regionalen Anbietern verbindlich um und trennt korrekt Deputats- von Honorarkraeften."
+    },
+    {
+      "abschnitt_id": "organisation-geschaeftsfuehrung",
+      "formulierung": "Die Geschaeftsfuehrung uebernimmt [Name, Qualifikation]; bei geplanten 30-40 Kursangeboten ist eine Anrechnung von 5 Stunden vorgesehen. Der Traeger [Kommune/Foerderverein] fuehrt das Budget ordnungsgemaess und schliesst die Honorarvertraege mit Kurs- und Akademieleitungen.",
+      "kontext": "Ordnet die Geschaeftsfuehrung der Anrechnungsstaffel der Richtlinie zu und benennt die Budget-/Honorarverantwortung des Traegers - zentrale Foerderfaehigkeitskriterien."
+    }
+  ],
+  "fristLogik": {
+    "typ": "rolling"
+  },
+  "version": "2026-06-01"
+}
