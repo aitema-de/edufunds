@@ -1,0 +1,250 @@
+{
+  "version": "2026-06-01",
+  "quellen": [
+    "https://www.sunk-lsa.de/foerderung/projektfoerderung",
+    "https://www.sunk-lsa.de/forderung/forderung-beantragen",
+    "https://foerderdatenbank.d-s-e-e.de/foerderprogramme/projektfoerderung-sunk-sachsen-anhalt",
+    "https://www.sunk-lsa.de/forderung"
+  ],
+  "foerderhoehe": {
+    "maxEur": 20000,
+    "bemerkung": "Zuwendung je Projekt grundsaetzlich hoechstens 20.000 EUR, keine festgelegte Untergrenze (bewusst kleinteilige Foerderung moeglich). Finanziert aus Mitteln von LOTTO Sachsen-Anhalt. Der separate Umweltpreis Sachsen-Anhalt (insg. ca. 15.000 EUR) ist ein Jury-Preis fuer bereits geleistete Arbeit und keine antragsgebundene Projektfoerderung."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Honorare fuer projektbezogene Leistungen (z.B. Umweltpaedagogik, Fachbegleitung)"
+      ],
+      "beispielePasst": [
+        "Honorar Umweltpaedagogin fuer Naturschutz-Projektwoche",
+        "Fachhonorar fuer Anleitung Nistkastenbau"
+      ],
+      "beispielePasstNicht": [
+        "Dauerhafte Personalstellen der Einrichtung"
+      ]
+    },
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Projektbezogene Materialien und Verbrauchsgueter"
+      ],
+      "beispielePasst": [
+        "Pflanzen und Obstbaeume fuer Schulgarten",
+        "Material fuer Benjeshecke",
+        "Saatgut, Werkzeug-Verbrauchsmaterial fuer Bildungsaktion"
+      ],
+      "beispielePasstNicht": [
+        "Buerobedarf der Einrichtung ohne Projektbezug"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Reine technische und bautechnische Loesungen sind ausgeschlossen"
+      ],
+      "beispielePasstNicht": [
+        "Photovoltaikanlage am Schulgebaeude",
+        "Bauliche Sanierungsmassnahmen"
+      ]
+    },
+    {
+      "kategorie": "overhead",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Institutionelle Aufwendungen sind von der Foerderung ausgeschlossen"
+      ],
+      "beispielePasstNicht": [
+        "Allgemeine Verwaltungs- und Betriebskosten der Schule"
+      ]
+    },
+    {
+      "kategorie": "sonstiges",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Projektbezogene Nebenkosten, soweit fuer das Vorhaben erforderlich und im Finanzierungsplan ausgewiesen"
+      ],
+      "beispielePasst": [
+        "Druck von Bildungsmaterial fuer eine Umweltbildungsaktion"
+      ],
+      "beispielePasstNicht": [
+        "Bewirtung und Repraesentationsausgaben"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": true,
+    "mindestProzent": 10,
+    "formenErlaubt": [
+      "finanziell",
+      "sachleistungen",
+      "eigenarbeit",
+      "drittmittel"
+    ],
+    "bemerkung": "Mindestens 10 Prozent der Gesamtfoerdersumme als Eigenanteil. Eigenleistungen koennen nach der separaten Uebersicht zum Nachweis von Eigenleistungen eingebracht werden (z.B. ehrenamtliche Arbeitsstunden)."
+  },
+  "kumulierung": {
+    "erlaubt": "bedingt",
+    "bedingungen": [
+      "Weitere Drittmittel im Finanzierungsplan offenlegen",
+      "Keine Doppelfoerderung derselben Kostenposition",
+      "Gesamtfinanzierung muss schluessig dargestellt sein"
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "projekttraeger",
+        "name": "Antragsteller und Projekttraeger",
+        "pflicht": true,
+        "leitfragen": [
+          "Wer ist rechtsfaehiger Antragsteller (Schule, Foerderverein, Verein)?",
+          "Welche Erfahrung hat der Traeger im Umwelt-/Naturschutz oder in der Umweltbildung?",
+          "Wer ist die verantwortliche Ansprechperson fuer das Projekt?"
+        ],
+        "stilhinweis": "Sachlich und knapp; Rechtsform und Vertretungsberechtigung eindeutig benennen."
+      },
+      {
+        "id": "projektidee-ziele",
+        "name": "Projektidee und Ziele",
+        "pflicht": true,
+        "leitfragen": [
+          "Welches konkrete Umwelt-, Natur- oder Klimaschutzziel verfolgt das Vorhaben?",
+          "Worin liegt der beispielhafte Charakter und die oeffentliche Wirkung?",
+          "Welche messbaren Ergebnisse sollen erreicht werden?"
+        ],
+        "stilhinweis": "Konkret und anschaulich; den beispielhaften und oeffentlichen Charakter klar herausstellen."
+      },
+      {
+        "id": "massnahmen-zeitplan",
+        "name": "Geplante Massnahmen und Zeitplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche einzelnen Massnahmen werden umgesetzt und in welcher Reihenfolge?",
+          "Handelt es sich um ein einjaehriges oder mehrjaehriges Projekt?",
+          "Welche Meilensteine und Zeitfenster sind vorgesehen?"
+        ],
+        "stilhinweis": "Als nachvollziehbarer Arbeitsplan mit Terminen darstellen."
+      },
+      {
+        "id": "umweltbildung-wirkung",
+        "name": "Umweltbildung und Naturschutzwirkung",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie werden Kinder/Jugendliche aktiv eingebunden (Lernort, Mitmachen)?",
+          "Welcher konkrete Naturschutz- oder Klimaschutzeffekt entsteht praktisch?",
+          "Wie wird das Vorhaben in die Oeffentlichkeit/Schulgemeinschaft getragen?"
+        ],
+        "stilhinweis": "Praktischen Naturschutznutzen und Bildungswirkung gleichgewichtig belegen."
+      },
+      {
+        "id": "finanzierungsplan",
+        "name": "Finanzierungsplan und Eigenanteil",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie setzen sich die Gesamtkosten aus Honorar- und Sachkosten zusammen?",
+          "Wie wird der Eigenanteil von mindestens 10 Prozent erbracht (finanziell, Eigenleistung, Drittmittel)?",
+          "Sind ausgeschlossene Positionen (Technik/Bau, institutionelle Kosten) sauber ausgeklammert?"
+        ],
+        "stilhinweis": "Verbindlicher, rechnerisch schluessiger Plan; jede Position dem Projekt zuordnen."
+      },
+      {
+        "id": "nachhaltigkeit",
+        "name": "Nachhaltigkeit und Verstetigung",
+        "pflicht": false,
+        "leitfragen": [
+          "Was bleibt nach Projektende dauerhaft bestehen?",
+          "Wer pflegt/betreut die geschaffenen Strukturen (z.B. Garten, Hecke, Nistkaesten)?",
+          "Laesst sich das Vorhaben uebertragen oder fortfuehren?"
+        ],
+        "stilhinweis": "Glaubhaft machen, dass die Wirkung ueber die Foerderdauer hinaus traegt."
+      }
+    ],
+    "anlagen": [
+      "Ausgefuelltes Antragsformular (einjaehrig oder mehrjaehrig, Stand 2024)",
+      "Detaillierte Projektbeschreibung",
+      "Verbindlicher Finanzierungsplan",
+      "Nachweis/Aufstellung der Eigenleistungen (gemaess SUNK-Uebersicht)",
+      "Ausgefuellte Checkliste zur Antragsstellung"
+    ],
+    "einreichungsweg": "Postalische Einreichung des unterschriebenen Antrags mit Anlagen bei der SUNK-Geschaeftsstelle; vorab Anfrage/Beratung ueber das Online-Formular Anfrage zur Projektfoerderung oder per E-Mail an hieckmann@sunk-lsa.de empfohlen.",
+    "bearbeitungsdauer": "keine feste Frist; laufende Bearbeitung, daher ausreichend Vorlauf vor Projektbeginn einplanen"
+  },
+  "notizen": [
+    "Antraege jederzeit moeglich (rolling) - vor Projektbeginn stellen, da kein rueckwirkender Foerderbeginn.",
+    "Reine Technik-/Bauloesungen und institutionelle Aufwendungen sind ausgeschlossen - Vorhaben als praktisches Naturschutz-/Umweltbildungsprojekt formulieren.",
+    "Foerderrichtlinie (Mai 2024), FAQ und Checkliste der SUNK vor Antragstellung lesen; aktuelle Hoechstgrenze und Eigenanteil dort verifizieren."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Beispielhaften und oeffentlichen Charakter betonen",
+      "was_funktionierte": "Antraege, die zeigen, dass das Projekt oeffentlich sichtbar ist und Nachahmer findet (z.B. oeffentlicher Lerngarten, Pflanzaktion mit Schulgemeinschaft), trafen den Foerderzweck praezise.",
+      "warum": "Die SUNK foerdert ausdruecklich beispielhafte und oeffentliche Vorhaben, nicht rein interne Massnahmen."
+    },
+    {
+      "thema": "Praktischen Naturschutznutzen konkret machen",
+      "was_funktionierte": "Konkrete Mengen und Massnahmen (z.B. Anzahl Obstbaeume, Laufmeter Benjeshecke, Anzahl Nistkaesten) statt allgemeiner Absichtserklaerungen.",
+      "warum": "Die Stiftung priorisiert praktische Naturschutz- und Klimaschutzmassnahmen mit greifbarem Ergebnis."
+    },
+    {
+      "thema": "Eigenleistung sauber nachweisen",
+      "was_funktionierte": "Ehrenamtliche Arbeitsstunden und Sachleistungen wurden gemaess der SUNK-Uebersicht zum Nachweis von Eigenleistungen kalkuliert und im Finanzierungsplan ausgewiesen.",
+      "warum": "Der 10-Prozent-Eigenanteil ist Pflicht; ein belegbarer Nachweis verhindert Rueckfragen und Kuerzungen."
+    },
+    {
+      "thema": "Umweltbildung mit Zielgruppe verzahnen",
+      "was_funktionierte": "Projekte, die Kinder und Jugendliche aktiv einbinden (Mitmach-Aktion, Lernort Schulgarten), verbanden Naturschutz und Bildung ueberzeugend.",
+      "warum": "Umweltbildungsarbeit mit Kindern/Jugendlichen ist ein erklaerter Foerderschwerpunkt der SUNK."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Antrag enthaelt ueberwiegend bautechnische oder technische Investitionen",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Vorhaben als praktisches Naturschutz-/Umweltbildungsprojekt mit Honorar- und Sachkosten anlegen; bauliche/technische Teile aussparen oder anderweitig finanzieren."
+    },
+    {
+      "grund": "Fehlender oder nicht nachgewiesener Eigenanteil von 10 Prozent",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Eigenanteil (finanziell oder als belegte Eigenleistung) von Beginn an im Finanzierungsplan ausweisen."
+    },
+    {
+      "grund": "Vorhaben ist rein institutionell/intern ohne oeffentliche Wirkung",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Oeffentlichen, beispielhaften Charakter und Sichtbarkeit des Projekts klar darstellen."
+    },
+    {
+      "grund": "Antrag erst nach Projektbeginn gestellt",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Da kein rueckwirkender Foerderbeginn moeglich ist, Antrag rechtzeitig vor Massnahmenbeginn einreichen."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "projektidee-ziele",
+      "formulierung": "Mit dem Projekt 'Lernort Schulgarten' schaffen wir auf dem oeffentlich zugaenglichen Schulgelaende einen dauerhaften, naturnahen Lebensraum, der zugleich als praktischer Lernort fuer Umweltbildung dient und beispielhaft fuer weitere Schulen im Landkreis wirken soll.",
+      "kontext": "Eroeffnung, verbindet oeffentlichen Charakter, Naturschutz und Bildung"
+    },
+    {
+      "abschnitt_id": "umweltbildung-wirkung",
+      "formulierung": "Die Schuelerinnen und Schueler legen in begleiteten Aktionswochen gemeinsam eine 40 Meter lange Benjeshecke an, bauen 15 Nistkaesten und dokumentieren die Ansiedlung von Vogel- und Insektenarten - so wird praktischer Artenschutz unmittelbar erlebbar.",
+      "kontext": "verzahnt messbare Naturschutzwirkung mit aktiver Einbindung der Zielgruppe"
+    },
+    {
+      "abschnitt_id": "finanzierungsplan",
+      "formulierung": "Die Gesamtkosten von 6.000 EUR setzen sich aus Honorarkosten fuer die umweltpaedagogische Begleitung (2.400 EUR) und Sachkosten fuer Pflanzen und Material (3.600 EUR) zusammen; den Eigenanteil von 10 Prozent (600 EUR) erbringen wir durch ehrenamtliche Arbeitsstunden gemaess der Eigenleistungsuebersicht.",
+      "kontext": "trennt foerderfaehige Honorar-/Sachkosten und weist Eigenanteil belegbar aus"
+    },
+    {
+      "abschnitt_id": "nachhaltigkeit",
+      "formulierung": "Nach Projektende uebernimmt die Garten-AG der Schule gemeinsam mit dem Foerderverein die dauerhafte Pflege der Anlage, sodass der geschaffene Lebensraum und Lernort ueber die Foerderdauer hinaus erhalten bleibt.",
+      "kontext": "belegt Verstetigung ueber das Projektende hinaus"
+    }
+  ],
+  "fristLogik": {
+    "typ": "rolling"
+  }
+}

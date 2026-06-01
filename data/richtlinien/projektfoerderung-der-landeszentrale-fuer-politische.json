@@ -1,0 +1,267 @@
+{
+  "version": "2026-06-01",
+  "quellen": [
+    "https://lpb.sachsen-anhalt.de/service/foerderung",
+    "https://foerderdatenbank.d-s-e-e.de/foerderprogramme/projektfoerderung-der-landeszentrale-fuer-politische-bildung-sachsen-anhalt",
+    "https://www.foerderdatenbank.de/FDB/Content/DE/Foerderprogramm/Land/Sachsen-Anhalt/massnahmen-politische-bildung.html"
+  ],
+  "foerderhoehe": {
+    "maxProzentGesamtkosten": 60,
+    "bemerkung": "Nicht rueckzahlbarer Zuschuss von bis zu 60 Prozent der zuwendungsfaehigen Ausgaben. Foerderfaehig sind v.a. Honorare fuer Referierende (ca. 70-170 EUR je 90-Minuten-Einheit), Unterkunft und Verpflegung (max. 60 EUR pro Person und Tag bei Uebernachtung), Reisekosten, Kinderbetreuung sowie Verwaltungskosten (bis 10 Prozent, max. 400 EUR). 10 Prozent Eigenanteil des Traegers sind erforderlich, zudem werden Teilnehmerbeitraege als Kostenbeteiligung erwartet."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Honorare fuer externe Referierende/Seminarleitung",
+        "Orientierung an ca. 70-170 EUR je 90-Minuten-Einheit je nach Qualifikation"
+      ],
+      "beispielePasst": [
+        "Honorar fuer Referentin zu Demokratie- und Wahlbildung",
+        "Workshopleitung zu Argumentationstraining gegen Extremismus"
+      ],
+      "beispielePasstNicht": [
+        "Verguetung eigener Lehrkraefte/Mitarbeitender des Traegers"
+      ]
+    },
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Unterkunft und Verpflegung max. 60 EUR pro Person und Tag bei Uebernachtung",
+        "Material- und Veranstaltungskosten direkt projektbezogen"
+      ],
+      "beispielePasst": [
+        "Verpflegung bei einem mehrtaegigen Demokratie-Seminar",
+        "Arbeitsmaterialien fuer einen Planspiel-Workshop"
+      ],
+      "beispielePasstNicht": [
+        "Daueranschaffungen ohne Bezug zur konkreten Massnahme"
+      ]
+    },
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Reisekosten der Teilnehmenden bzw. Referierenden im Rahmen der Massnahme"
+      ],
+      "beispielePasst": [
+        "Fahrtkosten zu einer Gedenkstaettenfahrt",
+        "Anreise einer auswaertigen Referentin"
+      ],
+      "beispielePasstNicht": [
+        "Reisen ohne inhaltlichen Bezug zur politischen Bildung"
+      ]
+    },
+    {
+      "kategorie": "overhead",
+      "foerderfaehig": true,
+      "maxEur": 400,
+      "maxProzent": 10,
+      "bedingungen": [
+        "Verwaltungskosten bis 10 Prozent der zuwendungsfaehigen Ausgaben, hoechstens 400 EUR"
+      ],
+      "beispielePasst": [
+        "Anteilige Verwaltungspauschale fuer die Massnahmenorganisation"
+      ],
+      "beispielePasstNicht": [
+        "Allgemeine Vereinsverwaltung ohne Massnahmenbezug"
+      ]
+    },
+    {
+      "kategorie": "sonstiges",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Kinderbetreuung waehrend der Bildungsmassnahme foerderfaehig"
+      ],
+      "beispielePasst": [
+        "Betreuung fuer Kinder teilnehmender Eltern waehrend eines Tagesseminars"
+      ],
+      "beispielePasstNicht": [
+        "Regulaere Betreuungsangebote ausserhalb der Massnahme"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Investive Anschaffungen sind nicht Gegenstand der Projektfoerderung"
+      ],
+      "beispielePasstNicht": [
+        "Kauf von Technik/Mobiliar fuer die dauerhafte Nutzung"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": true,
+    "mindestProzent": 10,
+    "formenErlaubt": [
+      "finanziell",
+      "drittmittel"
+    ],
+    "bemerkung": "Mindestens 10 Prozent Eigenanteil des Traegers; zusaetzlich werden Teilnehmerbeitraege als Kostenbeteiligung erwartet. Der Zuschuss deckt hoechstens 60 Prozent der zuwendungsfaehigen Ausgaben, die Restfinanzierung ist im Finanzierungsplan nachzuweisen."
+  },
+  "kumulierung": {
+    "erlaubt": "bedingt",
+    "bedingungen": [
+      "Eine Doppelfoerderung derselben Ausgaben durch andere oeffentliche Mittel ist ausgeschlossen",
+      "Gesamtfinanzierung inkl. Drittmittel und Teilnehmerbeitraege ist im Finanzierungsplan offenzulegen"
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "traeger-und-antragsteller",
+        "name": "Traeger und Antragsberechtigung",
+        "pflicht": true,
+        "leitfragen": [
+          "Wer ist der gemeinnuetzige Traeger mit Sitz in Sachsen-Anhalt (z.B. Foerderverein der Schule)?",
+          "Welche satzungsgemaessen Zwecke begruenden die Eignung als Traeger politischer Bildung?",
+          "Liegen Freistellungsbescheid und Vertretungsberechtigung vor?"
+        ],
+        "stilhinweis": "Sachlich und nachweisorientiert; Gemeinnuetzigkeit und Sitz klar belegen."
+      },
+      {
+        "id": "vorhaben-und-bildungsziel",
+        "name": "Vorhaben und Bildungsziel der politischen Bildung",
+        "pflicht": true,
+        "leitfragen": [
+          "Welches konkrete Format (Seminar, Workshop, Vortrag, Ausstellung, Planspiel) ist geplant?",
+          "Welches Ziel der politischen Bildung wird verfolgt (z.B. Demokratiekompetenz, Extremismuspraevention)?",
+          "Warum ist das Vorhaben aktuell und relevant fuer die Zielgruppe?"
+        ],
+        "stilhinweis": "Bildungsziel und politischer Bildungsgehalt klar herausarbeiten, nicht nur Ablauf beschreiben."
+      },
+      {
+        "id": "zielgruppe-und-teilnehmende",
+        "name": "Zielgruppe und Teilnehmende",
+        "pflicht": true,
+        "leitfragen": [
+          "Wer nimmt teil und wie wird die Mindestzahl von 10 Teilnehmenden erreicht?",
+          "Wie wird sichergestellt, dass Teilnehmende ihren Wohn- oder Arbeitsort in Sachsen-Anhalt haben?",
+          "Wie werden Teilnehmende gewonnen und angesprochen?"
+        ],
+        "stilhinweis": "Teilnehmerzahl und Landesbezug konkret und ueberpruefbar darstellen."
+      },
+      {
+        "id": "ablauf-und-durchfuehrung",
+        "name": "Ablauf und Durchfuehrung",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie ist der zeitliche und inhaltliche Ablauf der Massnahme gegliedert?",
+          "Wer fuehrt die Massnahme durch (Referierende, Qualifikation)?",
+          "Wann und wo findet die Massnahme statt?"
+        ],
+        "stilhinweis": "Programm nachvollziehbar takten; Bezug zwischen Inhalten und Bildungsziel zeigen."
+      },
+      {
+        "id": "kosten-und-finanzierungsplan",
+        "name": "Kosten- und Finanzierungsplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche zuwendungsfaehigen Ausgaben fallen je Position an (Honorare, Unterkunft/Verpflegung, Reise, Kinderbetreuung, Verwaltung)?",
+          "Wie setzt sich die Finanzierung aus Zuschuss (max. 60 Prozent), Eigenanteil (min. 10 Prozent), Teilnehmerbeitraegen und Drittmitteln zusammen?",
+          "Sind die Hoechstgrenzen (60 EUR/Person/Tag, Verwaltung max. 400 EUR) eingehalten?"
+        ],
+        "stilhinweis": "Rechnerisch schluessig und ausgeglichen; Ausgaben den Foerderpositionen exakt zuordnen."
+      },
+      {
+        "id": "wirkung-und-nachhaltigkeit",
+        "name": "Wirkung und Verstetigung",
+        "pflicht": false,
+        "leitfragen": [
+          "Welche Wirkung soll die Massnahme bei den Teilnehmenden erzielen?",
+          "Wie wird der Erfolg erkennbar (z.B. Feedback, Folgeaktivitaeten)?",
+          "Gibt es Ankniipfungspunkte fuer eine Fortfuehrung?"
+        ],
+        "stilhinweis": "Realistisch und massnahmenbezogen; keine ueberzogenen Versprechen."
+      }
+    ],
+    "anlagen": [
+      "Antrag auf Zuwendung (Formular, ca. 3 Seiten)",
+      "Satzung des Traegers",
+      "Liste der Vorstandsmitglieder / Vertretungsberechtigung",
+      "Freistellungsbescheid / Nachweis der Gemeinnuetzigkeit",
+      "Detaillierter Kosten- und Finanzierungsplan der Massnahme",
+      "Erklaerung zum Vorsteuerabzug",
+      "ggf. ANBest-P bzw. ANBest-GK als Nebenbestimmungen"
+    ],
+    "einreichungsweg": "Schriftlicher Antrag per Post an die Landeszentrale fuer politische Bildung Sachsen-Anhalt, Leiterstrasse 2, 39104 Magdeburg; Rueckfragen per E-Mail an lpb@sachsen-anhalt.de.",
+    "bearbeitungsdauer": "Antrag spaetestens 6 Wochen vor Massnahmenbeginn einreichen"
+  },
+  "notizen": [
+    "Schulen selbst sind in der Regel keine eigenstaendige juristische Person; Antragstellung praktisch ueber den gemeinnuetzigen Foerderverein der Schule mit Sitz in Sachsen-Anhalt.",
+    "Massnahmen mit weniger als 10 Teilnehmenden werden nicht gefoerdert.",
+    "Teilnehmende muessen ihren Wohn- oder Arbeitsort in Sachsen-Anhalt haben."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Politischen Bildungsgehalt klar herausarbeiten",
+      "was_funktionierte": "Das Vorhaben wurde explizit als Beitrag zur Demokratiebildung bzw. Extremismuspraevention dargestellt, nicht als allgemeine Freizeit- oder Projektwoche.",
+      "warum": "Die Foerderung ist zweckgebunden auf politische Bildung; Antraege ohne erkennbaren Bildungsgehalt fallen durch das Raster."
+    },
+    {
+      "thema": "Mindestteilnehmerzahl und Landesbezug belegen",
+      "was_funktionierte": "Im Antrag wurde nachvollziehbar dargelegt, dass mindestens 10 Teilnehmende mit Wohn- oder Arbeitsort in Sachsen-Anhalt gewonnen werden.",
+      "warum": "Beide Kriterien sind harte Foerdervoraussetzungen; ohne Nachweis ist die Bewilligung ausgeschlossen."
+    },
+    {
+      "thema": "Ausgeglichener Finanzierungsplan mit Eigenanteil",
+      "was_funktionierte": "Der Plan wies den 60-Prozent-Zuschuss, mindestens 10 Prozent Eigenanteil sowie Teilnehmerbeitraege getrennt aus und hielt die Hoechstgrenzen ein.",
+      "warum": "Ein schluessiger, ausgeglichener Finanzierungsplan unter Einhaltung der Saetze ist Pruefkern jeder Bewilligung."
+    },
+    {
+      "thema": "Antrag rechtzeitig vor Massnahmenbeginn",
+      "was_funktionierte": "Der Antrag ging mehr als 6 Wochen vor Veranstaltungsbeginn vollstaendig mit allen Anlagen ein.",
+      "warum": "Vorzeitiger Massnahmenbeginn oder verspaeteter Antrag fuehrt regelmaessig zur Ablehnung."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Kein erkennbarer Bezug zur politischen Bildung (reine Freizeit-, Kultur- oder Klassenfahrt)",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Bildungsziel und politischen Bildungsgehalt der Massnahme explizit und nachpruefbar formulieren."
+    },
+    {
+      "grund": "Weniger als 10 Teilnehmende oder fehlender Landesbezug der Teilnehmenden",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Teilnehmerzahl und Wohn-/Arbeitsort in Sachsen-Anhalt vorab sichern und im Antrag belegen."
+    },
+    {
+      "grund": "Massnahme begonnen, bevor der Bewilligungsbescheid vorlag, oder Antrag zu spaet",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Antrag mindestens 6 Wochen vorher stellen und Beginn erst nach Bewilligung einplanen."
+    },
+    {
+      "grund": "Unvollstaendiger oder nicht ausgeglichener Finanzierungsplan ohne Eigenanteil",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Kosten- und Finanzierungsplan vollstaendig, ausgeglichen und mit ausgewiesenem Eigenanteil von mindestens 10 Prozent einreichen."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "vorhaben-und-bildungsziel",
+      "formulierung": "Mit dem zweitaegigen Seminar Demokratie gestalten staerken wir die politische Urteils- und Handlungsfaehigkeit Jugendlicher und vermitteln in Planspielen, wie demokratische Entscheidungsprozesse funktionieren.",
+      "kontext": "Macht den politischen Bildungsgehalt sofort sichtbar."
+    },
+    {
+      "abschnitt_id": "zielgruppe-und-teilnehmende",
+      "formulierung": "An der Massnahme nehmen 18 Schuelerinnen und Schueler der Sekundarstufe teil, die saemtlich ihren Wohnort in Sachsen-Anhalt haben; die Mindestteilnehmerzahl von 10 wird damit sicher erreicht.",
+      "kontext": "Adressiert die harten Kriterien Mindestzahl und Landesbezug direkt."
+    },
+    {
+      "abschnitt_id": "kosten-und-finanzierungsplan",
+      "formulierung": "Die zuwendungsfaehigen Ausgaben betragen 3.000 EUR; beantragt wird ein Zuschuss von 60 Prozent (1.800 EUR), die verbleibenden 1.200 EUR werden durch einen Eigenanteil von 300 EUR und Teilnehmerbeitraege von 900 EUR gedeckt.",
+      "kontext": "Zeigt einen ausgeglichenen Plan unter Einhaltung der 60-Prozent-Grenze."
+    },
+    {
+      "abschnitt_id": "traeger-und-antragsteller",
+      "formulierung": "Antragsteller ist der gemeinnuetzige Foerderverein der Schule mit Sitz in Sachsen-Anhalt; der Freistellungsbescheid des Finanzamts liegt bei und die satzungsgemaessen Zwecke umfassen die Foerderung der politischen Bildung.",
+      "kontext": "Belegt Antragsberechtigung und Gemeinnuetzigkeit."
+    }
+  ],
+  "fristLogik": {
+    "typ": "rolling"
+  }
+}

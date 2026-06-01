@@ -2,7 +2,7 @@
   "generatedAt": "2026-04-27T10:09:58.688Z",
   "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
   "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
-  "total": 142,
+  "total": 155,
   "items": [
     {
       "programmId": "kfw-erp-digitalisierung",
@@ -1421,6 +1421,124 @@
       "reichweite": "DE-BW",
       "infoLink": "https://vector-stiftung.de/foerderbereiche/",
       "score": 60,
+      "status": "done"
+    },
+    {
+      "programmId": "niedersaechsische-bingo-umweltstiftung-bingo-die",
+      "name": "Niedersaechsische Bingo-Umweltstiftung (BINGO! Die Umweltlotterie)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 30000,
+      "reichweite": "DE-NI",
+      "infoLink": "https://www.bingo-umweltstiftung.de/wie-stelle-ich-einen-antrag-2/",
+      "score": 75,
+      "status": "done"
+    },
+    {
+      "programmId": "projektfoerderung-dieter-schwarz-stiftung",
+      "name": "Projektfoerderung Dieter Schwarz Stiftung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 0,
+      "reichweite": "DE-BW",
+      "infoLink": "https://www.dieter-schwarz-stiftung.de/antrag.html",
+      "score": 60,
+      "status": "done"
+    },
+    {
+      "programmId": "projektfoerderung-der-landeszentrale-fuer-politische",
+      "name": "Projektfoerderung der Landeszentrale fuer politische Bildung Sachsen-Anhalt (LpB LSA)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 0,
+      "reichweite": "DE-ST",
+      "infoLink": "https://lpb.sachsen-anhalt.de/service/foerderung",
+      "score": 58,
+      "status": "done"
+    },
+    {
+      "programmId": "saarlaendischer-schulpreis",
+      "skipReason": "Reine Auszeichnung/Jury-Wettbewerb fuer bereits geleistete ganzheitliche Schul- und Unterrichtsentwicklung. Schulen reichen eine Selbstdarstellung ihrer bestehenden Qualitaet in sechs Qualitaetsbereichen ein, danach 1,5-taegiger Jury-Schulbesuch. Das Preisgeld (Hauptpreis 10.000 EUR plus bis zu drei weitere Preise) ist eine Praemie fuer geleistete Arbeit, NICHT zweckgebundene Projektfoerderung fuer ein konkret beantragtes Vorhaben. Damit kein Antrags-Wizard-Fall (keine projektgebundene Foerderung).",
+      "name": "saarlaendischer-schulpreis",
+      "status": "skip"
+    },
+    {
+      "programmId": "saechsischer-schulgartenwettbewerb-aus-grau-macht",
+      "name": "Saechsischer Schulgartenwettbewerb AUS GRAU MACHT GRUEN",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 2500,
+      "reichweite": "DE-SN",
+      "infoLink": "https://www.schulgarten.sachsen.de/schulgartenwettbewerb.htm",
+      "score": 64,
+      "status": "done"
+    },
+    {
+      "programmId": "schulpreis-demokratie-und-werte-er",
+      "skipReason": "Reine Auszeichnung / Jury-Wettbewerb. Das Bewerbungsverfahren ist eine Selbsteinschaetzung zum Ist-Stand der bereits geleisteten Demokratie- und Wertebildung; die Jury kuert sieben Schulen, die diese Arbeit \"besonders fest im Schulalltag verankert haben\". Das Preisgeld (2.000 EUR je Schule) ist ein nicht zweckgebundenes Preisgeld fuer bereits geleistete Arbeit, keine projektgebundene Antragsfoerderung mit Mittelverwendungsnachweis. Faellt unter Skip-Kriterium \"reine Ehrung/Preis fuer bereits geleistete Arbeit\".",
+      "name": "schulpreis-demokratie-und-werte-er",
+      "status": "skip"
+    },
+    {
+      "programmId": "stiftung-berliner-sparkasse-projektfoerderung",
+      "name": "Stiftung Berliner Sparkasse - Projektfoerderung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 0,
+      "reichweite": "DE-BE",
+      "infoLink": "https://www.stiftung-berliner-sparkasse.de/",
+      "score": 62,
+      "status": "done"
+    },
+    {
+      "programmId": "stiftung-polytechnische-gesellschaft-projektfoerderung",
+      "name": "Stiftung Polytechnische Gesellschaft - Projektfoerderung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 100000,
+      "reichweite": "DE-HE",
+      "infoLink": "https://sptg.de/foerderung",
+      "score": 82,
+      "status": "done"
+    },
+    {
+      "programmId": "thueringer-klimaschutzpreis-die-blaue-libelle",
+      "name": "Thueringer Klimaschutzpreis Die blaue Libelle",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "DE-TH",
+      "infoLink": "https://www.klimastiftung-thueringen.de/projekte-foerderung/",
+      "score": 69,
+      "status": "done"
+    },
+    {
+      "programmId": "thueringer-landeswettbewerb-demokratie-schule",
+      "skipReason": "Reiner Jury-Wettbewerb / Auszeichnung fuer bereits geleistete Demokratiebildungs-Projekte. Eingereicht wird eine Dokumentation abgeschlossener Arbeit (PowerPoint, Kurzfilm oder PDF), kein projektgebundenes Antragskonzept. Die Preisgelder (gestaffelt 250-750 EUR, Pool bis 2.500 EUR) sind allgemeine, nicht zweckgebundene Auszeichnungen, keine beantragbare Projektfoerderung mit schriftlichem Foerderantrag. Damit nicht fuer den Antrags-Wizard geeignet (Quellen: bildung.thueringen.de/bildung/politische-bildung/landeswettbewerb und .../wettbewerb).",
+      "name": "thueringer-landeswettbewerb-demokratie-schule",
+      "status": "skip"
+    },
+    {
+      "programmId": "umweltpreis-sachsen-anhalt-sunk-projektfoerderung",
+      "name": "Umweltpreis Sachsen-Anhalt (SUNK) & Projektfoerderung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 20000,
+      "reichweite": "DE-ST",
+      "infoLink": "https://www.foerdersuche.org/foerderung/stiftung-umwelt-natur-klimaschutz-sachsen-anhalt",
+      "score": 75,
+      "status": "done"
+    },
+    {
+      "programmId": "wilo-foundation-bildung-mint-foerderung",
+      "name": "Wilo-Foundation - Bildung (MINT-Foerderung)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 0,
+      "reichweite": "DE-NW",
+      "infoLink": "https://www.wilo-foundation.de/foerderprojekte/bildung-soziales/",
+      "score": 62,
+      "status": "done"
+    },
+    {
+      "programmId": "zukunftsschule-sh-nachhaltigkeitspreisgelder-der-sparkassen",
+      "name": "Zukunftsschule.SH - Nachhaltigkeitspreisgelder der Sparkassen",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 5000,
+      "reichweite": "DE-SH",
+      "infoLink": "https://fachportal.lernnetz.de/sh/themen/zukunftsschule.html",
+      "score": 65,
       "status": "done"
     }
   ]
