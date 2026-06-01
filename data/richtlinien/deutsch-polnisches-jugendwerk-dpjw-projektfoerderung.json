@@ -1,0 +1,255 @@
+{
+  "version": "2026-06-01",
+  "quellen": [
+    "https://dpjw.org/projektfoerderung/",
+    "https://dpjw.org/foerderkriterien-2026/",
+    "https://dpjw.org/projektf%C3%B6rderung/jugendbegegnungen/",
+    "https://dpjw.org/antrag-stellen/foerdersaetze/"
+  ],
+  "foerderhoehe": {
+    "maxEur": 25000,
+    "bemerkung": "Pauschalfinanzierung pro Teilnehmer und Programmtag (Programmkostenpauschale) plus gestaffelte Reisekostenpauschale; kein Einzelkostennachweis. Max. 25.000 EUR pro Projekt fuer Begegnungen in Deutschland (in Polen max. 90.000 Zloty). 2026 werden die Foerdersaetze nicht in voller Hoehe ausgezahlt, um mehr Projekte foerdern zu koennen; die konkreten Tagessaetze stehen im PDF DPJW-Foerdersaetze 2026."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Programmkostenpauschale pro Teilnehmer und Programmtag",
+        "Begegnung mind. 4 und hoechstens 28 Tage gemeinsames Programm",
+        "ausgewogenes Verhaeltnis deutscher und polnischer Teilnehmer (max. 2:3)"
+      ],
+      "beispielePasst": [
+        "Unterkunft und Verpflegung waehrend der Begegnung",
+        "gemeinsame Programmaktivitaeten, Exkursionen, Workshops"
+      ],
+      "beispielePasstNicht": [
+        "rein touristische oder kommerzielle Vorhaben",
+        "Au-Pair-Aufenthalte"
+      ]
+    },
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Reisekostenpauschale gestaffelt nach Entfernung",
+        "Berechnung ueber den DPJW-Reisekostenrechner"
+      ],
+      "beispielePasst": [
+        "Anreise der Gruppe zum Begegnungsort",
+        "Hin- und Rueckfahrt zwischen Partnerschulen"
+      ],
+      "beispielePasstNicht": [
+        "Reisen ohne deutsch-polnischen Begegnungsbezug"
+      ]
+    },
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Sprachmittlung/Dolmetschen im Rahmen der Begegnung foerderfaehig",
+        "Saetze laut Foerdersaetze-Tabelle 2026"
+      ],
+      "beispielePasst": [
+        "Sprachmittler/Dolmetscher fuer die Begegnung",
+        "Honorar fuer projektbezogene Workshops"
+      ],
+      "beispielePasstNicht": [
+        "dauerhafte Beschaeftigung ausserhalb des Projekts"
+      ]
+    },
+    {
+      "kategorie": "personal",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Personalkosten sind explizit von der Foerderung ausgeschlossen"
+      ],
+      "beispielePasstNicht": [
+        "Gehaelter von Lehrkraeften oder Vereinsangestellten",
+        "laufende Personalstellen"
+      ]
+    },
+    {
+      "kategorie": "sonstiges",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Vor- und Nachbereitungstreffen der Projektpartner foerderfaehig",
+        "besondere Programme (Wege zur Erinnerung, MINT) mit eigenen Saetzen"
+      ],
+      "beispielePasst": [
+        "Vorbereitungstreffen der betreuenden Lehrkraefte",
+        "thematische Schwerpunkte wie Erinnerungskultur oder MINT"
+      ],
+      "beispielePasstNicht": [
+        "Vorhaben mit Teilnehmern aus vier oder mehr Laendern"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": true,
+    "formenErlaubt": [
+      "finanziell",
+      "drittmittel"
+    ],
+    "bemerkung": "Die DPJW-Pauschalen decken die Projektkosten in der Regel nicht vollstaendig; 2026 werden die Saetze zudem nicht in voller Hoehe ausgezahlt. Ein Eigen- bzw. Teilnehmerbeitrag oder Drittmittel zur Deckungsluecke sind daher praktisch erforderlich."
+  },
+  "kumulierung": {
+    "erlaubt": "bedingt",
+    "bedingungen": [
+      "Kombination mit anderen Geldgebern grundsaetzlich moeglich",
+      "einzelne dokumentierte Ausnahmen beachten",
+      "keine Doppelfoerderung derselben Kostenposition"
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "projektpartner",
+        "name": "Projektpartner und Antragsteller",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche deutsche Schule/Einrichtung und welche polnische Partnerschule fuehren die Begegnung durch?",
+          "Besteht eine etablierte oder neue Schulpartnerschaft?",
+          "Wer reicht den gemeinsamen Antrag ueber OASE ein und liegen die Bestaetigungen beider Partner vor?"
+        ],
+        "stilhinweis": "Sachlich und konkret die Partnerstruktur und Rollenverteilung benennen."
+      },
+      {
+        "id": "projektidee",
+        "name": "Projektidee und paedagogisches Konzept",
+        "pflicht": true,
+        "leitfragen": [
+          "Welches Thema und welche Lernziele verfolgt die Begegnung?",
+          "Wie wird der deutsch-polnische Austausch und das gemeinsame Lernen konkret gestaltet?",
+          "Welche Methoden (Workshops, Exkursionen, Sprachanimation) kommen zum Einsatz?"
+        ],
+        "stilhinweis": "Den interkulturellen Mehrwert und das gemeinsame Programm in den Vordergrund stellen."
+      },
+      {
+        "id": "teilnehmer",
+        "name": "Teilnehmende und Begegnungsstruktur",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie viele Jugendliche je Seite nehmen teil (Verhaeltnis max. 2:3, Alter 12-26)?",
+          "Wie lange dauert die Begegnung (4 bis 28 Tage)?",
+          "Wie ist die Betreuung organisiert (Betreuerschluessel)?"
+        ],
+        "stilhinweis": "Zahlen und Altersstruktur praezise angeben, ausgewogenes Verhaeltnis belegen."
+      },
+      {
+        "id": "programmplan",
+        "name": "Programmverlauf und Zeitplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie sieht der Tagesablauf der gemeinsamen Programmtage aus?",
+          "Welche Aktivitaeten foerdern Begegnung und Spracherwerb?",
+          "Wann finden Vor- und ggf. Nachbereitung statt?"
+        ],
+        "stilhinweis": "Konkreten, realistisch getakteten Programmplan mit gemeinsamen Aktivitaeten darstellen."
+      },
+      {
+        "id": "finanzplan",
+        "name": "Finanzplan und Pauschalen",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie verteilen sich Programmkosten- und Reisekostenpauschale?",
+          "Welche Sprachmittlungskosten fallen an?",
+          "Wie wird die Deckungsluecke (Eigen-/Teilnehmerbeitrag, Drittmittel) geschlossen?"
+        ],
+        "stilhinweis": "Pauschalen nutzen statt Einzelnachweise; Deckungsluecke transparent ausweisen."
+      },
+      {
+        "id": "nachhaltigkeit",
+        "name": "Wirkung und Nachhaltigkeit",
+        "pflicht": false,
+        "leitfragen": [
+          "Wie wird die Schulpartnerschaft langfristig verstetigt (z.B. Gegenbesuch)?",
+          "Wie werden Ergebnisse dokumentiert und kommuniziert?"
+        ],
+        "stilhinweis": "Den Beitrag zur dauerhaften deutsch-polnischen Verstaendigung herausstellen."
+      }
+    ],
+    "anlagen": [
+      "Bestaetigung des polnischen Partners",
+      "Teilnehmerliste/Gruppenangaben",
+      "Programm-/Zeitplan",
+      "ggf. Bestaetigung weiterer Foerdermittel"
+    ],
+    "einreichungsweg": "Ausschliesslich online ueber das OASE-Portal des DPJW; gemeinsamer Antrag beider Partner, mind. 3 Monate vor Projektbeginn.",
+    "bearbeitungsdauer": "Foerderfaehige Antraege bis 31.03.2026 sind garantiert gefoerdert; Bescheid nach Pruefung durch die zustaendige Zentralstelle."
+  },
+  "notizen": [
+    "Zustaendig: Warschau fuer schulischen Austausch, Potsdam fuer ausserschulischen Austausch.",
+    "Schulen koennen selbst oder ueber Foerderverein/Zentralstelle beantragen.",
+    "Konkrete Tagessaetze nur im PDF DPJW-Foerdersaetze 2026, Reisekosten ueber Reisekostenrechner."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Gemeinsamer Antrag mit polnischem Partner",
+      "was_funktionierte": "Beide Schulen reichen einen abgestimmten gemeinsamen Antrag mit beiderseitigen Bestaetigungen ueber OASE ein.",
+      "warum": "Das DPJW verlangt einen gemeinsamen Antrag mit Bestaetigungen beider Partner; fehlende Partnerbestaetigung ist haeufiger Ablehnungsgrund."
+    },
+    {
+      "thema": "Fruehzeitige Einreichung",
+      "was_funktionierte": "Antrag deutlich mehr als 3 Monate vor Begegnungsbeginn und vor dem 31.03.2026 eingereicht.",
+      "warum": "Antraege vor dem Stichtag sind bei Foerderfaehigkeit garantiert gefoerdert; spaete Antraege riskieren Mittelausschoepfung."
+    },
+    {
+      "thema": "Ausgewogenes Teilnehmerverhaeltnis",
+      "was_funktionierte": "Annaehernd gleiche Teilnehmerzahl je Seite, maximal Verhaeltnis 2:3 eingehalten.",
+      "warum": "Ein ausgewogenes Verhaeltnis ist Foerdervoraussetzung fuer echte Begegnung statt einseitigem Besuch."
+    },
+    {
+      "thema": "Pauschalen sauber kalkulieren",
+      "was_funktionierte": "Programmkosten- und Reisekostenpauschale getrennt ueber den Reisekostenrechner ermittelt und Deckungsluecke realistisch eingeplant.",
+      "warum": "2026 werden Saetze nicht voll ausgezahlt; eine realistische Gegenfinanzierung verhindert Finanzierungsluecken im Projekt."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Personalkosten im Finanzplan veranschlagt",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Personalkosten herausnehmen; nur foerderfaehige Programm-, Reise- und Sprachmittlungskosten ueber Pauschalen ansetzen."
+    },
+    {
+      "grund": "Projekt mit Teilnehmern aus vier oder mehr Laendern",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Bei mehr als drei Laendern stattdessen das trilaterale Programm TRIYOU pruefen statt der bilateralen Foerderung."
+    },
+    {
+      "grund": "Antrag weniger als 3 Monate vor Projektbeginn eingereicht",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Frist von mind. 3 Monaten einhalten und moeglichst vor dem 31.03. einreichen."
+    },
+    {
+      "grund": "Rein touristisches oder kommerzielles Vorhaben ohne Begegnungskonzept",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Klares paedagogisches Begegnungs- und Lernkonzept mit gemeinsamem Programm darstellen."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "projektidee",
+      "formulierung": "Im Zentrum der Begegnung steht ein gemeinsam erarbeitetes Projekt zur Erinnerungskultur, bei dem deutsche und polnische Jugendliche in gemischten Teams Zeitzeugengespraeche dokumentieren und so Sprachbarrieren und Vorurteile abbauen.",
+      "kontext": "Eignet sich fuer thematisch profilierte Begegnungen, auch im Programm Wege zur Erinnerung."
+    },
+    {
+      "abschnitt_id": "teilnehmer",
+      "formulierung": "An der Begegnung nehmen 16 deutsche und 18 polnische Schuelerinnen und Schueler im Alter von 14 bis 16 Jahren teil; das Verhaeltnis von 16:18 wahrt die geforderte Ausgewogenheit von maximal 2:3.",
+      "kontext": "Belegt die Foerdervoraussetzung des ausgewogenen Teilnehmerverhaeltnisses."
+    },
+    {
+      "abschnitt_id": "finanzplan",
+      "formulierung": "Die Foerderung wird ueber die Programmkostenpauschale fuer 7 Programmtage und die entfernungsabhaengige Reisekostenpauschale beantragt; die verbleibende Deckungsluecke wird durch einen Teilnehmerbeitrag von 40 EUR sowie Mittel des Foerdervereins getragen.",
+      "kontext": "Zeigt Pauschal-Logik plus transparente Gegenfinanzierung der 2026 reduzierten Saetze."
+    },
+    {
+      "abschnitt_id": "programmplan",
+      "formulierung": "Der Programmplan sieht taeglich gemeinsame deutsch-polnische Aktivitaeten vor, beginnend mit Sprachanimation am Vormittag und gemeinsamen Workshops sowie Exkursionen am Nachmittag, sodass an allen 7 Tagen gemeinsames Programm stattfindet.",
+      "kontext": "Erfuellt die Anforderung gemeinsamer Programmtage waehrend der gesamten Begegnung."
+    }
+  ],
+  "fristLogik": {
+    "typ": "rolling"
+  }
+}

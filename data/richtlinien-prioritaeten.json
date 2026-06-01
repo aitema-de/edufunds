@@ -2,7 +2,7 @@
   "generatedAt": "2026-04-27T10:09:58.688Z",
   "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
   "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
-  "total": 82,
+  "total": 94,
   "items": [
     {
       "programmId": "kfw-erp-digitalisierung",
@@ -862,6 +862,114 @@
       "score": 12,
       "status": "skip",
       "skipReason": "Die FIRST-LEGO-League-\"Förderung\" (inkl. \"Digitale Schule Sachsen\", koordiniert von HANDS on TECHNOLOGY e.V.) ist eine reine Sachleistungs-/Sponsoring-Förderung: Schulen/Klassen erhalten ein Klassenpaket (~2.000 EUR Wert) mit LEGO-Robotik-Sets (MINDSTORMS/SPIKE Prime), Spielfeldern, Saison- und Unterrichtsmaterialien sowie die Übernahme der Teilnahmegebühr — kein frei verwendbarer Geldzuschuss und kein Preisgeld. Die \"Bewerbung\" erfolgt über ein kurzes Förder-Antragsformular per E-Mail an kh@hands-on-technology.org (Belege: first-lego-league.org/en/support/funding-opportunities; mitmachfonds-sachsen.de/first-lego-league-klassenprojekt). Es gibt keinen schriftlichen Antragstext/kein Projektkonzept, das eine Fördersumme bestimmt — die Förderung ist die Bereitstellung von Material-/Geräte-Sets plus gedeckter Teilnahmegebühr. Damit greift die Ausschlussregel \"reine Sachleistung (Material-/Geräte-Sets ohne Antragstext)\"; ein KI-Antragsassistent kann keinen fördernden Antragstext beitragen."
+    },
+    {
+      "programmId": "aktions-und-bildungswochen-gegen-antisemitismus",
+      "name": "Aktions- und Bildungswochen gegen Antisemitismus",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 1500,
+      "reichweite": "alle",
+      "infoLink": "https://www.amadeu-antonio-stiftung.de/projektfoerderung/foerderbilanz/",
+      "score": 62,
+      "status": "done"
+    },
+    {
+      "programmId": "allianz-foundation-vormals-allianz-umweltstiftung",
+      "skipReason": "Die fruehere Allianz Umweltstiftung wurde in die neue Allianz Foundation ueberfuehrt (infoLink defunct). Das aktuelle Foerderprogramm schliesst laut offizieller Ausschreibung \"schulische und universitaere Aktivitaeten\" ausdruecklich von der Foerderung aus. Gefoerdert werden grosse, translokale/systemische Zivilgesellschafts-, Klima- und Kulturprojekte (80.000-200.000 EUR, europaweit/Mittelmeerraum) - kein passendes Programm fuer einzelne Schulprojekte, auch nicht ueber einen Foerderverein, da die Aktivitaetskategorie selbst ausgeschlossen ist.",
+      "name": "allianz-foundation-vormals-allianz-umweltstiftung",
+      "status": "skip"
+    },
+    {
+      "programmId": "bildungsagenda-ns-unrecht-foerderperiode-2026",
+      "name": "Bildungsagenda NS-Unrecht (Foerderperiode 2026-2029)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 500000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftung-evz.de/",
+      "score": 87,
+      "status": "done"
+    },
+    {
+      "programmId": "dbu-projektfoerderung-foerderthema-nachhaltigkeitskommunikation-und",
+      "name": "DBU-Projektfoerderung (Foerderthema Nachhaltigkeitskommunikation und -bildung)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 400000,
+      "reichweite": "alle",
+      "infoLink": "https://www.dbu.de/foerderung/projektfoerderung/foerderung-beantragen/",
+      "score": 86,
+      "status": "done"
+    },
+    {
+      "programmId": "deinschulhof-gruene-schulhoefe-bundesinitiative-der",
+      "name": "deinSchulhof / Gruene Schulhoefe (Bundesinitiative DUH & Stiftung Lebendige Stadt)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 20000,
+      "reichweite": "alle",
+      "infoLink": "https://www.duh.de/informieren/natur-und-umwelt-vor-ort/schulhoefe/",
+      "score": 73,
+      "status": "done"
+    },
+    {
+      "programmId": "deutsch-franzoesisches-jugendwerk-dfjw-foerderung",
+      "name": "Deutsch-Franzoesisches Jugendwerk (DFJW) - Foerderung Schulaustausch",
+      "foerdergeberTyp": "sonstige",
+      "foerdersummeMax": 800,
+      "reichweite": "alle",
+      "infoLink": "https://www.dfjw.org/programme-aus-und-fortbildungen/zuschuesse-fuer-einen-schulaustausch-beantragen",
+      "score": 52,
+      "status": "done"
+    },
+    {
+      "programmId": "deutsch-griechisches-jugendwerk-dgjw-foerderung",
+      "name": "Deutsch-Griechisches Jugendwerk (DGJW) - Foerderung Schulbegegnungen",
+      "foerdergeberTyp": "sonstige",
+      "foerdersummeMax": 50000,
+      "reichweite": "alle",
+      "infoLink": "https://dgjw-egin.org/antrag-stellen/",
+      "score": 72,
+      "status": "done"
+    },
+    {
+      "programmId": "deutsch-polnisches-jugendwerk-dpjw-projektfoerderung",
+      "name": "Deutsch-Polnisches Jugendwerk (DPJW) - Projektfoerderung Schulaustausch",
+      "foerdergeberTyp": "sonstige",
+      "foerdersummeMax": 25000,
+      "reichweite": "alle",
+      "infoLink": "https://dpjw.org/projektfoerderung/",
+      "score": 69,
+      "status": "done"
+    },
+    {
+      "programmId": "deutsche-bahn-stiftung-jaehrliche-foerderausschreibung",
+      "name": "Deutsche Bahn Stiftung - Jaehrliche Foerderausschreibung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 15000,
+      "reichweite": "alle",
+      "infoLink": "https://www.deutschebahnstiftung.de/dbs/foerderung",
+      "score": 72,
+      "status": "done"
+    },
+    {
+      "programmId": "deutscher-lehrkraeftepreis-unterricht-innovativ",
+      "skipReason": "Reine Auszeichnung/Jury-Wettbewerb fuer bereits durchgefuehrte Unterrichtsprojekte (Projekt muss in den letzten zwei Schuljahren bereits stattgefunden haben). Es werden einzelne Lehrkraefte fuer geleistete Arbeit geehrt (Selbst- oder Schueler-Nominierung), keine projektgebundene Antrags-Foerderung fuer ein konkretes geplantes Vorhaben. Preisgeld (2.000/1.500/1.000 EUR fuer Platz 1-3) ist Ehrung fuer Vergangenes, kein beantragbarer Zuschuss; Rechtsweg ausgeschlossen. Antragsteller sind Personen, nicht Schule/Foerderverein. Passt damit nicht zum Antrags-Wizard.",
+      "name": "deutscher-lehrkraeftepreis-unterricht-innovativ",
+      "status": "skip"
+    },
+    {
+      "programmId": "deutscher-lesepreis",
+      "skipReason": "Reine Jury-Auszeichnung fuer bereits geleistete Arbeit: Das Projekt muss in 2025/2026 bereits umgesetzt worden sein, beworben wird abgeschlossenes Engagement. Das Preisgeld (Schul-Kategorie 4.500 EUR) ist ein Ehrungsbetrag, keine projektgebundene Antrags-Foerderung fuer ein konkretes kuenftiges Vorhaben. Damit Skip-Kriterium 'reiner Preis/Wettbewerb ohne projektgebundene Foerderung' erfuellt (Bedingung b nicht gegeben).",
+      "name": "deutscher-lesepreis",
+      "status": "skip"
+    },
+    {
+      "programmId": "dsee-mikrofoerderung",
+      "name": "DSEE-Mikrofoerderung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 1500,
+      "reichweite": "alle",
+      "infoLink": "https://www.deutsche-stiftung-engagement-und-ehrenamt.de/foerderung/aktuelle-programme/",
+      "score": 60,
+      "status": "done"
     }
   ]
 }
