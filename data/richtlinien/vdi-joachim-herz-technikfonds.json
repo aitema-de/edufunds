@@ -1,0 +1,252 @@
+{
+  "version": "2026-06-01",
+  "quellen": [
+    "https://www.joachim-herz-stiftung.de/foerdern/ganzjaehrige-ausschreibungen/vdi-joachim-herz-technikfonds",
+    "https://www.vdi.de/netzwerke-aktivitaeten/nachwuchsaktivitaeten/technikfonds",
+    "https://foerderdatenbank.d-s-e-e.de/foerderprogramme/vdi-joachim-herz-technikfonds",
+    "https://schuelerforschungszentren.de/aktuelles/artikel/foerderung-fuer-bildungsinitiativen-und-ausserschulische-lernorte-durch-den-vdi-technikfonds"
+  ],
+  "foerderhoehe": {
+    "maxEur": 3000,
+    "bemerkung": "Bis zu 3.000 EUR Zuschuss pro Technik-Projekt (auf der Schul-Schiene werden teils bis 2.500 EUR genannt). Foerderung als einmaliger Zuschuss, nutzbar ueber einen Zeitraum von bis zu zwei Jahren. Kein Antrags-Mindestbetrag."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": true,
+      "maxEur": 3000,
+      "bedingungen": [
+        "Anschaffungen muessen dem technisch-experimentellen Lernen dienen",
+        "Dauerhafte, nachhaltige Nutzung im Unterricht/Angebot"
+      ],
+      "beispielePasst": [
+        "Laborausstattung",
+        "Roboterbau-Sets",
+        "3D-Drucker",
+        "Experimentierkaesten und Bausaetze"
+      ],
+      "beispielePasstNicht": [
+        "Allgemeine IT-Ausstattung ohne Technik-Bezug",
+        "Moebel"
+      ]
+    },
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Direkter Projektbezug zum Technik-Vorhaben"
+      ],
+      "beispielePasst": [
+        "Verbrauchsmaterial fuer Versuche",
+        "Filament fuer 3D-Druck",
+        "Bauteile fuer aerodynamische Versuche",
+        "Technik-Fachliteratur und Lehr-/Lernmaterial"
+      ],
+      "beispielePasstNicht": [
+        "Bueromaterial ohne Projektbezug"
+      ]
+    },
+    {
+      "kategorie": "personal",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Personalkosten sind ausdruecklich ausgeschlossen"
+      ],
+      "beispielePasstNicht": [
+        "Honorare fuer Lehrkraefte",
+        "Loehne fuer Betreuer"
+      ]
+    },
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Reisen werden nicht gefoerdert"
+      ],
+      "beispielePasstNicht": [
+        "Exkursionsfahrten",
+        "Anreise zu Wettbewerben"
+      ]
+    },
+    {
+      "kategorie": "sonstiges",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Veranstaltungskosten und Mieten sind ausgeschlossen"
+      ],
+      "beispielePasstNicht": [
+        "Raummiete",
+        "Catering",
+        "Eventkosten"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": false,
+    "formenErlaubt": [
+      "finanziell",
+      "sachleistungen",
+      "eigenarbeit",
+      "drittmittel"
+    ],
+    "bemerkung": "Eigenmittel sind nicht zwingend vorgeschrieben. Ein realistischer Finanzierungsplan, der auch Eigen- oder Drittmittel ausweist, wirkt jedoch glaubwuerdig und unterstreicht die Nachhaltigkeit des Vorhabens."
+  },
+  "kumulierung": {
+    "erlaubt": "bedingt",
+    "bedingytions": [],
+    "bedingungen": [
+      "Kombination mit anderen Mitteln moeglich, sofern dieselben Kostenpositionen nicht doppelt finanziert werden",
+      "Im Finanzierungsplan offenlegen, welche Posten der Technikfonds und welche andere Quellen tragen"
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "antragsteller-traeger",
+        "name": "Antragsteller und Traeger",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Schule / Bildungsinitiative / welcher ausserschulische Lernort stellt den Antrag?",
+          "Wer ist die verantwortliche Ansprechperson und die unterzeichnende Leitung?",
+          "Besteht ein gemeinnuetziger bzw. bildungsorientierter Hintergrund?"
+        ],
+        "stilhinweis": "Sachlich und vollstaendig; Kontaktdaten und Leitungsunterschrift nicht vergessen."
+      },
+      {
+        "id": "projektbeschreibung",
+        "name": "Projektbeschreibung",
+        "pflicht": true,
+        "leitfragen": [
+          "Welches konkrete Technik-Projekt soll umgesetzt werden (z.B. Roboterbau, 3D-Druck, Luft- und Raumfahrt)?",
+          "Wie laeuft das Projekt ab und welche Materialien werden benoetigt?",
+          "Findet es im oder ausserhalb des Unterrichts statt?"
+        ],
+        "stilhinweis": "Anschaulich und praxisnah schildern, damit der Vergabeausschuss das Vorhaben bildlich vor sich sieht."
+      },
+      {
+        "id": "technikdidaktisches-konzept",
+        "name": "Technikdidaktisches Konzept und Ziele",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche technikdidaktischen Ziele, Methoden und Verfahren werden umgesetzt?",
+          "Wie weckt das Projekt Spaesz und Interesse an Technik?",
+          "Wie ergaenzt es den regulaeren Unterricht?"
+        ],
+        "stilhinweis": "Den paedagogischen Mehrwert betonen; das didaktische Konzept ist das zentrale Bewertungskriterium."
+      },
+      {
+        "id": "zielgruppe-foerderung",
+        "name": "Zielgruppe und Talentfoerderung",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Schueler:innen (Altersgruppe, Anzahl, Jahrgangsstufen) erreicht das Projekt?",
+          "Wie werden Talente gezielt gefoerdert?",
+          "Inwiefern unterstuetzt das Projekt die Berufswahl- und Studienorientierung?"
+        ],
+        "stilhinweis": "Reichweite und Wirkung auf konkrete Lernende greifbar machen."
+      },
+      {
+        "id": "nachhaltigkeit",
+        "name": "Nachhaltigkeit und dauerhaftes Angebot",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie wird das Projekt ueber die einmalige Foerderung hinaus dauerhaft verankert?",
+          "Wer betreut das Angebot langfristig und wie wird es finanziert?",
+          "Lassen sich angeschaffte Materialien wiederholt einsetzen?"
+        ],
+        "stilhinweis": "Den Fonds ueberzeugt Wiederholbarkeit; einmalige Strohfeuer-Aktionen vermeiden."
+      },
+      {
+        "id": "finanzierungsplan",
+        "name": "Finanzierungs- und Kostenplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Einzelposten umfasst das Vorhaben und was kosten sie konkret?",
+          "Welche Posten sollen aus dem Technikfonds (max. 3.000 EUR) finanziert werden?",
+          "Gibt es Eigen- oder Drittmittel bzw. weitere Foerderungen?"
+        ],
+        "stilhinweis": "Nachvollziehbar, gerundet und realistisch kalkulieren; ausgeschlossene Posten (Personal, Reisen, Miete, Veranstaltungen) gar nicht erst auffuehren."
+      }
+    ],
+    "anlagen": [
+      "Vollstaendig ausgefuelltes und unterschriebenes Antragsformular des VDI",
+      "Detaillierter Kosten-/Finanzierungsplan",
+      "Optional: Angebote/Preisbeispiele zu groesseren Anschaffungen"
+    ],
+    "einreichungsweg": "Elektronisch ausgefuelltes Antragsformular mit Unterschrift ausschliesslich per E-Mail an technikfonds@vdi.de (Ansprechpartnerin: Eva Koeppen, VDI e.V., +49 211 6214-550, koeppen@vdi.de). Ein Vergabeausschuss entscheidet ueber die Bewilligung."
+  },
+  "notizen": [
+    "Allgemeinbildende Schulen sind ausdruecklich antragsberechtigt; ein Foerderverein ist nicht zwingend noetig, kann aber als Traeger auftreten.",
+    "Headline-Betrag 3.000 EUR laut Joachim Herz Stiftung; auf der VDI-Schul-Schiene werden teils 2.500 EUR genannt - Hoechstbetrag im Antrag nicht ueberschreiten.",
+    "Ausschluss von Personal-, Reise-, Miet- und Veranstaltungskosten ist hart - Antrag konsequent auf Material/Geraete ausrichten."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Klares technikdidaktisches Konzept",
+      "was_funktionierte": "Ein Antrag, der konkrete didaktische Ziele, Methoden und Lernschritte benennt (z.B. vom CAD-Entwurf bis zum gedruckten Bauteil), statt nur Materialien aufzulisten.",
+      "warum": "Das technikdidaktische Konzept ist das zentrale Vergabekriterium des Fonds; ohne erkennbare Didaktik wirkt der Antrag wie eine reine Einkaufsliste."
+    },
+    {
+      "thema": "Foerderfaehige Kosten sauber treffen",
+      "was_funktionierte": "Der Kostenplan listete ausschliesslich Geraete und Verbrauchsmaterial (3D-Drucker, Filament, Bausaetze) und vermied jeden Hinweis auf Personal, Reisen oder Miete.",
+      "warum": "Da Personal-, Reise-, Miet- und Veranstaltungskosten ausgeschlossen sind, fuehrt jede solche Position direkt zu Rueckfragen oder Kuerzung."
+    },
+    {
+      "thema": "Nachhaltigkeit belegen",
+      "was_funktionierte": "Das Projekt zeigte, wie der angeschaffte Geraetepark jaehrlich in einer wiederkehrenden Technik-AG genutzt wird und nicht nach einem Durchlauf im Schrank verschwindet.",
+      "warum": "Der Fonds fordert ausdruecklich Orientierung auf ein dauerhaftes Angebot; Wiederverwendbarkeit erhoeht die Bewilligungschance."
+    },
+    {
+      "thema": "Wirkung auf konkrete Lernende",
+      "was_funktionierte": "Angabe von Jahrgangsstufe, Teilnehmerzahl und einem Bezug zur Berufs- und Studienorientierung machte den Nutzen messbar greifbar.",
+      "warum": "Talentfoerderung und Berufsorientierung sind explizite Foerderziele; konkrete Zahlen belegen Reichweite und Ernsthaftigkeit."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Antrag enthaelt ausgeschlossene Kosten wie Honorare, Reisen, Raummiete oder Veranstaltungen",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Kostenplan strikt auf Geraete, Bausaetze und Verbrauchsmaterial beschraenken; ausgeschlossene Posten ueber andere Quellen finanzieren und nicht auffuehren."
+    },
+    {
+      "grund": "Kein erkennbares technikdidaktisches Konzept, nur eine Einkaufsliste",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Didaktische Ziele, Methoden und den konkreten Lernweg der Schueler:innen ausfuehrlich darstellen."
+    },
+    {
+      "grund": "Projekt ist eine einmalige Aktion ohne Nachhaltigkeit",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Darlegen, wie das Angebot wiederkehrend (z.B. jaehrliche AG) verankert und betreut wird."
+    },
+    {
+      "grund": "Beantragter Betrag ueberschreitet die Foerderobergrenze oder Kostenplan ist unrealistisch",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Maximalbetrag (bis 3.000 EUR) einhalten und Posten mit realistischen Preisen, ggf. Angeboten, untermauern."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "projektbeschreibung",
+      "formulierung": "Im Rahmen einer woechentlichen Technik-AG bauen Schueler:innen der Jahrgangsstufen 7 bis 9 eigenstaendig fahrende Roboter: vom Schaltungsentwurf ueber das Loeten bis zur Programmierung der Steuerung.",
+      "kontext": "Konkretes, anschauliches Vorhaben statt vager Absichtserklaerung."
+    },
+    {
+      "abschnitt_id": "technikdidaktisches-konzept",
+      "formulierung": "Das Projekt verfolgt das technikdidaktische Ziel, abstraktes Physik- und Informatikwissen durch handlungsorientiertes Konstruieren erfahrbar zu machen; die Lernenden durchlaufen den vollstaendigen Zyklus aus Planen, Bauen, Testen und Optimieren.",
+      "kontext": "Macht das didaktische Konzept als zentrales Bewertungskriterium explizit."
+    },
+    {
+      "abschnitt_id": "finanzierungsplan",
+      "formulierung": "Aus dem VDI-Joachim-Herz-Technikfonds werden ausschliesslich Geraete und Verbrauchsmaterial finanziert: drei Roboter-Bausaetze (je 480 EUR), ein 3D-Drucker (900 EUR) sowie Loet- und Verbrauchsmaterial (660 EUR), Summe 3.000 EUR.",
+      "kontext": "Trifft die foerderfaehigen Kategorien punktgenau und bleibt im Limit."
+    },
+    {
+      "abschnitt_id": "nachhaltigkeit",
+      "formulierung": "Die angeschafften Bausaetze und der 3D-Drucker bleiben dauerhaft im Bestand der Schule und werden jaehrlich in der dann fest etablierten Technik-AG mit neuen Jahrgaengen wiederverwendet.",
+      "kontext": "Belegt die vom Fonds geforderte Orientierung auf ein dauerhaftes Angebot."
+    }
+  ],
+  "fristLogik": {
+    "typ": "rolling"
+  }
+}

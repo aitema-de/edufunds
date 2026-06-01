@@ -2,7 +2,7 @@
   "generatedAt": "2026-04-27T10:09:58.688Z",
   "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
   "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
-  "total": 106,
+  "total": 118,
   "items": [
     {
       "programmId": "kfw-erp-digitalisierung",
@@ -1081,6 +1081,114 @@
       "programmId": "kindertiger-drehbuchpreis-im-rahmen-der",
       "skipReason": "Reine Branchen-Auszeichnung der Filmwirtschaft: Antragsberechtigt sind ausschliesslich Drehbuchautor*innen, Produzent*innen und Verleiher*innen bereits verfilmter Kinderfilm-Drehbuecher; das Preisgeld (5.000 + 15.000 EUR) geht an die Autor*innen und ist an die Entwicklung eines neuen Drehbuchs gebunden. Schulen koennen NICHT beantragen (Kinder wirken nur als Jury mit, Verleihung im Rahmen der SchulKinoWochen). Keine projektgebundene Antrags-Foerderung fuer Schulen/Foerdervereine.",
       "name": "kindertiger-drehbuchpreis-im-rahmen-der",
+      "status": "skip"
+    },
+    {
+      "programmId": "konzeptwettbewerb-schuelerforschungszentren",
+      "name": "Konzeptwettbewerb Schuelerforschungszentren",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 15000,
+      "reichweite": "alle",
+      "infoLink": "https://schuelerforschungszentren.de/foerderungen/konzeptwettbewerb",
+      "score": 72,
+      "status": "done"
+    },
+    {
+      "programmId": "labs-for-chips",
+      "name": "LABS for CHIPS",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 2000,
+      "reichweite": "alle",
+      "infoLink": "https://www.invent-a-chip.de/invent-a-chip/labs-for-chips",
+      "score": 73,
+      "status": "done"
+    },
+    {
+      "programmId": "margot-friedlaender-preis-schulpreis-kategorie",
+      "skipReason": "Reine Auszeichnung/Jury-Wettbewerb fuer bereits geleistetes Engagement. Eine unabhaengige Jury kuert Preistraeger anhand vorhandenen Engagements; eingereicht wird eine Bewerbung/Nominierung des bestehenden Engagements, kein projektgebundener Foerderantrag mit Kostenplan fuer ein konkret geplantes Vorhaben. Das Preisgeld (25.000 EUR) soll zwar der Weiterfuehrung dienen, ist aber kein beantragbarer Projektzuschuss. Erfuellt damit nicht die Wizard-Kriterien (keine antragsgebundene Projektfoerderung).",
+      "name": "margot-friedlaender-preis-schulpreis-kategorie",
+      "status": "skip"
+    },
+    {
+      "programmId": "mixed-up-wettbewerb-mixed-up",
+      "name": "MIXED UP Wettbewerb (Preis + Kick-Off-Foerderung)",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.bkj.de/projekte/mixed-up-wettbewerb/",
+      "score": 77,
+      "status": "done"
+    },
+    {
+      "programmId": "perlenfonds",
+      "name": "Perlenfonds",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 25000,
+      "reichweite": "alle",
+      "infoLink": "https://www.joachim-herz-stiftung.de/foerdern/aktuelle-ausschreibungen/perlenfonds",
+      "score": 74,
+      "status": "done"
+    },
+    {
+      "programmId": "projektfoerderung-der-deutschen-bundesstiftung-umwelt",
+      "name": "Projektfoerderung der Deutschen Bundesstiftung Umwelt (DBU)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 125000,
+      "reichweite": "alle",
+      "infoLink": "https://www.dbu.de/foerderung/projektfoerderung/",
+      "score": 81,
+      "status": "done"
+    },
+    {
+      "programmId": "pwc-stiftung-foerderung-kulturelle-bildung",
+      "name": "PwC-Stiftung - Foerderung Kulturelle Bildung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 25000,
+      "reichweite": "alle",
+      "infoLink": "https://pwc-stiftung.de/foerderung/",
+      "score": 72,
+      "status": "done"
+    },
+    {
+      "programmId": "schulwettbewerb-zur-entwicklungspolitik-alle-fuer",
+      "skipReason": "Reiner Jury-Wettbewerb mit Preisgeldern als Auszeichnung, keine projektgebundene Antrags-Foerderung. Eingereicht werden kreative Wettbewerbsbeitraege (Filme, Fotos, Kunstwerke etc.) bzw. beim Schulpreis eine max. 5-seitige Selbstdarstellung des bestehenden Schulprofils im globalen Lernen. Die Preisgelder (Kategoriepreise 500/1000/2000 EUR, Schulpreis 5x5000 EUR) sind ungebundene Anerkennungspreise fuer bereits geleistete Arbeit/bestehendes Profil, nicht zweckgebunden fuer ein konkret geplantes Vorhaben. Damit erfuellt es die Wizard-Bedingung (schriftliche Bewerbung UND zweckgebundene Projektfoerderung) nicht.",
+      "name": "schulwettbewerb-zur-entwicklungspolitik-alle-fuer",
+      "status": "skip"
+    },
+    {
+      "programmId": "sozialgenial-hilft-foerderfonds",
+      "name": "sozialgenial hilft-Foerderfonds",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 500,
+      "reichweite": "alle",
+      "infoLink": "https://www.aktive-buergerschaft.de/service-learning/sozialgenial-hilft-foerderfonds/",
+      "score": 57,
+      "status": "done"
+    },
+    {
+      "programmId": "town-country-stiftungspreis",
+      "name": "Town & Country Stiftungspreis",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 10000,
+      "reichweite": "alle",
+      "infoLink": "https://www.tc-stiftung.de/stiftungspreis/",
+      "score": 70,
+      "status": "done"
+    },
+    {
+      "programmId": "vdi-joachim-herz-technikfonds",
+      "name": "VDI-Joachim-Herz-Technikfonds",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 3000,
+      "reichweite": "alle",
+      "infoLink": "https://www.joachim-herz-stiftung.de/foerdern/ganzjaehrige-ausschreibungen/vdi-joachim-herz-technikfonds",
+      "score": 65,
+      "status": "done"
+    },
+    {
+      "programmId": "wettbewerb-aktiv-fuer-demokratie-und",
+      "skipReason": "Reine Jury-Auszeichnung fuer bereits abgeschlossene, ueberwiegend ehrenamtlich getragene Projekte (Best-Practice-Wuerdigung) statt projektgebundener Antrags-Foerderung. Laufende/geplante Vorhaben sind ausdruecklich ausgeschlossen, es wird kein Projektkonzept fuer ein neues Vorhaben eingereicht und das Preisgeld ist nicht zweckgebunden an ein geplantes Projekt. Zudem sind Schulunterrichtsprojekte und rein hauptamtliche Durchfuehrung explizit ausgeschlossen - passt nicht zum EduFunds-Antrags-Wizard.",
+      "name": "wettbewerb-aktiv-fuer-demokratie-und",
       "status": "skip"
     }
   ]

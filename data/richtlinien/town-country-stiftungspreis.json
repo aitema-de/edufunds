@@ -1,0 +1,252 @@
+{
+  "version": "2026-06-01",
+  "quellen": [
+    "https://www.tc-stiftung.de/stiftungspreis/",
+    "https://www.tc-stiftung.de/stiftungspreis-faqs/",
+    "https://stiftungspreis.tc-stiftung.de/"
+  ],
+  "foerderhoehe": {
+    "minEur": 1000,
+    "maxEur": 10000,
+    "bemerkung": "Mehrere hundert Projekte (rund 300 bundesweit) erhalten je 1.000 EUR als zweckgebundene Projektfoerderung. Zwoelf Regionalpreistraeger (je vier in den Regionen Nord, Zentral, Sued) erhalten zusaetzlich je 5.000 EUR. Zusaetzlich Sonderpreis 'Jung trifft Alt' mit bis zu 10.000 EUR (2. Platz 5.000 EUR). Die Zuwendung ist zweckgebunden fuer die Projektarbeit des eingereichten Projektes und zeitnah zu verwenden."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Muss dem eingereichten Projekt fuer benachteiligte Kinder und Jugendliche dienen",
+        "Zweckgebundene und zeitnahe Verwendung"
+      ],
+      "beispielePasst": [
+        "Material fuer Lern- und Foerderangebote",
+        "Verbrauchsmaterial fuer ein Schulprojekt",
+        "Ausstattung fuer Begegnungs- oder Freizeitangebote"
+      ],
+      "beispielePasstNicht": [
+        "Allgemeine Verwaltungskosten ohne Projektbezug"
+      ]
+    },
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Direkter Bezug zur Projektarbeit des eingereichten Projektes"
+      ],
+      "beispielePasst": [
+        "Honorar fuer eine externe Projektleitung",
+        "Honorar fuer eine workshopdurchfuehrende Fachkraft"
+      ],
+      "beispielePasstNicht": [
+        "Daueranstellung ohne Projektbezug"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Anschaffung muss dem Foerderzweck (benachteiligte Kinder/Jugendliche) dienen"
+      ],
+      "beispielePasst": [
+        "Anschaffung von Spiel- und Foerdermaterial",
+        "kleinere Geraete fuer das Projekt"
+      ],
+      "beispielePasstNicht": [
+        "Anschaffungen ohne Bezug zum eingereichten Projekt"
+      ]
+    },
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Nur soweit fuer die Projektdurchfuehrung erforderlich"
+      ],
+      "beispielePasst": [
+        "Fahrtkosten fuer einen Projektausflug mit der Zielgruppe"
+      ],
+      "beispielePasstNicht": [
+        "Reisekosten ohne Projektbezug"
+      ]
+    },
+    {
+      "kategorie": "overhead",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Foerderung ist zweckgebunden fuer die konkrete Projektarbeit"
+      ],
+      "beispielePasst": [],
+      "beispielePasstNicht": [
+        "Allgemeine Overhead-/Verwaltungspauschale der Organisation"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": false,
+    "formenErlaubt": [
+      "finanziell",
+      "sachleistungen",
+      "eigenarbeit",
+      "drittmittel"
+    ],
+    "bemerkung": "Es ist kein fester Eigenmittelanteil vorgeschrieben. Optional koennen Finanzierungsnachweise eingereicht werden; ehrenamtliches Engagement wird positiv gewuerdigt."
+  },
+  "kumulierung": {
+    "erlaubt": true,
+    "bedingungen": [
+      "Zusaetzliche Finanzierungsquellen koennen im Formular als Finanzierungsnachweis angegeben werden",
+      "Die Foerdersumme bleibt zweckgebunden fuer das eingereichte Projekt"
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "traeger-gemeinnuetzigkeit",
+        "name": "Traeger und Gemeinnuetzigkeit",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie heisst die gemeinnuetzige Organisation und wo hat sie ihren Sitz in Deutschland?",
+          "Liegt ein gueltiger Freistellungsbescheid zur Koerperschaftssteuer (nicht aelter als fuenf Jahre) vor?",
+          "Wer ist Ansprechpartner fuer die Bewerbung?"
+        ],
+        "stilhinweis": "Sachlich und vollstaendig; die Gemeinnuetzigkeit ist zwingende Teilnahmevoraussetzung."
+      },
+      {
+        "id": "projektbeschreibung",
+        "name": "Projektbeschreibung",
+        "pflicht": true,
+        "leitfragen": [
+          "Was ist das konkrete Projekt und was wird darin gemacht?",
+          "Wie laeuft die Umsetzung ab (Aktivitaeten, Zeitraum, Beteiligte)?",
+          "Was macht das Projekt besonders bzw. herausragend?"
+        ],
+        "stilhinweis": "Konkret und anschaulich, mit klaren Aktivitaeten statt allgemeiner Absichtserklaerungen."
+      },
+      {
+        "id": "zielgruppe-benachteiligung",
+        "name": "Zielgruppe und Benachteiligung",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Kinder und Jugendlichen erreicht das Projekt?",
+          "Worin besteht die gesundheitliche, soziale oder finanzielle Benachteiligung der Zielgruppe?",
+          "Wie viele Kinder/Jugendliche profitieren?"
+        ],
+        "stilhinweis": "Begruendung der Benachteiligung ist Pflicht; konkret und belegbar formulieren."
+      },
+      {
+        "id": "zielsetzung-wirkung",
+        "name": "Zielsetzung und Wirkung",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Ziele verfolgt das Projekt fuer die Kinder und Jugendlichen?",
+          "Welche Wirkung wird angestrebt und woran wird sie erkennbar?"
+        ],
+        "stilhinweis": "Ziele messbar und auf die Zielgruppe bezogen darstellen."
+      },
+      {
+        "id": "mittelverwendung",
+        "name": "Verwendung der Foerdersumme",
+        "pflicht": true,
+        "leitfragen": [
+          "Wofuer genau wird die zweckgebundene Foerderung von 1.000 EUR (ggf. zzgl. Regional-/Sonderpreis) eingesetzt?",
+          "Wie stellt die Organisation die zeitnahe und zweckgebundene Verwendung sicher?"
+        ],
+        "stilhinweis": "Klare, projektgebundene Mittelverwendung; keine allgemeinen Vereinskosten."
+      },
+      {
+        "id": "engagement-nachhaltigkeit",
+        "name": "Engagement und Nachhaltigkeit",
+        "pflicht": false,
+        "leitfragen": [
+          "Welche Rolle spielt ehrenamtliches Engagement im Projekt?",
+          "Wie wird das Projekt ueber die Foerderung hinaus fortgefuehrt?"
+        ],
+        "stilhinweis": "Ehrenamt und Fortbestand betonen, das wuerdigt die Jury besonders."
+      }
+    ],
+    "anlagen": [
+      "Gueltiger Freistellungsbescheid zur Koerperschaftssteuer (nicht aelter als fuenf Jahre, zwingend)",
+      "Optional: Finanzierungsnachweise",
+      "Optional: Fotos zum Projekt"
+    ],
+    "einreichungsweg": "Ausschliesslich online ueber das Bewerbungsformular auf der Website der Town & Country Stiftung (stiftungspreis.tc-stiftung.de); Rueckfragen unter stiftungspreis@tc-stiftung.de oder 0361/644 789 14",
+    "bearbeitungsdauer": "Bekanntgabe der Preistraeger Ende Januar des Folgejahres"
+  },
+  "notizen": [
+    "Schulen koennen sich in der Regel ueber ihren gemeinnuetzigen Foerderverein bewerben, da ein gueltiger Freistellungsbescheid und Sitz in Deutschland Voraussetzung sind.",
+    "Fokus liegt strikt auf benachteiligten (gesundheitlich, sozial, finanziell) Kindern und Jugendlichen - das Projekt muss diesen Bezug klar herausstellen.",
+    "Bewerbungsfenster jaehrlich 01.09. bis 31.10."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Benachteiligung konkret belegen",
+      "was_funktionierte": "Die Zielgruppe und ihre konkrete gesundheitliche, soziale oder finanzielle Benachteiligung wurden praezise mit Zahlen und Beispielen beschrieben.",
+      "warum": "Der Bezug zu benachteiligten Kindern und Jugendlichen ist das zentrale Auswahlkriterium der Stiftung."
+    },
+    {
+      "thema": "Zweckgebundene Mittelverwendung darstellen",
+      "was_funktionierte": "Es wurde Posten fuer Posten gezeigt, wofuer die 1.000 EUR im Projekt konkret ausgegeben werden.",
+      "warum": "Die Foerderung ist zweckgebunden fuer das eingereichte Projekt; klare Mittelverwendung erhoeht die Glaubwuerdigkeit."
+    },
+    {
+      "thema": "Ehrenamt und herausragendes Engagement sichtbar machen",
+      "was_funktionierte": "Das ehrenamtliche Engagement der Beteiligten und der besondere Charakter des Projektes wurden hervorgehoben.",
+      "warum": "Die Stiftung wuerdigt ausdruecklich herausragende, oftmals ehrenamtliche Arbeit - dies entscheidet ueber die Regionalpreise."
+    },
+    {
+      "thema": "Freistellungsbescheid vorab bereithalten",
+      "was_funktionierte": "Der gueltige, nicht aeltere als fuenf Jahre alte Freistellungsbescheid wurde vollstaendig mit der Online-Bewerbung hochgeladen.",
+      "warum": "Ohne gueltigen Nachweis der Gemeinnuetzigkeit ist die Bewerbung formal unzulaessig."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Fehlende oder ungueltige Gemeinnuetzigkeit bzw. Freistellungsbescheid aelter als fuenf Jahre",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Vor Bewerbung pruefen, dass ein gueltiger Freistellungsbescheid vorliegt und ihn direkt hochladen."
+    },
+    {
+      "grund": "Kein klarer Bezug zu benachteiligten Kindern und Jugendlichen",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Zielgruppe und Art der Benachteiligung explizit und nachvollziehbar darstellen."
+    },
+    {
+      "grund": "Unvollstaendig ausgefuelltes Online-Formular",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Alle Pflichtfelder (Projektbeschreibung, Ziel, Umsetzung, Mittelverwendung) vollstaendig ausfuellen."
+    },
+    {
+      "grund": "Foerdersumme nicht zweckgebunden fuer das eingereichte Projekt eingeplant",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Mittelverwendung eng an das konkrete Projekt binden, keine allgemeinen Vereins- oder Verwaltungskosten angeben."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "zielgruppe-benachteiligung",
+      "formulierung": "Unser Projekt erreicht woechentlich rund 25 Kinder aus einkommensschwachen Familien des Stadtteils, fuer die kostenpflichtige Foerder- und Freizeitangebote unerreichbar sind.",
+      "kontext": "Belegt die finanzielle Benachteiligung der Zielgruppe konkret."
+    },
+    {
+      "abschnitt_id": "projektbeschreibung",
+      "formulierung": "In woechentlichen Nachmittagsgruppen begleiten ehrenamtliche Lernpaten die Kinder bei den Hausaufgaben und gestalten gemeinsam kreative Projekttage ueber das gesamte Schuljahr.",
+      "kontext": "Konkrete Aktivitaeten und Zeitraum statt allgemeiner Absicht."
+    },
+    {
+      "abschnitt_id": "mittelverwendung",
+      "formulierung": "Die zweckgebundene Foerderung von 1.000 Euro setzen wir vollstaendig fuer Lern- und Bastelmaterial sowie die Verpflegung waehrend der Projekttage ein.",
+      "kontext": "Zeigt projektgebundene, zeitnahe Verwendung der Foerdersumme."
+    },
+    {
+      "abschnitt_id": "zielsetzung-wirkung",
+      "formulierung": "Ziel ist es, die schulischen Leistungen und das Selbstvertrauen der teilnehmenden Kinder zu staerken, erkennbar an verbesserten Zeugnisnoten und regelmaessiger Teilnahme.",
+      "kontext": "Messbare, zielgruppenbezogene Wirkung."
+    }
+  ],
+  "fristLogik": {
+    "typ": "fixe_stichtage",
+    "stichtage": [
+      "2026-10-31"
+    ],
+    "jaehrlich_wiederkehrend": true
+  }
+}
