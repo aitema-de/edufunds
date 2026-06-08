@@ -56,8 +56,8 @@ test.describe('Startseite', () => {
   });
 
   test('Navigation zu Förderprogramme funktioniert', async ({ page }) => {
-    const programmeLink = page.getByRole('link', { name: /Programme/i });
-    
+    const programmeLink = page.locator('nav').getByRole('link', { name: /Programme/i }).first();
+
     await programmeLink.click();
     
     // URL sollte /foerderprogramme sein
