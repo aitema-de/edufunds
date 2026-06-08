@@ -23,9 +23,9 @@ test.describe('Detailseite - Programme öffnen', () => {
     const firstProgram = page.locator('.glass-card, article, [data-testid="program-card"]').first();
     await expect(firstProgram).toBeVisible();
     
-    // Link im Programm finden oder das Programm selbst klicken
-    const programLink = firstProgram.locator('a').first().or(firstProgram);
-    await programLink.click();
+    // Gezielt den "Details ansehen"-Link klicken (nach Redesign explizit vorhanden)
+    const detailsLink = firstProgram.getByRole('link', { name: /details ansehen/i });
+    await detailsLink.click();
     
     // Sollte auf einer Detailseite landen
     await expect(page).toHaveURL(/.*foerderprogramme\/.+/);
