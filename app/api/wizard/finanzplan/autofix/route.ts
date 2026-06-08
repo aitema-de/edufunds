@@ -26,6 +26,15 @@ export async function POST(req: NextRequest) {
     if (!session) {
       return NextResponse.json({ error: "Session nicht gefunden" }, { status: 404 });
     }
+    // Paywall-Gate: Finanzplan-Änderungen (Auto-Fix) sind ein Schritt NACH der
+    // Zahlung (vgl. AntragResult.tsx: FinanzplanEditor rendert nur bei paid). Ohne
+    // diesen Server-Check ließe sich die Paywall per direktem API-Aufruf umgehen.
+    if (!session.paidToken) {
+      return NextResponse.json(
+        { error: "Zahlung erforderlich, bevor der Finanzplan geändert werden kann." },
+        { status: 402 }
+      );
+    }
     const plan = session.data.generation?.finanzplan;
     if (!plan) {
       return NextResponse.json({ error: "Kein Finanzplan vorhanden" }, { status: 400 });
