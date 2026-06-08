@@ -86,9 +86,12 @@ Karte** → `paid_token`. Bereits gebaut & verifiziert.
 
 ## Baureihenfolge (deckt beide Kunden, keine Sackgasse)
 
-1. **B1 — Entitlement-Schicht + Kontingent-Codes.** `markSessionPaid` um Quelle erweitern; `credit_codes`-
-   Tabelle; Einlöse-Endpoint + UI im Wizard („Kontingent-Code einlösen" neben „29,90 € zahlen"). Codes
-   anfangs admin/manuell (per Rechnung) ausgegeben. → behebt Autor-≠-Zahler sofort.
+1. **B1 — Entitlement-Schicht + Kontingent-Codes. ✅ ERLEDIGT 2026-06-08.** `markSessionPaid`/
+   `tryMarkSessionPaid` um Quelle (card|code) erweitert; `credit_codes` + `credit_code_redemptions`
+   (Migration 004); `POST /api/wizard/redeem-code` + „Kontingent-Code einlösen" im PaywallGate;
+   `scripts/create-credit-code.ts` für manuelle/rechnungsbasierte Ausgabe. Verifiziert: Unit 9/9,
+   API-Suite 15/15, echter HTTP-E2E (atomarer Verbrauch, Idempotenz, Refund). Commits
+   454cbc6 / cfbcc85 / 98ce3cf. → behebt Autor-≠-Zahler.
 2. **B2 — Rechnungskauf** von Paketen (öffentliche Hand); SEPA/Rechnungs-Logik sauber neu (Keim in
    LEGACY-CHECKOUT-REFERENCE.md), erzeugt `credit_codes` per Rechnung.
 3. **B3 — Self-Serve-Kontingent-Kauf per Karte** (Stripe-Checkout `metadata.mode=org_quota` → Webhook
