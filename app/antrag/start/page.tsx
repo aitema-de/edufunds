@@ -4,7 +4,6 @@ import { FolderOpen, Sparkles } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
-import { FeedbackButton } from "@/components/FeedbackButton";
 import { StartClient } from "@/components/Wizard/StartClient";
 
 export const metadata: Metadata = {
@@ -47,7 +46,6 @@ export default function StartPage() {
         </div>
       </main>
       <Footer />
-      <FeedbackButton />
     </>
   );
 }

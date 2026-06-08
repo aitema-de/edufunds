@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { WebVitals } from "@/components/WebVitals";
+import { FeedbackButton } from "@/components/FeedbackButton";
 
 export const metadata: Metadata = {
   title: {
@@ -132,6 +133,10 @@ export default function RootLayout({
         <div className="relative z-10">
           {children}
         </div>
+        {/* Globaler Pilot-Feedback-Button — schwebt auf JEDER Seite (inkl. 404),
+            damit Tester von ueberall Bugs/Ideen melden koennen. Erfasst die
+            aktuelle URL als Kontext. */}
+        <FeedbackButton />
       </body>
     </html>
   );
