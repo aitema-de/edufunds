@@ -25,20 +25,22 @@ jest.mock('next/link', () => {
   }
 })
 
-// Mock window.matchMedia
-Object.defineProperty(window, 'matchMedia', {
-  writable: true,
-  value: jest.fn().mockImplementation(query => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(),
-    removeListener: jest.fn(),
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
-  })),
-})
+// Mock window.matchMedia (nur in jsdom — node-Umgebung fuer Route-Tests hat kein window)
+if (typeof window !== 'undefined') {
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: jest.fn().mockImplementation(query => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    })),
+  })
+}
 
 // Mock IntersectionObserver (Plan 02.1-01: vollstaendige Schnittstelle fuer AntragSectionNav-Tests)
 class MockIntersectionObserver {
@@ -68,12 +70,6 @@ class MockIntersectionObserver {
   }
 }
 
-// Mock scrollTo
-Object.defineProperty(window, 'scrollTo', {
-  writable: true,
-  value: jest.fn(),
-})
-
 // Mock ResizeObserver
 class MockResizeObserver {
   observe = jest.fn()
@@ -81,7 +77,14 @@ class MockResizeObserver {
   unobserve = jest.fn()
 }
 
-Object.defineProperty(window, 'ResizeObserver', {
-  writable: true,
-  value: MockResizeObserver,
-})
+// window-abhaengige Mocks nur in jsdom setzen (node-Umgebung hat kein window)
+if (typeof window !== 'undefined') {
+  Object.defineProperty(window, 'scrollTo', {
+    writable: true,
+    value: jest.fn(),
+  })
+  Object.defineProperty(window, 'ResizeObserver', {
+    writable: true,
+    value: MockResizeObserver,
+  })
+}

@@ -55,13 +55,37 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // factsBefore speichern, damit wir die Antwort spaeter editierbar machen koennen
-    let data = appendMessage(session.data, {
-      role: "user",
-      kind: "answer",
-      content: trimmed,
-      meta: { factsBefore: session.data.facts },
-    });
+    // Antwort als Nachricht aufnehmen. Sonderfall Retry: Ist die LETZTE Nachricht
+    // bereits eine User-Antwort (statt einer AI-Frage), ist der vorige Turn nach
+    // dem Speichern der Antwort fehlgeschlagen (keine Folgefrage erzeugt). Dann
+    // ist diese Einsendung ein Wiederholversuch — die letzte Antwort ersetzen,
+    // nicht doppelt anhaengen (verhindert Duplikate, auch bei korrigierter Antwort).
+    const msgs = session.data.messages;
+    const last = msgs[msgs.length - 1];
+    const isUnprocessedRetry = last?.role === "user" && last.kind === "answer";
+
+    let data = isUnprocessedRetry
+      ? {
+          ...session.data,
+          messages: [
+            ...msgs.slice(0, -1),
+            { ...last, content: trimmed, at: new Date().toISOString() },
+          ],
+        }
+      : appendMessage(session.data, {
+          role: "user",
+          kind: "answer",
+          content: trimmed,
+          // factsBefore speichern, damit wir die Antwort spaeter editierbar machen koennen
+          meta: { factsBefore: session.data.facts },
+        });
+
+    // Datenverlust-Schutz: die rohe Antwort SOFORT persistieren, BEVOR die
+    // LLM-Stages laufen. Schlaegt eine Stage fehl (z. B. abgeschnittenes JSON aus
+    // DeepSeek in nextStep), ist die Nutzerantwort bereits gespeichert und
+    // ueberlebt Reload und Retry — frueher ging sie verloren, weil
+    // updateWizardSession erst nach den LLM-Calls erreicht wurde.
+    await updateWizardSession(sessionToken, data);
 
     // Stage 1: dedizierte Fakten-Extraktion ueber den gesamten Verlauf.
     // Faellt sie aus, behaelt der Aufrufer den alten Stand — der Interviewer arbeitet dann
@@ -77,14 +101,32 @@ export async function POST(req: NextRequest) {
 
     // Stage 2: Interviewer entscheidet die naechste Frage anhand des frischen Facts-Stands.
     const richtlinie = await loadRichtlinie(programm.id);
-    const { step, usage } = await nextStep(
-      programm,
-      data.messages,
-      data.facts,
-      data.interviewer.totalQuestions,
-      data.interviewer.maxQuestions,
-      richtlinie
-    );
+    let step: Awaited<ReturnType<typeof nextStep>>["step"];
+    let usage: Awaited<ReturnType<typeof nextStep>>["usage"];
+    try {
+      ({ step, usage } = await nextStep(
+        programm,
+        data.messages,
+        data.facts,
+        data.interviewer.totalQuestions,
+        data.interviewer.maxQuestions,
+        richtlinie
+      ));
+    } catch (stepErr) {
+      // nextStep konnte keine valide Frage erzeugen (z. B. abgeschnittenes JSON).
+      // Die Antwort ist oben bereits persistiert — kein Datenverlust. Wir melden
+      // einen wiederholbaren Fehler; der Retry oben ersetzt die Antwort statt sie
+      // zu doppeln, sodass ein erneutes Senden den Turn sauber abschliesst.
+      console.error("[wizard/answer] nextStep fehlgeschlagen (Antwort gesichert):", stepErr);
+      return NextResponse.json(
+        {
+          error:
+            "Die KI war kurz nicht erreichbar. Deine Antwort ist gespeichert — bitte sende sie gleich noch einmal.",
+          retryable: true,
+        },
+        { status: 503 }
+      );
+    }
     // Interviewer kann via facts_update noch ergaenzen (Fallback), aber Extractor ist fuehrend.
     data = { ...data, facts: step.updatedFacts };
 

@@ -341,6 +341,12 @@ export function WizardShell({ programm }: Props) {
         ]);
       }
     } catch (e) {
+      // Senden fehlgeschlagen: optimistische Nachricht entfernen und Eingabe
+      // wiederherstellen, damit direkt erneut gesendet werden kann. Die Antwort
+      // ist serverseitig bereits gesichert (Datenverlust-Schutz); erneutes Senden
+      // schliesst den Turn ab (Server ersetzt die unverarbeitete Antwort statt zu doppeln).
+      setMessages((prev) => prev.filter((m) => m.id !== optimistic.id));
+      setAnswer(userAnswer);
       setError(e instanceof Error ? e.message : "Antwort konnte nicht gesendet werden");
     } finally {
       setBusy(false);
