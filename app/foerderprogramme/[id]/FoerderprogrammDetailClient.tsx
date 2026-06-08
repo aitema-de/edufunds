@@ -131,7 +131,10 @@ function getSimilarPrograms(currentId: string, kategorien: string[], limit: numb
     .sort((a, b) => {
       const aMatches = a.kategorien.filter(k => kategorien.includes(k)).length;
       const bMatches = b.kategorien.filter(k => kategorien.includes(k)).length;
-      return bMatches - aMatches;
+      if (bMatches !== aMatches) return bMatches - aMatches;
+      // Deterministischer Tie-Breaker: alphabetisch nach ID, damit Server- und Client-Render
+      // identische Reihenfolge liefern (kein Hydration-Mismatch).
+      return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
     })
     .slice(0, limit);
 }
