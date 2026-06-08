@@ -21,8 +21,6 @@ const PAGES: Array<{ path: string; landmark?: boolean }> = [
   { path: '/agb' },
   { path: '/antrag/start' },
   { path: '/antrag/meine' },
-  { path: '/checkout/einzel' },
-  { path: '/checkout/jahresabo' },
 ];
 
 // Konsolen-Rauschen, das kein Bug ist
