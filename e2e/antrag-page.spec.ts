@@ -28,7 +28,7 @@ test.describe('Antragsseite - KI-Assistent', () => {
     await expect(page.locator('main')).toContainText(testProgramm.name);
     
     // Formular sollte vorhanden sein
-    const form = page.locator('form').first().or(page.locator('input').first().locator('..'));
+    const form = page.locator('form').first();
     await expect(form).toBeVisible();
   });
 
