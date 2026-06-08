@@ -32,9 +32,9 @@ test.describe('Startseite', () => {
 
   test('Navigation enthält alle Hauptlinks', async ({ page }) => {
     const nav = page.locator('nav');
-    
-    // Logo/Brand
-    await expect(nav.getByText(/EduFunds/i)).toBeVisible();
+
+    // Logo/Brand liegt im Header-Logo-Link ausserhalb von <nav>
+    await expect(page.locator('header').getByText(/EduFunds/i).first()).toBeVisible();
     
     // Hauptnavigationslinks
     const expectedLinks = ['Programme', 'Preise', 'Über uns', 'Kontakt'];
