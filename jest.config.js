@@ -16,7 +16,14 @@ const customJestConfig = {
     '**/__tests__/**/*.test.[jt]s?(x)',
     '**/?(*.)+(spec|test).[jt]s?(x)',
   ],
-  testPathIgnorePatterns: ['/node_modules/', '/.next/', '/e2e/'],
+  // /.claude/ ausschliessen: dort liegen Agent-Worktrees mit eigenen Kopien des
+  // Repos (inkl. package.json + Testdateien). Ohne diesen Ausschluss scannt Jest
+  // sie mit, was Haste-Modul-Kollisionen und Hunderte Phantom-Failures aus
+  // veralteten Daten-Snapshots erzeugt.
+  testPathIgnorePatterns: ['/node_modules/', '/.next/', '/e2e/', '/\\.claude/'],
+  // Verhindert zusaetzlich die Haste-Modul-Kollision (doppelte package.json) durch
+  // die Agent-Worktrees unter /.claude/.
+  modulePathIgnorePatterns: ['/\\.claude/'],
   // ESM-Pakete (lucide-react liefert reine ESM-Imports) durch Jest-Babel transformieren.
   // Plan 02-02 (Rule-3-Auto-Fix): MatchResultList.tsx + ClarificationCard.tsx importieren
   // Icons aus lucide-react — ohne diesen Whitelist-Eintrag wirft Jest "Cannot use import
