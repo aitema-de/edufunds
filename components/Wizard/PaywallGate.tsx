@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Loader2, Lock, RefreshCw, ShieldCheck, Sparkles } from "lucide-react";
+import { Check, Loader2, Lock, RefreshCw, ShieldCheck, Sparkles, Ticket } from "lucide-react";
 
 interface Props {
   sessionToken: string;
@@ -30,6 +30,43 @@ interface ErrorState {
 export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
   const [busy, setBusy] = useState(false);
   const [errorState, setErrorState] = useState<ErrorState | null>(null);
+  const [showRedeem, setShowRedeem] = useState(false);
+  const [code, setCode] = useState("");
+  const [redeemBusy, setRedeemBusy] = useState(false);
+  const [redeemError, setRedeemError] = useState<string | null>(null);
+
+  const redeemCode = async () => {
+    const value = code.trim();
+    if (!value) {
+      setRedeemError("Bitte gib einen Kontingent-Code ein.");
+      return;
+    }
+    setRedeemBusy(true);
+    setRedeemError(null);
+    try {
+      const res = await fetch("/api/wizard/redeem-code", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionToken, code: value }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setRedeemError(body.error ?? `Einloesung fehlgeschlagen (HTTP ${res.status}).`);
+        return;
+      }
+      if (body.paidToken) {
+        window.location.href = `/antrag/download/${body.paidToken}`;
+        return;
+      }
+      setRedeemError("Unerwartete Antwort — bitte erneut versuchen.");
+    } catch (e) {
+      setRedeemError(
+        e instanceof Error ? `Netzwerkfehler: ${e.message}` : "Netzwerkfehler — bitte erneut versuchen."
+      );
+    } finally {
+      setRedeemBusy(false);
+    }
+  };
 
   const startCheckout = async () => {
     setBusy(true);
@@ -176,6 +213,64 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
           <div className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-slate-500">
             <ShieldCheck className="h-3 w-3" />
             <span>Sichere Zahlung ueber Stripe — Kreditkarte, SEPA, Apple Pay</span>
+          </div>
+
+          {/* Kontingent-Code (Schultraeger): Lehrkraft schaltet ohne eigene Zahlung frei */}
+          <div className="mt-5 border-t border-slate-200 pt-4">
+            {!showRedeem ? (
+              <button
+                type="button"
+                onClick={() => setShowRedeem(true)}
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-[#1e3a61] transition-colors hover:text-[#c9a227]"
+              >
+                <Ticket className="h-4 w-4" />
+                Kontingent-Code einloesen
+              </button>
+            ) : (
+              <div className="text-left">
+                <label
+                  htmlFor="kontingent-code"
+                  className="mb-1 block text-sm font-medium text-[#0a1628]"
+                >
+                  Kontingent-Code deines Traegers
+                </label>
+                <p className="mb-2 text-xs text-slate-500">
+                  Hat dein Schultraeger ein Kontingent gekauft, schalte deinen Antrag hiermit
+                  frei — ohne eigene Zahlung.
+                </p>
+                <div className="flex gap-2">
+                  <input
+                    id="kontingent-code"
+                    type="text"
+                    value={code}
+                    onChange={(e) => setCode(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") redeemCode();
+                    }}
+                    placeholder="EDU-XXXX-XXXX"
+                    autoComplete="off"
+                    disabled={redeemBusy}
+                    className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm uppercase tracking-wider text-[#0a1628] placeholder:normal-case placeholder:tracking-normal focus:border-[#c9a227] focus:outline-none disabled:opacity-50"
+                  />
+                  <button
+                    type="button"
+                    onClick={redeemCode}
+                    disabled={redeemBusy}
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-[#1e3a61] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#16304f] disabled:opacity-50"
+                  >
+                    {redeemBusy ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <Check className="h-4 w-4" />
+                    )}
+                    Einloesen
+                  </button>
+                </div>
+                {redeemError && (
+                  <p className="mt-2 text-left text-sm text-red-600">{redeemError}</p>
+                )}
+              </div>
+            )}
           </div>
 
           {DEV_MOCK_ENABLED && (
