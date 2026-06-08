@@ -2,6 +2,14 @@
 
 Checkliste für Koljas Einrichtung — sobald abgehakt, ist die Paywall live.
 
+> **Reaffirmiert 2026-06-08:** Separater EduFunds-Account (NICHT den SailHub-Spenden-Account
+> wiederverwenden). Grund: sauberes „EduFunds"-Checkout-Branding + getrennte
+> Buchhaltung/Auszahlung. Der SailHub-Account nutzt Stripe **Connect** (Geld läuft an die
+> Vereine durch); EduFunds dagegen ist eine reine **Standard-Charge an aitema** — die zwei
+> Modelle bleiben dadurch auch organisatorisch sauber getrennt. Test-Mode steht direkt nach
+> der Registrierung zur Verfügung (vor vollständigem KYC) — die komplette Test-Einrichtung
+> (Produkt/Preis/Webhook) kann also sofort erfolgen, KYC/Live folgt.
+
 ## 1. Stripe-Account anlegen
 
 - https://dashboard.stripe.com/register aufrufen
