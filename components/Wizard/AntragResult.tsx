@@ -325,7 +325,7 @@ export function AntragResult({
           </div>
         )}
         {!paid && sessionToken && (
-          <PaywallGate sessionToken={sessionToken} priceEur={29} tierLabel="Einzelantrag" />
+          <PaywallGate sessionToken={sessionToken} priceEur={29.9} tierLabel="Einzelantrag" />
         )}
       </div>
       {costs && costs.calls > 0 && (

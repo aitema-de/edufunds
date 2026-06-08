@@ -130,7 +130,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
           </ul>
 
           <div className="mb-6 flex items-baseline justify-center gap-2">
-            <span className="text-4xl font-bold text-[#0a1628]">{priceEur} €</span>
+            <span className="text-4xl font-bold text-[#0a1628]">{priceEur.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €</span>
             <span className="text-sm text-slate-600">einmalig</span>
           </div>
 
@@ -170,7 +170,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
             )}
             {busy
               ? "Stripe-Checkout wird vorbereitet…"
-              : `Jetzt fuer ${priceEur} € freischalten`}
+              : `Jetzt fuer ${priceEur.toLocaleString("de-DE", { minimumFractionDigits: 2 })} € freischalten`}
           </button>
 
           <div className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-slate-500">

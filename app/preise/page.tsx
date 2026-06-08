@@ -34,7 +34,7 @@ const pricingPlans = [
   {
     name: "Einzelantrag",
     description: "Für spontane Projekte",
-    price: "29 €",
+    price: "29,90 €",
     period: "",
     priceSubtext: "Einmalige Zahlung",
     icon: Sparkles,

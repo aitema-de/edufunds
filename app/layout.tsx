@@ -84,7 +84,7 @@ export default function RootLayout({
     offers: {
       '@type': 'Offer',
       name: 'EduFunds Einzelantrag',
-      price: '29.00',
+      price: '29.90',
       priceCurrency: 'EUR',
       availability: 'https://schema.org/InStock',
     },
