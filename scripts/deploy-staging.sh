@@ -60,7 +60,7 @@ docker rm   edufunds-staging 2>/dev/null || true
 docker run -d --name edufunds-staging \
   --network hetzner-stack_web \
   --restart unless-stopped \
-  --env-file $REMOTE_PATH/.env.production \
+  --env-file $REMOTE_PATH/.env.staging \
   -e NODE_ENV=production \
   -v $REMOTE_PATH/data:/app/data:ro \
   --label 'traefik.enable=true' \
@@ -69,7 +69,13 @@ docker run -d --name edufunds-staging \
   --label 'traefik.http.routers.edufunds-staging.entrypoints=websecure' \
   --label 'traefik.http.routers.edufunds-staging.tls=true' \
   --label 'traefik.http.routers.edufunds-staging.tls.certresolver=letsencrypt' \
+  --label 'traefik.http.routers.edufunds-staging.service=edufunds-staging' \
   --label 'traefik.http.services.edufunds-staging.loadbalancer.server.port=3000' \
+  --label 'traefik.http.routers.edufunds-pilot.rule=Host(\`pilot.edufunds.org\`)' \
+  --label 'traefik.http.routers.edufunds-pilot.entrypoints=websecure' \
+  --label 'traefik.http.routers.edufunds-pilot.tls=true' \
+  --label 'traefik.http.routers.edufunds-pilot.tls.certresolver=letsencrypt' \
+  --label 'traefik.http.routers.edufunds-pilot.service=edufunds-staging' \
   edufunds:staging >/dev/null
 
 echo "==> Healthcheck abwarten"
