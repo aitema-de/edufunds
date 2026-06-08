@@ -102,6 +102,29 @@ export function applyStatedEigenanteil(
   return [...foerderPosten, eigenPosten];
 }
 
+/**
+ * Begründungs-Sprache, die eingesteht, dass ein Betrag geschätzt/angenommen ist
+ * (statt aus Nutzerangaben belegt). QA-02: solche Posten enthalten erfundene
+ * Beträge, die der Nutzer leicht ungeprüft übernimmt.
+ */
+const ESTIMATION_HEDGE =
+  /gesch[aä]tzt|auf basis (?:üblicher|von)|übliche[rn]? (?:tagess|stundens|honorar|s[aä]tze)|pauschal angenommen|orientiert sich an üblich|angenommene[rn]? (?:tagess|stundens|honorar)/i;
+
+/**
+ * Markiert Posten mit eingestandenermaßen geschätztem Betrag durch einen
+ * Warn-Hinweis. Ändert KEINE Beträge (sicher, deterministisch) — der Nutzer
+ * wird gewarnt, den Betrag vor Einreichung zu prüfen. Exportiert für Tests.
+ */
+export function flagEstimatedAmounts(posten: Finanzposten[], hinweise: string[]): void {
+  for (const p of posten) {
+    if (p.begruendung && ESTIMATION_HEDGE.test(p.begruendung)) {
+      hinweise.push(
+        `Der Betrag für „${p.bezeichnung}" (${p.betragEur.toLocaleString("de-DE")} EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.`
+      );
+    }
+  }
+}
+
 export interface FinanzplanUsage {
   model: string;
   usage: Usage;
@@ -128,6 +151,8 @@ export async function generateFinanzplan(
   // Posten erscheint, unabhaengig davon, ob das LLM das Flag gesetzt hat.
   const hinweise = value.hinweise?.length ? [...value.hinweise] : [];
   const postenMitEigenanteil = applyStatedEigenanteil(posten, facts, hinweise);
+  // QA-02: Posten mit eingestandenermaßen geschätztem Betrag warnend markieren.
+  flagEstimatedAmounts(postenMitEigenanteil, hinweise);
 
   const plan: Finanzplan = {
     posten: postenMitEigenanteil,
