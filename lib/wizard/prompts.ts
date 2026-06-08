@@ -1,5 +1,5 @@
 import type { Foerderprogramm } from "@/lib/foerderSchema";
-import type { WizardFacts, WizardMessage } from "./types";
+import type { WizardFacts, WizardMessage, ConsistencyIssue } from "./types";
 import { getGuidance } from "./geber-guidance";
 import { formatExtraGuidance, getExtraGuidance } from "./programm-kriterien";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
@@ -711,6 +711,56 @@ FINANZPLAN (JSON):
 ${finanzplanJson}
 
 Beurteile die Konsistenz der beiden. Liefere die Issues-Liste.`;
+}
+
+// ============================================================================
+// CONSISTENCY-REVISION (Antragstext an Finanzplan angleichen, QA-01/03)
+// ============================================================================
+
+export const CONSISTENCY_REVISION_SYSTEM = `Du erhältst einen fertigen Förderantrag, den zugehörigen Finanzplan (strukturiertes JSON) und eine Liste konkreter Inkonsistenzen zwischen beiden. Deine Aufgabe: den ANTRAGSTEXT minimal so überarbeiten, dass er zum Finanzplan passt.
+
+## Grundregel
+Der FINANZPLAN ist die verbindliche Quelle für alle Beträge, Mengen und Posten. Ändere NIEMALS den Finanzplan — passe ausschließlich den Text an den Finanzplan an.
+
+## Pro Inkonsistenz-Art
+- "betrag-unstimmig": Korrigiere die im Text genannten Zahlen/Summen/Mengen exakt auf die Werte im Finanzplan. Achte besonders auf Gesamtsummen — sie müssen der Summe der Finanzplan-Posten entsprechen.
+- "textbezug-ohne-posten": Entferne oder relativiere die im Text genannte Kostenart, für die es keinen Finanzposten gibt. Erfinde KEINEN neuen Posten und keine Zahl dafür.
+- "posten-ohne-textbezug": Ergänze im inhaltlich passenden Abschnitt einen knappen, sachlichen Satz, der den Finanzposten aufgreift — ohne erfundene Details.
+- "sonstiges": Löse den beschriebenen Widerspruch zugunsten des Finanzplans auf.
+
+## Verbote
+- Erfinde KEINE neuen Zahlen, Tarife, Mengen oder Posten, die nicht im Finanzplan stehen.
+- Ändere nur, was zur Auflösung der gelisteten Inkonsistenzen nötig ist. Stil, Struktur, Überschriften und alle bereits konsistenten Inhalte bleiben unverändert.
+
+## Ausgabeformat (Markdown)
+- Antragstitel als erste Zeile als H1: "# Titel"
+- Abschnittsüberschriften als H2: "## Abschnittsname"
+- Absätze durch Leerzeilen getrennt, KEINE HTML-Tags, KEINE Code-Fences
+Gib nur den überarbeiteten Antrag aus — keinerlei Kommentare davor oder danach.`;
+
+export function buildConsistencyRevisionPrompt(
+  finalText: string,
+  finanzplanJson: string,
+  issues: ConsistencyIssue[]
+): string {
+  const issueList = issues
+    .map((i, n) => {
+      const posten = i.posten ? ` (Posten: ${i.posten})` : "";
+      const stelle = i.textstelle ? ` (Textstelle: "${i.textstelle}")` : "";
+      return `${n + 1}. [${i.art}] ${i.beschreibung}${posten}${stelle}`;
+    })
+    .join("\n");
+
+  return `ANTRAGSTEXT (aktuelle Fassung):
+${finalText}
+
+FINANZPLAN (JSON — verbindliche Quelle für alle Beträge):
+${finanzplanJson}
+
+GEFUNDENE INKONSISTENZEN:
+${issueList}
+
+Überarbeite den Antragstext minimal so, dass alle gelisteten Inkonsistenzen aufgelöst sind und Text und Finanzplan zusammenpassen. Gib nur den überarbeiteten Antrag aus.`;
 }
 
 // ============================================================================

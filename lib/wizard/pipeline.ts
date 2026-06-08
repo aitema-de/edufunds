@@ -29,6 +29,7 @@ import {
   buildConsistencyPrompt,
 } from "./prompts";
 import { MODEL_FLASH, MODEL_PRO, generateJson, generateText } from "./llm";
+import { reviseForConsistency } from "./consistency-revision";
 import type { Usage } from "./pricing";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
 import { generateFinanzplan } from "./finanzplan-generator";
@@ -449,6 +450,34 @@ export async function runPipeline(
     );
     usages.push({ model: MODEL_FLASH, usage: consistencyRes.usage });
     consistencyIssues = normalizeConsistency(consistencyRes.value);
+
+    // QA-01/03: Inkonsistenzen nicht nur flaggen, sondern einmalig beheben —
+    // den Antragstext an den (verbindlichen) Finanzplan angleichen und erneut
+    // pruefen. Fehlschlag der Revision behaelt Originaltext + geflaggte Issues.
+    if (consistencyIssues.length > 0) {
+      try {
+        emit({ stage: "consistency", message: "Antragstext × Finanzplan angleichen" });
+        const reconciled = await reviseForConsistency(
+          finalRes.value,
+          finanzplanJson,
+          consistencyIssues,
+          {
+            reviseText: (system, user) => generateText(MODEL_PRO, system, user),
+            recheck: (system, user) => generateJson<unknown>(MODEL_FLASH, system, user),
+            normalize: normalizeConsistency,
+            models: { revise: MODEL_PRO, recheck: MODEL_FLASH },
+          }
+        );
+        console.log(
+          `[pipeline] Konsistenz-Revision: ${consistencyIssues.length} → ${reconciled.issues.length} Issue(s)`
+        );
+        finalRes = { value: reconciled.finalText, usage: finalRes.usage };
+        consistencyIssues = reconciled.issues;
+        usages.push(...reconciled.usages);
+      } catch (revErr) {
+        console.error("[pipeline] Konsistenz-Revision fehlgeschlagen:", revErr);
+      }
+    }
   }
 
   emit({ stage: "done", message: "Fertig" });
