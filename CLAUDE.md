@@ -11,7 +11,7 @@ Kurz-Briefing fuer Claude-Code-Sitzungen. Funktionale Uebersicht steht in [READM
 
 ## Aktive Blocker
 
-1. **Stripe-Account** — Pfad A (neuer EduFunds-Account unter aitema GmbH) entschieden, Anlage zeitlich verschoben. Bis dahin laeuft die Paywall nur im Dev-Mock (`NEXT_PUBLIC_PAYWALL_DEV_MOCK=1`). Schritte stehen in [STRIPE_SETUP.md](STRIPE_SETUP.md).
+1. **Stripe-Account** — Separater EduFunds-Account angelegt (`acct_…2RbKUcSBRFK` live; EduFunds-Sandbox `acct_…ADHzDjbCkJn` test). Stand **2026-06-08**: Produkt „EduFunds Einzelantrag" + **Einmalpreis 29,90 EUR** in der Sandbox, `STRIPE_PRICE_EINZELANTRAG`/`STRIPE_SECRET_KEY` (Test) in `.env.local`. Verifiziert: Key+Preis konsistent (TEST), Checkout-Session-Erzeugung ok, Webhook-Handler-Smoke 3/3 (`scripts/smoke-stripe-webhook.ts`). **Offen vor Go-Live:** echter Webhook-Endpoint im Dashboard (`whsec_…`) + Deploy des aktuellen Wizard-Codes nach Staging (laeuft noch auf Vor-Wizard-Stand), dann echter `4242…`-Durchlauf; danach Live-Keys/KYC. Pre-Launch-Checkout-Altpfade entfernt (nur `app/api/wizard/checkout` + `app/api/stripe/webhook` bleiben). Details: [STRIPE_SETUP.md](STRIPE_SETUP.md), `.planning/payments/LEGACY-CHECKOUT-REFERENCE.md`.
 2. ~~Gemini-Quota~~ — durch Provider-Switch auf DeepSeek (28.04.) entschaerft. Cron-Skripte koennen noch in die Quota laufen, sind aber nicht UX-blockierend.
 
 ## Konventionen
