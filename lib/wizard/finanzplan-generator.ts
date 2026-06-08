@@ -47,6 +47,61 @@ function normalize(p: RawPosten): Finanzposten | null {
   };
 }
 
+/**
+ * Stellt sicher, dass ein vom Nutzer explizit genannter Eigenanteil
+ * (`facts.budget.eigenmittel_eur`) im Finanzplan als eigens markierter Posten
+ * (`eigenanteil: true`) abgebildet wird.
+ *
+ * Hintergrund: Das LLM setzt das `eigenanteil`-Flag unzuverlaessig (der Prompt
+ * weist es nur fuer richtlinien-pflichtige Eigenmittel an, nicht fuer die
+ * konkrete Nutzerangabe). Ohne diese deterministische Normalisierung rechnet
+ * `validateFinanzplan` 0 % Eigenanteil und blockiert die Freigabe (HTTP 422),
+ * obwohl der Nutzer einen Eigenanteil zugesagt hat.
+ *
+ * Konvention: Gesamtkosten = Foerderung + Eigenmittel. Nicht als Eigenanteil
+ * markierte Posten gelten als Foerderkosten und bleiben unveraendert; der
+ * Eigenanteil wird als separater, sauber bezifferter Posten ergaenzt bzw.
+ * (bei unzuverlaessiger LLM-Markierung) konsolidiert.
+ *
+ * Exportiert fuer Tests.
+ */
+export function applyStatedEigenanteil(
+  posten: Finanzposten[],
+  facts: WizardFacts,
+  hinweise: string[]
+): Finanzposten[] {
+  const stated = facts?.budget?.eigenmittel_eur;
+  if (typeof stated !== "number" || !Number.isFinite(stated) || stated <= 0) {
+    return posten;
+  }
+  const round = Math.round(stated);
+  const currentEigen = posten
+    .filter((p) => p.eigenanteil)
+    .reduce((s, p) => s + p.betragEur, 0);
+
+  // Bereits korrekt abgebildet (±1 % Toleranz, mind. 1 EUR)? Dann nichts tun.
+  const tol = Math.max(1, round * 0.01);
+  if (Math.abs(currentEigen - round) <= tol) {
+    return posten;
+  }
+
+  // Unzuverlaessige LLM-Eigenanteil-Posten konsolidieren und einen sauberen
+  // Eigenanteil-Posten in Hoehe der Nutzerangabe einsetzen.
+  const foerderPosten = posten.filter((p) => !p.eigenanteil);
+  const eigenPosten: Finanzposten = {
+    id: randomUUID(),
+    kategorie: "sonstiges",
+    bezeichnung: "Eigenanteil Schultraeger",
+    betragEur: round,
+    begruendung: "Vom Antragsteller zugesagte Eigenmittel.",
+    eigenanteil: true,
+  };
+  hinweise.push(
+    `Eigenanteil von ${round.toLocaleString("de-DE")} EUR aus deinen Angaben als separater Posten ergaenzt.`
+  );
+  return [...foerderPosten, eigenPosten];
+}
+
 export interface FinanzplanUsage {
   model: string;
   usage: Usage;
@@ -68,10 +123,16 @@ export async function generateFinanzplan(
     .map(normalize)
     .filter((p): p is Finanzposten => p !== null);
 
+  // Deterministische Eigenanteil-Normalisierung (siehe applyStatedEigenanteil):
+  // garantiert, dass eine explizite Nutzer-Eigenmittelangabe als markierter
+  // Posten erscheint, unabhaengig davon, ob das LLM das Flag gesetzt hat.
+  const hinweise = value.hinweise?.length ? [...value.hinweise] : [];
+  const postenMitEigenanteil = applyStatedEigenanteil(posten, facts, hinweise);
+
   const plan: Finanzplan = {
-    posten,
+    posten: postenMitEigenanteil,
     generiertAm: new Date().toISOString(),
-    hinweise: value.hinweise?.length ? value.hinweise : undefined,
+    hinweise: hinweise.length ? hinweise : undefined,
   };
 
   return { plan, usage: { model: MODEL_PRO, usage } };
