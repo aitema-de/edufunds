@@ -68,9 +68,11 @@ const POST_APIS = [
   { path: '/api/admin/login', body: { password: 'falsch-xyz' }, note: 'falsches pw → 401' },
   { path: '/api/wizard/checkout', body: {}, note: 'invalid → 4xx' },
   { path: '/api/checkout', body: {}, note: 'invalid → 4xx' },
-  { path: '/api/stripe/checkout', body: {}, note: 'invalid → 4xx' },
+  // Bezahl-Routen: ohne Keys ist 503 (Config-Gate) das KORREKTE Verhalten,
+  // nur ein 500 waere ein Bug → okStatuses erlaubt das erwartete 503.
+  { path: '/api/stripe/checkout', body: {}, okStatuses: [503], note: 'ohne Key → 503 (Config-Gate)' },
   { path: '/api/stripe/verify', body: {}, note: 'invalid → 4xx' },
-  { path: '/api/paypal', body: {}, note: 'invalid → 4xx' },
+  { path: '/api/paypal', body: {}, okStatuses: [503], note: 'ohne Credentials → 503 (Config-Gate)' },
 ];
 
 const findings = [];
@@ -122,8 +124,11 @@ async function run() {
       method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(c.body),
     });
     if (r.status === 0) { bug('api', 'high', `POST ${c.path}`, `Request fehlgeschlagen: ${r.err} [${c.note}]`, ''); continue; }
-    // 500 auf ungültigen Body = klarer Bug (fehlende Validierung)
-    if (r.status >= 500) bug('api', 'high', `POST ${c.path}`, `Server-Error ${r.status} bei [${c.note}]`, r.text.slice(0, 300));
+    // 5xx auf ungültigen Body = Bug (fehlende Validierung), AUSSER explizit
+    // erwartete Status (z. B. 503 Config-Gate bei nicht konfigurierten Bezahl-Routen).
+    if (r.status >= 500 && !(c.okStatuses?.includes(r.status))) {
+      bug('api', 'high', `POST ${c.path}`, `Server-Error ${r.status} bei [${c.note}]`, r.text.slice(0, 300));
+    }
   }
 
   // --- Dev-Log auf neue Fehler scannen ---
