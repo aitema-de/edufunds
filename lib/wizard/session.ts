@@ -144,14 +144,26 @@ export async function getSessionByPaidToken(
  * Markiert eine Session als bezahlt und erzeugt einen paid_token.
  * Idempotent: wenn bereits bezahlt, wird der bestehende Token zurueckgegeben.
  */
-export async function markSessionPaid(
-  sessionToken: string,
-  params: { stripeSessionId?: string; stripeCustomerEmail?: string; tier?: string }
-): Promise<WizardSession> {
-  const existing = await getWizardSession(sessionToken);
-  if (!existing) throw new Error(`Session ${sessionToken} nicht gefunden`);
-  if (existing.paidToken) return existing;
+export interface MarkPaidParams {
+  stripeSessionId?: string;
+  stripeCustomerEmail?: string;
+  tier?: string;
+  /** Freischalt-Quelle: "card" (Stripe) oder "code" (Kontingent). */
+  source?: "card" | "code";
+  /** Bei Quelle "code": der eingeloeste Kontingent-Code. */
+  creditCode?: string;
+}
 
+/**
+ * Versucht, eine Session als bezahlt zu markieren und einen paid_token zu setzen.
+ * Race-sicher: das UPDATE greift nur, wenn paid_token noch NULL ist.
+ * didSet=true -> DIESER Aufruf hat freigeschaltet; didSet=false -> war bereits
+ * bezahlt (z. B. paralleler Aufruf) und der bestehende Token wird zurueckgegeben.
+ */
+export async function tryMarkSessionPaid(
+  sessionToken: string,
+  params: MarkPaidParams
+): Promise<{ session: WizardSession; didSet: boolean }> {
   const paidToken = randomUUID();
   const res = await query<DbRow>(
     `UPDATE ki_antraege
@@ -161,18 +173,40 @@ export async function markSessionPaid(
            stripe_session_id = COALESCE($2, stripe_session_id),
            stripe_customer_email = COALESCE($3, stripe_customer_email),
            tier = COALESCE($4, tier),
+           entitlement_source = COALESCE($5, entitlement_source),
+           credit_code = COALESCE($6, credit_code),
            updated_at = CURRENT_TIMESTAMP
-     WHERE session_token = $5
+     WHERE session_token = $7 AND paid_token IS NULL
      RETURNING *`,
     [
       paidToken,
       params.stripeSessionId ?? null,
       params.stripeCustomerEmail ?? null,
       params.tier ?? null,
+      params.source ?? null,
+      params.creditCode ?? null,
       sessionToken,
     ]
   );
-  return rowToSession(res.rows[0]);
+  if (res.rowCount === 1) {
+    return { session: rowToSession(res.rows[0]), didSet: true };
+  }
+  // Kein Update -> bereits bezahlt oder Session existiert nicht.
+  const existing = await getWizardSession(sessionToken);
+  if (!existing) throw new Error(`Session ${sessionToken} nicht gefunden`);
+  return { session: existing, didSet: false };
+}
+
+/**
+ * Markiert eine Session als bezahlt und erzeugt einen paid_token.
+ * Idempotent: wenn bereits bezahlt, wird der bestehende Token zurueckgegeben.
+ */
+export async function markSessionPaid(
+  sessionToken: string,
+  params: MarkPaidParams
+): Promise<WizardSession> {
+  const { session } = await tryMarkSessionPaid(sessionToken, params);
+  return session;
 }
 
 export function rollbackBeforeMessage(
