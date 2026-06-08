@@ -52,6 +52,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://edufunds.org',
   },
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({
