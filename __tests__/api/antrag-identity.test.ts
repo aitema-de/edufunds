@@ -24,7 +24,7 @@ jest.mock("resend", () => ({
   Resend: jest.fn().mockImplementation(() => ({ emails: { send: jest.fn().mockResolvedValue({ id: "m1" }) } })),
 }));
 
-import { GET as verifyGET } from "@/app/api/antrag/verify/route";
+import { GET as verifyGET, POST as verifyPOST } from "@/app/api/antrag/verify/route";
 import { GET as listGET } from "@/app/api/antrag/list/route";
 import { POST as bindPOST } from "@/app/api/antrag/bind-email/route";
 import { POST as magicPOST } from "@/app/api/antrag/magic-link/route";
@@ -50,26 +50,30 @@ const verifyReq = (token: string | null) =>
     url: "http://localhost/api/antrag/verify" + (token ? `?token=${token}` : ""),
   }) as never;
 
+const verifyPostReq = (token: string | null, next?: string) =>
+  ({
+    formData: async () => {
+      const f = new URLSearchParams();
+      if (token) f.set("token", token);
+      if (next) f.set("next", next);
+      return f;
+    },
+  }) as never;
+
 const listReq = (cookieVal: string | null) =>
   ({ cookies: { get: () => (cookieVal ? { value: cookieVal } : undefined) } }) as never;
 
 const jsonReq = (body: unknown) =>
   ({ json: async () => body, headers: { get: () => null }, url: "http://localhost/api/x" }) as never;
 
-describe("GET /api/antrag/verify", () => {
-  it("gültiger Token -> 307 Redirect (verified) + Identity-Cookie", async () => {
-    (consumeMagicLink as jest.Mock).mockResolvedValue({ email: "a@b.de" });
+describe("GET /api/antrag/verify (Scanner-Schutz: kein Konsum)", () => {
+  it("gültiger Token -> 200 Bestätigungsseite, KEIN Konsum, kein Cookie", async () => {
     const res = await verifyGET(verifyReq("tok123"));
-    expect(res.status).toBe(307);
-    expect(res.headers.get("location")).toContain("verified=1");
-    expect(res.cookies.get("edufunds_identity")?.value).toBe("signed-xyz");
-  });
-
-  it("ungültiger/abgelaufener Token -> Redirect error=link, kein Cookie", async () => {
-    (consumeMagicLink as jest.Mock).mockResolvedValue(null);
-    const res = await verifyGET(verifyReq("bad"));
-    expect(res.status).toBe(307);
-    expect(res.headers.get("location")).toContain("error=link");
+    expect(res.status).toBe(200);
+    const html = await res.text();
+    expect(html).toContain("Jetzt anmelden");
+    expect(html).toContain("tok123");
+    expect(consumeMagicLink).not.toHaveBeenCalled(); // <- Scanner verbraucht den Token NICHT
     expect(res.cookies.get("edufunds_identity")).toBeUndefined();
   });
 
@@ -77,6 +81,31 @@ describe("GET /api/antrag/verify", () => {
     const res = await verifyGET(verifyReq(null));
     expect(res.headers.get("location")).toContain("error=link");
     expect(consumeMagicLink).not.toHaveBeenCalled();
+  });
+});
+
+describe("POST /api/antrag/verify (menschlicher Klick: Konsum)", () => {
+  it("gültiger Token -> 303 (verified) + Identity-Cookie", async () => {
+    (consumeMagicLink as jest.Mock).mockResolvedValue({ email: "a@b.de" });
+    const res = await verifyPOST(verifyPostReq("tok123", "/kontingent/uebersicht"));
+    expect(res.status).toBe(303);
+    expect(res.headers.get("location")).toContain("/kontingent/uebersicht?verified=1");
+    expect(res.cookies.get("edufunds_identity")?.value).toBe("signed-xyz");
+  });
+
+  it("ungültiger/abgelaufener Token -> 303 error=link, kein Cookie", async () => {
+    (consumeMagicLink as jest.Mock).mockResolvedValue(null);
+    const res = await verifyPOST(verifyPostReq("bad"));
+    expect(res.status).toBe(303);
+    expect(res.headers.get("location")).toContain("error=link");
+    expect(res.cookies.get("edufunds_identity")).toBeUndefined();
+  });
+
+  it("böses next -> Fallback /antrag/meine (kein Open-Redirect)", async () => {
+    (consumeMagicLink as jest.Mock).mockResolvedValue({ email: "a@b.de" });
+    const res = await verifyPOST(verifyPostReq("tok123", "https://evil.com"));
+    expect(res.headers.get("location")).toContain("/antrag/meine?verified=1");
+    expect(res.headers.get("location")).not.toContain("evil.com");
   });
 });
 
