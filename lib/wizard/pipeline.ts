@@ -32,6 +32,11 @@ import {
 } from "./prompts";
 import { MODEL_FLASH, MODEL_PRO, generateJson, generateText } from "./llm";
 import { reviseForConsistency } from "./consistency-revision";
+import {
+  buildAllowedCorpus,
+  detectIntroduced,
+  repairIntroduced,
+} from "./hallucination-gate";
 import type { Usage } from "./pricing";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
 import { generateFinanzplan } from "./finanzplan-generator";
@@ -402,6 +407,51 @@ export async function runPipeline(
   }
 
   // =========================================================================
+  // Halluzinations-Diff-Gate (Probe 09.06., Hebel 1)
+  // Vergleicht die revidierte Fassung deterministisch gegen die erlaubten
+  // Quellen (Entwurf + Facts + User-Antworten). In der Revisions-Stufe NEU
+  // eingefuehrte Zahlen/Eigennamen, die in keiner Quelle stehen, sind mit
+  // hoher Wahrscheinlichkeit erfunden ("alte gegen neue Erfindung"). Ein
+  // gezielter Repair entfernt sie; uebernommen wird er nur bei deterministisch
+  // nachgewiesener Verbesserung — das Gate kann nie verschlimmern (Lehre Fall 5).
+  // Laeuft VOR consistency/finanzplan, damit spaeter legitim aus dem Finanzplan
+  // uebernommene Betraege nicht faelschlich als "neu" gewertet werden.
+  // =========================================================================
+  let hallucinationGate: GenerationArtefacts["hallucinationGate"];
+  {
+    const allowedCorpus = buildAllowedCorpus(draft, facts, userAnswers);
+    const introduced = detectIntroduced(finalRes.value ?? "", allowedCorpus);
+    const introducedBefore = [...introduced.numbers, ...introduced.entities];
+    if (introducedBefore.length > 0) {
+      emit({ stage: "revision", message: "Halluzinations-Diff-Gate" });
+      try {
+        const gate = await repairIntroduced(
+          finalRes.value ?? "",
+          introduced,
+          allowedCorpus,
+          {
+            revise: (system, user) => generateText(MODEL_PRO, system, user),
+            model: MODEL_PRO,
+          }
+        );
+        finalRes = { value: gate.finalText, usage: finalRes.usage };
+        usages.push(...gate.usages);
+        hallucinationGate = {
+          introducedBefore,
+          residual: gate.residual,
+          repaired: gate.repaired,
+        };
+        console.log(
+          `[pipeline] Halluzinations-Gate: ${introducedBefore.length} Treffer → ${gate.residual.length} verbleibend (repaired=${gate.repaired})`
+        );
+      } catch (gateErr) {
+        console.error("[pipeline] Halluzinations-Gate fehlgeschlagen:", gateErr);
+        hallucinationGate = { introducedBefore, residual: introducedBefore, repaired: false };
+      }
+    }
+  }
+
+  // =========================================================================
   // Phase 5 D-20 Hebel 2 — Compliance-Check-Stage (PIPELINE_COMPLIANCE_STAGE)
   // Silent-Stage gegenueber GeneratingProgress.tsx — kein UI-Update.
   // Loop-Count enforced: max 1 Iteration (T-05-06-01 DoS-Mitigation).
@@ -510,6 +560,7 @@ export async function runPipeline(
       critiqueFindings: critique.findings,
       critiqueResolutions: resolutions.length ? resolutions : undefined,
       hasOpenHighFindings: hasOpenHigh || undefined,
+      hallucinationGate,
       consistencyIssues: consistencyIssues.length ? consistencyIssues : undefined,
       hasConsistencyIssues: consistencyIssues.length > 0 || undefined,
       finalText: finalRes.value,

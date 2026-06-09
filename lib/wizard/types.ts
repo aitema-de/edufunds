@@ -157,6 +157,14 @@ export interface GenerationArtefacts {
   critiqueResolutions?: FindingResolution[];
   /** True, wenn mind. ein Finding mit schwere=hoch nicht abschliessend geschlossen ist. */
   hasOpenHighFindings?: boolean;
+  /**
+   * Halluzinations-Diff-Gate (Probe 09.06., Hebel 1): in der Revisions-Stufe NEU
+   * eingefuehrte Zahlen/Eigennamen, die in keiner Quelle (Entwurf/Facts/Antworten)
+   * stehen. `introducedBefore` = vor dem Repair erkannt, `residual` = danach noch
+   * vorhanden, `repaired` = ob der Repair uebernommen wurde. Nur gesetzt, wenn
+   * ueberhaupt Treffer vorlagen.
+   */
+  hallucinationGate?: { introducedBefore: string[]; residual: string[]; repaired: boolean };
   /** Inkonsistenzen zwischen Antragstext und Finanzplan (Cross-Check). */
   consistencyIssues?: ConsistencyIssue[];
   /** True, wenn mindestens ein Konsistenz-Issue gefunden wurde. */

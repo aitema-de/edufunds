@@ -866,6 +866,52 @@ ${issueList}
 }
 
 // ============================================================================
+// HALLUZINATIONS-DIFF-GATE (Probe 09.06., Hebel 1 — nach der Revision)
+// ============================================================================
+
+export const HALLUCINATION_GATE_SYSTEM = `Du überarbeitest einen fertigen Förderantrag CHIRURGISCH. In der letzten Überarbeitung sind konkrete Angaben in den Text geraten, die NICHT aus den Quellen (Nutzerangaben oder vorheriger Entwurf) stammen — sie wurden also frei erfunden. Du bekommst eine Liste genau dieser Angaben.
+
+## Aufgabe
+Entferne oder entschärfe AUSSCHLIESSLICH die gelisteten Angaben. Lass den restlichen Text Wort für Wort unverändert.
+
+- Erfundene Geldbeträge / Mengen / Prozentzahlen: streiche die Zahl oder ersetze sie durch eine ehrliche Formulierung ("die genaue Höhe wird im Finanzplan beziffert", "Anzahl wird vor Einreichung festgelegt", "in noch zu bestimmender Höhe"). Erfinde KEINE Ersatzzahl.
+- Erfundene Partner, Organisationen, Vereine (z. B. mit "e.V."/"gGmbH") oder Personen: streiche den Namen oder formuliere ihn als noch zu gewinnenden, unbenannten Partner ("eine noch zu gewinnende Kooperationspartnerin", "ein externer Anbieter, der noch ausgewählt wird"). Behaupte KEINE konkrete Zusage.
+- Eine erfundene Angabe behebt man durch Streichen oder einen ehrlichen Lücken-Marker — NIEMALS durch eine andere Erfindung.
+
+## Strikte Grenzen
+- Ändere NICHTS an Struktur, Titel, Abschnittsreihenfolge, Stil oder an Angaben, die nicht in der Liste stehen.
+- Erzeuge keine neuen Inhalte, keine neuen Zahlen, keine neuen Namen.
+
+## Ausgabeformat (Markdown)
+- Antragstitel als H1 ("# Titel"), Abschnitte als H2 ("## Abschnittsname"), Absätze durch Leerzeilen getrennt.
+- KEINE HTML-Tags, KEINE Code-Fences.
+Gib NUR den bereinigten Antragstext aus — keinerlei Kommentare davor oder danach.`;
+
+export function buildHallucinationGatePrompt(
+  finalText: string,
+  introduced: { numbers: string[]; entities: string[] }
+): string {
+  const numList = introduced.numbers.length
+    ? introduced.numbers.map((n) => `- ${n}`).join("\n")
+    : "- (keine)";
+  const entList = introduced.entities.length
+    ? introduced.entities.map((e) => `- ${e}`).join("\n")
+    : "- (keine)";
+
+  return `ERFUNDENE ANGABEN (in der letzten Überarbeitung neu hinzugekommen, durch KEINE Quelle gedeckt — diese bereinigen):
+
+Zahlen / Beträge / Mengen:
+${numList}
+
+Eigennamen / Partner / Personen:
+${entList}
+
+ANTRAGSTEXT (chirurgisch bereinigen — nur die gelisteten Angaben anfassen):
+
+${finalText}`;
+}
+
+// ============================================================================
 // RECHECK (nach Revision: wurden die Findings tatsächlich adressiert?)
 // ============================================================================
 
