@@ -28,6 +28,18 @@ export function renderFinanzplanMarkdown(plan: Finanzplan): string {
   lines.push("## Finanzplan");
   lines.push("");
   if (plan.posten.length === 0) {
+    if (plan.unbeziffert && plan.kostenrahmen?.length) {
+      lines.push(
+        "Es liegen noch keine Kostenangaben vor. Der Finanzplan ist daher noch **unbeziffert** — die folgenden Positionen werden vor Einreichung durch Angebote beziffert:"
+      );
+      lines.push("");
+      for (const k of plan.kostenrahmen) lines.push(`- ${k}`);
+      if (plan.hinweise?.length) {
+        lines.push("");
+        for (const h of plan.hinweise) lines.push(`> ${h}`);
+      }
+      return lines.join("\n");
+    }
     lines.push("_Kein Finanzplan hinterlegt._");
     return lines.join("\n");
   }

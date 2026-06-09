@@ -77,7 +77,10 @@ async function api(path, body, timeoutMs = 60000) {
 }
 
 // --- Persona: ueberlastete Lehrkraft, antwortet knapp & vage ---
-async function personaAnswer({ idee, schule, frage, gestellteFragen }) {
+async function personaAnswer({ idee, schule, frage, gestellteFragen, istKlaerung }) {
+  const klaerungsRegel = istKlaerung
+    ? `\n\nDIES IST EINE SCHWERPUNKT-/KLAERUNGSFRAGE VOR DEM EIGENTLICHEN INTERVIEW. Entscheide dich hier KNAPP fuer GENAU DAS Themenfeld, das deinem Anliegen am naechsten liegt (z. B. bei "Mehr Bewegung" → "Sport/Bewegung"; bei "gesundes Essen" → "Ernaehrung/gesunde Schulverpflegung"). Erfinde KEIN neues Thema, waehle das naechstliegende. 1 kurzer Satz.`
+    : "";
   const sys = `Du bist die gestresste Schulleitung einer kleinen Grundschule und hast kaum Zeit. Eine Foerdermittel-Plattform stellt dir Interview-Fragen zu einem Projekt.
 Dein urspruengliches Anliegen, knapp formuliert: "${idee}".
 Schule: ${schule.name} (${schule.typ}).
@@ -87,7 +90,7 @@ Antworte auf JEDE Frage bewusst KNAPP und UNPRAEZISE, so wie eine ueberlastete L
 - KAUM konkrete Zahlen. Wenn nach Betraegen/Mengen/Terminen gefragt wird, weiche aus ("weiss ich nicht genau", "muessten wir noch ueberlegen", "so ungefaehr halt").
 - ERFINDE KEINE Details, Partner, Studien oder Zahlen. Lieber vage bleiben als ausschmuecken.
 - Bleib beim urspruenglichen Anliegen, schweife nicht in fremde Themen ab.
-- Keine Hoeflichkeitsfloskeln, keine Rueckfragen. Nur die knappe Antwort.`;
+- Keine Hoeflichkeitsfloskeln, keine Rueckfragen. Nur die knappe Antwort.${klaerungsRegel}`;
   const usr = `Frage der Plattform: "${frage}"
 
 Bisher schon gefragt: ${gestellteFragen.length ? gestellteFragen.map((q) => `"${q}"`).join("; ") : "(noch nichts)"}
@@ -140,28 +143,38 @@ async function runCase(c) {
   };
 
   try {
-    // 1) MATCHING (knappe Idee rein)
+    // 1) MATCHING (knappe Idee rein). Klaerungsfragen des Matchers werden
+    // beantwortet (statt mit forceRanking ueberfahren) — so wirkt die
+    // Klaerungs-Staerke des Matchers bei vagem Input. forceRanking erst als
+    // letzte Instanz nach 2 Klaerungsrunden.
     log(`Matching: "${c.idee}"`);
+    let anliegen = c.idee;
     let match = await api("/api/match", {
-      anliegen: c.idee,
+      anliegen,
       schulname: c.schule.name,
       schultyp: c.schule.typ,
       bundesland: c.schule.bundesland,
     }, 90000);
 
-    // Bei Klaerungsbedarf: einmal vage nachschaerfen + Ranking erzwingen
-    if (match.json?.kind === "clarification") {
-      dossier.matchClarification = match.json.question;
+    const klaerungen = [];
+    for (let kr = 0; kr < 2 && match.json?.kind === "clarification"; kr++) {
+      klaerungen.push(match.json.question);
       const klarAntwort = await personaAnswer({
-        idee: c.idee, schule: c.schule, frage: match.json.question, gestellteFragen: [],
+        idee: c.idee, schule: c.schule, frage: match.json.question, gestellteFragen: [], istKlaerung: true,
       });
       log(`Match-Klaerung beantwortet: "${klarAntwort}"`);
+      anliegen = `${anliegen} — ${klarAntwort}`;
+      // forceRanking IMMER beim Re-Match: die beantwortete Klaerung schaerft das
+      // Anliegen, aber der Matcher MUSS jetzt ranken (sonst kann er eine leere
+      // Liste zurueckgeben -> Fall faellt ganz aus). forceRanking unterdrueckt
+      // zudem eine erneute CLARIFY, sodass die Schleife nach 1 Runde endet.
       match = await api("/api/match", {
-        anliegen: `${c.idee} (${klarAntwort})`,
+        anliegen,
         schulname: c.schule.name, schultyp: c.schule.typ, bundesland: c.schule.bundesland,
         previousAnliegen: c.idee, forceRanking: true,
       }, 90000);
     }
+    if (klaerungen.length) dossier.matchClarification = klaerungen.length === 1 ? klaerungen[0] : klaerungen;
     dossier.match = match.json;
     const top = match.json?.matches?.[0];
     if (!top) throw new Error(`Kein Match (status ${match.status}): ${JSON.stringify(match.json).slice(0, 200)}`);

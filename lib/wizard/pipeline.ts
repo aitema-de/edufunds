@@ -27,6 +27,8 @@ import {
   buildRevisionPrompt,
   buildRecheckPrompt,
   buildConsistencyPrompt,
+  KOSTEN_ENTZIFFERUNG_SYSTEM,
+  buildKostenEntzifferungPrompt,
 } from "./prompts";
 import { MODEL_FLASH, MODEL_PRO, generateJson, generateText } from "./llm";
 import { reviseForConsistency } from "./consistency-revision";
@@ -477,6 +479,24 @@ export async function runPipeline(
       } catch (revErr) {
         console.error("[pipeline] Konsistenz-Revision fehlgeschlagen:", revErr);
       }
+    }
+  } else if (finanzRes.plan.unbeziffert) {
+    // Unbeziffert-Modus: der Finanzplan hat keine Euro-Posten. Damit der Antragstext
+    // nicht erfundene Betraege als Fakt nennt (Ehrlichkeits-Asymmetrie), die Euro-
+    // Betraege aus dem Text entfernen/entschaerfen. Fehlschlag behaelt Originaltext.
+    try {
+      emit({ stage: "consistency", message: "Euro-Beträge aus Text entfernen (unbeziffert)" });
+      const ent = await generateText(
+        MODEL_PRO,
+        KOSTEN_ENTZIFFERUNG_SYSTEM,
+        buildKostenEntzifferungPrompt(finalRes.value)
+      );
+      if (ent.value && ent.value.trim().length > 0) {
+        finalRes = { value: ent.value, usage: finalRes.usage };
+      }
+      usages.push({ model: MODEL_PRO, usage: ent.usage });
+    } catch (entErr) {
+      console.error("[pipeline] Kosten-Entzifferung fehlgeschlagen:", entErr);
     }
   }
 

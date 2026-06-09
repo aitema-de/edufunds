@@ -72,6 +72,15 @@ export interface Finanzplan {
   legitimiertAm?: string;
   /** Kommentar des Generators, z. B. Hinweise auf offene Fragen. */
   hinweise?: string[];
+  /**
+   * true, wenn der Nutzer KEINE Kostenbasis geliefert hat (keine Betraege/Preise).
+   * Dann werden bewusst KEINE erfundenen Euro-Posten erzeugt; stattdessen steht in
+   * `kostenrahmen` eine beschreibende, unbezifferte Kostenaufstellung. Verhindert,
+   * dass frei geschaetzte Zahlen als Kalkulation erscheinen (Probe 09.06.).
+   */
+  unbeziffert?: boolean;
+  /** Beschreibende Kostenpositionen OHNE Betrag (nur im unbeziffert-Modus gesetzt). */
+  kostenrahmen?: string[];
 }
 
 export type CritiqueSchwere = "hoch" | "mittel" | "niedrig";

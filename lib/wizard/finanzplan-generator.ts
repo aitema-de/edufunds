@@ -3,8 +3,36 @@ import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type { Finanzplan, Finanzposten, WizardFacts } from "./types";
 import type { Richtlinie } from "./richtlinien-schema";
 import { MODEL_PRO, generateJson } from "./llm";
-import { FINANZPLAN_SYSTEM, buildFinanzplanPrompt } from "./prompts";
+import {
+  FINANZPLAN_SYSTEM,
+  buildFinanzplanPrompt,
+  FINANZPLAN_KOSTENRAHMEN_SYSTEM,
+  buildFinanzplanKostenrahmenPrompt,
+} from "./prompts";
 import type { Usage } from "./pricing";
+
+/**
+ * Grobe Geld-Erkennung in einer User-Antwort: eine Zahl unmittelbar mit
+ * Euro-Markierung (z. B. "10.000 EUR", "5000 €", "Euro 2000"). Reine Mengen
+ * ("200 Kinder", "20 Tablets") zaehlen NICHT als Kostenbasis.
+ */
+const MONEY_RE = /(?:\d[\d.\s]*\s*(?:€|eur\b|euro)|(?:€|euro|eur)\s*\d)/i;
+
+/**
+ * true, wenn der Nutzer eine Kostenbasis geliefert hat — entweder ein Budget in
+ * den Facts oder eine Geldangabe in den Roh-Antworten. Fehlt beides, wird der
+ * Finanzplan im unbeziffert-Modus erzeugt (keine erfundenen Euro-Betraege).
+ * Exportiert fuer Tests.
+ */
+export function hasUserKostenbasis(facts: WizardFacts, userAnswers?: string[]): boolean {
+  const b = facts?.budget;
+  if (b) {
+    if (typeof b.beantragt_eur === "number" && b.beantragt_eur > 0) return true;
+    if (typeof b.eigenmittel_eur === "number" && b.eigenmittel_eur > 0) return true;
+  }
+  if (userAnswers?.some((a) => MONEY_RE.test(a))) return true;
+  return false;
+}
 
 interface RawPosten {
   kategorie?: string;
@@ -108,7 +136,7 @@ export function applyStatedEigenanteil(
  * Beträge, die der Nutzer leicht ungeprüft übernimmt.
  */
 const ESTIMATION_HEDGE =
-  /gesch[aä]tzt|auf basis (?:üblicher|von)|übliche[rn]? (?:tagess|stundens|honorar|s[aä]tze)|pauschal angenommen|orientiert sich an üblich|angenommene[rn]? (?:tagess|stundens|honorar)/i;
+  /gesch[aä]tzt|sch(?:ä|ae)tzung|auf basis (?:üblicher|von)|übliche[rn]? (?:tagess|stundens|honorar|s[aä]tze)|pauschal angenommen|orientiert sich an üblich|angenommene[rn]? (?:tagess|stundens|honorar)/i;
 
 /**
  * Markiert Posten mit eingestandenermaßen geschätztem Betrag durch einen
@@ -136,6 +164,34 @@ export async function generateFinanzplan(
   richtlinie: Richtlinie | null | undefined,
   userAnswers?: string[]
 ): Promise<{ plan: Finanzplan; usage: FinanzplanUsage }> {
+  // Probe 09.06.: Ohne jede Nutzer-Kostenbasis KEINE erfundenen Euro-Posten —
+  // stattdessen ein ehrlicher unbezifferter Kostenrahmen (Positionen ohne Betrag).
+  if (!hasUserKostenbasis(facts, userAnswers)) {
+    const { value: kr, usage: krUsage } = await generateJson<{
+      kostenrahmen?: string[];
+      hinweise?: string[];
+    }>(
+      MODEL_PRO,
+      FINANZPLAN_KOSTENRAHMEN_SYSTEM,
+      buildFinanzplanKostenrahmenPrompt(programm, facts, richtlinie, userAnswers)
+    );
+    const kostenrahmen = (kr.kostenrahmen ?? [])
+      .map((s) => String(s).trim())
+      .filter(Boolean);
+    const hinweise = kr.hinweise?.length ? [...kr.hinweise] : [];
+    hinweise.unshift(
+      "Es wurden keine Kostenangaben gemacht — der Finanzplan ist noch zu beziffern. Konkrete Betraege werden ueber Angebote vor Einreichung ermittelt."
+    );
+    const plan: Finanzplan = {
+      posten: [],
+      kostenrahmen,
+      unbeziffert: true,
+      generiertAm: new Date().toISOString(),
+      hinweise,
+    };
+    return { plan, usage: { model: MODEL_PRO, usage: krUsage } };
+  }
+
   const { value, usage } = await generateJson<RawResult>(
     MODEL_PRO,
     FINANZPLAN_SYSTEM,
@@ -153,6 +209,23 @@ export async function generateFinanzplan(
   const postenMitEigenanteil = applyStatedEigenanteil(posten, facts, hinweise);
   // QA-02: Posten mit eingestandenermaßen geschätztem Betrag warnend markieren.
   flagEstimatedAmounts(postenMitEigenanteil, hinweise);
+
+  // Probe 09.06.: Wenn der User selbst keinen Budget-Betrag genannt hat UND
+  // (fast) alle Förderposten als Schätzung begründet sind, einen prominenten
+  // Gesamthinweis voranstellen — macht transparent, dass der ganze Plan auf
+  // Schätzungen beruht, statt erfundene Beträge als Kalkulation zu tarnen.
+  const userNannteBudget =
+    typeof facts?.budget?.beantragt_eur === "number" && facts.budget.beantragt_eur > 0;
+  const foerderposten = postenMitEigenanteil.filter((p) => !p.eigenanteil);
+  const geschaetzt = foerderposten.filter(
+    (p) => p.begruendung && ESTIMATION_HEDGE.test(p.begruendung)
+  );
+  const alleGeschaetzt = foerderposten.length > 0 && geschaetzt.length === foerderposten.length;
+  const summenHinweis =
+    "Alle Beträge sind grobe Schätzungen ohne konkrete Angaben der Schule — vor Einreichung durch Angebote belegen.";
+  if (!userNannteBudget && alleGeschaetzt && !hinweise.some((h) => h.includes("grobe Schätzungen"))) {
+    hinweise.unshift(summenHinweis);
+  }
 
   const plan: Finanzplan = {
     posten: postenMitEigenanteil,
