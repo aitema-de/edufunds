@@ -4,6 +4,7 @@ import { useState, useEffect, ReactNode } from "react";
 import { ProgrammCardSkeleton } from "@/components/skeletons/ProgrammCardSkeleton";
 import { LoadingProgress } from "@/components/ui/progress";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import { Button } from "@/components/ui/button";
 
 interface AsyncDataLoaderProps<T> {
   children: (data: T) => ReactNode;
@@ -118,12 +119,9 @@ function AsyncDataLoader<T>({
           Fehler beim Laden
         </h3>
         <p className="text-slate-500 mb-6">{error}</p>
-        <button
-          onClick={() => window.location.reload()}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl btn-primary text-sm font-medium"
-        >
+        <Button onClick={() => window.location.reload()}>
           Erneut versuchen
-        </button>
+        </Button>
       </div>
     );
   }

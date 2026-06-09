@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduFunds Newsletter – KW 07/2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #334155 0%, #475569 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .header .ausgabe {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        /* Einleitung */
+        .intro {
+            background: #f1f5f9;
+            border-left: 4px solid #475569;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .intro h2 {
+            color: #334155;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .intro p {
+            color: #475569;
+            font-size: 15px;
+        }
+        
+        /* Plattform-Update Box */
+        .platform-update {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        .platform-update .badge {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        
+        .platform-update h2 {
+            color: white;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        .platform-update p {
+            color: #cbd5e1;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+        
+        .platform-update .stat-box {
+            background: rgba(59, 130, 246, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .platform-update .stat-box .number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #60a5fa;
+        }
+        
+        .platform-update .stat-box .label {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+        
+        /* Top Programm */
+        .top-programm {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .top-programm .badge {
+            display: inline-block;
+            background: #dc2626;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        
+        .top-programm h2 {
+            color: #78350f;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        .top-programm .betrag {
+            color: #b45309;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .top-programm p {
+            color: #78350f;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+        
+        .top-programm .steps {
+            background: rgba(255,255,255,0.6);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .top-programm .steps h3 {
+            color: #78350f;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .top-programm .steps ol {
+            margin-left: 20px;
+            color: #78350f;
+            font-size: 14px;
+        }
+        
+        .top-programm .steps li {
+            margin-bottom: 8px;
+        }
+        
+        .kI-tipp {
+            background: #1e293b;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        .kI-tipp strong {
+            color: #60a5fa;
+        }
+        
+        /* Weitere Programme */
+        .weitere {
+            margin-bottom: 30px;
+        }
+        
+        .weitere h2 {
+            color: #334155;
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .programm-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .programm-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .programm-card h3 {
+            color: #334155;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .programm-card .betrag {
+            color: #475569;
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+        
+        .programm-card p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .programm-card .frist {
+            color: #dc2626;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .programm-card .badge-new {
+            display: inline-block;
+            background: #22c55e;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        
+        /* Tipp der Woche */
+        .tipp {
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .tipp h2 {
+            color: #1e3a5f;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .tipp h3 {
+            color: #334155;
+            font-size: 15px;
+            margin: 15px 0 8px 0;
+        }
+        
+        .tipp p {
+            color: #475569;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .tipp .example {
+            background: rgba(255,255,255,0.7);
+            padding: 12px;
+            border-radius: 6px;
+            font-style: italic;
+            color: #334155;
+            border-left: 3px solid #475569;
+        }
+        
+        /* Ausblick */
+        .ausblick {
+            background: #f1f5f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .ausblick h2 {
+            color: #334155;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .ausblick p {
+            color: #475569;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #334155 0%, #475569 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: transform 0.2s;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 25px 30px;
+            text-align: center;
+            font-size: 13px;
+        }
+        
+        .footer p {
+            margin-bottom: 8px;
+        }
+        
+        .footer a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+        
+        .footer .unsubscribe {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #334155;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎓 EduFunds</h1>
+            <p class="subtitle">Der Newsletter für Förderungen & Schulen</p>
+            <span class="ausgabe">Ausgabe KW 07/2026 • Februar 2026</span>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <!-- Einleitung -->
+            <div class="intro">
+                <h2>🚀 Wichtige Neuigkeiten für Fördermittel-Einwerber</h2>
+                <p>Diese Woche bringt exzellente Chancen für Ihre Bildungseinrichtung: Erasmus+ Schule öffnet mit 93 Millionen Euro Fördervolumen, der berufliche Austausch 2026/27 startet sofort – und wir haben vier frisch verifizierte Programme in unserer Datenbank. Besonders spannend: Unsere KI-gestützte Antragshilfe ist nun mit 83 optimierten Vorlagen ausgestattet, die Ihnen wertvolle Zeit bei der Beantragung sparen. Nutzen Sie diese Konjunktur für Ihre Projekte!</p>
+            </div>
+            
+            <!-- Plattform-Update -->
+            <div class="platform-update">
+                <span class="badge">Plattform-Update</span>
+                <h2>🤖 83 KI-Anträge jetzt verfügbar</h2>
+                <p>Unsere KI-gestützte Antragshilfe wurde massiv erweitert. Sie unterstützt Sie jetzt mit <strong>83 optimierten Antragsvorlagen</strong> für die gängigsten Förderprogramme – von der ersten Idee bis zur finalen Einreichung.</p>
+                
+                <div class="stat-box">
+                    <div class="number">83</div>
+                    <div class="label">KI-optimierte Antragsvorlagen</div>
+                </div>
+                
+                <p><strong>Was ist neu:</strong></p>
+                <p>• Intelligente Formulierungsvorschläge für Zielsetzungen<br>
+                • Automatische Plausibilitätsprüfung von Budgets<br>
+                • Maßgeschneiderte Argumentationshilfen je Programm<br>
+                • Export als Word, PDF oder direkt ins Portal</p>
+                
+                <p style="margin-top: 15px;"><strong>💡 Pro-Tipp:</strong> Beginnen Sie Ihren nächsten Antrag mit der KI-Vorlage – sie spart durchschnittlich 40% Bearbeitungszeit.</p>
+            </div>
+            
+            <!-- Top Programm -->
+            <div class="top-programm">
+                <span class="badge">Top Programm</span>
+                <h2>🌍 Erasmus+ Schule 2026</h2>
+                <div class="betrag">93 Millionen Euro Fördervolumen</div>
+                <p><strong>Warum das wichtig ist:</strong> Das Flaggschiff-Programm für schulische Mobilität und Zusammenarbeit in Europa öffnet die nächste Runde. Schulen können Partnerschaften, Austauschprojekte und Fortbildungen fördern lassen – mit bis zu 80% Zuschussquote.</p>
+                
+                <div class="steps">
+                    <h3>📝 So beantragen Sie das Programm:</h3>
+                    <ol>
+                        <li><strong>Accreditierung prüfen:</strong> Ist Ihre Schule bereits akkreditiert? Falls nicht, beantragen Sie die einfache Accreditierung zuerst.</li>
+                        <li><strong>Projekt konzipieren:</strong> Definieren Sie Mobilitäten, Partnerschaften oder Fortbildungsmaßnahmen.</li>
+                        <li><strong>Im Portal anmelden:</strong> Nutzen Sie das EU Login und das Erasmus+ Portal.</li>
+                        <li><strong>Antrag ausfüllen:</strong> Nutzen Sie unsere KI-Vorlage für die Beschreibung von Zielen und Ergebnissen.</li>
+                        <li><strong>Einreichen:</strong> Prüfen Sie Plausibilität und reichen Sie fristgerecht ein.</li>
+                    </ol>
+                </div>
+                
+                <p><strong>Frist:</strong> KA1 Mobility: 23. Februar 2026 | KA2 Partnerschaften: 24. März 2026</p>
+                <p><strong>Förderfähig:</strong> Personalmobilitäten, Schüleraustausch, Job Shadowing, strategische Partnerschaften, Fortbildungen</p>
+                
+                <div class="kI-tipp">
+                    <strong>💡 KI-Tipp:</strong> Der Schlüssel zu Erasmus+ ist die Verknüpfung mit europäischen Bildungszielen (ET2020). Formulieren Sie Ihre Ziele nicht nur institutionell, sondern betonen Sie den europäischen Mehrwert – z.B. "Förderung gemeinsamer europäischer Werte" oder "Stärkung der sprachlichen Vielfalt".
+                </div>
+            </div>
+            
+            <!-- Weitere Programme -->
+            <div class="weitere">
+                <h2>📋 Weitere Top-Programme</h2>
+                
+                <div class="programm-card">
+                    <h3><span class="badge-new">NEU</span> Beruflicher Austausch 2026/27</h3>
+                    <div class="betrag">Sofort beantragbar – Förderung bis 75%</div>
+                    <p>Das Programm für berufliche Bildung öffnet die nächste Runde. Betriebe und Berufsschulen können Praktika, Hospitationen und Kooperationen mit europäischen Partnern fördern lassen. Besonders attraktiv: Die hohe Förderquote und flexible Projektlaufzeiten.</p>
+                    <div class="frist">⏰ Laufend möglich, Quartalsweise Ausschreibung</div>
+                </div>
+                
+                <div class="programm-card">
+                    <h3><span class="badge-new">NEU</span> DigitalPakt Schule – Bundesmittel 2026</h3>
+                    <div class="betrag">Bis 500.000 € pro Schulträger</div>
+                    <p>Die nächste Tranche des DigitalPakts steht bereit. Schwerpunkte: KI-gestützte Lehrmittel, digitale Infrastruktur, Cybersicherheit an Schulen. Anträge werden über die zuständigen Kultusministerien koordiniert.</p>
+                    <div class="frist">⏰ Beantragung über Schulträger bis 30. April 2026</div>
+                </div>
+                
+                <div class="programm-card">
+                    <h3><span class="badge-new">NEU</span> KI-Sandkasten für Bildungseinrichtungen</h3>
+                    <div class="betrag">Bis 50.000 € Pilotförderung</div>
+                    <p>Ein neues Programm des BMWK fördert innovative KI-Anwendungen in der Bildung. Gesucht werden Schulen und Hochschulen, die KI-Werkzeuge im Unterricht erproben und evaluieren wollen. Förderquote: 100% in der Pilotphase.</p>
+                    <div class="frist">⏰ Erste Runde: 15. März 2026</div>
+                </div>
+                
+                <div class="programm-card">
+                    <h3><span class="badge-new">NEU</span> Klimafit für Schulen 2026</h3>
+                    <div class="betrag">Bis 30.000 € für Energieeffizienzprojekte</div>
+                    <p>Das BMU-Programm unterstützt Schulen bei der Umsetzung von Klimaschutzmaßnahmen: Photovoltaik, Wärmedämmung, klimabewusste Schulverpflegung. Besondere Priorität haben Projekte mit Einbindung der Schüler*innen.</p>
+                    <div class="frist">⏰ Kontinuierlich, begrenzte Mittel</div>
+                </div>
+            </div>
+            
+            <!-- Tipp der Woche -->
+            <div class="tipp">
+                <h2>💡 Die 3 häufigsten Fehler bei Anträgen</h2>
+                <p>Vermeiden Sie diese typischen Stolpersteine, die immer wieder zu Ablehnungen führen:</p>
+                
+                <h3>1. Unrealistische Ziele formulieren</h3>
+                <p>Viele Antragsteller definieren Ziele, die weder messbar noch in der Projektlaufzeit erreichbar sind. Gutachter erkennen das sofort.</p>
+                
+                <h3>2. Budget nicht nachvollziehbar begründen</h3>
+                <p>Personalkosten ohne konkrete Tätigkeitsbeschreibung oder Sachmittel ohne Bezug zum Projektziel wirken willkürlich.</p>
+                
+                <h3>3. Vernetzung vergessen</h3>
+                <p>Fast alle Programme honorieren Multiplikatorenwirkung und Transfer. Wer das nicht adressiert, verschenkt Punkte.</p>
+                
+                <div class="example">
+                    <strong>Beispiel für ein gutes Ziel:</strong> "Bis Dezember 2026 werden 120 Lehrkräfte aus 15 Schulen im Landkreis X in 6 Fortbildungsveranstaltungen zu digitalen Lehrmethoden qualifiziert. Die Ergebnisse werden in einer öffentlich zugänglichen Handlungsanleitung dokumentiert und über das Kultusministerium an alle Schulen des Bundeslandes verteilt."
+                </div>
+            </div>
+            
+            <!-- Ausblick -->
+            <div class="ausblick">
+                <h2>🔮 Was kommt als Nächstes?</h2>
+                <p>In den kommenden Wochen erwarten wir weitere spannende Ausschreibungen: Das neue "Jugend stärken"-Programm des BMFSFJ, zusätzliche Mittel für den Ganztag an Schulen und eine bundesweite Initiative zur Lehrer*innen-Fortbildung. Bleiben Sie dran!</p>
+                <a href="https://edufunds.de/dashboard" class="cta-button">Jetzt Antrag starten →</a>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>EduFunds</strong> – Förderungen finden leicht gemacht</p>
+            <p>Sie erhalten diesen Newsletter, weil Sie sich für Bildungsförderung interessieren.</p>
+            <div class="unsubscribe">
+                <p><a href="{{unsubscribe_url}}">Newsletter abbestellen</a> | <a href="https://edufunds.de/impressum">Impressum</a> | <a href="https://edufunds.de/datenschutz">Datenschutz</a></p>
+                <p style="margin-top: 15px; font-size: 12px;">© 2026 EduFunds. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

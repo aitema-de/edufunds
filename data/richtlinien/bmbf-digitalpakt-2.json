@@ -1,0 +1,167 @@
+{
+  "version": "2026-05-19",
+  "quellen": [
+    "https://www.digitalpaktschule.de/de/digitalpakt-2-0-1874.html"
+  ],
+  "foerderhoehe": {
+    "bemerkung": "Gesamtvolumen 5 Mrd. EUR ueber 2025-2030 (2,5 Mrd Bund + 2,5 Mrd Laender). Konkrete Foerderhoehe PRO SCHULE wird erst ueber Laender-Richtlinien operationalisiert — variiert je Bundesland und Antragsjahr. Typisch fuer DigitalPakt 1 waren 500 EUR pro Schueler (Grund-/Sockelbetrag) plus Zuschlag-Komponenten. Anwenderbetrag daher zur Laufzeit beim zustaendigen Ministerium des Bundeslandes erfragen."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Digitale Infrastruktur in Schulgebaeuden",
+        "Bildungssoftware"
+      ],
+      "beispielePasst": [
+        "Aufbau/Ausbau WLAN, strukturierte Verkabelung",
+        "Displays, interaktive Tafeln, Praesentationstechnik",
+        "Server, Netzwerk-Komponenten fuer Schul-IT",
+        "Lizenzen fuer Bildungssoftware, Lernplattformen"
+      ],
+      "beispielePasstNicht": [
+        "Standardsoftware ohne paedagogischen Bezug (z. B. reine Verwaltungssoftware)",
+        "Konsumgueter / Verbrauchsmaterial"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Mobile Endgeraete (Tablets, Laptops) sind foerderfaehig wenn Teil eines paedagogischen Konzepts"
+      ],
+      "beispielePasst": [
+        "Klassensaetze Tablets / Notebooks fuer Schuelerinnen und Schueler",
+        "Stationaere Ausstattung von Fach-/Medienraeumen"
+      ]
+    },
+    {
+      "kategorie": "personal",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "DigitalPakt 2.0 erweitert explizit auf Personal fuer IT-Administration und Support.",
+        "Fortbildung von Lehrkraeften ist foerderfaehig."
+      ],
+      "beispielePasst": [
+        "IT-Administratorin / IT-Administrator fuer mehrere Schulen",
+        "First-Level-Support-Kraft",
+        "Fortbildungen, Schulungen zu Mediendidaktik"
+      ]
+    },
+    {
+      "kategorie": "overhead",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Allgemeine Verwaltungs-/Gemeinkosten der Kommune sind nicht ueber DigitalPakt foerderfaehig."
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": true,
+    "mindestProzent": 22,
+    "formenErlaubt": [
+      "finanziell"
+    ],
+    "bemerkung": "Eigenanteil der Laender: zwei Neuntel der Bundesmittel (ca. 22 %). In der Praxis teilweise weitergegeben an Schultraeger (Kommune). Antragsstellende Schule muss sich beim Schultraeger zur Kofinanzierung abstimmen."
+  },
+  "kumulierung": {
+    "erlaubt": "bedingt",
+    "bedingungen": [
+      "Keine Doppelfoerderung DERSELBEN Einzelmassnahme aus anderen oeffentlichen Programmen (Bundes-/Landes-/EU-Mittel).",
+      "Kombination mit Stiftungs- oder Privatmitteln fuer ERGAENZENDE Massnahmen ist zulaessig.",
+      "Eigenanteil darf nicht aus anderen oeffentlichen Foerderprogrammen finanziert werden."
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "bedarfsanalyse",
+        "name": "Bedarfsanalyse und Ausgangslage",
+        "pflicht": true,
+        "leitfragen": [
+          "Welcher konkrete digitale Bedarf besteht an der Schule (technisch und paedagogisch)?",
+          "Was wurde bereits aus DigitalPakt 1 finanziert, was fehlt noch?"
+        ],
+        "stilhinweis": "Sachlich, mit konkreten Zahlen zur Schule (Schueler, Raeume, vorhandene Infrastruktur)."
+      },
+      {
+        "id": "medienkonzept-bezug",
+        "name": "Bezug zum Medienkonzept der Schule",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie verknuepft die Massnahme mit dem (vorhandenen) schulischen Medienkonzept?",
+          "Welche Lernziele werden adressiert (KMK-Strategie 'Bildung in der digitalen Welt')?"
+        ],
+        "stilhinweis": "Paedagogisch-didaktischer Fokus, nicht technisch."
+      },
+      {
+        "id": "vorhaben",
+        "name": "Beschreibung des Vorhabens",
+        "pflicht": true,
+        "leitfragen": [
+          "Was wird konkret beschafft / implementiert / ausgebaut?",
+          "Wie sieht der Umsetzungsplan (Phasen, Zeitrahmen) aus?"
+        ]
+      },
+      {
+        "id": "qualifizierung",
+        "name": "Qualifizierung der Lehrkraefte",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie werden die Lehrkraefte fuer den Einsatz der neuen Technik/Software qualifiziert?",
+          "Gibt es interne Multiplikatoren, externe Fortbildungen?"
+        ]
+      },
+      {
+        "id": "betrieb-nachhaltigkeit",
+        "name": "Betrieb und Nachhaltigkeit nach Foerderende",
+        "pflicht": true,
+        "leitfragen": [
+          "Wer uebernimmt Wartung, Support, Administration waehrend und nach der Foerderphase?",
+          "Wie werden Geraete nach Abschreibungsfrist ersetzt (Ersatzbeschaffungsplan)?"
+        ],
+        "stilhinweis": "KRITISCH: DigitalPakt 2.0 will explizit die Betrieb-Nachhaltigkeit sicherstellen. Vage Antworten scheitern hier."
+      },
+      {
+        "id": "finanzplan",
+        "name": "Finanzplan / Kosten- und Finanzierungsuebersicht",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Einzelposten (Sachkosten, Investitionen, Personal) mit welchen Betraegen?",
+          "Welchen Anteil uebernimmt der Schultraeger als Eigenmittel?"
+        ]
+      }
+    ],
+    "anlagen": [
+      "Medienkonzept der Schule (oder Entwurf)",
+      "Beschluss/Zustimmung des Schultraegers (Kommune / Landkreis) — Antragstellerin ist i.d.R. der Schultraeger",
+      "Kosten-/Angebotsuebersicht",
+      "Wartungs- und Support-Konzept"
+    ],
+    "einreichungsweg": "Ueber den zustaendigen Schultraeger an das Bundesland (Bildungs-/Kultusministerium). KEIN direkter Bundes-Antrag durch Einzelschule.",
+    "bearbeitungsdauer": "Stark variabel je Bundesland — 3-12 Monate typisch (Erfahrungswert DigitalPakt 1)."
+  },
+  "notizen": [
+    "STUB-VERSION: offizielle Richtlinien-PDF der jeweiligen Laender-Umsetzung ist nicht integriert. Konkrete Foerderquoten pro Kostenposition sowie Antragsformular-Felder mit Zeichenlimits werden erst nach Veroeffentlichung der Laender-Richtlinien ergaenzbar.",
+    "Maximalbetrag pro Schule ist nicht bundesweit fix — variiert je Bundesland (typisch 500 EUR/Schueler als Sockel + Zuschlaege in DigitalPakt 1).",
+    "Ausgaben seit 01.01.2025 sind rueckwirkend foerderfaehig (Zeitpunkt-Regel)."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Pauschalierte Zuweisungen",
+      "was_funktionierte": "Die Möglichkeit zu pauschalierten Zuweisungen senkt den Bürokratieaufwand sowohl auf Schulträger- als auch auf Landesebene deutlich.",
+      "warum": "Vereinfacht die Antrags- und Umsetzungsverfahren der Länder."
+    },
+    {
+      "thema": "Länderübergreifende Vorhaben (LüV)",
+      "was_funktionierte": "Ressourcen werden besser gebündelt und gemeinsame Systemlösungen geschaffen, wovon auch finanzschwächere Länder profitieren können.",
+      "warum": "Fördert ein kooperatives Miteinander der Länder und schafft mehr gemeinsame Verantwortung im Bildungsbereich."
+    }
+  ],
+  "rejectGruende": [],
+  "vorbildFormulierungen": [],
+  "fristLogik": {
+    "typ": "rolling"
+  }
+}

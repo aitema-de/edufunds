@@ -1,0 +1,289 @@
+{
+  "_comment": "Guide für hochwertige Antragsprosa - Trainingsdaten für KI-Generierung",
+  "version": "1.1.0",
+  "last_updated": "2025-02-12",
+  
+  "struktur_regeln": {
+    "absatz_struktur": {
+      "regel": "These → Beleg → Nutzen",
+      "beschreibung": "Jeder Absatz folgt der Struktur: 1. Kernaussage (These), 2. Konkrete Daten/Fakten (Beleg), 3. Mehrwert für Zielgruppe/Fördergeber (Nutzen)",
+      "beispiel": "Die Grundschule am Sonnenhang entwickelt ein digitales Lese-Mentoring (These). In der Pilotphase konnten wir bei 85% der teilnehmenden Kinder eine Verbesserung der Lesekompetenz um durchschnittlich 1.5 Kompetenzstufen messen (Beleg). Damit leisten wir einen aktiven Beitrag zur frühkindlichen Bildungsgerechtigkeit und reduzieren den Förderbedarf in weiterführenden Schulen (Nutzen)."
+    },
+    "sprache": {
+      "aktiv_statt_passiv": {
+        "negativ": "Es wird ein Konzept entwickelt, das von der Schule umgesetzt werden soll.",
+        "positiv": "Wir entwickeln ein Konzept und setzen es als Modellprojekt um."
+      },
+      "konkret_statt_abstrakt": {
+        "negativ": "Das Projekt hat viele positive Effekte für die Beteiligten.",
+        "positiv": "60 Kinder erhalten wöchentlich 2 Stunden individuelle Leseförderung durch geschulte Lese-Mentoren."
+      },
+      "fakten_statt_adjektive": {
+        "regel": "Maximal 1 Adjektiv pro Satz, stattdessen konkrete Zahlen",
+        "negativ": "Wir haben ein sehr innovatives und wirkungsvolles Projekt entwickelt.",
+        "positiv": "Unser Projekt wurde 2024 vom Kultusministerium als Modellprojekt ausgezeichnet und wird bereits von 12 Schulen nachgefragt."
+      }
+    },
+    "ziele": {
+      "smart_kriterien": {
+        "S": "Spezifisch - Keine vagen Formulierungen",
+        "M": "Messbar - Quantifizierbare Indikatoren",
+        "A": "Attraktiv - Relevanz für Fördergeber klar machen",
+        "R": "Realistisch - Erreichbar mit Fördermittel",
+        "T": "Terminiert - Klare Zeitrahmen"
+      },
+      "formulierungs_muster": [
+        "Bis {datum} erreichen wir mit {methode} bei {zielgruppe} eine {messbare_verbesserung}.",
+        "Das Projekt etabliert bis {datum} {konkrete_massnahme} an {anzahl} Schulen mit {messbarem_output}.",
+        "Wir qualifizieren bis {datum} {anzahl} {zielgruppe} für {kompetenz}, messbar durch {indikator}."
+      ]
+    }
+  },
+
+  "buzzword_kategorien": {
+    "innovation": {
+      "allgemein": ["zukunftsweisend", "innovativ", "pionierhaft", "neuartig", "wegbereitend", "visionär"],
+      "digital": ["digital transformiert", "digital vernetzt", "KI-gestützt", "smart", "digital integriert", "hybride Lehr-Lern-Szenarien"],
+      "paedagogik": ["lernerzentriert", "kompetenzorientiert", "individualisiert", "differenziert", "inklusiv", "partizipativ"],
+      "strukturell": ["systemisch", "ganzheitlich", "integriert", "vernetzt", "schnittstellenübergreifend", "interdisziplinär"]
+    },
+    "wirkung": {
+      "reichweite": ["Breitenwirkung", "Multiplikatoreffekt", "nachhaltige Verankerung", "flächendeckende Umsetzung", "systemische Wirkung"],
+      "transfer": ["Transferpotenzial", "skalierbar", "adaptierbar", "modellhaft", "Vorbildcharakter", "Benchmark"],
+      "qualitaet": ["wirkungsorientiert", "impact-orientiert", "evidenzbasiert", "wissenschaftlich begleitet", "evaluiert", "outcome-messbar"],
+      "dauerhaft": ["nachhaltig", "langfristig verankert", "institutionalisiert", "selbsttragend", "permanent", "dauerhaft wirksam"]
+    },
+    "qualitaet": {
+      "wissenschaftlich": ["evidenzbasiert", "forschungsbasiert", "wissenschaftlich fundiert", "empirisch gestützt", "datenbasiert", "evaluationsgestützt"],
+      "professionell": ["qualitätsgesichert", "standardisiert", "zertifiziert", "akkreditiert", "peer-reviewed", "qualitätsgeprüft"],
+      "prozess": ["iterativ", "reflexiv", "bedarfsorientiert", "praxisnah", "anwendungsorientiert", "lösungsorientiert"]
+    },
+    "gesellschaft": {
+      "beteiligung": ["partizipativ", "inklusiv", "barrierefrei", "gerecht", "chancengerecht", "teilhabeorientiert"],
+      "zusammenhalt": ["demokratisch", "respektvoll", "vielfältig", "interkulturell", "integrationsorientiert", "sozial-kohärent"],
+      "engagement": ["bürgerschaftlich", "ehrenamtlich", "gemeinschaftlich", "vernetzt", "kooperativ", "partnerschaftlich"]
+    },
+    "nachhaltigkeit": {
+      "oekologie": ["klimaneutral", "ressourcenschonend", "zirkulär", "ökologisch", "grün", "umweltfreundlich"],
+      "oekonomie": ["kosteneffizient", "ressourcenschonend", "wirtschaftlich", "effektiv", "effizient", "optimiert"],
+      "sozial": ["sozialverträglich", "gemeinwohlorientiert", "gerecht", "inklusiv", "barrierefrei", "zugänglich"]
+    }
+  },
+
+  "anti_patterns": [
+    {
+      "pattern": "Zu viele Adjektive",
+      "beschreibung": "Überladene Sätze mit mehreren wertenden Adjektiven ohne Fakten",
+      "beispiel_negativ": "Wir entwickeln ein hochinnovatives, außergewöhnlich wirkungsvolles und wunderbar nachhaltiges Projekt.",
+      "beispiel_positiv": "Wir entwickeln ein KI-gestütztes Leseprogramm, das durch evidenzbasierte Methoden die Lesekompetenz von 60 Kindern messbar verbessert.",
+      "check": "Maximal 1 wertendes Adjektiv pro Satz",
+      "haeufigkeit": "Hoch",
+      "schweregrad": "Mittel"
+    },
+    {
+      "pattern": "Fehlende Quantifizierung",
+      "beschreibung": "Vage Aussagen ohne konkrete Zahlen, Daten, Fakten",
+      "beispiel_negativ": "Viele Kinder werden vom Projekt profitieren und ihre Kompetenzen verbessern.",
+      "beispiel_positiv": "120 Kinder in Klassen 1-4 erhalten wöchentlich 90 Minuten individuelle Förderung; messbarer Zielindikator: Erhöhung der Lesegeschwindigkeit um mindestens 20 Wörter/Minute.",
+      "check": "Jede Zielgruppe, jeder Output, jeder Outcome ist quantifiziert",
+      "haeufigkeit": "Sehr hoch",
+      "schweregrad": "Hoch"
+    },
+    {
+      "pattern": "Keine klare Zielgruppe",
+      "beschreibung": "Unspezifische Zielgruppen-Beschreibung",
+      "beispiel_negativ": "Das Projekt richtet sich an Schüler und Lehrer sowie Eltern.",
+      "beispiel_positiv": "Primäre Zielgruppe: 120 Kinder mit Lese-Rechtschreib-Schwäche in Klassen 1-4 (Risikogruppe: Sozialindex >2). Sekundär: 8 Lehrkräfte (Fortbildung), 40 Eltern (Elternabende).",
+      "check": "Zielgruppe ist nach Alter, Menge, Merkmal definiert",
+      "haeufigkeit": "Hoch",
+      "schweregrad": "Hoch"
+    },
+    {
+      "pattern": "Konjunktiv-Formulierungen",
+      "beschreibung": "Unsichere, hypothetische Formulierungen statt aktiver Planung",
+      "beispiel_negativ": "Das Projekt könnte helfen, die Lesekompetenz zu verbessern. Es wäre wünschenswert, wenn mehr Kinder teilnehmen würden.",
+      "beispiel_positiv": "Das Projekt verbessert die Lesekompetenz gezielt. Wir erreichen 120 Kinder durch aktive Rekrutierung über Elternbriefe und Klassenlehrer.",
+      "check": "Keine könnten, würden, sollten, könnten - nur Präsens oder konkrete Planung",
+      "haeufigkeit": "Mittel",
+      "schweregrad": "Mittel"
+    },
+    {
+      "pattern": "Fehlender Mehrwert für Fördergeber",
+      "beschreibung": "Projektbeschreibung ohne Bezug zu Förderzielen",
+      "beispiel_negativ": "Wir wollen ein neues Programm für unsere Schule entwickeln.",
+      "beispiel_positiv": "Mit dem beantragten Zuschuss realisieren wir ein Modellprojekt zur frühkindlichen MINT-Förderung, das landesweit als Best Practice verbreitet werden soll und direkt zur Umsetzung der Bildungsziele des Förderprogramms beiträgt.",
+      "check": "Jede Aussage beantwortet implizit: Was hat der Fördergeber davon?",
+      "haeufigkeit": "Sehr hoch",
+      "schweregrad": "Kritisch"
+    },
+    {
+      "pattern": "Platitüden und Floskeln",
+      "beschreibung": "Allgemeine Worthülsen ohne konkrete Bedeutung",
+      "beispiel_negativ": "Wir wollen die Zukunft gestalten und Bildung voranbringen.",
+      "beispiel_positiv": "Wir etablieren ein digitales Lernlabor für naturwissenschaftliche Experimente, das 200 Kinder pro Jahr praktische Forschungserfahrung ermöglicht.",
+      "check": "Jeder Satz enthält spezifische, nicht übertragbare Informationen",
+      "haeufigkeit": "Mittel",
+      "schweregrad": "Mittel"
+    },
+    {
+      "pattern": "Nutzergenerierung",
+      "beschreibung": "Fokus auf technische Ausstattung statt pädagogischer Wirkung",
+      "beispiel_negativ": "Wir kaufen 30 Tablets und installieren Lern-Apps für die Kinder.",
+      "beispiel_positiv": "Wir entwickeln ein differenziertes Konzept zur individualisierten Lese-Förderung, das durch gezielten Einsatz von Tablets die Lernzeit effizienter nutzt und 60 Risikokindern zusätzliche Förderstunden ermöglicht.",
+      "check": "Technologie ist Mittel zum Zweck, nicht Selbstzweck",
+      "haeufigkeit": "Hoch",
+      "schweregrad": "Hoch"
+    },
+    {
+      "pattern": "Unrealistische Budgets",
+      "beschreibung": "Budget ohne nachvollziehbare Kalkulation",
+      "beispiel_negativ": "Wir benötigen 50.000€ für digitale Geräte.",
+      "beispiel_positiv": "Die Kosten von 45.000€ setzen sich zusammen aus: Hardware (28.000€), Software-Lizenzen (8.000€), Fortbildung (6.000€), Evaluation (3.000€). Die Kalkulation basiert auf 3 Angeboten (siehe Anlage).",
+      "check": "Jeder Posten ist begründet und nachweisbar",
+      "haeufigkeit": "Mittel",
+      "schweregrad": "Hoch"
+    },
+    {
+      "pattern": "Fehlende Evaluation",
+      "beschreibung": "Keine messbaren Erfolgskriterien definiert",
+      "beispiel_negativ": "Das Projekt wird erfolgreich sein und positive Effekte haben.",
+      "beispiel_positiv": "Die Wirkung messen wir durch standardisierte Vorher-Nachher-Tests (ELFE II). Erfolgskriterium: 80% der geförderten Kinder verbessern sich um mindestens 1 Standardabweichung.",
+      "check": "Mind. 3 quantifizierte Indikatoren mit Messinstrument",
+      "haeufigkeit": "Hoch",
+      "schweregrad": "Hoch"
+    },
+    {
+      "pattern": "Wiederholungen",
+      "beschreibung": "Dieselben Inhalte in verschiedenen Sektionen",
+      "beispiel_negativ": "(In Zielen) Wir fördern die Lesekompetenz. (In Methode) Wir fördern die Lesekompetenz durch...",
+      "beispiel_positiv": "(Ziele) Steigerung der Lesegeschwindigkeit um 20%. (Methode) Tägliches 15-minütiges Partnerlesen mit strukturiertem Feedback.",
+      "check": "Jede Sektion hat eindeutigen Fokus, keine Redundanzen",
+      "haeufigkeit": "Mittel",
+      "schweregrad": "Mittel"
+    }
+  ],
+
+  "satz_templates": {
+    "projektziel": {
+      "template": "Das Projekt {projektname} verfolgt das Ziel, {konkretes_ziel} durch {methode} zu erreichen und damit {messbare_wirkung} für {quantifizierte_zielgruppe} zu erzielen.",
+      "beispiel": "Das Projekt 'Lesewelt digital' verfolgt das Ziel, die Lesekompetenz von Risikokindern durch KI-gestützte Leseanalyse zu fördern und damit eine durchschnittliche Verbesserung um 1.5 Kompetenzstufen für 120 Kinder der Klassen 1-4 zu erzielen.",
+      "varianten": [
+        "Bis {datum} etablieren wir {konkrete_massnahme}, um {messbares_ergebnis} zu erreichen.",
+        "Ziel ist die {qualitative_verbesserung} für {zielgruppe}, realisiert durch {methode}.",
+        "Wir qualifizieren {anzahl} {zielgruppe} in {kompetenz}, messbar durch {indikator}."
+      ]
+    },
+    "innovation": {
+      "template": "Der innovative Ansatz besteht in {konkrete_innovation}, wodurch erstmals {neuartiger_nutzen} ermöglicht wird.",
+      "beispiel": "Der innovative Ansatz besteht in der Kombination von Augmented Reality mit sensorbasiertem Feedback, wodurch erstmals individualisierte Experimentiererfahrungen für heterogene Lerngruppen ermöglicht werden.",
+      "varianten": [
+        "Während bestehende Ansätze {limitation}, ermöglicht unser Konzept erstmalig {neuerung}.",
+        "Die Neuartigkeit liegt in {neuheit}, was einen paradigmatischen Wechsel von {alt} zu {neu} bedeutet.",
+        "Als Pionierprojekt verbinden wir {element_1} mit {element_2}, was bisher nicht realisiert wurde."
+      ]
+    },
+    "problemstellung": {
+      "template": "An der {einrichtung} besteht akuter Handlungsbedarf hinsichtlich {konkretes_problem}, dokumentiert durch {beleg_datenn}. Ohne Intervention droht {konkrete_negative_konsequenz}.",
+      "beispiel": "An der Grundschule Nord besteht akuter Handlungsbedarf hinsichtlich der digitalen Grundbildung, dokumentiert durch eine Ausstattungsquote von nur 0.3 Endgeräten pro Kind. Ohne Intervention droht eine weitere Vergrößerung der digitale Kluft für 180 Kinder aus sozial benachteiligten Familien.",
+      "varianten": [
+        "Die Analyse der {datenquelle} zeigt: {prozent}% der {zielgruppe} haben {problem}. Das betrifft konkret {anzahl} Kinder.",
+        "Ausgehend von {ausgangslage} besteht dringender Entwicklungsbedarf in {bereich}, da {ursache}.",
+        "Der Status quo ({aktueller_zustand}) führt zu {negativfolge}. Eine Veränderung ist unumgänglich."
+      ]
+    },
+    "methode": {
+      "template": "Zur Umsetzung setzen wir {methode} ein, die sich durch {merkmal_1}, {merkmal_2} und {merkmal_3} auszeichnet und wissenschaftlich durch {studie_quelle} belegt ist.",
+      "beispiel": "Zur Umsetzung setzen wir das 'Reciprocal Teaching'-Verfahren ein, das sich durch strukturierte Dialogphasen, Peer-Feedback und Metakognitionstraining auszeichnet und wissenschaftlich durch die Meta-Analyse von Rosenshine (2021) belegt ist.",
+      "varianten": [
+        "Unser methodisches Fundament ist {methode}, evidenzbasiert durch {studie} mit Effektstärke d={wert}.",
+        "Das didaktische Konzept basiert auf {theorie}, operationalisiert durch {konkrete_methode}.",
+        "Wir adaptieren {erprobte_methode} für {neuen_kontext}, validiert durch {pilotprojekt}."
+      ]
+    },
+    "nachhaltigkeit": {
+      "template": "Die Nachhaltigkeit sichern wir durch {massnahme_1}, {massnahme_2} sowie {massnahme_3}. Damit wird das Projekt über die Förderphase hinaus durch {verankerungsmechanismus} institutionalisiert.",
+      "beispiel": "Die Nachhaltigkeit sichern wir durch Lehrerfortbildung, Materialentwicklung unter Open-Content-Lizenz sowie Einbindung in den Schulprogrammprozess. Damit wird das Projekt über die Förderphase hinaus durch Verankerung im Medienentwicklungsplan institutionalisiert.",
+      "varianten": [
+        "Nach Projektende bleibt {ergebnis} durch {mechanismus} dauerhaft erhalten.",
+        "Die Verstetigung erfolgt über {finanzierung}, {personal} und {strukturelle_verankerung}.",
+        "Die entwickelten {materialien} werden unter {lizenz} veröffentlicht und stehen {zielgruppe} dauerhaft zur Verfügung."
+      ]
+    },
+    "budget_begruendung": {
+      "template": "Der beantragte Betrag von {betrag}€ ist für {hauptkosten} erforderlich. Die Kostenstruktur orientiert sich an {referenz} und entspricht branchenüblichen Standards ({quelle}).",
+      "beispiel": "Der beantragte Betrag von 45.000€ ist für die Ausstattung eines MINT-Forschungslabors erforderlich. Die Kostenstruktur orientiert sich an den Richtlinien des DigitalPakts und entspricht branchenüblichen Standards (Vergleich: MINT-Cluster-Initiative BW).",
+      "varianten": [
+        "Die Kalkulation basiert auf {kalkulationsgrundlage}: {posten_1} ({betrag_1}€), {posten_2} ({betrag_2}€), {posten_3} ({betrag_3}€).",
+        "Der Eigenanteil von {eigenanteil}€ wird durch {finanzierung_eigenanteil} aufgebracht.",
+        "Die Kostenschätzung wurde von {gutachter} bestätigt und deckt sich mit vergleichbaren Projekten."
+      ]
+    },
+    "kooperation": {
+      "template": "Als Kooperationspartner gewinnen wir {partner}, der {kompetenz} einbringt und durch {konkrete_leistung} zur {projektziel} beiträgt.",
+      "beispiel": "Als Kooperationspartner gewinnen wir die TU München (Professur für Didaktik der Physik), die wissenschaftliche Begleitung und Evaluation einbringt und durch quartalsweise Expertise-Workshops zur Qualitätssicherung beiträgt.",
+      "varianten": [
+        "{partner} stellt {ressource} zur Verfügung und unterstützt bei {aufgabe}.",
+        "Die Partnerschaft mit {partner} sichert {qualitaetsaspekt} durch {konkrete_massnahme}.",
+        "Durch {partner} gewinnen wir Zugang zu {zugang} und profitieren von {expertise}."
+      ]
+    },
+    "evaluation": {
+      "template": "Die Wirkung messen wir durch {methode} anhand der Indikatoren {indikator_1}, {indikator_2} und {indikator_3}. Die Datenerhebung erfolgt {zeitpunkte} mittels {instrument}.",
+      "beispiel": "Die Wirkung messen wir durch ein pre-post-Vergleichsdesign anhand der Indikatoren Lesegeschwindigkeit, Textverständnis und Lesemotivation. Die Datenerhebung erfolgt zu Projektbeginn, nach 6 Monaten und zum Abschluss mittels standardisierter Lesetests (ELFE II) und Fragebögen.",
+      "varianten": [
+        "Wir evaluieren nach dem {evaluationsmodell}-Ansatz mit den Messgrößen {messgroesse_1}, {messgroesse_2} und {messgroesse_3}.",
+        "Die Erfolgskontrolle erfolgt quantitativ durch {quantitativ} und qualitativ durch {qualitativ}.",
+        "Als externe Evaluation beauftragen wir {evaluator} mit {evaluationsauftrag}."
+      ]
+    },
+    "wirkung_transfer": {
+      "template": "Das Projekt erzielt Breitenwirkung durch {mechanismus} und ist aufgrund {transfermerkmal} an anderen Standorten adaptierbar.",
+      "beispiel": "Das Projekt erzielt Breitenwirkung durch Multiplikatorenschulung und ist aufgrund der modularen Struktur an anderen Standorten adaptierbar.",
+      "varianten": [
+        "Der Transfer wird durch {dokumentation} und {verbreitungskanal} systematisch unterstützt.",
+        "Als Modellprojekt wird {ergebnis} über {plattform} landesweit verbreitet.",
+        "Die Skalierbarkeit ist gegeben durch {skalierbarkeitsmerkmal}."
+      ]
+    },
+    "qualitaet_sicherung": {
+      "template": "Qualitätsgesichert wird das Projekt durch {massnahme_1}, {massnahme_2} und regelmäßiges {feedback_instrument}.",
+      "beispiel": "Qualitätsgesichert wird das Projekt durch Peer-Review der Materialien, Expertengutachten und regelmäßiges Stakeholder-Feedback.",
+      "varianten": [
+        "Ein Qualitätsmanagement-System mit {elementen} gewährleistet kontinuierliche Verbesserung.",
+        "Die wissenschaftliche Begleitung durch {institution} sichert methodische Qualität und Validität."
+      ]
+    }
+  },
+
+  "uebergangsphrasen": {
+    "einleitung_problem": ["Ausgehend von der Feststellung, dass...", "Die Analyse der Ausgangslage zeigt...", "Am Standort besteht folgender Entwicklungsbedarf:"],
+    "problem_ziel": ["Um dieser Herausforderung zu begegnen...", "Diesem Bedarf begegnen wir mit...", "Konkret planen wir:"],
+    "ziel_methode": ["Zur Erreichung dieser Ziele setzen wir ein...", "Die methodische Umsetzung erfolgt durch...", "Das Kerninstrument ist..."],
+    "methode_umsetzung": ["In der Praxis umgesetzt wird dies durch...", "Konkret gliedert sich das Vorhaben in folgende Phasen:", "Der Ablauf ist wie folgt strukturiert:"],
+    "ergebnis_nachhaltigkeit": ["Die dauerhafte Wirkung sichern wir durch...", "Nach Projektende bleibt...", "Die Institutionalisierung erfolgt durch..."],
+    "zusammenfassung": ["Zusammenfassend lässt sich festhalten...", "Das Projekt zeichnet sich aus durch...", "Die zentralen Stärken des Antrags sind..."]
+  },
+
+  "bewertungskriterien_antwort": {
+    "innovation": {
+      "schluesselwoerter": ["neuartig", "erstmalig", "pionierhaft", "wegbereitend", "original"],
+      "nachweise": ["Vergleich mit bestehenden Ansätzen", "Differenzierung vom Status quo", "Wegweisende Elemente"],
+      "formulierungsmuster": "Während bisherige Ansätze {limitation}, ermöglicht unser Konzept erstmalig {neuerung}."
+    },
+    "nachhaltigkeit": {
+      "schluesselwoerter": ["verstetigt", "institutionalisiert", "selbsttragend", "dauerhaft", "langfristig"],
+      "nachweise": ["Finanzierungsplan post-Förderung", "Verankerung in Strukturen", "Multiplikatoreffekte"],
+      "formulierungsmuster": "Über die Förderphase hinaus wird {ergebnis} durch {mechanismus} dauerhaft gesichert."
+    },
+    "transfer": {
+      "schluesselwoerter": ["adaptierbar", "skalierbar", "übertragbar", "modellhaft", "Multiplikator"],
+      "nachweise": ["Dokumentation für Transfer", "Verbreitungsstrategie", "Anschlussnutzer"],
+      "formulierungsmuster": "Das entwickelte Konzept ist aufgrund {merkmal} an anderen Standorten adaptierbar und wird über {kanal} verbreitet."
+    },
+    "wirksamkeit": {
+      "schluesselwoerter": ["evidenzbasiert", "wirksam", "erprobt", "validiert", "wissenschaftlich"],
+      "nachweise": ["Evaluation geplant", "Messinstrumente", "Vorher-Nachher-Vergleich"],
+      "formulierungsmuster": "Die Wirksamkeit wird durch {design} evaluiert, wobei {indikatoren} als Messgrößen dienen."
+    }
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "quellen": [
+    "https://www.bwstiftung.de/de/bereiche-programme/gesellschaft-kultur/mikro-makro-mint",
+    "https://www.bwstiftung.de/de/ausschreibung/mikro-makro-mint",
+    "https://antragsportal.bwstiftung.de/foerderfinderangebote/?kategoriewert=543db7ed-828f-4450-9e59-ae08102fbf45",
+    "https://www.begabungslotse.de/foerderangebote/mikro-makro-mint-0"
+  ],
+  "foerderhoehe": {
+    "maxEur": 2500,
+    "bemerkung": "Bis zu 2.500 EUR pro Forscherteam fuer Projekte mit Laufzeit bis 12 Monate. In begruendeten Ausnahmefaellen ist eine Laufzeit von 24 Monaten mit einer Gesamtfoerderung von bis zu 5.000 EUR moeglich. Die Foerderung erfolgt projektbezogen ueber eine eingereichte Kostenkalkulation; eine prozentuale Foerderquote ist nicht vorgegeben."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Direkter Projektbezug zur MINT-Forschungsfrage erforderlich",
+        "In der Kostenkalkulation des Antrags nachvollziehbar auszuweisen"
+      ],
+      "beispielePasst": [
+        "Experimentier- und Verbrauchsmaterial fuer die Forschungsfrage",
+        "Bausaetze, Elektronikkomponenten, Sensoren fuer ein Roboter- oder Coding-Projekt",
+        "Chemikalien und Laborverbrauch fuer ein naturwissenschaftliches Projekt"
+      ],
+      "beispielePasstNicht": [
+        "Allgemeine Schulausstattung ohne Projektbezug",
+        "Verbrauchsmaterial fuer den regulaeren Unterricht"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Geraet muss fuer die Durchfuehrung des konkreten Forschungsprojekts notwendig sein",
+        "Anschaffung innerhalb des Projektbudgets von max. 2.500 EUR (bzw. 5.000 EUR im Ausnahmefall)"
+      ],
+      "beispielePasst": [
+        "3D-Drucker oder Mikrocontroller-Set fuer das Projekt",
+        "Messgeraete, die fuer die Untersuchung benoetigt werden"
+      ],
+      "beispielePasstNicht": [
+        "Daueranschaffungen ohne Bezug zur Forschungsfrage",
+        "Grossgeraete jenseits des Teambudgets"
+      ]
+    },
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Nur fuer projektbezogene externe Fachunterstuetzung",
+        "Im Antrag begruenden und kalkulieren"
+      ],
+      "beispielePasst": [
+        "Honorar fuer eine externe Fachperson, die das Team zu einem Spezialthema anleitet"
+      ],
+      "beispielePasstNicht": [
+        "Verguetung der betreuenden Lehrkraft (regulaere Dienstaufgabe)"
+      ]
+    },
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Fahrt muss projektbezogen sein (z. B. Besuch eines Labors, einer Hochschule oder eines Schuelerforschungszentrums)"
+      ],
+      "beispielePasst": [
+        "Fahrt zu einer Universitaet oder einem Forschungsinstitut zur Durchfuehrung von Messungen"
+      ],
+      "beispielePasstNicht": [
+        "Allgemeine Klassenfahrten oder Exkursionen ohne Forschungsbezug"
+      ]
+    },
+    {
+      "kategorie": "personal",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Das Programm foerdert keine Personalstellen; die Betreuung erfolgt durch eine erwachsene Begleitperson als ehrenamtliche bzw. dienstliche Aufgabe"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": false,
+    "bemerkung": "Eine Eigenmittelpflicht ist in der Ausschreibung nicht ausgewiesen; das Forscherteam erhaelt ein Projektbudget bis 2.500 EUR. Eine realistische, sparsame Kostenkalkulation erhoeht jedoch die Bewilligungschance."
+  },
+  "kumulierung": {
+    "erlaubt": "bedingt",
+    "bemerkung": "Die Ausschreibung trifft keine ausdrueckliche Aussage zur Kumulierung. Eine Doppelfoerderung identischer Kostenpositionen aus anderen Programmen ist zu vermeiden; Kombinationen sollten im Antrag transparent gemacht und mit der Geschaeftsstelle abgestimmt werden."
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "projektidee",
+        "name": "Projektidee und Forschungsfrage",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche innovative Idee oder originelle Frage steht im Mittelpunkt des Projekts?",
+          "Worin besteht der eigenstaendige Forschungs- bzw. Experimentiercharakter?",
+          "Welchem MINT-Bereich (Mathematik, Informatik, Naturwissenschaft, Technik) ist das Projekt zuzuordnen?"
+        ],
+        "stilhinweis": "Die Forschungsfrage praezise und neugierig formulieren; den eigenstaendigen, fragenden Charakter betonen statt blosser Nachbau- oder Lernuebungen.",
+        "maxZeichen": 2000
+      },
+      {
+        "id": "team-betreuung",
+        "name": "Forscherteam und Betreuung",
+        "pflicht": true,
+        "leitfragen": [
+          "Aus wie vielen Schuelerinnen und Schuelern besteht das Team (mindestens drei)?",
+          "Welche Klassenstufe(n) ab Klasse 5 sind beteiligt?",
+          "Wer ist die erwachsene Begleitperson und welche Rolle uebernimmt sie?"
+        ],
+        "stilhinweis": "Die Eigenstaendigkeit der Jugendlichen herausstellen; die Begleitperson als unterstuetzend, nicht als Projektleitung darstellen.",
+        "maxZeichen": 1200
+      },
+      {
+        "id": "projektschritte",
+        "name": "Geplante Projektschritte und Zeitplan",
+        "pflicht": true,
+        "leitfragen": [
+          "In welche konkreten Arbeitsschritte gliedert sich das Vorhaben?",
+          "Wie ist der Zeitplan innerhalb der maximal 12 Monate (Ausnahme: 24 Monate) aufgebaut?",
+          "Welche Meilensteine oder Zwischenergebnisse sind vorgesehen?"
+        ],
+        "stilhinweis": "Realistische, im Schuljahr umsetzbare Schritte beschreiben; nachvollziehbare Abfolge statt vager Absichtserklaerungen.",
+        "maxZeichen": 2000
+      },
+      {
+        "id": "kostenkalkulation",
+        "name": "Kostenkalkulation",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Material-, Geraete-, Honorar- oder Reisekosten fallen an?",
+          "Wie verteilt sich das Budget auf die einzelnen Posten?",
+          "Bleibt die Summe im Rahmen von 2.500 EUR (bzw. 5.000 EUR im begruendeten Ausnahmefall)?"
+        ],
+        "stilhinweis": "Jede Position einzeln und nachvollziehbar auflisten; sparsam und projektbezogen kalkulieren, keine Pauschalen.",
+        "maxZeichen": 1500
+      },
+      {
+        "id": "ziel-wirkung",
+        "name": "Ziel und erwartete Wirkung",
+        "pflicht": true,
+        "leitfragen": [
+          "Welches Ergebnis soll am Ende des Projekts stehen?",
+          "Wie werden Motivation und Begeisterung der Jugendlichen fuer MINT gefoerdert?",
+          "Wie werden die Ergebnisse praesentiert oder weitergegeben?"
+        ],
+        "stilhinweis": "Die Wirkung auf die Jugendlichen (Spass, Selbstwirksamkeit, MINT-Begeisterung) konkret und glaubhaft schildern.",
+        "maxZeichen": 1200
+      }
+    ],
+    "anlagen": [
+      "Detaillierte Kostenkalkulation als Bestandteil des Online-Antrags"
+    ],
+    "einreichungsweg": "Ausschliesslich online ueber das Antragsportal der Baden-Wuerttemberg Stiftung (antragsportal.bwstiftung.de)",
+    "bearbeitungsdauer": "Rueckmeldung in der Regel innerhalb von 14 Tagen"
+  },
+  "notizen": [
+    "Antragsberechtigt sind Lehrkraefte bzw. erwachsene Begleitpersonen mit einem Schuelerteam aus Baden-Wuerttemberg ab Klasse 5; alternativ Heranwachsende von 10 bis 20 Jahren in Vereinen oder Schuelerforschungszentren.",
+    "Ein Forscherteam besteht aus mindestens drei Schuelerinnen/Schuelern und einer erwachsenen Begleitperson.",
+    "Das Programm wird in Kooperation mit der Ferry-Porsche-Stiftung durchgefuehrt.",
+    "Antragstellung ist laufend moeglich, es gibt keinen Stichtag (rollierend).",
+    "Regelprojektlaufzeit bis 12 Monate (ein Schuljahr); in begruendeten Ausnahmefaellen bis 24 Monate mit bis zu 5.000 EUR.",
+    "Bislang wurden im Rahmen des Programms rund 1.000 Schulprojekte gefoerdert."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Echter Forschungscharakter statt Nachbau",
+      "was_funktionierte": "Antraege, die eine offene, selbst gestellte Frage in den Mittelpunkt stellen ('Wie koennen wir X messen/verbessern?') statt einer fertigen Bauanleitung zu folgen.",
+      "warum": "Das Programm foerdert ausdruecklich Projekte mit innovativer Idee, origineller Frage oder Forschungselement; ein eigenstaendiger Erkenntnisweg trifft den Foerderzweck."
+    },
+    {
+      "thema": "Sichtbare Eigenstaendigkeit der Jugendlichen",
+      "was_funktionierte": "Die Schuelerinnen und Schueler als treibende Kraft darstellen, die Begleitperson nur als Unterstuetzung im Hintergrund.",
+      "warum": "Das Programm zielt auf selbststaendiges Arbeiten in Projektgruppen ab Klasse 5; Eigeninitiative der Jugendlichen ist Kernkriterium."
+    },
+    {
+      "thema": "Nachvollziehbare, sparsame Kostenkalkulation",
+      "was_funktionierte": "Jede Position einzeln aufgeschluesselt, projektbezogen begruendet und innerhalb des 2.500-EUR-Rahmens.",
+      "warum": "Die Kostenkalkulation ist Pflichtbestandteil; eine transparente, realistische Aufstellung beschleunigt die Pruefung (Rueckmeldung in 14 Tagen) und schafft Vertrauen."
+    },
+    {
+      "thema": "Realistischer Zeitplan innerhalb eines Schuljahres",
+      "was_funktionierte": "Projektschritte mit Meilensteinen, die sich in maximal 12 Monaten umsetzen lassen.",
+      "warum": "Die Foerderung ist auf eine Schuljahres-Laufzeit ausgelegt; ein machbarer Zeitplan signalisiert Umsetzbarkeit und reduziert das Bewilligungsrisiko."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Projekt ist reine Nachbau-/Lernuebung ohne eigene Forschungsfrage",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Eine offene, selbst gestellte MINT-Frage formulieren und den eigenstaendigen Experimentier- bzw. Erkenntnisweg deutlich machen."
+    },
+    {
+      "grund": "Teamgroesse oder Klassenstufe erfuellt die Voraussetzungen nicht",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Mindestens drei Schuelerinnen/Schueler ab Klasse 5 plus eine erwachsene Begleitperson sicherstellen und im Antrag klar benennen."
+    },
+    {
+      "grund": "Kostenkalkulation unklar, pauschal oder ueber dem Budgetrahmen",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Alle Posten einzeln, projektbezogen und sparsam auflisten und die Summe innerhalb von 2.500 EUR (Ausnahme 5.000 EUR) halten."
+    },
+    {
+      "grund": "Zeitplan ist im Schuljahr nicht umsetzbar oder zu vage",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Konkrete Arbeitsschritte mit Meilensteinen innerhalb der 12-Monats-Laufzeit darstellen."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "projektidee",
+      "formulierung": "Unser Team will der Frage nachgehen, ob sich mit selbstgebauten Sensoren die Feinstaubbelastung auf dem Schulgelaende ueber den Tagesverlauf messen und sichtbar machen laesst - eine Frage, auf die wir bislang keine Antwort gefunden haben.",
+      "kontext": "Eroeffnet den Antrag mit einer offenen, selbst gestellten Forschungsfrage und betont den Erkenntnischarakter statt eines fertigen Bauplans."
+    },
+    {
+      "abschnitt_id": "team-betreuung",
+      "formulierung": "Das Team besteht aus vier Schuelerinnen und Schuelern der Klassen 8 und 9, die das Projekt eigenstaendig vorantreiben; unsere Lehrkraft begleitet als Ansprechpartnerin und stellt den Zugang zum Technikraum sicher.",
+      "kontext": "Macht Teamgroesse und Klassenstufe explizit und stellt die Eigenstaendigkeit der Jugendlichen in den Vordergrund."
+    },
+    {
+      "abschnitt_id": "kostenkalkulation",
+      "formulierung": "Feinstaub-Sensoren (3 Stueck a 35 EUR = 105 EUR), Mikrocontroller-Boards (3 a 28 EUR = 84 EUR), Verbrauchsmaterial Loeten und Gehaeuse (ca. 60 EUR), Fahrt zur Hochschule fuer eine Kalibriermessung (40 EUR) - Gesamtsumme 289 EUR.",
+      "kontext": "Zeigt eine einzeln aufgeschluesselte, projektbezogene und sparsame Kalkulation deutlich innerhalb des Budgetrahmens."
+    },
+    {
+      "abschnitt_id": "projektschritte",
+      "formulierung": "Monat 1-2: Recherche und Sensorbeschaffung; Monat 3-4: Aufbau und Kalibrierung der Messstationen; Monat 5-8: woechentliche Messreihen und Datenauswertung; Monat 9: Aufbereitung und Praesentation der Ergebnisse beim Schulfest.",
+      "kontext": "Gliedert das Vorhaben in nachvollziehbare Meilensteine innerhalb eines Schuljahres und belegt die Umsetzbarkeit."
+    }
+  ],
+  "fristLogik": {
+    "typ": "rolling"
+  },
+  "version": "2026-06-01"
+}

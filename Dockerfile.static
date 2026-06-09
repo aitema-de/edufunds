@@ -1,0 +1,36 @@
+# EDUFUNDS EMERGENCY DEPLOY
+# Dieser Container dient ausschließlich dem statischen Export
+
+FROM node:20-alpine AS builder
+WORKDIR /app
+
+# Dependencies
+COPY package*.json ./
+RUN npm ci
+
+# Source
+COPY . .
+
+# Build static export
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN npm run build
+
+# Nginx für statische Files
+FROM nginx:alpine
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/public /usr/share/nginx/html
+
+# Nginx Config
+RUN echo 'server { \
+    listen 3000; \
+    location / { \
+        root /usr/share/nginx/html; \
+        try_files $uri $uri/ $uri.html /index.html; \
+    } \
+    location /api/ { \
+        return 503; \
+    } \
+}' > /etc/nginx/conf.d/default.conf
+
+EXPOSE 3000
+CMD ["nginx", "-g", "daemon off;"]

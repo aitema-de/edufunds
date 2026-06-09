@@ -1,0 +1,219 @@
+name: Weekly Auto-Pflege (Scan + Extract + Queue)
+
+# Konsolidierter Wochenlauf (Plan 04-04):
+# Scan neuer Programm-Quellen (data/program-sources.json) -> Per-Programm
+# HTTP-HEAD-Pre-Check -> runExtraction (skipQueueUpdate=true) -> Queue-Push.
+#
+# Ersetzt:
+#   - .github/workflows/weekly-program-scan.yml (Scan landet jetzt in-memory)
+#   - .github/workflows/weekly-dossier-extraction.yml (Extract laeuft fuer
+#     mehrere Programme pro Lauf statt nur fuer das naechste)
+#
+# Per-Programm-Resilience (D-11): jeder Programm-Step laeuft in try/catch
+# innerhalb von scripts/auto-pflege-step.ts. Workflow bleibt gruen, ein
+# Failure-Issue wird automatisch eroeffnet wenn Skips/Failures auftraten,
+# beim naechsten gruenen Lauf wird das Issue auto-closed (D-10/D-12).
+#
+# Sicherheit: alle github.event.inputs gehen ueber env-Mapping (nie direkt
+# in run-Shells interpoliert). steps.outputs werden ebenfalls via env an
+# nachfolgende Steps weitergegeben.
+
+on:
+  schedule:
+    - cron: "0 4 * * 1"  # Montags 04:00 UTC (06:00 Berlin)
+  workflow_dispatch:
+    inputs:
+      max_programs:
+        description: "Maximal N neue Programme pro Lauf extrahieren"
+        required: false
+        type: string
+        default: "5"
+      llm_provider:
+        description: "LLM-Provider override (deepseek default, gemini fuer Fallback)"
+        required: false
+        type: choice
+        options:
+          - deepseek
+          - gemini
+        default: deepseek
+      dry_run:
+        description: "Dry-Run (keine Schreiboperationen)"
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  auto-pflege:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run auto-pflege-step
+        id: pflege
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          LLM_PROVIDER: ${{ github.event.inputs.llm_provider || 'deepseek' }}
+          MAX_PROGRAMS_INPUT: ${{ github.event.inputs.max_programs || '5' }}
+          DRY_RUN_INPUT: ${{ github.event.inputs.dry_run || 'false' }}
+        run: |
+          set -euo pipefail
+          if [ -z "${DEEPSEEK_API_KEY}" ] && [ "${LLM_PROVIDER}" = "deepseek" ]; then
+            echo "::error::DEEPSEEK_API_KEY Secret fehlt. Im Repo-Settings hinterlegen oder LLM_PROVIDER=gemini ueber workflow_dispatch waehlen."
+            exit 1
+          fi
+          if [ -z "${GEMINI_API_KEY}" ] && [ "${LLM_PROVIDER}" = "gemini" ]; then
+            echo "::error::GEMINI_API_KEY Secret fehlt fuer LLM_PROVIDER=gemini-Override."
+            exit 1
+          fi
+          ARGS=(--max-programs "${MAX_PROGRAMS_INPUT}")
+          ARGS+=(--logs-dir "logs/auto-pflege-$(date -u +%Y-%m-%d)")
+          ARGS+=(--failure-report "failure-report.md")
+          if [ "${DRY_RUN_INPUT}" = "true" ]; then
+            ARGS+=(--dry-run)
+          fi
+          npx tsx scripts/auto-pflege-step.ts "${ARGS[@]}"
+
+      - name: Detect changes
+        id: diff
+        run: |
+          set -euo pipefail
+          if git diff --quiet data/richtlinien data/richtlinien-prioritaeten.json data/foerderprogramme.json; then
+            echo "changed=false" >> "${GITHUB_OUTPUT}"
+            echo "Keine Aenderungen in data/ — kein PR notwendig."
+          else
+            echo "changed=true" >> "${GITHUB_OUTPUT}"
+          fi
+
+      - name: Upload logs artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: auto-pflege-logs-${{ github.run_id }}
+          path: |
+            logs/auto-pflege-*/
+            failure-report.md
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Create Pull Request
+        if: steps.diff.outputs.changed == 'true' && github.event.inputs.dry_run != 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore(richtlinien): Auto-Pflege via Cronjob (Scan + Extract + Queue)"
+          branch: auto-pflege/${{ github.run_id }}
+          delete-branch: true
+          title: "Auto-Pflege: neue Programme extrahiert"
+          body: |
+            Woechentlicher Auto-Pflege-Lauf (Plan 04-04).
+
+            Konkrete Counts + Skip-/Failure-Details liegen im Workflow-Artifact
+            (`failure-report.md` + `logs/auto-pflege-*/`).
+
+            ### Reviewer-Checkliste pro neu extrahiertes Dossier
+            - [ ] Foerderhoehe / maxEur / mindestProzent stimmen mit Originalrichtlinie
+            - [ ] Pflichtabschnitte + Leitfragen plausibel
+            - [ ] Quellen-URLs funktionieren
+            - [ ] Best Practices belegbar (nicht halluziniert)
+            - [ ] Reject-Gruende aus Volltext belegbar
+            - [ ] Vorbild-Formulierungen mit gueltigen abschnitt_id FK
+            - [ ] Frist-Logik korrekt (rolling vs fixe_stichtage, ISO-Daten)
+
+            Bei Fehlern: Dossier im PR korrigieren ODER Queue-Eintrag auf
+            `skip` mit Begruendung setzen. Bei reiner Halluzination: PR nicht
+            mergen, Quelle in `data/program-sources.json` pruefen.
+          labels: |
+            richtlinien-bot
+            auto-generated
+
+      - name: Open failure issue
+        if: steps.pflege.outputs.has_failures == 'true' && github.event.inputs.dry_run != 'true'
+        uses: actions/github-script@v7
+        env:
+          RUN_ID: ${{ github.run_id }}
+          SKIP_COUNT: ${{ steps.pflege.outputs.skip_count }}
+          FAIL_COUNT: ${{ steps.pflege.outputs.failure_count }}
+        with:
+          script: |
+            const fs = require('fs');
+            const runId = process.env.RUN_ID;
+            const skipCount = process.env.SKIP_COUNT || '0';
+            const failCount = process.env.FAIL_COUNT || '0';
+            let body = `Auto-Pflege-Lauf hat Skips/Failures gemeldet.\n\n`;
+            body += `**Skips:** ${skipCount}\n`;
+            body += `**Failures:** ${failCount}\n\n`;
+            try {
+              const report = fs.readFileSync('failure-report.md', 'utf8');
+              body += `<details><summary>failure-report.md</summary>\n\n${report}\n\n</details>`;
+            } catch (e) {
+              body += '_(failure-report.md nicht lesbar)_';
+            }
+            body += `\n\nLogs als Artifact am Run ${runId}.`;
+            body += `\n\n_Bot-Issue. Wird beim naechsten gruenen Lauf auto-closed._`;
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'bot-failure,auto-pflege',
+              state: 'open',
+            });
+            if (existing.data.length > 0) {
+              const issueNum = existing.data[0].number;
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNum,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `Auto-Pflege Failure (Run ${runId})`,
+                body,
+                labels: ['bot-failure', 'auto-pflege'],
+              });
+            }
+
+      - name: Close stale failure issues on green run
+        if: steps.pflege.outputs.has_failures == 'false' && github.event.inputs.dry_run != 'true'
+        uses: actions/github-script@v7
+        env:
+          RUN_ID: ${{ github.run_id }}
+        with:
+          script: |
+            const runId = process.env.RUN_ID;
+            const open = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'bot-failure,auto-pflege',
+              state: 'open',
+            });
+            for (const it of open.data) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: it.number,
+                body: `Auto-pflege Run ${runId} war gruen. Issue auto-closed.`,
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: it.number,
+                state: 'closed',
+              });
+            }

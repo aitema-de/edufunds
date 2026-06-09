@@ -1,0 +1,241 @@
+{
+  "version": "2026-06-01",
+  "quellen": [
+    "https://www.dfjw.org/programme-aus-und-fortbildungen/zuschuesse-fuer-einen-schulaustausch-beantragen",
+    "https://www.dfjw.org/programme-aus-und-fortbildungen/schulbegegnungen-und-schulaustausche"
+  ],
+  "foerderhoehe": {
+    "maxEur": 800,
+    "bemerkung": "Reisekostenzuschuss distanzabhaengig (Kilometerpauschale) und personenabhaengig fuer max. 35 Personen (Teilnehmende + Betreuende); zusaetzlich Basiskostenzuschuss. Grenzregionen-Foerderung als Pauschale 800 EUR fuer vier Begegnungsphasen. Hoehere Saetze fuer Schulen an schwierigen Standorten. Drittort- und trilaterale Begegnungen bis 70 Personen. Exakte Saetze stehen in den DFJW-Foerderrichtlinien."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": true,
+      "maxEur": 800,
+      "bedingungen": [
+        "Distanzabhaengige Kilometerpauschale",
+        "Fuer maximal 35 Personen (Teilnehmende und Betreuende)",
+        "Hoehere Saetze fuer Schulen an schwierigen Standorten"
+      ],
+      "beispielePasst": [
+        "Bus-/Bahnfahrt der Schuelergruppe zur franzoesischen Partnerschule",
+        "Anreise zu einem Drittort"
+      ],
+      "beispielePasstNicht": [
+        "Reisekosten ueber 35 Personen hinaus",
+        "Individuelle An-/Abreise einzelner Familien"
+      ]
+    },
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Basiskosten/Aufenthaltskosten der Begegnung",
+        "Bei Drittort- und trilateralen Begegnungen ausgewiesen"
+      ],
+      "beispielePasst": [
+        "Unterkunft und Verpflegung am Drittort",
+        "Aufenthaltskosten waehrend der Begegnungsphase"
+      ],
+      "beispielePasstNicht": [
+        "Anschaffung dauerhafter Ausstattung"
+      ]
+    },
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Sprachmittlung/Dolmetschung im Rahmen der Begegnung kann beruecksichtigt werden"
+      ],
+      "beispielePasst": [
+        "Honorar fuer Sprachanimateur:in"
+      ],
+      "beispielePasstNicht": [
+        "Dauerhafte Personalstellen der Schule"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "DFJW foerdert die Begegnung, keine Investitionen/Anschaffungen"
+      ],
+      "beispielePasstNicht": [
+        "Kauf von Technik, Moebeln oder Baumassnahmen"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": true,
+    "formenErlaubt": [
+      "finanziell",
+      "drittmittel"
+    ],
+    "bemerkung": "Der DFJW-Zuschuss ist ein Teilzuschuss zu Reise- und Basiskosten und deckt die Gesamtkosten in der Regel nicht vollstaendig; Eigen- oder Drittmittel (z.B. Teilnehmerbeitraege, Schultraeger, Landesfoerderung) sind ueblich."
+  },
+  "kumulierung": {
+    "erlaubt": "bedingt",
+    "bedingungen": [
+      "Ergaenzende Landesfoerderung des Schueleraustauschs ueber die Bezirksregierungen/Regierungspraesidien ist verbreitet",
+      "Keine Doppelfoerderung derselben Kostenposition",
+      "Zustaendige Schulbehoerde ist einzubeziehen"
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "traeger-und-partner",
+        "name": "Antragstellende Einrichtung und Partnerschule",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Schule/Einrichtung stellt den Antrag und wer ist die franzoesische Partnerschule?",
+          "Besteht eine bestehende oder neue Partnerschaft?",
+          "Welche Lehrkraft koordiniert das Programm?"
+        ],
+        "stilhinweis": "Sachlich und vollstaendig, mit klaren Kontaktdaten beider Schulen."
+      },
+      {
+        "id": "begegnungsformat",
+        "name": "Begegnungsformat und Rahmendaten",
+        "pflicht": true,
+        "leitfragen": [
+          "Handelt es sich um eine Begegnung am Partnerort, eine Drittortbegegnung, eine Grenzregionen- oder trilaterale Begegnung?",
+          "Wie viele Tage dauert die Begegnung (mind. 4, max. 21 Tage)?",
+          "Wie viele Teilnehmende und Betreuende nehmen teil?"
+        ],
+        "stilhinweis": "Format und Dauer praezise nennen, da Foerderlogik und Fristen davon abhaengen."
+      },
+      {
+        "id": "programm",
+        "name": "Programmablauf",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie sieht der Tagesablauf der Begegnung aus?",
+          "Welche gemeinsamen Aktivitaeten foerdern den interkulturellen Austausch?",
+          "Wie ist die deutsch-franzoesische Durchmischung der Gruppen gewaehrleistet?"
+        ],
+        "stilhinweis": "Konkreter, nachvollziehbarer Ablaufplan statt allgemeiner Absichten."
+      },
+      {
+        "id": "paedagogisches-konzept",
+        "name": "Paedagogisches Konzept",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Lern- und Bildungsziele verfolgt die Begegnung?",
+          "Wie werden interkulturelles Lernen und Sprachfoerderung umgesetzt (z.B. Sprachanimation)?",
+          "Wie werden die Schueler:innen aktiv beteiligt?"
+        ],
+        "stilhinweis": "Bildungsziele konkret und am DFJW-Leitbild des interkulturellen Lernens ausrichten."
+      },
+      {
+        "id": "finanzierung",
+        "name": "Finanzierungsplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Reise- und Basiskosten entstehen und fuer wie viele Personen?",
+          "Welche Distanz wird zurueckgelegt (Kilometerpauschale)?",
+          "Welche Eigen- und Drittmittel decken den nicht gefoerderten Anteil?"
+        ],
+        "stilhinweis": "Realistische, belegbare Kalkulation; Personenzahl klar von der gefoerderten Hoechstzahl (35) abgrenzen."
+      },
+      {
+        "id": "nachhaltigkeit",
+        "name": "Nachhaltigkeit der Partnerschaft",
+        "pflicht": false,
+        "leitfragen": [
+          "Wie wird der Austausch ueber das einzelne Treffen hinaus verstetigt?",
+          "Ist eine Gegenbegegnung geplant?",
+          "Wie wird die Begegnung in den Schulalltag eingebettet?"
+        ],
+        "stilhinweis": "Langfristige Perspektive der Schulpartnerschaft glaubhaft darstellen."
+      }
+    ],
+    "anlagen": [
+      "Ausgefuelltes und unterschriebenes DFJW-Foerderantragsformular",
+      "Programm/Ablaufplan der Begegnung",
+      "Paedagogisches Konzept (insbesondere bei trilateralen Begegnungen)",
+      "Teilnehmendenliste"
+    ],
+    "einreichungsweg": "Begegnung am Partnerort: Online-Plattform Scolari. Andere Formate: ausgefuelltes Antragsformular per E-Mail an zsb@dfjw.org, zustaendige Schulbehoerde in Kopie."
+  },
+  "notizen": [
+    "Antrag mindestens 3 Monate vor Beginn; fuer Begegnungen bis Juli bis 31. Januar, fuer September bis Dezember bis 31. Mai; Grenzregionen mind. 1 Monat vorher.",
+    "Antragstellende sind Schulen/Lehrkraefte selbst - direkt foerderfaehig, kein Foerderverein noetig.",
+    "Exakte Kilometer- und Personenpauschalen stehen in den jeweils gueltigen DFJW-Foerderrichtlinien."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Klares paedagogisches Konzept",
+      "was_funktionierte": "Begegnung mit konkreten interkulturellen Lernzielen und integrierter Sprachanimation statt reinem Besichtigungsprogramm beschreiben.",
+      "warum": "Das DFJW foerdert interkulturelles Lernen; ein durchdachtes paedagogisches Konzept ist Kern der Bewilligung."
+    },
+    {
+      "thema": "Frist- und formatgerechte Einreichung",
+      "was_funktionierte": "Antrag rechtzeitig (mind. 3 Monate vorher bzw. zum 31.01./31.05.) ueber den richtigen Weg (Scolari oder zsb@dfjw.org) stellen.",
+      "warum": "Verspaetete oder ueber den falschen Kanal gestellte Antraege werden nicht beruecksichtigt."
+    },
+    {
+      "thema": "Ausgewogene deutsch-franzoesische Gruppe",
+      "was_funktionierte": "Teilnehmerzahlen so planen, dass das geforderte Verhaeltnis (bei Drittort min. 1/3 bis 2/3) eingehalten wird.",
+      "warum": "Eine paritaetische Begegnung ist Foerdervoraussetzung und staerkt das Begegnungsziel."
+    },
+    {
+      "thema": "Schulbehoerde einbinden",
+      "was_funktionierte": "Zustaendige Schulbehoerde von Anfang an in Kopie setzen und ergaenzende Landesfoerderung pruefen.",
+      "warum": "Die Einbindung ist formal gefordert und erschliesst zusaetzliche Mittel zur Deckung des Eigenanteils."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Antrag nach Ablauf der Frist bzw. weniger als 3 Monate vor Begegnungsbeginn eingereicht",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Begegnungstermin frueh festlegen und Antrag deutlich vor der Stichtagsfrist abschicken."
+    },
+    {
+      "grund": "Fehlendes oder unzureichendes paedagogisches Konzept",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Lernziele, interkulturelle Methoden und Schuelerbeteiligung konkret ausarbeiten."
+    },
+    {
+      "grund": "Personenzahl oder Dauer ausserhalb der Foerdergrenzen (z.B. unter 4 Tagen, ueber 35 gefoerderte Personen)",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Format, Dauer und gefoerderte Personenzahl vorab an den Foerderrichtlinien ausrichten."
+    },
+    {
+      "grund": "Unausgewogenes deutsch-franzoesisches Teilnehmerverhaeltnis",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Gruppengroessen mit der Partnerschule abstimmen, sodass die Paritaetsvorgaben erfuellt sind."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "paedagogisches-konzept",
+      "formulierung": "Im Zentrum der Begegnung steht das interkulturelle Lernen: Durch taeglich integrierte Sprachanimation, gemischte deutsch-franzoesische Arbeitsgruppen und ein gemeinsames Projektergebnis erleben die Schueler:innen Mehrsprachigkeit als Ressource und bauen Hemmschwellen aktiv ab.",
+      "kontext": "Verknuepft DFJW-Leitziel mit konkreter Methode."
+    },
+    {
+      "abschnitt_id": "begegnungsformat",
+      "formulierung": "Geplant ist eine Begegnung am Partnerort ueber acht volle Tage mit 25 Schueler:innen und drei Betreuenden auf deutscher Seite, sodass die gefoerderte Hoechstzahl von 35 Personen eingehalten wird.",
+      "kontext": "Macht Format, Dauer und Personenzahl foerdertauglich explizit."
+    },
+    {
+      "abschnitt_id": "finanzierung",
+      "formulierung": "Die Reisekosten fuer die einfache Strecke von rund 620 km werden ueber die Kilometerpauschale fuer 28 Personen kalkuliert; der nicht gefoerderte Anteil wird durch Teilnehmerbeitraege und einen Zuschuss des Schultraegers gedeckt.",
+      "kontext": "Verbindet Distanz, Personenzahl und Eigenmittel nachvollziehbar."
+    },
+    {
+      "abschnitt_id": "nachhaltigkeit",
+      "formulierung": "Die Begegnung ist Auftakt einer auf drei Jahre angelegten Schulpartnerschaft mit jaehrlich wechselnder Gastgeberrolle; eine Gegenbegegnung in Frankreich ist fuer das Folgejahr bereits terminlich abgestimmt.",
+      "kontext": "Belegt langfristige Perspektive."
+    }
+  ],
+  "fristLogik": {
+    "typ": "fixe_stichtage",
+    "stichtage": [
+      "2026-01-31",
+      "2026-05-31"
+    ],
+    "jaehrlich_wiederkehrend": true
+  }
+}

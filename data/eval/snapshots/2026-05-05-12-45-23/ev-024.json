@@ -1,0 +1,105 @@
+{
+  "input": {
+    "anliegen": "Wir wuerden gern etwas im Bereich Bewegung oder Sport starten, etwa eine kleine Initiative ueber das Schuljahr verteilt."
+  },
+  "result": {
+    "kind": "ranking",
+    "matches": [
+      {
+        "id": "niedersachsen-sport",
+        "score": 82,
+        "passt_weil": "Speziell für Grundschulen mit Bewegungseinheiten und Sportverein-Kooperation – passt ideal zur Initiative übers Schuljahr.",
+        "achtung_bei": "Nur Niedersachsen und Grundschulen – Profil prüfen.",
+        "programm": {
+          "id": "niedersachsen-sport",
+          "name": "Sportförderung Niedersachsen Grundschulen (Sport Vernetzt)",
+          "foerdergeber": "Niedersächsisches Kultusministerium / LandesSportBund Niedersachsen",
+          "foerdergeberTyp": "land",
+          "schulformen": [
+            "grundschule"
+          ],
+          "bundeslaender": [
+            "DE-NI"
+          ],
+          "foerdersummeMin": 400,
+          "foerdersummeMax": 1000,
+          "foerdersummeText": "5€ pro Bewegungseinheit (45 Min.), max. 80 BE = 400€/Jahr; Fördervereine max. 1.000€",
+          "kategorien": [
+            "sport",
+            "bewegung",
+            "gesundheit"
+          ],
+          "bewerbungsfristText": "laufend (vor Projektbeginn)",
+          "bewerbungsart": "online",
+          "infoLink": "https://www.sportjugend-nds.de/schule-kita-verein/schule-sportverein",
+          "kurzbeschreibung": "Förderung von Kooperationen zwischen Schule, Kita und Sportverein. 5€ pro Bewegungseinheit (max. 80 BE = 400€/Jahr). Leitervergütung max. 20€/BE. Voraussetzung: DOSB-Übungsleiter-Lizenz.",
+          "status": "aktiv",
+          "createdAt": "2025-02-05T00:00:00Z",
+          "updatedAt": "2026-02-13T10:00:00.000Z",
+          "quelle": "https://www.sportjugend-nds.de/schule-kita-verein/schule-sportverein",
+          "kiAntragGeeignet": true,
+          "verifiziertAm": "2026-02-13",
+          "verifiziertVon": "Web-Recherche LSB Niedersachsen",
+          "bemerkung": "Förderrichtlinie 2.6.5 'Sport Vernetzt'. Antrag per E-Mail an lmende@lsb-niedersachsen.de. Fördervereine von Schulen/Kitas: max. 1.000€ (50% Eigenanteil)."
+        }
+      },
+      {
+        "id": "aok-gesundheit",
+        "score": 70,
+        "passt_weil": "Fördert Bewegungs- und Gesundheitsprojekte mit Summen bis 5.500€ – passend für kleine Schulinitiative.",
+        "achtung_bei": "Regionale Verfügbarkeit prüfen – Programme variieren je Bundesland.",
+        "programm": {
+          "id": "aok-gesundheit",
+          "name": "Gesunde Schule",
+          "foerdergeber": "AOK-Bundesverband",
+          "foerdergeberTyp": "stiftung",
+          "schulformen": [
+            "grundschule"
+          ],
+          "bundeslaender": [
+            "alle"
+          ],
+          "foerdersummeMin": 1000,
+          "foerdersummeMax": 5500,
+          "foerdersummeText": "Bis 5.500€ (Fit durch die Schule), bis 2.000€ (mentale Gesundheit)",
+          "kategorien": [
+            "gesundheit",
+            "praevention",
+            "bewegung",
+            "ernaehrung"
+          ],
+          "bewerbungsfristText": "laufend (regional variierend)",
+          "bewerbungsart": "online",
+          "infoLink": "https://www.aok.de/pk/leistungen/schulen/gesundheitsprogramme/",
+          "kurzbeschreibung": "Regionale Programme: Fit durch die Schule (bis 5.500€), Gesund macht Schule (kostenlos), Fit für die Zukunft (bis 2.000€). Angebote variieren je nach AOK-Landesverband.",
+          "status": "aktiv",
+          "createdAt": "2025-02-11T00:00:00Z",
+          "updatedAt": "2025-01-20T00:00:00.000Z",
+          "quelle": "https://www.aok.de/pk/leistungen/schulen/gesundheitsprogramme/",
+          "kiAntragGeeignet": true,
+          "verifiziertAm": "2026-02-12",
+          "verifiziertVon": "Web-Recherche AOK-Programme",
+          "bemerkung": "Regionale Unterschiede: AOK PLUS (Sachsen/Thüringen) bis 2.000€ für mentale Gesundheit, Fit durch die Schule bundesweit bis 5.500€ für Bewegungsprojekte"
+        }
+      }
+    ],
+    "costs": {
+      "calls": 1,
+      "promptTokens": 5299,
+      "candidatesTokens": 167,
+      "totalTokens": 5466,
+      "usdCents": 0.08,
+      "eurCents": 0.07,
+      "entries": [
+        {
+          "model": "deepseek-chat",
+          "promptTokens": 5299,
+          "candidatesTokens": 167,
+          "usdCents": 0.08
+        }
+      ]
+    },
+    "totalCandidates": 131,
+    "filteredOut": 0
+  }
+}

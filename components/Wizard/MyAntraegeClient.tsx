@@ -1,0 +1,216 @@
+"use client";
+
+import { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
+import { Loader2, Trash2, ArrowRight, FileText } from "lucide-react";
+import {
+  listLocalSessions,
+  removeLocalSession,
+} from "@/lib/wizard/session-index-client";
+import type { WizardPhase } from "@/lib/wizard/types";
+import { formatEur, type CostLedger } from "@/lib/wizard/pricing";
+
+interface SessionSummary {
+  programmId: string;
+  sessionToken: string;
+  programmName: string;
+  phase: WizardPhase;
+  totalQuestions: number;
+  maxQuestions: number;
+  updatedAt: string;
+  costs?: CostLedger | null;
+  missing?: boolean;
+  error?: string;
+}
+
+const PHASE_META: Record<
+  WizardPhase,
+  { label: string; className: string }
+> = {
+  interviewing: { label: "In Bearbeitung", className: "bg-[#c9a227]/15 text-[#c9a227] border-[#c9a227]/40" },
+  ready_to_generate: { label: "Bereit zur Generierung", className: "bg-blue-500/15 text-blue-300 border-blue-500/40" },
+  generating: { label: "Wird geschrieben…", className: "bg-purple-500/15 text-purple-300 border-purple-500/40" },
+  complete: { label: "Fertig", className: "bg-emerald-500/15 text-emerald-300 border-emerald-500/40" },
+  failed: { label: "Fehler", className: "bg-red-500/15 text-red-300 border-red-500/40" },
+};
+
+function formatDate(iso: string): string {
+  try {
+    const d = new Date(iso);
+    return d.toLocaleString("de-DE", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  } catch {
+    return iso;
+  }
+}
+
+export function MyAntraegeClient() {
+  const [sessions, setSessions] = useState<SessionSummary[] | null>(null);
+  const [tick, setTick] = useState(0);
+
+  const refresh = useCallback(() => setTick((t) => t + 1), []);
+
+  useEffect(() => {
+    const local = listLocalSessions();
+    if (local.length === 0) {
+      setSessions([]);
+      return;
+    }
+    setSessions(null);
+
+    Promise.all(
+      local.map(async ({ programmId, sessionToken }) => {
+        try {
+          const res = await fetch(`/api/wizard/${sessionToken}`);
+          if (res.status === 404) {
+            return {
+              programmId,
+              sessionToken,
+              programmName: "(Session auf dem Server nicht mehr vorhanden)",
+              phase: "failed" as WizardPhase,
+              totalQuestions: 0,
+              maxQuestions: 12,
+              updatedAt: new Date().toISOString(),
+              missing: true,
+            };
+          }
+          if (!res.ok) {
+            const body = await res.json().catch(() => ({}));
+            throw new Error(body.error ?? `HTTP ${res.status}`);
+          }
+          const body = await res.json();
+          return {
+            programmId,
+            sessionToken,
+            programmName: body.foerderprogrammName ?? programmId,
+            phase: body.phase as WizardPhase,
+            totalQuestions: body.interviewer?.totalQuestions ?? 0,
+            maxQuestions: body.interviewer?.maxQuestions ?? 12,
+            updatedAt: body.updatedAt ?? new Date().toISOString(),
+            costs: body.costs ?? null,
+          } satisfies SessionSummary;
+        } catch (e) {
+          return {
+            programmId,
+            sessionToken,
+            programmName: programmId,
+            phase: "failed" as WizardPhase,
+            totalQuestions: 0,
+            maxQuestions: 12,
+            updatedAt: new Date().toISOString(),
+            error: e instanceof Error ? e.message : "Fehler",
+          } satisfies SessionSummary;
+        }
+      })
+    ).then((results) => {
+      results.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
+      setSessions(results);
+    });
+  }, [tick]);
+
+  const handleRemove = (programmId: string) => {
+    if (!confirm("Diese Session aus dem Browser entfernen? (Auf dem Server bleibt sie bestehen und ist über einen Link weiter erreichbar, falls du einen hast.)")) {
+      return;
+    }
+    removeLocalSession(programmId);
+    refresh();
+  };
+
+  if (sessions === null) {
+    return (
+      <div className="flex items-center gap-3 rounded-xl border border-[#0a1628]/10 bg-white/80 p-6 text-slate-700">
+        <Loader2 className="h-5 w-5 animate-spin text-[#c9a227]" />
+        Lade Sessions…
+      </div>
+    );
+  }
+
+  if (sessions.length === 0) {
+    return (
+      <div className="rounded-xl border border-[#0a1628]/10 bg-white/80 p-10 text-center">
+        <FileText className="mx-auto mb-3 h-10 w-10 text-slate-500" />
+        <h3 className="mb-2 text-lg font-semibold text-[#0a1628]">
+          Noch kein Antrag begonnen
+        </h3>
+        <p className="mx-auto mb-6 max-w-md text-sm text-slate-600">
+          Schildere dein Anliegen und finde in Sekunden das passende Förderprogramm für deine Schule.
+        </p>
+        <Link
+          href="/antrag/start"
+          className="inline-flex items-center gap-2 rounded-lg bg-[#c9a227] px-5 py-2 text-sm font-semibold text-white hover:bg-[#b8921e]"
+        >
+          Anliegen schildern
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-3">
+      {sessions.map((s) => {
+        const meta = PHASE_META[s.phase] ?? PHASE_META.failed;
+        const href = `/antrag/${s.programmId}/wizard`;
+        return (
+          <div
+            key={s.sessionToken}
+            className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 rounded-xl border border-[#0a1628]/10 bg-white p-4 transition hover:border-[#0a1628]/15"
+          >
+            <div className="min-w-0 flex-1">
+              <div className="mb-1 flex flex-wrap items-center gap-2">
+                <h3 className="truncate text-base font-semibold text-[#0a1628]">
+                  {s.programmName}
+                </h3>
+                <span
+                  className={`rounded-full border px-2 py-0.5 text-xs ${meta.className}`}
+                >
+                  {meta.label}
+                </span>
+              </div>
+              <div className="text-xs text-slate-500">
+                {!s.missing && !s.error && (
+                  <>
+                    {s.totalQuestions}/{s.maxQuestions} Fragen beantwortet ·{" "}
+                  </>
+                )}
+                Letzter Stand: {formatDate(s.updatedAt)}
+                {s.costs && s.costs.calls > 0 && (
+                  <span className="ml-2 text-slate-600">
+                    · KI-Kosten: {formatEur(s.costs.eurCents)}
+                  </span>
+                )}
+                {s.error && (
+                  <span className="ml-2 text-red-400">· {s.error}</span>
+                )}
+              </div>
+            </div>
+            <div className="flex items-center gap-2 sm:ml-auto">
+              {!s.missing && (
+                <Link
+                  href={href}
+                  className="inline-flex items-center gap-2 rounded-lg border border-[#c9a227]/50 bg-[#c9a227]/10 px-3 py-2 text-sm font-medium text-[#1e3a61] hover:bg-[#c9a227]/20"
+                >
+                  Öffnen
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              )}
+              <button
+                type="button"
+                onClick={() => handleRemove(s.programmId)}
+                title="Aus Browser entfernen"
+                className="rounded-lg border border-[#0a1628]/15 p-2 text-slate-600 hover:border-red-500/50 hover:text-red-300"
+              >
+                <Trash2 className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}

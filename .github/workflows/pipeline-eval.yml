@@ -1,0 +1,151 @@
+name: Pipeline-Eval (Threshold-Gate)
+
+# Threshold-Gate fuer Generate-Pipeline-Qualitaet (Phase 5, D-24/D-25/D-27).
+#
+# PR-Trigger: laeuft automatisch bei Aenderungen an lib/wizard/**, data/richtlinien/**,
+# scripts/eval-pipeline.ts und data/eval/pipeline-korpus.json.
+#
+# workflow_dispatch: Manuell-Start mit mode=replay (kein LLM-Cost) oder mode=live
+# (~3-4 EUR Cost, ca. 60-75 min Laufzeit).
+#
+# Threshold-Gate (D-25):
+#   WIZ-01 (Pflichtabschnitte): hart — exit 1 bei drop > 2σ unter Baseline
+#   WIZ-02 (Halluzinations-Detection): mittel — exit 1 bei drop > 2σ + 10 % baseline
+#   WIZ-03 (Tonalitaet): warning-only — nie exit 1, nur core.notice
+#
+# Sicherheit: alle github.event.inputs gehen ueber env-Mapping (nie direkt
+# in run-Shells interpoliert) — Phase-4-Hardening-Pattern (T-05-08-01).
+# DEEPSEEK_API_KEY wird nie geechoet — Secret-Pre-Flight prueft nur Existenz.
+
+on:
+  pull_request:
+    paths:
+      - "lib/wizard/**"
+      - "data/richtlinien/**"
+      - "data/eval/pipeline-korpus.json"
+      - "scripts/eval-pipeline.ts"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Modus: replay (default, kein LLM-Cost) oder live (Cost ~3-4 EUR)"
+        required: false
+        type: choice
+        options:
+          - replay
+          - live
+        default: replay
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Pre-Flight Secret-Check
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          MODE: ${{ github.event.inputs.mode || 'replay' }}
+        run: |
+          set -euo pipefail
+          if [ "$MODE" = "live" ] && [ -z "${DEEPSEEK_API_KEY}" ]; then
+            echo "::error::DEEPSEEK_API_KEY Secret fehlt fuer --live-Modus. Im Repo-Settings hinterlegen oder mode=replay waehlen."
+            exit 1
+          fi
+
+      - name: Verify Baseline-Snapshots existieren
+        run: |
+          set -euo pipefail
+          if [ ! -d "data/eval/pipeline-snapshots/baseline" ]; then
+            echo "::error::data/eval/pipeline-snapshots/baseline/ fehlt — Baseline force-committen oder Phase 5 nicht abgeschlossen."
+            exit 1
+          fi
+          COUNT=$(ls data/eval/pipeline-snapshots/baseline/ | wc -l)
+          if [ "$COUNT" -lt 22 ]; then
+            echo "::error::Baseline-Snapshots unvollstaendig ($COUNT Dateien, erwartet >= 22). Baseline-Run ausfuehren und Snapshots committen."
+            exit 1
+          fi
+          echo "Baseline-Snapshots vorhanden: $COUNT Dateien"
+
+      - name: Run Pipeline-Eval
+        id: eval
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          MODE: ${{ github.event.inputs.mode || 'replay' }}
+        run: |
+          set -euo pipefail
+          ARGS=(--md-summary)
+          if [ "$MODE" = "replay" ]; then
+            ARGS+=(--replay data/eval/pipeline-snapshots/baseline)
+          else
+            ARGS+=(--live --N=3)
+          fi
+          npx tsx scripts/eval-pipeline.ts "${ARGS[@]}"
+
+      - name: Upload Eval Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-eval-${{ github.run_id }}
+          path: data/eval/pipeline-reports/*.json
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: GitHub-Annotation pro Achse
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const dir = 'data/eval/pipeline-reports';
+            if (!fs.existsSync(dir)) {
+              core.warning('Keine pipeline-reports/ — Eval-Skript hat keinen Report geschrieben');
+              return;
+            }
+            const files = fs.readdirSync(dir).filter(f => f.endsWith('.json')).sort();
+            if (files.length === 0) {
+              core.warning('Keine Report-JSON in data/eval/pipeline-reports/ gefunden');
+              return;
+            }
+            const reportPath = path.join(dir, files[files.length - 1]);
+            let report;
+            try {
+              report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+            } catch (e) {
+              core.warning(`Report-JSON nicht parsebar: ${reportPath}`);
+              return;
+            }
+            const axes = report.aggregate?.axes ?? {};
+            if (Object.keys(axes).length === 0) {
+              core.notice('Keine Achsen-Daten im Report (kein Baseline-Vergleich moeglich — erster Run?)');
+              return;
+            }
+            for (const [axis, val] of Object.entries(axes)) {
+              const status = val.status === 'pass' ? 'PASS' : val.status === 'warn' ? 'WARN' : 'FAIL';
+              const sign = status === 'PASS' ? '✓' : status === 'WARN' ? '⚠' : '✗';
+              const baseline = val.baselineMean != null ? `(baseline: ${val.baselineMean.toFixed(1)})` : '';
+              const msg = `${sign} ${axis}: mean=${val.mean.toFixed(1)} stddev=${val.stddev.toFixed(1)} ${baseline} [${status}]`;
+              if (status === 'FAIL') {
+                core.error(msg);
+              } else if (status === 'WARN') {
+                core.warning(msg);
+              } else {
+                core.notice(msg);
+              }
+            }

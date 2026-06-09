@@ -243,5 +243,5 @@ const LoadingProgress = React.forwardRef<HTMLDivElement, LoadingProgressProps>(
 );
 LoadingProgress.displayName = "LoadingProgress";
 
-export { ProgressBar, StepProgress, LoadingProgress };
+export { ProgressBar, StepProgress, LoadingProgress, ProgressBar as Progress };
 export type { ProgressBarProps, StepProgressProps, LoadingProgressProps };

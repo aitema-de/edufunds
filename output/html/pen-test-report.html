@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pen-Test Report - EduFunds Sicherheits-Audit</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1a1a2e;
+            border-bottom: 3px solid #16213e;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #16213e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .summary-box {
+            background: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .summary-box.warning {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+        }
+        .summary-box.danger {
+            background: #ffebee;
+            border-left-color: #f44336;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #16213e;
+            color: white;
+        }
+        tr:hover {
+            background: #f5f5f5;
+        }
+        .status-ok {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        .status-warning {
+            color: #ff9800;
+            font-weight: bold;
+        }
+        .status-danger {
+            color: #f44336;
+            font-weight: bold;
+        }
+        .risk-low { color: #4caf50; }
+        .risk-medium { color: #ff9800; }
+        .risk-high { color: #f44336; }
+        .meta-info {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+        }
+        .meta-info p {
+            margin: 5px 0;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .badge-success { background: #4caf50; color: white; }
+        .badge-warning { background: #ff9800; color: white; }
+        .badge-danger { background: #f44336; color: white; }
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .recommendation {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 EduFunds Sicherheits-Audit</h1>
+        
+        <div class="meta-info">
+            <p><strong>Ziel:</strong> edufunds.org (49.13.15.44)</p>
+            <p><strong>Datum:</strong> 12. Februar 2026</p>
+            <p><strong>Tester:</strong> Automated Security Scanner</p>
+            <p><strong>Typ:</strong> Externer Penetrationstest (Blackbox)</p>
+        </div>
+
+        <div class="summary-box">
+            <h3>📊 Gesamtbewertung: GUT</h3>
+            <p>Die Sicherheitsüberprüfung von <strong>edufunds.org</strong> zeigt insgesamt ein <strong>gutes Sicherheitsniveau</strong>. 
+            Keine kritischen Schwachstellen wurden gefunden. Die Domain ist durch Cloudflare zusätzlich geschützt.</p>
+            <p><strong>Tests bestanden:</strong> 6 von 7</p>
+            <p><strong>Kritische Risiken:</strong> 0</p>
+        </div>
+
+        <h2>🛡️ Zusammenfassung der Ergebnisse</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sicherheitstest</th>
+                    <th>Status</th>
+                    <th>Risiko-Level</th>
+                    <th>Bemerkung</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SSL/TLS Konfiguration</td>
+                    <td class="status-ok">✅ OK</td>
+                    <td class="risk-low">Keines</td>
+                    <td>TLS 1.3 aktiv, Zertifikat gültig</td>
+                </tr>
+                <tr>
+                    <td>Security Headers</td>
+                    <td class="status-warning">⚠️ Teilweise</td>
+                    <td class="risk-low">Niedrig</td>
+                    <td>HSTS und CSP fehlen auf Hauptdomain</td>
+                </tr>
+                <tr>
+                    <td>Offene Ports</td>
+                    <td class="status-ok">✅ OK</td>
+                    <td class="risk-low">Keines</td>
+                    <td>Port 5432 geschlossen, nur 80/443/3000 offen</td>
+                </tr>
+                <tr>
+                    <td>API-Authentifizierung</td>
+                    <td class="status-ok">✅ OK</td>
+                    <td class="risk-low">Keines</td>
+                    <td>Keine öffentlich zugängliche API gefunden</td>
+                </tr>
+                <tr>
+                    <td>Rate-Limiting</td>
+                    <td class="status-ok">✅ OK</td>
+                    <td class="risk-low">Keines</td>
+                    <td>Cloudflare Schutz aktiv</td>
+                </tr>
+                <tr>
+                    <td>XSS-Schutz</td>
+                    <td class="status-ok">✅ OK</td>
+                    <td class="risk-low">Keines</td>
+                    <td>Cloudflare blockiert bösartige Payloads</td>
+                </tr>
+                <tr>
+                    <td>SQL-Injection</td>
+                    <td class="status-ok">✅ OK</td>
+                    <td class="risk-low">Keines</td>
+                    <td>Keine SQLi-Schwachstellen erkennbar</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>⚠️ Gefundene Schwachstellen & Empfehlungen</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Schwachstelle</th>
+                    <th>Risiko</th>
+                    <th>Empfehlung</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Fehlender Strict-Transport-Security Header (HSTS)</td>
+                    <td class="risk-low">Niedrig</td>
+                    <td>HSTS-Header hinzufügen: <code>Strict-Transport-Security: max-age=31536000; includeSubDomains</code></td>
+                </tr>
+                <tr>
+                    <td>Fehlende Content-Security-Policy (CSP)</td>
+                    <td class="risk-low">Niedrig</td>
+                    <td>CSP-Header implementieren um XSS-Angriffe zu erschweren</td>
+                </tr>
+                <tr>
+                    <td>Port 3000 ist offen</td>
+                    <td class="risk-low">Niedrig</td>
+                    <td>Port 3000 schließen oder durch Firewall/IP-Whitelist schützen falls nicht benötigt</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>✅ Positive Sicherheitsaspekte</h2>
+        <div class="summary-box">
+            <ul>
+                <li><strong>TLS 1.3:</strong> Aktuellste TLS-Version für maximale Verschlüsselung</li>
+                <li><strong>Cloudflare-Schutz:</strong> www.edufunds.org ist durch Cloudflare geschützt (DDoS, WAF)</li>
+                <li><strong>Datenbank-Port geschlossen:</strong> Port 5432 (PostgreSQL) ist nicht erreichbar</li>
+                <li><strong>Keine API-Leaks:</strong> Keine öffentlich zugängliche API ohne Authentifizierung gefunden</li>
+                <li><strong>X-Content-Type-Options:</strong> Schutz vor MIME-Type Sniffing aktiv</li>
+                <li><strong>X-Frame-Options:</strong> Schutz vor Clickjacking (bei www via Cloudflare)</li>
+            </ul>
+        </div>
+
+        <h2>📋 Best Practices Empfehlungen</h2>
+        
+        <div class="recommendation">
+            <h4>1. Security Headers ergänzen</h4>
+            <p>Folgende Header sollten auf dem Webserver konfiguriert werden:</p>
+            <ul>
+                <li><code>Strict-Transport-Security: max-age=31536000; includeSubDomains; preload</code></li>
+                <li><code>Content-Security-Policy: default-src 'self'</code> (anwendungsspezifisch anpassen)</li>
+                <li><code>Permissions-Policy: geolocation=(), microphone=(), camera=()</code></li>
+            </ul>
+        </div>
+
+        <div class="recommendation">
+            <h4>2. Port-Sicherheit</h4>
+            <p>Port 3000 sollte entweder:</p>
+            <ul>
+                <li>Geschlossen werden falls nicht benötigt</li>
+                <li>Oder durch Firewall auf localhost beschränkt werden</li>
+                <li>Oder Authentifizierung erfordern</li>
+            </ul>
+        </div>
+
+        <div class="recommendation">
+            <h4>3. Cloudflare-Konfiguration</h4>
+            <p>Die Cloudflare-Konfiguration für www.edufunds.org ist gut. Folgende Optionen sollten geprüft werden:</p>
+            <ul>
+                <li>"Always Use HTTPS" aktivieren</li>
+                <li>Security Level auf "High" setzen</li>
+                <li>Bot Fight Mode aktivieren</li>
+            </ul>
+        </div>
+
+        <div class="recommendation">
+            <h4>4. Regelmäßige Sicherheitschecks</h4>
+            <ul>
+                <li>Monatliche SSL-Zertifikatsüberwachung</li>
+                <li>Regelmäßige Penetrationstests (mindestens halbjährlich)</li>
+                <li>Dependency-Scanning für verwendete Bibliotheken</li>
+            </ul>
+        </div>
+
+        <h2>📈 Risiko-Matrix</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Risiko-Level</th>
+                    <th>Anzahl</th>
+                    <th>Beschreibung</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="risk-high">🔴 Kritisch</td>
+                    <td>0</td>
+                    <td>Unmittelbare Gefahr für System/Daten</td>
+                </tr>
+                <tr>
+                    <td class="risk-medium">🟠 Hoch</td>
+                    <td>0</td>
+                    <td>Ernsthafte Sicherheitslücke</td>
+                </tr>
+                <tr>
+                    <td class="risk-medium">🟡 Mittel</td>
+                    <td>0</td>
+                    <td>Begrenzte Auswirkung</td>
+                </tr>
+                <tr>
+                    <td class="risk-low">🟢 Niedrig</td>
+                    <td>3</td>
+                    <td>Kosmetisch oder geringe Wahrscheinlichkeit</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🔧 Technische Details</h2>
+        <div class="meta-info">
+            <p><strong>Server-IP:</strong> 49.13.15.44</p>
+            <p><strong>Hosting:</strong> Hetzner Online GmbH (Deutschland)</p>
+            <p><strong>SSL-Zertifikat:</strong> Let's Encrypt R13, gültig bis 02.05.2026</p>
+            <p><strong>TLS-Version:</strong> 1.3 (höchste Sicherheit)</p>
+            <p><strong>CDN/Schutz:</strong> Cloudflare (aktiv für www.edufunds.org)</p>
+        </div>
+
+        <div class="summary-box warning">
+            <h3>⚠️ Haftungsausschluss</h3>
+            <p>Dieser Bericht zeigt den Sicherheitszustand zum Zeitpunkt des Scans (12.02.2026). 
+            Sicherheit ist ein fortlaufender Prozess. Regelmäßige Überprüfungen werden empfohlen. 
+            Dieser Test deckt nicht alle möglichen Angriffsvektoren ab.</p>
+        </div>
+
+        <footer>
+            <p>Penetrationstest durchgeführt am 12. Februar 2026</p>
+            <p>Dieser Bericht wurde automatisch generiert und enthält vertrauliche Sicherheitsinformationen.</p>
+        </footer>
+    </div>
+</body>
+</html>

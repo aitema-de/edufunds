@@ -1,0 +1,266 @@
+{
+  "version": "2026-06-01",
+  "quellen": [
+    "https://www.stiftung-berliner-sparkasse.de/",
+    "https://www.stiftung-berliner-sparkasse.de/foerderantrag-stellen-0000000000005e44",
+    "https://foerderdatenbank.d-s-e-e.de/foerderprogramme/foerderungen-der-stiftung-berliner-sparkasse"
+  ],
+  "foerderhoehe": {
+    "bemerkung": "Projektbezogener Zuschuss; keine festen Min-/Max-Betraege veroeffentlicht. Hoehe richtet sich nach dem eingereichten Kosten- und Finanzierungsplan und wird vom Kuratorium festgelegt. Reine Projektkosten, keine laufenden Betriebskosten."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Direkt dem konkreten Projekt zurechenbar",
+        "Im Kosten- und Finanzierungsplan ausgewiesen"
+      ],
+      "beispielePasst": [
+        "Material fuer ein Schulgarten- oder Umweltbildungsprojekt",
+        "Workshop-Materialien fuer ein Bildungsvorhaben",
+        "Ausstattung fuer ein gemeinnuetziges Projekt mit Schuelerinnen und Schuelern"
+      ],
+      "beispielePasstNicht": [
+        "Allgemeines Verbrauchsmaterial des laufenden Schulbetriebs"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Anschaffung muss dem Projektzweck dienen und in Berlin verbleiben"
+      ],
+      "beispielePasst": [
+        "Geraete fuer ein MINT-Projekt",
+        "Instrumente oder Technik fuer ein Kulturprojekt"
+      ],
+      "beispielePasstNicht": [
+        "Baukosten / bauliche Massnahmen"
+      ]
+    },
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Externe Projekt-Leistungen, projektgebunden und nachvollziehbar kalkuliert"
+      ],
+      "beispielePasst": [
+        "Honorar fuer eine externe Kuenstlerin in einem Schulkulturprojekt",
+        "Honorar fuer Workshop-Leitung im Projekt"
+      ],
+      "beispielePasstNicht": [
+        "Vergueteung fuer eigenes festangestelltes Personal des Traegers"
+      ]
+    },
+    {
+      "kategorie": "personal",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Laufende Personalkosten sind ausdruecklich ausgeschlossen"
+      ],
+      "beispielePasstNicht": [
+        "Stellenanteile von Lehrkraeften oder Vereinsangestellten",
+        "Dauerhafte Personalstellen"
+      ]
+    },
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Reise- und Bewirtungskosten ausdruecklich ausgeschlossen"
+      ],
+      "beispielePasstNicht": [
+        "Fahrtkosten zu Exkursionen",
+        "Catering bei Veranstaltungen"
+      ]
+    },
+    {
+      "kategorie": "overhead",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Laufende Verwaltungskosten, Druckkosten, Preise und Wettbewerbe ausgeschlossen"
+      ],
+      "beispielePasstNicht": [
+        "Verwaltungspauschalen",
+        "Druck von Broschueren / Flyern",
+        "Preisgelder, Schul- und Stadtteilfeste"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": false,
+    "formenErlaubt": [
+      "finanziell",
+      "sachleistungen",
+      "eigenarbeit",
+      "drittmittel"
+    ],
+    "bemerkung": "Kein verbindlicher Eigenmittelanteil veroeffentlicht. Ein vollstaendiger Finanzierungsplan ist Pflicht; ein erkennbarer Eigenbeitrag (auch Eigenleistung) und die Darstellung weiterer Finanzierungsquellen wirken sich positiv aus."
+  },
+  "kumulierung": {
+    "erlaubt": "bedingt",
+    "bedingungen": [
+      "Weitere Finanzierungsquellen muessen im Finanzierungsplan offengelegt werden",
+      "Keine Doppelfoerderung derselben Kostenposition"
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "antragsteller-traeger",
+        "name": "Antragsteller und gemeinnuetziger Traeger",
+        "pflicht": true,
+        "leitfragen": [
+          "Welcher gemeinnuetzige oder mildtaetige Verein (z.B. Foerderverein der Schule) stellt den Antrag?",
+          "Liegt ein aktueller Freistellungsbescheid des Finanzamts fuer Koerperschaften vor?",
+          "Welcher Satzungszweck des Traegers und welcher Stiftungszweck wird erfuellt?"
+        ],
+        "stilhinweis": "Sachlich und nachweisorientiert; Gemeinnuetzigkeit und Berlin-Bezug klar belegen."
+      },
+      {
+        "id": "projektidee",
+        "name": "Projektidee und Zielsetzung",
+        "pflicht": true,
+        "leitfragen": [
+          "Was ist das konkrete Vorhaben und welches Ziel verfolgt es?",
+          "Welchem Foerderbereich (z.B. Erziehung und Bildung, Kunst und Kultur, Natur- und Umweltschutz) ist es zuzuordnen?",
+          "Welchen Beitrag leistet das Projekt zu den UN-Nachhaltigkeitszielen?"
+        ],
+        "stilhinweis": "Konkret und gemeinwohlorientiert; abgrenzen vom regulaeren Schulbetrieb."
+      },
+      {
+        "id": "zielgruppe-wirkung",
+        "name": "Zielgruppe und Wirkung in Berlin",
+        "pflicht": true,
+        "leitfragen": [
+          "Wer profitiert vom Projekt (z.B. Schuelerinnen und Schueler, Stadtteil) und wie viele Personen?",
+          "Warum findet das Projekt in Berlin statt bzw. wirkt in Berlin?",
+          "Welche nachhaltige oder ueber das Projekt hinausreichende Wirkung wird erwartet?"
+        ],
+        "stilhinweis": "Wirkung greifbar machen; Berlin-Bezug betonen."
+      },
+      {
+        "id": "projektplan-zeitplan",
+        "name": "Projektablauf und Zeitplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Arbeitsschritte und Meilensteine sind geplant?",
+          "In welchem Zeitraum wird das Projekt durchgefuehrt (Beginn nach der Kuratoriumsentscheidung)?",
+          "Wer setzt das Projekt operativ um?"
+        ],
+        "stilhinweis": "Realistischer, nachvollziehbarer Zeitplan; abgeschlossene Massnahmen sind nicht foerderfaehig."
+      },
+      {
+        "id": "kosten-finanzierung",
+        "name": "Kosten- und Finanzierungsplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Einzelpositionen umfasst der detaillierte Kostenplan?",
+          "Welche Positionen sind ausdruecklich foerderfaehig (Sach-, Honorar-, Investitionskosten) und welche ausgeschlossen?",
+          "Wie ist die Gesamtfinanzierung aufgebaut (beantragter Zuschuss, Eigenmittel, Drittmittel)?"
+        ],
+        "stilhinweis": "Transparent und vollstaendig; keine ausgeschlossenen Posten (Personal, Verwaltung, Reise, Druck, Preise) einplanen."
+      },
+      {
+        "id": "anlagen-nachweise",
+        "name": "Anlagen und Nachweise",
+        "pflicht": true,
+        "leitfragen": [
+          "Sind Satzung, Registerauszug und Freistellungsbescheid beigefuegt?",
+          "Ist der detaillierte Kosten- und Finanzierungsplan vollstaendig?",
+          "Sind alle Pflichtangaben im elektronischen Antragsformular ausgefuellt?"
+        ],
+        "stilhinweis": "Vollstaendigkeit pruefen; fehlende Nachweise verzoegern die Bearbeitung."
+      }
+    ],
+    "anlagen": [
+      "Satzung / Statut des Traegers",
+      "Aktueller Registerauszug (z.B. Vereinsregister)",
+      "Freistellungsbescheid des Finanzamts fuer Koerperschaften (Gemeinnuetzigkeit)",
+      "Detaillierter Kosten- und Finanzierungsplan"
+    ],
+    "einreichungsweg": "Online ueber das elektronische Antragsformular auf stiftung-berliner-sparkasse.de; nach Antragstellung Zugang zum OPAL-Portal zur Statusverfolgung.",
+    "bearbeitungsdauer": "Entscheidung zweimal jaehrlich durch das Kuratorium (Fruehjahr und Herbst)"
+  },
+  "notizen": [
+    "Schulen koennen nicht selbst beantragen - Antrag ueber den gemeinnuetzigen Foerderverein der Schule stellen.",
+    "Projekt muss in Berlin stattfinden oder der Traeger in Berlin ansaessig sein.",
+    "Ausgeschlossen: laufende Personal- und Verwaltungskosten, Reise- und Bewirtungskosten, Druckkosten, Preise/Wettbewerbe, Studienarbeiten, Kunstwerke, Schul- und Stadtteilfeste, abgeschlossene Massnahmen, Einzelpersonen sowie politische/religioese/weltanschauliche Organisationen.",
+    "Fristen variieren je nach Kuratoriumssitzung; aktuelle Stichtage vor Antragstellung auf der Stiftungsseite verifizieren."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Klarer Berlin- und Gemeinwohlbezug",
+      "was_funktionierte": "Antraege, die praezise darlegen, wie das Projekt konkret in Berlin wirkt und welcher Satzungszweck erfuellt wird, ueberzeugen das Kuratorium schneller.",
+      "warum": "Die Stiftung foerdert ausschliesslich gemeinnuetzige Projekte mit Berlin-Bezug; ein expliziter Bezug erfuellt die Kernvoraussetzung."
+    },
+    {
+      "thema": "Sauberer, foerderkonformer Kostenplan",
+      "was_funktionierte": "Ein detaillierter Kostenplan, der nur foerderfaehige Sach-, Honorar- und Investitionskosten enthaelt und ausgeschlossene Posten vermeidet, reduziert Rueckfragen.",
+      "warum": "Ausgeschlossene Posten wie Personal-, Verwaltungs- oder Reisekosten fuehren sonst zu Kuerzungen oder Ablehnung."
+    },
+    {
+      "thema": "Vollstaendige Nachweise von Anfang an",
+      "was_funktionierte": "Satzung, Registerauszug und gueltiger Freistellungsbescheid wurden direkt mit dem Antrag eingereicht.",
+      "warum": "Vollstaendige Unterlagen vermeiden Bearbeitungsverzoegerungen bis zur naechsten Kuratoriumssitzung."
+    },
+    {
+      "thema": "Nachhaltigkeit und UN-Ziele adressieren",
+      "was_funktionierte": "Antraege, die einen Beitrag zu den UN-Nachhaltigkeitszielen herausarbeiten, treffen das Foerderprofil der Stiftung.",
+      "warum": "Die Stiftung bezieht die Nachhaltigkeitsziele explizit in ihre Foerderlogik ein."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Antrag enthaelt ausgeschlossene Kostenpositionen wie laufende Personal-, Verwaltungs-, Reise- oder Druckkosten",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Nur foerderfaehige projektgebundene Sach-, Honorar- und Investitionskosten einplanen; ausgeschlossene Posten ueber andere Mittel decken."
+    },
+    {
+      "grund": "Antragsteller ist nicht gemeinnuetzig anerkannt oder es fehlt der Freistellungsbescheid",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Antrag ueber einen gemeinnuetzigen Traeger (z.B. Foerderverein) stellen und gueltigen Freistellungsbescheid beifuegen."
+    },
+    {
+      "grund": "Kein hinreichender Berlin-Bezug oder kein erfuellter Satzungszweck",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Klar darlegen, dass das Projekt in Berlin stattfindet und einen Stiftungszweck wie Bildung erfuellt."
+    },
+    {
+      "grund": "Vorhaben ist bereits abgeschlossen oder es handelt sich um Fest, Preis oder Wettbewerb",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Nur noch nicht begonnene Projektvorhaben einreichen; Schul- und Stadtteilfeste sowie Preise nicht beantragen."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "projektidee",
+      "formulierung": "Mit dem Projekt 'Schulgarten als Lernlabor' moechten wir Schuelerinnen und Schuelern unserer Berliner Grundschule praktische Umweltbildung ermoeglichen und so zum UN-Nachhaltigkeitsziel hochwertige Bildung beitragen.",
+      "kontext": "Einstieg, der Vorhaben, Bildungszweck und Nachhaltigkeitsbezug verbindet."
+    },
+    {
+      "abschnitt_id": "zielgruppe-wirkung",
+      "formulierung": "Von dem Vorhaben profitieren rund 180 Schuelerinnen und Schueler in Berlin-Treptow; die angelegten Beete und Materialien stehen ueber die Projektlaufzeit hinaus dauerhaft fuer den Unterricht zur Verfuegung.",
+      "kontext": "Belegt Zielgruppengroesse, Berlin-Bezug und nachhaltige Wirkung."
+    },
+    {
+      "abschnitt_id": "kosten-finanzierung",
+      "formulierung": "Der beantragte Zuschuss deckt ausschliesslich projektgebundene Sachkosten (Pflanzmaterial, Werkzeug) und ein Honorar fuer die externe Workshop-Leitung; laufende Personal-, Verwaltungs- und Reisekosten sind nicht Teil des Antrags.",
+      "kontext": "Macht die Foerderkonformitaet des Kostenplans explizit."
+    },
+    {
+      "abschnitt_id": "antragsteller-traeger",
+      "formulierung": "Antragsteller ist der als gemeinnuetzig anerkannte Foerderverein der Schule; der aktuelle Freistellungsbescheid des Finanzamts fuer Koerperschaften liegt diesem Antrag bei.",
+      "kontext": "Adressiert die Antragsberechtigung und Gemeinnuetzigkeit direkt."
+    }
+  ],
+  "fristLogik": {
+    "typ": "fixe_stichtage",
+    "stichtage": [
+      "2026-06-30",
+      "2026-12-31"
+    ],
+    "jaehrlich_wiederkehrend": true
+  }
+}

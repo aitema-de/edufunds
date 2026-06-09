@@ -1,0 +1,113 @@
+{
+  "input": {
+    "anliegen": "Wir haben mehrere Ideen — Theater, AG fuer Naturwissenschaften, vielleicht ein Austausch nach Frankreich. Was passt wirtschaftlich?",
+    "schultyp": "gymnasium",
+    "bundesland": "Baden-Wuerttemberg"
+  },
+  "result": {
+    "kind": "ranking",
+    "matches": [
+      {
+        "id": "kmk-pad-foerderung",
+        "score": 70,
+        "passt_weil": "Foerdert Austausch mit Frankreich (PASCH) – thematische Passung fuer Frankreich-Austausch.",
+        "achtung_bei": "GAPP/PASCH sind wettbewerblich, eigenes Projekt noetig.",
+        "programm": {
+          "id": "kmk-pad-foerderung",
+          "name": "KMK PAD Schulpartnerschaften (GAPP, PASCH, Israel)",
+          "foerdergeber": "Pädagogischer Austauschdienst (PAD) bei der KMK",
+          "foerdergeberTyp": "bund",
+          "schulformen": [
+            "grundschule",
+            "hauptschule",
+            "realschule",
+            "gymnasium",
+            "gesamtschule"
+          ],
+          "bundeslaender": [
+            "alle"
+          ],
+          "foerdersummeMin": 500,
+          "foerdersummeMax": 5000,
+          "foerdersummeText": "Variiert nach Programm (Reisekostenzuschüsse)",
+          "kategorien": [
+            "international",
+            "austausch",
+            "sprachen",
+            "partnerschaft"
+          ],
+          "bewerbungsfristText": "GAPP: 24.04.2026 | PASCH: 15.04.2026 | Israel: bis 30.09.2026",
+          "bewerbungsart": "online",
+          "infoLink": "https://www.kmk-pad.org/programme/schulpartnerschaften-der-pasch-initiative",
+          "kurzbeschreibung": "Förderung von Schulpartnerschaften: GAPP (Deutschland-USA), PASCH (weltweit), Israel (Schulpartnerschaften). Reisekostenzuschüsse für Austauschprogramme.",
+          "status": "aktiv",
+          "createdAt": "2025-02-11T00:00:00Z",
+          "updatedAt": "2026-02-12T20:00:00.000Z",
+          "quelle": "https://www.kmk-pad.org/programme/german-american-partnership-program-gapp",
+          "quelleUrl": "https://www.kmk-pad.org/programme/german-american-partnership-program-gapp",
+          "kiAntragGeeignet": true,
+          "verifiziertAm": "2026-02-12",
+          "verifiziertVon": "Web-Recherche KMK PAD",
+          "bemerkung": "GAPP: Frist verlängert bis 24.04.2026 (bzw. 3 Wochen vor Beginn). PASCH: Frist verlängert bis 15.04.2026 (bzw. 3 Wochen vor Beginn). Israel: bis 30.09.2026 oder 6 Wochen vor Reisebeginn. Aktualisiert: 19.02.2026"
+        }
+      },
+      {
+        "id": "bundesweit-ganztag",
+        "score": 55,
+        "passt_weil": "Ganztagsausbau kann Theater- oder MINT-AG wirtschaftlich entlasten.",
+        "achtung_bei": "Kein direkter Themenbezug zum Anliegen; eher institutionelle Foerderung.",
+        "programm": {
+          "id": "bundesweit-ganztag",
+          "name": "Investitionsprogramm Ganztagsausbau",
+          "foerdergeber": "Bundesministerium für Familie",
+          "foerdergeberTyp": "bund",
+          "schulformen": [
+            "grundschule"
+          ],
+          "bundeslaender": [
+            "alle"
+          ],
+          "foerdersummeMin": 50000,
+          "foerdersummeMax": 500000,
+          "foerdersummeText": "3,5 Mrd. € Gesamtvolumen (bis 2029), individuelle Förderung je nach Projekt",
+          "kategorien": [
+            "ganztag",
+            "neubau",
+            "umbau",
+            "ausstattung"
+          ],
+          "bewerbungsfristText": "laufend bis 2029 (Verlängerung beschlossen)",
+          "bewerbungsart": "online",
+          "infoLink": "https://www.ganztagsschulen.org/de/service/investitionsprogramm-ganztagsausbau/investitionsprogramm-ganztagsausbau_node.html",
+          "kurzbeschreibung": "Bundeshilfen für Ganztagsausbau mit Rechtsanspruch ab 2026/27.",
+          "status": "aktiv",
+          "createdAt": "2025-02-11T00:00:00Z",
+          "updatedAt": "2025-01-20T00:00:00.000Z",
+          "quelle": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/kinderbetreuung/ganztagsbetreuung/",
+          "kiAntragGeeignet": true,
+          "verifiziertAm": "2026-02-12",
+          "verifiziertVon": "Web-Recherche BMFSFJ",
+          "bemerkung": "Förderung von Investitionen in Ganztagsausbau; Anträge über Länder/Kommunen"
+        }
+      }
+    ],
+    "costs": {
+      "calls": 1,
+      "promptTokens": 5211,
+      "candidatesTokens": 181,
+      "totalTokens": 5392,
+      "usdCents": 0.08,
+      "eurCents": 0.07,
+      "entries": [
+        {
+          "model": "deepseek-chat",
+          "promptTokens": 5211,
+          "candidatesTokens": 181,
+          "usdCents": 0.08
+        }
+      ]
+    },
+    "totalCandidates": 96,
+    "filteredOut": 35
+  }
+}

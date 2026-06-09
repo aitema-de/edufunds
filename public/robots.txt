@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Wichtige Seiten
+Allow: /foerderprogramme
+Allow: /preise
+Allow: /ueber-uns
+Allow: /kontakt
+
+# Private/Admin Bereiche
+Disallow: /api/
+Disallow: /checkout/
+Disallow: /registrieren
+
+# Crawl-Verzögerung
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://edufunds.org/sitemap.xml

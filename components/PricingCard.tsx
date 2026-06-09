@@ -181,16 +181,11 @@ export function PricingCard({
           {/* CTA Button */}
           <Link
             href={ctaLink}
-            className={`w-full py-3.5 rounded-xl font-semibold text-center transition-all duration-300 flex items-center justify-center gap-2 ${
+            className={`w-full py-3.5 rounded-xl font-semibold text-center flex items-center justify-center gap-2 ${
               highlighted
-                ? "btn-gold"
-                : "border-2 border-[#c9a227]/50 text-[#c9a227] hover:bg-[#c9a227] hover:text-[#050d18]"
+                ? "btn-primary"
+                : "btn-outline"
             }`}
-            style={
-              highlighted
-                ? {}
-                : {}
-            }
           >
             {ctaText}
           </Link>

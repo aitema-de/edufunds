@@ -1,0 +1,398 @@
+{
+  "id": "telekom-mint",
+  "version": "1.0.0",
+  "last_updated": "2025-02-11",
+  "schema_type": "stiftung",
+  
+  "kopfdaten": {
+    "projekttraeger_required": true,
+    "schultraeger_required": false,
+    "ansprechpartner_required": true,
+    "vertretungsberechtigter_required": true,
+    "bankverbindung_required": true
+  },
+
+  "sections": [
+    {
+      "id": "grunddaten",
+      "title": "1. Grunddaten zum Projekt",
+      "description": "Basisinformationen",
+      "order": 1,
+      "section_weight": 5,
+      "fields": [
+        {
+          "id": "projekttitel",
+          "title": "Projekttitel",
+          "type": "freitext",
+          "prompt_question": "Formuliere einen prägnanten Projekttitel (max. 80 Zeichen), der das MINT-Thema erkennen lässt.",
+          "max_chars": 80,
+          "required": true,
+          "hints": "Kreativ aber präzise. MINT-Bezug sollte erkennbar sein."
+        },
+        {
+          "id": "projektzeitraum",
+          "title": "Projektzeitraum",
+          "type": "freitext",
+          "prompt_question": "Gib den geplanten Projektzeitraum an (Start und Ende, typisch 12 Monate).",
+          "max_chars": 100,
+          "required": true,
+          "hints": "Telekom Stiftung fördert meist Projekte mit 12-24 Monaten Laufzeit."
+        }
+      ]
+    },
+    {
+      "id": "ausgangslage",
+      "title": "2. Ausgangslage und Zielgruppe",
+      "description": "Wer soll erreicht werden?",
+      "order": 2,
+      "section_weight": 15,
+      "fields": [
+        {
+          "id": "zielgruppe",
+          "title": "Zielgruppe(n)",
+          "type": "mehrzeilig",
+          "prompt_question": "Beschreibe die Zielgruppe(n) detailliert: Alter, Bildungsgang, spezifische Merkmale, Anzahl der beteiligten Kinder/Jugendlichen.",
+          "max_chars": 1500,
+          "max_words": 200,
+          "required": true,
+          "hints": "Quantifiziere: Anzahl Kinder, Altersgruppe, Klassenstufen. Geschlechterverteilung bei MINT-Projekten relevant (Mädchenförderung)."
+        },
+        {
+          "id": "problemstellung",
+          "title": "Problemstellung / Herausforderung",
+          "type": "mehrzeilig",
+          "prompt_question": "Welches Problem adressiert das Projekt? Warum ist MINT-Förderung bei dieser Zielgruppe wichtig?",
+          "max_chars": 2000,
+          "max_words": 250,
+          "required": true,
+          "hints": "MINT-Nachwuchssorgen, geringe MINT-Teilhabe bestimmter Gruppen, mangelnde Infrastruktur, fehlende Begeisterung."
+        },
+        {
+          "id": "besonderheiten",
+          "title": "Besonderheiten der Einrichtung",
+          "type": "mehrzeilig",
+          "prompt_question": "Was zeichnet die Schule/Einrichtung aus? Sozialer Kontext? Besondere Herausforderungen?",
+          "max_chars": 1000,
+          "max_words": 125,
+          "required": false,
+          "hints": "Sozialindex, migrationsbedingte Mehrsprachigkeit, ländlicher Raum, Inklusionsschwerpunkt."
+        }
+      ]
+    },
+    {
+      "id": "projektbeschreibung",
+      "title": "3. Projektbeschreibung",
+      "description": "Das Kernelement der Bewerbung",
+      "order": 3,
+      "section_weight": 30,
+      "fields": [
+        {
+          "id": "ziele",
+          "title": "Ziele des Projekts",
+          "type": "mehrzeilig",
+          "prompt_question": "Formuliere 3-5 konkrete Projektziele. Was soll am Ende erreicht sein? Verwende SMART-Kriterien.",
+          "max_chars": 2000,
+          "max_words": 250,
+          "required": true,
+          "hints": "MINT-Kompetenzen, Begeisterung, Selbstwirksamkeit, Teilhabe. Messbar formulieren."
+        },
+        {
+          "id": "konzept",
+          "title": "Konzept und Methodik",
+          "type": "mehrzeilig",
+          "prompt_question": "Beschreibe detailliert: Wie wird das Projekt umgesetzt? Welche Methoden? Welche Inhalte? Wie oft? Wie lange?",
+          "max_chars": 4000,
+          "max_words": 500,
+          "required": true,
+          "hints": "Das Herzstück! Sei sehr konkret: Wie viele Stunden? Welche Experimente? Welche Materialien? Handlungsorientierung wichtig."
+        },
+        {
+          "id": "mint_bezug",
+          "title": "MINT-Bezug",
+          "type": "mehrzeilig",
+          "prompt_question": "Wie ist das Projekt in die MINT-Fächer integriert? Interdisziplinärer Ansatz?",
+          "max_chars": 1500,
+          "max_words": 200,
+          "required": true,
+          "hints": "Mathematik, Informatik, Naturwissenschaften, Technik. Fächerübergreifende Vernetzung. Bezug zum Lehrplan."
+        },
+        {
+          "id": "innovation",
+          "title": "Innovation und Besonderheit",
+          "type": "mehrzeilig",
+          "prompt_question": "Was macht das Projekt besonders/innovativ? Unterscheidung von Standardangeboten?",
+          "max_chars": 1500,
+          "max_words": 200,
+          "required": true,
+          "hints": "Neuer Ansatz? Besondere Methode? Neue Zielgruppe? Partnerschaft? Nicht nur 'wir machen MINT', sondern 'wir machen MINT anders/besser'."
+        }
+      ]
+    },
+    {
+      "id": "umsetzung",
+      "title": "4. Umsetzung",
+      "description": "Wer macht was wann?",
+      "order": 4,
+      "section_weight": 15,
+      "fields": [
+        {
+          "id": "ablauf",
+          "title": "Geplanter Ablauf",
+          "type": "mehrzeilig",
+          "prompt_question": "Beschreibe den zeitlichen Ablauf: Phasen, Meilensteine, wichtige Termine.",
+          "max_chars": 2000,
+          "max_words": 250,
+          "required": true,
+          "hints": "Startphase, Hauptphase, Abschluss. Realistische Zeitplanung mit Schuljahresrhythmus."
+        },
+        {
+          "id": "team",
+          "title": "Projektteam",
+          "type": "mehrzeilig",
+          "prompt_question": "Wer ist im Projektteam? Welche Rollen und Qualifikationen?",
+          "max_chars": 1500,
+          "max_words": 200,
+          "required": true,
+          "hints": "Lehrkräfte mit MINT-Background, externe Partner, Studenten, Eltern. MINT-Qualifikation betonen."
+        },
+        {
+          "id": "kooperation",
+          "title": "Kooperationen",
+          "type": "mehrzeilig",
+          "prompt_question": "Gibt es Kooperationspartner? Universitäten, Unternehmen, Vereine? Was leisten sie?",
+          "max_chars": 1500,
+          "max_words": 200,
+          "required": false,
+          "hints": "Wissenschaftliche Partner für Glaubwürdigkeit, Unternehmen für Praxisbezug, Vereine für Nachhaltigkeit. Konkrete Leistungen nennen."
+        }
+      ]
+    },
+    {
+      "id": "wirkung",
+      "title": "5. Wirkung und Nachhaltigkeit",
+      "description": "Langfristige Wirkung sichern",
+      "order": 5,
+      "section_weight": 20,
+      "fields": [
+        {
+          "id": "ergebnisse",
+          "title": "Erwartete Ergebnisse",
+          "type": "mehrzeilig",
+          "prompt_question": "Welche konkreten Ergebnisse werden erwartet? Materialien? Kompetenzen? Produkte?",
+          "max_chars": 1500,
+          "max_words": 200,
+          "required": true,
+          "hints": "Physische Outputs: Experimentierkästen, Lernmaterialien, Dokumentationen. Immaterielle: Kompetenzen, Begeisterung, Netzwerke."
+        },
+        {
+          "id": "evaluation",
+          "title": "Evaluation",
+          "type": "mehrzeilig",
+          "prompt_question": "Wie wird die Wirkung des Projekts gemessen? Qualitativ? Quantitativ?",
+          "max_chars": 1500,
+          "max_words": 200,
+          "required": true,
+          "hints": "Vorher-Nachher-Vergleich, Beobachtungen, Interviews, standardisierte Tests. Wichtig: Nachweis der Wirkung."
+        },
+        {
+          "id": "nachhaltigkeit",
+          "title": "Nachhaltigkeit",
+          "type": "mehrzeilig",
+          "prompt_question": "Wie wird das Projekt nach der Förderung fortgeführt? Verstetigung? Verbreitung?",
+          "max_chars": 1500,
+          "max_words": 200,
+          "required": true,
+          "hints": "Einbindung in Regelunterricht, Fortbildung anderer Lehrer, Dokumentation für andere Schulen, Materialien unter freier Lizenz."
+        },
+        {
+          "id": "verbreitung",
+          "title": "Öffentlichkeitsarbeit und Verbreitung",
+          "type": "mehrzeilig",
+          "prompt_question": "Wie wird über das Projekt berichtet? Presse? Fachöffentlichkeit? Andere Schulen?",
+          "max_chars": 1000,
+          "max_words": 125,
+          "required": false,
+          "hints": "Social Media, Fachzeitschriften, Tagungen, Website. Telekom Stiftung erwähnt gerne geförderte Projekte."
+        }
+      ]
+    },
+    {
+      "id": "budget",
+      "title": "6. Budget",
+      "description": "Finanzierung",
+      "order": 6,
+      "section_weight": 15,
+      "fields": [
+        {
+          "id": "finanzierung",
+          "title": "Finanzierungsplan",
+          "type": "mehrzeilig",
+          "prompt_question": "Begründe die beantragte Fördersumme. Wofür wird das Geld konkret ausgegeben?",
+          "max_chars": 2000,
+          "max_words": 250,
+          "required": true,
+          "hints": "Materialien, Geräte, Software, externe Partner, Fortbildung, Fahrtkosten. Preise recherchieren und begründen."
+        },
+        {
+          "id": "eigenleistung",
+          "title": "Eigenleistungen und Drittmittel",
+          "type": "mehrzeilig",
+          "prompt_question": "Welche Eigenleistungen bringt die Schule ein? Zeit, Räume, Material? Andere Finanzierungsquellen?",
+          "max_chars": 1000,
+          "max_words": 125,
+          "required": false,
+          "hints": "Stunden der Lehrkräfte, Nutzung von Räumen, vorhandene Materialien, weitere Fördermittel. Eigenleistung erhöht Chancen."
+        }
+      ]
+    }
+  ],
+
+  "financials": {
+    "type": "tabelle",
+    "categories": [
+      {
+        "id": "materialien",
+        "name": "Materialien und Verbrauchsmittel",
+        "description": "Experimentiermaterial, Bauelemente, Verbrauchsmaterial",
+        "foerderfaehig": true,
+        "typische_positionen": ["Experimentierkästen", "Bauelemente", "Chemikalien", "Bauteile"]
+      },
+      {
+        "id": "ausstattung",
+        "name": "Ausstattung",
+        "description": "Werkzeuge, Geräte, Messinstrumente",
+        "foerderfaehig": true,
+        "typische_positionen": ["Werkzeuge", "Messgeräte", "Roboter-Bausätze", "3D-Drucker"]
+      },
+      {
+        "id": "externe",
+        "name": "Externe Leistungen",
+        "description": "Honorare, Workshops, Vorträge",
+        "foerderfaehig": true,
+        "typische_positionen": ["Workshop-Leiter", "Fachexperten", "Technische Betreuung"]
+      },
+      {
+        "id": "fortbildung",
+        "name": "Fortbildung",
+        "description": "Lehrerfortbildung, Schulungen",
+        "foerderfaehig": true,
+        "typische_positionen": ["Seminare", "Fachtagungen", "Online-Kurse"]
+      },
+      {
+        "id": "fahrten",
+        "name": "Fahrtkosten und Exkursionen",
+        "description": "Klassenfahrten, Exkursionen zu MINT-Einrichtungen",
+        "foerderfaehig": true,
+        "typische_positionen": ["Buskosten", "Eintritte", "Übernachtungen"]
+      },
+      {
+        "id": "oeffentlichkeit",
+        "name": "Öffentlichkeitsarbeit",
+        "description": "Druck, Materialien, Präsentationen",
+        "foerderfaehig": true,
+        "typische_positionen": ["Druckkosten", "Präsentationsmaterial", "Projekt-Webseite"]
+      }
+    ],
+    "requires_eigenanteil": false,
+    "eigenanteil_min_percent": 0,
+    "eigenanteil_max_percent": 50,
+    "eigenanteil_typisch_percent": 10,
+    "total_min": 5000,
+    "total_max": 50000,
+    "hint_text": "Die Telekom Stiftung fördert meist Projekte zwischen 5.000€ und 30.000€. Eigenleistungen werden positiv bewertet, sind aber nicht zwingend erforderlich."
+  },
+
+  "meta": {
+    "bewertungskriterien": [
+      {
+        "id": "mint_qualitaet",
+        "name": "MINT-Qualität und Fachlichkeit",
+        "description": "Fachliche Qualität des MINT-Ansatzes",
+        "weight": 25,
+        "keywords": ["fachlich fundiert", "experimentell", "forschend", "handlungsorientiert", "MINT", "Naturwissenschaften"],
+        "tipps": "Fachliche Tiefe zeigen, nicht nur 'basteln'. Forschungsfragen, Hypothesen, Experimentieraufbauten. Wissenschaftliche Methodik."
+      },
+      {
+        "id": "begeisterung",
+        "name": "Begeisterung und Motivation",
+        "description": "Weckt das Projekt MINT-Begeisterung?",
+        "weight": 20,
+        "keywords": ["Begeisterung", "Motivation", "Spaß", "Entdecken", "Staunen", "Naturwunder"],
+        "tipps": "Emotionale Komponente nicht vergessen. Warum macht das Spaß? Wo ist das 'Wow'? Erlebnisorientierung."
+      },
+      {
+        "id": "innovation",
+        "name": "Innovation und Originalität",
+        "description": "Neuartigkeit des Ansatzes",
+        "weight": 15,
+        "keywords": ["innovativ", "neu", "kreativ", "einzigartig", "originell"],
+        "tipps": "Abgrenzung von Standard-MINT-Programmen. Was macht euch anders? Warum existiert das noch nicht?"
+      },
+      {
+        "id": "wirkung",
+        "name": "Wirkung und Nachhaltigkeit",
+        "description": "Langfristige Wirkung und Verstetigung",
+        "weight": 20,
+        "keywords": ["nachhaltig", "dauerhaft", "verstetigt", "Transfer", "Multiplikator"],
+        "tipps": "Was bleibt nach dem Geld? Materialien, Kompetenzen, Strukturen. Dokumentation für Transfer."
+      },
+      {
+        "id": "zielgruppe",
+        "name": "Passung zur Zielgruppe",
+        "description": "Altersgerecht, Bedarfsgerecht, inklusiv",
+        "weight": 10,
+        "keywords": ["altersgerecht", "inklusiv", "differenziert", "bedarfsgerecht"],
+        "tipps": "Entwicklungspsychologisch angemessen. Gender-Sensibilität. Inklusionsaspekte."
+      },
+      {
+        "id": "umsetzbarkeit",
+        "name": "Umsetzbarkeit",
+        "description": "Realistische Planung und Durchführbarkeit",
+        "weight": 10,
+        "keywords": ["realistisch", "machbar", "durchführbar", "geplant"],
+        "tipps": "Zeitplan muss zum Schulalltag passen. Team hat Kapazitäten. Räume vorhanden."
+      }
+    ],
+    "typische_buzzwords": [
+      "MINT", "Naturwissenschaften", "Experiment", "Forschung", "Technik",
+      "Mathematik", "Informatik", "handlungsorientiert", "forschendes Lernen",
+      "Begeisterung", "Entdecken", "Staunen", "verstehen", "Nachwuchs",
+      "Kompetenz", "Zukunft", "innovativ", "digital", "nachhaltig",
+      "interdisziplinär", "praxisnah", "lebensweltorientiert"
+    ],
+    "erfolgsquote_tipps": "Die Telekom Stiftung erhält viele Anträge. Besonders wichtig: MINT-Fachlichkeit, Begeisterungsfaktor, handlungsorientierter Ansatz, klare Ziele. Projekte mit Kooperationspartnern (Universitäten, Unternehmen) haben bessere Chancen. Mädchen-MINT-Förderung wird besonders geschätzt.",
+    "haeufige_fehler": [
+      "Zu wenig MINT-Fachlichkeit ('wir machen was mit Technik')",
+      "Keine klare Forschungsfrage oder Experimentierstruktur",
+      "Fehlende Nachhaltigkeitsplanung",
+      "Unrealistischer Zeitplan (Schulalltag unterschätzt)",
+      "Keine Evaluation geplant",
+      "Zu theoretisch, nicht handlungsorientiert",
+      "Fehlender Gender-Aspekt bei MINT"
+    ],
+    "antragsdauer_schaetzung": "6-10 Stunden",
+    "komplexitaet": "mittel",
+    "prioritaetsfelder": ["projektbeschreibung", "wirkung", "mint_bezug"],
+    "kontakt": {
+      "email": "foerderung@telekom-stiftung.de",
+      "beratung_verfuegbar": true
+    }
+  },
+
+  "uploads": {
+    "max_files": 5,
+    "max_size_mb": 10,
+    "erlaubte_typen": [".pdf", ".docx"],
+    "pflicht_unterlagen": [
+      "Projektbeschreibung",
+      "Kostenplan"
+    ]
+  },
+
+  "besondere_anforderungen": {
+    "kooperationspartner": false,
+    "referenzen_benoetigt": false,
+    "evaluierung_vorgeschrieben": true,
+    "oeffentlichkeitsarbeit": true
+  }
+}

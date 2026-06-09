@@ -1,0 +1,258 @@
+{
+  "version": "2026-06-01",
+  "quellen": [
+    "https://mbjs-fachportal.brandenburg.de/und-mehr/foerderung-aus-lottomitteln.html",
+    "https://mbjs-fachportal.brandenburg.de/sixcms/media.php/102/foerdergrundsaetze_lottomittel.pdf",
+    "https://www.lotto-brandenburg.de/newsroom/tipps/Lottomittel-beantragen"
+  ],
+  "foerderhoehe": {
+    "minEur": 2500,
+    "bemerkung": "Mindestfoerderung 2.500 EUR; rund 90 Prozent der bewilligten Antraege liegen zwischen 2.500 und 30.000 EUR. Fehlbedarfsfinanzierung, keine Vollfinanzierung. Kein Rechtsanspruch."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Direkt dem zeitlich begrenzten Projekt zurechenbar",
+        "Wirtschaftlich und sparsam"
+      ],
+      "beispielePasst": [
+        "Material und Verbrauchsmittel fuer ein Schulprojekt",
+        "Mieten fuer Raeume oder Technik waehrend der Massnahme",
+        "Druck- und Veranstaltungskosten"
+      ],
+      "beispielePasstNicht": [
+        "Laufende Betriebskosten der Schule ausserhalb des Projekts"
+      ]
+    },
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Fuer externe Projektleistungen (z.B. Referenten, Kuenstler, Trainer)",
+        "Vorrangig gefoerderte Kostenart neben Sachkosten"
+      ],
+      "beispielePasst": [
+        "Honorar fuer eine externe Workshop-Leitung",
+        "Honorar fuer eine Theater- oder Musikpaedagogin im Projekt"
+      ],
+      "beispielePasstNicht": [
+        "Daueranstellung von Stammpersonal der Einrichtung"
+      ]
+    },
+    {
+      "kategorie": "personal",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Nur fuer befristet fuer das Projekt eingestellte Mitarbeitende",
+        "Keine Foerderung von Stamm-/Dauerpersonal"
+      ],
+      "beispielePasst": [
+        "Befristete Projektkraft fuer die Laufzeit der Massnahme"
+      ],
+      "beispielePasstNicht": [
+        "Festangestellte Lehr- oder Verwaltungskraefte",
+        "Unbefristete Stellen"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Schwerpunkt liegt auf projektbezogenen Sach- und Honorarkosten, nicht auf dauerhaften Anschaffungen"
+      ],
+      "beispielePasstNicht": [
+        "Dauerhafte Bauinvestitionen",
+        "Grosse Geraeteanschaffungen ohne Projektbezug"
+      ]
+    },
+    {
+      "kategorie": "overhead",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Allgemeine Verwaltungs- und Gemeinkosten der Traegerorganisation sind nicht foerderfaehig"
+      ],
+      "beispielePasstNicht": [
+        "Allgemeine Verwaltungspauschale",
+        "Laufende Vereins-Overheadkosten"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": true,
+    "mindestProzent": 20,
+    "formenErlaubt": [
+      "finanziell",
+      "sachleistungen",
+      "eigenarbeit",
+      "drittmittel"
+    ],
+    "bemerkung": "Eigenanteil mindestens 20 Prozent der Gesamtausgaben (bei kommunalen Antragstellern mindestens 50 Prozent). Saemtliche aus der Massnahme erzielten Einnahmen bzw. Erloese sind in voller Hoehe gegenzurechnen."
+  },
+  "kumulierung": {
+    "erlaubt": "bedingt",
+    "bedingungen": [
+      "Foerderung nur, wenn keine anderen Haushaltsmittel oder Foerderprogramme verfuegbar sind (Nachrangigkeit)",
+      "Keine wiederholte Foerderung desselben Projekts",
+      "Einnahmen und Drittmittel sind vollstaendig im Finanzierungsplan auszuweisen"
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "antragsteller-traeger",
+        "name": "Antragsteller und Traeger",
+        "pflicht": true,
+        "leitfragen": [
+          "Wer ist die antragstellende juristische Person (e.V., Stiftung, Foerderverein der Schule)?",
+          "Welche Gemeinnuetzigkeit liegt vor und wie wird sie nachgewiesen?",
+          "Wer ist verantwortliche Ansprechperson und zeichnet rechtsgueltig?"
+        ],
+        "stilhinweis": "Sachlich und vollstaendig, mit klaren Angaben zur Rechtsform und Vertretungsberechtigung."
+      },
+      {
+        "id": "projektbeschreibung",
+        "name": "Projektbeschreibung und Ziele",
+        "pflicht": true,
+        "leitfragen": [
+          "Was ist das zeitlich begrenzte, in sich abgeschlossene Projekt?",
+          "Welche bildungs-, jugend- oder sportpolitischen Ziele werden gefoerdert?",
+          "Wer ist die Zielgruppe und wie viele Personen werden erreicht?"
+        ],
+        "stilhinweis": "Konkret und ergebnisorientiert; den klaren Anfang und das Ende des Projekts betonen."
+      },
+      {
+        "id": "gemeinnuetzigkeit-landesbezug",
+        "name": "Gemeinnuetziger Zweck und Brandenburg-Bezug",
+        "pflicht": true,
+        "leitfragen": [
+          "Inwiefern dient das Projekt sozialen, kulturellen oder gemeinnuetzigen Zwecken?",
+          "Wie wird die Durchfuehrung im Land Brandenburg sichergestellt?",
+          "Wie passt das Vorhaben zu den Zielen des MBJS?"
+        ],
+        "stilhinweis": "Den oeffentlichen Nutzen und den regionalen Bezug zu Brandenburg deutlich herausstellen."
+      },
+      {
+        "id": "zeitplan-meilensteine",
+        "name": "Zeit- und Durchfuehrungsplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Wann beginnt und endet das Projekt (Projektbeginn nach Bewilligung)?",
+          "Welche zentralen Arbeitsschritte und Meilensteine gibt es?",
+          "Ist der Antrag spaetestens drei Monate vor Projektbeginn eingereicht?"
+        ],
+        "stilhinweis": "Realistischen Zeitrahmen darstellen und unbedingt klarstellen, dass das Projekt noch nicht begonnen hat."
+      },
+      {
+        "id": "finanzierungsplan",
+        "name": "Kosten- und Finanzierungsplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Sach-, Honorar- und ggf. befristeten Personalkosten fallen an?",
+          "Wie hoch ist der Eigenanteil (mind. 20 Prozent) und woraus besteht er?",
+          "Welche weiteren Einnahmen, Drittmittel oder Foerderungen fliessen ein?"
+        ],
+        "stilhinweis": "Nachvollziehbar, vollstaendig und ausgeglichen; alle Einnahmen ausweisen."
+      },
+      {
+        "id": "nachrangigkeit-eigenmittel",
+        "name": "Nachrangigkeit und Eigenmittel",
+        "pflicht": true,
+        "leitfragen": [
+          "Warum stehen keine anderen Haushalts- oder Foerdermittel zur Verfuegung?",
+          "Wie wird der erforderliche Eigenanteil aufgebracht?",
+          "Wurde das Projekt nicht bereits zuvor aus Lottomitteln gefoerdert?"
+        ],
+        "stilhinweis": "Den Nachrang gegenueber anderen Mitteln glaubhaft und ohne Luecken begruenden."
+      }
+    ],
+    "anlagen": [
+      "Vollstaendig ausgefuelltes und rechtsgueltig unterschriebenes Antragsformular",
+      "Detaillierter Kosten- und Finanzierungsplan",
+      "Projektbeschreibung",
+      "Nachweis der Gemeinnuetzigkeit (z.B. Freistellungsbescheid, Satzung)",
+      "Ggf. Vereinsregisterauszug bzw. Nachweis der Vertretungsberechtigung"
+    ],
+    "einreichungsweg": "Vollstaendiger Antrag mit rechtsgueltiger Unterschrift an das MBJS; Vorab-Einreichung per E-Mail an lottomittel@mbjs.brandenburg.de moeglich.",
+    "bearbeitungsdauer": "Antrag spaetestens drei Monate vor Projektbeginn; Antragszeitraum 1. Januar bis 30. September (ab 1. Oktober fuer das Folgejahr)."
+  },
+  "notizen": [
+    "Schulen selbst sind in der Regel nicht antragsberechtigt; der Antrag laeuft praktisch ueber den gemeinnuetzigen Foerderverein der Schule (e.V.).",
+    "Kommunale Antragsteller (z.B. Schultraeger) muessen einen hoeheren Eigenanteil von mindestens 50 Prozent leisten.",
+    "Es besteht kein Rechtsanspruch; die Mittel sind nachrangig und werden nur gewaehrt, wenn keine anderen Mittel verfuegbar sind."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Klar abgegrenztes Einzelprojekt",
+      "was_funktionierte": "Ein klar umrissenes Vorhaben mit definiertem Anfang und Ende statt einer Daueraufgabe beschreiben.",
+      "warum": "Die Foerdergrundsaetze verlangen ein zeitlich begrenztes und in sich abgeschlossenes Projekt; Daueraufgaben werden abgelehnt."
+    },
+    {
+      "thema": "Nachrangigkeit aktiv begruenden",
+      "was_funktionierte": "Explizit darlegen, dass keine anderen Haushalts- oder Foerdermittel fuer das Vorhaben zur Verfuegung stehen.",
+      "warum": "Lottomittel werden nur nachrangig vergeben; eine fehlende Begruendung fuehrt regelmaessig zur Ablehnung."
+    },
+    {
+      "thema": "Eigenanteil sauber ausweisen",
+      "was_funktionierte": "Den Eigenanteil von mindestens 20 Prozent konkret beziffern und Einnahmen vollstaendig gegenrechnen.",
+      "warum": "Fehlbedarfsfinanzierung setzt einen nachgewiesenen Eigenanteil und die Anrechnung aller Erloese voraus."
+    },
+    {
+      "thema": "Antrag rechtzeitig und vor Projektbeginn",
+      "was_funktionierte": "Antrag im Zeitfenster Januar bis September und mindestens drei Monate vor Start einreichen.",
+      "warum": "Verspaetete Antraege oder ein bereits begonnenes Projekt fuehren zum Ausschluss der Foerderfaehigkeit."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Projekt war bei Antragstellung bereits begonnen",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Antrag rechtzeitig stellen und mit keiner Massnahme oder Bestellung vor dem Bewilligungsbescheid beginnen."
+    },
+    {
+      "grund": "Keine Begruendung der Nachrangigkeit gegenueber anderen Mitteln",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Im Antrag belegen, dass keine regulaeren Haushaltsmittel oder anderen Foerderprogramme verfuegbar sind."
+    },
+    {
+      "grund": "Eigenanteil unter 20 Prozent oder Einnahmen nicht gegengerechnet",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Finanzierungsplan mit klarem Eigenanteil und vollstaendiger Einnahmenanrechnung aufstellen."
+    },
+    {
+      "grund": "Daueraufgabe statt abgeschlossenes Projekt beantragt",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Vorhaben als zeitlich begrenztes, in sich abgeschlossenes Projekt mit Endtermin formulieren."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "projektbeschreibung",
+      "formulierung": "Das Vorhaben ist ein zeitlich klar begrenztes Projekt mit Beginn nach Erhalt des Bewilligungsbescheids und Abschluss innerhalb desselben Schuljahres; es umfasst eine in sich abgeschlossene Massnahme fuer eine definierte Schuelergruppe.",
+      "kontext": "Betont die geforderte zeitliche Begrenztheit und Abgeschlossenheit."
+    },
+    {
+      "abschnitt_id": "nachrangigkeit-eigenmittel",
+      "formulierung": "Fuer dieses Vorhaben stehen weder regulaere Haushaltsmittel des Schultraegers noch andere Foerderprogramme zur Verfuegung; die beantragten Lottomittel werden ausschliesslich nachrangig zur Schliessung der verbleibenden Finanzierungsluecke eingesetzt.",
+      "kontext": "Adressiert die Nachrangigkeitsanforderung direkt."
+    },
+    {
+      "abschnitt_id": "finanzierungsplan",
+      "formulierung": "Die Gesamtausgaben betragen X EUR; davon traegt der Foerderverein einen Eigenanteil von mindestens 20 Prozent, alle erzielten Teilnahmebeitraege und Spenden sind in voller Hoehe gegengerechnet, sodass die beantragte Foerderung Y EUR als Fehlbedarf verbleibt.",
+      "kontext": "Zeigt Fehlbedarfsfinanzierung mit Eigenanteil und Einnahmenanrechnung."
+    },
+    {
+      "abschnitt_id": "gemeinnuetzigkeit-landesbezug",
+      "formulierung": "Das Projekt wird vollstaendig im Land Brandenburg durchgefuehrt, dient gemeinnuetzigen Bildungszwecken und unterstuetzt die bildungs- und jugendpolitischen Ziele des MBJS, indem es Kinder und Jugendliche der Region foerdert.",
+      "kontext": "Stellt Brandenburg-Bezug und MBJS-Zielbezug her."
+    }
+  ],
+  "fristLogik": {
+    "typ": "fixe_stichtage",
+    "stichtage": [
+      "2026-09-30"
+    ],
+    "jaehrlich_wiederkehrend": true
+  }
+}

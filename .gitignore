@@ -3,6 +3,7 @@ node_modules/
 
 # Build output
 dist/
+dist-docker/
 
 # Cache
 .next/
@@ -17,5 +18,38 @@ Thumbs.db
 .idea/
 *.swp
 
+# Environment (Secrets!)
+.env
+.env.local
+.env.production
+.env.*.local
+
 # Misc
 edufunds-deploy.tar.gz
+tsconfig.tsbuildinfo
+
+# Temporaere Outputs (Smoke-Tests, A/B-Vergleiche)
+tmp/
+
+# Eval-Lauf-Artefakte (transient, je Live-Run neu erzeugt)
+# Korpus selbst (data/eval/matcher-korpus.json) bleibt versioniert.
+# Versionierte Baselines kommen separat in data/eval/BASELINE.md (Plan 01-02).
+data/eval/reports/
+data/eval/snapshots/
+
+# Phase 5 Pipeline-Eval (analog Phase-1-Pattern)
+# pipeline-snapshots/baseline/ ist force-committed als Replay-Anker
+/data/eval/pipeline-snapshots/*
+!/data/eval/pipeline-snapshots/baseline/
+/data/eval/pipeline-reports/
+
+# Claude Code local settings (personal allowlist)
+.claude/settings.local.json
+.claude/worktrees/
+
+# Test-&-Fix-Loop Artefakte
+/test-results/
+/.planning/test-fix/*-results.json
+/.planning/test-fix/wizard-outputs/
+playwright-report/
+.last-run.json

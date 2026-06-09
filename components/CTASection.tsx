@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, CheckCircle2, Shield, Zap, Clock } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function CTASection() {
   const containerVariants = {
@@ -175,36 +176,21 @@ export function CTASection() {
             variants={itemVariants}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           >
-            <Link
-              href="/foerderprogramme"
-              className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-xl text-lg overflow-hidden"
-              style={{ 
-                background: 'linear-gradient(135deg, #c9a227 0%, #b08d1f 100%)',
-                color: '#0a1628',
-              }}
-            >
-              <Sparkles className="w-5 h-5" />
-              <span className="font-semibold">Jetzt Programme entdecken</span>
-              <ArrowRight 
-                className="w-5 h-5 transition-transform duration-300" 
-              />
-              <style jsx>{`
-                a:hover svg:last-child {
-                  transform: translateX(4px);
-                }
-              `}</style>
-            </Link>
+            <Button asChild size="lg" className="group">
+              <Link href="/foerderprogramme">
+                <Sparkles className="w-5 h-5" />
+                <span className="font-semibold">Jetzt Programme entdecken</span>
+                <ArrowRight 
+                  className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
+                />
+              </Link>
+            </Button>
 
-            <Link
-              href="/ueber-uns"
-              className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg transition-all duration-300"
-              style={{ 
-                border: '2px solid #0a1628',
-                color: '#0a1628',
-              }}
-            >
-              <span className="font-semibold">Mehr erfahren</span>
-            </Link>
+            <Button asChild size="lg" variant="outline-navy">
+              <Link href="/ueber-uns">
+                <span className="font-semibold">Mehr erfahren</span>
+              </Link>
+            </Button>
           </motion.div>
 
           {/* Trust indicators */}
@@ -213,7 +199,7 @@ export function CTASection() {
             className="flex flex-wrap items-center justify-center gap-6 pt-8 border-t"
             style={{ borderColor: 'rgba(10, 22, 40, 0.08)' }}
           >
-            {["Keine Kreditkarte nötig", "14 Tage kostenlos", "Jederzeit kündbar"].map((text) => (
+            {["Jederzeit kündbar", "DSGVO-konform", "Sichere Zahlung"].map((text) => (
               <span key={text} className="flex items-center gap-2">
                 <CheckCircle2 
                   className="w-4 h-4" 
@@ -239,7 +225,7 @@ export function CTASection() {
           className="mt-16 grid grid-cols-3 gap-4 max-w-2xl mx-auto"
         >
           {[
-            { value: "50+", label: "Förderprogramme" },
+            { value: "130+", label: "Förderprogramme" },
             { value: "100%", label: "Grundschulen" },
             { value: "16", label: "Bundesländer" },
           ].map((stat, index) => (

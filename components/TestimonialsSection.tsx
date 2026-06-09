@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const testimonials = [
   {
@@ -163,29 +164,37 @@ export function TestimonialsSection() {
 
             {/* Navigation */}
             <div className="absolute bottom-8 right-8 flex items-center gap-2">
-              <button
+              <Button
+                variant="ghost"
+                size="icon"
                 onClick={prev}
-                className="p-2 rounded-full glass hover:bg-slate-700 transition-colors"
+                className="rounded-full bg-slate-800/50 hover:bg-slate-700"
               >
-                <ChevronLeft className="w-5 h-5 text-slate-300" />
-              </button>
-              <button
+                <ChevronLeft className="w-5 h-5" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
                 onClick={next}
-                className="p-2 rounded-full glass hover:bg-slate-700 transition-colors"
+                className="rounded-full bg-slate-800/50 hover:bg-slate-700"
               >
-                <ChevronRight className="w-5 h-5 text-slate-300" />
-              </button>
+                <ChevronRight className="w-5 h-5" />
+              </Button>
             </div>
           </div>
 
           {/* Dots */}
           <div className="flex justify-center gap-2 mt-6">
             {testimonials.map((_, i) => (
-              <button
+              <Button
                 key={i}
+                variant="ghost"
+                size="icon"
                 onClick={() => { setAutoplay(false); setCurrent(i); }}
-                className={`h-2 rounded-full transition-all ${
-                  i === current ? "w-8 bg-cyan-500" : "w-2 bg-slate-600 hover:bg-slate-500"
+                className={`h-2 rounded-full transition-all p-0 ${
+                  i === current 
+                    ? "w-8 bg-cyan-500 hover:bg-cyan-400" 
+                    : "w-2 bg-slate-600 hover:bg-slate-500"
                 }`}
               />
             ))}

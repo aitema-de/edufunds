@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter Preview - EduFunds Newsletter Ausgabe #1 – Der Frühling der Förderung beginnt!</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #0a1628;
+            min-height: 100vh;
+        }
+        .preview-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #0f1f38;
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(201, 162, 39, 0.2);
+        }
+        .preview-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(201, 162, 39, 0.3);
+        }
+        .preview-header h1 {
+            color: #f8f5f0;
+            margin: 0 0 10px 0;
+            font-size: 24px;
+        }
+        .preview-header p {
+            color: #94a3b8;
+            margin: 0;
+        }
+        .preview-meta {
+            background: rgba(201, 162, 39, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 30px;
+        }
+        .preview-meta p {
+            color: #94a3b8;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .preview-meta strong {
+            color: #c9a227;
+        }
+        .newsletter-frame {
+            background: #0a1628;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(30, 58, 95, 0.5);
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+            color: #0a1628;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+        }
+        .btn-secondary {
+            background: rgba(30, 58, 95, 0.5);
+            color: #94a3b8;
+            border: 1px solid rgba(30, 58, 95, 0.8);
+        }
+        .btn-secondary:hover {
+            background: rgba(30, 58, 95, 0.8);
+            color: #f8f5f0;
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .tab {
+            padding: 8px 16px;
+            border-radius: 6px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .tab.active {
+            background: rgba(201, 162, 39, 0.2);
+            color: #c9a227;
+        }
+        .tab:hover:not(.active) {
+            background: rgba(30, 58, 95, 0.3);
+            color: #f8f5f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-container">
+        <div class="preview-header">
+            <h1>📧 Newsletter Preview</h1>
+            <p>Überprüfen Sie die Darstellung vor dem Versand</p>
+        </div>
+        
+        <div class="preview-meta">
+            <p><strong>Betreff:</strong> EduFunds Newsletter Ausgabe #1 – Der Frühling der Förderung beginnt!</p>
+            <p><strong>Ausgabe:</strong> Ausgabe #1</p>
+            <p><strong>Datum:</strong> 2025-02-12</p>
+            <p><strong>Empfänger:</strong> Alle bestätigten Abonnenten</p>
+        </div>
+
+        <div class="tabs">
+            <a href="?format=html" class="tab active">HTML Version</a>
+            <a href="?format=text" class="tab">Plain Text</a>
+        </div>
+        
+        <div class="newsletter-frame">
+            <!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduFunds Newsletter Ausgabe #1 – Der Frühling der Förderung beginnt!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .header .ausgabe {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        /* Einleitung */
+        .intro {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .intro h2 {
+            color: #667eea;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .intro p {
+            color: #4a5568;
+            font-size: 15px;
+        }
+        
+        /* Top Programm */
+        .top-programm {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .top-programm .badge {
+            display: inline-block;
+            background: #e53e3e;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        
+        .top-programm h2 {
+            color: #744210;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        .top-programm .betrag {
+            color: #c05621;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .top-programm p {
+            color: #744210;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+        
+        .top-programm .steps {
+            background: rgba(255,255,255,0.6);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .top-programm .steps h3 {
+            color: #744210;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .top-programm .steps ol {
+            margin-left: 20px;
+            color: #744210;
+            font-size: 14px;
+        }
+        
+        .top-programm .steps li {
+            margin-bottom: 8px;
+        }
+        
+        .kI-tipp {
+            background: #1a202c;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        .kI-tipp strong {
+            color: #48bb78;
+        }
+        
+        /* Weitere Programme */
+        .weitere {
+            margin-bottom: 30px;
+        }
+        
+        .weitere h2 {
+            color: #2d3748;
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .programm-card {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .programm-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .programm-card h3 {
+            color: #2d3748;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .programm-card .betrag {
+            color: #667eea;
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+        
+        .programm-card p {
+            color: #4a5568;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .programm-card .frist {
+            color: #e53e3e;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        /* Tipp der Woche */
+        .tipp {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .tipp h2 {
+            color: #234e52;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .tipp h3 {
+            color: #234e52;
+            font-size: 15px;
+            margin: 15px 0 8px 0;
+        }
+        
+        .tipp p {
+            color: #2c5282;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .tipp .example {
+            background: rgba(255,255,255,0.7);
+            padding: 12px;
+            border-radius: 6px;
+            font-style: italic;
+            color: #2d3748;
+            border-left: 3px solid #38b2ac;
+        }
+        
+        /* Ausblick */
+        .ausblick {
+            background: #edf2f7;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .ausblick h2 {
+            color: #2d3748;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .ausblick p {
+            color: #4a5568;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: transform 0.2s;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: #a0aec0;
+            padding: 25px 30px;
+            text-align: center;
+            font-size: 13px;
+        }
+        
+        .footer p {
+            margin-bottom: 8px;
+        }
+        
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .footer .social {
+            margin-top: 15px;
+        }
+        
+        .footer .social a {
+            display: inline-block;
+            margin: 0 10px;
+            color: white;
+            background: #4a5568;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            border-radius: 50%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎓 EduFunds</h1>
+            <p class="subtitle">Der Newsletter für Förderungen & Schulen</p>
+            <span class="ausgabe">{{ausgabe}}</span>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <!-- Einleitung -->
+            <div class="intro">
+                <h2>👋 {{intro_titel}}</h2>
+                <p>{{intro_text}}</p>
+            </div>
+            
+            <!-- Top Programm -->
+            <div class="top-programm">
+                <span class="badge">Top Programm</span>
+                <h2>{{top_titel}}</h2>
+                <div class="betrag">{{top_betrag}}</div>
+                <p><strong>Warum das wichtig ist:</strong> {{top_relevanz}}</p>
+                
+                <div class="steps">
+                    <h3>📝 So beantragen Sie das Programm:</h3>
+                    <ol>
+                        {{top_schritte}}
+                    </ol>
+                </div>
+                
+                <p><strong>Frist:</strong> {{top_frist}}</p>
+                <p><strong>Förderfähig:</strong> {{top_foerderfaehig}}</p>
+                
+                <div class="kI-tipp">
+                    <strong>💡 KI-Tipp:</strong> {{top_ki_tipp}}
+                </div>
+            </div>
+            
+            <!-- Weitere Programme -->
+            <div class="weitere">
+                <h2>📋 Weitere Top-Programme</h2>
+                
+                <div class="programm-card">
+                    <h3>{{prog2_titel}}</h3>
+                    <div class="betrag">{{prog2_betrag}}</div>
+                    <p>{{prog2_beschreibung}}</p>
+                    <div class="frist">⏰ {{prog2_frist}}</div>
+                </div>
+                
+                <div class="programm-card">
+                    <h3>{{prog3_titel}}</h3>
+                    <div class="betrag">{{prog3_betrag}}</div>
+                    <p>{{prog3_beschreibung}}</p>
+                    <div class="frist">⏰ {{prog3_frist}}</div>
+                </div>
+                
+                <div class="programm-card">
+                    <h3>{{prog4_titel}}</h3>
+                    <div class="betrag">{{prog4_betrag}}</div>
+                    <p>{{prog4_beschreibung}}</p>
+                    <div class="frist">⏰ {{prog4_frist}}</div>
+                </div>
+            </div>
+            
+            <!-- Tipp der Woche -->
+            <div class="tipp">
+                <h2>💡 {{tipp_titel}}</h2>
+                <p>{{tipp_einleitung}}</p>
+                
+                <h3>{{tipp_fehler1_titel}}</h3>
+                <p>{{tipp_fehler1_text}}</p>
+                
+                <h3>{{tipp_fehler2_titel}}</h3>
+                <p>{{tipp_fehler2_text}}</p>
+                
+                <h3>{{tipp_fehler3_titel}}</h3>
+                <p>{{tipp_fehler3_text}}</p>
+                
+                <div class="example">
+                    <strong>Beispiel:</strong> {{tipp_beispiel}}
+                </div>
+            </div>
+            
+            <!-- Ausblick -->
+            <div class="ausblick">
+                <h2>🔮 {{ausblick_titel}}</h2>
+                <p>{{ausblick_text}}</p>
+                <a href="{{cta_url}}" class="cta-button">{{cta_text}}</a>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>EduFunds</strong> – Förderungen finden leicht gemacht</p>
+            <p>Sie erhalten diesen Newsletter, weil Sie sich für Bildungsförderung interessieren.</p>
+            <p><a href="https://edufunds.org/api/newsletter/unsubscribe?token=preview-token-12345">Newsletter abbestellen</a> | <a href="{{impressum_url}}">Impressum</a></p>
+            <p style="margin-top: 15px; font-size: 12px;">{{footer_copyright}}</p>
+        </div>
+    </div>
+</body>
+</html>
+
+        </div>
+        
+        <div class="action-buttons">
+            <a href="/api/newsletter/send" class="btn btn-primary" target="_blank">
+                📤 Zum Versand-Admin
+            </a>
+            <a href="/" class="btn btn-secondary">
+                ← Zurück zur Website
+            </a>
+        </div>
+    </div>
+</body>
+</html>

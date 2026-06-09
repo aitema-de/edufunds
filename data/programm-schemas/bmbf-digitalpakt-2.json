@@ -1,0 +1,424 @@
+{
+  "id": "bmbf-digitalpakt-2",
+  "version": "1.0.0",
+  "last_updated": "2025-02-11",
+  "schema_type": "bund",
+  
+  "kopfdaten": {
+    "projekttraeger_required": true,
+    "schultraeger_required": true,
+    "ansprechpartner_required": true,
+    "vertretungsberechtigter_required": true,
+    "bankverbindung_required": true
+  },
+
+  "sections": [
+    {
+      "id": "projektuebersicht",
+      "title": "1. Projektübersicht",
+      "description": "Grundlegende Informationen zum Vorhaben",
+      "order": 1,
+      "section_weight": 10,
+      "fields": [
+        {
+          "id": "projekttitel",
+          "title": "Projekttitel",
+          "type": "freitext",
+          "prompt_question": "Formuliere einen prägnanten, aussagekräftigen Projekttitel (max. 100 Zeichen), der das Kernthema und den innovativen Ansatz erkennen lässt.",
+          "max_chars": 100,
+          "required": true,
+          "hints": "Vermeide allgemeine Begriffe wie 'Projekt' oder 'Förderung'. Nutze aktive Formulierungen."
+        },
+        {
+          "id": "kurzbeschreibung",
+          "title": "Kurzbeschreibung des Vorhabens",
+          "type": "mehrzeilig",
+          "prompt_question": "Beschreibe das Vorhaben in 3-5 Sätzen: Was ist das Kernthema? Was ist neu/innovativ daran? Wer profitiert?",
+          "max_chars": 800,
+          "max_words": 100,
+          "required": true,
+          "hints": "Die Kurzbeschreibung ist das erste, was die Gutachter lesen. Sie sollte Lust auf mehr machen."
+        },
+        {
+          "id": "projektlaufzeit",
+          "title": "Projektlaufzeit",
+          "type": "freitext",
+          "prompt_question": "Gib die geplante Projektlaufzeit an (Monate und Jahre). Begründe die gewählte Dauer.",
+          "max_chars": 200,
+          "required": true,
+          "hints": "Typisch: 12-36 Monate. Realistische Umsetzungsphasen einplanen."
+        }
+      ]
+    },
+    {
+      "id": "ausgangslage",
+      "title": "2. Ausgangslage und Problemstellung",
+      "description": "Begründung des Handlungsbedarfs",
+      "order": 2,
+      "section_weight": 15,
+      "fields": [
+        {
+          "id": "ist_situation",
+          "title": "Ist-Situation an der Schule",
+          "type": "mehrzeilig",
+          "prompt_question": "Beschreibe die aktuelle Ausstattung und digitale Infrastruktur der Schule mit konkreten Daten: Wie viele Endgeräte pro Schüler? Welche Bandbreite? Welche technische Ausstattung?",
+          "max_chars": 1500,
+          "max_words": 200,
+          "required": true,
+          "hints": "Quantifiziere: Gerätezahl, Bandbreite, Ausstattungsquote, sozialer Index der Schule, wenn relevant."
+        },
+        {
+          "id": "problemstellung",
+          "title": "Problemstellung und Handlungsbedarf",
+          "type": "mehrzeilig",
+          "prompt_question": "Begründe detailliert: Warum ist das Projekt notwendig? Welche konkreten Probleme sollen gelöst werden? Was passiert, wenn nichts geschieht?",
+          "max_chars": 2000,
+          "max_words": 250,
+          "required": true,
+          "hints": "Nutze Daten aus Schulentwicklungsplan, Elternbefragungen, Lehrerfeedback. Konkrete Folgen des Nicht-Handelns benennen."
+        },
+        {
+          "id": "zielgruppe",
+          "title": "Zielgruppe",
+          "type": "mehrzeilig",
+          "prompt_question": "Definiere die Zielgruppe(n) präzise: Wie viele Schüler/Jahrgänge? Spezifische Merkmale (Förderschwerpunkt, soziale Lage, Migrationshintergrund)?",
+          "max_chars": 1200,
+          "max_words": 150,
+          "required": true,
+          "hints": "Primäre und sekundäre Zielgruppe unterscheiden. Quantifiziere: Anzahl, Alter, Merkmale."
+        }
+      ]
+    },
+    {
+      "id": "ziele",
+      "title": "3. Projektziele",
+      "description": "SMARTe Zieldefinition",
+      "order": 3,
+      "section_weight": 15,
+      "fields": [
+        {
+          "id": "gesamtziel",
+          "title": "Gesamtziel",
+          "type": "mehrzeilig",
+          "prompt_question": "Formuliere das übergeordnete Ziel: Was soll am Ende des Projekts erreicht sein? Verwende die SMART-Formel (Spezifisch, Messbar, Attraktiv, Realistisch, Terminiert).",
+          "max_chars": 800,
+          "max_words": 100,
+          "required": true,
+          "hints": "Ein Satz: Bis [Wann] erreichen wir [Was] bei [Wem] durch [Wie]."
+        },
+        {
+          "id": "teilziele",
+          "title": "Operative Teilziele",
+          "type": "mehrzeilig",
+          "prompt_question": "Definiere 3-5 konkrete Teilziele mit messbaren Indikatoren. Formuliere für jedes: Ziel + Indikator + Zielwert.",
+          "max_chars": 2000,
+          "max_words": 250,
+          "required": true,
+          "hints": "Beispiel: 'Steigerung der digitalen Kompetenz (Indikator: Diagnose-Testergebnisse) um 20% bei 120 Schülern'"
+        },
+        {
+          "id": "zielabstimmung",
+          "title": "Abstimmung mit schulischer Entwicklung",
+          "type": "mehrzeilig",
+          "prompt_question": "Wie passt das Projekt in den Schulentwicklungsplan, das Schulprogramm oder bestehende Konzepte (Medienkonzept, Inklusionskonzept)?",
+          "max_chars": 1200,
+          "max_words": 150,
+          "required": true,
+          "hints": "Zeige Einbettung in strategische Schulentwicklung. Verweis auf bestehende Konzepte."
+        }
+      ]
+    },
+    {
+      "id": "konzept",
+      "title": "4. Projektbeschreibung und Konzept",
+      "description": "Das Herzstück des Antrags",
+      "order": 4,
+      "section_weight": 25,
+      "fields": [
+        {
+          "id": "beschreibung",
+          "title": "Detaillierte Projektbeschreibung",
+          "type": "mehrzeilig",
+          "prompt_question": "Beschreibe das Projekt detailliert: Was genau wird umgesetzt? Welche Maßnahmen? Welche Methoden? Wie unterscheidet es sich vom Status quo?",
+          "max_chars": 4000,
+          "max_words": 500,
+          "required": true,
+          "hints": "Dies ist die wichtigste Sektion. Sei konkret: Was wird gekauft? Was wird entwickelt? Wer macht was?"
+        },
+        {
+          "id": "innovation",
+          "title": "Innovationsgehalt",
+          "type": "mehrzeilig",
+          "prompt_question": "Was ist neu/innovativ an diesem Projekt? Unterscheide klar vom Status quo und bestehenden Ansätzen. Warum gibt es das noch nicht?",
+          "max_chars": 1500,
+          "max_words": 200,
+          "required": true,
+          "hints": "Innovation kann sein: technisch, pädagogisch, organisatorisch, strukturell. Konkrete Unterscheidung beschreiben."
+        },
+        {
+          "id": "umsetzung",
+          "title": "Projektphasen und Ablauf",
+          "type": "mehrzeilig",
+          "prompt_question": "Gliedere das Projekt in konkrete Phasen (z.B. Vorbereitung, Implementierung, Evaluation). Nenne Zeitrahmen und Meilensteine pro Phase.",
+          "max_chars": 2000,
+          "max_words": 250,
+          "required": true,
+          "hints": "Tabellarische Darstellung möglich. Realistische Zeitplanung mit Puffern."
+        },
+        {
+          "id": "techn_konzept",
+          "title": "Technisch-pädagogisches Einsatzkonzept",
+          "type": "mehrzeilig",
+          "prompt_question": "Beschreibe das pädagogische Konzept der digitalen Nutzung: Welche didaktischen Szenarien? Wie Integration in Unterricht? Fortbildungskonzept?",
+          "max_chars": 2500,
+          "max_words": 300,
+          "required": true,
+          "hints": "DigitalPakt erfordert technisch-pädagogisches Konzept. Nicht nur Hardware, sondern pädagogische Nutzung beschreiben."
+        }
+      ]
+    },
+    {
+      "id": "nachhaltigkeit",
+      "title": "5. Nachhaltigkeit und Verstetigung",
+      "description": "Dauerhafte Wirkung sichern",
+      "order": 5,
+      "section_weight": 15,
+      "fields": [
+        {
+          "id": "nachhaltigkeitskonzept",
+          "title": "Nachhaltigkeitskonzept",
+          "type": "mehrzeilig",
+          "prompt_question": "Wie wird die dauerhafte Wirkung nach Projektende sichergestellt? Welche Maßnahmen zur Institutionalisierung?",
+          "max_chars": 2000,
+          "max_words": 250,
+          "required": true,
+          "hints": "Verankerung in Schulprogramm, regelmäßige Fortbildung, Haushaltsmittel für Folgekosten, Multiplikatoren."
+        },
+        {
+          "id": "transfer",
+          "title": "Transfer und Verbreitung",
+          "type": "mehrzeilig",
+          "prompt_question": "Ist das Projekt auf andere Schulen übertragbar? Wie wird das Konzept dokumentiert und verbreitet?",
+          "max_chars": 1500,
+          "max_words": 200,
+          "required": false,
+          "hints": "Dokumentation, OER-Materialien, Fachkonferenzen, Schulträger, Multiplikatoreffekte."
+        }
+      ]
+    },
+    {
+      "id": "qualitaet",
+      "title": "6. Qualitätssicherung und Evaluation",
+      "description": "Wirkungsnachweise und Qualität",
+      "order": 6,
+      "section_weight": 10,
+      "fields": [
+        {
+          "id": "evaluation",
+          "title": "Konzept zur Erfolgskontrolle",
+          "type": "mehrzeilig",
+          "prompt_question": "Wie messen Sie den Erfolg? Welche Methoden? Welche Indikatoren? Wann findet Evaluation statt?",
+          "max_chars": 2000,
+          "max_words": 250,
+          "required": true,
+          "hints": "Pre-Post-Design, Kontrollgruppen, standardisierte Instrumente, qualitative Befragungen. Konkrete Messzeitpunkte."
+        },
+        {
+          "id": "qualitaetssicherung",
+          "title": "Qualitätssicherungsmaßnahmen",
+          "type": "mehrzeilig",
+          "prompt_question": "Welche Maßnahmen zur kontinuierlichen Qualitätssicherung während des Projekts?",
+          "max_chars": 1200,
+          "max_words": 150,
+          "required": true,
+          "hints": "Steuerungsgruppe, regelmäßige Review-Meetings, Feedbackschleifen, Anpassungsfähigkeit."
+        }
+      ]
+    },
+    {
+      "id": "kompetenzen",
+      "title": "7. Qualifikation und Zusammensetzung",
+      "description": "Das Projektteam",
+      "order": 7,
+      "section_weight": 10,
+      "fields": [
+        {
+          "id": "team",
+          "title": "Projektteam und Qualifikation",
+          "type": "mehrzeilig",
+          "prompt_question": "Wer arbeitet im Projekt mit? Welche Rollen? Welche Qualifikationen? Warum ist dieses Team geeignet?",
+          "max_chars": 2000,
+          "max_words": 250,
+          "required": true,
+          "hints": "Projektleitung, Lehrkräfte, externe Partner, Stundenkontingente. Relevanz der Qualifikationen."
+        },
+        {
+          "id": "kooperationen",
+          "title": "Kooperationen",
+          "type": "mehrzeilig",
+          "prompt_question": "Gibt es Kooperationspartner? Wer? Welche Rolle? Was bringen sie ein? Ist es eine verbindliche Kooperation?",
+          "max_chars": 1500,
+          "max_words": 200,
+          "required": false,
+          "hints": "Universitäten, andere Schulen, Unternehmen, Vereine. Konkrete Leistungen der Partner benennen."
+        }
+      ]
+    }
+  ],
+
+  "financials": {
+    "type": "tabelle",
+    "categories": [
+      {
+        "id": "hardware",
+        "name": "Hardware und Endgeräte",
+        "description": "Tablets, Laptops, PCs, Displays, interaktive Tafeln",
+        "foerderfaehig": true,
+        "typische_positionen": ["Tablets", "Laptops", "Desktop-PCs", "Interaktive Displays", "Dokumentenkameras"]
+      },
+      {
+        "id": "infrastruktur",
+        "name": "Digitale Infrastruktur",
+        "description": "WLAN, Netzwerk, Server, Verkabelung",
+        "foerderfaehig": true,
+        "typische_positionen": ["WLAN-Ausstattung", "Netzwerk-Switches", "Server", "Verkabelung", "Schränke"]
+      },
+      {
+        "id": "software",
+        "name": "Software und Lizenzen",
+        "description": "Lernsoftware, LMS, Sicherheitssoftware",
+        "foerderfaehig": true,
+        "typische_positionen": ["Lernplattform", "Lernsoftware", "Sicherheitslösungen", "Office-Lizenzen"]
+      },
+      {
+        "id": "fortbildung",
+        "name": "Fortbildung und Schulung",
+        "description": "Lehrerfortbildung, Schulungen, Coaching",
+        "foerderfaehig": true,
+        "typische_positionen": ["Lehrerfortbildung", "Schulungen", "Coaching", "Multiplikatoren"]
+      },
+      {
+        "id": "betreuung",
+        "name": "Beratung und pädagogische Betreuung",
+        "description": "Fachberatung, Konzeptentwicklung, Begleitung",
+        "foerderfaehig": true,
+        "typische_positionen": ["Fachberatung", "Medienberatung", "Projektbegleitung"]
+      },
+      {
+        "id": "personalmittel",
+        "name": "Personalmittel",
+        "description": "Stunden für Lehrkräfte, Projektleitung",
+        "foerderfaehig": false,
+        "typische_positionen": ["Entlastungsstunden", "Projektleitung"]
+      },
+      {
+        "id": "evaluierung",
+        "name": "Evaluation und wissenschaftliche Begleitung",
+        "description": "Externe Evaluation, wissenschaftliche Begleitung",
+        "foerderfaehig": true,
+        "typische_positionen": ["Externe Evaluation", "Wissenschaftliche Begleitung", "Datenauswertung"]
+      }
+    ],
+    "requires_eigenanteil": true,
+    "eigenanteil_min_percent": 0,
+    "eigenanteil_max_percent": 50,
+    "eigenanteil_typisch_percent": 10,
+    "total_min": 10000,
+    "total_max": 500000,
+    "hint_text": "Der DigitalPakt fördert in der Regel bis zu 100% der zuwendungsfähigen Kosten. Eigenanteil ist nicht zwingend erforderlich, aber positiv bewertet."
+  },
+
+  "meta": {
+    "bewertungskriterien": [
+      {
+        "id": "innovation",
+        "name": "Innovationsgehalt",
+        "description": "Neuartigkeit und Originalität des Vorhabens",
+        "weight": 20,
+        "keywords": ["innovativ", "neuartig", "pionierhaft", "zukunftsweisend", "erstmalig", "wegbereitend"],
+        "tipps": "Unterscheide klar vom Status quo. Beschreibe, was es so noch nicht gibt und warum das wichtig ist."
+      },
+      {
+        "id": "nachhaltigkeit",
+        "name": "Nachhaltigkeit und Verstetigung",
+        "description": "Dauerhafte Wirkung über die Förderphase hinaus",
+        "weight": 20,
+        "keywords": ["nachhaltig", "verstetigt", "institutionalisiert", "dauerhaft", "langfristig", "selbsttragend"],
+        "tipps": "Konkrete Mechanismen zur Verankerung benennen: Haushaltsmittel, Schulprogramm, regelmäßige Fortbildung."
+      },
+      {
+        "id": "relevanz",
+        "name": "Problemrelevanz und Bedarf",
+        "description": "Begründung des Handlungsbedarfs",
+        "weight": 15,
+        "keywords": ["Handlungsbedarf", "relevant", "dringlich", "belegt", "datenbasiert"],
+        "tipps": "Nutze konkrete Daten der Schule. Bezug zu Schulentwicklungsplan. Quantifizierte Problembeschreibung."
+      },
+      {
+        "id": "umsetzbarkeit",
+        "name": "Umsetzbarkeit und Realisierbarkeit",
+        "description": "Realistische Planung und Durchführbarkeit",
+        "weight": 15,
+        "keywords": ["realistisch", "machbar", "umsetzbar", "geplant", "strukturiert"],
+        "tipps": "Detaillierter Zeitplan. Realistische Phasen. Passendes Team. Einplanung von Risiken."
+      },
+      {
+        "id": "wirksamkeit",
+        "name": "Wirksamkeit und Zielerreichung",
+        "description": "Erwartete Wirkung und Zielerreichung",
+        "weight": 15,
+        "keywords": ["wirksam", "wirkungsvoll", "zielgerichtet", "messbar", "evaluiert", "evidenzbasiert"],
+        "tipps": "SMARTe Ziele. Konkrete Indikatoren. Glaubhafte Wirkungskette. Evaluation geplant."
+      },
+      {
+        "id": "qualitaet",
+        "name": "Qualität des pädagogischen Konzepts",
+        "description": "Pädagogische Fundierung und Konzeptqualität",
+        "weight": 15,
+        "keywords": ["pädagogisch", "fachlich", "kompetenzorientiert", "differenziert", "inklusiv"],
+        "tipps": "Fachliche Fundierung. Didaktisches Konzept. Passung zur Zielgruppe. Inklusionsaspekte."
+      }
+    ],
+    "typische_buzzwords": [
+      "digital transformation", "Medienkompetenz", "digitale Grundbildung", 
+      "technisch-pädagogisches Konzept", "Medienentwicklungsplan", "zukunftsfähig",
+      "nachhaltig verankert", "Breitenwirkung", "Systemrelevanz", "Ganzheitlicher Ansatz",
+      "evidenzbasiert", "wissenschaftlich begleitet", "Transferpotenzial", "skalierbar"
+    ],
+    "erfolgsquote_tipps": "Der DigitalPakt Schule hat eine hohe Bewilligungsquote bei vollständigen und qualitativ hochwertigen Anträgen. Besonders wichtig: technisch-pädagogisches Konzept, klare Ziele, Nachhaltigkeitskonzept. Anträge werden durch Schulträger eingereicht, nicht einzelne Schulen.",
+    "haeufige_fehler": [
+      "Fehlendes oder unzureichendes technisch-pädagogisches Konzept",
+      "Nur Hardware-Kauf ohne pädagogische Konzeption",
+      "Unrealistische Ziele oder Zeitplanung",
+      "Fehlende Nachhaltigkeitsplanung (Was passiert nach Förderende?)",
+      "Zu geringer Eigenanteil (zeigt mangelnde Eigenverantwortung)",
+      "Keine klare Abgrenzung vom Status quo",
+      "Fehlende Evaluation oder unklare Indikatoren"
+    ],
+    "antragsdauer_schaetzung": "8-16 Stunden für erste Antragstellung, 4-8 Stunden für Folgeanträge",
+    "komplexitaet": "komplex",
+    "prioritaetsfelder": ["konzept", "ausgangslage", "nachhaltigkeit"],
+    "kontakt": {
+      "beratung_verfuegbar": true
+    }
+  },
+
+  "uploads": {
+    "max_files": 10,
+    "max_size_mb": 20,
+    "erlaubte_typen": [".pdf", ".docx", ".xlsx", ".jpg", ".png"],
+    "pflicht_unterlagen": [
+      "Medienentwicklungsplan oder technisch-pädagogisches Konzept",
+      "Schulentwicklungsplan (Auszug)",
+      "Stellungnahme des Schulträgers",
+      "Kostenplausibilisierung"
+    ]
+  },
+
+  "besondere_anforderungen": {
+    "kooperationspartner": false,
+    "referenzen_benoetigt": false,
+    "evaluierung_vorgeschrieben": false,
+    "oeffentlichkeitsarbeit": true
+  }
+}

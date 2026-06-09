@@ -1,0 +1,455 @@
+{
+  "id": "nrw-digital",
+  "version": "1.0.0",
+  "last_updated": "2025-02-11",
+  "schema_type": "land",
+  
+  "kopfdaten": {
+    "projekttraeger_required": true,
+    "schultraeger_required": true,
+    "ansprechpartner_required": true,
+    "vertretungsberechtigter_required": true,
+    "bankverbindung_required": true
+  },
+
+  "sections": [
+    {
+      "id": "projektinformationen",
+      "title": "1. Projektinformationen",
+      "description": "Basisdaten zum Vorhaben",
+      "order": 1,
+      "section_weight": 10,
+      "fields": [
+        {
+          "id": "titel",
+          "title": "Projekttitel",
+          "type": "freitext",
+          "prompt_question": "Formuliere einen aussagekräftigen Projekttitel (max. 100 Zeichen).",
+          "max_chars": 100,
+          "required": true,
+          "hints": "Der Titel erscheint in allen Veröffentlichungen. Prägnant und professionell formulieren."
+        },
+        {
+          "id": "kurzbeschreibung",
+          "title": "Kurzbeschreibung",
+          "type": "mehrzeilig",
+          "prompt_question": "Fasse das Projekt in 2-3 Sätzen zusammen: Was? Für wen? Mit welchem Ziel?",
+          "max_chars": 600,
+          "max_words": 75,
+          "required": true,
+          "hints": "Wird für Öffentlichkeitsarbeit verwendet. Verständlich für Laien formulieren."
+        },
+        {
+          "id": "laufzeit",
+          "title": "Projektlaufzeit",
+          "type": "freitext",
+          "prompt_question": "Gib die geplante Projektlaufzeit an (Monate). Begründe kurz.",
+          "max_chars": 200,
+          "required": true,
+          "hints": "Typisch: 12-24 Monate für NRW-Förderprogramme."
+        }
+      ]
+    },
+    {
+      "id": "bedarfsanalyse",
+      "title": "2. Bedarfsanalyse und Zielgruppe",
+      "description": "Begründung des Förderbedarfs",
+      "order": 2,
+      "section_weight": 15,
+      "fields": [
+        {
+          "id": "ist_stand",
+          "title": "Ist-Stand der digitalen Ausstattung",
+          "type": "mehrzeilig",
+          "prompt_question": "Beschreibe die aktuelle digitale Ausstattung der Schule detailliert: Endgeräte, Infrastruktur, Software, Nutzung.",
+          "max_chars": 2000,
+          "max_words": 250,
+          "required": true,
+          "hints": "Geräteanzahl pro Schüler, Bandbreite, WLAN-Abdeckung, Auslastung. Daten nutzen aus Medienkonzept."
+        },
+        {
+          "id": "bedarf",
+          "title": "Konkreter Förderbedarf",
+          "type": "mehrzeilig",
+          "prompt_question": "Begründe detailliert: Welcher konkrete Bedarf soll durch das Projekt gedeckt werden?",
+          "max_chars": 2000,
+          "max_words": 250,
+          "required": true,
+          "hints": "Nicht nur 'mehr Geräte', sondern konkrete pädagogische Szenarien die möglich werden."
+        },
+        {
+          "id": "zielgruppe",
+          "title": "Zielgruppe",
+          "type": "mehrzeilig",
+          "prompt_question": "Wer sind die direkten und indirekten Begünstigten? Quantifiziere.",
+          "max_chars": 1500,
+          "max_words": 200,
+          "required": true,
+          "hints": "Schülerzahl, Klassenstufen, Lehrerzahl. Besondere Fokusgruppen (Inklusion, soziale Lage)."
+        },
+        {
+          "id": "einbindung_kmk",
+          "title": "Einbindung in KMK-Strategie",
+          "type": "mehrzeilig",
+          "prompt_question": "Wie trägt das Projekt zur Umsetzung der KMK-Strategie 'Bildung in der digitalen Welt' bei?",
+          "max_chars": 1200,
+          "max_words": 150,
+          "required": true,
+          "hints": "Bezug zu den sechs Kompetenzbereichen der KMK-Strategie herstellen."
+        }
+      ]
+    },
+    {
+      "id": "ziele",
+      "title": "3. Projektziele",
+      "description": "Was soll erreicht werden?",
+      "order": 3,
+      "section_weight": 15,
+      "fields": [
+        {
+          "id": "leitidee",
+          "title": "Leitidee des Projekts",
+          "type": "mehrzeilig",
+          "prompt_question": "Was ist die zentrale Idee/Ihr Projekt? In einem Satz.",
+          "max_chars": 500,
+          "max_words": 60,
+          "required": true,
+          "hints": "Die 'Elevator Pitch' Formulierung. Kernidee klar kommunizieren."
+        },
+        {
+          "id": "ziele_liste",
+          "title": "Konkrete Projektziele",
+          "type": "mehrzeilig",
+          "prompt_question": "Formuliere 3-5 messbare Ziele. Verwende die SMART-Formel.",
+          "max_chars": 2000,
+          "max_words": 250,
+          "required": true,
+          "hints": "Ziel + Indikator + Zielwert. Beispiel: 'Steigerung der digitalen Kompetenz (Indikator: Kompetenztest) um 25% bei allen Schülern der Klassen 5-7'"
+        },
+        {
+          "id": "innovationsaspekt",
+          "title": "Innovationsaspekt",
+          "type": "mehrzeilig",
+          "prompt_question": "Was ist innovativ an diesem Projekt? Was unterscheidet es vom Üblichen?",
+          "max_chars": 1500,
+          "max_words": 200,
+          "required": true,
+          "hints": "Abgrenzung zu Standard-Digitalisierung. Neuer Ansatz? Neue Zielgruppe? Neue Methodik?"
+        }
+      ]
+    },
+    {
+      "id": "konzept",
+      "title": "4. Projektbeschreibung und Konzept",
+      "description": "Das Herzstück der Bewerbung",
+      "order": 4,
+      "section_weight": 25,
+      "fields": [
+        {
+          "id": "beschreibung_detail",
+          "title": "Detaillierte Projektbeschreibung",
+          "type": "mehrzeilig",
+          "prompt_question": "Beschreibe das Projekt umfassend: Was wird genau gemacht? Welche Maßnahmen? Methoden? Struktur?",
+          "max_chars": 4000,
+          "max_words": 500,
+          "required": true,
+          "hints": "Sehr konkret sein: Was wird beschafft? Was wird entwickelt? Wie oft? Wer ist beteiligt?"
+        },
+        {
+          "id": "medienkonzept",
+          "title": "Medienkonzept / Pädagogische Konzeption",
+          "type": "mehrzeilig",
+          "prompt_question": "Wie wird die digitale Ausstattung pädagogisch genutzt? Welche didaktischen Szenarien? Integration in Unterricht?",
+          "max_chars": 2500,
+          "max_words": 300,
+          "required": true,
+          "hints": "Nicht Technik um der Technik willen. Pädagogisches Konzept: Methoden, didaktische Ansätze, Lehrplanbezug."
+        },
+        {
+          "id": "umsetzung_phasen",
+          "title": "Umsetzung in Phasen",
+          "type": "mehrzeilig",
+          "prompt_question": "Gliedere das Projekt in konkrete Phasen mit Zeitplan und Meilensteinen.",
+          "max_chars": 2000,
+          "max_words": 250,
+          "required": true,
+          "hints": "Vorbereitung, Implementierung, Evaluation. Zeitlich realistisch planen mit Schuljahresrhythmus."
+        },
+        {
+          "id": "qualitaetssicherung",
+          "title": "Qualitätssicherung",
+          "type": "mehrzeilig",
+          "prompt_question": "Wie wird Qualität während des Projekts sichergestellt? Steuerung? Anpassungen?",
+          "max_chars": 1200,
+          "max_words": 150,
+          "required": true,
+          "hints": "Steuerungsgruppe, regelmäßige Reviews, Feedback-Mechanismen, Anpassungsfähigkeit."
+        }
+      ]
+    },
+    {
+      "id": "personal",
+      "title": "5. Personal und Qualifikation",
+      "description": "Das Projektteam",
+      "order": 5,
+      "section_weight": 10,
+      "fields": [
+        {
+          "id": "projektleitung",
+          "title": "Projektleitung",
+          "type": "mehrzeilig",
+          "prompt_question": "Wer leitet das Projekt? Qualifikation? Erfahrung? Stundenkontingent?",
+          "max_chars": 1500,
+          "max_words": 200,
+          "required": true,
+          "hints": "Name, Funktion, fachliche Qualifikation, Erfahrung in Digitalisierung/Projektleitung. Zeit für Projektleitung einplanen."
+        },
+        {
+          "id": "projektteam",
+          "title": "Projektteam",
+          "type": "mehrzeilig",
+          "prompt_question": "Wer ist im Kernteam? Welche Rollen? Zeitaufwand?",
+          "max_chars": 1500,
+          "max_words": 200,
+          "required": true,
+          "hints": "IT-Beauftragte(r), Medienpädagoge, Lehrer mit Digitalisierungs-Fokus. Stundenanteile realistisch planen."
+        },
+        {
+          "id": "fortbildung",
+          "title": "Qualifizierung und Fortbildung",
+          "type": "mehrzeilig",
+          "prompt_question": "Welche Fortbildungen sind für das Team geplant?",
+          "max_chars": 1200,
+          "max_words": 150,
+          "required": true,
+          "hints": "Technische Schulungen, pädagogische Fortbildung, Projektmanagement. Konkrete Anbieter/Themen nennen."
+        }
+      ]
+    },
+    {
+      "id": "kooperation",
+      "title": "6. Kooperation und Vernetzung",
+      "description": "Partnerschaften",
+      "order": 6,
+      "section_weight": 10,
+      "fields": [
+        {
+          "id": "kooperationspartner",
+          "title": "Kooperationspartner",
+          "type": "mehrzeilig",
+          "prompt_question": "Gibt es Kooperationspartner? Wer? Was leisten sie? Ist die Zusammenarbeit verbindlich?",
+          "max_chars": 2000,
+          "max_words": 250,
+          "required": false,
+          "hints": "Kommunen, Universitäten, Unternehmen, Medienzentren. Konkrete Beiträge und Verbindlichkeit."
+        },
+        {
+          "id": "vernetzung",
+          "title": "Vernetzung",
+          "type": "mehrzeilig",
+          "prompt_question": "Wie ist das Projekt in regionale/lokale Strukturen eingebunden?",
+          "max_chars": 1000,
+          "max_words": 125,
+          "required": false,
+          "hints": "Medienzentrum, Kommunales Bildungsmanagement, andere Schulen, Schulträger."
+        }
+      ]
+    },
+    {
+      "id": "ergebnisse",
+      "title": "7. Ergebnisse und Nachhaltigkeit",
+      "description": "Was bleibt?",
+      "order": 7,
+      "section_weight": 15,
+      "fields": [
+        {
+          "id": "projektergebnisse",
+          "title": "Konkrete Projektergebnisse",
+          "type": "mehrzeilig",
+          "prompt_question": "Welche konkreten Ergebnisse werden produziert? Materialien? Konzepte? Kompetenzen?",
+          "max_chars": 1500,
+          "max_words": 200,
+          "required": true,
+          "hints": "Physische Ergebnisse: Unterrichtsmaterialien, Handreichungen, Konzepte. Immaterielle: Kompetenzen, Netzwerke."
+        },
+        {
+          "id": "verbreitung",
+          "title": "Verbreitung und Transfer",
+          "type": "mehrzeilig",
+          "prompt_question": "Wie werden die Ergebnisse verbreitet? Andere Schulen? Fachöffentlichkeit?",
+          "max_chars": 1500,
+          "max_words": 200,
+          "required": true,
+          "hints": "Dokumentation, OER, Fachtagungen, Netzwerke. NRW legt Wert auf Transfer zu anderen Schulen."
+        },
+        {
+          "id": "nachhaltigkeit_detail",
+          "title": "Nachhaltigkeit",
+          "type": "mehrzeilig",
+          "prompt_question": "Wie wird das Projekt nach Förderende weitergeführt? Was bleibt erhalten?",
+          "max_chars": 2000,
+          "max_words": 250,
+          "required": true,
+          "hints": "Verankerung in Schulprogramm, regelmäßige Fortbildung, Haushaltsmittel für Folgekosten, Einbindung in Regelstrukturen."
+        }
+      ]
+    }
+  ],
+
+  "financials": {
+    "type": "tabelle",
+    "categories": [
+      {
+        "id": "geraete",
+        "name": "Digitale Endgeräte",
+        "description": "Tablets, Laptops, Desktop-PCs für Schüler und Lehrer",
+        "foerderfaehig": true,
+        "typische_positionen": ["Tablets", "Laptops", "Desktop-PCs", "2-in-1-Geräte"]
+      },
+      {
+        "id": "infrastruktur",
+        "name": "Infrastruktur",
+        "description": "WLAN, Netzwerk, Server, Verkabelung",
+        "foerderfaehig": true,
+        "typische_positionen": ["WLAN-Access-Points", "Switches", "Server", "Verkabelung"]
+      },
+      {
+        "id": "interaktiv",
+        "name": "Interaktive Unterrichtstechnik",
+        "description": "Smartboards, Displays, Beamer, Dokumentenkameras",
+        "foerderfaehig": true,
+        "typische_positionen": ["Interaktive Displays", "Beamer", "Dokumentenkameras", "Tablet-Classroom-Management"]
+      },
+      {
+        "id": "software",
+        "name": "Software und Lizenzen",
+        "description": "Lernplattformen, Software, Lizenzen",
+        "foerderfaehig": true,
+        "typische_positionen": ["Lernmanagementsystem", "Lern-Apps", "Sicherheits-Software"]
+      },
+      {
+        "id": "fortbildung_nrw",
+        "name": "Fortbildung",
+        "description": "Lehrerfortbildung zu digitalen Kompetenzen",
+        "foerderfaehig": true,
+        "typische_positionen": ["Fortbildungsveranstaltungen", "Online-Kurse", "Schulungen"]
+      },
+      {
+        "id": "betreuung",
+        "name": "Beratung und Begleitung",
+        "description": "Pädagogische und technische Beratung",
+        "foerderfaehig": true,
+        "typische_positionen": ["Medienberatung", "Technische Betreuung", "Pädagogische Begleitung"]
+      },
+      {
+        "id": "evaluierung",
+        "name": "Evaluation",
+        "description": "Wissenschaftliche Begleitung oder externe Evaluation",
+        "foerderfaehig": true,
+        "typische_positionen": ["Externe Evaluation", "Datenauswertung", "Berichtswesen"]
+      }
+    ],
+    "requires_eigenanteil": true,
+    "eigenanteil_min_percent": 10,
+    "eigenanteil_max_percent": 50,
+    "eigenanteil_typisch_percent": 20,
+    "total_min": 5000,
+    "total_max": 100000,
+    "hint_text": "Das Programm 'Digital.Schule.NRW' erwartet in der Regel einen Eigenanteil von mindestens 10-20%. Die Fördersumme sollte realistisch zum Projektumfang stehen."
+  },
+
+  "meta": {
+    "bewertungskriterien": [
+      {
+        "id": "bedarfsorientierung",
+        "name": "Bedarfsorientierung",
+        "description": "Nachweis des konkreten digitalen Förderbedarfs",
+        "weight": 20,
+        "keywords": ["Bedarfsanalyse", "Ist-Stand", "defizitär", "Handlungsbedarf", "dokumentiert"],
+        "tipps": "Konkrete Daten zur Unterausstattung. Bezug zu KMK-Strategie. Quantifizierte Problembeschreibung."
+      },
+      {
+        "id": "konzeptqualitaet",
+        "name": "Konzeptqualität",
+        "description": "Qualität des pädagogischen und technischen Konzepts",
+        "weight": 20,
+        "keywords": ["durchdacht", "pädagogisch", "fachlich", "integriert", "ganzheitlich"],
+        "tipps": "Nicht nur Technik beschaffen, sondern pädagogisches Nutzungskonzept. KMK-Kompetenzbereiche adressieren."
+      },
+      {
+        "id": "innovation",
+        "name": "Innovation",
+        "description": "Neuartigkeit und Originalität",
+        "weight": 15,
+        "keywords": ["innovativ", "neu", "zukunftsweisend", "modellhaft", "pionierhaft"],
+        "tipps": "Abgrenzung zu Standard-Digitalisierung. Was macht das Projekt besonders? Warum modellhaft?"
+      },
+      {
+        "id": "nachhaltigkeit",
+        "name": "Nachhaltigkeit und Transfer",
+        "description": "Langfristige Wirkung und Übertragbarkeit",
+        "weight": 20,
+        "keywords": ["nachhaltig", "verstetigt", "Transfer", "dauerhaft", "institutionalisiert"],
+        "tipps": "Konkrete Verstetigungsmechanismen. Haushaltsplanung für Folgekosten. Dokumentation für Transfer."
+      },
+      {
+        "id": "umsetzbarkeit",
+        "name": "Umsetzbarkeit",
+        "description": "Realistische Planung und Durchführbarkeit",
+        "weight": 15,
+        "keywords": ["realistisch", "machbar", "geplant", "qualifiziert", "durchführbar"],
+        "tipps": "Realistischer Zeitplan. Passendes Team. Einplanung von Risiken. Ressourcenverfügbarkeit."
+      },
+      {
+        "id": "wirkung",
+        "name": "Wirkung und Zielerreichung",
+        "description": "Erwartete Wirkung und Messbarkeit",
+        "weight": 10,
+        "keywords": ["wirksam", "messbar", "evaluiert", "zielgerichtet", "wirkungsvoll"],
+        "tipps": "SMARTe Ziele. Konkrete Indikatoren. Evaluation geplant. Glaubhafte Wirkungskette."
+      }
+    ],
+    "typische_buzzwords": [
+      "digital", "Medienkompetenz", "digitale Bildung", "Medienentwicklungsplan",
+      "KMK-Strategie", "Kompetenzorientierung", "Infrastruktur", "Endgeräte",
+      "Medienpädagogik", "Unterrichtsentwicklung", "zukunftsfähig", "nachhaltig",
+      "Transfer", "Vernetzung", "Bildung in der digitalen Welt", "Schulentwicklung"
+    ],
+    "erfolgsquote_tipps": "Digital.Schule.NRW hat eine moderate Auswahlquote. Besonders wichtig: klare Bedarfsanalyse, durchdachtes pädagogisches Konzept, Bezug zur KMK-Strategie, realistischer Eigenanteil, Nachhaltigkeitsplanung. Anträge werden über das Schulministerium-Portal eingereicht.",
+    "haeufige_fehler": [
+      "Fehlende oder unzureichende Bedarfsanalyse",
+      "Kein pädagogisches Konzept, nur 'mehr Technik'",
+      "Fehlender Bezug zur KMK-Strategie",
+      "Zu geringer Eigenanteil",
+      "Unklare Ziele ohne Indikatoren",
+      "Keine Nachhaltigkeitsplanung",
+      "Unrealistische Budgetplanung"
+    ],
+    "antragsdauer_schaetzung": "10-15 Stunden",
+    "komplexitaet": "mittel",
+    "prioritaetsfelder": ["konzept", "bedarfsanalyse", "nachhaltigkeit"],
+    "kontakt": {
+      "email": "digitalisierung@schulministerium.nrw.de",
+      "beratung_verfuegbar": true
+    }
+  },
+
+  "uploads": {
+    "max_files": 8,
+    "max_size_mb": 15,
+    "erlaubte_typen": [".pdf", ".docx", ".xlsx"],
+    "pflicht_unterlagen": [
+      "Projektbeschreibung",
+      "Kosten- und Finanzierungsplan",
+      "Medienentwicklungsplan",
+      "Stellungnahme des Schulträgers"
+    ]
+  },
+
+  "besondere_anforderungen": {
+    "kooperationspartner": false,
+    "referenzen_benoetigt": false,
+    "evaluierung_vorgeschrieben": false,
+    "oeffentlichkeitsarbeit": true
+  }
+}

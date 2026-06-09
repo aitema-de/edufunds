@@ -1,0 +1,15 @@
+[Unit]
+Description=PostgreSQL Daily Backup
+Wants=postgres-backup.timer
+
+[Service]
+Type=oneshot
+ExecStart=/home/edufunds/edufunds-app/scripts/postgres-backup.sh
+Environment="BACKUP_DIR=/backup"
+Environment="PGHOST=localhost"
+Environment="PGPORT=5432"
+Environment="PGUSER=postgres"
+# PGPASSWORD oder .pgpass verwenden
+
+[Install]
+WantedBy=multi-user.target

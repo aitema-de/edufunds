@@ -36,10 +36,18 @@ export type Foerderprogramm = {
   beschreibung?: string;         // Volltext
   
   // Status
-  status: 'aktiv' | 'auslaufend' | 'pausiert' | 'beendet';
+  status: 'aktiv' | 'auslaufend' | 'pausiert' | 'beendet' | 'abgelaufen';
   createdAt: string;
   updatedAt: string;
   lastVerifiedAt?: string;       // Wann wurde das Programm zuletzt geprüft?
+  
+  // Zusätzliche Felder (aus Daten)
+  bemerkung?: string;            // Interne Notizen/Archiv-Info
+  quelleUrl?: string;            // Alternative URL-Quelle
+  verifiziertAm?: string;        // Verifizierungsdatum
+  verifiziertVon?: string;       // Wer hat verifiziert
+  reviewNotiz?: string;          // Review-Notizen
+  verificationWarning?: string;  // Verifizierungs-Warnung
   
   // Quelle
   quelle: string;                // z.B. "bkm.bund.de", "km.bayern.de"

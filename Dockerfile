@@ -51,6 +51,13 @@ ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Paywall-Dev-Mock: NEXT_PUBLIC_* wird zur BUILD-Zeit in das Client-Bundle
+# eingebacken (PaywallGate.tsx ist "use client"). Default 0 — Production-Builds
+# reichen den Build-Arg nicht durch und bekommen den Mock daher nie.
+# Nur deploy-staging.sh setzt --build-arg NEXT_PUBLIC_PAYWALL_DEV_MOCK=1.
+ARG NEXT_PUBLIC_PAYWALL_DEV_MOCK=0
+ENV NEXT_PUBLIC_PAYWALL_DEV_MOCK=${NEXT_PUBLIC_PAYWALL_DEV_MOCK}
+
 # Build
 RUN npm run build
 
@@ -84,9 +91,6 @@ COPY --from=builder --chown=nextjs:nodejs /app/package.json ./
 
 # Kopiere node_modules (nur Production-Dependencies)
 COPY --from=deps --chown=nextjs:nodejs /app/node_modules ./node_modules
-
-# Rechte setzen
-RUN chown -R nextjs:nodejs /app
 
 # Wechsle zu nicht-root User
 USER nextjs

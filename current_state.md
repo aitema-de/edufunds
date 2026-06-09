@@ -2,49 +2,43 @@
 
 > **Diese Datei wird nach JEDER Session aktualisiert**
 > 
-> Letzte Aktualisierung: 9. Februar 2026, 18:10 UTC
+> Letzte Aktualisierung: 24. Februar 2026, 08:50 UTC
 
 ---
 
 ## 🚀 Feature-Stand
 
 ### ✅ Funktioniert
-- [x] Startseite mit Statistiken
-- [x] Förderfinder mit 50 Programmen
-- [x] KI-Antragsassistent (Frontend)
+- [x] Startseite mit Statistiken (135 Programme, 130+ in Meta)
+- [x] Förderfinder mit 135 Programmen
+- [x] Cron-Scan: Neue Programme automatisch erkennen (PAUSIERT - OpenRouter Balance)
+- [x] KI-Antragsassistent (Frontend + Gemini API + Fallback)
+- [x] Staging-Umgebung (staging.edufunds.org)
 - [x] PDF-Export Funktionalität
 - [x] Responsive Design
 - [x] Error Handling & Error Boundaries
 - [x] Formular-Validierung
 - [x] Loading States & Skeletons
 - [x] SEO Meta-Tags
-- [x] 404 Seite
-- [x] Backup & Caching System
-- [x] Unit Tests (Jest)
-- [x] Accessibility (ARIA)
+- [x] 404 Seite (Parchment-Design)
+- [x] Alle 135 Detailseiten erreichbar (HTTP 200)
+- [x] Smoke-Test: PASSED (149/149)
+- [x] Next.js 16 params-Bug gefixt
+- [x] Design-Updates: Alle Seiten auf Parchment/Gold/Navy Design
+- [x] Fonts: DM Serif Display + Plus Jakarta Sans global
+- [x] CSP-Header: Google Fonts aktiv
+- [x] Background Patterns auf allen Unterseiten
+- [x] Externe Links validiert (120/125 OK, 96% Erfolgsrate)
 
-### 🔄 In Arbeit / Zu Testen
-- [ ] HTTPS/SSL Zertifikat (Let's Encrypt Rate-Limit)
-- [ ] Traefik-Konfiguration stabilisieren
-- [ ] Staging-Umgebung einrichten
-- [x] ~~Footer-Links testen (Über uns, Kontakt)~~ ✅ Behoben
+### 🔄 In Arbeit / Monitoring
+- [x] Link-Validierung: Monatlicher Cron-Job eingerichtet
+- [ ] OpenRouter-Account Balance prüfen (Cron-Scan blockiert)
 
 ### ❌ Bekannte Probleme
-1. **Gateway Timeout** bei edufunds.org (Traefik-Problem)
-   - Workaround: Container läuft direkt auf Port 80
-   - Lösung: Traefik neu konfigurieren oder certbot nutzen
-2. **Let's Encrypt Rate-Limit** (api.edufunds.org versucht Zertifikat)
-   - Löst sich in ~1 Stunde
-
-### ✅ Behobene Probleme
-- **URL-Routing** - Alle URLs ohne `.html` funktionieren jetzt korrekt
-  - /impressum → /impressum.html
-  - /datenschutz → /datenschutz.html
-  - /agb → /agb.html
-  - /programme → /programme.html
-  - /ueber-uns → /ueber-uns/index.html
-  - /kontakt → /kontakt/index.html
-  - 404 Seite wird korrekt angezeigt
+| Problem | Status | Impact |
+|---------|--------|--------|
+| OpenRouter Account suspended | 🔴 Aktiv | Cron-Scan blockiert |
+| 5 tote externe Links | 🟡 Monitoring | 96% Links OK |
 
 ---
 
@@ -52,8 +46,8 @@
 
 | Branch | Status | Letzte Änderung |
 |--------|--------|-----------------|
-| `main` | Production | 9. Feb 2026: Regeln dokumentiert |
-| `staging` | ✅ Aktiv | 9. Feb 2026: Branch erstellt |
+| `main` | Production | 21. Feb 2026: NABU-Programm archiviert |
+| `staging` | ✅ Aktiv | 21. Feb 2026: BNE-Programm 404-Fix |
 
 **Workflow:** staging → testen → main → Production
 
@@ -62,114 +56,80 @@
 ## 🌐 Deployment-Status
 
 ### Production (edufunds.org)
-- **Status:** ✅ **BEHOBEN** - läuft wieder korrekt
-- **URL:** https://edufunds.org ✅
-- **Letztes Deploy:** 9. Feb 2026, ~17:00 UTC (korrektur)
-- **Container:** eduFunds über Traefik (kein Port-Binding!)
-- **Fix:** Kolja hat Traefik wiederhergestellt und eduFunds korrekt eingerichtet
+- **Status:** ✅ **ONLINE**
+- **URL:** https://edufunds.org
+- **Container:** edufunds-app (Next.js)
+- **Smoke-Test:** ✅ PASSED (149/149) - 24. Feb 2026
+- **Letztes Deploy:** 21. Feb 2026
 
-### Staging
-- **Status:** ❌ Nicht eingerichtet
-- **URL:** --
-- **ToDo:** Staging-Branch erstellen + deployen
+### Staging (staging.edufunds.org)
+- **Status:** ✅ **ONLINE**
+- **URL:** https://staging.edufunds.org
+- **Container:** edufunds-staging
+- **Smoke-Test:** ✅ PASSED
 
----
-
-## 📝 Offene TODOs
-
-### Hochpriorität
-- [ ] Backend implementieren (siehe docs/BACKEND-PLAN.md)
-  - [ ] API Routes einrichten (Next.js)
-  - [ ] Newsletter-Endpunkt (+ Double Opt-in)
-  - [ ] Kontaktformular-Endpunkt (+ E-Mail)
-  - [ ] KI-Assistant API (OpenAI Integration)
-- [ ] Staging-Branch erstellen
-- [ ] Traefik stabilisieren oder ersetzen
-- [ ] HTTPS/SSL einrichten
-
-### Mittelpriorität
-- [ ] KI-Antragsassistent mit echter API verbinden
-- [ ] Weitere Förderprogramme recherchieren
-- [ ] Analytics einbauen
-
-### Niedrigpriorität
-- [ ] Performance-Optimierung
-- [ ] Mehr Unit Tests
-- [ ] Blog/News Sektion
+### Container-Architektur
+| Container | Image | Domain | Funktion |
+|-----------|-------|--------|----------|
+| edufunds-landing | nginx:alpine | edufunds.org | Marketing Landing Page |
+| edufunds-app | edufunds:latest | app.edufunds.org | Next.js Platform |
+| edufunds-staging | edufunds:staging | staging.edufunds.org | Staging-Clone |
+| edufunds-postgres | postgres:15-alpine | intern | Datenbank |
 
 ---
 
-## 🐛 Bekannte Bugs
+## 📊 Aktuelle Zahlen
 
-| Bug | Priorität | Status |
-|-----|-----------|--------|
-| Gateway Timeout (Traefik) | 🔴 Hoch | Workaround aktiv |
-| Let's Encrypt Rate-Limit | 🟡 Mittel | Wartet auf Reset |
-| HTTPS nicht erreichbar | 🔴 Hoch | Temporär HTTP |
+| Metrik | Wert |
+|--------|------|
+| Aktive Programme | 135 |
+| Detailseiten | 135 (alle HTTP 200) |
+| Smoke-Test | PASSED (149/149) |
+| Next.js Version | 16.1.6 |
+| Externe Links OK | 96% (120/125) |
 
 ---
 
-## 📚 Letzte Änderungen
+## 📝 Offene Aufgaben (TODO.md)
 
-### 9. Februar 2026, 18:10 UTC
-- ✅ **URL-Routing Problem behoben**
-  - nginx.conf mit Rewrite-Regeln für saubere URLs
-  - Alle URLs ohne `.html` funktionieren korrekt
-  - Schöne 404-Seite erstellt
-  - Docker-Build optimiert (kein npm install nötig)
-  - Alle 8 Test-URLs erfolgreich getestet
+**Aktueller Status:** Alle Aufgaben erledigt ✅
 
-### 9. Februar 2026, 15:22 UTC
-- ✅ 68 neue Dateien zu GitHub gepusht
-- ✅ Error Handling, Validation, SEO, Tests hinzugefügt
-- ✅ Neue Seiten: Über uns, Kontakt, AGB
-- ✅ Secrets aus Repository entfernt
-- ⚠️ GitHub Push Protection ausgelöst (behoben)
-
-### 9. Februar 2026, ~14:00-15:00 UTC
-- ✅ Footer aktualisiert (Karriere/Presse entfernt)
-- ✅ Impressum, Datenschutz, AGB mit Inhalt gefüllt
-- ✅ Traefik konfiguriert (noch instabil)
-- ✅ Docker-Container eingerichtet
-
-### 9. Februar 2026, ~12:00-14:00 UTC
-- ✅ Sub-Agenten für Verbesserungen gestartet
-- ✅ 8 Features parallel implementiert
-- ✅ Repository strukturiert
+Letzte erledigte Aufgaben:
+- ✅ LdE-Grundschulpreis 2026 hinzugefügt (21. Feb)
+- ✅ CSP-Header: Google Fonts aktiv (18. Feb)
+- ✅ Background Patterns auf allen Unterseiten (18. Feb)
+- ✅ Link-Validierung aller 129 Programme (19. Feb)
 
 ---
 
 ## 🔧 Technische Details
 
-### Aktive Container (Server: 49.13.15.44)
-```
-edufunds        - nginx auf Port 80 (direkt)
-traefik         - Reverse Proxy (gestoppt)
-```
-
 ### Wichtige Dateien
-- `rules.md` - Arbeitsregeln
+- `rules.md` - Arbeitsregeln (Docker-Regeln!)
 - `current_state.md` - Diese Datei
 - `MEMORY.md` - Langzeit-Gedächtnis
-- `DEPLOY.md` - Deployment-Guide
-- `docs/BACKEND-PLAN.md` - Backend Architektur & Plan
-- `docs/API-SCHEMAS.md` - API Zod Schemas
-- `docs/QUICK-REFERENCE.md` - Backend Quick Reference
+- `SOUL.md` - Product Owner Rolle
+- `TODO.md` - Aufgabenliste
 
 ### Git Status
 - Branch: `main`
-- Letzter Commit: `7b50f05` - feat: Add all improvements
-- Uncommitted Changes: Nein
+- Letzter Commit: `80e68e4` - LdE-Grundschulpreis 2026
 - Push Status: ✅ Auf GitHub
+
+### Environment
+- Node.js: v22.22.0
+- Hosting: Hetzner (Ubuntu)
+- Reverse Proxy: Traefik
+- Datenbank: PostgreSQL 15
 
 ---
 
-## 🎯 Nächste Schritte (Priorisiert)
+## 🎯 Nächste Schritte (Vorschläge)
 
-1. **Staging-Branch erstellen** (sofort)
-2. **Traefik oder HTTPS fixen** (heute)
-3. **Alle Seiten testen** (heute)
-4. **Dokumentation vervollständigen** (heute)
+1. **OpenRouter Balance** - Kolja informieren für Cron-Scan
+2. **Förderprogramm-Recherche** - Neue Programme suchen (manuell)
+3. **Qualitätsprüfung** - Förderhöhe pro Schule verifizieren
+4. **Performance-Monitoring** - Core Web Vitals tracken
 
 ---
 

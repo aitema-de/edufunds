@@ -1,0 +1,241 @@
+{
+  "quellen": [
+    "https://www.stiftungbildung.org/foerderfonds/",
+    "https://www.stiftungbildung.org/foerderung/",
+    "https://www.stiftungbildung.org/projektfoerderung/"
+  ],
+  "foerderhoehe": {
+    "maxEur": 5000,
+    "minEur": 500,
+    "bemerkung": "Projekte werden mit 500 bis 5.000 Euro unterstützt. Es handelt sich um eine niedrigschwellige, unkomplizierte Projektförderung; Auszahlung in der Regel 4-6 Wochen nach Antragstellung. Eine prozentuale Quote auf Gesamtkosten ist nicht ausgewiesen."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Sachkosten müssen Teil eines partizipativen Projekts mit Kinder-/Jugendbeteiligung sein, nicht reine Anschaffung"
+      ],
+      "beispielePasst": [
+        "Musikinstrumente für ein gemeinsam geplantes Schulorchester",
+        "Theaterausstattung für eine von Schüler*innen entwickelte Aufführung",
+        "Material für ein Kunst- oder Demokratieprojekt"
+      ],
+      "beispielePasstNicht": [
+        "Reine Materialbeschaffung ohne Projektkontext und ohne Jugendbeteiligung",
+        "Standard-Schulausstattung als Ersatzbeschaffung"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Teure Umbau- oder Neubaumaßnahmen ohne Jugendbeteiligung sind ausgeschlossen"
+      ],
+      "beispielePasstNicht": [
+        "Sanierung von Schulgebäuden",
+        "Bauliche Maßnahmen ohne aktive Beteiligung junger Menschen"
+      ]
+    },
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Honorare sind laut Förderausschluss nicht förderfähig"
+      ],
+      "beispielePasstNicht": [
+        "Honorare für externe Referent*innen oder Workshopleitungen"
+      ]
+    },
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Förderfähig nur als Teil eines beteiligungsorientierten Bildungsvorhabens, nicht als reine Klassenfahrt",
+        "Übernachtungskosten für Klassenfahrten sind ausgeschlossen"
+      ],
+      "beispielePasst": [
+        "Fahrtkosten für eine von Schüler*innen organisierte Sprachreise oder Projektexkursion"
+      ],
+      "beispielePasstNicht": [
+        "Übernachtungskosten einer Klassenfahrt"
+      ]
+    },
+    {
+      "kategorie": "sonstiges",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Projektbezogene Ausgaben, die der Umsetzung der Idee dienen und Beteiligung sowie Nachhaltigkeit fördern"
+      ],
+      "beispielePasst": [
+        "Projektbezogene Verbrauchsmittel und Aktionskosten innerhalb eines Beteiligungsprojekts"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": false,
+    "bemerkung": "Eine verpflichtende Eigenmittelquote ist nicht ausgewiesen. Eigenbeteiligung der Beteiligten in Form von Eigenarbeit/ehrenamtlichem Engagement und nachhaltiger Verankerung wird inhaltlich positiv bewertet."
+  },
+  "kumulierung": {
+    "erlaubt": "bedingt",
+    "bemerkung": "Doppelförderung ist ausdrücklich ausgeschlossen: Kosten, die bereits durch andere Mittel gedeckt sind, dürfen nicht erneut beantragt werden. Eine Kombination mit anderen Mitteln für nicht überschneidende Kostenanteile ist denkbar, sollte aber transparent dargestellt werden."
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "projektidee",
+        "name": "Projektidee und Ziel",
+        "pflicht": true,
+        "leitfragen": [
+          "Was ist die konkrete Idee und welches Ziel verfolgt das Projekt?",
+          "Welcher aktuelle Bedarf oder welche Herausforderung an der Schule wird adressiert?",
+          "Wer profitiert von dem Projekt?"
+        ],
+        "stilhinweis": "Konkret und lebensnah formulieren, keine Fördersprache; die Idee in zwei bis drei klaren Sätzen auf den Punkt bringen.",
+        "maxZeichen": 1500
+      },
+      {
+        "id": "beteiligung",
+        "name": "Beteiligung von Kindern und Jugendlichen",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie sind Kinder und Jugendliche von Anfang an aktiv eingebunden?",
+          "Welche Entscheidungen treffen die jungen Menschen selbst?",
+          "Wie zeigt sich Eigeninitiative der Schüler*innen?"
+        ],
+        "stilhinweis": "Beteiligung ist das zentrale Auswahlkriterium - konkrete Rollen und Mitbestimmung der jungen Menschen schildern, nicht nur 'für' sie, sondern 'mit' ihnen.",
+        "maxZeichen": 1200
+      },
+      {
+        "id": "vielfalt-inklusion",
+        "name": "Vielfalt und Inklusion",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie ist das Projekt inklusiv und offen für eine vielfältige Zielgruppe gestaltet?",
+          "Wie werden alle Kinder unabhängig von Herkunft oder Voraussetzungen erreicht?",
+          "Trägt das Projekt zu sozialem Ausgleich bei?"
+        ],
+        "stilhinweis": "Konkrete Maßnahmen für Zugänglichkeit nennen statt allgemeiner Bekenntnisse zu Vielfalt.",
+        "maxZeichen": 1000
+      },
+      {
+        "id": "nachhaltigkeit",
+        "name": "Nachhaltigkeit und Verankerung",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie wirkt das Projekt über die Förderdauer hinaus?",
+          "Wie wird es langfristig an der Schule verankert?",
+          "Wer trägt das Projekt nach Projektende weiter?"
+        ],
+        "stilhinweis": "Eine glaubwürdige Perspektive über das Förderende hinaus aufzeigen, idealerweise getragen vom Förderverein.",
+        "maxZeichen": 1000
+      },
+      {
+        "id": "kostenplan",
+        "name": "Kostenplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Ausgaben fallen an und wie setzt sich die beantragte Summe zusammen?",
+          "Liegt die Gesamtsumme zwischen 500 und 5.000 Euro?",
+          "Sind die Positionen förderfähig (keine Honorare, kein reiner Umbau, keine Übernachtungskosten)?"
+        ],
+        "stilhinweis": "Transparente, nachvollziehbare Einzelpositionen auflisten; ausgeschlossene Kostenarten von vornherein vermeiden.",
+        "maxZeichen": 1000
+      },
+      {
+        "id": "foerderverein",
+        "name": "Förderverein und Trägerschaft",
+        "pflicht": true,
+        "leitfragen": [
+          "Welcher Kita- oder Schulförderverein stellt den Antrag?",
+          "Liegt ein aktueller Freistellungsbescheid vor?",
+          "Welche Rolle übernimmt der Förderverein bei der Umsetzung?"
+        ],
+        "stilhinweis": "Den Förderverein als aktiven Mitgestalter darstellen, nicht nur als formalen Antragsteller.",
+        "maxZeichen": 800
+      }
+    ],
+    "anlagen": [
+      "Aktueller Freistellungsbescheid des Kita- bzw. Schulfördervereins",
+      "Kostenplan/Kostenaufstellung"
+    ],
+    "einreichungsweg": "Antragstellung über den Kita- oder Schulförderverein per Online-Formular bzw. formlos an foerderanfrage@stiftungbildung.org; Anträge können fortlaufend gestellt werden.",
+    "bearbeitungsdauer": "Auszahlung in der Regel 4-6 Wochen nach Antragstellung"
+  },
+  "notizen": [
+    "Antragsberechtigt sind nicht Schulen direkt, sondern stets der zugehörige Kita- oder Schulförderverein (gemeinnütziger Verein mit aktuellem Freistellungsbescheid).",
+    "Es existieren mehrere thematische Förderfonds (z.B. Chancengerechtigkeit, Kunst und Kultur, Medienkompetenz, Demokratie, Persönlichkeitsentwicklung, Vielfalt). Bei thematischem Bezug sollte der passende Fonds gewählt werden.",
+    "Die Förderentscheidung treffen u.a. Vertreter*innen der Bundesschüler*innenkonferenz und des youpaN - die Perspektive junger Menschen wird also direkt eingebunden.",
+    "Anträge sind formlos und niedrigschwellig; entscheidend ist nicht der Umfang, sondern die Beteiligung junger Menschen und die Wirkung."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Echte Jugendbeteiligung sichtbar machen",
+      "was_funktionierte": "Anträge, in denen Schüler*innen die Idee selbst entwickelt und zentrale Entscheidungen getroffen haben, wurden klar bevorzugt.",
+      "warum": "Beteiligung von Kindern und Jugendlichen ist das oberste Auswahlkriterium und wird von einem Gremium mit Schüler*innenvertretung bewertet."
+    },
+    {
+      "thema": "Nachhaltige Verankerung über den Förderzeitraum hinaus",
+      "was_funktionierte": "Projekte mit glaubwürdiger Fortführungsperspektive (z.B. dauerhafte AG, vom Förderverein getragene Struktur) überzeugten stärker als Einmalaktionen.",
+      "warum": "Die Stiftung bevorzugt explizit langfristige Verankerung an der Institution statt punktueller Anschaffungen."
+    },
+    {
+      "thema": "Förderverein als aktiver Mitgestalter",
+      "was_funktionierte": "Die Darstellung des Fördervereins als treibende, mitgestaltende Kraft statt als reiner Geldweiterleiter erhöhte die Förderwahrscheinlichkeit.",
+      "warum": "Die Förderung ist konzeptionell auf das Zusammenspiel von Engagierten und Förderverein ausgelegt; der Verein spielt eine zentrale Rolle."
+    },
+    {
+      "thema": "Klar förderfähiger, transparenter Kostenplan",
+      "was_funktionierte": "Kostenpläne, die ausgeschlossene Positionen (Honorare, Umbau, Übernachtungen) von vornherein vermieden und projektbezogene Sachkosten klar auswiesen, wurden zügig bewilligt.",
+      "warum": "So entfallen Rückfragen und das Projekt passt sauber in den Förderrahmen von 500 bis 5.000 Euro."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Reine Materialbeschaffung oder Anschaffung ohne erkennbares Beteiligungsprojekt",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Die Anschaffung in ein partizipatives Vorhaben einbetten und konkret zeigen, wie Kinder und Jugendliche aktiv mitwirken."
+    },
+    {
+      "grund": "Beantragung ausgeschlossener Kosten (Honorare, teurer Umbau/Neubau, Übernachtungskosten von Klassenfahrten)",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Vor Einreichung den Kostenplan gegen die Ausschlusskriterien prüfen und ausgeschlossene Positionen entfernen oder anders finanzieren."
+    },
+    {
+      "grund": "Fehlender oder veralteter Freistellungsbescheid des Fördervereins",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Aktuellen Freistellungsbescheid des antragstellenden Vereins von Beginn an beilegen."
+    },
+    {
+      "grund": "Doppelförderung bereits gedeckter Kosten",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Andere Finanzierungsquellen offenlegen und nur ungedeckte, nicht überschneidende Kostenanteile beantragen."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "beteiligung",
+      "formulierung": "Die Idee zum Schulgarten entstand in der Klassensprecher*innenversammlung; die Schüler*innen planen Beetaufteilung, Pflanzenauswahl und Pflegeplan eigenständig und stellen das Vorhaben dem Förderverein selbst vor.",
+      "kontext": "Macht Eigeninitiative und echte Mitbestimmung der jungen Menschen konkret greifbar - das zentrale Auswahlkriterium."
+    },
+    {
+      "abschnitt_id": "nachhaltigkeit",
+      "formulierung": "Nach dem Anschub durch die Förderung wird die Garten-AG dauerhaft im Ganztagsangebot verankert und vom Förderverein über jährliche Pflanzaktionen finanziell und organisatorisch weitergetragen.",
+      "kontext": "Zeigt langfristige Verankerung und die tragende Rolle des Fördervereins über das Förderende hinaus."
+    },
+    {
+      "abschnitt_id": "kostenplan",
+      "formulierung": "Beantragt werden 1.800 Euro für Hochbeete, Erde, Saatgut und Werkzeug; Honorare, bauliche Maßnahmen und Übernachtungskosten sind nicht enthalten. Eigenleistung: Aufbau durch Schüler*innen und Eltern.",
+      "kontext": "Transparenter, sauber förderfähiger Kostenplan, der Ausschlusskriterien aktiv vermeidet und Eigenarbeit ausweist."
+    },
+    {
+      "abschnitt_id": "vielfalt-inklusion",
+      "formulierung": "Die wöchentlichen Aktionen sind kostenfrei und barrierearm gestaltet, sodass alle Kinder unabhängig von Herkunft, Sprache oder finanziellen Möglichkeiten teilnehmen können.",
+      "kontext": "Konkrete Inklusionsmaßnahme statt allgemeinem Bekenntnis - bedient das Kriterium Vielfalt und sozialer Ausgleich."
+    }
+  ],
+  "fristLogik": {
+    "typ": "rolling"
+  },
+  "version": "2026-06-01"
+}

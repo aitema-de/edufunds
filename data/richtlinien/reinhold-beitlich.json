@@ -1,0 +1,249 @@
+{
+  "quellen": [
+    "https://www.reinhold-beitlich-stiftung.de/foerderrichtlinien/",
+    "https://www.reinhold-beitlich-stiftung.de/foerderantrag/",
+    "https://www.reinhold-beitlich-stiftung.de/en/grant-application/",
+    "https://foerderdatenbank.d-s-e-e.de/foerderprogramme/foerderung-der-reinhold-beitlich-stiftung",
+    "https://www.reinhold-beitlich-stiftung.de/"
+  ],
+  "foerderhoehe": {
+    "bemerkung": "Die Stiftung veroeffentlicht keine festen Foerderhoehen oder Hoechstgrenzen. Der gewuenschte Foerderbetrag wird im Antrag projektbezogen angegeben und gegen die Gesamtkosten gestellt. Foerderung erfolgt projektbezogen und einmalig (keine Dauerfinanzierung)."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Direkt dem konkreten Projekt zurechenbar",
+        "Im Antrag unter 'Materialkosten' aufgeschluesselt"
+      ],
+      "beispielePasst": [
+        "Lernmaterialien und Verbrauchsmaterial fuer ein Schulprojekt",
+        "Material fuer eine Praeventions- oder Umweltbildungs-AG"
+      ],
+      "beispielePasstNicht": [
+        "Allgemeine Betriebs- und Verwaltungskosten der Schule ohne Projektbezug"
+      ]
+    },
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Externe Honorarkraefte fuer die Projektdurchfuehrung",
+        "Im Antrag unter 'Honorare' getrennt ausgewiesen"
+      ],
+      "beispielePasst": [
+        "Honorar fuer einen externen Workshop-Leiter (z. B. Gewaltpraevention)",
+        "Referentenhonorar fuer ein zeitlich befristetes Bildungsangebot"
+      ],
+      "beispielePasstNicht": [
+        "Laufende Gehaelter des Stammpersonals der Schule"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Anschaffungen mit klarem Projektbezug",
+        "Keine reine Baumassnahme, keine Fahrzeugbeschaffung",
+        "Im Antrag unter 'Anschaffungskosten' ausgewiesen"
+      ],
+      "beispielePasst": [
+        "Geraete oder Ausstattung fuer ein konkretes Foerderprojekt",
+        "Anschaffung von Lernhilfen fuer Schueler mit Foerderbedarf"
+      ],
+      "beispielePasstNicht": [
+        "Bau- und Sanierungsmassnahmen am Schulgebaeude",
+        "Beschaffung von Fahrzeugen"
+      ]
+    },
+    {
+      "kategorie": "personal",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Laufende Personalkosten sind ausdruecklich von der Foerderung ausgeschlossen"
+      ],
+      "beispielePasstNicht": [
+        "Festangestellte Lehr- oder Betreuungskraefte",
+        "Dauerhafte Stellen der Schule oder des Foerdervereins"
+      ]
+    },
+    {
+      "kategorie": "sonstiges",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Sonstige projektbezogene Kosten im Antragsformular separat begruenden"
+      ],
+      "beispielePasst": [
+        "Projektbezogene Nebenkosten, die unmittelbar der Durchfuehrung dienen"
+      ],
+      "beispielePasstNicht": [
+        "Nicht projektbezogene Gemeinkosten"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": false,
+    "formenErlaubt": [
+      "finanziell",
+      "drittmittel",
+      "eigenarbeit"
+    ],
+    "bemerkung": "Eine feste Eigenmittelquote ist nicht vorgeschrieben. Das Antragsformular verlangt jedoch die Angabe von Eigenmitteln, weiteren Zuschuessen und sonstigen Finanzierungsquellen gegenueber den Gesamtkosten. Eine erkennbare Eigenbeteiligung bzw. ein nachvollziehbarer Finanzierungsmix erhoeht die Erfolgsaussichten."
+  },
+  "kumulierung": {
+    "erlaubt": "bedingt",
+    "bemerkung": "Das Antragsformular sieht ausdruecklich die Angabe weiterer Zuschuesse und sonstiger Finanzierungsquellen vor. Eine Mitfinanzierung durch andere Foerderer ist also moeglich; die Gesamtfinanzierung muss transparent dargestellt werden und darf die Gesamtkosten nicht uebersteigen."
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "antragsteller",
+        "name": "Vorstellung des Antragstellers",
+        "pflicht": true,
+        "leitfragen": [
+          "Wer ist die antragstellende Schule bzw. der Foerderverein?",
+          "Welche gemeinnuetzige Zielsetzung verfolgt die Einrichtung?",
+          "Welche Erfahrung besteht mit vergleichbaren Projekten?"
+        ],
+        "stilhinweis": "Knapp und sachlich; Gemeinnuetzigkeit und Bezug zur Jugend/Bildung klar herausstellen.",
+        "maxZeichen": 1500
+      },
+      {
+        "id": "vorhaben",
+        "name": "Kurzbeschreibung des Vorhabens",
+        "pflicht": true,
+        "leitfragen": [
+          "Was genau soll mit dem Projekt erreicht werden?",
+          "Welcher konkrete Bildungs- oder Erziehungsbedarf wird adressiert?",
+          "Wie viele Kinder und Jugendliche profitieren?"
+        ],
+        "stilhinweis": "Konkret und anschaulich; den Nutzen fuer die jungen Menschen in den Vordergrund stellen, keine Floskeln.",
+        "maxZeichen": 2500
+      },
+      {
+        "id": "realisierungsplan",
+        "name": "Realisierungs- und Zeitplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Schritte sind zur Umsetzung geplant?",
+          "Wer ist verantwortlich und wie wird durchgefuehrt?",
+          "In welchem Zeitrahmen laeuft das Projekt?"
+        ],
+        "stilhinweis": "Strukturiert mit nachvollziehbaren Meilensteinen; realistische Machbarkeit zeigen.",
+        "maxZeichen": 2000
+      },
+      {
+        "id": "finanzplan",
+        "name": "Gesamtkosten und Foerderbetrag",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie hoch sind die Gesamtkosten (Material, Honorare, Anschaffung, Sonstiges)?",
+          "Welcher Foerderbetrag wird von der Stiftung erbeten?",
+          "Welche Eigenmittel, Zuschuesse und sonstigen Quellen tragen mit?"
+        ],
+        "stilhinweis": "Tabellarisch und nachvollziehbar; ausgeschlossene Posten (laufendes Personal, Bau, Fahrzeuge) vermeiden.",
+        "maxZeichen": 1500
+      },
+      {
+        "id": "wirkung",
+        "name": "Ziel und Wirkung des Projekts",
+        "pflicht": false,
+        "leitfragen": [
+          "Welche konkrete Wirkung soll bei den Jugendlichen erzielt werden?",
+          "Wie wird der Erfolg sichtbar bzw. ueberpruefbar?",
+          "Wirkt das Projekt ueber den Foerderzeitraum hinaus?"
+        ],
+        "stilhinweis": "Wirkungsorientiert; den Stiftungszweck Bildung/Erziehung der Jugend explizit aufgreifen.",
+        "maxZeichen": 1500
+      }
+    ],
+    "anlagen": [
+      "Ausgefuelltes Foerderantragsformular der Stiftung",
+      "Bei groesseren Projekten: ausfuehrliche Vorhabensbeschreibung mit Realisierungsplan",
+      "Kosten-/Finanzierungsplan",
+      "Nachweis der Gemeinnuetzigkeit (Freistellungsbescheid)",
+      "Bankverbindung fuer die Mittelueberweisung"
+    ],
+    "einreichungsweg": "Foerderantragsformular von der Stiftungswebseite herunterladen und per Post oder E-Mail (info@reinhold-beitlich-stiftung.de) einreichen; Vorab-Anfragen auch telefonisch moeglich.",
+    "bearbeitungsdauer": "Keine festen Entscheidungstermine veroeffentlicht; Anfragen werden fortlaufend bearbeitet."
+  },
+  "notizen": [
+    "Antragsberechtigt sind ausschliesslich gemeinnuetzige Organisationen (eingetragene Vereine, Stiftungen, Genossenschaften) - Schulen reichen i. d. R. ueber ihren gemeinnuetzigen Foerderverein ein.",
+    "Gefoerdert werden ausschliesslich Projekte, keine institutionelle Dauerfinanzierung.",
+    "Ausdruecklich ausgeschlossen: reine Baumassnahmen, Fahrzeugbeschaffung und laufende Personalkosten.",
+    "Foerderung ist bundesweit moeglich; Projekte im Ausland werden nicht gefoerdert.",
+    "Schwerpunkt der Stiftung liegt auf Jugendlichen sowie erkrankten und beduerftigen Kindern; ein klarer Jugend-/Bildungsbezug ist zentral.",
+    "Foerderhoehen und Stichtage werden nicht veroeffentlicht - der gewuenschte Betrag wird projektbezogen beantragt."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Klares Bild des Vorhabens vermitteln",
+      "was_funktionierte": "Antraege, die Antragsteller, Vorhaben, Realisierungsplan, Gesamtkosten/Foerderbetrag und Zeitrahmen vollstaendig und in sich schluessig darstellen.",
+      "warum": "Die Richtlinie verlangt ausdruecklich, dass der Antrag der Stiftung 'ein klares Bild ueber das Vorhaben und den Foerdertatbestand' vermittelt - Vollstaendigkeit ist das zentrale Bewertungskriterium."
+    },
+    {
+      "thema": "Foerderfaehigkeit der Kostenpositionen sicherstellen",
+      "was_funktionierte": "Den Finanzplan auf Material, Honorare und projektbezogene Anschaffungen beschraenken und ausgeschlossene Posten konsequent vermeiden.",
+      "warum": "Laufendes Personal, Baumassnahmen und Fahrzeuge sind explizit ausgeschlossen; ein sauberer Finanzplan signalisiert Richtlinienkenntnis und verhindert formale Ablehnung."
+    },
+    {
+      "thema": "Jugend- und Bildungsnutzen in den Vordergrund stellen",
+      "was_funktionierte": "Konkrete Darstellung, wie viele Kinder/Jugendliche profitieren und welcher Bildungs-/Erziehungsbedarf gedeckt wird.",
+      "warum": "Der Stiftungszweck ist die Foerderung der Jugend in Bildung und Erziehung; Projekte mit erkennbarem, messbarem Nutzen fuer junge Menschen passen am besten zum Profil."
+    },
+    {
+      "thema": "Transparenter Finanzierungsmix",
+      "was_funktionierte": "Eigenmittel, weitere Zuschuesse und sonstige Quellen vollstaendig neben dem erbetenen Stiftungsbetrag ausweisen.",
+      "warum": "Das Antragsformular fragt diese Posten explizit ab; ein transparenter Mix mit erkennbarer Eigenbeteiligung erhoeht Glaubwuerdigkeit und Foerderwahrscheinlichkeit."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Antrag enthaelt ausgeschlossene Kosten (laufendes Personal, Baumassnahme oder Fahrzeug)",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Finanzplan vor Einreichung gegen die Ausschlussliste pruefen und nur projektbezogene Sach-, Honorar- und Anschaffungskosten ansetzen."
+    },
+    {
+      "grund": "Kein gemeinnuetziger Antragsteller bzw. fehlender Nachweis der Gemeinnuetzigkeit",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Antrag ueber den gemeinnuetzigen Foerderverein der Schule stellen und Freistellungsbescheid beilegen."
+    },
+    {
+      "grund": "Unvollstaendige oder unklare Vorhabensbeschreibung ohne Realisierungs- und Finanzplan",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Alle von der Richtlinie geforderten Bestandteile (Antragsteller, Vorhaben, Plan, Kosten, Zeitrahmen) liefern - bei groesseren Projekten ausfuehrlich."
+    },
+    {
+      "grund": "Fehlender Projektcharakter (Antrag auf Dauerfinanzierung oder institutionelle Unterstuetzung)",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Ein zeitlich und inhaltlich abgegrenztes Projekt mit definiertem Anfang und Ende beantragen, keine laufenden Betriebskosten."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "vorhaben",
+      "formulierung": "Mit dem Projekt 'Lesen verbindet' richten wir an unserer Foerderschule eine woechentliche Leise-Lese-AG fuer 24 Schuelerinnen und Schueler mit besonderem Foerderbedarf ein, um Lesekompetenz und Selbstvertrauen gezielt zu staerken.",
+      "kontext": "Eroeffnungssatz der Kurzbeschreibung - benennt Titel, Zielgruppe, Umfang und Bildungsnutzen in einem Satz."
+    },
+    {
+      "abschnitt_id": "finanzplan",
+      "formulierung": "Die Gesamtkosten betragen 4.800 EUR (Materialkosten 1.800 EUR, Honorar Lese-Patin 2.400 EUR, Anschaffung Buecher 600 EUR); davon tragen wir 1.200 EUR aus Foerdervereinsmitteln, sodass wir die Stiftung um einen Zuschuss von 3.600 EUR bitten.",
+      "kontext": "Finanzplan mit klar getrennten, foerderfaehigen Positionen und ausgewiesener Eigenbeteiligung."
+    },
+    {
+      "abschnitt_id": "realisierungsplan",
+      "formulierung": "Das Projekt startet zum Schuljahresbeginn im September und laeuft ueber zwei Schulhalbjahre; die Durchfuehrung verantwortet die Klassenlehrerin gemeinsam mit einer extern beauftragten Lese-Patin.",
+      "kontext": "Zeitrahmen und Verantwortlichkeiten knapp und nachvollziehbar - zeigt Machbarkeit."
+    },
+    {
+      "abschnitt_id": "wirkung",
+      "formulierung": "Den Erfolg messen wir an der Leseflüssigkeit zu Beginn und Ende des Schuljahres; erfahrungsgemaess kann die AG nach Anlauffinanzierung mit eigenen Mitteln des Foerdervereins fortgefuehrt werden.",
+      "kontext": "Wirkungsnachweis plus Nachhaltigkeit ueber den Foerderzeitraum hinaus."
+    }
+  ],
+  "fristLogik": {
+    "typ": "rolling"
+  },
+  "version": "2026-06-01"
+}

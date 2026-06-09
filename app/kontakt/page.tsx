@@ -10,7 +10,7 @@ export default function KontaktPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen" style={{ backgroundColor: "#0a1628" }}>
+      <main className="min-h-screen" style={{ backgroundColor: "#f8f5f0" }}>
         {/* Hero */}
         <section className="relative pt-32 pb-20 overflow-hidden">
           <div className="absolute inset-0 opacity-10">
@@ -30,10 +30,10 @@ export default function KontaktPage() {
                 style={{ backgroundColor: "rgba(201, 162, 39, 0.1)", color: "#c9a227" }}>
                 Kontakt
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "#f8f5f0" }}>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "#0a1628" }}>
                 Wir sind für Sie <span style={{ color: "#c9a227" }}>da</span>
               </h1>
-              <p className="text-lg" style={{ color: "#94a3b8" }}>
+              <p className="text-lg" style={{ color: "#64748b" }}>
                 Haben Sie Fragen zu Fördermitteln oder unserer Plattform? 
                 Kontaktieren Sie uns - wir helfen gerne weiter.
               </p>
@@ -51,7 +51,7 @@ export default function KontaktPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <h2 className="text-2xl font-bold mb-8" style={{ color: "#f8f5f0" }}>
+                <h2 className="text-2xl font-bold mb-8" style={{ color: "#0a1628" }}>
                   So erreichen Sie uns
                 </h2>
                 
@@ -62,9 +62,8 @@ export default function KontaktPage() {
                       <Mail className="w-5 h-5" style={{ color: "#c9a227" }} />
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-1" style={{ color: "#f8f5f0" }}>E-Mail</h3>
-                      <a href="mailto:office@aitema.de" className="hover:text-amber-400 transition-colors"
-                        style={{ color: "#94a3b8" }}>
+                      <h3 className="font-semibold mb-1" style={{ color: "#0a1628" }}>E-Mail</h3>
+                      <a href="mailto:office@aitema.de" className="text-[#c9a227] hover:text-[#e4c55a] transition-colors underline underline-offset-2">
                         office@aitema.de
                       </a>
                     </div>
@@ -76,9 +75,8 @@ export default function KontaktPage() {
                       <Phone className="w-5 h-5" style={{ color: "#c9a227" }} />
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-1" style={{ color: "#f8f5f0" }}>Telefon</h3>
-                      <a href="tel:+491234567890" className="hover:text-amber-400 transition-colors"
-                        style={{ color: "#94a3b8" }}>
+                      <h3 className="font-semibold mb-1" style={{ color: "#0a1628" }}>Telefon</h3>
+                      <a href="tel:+491234567890" className="text-[#c9a227] hover:text-[#e4c55a] transition-colors underline underline-offset-2">
                         +49 (0) 123 456 7890
                       </a>
                     </div>
@@ -90,8 +88,8 @@ export default function KontaktPage() {
                       <Clock className="w-5 h-5" style={{ color: "#c9a227" }} />
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-1" style={{ color: "#f8f5f0" }}>Erreichbarkeit</h3>
-                      <p style={{ color: "#94a3b8" }}>
+                      <h3 className="font-semibold mb-1" style={{ color: "#0a1628" }}>Erreichbarkeit</h3>
+                      <p style={{ color: "#64748b" }}>
                         Mo-Fr: 9:00 - 17:00 Uhr
                       </p>
                     </div>
@@ -103,8 +101,8 @@ export default function KontaktPage() {
                       <MapPin className="w-5 h-5" style={{ color: "#c9a227" }} />
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-1" style={{ color: "#f8f5f0" }}>Anschrift</h3>
-                      <p style={{ color: "#94a3b8" }}>
+                      <h3 className="font-semibold mb-1" style={{ color: "#0a1628" }}>Anschrift</h3>
+                      <p style={{ color: "#64748b" }}>
                         EduFunds by Aitema GmbH<br />
                         Musterstraße 123<br />
                         10115 Berlin
@@ -120,15 +118,15 @@ export default function KontaktPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="p-8 rounded-2xl"
-                style={{ backgroundColor: "rgba(30, 58, 97, 0.3)", border: "1px solid rgba(201, 162, 39, 0.2)" }}
+                style={{ backgroundColor: "white", border: "1px solid rgba(10, 22, 40, 0.08)" }}
               >
-                <h2 className="text-2xl font-bold mb-6" style={{ color: "#f8f5f0" }}>
+                <h2 className="text-2xl font-bold mb-6" style={{ color: "#0a1628" }}>
                   Nachricht senden
                 </h2>
                 
                 <form className="space-y-4" action="/api/contact" method="POST">
                   <div>
-                    <label className="block text-sm font-medium mb-2" style={{ color: "#94a3b8" }}>
+                    <label className="block text-sm font-medium mb-2" style={{ color: "#64748b" }}>
                       Name *
                     </label>
                     <input
@@ -137,9 +135,9 @@ export default function KontaktPage() {
                       required
                       className="w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2"
                       style={{ 
-                        backgroundColor: "rgba(10, 22, 40, 0.5)",
-                        borderColor: "rgba(201, 162, 39, 0.3)",
-                        color: "#f8f5f0"
+                        backgroundColor: "white",
+                        borderColor: "rgba(10, 22, 40, 0.15)",
+                        color: "#0a1628"
                       }}
                       placeholder="Ihr Name"
                     />
@@ -207,14 +205,13 @@ export default function KontaktPage() {
                       className="mt-1"
                     />
                     <label className="text-sm" style={{ color: "#94a3b8" }}>
-                      Ich habe die <Link href="/datenschutz" className="underline hover:text-amber-400">Datenschutzerklärung</Link> gelesen und stimme zu. *
+                      Ich habe die <Link href="/datenschutz" className="text-[#c9a227] hover:text-[#e4c55a] underline underline-offset-2">Datenschutzerklärung</Link> gelesen und stimme zu. *
                     </label>
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-4 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all hover:opacity-90"
-                    style={{ backgroundColor: "#c9a227", color: "#0a1628" }}
+                    className="w-full py-4 rounded-xl btn-primary"
                   >
                     <Send className="w-5 h-5" />
                     Nachricht senden

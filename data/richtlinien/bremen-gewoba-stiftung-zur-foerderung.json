@@ -1,0 +1,260 @@
+{
+  "version": "2026-06-01",
+  "quellen": [
+    "https://www.foerdersuche.org/foerderung/gewoba-stiftung-zur-foerderung-der-bildung-im-oeffentlichen-schulwesen",
+    "https://www.gewoba.de/gewoba/ueber-uns/gewoba-stiftung/richtlinien",
+    "https://www.gewoba.de/unternehmen/ueber-uns/gewoba-stiftung",
+    "https://foerderdatenbank.d-s-e-e.de/institutionen/2704-gewoba-stiftung-zur-foerderung-der-bildung-im-oeffentlichen-schulwesen"
+  ],
+  "foerderhoehe": {
+    "maxEur": 4000,
+    "bemerkung": "Maximal 4.000 EUR pro Schule und Projekt, im Durchschnitt rund 3.000 EUR. Die Stiftung verteilt jaehrlich insgesamt etwa 80.000 bis 100.000 EUR auf rund 120 Antraege. Zuschuss als Projektfoerderung, keine Daueranschubfinanzierung."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "maxEur": 4000,
+      "bedingungen": [
+        "Direkter Projektbezug zum Schulvorhaben",
+        "Beschaffung fuer ein konkretes, abgegrenztes Projekt"
+      ],
+      "beispielePasst": [
+        "Material fuer eine Schul-AG (Werkstatt, Kunst, Naturwissenschaft)",
+        "Buecher und Lesefoerdermaterial",
+        "Sportgeraete fuer ein Bewegungsprojekt"
+      ],
+      "beispielePasstNicht": [
+        "Laufende Betriebskosten der Schule",
+        "Anschaffungen ohne konkreten Projektbezug"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Investition dient unmittelbar dem gefoerderten Schulprojekt",
+        "Im Gesamtbudget unter der 4.000-EUR-Obergrenze"
+      ],
+      "beispielePasst": [
+        "Ausstattung fuer einen Schulgarten oder ein Forschungslabor",
+        "Musikinstrumente fuer ein Schulorchester-Projekt"
+      ],
+      "beispielePasstNicht": [
+        "Bauliche Massnahmen am Schulgebaeude (Traegeraufgabe)",
+        "Grossgeraete ohne Projektzweck"
+      ]
+    },
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Honorar fuer externe Projektleitung, Kuenstler oder Referenten",
+        "Klar dem Projektzeitraum zugeordnet"
+      ],
+      "beispielePasst": [
+        "Honorar fuer einen Kuenstler in einem Kulturprojekt",
+        "Workshop-Leitung fuer ein Projekt zur Voelkerverstaendigung"
+      ],
+      "beispielePasstNicht": [
+        "Vereinnahmung als reguläre Lehrervergütung",
+        "Daueranstellung von Personal"
+      ]
+    },
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Reise findet im Inland statt",
+        "Unmittelbarer Bezug zum gefoerderten Projekt"
+      ],
+      "beispielePasst": [
+        "Exkursion oder Projektfahrt einer Schulklasse innerhalb Deutschlands"
+      ],
+      "beispielePasstNicht": [
+        "Projekte oder Reisen im Ausland (ausdruecklich ausgeschlossen)"
+      ]
+    },
+    {
+      "kategorie": "personal",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Keine Foerderung laufender Personalstellen der Schule"
+      ],
+      "beispielePasst": [],
+      "beispielePasstNicht": [
+        "Festanstellung von Lehr- oder Verwaltungskraeften"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": false,
+    "formenErlaubt": [
+      "finanziell",
+      "eigenarbeit",
+      "drittmittel"
+    ],
+    "bemerkung": "Die Stiftung schreibt keinen festen Eigenmittelanteil vor. Da die Foerderung pro Projekt auf 4.000 EUR gedeckelt ist, finanzieren groessere Vorhaben den Rest typischerweise ueber Eigenmittel, Spenden oder Mittel des Foerdervereins."
+  },
+  "kumulierung": {
+    "erlaubt": true,
+    "bedingungen": [
+      "Kombination mit anderen Spenden, Drittmitteln oder Foerdervereinsmitteln moeglich",
+      "Pro Schule und Projekt bleibt die Stiftungsfoerderung auf maximal 4.000 EUR begrenzt"
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "antragsteller-traegerschaft",
+        "name": "Antragsteller und Traegerschaft",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Bremer/Bremerhavener Schule, welcher Eltern- oder Foerderverein stellt den Antrag?",
+          "Wer ist die verantwortliche Ansprechperson (Schulleitung, Lehrkraft, Vereinsvorstand)?",
+          "Liegt der Taetigkeitsschwerpunkt der Schule nachweislich in Bremen oder Bremerhaven?"
+        ],
+        "stilhinweis": "Sachlich und vollstaendig; Bezug zum oeffentlichen Schulwesen Bremens klar benennen."
+      },
+      {
+        "id": "projektbeschreibung",
+        "name": "Projektbeschreibung und Ziele",
+        "pflicht": true,
+        "leitfragen": [
+          "Welches konkrete Schulprojekt soll umgesetzt werden?",
+          "Welchem Foerderbereich ist es zuzuordnen (Wissenschaft, Kunst/Kultur, Sport, Voelkerverstaendigung, Erziehung/Bildung)?",
+          "Welches paedagogische Ziel verfolgt das Projekt fuer die Schuelerinnen und Schueler?"
+        ],
+        "stilhinweis": "Konkret und anschaulich; ein klar abgegrenztes Vorhaben statt allgemeiner Absichtserklaerungen."
+      },
+      {
+        "id": "zielgruppe-wirkung",
+        "name": "Zielgruppe und Wirkung",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie viele Schuelerinnen und Schueler welcher Jahrgaenge profitieren?",
+          "Welcher nachhaltige Nutzen bleibt nach Projektende fuer die Schule?",
+          "Wie wird die Beteiligung der Schueler sichergestellt?"
+        ],
+        "stilhinweis": "Wirkung messbar machen (Teilnehmerzahlen, Nachnutzung)."
+      },
+      {
+        "id": "kosten-finanzierung",
+        "name": "Kosten- und Finanzierungsplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Einzelpositionen umfasst das Projektbudget?",
+          "Welcher Betrag (max. 4.000 EUR) wird von der Stiftung beantragt?",
+          "Welche Eigen- oder Drittmittel decken den Rest?"
+        ],
+        "stilhinweis": "Nachvollziehbare Einzelaufstellung; Stiftungsanteil und sonstige Finanzierung getrennt ausweisen."
+      },
+      {
+        "id": "zeitplan-umsetzung",
+        "name": "Zeitplan und Umsetzung",
+        "pflicht": true,
+        "leitfragen": [
+          "Wann beginnt und endet das Projekt im Foerderjahr?",
+          "Welche Umsetzungsschritte sind geplant?",
+          "Wer setzt das Projekt vor Ort um?"
+        ],
+        "stilhinweis": "Realistischer Zeitplan, der zum Foerderjahr nach der November-Frist passt."
+      },
+      {
+        "id": "nachhaltigkeit-nachweis",
+        "name": "Nachhaltigkeit und Verwendungsnachweis",
+        "pflicht": false,
+        "leitfragen": [
+          "Wie wird die zweckgebundene Verwendung der Mittel belegt?",
+          "Wie wirkt das Projekt ueber den Foerderzeitraum hinaus?"
+        ],
+        "stilhinweis": "Bereitschaft zu einfachem Verwendungsnachweis signalisieren; Nachhaltigkeit betonen."
+      }
+    ],
+    "anlagen": [
+      "Ausgefuelltes Antragsformular der GEWOBA-Stiftung",
+      "Detaillierter Kosten- und Finanzierungsplan",
+      "Optional: kurze Projektskizze oder Fotos/Belege bei Folgeantraegen"
+    ],
+    "einreichungsweg": "Schriftlich an den Vorstand der GEWOBA-Stiftung mittels Antragsformular (von der Stiftungswebseite). Einreichung per Briefpost an Rembertiring 27, 28195 Bremen oder per E-Mail an stiftung@gewoba.de; telefonische Vorabanfrage moeglich.",
+    "bearbeitungsdauer": "Entscheidung durch den Stiftungsvorstand fuer das jeweils folgende Foerderjahr"
+  },
+  "notizen": [
+    "Foerdergebiet strikt auf Bremen und Bremerhaven begrenzt; Projekte im Ausland sind ausgeschlossen.",
+    "Schulen, die nicht selbst juristisch beantragen koennen, sollten den Antrag ueber ihren Foerder- oder Elternverein stellen.",
+    "Quellen nennen zwei Fristangaben (Ende November fuer das Folgejahr bzw. 30. September) - vor Einreichung die aktuelle Frist auf der Stiftungswebseite verifizieren."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Klar abgegrenztes Einzelprojekt",
+      "was_funktionierte": "Antraege, die ein konkretes, zeitlich begrenztes Schulprojekt mit klarem paedagogischem Ziel beschreiben, ueberzeugen den Vorstand staerker als allgemeine Wunschlisten.",
+      "warum": "Die Stiftung foerdert projektgebunden bis 4.000 EUR und will den konkreten Nutzen fuer Schueler erkennen."
+    },
+    {
+      "thema": "Zuordnung zu einem Foerderbereich",
+      "was_funktionierte": "Eindeutige Einordnung in einen der Stiftungsbereiche (Wissenschaft, Kunst/Kultur, Sport, Voelkerverstaendigung, Erziehung/Bildung) erleichtert die positive Bewertung.",
+      "warum": "Der Stiftungszweck ist auf diese Bildungsbereiche im oeffentlichen Schulwesen festgelegt."
+    },
+    {
+      "thema": "Antrag ueber den Foerderverein",
+      "was_funktionierte": "Bei Schulen ohne eigene Antragsbefugnis hat die Einreichung ueber den Eltern- oder Foerderverein als ausdruecklich zugelassenen Antragsteller funktioniert.",
+      "warum": "Die Richtlinien nennen Eltern- und Foerdervereine explizit als berechtigte Antragsteller."
+    },
+    {
+      "thema": "Realistischer, gedeckelter Kostenplan",
+      "was_funktionierte": "Budgets, die den Stiftungsanteil bei maximal 4.000 EUR halten und Restkosten ueber Eigen-/Drittmittel decken, vermeiden Rueckfragen.",
+      "warum": "Die Foerdersumme ist hart gedeckelt; ein realistischer Plan zeigt Durchfinanzierung."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Projekt findet im Ausland statt oder hat keinen Bezug zu Bremen/Bremerhaven",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Sicherstellen, dass die antragstellende Schule ihren Taetigkeitsschwerpunkt in Bremen oder Bremerhaven hat und das Projekt im Inland stattfindet."
+    },
+    {
+      "grund": "Antrag betrifft Traegeraufgaben wie Bau oder laufende Betriebs-/Personalkosten statt eines Bildungsprojekts",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Auf ein abgegrenztes paedagogisches Projekt fokussieren, nicht auf Grundausstattung oder Pflichtaufgaben des Schultraegers."
+    },
+    {
+      "grund": "Beantragte Summe ueberschreitet die Obergrenze von 4.000 EUR pro Projekt",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Stiftungsanteil auf maximal 4.000 EUR begrenzen und groessere Vorhaben anteilig oder in Teilprojekten finanzieren."
+    },
+    {
+      "grund": "Unklare oder fehlende Projekt- und Kostenangaben im Antragsformular",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Antragsformular vollstaendig ausfuellen, Ziele konkret beschreiben und einen nachvollziehbaren Kostenplan beilegen."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "projektbeschreibung",
+      "formulierung": "Mit dem Projekt richtet unsere Schule eine woechentliche Forscher-AG ein, in der Schuelerinnen und Schueler der Klassen 5 und 6 eigenstaendig naturwissenschaftliche Experimente durchfuehren und so an wissenschaftliches Arbeiten herangefuehrt werden.",
+      "kontext": "Zuordnung zum Foerderbereich Wissenschaft und Forschung mit konkreter Zielgruppe."
+    },
+    {
+      "abschnitt_id": "kosten-finanzierung",
+      "formulierung": "Die Gesamtkosten betragen 5.200 EUR; bei der GEWOBA-Stiftung beantragen wir den Hoechstbetrag von 4.000 EUR, die verbleibenden 1.200 EUR traegt der Foerderverein aus Spendenmitteln.",
+      "kontext": "Transparente Aufteilung von Stiftungsanteil und Eigenmitteln innerhalb der Obergrenze."
+    },
+    {
+      "abschnitt_id": "zielgruppe-wirkung",
+      "formulierung": "Von dem Projekt profitieren unmittelbar rund 60 Schuelerinnen und Schueler; die angeschafften Materialien bleiben der Schule erhalten und werden in den Folgejahren weitergenutzt.",
+      "kontext": "Wirkung und Nachhaltigkeit konkret beziffert."
+    },
+    {
+      "abschnitt_id": "antragsteller-traegerschaft",
+      "formulierung": "Antragsteller ist der Foerderverein der Grundschule Musterstrasse e.V. fuer die gleichnamige oeffentliche Grundschule mit Taetigkeitsschwerpunkt in Bremen.",
+      "kontext": "Einreichung ueber den Foerderverein als zugelassenen Antragsteller."
+    }
+  ],
+  "fristLogik": {
+    "typ": "fixe_stichtage",
+    "stichtage": [
+      "2026-11-30"
+    ],
+    "jaehrlich_wiederkehrend": true
+  }
+}

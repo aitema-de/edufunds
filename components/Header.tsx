@@ -12,12 +12,13 @@ import {
   Info,
   CreditCard,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const navItems = [
   {
     href: "/foerderprogramme",
     label: "Förderprogramme",
-    badge: "20+",
+    badge: "130+",
     icon: Search,
   },
   {
@@ -60,9 +61,9 @@ export function Header() {
       {/* Skip to main content */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-orange-500 focus:text-slate-900 focus:px-4 focus:py-2 focus:rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-[#0f1f38] focus:text-[#c9a227] focus:px-3 focus:py-1.5 focus:rounded-md focus:outline-none focus:ring-1 focus:ring-[#c9a227]/50 text-xs"
       >
-        Zum Hauptinhalt springen
+        Inhalt überspringen
       </a>
 
       <header
@@ -74,12 +75,12 @@ export function Header() {
         <div className="container mx-auto flex items-center justify-between px-4 h-16">
           {/* Logo */}
           <Link href="/" className="group flex items-center gap-2" aria-label="EduFunds - Zur Startseite">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-lg group-hover:shadow-orange-500/25 transition-shadow">
-              <span className="text-xl font-bold text-white">€</span>
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#c9a227] to-[#e4c55a] flex items-center justify-center shadow-lg group-hover:shadow-[#c9a227]/35 transition-shadow">
+              <span className="text-xl font-bold text-[#0a1628]">€</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-lg text-slate-100">EduFunds</span>
-              <span className="text-[10px] text-slate-400 -mt-1">Schulförderung</span>
+              <span className="font-bold text-lg text-[#f8f5f0]">EduFunds</span>
+              <span className="text-[10px] text-[#94a3b8] -mt-1">Schulförderung</span>
             </div>
           </Link>
 
@@ -89,52 +90,47 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="group relative px-4 py-2 text-sm font-medium text-slate-300 transition-all hover:text-orange-400 rounded-lg hover:bg-slate-800/50"
+                className="group relative px-4 py-2 text-sm font-medium text-[#94a3b8] transition-all hover:text-[#c9a227] rounded-lg hover:bg-[#f8f5f0]/5"
               >
                 <span className="flex items-center gap-2">
                   {item.label}
                   {item.badge && (
-                    <span className="px-1.5 py-0.5 text-[10px] font-semibold rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/20">
+                    <span className="px-1.5 py-0.5 text-[10px] font-semibold rounded-full bg-[#c9a227]/20 text-[#c9a227] border border-[#c9a227]/20">
                       {item.badge}
                     </span>
                   )}
                 </span>
-                <span className="absolute bottom-0.5 left-4 right-4 h-0.5 bg-gradient-to-r from-orange-500 to-amber-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
+                <span className="absolute bottom-0.5 left-4 right-4 h-0.5 bg-gradient-to-r from-[#c9a227] to-[#e4c55a] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
               </Link>
             ))}
           </nav>
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex lg:items-center lg:gap-3">
-            <Link
-              href="/kontakt"
-              className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-slate-100 transition-colors"
-            >
-              Kontakt
-            </Link>
-            <Link
-              href="/foerderprogramme"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl btn-primary text-sm font-semibold"
-            >
-              <Sparkles className="w-4 h-4" />
-              Programme entdecken
-            </Link>
+            <Button asChild size="sm">
+              <Link href="/foerderprogramme">
+                <Sparkles className="w-4 h-4" />
+                Programme entdecken
+              </Link>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
+          <Button
+            variant="ghost"
+            size="icon"
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-xl glass hover:bg-slate-800/50 transition-colors"
+            className="lg:hidden rounded-xl"
             aria-label={isOpen ? "Menü schließen" : "Menü öffnen"}
           >
-            {isOpen ? <X className="w-5 h-5 text-slate-300" /> : <Menu className="w-5 h-5 text-slate-300" />}
-          </button>
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </Button>
         </div>
 
         {/* Scroll progress */}
-        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-slate-700/30">
+        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0a1628]/30">
           <div
-            className="h-full bg-gradient-to-r from-orange-500 to-amber-500 transition-all duration-150"
+            className="h-full bg-gradient-to-r from-[#c9a227] to-[#e4c55a] transition-all duration-150"
             style={{ width: `${scrollProgress}%` }}
           />
         </div>
@@ -169,12 +165,12 @@ export function Header() {
                     <Link
                       href={item.href}
                       onClick={() => setIsOpen(false)}
-                      className="flex items-center gap-3 p-4 rounded-xl glass hover:bg-slate-800/50 transition-colors"
+                      className="flex items-center gap-3 p-4 rounded-xl glass hover:bg-[#f8f5f0]/5 transition-colors"
                     >
-                      <item.icon className="w-5 h-5 text-orange-400" />
-                      <span className="text-slate-200">{item.label}</span>
+                      <item.icon className="w-5 h-5 text-[#c9a227]" />
+                      <span className="text-[#f8f5f0]">{item.label}</span>
                       {item.badge && (
-                        <span className="ml-auto px-2 py-0.5 text-xs font-semibold rounded-full bg-orange-500/20 text-orange-400">
+                        <span className="ml-auto px-2 py-0.5 text-xs font-semibold rounded-full bg-[#c9a227]/20 text-[#c9a227]">
                           {item.badge}
                         </span>
                       )}
@@ -188,23 +184,15 @@ export function Header() {
                 transition={{ duration: 0.3, delay: 0.3 }}
                 className="mt-6 space-y-3"
               >
-                <Link
-                  href="/kontakt"
-                  onClick={() => setIsOpen(false)}
-                  className="block w-full text-center p-4 rounded-xl border border-slate-600 text-slate-300 hover:border-orange-500 hover:text-orange-400 transition-colors"
-                >
-                  Kontakt
-                </Link>
-                <Link
-                  href="/foerderprogramme"
-                  onClick={() => setIsOpen(false)}
-                  className="block w-full text-center p-4 rounded-xl btn-primary"
-                >
-                  <span className="flex items-center justify-center gap-2">
+                <Button asChild className="w-full">
+                  <Link
+                    href="/foerderprogramme"
+                    onClick={() => setIsOpen(false)}
+                  >
                     <Sparkles className="w-4 h-4" />
                     Programme entdecken
-                  </span>
-                </Link>
+                  </Link>
+                </Button>
               </motion.div>
             </motion.div>
           </motion.div>
