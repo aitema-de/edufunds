@@ -19,8 +19,7 @@ const footerLinks = {
     title: "Unternehmen",
     links: [
       { label: "Über uns", href: "/ueber-uns" },
-      { label: "Kontakt", href: "/kontakt" },
-      { label: "Blog", href: "/blog" }
+      { label: "Kontakt", href: "/kontakt" }
     ]
   },
   legal: {

@@ -81,7 +81,7 @@ export function Header() {
               alt="EduFunds"
               width={344}
               height={120}
-              className="h-9 w-auto transition-transform group-hover:scale-[1.02]"
+              className="h-[54px] w-auto transition-transform group-hover:scale-[1.02]"
             />
           </Link>
 
