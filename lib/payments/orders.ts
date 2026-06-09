@@ -123,6 +123,104 @@ export async function createOrder(input: OrderInput): Promise<OrderRecord> {
   };
 }
 
+// ---------------------------------------------------------------------------
+// B3 — Self-Service-Kontingent per Karte
+// ---------------------------------------------------------------------------
+
+export interface QuotaCardResult {
+  creditCode: string;
+  credits: number;
+  packId: string;
+  packLabel: string;
+  amountCents: number;
+  orgName?: string;
+  email?: string;
+  /** true, wenn diese Stripe-Session bereits zu einem Code verarbeitet war (Webhook-Retry). */
+  alreadyExisted: boolean;
+}
+
+interface CreditCodeRow {
+  code: string;
+  credits_total: number;
+  org_name: string | null;
+  purchaser_email: string | null;
+}
+
+async function findCodeByStripeSession(
+  stripeSessionId: string
+): Promise<CreditCodeRow | null> {
+  const res = await query<CreditCodeRow>(
+    `SELECT code, credits_total, org_name, purchaser_email
+       FROM credit_codes WHERE stripe_session_id = $1 LIMIT 1`,
+    [stripeSessionId]
+  );
+  return res.rowCount && res.rowCount > 0 ? res.rows[0] : null;
+}
+
+function rowToCardResult(r: CreditCodeRow, pack: Pack): QuotaCardResult {
+  return {
+    creditCode: r.code,
+    credits: r.credits_total,
+    packId: pack.id,
+    packLabel: pack.label,
+    amountCents: pack.priceCents,
+    orgName: r.org_name ?? undefined,
+    email: r.purchaser_email ?? undefined,
+    alreadyExisted: true,
+  };
+}
+
+/**
+ * Loest einen bezahlten Kartenkauf eines Kontingents ein: erzeugt — idempotent
+ * pro Stripe-Checkout-Session — einen Sammel-Code (Quelle "stripe", 12 Monate).
+ * Wird vom Stripe-Webhook (metadata.mode=org_quota) aufgerufen. `alreadyExisted`
+ * signalisiert eine erneute Zustellung desselben Events (dann KEINE zweite Mail).
+ */
+export async function fulfillQuotaCardPurchase(params: {
+  stripeSessionId: string;
+  packId: string;
+  orgName?: string;
+  email?: string;
+}): Promise<QuotaCardResult> {
+  const pack = getPack(params.packId);
+  if (!pack || !pack.isQuota) {
+    throw new Error(`Unbekanntes oder nicht bestellbares Paket: ${params.packId}`);
+  }
+
+  // Idempotenz: bereits verarbeitet?
+  const existing = await findCodeByStripeSession(params.stripeSessionId);
+  if (existing) return rowToCardResult(existing, pack);
+
+  try {
+    const code = await createCreditCode({
+      creditsTotal: pack.credits,
+      orgName: params.orgName,
+      purchaserEmail: params.email,
+      source: "stripe",
+      expiresAt: expiresAtISO(),
+      stripeSessionId: params.stripeSessionId,
+    });
+    return {
+      creditCode: code.code,
+      credits: code.creditsTotal,
+      packId: pack.id,
+      packLabel: pack.label,
+      amountCents: pack.priceCents,
+      orgName: params.orgName,
+      email: params.email,
+      alreadyExisted: false,
+    };
+  } catch (e: unknown) {
+    // Race: parallele Webhook-Zustellung legte den Code zwischen SELECT und INSERT an.
+    const err = e as { code?: string; constraint?: string } | null;
+    if (err?.code === "23505" && err.constraint === "uniq_credit_codes_stripe_session") {
+      const again = await findCodeByStripeSession(params.stripeSessionId);
+      if (again) return rowToCardResult(again, pack);
+    }
+    throw e;
+  }
+}
+
 export interface EmailContent {
   subject: string;
   html: string;
@@ -239,6 +337,83 @@ export function buildOrderAdminEmail(order: OrderRecord): EmailContent {
     order.billingAddress,
     ``,
     `=> Formelle Rechnung erstellen und an ${order.email} senden.`,
+  ];
+  const text = lines.join("\n");
+  const html = `<pre style="font-family:monospace;font-size:13px">${escapeHtml(
+    lines.join("\n")
+  )}</pre>`;
+  return { subject, html, text };
+}
+
+/**
+ * Bestaetigung fuer den KARTENKAUF eines Kontingents (B3): Zahlung ist bereits
+ * erfolgt — keine Bankverbindung, nur Code + Quittungsbetrag.
+ */
+export function buildQuotaCardConfirmationEmail(result: QuotaCardResult): EmailContent {
+  const vat = vatBreakdown(result.amountCents);
+  const amount = formatEur(result.amountCents);
+  const vatAmount = formatEur(vat.vatCents);
+
+  const subject = `EduFunds — Ihr Kontingent (${result.credits} Antraege) ist freigeschaltet`;
+
+  const text = [
+    `Vielen Dank fuer Ihren Kauf bei EduFunds — Ihre Zahlung ist eingegangen.`,
+    ``,
+    `Paket:   ${result.packLabel} (${result.credits} Antraege)`,
+    `Betrag:  ${amount} (inkl. ${vatAmount} MwSt)`,
+    ``,
+    `Ihr Kontingent-Code:  ${result.creditCode}`,
+    `Gueltig fuer ${result.credits} Foerderantraege, 12 Monate ab heute.`,
+    `Geben Sie den Code an Ihre Lehrkraefte weiter — sie schalten damit ihre`,
+    `fertigen Antraege frei, ohne selbst zu zahlen.`,
+    ``,
+    `Eine formelle Rechnung erhalten Sie separat. Bei Rueckfragen: office@aitema.de.`,
+  ].join("\n");
+
+  const html = `
+  <div style="font-family:Arial,Helvetica,sans-serif;color:#0a1628;max-width:560px;margin:0 auto;line-height:1.5">
+    <h2 style="color:#0a1628">Zahlung eingegangen — vielen Dank</h2>
+    <p>Ihr Kontingent fuer <strong>${result.credits} Foerderantraege</strong> ist freigeschaltet.</p>
+
+    <div style="background:#f5f3ec;border:1px solid #c9a227;border-radius:10px;padding:16px;margin:18px 0">
+      <p style="margin:0 0 6px;font-size:13px;color:#64748b">Ihr Kontingent-Code</p>
+      <p style="margin:0;font-size:24px;font-weight:bold;letter-spacing:2px;font-family:monospace;color:#0a1628">${escapeHtml(result.creditCode)}</p>
+      <p style="margin:10px 0 0;font-size:13px;color:#64748b">
+        Gueltig fuer ${result.credits} Antraege, 12 Monate ab heute. Geben Sie den Code an Ihre
+        Lehrkraefte weiter — sie schalten damit ihre fertigen Antraege frei, ohne selbst zu zahlen.
+      </p>
+    </div>
+
+    <table style="width:100%;border-collapse:collapse;font-size:14px;margin:18px 0">
+      <tr><td style="padding:4px 0;color:#64748b">Paket</td><td style="padding:4px 0;text-align:right">${escapeHtml(result.packLabel)}</td></tr>
+      <tr><td style="padding:4px 0;color:#64748b">Bezahlt (inkl. 19 % MwSt)</td><td style="padding:4px 0;text-align:right"><strong>${amount}</strong></td></tr>
+      <tr><td style="padding:4px 0;color:#64748b">davon MwSt</td><td style="padding:4px 0;text-align:right">${vatAmount}</td></tr>
+    </table>
+
+    <p style="font-size:13px;color:#64748b;margin-top:18px">
+      Eine formelle Rechnung erhalten Sie separat. Bei Rueckfragen erreichen Sie uns unter
+      <a href="mailto:office@aitema.de" style="color:#c9a227">office@aitema.de</a>.
+    </p>
+  </div>`;
+
+  return { subject, html, text };
+}
+
+/** Interne Benachrichtigung an aitema ueber einen Kontingent-Kartenkauf (B3). */
+export function buildQuotaCardAdminEmail(result: QuotaCardResult): EmailContent {
+  const amount = formatEur(result.amountCents);
+  const subject = `Neuer Kontingent-Kartenkauf — ${result.orgName ?? result.email ?? "unbekannt"} (${amount})`;
+  const lines = [
+    `Neuer Kontingent-Kauf per Karte (Stripe, B3):`,
+    ``,
+    `Paket:           ${result.packLabel} (${result.credits} Antraege)`,
+    `Betrag:          ${amount} inkl. MwSt (bezahlt)`,
+    `Kontingent-Code: ${result.creditCode} (freigeschaltet)`,
+    ``,
+    `Organisation:    ${result.orgName ?? "—"}`,
+    `E-Mail:          ${result.email ?? "—"}`,
+    ``,
+    `=> Formelle Rechnung erstellen und an ${result.email ?? "den Kaeufer"} senden.`,
   ];
   const text = lines.join("\n");
   const html = `<pre style="font-family:monospace;font-size:13px">${escapeHtml(

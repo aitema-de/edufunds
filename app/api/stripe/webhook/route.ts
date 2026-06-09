@@ -1,7 +1,54 @@
 import { NextRequest, NextResponse } from "next/server";
 import type Stripe from "stripe";
+import { Resend } from "resend";
 import { getStripe, stripeConfigured } from "@/lib/stripe/client";
 import { markSessionPaid } from "@/lib/wizard/session";
+import {
+  fulfillQuotaCardPurchase,
+  buildQuotaCardConfirmationEmail,
+  buildQuotaCardAdminEmail,
+  type QuotaCardResult,
+} from "@/lib/payments/orders";
+
+const FROM_EMAIL = process.env.FROM_EMAIL ?? "EduFunds <noreply@aitema.de>";
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? "office@aitema.de";
+
+/**
+ * Verschickt die Bestaetigungs-/Admin-Mail fuer einen Kontingent-Kartenkauf (B3).
+ * Best-effort: der Code steht bereits in der DB; Mailfehler werden nur geloggt.
+ * RESEND_API_KEY wird zur Laufzeit gelesen (nicht beim Modul-Load).
+ */
+async function sendQuotaCardMails(result: QuotaCardResult): Promise<void> {
+  const resendApiKey = process.env.RESEND_API_KEY;
+  if (!resendApiKey) {
+    console.warn("[stripe/webhook] RESEND_API_KEY fehlt — keine Kontingent-Mail versendet.");
+    return;
+  }
+  const resend = new Resend(resendApiKey);
+  try {
+    if (result.email) {
+      const confirm = buildQuotaCardConfirmationEmail(result);
+      await resend.emails.send({
+        from: FROM_EMAIL,
+        to: result.email,
+        subject: confirm.subject,
+        html: confirm.html,
+        text: confirm.text,
+      });
+    }
+    const admin = buildQuotaCardAdminEmail(result);
+    await resend.emails.send({
+      from: FROM_EMAIL,
+      to: ADMIN_EMAIL,
+      subject: admin.subject,
+      html: admin.html,
+      text: admin.text,
+      replyTo: result.email,
+    });
+  } catch (mailErr) {
+    console.error("[stripe/webhook] Kontingent-Mailversand fehlgeschlagen:", mailErr);
+  }
+}
 
 export const runtime = "nodejs";
 // Wichtig: Stripe braucht den ROHEN Body zur Signatur-Pruefung.
@@ -43,6 +90,38 @@ export async function POST(req: NextRequest) {
     switch (event.type) {
       case "checkout.session.completed": {
         const cs = event.data.object as Stripe.Checkout.Session;
+
+        // B3 — Self-Service-Kontingent per Karte: eigener Pfad, erzeugt einen
+        // Kontingent-Code (idempotent pro Session) statt eine Wizard-Session zu
+        // bezahlen.
+        if (cs.metadata?.mode === "org_quota") {
+          if (cs.payment_status !== "paid") {
+            console.warn(
+              `[stripe/webhook] org_quota, aber payment_status=${cs.payment_status} fuer ${cs.id}`
+            );
+            break;
+          }
+          const packId = (cs.metadata?.pack_id as string | undefined) ?? "";
+          const result = await fulfillQuotaCardPurchase({
+            stripeSessionId: cs.id,
+            packId,
+            orgName: (cs.metadata?.org_name as string | undefined) ?? undefined,
+            email:
+              cs.customer_details?.email ??
+              (cs.metadata?.purchaser_email as string | undefined) ??
+              undefined,
+          });
+          console.log(
+            `[stripe/webhook] org_quota ${cs.id} -> code=${result.creditCode} ` +
+              `credits=${result.credits} (alreadyExisted=${result.alreadyExisted})`
+          );
+          // Mail nur beim ERSTEN Verarbeiten (kein Doppelversand bei Retry).
+          if (!result.alreadyExisted) {
+            await sendQuotaCardMails(result);
+          }
+          break;
+        }
+
         const token = (cs.metadata?.wizard_session_token as string | undefined) ?? null;
         if (!token) {
           console.warn("[stripe/webhook] checkout.session.completed ohne wizard_session_token");
@@ -58,6 +137,7 @@ export async function POST(req: NextRequest) {
           stripeSessionId: cs.id,
           stripeCustomerEmail: cs.customer_details?.email ?? undefined,
           tier: (cs.metadata?.tier as string | undefined) ?? "einzelantrag",
+          source: "card",
         });
         console.log(
           `[stripe/webhook] Session ${token} -> paid (paidToken=${updated.paidToken})`

@@ -56,6 +56,17 @@ jest.mock("@/lib/wizard/session", () => ({
   markSessionPaid: jest.fn(),
 }));
 
+// orders + resend mocken, damit route.ts nicht transitiv `pg` (TextEncoder
+// fehlt in jsdom) laedt. Der org_quota-Pfad wird separat getestet.
+jest.mock("@/lib/payments/orders", () => ({
+  fulfillQuotaCardPurchase: jest.fn(),
+  buildQuotaCardConfirmationEmail: jest.fn(() => ({ subject: "s", html: "h", text: "t" })),
+  buildQuotaCardAdminEmail: jest.fn(() => ({ subject: "s", html: "h", text: "t" })),
+}));
+jest.mock("resend", () => ({
+  Resend: jest.fn().mockImplementation(() => ({ emails: { send: jest.fn() } })),
+}));
+
 import { POST } from "@/app/api/stripe/webhook/route";
 import { getStripe, stripeConfigured } from "@/lib/stripe/client";
 import { markSessionPaid } from "@/lib/wizard/session";
@@ -161,6 +172,7 @@ describe("stripe/webhook — Signatur-Pruefung (D-07)", () => {
       stripeSessionId: "cs_test_1",
       stripeCustomerEmail: "buyer@example.com",
       tier: "einzelantrag",
+      source: "card",
     });
   });
 
