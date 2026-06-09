@@ -130,6 +130,16 @@ export interface EmailContent {
 }
 
 /** Baut die Bestellbestaetigung (Betrag, Bankverbindung, Verwendungszweck, Code). */
+/** HTML-Escaping fuer alle benutzerkontrollierten Felder an HTML-E-Mail-Senken. */
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export function buildOrderConfirmationEmail(order: OrderRecord): EmailContent {
   const pack = getPack(order.packId) as Pack;
   const bank = getBankDetails();
@@ -172,7 +182,7 @@ export function buildOrderConfirmationEmail(order: OrderRecord): EmailContent {
 
     <div style="background:#f5f3ec;border:1px solid #c9a227;border-radius:10px;padding:16px;margin:18px 0">
       <p style="margin:0 0 6px;font-size:13px;color:#64748b">Ihr Kontingent-Code</p>
-      <p style="margin:0;font-size:24px;font-weight:bold;letter-spacing:2px;font-family:monospace;color:#0a1628">${order.creditCode}</p>
+      <p style="margin:0;font-size:24px;font-weight:bold;letter-spacing:2px;font-family:monospace;color:#0a1628">${escapeHtml(order.creditCode)}</p>
       <p style="margin:10px 0 0;font-size:13px;color:#64748b">
         Gueltig fuer ${order.credits} Antraege, 12 Monate ab heute. Geben Sie den Code an Ihre
         Lehrkraefte weiter — sie schalten damit ihre fertigen Antraege frei, ohne selbst zu zahlen.
@@ -180,9 +190,9 @@ export function buildOrderConfirmationEmail(order: OrderRecord): EmailContent {
     </div>
 
     <table style="width:100%;border-collapse:collapse;font-size:14px;margin:18px 0">
-      <tr><td style="padding:4px 0;color:#64748b">Bestellnummer</td><td style="padding:4px 0;text-align:right"><strong>${order.orderNumber}</strong></td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">Organisation</td><td style="padding:4px 0;text-align:right">${order.orgName}</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">Paket</td><td style="padding:4px 0;text-align:right">${pack.label}</td></tr>
+      <tr><td style="padding:4px 0;color:#64748b">Bestellnummer</td><td style="padding:4px 0;text-align:right"><strong>${escapeHtml(order.orderNumber)}</strong></td></tr>
+      <tr><td style="padding:4px 0;color:#64748b">Organisation</td><td style="padding:4px 0;text-align:right">${escapeHtml(order.orgName)}</td></tr>
+      <tr><td style="padding:4px 0;color:#64748b">Paket</td><td style="padding:4px 0;text-align:right">${escapeHtml(pack.label)}</td></tr>
       <tr><td style="padding:4px 0;color:#64748b">Betrag (inkl. 19 % MwSt)</td><td style="padding:4px 0;text-align:right"><strong>${amount}</strong></td></tr>
       <tr><td style="padding:4px 0;color:#64748b">davon MwSt</td><td style="padding:4px 0;text-align:right">${vatAmount}</td></tr>
     </table>
@@ -190,11 +200,11 @@ export function buildOrderConfirmationEmail(order: OrderRecord): EmailContent {
     <h3 style="color:#0a1628;margin-bottom:6px">Zahlung per Ueberweisung</h3>
     <p style="font-size:13px;color:#64748b;margin:0 0 8px">Zahlungsziel ${PAYMENT_TERM_DAYS} Tage (bis ${dueDateDe}).</p>
     <table style="width:100%;border-collapse:collapse;font-size:14px">
-      <tr><td style="padding:4px 0;color:#64748b">Empfaenger</td><td style="padding:4px 0;text-align:right">${bank.accountHolder}</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">IBAN</td><td style="padding:4px 0;text-align:right;font-family:monospace">${bank.iban}</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">BIC</td><td style="padding:4px 0;text-align:right;font-family:monospace">${bank.bic}</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">Bank</td><td style="padding:4px 0;text-align:right">${bank.bankName}</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">Verwendungszweck</td><td style="padding:4px 0;text-align:right"><strong>${order.orderNumber}</strong></td></tr>
+      <tr><td style="padding:4px 0;color:#64748b">Empfaenger</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.accountHolder)}</td></tr>
+      <tr><td style="padding:4px 0;color:#64748b">IBAN</td><td style="padding:4px 0;text-align:right;font-family:monospace">${escapeHtml(bank.iban)}</td></tr>
+      <tr><td style="padding:4px 0;color:#64748b">BIC</td><td style="padding:4px 0;text-align:right;font-family:monospace">${escapeHtml(bank.bic)}</td></tr>
+      <tr><td style="padding:4px 0;color:#64748b">Bank</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.bankName)}</td></tr>
+      <tr><td style="padding:4px 0;color:#64748b">Verwendungszweck</td><td style="padding:4px 0;text-align:right"><strong>${escapeHtml(order.orderNumber)}</strong></td></tr>
     </table>
 
     <p style="font-size:13px;color:#64748b;margin-top:18px">
@@ -231,9 +241,8 @@ export function buildOrderAdminEmail(order: OrderRecord): EmailContent {
     `=> Formelle Rechnung erstellen und an ${order.email} senden.`,
   ];
   const text = lines.join("\n");
-  const html = `<pre style="font-family:monospace;font-size:13px">${lines
-    .join("\n")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")}</pre>`;
+  const html = `<pre style="font-family:monospace;font-size:13px">${escapeHtml(
+    lines.join("\n")
+  )}</pre>`;
   return { subject, html, text };
 }
