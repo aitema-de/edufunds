@@ -5,6 +5,7 @@ import { z } from "zod";
 import { Resend } from "resend";
 import { createMagicLink } from "@/lib/wizard/identity";
 import { buildMagicLinkEmail } from "@/lib/wizard/identity-mail";
+import { trustedAppUrl } from "@/lib/app-url";
 
 const FROM_EMAIL = process.env.FROM_EMAIL ?? "EduFunds <noreply@aitema.de>";
 
@@ -13,14 +14,6 @@ const bodySchema = z.object({
   website: z.string().optional(), // Honeypot (muss leer sein)
   timestamp: z.number().optional(), // Ladezeit (>= 3s vor Absenden)
 });
-
-function appUrl(req: NextRequest): string {
-  return (
-    process.env.NEXT_PUBLIC_APP_URL ??
-    req.headers.get("origin") ??
-    `${new URL(req.url).protocol}//${req.headers.get("host")}`
-  );
-}
 
 /**
  * „Anträge geräteübergreifend abrufen": verschickt einen Magic-Link an die
@@ -50,11 +43,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Link-Basis NUR aus vertrauenswürdiger Server-Config (kein Host-Header) —
+    // fail-safe gegen Host-Header-Injection / Token-Diebstahl.
     const resendApiKey = process.env.RESEND_API_KEY;
-    if (resendApiKey) {
+    const base = trustedAppUrl();
+    if (resendApiKey && base) {
       try {
         const token = await createMagicLink(email);
-        const verifyUrl = `${appUrl(req)}/api/antrag/verify?token=${token}`;
+        const verifyUrl = `${base}/api/antrag/verify?token=${token}`;
         const mail = buildMagicLinkEmail(verifyUrl);
         await new Resend(resendApiKey).emails.send({
           from: FROM_EMAIL,
@@ -67,7 +63,9 @@ export async function POST(req: NextRequest) {
         console.error("[api/antrag/magic-link] Mailversand fehlgeschlagen:", mailErr);
       }
     } else {
-      console.warn("[api/antrag/magic-link] RESEND_API_KEY fehlt — kein Magic-Link versendet.");
+      console.warn(
+        "[api/antrag/magic-link] RESEND_API_KEY oder NEXT_PUBLIC_APP_URL fehlt — kein Magic-Link versendet."
+      );
     }
 
     return NextResponse.json({ ok: true });

@@ -5,6 +5,7 @@ import { z } from "zod";
 import { Resend } from "resend";
 import { bindAuthorEmail, createMagicLink } from "@/lib/wizard/identity";
 import { buildMagicLinkEmail } from "@/lib/wizard/identity-mail";
+import { trustedAppUrl } from "@/lib/app-url";
 
 const FROM_EMAIL = process.env.FROM_EMAIL ?? "EduFunds <noreply@aitema.de>";
 
@@ -12,14 +13,6 @@ const bodySchema = z.object({
   sessionToken: z.string().min(8, "sessionToken erforderlich"),
   email: z.string().trim().email("Gültige E-Mail-Adresse erforderlich").max(200),
 });
-
-function appUrl(req: NextRequest): string {
-  return (
-    process.env.NEXT_PUBLIC_APP_URL ??
-    req.headers.get("origin") ??
-    `${new URL(req.url).protocol}//${req.headers.get("host")}`
-  );
-}
 
 /**
  * Opt-in im Wizard: bindet den aktuellen Antrag an die E-Mail des Autors und
@@ -43,11 +36,14 @@ export async function POST(req: NextRequest) {
     }
 
     // Magic-Link senden (best-effort — Bindung ist bereits persistiert).
+    // Die Link-Basis kommt NUR aus vertrauenswürdiger Server-Config (kein
+    // Host-Header) — sonst kein Versand (fail-safe gegen Host-Header-Injection).
     const resendApiKey = process.env.RESEND_API_KEY;
-    if (resendApiKey) {
+    const base = trustedAppUrl();
+    if (resendApiKey && base) {
       try {
         const token = await createMagicLink(email);
-        const verifyUrl = `${appUrl(req)}/api/antrag/verify?token=${token}`;
+        const verifyUrl = `${base}/api/antrag/verify?token=${token}`;
         const mail = buildMagicLinkEmail(verifyUrl);
         await new Resend(resendApiKey).emails.send({
           from: FROM_EMAIL,
@@ -60,7 +56,9 @@ export async function POST(req: NextRequest) {
         console.error("[api/antrag/bind-email] Mailversand fehlgeschlagen:", mailErr);
       }
     } else {
-      console.warn("[api/antrag/bind-email] RESEND_API_KEY fehlt — kein Magic-Link versendet.");
+      console.warn(
+        "[api/antrag/bind-email] RESEND_API_KEY oder NEXT_PUBLIC_APP_URL fehlt — kein Magic-Link versendet."
+      );
     }
 
     return NextResponse.json({ ok: true });
