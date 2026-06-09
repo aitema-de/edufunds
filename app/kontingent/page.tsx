@@ -377,7 +377,7 @@ export default function KontingentPage() {
                     Rechnungsdaten
                   </h2>
 
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-4 [&>label]:!mt-0">
                     <Field label="Organisation / Schulträger *">
                       <input required value={form.orgName} onChange={(e) => update("orgName", e.target.value)} style={inputStyle} />
                     </Field>
@@ -396,7 +396,7 @@ export default function KontingentPage() {
                     <textarea required rows={3} value={form.billingAddress} onChange={(e) => update("billingAddress", e.target.value)} style={inputStyle} placeholder="Name, Straße, PLZ Ort" />
                   </Field>
 
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-4 [&>label]:!mt-0">
                     <Field label="Bestellnummer / Aktenzeichen (optional)">
                       <input value={form.poNumber} onChange={(e) => update("poNumber", e.target.value)} style={inputStyle} />
                     </Field>
@@ -449,7 +449,7 @@ export default function KontingentPage() {
                     Sofort per Karte bezahlen
                   </h2>
 
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-4 [&>label]:!mt-0">
                     <Field label="Organisation / Schulträger *">
                       <input
                         required
