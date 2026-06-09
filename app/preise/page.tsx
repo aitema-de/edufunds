@@ -7,8 +7,15 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { PricingCard } from "@/components/PricingCard";
 import { useState } from "react";
+import {
+  EINZELPREIS_CENTS,
+  quotaPacks,
+  formatEur,
+  pricePerCreditCents,
+} from "@/lib/payments/packs";
 
-const pricingPlans = [
+// Einzel-Optionen (Verein / einzelnes Projekt). Preis aus packs.ts (Single Source).
+const introPlans = [
   {
     name: "Freemium",
     description: "Ideal zum Ausprobieren",
@@ -24,7 +31,6 @@ const pricingPlans = [
       { text: "Deadline-Tracking", included: true },
       { text: "KI-Antragsgenerierung", included: false },
       { text: "PDF-Export", included: false },
-      { text: "Support", included: false },
     ],
     ctaText: "Kostenlos starten",
     ctaLink: "/registrieren",
@@ -33,71 +39,59 @@ const pricingPlans = [
   },
   {
     name: "Einzelantrag",
-    description: "Für spontane Projekte",
-    price: "29,90 €",
+    description: "Für ein einzelnes Projekt",
+    price: formatEur(EINZELPREIS_CENTS),
     period: "",
-    priceSubtext: "Einmalige Zahlung",
+    priceSubtext: "Einmalige Zahlung · kein Abo",
     icon: Sparkles,
     features: [
       { text: "Alle Freemium-Funktionen", included: true },
       { text: "1 KI-generierter Antrag", included: true },
       { text: "PDF-Export", included: true },
-      { text: "30 Tage E-Mail-Support", included: true },
-      { text: "Antrags-Review", included: true },
-      { text: "Weitere Anträge", included: false },
-      { text: "Prioritäts-Support", included: false },
-      { text: "Team-Funktionen", included: false },
+      { text: "Bezahlung per Karte am Download", included: true },
+      { text: "E-Mail-Support", included: true },
     ],
     ctaText: "Antrag starten",
     ctaLink: "/foerderprogramme",
     highlighted: false,
     badge: undefined,
   },
-  {
-    name: "Jahresabo",
-    description: "Für aktive Schulen",
-    price: "149 €",
-    period: "/ Jahr",
-    priceSubtext: "5 Anträge inkl. | Weitere: 14,90 €",
-    icon: Building2,
-    features: [
-      { text: "5 Anträge pro Jahr inklusive", included: true },
-      { text: "Unbegrenzte Suche & Filter", included: true },
-      { text: "KI-Antragsgenerierung", included: true },
-      { text: "PDF-Export", included: true },
-      { text: "Prioritäts-Support", included: true },
-      { text: "Deadline-Tracking", included: true },
-      { text: "Antrags-Review", included: true },
-      { text: "Team-Funktionen", included: false },
-    ],
-    ctaText: "Anfragen",
-    ctaLink: "/kontakt",
-    highlighted: true,
-    badge: "Empfohlen",
-  },
-  {
-    name: "Schulträger-Abo",
-    description: "Für Bildungsträger",
-    price: "249 €",
-    period: "/ Jahr",
-    priceSubtext: "Weitere Anträge: 9,90 €",
-    icon: Users,
-    features: [
-      { text: "20 Anträge pro Jahr inklusive", included: true },
-      { text: "Mehrbenutzer-Account (bis 5)", included: true },
-      { text: "Premium-Support", included: true },
-      { text: "Schulungsangebot inklusive", included: true },
-      { text: "KI-Antragsgenerierung", included: true },
-      { text: "PDF-Export", included: true },
-      { text: "Team-Funktionen", included: true },
-      { text: "API-Zugriff", included: true },
-    ],
-    ctaText: "Anfragen",
-    ctaLink: "/kontakt",
-    highlighted: false,
-    badge: "Bestes Preis-Leistung",
-  },
 ];
+
+// Kontingent-Pakete (Schule / Träger). Preise + Anzahl aus packs.ts (Single Source),
+// Anzeigetexte hier in deutscher Schreibweise (packs.ts haelt ASCII fuer Tooling/Stripe).
+const quotaCopy: Record<
+  string,
+  { description: string; icon: React.ElementType; badge?: string }
+> = {
+  pack5: { description: "Für Schulen mit einzelnen Projekten", icon: Building2 },
+  pack10: { description: "Für aktive Schulen mit mehreren Vorhaben", icon: Building2, badge: "Empfohlen" },
+  pack20: { description: "Für Schulträger mit mehreren Schulen", icon: Users, badge: "Bester Stückpreis" },
+};
+
+const quotaPlans = quotaPacks().map((pack) => {
+  const copy = quotaCopy[pack.id] ?? { description: "", icon: Building2 };
+  return {
+    name: `${pack.credits} Anträge`,
+    description: copy.description,
+    price: formatEur(pack.priceCents),
+    period: "",
+    priceSubtext: `${formatEur(pricePerCreditCents(pack))} pro Antrag · inkl. MwSt`,
+    icon: copy.icon,
+    features: [
+      { text: `${pack.credits} Anträge freischaltbar`, included: true },
+      { text: "KI-Antragsgenerierung & PDF-Export", included: true },
+      { text: "Ein Sammel-Code für alle Lehrkräfte", included: true },
+      { text: "Lehrkräfte zahlen nichts selbst", included: true },
+      { text: "Kauf per Rechnung oder Karte", included: true },
+      { text: "12 Monate gültig · kein Abo", included: true },
+    ],
+    ctaText: "Kontingent kaufen",
+    ctaLink: "/kontingent",
+    highlighted: pack.id === "pack10",
+    badge: copy.badge,
+  };
+});
 
 const faqs = [
   {
@@ -111,19 +105,24 @@ const faqs = [
       "Unsere KI analysiert die spezifischen Anforderungen des gewählten Förderprogramms und kombiniert diese mit Ihren Projektinformationen. Sie erstellt professionelle Antragstexte, die auf erfolgreichen Vorlagen basieren und von Pädagogen optimiert wurden. Die KI berücksichtigt Fristen, Förderkriterien und formale Anforderungen.",
   },
   {
-    question: "Kann ich zwischen den Tarifen wechseln?",
+    question: "Brauche ich ein Abonnement?",
     answer:
-      "Ja, Sie können jederzeit upgraden. Wenn Sie vom Freemium-Plan auf einen Bezahlplan wechseln, erhalten Sie sofortigen Zugriff auf alle Funktionen. Bei einem Upgrade von Einzelantrag auf Jahresabo wird die Differenz angerechnet. Ein Downgrade ist zum Ende der Laufzeit möglich.",
+      "Nein. EduFunds hat kein Abo. Die Suche ist kostenlos, ein einzelner Antrag kostet einmalig 29,90 €, und Kontingente sind Vorkasse-Pakete (Prepaid): Sie kaufen N Anträge im Voraus, es gibt keine automatische Verlängerung und keine wiederkehrende Zahlung.",
+  },
+  {
+    question: "Wie funktioniert ein Kontingent für Schulen & Träger?",
+    answer:
+      "Sie kaufen ein Paket (5, 10 oder 20 Anträge) per Rechnung oder Karte und erhalten einen Sammel-Code. Diesen geben Sie an Ihre Lehrkräfte weiter – sie schalten damit ihre fertigen Anträge frei, ohne selbst zu zahlen. Ein Credit wird erst beim Freischalten eines fertigen Antrags verbraucht; abgebrochene Entwürfe kosten nichts. Das Kontingent ist 12 Monate ab Kauf gültig.",
   },
   {
     question: "Was passiert mit meinen Anträgen?",
     answer:
-      "Alle Ihre Anträge bleiben auch nach Ablauf des Abonnements in Ihrem Account gespeichert und einsehbar. Sie können sie jederzeit als PDF exportieren. Neu generierte Anträge erfordern jedoch ein aktives Abonnement oder einen Einzelkauf.",
+      "Alle generierten Anträge bleiben in Ihrem Account gespeichert und einsehbar und lassen sich jederzeit als PDF exportieren. Für einen neuen Antrag wird ein freier Credit aus Ihrem Kontingent verbraucht oder ein Einzelantrag gekauft.",
   },
   {
-    question: "Gibt es eine Mindestlaufzeit?",
+    question: "Gibt es eine Mindestlaufzeit oder Kündigungsfrist?",
     answer:
-      "Für das Jahresabo und das Schulträger-Abo beträgt die Mindestlaufzeit 12 Monate. Die Kündigung ist mit einer Frist von 30 Tagen zum Ende der Laufzeit möglich. Der Einzelantrag ist einmalig und unbefristet gültig.",
+      "Nein. Da es kein Abo gibt, entfallen Mindestlaufzeit und Kündigung vollständig. Der Einzelantrag ist einmalig, Kontingente sind ab Kauf 12 Monate gültig.",
   },
   {
     question: "Sind meine Daten sicher?",
@@ -250,8 +249,8 @@ export default function PricingPage() {
                 className="text-lg leading-relaxed"
                 style={{ color: "#94a3b8" }}
               >
-                Wählen Sie den passenden Plan für Ihre Schule. Starten Sie kostenlos
-                und skalieren Sie bei Bedarf. Keine versteckten Kosten.
+                Wählen Sie das passende Modell für Ihre Schule oder Ihren Träger.
+                Starten Sie kostenlos. Keine versteckten Kosten, kein Abo.
               </p>
             </motion.div>
 
@@ -303,8 +302,42 @@ export default function PricingPage() {
           style={{ backgroundColor: "#0a1628" }}
         >
           <div className="container mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto items-stretch">
-              {pricingPlans.map((plan, index) => (
+            {/* Einzel-Optionen: Verein / einzelnes Projekt */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto items-stretch">
+              {introPlans.map((plan, index) => (
+                <PricingCard
+                  key={plan.name}
+                  {...plan}
+                  delay={index * 0.1}
+                />
+              ))}
+            </div>
+
+            {/* Kontingent: Schule / Träger */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-center max-w-2xl mx-auto mt-24 mb-12"
+            >
+              <span
+                className="inline-block font-mono text-xs tracking-widest uppercase mb-4"
+                style={{ color: "#c9a227" }}
+              >
+                Für Schulen & Träger
+              </span>
+              <h2 className="font-serif mb-4" style={{ color: "#f8f5f0" }}>
+                Kontingent vorab freischalten
+              </h2>
+              <p className="text-base leading-relaxed" style={{ color: "#94a3b8" }}>
+                Ein Sammel-Code für mehrere Anträge – Ihre Lehrkräfte schalten frei,
+                ohne selbst zu zahlen. Vorkasse statt Abo, 12 Monate gültig.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch">
+              {quotaPlans.map((plan, index) => (
                 <PricingCard
                   key={plan.name}
                   {...plan}
@@ -321,11 +354,8 @@ export default function PricingPage() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="mt-16 text-center"
             >
-              <p
-                className="text-sm"
-                style={{ color: "#64748b" }}
-              >
-                Alle Preise verstehen sich inkl. MwSt.
+              <p className="text-sm" style={{ color: "#64748b" }}>
+                Alle Preise verstehen sich inkl. MwSt. Kein Abo, keine versteckten Kosten.
               </p>
             </motion.div>
           </div>
