@@ -166,6 +166,13 @@ export default function KontingentPage() {
               Kaufen Sie ein Kontingent – per Rechnung oder sofort per Karte. Ihre Lehrkräfte
               schalten ihre fertigen Anträge mit einem Code frei, ohne selbst zu zahlen.
             </p>
+            <a
+              href="/kontingent/uebersicht"
+              className="mt-4 inline-block text-sm font-medium underline"
+              style={{ color: GOLD }}
+            >
+              Schon ein Kontingent gekauft? Zur Übersicht
+            </a>
           </div>
         </section>
 

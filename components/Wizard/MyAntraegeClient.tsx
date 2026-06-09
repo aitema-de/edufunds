@@ -327,6 +327,12 @@ export function MyAntraegeClient() {
             )}
           </form>
         )}
+        <p className="mt-4 border-t border-[#0a1628]/10 pt-3 text-xs text-slate-500">
+          Kontingent für eine Schule/einen Träger gekauft?{" "}
+          <Link href="/kontingent/uebersicht" className="font-medium text-[#c9a227] underline">
+            Zur Käufer-Übersicht
+          </Link>
+        </p>
       </div>
 
       {/* Lokale Sessions (dieser Browser) */}

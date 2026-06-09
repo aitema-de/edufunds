@@ -5,12 +5,13 @@ import { z } from "zod";
 import { Resend } from "resend";
 import { createMagicLink } from "@/lib/wizard/identity";
 import { buildMagicLinkEmail } from "@/lib/wizard/identity-mail";
-import { trustedAppUrl } from "@/lib/app-url";
+import { trustedAppUrl, sanitizeNext } from "@/lib/app-url";
 
 const FROM_EMAIL = process.env.FROM_EMAIL ?? "EduFunds <noreply@aitema.de>";
 
 const bodySchema = z.object({
   email: z.string().trim().email("Gültige E-Mail-Adresse erforderlich").max(200),
+  next: z.string().optional(), // lokales Redirect-Ziel nach dem Klick (z. B. Käufer-Dashboard)
   website: z.string().optional(), // Honeypot (muss leer sein)
   timestamp: z.number().optional(), // Ladezeit (>= 3s vor Absenden)
 });
@@ -30,7 +31,7 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
-    const { email, website, timestamp } = parsed.data;
+    const { email, next, website, timestamp } = parsed.data;
 
     // Honeypot: gefuelltes verstecktes Feld -> stiller Erfolg (Bot abweisen).
     if (website && website.trim() !== "") {
@@ -50,7 +51,10 @@ export async function POST(req: NextRequest) {
     if (resendApiKey && base) {
       try {
         const token = await createMagicLink(email);
-        const verifyUrl = `${base}/api/antrag/verify?token=${token}`;
+        const safeNext = sanitizeNext(next);
+        const verifyUrl =
+          `${base}/api/antrag/verify?token=${token}` +
+          (safeNext ? `&next=${encodeURIComponent(safeNext)}` : "");
         const mail = buildMagicLinkEmail(verifyUrl);
         await new Resend(resendApiKey).emails.send({
           from: FROM_EMAIL,

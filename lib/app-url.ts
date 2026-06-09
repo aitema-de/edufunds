@@ -13,3 +13,15 @@ export function trustedAppUrl(): string | null {
   const trimmed = u.trim().replace(/\/+$/, "");
   return /^https?:\/\//.test(trimmed) ? trimmed : null;
 }
+
+/**
+ * Validiert einen „next"-Redirect-Pfad: nur lokale Pfade (Single-Slash-Start,
+ * kein protocol-relative `//`, keine Query/Fragmente/Doppelpunkte). Verhindert
+ * Open-Redirect über den Magic-Link. Liefert den Pfad oder null.
+ */
+export function sanitizeNext(value: string | null | undefined): string | null {
+  if (!value) return null;
+  if (value.startsWith("//")) return null;
+  if (!/^\/[A-Za-z0-9/_-]*$/.test(value)) return null;
+  return value;
+}
