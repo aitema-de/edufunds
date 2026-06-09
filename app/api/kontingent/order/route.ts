@@ -2,7 +2,6 @@ export const dynamic = "force-dynamic";
 
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { Resend } from "resend";
 import { getPack } from "@/lib/payments/packs";
 import {
   createOrder,
@@ -10,10 +9,8 @@ import {
   buildOrderAdminEmail,
   type OrderRecord,
 } from "@/lib/payments/orders";
+import { sendMail } from "@/lib/mail";
 
-const resendApiKey = process.env.RESEND_API_KEY;
-const resend = resendApiKey ? new Resend(resendApiKey) : null;
-const FROM_EMAIL = process.env.FROM_EMAIL ?? "EduFunds <noreply@aitema.de>";
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? "office@aitema.de";
 
 const orderSchema = z.object({
@@ -74,32 +71,16 @@ export async function POST(req: NextRequest) {
     });
 
     // Mails best-effort — die Bestellung ist bereits persistiert + Code freigegeben.
-    if (resend && resendApiKey) {
-      try {
-        const confirm = buildOrderConfirmationEmail(order);
-        await resend.emails.send({
-          from: FROM_EMAIL,
-          to: order.email,
-          subject: confirm.subject,
-          html: confirm.html,
-          text: confirm.text,
-        });
-        const admin = buildOrderAdminEmail(order);
-        await resend.emails.send({
-          from: FROM_EMAIL,
-          to: ADMIN_EMAIL,
-          subject: admin.subject,
-          html: admin.html,
-          text: admin.text,
-          replyTo: order.email,
-        });
-      } catch (mailErr) {
-        console.error("[api/kontingent/order] Mailversand fehlgeschlagen:", mailErr);
-        // Kein harter Fehler: Code steht in der DB, Mail kann manuell nachgeholt werden.
-      }
-    } else {
-      console.warn("[api/kontingent/order] RESEND_API_KEY fehlt — keine Mail versendet.");
-    }
+    const confirm = buildOrderConfirmationEmail(order);
+    await sendMail(
+      { to: order.email, subject: confirm.subject, html: confirm.html, text: confirm.text },
+      "api/kontingent/order"
+    );
+    const admin = buildOrderAdminEmail(order);
+    await sendMail(
+      { to: ADMIN_EMAIL, subject: admin.subject, html: admin.html, text: admin.text, replyTo: order.email },
+      "api/kontingent/order"
+    );
 
     return NextResponse.json({
       ok: true,

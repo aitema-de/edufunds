@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import type Stripe from "stripe";
-import { Resend } from "resend";
 import { getStripe, stripeConfigured } from "@/lib/stripe/client";
 import { markSessionPaid } from "@/lib/wizard/session";
 import {
@@ -9,45 +8,27 @@ import {
   buildQuotaCardAdminEmail,
   type QuotaCardResult,
 } from "@/lib/payments/orders";
+import { sendMail } from "@/lib/mail";
 
-const FROM_EMAIL = process.env.FROM_EMAIL ?? "EduFunds <noreply@aitema.de>";
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? "office@aitema.de";
 
 /**
  * Verschickt die Bestaetigungs-/Admin-Mail fuer einen Kontingent-Kartenkauf (B3).
- * Best-effort: der Code steht bereits in der DB; Mailfehler werden nur geloggt.
- * RESEND_API_KEY wird zur Laufzeit gelesen (nicht beim Modul-Load).
+ * Best-effort: der Code steht bereits in der DB; Mailfehler werden geloggt.
  */
 async function sendQuotaCardMails(result: QuotaCardResult): Promise<void> {
-  const resendApiKey = process.env.RESEND_API_KEY;
-  if (!resendApiKey) {
-    console.warn("[stripe/webhook] RESEND_API_KEY fehlt — keine Kontingent-Mail versendet.");
-    return;
+  if (result.email) {
+    const confirm = buildQuotaCardConfirmationEmail(result);
+    await sendMail(
+      { to: result.email, subject: confirm.subject, html: confirm.html, text: confirm.text },
+      "stripe/webhook"
+    );
   }
-  const resend = new Resend(resendApiKey);
-  try {
-    if (result.email) {
-      const confirm = buildQuotaCardConfirmationEmail(result);
-      await resend.emails.send({
-        from: FROM_EMAIL,
-        to: result.email,
-        subject: confirm.subject,
-        html: confirm.html,
-        text: confirm.text,
-      });
-    }
-    const admin = buildQuotaCardAdminEmail(result);
-    await resend.emails.send({
-      from: FROM_EMAIL,
-      to: ADMIN_EMAIL,
-      subject: admin.subject,
-      html: admin.html,
-      text: admin.text,
-      replyTo: result.email,
-    });
-  } catch (mailErr) {
-    console.error("[stripe/webhook] Kontingent-Mailversand fehlgeschlagen:", mailErr);
-  }
+  const admin = buildQuotaCardAdminEmail(result);
+  await sendMail(
+    { to: ADMIN_EMAIL, subject: admin.subject, html: admin.html, text: admin.text, replyTo: result.email },
+    "stripe/webhook"
+  );
 }
 
 export const runtime = "nodejs";
