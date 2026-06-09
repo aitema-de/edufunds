@@ -25,7 +25,7 @@
  *   2  CLI-Fehler / Korpus-Validation fehlgeschlagen / Snapshot-Fehler
  */
 
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile, readdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { execFile as execFileCb } from "node:child_process";
 import { promisify } from "node:util";
@@ -299,15 +299,36 @@ export async function loadReplaySnapshot(
   entryId: string,
   runIndex: number
 ): Promise<PipelineSnapshot> {
-  const snapPath = resolve(replayDir, `${entryId}-run${runIndex}.json`);
+  let snapPath = resolve(replayDir, `${entryId}-run${runIndex}.json`);
   let raw: string;
   try {
     raw = await readFile(snapPath, "utf-8");
   } catch {
-    console.error(
-      `${LOG_PREFIX} Snapshot-Datei nicht gefunden: ${snapPath}`
+    // Fallback: angeforderter Run fehlt -> niedrigsten vorhandenen Run dieses
+    // Eintrags verwenden. Baseline-Snapshots koennen einzelne Run-Luecken haben
+    // (z. B. Generierungs-Fehler beim Baseline-Lauf); fuer den Replay genuegt
+    // ein repraesentativer Snapshot pro Eintrag.
+    let fallback: string | null = null;
+    try {
+      const candidates = (await readdir(replayDir))
+        .filter((f) => f.startsWith(`${entryId}-run`) && f.endsWith(".json"))
+        .map((f) => ({ f, n: parseInt(f.match(/-run(\d+)\.json$/)?.[1] ?? "999", 10) }))
+        .sort((a, b) => a.n - b.n);
+      if (candidates.length > 0) fallback = candidates[0].f;
+    } catch {
+      /* readdir-Fehler -> unten als nicht gefunden behandeln */
+    }
+    if (!fallback) {
+      console.error(
+        `${LOG_PREFIX} Snapshot-Datei nicht gefunden: ${snapPath} (kein Run fuer ${entryId} vorhanden)`
+      );
+      process.exit(2);
+    }
+    snapPath = resolve(replayDir, fallback);
+    console.warn(
+      `${LOG_PREFIX} ${entryId}-run${runIndex}.json fehlt — nutze ${fallback} als Ersatz.`
     );
-    process.exit(2);
+    raw = await readFile(snapPath, "utf-8");
   }
 
   let snap: PipelineSnapshot;
