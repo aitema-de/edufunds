@@ -462,7 +462,7 @@ export function WizardShell({ programm }: Props) {
         <KumulierungsWarnung conflicts={conflicts} onDismiss={() => setConflicts([])} />
         <div className="rounded-xl border border-[#0a1628]/10 bg-white/80 p-8 text-center">
         <h2 className="mb-2 text-2xl font-semibold text-[#0a1628]">
-          Neuer KI-Antragswizard
+          KI-Antragswizard
         </h2>
         <p className="mx-auto mb-6 max-w-xl text-slate-600">
           Der Wizard führt dich in 6–12 gezielten Fragen durch die relevanten Punkte für
