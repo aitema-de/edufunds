@@ -33,6 +33,7 @@ import { ReadinessAmpel } from "./ReadinessAmpel";
 import type { ReadinessReport } from "@/lib/wizard/facts-readiness";
 import { listLocalSessions } from "@/lib/wizard/session-index-client";
 import { WizardErrorBlock } from "./WizardErrorBlock";
+import { ResumeOptIn } from "./ResumeOptIn";
 
 interface WizardApiState {
   sessionToken: string;
@@ -158,7 +159,17 @@ export function WizardShell({ programm }: Props) {
   useEffect(() => {
     if (typeof window === "undefined") return;
     setSchoolProfile(loadSchoolProfile());
-    const existing = localStorage.getItem(storageKey);
+    // Cross-Device-Resume (B4): kommt ein ?session=<token> aus „Meine Anträge"
+    // (per Magic-Link auf einem anderen Gerät), uebernimm den Token und merke ihn
+    // lokal, damit kuenftige Besuche ohne Link weiterlaufen.
+    const params = new URLSearchParams(window.location.search);
+    const fromUrl = params.get("session");
+    if (fromUrl) {
+      localStorage.setItem(storageKey, fromUrl);
+      // URL bereinigen, damit der Token nicht im Verlauf/Share haengen bleibt.
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+    const existing = fromUrl ?? localStorage.getItem(storageKey);
     if (existing) {
       loadSession(existing);
     } else {
@@ -560,6 +571,9 @@ export function WizardShell({ programm }: Props) {
   return (
     <div className="grid gap-6 md:grid-cols-[1fr_320px]">
       <div>
+        <div className="mb-4">
+          <ResumeOptIn sessionToken={state.sessionToken} />
+        </div>
         {error && (
           <div className="mb-4">
             <WizardErrorBlock message={error} />
