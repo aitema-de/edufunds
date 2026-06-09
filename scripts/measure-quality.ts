@@ -5,6 +5,11 @@
  * Lauf:  npx tsx --env-file=.env.local scripts/measure-quality.ts [label]
  * Braucht nur DEEPSEEK_API_KEY.
  *
+ * Befund 2026-06-09 (siehe .planning/test-fix/QA-04-05-FINDINGS.md): QA-04 ist
+ * kein realer Defekt (maxOverlap ~0.01 selbst in den gemeldeten Laeufen); die
+ * QA-05-Marker-Metrik ist ueberwiegend Falsch-Positiv (KMK/MDM sind legitim) —
+ * nicht blind an Generierungs-Prompts schrauben, um Marker zu druecken.
+ *
  * Metriken (kleiner = besser):
  *  - QA02_hedgePosten: Finanzplan-Posten, deren Begründung Schätz-/Annahme-Sprache enthält (erfundene Beträge).
  *  - QA04_maxOverlap:  maximale 5-Wort-Shingle-Überlappung (Jaccard) zwischen zwei Abschnitten (Wiederholung).
