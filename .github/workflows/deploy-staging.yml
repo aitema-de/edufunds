@@ -1,8 +1,12 @@
 name: Deploy to Staging (Hetzner)
 
+# ACHTUNG (2026-06-09): Auto-Deploy bei Push auf `staging` ist DEAKTIVIERT.
+# Dieser Workflow ist VERALTET (Static-Export -> nginx:alpine) und wuerde den
+# aktuellen Next.js-Wizard-Staging-Container zerstoeren. Staging wird manuell
+# ueber ./scripts/deploy-staging.sh deployt (Next.js-Docker, .env.staging,
+# Dev-Mock-Paywall, pilot.edufunds.org-Router). Nur noch manuell ausloesbar.
+# TODO: Workflow auf den echten Docker-Deploy umschreiben, falls CI/CD gewuenscht.
 on:
-  push:
-    branches: [staging]
   workflow_dispatch:
 
 jobs:

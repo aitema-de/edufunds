@@ -1,8 +1,11 @@
 name: Build and Deploy EduFunds
 
+# 2026-06-09: `staging` aus den Push-Triggern entfernt — Staging wird manuell
+# ueber ./scripts/deploy-staging.sh deployt (s. deploy-staging.yml). `main`
+# (Production-Image-Build nach ghcr) bleibt unveraendert.
 on:
   push:
-    branches: [ main, staging ]
+    branches: [ main ]
   workflow_dispatch:
 
 env:
