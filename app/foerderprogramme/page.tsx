@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { Suspense, memo, useMemo, useCallback } from "react";
+import { Suspense, memo, useMemo, useCallback, useRef } from "react";
 import useSWR from "swr";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -180,6 +180,9 @@ export default function FoerderprogrammePage() {
     swrConfig
   );
 
+  // Ref auf den Anfang der Ergebnisliste (für Scroll-to-Top bei Seitenwechsel)
+  const listenAnfangRef = useRef<HTMLDivElement>(null);
+
   // Persistierter Filter-State
   const [filterState, setFilterState] = useLocalStorage('foerderprogramme-filters', {
     suchbegriff: "",
@@ -268,6 +271,12 @@ export default function FoerderprogrammePage() {
     items: gefilterteProgramme,
     itemsPerPage: 12,
   });
+
+  // Seitenwechsel: Seite wechseln und zum Listenanfang scrollen
+  const handlePageChange = useCallback((page: number) => {
+    goToPage(page);
+    listenAnfangRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [goToPage]);
 
   // Filter zurücksetzen
   const resetFilter = useCallback(() => {
@@ -459,7 +468,7 @@ export default function FoerderprogrammePage() {
           </div>
 
           {/* Ergebnis-Anzeige */}
-          <div className="mb-6">
+          <div className="mb-6 scroll-mt-28" ref={listenAnfangRef}>
             <h2 className="text-2xl font-bold text-[#0a1628]">
               {isLoading ? (
                 <span className="inline-block w-48 h-8 bg-[#ebe5dc] rounded animate-pulse" />
@@ -504,7 +513,7 @@ export default function FoerderprogrammePage() {
               <Pagination 
                 currentPage={currentPage} 
                 totalPages={totalPages} 
-                onPageChange={goToPage}
+                onPageChange={handlePageChange}
               />
             </>
           )}
