@@ -1,11 +1,11 @@
 /**
- * Kontingent-Rechnungskauf (B2) — Bestellung anlegen + Bestaetigungs-Mail bauen.
+ * Kontingent-Rechnungskauf (B2) — Bestellung anlegen + Bestätigungs-Mail bauen.
  *
  * Ablauf (D-7..D-10):
  *   1. Paket pruefen (nur Kontingent-Pakete, kein Einzelantrag).
- *   2. Kontingent-Code SOFORT erzeugen (Quelle "invoice", 12 Monate gueltig).
+ *   2. Kontingent-Code SOFORT erzeugen (Quelle "invoice", 12 Monate gültig).
  *   3. Bestellung (`org_orders`) mit Bestellnummer + Code persistieren.
- *   4. Aufrufer (Route) versendet die Bestaetigungs-Mail (Resend).
+ *   4. Aufrufer (Route) versendet die Bestätigungs-Mail (Resend).
  *
  * Die formelle Rechnung erstellt die Buchhaltung extern; die Mail ist eine
  * Bestellbestaetigung mit Bankverbindung, Verwendungszweck und Zahlungsziel.
@@ -49,7 +49,7 @@ export interface OrderRecord {
   createdAt: string;
 }
 
-/** Monate, die ein gekauftes Kontingent ab Kauf gueltig ist (D-10). */
+/** Monate, die ein gekauftes Kontingent ab Kauf gültig ist (D-10). */
 export const CREDIT_VALIDITY_MONTHS = 12;
 
 function expiresAtISO(from: Date = new Date()): string {
@@ -228,7 +228,7 @@ export interface EmailContent {
 }
 
 /** Baut die Bestellbestaetigung (Betrag, Bankverbindung, Verwendungszweck, Code). */
-/** HTML-Escaping fuer alle benutzerkontrollierten Felder an HTML-E-Mail-Senken. */
+/** HTML-Escaping für alle benutzerkontrollierten Felder an HTML-E-Mail-Senken. */
 function escapeHtml(s: string): string {
   return s
     .replace(/&/g, "&amp;")
@@ -247,43 +247,43 @@ export function buildOrderConfirmationEmail(order: OrderRecord): EmailContent {
   const vatAmount = formatEur(vat.vatCents);
   const dueDateDe = new Date(order.dueDate).toLocaleDateString("de-DE");
 
-  const subject = `EduFunds — Ihr Kontingent (${order.credits} Antraege) · Bestellung ${order.orderNumber}`;
+  const subject = `EduFunds — Ihr Kontingent (${order.credits} Anträge) · Bestellung ${order.orderNumber}`;
 
   const text = [
-    `Vielen Dank fuer Ihre Bestellung bei EduFunds.`,
+    `Vielen Dank für Ihre Bestellung bei EduFunds.`,
     ``,
     `Bestellnummer: ${order.orderNumber}`,
     `Organisation:  ${order.orgName}`,
-    `Paket:         ${pack.label} (${order.credits} Antraege)`,
+    `Paket:         ${pack.label} (${order.credits} Anträge)`,
     `Betrag:        ${amount} (inkl. ${vatAmount} MwSt, netto ${net})`,
     ``,
     `Ihr Kontingent-Code:  ${order.creditCode}`,
-    `Gueltig fuer ${order.credits} Foerderantraege, 12 Monate ab heute.`,
-    `Geben Sie den Code an Ihre Lehrkraefte weiter — sie schalten damit ihre`,
-    `fertigen Antraege frei, ohne selbst zu zahlen.`,
+    `Gültig für ${order.credits} Förderanträge, 12 Monate ab heute.`,
+    `Geben Sie den Code an Ihre Lehrkräfte weiter — sie schalten damit ihre`,
+    `fertigen Anträge frei, ohne selbst zu zahlen.`,
     ``,
-    `Zahlung per Ueberweisung (Zahlungsziel ${PAYMENT_TERM_DAYS} Tage, bis ${dueDateDe}):`,
-    `  Empfaenger:       ${bank.accountHolder}`,
+    `Zahlung per Überweisung (Zahlungsziel ${PAYMENT_TERM_DAYS} Tage, bis ${dueDateDe}):`,
+    `  Empfänger:       ${bank.accountHolder}`,
     `  IBAN:             ${bank.iban}`,
     `  BIC:              ${bank.bic}`,
     `  Bank:             ${bank.bankName}`,
     `  Betrag:           ${amount}`,
     `  Verwendungszweck: ${order.orderNumber}`,
     ``,
-    `Die formelle Rechnung erhalten Sie separat. Bei Rueckfragen: office@aitema.de.`,
+    `Die formelle Rechnung erhalten Sie separat. Bei Rückfragen: office@aitema.de.`,
   ].join("\n");
 
   const html = `
   <div style="font-family:Arial,Helvetica,sans-serif;color:#0a1628;max-width:560px;margin:0 auto;line-height:1.5">
-    <h2 style="color:#0a1628">Vielen Dank fuer Ihre Bestellung</h2>
-    <p>Ihr Kontingent fuer <strong>${order.credits} Foerderantraege</strong> ist freigeschaltet.</p>
+    <h2 style="color:#0a1628">Vielen Dank für Ihre Bestellung</h2>
+    <p>Ihr Kontingent für <strong>${order.credits} Förderanträge</strong> ist freigeschaltet.</p>
 
     <div style="background:#f5f3ec;border:1px solid #c9a227;border-radius:10px;padding:16px;margin:18px 0">
       <p style="margin:0 0 6px;font-size:13px;color:#64748b">Ihr Kontingent-Code</p>
       <p style="margin:0;font-size:24px;font-weight:bold;letter-spacing:2px;font-family:monospace;color:#0a1628">${escapeHtml(order.creditCode)}</p>
       <p style="margin:10px 0 0;font-size:13px;color:#64748b">
-        Gueltig fuer ${order.credits} Antraege, 12 Monate ab heute. Geben Sie den Code an Ihre
-        Lehrkraefte weiter — sie schalten damit ihre fertigen Antraege frei, ohne selbst zu zahlen.
+        Gültig für ${order.credits} Anträge, 12 Monate ab heute. Geben Sie den Code an Ihre
+        Lehrkräfte weiter — sie schalten damit ihre fertigen Anträge frei, ohne selbst zu zahlen.
       </p>
     </div>
 
@@ -295,10 +295,10 @@ export function buildOrderConfirmationEmail(order: OrderRecord): EmailContent {
       <tr><td style="padding:4px 0;color:#64748b">davon MwSt</td><td style="padding:4px 0;text-align:right">${vatAmount}</td></tr>
     </table>
 
-    <h3 style="color:#0a1628;margin-bottom:6px">Zahlung per Ueberweisung</h3>
+    <h3 style="color:#0a1628;margin-bottom:6px">Zahlung per Überweisung</h3>
     <p style="font-size:13px;color:#64748b;margin:0 0 8px">Zahlungsziel ${PAYMENT_TERM_DAYS} Tage (bis ${dueDateDe}).</p>
     <table style="width:100%;border-collapse:collapse;font-size:14px">
-      <tr><td style="padding:4px 0;color:#64748b">Empfaenger</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.accountHolder)}</td></tr>
+      <tr><td style="padding:4px 0;color:#64748b">Empfänger</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.accountHolder)}</td></tr>
       <tr><td style="padding:4px 0;color:#64748b">IBAN</td><td style="padding:4px 0;text-align:right;font-family:monospace">${escapeHtml(bank.iban)}</td></tr>
       <tr><td style="padding:4px 0;color:#64748b">BIC</td><td style="padding:4px 0;text-align:right;font-family:monospace">${escapeHtml(bank.bic)}</td></tr>
       <tr><td style="padding:4px 0;color:#64748b">Bank</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.bankName)}</td></tr>
@@ -306,7 +306,7 @@ export function buildOrderConfirmationEmail(order: OrderRecord): EmailContent {
     </table>
 
     <p style="font-size:13px;color:#64748b;margin-top:18px">
-      Die formelle Rechnung erhalten Sie separat. Bei Rueckfragen erreichen Sie uns unter
+      Die formelle Rechnung erhalten Sie separat. Bei Rückfragen erreichen Sie uns unter
       <a href="mailto:office@aitema.de" style="color:#c9a227">office@aitema.de</a>.
     </p>
   </div>`;
@@ -314,7 +314,7 @@ export function buildOrderConfirmationEmail(order: OrderRecord): EmailContent {
   return { subject, html, text };
 }
 
-/** Interne Benachrichtigung an aitema ueber eine neue Bestellung (Buchhaltung). */
+/** Interne Benachrichtigung an aitema über eine neue Bestellung (Buchhaltung). */
 export function buildOrderAdminEmail(order: OrderRecord): EmailContent {
   const pack = getPack(order.packId) as Pack;
   const amount = formatEur(order.amountCents);
@@ -323,7 +323,7 @@ export function buildOrderAdminEmail(order: OrderRecord): EmailContent {
     `Neue Kontingent-Bestellung (Rechnungskauf, B2):`,
     ``,
     `Bestellnummer:   ${order.orderNumber}`,
-    `Paket:           ${pack.label} (${order.credits} Antraege)`,
+    `Paket:           ${pack.label} (${order.credits} Anträge)`,
     `Betrag:          ${amount} inkl. MwSt`,
     `Kontingent-Code: ${order.creditCode} (bereits freigegeben)`,
     `Status:          ${order.status} (Zahlungsziel ${order.dueDate})`,
@@ -346,7 +346,7 @@ export function buildOrderAdminEmail(order: OrderRecord): EmailContent {
 }
 
 /**
- * Bestaetigung fuer den KARTENKAUF eines Kontingents (B3): Zahlung ist bereits
+ * Bestätigung für den KARTENKAUF eines Kontingents (B3): Zahlung ist bereits
  * erfolgt — keine Bankverbindung, nur Code + Quittungsbetrag.
  */
 export function buildQuotaCardConfirmationEmail(result: QuotaCardResult): EmailContent {
@@ -354,33 +354,33 @@ export function buildQuotaCardConfirmationEmail(result: QuotaCardResult): EmailC
   const amount = formatEur(result.amountCents);
   const vatAmount = formatEur(vat.vatCents);
 
-  const subject = `EduFunds — Ihr Kontingent (${result.credits} Antraege) ist freigeschaltet`;
+  const subject = `EduFunds — Ihr Kontingent (${result.credits} Anträge) ist freigeschaltet`;
 
   const text = [
-    `Vielen Dank fuer Ihren Kauf bei EduFunds — Ihre Zahlung ist eingegangen.`,
+    `Vielen Dank für Ihren Kauf bei EduFunds — Ihre Zahlung ist eingegangen.`,
     ``,
-    `Paket:   ${result.packLabel} (${result.credits} Antraege)`,
+    `Paket:   ${result.packLabel} (${result.credits} Anträge)`,
     `Betrag:  ${amount} (inkl. ${vatAmount} MwSt)`,
     ``,
     `Ihr Kontingent-Code:  ${result.creditCode}`,
-    `Gueltig fuer ${result.credits} Foerderantraege, 12 Monate ab heute.`,
-    `Geben Sie den Code an Ihre Lehrkraefte weiter — sie schalten damit ihre`,
-    `fertigen Antraege frei, ohne selbst zu zahlen.`,
+    `Gültig für ${result.credits} Förderanträge, 12 Monate ab heute.`,
+    `Geben Sie den Code an Ihre Lehrkräfte weiter — sie schalten damit ihre`,
+    `fertigen Anträge frei, ohne selbst zu zahlen.`,
     ``,
-    `Eine formelle Rechnung erhalten Sie separat. Bei Rueckfragen: office@aitema.de.`,
+    `Eine formelle Rechnung erhalten Sie separat. Bei Rückfragen: office@aitema.de.`,
   ].join("\n");
 
   const html = `
   <div style="font-family:Arial,Helvetica,sans-serif;color:#0a1628;max-width:560px;margin:0 auto;line-height:1.5">
     <h2 style="color:#0a1628">Zahlung eingegangen — vielen Dank</h2>
-    <p>Ihr Kontingent fuer <strong>${result.credits} Foerderantraege</strong> ist freigeschaltet.</p>
+    <p>Ihr Kontingent für <strong>${result.credits} Förderanträge</strong> ist freigeschaltet.</p>
 
     <div style="background:#f5f3ec;border:1px solid #c9a227;border-radius:10px;padding:16px;margin:18px 0">
       <p style="margin:0 0 6px;font-size:13px;color:#64748b">Ihr Kontingent-Code</p>
       <p style="margin:0;font-size:24px;font-weight:bold;letter-spacing:2px;font-family:monospace;color:#0a1628">${escapeHtml(result.creditCode)}</p>
       <p style="margin:10px 0 0;font-size:13px;color:#64748b">
-        Gueltig fuer ${result.credits} Antraege, 12 Monate ab heute. Geben Sie den Code an Ihre
-        Lehrkraefte weiter — sie schalten damit ihre fertigen Antraege frei, ohne selbst zu zahlen.
+        Gültig für ${result.credits} Anträge, 12 Monate ab heute. Geben Sie den Code an Ihre
+        Lehrkräfte weiter — sie schalten damit ihre fertigen Anträge frei, ohne selbst zu zahlen.
       </p>
     </div>
 
@@ -391,7 +391,7 @@ export function buildQuotaCardConfirmationEmail(result: QuotaCardResult): EmailC
     </table>
 
     <p style="font-size:13px;color:#64748b;margin-top:18px">
-      Eine formelle Rechnung erhalten Sie separat. Bei Rueckfragen erreichen Sie uns unter
+      Eine formelle Rechnung erhalten Sie separat. Bei Rückfragen erreichen Sie uns unter
       <a href="mailto:office@aitema.de" style="color:#c9a227">office@aitema.de</a>.
     </p>
   </div>`;
@@ -399,21 +399,21 @@ export function buildQuotaCardConfirmationEmail(result: QuotaCardResult): EmailC
   return { subject, html, text };
 }
 
-/** Interne Benachrichtigung an aitema ueber einen Kontingent-Kartenkauf (B3). */
+/** Interne Benachrichtigung an aitema über einen Kontingent-Kartenkauf (B3). */
 export function buildQuotaCardAdminEmail(result: QuotaCardResult): EmailContent {
   const amount = formatEur(result.amountCents);
   const subject = `Neuer Kontingent-Kartenkauf — ${result.orgName ?? result.email ?? "unbekannt"} (${amount})`;
   const lines = [
     `Neuer Kontingent-Kauf per Karte (Stripe, B3):`,
     ``,
-    `Paket:           ${result.packLabel} (${result.credits} Antraege)`,
+    `Paket:           ${result.packLabel} (${result.credits} Anträge)`,
     `Betrag:          ${amount} inkl. MwSt (bezahlt)`,
     `Kontingent-Code: ${result.creditCode} (freigeschaltet)`,
     ``,
     `Organisation:    ${result.orgName ?? "—"}`,
     `E-Mail:          ${result.email ?? "—"}`,
     ``,
-    `=> Formelle Rechnung erstellen und an ${result.email ?? "den Kaeufer"} senden.`,
+    `=> Formelle Rechnung erstellen und an ${result.email ?? "den Käufer"} senden.`,
   ];
   const text = lines.join("\n");
   const html = `<pre style="font-family:monospace;font-size:13px">${escapeHtml(
