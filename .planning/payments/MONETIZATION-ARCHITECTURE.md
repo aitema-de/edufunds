@@ -99,11 +99,32 @@ Karte** → `paid_token`. Bereits gebaut & verifiziert.
 4. **B4 — Magic-Link-Autor-Identität** → robustes Resume über Geräte, „Meine Anträge" E-Mail-gebunden.
 5. **B5 — Käufer-Dashboard** (gleicher Magic-Link) → Verbrauch/Verwaltung, vollendet den Hybrid.
 
-## Offen (vor/in B1 zu klären)
+## Produktentscheidungen für B2/B3 — GELOCKT 2026-06-09
 
-- **Paketgrößen + Preise** (z. B. 5 / 20 / 50 Anträge; Preis je Paket; einmalig vs. jährlich; Ablauf?).
-  Bisherige `/preise`-Tarife als Anhalt: Jahresabo 5 Anträge / Schulträger 20 Anträge.
-- **Code-Granularität:** ein Sammel-Code je Kontingent vs. pro-Schule-Codes vs. Einmal-Codes (Attribution
-  vs. Einfachheit).
-- **Attribution bei Einlösung:** Schule/E-Mail abfragen → einfacher Nutzungsreport für die Leitung?
-- **Magic-Link-Zeitpunkt:** ab wann E-Mail erfassen (Start optional vs. erst beim Freischalten/Resume).
+- **D-7 — Modell = Prepaid-Pack, KEIN Abo.** Org kauft einmalig N Credits (one-time Stripe-Charge bzw.
+  Rechnung), kein Auto-Renew, keine Subscription-/Reset-Logik. Matcht die gebaute `credit_codes`-Infra 1:1.
+  → `/preise`-Wording muss von „Abo /Jahr" auf „Kontingent" entschärft werden (Folge-To-do, siehe unten).
+- **D-8 — Paketstaffel (Minimal-Fix, monoton steigender Mengenrabatt):**
+  | Paket | Preis (inkl. MwSt) | €/Antrag | Rabatt vs. Einzel 29,90 € |
+  |---|---|---|---|
+  | Einzel | 29,90 € | 29,90 € | 0 % |
+  | 5 Anträge | **139,90 €** | 27,98 € | 6,4 % |
+  | 10 Anträge | **249,90 €** | 24,99 € | 16,4 % |
+  | 20 Anträge | **459,90 €** | 22,99 € | 23,1 % |
+  Geprüft: 2×10er (499,80 €) ist teurer als ein 20er → 20er ist klar bester Stückpreis. Als **eine
+  konfigurierbare Preistabelle** halten (eine Quelle), damit `/preise`-Seite + Checkout + Rechnung nie driften.
+- **D-9 — Code-Granularität = ein Sammel-Code je Kauf.** Träger bekommt EINEN Code mit N Credits (1 Zeile in
+  `credit_codes`), verteilt ihn an alle Lehrkräfte. Attribution über `credit_code_redemptions` (Schule/E-Mail
+  bei Einlösung abfragen → Nutzungsreport für die Leitung). Kein Pro-Schule-/Einmal-Code-Splitting (vorerst).
+- **D-10 — Ablauf = 12 Monate ab Kauf.** `expires_at = Kaufdatum + 12 Mon.` (Feld existiert in `credit_codes`,
+  atomare Einlösung prüft es bereits). Erinnerungsmail vor Ablauf = späteres Watch-Item.
+
+### Folge-To-dos aus den Entscheidungen
+- `/preise`-Seite (`app/preise/page.tsx`): „Jahresabo"/„Schulträger-Abo /Jahr" → „Kontingent" umbenennen,
+  Mindestlaufzeit-/Kündigungs-FAQ (impliziert Abo) anpassen, Preise auf D-8 ziehen.
+- Eine zentrale Preistabelle (Pack-Definitionen) als Single Source für `/preise` + B2 + B3.
+
+## Noch offen (B4/B5 / später)
+
+- **Attribution-Tiefe:** Pflicht- vs. optionale Schul-/E-Mail-Abfrage bei Einlösung (UI in `redeem-code`).
+- **Magic-Link-Zeitpunkt:** ab wann E-Mail erfassen (Start optional vs. erst beim Freischalten/Resume) — B4.
