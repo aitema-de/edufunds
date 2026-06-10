@@ -10,12 +10,12 @@
 |---|---|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 | 1 | Grundschule am Lindenpark | DigitalPakt Schule 2.0 | 5 | 4 | 5 | 5 | 4 | 3 | **2** |
 | 2 | Astrid-Lindgren-Grundschule | deinSchulhof / Gruene Schulhoefe | 5 | 4 | 5 | 5 | 4 | 3 | **3** |
-| 3 | Grundschule Sonnenblume | deinSchulhof / Gruene Schulhoefe | 3 | 3 | 4 | 5 | 4 | 3 | **3** |
+| 3 | Grundschule Sonnenblume | KlimaLab - Klimaschutz-Engagemen | 3 | 3 | 4 | 5 | 4 | 3 | **3** |
 | 4 | Grundschule Buchenweg | Gemeinsam Digital! Kreativ mit M | 4 | 2 | 4 | 2 | 4 | 4 | **3** |
 | 5 | Grundschule Am Muehlbach | Foerderfonds Demokratie | 4 | 3 | 5 | 5 | 4 | 4 | **3** |
-| 6 | Pestalozzi-Grundschule | Ideeninitiative Kulturelle Vielf | 5 | 3 | 4 | 4 | 4 | 3 | **3** |
+| 6 | Pestalozzi-Grundschule | Kultur macht stark - Bündnisse f | 5 | 3 | 4 | 4 | 4 | 3 | **3** |
 | 7 | Grundschule Regenbogen | deinSchulhof / Gruene Schulhoefe | 5 | 2 | 4 | 4 | 5 | 3 | **3** |
-| 8 | Grundschule Kleeblatt | DigitalPakt Schule 2.0 | 4 | 4 | 5 | 5 | 5 | 4 | **3** |
+| 8 | Grundschule Kleeblatt | Heinz Nixdorf Stiftung - Projekt | 4 | 4 | 5 | 5 | 5 | 4 | **3** |
 | 9 | Grundschule Am Wald | Gemeinsam Digital! Kreativ mit M | 4 | 4 | 5 | 5 | 4 | 4 | **2** |
 | 10 | Janusz-Korczak-Grundschule | DBU-Projektfoerderung (Foerderth | 3 | 2 | 3 | 2 | 4 | 3 | **2** |
 

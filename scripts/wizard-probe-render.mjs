@@ -91,14 +91,16 @@ function renderDossier(run, v) {
   L.push(`## 5. Generierter Finanzplan`);
   const fp = g.finanzplan;
   if (fp?.posten?.length) {
-    L.push(`| Posten | Betrag | Begruendung | Eigenanteil |`);
-    L.push(`|---|---:|---|:--:|`);
+    L.push(`| Posten | Betrag | Vorschlag? | Begruendung | Eigenanteil |`);
+    L.push(`|---|---:|:--:|---|:--:|`);
     let sum = 0;
+    let vorCount = 0;
     for (const p of fp.posten) {
       sum += p.betragEur || 0;
-      L.push(`| ${esc(p.bezeichnung)} | ${eur(p.betragEur)} | ${esc(p.begruendung)} | ${p.eigenanteil ? "ja" : "—"} |`);
+      if (p.istVorschlag) vorCount++;
+      L.push(`| ${esc(p.bezeichnung)} | ${eur(p.betragEur)} | ${p.istVorschlag ? "⟨Vorschlag⟩" : "belegt"} | ${esc(p.begruendung)} | ${p.eigenanteil ? "ja" : "—"} |`);
     }
-    L.push(`| **Summe** | **${eur(sum)}** | | |`);
+    L.push(`| **Summe** | **${eur(sum)}** | ${vorCount}/${fp.posten.length} Vorschlag | | |`);
     if (fp.hinweise?.length) { L.push(""); L.push(`*Hinweise:* ` + fp.hinweise.map(esc).join(" · ")); }
   } else {
     L.push("_kein Finanzplan erzeugt_");
