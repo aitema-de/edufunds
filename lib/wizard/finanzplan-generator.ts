@@ -3,12 +3,7 @@ import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type { Finanzplan, Finanzposten, WizardFacts } from "./types";
 import type { Richtlinie } from "./richtlinien-schema";
 import { MODEL_PRO, generateJson } from "./llm";
-import {
-  FINANZPLAN_SYSTEM,
-  buildFinanzplanPrompt,
-  FINANZPLAN_KOSTENRAHMEN_SYSTEM,
-  buildFinanzplanKostenrahmenPrompt,
-} from "./prompts";
+import { FINANZPLAN_SYSTEM, buildFinanzplanPrompt } from "./prompts";
 import type { Usage } from "./pricing";
 
 /**
@@ -123,6 +118,8 @@ export function applyStatedEigenanteil(
     betragEur: round,
     begruendung: "Vom Antragsteller zugesagte Eigenmittel.",
     eigenanteil: true,
+    // Am Nutzerinput verankert → kein Vorschlag, sondern belegt.
+    istVorschlag: false,
   };
   hinweise.push(
     `Eigenanteil von ${round.toLocaleString("de-DE")} EUR aus deinen Angaben als separater Posten ergaenzt.`
@@ -153,89 +150,28 @@ export function flagEstimatedAmounts(posten: Finanzposten[], hinweise: string[])
   }
 }
 
-/**
- * Abgeleiteter Overhead-/Pauschalposten (Probe 10.06.): ein Posten, dessen Betrag
- * rechnerisch aus anderen Posten folgt (z. B. "7 % Verwaltungspauschale", "45 %
- * Overhead auf Personal"). Solche Posten tragen oft KEINE Schätzungs-Begründung,
- * sind aber genauso ungesichert wie ihre (geschätzte) Basis — sie dürfen den
- * Ehrlichkeits-Kollaps nicht blockieren.
- */
-const OVERHEAD_RE = /pauschale|overhead|verwaltungskosten|verwaltungspauschale/i;
-
-function isDerivedOverhead(p: Finanzposten): boolean {
-  return p.kategorie === "overhead" || OVERHEAD_RE.test(`${p.bezeichnung} ${p.begruendung ?? ""}`);
-}
-
 function isAdmittedEstimate(p: Finanzposten): boolean {
   return p.begruendung != null && ESTIMATION_HEDGE.test(p.begruendung);
 }
 
 /**
- * Probe 10.06. (Finanzplan-Objekt-Hebel): Kollabiert einen bezifferten Plan
- * deterministisch in den unbeziffert-Modus, wenn das LLM JEDEN Förderposten
- * selbst als Schätzung deklariert hat (bzw. der Rest abgeleitete Overheads sind)
- * — dann wurde die komplette Aufschlüsselung erfunden, obwohl der Nutzer keine
- * posten-genaue Kostenbasis lieferte (Probe-Fälle 4/7/10: 37.200-EUR-Summen,
- * erfundene 8.000-EUR-Personalstelle, Overhead-Hochrechnungen, Summen-Rechenfehler
- * 10.500≠10.000). Die Posten-BEZEICHNUNGEN bleiben als ehrlicher Kostenrahmen
- * erhalten, die erfundenen BETRÄGE werden entfernt.
+ * Produktvision 2026-06-10 (Markierungs-Modell statt Löschen): Markiert jeden
+ * Posten, dessen Betrag NICHT am Nutzerinput verankert ist, als `istVorschlag`
+ * — ein bestätigbarer Assistenten-Vorschlag (z. B. Ausgestaltung einer genannten
+ * Globalsumme, fachlich begründete Schätzung). Vorschläge werden BEHALTEN und in
+ * der UI markiert, NICHT gelöscht (das war die alte, verworfene Kollaps-Logik).
  *
- * Never-Worse: greift NUR, wenn (a) mindestens ein Posten als Schätzung
- * eingestanden ist UND (b) jeder Förderposten entweder eingestandene Schätzung
- * oder abgeleiteter Overhead ist. Ein einziger belegter (am Nutzerinput
- * verankerter) Betrag verhindert den Kollaps. Das Ergebnis ist strukturgleich
- * zum nativen unbeziffert-Modus (posten=[]) und durchläuft dieselbe Validierung;
- * eine vom Nutzer GENANNTE Gesamtsumme / ein genannter Eigenanteil wird als
- * Hinweis bewahrt, damit echte Angaben nicht verloren gehen. Exportiert für Tests.
+ * Regel: Ein Posten ist Vorschlag, wenn der Nutzer insgesamt keine Kostenbasis
+ * lieferte ODER das LLM den Betrag selbst als Schätzung begründet hat. Posten,
+ * deren `istVorschlag` bereits gesetzt ist (z. B. ein am Nutzer-Input verankerter
+ * Eigenanteil aus `applyStatedEigenanteil`), bleiben unangetastet. Exportiert für Tests.
  */
-export function collapseEstimatedFinanzplan(plan: Finanzplan, facts: WizardFacts): Finanzplan {
-  if (plan.unbeziffert) return plan;
-  const posten = plan.posten ?? [];
-  const foerder = posten.filter((p) => !p.eigenanteil);
-  if (foerder.length === 0) return plan;
-
-  const vollstaendigErfunden =
-    foerder.some(isAdmittedEstimate) &&
-    foerder.every((p) => isAdmittedEstimate(p) || isDerivedOverhead(p));
-  if (!vollstaendigErfunden) return plan;
-
-  // Bezeichnungen als ehrlichen Kostenrahmen bewahren (dedupliziert, abgeleitete
-  // Overheads werden weggelassen — ohne Basis-Beträge sind sie sinnlos).
-  const seen = new Set<string>();
-  const kostenrahmen: string[] = [];
-  for (const p of foerder) {
-    if (isDerivedOverhead(p) && !isAdmittedEstimate(p)) continue;
-    const b = p.bezeichnung.trim();
-    const key = b.toLowerCase();
-    if (b && !seen.has(key)) {
-      seen.add(key);
-      kostenrahmen.push(b);
-    }
-  }
-
-  const hinweise: string[] = [
-    "Es wurden keine posten-genauen Kostenangaben gemacht — der Finanzplan ist noch zu beziffern. Konkrete Beträge werden über Angebote vor Einreichung ermittelt.",
-  ];
-  const total = facts?.budget?.beantragt_eur;
-  if (typeof total === "number" && Number.isFinite(total) && total > 0) {
-    hinweise.push(
-      `Du hast einen groben Gesamtrahmen von ca. ${Math.round(total).toLocaleString("de-DE")} EUR genannt; die Aufschlüsselung auf einzelne Posten wird vor Einreichung anhand von Angeboten erstellt.`
-    );
-  }
-  const eigen = facts?.budget?.eigenmittel_eur;
-  if (typeof eigen === "number" && Number.isFinite(eigen) && eigen > 0) {
-    hinweise.push(
-      `Du hast einen Eigenanteil von ca. ${Math.round(eigen).toLocaleString("de-DE")} EUR genannt; er wird im noch zu beziffernden Finanzplan als Eigenmittel ausgewiesen.`
-    );
-  }
-
-  return {
-    posten: [],
-    kostenrahmen,
-    unbeziffert: true,
-    generiertAm: plan.generiertAm,
-    hinweise,
-  };
+export function markVorschlaege(posten: Finanzposten[], hasBasis: boolean): Finanzposten[] {
+  return posten.map((p) => {
+    if (p.istVorschlag !== undefined) return p;
+    const vorschlag = !hasBasis || isAdmittedEstimate(p);
+    return { ...p, istVorschlag: vorschlag };
+  });
 }
 
 export interface FinanzplanUsage {
@@ -249,33 +185,13 @@ export async function generateFinanzplan(
   richtlinie: Richtlinie | null | undefined,
   userAnswers?: string[]
 ): Promise<{ plan: Finanzplan; usage: FinanzplanUsage }> {
-  // Probe 09.06.: Ohne jede Nutzer-Kostenbasis KEINE erfundenen Euro-Posten —
-  // stattdessen ein ehrlicher unbezifferter Kostenrahmen (Positionen ohne Betrag).
-  if (!hasUserKostenbasis(facts, userAnswers)) {
-    const { value: kr, usage: krUsage } = await generateJson<{
-      kostenrahmen?: string[];
-      hinweise?: string[];
-    }>(
-      MODEL_PRO,
-      FINANZPLAN_KOSTENRAHMEN_SYSTEM,
-      buildFinanzplanKostenrahmenPrompt(programm, facts, richtlinie, userAnswers)
-    );
-    const kostenrahmen = (kr.kostenrahmen ?? [])
-      .map((s) => String(s).trim())
-      .filter(Boolean);
-    const hinweise = kr.hinweise?.length ? [...kr.hinweise] : [];
-    hinweise.unshift(
-      "Es wurden keine Kostenangaben gemacht — der Finanzplan ist noch zu beziffern. Konkrete Betraege werden ueber Angebote vor Einreichung ermittelt."
-    );
-    const plan: Finanzplan = {
-      posten: [],
-      kostenrahmen,
-      unbeziffert: true,
-      generiertAm: new Date().toISOString(),
-      hinweise,
-    };
-    return { plan, usage: { model: MODEL_PRO, usage: krUsage } };
-  }
+  // Produktvision 2026-06-10: Der Assistent erstellt IMMER einen bezifferten
+  // Finanzplan-Vorschlag — auch wenn der Nutzer keine Kostenbasis lieferte
+  // (dann aktiver, alle Beträge als Vorschlag markiert). Frühere Versionen haben
+  // ohne Kostenbasis nur einen unbezifferten Kostenrahmen erzeugt bzw. den Plan
+  // kollabiert (Löschen); das warf die wertvolle Ausgestaltung weg. Jetzt:
+  // beziffert vorschlagen + als bestätigbaren Vorschlag MARKIEREN.
+  const hasBasis = hasUserKostenbasis(facts, userAnswers);
 
   const { value, usage } = await generateJson<RawResult>(
     MODEL_PRO,
@@ -295,31 +211,29 @@ export async function generateFinanzplan(
   // QA-02: Posten mit eingestandenermaßen geschätztem Betrag warnend markieren.
   flagEstimatedAmounts(postenMitEigenanteil, hinweise);
 
-  // Probe 09.06.: Wenn der User selbst keinen Budget-Betrag genannt hat UND
-  // (fast) alle Förderposten als Schätzung begründet sind, einen prominenten
-  // Gesamthinweis voranstellen — macht transparent, dass der ganze Plan auf
-  // Schätzungen beruht, statt erfundene Beträge als Kalkulation zu tarnen.
-  const userNannteBudget =
-    typeof facts?.budget?.beantragt_eur === "number" && facts.budget.beantragt_eur > 0;
-  const foerderposten = postenMitEigenanteil.filter((p) => !p.eigenanteil);
-  const geschaetzt = foerderposten.filter(
-    (p) => p.begruendung && ESTIMATION_HEDGE.test(p.begruendung)
-  );
-  const alleGeschaetzt = foerderposten.length > 0 && geschaetzt.length === foerderposten.length;
-  const summenHinweis =
-    "Alle Beträge sind grobe Schätzungen ohne konkrete Angaben der Schule — vor Einreichung durch Angebote belegen.";
-  if (!userNannteBudget && alleGeschaetzt && !hinweise.some((h) => h.includes("grobe Schätzungen"))) {
-    hinweise.unshift(summenHinweis);
+  // Vorschlags-Markierung: nicht am Nutzerinput verankerte Beträge als
+  // bestätigbare Vorschläge kennzeichnen (statt löschen). Die UI zeigt sie als
+  // "Vorschlag — bestätigen/anpassen".
+  const postenMarkiert = markVorschlaege(postenMitEigenanteil, hasBasis);
+
+  // Prominenter Sammelhinweis, sobald Vorschläge enthalten sind — macht
+  // transparent, welche Beträge der Nutzer noch bestätigen sollte.
+  const foerderposten = postenMarkiert.filter((p) => !p.eigenanteil);
+  const vorschlaege = foerderposten.filter((p) => p.istVorschlag);
+  if (vorschlaege.length > 0 && !hinweise.some((h) => h.includes("Vorschläge des Assistenten") || h.includes("Vorschlag des Assistenten"))) {
+    const alle = vorschlaege.length === foerderposten.length && foerderposten.length > 0;
+    hinweise.unshift(
+      alle
+        ? "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen."
+        : "Einzelne Beträge sind als Vorschläge des Assistenten markiert — bitte bestätigen oder anpassen."
+    );
   }
 
   const plan: Finanzplan = {
-    posten: postenMitEigenanteil,
+    posten: postenMarkiert,
     generiertAm: new Date().toISOString(),
     hinweise: hinweise.length ? hinweise : undefined,
   };
 
-  // Probe 10.06. (Finanzplan-Objekt-Hebel): Hat das LLM jeden Förderbetrag selbst
-  // als Schätzung deklariert, sind ALLE Beträge erfunden — dann ehrlich in den
-  // unbeziffert-Modus kollabieren statt eine erfundene Kalkulation auszuliefern.
-  return { plan: collapseEstimatedFinanzplan(plan, facts), usage: { model: MODEL_PRO, usage } };
+  return { plan, usage: { model: MODEL_PRO, usage } };
 }

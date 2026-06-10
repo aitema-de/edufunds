@@ -619,6 +619,11 @@ Ein Finanzplan MUSS Betraege enthalten — aber er darf erfundene Betraege nicht
 - Hat der User INSGESAMT keine einzige Geldangabe gemacht, setze in \`hinweise\` als ERSTEN Eintrag: "Alle Betraege sind grobe Schaetzungen ohne Angaben der Schule — vor Einreichung durch Angebote belegen."
 - Erfinde keine Posten fuer Leistungen, die der User nicht erwaehnt hat, nur um den Plan "vollstaendig" wirken zu lassen.
 
+## Konsistenz (HART — der Plan muss sachlich aufgehen)
+- Die Summe aller Posten muss rechnerisch stimmen. Hat der User eine Gesamt-/Globalsumme genannt, MUESSEN die Foerderposten (ohne Eigenanteil) in der Summe dieser Zahl entsprechen (±2 %) — du gestaltest die genannte Globalsumme aus, du erfindest keine hoehere. Hat der User KEINE Summe genannt, waehle plausible, runde Einzelbetraege und nenne die Gesamtsumme stimmig.
+- Erfinde keinen Posten, der einer Nutzeraussage WIDERSPRICHT (sagte der User "machen wir selbst" / "Lehrkraefte nebenher", KEINE bezahlte Personal-/Honorarstelle dafuer). Solche widerspruechlichen Posten gehoeren NICHT in den Plan.
+- Ergaenzende Posten, die der User NICHT genannt hat, aber die fuer ein gutes Vorhaben sinnvoll sind, sind als Vorschlag ERLAUBT (begruendung mit "Schaetzung:" beginnen) — sie werden dem Nutzer als bestaetigbarer Vorschlag angezeigt.
+
 ## Regeln
 - Nutze NUR Kostenkategorien und Obergrenzen, die in der mitgelieferten Richtlinie als foerderfaehig markiert sind.
 - Beziehe dich auf die tatsaechlich genannten Projektinhalte (Fakten) — keine generischen Posten wie "diverses Material".

@@ -55,20 +55,25 @@ describe("hasUserKostenbasis", () => {
   });
 });
 
-describe("generateFinanzplan unbeziffert-Routing", () => {
-  it("ohne Kostenbasis: unbeziffert, keine Posten, Kostenrahmen + Hinweis", async () => {
+// Produktvision 2026-06-10: Der Assistent erstellt IMMER einen bezifferten Plan.
+// Ohne Nutzer-Kostenbasis werden die Beträge als bestätigbare Vorschläge MARKIERT
+// (istVorschlag), nicht gelöscht/unbeziffert gelassen.
+describe("generateFinanzplan Vorschlags-Routing", () => {
+  it("ohne Kostenbasis: bezifferte Posten, alle als Vorschlag markiert + Hinweis", async () => {
     const facts = { schule: { name: "GS", typ: "Grundschule" }, projekt: {} } as never;
     const { plan } = await generateFinanzplan(programm, facts, null, ["200 Kinder", "20 Tablets ungefaehr"]);
-    expect(plan.unbeziffert).toBe(true);
-    expect(plan.posten).toHaveLength(0);
-    expect(plan.kostenrahmen?.length).toBeGreaterThan(0);
-    expect(plan.hinweise?.[0]).toContain("keine Kostenangaben");
+    expect(plan.unbeziffert).toBeUndefined();
+    expect(plan.posten.length).toBeGreaterThan(0);
+    expect(plan.posten.every((p) => p.istVorschlag)).toBe(true);
+    expect(plan.hinweise?.some((h) => /Vorschl[aä]ge des Assistenten/.test(h))).toBe(true);
   });
 
-  it("mit Kostenbasis: normaler bezifferter Finanzplan", async () => {
+  it("mit Kostenbasis: bezifferte Posten ohne Schätz-Begründung NICHT als Vorschlag", async () => {
     const facts = { budget: { beantragt_eur: 15000 } } as never;
     const { plan } = await generateFinanzplan(programm, facts, null, ["15.000 Euro beantragt"]);
     expect(plan.unbeziffert).toBeUndefined();
     expect(plan.posten.length).toBeGreaterThan(0);
+    // Mock-Posten hat keine "Schaetzung:"-Begründung → am Input verankert → kein Vorschlag.
+    expect(plan.posten.some((p) => !p.eigenanteil && p.istVorschlag)).toBe(false);
   });
 });

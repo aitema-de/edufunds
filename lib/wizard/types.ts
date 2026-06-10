@@ -62,6 +62,15 @@ export interface Finanzposten {
   begruendung?: string;
   /** true, wenn dieser Posten als Eigenanteil gerechnet wird (nicht aus Foerderung, sondern Traeger/Schule). */
   eigenanteil?: boolean;
+  /**
+   * true, wenn der Betrag ein VORSCHLAG des Assistenten ist (vom Nutzer nicht
+   * beziffert/bestaetigt) — z. B. die Ausgestaltung einer genannten Globalsumme
+   * oder eine fachlich begruendete Schaetzung. Wird in der UI als "Vorschlag —
+   * bestaetigen/anpassen" angezeigt. false/undefined = am Nutzerinput belegt.
+   * Produktvision 2026-06-10: ergaenzende Vorschlaege werden MARKIERT, nicht
+   * geloescht; nur widerspruechliche Erfindungen werden ausgeschlossen.
+   */
+  istVorschlag?: boolean;
 }
 
 export interface Finanzplan {
