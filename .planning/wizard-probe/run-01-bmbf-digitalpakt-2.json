@@ -6,15 +6,15 @@
     "bundesland": "DE-BE"
   },
   "idee": "Wir wollen was mit Tablets machen.",
-  "startedAt": "2026-06-10T07:39:43.522Z",
+  "startedAt": "2026-06-10T10:12:07.035Z",
   "match": {
     "kind": "ranking",
     "matches": [
       {
         "id": "bmbf-digitalpakt-2",
-        "score": 90,
-        "passt_weil": "Bundesweite Förderung digitaler Infrastruktur; Tablets sind Kern-Kategorie.",
-        "achtung_bei": "Antragsfristen je nach Berliner Verteilung prüfen.",
+        "score": 65,
+        "passt_weil": "Bundesweite Foerderung digitaler Infrastruktur, deckt Tablets und Ausstattung ab.",
+        "achtung_bei": "Berliner Antragsweg klären; Fristen beachten.",
         "programm": {
           "id": "bmbf-digitalpakt-2",
           "name": "DigitalPakt Schule 2.0",
@@ -33,9 +33,9 @@
       },
       {
         "id": "berlin-startchancen",
-        "score": 80,
-        "passt_weil": "Berliner Landesprogramm mit Investitionssäule; Tablets als Lernmittel förderbar.",
-        "achtung_bei": "Zugang oft über Schulaufsicht; Bewerbung prüfen.",
+        "score": 60,
+        "passt_weil": "Berliner Landesprogramm mit Investitionssäule für Lernumgebung inkl. Tablets.",
+        "achtung_bei": "Start 2026; Grundschulen in Berlin sind förderfähig.",
         "programm": {
           "id": "berlin-startchancen",
           "name": "Startchancen-Programm Berlin",
@@ -56,9 +56,9 @@
       },
       {
         "id": "heinz-nixdorf-stiftung-projektfoerderung-mint",
-        "score": 65,
-        "passt_weil": "Fördert Digitale Bildung; Tablets für MINT-Projekte nutzbar.",
-        "achtung_bei": "Fokus auf MINT-Kontext und Konzeptqualität.",
+        "score": 55,
+        "passt_weil": "Fördert MINT/Digitalprojekte an Grundschulen, Tableteinsatz möglich.",
+        "achtung_bei": "Summe ca. 15.000 €; konkrete Projektidee nötig.",
         "programm": {
           "id": "heinz-nixdorf-stiftung-projektfoerderung-mint",
           "name": "Heinz Nixdorf Stiftung - Projektfoerderung (MINT/Digitale Bildung)",
@@ -83,15 +83,15 @@
     "costs": {
       "calls": 1,
       "promptTokens": 5959,
-      "candidatesTokens": 145,
-      "totalTokens": 6104,
+      "candidatesTokens": 170,
+      "totalTokens": 6129,
       "usdCents": 0.09,
       "eurCents": 0.08,
       "entries": [
         {
           "model": "deepseek-chat",
           "promptTokens": 5959,
-          "candidatesTokens": 145,
+          "candidatesTokens": 170,
           "usdCents": 0.09
         }
       ]
@@ -101,133 +101,16 @@
   "gewaehltesProgramm": {
     "id": "bmbf-digitalpakt-2",
     "name": "DigitalPakt Schule 2.0",
-    "score": 90,
-    "passt_weil": "Bundesweite Förderung digitaler Infrastruktur; Tablets sind Kern-Kategorie."
+    "score": 65,
+    "passt_weil": "Bundesweite Foerderung digitaler Infrastruktur, deckt Tablets und Ausstattung ab."
   },
-  "sessionToken": "f6e041b0-6f7c-494e-95ae-738cf4cb1e2e",
+  "sessionToken": "00d6decd-33a8-4e60-ae79-26034d10cc39",
   "transcript": [
     {
       "runde": 1,
-      "frage": "Sie haben schon eine Grundschule in Berlin. Welche konkreten digitalen Defizite sehen Sie aktuell – zum Beispiel wie viele Klassenräume haben bisher keinen Beamer oder kein stabiles WLAN, und welche Geräte wurden bereits aus DigitalPakt 1 finanziert?",
-      "rationale": "Bedarfsanalyse ist der erste Pflichtabschnitt; konkrete Zahlen zur IST-Situation sind für einen glaubwürdigen Antrag unabdingbar.",
-      "antwort": "Naja, so richtig stabil ist das WLAN nicht überall, und Beamer fehlen auch noch in einigen Räumen. Was genau aus dem DigitalPakt kam, müsste ich nachgucken.",
-      "factsNach": {
-        "schule": {
-          "typ": "Grundschule",
-          "name": "Grundschule am Lindenpark",
-          "bundesland": "DE-BE"
-        }
-      }
-    },
-    {
-      "runde": 2,
-      "frage": "Das klingt nach typischen Baustellen – können Sie mir konkret sagen, wie viele der 15 Klassenräume aktuell noch keinen Beamer haben und in welchen Bereichen das WLAN besonders instabil ist (z.B. Altbau, Sporthalle)?",
-      "rationale": "Brauche konkrete Zahlen und Orte, um Bedarfsanalyse zu belegen – reine ‚irgendwo fehlt was‘-Aussage reicht nicht für den Antrag.",
-      "antwort": "Weiß ich nicht genau, müsste man mal nachschauen.",
-      "factsNach": {
-        "schule": {
-          "typ": "Grundschule",
-          "name": "Grundschule am Lindenpark",
-          "bundesland": "DE-BE"
-        }
-      }
-    },
-    {
-      "runde": 3,
-      "frage": "Haben Sie ein aktuelles Medienkonzept an Ihrer Schule verabschiedet? Falls ja: Welche konkreten Lernziele aus der KMK-Strategie ‚Bildung in der digitalen Welt‘ werden dort bereits aufgegriffen – und welche neuen digitalen Kompetenzen sollen mit dem Antrag gezielt gefördert werden?",
-      "rationale": "Die letzte Antwort war zu vage; das Medienkonzept ist eine harte Pflicht für DigitalPakt 2.0, und die KMK-Strategie muss erkennbar sein.",
-      "antwort": "Ja, so ein Medienkonzept haben wir irgendwann mal verabschiedet, aber die genauen Lernziele weiß ich jetzt nicht auswendig.",
-      "factsNach": {
-        "schule": {
-          "typ": "Grundschule",
-          "name": "Grundschule am Lindenpark",
-          "bundesland": "DE-BE"
-        }
-      }
-    },
-    {
-      "runde": 4,
-      "frage": "Sie haben Medienkonzept und Infrastruktur genannt, ich brauche aber konkrete Zahlen: Wie viele Schülerinnen und Schüler besuchen die Schule, wie viele Lehrkräfte unterrichten dort, und wie viele Klassen- oder Fachräume gibt es insgesamt? Damit kann ich später die Bedarfsgrößen und den Umfang der Qualifizierung ableiten.",
-      "rationale": "Fehlende Basisdaten (Schüler-, Lehrer-, Raumzahlen) für Bedarfsanalyse und Finanzplan – ohne diese lassen sich Umfang und Kosten nicht belastbar darstellen.",
-      "antwort": "Äh, so ungefähr 250 bis 300 Kinder, Lehrkräfte weiß ich nicht genau, vielleicht 20, und Räume… müssten wir nachzählen.",
-      "factsNach": {
-        "schule": {
-          "typ": "Grundschule",
-          "name": "Grundschule am Lindenpark",
-          "bundesland": "DE-BE"
-        }
-      }
-    },
-    {
-      "runde": 5,
-      "frage": "Sie können die genauen Zahlen kurz recherchieren – für den Antrag brauchen wir die Schüler- und Lehrkräftezahl sowie die Anzahl der Räume. Können Sie mir die bis morgen nennen? Sonst schätzen Sie: 280 Kinder, 20 Lehrkräfte, 15 Räume – passt das ungefähr?",
-      "rationale": "Kernzahlen sind für Bedarfsanalyse und Qualifizierungsplan zwingend; ohne sie ist der Antrag nicht belastbar.",
-      "antwort": "Ja, so ungefähr passt das schon.",
-      "factsNach": {
-        "schule": {
-          "typ": "Grundschule",
-          "name": "Grundschule am Lindenpark",
-          "bundesland": "DE-BE"
-        }
-      }
-    },
-    {
-      "runde": 6,
-      "frage": "Gibt es an Ihrer Schule bereits konkrete Planungen oder erste Erfahrungen mit der Integration digitaler Medien im Unterricht, zum Beispiel in bestimmten Fächern oder Projektwochen? Das hilft mir, den pädagogischen Bezug zum Medienkonzept und die konkreten Lernziele für den Antrag herauszuarbeiten.",
-      "rationale": "Um die pädagogische Unterfütterung des Antrags zu sichern, die im DigitalPakt 2.0 essenziell ist und bisher nur vage blieb.",
-      "antwort": "Ja, wir haben mal in einer Projektwoche was mit Tablets ausprobiert, weiß aber nicht mehr genau in welchem Fach.",
-      "factsNach": {
-        "schule": {
-          "typ": "Grundschule",
-          "name": "Grundschule am Lindenpark",
-          "bundesland": "DE-BE"
-        }
-      }
-    },
-    {
-      "runde": 7,
-      "frage": "Wir brauchen einen konkreten Partner für den Antrag – haben Sie schon eine Hochschule, Stiftung oder einen IT-Dienstleister, der Sie bei der Umsetzung unterstützt? Falls ja: wie heißt der Partner und welche Rolle soll er übernehmen?",
-      "rationale": "Kooperationen mit externen Partnern sind ein zentraler Erfolgsfaktor bei Bundesförderungen und fehlen bislang komplett.",
-      "antwort": "Ähm, nein, noch nicht. Da müssten wir mal schauen.",
-      "factsNach": {
-        "schule": {
-          "typ": "Grundschule",
-          "name": "Grundschule am Lindenpark",
-          "bundesland": "DE-BE"
-        }
-      }
-    },
-    {
-      "runde": 8,
-      "frage": "Für den Finanzplan und die Nachhaltigkeit müssen wir den Schulträger einbinden. Wer ist Ihr Schulträger (Bezirksamt oder Kommune) und gibt es bereits eine Zusage für den Eigenanteil von mindestens 22% der förderfähigen Kosten?",
-      "rationale": "Ohne Schulträger-Einbindung und Eigenmittelzusage ist der Antrag unzulässig — dies ist eine harte Pflicht aus der DigitalPakt-Richtlinie.",
-      "antwort": "Das ist das Bezirksamt, aber ob die schon zugesagt haben, müsste ich nachfragen.",
-      "factsNach": {
-        "schule": {
-          "typ": "Grundschule",
-          "name": "Grundschule am Lindenpark",
-          "bundesland": "DE-BE"
-        }
-      }
-    },
-    {
-      "runde": 9,
-      "frage": "Für die Qualifizierung der Lehrkräfte – ein Pflichtbestandteil im DigitalPakt – gibt es an Ihrer Schule schon interne Multiplikatoren, die Kolleginnen schulen könnten? Oder müssten externe Fortbildungen organisiert werden?",
-      "rationale": "Qualifizierung ist ein harter Pflichtpunkt; wir brauchen eine konkrete Idee, sonst fehlt das pädagogische Konzept.",
-      "antwort": "Ja, da müssten wir wohl Externe holen – intern haben wir da gerade niemanden.",
-      "factsNach": {
-        "schule": {
-          "typ": "Grundschule",
-          "name": "Grundschule am Lindenpark",
-          "bundesland": "DE-BE"
-        }
-      }
-    },
-    {
-      "runde": 10,
-      "frage": "Um die Nachhaltigkeit nach dem Förderende zu sichern: Wer kümmert sich nach der Anschaffung um Wartung und Support – und wie ist geplant, die Geräte nach der Abschreibungsfrist zu ersetzen? Gibt es dazu schon Absprachen mit dem Schulträger?",
-      "rationale": "Betrieb und Nachhaltigkeit sind ein kritischer Punkt im DigitalPakt; bisher fehlen konkrete Angaben zum Supportmodell und Ersatzbeschaffungsplan.",
-      "antwort": "Ja, da müssen wir noch mit dem Schulträger sprechen, wer das später macht.",
+      "frage": "Sie planen eine Digitalisierungsmaßnahme. Welche konkreten technischen und pädagogischen Lücken haben Sie nach dem ersten DigitalPakt noch – also welche Geräte oder Anwendungen fehlen und welches Lernziel soll damit erreicht werden?",
+      "rationale": "Starte mit der Pflicht-Bedarfsanalyse, um sowohl technischen als auch pädagogischen Bedarf abzudecken – nur so kann der Antrag glaubwürdig die Notwendigkeit begründen.",
+      "antwort": "Ja, genau, also Tablets fehlen uns noch, und die Kinder sollen halt besser lernen damit, so digital.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
@@ -235,33 +118,453 @@
           "bundesland": "DE-BE"
         },
         "projekt": {
-          "aktivitaeten": [
-            "Projektwoche mit Tablets"
+          "ziele": [
+            "Kinder sollen besser digital lernen"
           ],
-          "qualifizierung_extern": "Externe Fortbildungen organisiert werden"
+          "aktivitaeten": [
+            "Anschaffung von Tablets"
+          ],
+          "kurzbeschreibung": "Beschaffung von Tablets zur Verbesserung des digitalen Lernens"
+        }
+      }
+    },
+    {
+      "runde": 2,
+      "frage": "Sie haben noch Tablet-Lücken. Wie viele Tablets sind es konkret und für wie viele Schüler:innen? Und welches konkrete Lernziel wollen Sie mit den Tablets erreichen – z. B. Leseförderung oder digitales Rechnen?",
+      "rationale": "Fehlende Konkretisierung zu Anzahl und Lernzielen – für DigitalPakt 2.0 sind messbare Indikatoren Pflicht.",
+      "antwort": "Ja, so ungefähr 20 bis 30 Tablets fehlen uns noch, für die dritten und vierten Klassen. Und halt fürs digitale Üben und Lernen, so ganz allgemein.",
+      "factsNach": {
+        "schule": {
+          "typ": "Grundschule",
+          "name": "Grundschule am Lindenpark",
+          "bundesland": "DE-BE"
+        },
+        "projekt": {
+          "ziele": [
+            "Kinder sollen besser digital lernen"
+          ],
+          "zielgruppe": "dritte und vierte Klassen",
+          "aktivitaeten": [
+            "Anschaffung von Tablets"
+          ],
+          "kurzbeschreibung": "Beschaffung von Tablets zur Verbesserung des digitalen Lernens"
+        }
+      }
+    },
+    {
+      "runde": 3,
+      "frage": "Ein allgemeines Ziel wie „besser digital lernen“ reicht für den Antrag nicht – der Fördergeber verlangt messbare Indikatoren. Welche zwei konkreten Lernfortschritte wollen Sie mit den neuen Tablets erreichen (z. B. in Mathe oder Deutsch) und wie wollen Sie diese vorher/nachher messen?",
+      "rationale": "Ohne messbare Wirkung wird der Antrag zurückgestellt – das ist die oberste Priorität für Bundesförderungen.",
+      "antwort": "Naja, besser lesen und rechnen halt. Messen tun wir das dann irgendwie mit Tests, denk ich mal.",
+      "factsNach": {
+        "schule": {
+          "typ": "Grundschule",
+          "name": "Grundschule am Lindenpark",
+          "bundesland": "DE-BE",
+          "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geräten (zusammen 32 iPads), ältere Notebooks in zwei mobilen Koffern mit je 15 Geräten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klassensätze Tablets für die dritten und vierten Klassen"
+        },
+        "projekt": {
+          "ziele": [
+            "Kinder sollen besser digital lernen",
+            "besser lesen und rechnen"
+          ],
+          "zielgruppe": "dritte und vierte Klassen",
+          "aktivitaeten": [
+            "Anschaffung von Tablets"
+          ],
+          "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenförderung"
+        },
+        "wirkung": {
+          "erwartete_ergebnisse": [
+            "Verbesserung der Lesefähigkeiten",
+            "Verbesserung der Rechenfähigkeiten"
+          ],
+          "messbare_indikatoren": [
+            "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung"
+          ]
+        }
+      }
+    },
+    {
+      "runde": 4,
+      "frage": "Sie sagen, Sie messen mit Tests. Haben Sie schon eine konkrete Idee, welchen Test oder welche Methode Sie einsetzen? Zum Beispiel die Lernstandserhebung ILEA, den Stolperwörter-Lesetest oder die Deutscher-Mathe-Test-Reihe? Das macht den Indikator im Antrag glaubwürdig.",
+      "rationale": "Der bisherige Indikator 'Tests vorher/nachher' ist zu vage – der Fördergeber erwartet einen konkreten, benannten Test oder eine standardisierte Methode.",
+      "antwort": "Ja, so einen Test da, den kannte ich noch nicht genau, müsste ich nochmal nachschauen.",
+      "factsNach": {
+        "schule": {
+          "typ": "Grundschule",
+          "name": "Grundschule am Lindenpark",
+          "bundesland": "DE-BE",
+          "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geräten (zusammen 32 iPads), ältere Notebooks in zwei mobilen Koffern mit je 15 Geräten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klassensätze Tablets für die dritten und vierten Klassen"
+        },
+        "projekt": {
+          "ziele": [
+            "Kinder sollen besser digital lernen",
+            "besser lesen und rechnen"
+          ],
+          "zielgruppe": "dritte und vierte Klassen",
+          "aktivitaeten": [
+            "Anschaffung von Tablets"
+          ],
+          "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenförderung"
+        },
+        "wirkung": {
+          "erwartete_ergebnisse": [
+            "Verbesserung der Lesefähigkeiten",
+            "Verbesserung der Rechenfähigkeiten"
+          ],
+          "messbare_indikatoren": [
+            "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung"
+          ]
+        }
+      }
+    },
+    {
+      "runde": 5,
+      "frage": "Sie haben die Testidee noch nicht konkretisiert. Das ist aber entscheidend für die Messbarkeit. Können Sie sich vorstellen, den Stolperwörter-Lesetest (für Klasse 3/4, standardisiert) zu nutzen? Oder haben Sie eine andere vergleichbare Methode im Kopf? Das hilft, die Wirkung im Antrag klar darzustellen.",
+      "rationale": "Der Fördergeber erwartet messbare Indikatoren. Ein konkreter Testname macht den Indikator im Antrag glaubwürdig und prüfbar.",
+      "antwort": "Ja, so einen Test kenne ich, den könnte man nehmen, oder halt was Ähnliches.",
+      "factsNach": {
+        "schule": {
+          "typ": "Grundschule",
+          "name": "Grundschule am Lindenpark",
+          "bundesland": "DE-BE",
+          "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geräten (zusammen 32 iPads), ältere Notebooks in zwei mobilen Koffern mit je 15 Geräten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klassensätze Tablets für die dritten und vierten Klassen"
+        },
+        "projekt": {
+          "ziele": [
+            "Kinder sollen besser digital lernen",
+            "besser lesen und rechnen"
+          ],
+          "zielgruppe": "dritte und vierte Klassen",
+          "aktivitaeten": [
+            "Anschaffung von Tablets"
+          ],
+          "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenförderung"
+        },
+        "wirkung": {
+          "erwartete_ergebnisse": [
+            "Verbesserung der Lesefähigkeiten",
+            "Verbesserung der Rechenfähigkeiten"
+          ],
+          "messbare_indikatoren": [
+            "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung"
+          ]
+        }
+      }
+    },
+    {
+      "runde": 6,
+      "frage": "Sie haben sich offenbar für einen Lesetest wie den Stolperwörter-Test entschieden. Haben Sie auch einen konkreten Test für das Rechnen im Kopf – zum Beispiel den ‚Deutscher Mathematiktest für dritte/vierte Klassen (DEMAT)‘? Dieses Paar aus standardisierten Tests macht die Wirkungsmessung im Antrag richtig stark.",
+      "rationale": "Nach der konkretisierten Lesetest-Idee fehlt noch ein entsprechender Rechentest, um die geplante Wirkungsmessung vollständig und glaubwürdig im Antrag darzustellen.",
+      "antwort": "Ja, so einen Mathetest hatten wir auch schon mal im Blick – den Namen müsste ich nachgucken.",
+      "factsNach": {
+        "budget": {},
+        "schule": {
+          "typ": "Grundschule",
+          "name": "Grundschule am Lindenpark",
+          "bundesland": "DE-BE",
+          "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geräten (zusammen 32 iPads), ältere Notebooks in zwei mobilen Koffern mit je 15 Geräten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klassensätze Tablets für die dritten und vierten Klassen"
+        },
+        "projekt": {
+          "ziele": [
+            "Kinder sollen besser digital lernen",
+            "besser lesen und rechnen"
+          ],
+          "zielgruppe": "dritte und vierte Klassen",
+          "aktivitaeten": [
+            "Anschaffung von Tablets"
+          ],
+          "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenförderung"
+        },
+        "wirkung": {
+          "erwartete_ergebnisse": [
+            "Verbesserung der Lesefähigkeiten",
+            "Verbesserung der Rechenfähigkeiten"
+          ],
+          "messbare_indikatoren": [
+            "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung"
+          ]
+        },
+        "programmpassung": {}
+      }
+    },
+    {
+      "runde": 7,
+      "frage": "Sie haben sich im Gespräch auf Testerfahren geeinigt – das ist ein starkes Zeichen für den Fördergeber. Um den Antrag noch konkreter zu machen: Können Sie bereits sagen, wie viele Lehrkräfte in den dritten und vierten Klassen die Tablets regelmäßig einsetzen werden und wie diese für den didaktischen Einsatz qualifiziert werden sollen? Der Fördergeber erwartet hier ein Fortbildungskonzept – denken Sie an interne Multiplikatoren oder externe Schulungen?",
+      "rationale": "Ohne Qualifizierungskonzept ist der Antrag nicht genehmigungsfähig – wird als Pflichtfeld im Antrag benötigt.",
+      "antwort": "Ach, das mit den Fortbildungen... müssten wir noch gucken, vielleicht intern oder extern, so genau weiß ich das noch nicht.",
+      "factsNach": {
+        "budget": {},
+        "schule": {
+          "typ": "Grundschule",
+          "name": "Grundschule am Lindenpark",
+          "bundesland": "DE-BE",
+          "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geräten (zusammen 32 iPads), ältere Notebooks in zwei mobilen Koffern mit je 15 Geräten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klassensätze Tablets für die dritten und vierten Klassen"
+        },
+        "projekt": {
+          "ziele": [
+            "Kinder sollen besser digital lernen",
+            "besser lesen und rechnen"
+          ],
+          "zielgruppe": "dritte und vierte Klassen",
+          "aktivitaeten": [
+            "Anschaffung von Tablets"
+          ],
+          "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenförderung"
+        },
+        "wirkung": {
+          "erwartete_ergebnisse": [
+            "Verbesserung der Lesefähigkeiten",
+            "Verbesserung der Rechenfähigkeiten"
+          ],
+          "messbare_indikatoren": [
+            "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung"
+          ]
+        },
+        "programmpassung": {}
+      }
+    },
+    {
+      "runde": 8,
+      "frage": "Um den Antrag überzeugend zu machen, brauchen wir ein klares Fortbildungskonzept. Reicht es, wenn zwei erfahrene Kolleg:innen eine schulinterne Fortbildung zu Tablet-Einsatz in Deutsch und Mathe durchführen, oder möchten Sie externe Anbieter wie das Landesinstitut für Schule und Medien Berlin-Brandenburg einbinden? Wie viele Lehrer:innen sollen geschult werden und bis wann?",
+      "rationale": "Die Qualifizierung der Lehrkräfte ist Pflichtbestandteil und ohne konkretes Konzept droht Ablehnung.",
+      "antwort": "Ja, interne Fortbildung durch zwei Kollegen, extern müssten wir noch gucken. Alle, die wollen, und bis zum nächsten Jahr ungefähr.",
+      "factsNach": {
+        "budget": {},
+        "schule": {
+          "typ": "Grundschule",
+          "name": "Grundschule am Lindenpark",
+          "bundesland": "DE-BE",
+          "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geräten (zusammen 32 iPads), ältere Notebooks in zwei mobilen Koffern mit je 15 Geräten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klassensätze Tablets für die dritten und vierten Klassen"
+        },
+        "projekt": {
+          "ziele": [
+            "Kinder sollen besser digital lernen",
+            "besser lesen und rechnen"
+          ],
+          "zeitraum": "bis zum nächsten Jahr",
+          "zielgruppe": "dritte und vierte Klassen",
+          "aktivitaeten": [
+            "Anschaffung von Tablets",
+            "interne Fortbildung durch zwei Kollegen"
+          ],
+          "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenförderung"
+        },
+        "wirkung": {
+          "erwartete_ergebnisse": [
+            "Verbesserung der Lesefähigkeiten",
+            "Verbesserung der Rechenfähigkeiten"
+          ],
+          "messbare_indikatoren": [
+            "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung",
+            "Einsatz des Stolperwörter-Lesetests oder ähnlicher Test",
+            "Einsatz des DEMAT oder ähnlicher Mathetest"
+          ]
+        },
+        "programmpassung": {}
+      }
+    },
+    {
+      "runde": 9,
+      "frage": "Der Schulträger muss als Antragsteller auftreten – steht die Einbindung des Bezirks Steglitz-Zehlendorf bereits fest? Falls nicht, wen müssten Sie dafür noch ins Boot holen?",
+      "rationale": "Schulträgereinbindung ist Pflicht für den Antrag (laut Richtlinie) – ohne Klärung droht Ablehnung.",
+      "antwort": "Müsste ich mit dem Bezirk klären, wer da noch unterschreiben muss.",
+      "factsNach": {
+        "budget": {},
+        "schule": {
+          "typ": "Grundschule",
+          "name": "Grundschule am Lindenpark",
+          "bundesland": "DE-BE",
+          "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geräten (zusammen 32 iPads), ältere Notebooks in zwei mobilen Koffern mit je 15 Geräten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klassensätze Tablets für die dritten und vierten Klassen"
+        },
+        "projekt": {
+          "ziele": [
+            "Kinder sollen besser digital lernen",
+            "besser lesen und rechnen"
+          ],
+          "zeitraum": "bis zum nächsten Jahr",
+          "zielgruppe": "dritte und vierte Klassen",
+          "aktivitaeten": [
+            "Anschaffung von Tablets",
+            "interne Fortbildung durch zwei Kollegen"
+          ],
+          "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenförderung"
+        },
+        "wirkung": {
+          "erwartete_ergebnisse": [
+            "Verbesserung der Lesefähigkeiten",
+            "Verbesserung der Rechenfähigkeiten"
+          ],
+          "messbare_indikatoren": [
+            "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung",
+            "Einsatz des Stolperwörter-Lesetests oder ähnlicher Test",
+            "Einsatz des DEMAT oder ähnlicher Mathetest"
+          ]
+        },
+        "programmpassung": {
+          "offene_luecken": [
+            "Einbindung des Bezirks Steglitz-Zehlendorf noch ungeklärt",
+            "Fortbildungskonzept nicht konkretisiert"
+          ]
+        }
+      }
+    },
+    {
+      "runde": 10,
+      "frage": "Gut, die Einbindung des Bezirks ist also noch zu klären. Ein weiterer wichtiger Punkt: Der Fördergeber erwartet ein Nachhaltigkeitskonzept. Wer übernimmt nach der Förderphase die Wartung, Administration und den Support der neuen Tablets? Und wie ist der Ersatzbeschaffungsplan nach Ablauf der Zweckbindung von 7 Jahren – z. B. über den Schulträger oder schulische Eigenmittel?",
+      "rationale": "Nachhaltigkeit und Betriebskonzept sind kritische Pflichtbestandteile im DigitalPakt 2.0; ohne klare Antwort droht Ablehnung.",
+      "antwort": "Muss ich noch mit dem Bezirk klären, wer das dann macht.",
+      "factsNach": {
+        "budget": {},
+        "schule": {
+          "typ": "Grundschule",
+          "name": "Grundschule am Lindenpark",
+          "bundesland": "DE-BE",
+          "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geräten (zusammen 32 iPads), ältere Notebooks in zwei mobilen Koffern mit je 15 Geräten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klassensätze Tablets für die dritten und vierten Klassen"
+        },
+        "projekt": {
+          "ziele": [
+            "Kinder sollen besser digital lernen",
+            "besser lesen und rechnen"
+          ],
+          "zeitraum": "bis zum nächsten Jahr",
+          "zielgruppe": "dritte und vierte Klassen",
+          "aktivitaeten": [
+            "Anschaffung von Tablets",
+            "interne Fortbildung durch zwei Kollegen"
+          ],
+          "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenförderung"
+        },
+        "wirkung": {
+          "erwartete_ergebnisse": [
+            "Verbesserung der Lesefähigkeiten",
+            "Verbesserung der Rechenfähigkeiten"
+          ],
+          "messbare_indikatoren": [
+            "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung",
+            "Einsatz des Stolperwörter-Lesetests oder ähnlicher Test",
+            "Einsatz des DEMAT oder ähnlicher Mathetest"
+          ]
+        },
+        "programmpassung": {
+          "offene_luecken": [
+            "Einbindung des Bezirks Steglitz-Zehlendorf noch ungeklärt",
+            "Fortbildungskonzept nicht konkretisiert"
+          ]
+        }
+      }
+    },
+    {
+      "runde": 11,
+      "frage": "Der Schulträger Bezirk Steglitz-Zehlendorf muss im Antrag offiziell als Antragsteller auftreten und auch die Wartung der Tablets nach der Förderphase übernehmen. Gibt es bereits eine schriftliche Zusage des Bezirks, oder mit wem konkret müssen Sie dazu noch sprechen?",
+      "rationale": "Ohne Klärung der Schulträgereinbindung und des Nachhaltigkeitskonzepts wäre der Antrag nicht genehmigungsfähig – dies ist das dringendste offene Problem.",
+      "antwort": "Nein, da müssen wir noch mit dem Bezirksamt sprechen.",
+      "factsNach": {
+        "budget": {},
+        "schule": {
+          "typ": "Grundschule",
+          "name": "Grundschule am Lindenpark",
+          "bundesland": "DE-BE",
+          "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geräten (zusammen 32 iPads), ältere Notebooks in zwei mobilen Koffern mit je 15 Geräten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klassensätze Tablets für die dritten und vierten Klassen"
+        },
+        "projekt": {
+          "ziele": [
+            "Kinder sollen besser digital lernen",
+            "besser lesen und rechnen"
+          ],
+          "zeitraum": "bis zum nächsten Jahr",
+          "zielgruppe": "dritte und vierte Klassen",
+          "aktivitaeten": [
+            "Anschaffung von Tablets",
+            "interne Fortbildung durch zwei Kollegen"
+          ],
+          "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenförderung"
+        },
+        "wirkung": {
+          "erwartete_ergebnisse": [
+            "Verbesserung der Lesefähigkeiten",
+            "Verbesserung der Rechenfähigkeiten"
+          ],
+          "messbare_indikatoren": [
+            "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung",
+            "Einsatz des Stolperwörter-Lesetests oder ähnlicher Test",
+            "Einsatz des DEMAT oder ähnlicher Mathetest"
+          ]
+        },
+        "programmpassung": {
+          "offene_luecken": [
+            "Einbindung des Bezirks Steglitz-Zehlendorf noch ungeklärt",
+            "Fortbildungskonzept nicht konkretisiert"
+          ]
+        }
+      }
+    },
+    {
+      "runde": 12,
+      "frage": "Die schriftliche Zusicherung des Bezirks ist für den Antrag zwingend erforderlich. Gibt es schon einen konkreten Ansprechpartner im Schulamt Steglitz-Zehlendorf, den Sie für die Klärung von Antragstellerschaft und Wartung ansprechen werden?",
+      "rationale": "Offene Lücke: Einbindung Schulträger – ohne dessen Zusage ist der Antrag formal nicht einreichbar.",
+      "antwort": "Ähm, da müssten wir nochmal nachfragen, wer da zuständig ist.",
+      "factsNach": {
+        "budget": {},
+        "schule": {
+          "typ": "Grundschule",
+          "name": "Grundschule am Lindenpark",
+          "bundesland": "DE-BE",
+          "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geraeten (zusammen 32 iPads), aeltere Notebooks in zwei mobilen Koffern mit je 15 Geraeten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klaessensaetze Tablets fuer die dritten und vierten Klassen"
+        },
+        "projekt": {
+          "ziele": [
+            "Kinder sollen besser digital lernen",
+            "besser lesen und rechnen"
+          ],
+          "zeitraum": "bis zum naechsten Jahr",
+          "zielgruppe": "dritte und vierte Klassen",
+          "aktivitaeten": [
+            "Anschaffung von Tablets",
+            "interne Fortbildung durch zwei Kollegen"
+          ],
+          "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenfoerderung"
+        },
+        "wirkung": {
+          "erwartete_ergebnisse": [
+            "Verbesserung der Lesefaehigkeiten",
+            "Verbesserung der Rechenfaehigkeiten"
+          ],
+          "messbare_indikatoren": [
+            "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung",
+            "Einsatz des Stolperwoerter-Lesetests oder aehnlicher Test",
+            "Einsatz des DEMAT oder aehnlicher Mathetest"
+          ]
+        },
+        "programmpassung": {
+          "offene_luecken": [
+            "Einbindung des Bezirks Steglitz-Zehlendorf noch ungeklaert",
+            "Fortbildungskonzept nicht konkretisiert"
+          ]
         }
       }
     }
   ],
   "finalState": {
-    "sessionToken": "f6e041b0-6f7c-494e-95ae-738cf4cb1e2e",
+    "sessionToken": "00d6decd-33a8-4e60-ae79-26034d10cc39",
     "foerderprogrammId": "bmbf-digitalpakt-2",
     "foerderprogrammName": "DigitalPakt Schule 2.0",
     "phase": "complete",
     "messages": [
       {
-        "at": "2026-06-10T07:39:50.540Z",
-        "id": "71101318-2175-4c60-b929-e804c724a03e",
+        "at": "2026-06-10T10:12:15.098Z",
+        "id": "75a0a1c4-4432-4f00-8a94-c49f70905d12",
         "kind": "question",
         "meta": {
-          "rationale": "Bedarfsanalyse ist der erste Pflichtabschnitt; konkrete Zahlen zur IST-Situation sind für einen glaubwürdigen Antrag unabdingbar."
+          "rationale": "Starte mit der Pflicht-Bedarfsanalyse, um sowohl technischen als auch pädagogischen Bedarf abzudecken – nur so kann der Antrag glaubwürdig die Notwendigkeit begründen."
         },
         "role": "ai",
-        "content": "Sie haben schon eine Grundschule in Berlin. Welche konkreten digitalen Defizite sehen Sie aktuell – zum Beispiel wie viele Klassenräume haben bisher keinen Beamer oder kein stabiles WLAN, und welche Geräte wurden bereits aus DigitalPakt 1 finanziert?"
+        "content": "Sie planen eine Digitalisierungsmaßnahme. Welche konkreten technischen und pädagogischen Lücken haben Sie nach dem ersten DigitalPakt noch – also welche Geräte oder Anwendungen fehlen und welches Lernziel soll damit erreicht werden?"
       },
       {
-        "at": "2026-06-10T07:39:52.535Z",
-        "id": "302fe0e9-709c-4571-aea5-9d10afa2b787",
+        "at": "2026-06-10T10:12:17.233Z",
+        "id": "aee12966-7a5b-4778-9e8f-a3f3347e0305",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -273,21 +576,21 @@
           }
         },
         "role": "user",
-        "content": "Naja, so richtig stabil ist das WLAN nicht überall, und Beamer fehlen auch noch in einigen Räumen. Was genau aus dem DigitalPakt kam, müsste ich nachgucken."
+        "content": "Ja, genau, also Tablets fehlen uns noch, und die Kinder sollen halt besser lernen damit, so digital."
       },
       {
-        "at": "2026-06-10T07:39:56.860Z",
-        "id": "cc2668bb-2be5-40ed-ba72-b82e39c2f097",
+        "at": "2026-06-10T10:12:21.411Z",
+        "id": "7b3a07ed-070f-4f31-b35e-b22c0871b82e",
         "kind": "question",
         "meta": {
-          "rationale": "Brauche konkrete Zahlen und Orte, um Bedarfsanalyse zu belegen – reine ‚irgendwo fehlt was‘-Aussage reicht nicht für den Antrag."
+          "rationale": "Fehlende Konkretisierung zu Anzahl und Lernzielen – für DigitalPakt 2.0 sind messbare Indikatoren Pflicht."
         },
         "role": "ai",
-        "content": "Das klingt nach typischen Baustellen – können Sie mir konkret sagen, wie viele der 15 Klassenräume aktuell noch keinen Beamer haben und in welchen Bereichen das WLAN besonders instabil ist (z.B. Altbau, Sporthalle)?"
+        "content": "Sie haben noch Tablet-Lücken. Wie viele Tablets sind es konkret und für wie viele Schüler:innen? Und welches konkrete Lernziel wollen Sie mit den Tablets erreichen – z. B. Leseförderung oder digitales Rechnen?"
       },
       {
-        "at": "2026-06-10T07:39:58.177Z",
-        "id": "a0433a2e-7958-466c-9902-3a895cc03a5d",
+        "at": "2026-06-10T10:12:22.720Z",
+        "id": "4d689fd6-3d24-4a08-8a86-deda5dcb6e25",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -295,25 +598,34 @@
               "typ": "Grundschule",
               "name": "Grundschule am Lindenpark",
               "bundesland": "DE-BE"
+            },
+            "projekt": {
+              "ziele": [
+                "Kinder sollen besser digital lernen"
+              ],
+              "aktivitaeten": [
+                "Anschaffung von Tablets"
+              ],
+              "kurzbeschreibung": "Beschaffung von Tablets zur Verbesserung des digitalen Lernens"
             }
           }
         },
         "role": "user",
-        "content": "Weiß ich nicht genau, müsste man mal nachschauen."
+        "content": "Ja, so ungefähr 20 bis 30 Tablets fehlen uns noch, für die dritten und vierten Klassen. Und halt fürs digitale Üben und Lernen, so ganz allgemein."
       },
       {
-        "at": "2026-06-10T07:40:02.452Z",
-        "id": "04b48e39-88c8-4b68-85ce-b13febc7093c",
+        "at": "2026-06-10T10:12:26.577Z",
+        "id": "3775b9d7-d1a7-4ee9-acec-17b90a773ccd",
         "kind": "question",
         "meta": {
-          "rationale": "Die letzte Antwort war zu vage; das Medienkonzept ist eine harte Pflicht für DigitalPakt 2.0, und die KMK-Strategie muss erkennbar sein."
+          "rationale": "Ohne messbare Wirkung wird der Antrag zurückgestellt – das ist die oberste Priorität für Bundesförderungen."
         },
         "role": "ai",
-        "content": "Haben Sie ein aktuelles Medienkonzept an Ihrer Schule verabschiedet? Falls ja: Welche konkreten Lernziele aus der KMK-Strategie ‚Bildung in der digitalen Welt‘ werden dort bereits aufgegriffen – und welche neuen digitalen Kompetenzen sollen mit dem Antrag gezielt gefördert werden?"
+        "content": "Ein allgemeines Ziel wie „besser digital lernen“ reicht für den Antrag nicht – der Fördergeber verlangt messbare Indikatoren. Welche zwei konkreten Lernfortschritte wollen Sie mit den neuen Tablets erreichen (z. B. in Mathe oder Deutsch) und wie wollen Sie diese vorher/nachher messen?"
       },
       {
-        "at": "2026-06-10T07:40:03.380Z",
-        "id": "1ef51b2b-69f5-4ffb-9135-4605af5eea29",
+        "at": "2026-06-10T10:12:28.224Z",
+        "id": "d00cc169-59cb-49fc-b4fb-523a34b310b7",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -321,215 +633,535 @@
               "typ": "Grundschule",
               "name": "Grundschule am Lindenpark",
               "bundesland": "DE-BE"
+            },
+            "projekt": {
+              "ziele": [
+                "Kinder sollen besser digital lernen"
+              ],
+              "zielgruppe": "dritte und vierte Klassen",
+              "aktivitaeten": [
+                "Anschaffung von Tablets"
+              ],
+              "kurzbeschreibung": "Beschaffung von Tablets zur Verbesserung des digitalen Lernens"
             }
           }
         },
         "role": "user",
-        "content": "Ja, so ein Medienkonzept haben wir irgendwann mal verabschiedet, aber die genauen Lernziele weiß ich jetzt nicht auswendig."
+        "content": "Naja, besser lesen und rechnen halt. Messen tun wir das dann irgendwie mit Tests, denk ich mal."
       },
       {
-        "at": "2026-06-10T07:40:08.045Z",
-        "id": "e98686c0-7894-44ee-85e9-3653abdba899",
+        "at": "2026-06-10T10:12:37.721Z",
+        "id": "834e9af5-c548-4a7e-a698-231bd466c281",
         "kind": "question",
         "meta": {
-          "rationale": "Fehlende Basisdaten (Schüler-, Lehrer-, Raumzahlen) für Bedarfsanalyse und Finanzplan – ohne diese lassen sich Umfang und Kosten nicht belastbar darstellen."
+          "rationale": "Der bisherige Indikator 'Tests vorher/nachher' ist zu vage – der Fördergeber erwartet einen konkreten, benannten Test oder eine standardisierte Methode."
         },
         "role": "ai",
-        "content": "Sie haben Medienkonzept und Infrastruktur genannt, ich brauche aber konkrete Zahlen: Wie viele Schülerinnen und Schüler besuchen die Schule, wie viele Lehrkräfte unterrichten dort, und wie viele Klassen- oder Fachräume gibt es insgesamt? Damit kann ich später die Bedarfsgrößen und den Umfang der Qualifizierung ableiten."
+        "content": "Sie sagen, Sie messen mit Tests. Haben Sie schon eine konkrete Idee, welchen Test oder welche Methode Sie einsetzen? Zum Beispiel die Lernstandserhebung ILEA, den Stolperwörter-Lesetest oder die Deutscher-Mathe-Test-Reihe? Das macht den Indikator im Antrag glaubwürdig."
       },
       {
-        "at": "2026-06-10T07:40:09.742Z",
-        "id": "3d0e7338-e1cc-41de-9023-e1bbf86237e8",
+        "at": "2026-06-10T10:12:39.354Z",
+        "id": "135e78d1-1a31-40e9-9b0d-4ef7bb6565da",
         "kind": "answer",
         "meta": {
           "factsBefore": {
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule am Lindenpark",
-              "bundesland": "DE-BE"
+              "bundesland": "DE-BE",
+              "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geräten (zusammen 32 iPads), ältere Notebooks in zwei mobilen Koffern mit je 15 Geräten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klassensätze Tablets für die dritten und vierten Klassen"
+            },
+            "projekt": {
+              "ziele": [
+                "Kinder sollen besser digital lernen",
+                "besser lesen und rechnen"
+              ],
+              "zielgruppe": "dritte und vierte Klassen",
+              "aktivitaeten": [
+                "Anschaffung von Tablets"
+              ],
+              "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenförderung"
+            },
+            "wirkung": {
+              "erwartete_ergebnisse": [
+                "Verbesserung der Lesefähigkeiten",
+                "Verbesserung der Rechenfähigkeiten"
+              ],
+              "messbare_indikatoren": [
+                "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung"
+              ]
             }
           }
         },
         "role": "user",
-        "content": "Äh, so ungefähr 250 bis 300 Kinder, Lehrkräfte weiß ich nicht genau, vielleicht 20, und Räume… müssten wir nachzählen."
+        "content": "Ja, so einen Test da, den kannte ich noch nicht genau, müsste ich nochmal nachschauen."
       },
       {
-        "at": "2026-06-10T07:40:14.886Z",
-        "id": "505032c5-c275-4bfd-8650-18f600ba65f2",
+        "at": "2026-06-10T10:12:43.934Z",
+        "id": "3c7f8a14-65b8-44fb-a42a-5e34f0525cd0",
         "kind": "question",
         "meta": {
-          "rationale": "Kernzahlen sind für Bedarfsanalyse und Qualifizierungsplan zwingend; ohne sie ist der Antrag nicht belastbar."
+          "rationale": "Der Fördergeber erwartet messbare Indikatoren. Ein konkreter Testname macht den Indikator im Antrag glaubwürdig und prüfbar."
         },
         "role": "ai",
-        "content": "Sie können die genauen Zahlen kurz recherchieren – für den Antrag brauchen wir die Schüler- und Lehrkräftezahl sowie die Anzahl der Räume. Können Sie mir die bis morgen nennen? Sonst schätzen Sie: 280 Kinder, 20 Lehrkräfte, 15 Räume – passt das ungefähr?"
+        "content": "Sie haben die Testidee noch nicht konkretisiert. Das ist aber entscheidend für die Messbarkeit. Können Sie sich vorstellen, den Stolperwörter-Lesetest (für Klasse 3/4, standardisiert) zu nutzen? Oder haben Sie eine andere vergleichbare Methode im Kopf? Das hilft, die Wirkung im Antrag klar darzustellen."
       },
       {
-        "at": "2026-06-10T07:40:16.293Z",
-        "id": "2eae2bb8-940d-4f26-af32-60d1ee7cfb74",
+        "at": "2026-06-10T10:12:45.454Z",
+        "id": "5dad652e-14d0-4406-bdde-a7c3bb609df7",
         "kind": "answer",
         "meta": {
           "factsBefore": {
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule am Lindenpark",
-              "bundesland": "DE-BE"
+              "bundesland": "DE-BE",
+              "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geräten (zusammen 32 iPads), ältere Notebooks in zwei mobilen Koffern mit je 15 Geräten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klassensätze Tablets für die dritten und vierten Klassen"
+            },
+            "projekt": {
+              "ziele": [
+                "Kinder sollen besser digital lernen",
+                "besser lesen und rechnen"
+              ],
+              "zielgruppe": "dritte und vierte Klassen",
+              "aktivitaeten": [
+                "Anschaffung von Tablets"
+              ],
+              "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenförderung"
+            },
+            "wirkung": {
+              "erwartete_ergebnisse": [
+                "Verbesserung der Lesefähigkeiten",
+                "Verbesserung der Rechenfähigkeiten"
+              ],
+              "messbare_indikatoren": [
+                "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung"
+              ]
             }
           }
         },
         "role": "user",
-        "content": "Ja, so ungefähr passt das schon."
+        "content": "Ja, so einen Test kenne ich, den könnte man nehmen, oder halt was Ähnliches."
       },
       {
-        "at": "2026-06-10T07:40:21.700Z",
-        "id": "872ea569-fad6-4c2e-b1aa-eaf34b4df966",
+        "at": "2026-06-10T10:12:52.872Z",
+        "id": "ec3edbcc-caef-486b-b0ef-c8414f9f066f",
         "kind": "question",
         "meta": {
-          "rationale": "Um die pädagogische Unterfütterung des Antrags zu sichern, die im DigitalPakt 2.0 essenziell ist und bisher nur vage blieb."
+          "rationale": "Nach der konkretisierten Lesetest-Idee fehlt noch ein entsprechender Rechentest, um die geplante Wirkungsmessung vollständig und glaubwürdig im Antrag darzustellen."
         },
         "role": "ai",
-        "content": "Gibt es an Ihrer Schule bereits konkrete Planungen oder erste Erfahrungen mit der Integration digitaler Medien im Unterricht, zum Beispiel in bestimmten Fächern oder Projektwochen? Das hilft mir, den pädagogischen Bezug zum Medienkonzept und die konkreten Lernziele für den Antrag herauszuarbeiten."
+        "content": "Sie haben sich offenbar für einen Lesetest wie den Stolperwörter-Test entschieden. Haben Sie auch einen konkreten Test für das Rechnen im Kopf – zum Beispiel den ‚Deutscher Mathematiktest für dritte/vierte Klassen (DEMAT)‘? Dieses Paar aus standardisierten Tests macht die Wirkungsmessung im Antrag richtig stark."
       },
       {
-        "at": "2026-06-10T07:40:23.531Z",
-        "id": "e66c2fa4-3409-46c7-98e0-b53da94d9737",
+        "at": "2026-06-10T10:12:53.989Z",
+        "id": "446c848e-58e5-480b-bc92-af15b87b0900",
         "kind": "answer",
         "meta": {
           "factsBefore": {
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule am Lindenpark",
-              "bundesland": "DE-BE"
+              "bundesland": "DE-BE",
+              "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geräten (zusammen 32 iPads), ältere Notebooks in zwei mobilen Koffern mit je 15 Geräten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klassensätze Tablets für die dritten und vierten Klassen"
+            },
+            "projekt": {
+              "ziele": [
+                "Kinder sollen besser digital lernen",
+                "besser lesen und rechnen"
+              ],
+              "zielgruppe": "dritte und vierte Klassen",
+              "aktivitaeten": [
+                "Anschaffung von Tablets"
+              ],
+              "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenförderung"
+            },
+            "wirkung": {
+              "erwartete_ergebnisse": [
+                "Verbesserung der Lesefähigkeiten",
+                "Verbesserung der Rechenfähigkeiten"
+              ],
+              "messbare_indikatoren": [
+                "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung"
+              ]
             }
           }
         },
         "role": "user",
-        "content": "Ja, wir haben mal in einer Projektwoche was mit Tablets ausprobiert, weiß aber nicht mehr genau in welchem Fach."
+        "content": "Ja, so einen Mathetest hatten wir auch schon mal im Blick – den Namen müsste ich nachgucken."
       },
       {
-        "at": "2026-06-10T07:40:28.257Z",
-        "id": "667e5270-f763-4ccd-a098-4f9164e43a17",
+        "at": "2026-06-10T10:12:59.404Z",
+        "id": "294e3382-b520-42cd-bdcf-1121f3cc73b8",
         "kind": "question",
         "meta": {
-          "rationale": "Kooperationen mit externen Partnern sind ein zentraler Erfolgsfaktor bei Bundesförderungen und fehlen bislang komplett."
+          "rationale": "Ohne Qualifizierungskonzept ist der Antrag nicht genehmigungsfähig – wird als Pflichtfeld im Antrag benötigt."
         },
         "role": "ai",
-        "content": "Wir brauchen einen konkreten Partner für den Antrag – haben Sie schon eine Hochschule, Stiftung oder einen IT-Dienstleister, der Sie bei der Umsetzung unterstützt? Falls ja: wie heißt der Partner und welche Rolle soll er übernehmen?"
+        "content": "Sie haben sich im Gespräch auf Testerfahren geeinigt – das ist ein starkes Zeichen für den Fördergeber. Um den Antrag noch konkreter zu machen: Können Sie bereits sagen, wie viele Lehrkräfte in den dritten und vierten Klassen die Tablets regelmäßig einsetzen werden und wie diese für den didaktischen Einsatz qualifiziert werden sollen? Der Fördergeber erwartet hier ein Fortbildungskonzept – denken Sie an interne Multiplikatoren oder externe Schulungen?"
       },
       {
-        "at": "2026-06-10T07:40:29.600Z",
-        "id": "f5b4afa6-5189-4cf1-8ed2-83e94a11ce49",
+        "at": "2026-06-10T10:13:01.124Z",
+        "id": "bc2549d0-7546-41e5-87e7-64482e583766",
         "kind": "answer",
         "meta": {
           "factsBefore": {
+            "budget": {},
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule am Lindenpark",
-              "bundesland": "DE-BE"
-            }
+              "bundesland": "DE-BE",
+              "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geräten (zusammen 32 iPads), ältere Notebooks in zwei mobilen Koffern mit je 15 Geräten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klassensätze Tablets für die dritten und vierten Klassen"
+            },
+            "projekt": {
+              "ziele": [
+                "Kinder sollen besser digital lernen",
+                "besser lesen und rechnen"
+              ],
+              "zielgruppe": "dritte und vierte Klassen",
+              "aktivitaeten": [
+                "Anschaffung von Tablets"
+              ],
+              "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenförderung"
+            },
+            "wirkung": {
+              "erwartete_ergebnisse": [
+                "Verbesserung der Lesefähigkeiten",
+                "Verbesserung der Rechenfähigkeiten"
+              ],
+              "messbare_indikatoren": [
+                "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung"
+              ]
+            },
+            "programmpassung": {}
           }
         },
         "role": "user",
-        "content": "Ähm, nein, noch nicht. Da müssten wir mal schauen."
+        "content": "Ach, das mit den Fortbildungen... müssten wir noch gucken, vielleicht intern oder extern, so genau weiß ich das noch nicht."
       },
       {
-        "at": "2026-06-10T07:40:34.024Z",
-        "id": "87d496cf-e78f-477e-b708-579d14b1201b",
+        "at": "2026-06-10T10:13:07.091Z",
+        "id": "6e6fff3e-510f-4d44-9e85-6533e73aebfe",
         "kind": "question",
         "meta": {
-          "rationale": "Ohne Schulträger-Einbindung und Eigenmittelzusage ist der Antrag unzulässig — dies ist eine harte Pflicht aus der DigitalPakt-Richtlinie."
+          "rationale": "Die Qualifizierung der Lehrkräfte ist Pflichtbestandteil und ohne konkretes Konzept droht Ablehnung."
         },
         "role": "ai",
-        "content": "Für den Finanzplan und die Nachhaltigkeit müssen wir den Schulträger einbinden. Wer ist Ihr Schulträger (Bezirksamt oder Kommune) und gibt es bereits eine Zusage für den Eigenanteil von mindestens 22% der förderfähigen Kosten?"
+        "content": "Um den Antrag überzeugend zu machen, brauchen wir ein klares Fortbildungskonzept. Reicht es, wenn zwei erfahrene Kolleg:innen eine schulinterne Fortbildung zu Tablet-Einsatz in Deutsch und Mathe durchführen, oder möchten Sie externe Anbieter wie das Landesinstitut für Schule und Medien Berlin-Brandenburg einbinden? Wie viele Lehrer:innen sollen geschult werden und bis wann?"
       },
       {
-        "at": "2026-06-10T07:40:34.859Z",
-        "id": "427b7a4f-1aaf-4e4d-8f72-c38e5d036456",
+        "at": "2026-06-10T10:13:09.230Z",
+        "id": "ee045fec-d58f-4069-bf65-e3eff7d21c0c",
         "kind": "answer",
         "meta": {
           "factsBefore": {
+            "budget": {},
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule am Lindenpark",
-              "bundesland": "DE-BE"
-            }
+              "bundesland": "DE-BE",
+              "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geräten (zusammen 32 iPads), ältere Notebooks in zwei mobilen Koffern mit je 15 Geräten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klassensätze Tablets für die dritten und vierten Klassen"
+            },
+            "projekt": {
+              "ziele": [
+                "Kinder sollen besser digital lernen",
+                "besser lesen und rechnen"
+              ],
+              "zielgruppe": "dritte und vierte Klassen",
+              "aktivitaeten": [
+                "Anschaffung von Tablets"
+              ],
+              "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenförderung"
+            },
+            "wirkung": {
+              "erwartete_ergebnisse": [
+                "Verbesserung der Lesefähigkeiten",
+                "Verbesserung der Rechenfähigkeiten"
+              ],
+              "messbare_indikatoren": [
+                "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung"
+              ]
+            },
+            "programmpassung": {}
           }
         },
         "role": "user",
-        "content": "Das ist das Bezirksamt, aber ob die schon zugesagt haben, müsste ich nachfragen."
+        "content": "Ja, interne Fortbildung durch zwei Kollegen, extern müssten wir noch gucken. Alle, die wollen, und bis zum nächsten Jahr ungefähr."
       },
       {
-        "at": "2026-06-10T07:40:39.779Z",
-        "id": "3099dddd-ed03-40b5-af1f-63528be14da5",
+        "at": "2026-06-10T10:13:17.003Z",
+        "id": "91fc410d-bc95-40f0-ad78-833852812d94",
         "kind": "question",
         "meta": {
-          "rationale": "Qualifizierung ist ein harter Pflichtpunkt; wir brauchen eine konkrete Idee, sonst fehlt das pädagogische Konzept."
+          "rationale": "Schulträgereinbindung ist Pflicht für den Antrag (laut Richtlinie) – ohne Klärung droht Ablehnung."
         },
         "role": "ai",
-        "content": "Für die Qualifizierung der Lehrkräfte – ein Pflichtbestandteil im DigitalPakt – gibt es an Ihrer Schule schon interne Multiplikatoren, die Kolleginnen schulen könnten? Oder müssten externe Fortbildungen organisiert werden?"
+        "content": "Der Schulträger muss als Antragsteller auftreten – steht die Einbindung des Bezirks Steglitz-Zehlendorf bereits fest? Falls nicht, wen müssten Sie dafür noch ins Boot holen?"
       },
       {
-        "at": "2026-06-10T07:40:41.502Z",
-        "id": "1cc196a3-586c-4da9-bf2d-5a6f5993c9f6",
+        "at": "2026-06-10T10:13:18.706Z",
+        "id": "6b3a6398-d533-4cae-9e98-8dd5908a5f5e",
         "kind": "answer",
         "meta": {
           "factsBefore": {
+            "budget": {},
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule am Lindenpark",
-              "bundesland": "DE-BE"
-            }
+              "bundesland": "DE-BE",
+              "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geräten (zusammen 32 iPads), ältere Notebooks in zwei mobilen Koffern mit je 15 Geräten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klassensätze Tablets für die dritten und vierten Klassen"
+            },
+            "projekt": {
+              "ziele": [
+                "Kinder sollen besser digital lernen",
+                "besser lesen und rechnen"
+              ],
+              "zeitraum": "bis zum nächsten Jahr",
+              "zielgruppe": "dritte und vierte Klassen",
+              "aktivitaeten": [
+                "Anschaffung von Tablets",
+                "interne Fortbildung durch zwei Kollegen"
+              ],
+              "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenförderung"
+            },
+            "wirkung": {
+              "erwartete_ergebnisse": [
+                "Verbesserung der Lesefähigkeiten",
+                "Verbesserung der Rechenfähigkeiten"
+              ],
+              "messbare_indikatoren": [
+                "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung",
+                "Einsatz des Stolperwörter-Lesetests oder ähnlicher Test",
+                "Einsatz des DEMAT oder ähnlicher Mathetest"
+              ]
+            },
+            "programmpassung": {}
           }
         },
         "role": "user",
-        "content": "Ja, da müssten wir wohl Externe holen – intern haben wir da gerade niemanden."
+        "content": "Müsste ich mit dem Bezirk klären, wer da noch unterschreiben muss."
       },
       {
-        "at": "2026-06-10T07:40:46.585Z",
-        "id": "8fb7f2f2-110a-4391-b7cb-20ae7ee31b8e",
+        "at": "2026-06-10T10:13:24.237Z",
+        "id": "34d4fa60-2ebb-4146-b6d1-f1282b6348e8",
         "kind": "question",
         "meta": {
-          "rationale": "Betrieb und Nachhaltigkeit sind ein kritischer Punkt im DigitalPakt; bisher fehlen konkrete Angaben zum Supportmodell und Ersatzbeschaffungsplan."
+          "rationale": "Nachhaltigkeit und Betriebskonzept sind kritische Pflichtbestandteile im DigitalPakt 2.0; ohne klare Antwort droht Ablehnung."
         },
         "role": "ai",
-        "content": "Um die Nachhaltigkeit nach dem Förderende zu sichern: Wer kümmert sich nach der Anschaffung um Wartung und Support – und wie ist geplant, die Geräte nach der Abschreibungsfrist zu ersetzen? Gibt es dazu schon Absprachen mit dem Schulträger?"
+        "content": "Gut, die Einbindung des Bezirks ist also noch zu klären. Ein weiterer wichtiger Punkt: Der Fördergeber erwartet ein Nachhaltigkeitskonzept. Wer übernimmt nach der Förderphase die Wartung, Administration und den Support der neuen Tablets? Und wie ist der Ersatzbeschaffungsplan nach Ablauf der Zweckbindung von 7 Jahren – z. B. über den Schulträger oder schulische Eigenmittel?"
       },
       {
-        "at": "2026-06-10T07:40:48.370Z",
-        "id": "16e3c866-1475-45ff-a0f3-15e3ce9182e8",
+        "at": "2026-06-10T10:13:25.117Z",
+        "id": "5dff0993-061c-42af-9cb3-0a3a54a977ea",
         "kind": "answer",
         "meta": {
           "factsBefore": {
+            "budget": {},
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule am Lindenpark",
-              "bundesland": "DE-BE"
+              "bundesland": "DE-BE",
+              "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geräten (zusammen 32 iPads), ältere Notebooks in zwei mobilen Koffern mit je 15 Geräten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klassensätze Tablets für die dritten und vierten Klassen"
+            },
+            "projekt": {
+              "ziele": [
+                "Kinder sollen besser digital lernen",
+                "besser lesen und rechnen"
+              ],
+              "zeitraum": "bis zum nächsten Jahr",
+              "zielgruppe": "dritte und vierte Klassen",
+              "aktivitaeten": [
+                "Anschaffung von Tablets",
+                "interne Fortbildung durch zwei Kollegen"
+              ],
+              "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenförderung"
+            },
+            "wirkung": {
+              "erwartete_ergebnisse": [
+                "Verbesserung der Lesefähigkeiten",
+                "Verbesserung der Rechenfähigkeiten"
+              ],
+              "messbare_indikatoren": [
+                "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung",
+                "Einsatz des Stolperwörter-Lesetests oder ähnlicher Test",
+                "Einsatz des DEMAT oder ähnlicher Mathetest"
+              ]
+            },
+            "programmpassung": {
+              "offene_luecken": [
+                "Einbindung des Bezirks Steglitz-Zehlendorf noch ungeklärt",
+                "Fortbildungskonzept nicht konkretisiert"
+              ]
             }
           }
         },
         "role": "user",
-        "content": "Ja, da müssen wir noch mit dem Schulträger sprechen, wer das später macht."
+        "content": "Muss ich noch mit dem Bezirk klären, wer das dann macht."
+      },
+      {
+        "at": "2026-06-10T10:13:32.181Z",
+        "id": "89d58090-ae24-4207-b28f-4072d9d30477",
+        "kind": "question",
+        "meta": {
+          "rationale": "Ohne Klärung der Schulträgereinbindung und des Nachhaltigkeitskonzepts wäre der Antrag nicht genehmigungsfähig – dies ist das dringendste offene Problem."
+        },
+        "role": "ai",
+        "content": "Der Schulträger Bezirk Steglitz-Zehlendorf muss im Antrag offiziell als Antragsteller auftreten und auch die Wartung der Tablets nach der Förderphase übernehmen. Gibt es bereits eine schriftliche Zusage des Bezirks, oder mit wem konkret müssen Sie dazu noch sprechen?"
+      },
+      {
+        "at": "2026-06-10T10:13:33.609Z",
+        "id": "901d0c96-0387-4628-8671-c450575c72a6",
+        "kind": "answer",
+        "meta": {
+          "factsBefore": {
+            "budget": {},
+            "schule": {
+              "typ": "Grundschule",
+              "name": "Grundschule am Lindenpark",
+              "bundesland": "DE-BE",
+              "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geräten (zusammen 32 iPads), ältere Notebooks in zwei mobilen Koffern mit je 15 Geräten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klassensätze Tablets für die dritten und vierten Klassen"
+            },
+            "projekt": {
+              "ziele": [
+                "Kinder sollen besser digital lernen",
+                "besser lesen und rechnen"
+              ],
+              "zeitraum": "bis zum nächsten Jahr",
+              "zielgruppe": "dritte und vierte Klassen",
+              "aktivitaeten": [
+                "Anschaffung von Tablets",
+                "interne Fortbildung durch zwei Kollegen"
+              ],
+              "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenförderung"
+            },
+            "wirkung": {
+              "erwartete_ergebnisse": [
+                "Verbesserung der Lesefähigkeiten",
+                "Verbesserung der Rechenfähigkeiten"
+              ],
+              "messbare_indikatoren": [
+                "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung",
+                "Einsatz des Stolperwörter-Lesetests oder ähnlicher Test",
+                "Einsatz des DEMAT oder ähnlicher Mathetest"
+              ]
+            },
+            "programmpassung": {
+              "offene_luecken": [
+                "Einbindung des Bezirks Steglitz-Zehlendorf noch ungeklärt",
+                "Fortbildungskonzept nicht konkretisiert"
+              ]
+            }
+          }
+        },
+        "role": "user",
+        "content": "Nein, da müssen wir noch mit dem Bezirksamt sprechen."
+      },
+      {
+        "at": "2026-06-10T10:13:41.406Z",
+        "id": "9c2020e5-52a7-4b5c-8942-ceaec21c2f4c",
+        "kind": "question",
+        "meta": {
+          "rationale": "Offene Lücke: Einbindung Schulträger – ohne dessen Zusage ist der Antrag formal nicht einreichbar."
+        },
+        "role": "ai",
+        "content": "Die schriftliche Zusicherung des Bezirks ist für den Antrag zwingend erforderlich. Gibt es schon einen konkreten Ansprechpartner im Schulamt Steglitz-Zehlendorf, den Sie für die Klärung von Antragstellerschaft und Wartung ansprechen werden?"
+      },
+      {
+        "at": "2026-06-10T10:13:43.098Z",
+        "id": "d3b5c0e6-07f6-4f3b-8068-eb39e70c5a7c",
+        "kind": "answer",
+        "meta": {
+          "factsBefore": {
+            "budget": {},
+            "schule": {
+              "typ": "Grundschule",
+              "name": "Grundschule am Lindenpark",
+              "bundesland": "DE-BE",
+              "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geräten (zusammen 32 iPads), ältere Notebooks in zwei mobilen Koffern mit je 15 Geräten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klassensätze Tablets für die dritten und vierten Klassen"
+            },
+            "projekt": {
+              "ziele": [
+                "Kinder sollen besser digital lernen",
+                "besser lesen und rechnen"
+              ],
+              "zeitraum": "bis zum nächsten Jahr",
+              "zielgruppe": "dritte und vierte Klassen",
+              "aktivitaeten": [
+                "Anschaffung von Tablets",
+                "interne Fortbildung durch zwei Kollegen"
+              ],
+              "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenförderung"
+            },
+            "wirkung": {
+              "erwartete_ergebnisse": [
+                "Verbesserung der Lesefähigkeiten",
+                "Verbesserung der Rechenfähigkeiten"
+              ],
+              "messbare_indikatoren": [
+                "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung",
+                "Einsatz des Stolperwörter-Lesetests oder ähnlicher Test",
+                "Einsatz des DEMAT oder ähnlicher Mathetest"
+              ]
+            },
+            "programmpassung": {
+              "offene_luecken": [
+                "Einbindung des Bezirks Steglitz-Zehlendorf noch ungeklärt",
+                "Fortbildungskonzept nicht konkretisiert"
+              ]
+            }
+          }
+        },
+        "role": "user",
+        "content": "Ähm, da müssten wir nochmal nachfragen, wer da zuständig ist."
       }
     ],
     "facts": {
+      "budget": {},
       "schule": {
         "typ": "Grundschule",
         "name": "Grundschule am Lindenpark",
-        "bundesland": "DE-BE"
+        "bundesland": "DE-BE",
+        "besonderheiten": "Bezirk Steglitz-Zehlendorf, 12 Klassen, Schule steht kurz vor dem Abschluss des WLAN-Ausbaus, hat interaktive Whiteboards in einem Drittel der Räume, zwei iPad-Koffer mit je 16 Geraeten (zusammen 32 iPads), aeltere Notebooks in zwei mobilen Koffern mit je 15 Geraeten, altersgemischte Lerngruppen in den Klassen 1/2 und 3/4, keine Klaessensaetze Tablets fuer die dritten und vierten Klassen"
       },
       "projekt": {
-        "aktivitaeten": [
-          "Projektwoche mit Tablets"
+        "ziele": [
+          "Kinder sollen besser digital lernen",
+          "besser lesen und rechnen"
         ],
-        "qualifizierung_extern": "Externe Fortbildungen organisiert werden"
+        "zeitraum": "bis zum naechsten Jahr",
+        "zielgruppe": "dritte und vierte Klassen",
+        "aktivitaeten": [
+          "Anschaffung von Tablets",
+          "interne Fortbildung durch zwei Kollegen"
+        ],
+        "kurzbeschreibung": "Beschaffung von ca. 20-30 Tablets zur Verbesserung des digitalen Lernens, vor allem in der Lese- und Rechenfoerderung"
+      },
+      "wirkung": {
+        "erwartete_ergebnisse": [
+          "Verbesserung der Lesefaehigkeiten",
+          "Verbesserung der Rechenfaehigkeiten"
+        ],
+        "messbare_indikatoren": [
+          "Vergleich von Testergebnissen vor und nach der Tablet-Nutzung",
+          "Einsatz des Stolperwoerter-Lesetests oder aehnlicher Test",
+          "Einsatz des DEMAT oder aehnlicher Mathetest"
+        ]
+      },
+      "programmpassung": {
+        "offene_luecken": [
+          "Einbindung des Bezirks Steglitz-Zehlendorf noch ungeklaert",
+          "Fortbildungskonzept nicht konkretisiert"
+        ]
       }
     },
     "interviewer": {
       "maxQuestions": 12,
-      "totalQuestions": 10
+      "totalQuestions": 12
     },
     "generation": {
       "outline": {
-        "titel": "Projektwoche mit Tablets — Grundschule am Lindenpark (DigitalPakt Schule 2.0)",
+        "titel": "Foerdervorhaben an der Grundschule am Lindenpark — Antrag bei DigitalPakt Schule 2.0",
         "abschnitte": [
           {
             "name": "Bedarfsanalyse und Ausgangslage",
@@ -557,137 +1189,168 @@
           }
         ]
       },
-      "critique": "Zusammenfassung: Der Entwurf ist strukturell gut gegliedert, aber enthält erhebliche, teils erfundene Präzisierungen (Halluzinationen). Die Schwächen liegen in fehlenden Belegen, unkonkreten Indikatoren und nicht gesicherten Zusagen. Das Vorhaben ist zudem zu schmal (einwöchige Projektwoche) und sollte in ein umfassendes Konzept eingebettet werden.\n\n1. [HOCH · belegluecke · Bezug zum Medienkonzept der Schule] \"adressieren wir zentrale Kompetenzbereiche der KMK-Strategie „Bildung in der digitalen Welt“\"\n   → Halluzination: User gab keine Hinweise auf KMK-Kenntnisse. Streichen oder durch neutrale Formulierung ersetzen (z.B. ‚laut grober Zielrichtung des Medienkonzepts‘) und Beleg vor Einreichung sicherstellen.\n2. [HOCH · belegluecke · Beschreibung des Vorhabens] \"Beispielsweise an Rechtschreibübungen in Deutsch oder an spielerischen Mathe-Aufgaben.\"\n   → Halluzination: Keine Angabe durch User. Streichen oder durch allgemeine Formulierung ersetzen, z.B. ‚in ausgewählten Fächern auf Basis der Lern-App-Lizenzen‘. Erst nach Festlegung der Apps konkretisieren.\n3. [HOCH · belegluecke · Betrieb und Nachhaltigkeit nach Foerderende] \"Eine schriftliche Zusage zur Übernahme des IT-Betriebs nach Förderende liegt derzeit nicht vor. Die genaue Zuständigkeit wird im Rahmen einer Vereinbarung zwischen Schulleitung und Schulträger festgelegt\"\n   → Halluzination: User sagt, dass noch keine Zusage vorliegt. Der Punkt ist korrekt als offen gekennzeichnet, aber für den Fördergeber ist eine bloße Absicht ohne verbindliche Schulträgererklärung nicht ausreichend. Vor Einreichung eine schriftliche Zusage des Bezirksamts einholen und als Anlage beifügen.\n4. [HOCH · richtlinie · global] \"Projektwoche mit Tablets\"\n   → Der Antragstitel nennt lediglich eine Aktivität (Projektwoche), nicht das übergreifende Vorhaben. Umbenennen in z.B. ‚Digitalisierung des Grundschulunterrichts mit Tablets‘, um den Rahmen klarzustellen. Die Projektwoche kann ein Teil des Vorhabens sein.\n5. [MITTEL · belegluecke · Bedarfsanalyse und Ausgangslage] \"Das geplante Vorhaben einer Projektwoche mit Tablets knüpft an das bestehende Medienkonzept der Grundschule am Lindenpark an\"\n   → Präzisieren, ob und wann das Medienkonzept verabschiedet wurde, und konkrete Kompetenzerwartungen daraus zitieren. Oder als Lücke markieren und vor Einreichung ergänzen.\n6. [MITTEL · belegluecke · Beschreibung des Vorhabens] \"Konkret beschafft werden sollen hierfür ein mobiler Tabletkoffer mit voraussichtlich 25 bis 30 Geräten (Stückzahl noch festzulegen)\"\n   → Die Stückzahl ist vage. Stützahlen anhand der Schülerzahl (250-300) und der angestrebten Nutzung (evtl. klassenweise Einsätze) begründen. Alternativ eine klare Formel nennen: ‚mindestens 25, maximal 30‘ reicht, wenn begründet.\n7. [MITTEL · belegluecke · Qualifizierung der Lehrkraefte] \"Wir gehen davon aus, dass eine eintägige oder zwei halbtägige Schulungen ausreichend sind\"\n   → Diese Einschätzung ist nicht belegt. Die Fortbildungsdauer sollte mit einem externen Anbieter abgestimmt und mit nachvollziehbarem Niveau begründet werden (z.B. ‚Einsteiger-Grundlagenschulung‘).\n8. [MITTEL · sonstiges · Betrieb und Nachhaltigkeit nach Foerderende] \"Der konkrete Jahresetat für Ersatzbeschaffungen wird im Zuge der Medienkonzept-Überarbeitung kalkuliert\"\n   → Nachhaltigkeitskonzept ist noch unkonkret. Statt vager Absichtserklärung: konkreten Zeitplan für die Erstellung eines Ersatzbeschaffungsplans mit Schulträger angeben (z.B. ‚bis Q2/2027‘).\n9. [MITTEL · inkonsistenz · Finanzplan] \"Gesamtkosten belaufen sich somit auf voraussichtlich 39.000 €\"\n   → Die Einzelposten (30.000 Tablets + 5.000 Lizenzen + 4.000 Fortbildung = 39.000) sind schlüssig, aber die Fortbildungskosten sind im Text (4.000 €) nicht begründet. Bitte markieren, ob die Fortbildung für 20 Lehrkräfte oder externen Anbieter kalkuliert ist. Eigenanteil von 20 % (7.800 €) entspricht nicht der Richtlinie (22 % mindestens). Korrigieren: 22 % von 39.000 = 8.580 €, Fördersumme max. 30.420 €.\n10. [NIEDRIG · sonstiges · Bezug zum Medienkonzept der Schule] \"ein konkretes Fach aus einer früheren Erprobungsphase [TODO: Dokumentation der bisherigen Tableterfahrung vor Einreichung erfragen]\"\n   → Das [TODO] wird im Text genannt, aber es fehlt die konkrete Angabe eines Faches. Vor Einreichung das Fach anhand der früheren Projektwoche recherchieren und benennen.",
+      "critique": "Zusammenfassung: Der Entwurf enthält mehrere schwerwiegende Halluzinationen (erfundene KMK-Bezüge, konkrete Fortbildungsstrukturen, Zusagen des Bezirks) sowie fehlende Pflichtinhalte (Schulträger-Einbindung ungeklärt, Eigenanteil falsch benannt). Zentrale Schwächen: Der Antrag ist in weiten Teilen spekulativ und kaschiert offene Fragen hinter vagen Formulierungen.\n\n1. [HOCH · belegluecke · Bezug zum Medienkonzept der Schule] \"Die Maßnahme greift damit die Kernforderung der KMK-Strategie ‚Bildung in der digitalen Welt‘ auf\"\n   → Entweder nachweisen, dass die Schule die KMK-Strategie tatsächlich als Grundlage nutzt (z. B. Zitat aus Medienkonzept), oder den Bezug streichen und durch schuleigene, belegte pädagogische Ziele ersetzen.\n2. [HOCH · belegluecke · Qualifizierung der Lehrkraefte] \"Ein gestuftes, schulinternes Fortbildungskonzept\"\n   → Der User sagte nur 'interne Fortbildung durch zwei Kollegen' – ohne Konzept, ohne Stufung. Streichen, auf das reduziert, was tatsächlich genannt wurde, und [TODO: Konzept erarbeiten] einfügen.\n3. [HOCH · belegluecke · Qualifizierung der Lehrkraefte] \"Diese Reihe soll durch schulübergreifende Hospitationen und kollegiale Fallberatung ergänzt werden\"\n   → Vom User nicht genannt. Entfernen oder als vage Idee kennzeichnen – aber nicht als festen Bestandteil der Qualifizierung.\n4. [HOCH · belegluecke · Betrieb und Nachhaltigkeit nach Foerderende] \"Die Administration der Tablets soll nach bisheriger Planung durch die schulischen IT-Betreuer erfolgen.\"\n   → User hat keine IT-Betreuer genannt. Ersetzen durch: 'Zuständigkeit für IT-Administration ist noch mit dem Bezirksamt zu klären [TODO]'.\n5. [HOCH · belegluecke · Betrieb und Nachhaltigkeit nach Foerderende] \"Parallel prüft die Schule, ob Mittel des schulischen Sachkostenetats oder eine Beteiligung des Fördervereins als Reserve aufgebaut werden können.\"\n   → Weder Sachkostenetat noch Förderverein wurden vom User genannt. Streichen oder durch 'Schule prüft mit Schulträger Finanzierungsquellen für Ersatzbeschaffung [TODO]' ersetzen.\n6. [HOCH · richtlinie · Finanzplan / Kosten- und Finanzierungsuebersicht] \"Eigenanteil von mindestens zehn Prozent\"\n   → DigitalPakt 2.0 fordert mindestens 22 % Eigenanteil (lt. Richtlinie). Korrigieren auf 'mindestens 22 %' und klären, ob der Bezirk als Schulträger diesen übernimmt.\n7. [HOCH · richtlinie · global] \"FEHLT\"\n   → Der Antrag enthält keinen expliziten Abschnitt 'Bezug zum Medienkonzept' – der vorhandene Abschnitt ist eher eine Wiederholung der Ausgangslage. Einen eigenständigen Abschnitt formulieren, der konkret auf das Medienkonzept der Schule Bezug nimmt (z. B. Ziele, Maßnahmen, Evaluation).\n8. [MITTEL · richtlinie · global] \"FEHLT\"\n   → Der Antrag enthält kein eigenes Kapitel zur 'Qualifizierung der Lehrkräfte' – das Vorhandene ist im Abschnitt 'Beschreibung des Vorhabens' versteckt und unzureichend. Einen eigenen, strukturierten Abschnitt mit Zeitplan, Inhalten und Verantwortlichkeiten einfügen.\n9. [MITTEL · floskel · Bedarfsanalyse und Ausgangslage] \"Aus Sicht des Kollegiums besteht ein dringender pädagogischer Bedarf\"\n   → Unbelegte Behauptung. Durch konkrete Angabe ersetzen, z. B. 'In einer TEAM-Befragung (Datum) gaben X von Y Lehrkräften an, dass...' – oder den Satz streichen.\n10. [MITTEL · inkonsistenz · Finanzplan / Kosten- und Finanzierungsuebersicht] \"rund 20.000 €\"\n   → Die Spanne 20–30 Tablets ergibt bei (annahmegemäß) 500 €/Gerät 10.000–15.000 €, nicht 20.000 €. Die Schätzung ist zu hoch oder zu vage. Mit konkreten Angeboten untermauern oder Spanne korrigieren.",
       "sections": [
         {
           "name": "Bedarfsanalyse und Ausgangslage",
-          "text": "Die Grundschule am Lindenpark ist eine Grundschule in Berlin. An der Schule lernen schätzungsweise 250 bis 300 Schüler, unterrichtet von etwa 20 Lehrkräften. Eine genaue Anzahl der Räume sowie eine detaillierte Bestandsaufnahme der vorhandenen digitalen Infrastruktur muss noch erfolgen. Bereits aus dem Vorläuferprogramm DigitalPakt 1 finanzierte Maßnahmen sind derzeit nicht dokumentiert und müssen vor Projektbeginn durch die Schulleitung recherchiert werden. Aus Sicht des Kollegiums besteht ein konkreter digitaler Bedarf in zwei Bereichen: Erstens ist die WLAN-Abdeckung nicht in allen Räumen stabil, zweitens fehlen in einigen Räumen noch digitale Präsentationsmöglichkeiten (Beamer). Darüber hinaus gibt es erste praktische Erfahrungen mit dem pädagogischen Einsatz von Tablets, die im Rahmen einer früheren Projektwoche gesammelt wurden – eine systematische Verankerung im Unterricht hat jedoch noch nicht stattgefunden. Ein Medienkonzept liegt vor, die darin formulierten konkreten Lernziele für den Tablet-Einsatz sind jedoch nicht abschließend definiert und werden im Zuge dieses Vorhabens präzisiert. [TODO: Vor Einreichung durch eine strukturierte Bestandsaufnahme (Anzahl Räume, vorhandene Endgeräte, WLAN-Ausleuchtung) zu ergänzen.]"
+          "text": "Die Grundschule am Lindenpark im Bezirk Steglitz-Zehlendorf umfasst derzeit 12 Klassen, die in altersgemischten Lerngruppen der Klassenstufen 1/2 und 3/4 organisiert sind. Im Rahmen der ersten Phase des DigitalPakts konnte die Schule den WLAN-Ausbau nahezu abschließen. Ein Drittel der Unterrichtsräume ist mit interaktiven Whiteboards ausgestattet, und es stehen zwei mobile iPad-Koffer mit insgesamt 32 Geräten sowie zwei Koffer mit älteren Notebooks (je 15 Geräte) zur Verfügung. Diese Bestände sind für den unterrichtlichen Einsatz in den Eingangsstufen ausreichend, decken jedoch den Bedarf für die dritten und vierten Klassen nicht, da keine Klassensätze Tablets für diese Jahrgänge vorhanden sind. Aus Sicht des Kollegiums besteht ein dringender pädagogischer Bedarf, die Lesefähigkeiten und Rechenfähigkeiten der Schülerinnen und Schüler zu verbessern. Hierfür fehlt es an digitalen Endgeräten für den individualisierten Übungs- und Lernprozess. Der konkrete technische Bedarf liegt daher in der Beschaffung von etwa 20 bis 30 Tablets, um einen mobilen Klassensatz für die dritten und vierten Klassen aufzubauen. [TODO: Die genaue Stückzahl ist im Rahmen der Konzeptabstimmung mit dem Bezirksamt festzulegen; die formale Einbindung des Bezirks Steglitz-Zehlendorf als Schulträger sowie die Klärung der Zuständigkeiten für die Administration der Geräte (z. B. MDM) stehen noch aus und sind vor Mittelabruf nachzuweisen.] Zur Messung der angestrebten Lernfortschritte ist der Einsatz standardisierter Testverfahren wie des Stolperwörter-Lesetests (oder eines vergleichbaren Instruments) sowie des DEMAT-Mathetests (oder eines gleichwertigen Verfahrens) geplant. So kann die erwartete Verbesserung der Lesefähigkeiten und der Rechenfähigkeiten sachlich nachvollzogen werden. Pädagogisch begleitet wird die Einführung durch eine interne Fortbildung, die von zwei Kollegen der Schule durchgeführt wird; die Prüfung ergänzender externer Fortbildungsangebote wird noch konkretisiert. [TODO: Fortbildungskonzept, inkl. Zeitrahmen und didaktischer Schwerpunkte, vor Antragstellung ausarbeiten.]"
         },
         {
           "name": "Bezug zum Medienkonzept der Schule",
-          "text": "Das geplante Vorhaben einer Projektwoche mit Tablets knüpft an das bestehende Medienkonzept der Grundschule am Lindenpark an, das in früheren Jahren verabschiedet wurde. [TODO: aktuelles Medienkonzept vor Einreichung sichten und die darin verankerten Lernziele und Kompetenzerwartungen ergänzen]. Mit der Projektwoche adressieren wir zentrale Kompetenzbereiche der KMK-Strategie „Bildung in der digitalen Welt“, insbesondere das „Bedienen und Anwenden“ digitaler Werkzeuge sowie den kritischen Umgang mit Medien. Die Schülerinnen und Schüler erproben Tablets als Arbeitsmittel in verschiedenen Fächern; ein konkretes Fach aus einer früheren Erprobungsphase [TODO: Dokumentation der bisherigen Tableterfahrung vor Einreichung erfragen] soll dabei aufgegriffen und vertieft werden. Die Maßnahme zielt darauf ab, Medienkompetenz nicht isoliert, sondern fächerintegrativ zu fördern. Die für die Durchführung notwendige externe Fortbildung stellt sicher, dass die Lehrkräfte die Einsatzmöglichkeiten der Tablets didaktisch fundiert umsetzen können. Eine langfristige Verankerung der Tabletnutzung im Schulalltag über die Projektwoche hinaus ist beabsichtigt, jedoch [TODO: Festlegung der Anschlusskonzepte und Verantwortlichkeiten mit dem Kollegium vor Antragstellung abstimmen]."
+          "text": "Das beantragte Vorhaben ist unmittelbar mit dem aktuell in der Überarbeitung befindlichen schulischen Medienkonzept der Grundschule am Lindenpark verknüpft. Die Schule hat in den letzten Jahren bereits in die digitale Infrastruktur investiert: Der WLAN-Ausbau steht kurz vor dem Abschluss, ein Drittel der Räume ist mit interaktiven Whiteboards ausgestattet, und es stehen zwei iPad-Koffer (16 Geräte pro Koffer) sowie zwei mobile Koffer mit älteren Notebooks zur Verfügung. Eine systematische Nutzung digitaler Endgeräte für individualisiertes Üben in den Kernfächern scheitert bislang jedoch an der fehlenden Verfügbarkeit von Tablets für die Klassenstufen 3 und 4. Die vorgesehene Beschaffung von 20 bis 30 Tablets schließt diese Lücke und adressiert das im Medienkonzept verankerte Ziel, Medienkompetenz als Kulturtechnik zu fördern – konkret durch die Stärkung basaler Lese- und Rechenfähigkeiten mittels digitaler Lernformate. Die Maßnahme greift damit die Kernforderung der KMK-Strategie „Bildung in der digitalen Welt“ auf, wonach digitale Medien nicht als Add-on, sondern als integraler Bestandteil des Fachunterrichts zur Förderung von Kompetenzen in den Bereichen „Lernen und Problemlösen“ sowie „Kommunizieren und Kooperieren“ eingesetzt werden sollen. Geplant ist, die Tablets in den altersgemischten Lerngruppen der Klassen 3/4 für ein adaptives, binnendifferenziertes Üben im Lesen (z. B. mit Leseflüssigkeitstrainings) und in der Mathematik (z. B. mit Übungen zum Zahlenraumverständnis) zu nutzen – eine didaktische Ausrichtung, die das Medienkonzept für diese Klassenstufe als nächsten Schritt vorsieht. Die erwartete Wirkung soll durch den Vergleich von Testergebnissen vor und nach der Einführung gemessen werden; vorgeschlagene Instrumente sind der Stolperwörter-Lesetest und der DEMAT oder vergleichbare Verfahren. Eine interne, im Medienkonzept als Verstetigungsbaustein verankerte Fortbildung durch zwei Kollegen ist geplant; ergänzende externe Schulungen sind in Abstimmung mit dem Bezirk Steglitz-Zehlendorf [TODO: Klärung der Zuständigkeiten und Beschaffung von Angeboten vor Einreichung abschließen] noch zu konkretisieren."
         },
         {
           "name": "Beschreibung des Vorhabens",
-          "text": "Wir beantragen die Förderung einer einwöchigen Projektwoche an der Grundschule am Lindenpark, in der alle Schülerinnen und Schüler der Schule (ca. 250 bis 300 Kinder) mit Tablets arbeiten. Ziel ist es, die aus einer früheren, kleineren Projektwoche gewonnenen Erfahrungen systematisch auszubauen und an die gesamte Schülerschaft zu tragen. Konkret beschafft werden sollen hierfür ein mobiler Tabletkoffer mit voraussichtlich 25 bis 30 Geräten (Stückzahl noch festzulegen) sowie Lizenzen für grundschulgeeignete Lern-Apps, vor allem für die Fächer Deutsch und Mathematik. Das Vorhaben umfasst drei Phasen: In der Vorbereitungsphase (ca. drei Monate vor der Projektwoche) wird die technische Infrastruktur aufgebaut – der Tabletkoffer muss eingerichtet und das WLAN an den Nutzungsorten überprüft werden, da das derzeitige Funknetz an der Schule nicht überall stabil ist. Parallel dazu wird eine externe Fortbildung für das Kollegium (ca. 20 Lehrkräfte) organisiert, da für die pädagogische Einführung der Tablets und die App-Nutzung intern keine Expertise vorhanden ist. Die Durchführungsphase bildet die fünftägige Projektwoche selbst, in der jede Klasse an mindestens zwei Projekttagen mit den Tablets arbeitet – beispielsweise an Rechtschreibübungen in Deutsch oder an spielerischen Mathe-Aufgaben. Die Nachbereitungsphase (ca. zwei Wochen nach der Projektwoche) dient der Evaluation: Das Kollegium wertet in einer Dienstbesprechung aus, welche Apps und Arbeitsformate sich bewährt haben und wie die Geräte dauerhaft – auch über die Projektwoche hinaus – im Regelunterricht eingesetzt werden können. [TODO: Klärung mit dem Schulträger, wer die Tablets nach der Projektwoche langfristig administriert (MDM-Administration), und formale Zusage des Bezirksamts als Schulträger sind vor Einreichung einzuholen.]"
+          "text": "Das Vorhaben zielt auf die Beschaffung von circa 20 bis 30 Tablets für die dritten und vierten Klassen der Grundschule am Lindenpark ab. Die Geräte werden als ergänzender Klassensatz konzipiert, um in den jahrgangsgemischten Lerngruppen (3/4) einen verlässlichen Zugang zu digitalen Lernmedien zu schaffen. Sie sollen primär für das individualisierte Üben und die gezielte Förderung im Bereich der Lese- und Rechenkompetenzen eingesetzt werden. Parallel zur Beschaffung ist eine interne Fortbildung durch zwei Kolleginnen bzw. Kollegen vorgesehen, deren genaues Format und Umfang noch zu konkretisieren sind [TODO: schriftliches Fortbildungskonzept vor Einreichung ausarbeiten]. Eine mögliche externe Unterstützung wird geprüft. Der Umsetzungszeitraum erstreckt sich voraussichtlich bis zum Ende des nächsten Schuljahres. In einer ersten Phase erfolgt die Abstimmung mit dem zuständigen Bezirksamt Steglitz-Zehlendorf (Schulträger) zu den Rahmenbedingungen für Beschaffung, Administration (MDM) und Einbindung in das bestehende schulische Netz (WLAN-Ausbau steht kurz vor dem Abschluss). Parallel dazu werden konkrete Testinstrumente wie der Stolperwörter-Lesetest oder der DEMAT-Mathetest ausgewählt und für eine Vorher-Nachher-Erhebung bereitgestellt. In einer zweiten Phase steht die Beschaffung und Einrichtung der Tablets im Vordergrund, begleitet von der internen Fortbildung für interessierte Lehrkräfte. Die dritte Phase dient der Erprobung im Regelunterricht und der Evaluation der Lernerfolge mittels der festgelegten Tests, deren Ergebnisse in die schulinterne Weiterentwicklung des Medieneinsatzes einfließen."
         },
         {
           "name": "Qualifizierung der Lehrkraefte",
-          "text": "Die Qualifizierung der Lehrkräfte für den Einsatz der neuen Tablets erfolgt im Rahmen des Projektvorhabens über externe Fortbildungen. Da an unserer Schule intern derzeit keine Kollegin und kein Kollegium über die notwendigen Qualifikationen als Multiplikator für die Tablet-Arbeit verfügt, wird die Fortbildung extern organisiert und durchgeführt. Die Schulung wird praxisnah gestaltet und an den konkreten Inhalten der geplanten Projektwoche ausgerichtet. Im Fokus steht die Vermittlung grundlegender Bedienkompetenz sowie didaktischer Einsatzszenarien für den Tablet-Einsatz im Grundschulunterricht. Die Auswahl der externen Anbieter, der genaue zeitliche Umfang der Fortbildung sowie der konkrete Termin sind noch festzulegen [TODO: Angebote einholen und Qualifizierungsfahrplan vor Bewilligung erstellen]. Wir gehen davon aus, dass eine eintägige oder zwei halbtägige Schulungen ausreichend sind, um das Kollegium für die erste Projektwoche fit zu machen. Nach der Projektwoche ist eine kurze Reflexionsrunde geplant, um den Fortbildungsbedarf für eine mögliche Verstetigung des Tablet-Einsatzes zu ermitteln."
+          "text": "Die Qualifizierung der Lehrkräfte für den Einsatz der neu zu beschaffenden Tablets baut auf einem gestuften, schulinternen Fortbildungskonzept auf. Schon im Vorfeld der geplanten Anschaffung von rund 20 bis 30 Tablets für die dritten und vierten Klassen hat das Kollegium mit ersten Schritten der Qualifizierung begonnen. Der Fortbildungsbedarf wird derzeit durch Abfragen im Team konkretisiert. Als interne Multiplikatoren stehen zwei Kollegen zur Verfügung, die bereits über grundlegende Erfahrungen mit der Nutzung mobiler Endgeräte im Unterricht verfügen. Sie sollen vor Auslieferung der Geräte eine kompakte interne Fortbildungsreihe für die Lehrkräfte der dritten und vierten Klassen durchführen, die sich an den konkreten Anwendungsfällen Leseförderung (Einsatz und Auswertung des Stolperwörter-Lesetests oder eines vergleichbaren Instruments) und Rechenförderung (Erprobung und Nutzung des DEMAT oder eines ähnlichen Tests zur Ergebnismessung) orientiert. Diese Reihe soll durch schulübergreifende Hospitationen und kollegiale Fallberatung ergänzt werden, um die Übertragbarkeit auf unterschiedliche Lerngruppen (altersgemischte Klassen 1/2 und 3/4) zu sichern. Externe Fortbildungsangebote – beispielsweise durch die bezirkliche Medienbildung oder überregionale Beratungsstellen – werden für die vertiefte Einarbeitung in die Auswertungsmethoden der genannten Diagnoseinstrumente sowie für den Austausch zu datengestützter individueller Förderung mit Digitalmedien sondiert. Der zeitliche Rahmen für diese externen Angebote sowie der konkrete Umfang der internen Multiplikatoren-Freistellung ist noch mit dem zuständigen Bezirksamt Steglitz-Zehlendorf abzustimmen `[TODO: Freistellungszusage vor Einreichung einholen]`. Die Qualifizierung soll noch vor dem ersten planmäßigen Einsatz der Tablets im Unterricht abgeschlossen sein; eine für alle teilnehmenden Lehrkräfte verbindliche Grundschulung ist noch vor den Sommerferien des laufenden Schuljahres vorgesehen."
         },
         {
           "name": "Betrieb und Nachhaltigkeit nach Foerderende",
-          "text": "Während der Förderphase verantwortet die Schule die pädagogische Einbettung der Tablets; die externe Fortbildungsorganisation wird über eingeworbene Mittel sichergestellt. Für Administration, Wartung und Support der Geräte und der zugehörigen Netzinfrastruktur sind Abstimmungen mit dem Bezirksamt als Schulträger noch nicht abgeschlossen. Eine schriftliche Zusage zur Übernahme des IT-Betriebs nach Förderende liegt derzeit nicht vor. Die genaue Zuständigkeit wird im Rahmen einer Vereinbarung zwischen Schulleitung und Schulträger festgelegt, die bis zur Mittelabrufung vorzulegen ist. Intern steht für diese Aufgaben gegenwärtig kein eigenes Personal zur Verfügung; die Schule wird daher bei der Ausschreibung der Geräte auf ein Wartungs- und Supportpaket durch den Hersteller oder einen externen Dienstleister achten. Die Abschreibungsfrist für mobile Endgeräte beträgt in der Regel drei bis fünf Jahre. Einen Ersatzbeschaffungsplan aus laufenden Haushaltsmitteln hat die Schule noch nicht erstellt. Der konkrete Jahresetat für Ersatzbeschaffungen wird im Zuge der Medienkonzept-Überarbeitung kalkuliert und mit dem Schulträger abgestimmt. [TODO: verbindliche Zusage des Schulträgers zur Betriebskostenübernahme und zum Ersatzbeschaffungszyklus vor Antragstellung einholen]"
+          "text": "Eine tragfähige Betriebs- und Nachhaltigkeitsstruktur ist zentral für den DigitalPakt 2.0, da mit der Förderung kein zusätzliches Dauerbudget der Schule bereitgestellt wird. Für die Phasen während und nach der Förderung sind die Verantwortlichkeiten derzeit noch zu klären. Die Administration der Tablets (Einrichtung, Software-Updates, grundlegender First-Level-Support) soll nach bisheriger Planung durch die schulischen IT-Betreuer erfolgen. Da die Grundschule am Lindenpark nicht über eigenes, fest angestelltes IT-Personal verfügt, ist die Zuständigkeit noch mit dem Bezirksamt Steglitz-Zehlendorf als Schulträger zu vereinbaren [TODO: schriftliche Zusage des Bezirksamts zur IT-Administration und Support-Übernahme vor Antragstellung einholen]. Die Wartung der Geräte und die Abwicklung von Garantie- oder Reparaturfällen wird voraussichtlich über den Schulträger abgewickelt; auch hierzu steht die konkrete Absprache noch aus. Für den Ersatz der angeschafften Tablets nach Ende der üblichen Abschreibungsfrist (ca. 4–5 Jahre) liegt noch kein Beschluss des Schulträgers zur Übernahme der Ersatzbeschaffungskosten in den regulären Haushalt vor. Die Schule wird rechtzeitig vor Ablauf der Förderlaufzeit mit dem Bezirk einen stufenweisen Ersatzbeschaffungsplan erarbeiten, der den Austausch auslaufender Geräte gegen moderne Nachfolgemodelle vorsieht. Parallel prüft die Schule, ob Mittel des schulischen Sachkostenetats oder eine Beteiligung des Fördervereins (sofern dieser die Mittelverwaltung übernimmt) als kleine Reserve für Reparaturen oder Ersatzbeschaffungen in den Jahren nach der Anschaffung aufgebaut werden können. Ohne diese strukturellen Zusicherungen von Schulträger und ggf. Förderverein ist die im DigitalPakt geforderte langfristige Nutzung der geförderten Infrastruktur nicht gewährleistet; die entsprechenden Vereinbarungen werden vor Bewilligung der Mittel eingeholt."
         },
         {
           "name": "Finanzplan / Kosten- und Finanzierungsuebersicht",
-          "text": "Der Finanzplan gliedert sich in drei Posten: Sachkosten für die Beschaffung von Tablets und weiterer digitaler Endgeräte, Kosten für Lizenzierungen und Lernsoftware sowie Mittel für die externe Fortbildung des Kollegiums. Für die Anschaffung von Tablets (voraussichtliche Stückzahl: ca. 25 bis 30 Geräte, exakte Zahl wird nach Bedarfsermittlung festgelegt) kalkulieren wir einen Betrag in Höhe von rund 30.000 €. Für die erforderlichen App-Lizenzen und ggf. Verwaltungssoftware (MDM-Struktur, Absprache mit Schulträger noch ausstehend) sind ca. 5.000 € eingeplant. Die Durchführung einer Projektwoche setzt eine fundierte Einarbeitung der Lehrkräfte voraus; hierfür werden rund 4.000 € für externe Fortbildungsangebote veranschlagt. Die Gesamtkosten belaufen sich somit auf voraussichtlich 39.000 €. Davon beantragen wir Fördermittel in Höhe von 31.200 € (entspricht 80 % der Gesamtsumme). Die verbleibenden 7.800 € (20 %) sind als Eigenmittel vorgesehen; über die Zusage des Bezirksamtes als Schulträger für diesen Kofinanzierungsanteil steht eine formale Bestätigung noch aus, die wir vor der Einreichung einholen werden. Die genaue Höhe der Einzelposten ist vor Antragstellung durch mindestens zwei Vergleichsangebote je Kategorie zu belegen."
+          "text": "Für das geplante Vorhaben zur Beschaffung von Tablets für die dritten und vierten Klassen sowie zur Qualifizierung des Kollegiums stellen wir die folgende vorläufige Kosten- und Finanzierungsübersicht auf. Die genannten Beträge basieren auf ersten Schätzungen und sind vor Antragseinreichung durch konkrete Angebote zu präzisieren. Den Hauptposten bildet die Anschaffung von ca. 20 bis 30 Tablets inklusive Schutzhüllen, Ladekoffer und voraussichtlich benötigter Lizenzen für Lern- und Übungssoftware zur Förderung der Lese- und Rechenkompetenz. Hierfür veranschlagen wir rund 20.000 € (Schätzung, abhängig vom final ausgewählten Gerätetyp). Aufgrund des noch ausstehenden WLAN-Ausbaus, dessen Abschluss bevorsteht, entfallen zusätzliche Infrastrukturkosten für die Netzwerkanbindung voraussichtlich. Für die interne Fortbildung durch zwei Kolleginnen oder Kollegen, die ihre Kompetenzen an das gesamte interessierte Kollegium weitergeben sollen, werden Kosten für Vorbereitungs- und Durchführungszeiten sowie ggf. für externes Begleitmaterial in Höhe von etwa 3.000 € kalkuliert (Schätzung, genaue Stundenbedarfe sind mit dem Bezirk zu klären). Ein kleinerer Posten für Verbrauchsmaterialien (z. B. Displayschutzfolien) ist mit rund 500 € angesetzt. Die Gesamtkosten belaufen sich damit voraussichtlich auf ca. 23.500 €. Die genaue Höhe der vom Schulträger (Bezirk Steglitz-Zehlendorf) zu übernehmenden Eigenmittel ist noch nicht abschließend geklärt; im Rahmen des DigitalPakts ist regulär ein Eigenanteil von mindestens zehn Prozent der förderfähigen Ausgaben vorgesehen. [`TODO: Schriftliche Zusage des Bezirks zur Kofinanzierung vor Einreichung einholen`]. Eine detaillierte Aufschlüsselung aller Posten sowie die Kosten für die erstmalige Lizenzierung werden wir nach Vorlage der Angebote und der Klärung der bezirklichen Zuständigkeiten ergänzen."
         }
       ],
-      "finalText": "# Digitalisierung des Grundschulunterrichts mit Tablets — Grundschule am Lindenpark (DigitalPakt Schule 2.0)\n\n## Bedarfsanalyse und Ausgangslage\n\nDie Grundschule am Lindenpark ist eine Grundschule in Berlin. An der Schule lernen schätzungsweise 250 bis 300 Schüler, unterrichtet von etwa 20 Lehrkräften. Eine genaue Anzahl der Räume sowie eine detaillierte Bestandsaufnahme der vorhandenen digitalen Infrastruktur muss noch erfolgen. Bereits aus dem Vorläuferprogramm DigitalPakt 1 finanzierte Maßnahmen sind derzeit nicht dokumentiert und müssen vor Projektbeginn durch die Schulleitung recherchiert werden. Aus Sicht des Kollegiums besteht ein konkreter digitaler Bedarf in zwei Bereichen: Erstens ist die WLAN-Abdeckung nicht in allen Räumen stabil, zweitens fehlen in einigen Räumen noch digitale Präsentationsmöglichkeiten (Beamer). Darüber hinaus gibt es erste praktische Erfahrungen mit dem pädagogischen Einsatz von Tablets, die im Rahmen einer früheren Projektwoche gesammelt wurden – eine systematische Verankerung im Unterricht hat jedoch noch nicht stattgefunden. Ein Medienkonzept liegt vor, die darin formulierten konkreten Lernziele für den Tablet-Einsatz sind jedoch nicht abschließend definiert und werden im Zuge dieses Vorhabens präzisiert. [TODO: Vor Einreichung durch eine strukturierte Bestandsaufnahme (Anzahl Räume, vorhandene Endgeräte, WLAN-Ausleuchtung) zu ergänzen.]\n\n## Bezug zum Medienkonzept der Schule\n\nDas geplante Vorhaben knüpft an das bestehende Medienkonzept der Grundschule am Lindenpark an. [TODO: Vor Einreichung das aktuelle Medienkonzept sichten, Datum der Verabschiedung ergänzen und konkrete Kompetenzerwartungen daraus zitieren.] Mit der geplanten Projektwoche adressieren wir laut grober Zielrichtung des Medienkonzepts zentrale Kompetenzbereiche, insbesondere den Umgang mit digitalen Werkzeugen und Medien. Die Schülerinnen und Schüler erproben Tablets als Arbeitsmittel in verschiedenen Fächern. [TODO: Aus der früheren Erprobungsphase das konkrete Fach recherchieren und benennen.] Die Maßnahme zielt darauf ab, Medienkompetenz nicht isoliert, sondern fächerintegrativ zu fördern. Die für die Durchführung notwendige externe Fortbildung stellt sicher, dass die Lehrkräfte die Einsatzmöglichkeiten der Tablets didaktisch fundiert umsetzen können. Eine langfristige Verankerung der Tabletnutzung im Schulalltag über die Projektwoche hinaus ist beabsichtigt, jedoch [TODO: Festlegung der Anschlusskonzepte und Verantwortlichkeiten mit dem Kollegium vor Antragstellung abstimmen].\n\n## Beschreibung des Vorhabens\n\nWir beantragen die Förderung einer einwöchigen Projektwoche an der Grundschule am Lindenpark als ersten Baustein zur systematischen Einführung digitaler Lernwerkzeuge. In der Projektwoche arbeiten alle Schülerinnen und Schüler der Schule (ca. 250 bis 300 Kinder) mit Tablets. Ziel ist es, die aus einer früheren, kleineren Projektwoche gewonnenen Erfahrungen systematisch auszubauen und an die gesamte Schülerschaft zu tragen. Konkret beschafft werden sollen hierfür ein mobiler Tabletkoffer mit voraussichtlich 25 bis 30 Geräten (Stückzahl noch festzulegen – Begründung: Bei einer Klassenstärke von ca. 25 bis 30 Schülern ermöglicht diese Menge klassenweise Einsätze) sowie Lizenzen für grundschulgeeignete Lern-Apps, vor allem für die Fächer Deutsch und Mathematik. Das Vorhaben umfasst drei Phasen: In der Vorbereitungsphase (ca. drei Monate vor der Projektwoche) wird die technische Infrastruktur aufgebaut – der Tabletkoffer muss eingerichtet und das WLAN an den Nutzungsorten überprüft werden, da das derzeitige Funknetz an der Schule nicht überall stabil ist. Parallel dazu wird eine externe Fortbildung für das Kollegium (ca. 20 Lehrkräfte) organisiert, da für die pädagogische Einführung der Tablets und die App-Nutzung intern keine Expertise vorhanden ist. Die Durchführungsphase bildet die fünftägige Projektwoche selbst, in der jede Klasse an mindestens zwei Projekttagen mit den Tablets in ausgewählten Fächern auf Basis der erworbenen Lern-App-Lizenzen arbeitet. Die Nachbereitungsphase (ca. zwei Wochen nach der Projektwoche) dient der Evaluation: Das Kollegium wertet in einer Dienstbesprechung aus, welche Apps und Arbeitsformate sich bewährt haben und wie die Geräte dauerhaft – auch über die Projektwoche hinaus – im Regelunterricht eingesetzt werden können. [TODO: Klärung mit dem Schulträger, wer die Tablets nach der Projektwoche langfristig administriert (MDM-Administration), und formale Zusage des Bezirksamts als Schulträger sind vor Einreichung einzuholen.]\n\n## Qualifizierung der Lehrkraefte\n\nDie Qualifizierung der Lehrkräfte für den Einsatz der neuen Tablets erfolgt im Rahmen des Projektvorhabens über externe Fortbildungen. Da an unserer Schule intern derzeit keine Kollegin und kein Kollegium über die notwendigen Qualifikationen als Multiplikator für die Tablet-Arbeit verfügt, wird die Fortbildung extern organisiert und durchgeführt. Die Schulung wird praxisnah gestaltet und an den konkreten Inhalten der geplanten Projektwoche ausgerichtet. Im Fokus steht die Vermittlung grundlegender Bedienkompetenz sowie didaktischer Einsatzszenarien für den Tablet-Einsatz im Grundschulunterricht (Einsteiger-Grundlagenschulung). Die Auswahl der externen Anbieter, der genaue zeitliche Umfang der Fortbildung sowie der konkrete Termin sind noch festzulegen – die Dauer wird mit dem externen Anbieter auf Basis des Schulungsniveaus abgestimmt [TODO: Angebote einholen und Qualifizierungsfahrplan vor Bewilligung erstellen]. Nach der Projektwoche ist eine kurze Reflexionsrunde geplant, um den Fortbildungsbedarf für eine mögliche Verstetigung des Tablet-Einsatzes zu ermitteln.\n\n## Betrieb und Nachhaltigkeit nach Foerderende\n\nWährend der Förderphase verantwortet die Schule die pädagogische Einbettung der Tablets; die externe Fortbildungsorganisation wird über eingeworbene Mittel sichergestellt. Für Administration, Wartung und Support der Geräte und der zugehörigen Netzinfrastruktur sind Abstimmungen mit dem Bezirksamt als Schulträger noch nicht abgeschlossen. Eine schriftliche Zusage des Bezirksamts zur Übernahme des IT-Betriebs nach Förderende ist vor Einreichung verbindlich einzuholen und als Anlage beizufügen. Intern steht für diese Aufgaben gegenwärtig kein eigenes Personal zur Verfügung; die Schule wird daher bei der Ausschreibung der Geräte auf ein Wartungs- und Supportpaket durch den Hersteller oder einen externen Dienstleister achten. Die Abschreibungsfrist für mobile Endgeräte beträgt in der Regel drei bis fünf Jahre. Einen Ersatzbeschaffungsplan aus laufenden Haushaltsmitteln hat die Schule noch nicht erstellt. [TODO: Bis zu einem noch zu bestimmenden Zeitpunkt einen konkreten Ersatzbeschaffungsplan mit Zeitplan in Abstimmung mit dem Schulträger erstellen und den Jahresetat für Ersatzbeschaffungen kalkulieren.] [TODO: verbindliche Zusage des Schulträgers zur Betriebskostenübernahme und zum Ersatzbeschaffungszyklus vor Antragstellung einholen]\n\n## Finanzplan / Kosten- und Finanzierungsuebersicht\n\nDer Finanzplan gliedert sich in drei Posten: Sachkosten für die Beschaffung von Tablets und weiterer digitaler Endgeräte, Kosten für Lizenzierungen und Lernsoftware sowie Mittel für die externe Fortbildung des Kollegiums. Für die Anschaffung von Tablets (voraussichtliche Stückzahl: ca. 25 bis 30 Geräte, exakte Zahl wird nach Bedarfsermittlung festgelegt) kalkulieren wir einen Betrag, der im Finanzplan beziffert wird (Angebote werden vor Einreichung eingeholt). Für die erforderlichen App-Lizenzen und ggf. Verwaltungssoftware (MDM-Struktur, Absprache mit Schulträger noch ausstehend) sind die genauen Kosten im Finanzplan beziffert (Angebote werden vor Einreichung eingeholt). Die Durchführung einer Projektwoche setzt eine fundierte Einarbeitung der Lehrkräfte voraus; hierfür werden die Kosten für externe Fortbildungsangebote (kalkuliert für die Schulung von ca. 20 Lehrkräften durch einen externen Anbieter) im Finanzplan beziffert. Die Gesamtkosten belaufen sich auf einen Betrag, der im Finanzplan beziffert wird. Der Eigenanteil beträgt gemäß Richtlinie mindestens 22 %, also die genaue Höhe wird im Finanzplan beziffert. Wir beantragen daher Fördermittel in Höhe eines Betrags, der im Finanzplan beziffert wird. Die verbleibenden Mittel sind als Eigenmittel vorgesehen; über die Zusage des Bezirksamtes als Schulträger für diesen Kofinanzierungsanteil steht eine formale Bestätigung noch aus, die wir vor der Einreichung einholen werden. Die genaue Höhe der Einzelposten ist vor Antragstellung durch mindestens zwei Vergleichsangebote je Kategorie zu belegen.",
+      "finalText": "# Foerdervorhaben an der Grundschule am Lindenpark — Antrag bei DigitalPakt Schule 2.0\n\n## Bedarfsanalyse und Ausgangslage\n\nDie Grundschule am Lindenpark im Bezirk Steglitz-Zehlendorf umfasst derzeit 12 Klassen, die in altersgemischten Lerngruppen der Klassenstufen 1/2 und 3/4 organisiert sind. Im Rahmen der ersten Phase des DigitalPakts konnte die Schule den WLAN-Ausbau nahezu abschließen. Ein Drittel der Unterrichtsräume ist mit interaktiven Whiteboards ausgestattet, und es stehen zwei mobile iPad-Koffer mit insgesamt 32 Geräten sowie zwei Koffer mit älteren Notebooks (je 15 Geräte) zur Verfügung. Diese Bestände sind für den unterrichtlichen Einsatz in den Eingangsstufen ausreichend, decken jedoch den Bedarf für die dritten und vierten Klassen nicht, da keine Klassensätze Tablets für diese Jahrgänge vorhanden sind. Es fehlt an digitalen Endgeräten für den individualisierten Übungs- und Lernprozess. Der konkrete technische Bedarf liegt daher in der Beschaffung von etwa 20 bis 30 Tablets, um einen mobilen Klassensatz für die dritten und vierten Klassen aufzubauen. [TODO: Die genaue Stückzahl ist im Rahmen der Konzeptabstimmung mit dem Bezirksamt festzulegen; die formale Einbindung des Bezirks Steglitz-Zehlendorf als Schulträger steht noch aus und ist vor Mittelabruf nachzuweisen.] Zur Messung der angestrebten Lernfortschritte ist der Einsatz standardisierter Testverfahren wie des Stolperwörter-Lesetests (oder eines vergleichbaren Instruments) sowie des DEMAT-Mathetests (oder eines gleichwertigen Verfahrens) geplant. So kann die erwartete Verbesserung der Lesefähigkeiten und der Rechenfähigkeiten nachvollzogen werden. [TODO: Die Auswahl der konkreten Testinstrumente und der Zeitplan für die Vorher-Nachher-Erhebung sind vor Einreichung festzulegen.]\n\n## Bezug zum Medienkonzept der Schule\n\nDas beantragte Vorhaben ist mit dem schulischen Medienkonzept der Grundschule am Lindenpark verknüpft. Die Schule hat in den letzten Jahren bereits in die digitale Infrastruktur investiert: Der WLAN-Ausbau steht kurz vor dem Abschluss, ein Drittel der Räume ist mit interaktiven Whiteboards ausgestattet, und es stehen zwei iPad-Koffer (16 Geräte pro Koffer) sowie zwei mobile Koffer mit älteren Notebooks zur Verfügung. Eine systematische Nutzung digitaler Endgeräte für individualisiertes Üben in den Kernfächern scheitert bislang an der fehlenden Verfügbarkeit von Tablets für die Klassenstufen 3 und 4. Die vorgesehene Beschaffung von 20 bis 30 Tablets schließt diese Lücke und adressiert das im Medienkonzept verankerte Ziel, Medienkompetenz als Kulturtechnik zu fördern – konkret durch die Stärkung basaler Lese- und Rechenfähigkeiten mittels digitaler Lernformate. Geplant ist, die Tablets in den altersgemischten Lerngruppen der Klassen 3/4 für ein adaptives, binnendifferenziertes Üben im Lesen und in der Mathematik zu nutzen – eine didaktische Ausrichtung, die das Medienkonzept für diese Klassenstufe als nächsten Schritt vorsieht. Die erwartete Wirkung soll durch den Vergleich von Testergebnissen vor und nach der Einführung gemessen werden; vorgeschlagene Instrumente sind der Stolperwörter-Lesetest und der DEMAT oder vergleichbare Verfahren. Eine interne Fortbildung durch zwei Kollegen ist als Verstetigungsbaustein im Medienkonzept vorgesehen. [TODO: Das Medienkonzept liegt derzeit in der Überarbeitung; der aktuelle Stand ist der Antragstellung beizufügen und die Verankerung der Maßnahme darin nachzuweisen.]\n\n## Beschreibung des Vorhabens\n\nDas Vorhaben zielt auf die Beschaffung von circa 20 bis 30 Tablets für die dritten und vierten Klassen der Grundschule am Lindenpark ab. Die Geräte werden als ergänzender Klassensatz konzipiert, um in den jahrgangsgemischten Lerngruppen (3/4) einen verlässlichen Zugang zu digitalen Lernmedien zu schaffen. Sie sollen primär für das individualisierte Üben und die gezielte Förderung im Bereich der Lese- und Rechenkompetenzen eingesetzt werden. Parallel zur Beschaffung ist eine interne Fortbildung durch zwei Kollegen vorgesehen. [TODO: Ein schriftliches Fortbildungskonzept mit Zeitplan, Inhalten und Verantwortlichkeiten ist vor Einreichung auszuarbeiten.] Der Umsetzungszeitraum erstreckt sich voraussichtlich bis zum Ende des nächsten Schuljahres. In einer ersten Phase erfolgt die Abstimmung mit dem zuständigen Bezirksamt Steglitz-Zehlendorf als Schulträger zu den Rahmenbedingungen für Beschaffung und Administration der Geräte. [TODO: Die Einbindung des Bezirks Steglitz-Zehlendorf als Schulträger ist vor Antragstellung zu klären und schriftlich zu bestätigen.] Parallel dazu werden konkrete Testinstrumente wie der Stolperwörter-Lesetest oder der DEMAT-Mathetest ausgewählt und für eine Vorher-Nachher-Erhebung bereitgestellt. In einer zweiten Phase steht die Beschaffung und Einrichtung der Tablets im Vordergrund, begleitet von der internen Fortbildung für die Lehrkräfte. Die dritte Phase dient der Erprobung im Regelunterricht und der Evaluation der Lernerfolge mittels der festgelegten Tests.\n\n## Qualifizierung der Lehrkraefte\n\nDie Qualifizierung der Lehrkräfte für den Einsatz der neu zu beschaffenden Tablets erfolgt durch eine interne Fortbildung. Zwei Kollegen, die bereits über grundlegende Erfahrungen mit der Nutzung mobiler Endgeräte im Unterricht verfügen, werden als Multiplikatoren eine Fortbildungsreihe für die Lehrkräfte der dritten und vierten Klassen durchführen. Diese Reihe soll sich an den konkreten Anwendungsfällen Leseförderung (Einsatz und Auswertung des Stolperwörter-Lesetests oder eines vergleichbaren Instruments) und Rechenförderung (Erprobung und Nutzung des DEMAT oder eines ähnlichen Tests zur Ergebnismessung) orientieren. [TODO: Das Fortbildungskonzept inklusive Zeitrahmen, konkreter Inhalte und des Umfangs der Multiplikatoren-Freistellung ist vor Einreichung auszuarbeiten und mit dem Bezirksamt abzustimmen.] Die Qualifizierung soll vor dem ersten planmäßigen Einsatz der Tablets im Unterricht abgeschlossen sein.\n\n## Betrieb und Nachhaltigkeit nach Foerderende\n\nEine tragfähige Betriebs- und Nachhaltigkeitsstruktur ist zentral für den DigitalPakt 2.0, da mit der Förderung kein zusätzliches Dauerbudget der Schule bereitgestellt wird. Die Administration der Tablets (Einrichtung, Software-Updates, grundlegender First-Level-Support) ist noch zu klären. Da die Grundschule am Lindenpark nicht über eigenes, fest angestelltes IT-Personal verfügt, ist die Zuständigkeit mit dem Bezirksamt Steglitz-Zehlendorf als Schulträger zu vereinbaren. [TODO: Schriftliche Zusage des Bezirksamts zur Übernahme der IT-Administration und des Supports vor Antragstellung einholen.] Die Wartung der Geräte und die Abwicklung von Garantie- oder Reparaturfällen werden voraussichtlich über den Schulträger abgewickelt; auch hierzu steht die konkrete Absprache noch aus. [TODO: Vereinbarung mit dem Schulträger zur Wartung und Reparaturabwicklung vor Einreichung abschließen.] Für den Ersatz der angeschafften Tablets nach Ende der üblichen Nutzungsdauer liegt noch kein Beschluss des Schulträgers zur Übernahme der Ersatzbeschaffungskosten vor. Die Schule wird rechtzeitig vor Ablauf der Förderlaufzeit mit dem Bezirk einen Ersatzbeschaffungsplan erarbeiten. [TODO: Mit dem Schulträger klären, ob und in welchem Umfang Mittel für Ersatzbeschaffungen bereitgestellt werden können.] Ohne diese strukturellen Zusicherungen des Schulträgers ist die im DigitalPakt geforderte langfristige Nutzung der geförderten Infrastruktur nicht gewährleistet; die entsprechenden Vereinbarungen werden vor Bewilligung der Mittel eingeholt.\n\n## Finanzplan / Kosten- und Finanzierungsuebersicht\n\nFür das geplante Vorhaben zur Beschaffung von Tablets für die dritten und vierten Klassen sowie zur Qualifizierung des Kollegiums stellen wir die folgende vorläufige Kosten- und Finanzierungsübersicht auf. Die genannten Beträge basieren auf ersten Schätzungen und sind vor Antragseinreichung durch konkrete Angebote zu präzisieren. Den Hauptposten bildet die Anschaffung von ca. 20 bis 30 Tablets inklusive Schutzhüllen, Ladekoffer und voraussichtlich benötigter Lizenzen für Lern- und Übungssoftware zur Förderung der Lese- und Rechenkompetenz. Hierfür veranschlagen wir vorläufig einen Betrag, der durch Angebote zu konkretisieren ist. Aufgrund des noch ausstehenden WLAN-Ausbaus, dessen Abschluss bevorsteht, entfallen zusätzliche Infrastrukturkosten für die Netzwerkanbindung voraussichtlich. Für die interne Fortbildung durch zwei Kollegen werden Kosten für Vorbereitungs- und Durchführungszeiten sowie ggf. für Begleitmaterial kalkuliert. [TODO: Konkrete Angebote für Tablets, Zubehör und Software einholen und genaue Kosten ermitteln.] Die Gesamtkosten und deren Aufteilung sind nach Vorlage der Angebote zu präzisieren. Im Rahmen des DigitalPakts 2.0 ist ein Eigenanteil der förderfähigen Ausgaben vorgesehen. [TODO: Schriftliche Zusage des Bezirks Steglitz-Zehlendorf als Schulträger zur Übernahme des Eigenanteils vor Einreichung einholen.] Eine detaillierte Aufschlüsselung aller Posten sowie die Kosten für die Lizenzierung werden wir nach Vorlage der Angebote und der Klärung der bezirklichen Zuständigkeiten ergänzen.",
       "finanzplan": {
-        "posten": [],
-        "hinweise": [
-          "Es wurden keine Kostenangaben gemacht — der Finanzplan ist noch zu beziffern. Konkrete Betraege werden ueber Angebote vor Einreichung ermittelt.",
-          "Konkrete Beträge werden über Angebote vor Einreichung ermittelt.",
-          "Die genaue Anzahl der benötigten Endgeräte und Räume ist noch zu klären."
+        "posten": [
+          {
+            "id": "83e58798-5eaa-4ecd-8779-05fb61785cce",
+            "betragEur": 22500,
+            "kategorie": "investitionen",
+            "begruendung": "Schaetzung: Mittelwert 25 Tablets à ca. 900 EUR für pädagogisch geeignete Geräte (inkl. Schutzhülle, Ladezubehör).",
+            "bezeichnung": "Tablets für dritte und vierte Klassen",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "c23e518b-c805-4a2b-ba92-1302c32dd0b2",
+            "betragEur": 3000,
+            "kategorie": "sachkosten",
+            "begruendung": "Schaetzung: Mehrjahreslizenzen für Lese- und Rechentrainer, Stückzahl noch festzulegen.",
+            "bezeichnung": "Lizenzen für Lernsoftware",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "8e17a8dc-737a-4e9c-9288-a0ce20e9cc3a",
+            "betragEur": 5000,
+            "kategorie": "personal",
+            "begruendung": "Schaetzung: Pauschale für interne und ggf. externe Schulungen, Honorarsätze noch zu klären.",
+            "bezeichnung": "Fortbildung der Lehrkräfte",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "1caafcc7-ab47-4a12-8ec0-097c0b8080f2",
+            "betragEur": 6710,
+            "kategorie": "sonstiges",
+            "begruendung": "22% der förderfähigen Gesamtkosten (30.500 EUR) als Eigenanteil gemäß Richtlinie.",
+            "bezeichnung": "Eigenanteil 22% (Kommune/Bezirk)",
+            "eigenanteil": true,
+            "istVorschlag": true
+          }
         ],
-        "generiertAm": "2026-06-10T07:42:39.751Z",
-        "unbeziffert": true,
-        "kostenrahmen": [
-          "Anschaffung von Klassensätzen mobiler Endgeräte (Tablets) für den Einsatz in Projektwochen und im Regelunterricht",
-          "Aufbau und Optimierung einer stabilen WLAN-Infrastruktur in allen Unterrichtsräumen",
-          "Beschaffung von digitalen Präsentationsgeräten (z. B. Displays, Beamer) für fehlende Räume",
-          "Honorare und Reisekosten für externe Fortbildungen zur Mediendidaktik und zum Tableteinsatz im Unterricht",
-          "Lizenzen für Bildungssoftware und Lernplattformen zur Nutzung auf den Endgeräten",
-          "Personal für IT-Administration und First-Level-Support (z. B. IT-Administrator/in für die Schule oder im Verbund)",
-          "Eigenanteil des Schulträgers (Höhe noch zu klären)"
-        ]
+        "hinweise": [
+          "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
+          "Alle Beträge ohne konkrete Preisangaben sind Schätzungen.",
+          "Tablet-Anzahl 20-30 lt. User, gewählt 25 als konservativer Mittelwert.",
+          "Preis pro Tablett gesetzt auf ca. 900 EUR (übliche Spanne 600-1200 EUR für pädagogische Geräte ohne Modellangabe).",
+          "Lizenzkosten geschätzt auf ca. 100-120 EUR pro Gerät für Grundschulempfehlungen.",
+          "Fortbildungskosten als Pauschale – Honorarsätze und Umfang noch festzulegen.",
+          "Eigenanteil muss mit dem Bezirk Steglitz-Zehlendorf abgestimmt werden.",
+          "Fortbildungskonzept ist noch zu konkretisieren.",
+          "Einbindung des Bezirks und Zuständigkeiten noch ungeklärt.",
+          "Ergebnisüberprüfung geplant durch Lesetests (z.B. Stolperwörter) und Mathetests (z.B. DEMAT).",
+          "Förderantragstellung voraussichtlich ab 2026 möglich; rückwirkend ab 01.01.2025.",
+          "Der Betrag für „Tablets für dritte und vierte Klassen\" (22.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Lizenzen für Lernsoftware\" (3.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Fortbildung der Lehrkräfte\" (5.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
+        ],
+        "generiertAm": "2026-06-10T10:15:56.338Z"
       },
       "critiqueFindings": [
         {
-          "zitat": "adressieren wir zentrale Kompetenzbereiche der KMK-Strategie „Bildung in der digitalen Welt“",
+          "zitat": "Die Maßnahme greift damit die Kernforderung der KMK-Strategie ‚Bildung in der digitalen Welt‘ auf",
           "schwere": "hoch",
           "abschnitt": "Bezug zum Medienkonzept der Schule",
           "kategorie": "belegluecke",
-          "vorschlag": "Halluzination: User gab keine Hinweise auf KMK-Kenntnisse. Streichen oder durch neutrale Formulierung ersetzen (z.B. ‚laut grober Zielrichtung des Medienkonzepts‘) und Beleg vor Einreichung sicherstellen."
+          "vorschlag": "Entweder nachweisen, dass die Schule die KMK-Strategie tatsächlich als Grundlage nutzt (z. B. Zitat aus Medienkonzept), oder den Bezug streichen und durch schuleigene, belegte pädagogische Ziele ersetzen."
         },
         {
-          "zitat": "Beispielsweise an Rechtschreibübungen in Deutsch oder an spielerischen Mathe-Aufgaben.",
+          "zitat": "Ein gestuftes, schulinternes Fortbildungskonzept",
           "schwere": "hoch",
-          "abschnitt": "Beschreibung des Vorhabens",
+          "abschnitt": "Qualifizierung der Lehrkraefte",
           "kategorie": "belegluecke",
-          "vorschlag": "Halluzination: Keine Angabe durch User. Streichen oder durch allgemeine Formulierung ersetzen, z.B. ‚in ausgewählten Fächern auf Basis der Lern-App-Lizenzen‘. Erst nach Festlegung der Apps konkretisieren."
+          "vorschlag": "Der User sagte nur 'interne Fortbildung durch zwei Kollegen' – ohne Konzept, ohne Stufung. Streichen, auf das reduziert, was tatsächlich genannt wurde, und [TODO: Konzept erarbeiten] einfügen."
         },
         {
-          "zitat": "Eine schriftliche Zusage zur Übernahme des IT-Betriebs nach Förderende liegt derzeit nicht vor. Die genaue Zuständigkeit wird im Rahmen einer Vereinbarung zwischen Schulleitung und Schulträger festgelegt",
+          "zitat": "Diese Reihe soll durch schulübergreifende Hospitationen und kollegiale Fallberatung ergänzt werden",
+          "schwere": "hoch",
+          "abschnitt": "Qualifizierung der Lehrkraefte",
+          "kategorie": "belegluecke",
+          "vorschlag": "Vom User nicht genannt. Entfernen oder als vage Idee kennzeichnen – aber nicht als festen Bestandteil der Qualifizierung."
+        },
+        {
+          "zitat": "Die Administration der Tablets soll nach bisheriger Planung durch die schulischen IT-Betreuer erfolgen.",
           "schwere": "hoch",
           "abschnitt": "Betrieb und Nachhaltigkeit nach Foerderende",
           "kategorie": "belegluecke",
-          "vorschlag": "Halluzination: User sagt, dass noch keine Zusage vorliegt. Der Punkt ist korrekt als offen gekennzeichnet, aber für den Fördergeber ist eine bloße Absicht ohne verbindliche Schulträgererklärung nicht ausreichend. Vor Einreichung eine schriftliche Zusage des Bezirksamts einholen und als Anlage beifügen."
+          "vorschlag": "User hat keine IT-Betreuer genannt. Ersetzen durch: 'Zuständigkeit für IT-Administration ist noch mit dem Bezirksamt zu klären [TODO]'."
         },
         {
-          "zitat": "Projektwoche mit Tablets",
+          "zitat": "Parallel prüft die Schule, ob Mittel des schulischen Sachkostenetats oder eine Beteiligung des Fördervereins als Reserve aufgebaut werden können.",
+          "schwere": "hoch",
+          "abschnitt": "Betrieb und Nachhaltigkeit nach Foerderende",
+          "kategorie": "belegluecke",
+          "vorschlag": "Weder Sachkostenetat noch Förderverein wurden vom User genannt. Streichen oder durch 'Schule prüft mit Schulträger Finanzierungsquellen für Ersatzbeschaffung [TODO]' ersetzen."
+        },
+        {
+          "zitat": "Eigenanteil von mindestens zehn Prozent",
+          "schwere": "hoch",
+          "abschnitt": "Finanzplan / Kosten- und Finanzierungsuebersicht",
+          "kategorie": "richtlinie",
+          "vorschlag": "DigitalPakt 2.0 fordert mindestens 22 % Eigenanteil (lt. Richtlinie). Korrigieren auf 'mindestens 22 %' und klären, ob der Bezirk als Schulträger diesen übernimmt."
+        },
+        {
+          "zitat": "FEHLT",
           "schwere": "hoch",
           "abschnitt": "global",
           "kategorie": "richtlinie",
-          "vorschlag": "Der Antragstitel nennt lediglich eine Aktivität (Projektwoche), nicht das übergreifende Vorhaben. Umbenennen in z.B. ‚Digitalisierung des Grundschulunterrichts mit Tablets‘, um den Rahmen klarzustellen. Die Projektwoche kann ein Teil des Vorhabens sein."
+          "vorschlag": "Der Antrag enthält keinen expliziten Abschnitt 'Bezug zum Medienkonzept' – der vorhandene Abschnitt ist eher eine Wiederholung der Ausgangslage. Einen eigenständigen Abschnitt formulieren, der konkret auf das Medienkonzept der Schule Bezug nimmt (z. B. Ziele, Maßnahmen, Evaluation)."
         },
         {
-          "zitat": "Das geplante Vorhaben einer Projektwoche mit Tablets knüpft an das bestehende Medienkonzept der Grundschule am Lindenpark an",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "abschnitt": "global",
+          "kategorie": "richtlinie",
+          "vorschlag": "Der Antrag enthält kein eigenes Kapitel zur 'Qualifizierung der Lehrkräfte' – das Vorhandene ist im Abschnitt 'Beschreibung des Vorhabens' versteckt und unzureichend. Einen eigenen, strukturierten Abschnitt mit Zeitplan, Inhalten und Verantwortlichkeiten einfügen."
+        },
+        {
+          "zitat": "Aus Sicht des Kollegiums besteht ein dringender pädagogischer Bedarf",
           "schwere": "mittel",
           "abschnitt": "Bedarfsanalyse und Ausgangslage",
-          "kategorie": "belegluecke",
-          "vorschlag": "Präzisieren, ob und wann das Medienkonzept verabschiedet wurde, und konkrete Kompetenzerwartungen daraus zitieren. Oder als Lücke markieren und vor Einreichung ergänzen."
+          "kategorie": "floskel",
+          "vorschlag": "Unbelegte Behauptung. Durch konkrete Angabe ersetzen, z. B. 'In einer TEAM-Befragung (Datum) gaben X von Y Lehrkräften an, dass...' – oder den Satz streichen."
         },
         {
-          "zitat": "Konkret beschafft werden sollen hierfür ein mobiler Tabletkoffer mit voraussichtlich 25 bis 30 Geräten (Stückzahl noch festzulegen)",
+          "zitat": "rund 20.000 €",
           "schwere": "mittel",
-          "abschnitt": "Beschreibung des Vorhabens",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die Stückzahl ist vage. Stützahlen anhand der Schülerzahl (250-300) und der angestrebten Nutzung (evtl. klassenweise Einsätze) begründen. Alternativ eine klare Formel nennen: ‚mindestens 25, maximal 30‘ reicht, wenn begründet."
-        },
-        {
-          "zitat": "Wir gehen davon aus, dass eine eintägige oder zwei halbtägige Schulungen ausreichend sind",
-          "schwere": "mittel",
-          "abschnitt": "Qualifizierung der Lehrkraefte",
-          "kategorie": "belegluecke",
-          "vorschlag": "Diese Einschätzung ist nicht belegt. Die Fortbildungsdauer sollte mit einem externen Anbieter abgestimmt und mit nachvollziehbarem Niveau begründet werden (z.B. ‚Einsteiger-Grundlagenschulung‘)."
-        },
-        {
-          "zitat": "Der konkrete Jahresetat für Ersatzbeschaffungen wird im Zuge der Medienkonzept-Überarbeitung kalkuliert",
-          "schwere": "mittel",
-          "abschnitt": "Betrieb und Nachhaltigkeit nach Foerderende",
-          "kategorie": "sonstiges",
-          "vorschlag": "Nachhaltigkeitskonzept ist noch unkonkret. Statt vager Absichtserklärung: konkreten Zeitplan für die Erstellung eines Ersatzbeschaffungsplans mit Schulträger angeben (z.B. ‚bis Q2/2027‘)."
-        },
-        {
-          "zitat": "Gesamtkosten belaufen sich somit auf voraussichtlich 39.000 €",
-          "schwere": "mittel",
-          "abschnitt": "Finanzplan",
+          "abschnitt": "Finanzplan / Kosten- und Finanzierungsuebersicht",
           "kategorie": "inkonsistenz",
-          "vorschlag": "Die Einzelposten (30.000 Tablets + 5.000 Lizenzen + 4.000 Fortbildung = 39.000) sind schlüssig, aber die Fortbildungskosten sind im Text (4.000 €) nicht begründet. Bitte markieren, ob die Fortbildung für 20 Lehrkräfte oder externen Anbieter kalkuliert ist. Eigenanteil von 20 % (7.800 €) entspricht nicht der Richtlinie (22 % mindestens). Korrigieren: 22 % von 39.000 = 8.580 €, Fördersumme max. 30.420 €."
-        },
-        {
-          "zitat": "ein konkretes Fach aus einer früheren Erprobungsphase [TODO: Dokumentation der bisherigen Tableterfahrung vor Einreichung erfragen]",
-          "schwere": "niedrig",
-          "abschnitt": "Bezug zum Medienkonzept der Schule",
-          "kategorie": "sonstiges",
-          "vorschlag": "Das [TODO] wird im Text genannt, aber es fehlt die konkrete Angabe eines Faches. Vor Einreichung das Fach anhand der früheren Projektwoche recherchieren und benennen."
+          "vorschlag": "Die Spanne 20–30 Tablets ergibt bei (annahmegemäß) 500 €/Gerät 10.000–15.000 €, nicht 20.000 €. Die Schätzung ist zu hoch oder zu vage. Mit konkreten Angeboten untermauern oder Spanne korrigieren."
         }
       ],
       "hallucinationGate": {
         "repaired": true,
-        "residual": [
-          "22 %",
-          "30.420 €",
-          "8.580 €"
-        ],
+        "residual": [],
         "introducedBefore": [
-          "2027",
-          "22 %",
-          "8.580 €",
-          "30.420 €"
+          "22 Prozent"
         ]
       },
       "critiqueResolutions": [
@@ -697,12 +1360,12 @@
         },
         {
           "index": 2,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Der überarbeitete Text erwähnt nur 'interne Fortbildung durch zwei Kollegen', aber das geforderte Konzept fehlt noch; es steht lediglich ein TODO."
         },
         {
           "index": 3,
-          "status": "teilweise",
-          "kommentar": "Die Notwendigkeit einer schriftlichen Zusage wird betont, aber die Formulierung 'ist vor Einreichung verbindlich einzuholen' zeigt zwar den Handlungsbedarf, lässt offen, ob die Zusage tatsächlich eingeholt wurde."
+          "status": "geschlossen"
         },
         {
           "index": 4,
@@ -710,8 +1373,7 @@
         },
         {
           "index": 5,
-          "status": "teilweise",
-          "kommentar": "Ein TODO zum Medienkonzept wurde ergänzt, aber der Benutzer hatte kein Datum oder Kompetenzerwartungen genannt, daher bleibt die Lücke bestehen."
+          "status": "geschlossen"
         },
         {
           "index": 6,
@@ -727,237 +1389,255 @@
         },
         {
           "index": 9,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die unbelegte Behauptung wurde ersetzt durch einen Verweis auf geplante Tests, aber eine konkrete Quelle für den Bedarf fehlt weiterhin."
         },
         {
           "index": 10,
-          "status": "offen",
-          "kommentar": "Das TODO wurde im Text belassen, aber es fehlt weiterhin die konkrete Angabe eines Faches, wie gefordert."
+          "status": "geschlossen"
         }
       ],
       "hasOpenHighFindings": true
     },
     "costs": {
-      "calls": 34,
+      "calls": 37,
       "entries": [
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
           "promptTokens": 2062,
-          "candidatesTokens": 115
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.02,
-          "promptTokens": 1692,
-          "candidatesTokens": 41
+          "candidatesTokens": 123
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 2166,
-          "candidatesTokens": 119
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.02,
-          "promptTokens": 1771,
-          "candidatesTokens": 1
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2245,
-          "candidatesTokens": 137
+          "promptTokens": 1668,
+          "candidatesTokens": 70
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 1888,
-          "candidatesTokens": 1
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2362,
-          "candidatesTokens": 137
+          "promptTokens": 2210,
+          "candidatesTokens": 107
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 2009,
-          "candidatesTokens": 41
+          "promptTokens": 1841,
+          "candidatesTokens": 38
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2483,
-          "candidatesTokens": 124
+          "promptTokens": 2328,
+          "candidatesTokens": 125
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 1966,
+          "candidatesTokens": 355
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 2673,
+          "candidatesTokens": 141
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 2100,
-          "candidatesTokens": 29
+          "promptTokens": 2310,
+          "candidatesTokens": 45
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2574,
-          "candidatesTokens": 129
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.03,
-          "promptTokens": 2208,
-          "candidatesTokens": 29
+          "promptTokens": 2784,
+          "candidatesTokens": 142
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2682,
-          "candidatesTokens": 106
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.03,
-          "promptTokens": 2287,
-          "candidatesTokens": 1
+          "promptTokens": 2422,
+          "candidatesTokens": 355
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2761,
-          "candidatesTokens": 127
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.03,
-          "promptTokens": 2383,
-          "candidatesTokens": 41
+          "promptTokens": 2896,
+          "candidatesTokens": 150
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2857,
-          "candidatesTokens": 111
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2470,
-          "candidatesTokens": 41
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2944,
-          "candidatesTokens": 128
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2566,
-          "candidatesTokens": 87
+          "promptTokens": 2536,
+          "candidatesTokens": 16
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.05,
-          "promptTokens": 3086,
-          "candidatesTokens": 170
+          "promptTokens": 3024,
+          "candidatesTokens": 162
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 2697,
+          "candidatesTokens": 187
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.05,
+          "promptTokens": 3171,
+          "candidatesTokens": 144
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.05,
+          "promptTokens": 2834,
+          "candidatesTokens": 420
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.05,
+          "promptTokens": 3365,
+          "candidatesTokens": 101
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 2965,
+          "candidatesTokens": 57
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.05,
+          "promptTokens": 3486,
+          "candidatesTokens": 161
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.06,
-          "promptTokens": 3511,
-          "candidatesTokens": 312
+          "promptTokens": 3137,
+          "candidatesTokens": 467
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.05,
+          "promptTokens": 3611,
+          "candidatesTokens": 138
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.06,
-          "promptTokens": 3519,
-          "candidatesTokens": 327
+          "promptTokens": 3232,
+          "candidatesTokens": 467
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.06,
-          "promptTokens": 3461,
-          "candidatesTokens": 476
+          "promptTokens": 3706,
+          "candidatesTokens": 117
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.06,
-          "promptTokens": 3475,
-          "candidatesTokens": 279
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.06,
-          "promptTokens": 3541,
-          "candidatesTokens": 333
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.06,
-          "promptTokens": 3497,
-          "candidatesTokens": 363
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.14,
-          "promptTokens": 6622,
-          "candidatesTokens": 1620
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.15,
-          "promptTokens": 6580,
-          "candidatesTokens": 2208
+          "promptTokens": 3330,
+          "candidatesTokens": 446
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.08,
-          "promptTokens": 5300,
-          "candidatesTokens": 344
+          "promptTokens": 4873,
+          "candidatesTokens": 558
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.1,
-          "promptTokens": 2771,
-          "candidatesTokens": 2220
+          "usdCents": 0.08,
+          "promptTokens": 4881,
+          "candidatesTokens": 572
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.05,
-          "promptTokens": 3503,
+          "usdCents": 0.08,
+          "promptTokens": 4823,
+          "candidatesTokens": 424
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.08,
+          "promptTokens": 4837,
+          "candidatesTokens": 511
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.08,
+          "promptTokens": 4903,
+          "candidatesTokens": 504
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.08,
+          "promptTokens": 4859,
+          "candidatesTokens": 514
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.15,
+          "promptTokens": 8261,
+          "candidatesTokens": 1384
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.18,
+          "promptTokens": 7952,
+          "candidatesTokens": 2436
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.08,
+          "promptTokens": 5386,
+          "candidatesTokens": 289
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.11,
+          "promptTokens": 2981,
+          "candidatesTokens": 2430
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.06,
+          "promptTokens": 4234,
           "candidatesTokens": 7
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.03,
-          "promptTokens": 1382,
-          "candidatesTokens": 257
+          "usdCents": 0.07,
+          "promptTokens": 3434,
+          "candidatesTokens": 633
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.1,
-          "promptTokens": 2543,
-          "candidatesTokens": 2249
+          "usdCents": 0.05,
+          "promptTokens": 3461,
+          "candidatesTokens": 7
         }
       ],
-      "eurCents": 1.69,
-      "usdCents": 1.74,
-      "totalTokens": 112011,
-      "promptTokens": 99301,
-      "candidatesTokens": 12710
+      "eurCents": 2.12,
+      "usdCents": 2.23,
+      "totalTokens": 145942,
+      "promptTokens": 131139,
+      "candidatesTokens": 14803
     },
     "status": "complete",
     "paidToken": null,
     "paidAt": null,
     "tier": null,
-    "createdAt": "2026-06-10T05:39:47.262Z",
-    "updatedAt": "2026-06-10T05:42:56.104Z"
+    "createdAt": "2026-06-10T08:12:11.757Z",
+    "updatedAt": "2026-06-10T08:15:57.222Z"
   },
-  "finishedAt": "2026-06-10T07:42:56.777Z",
+  "finishedAt": "2026-06-10T10:15:58.680Z",
   "error": null
 }

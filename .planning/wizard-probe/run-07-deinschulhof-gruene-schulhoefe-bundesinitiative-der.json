@@ -6,15 +6,15 @@
     "bundesland": "DE-HE"
   },
   "idee": "Einen Garten anlegen mit den Kindern.",
-  "startedAt": "2026-06-10T07:46:13.239Z",
+  "startedAt": "2026-06-10T10:20:47.635Z",
   "match": {
     "kind": "ranking",
     "matches": [
       {
         "id": "deinschulhof-gruene-schulhoefe-bundesinitiative-der",
-        "score": 88,
-        "passt_weil": "Fördert naturnahe Umgestaltung von Schulhöfen inklusive Anlegen von Gärten mit Kindern.",
-        "achtung_bei": "Hessen-spezifische Kommunalprogramme könnten ergänzend wirken.",
+        "score": 80,
+        "passt_weil": "Bundesweite Initiative fuer naturnahe Schulhofgestaltung, ideal zum Anlegen eines Schulgartens.",
+        "achtung_bei": "BL Hessen ist enthalten, Frist beachten.",
         "programm": {
           "id": "deinschulhof-gruene-schulhoefe-bundesinitiative-der",
           "name": "deinSchulhof / Gruene Schulhoefe (Bundesinitiative DUH & Stiftung Lebendige Stadt)",
@@ -35,9 +35,9 @@
       },
       {
         "id": "dbu-projektfoerderung-foerderthema-nachhaltigkeitskommunikation-und",
-        "score": 80,
-        "passt_weil": "Fördert innovative Umweltbildungsprojekte, Gartenbau mit Kindern ist prototypisch.",
-        "achtung_bei": "Antragstellung aufwändig, frühe Planung nötig.",
+        "score": 75,
+        "passt_weil": "Foerdert innovative Umweltbildungsprojekte, passgenau fuer einen Schulgarten an Grundschulen.",
+        "achtung_bei": "Antrag erfordert inhaltliche Tiefe, kein reiner Bau-Zuschuss.",
         "programm": {
           "id": "dbu-projektfoerderung-foerderthema-nachhaltigkeitskommunikation-und",
           "name": "DBU-Projektfoerderung (Foerderthema Nachhaltigkeitskommunikation und -bildung)",
@@ -62,15 +62,15 @@
     "costs": {
       "calls": 1,
       "promptTokens": 5984,
-      "candidatesTokens": 189,
-      "totalTokens": 6173,
+      "candidatesTokens": 201,
+      "totalTokens": 6185,
       "usdCents": 0.09,
       "eurCents": 0.08,
       "entries": [
         {
           "model": "deepseek-chat",
           "promptTokens": 5984,
-          "candidatesTokens": 189,
+          "candidatesTokens": 201,
           "usdCents": 0.09
         }
       ]
@@ -80,302 +80,254 @@
   "gewaehltesProgramm": {
     "id": "deinschulhof-gruene-schulhoefe-bundesinitiative-der",
     "name": "deinSchulhof / Gruene Schulhoefe (Bundesinitiative DUH & Stiftung Lebendige Stadt)",
-    "score": 88,
-    "passt_weil": "Fördert naturnahe Umgestaltung von Schulhöfen inklusive Anlegen von Gärten mit Kindern."
+    "score": 80,
+    "passt_weil": "Bundesweite Initiative fuer naturnahe Schulhofgestaltung, ideal zum Anlegen eines Schulgartens."
   },
-  "sessionToken": "eeba0839-ae5a-475a-b41a-e7ed6624d75e",
+  "sessionToken": "b3ab5c09-8e1d-42fa-8fc5-3e5ae4c104e4",
   "transcript": [
     {
       "runde": 1,
-      "frage": "Wie stark ist Ihr Schulhof derzeit versiegelt und welche konkreten Probleme (z.B. Hitze, Regenwasser, wenig Platz für Kinder) sehen Sie dort täglich?",
-      "rationale": "Brauche eine konkrete Ist-Schilderung für den Abschnitt 'Schule und Ausgangslage', die den Bedarf greifbar macht.",
-      "antwort": "Sehr viel Stein, wird im Sommer extrem heiß.",
+      "frage": "Wie viele Kinder besuchen die Grundschule Regenbogen und wie stark ist der Schulhof aktuell versiegelt (geschätzter Anteil in Prozent)?",
+      "rationale": "Die Ausgangslage des Schulhofs muss konkret und mit Zahlen beschrieben werden – das ist die Basis für den Pflichtabschnitt 'Schule und Ausgangslage'.",
+      "antwort": "So um die 200 vielleicht, und der Hof ist halt komplett zugepflastert, schätze ich mal.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Regenbogen",
-          "bundesland": "DE-HE",
-          "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß"
+          "bundesland": "DE-HE"
         }
       }
     },
     {
       "runde": 2,
-      "frage": "Wie viele Kinder besuchen die Grundschule Regenbogen, und in welchen Klassenstufen (1–4) und welche besonderen Herausforderungen sehen Sie bei diesen Kindern – z.B. Bewegungsmangel, Konzentrationsprobleme bei Hitze? Helfen Sie mir bitte, ein konkretes Bild zu zeichnen.",
-      "rationale": "Die Stiftung erwartet eine sehr spezifische Zielgruppe mit Alter und Herausforderung – das haben wir noch nicht.",
-      "antwort": "So um die 200 Kinder, alle Klassenstufen sind da, und ja, Bewegungsmangel und Konzentration sind halt immer ein Thema.",
+      "frage": "Sie haben etwa 200 Kinder und einen komplett versiegelten Hof. Können Sie mir eine typische Pausensituation schildern – was genau fällt Kindern und Lehrkräften dort schwer? (z. B. zu heiß im Sommer, kein Schatten, keine Sitzgelegenheiten, Matschpfützen?)",
+      "rationale": "Eine konkrete Szene zu Beginn des Antrags ist für Stiftungen essenziell, um den Bedarf greifbar zu machen – hier fehlt noch ein lebendiges Bild.",
+      "antwort": "Ja, im Sommer ist es viel zu heiß, die Kinder suchen vergeblich Schatten.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Regenbogen",
           "bundesland": "DE-HE",
           "schuelerzahl": 200,
-          "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß"
+          "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten"
         }
       }
     },
     {
       "runde": 3,
-      "frage": "Sie sagen, der Schulhof wird extrem heiß. Können Sie eine typische Szene im Sommer schildern – etwa wie sich Kinder in der Pause verhalten und was das mit ihrer Konzentration im Unterricht macht? Das hilft, den Bedarf bildhaft darzustellen.",
-      "rationale": "Ein konkretes Szenario zu Hitze-Auswirkungen ist zentral für den Programmfokus Klimaanpassung und macht den Bedarf greifbar.",
-      "antwort": "Ja, die Kinder suchen sich dann den kleinsten Schatten und sind total matt – danach im Unterricht kriegen wir sie kaum noch wach.",
+      "frage": "Haben Ihre Schülerinnen und Schüler besondere Förderbedarfe, etwa im sozial-emotionalen Bereich, die durch den fehlenden grünen Bewegungsraum verstärkt werden?",
+      "rationale": "Um die Zielgruppe sehr spezifisch zu beschreiben, wie es Stiftungsanträge fordern – nicht abstrakt 'benachteiligte Schüler'.",
+      "antwort": "Ja, viele Kinder sind unruhig, haben Konzentrationsschwierigkeiten – das wird durch die Enge bestimmt noch schlimmer.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Regenbogen",
           "bundesland": "DE-HE",
           "schuelerzahl": 200,
-          "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
-        },
-        "projekt": {
-          "zielgruppe": "alle Kinder der Schule"
+          "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
         }
       }
     },
     {
       "runde": 4,
-      "frage": "Helfen Sie mir, die Vision zu schärfen: Welche zwei oder drei konkreten Maßnahmen zur Begrünung und Entsiegelung stellen Sie sich vor – z.B. Baumpflanzungen, entsiegelte Beete, Wasserspiele?",
-      "rationale": "Nötig für den Abschnitt 'Vision und Gestaltungskonzept' und um zu prüfen, ob die Maßnahmen zur Klimaanpassung und Biodiversität beitragen.",
-      "antwort": "Ja, Pflanzen und so, vielleicht ein Beet oder zwei und'n bisschen Schatten.",
+      "frage": "Prima, das wird klarer. Für die Vision: Wenn Sie an den umgestalteten Schulhof denken – was wäre für die Kinder der größte Wunsch? Nennen Sie bitte ein konkretes Element, das neu entstehen soll (z.B. ein grünes Klassenzimmer aus Weiden, ein Wasserspielplatz oder Hochbeete zum Gemüseanbau).",
+      "rationale": "Das Konzept muss konkret und bildhaft sein – ein Wunschelement aus Schülersicht macht die Vision lebendig und zeigt Beteiligung.",
+      "antwort": "Ein Gemüsegarten halt, mit Hochbeeten, so ungefähr.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Regenbogen",
           "bundesland": "DE-HE",
           "schuelerzahl": 200,
-          "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
+          "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
         },
         "projekt": {
-          "zielgruppe": "alle Kinder der Schule",
           "aktivitaeten": [
-            "Pflanzungen",
-            "Beete anlegen",
-            "Schatten schaffen"
+            "Gemüsegarten mit Hochbeeten"
           ]
         }
       }
     },
     {
       "runde": 5,
-      "frage": "Haben Sie schon eine Idee, wie die etwa 200 Kinder und das Kollegium bei der Planung mitmachen sollen? Zum Beispiel durch eine Schulhof-AG, Zukunftswerkstatt oder einen Zeichenwettbewerb – das ist für die Bewerbung ein entscheidender Punkt.",
-      "rationale": "Partizipation ist Kernkriterium (Abschnitt 'Beteiligung'), aber noch keine konkreten Formate genannt.",
-      "antwort": "Ja, so einen Wettbewerb oder so, da machen wir dann was.",
+      "frage": "Sie wollen Hochbeete anlegen. Wie viele Quadratmeter Schulhof haben Sie zur Verfügung und welchen Anteil davon sollen die Hochbeete einnehmen?",
+      "rationale": "Konkrete Flächenangabe wird für die Skizzierung des Gestaltungskonzepts und die Kostenkalkulation benötigt.",
+      "antwort": "Weiss ich nicht genau, so ungefähr halt.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Regenbogen",
           "bundesland": "DE-HE",
           "schuelerzahl": 200,
-          "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
+          "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
         },
         "projekt": {
-          "zielgruppe": "alle Kinder der Schule",
           "aktivitaeten": [
-            "Pflanzungen",
-            "Beete anlegen",
-            "Schatten schaffen",
-            "Zeichenwettbewerb oder ähnliche Beteiligungsaktion"
+            "Gemüsegarten mit Hochbeeten"
           ]
         }
       }
     },
     {
       "runde": 6,
-      "frage": "Welche konkreten Flächenmaße hat Ihr Schulhof und wie viel Prozent davon sind versiegelt? Das brauchen wir für den Antrag, um den Ist-Zustand genau zu beschreiben.",
-      "rationale": "Die Frage zielt auf den Pflichtabschnitt 'Schule und Ausgangslage' – konkret auf Versiegelungsgrad und Fläche, die bisher nur vage ('sehr viel Stein') genannt wurden.",
-      "antwort": "Weiss ich nicht genau, müssten wir mal nachmessen.",
+      "frage": "Haben Sie eine konkrete Zahl, wie viele Hochbeete oder Quadratmeter Gemüsegarten Sie anlegen wollen? Das hilft der Jury, sich die Fläche vorzustellen.",
+      "rationale": "Fehlendes Detail zur Dimension des geplanten Elements – nötig für Vision und Kostenrahmen.",
+      "antwort": "So ungefähr ein paar Beete halt.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Regenbogen",
           "bundesland": "DE-HE",
           "schuelerzahl": 200,
-          "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
+          "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
         },
         "projekt": {
-          "zielgruppe": "alle Kinder der Schule",
           "aktivitaeten": [
-            "Pflanzungen",
-            "Beete anlegen",
-            "Schatten schaffen",
-            "Zeichenwettbewerb oder ähnliche Beteiligungsaktion"
+            "Gemüsegarten mit Hochbeeten"
           ]
         }
       }
     },
     {
       "runde": 7,
-      "frage": "Um die Trägerschaft und Nachhaltigkeit zu klären: Wer würde den Antrag offiziell stellen – der Schulverein, der Schulträger (Stadt oder Gemeinde) oder die Schulleitung selbst? Und wie stellen Sie sich die Pflege der neuen Beete und Pflanzen nach dem Projekt vor?",
-      "rationale": "Fehlende Angaben zu Trägerschaft, Pflege und Verstetigung – für den Antrag entscheidend.",
-      "antwort": "Der Schulverein wahrscheinlich. Pflege machen dann die Kinder, irgendwie.",
+      "frage": "Wer genau trägt die Umgestaltung rechtlich und finanziell? Ist die Kommune als Schulträger bereits informiert und unterstützt das Vorhaben? Das ist für die Umsetzungserlaubnis und die langfristige Pflege der Hochbeete entscheidend.",
+      "rationale": "Fehlende Angaben zur Trägerschaft und zur Zustimmung der Kommune – diese sind für Antragsabschnitt 'Umsetzung und Trägerschaft' zwingend erforderlich.",
+      "antwort": "Ja, die Kommune weiß Bescheid, denke ich. Finanziell müssen wir noch schauen.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Regenbogen",
           "bundesland": "DE-HE",
           "schuelerzahl": 200,
-          "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
+          "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
         },
         "projekt": {
-          "zielgruppe": "alle Kinder der Schule",
           "aktivitaeten": [
-            "Pflanzungen",
-            "Beete anlegen",
-            "Schatten schaffen",
-            "Zeichenwettbewerb oder ähnliche Beteiligungsaktion"
+            "Gemüsegarten mit Hochbeeten"
           ]
         }
       }
     },
     {
       "runde": 8,
-      "frage": "Um die Finanzierung plausibel darzustellen: Neben den 20.000 Euro von der DUH – welche Eigenmittel oder zusätzliche Gelder (z.B. vom Schulträger, Förderverein oder lokalen Sponsoren) könnten Sie einbringen? Ein konkreter Betrag oder eine Summe hilft sehr.",
-      "rationale": "Fehlende Angaben zur Kofinanzierung sind ein häufiger Kritikpunkt bei Stiftungsanträgen.",
-      "antwort": "Da müssten wir nochmal mit dem Förderverein sprechen, so genau weiß ich das nicht.",
+      "frage": "Die Kommune zu beteiligen ist ein wichtiger Schritt. Wissen Sie bereits, ob der Schulträger die Pflege der Hochbeete nach Projektende übernehmen würde, oder müsste das der Förderverein oder die Schul-AG leisten?",
+      "rationale": "Nachhaltigkeit und Verstetigung sind ein Kernkriterium bei Stiftungen – wir brauchen eine realistische Perspektive für die Zeit nach der Förderung.",
+      "antwort": "Müssten wir noch klären, wer das dann macht.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Regenbogen",
           "bundesland": "DE-HE",
           "schuelerzahl": 200,
-          "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
+          "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
         },
         "projekt": {
-          "zielgruppe": "alle Kinder der Schule",
           "aktivitaeten": [
-            "Pflanzungen",
-            "Beete anlegen",
-            "Schatten schaffen",
-            "Zeichenwettbewerb oder ähnliche Beteiligungsaktion"
+            "Gemüsegarten mit Hochbeeten"
           ]
         }
       }
     },
     {
       "runde": 9,
-      "frage": "Welche Fläche in Quadratmetern hat Ihr Schulhof grob geschätzt – rechnen Sie einfach mal: Länge mal Breite des Hofs, auch wenn es nur eine grobe Schätzung ist? Das brauchen wir für die Beschreibung des Ist-Zustands.",
-      "rationale": "Flächenangabe ist wichtig für den Antragsabschnitt zur Ausgangslage, um Versiegelungsgrad konkret zu beziffern.",
-      "antwort": "So grob geschätzt, vielleicht so um die 500 Quadratmeter, müsste ich nachmessen.",
+      "frage": "Sie haben den Wunsch nach Hochbeeten genannt. Welche Materialien sollen dafür verwendet werden (z.B. Lärchenholz, Robinienholz, Cortenstahl) und wie viele Beete planen Sie konkret (z.B. 4 Beete à 1,20 m x 2,50 m)?",
+      "rationale": "Anträge brauchen konkrete, nachvollziehbare Beschreibungen – abstrakte ‚paar Beete‘ reichen nicht für ein überzeugendes Konzept.",
+      "antwort": "Ein paar Beete, so aus Holz halt, genau weiß ich das noch nicht.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Regenbogen",
           "bundesland": "DE-HE",
           "schuelerzahl": 200,
-          "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
+          "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
         },
         "projekt": {
-          "zielgruppe": "alle Kinder der Schule",
           "aktivitaeten": [
-            "Pflanzungen",
-            "Beete anlegen",
-            "Schatten schaffen",
-            "Zeichenwettbewerb oder ähnliche Beteiligungsaktion"
+            "Gemüsegarten mit Hochbeeten"
           ]
         }
       }
     },
     {
       "runde": 10,
-      "frage": "Um Ihre Finanzierung im Antrag glaubwürdig darzustellen: Können Sie einen ungefähren Betrag nennen, den Ihr Förderverein oder der Schulträger beisteuern könnte – auch wenn es nur 500 oder 1000 Euro sind? Und gibt es vielleicht lokale Sponsoren (z.B. Baumarkt, Gartenbau), die Sachleistungen wie Erde oder Pflanzen spenden könnten?",
-      "rationale": "Konkrete Eigenmittel oder Sachspenden sind ein Kernkriterium für die Finanzierungsplausibilität und bisher fehlt jede Zahl dazu.",
-      "antwort": "Förderverein hat nicht viel, vielleicht so 500 Euro. Sponsoren müssten wir noch fragen.",
+      "frage": "Damit die Jury sich die Hochbeete genau vorstellen kann: Wie viele Beete planen Sie konkret (z. B. „vier Hochbeete aus Lärchenholz, je 1,20 m x 2,50 m“) und welche Pflanzen sollen dort wachsen? Ein konkretes Bild hilft ungemein.",
+      "rationale": "Die bisherigen Antworten zu Anzahl und Material sind zu vage – für Antragsprosa sind präzise Angaben nötig, besonders bei Stiftungsanträgen.",
+      "antwort": "So ungefähr drei, vier Stück.",
       "factsNach": {
-        "budget": {
-          "eigenmittel_eur": 500
-        },
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Regenbogen",
           "bundesland": "DE-HE",
           "schuelerzahl": 200,
-          "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
+          "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
         },
         "projekt": {
-          "zielgruppe": "alle Kinder der Schule",
           "aktivitaeten": [
-            "Pflanzungen",
-            "Beete anlegen",
-            "Schatten schaffen",
-            "Zeichenwettbewerb oder ähnliche Beteiligungsaktion"
+            "Gemüsegarten mit Hochbeeten"
           ]
         }
       }
     },
     {
       "runde": 11,
-      "frage": "Haben Sie schon eine Person oder Stelle, die das Projekt koordiniert – z.B. eine Lehrkraft, die die AG leitet, oder den Vorsitz des Schulvereins? Das hilft, die Trägerschaft und Ansprechpartner klar zu benennen.",
-      "rationale": "Die Antragsstruktur fordert klare Verantwortlichkeiten für Trägerschaft und Umsetzung – das fehlt noch.",
-      "antwort": "Ja, da wird sich schon jemand finden.",
+      "frage": "Welche konkreten Materialien und Maße sollen die Hochbeete haben – zum Beispiel drei Beete à 1,20 m x 2,50 m aus Lärchenholz, und welche Pflanzen sollen dort wachsen (etwa Tomaten, Kräuter, Bohnen)? Eine bildhafte Vorstellung hilft der Jury enorm.",
+      "rationale": "Fehlende Konkretisierung der Hochbeete (Anzahl, Maße, Material, Bepflanzung) schwächt die Vision; die offizielle Antragsstruktur fordert ein konkretes Gestaltungskonzept.",
+      "antwort": "Hochbeete halt, so ungefähr einen Meter hoch, Holz, Gemüse und Kräuter, was die Kinder mögen.",
       "factsNach": {
-        "budget": {
-          "eigenmittel_eur": 500
-        },
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Regenbogen",
           "bundesland": "DE-HE",
           "schuelerzahl": 200,
-          "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
+          "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
         },
         "projekt": {
-          "zielgruppe": "alle Kinder der Schule",
           "aktivitaeten": [
-            "Pflanzungen",
-            "Beete anlegen",
-            "Schatten schaffen",
-            "Zeichenwettbewerb oder ähnliche Beteiligungsaktion"
+            "Gemüsegarten mit Hochbeeten"
           ]
         }
       }
     },
     {
       "runde": 12,
-      "frage": "Damit der Antrag für die Deutsche Umwelthilfe überzeugt: Welche verantwortliche Person (z.B. Schulleitungsmitglied, engagierte Lehrkraft oder Vorstand des Schulvereins) würde das Projekt koordinieren und später die Pflege der neuen Flächen organisieren? Ein klares Beispiel hilft sehr.",
-      "rationale": "Die Trägerschaft und ein verantwortlicher Ansprechpartner sind für die Förderung essenziell – bisher fehlt eine konkrete Angabe.",
-      "antwort": "Ja, da müsste ich nochmal wen fragen.",
+      "frage": "Die Hochbeete sind ein guter Start – aber für die Jury ist es wichtig, auch die Pflege nach Projektende zu sichern. Welche Gruppe von Schüler*innen oder Eltern wird sich fest um die Bewässerung und Ernte kümmern? Und wie viele Stunden pro Woche sind dafür eingeplant?",
+      "rationale": "Nachhaltigkeit und Eigenverantwortung sind zentrale Bewertungskriterien – ohne konkretes Pflegekonzept wirken die Hochbeete unglaubwürdig.",
+      "antwort": "Das regeln wir dann mit den Eltern, so ungefähr eine Stunde die Woche.",
       "factsNach": {
-        "budget": {
-          "eigenmittel_eur": 500
-        },
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Regenbogen",
           "bundesland": "DE-HE",
           "schuelerzahl": 200,
-          "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
+          "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
         },
         "projekt": {
-          "zielgruppe": "alle Kinder der Schule",
           "aktivitaeten": [
-            "Pflanzungen",
-            "Beete anlegen",
-            "Schatten schaffen",
-            "Zeichenwettbewerb oder ähnliche Beteiligungsaktion"
+            "Gemüsegarten mit Hochbeeten"
           ]
         }
       }
     }
   ],
   "finalState": {
-    "sessionToken": "eeba0839-ae5a-475a-b41a-e7ed6624d75e",
+    "sessionToken": "b3ab5c09-8e1d-42fa-8fc5-3e5ae4c104e4",
     "foerderprogrammId": "deinschulhof-gruene-schulhoefe-bundesinitiative-der",
     "foerderprogrammName": "deinSchulhof / Gruene Schulhoefe (Bundesinitiative DUH & Stiftung Lebendige Stadt)",
     "phase": "complete",
     "messages": [
       {
-        "at": "2026-06-10T07:46:19.902Z",
-        "id": "ea9a8ae3-9017-4659-a1a4-9fc922adec85",
+        "at": "2026-06-10T10:20:53.915Z",
+        "id": "ad3ce9f6-30eb-44eb-bce6-4db077f323f9",
         "kind": "question",
         "meta": {
-          "rationale": "Brauche eine konkrete Ist-Schilderung für den Abschnitt 'Schule und Ausgangslage', die den Bedarf greifbar macht."
+          "rationale": "Die Ausgangslage des Schulhofs muss konkret und mit Zahlen beschrieben werden – das ist die Basis für den Pflichtabschnitt 'Schule und Ausgangslage'."
         },
         "role": "ai",
-        "content": "Wie stark ist Ihr Schulhof derzeit versiegelt und welche konkreten Probleme (z.B. Hitze, Regenwasser, wenig Platz für Kinder) sehen Sie dort täglich?"
+        "content": "Wie viele Kinder besuchen die Grundschule Regenbogen und wie stark ist der Schulhof aktuell versiegelt (geschätzter Anteil in Prozent)?"
       },
       {
-        "at": "2026-06-10T07:46:20.484Z",
-        "id": "b2484100-18a8-40b6-b9ac-87a29d86aa4a",
+        "at": "2026-06-10T10:20:55.860Z",
+        "id": "18506e43-2a24-4ed2-8567-95362ec87d82",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -387,48 +339,47 @@
           }
         },
         "role": "user",
-        "content": "Sehr viel Stein, wird im Sommer extrem heiß."
+        "content": "So um die 200 vielleicht, und der Hof ist halt komplett zugepflastert, schätze ich mal."
       },
       {
-        "at": "2026-06-10T07:46:25.308Z",
-        "id": "85b67fcd-08cf-4a0a-84c4-ddac79e336ff",
+        "at": "2026-06-10T10:20:59.877Z",
+        "id": "31252fb1-cd93-4f61-aadc-e50f64294e27",
         "kind": "question",
         "meta": {
-          "rationale": "Die Stiftung erwartet eine sehr spezifische Zielgruppe mit Alter und Herausforderung – das haben wir noch nicht."
+          "rationale": "Eine konkrete Szene zu Beginn des Antrags ist für Stiftungen essenziell, um den Bedarf greifbar zu machen – hier fehlt noch ein lebendiges Bild."
         },
         "role": "ai",
-        "content": "Wie viele Kinder besuchen die Grundschule Regenbogen, und in welchen Klassenstufen (1–4) und welche besonderen Herausforderungen sehen Sie bei diesen Kindern – z.B. Bewegungsmangel, Konzentrationsprobleme bei Hitze? Helfen Sie mir bitte, ein konkretes Bild zu zeichnen."
+        "content": "Sie haben etwa 200 Kinder und einen komplett versiegelten Hof. Können Sie mir eine typische Pausensituation schildern – was genau fällt Kindern und Lehrkräften dort schwer? (z. B. zu heiß im Sommer, kein Schatten, keine Sitzgelegenheiten, Matschpfützen?)"
       },
       {
-        "at": "2026-06-10T07:46:27.156Z",
-        "id": "d87e4b5c-a79e-4d05-a6f9-9862ffb91b5a",
+        "at": "2026-06-10T10:21:01.220Z",
+        "id": "bc26dcf2-150d-45f6-955a-b46e3129f7d6",
         "kind": "answer",
         "meta": {
           "factsBefore": {
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule Regenbogen",
-              "bundesland": "DE-HE",
-              "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß"
+              "bundesland": "DE-HE"
             }
           }
         },
         "role": "user",
-        "content": "So um die 200 Kinder, alle Klassenstufen sind da, und ja, Bewegungsmangel und Konzentration sind halt immer ein Thema."
+        "content": "Ja, im Sommer ist es viel zu heiß, die Kinder suchen vergeblich Schatten."
       },
       {
-        "at": "2026-06-10T07:46:31.015Z",
-        "id": "74a51160-f10f-4897-b6f3-a9c2b2e76084",
+        "at": "2026-06-10T10:21:05.311Z",
+        "id": "8cba6869-4107-4682-b495-b0b95e6a441e",
         "kind": "question",
         "meta": {
-          "rationale": "Ein konkretes Szenario zu Hitze-Auswirkungen ist zentral für den Programmfokus Klimaanpassung und macht den Bedarf greifbar."
+          "rationale": "Um die Zielgruppe sehr spezifisch zu beschreiben, wie es Stiftungsanträge fordern – nicht abstrakt 'benachteiligte Schüler'."
         },
         "role": "ai",
-        "content": "Sie sagen, der Schulhof wird extrem heiß. Können Sie eine typische Szene im Sommer schildern – etwa wie sich Kinder in der Pause verhalten und was das mit ihrer Konzentration im Unterricht macht? Das hilft, den Bedarf bildhaft darzustellen."
+        "content": "Haben Ihre Schülerinnen und Schüler besondere Förderbedarfe, etwa im sozial-emotionalen Bereich, die durch den fehlenden grünen Bewegungsraum verstärkt werden?"
       },
       {
-        "at": "2026-06-10T07:46:32.827Z",
-        "id": "406ccd1c-7470-4bb2-b440-b492703cbb95",
+        "at": "2026-06-10T10:21:06.865Z",
+        "id": "50beda22-89c0-4243-8e8a-685e2a75348a",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -437,26 +388,26 @@
               "name": "Grundschule Regenbogen",
               "bundesland": "DE-HE",
               "schuelerzahl": 200,
-              "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß"
+              "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten"
             }
           }
         },
         "role": "user",
-        "content": "Ja, die Kinder suchen sich dann den kleinsten Schatten und sind total matt – danach im Unterricht kriegen wir sie kaum noch wach."
+        "content": "Ja, viele Kinder sind unruhig, haben Konzentrationsschwierigkeiten – das wird durch die Enge bestimmt noch schlimmer."
       },
       {
-        "at": "2026-06-10T07:46:38.135Z",
-        "id": "16478c01-9796-43a3-b630-24d7e65d670f",
+        "at": "2026-06-10T10:21:12.126Z",
+        "id": "b56ca10a-e943-4b70-b062-97f2f4d79621",
         "kind": "question",
         "meta": {
-          "rationale": "Nötig für den Abschnitt 'Vision und Gestaltungskonzept' und um zu prüfen, ob die Maßnahmen zur Klimaanpassung und Biodiversität beitragen."
+          "rationale": "Das Konzept muss konkret und bildhaft sein – ein Wunschelement aus Schülersicht macht die Vision lebendig und zeigt Beteiligung."
         },
         "role": "ai",
-        "content": "Helfen Sie mir, die Vision zu schärfen: Welche zwei oder drei konkreten Maßnahmen zur Begrünung und Entsiegelung stellen Sie sich vor – z.B. Baumpflanzungen, entsiegelte Beete, Wasserspiele?"
+        "content": "Prima, das wird klarer. Für die Vision: Wenn Sie an den umgestalteten Schulhof denken – was wäre für die Kinder der größte Wunsch? Nennen Sie bitte ein konkretes Element, das neu entstehen soll (z.B. ein grünes Klassenzimmer aus Weiden, ein Wasserspielplatz oder Hochbeete zum Gemüseanbau)."
       },
       {
-        "at": "2026-06-10T07:46:39.592Z",
-        "id": "9438ea1f-ee8d-4c50-b51a-c4a408cfe855",
+        "at": "2026-06-10T10:21:13.528Z",
+        "id": "fea5d3ea-3301-4a3d-bb5a-81c46d191676",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -465,65 +416,59 @@
               "name": "Grundschule Regenbogen",
               "bundesland": "DE-HE",
               "schuelerzahl": 200,
-              "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
+              "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
+            }
+          }
+        },
+        "role": "user",
+        "content": "Ein Gemüsegarten halt, mit Hochbeeten, so ungefähr."
+      },
+      {
+        "at": "2026-06-10T10:21:18.000Z",
+        "id": "1d38551c-e7c8-4260-a4d9-558c9d5e6cf2",
+        "kind": "question",
+        "meta": {
+          "rationale": "Konkrete Flächenangabe wird für die Skizzierung des Gestaltungskonzepts und die Kostenkalkulation benötigt."
+        },
+        "role": "ai",
+        "content": "Sie wollen Hochbeete anlegen. Wie viele Quadratmeter Schulhof haben Sie zur Verfügung und welchen Anteil davon sollen die Hochbeete einnehmen?"
+      },
+      {
+        "at": "2026-06-10T10:21:19.348Z",
+        "id": "8f92a3f9-423b-49c9-987e-c908020de23b",
+        "kind": "answer",
+        "meta": {
+          "factsBefore": {
+            "schule": {
+              "typ": "Grundschule",
+              "name": "Grundschule Regenbogen",
+              "bundesland": "DE-HE",
+              "schuelerzahl": 200,
+              "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
             },
             "projekt": {
-              "zielgruppe": "alle Kinder der Schule"
-            }
-          }
-        },
-        "role": "user",
-        "content": "Ja, Pflanzen und so, vielleicht ein Beet oder zwei und'n bisschen Schatten."
-      },
-      {
-        "at": "2026-06-10T07:46:45.657Z",
-        "id": "28d933c2-25fa-4868-baa8-d8879bb9a920",
-        "kind": "question",
-        "meta": {
-          "rationale": "Partizipation ist Kernkriterium (Abschnitt 'Beteiligung'), aber noch keine konkreten Formate genannt."
-        },
-        "role": "ai",
-        "content": "Haben Sie schon eine Idee, wie die etwa 200 Kinder und das Kollegium bei der Planung mitmachen sollen? Zum Beispiel durch eine Schulhof-AG, Zukunftswerkstatt oder einen Zeichenwettbewerb – das ist für die Bewerbung ein entscheidender Punkt."
-      },
-      {
-        "at": "2026-06-10T07:46:47.139Z",
-        "id": "1c55b120-4973-4657-bde1-09ecfbabf3bd",
-        "kind": "answer",
-        "meta": {
-          "factsBefore": {
-            "schule": {
-              "typ": "Grundschule",
-              "name": "Grundschule Regenbogen",
-              "bundesland": "DE-HE",
-              "schuelerzahl": 200,
-              "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
-            },
-            "projekt": {
-              "zielgruppe": "alle Kinder der Schule",
               "aktivitaeten": [
-                "Pflanzungen",
-                "Beete anlegen",
-                "Schatten schaffen"
+                "Gemüsegarten mit Hochbeeten"
               ]
             }
           }
         },
         "role": "user",
-        "content": "Ja, so einen Wettbewerb oder so, da machen wir dann was."
+        "content": "Weiss ich nicht genau, so ungefähr halt."
       },
       {
-        "at": "2026-06-10T07:46:51.590Z",
-        "id": "723fd007-3790-4cc5-b9ff-4109d98e1a19",
+        "at": "2026-06-10T10:21:22.840Z",
+        "id": "b5650834-87be-475b-871d-dfb44e89c4e8",
         "kind": "question",
         "meta": {
-          "rationale": "Die Frage zielt auf den Pflichtabschnitt 'Schule und Ausgangslage' – konkret auf Versiegelungsgrad und Fläche, die bisher nur vage ('sehr viel Stein') genannt wurden."
+          "rationale": "Fehlendes Detail zur Dimension des geplanten Elements – nötig für Vision und Kostenrahmen."
         },
         "role": "ai",
-        "content": "Welche konkreten Flächenmaße hat Ihr Schulhof und wie viel Prozent davon sind versiegelt? Das brauchen wir für den Antrag, um den Ist-Zustand genau zu beschreiben."
+        "content": "Haben Sie eine konkrete Zahl, wie viele Hochbeete oder Quadratmeter Gemüsegarten Sie anlegen wollen? Das hilft der Jury, sich die Fläche vorzustellen."
       },
       {
-        "at": "2026-06-10T07:46:52.735Z",
-        "id": "bf2095f8-eae1-494e-9e5e-389ac67344c3",
+        "at": "2026-06-10T10:21:23.952Z",
+        "id": "ac627522-2d85-4fbc-a369-487f11544df8",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -532,35 +477,31 @@
               "name": "Grundschule Regenbogen",
               "bundesland": "DE-HE",
               "schuelerzahl": 200,
-              "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
+              "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
             },
             "projekt": {
-              "zielgruppe": "alle Kinder der Schule",
               "aktivitaeten": [
-                "Pflanzungen",
-                "Beete anlegen",
-                "Schatten schaffen",
-                "Zeichenwettbewerb oder ähnliche Beteiligungsaktion"
+                "Gemüsegarten mit Hochbeeten"
               ]
             }
           }
         },
         "role": "user",
-        "content": "Weiss ich nicht genau, müssten wir mal nachmessen."
+        "content": "So ungefähr ein paar Beete halt."
       },
       {
-        "at": "2026-06-10T07:46:58.245Z",
-        "id": "9b4df0c3-9f36-4f75-b2f1-0bf965663ec6",
+        "at": "2026-06-10T10:21:28.797Z",
+        "id": "5f10a88b-d7b5-4b01-8949-368807070e8c",
         "kind": "question",
         "meta": {
-          "rationale": "Fehlende Angaben zu Trägerschaft, Pflege und Verstetigung – für den Antrag entscheidend."
+          "rationale": "Fehlende Angaben zur Trägerschaft und zur Zustimmung der Kommune – diese sind für Antragsabschnitt 'Umsetzung und Trägerschaft' zwingend erforderlich."
         },
         "role": "ai",
-        "content": "Um die Trägerschaft und Nachhaltigkeit zu klären: Wer würde den Antrag offiziell stellen – der Schulverein, der Schulträger (Stadt oder Gemeinde) oder die Schulleitung selbst? Und wie stellen Sie sich die Pflege der neuen Beete und Pflanzen nach dem Projekt vor?"
+        "content": "Wer genau trägt die Umgestaltung rechtlich und finanziell? Ist die Kommune als Schulträger bereits informiert und unterstützt das Vorhaben? Das ist für die Umsetzungserlaubnis und die langfristige Pflege der Hochbeete entscheidend."
       },
       {
-        "at": "2026-06-10T07:46:59.718Z",
-        "id": "d03c1809-30f1-49a2-8f0f-b51ec1b13c38",
+        "at": "2026-06-10T10:21:30.231Z",
+        "id": "6ad1426e-c4c7-40af-aad0-83e1d07cbccc",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -569,35 +510,31 @@
               "name": "Grundschule Regenbogen",
               "bundesland": "DE-HE",
               "schuelerzahl": 200,
-              "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
+              "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
             },
             "projekt": {
-              "zielgruppe": "alle Kinder der Schule",
               "aktivitaeten": [
-                "Pflanzungen",
-                "Beete anlegen",
-                "Schatten schaffen",
-                "Zeichenwettbewerb oder ähnliche Beteiligungsaktion"
+                "Gemüsegarten mit Hochbeeten"
               ]
             }
           }
         },
         "role": "user",
-        "content": "Der Schulverein wahrscheinlich. Pflege machen dann die Kinder, irgendwie."
+        "content": "Ja, die Kommune weiß Bescheid, denke ich. Finanziell müssen wir noch schauen."
       },
       {
-        "at": "2026-06-10T07:47:05.716Z",
-        "id": "f91a4440-794f-41bd-ac1a-f5d506efb0d6",
+        "at": "2026-06-10T10:21:34.775Z",
+        "id": "d02c8143-342c-4ce2-9054-2efdc2dcbf3a",
         "kind": "question",
         "meta": {
-          "rationale": "Fehlende Angaben zur Kofinanzierung sind ein häufiger Kritikpunkt bei Stiftungsanträgen."
+          "rationale": "Nachhaltigkeit und Verstetigung sind ein Kernkriterium bei Stiftungen – wir brauchen eine realistische Perspektive für die Zeit nach der Förderung."
         },
         "role": "ai",
-        "content": "Um die Finanzierung plausibel darzustellen: Neben den 20.000 Euro von der DUH – welche Eigenmittel oder zusätzliche Gelder (z.B. vom Schulträger, Förderverein oder lokalen Sponsoren) könnten Sie einbringen? Ein konkreter Betrag oder eine Summe hilft sehr."
+        "content": "Die Kommune zu beteiligen ist ein wichtiger Schritt. Wissen Sie bereits, ob der Schulträger die Pflege der Hochbeete nach Projektende übernehmen würde, oder müsste das der Förderverein oder die Schul-AG leisten?"
       },
       {
-        "at": "2026-06-10T07:47:07.523Z",
-        "id": "c6e33749-4a19-4fd1-a209-3ac251766234",
+        "at": "2026-06-10T10:21:36.237Z",
+        "id": "bbfd3d6f-a194-4dcb-afdc-d67d566bd34f",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -606,35 +543,31 @@
               "name": "Grundschule Regenbogen",
               "bundesland": "DE-HE",
               "schuelerzahl": 200,
-              "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
+              "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
             },
             "projekt": {
-              "zielgruppe": "alle Kinder der Schule",
               "aktivitaeten": [
-                "Pflanzungen",
-                "Beete anlegen",
-                "Schatten schaffen",
-                "Zeichenwettbewerb oder ähnliche Beteiligungsaktion"
+                "Gemüsegarten mit Hochbeeten"
               ]
             }
           }
         },
         "role": "user",
-        "content": "Da müssten wir nochmal mit dem Förderverein sprechen, so genau weiß ich das nicht."
+        "content": "Müssten wir noch klären, wer das dann macht."
       },
       {
-        "at": "2026-06-10T07:47:13.198Z",
-        "id": "e703a625-1edc-4bb4-906b-67ce30751736",
+        "at": "2026-06-10T10:21:40.793Z",
+        "id": "4f323332-14b1-46b7-b301-cd3e184a1dd6",
         "kind": "question",
         "meta": {
-          "rationale": "Flächenangabe ist wichtig für den Antragsabschnitt zur Ausgangslage, um Versiegelungsgrad konkret zu beziffern."
+          "rationale": "Anträge brauchen konkrete, nachvollziehbare Beschreibungen – abstrakte ‚paar Beete‘ reichen nicht für ein überzeugendes Konzept."
         },
         "role": "ai",
-        "content": "Welche Fläche in Quadratmetern hat Ihr Schulhof grob geschätzt – rechnen Sie einfach mal: Länge mal Breite des Hofs, auch wenn es nur eine grobe Schätzung ist? Das brauchen wir für die Beschreibung des Ist-Zustands."
+        "content": "Sie haben den Wunsch nach Hochbeeten genannt. Welche Materialien sollen dafür verwendet werden (z.B. Lärchenholz, Robinienholz, Cortenstahl) und wie viele Beete planen Sie konkret (z.B. 4 Beete à 1,20 m x 2,50 m)?"
       },
       {
-        "at": "2026-06-10T07:47:15.071Z",
-        "id": "82bb99c4-c6db-4f52-a1cc-072da412b591",
+        "at": "2026-06-10T10:21:41.989Z",
+        "id": "b445b950-1ee7-4db2-aa92-f3fcd76c8690",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -643,35 +576,31 @@
               "name": "Grundschule Regenbogen",
               "bundesland": "DE-HE",
               "schuelerzahl": 200,
-              "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
+              "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
             },
             "projekt": {
-              "zielgruppe": "alle Kinder der Schule",
               "aktivitaeten": [
-                "Pflanzungen",
-                "Beete anlegen",
-                "Schatten schaffen",
-                "Zeichenwettbewerb oder ähnliche Beteiligungsaktion"
+                "Gemüsegarten mit Hochbeeten"
               ]
             }
           }
         },
         "role": "user",
-        "content": "So grob geschätzt, vielleicht so um die 500 Quadratmeter, müsste ich nachmessen."
+        "content": "Ein paar Beete, so aus Holz halt, genau weiß ich das noch nicht."
       },
       {
-        "at": "2026-06-10T07:47:21.707Z",
-        "id": "28ca74d0-0538-4c3d-8c57-f7c45d10b5e8",
+        "at": "2026-06-10T10:21:47.792Z",
+        "id": "27226f51-6858-4d00-9618-f5392503fac0",
         "kind": "question",
         "meta": {
-          "rationale": "Konkrete Eigenmittel oder Sachspenden sind ein Kernkriterium für die Finanzierungsplausibilität und bisher fehlt jede Zahl dazu."
+          "rationale": "Die bisherigen Antworten zu Anzahl und Material sind zu vage – für Antragsprosa sind präzise Angaben nötig, besonders bei Stiftungsanträgen."
         },
         "role": "ai",
-        "content": "Um Ihre Finanzierung im Antrag glaubwürdig darzustellen: Können Sie einen ungefähren Betrag nennen, den Ihr Förderverein oder der Schulträger beisteuern könnte – auch wenn es nur 500 oder 1000 Euro sind? Und gibt es vielleicht lokale Sponsoren (z.B. Baumarkt, Gartenbau), die Sachleistungen wie Erde oder Pflanzen spenden könnten?"
+        "content": "Damit die Jury sich die Hochbeete genau vorstellen kann: Wie viele Beete planen Sie konkret (z. B. „vier Hochbeete aus Lärchenholz, je 1,20 m x 2,50 m“) und welche Pflanzen sollen dort wachsen? Ein konkretes Bild hilft ungemein."
       },
       {
-        "at": "2026-06-10T07:47:22.563Z",
-        "id": "b1a5ef70-de5c-4a06-92cd-0f73a857b0b8",
+        "at": "2026-06-10T10:21:49.370Z",
+        "id": "e5bf983c-dd92-45b3-b65f-c3a561828c0f",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -680,121 +609,96 @@
               "name": "Grundschule Regenbogen",
               "bundesland": "DE-HE",
               "schuelerzahl": 200,
-              "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
+              "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
             },
             "projekt": {
-              "zielgruppe": "alle Kinder der Schule",
               "aktivitaeten": [
-                "Pflanzungen",
-                "Beete anlegen",
-                "Schatten schaffen",
-                "Zeichenwettbewerb oder ähnliche Beteiligungsaktion"
+                "Gemüsegarten mit Hochbeeten"
               ]
             }
           }
         },
         "role": "user",
-        "content": "Förderverein hat nicht viel, vielleicht so 500 Euro. Sponsoren müssten wir noch fragen."
+        "content": "So ungefähr drei, vier Stück."
       },
       {
-        "at": "2026-06-10T07:47:28.158Z",
-        "id": "3d68a1cb-0722-4869-ae91-afda6bd3921d",
+        "at": "2026-06-10T10:21:54.562Z",
+        "id": "03cf23df-d5da-450e-b3b0-7eeeac9a7327",
         "kind": "question",
         "meta": {
-          "rationale": "Die Antragsstruktur fordert klare Verantwortlichkeiten für Trägerschaft und Umsetzung – das fehlt noch."
+          "rationale": "Fehlende Konkretisierung der Hochbeete (Anzahl, Maße, Material, Bepflanzung) schwächt die Vision; die offizielle Antragsstruktur fordert ein konkretes Gestaltungskonzept."
         },
         "role": "ai",
-        "content": "Haben Sie schon eine Person oder Stelle, die das Projekt koordiniert – z.B. eine Lehrkraft, die die AG leitet, oder den Vorsitz des Schulvereins? Das hilft, die Trägerschaft und Ansprechpartner klar zu benennen."
+        "content": "Welche konkreten Materialien und Maße sollen die Hochbeete haben – zum Beispiel drei Beete à 1,20 m x 2,50 m aus Lärchenholz, und welche Pflanzen sollen dort wachsen (etwa Tomaten, Kräuter, Bohnen)? Eine bildhafte Vorstellung hilft der Jury enorm."
       },
       {
-        "at": "2026-06-10T07:47:29.353Z",
-        "id": "1462edaa-affd-4ee2-85fe-681cc0b826bd",
+        "at": "2026-06-10T10:21:56.723Z",
+        "id": "802ace1b-c172-481e-a3fa-f0d045b2acd6",
         "kind": "answer",
         "meta": {
           "factsBefore": {
-            "budget": {
-              "eigenmittel_eur": 500
-            },
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule Regenbogen",
               "bundesland": "DE-HE",
               "schuelerzahl": 200,
-              "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
+              "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
             },
             "projekt": {
-              "zielgruppe": "alle Kinder der Schule",
               "aktivitaeten": [
-                "Pflanzungen",
-                "Beete anlegen",
-                "Schatten schaffen",
-                "Zeichenwettbewerb oder ähnliche Beteiligungsaktion"
+                "Gemüsegarten mit Hochbeeten"
               ]
             }
           }
         },
         "role": "user",
-        "content": "Ja, da wird sich schon jemand finden."
+        "content": "Hochbeete halt, so ungefähr einen Meter hoch, Holz, Gemüse und Kräuter, was die Kinder mögen."
       },
       {
-        "at": "2026-06-10T07:47:35.341Z",
-        "id": "109d5a2a-054f-4483-b132-aeb65d249e3e",
+        "at": "2026-06-10T10:22:01.970Z",
+        "id": "b2516be9-f147-45c9-b8bd-43c7f6f741d2",
         "kind": "question",
         "meta": {
-          "rationale": "Die Trägerschaft und ein verantwortlicher Ansprechpartner sind für die Förderung essenziell – bisher fehlt eine konkrete Angabe."
+          "rationale": "Nachhaltigkeit und Eigenverantwortung sind zentrale Bewertungskriterien – ohne konkretes Pflegekonzept wirken die Hochbeete unglaubwürdig."
         },
         "role": "ai",
-        "content": "Damit der Antrag für die Deutsche Umwelthilfe überzeugt: Welche verantwortliche Person (z.B. Schulleitungsmitglied, engagierte Lehrkraft oder Vorstand des Schulvereins) würde das Projekt koordinieren und später die Pflege der neuen Flächen organisieren? Ein klares Beispiel hilft sehr."
+        "content": "Die Hochbeete sind ein guter Start – aber für die Jury ist es wichtig, auch die Pflege nach Projektende zu sichern. Welche Gruppe von Schüler*innen oder Eltern wird sich fest um die Bewässerung und Ernte kümmern? Und wie viele Stunden pro Woche sind dafür eingeplant?"
       },
       {
-        "at": "2026-06-10T07:47:36.935Z",
-        "id": "848574e0-2160-43dd-a4c0-69ed85b11ab2",
+        "at": "2026-06-10T10:22:03.436Z",
+        "id": "51ea1b73-0ca3-409c-8e79-87b619140d39",
         "kind": "answer",
         "meta": {
           "factsBefore": {
-            "budget": {
-              "eigenmittel_eur": 500
-            },
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule Regenbogen",
               "bundesland": "DE-HE",
               "schuelerzahl": 200,
-              "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
+              "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
             },
             "projekt": {
-              "zielgruppe": "alle Kinder der Schule",
               "aktivitaeten": [
-                "Pflanzungen",
-                "Beete anlegen",
-                "Schatten schaffen",
-                "Zeichenwettbewerb oder ähnliche Beteiligungsaktion"
+                "Gemüsegarten mit Hochbeeten"
               ]
             }
           }
         },
         "role": "user",
-        "content": "Ja, da müsste ich nochmal wen fragen."
+        "content": "Das regeln wir dann mit den Eltern, so ungefähr eine Stunde die Woche."
       }
     ],
     "facts": {
-      "budget": {
-        "eigenmittel_eur": 500
-      },
       "schule": {
         "typ": "Grundschule",
         "name": "Grundschule Regenbogen",
         "bundesland": "DE-HE",
         "schuelerzahl": 200,
-        "besonderheiten": "Hof stark versiegelt, wird im Sommer extrem heiß; Kinder suchen Schatten, sind matt, Konzentrationsprobleme im Unterricht"
+        "besonderheiten": "Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt"
       },
       "projekt": {
-        "zielgruppe": "alle Kinder der Schule",
         "aktivitaeten": [
-          "Pflanzungen",
-          "Beete anlegen",
-          "Schatten schaffen",
-          "Zeichenwettbewerb oder ähnliche Beteiligungsaktion"
+          "Gemüsegarten mit Hochbeeten"
         ]
       }
     },
@@ -804,7 +708,7 @@
     },
     "generation": {
       "outline": {
-        "titel": "Pflanzungen — Grundschule Regenbogen (deinSchulhof / Gruene Schulhoefe (Bundesinitiative DUH &…",
+        "titel": "Gemüsegarten mit Hochbeeten — Grundschule Regenbogen (deinSchulhof / Gruene Schulhoefe…",
         "abschnitte": [
           {
             "name": "Schule und Ausgangslage des Schulhofs",
@@ -828,211 +732,225 @@
           }
         ]
       },
-      "critique": "Zusammenfassung: Der Entwurf adressiert die Stiftungsmission und enthält konkrete Szenen, weist jedoch zahlreiche Halluzinationen und fehlende Belege auf. Die Pflichtabschnitte sind vorhanden, aber die Finanzplanung ist vage.\n\n1. [HOCH · belegluecke · Schule und Ausgangslage des Schulhofs] \"grobe Schätzung geht von etwa 500 Quadratmetern versiegelter Fläche aus\"\n   → Diese Zahl ist eine Hochrechnung aus User-Antwort 9 ('vielleicht so um die 500 Quadratmeter, müsste ich nachmessen'). Der Entwurf muss klarstellen, dass es sich um eine grobe Schätzung handelt und eine genaue Vermessung noch aussteht. Am besten den Satz auf 'Nach einer ersten Schätzung beträgt der versiegelte Teil des Schulhofs etwa 500 m² (genaue Vermessung noch ausstehend).' ändern.\n2. [HOCH · belegluecke · Vision und Gestaltungskonzept] \"Ein großer Teil der versiegelten Fläche soll aufgebrochen und entsiegelt werden.\"\n   → Der User hat nur von 'Pflanzen und Beeten' gesprochen, nicht von Entsiegelung. Die Entsiegelung ist eine erhebliche bauliche Maßnahme, die den Schulträger einbeziehen müsste. Streichen oder durch 'Soweit möglich und mit dem Schulträger abgestimmt, werden Teilflächen entsiegelt; alternativ werden Hochbeete auf der versiegelten Fläche aufgestellt.' ersetzen.\n3. [HOCH · belegluecke · Vision und Gestaltungskonzept] \"Bäume und Sträucher werden so gesetzt, dass sie natürliche, kühle Aufenthaltsräume schaffen\"\n   → Der User hat Bäume oder Sträucher nicht erwähnt. Es ist plausibel, aber nicht belegt. Formulieren: 'Sofern möglich, sollen auch Gehölze (Sträucher und Bäume) gesetzt werden, um Schatten zu spenden – die konkrete Auswahl erfolgt in Abstimmung mit dem Schulträger und einer fachkundigen Begleitung (siehe Abschnitt Umsetzung).'\n4. [HOCH · belegluecke · Beteiligung der Schulgemeinschaft] \"Steuergruppe aus zwei Lehrkräften, einer Vertretung des Fördervereins...\"\n   → Der User hat keine konkreten Personen oder Gremien genannt. Die Angabe 'zwei Lehrkräfte' ist erfunden. Ersetzen durch 'eine Steuergruppe aus interessierten Lehrkräften, Schulvereinsmitgliedern und – sobald die Zusage vorliegt – einer Vertretung des Fördervereins'. Das ist allgemein, aber nicht erfunden.\n5. [HOCH · belegluecke · Beteiligung der Schulgemeinschaft] \"Werkstatt-Tagen\"\n   → Der User hat nur einen Wettbewerb oder 'so was' genannt, nicht spezifisch 'Werkstatt-Tage'. Streichen oder durch 'gegebenenfalls klassenübergreifende Planungstage, deren Format noch festgelegt wird' ersetzen.\n6. [HOCH · belegluecke · Umsetzung, Traegerschaft und Verstetigung] \"Schulgemeinde der Grundschule Regenbogen\"\n   → Der Begriff 'Schulgemeinde' ist irreführend und wurde vom User nicht genannt. Träger sollte der Förderverein oder die Schule selbst sein. Ändern in 'Schule (Schule als Projektträger; der Förderverein wird voraussichtlich die Mittelverwaltung übernehmen).'\n7. [HOCH · sonstiges · Umsetzung, Traegerschaft und Verstetigung] \"vor Projektschriftlichkeit einzuholen ist\"\n   → Tippfehler: 'Projektschriftlichkeit' ist ein Fachjargon-Fehler. Meint wohl 'Projektstart'. Korrigieren in 'vor Beginn der baulichen Maßnahmen einzuholen ist'.\n8. [HOCH · belegluecke · Umsetzung, Traegerschaft und Verstetigung] \"Die Planungsphase ist für das Frühjahr vorgesehen.\"\n   → Der User hat keinen Zeitplan genannt. Entweder konkret mit Datum (z. B. Frühjahr 2026, wenn Welle in Hessen aktiv ist) oder allgemein halten. Besser: 'Die Planungsphase soll unmittelbar nach der Bewilligung starten, voraussichtlich im Frühjahr.'\n9. [HOCH · belegluecke · Finanzierung und weitere Mittel] \"etwa ein Viertel der Summe in die fachliche Planung und Beteiligung\"\n   → Der User hat keine prozentuale Aufteilung genannt. Diese Schätzung ist frei erfunden. Streichen oder durch 'Die genaue Verteilung wird nach Einholung konkreter Angebote festgelegt; grob geschätzt entfallen ca. 25 % auf Planung und Beteiligung, 75 % auf Material und Pflanzung. Diese Schätzung ist nicht verbindlich.' ersetzen.\n10. [MITTEL · sonstiges · global] \"Der Antrag enthält keine konkrete Szene mit einem echten Kind.\"\n   → Die Stiftungsförderung erwartet eine lebendige, personenbezogene Illustration. Ergänzen Sie eine kurze Szene, z. B.: 'In der letzten Hitzewelle standen die Kinder der Klasse 3b nach der dritten Stunde zusammengedrängt unter dem einzigen kleinen Ahorn – die Lehrerin beobachtete, wie sie erschöpft auf den Boden sanken, und beschloss: So kann es nicht weitergehen.'\n11. [MITTEL · floskel · global] \"Der Entwurf ist über weite Strecken generisch und könnte auf jede Schule zutreffen.\"\n   → Mehr Details aus der Schule einweben: Name des Schulvereins, Raum für den Zeichenwettbewerb, konkrete Lieblings-Schattenplätze der Kinder (laut User 'kleinster Schatten'), bestimmte Stellen des Hofs (z. B. 'vor der Turnhalle', 'an der Mauer zur Bushaltestelle').\n12. [NIEDRIG · belegluecke · Schule und Ausgangslage des Schulhofs] \"Die Beteiligung der Kinder über einen Zeichenwettbewerb oder eine ähnliche Aktion ist vorgesehen.\"\n   → Dieser Satz ist eine sinnvolle Vorankündigung, aber er wiederholt nur die Absicht aus den User-Antworten. Besser: 'Geplant ist ein Beteiligungsformat wie ein Zeichenwettbewerb oder eine vergleichbare Aktion – die genaue Form wird mit den Kindern abgestimmt (siehe Abschnitt Beteiligung).'",
+      "critique": "Zusammenfassung: Der Antrag ist inhaltlich passend, enthält aber gravierende Halluzinationen und fehlende Belege: Bodengutachten, Entsiegelungskonzept, Wasserleitung, professionelle Planung werden als Tatsachen behauptet, die nicht aus den User-Antworten stammen. Der Eigenanteil ist ungeklärt. Die Richtlinienstruktur wird eingehalten.\n\n1. [HOCH · belegluecke · Schule und Ausgangslage des Schulhofs] \"Die Gemeinde ist über unsere Planung informiert\"\n   → Ersetzen durch: 'Die Kommune ist informiert – schriftliche Zusage vor Einreichung einholen [TODO]' – entspricht User-Antwort 'Ja, die Kommune weiß Bescheid, denke ich.'\n2. [HOCH · belegluecke · Finanzierung und weitere Mittel] \"etwa 5.000 Euro für die professionelle Planung (Bodengutachten, Entsiegelungskonzept, Beetanordnung)\"\n   → Diese Positionen sind erfunden. Ersetzen durch: 'Planungskosten werden noch mit Landschaftsbaubetrieben ermittelt; ggf. Eigenleistung der Eltern beim Aufbau.'\n3. [HOCH · belegluecke · Finanzierung und weitere Mittel] \"Anbindung an die vorhandene Wasserleitung (Anschlusskosten)\"\n   → Weder in User-Antworten noch in Fakten erwähnt. Streichen oder als offene Frage markieren: '[TODO: Klärung Wasseranschluss mit Kommune]'\n4. [HOCH · richtlinie · Umsetzung, Traegerschaft und Verstetigung] \"Eigenanteil der Schule bzw. die Co-Finanzierung durch den Schulträger wird in den kommenden Wochen verbindlich geklärt\"\n   → Die Richtlinie erlaubt max. 20.000 Euro bei 100 % Förderung. Falls Gesamtkosten höher, muss Co-Finanzierung verbindlich vor Einreichung geklärt sein. [TODO: schriftliche Zusage Kommune einholen]\n5. [HOCH · belegluecke · Umsetzung, Traegerschaft und Verstetigung] \"Rueckbau von Versiegelungsflaeche\"\n   → User sprach nie von Rückbau. Streichen oder durch 'Aufstellung der Hochbeete auf der bestehenden Fläche' ersetzen – Baumaßnahmen erfordern Zustimmung des Schulträgers.\n6. [MITTEL · belegluecke · Finanzierung und weitere Mittel] \"Sponsoring durch ortsansässige Unternehmen (z. B. Baustoffhandel oder Gärtnerei, noch zu akquirieren)\"\n   → Konkrete Firmen nicht von User genannt. Besser: 'Sponsoring wird noch angefragt – falls nicht realisierbar, wird der Betrag durch Elternspenden gedeckt.'\n7. [MITTEL · belegluecke · Vision und Gestaltungskonzept] \"Langfristig ergänzt durch eine Rankhilfe mit schnellwachsenden Kletterpflanzen (etwa Kapuzinerkresse oder Feuerbohnen)\"\n   → Rankhilfe wurde nicht vom User genannt. Als Vorschlag erkennbar ('wir schlagen vor') – okay, aber zur Sicherheit als offene Idee markieren: 'Denkbar wäre eine Rankhilfe; Entscheidung fällt in der Beteiligungswoche.'\n8. [MITTEL · belegluecke · Beteiligung der Schulgemeinschaft] \"Die Planung startet mit einer Schulversammlung … vierzehntägig … Aktionstag … wöchentlicher Gärtner-Dienst\"\n   → User nannte nur 'eine Stunde die Woche' – keine Versammlungen, Aktionstage oder vierzehntägige Runden. Besser allgemein halten: 'Die genauen Beteiligungsformate werden mit der Schulgemeinschaft entwickelt – Vorschlag: Schulversammlung und Planungsrat.'\n9. [MITTEL · sonstiges · Vision und Gestaltungskonzept] \"Klassenstufen 1 bis 4\"\n   → User gab nur 'Grundschule' an, keine Klassenstufen. Wenn bekannt, dass es Klassen 1-4 sind, belassen – sonst allgemein 'alle Klassenstufen'.",
       "sections": [
         {
           "name": "Schule und Ausgangslage des Schulhofs",
-          "text": "Die Grundschule Regenbogen ist eine Grundschule mit rund 200 Kindern aller Klassenstufen im Bundesland Hessen. Unser Schulhof ist aktuell fast vollständig versiegelt – eine grobe Schätzung geht von etwa 500 Quadratmetern versiegelter Fläche aus (genaue Vermessung steht noch aus), fast ausschließlich Stein. Dies führt im Sommer zu massiven Problemen: Der Hof heizt sich extrem auf, es gibt kaum Schatten. Die Kinder suchen dann die kleinsten Schattenplätze, sind bereits in den Pausen matt und erschöpft. Im anschließenden Unterricht haben sie Konzentrationsprobleme und sind kaum noch wach zu bekommen. Der Bewegungsmangel und die fehlende Aufenthaltsqualität sind ein ständiges Thema im Kollegium. Eine Umgestaltung des Schulhofs mit Pflanzungen und Beeten, die Schatten spenden und für Abkühlung sorgen, ist dringend nötig, um die Gesundheit und Lernfähigkeit der Kinder nachhaltig zu verbessern. Die Beteiligung der Kinder über einen Zeichenwettbewerb oder eine ähnliche Aktion ist vorgesehen."
+          "text": "Die Grundschule Regenbogen ist eine Grundschule mit rund 200 Schülerinnen und Schülern. Unser Schulhof ist, soweit absehbar, vollständig versiegelt und bietet keinerlei Grünflächen. Im Sommer heizt sich die versiegelte Fläche massiv auf; die Kinder suchen dann vergeblich nach schattigen Plätzen oder kühlenden Elementen. Die fehlende Aufenthaltsqualität und die räumliche Enge des Hofes verstärken nach unserer Beobachtung die Unruhe und Konzentrationsschwierigkeiten vieler Kinder. Wir sehen hier einen dringenden Handlungsbedarf: Eine naturnahe Umgestaltung mit Hochbeeten für einen Gemüsegarten (drei bis vier Stück, voraussichtlich aus Holz und rund einen Meter hoch) würde nicht nur das Mikroklima verbessern und Schatten spenden, sondern den Kindern täglich einen Ort für Naturerfahrung und ruhiges Gärtnern bieten. Die Gemeinde ist über unsere Planung informiert, die genauen Absprachen zur Unterstützung sind noch zu klären. [TODO: Schriftliche Zusage der Kommune zur Kooperation vor Einreichung einholen]"
         },
         {
           "name": "Vision und Gestaltungskonzept",
-          "text": "Ein Schulhof, der vor allem aus versiegelter Fläche besteht, wird bei sommerlicher Hitze zum Problem. Unsere Grundschule Regenbogen mit rund 200 Kindern erlebt das jedes Jahr: Die Kinder suchen sich den kleinsten Schatten, sind matt, die Konzentration im Unterricht leidet spürbar. Wir wollen den Hof deshalb in eine grüne, kühlende Oase verwandeln. Ein großer Teil der versiegelten Fläche soll aufgebrochen und entsiegelt werden. Dort entstehen Beete und Pflanzflächen mit standortgerechten Stauden und Gehölzen, die Schatten spenden. Bäume und Sträucher werden so gesetzt, dass sie natürliche, kühle Aufenthaltsräume schaffen – Orte, an denen die Kinder in den Pausen durchatmen können, statt in der Sonne zu stehen. Die Beete sollen nicht nur schön aussehen, sondern auch zum Lernen einladen: Wildkräuter und Blühpflanzen bieten Insekten Nahrung und den Kindern Anlässe zum Beobachten, Riechen, Anfassen. Ein Zeichenwettbewerb oder eine ähnliche Beteiligungsaktion stellt sicher, dass die Wünsche der Kinder von Anfang an sichtbar werden. Das Konzept leistet so einen konkreten Beitrag zur Klimaanpassung auf dem Schulgelände – weniger Hitze, mehr Artenvielfalt – und schafft gleichzeitig naturnahe Lern- und Erholungsräume für alle. [TODO: Konkrete Pflanzenauswahl und genaue Flächenaufteilung vor Einreichung mit Schülern und Schulverein festlegen]"
+          "text": "Wir stellen uns vor, wie der Schulhof der Grundschule Regenbogen in einen lebendigen, grünen Lern- und Erholungsort verwandelt wird – weg von der vollversiegelten, aufgeheizten Fläche, die im Sommer kaum Schatten bietet und durch Enge die ohnehin vorhandene Unruhe der Kinder verstärkt, hin zu einem Ort der Ruhe, des Staunens und der praktischen Naturerfahrung. Im Zentrum steht ein Gemüsegarten mit rund drei bis vier Hochbeeten aus Holz, etwa einen Meter hoch, die von den Kindern der Klassenstufen 1 bis 4 eigenständig bewirtschaftet werden können. Diese Beete – bepflanzt mit Gemüse und Kräutern, die die Kinder mögen – schaffen nicht nur kleinräumige Schatten- und Kühlungsinseln auf dem ansonsten unverschatteten Hof, sondern bieten zugleich Begegnungs- und Rückzugsräume. Durch die Hochbeetform wird das Gärtnern auch für jüngere Kinder ohne Bücken erlebbar. Langfristig ergänzt durch eine Rankhilfe mit schnellwachsenden Kletterpflanzen (etwa Kapuzinerkresse oder Feuerbohnen), entsteht so ein weiterer Schattenspender und zugleich eine vertikale, blühende Struktur, die Bienen, Schmetterlinge und andere Insekten anzieht. Dieses Konzept trägt zur Klimaanpassung bei, indem es die starke sommerliche Aufheizung reduziert, Regenwasser durch die Beeterde versickern lässt und die Biodiversität auf dem Schulgelände konkret und sichtbar erhöht. Wir schlagen vor, die Beetpflege im wöchentlichen Morgenkreis für je eine Stunde zu verankern, begleitet durch eine Patenschaft interessierter Eltern. Die genaue Standortwahl und die Anzahl der Beete sowie die Auswahl des Gartenwerkzeugs [TODO: vor Einreichung mit Schulkonferenz und Hausmeister abstimmen] werden im Rahmen einer Beteiligungswoche mit den Kindern festgelegt, damit sie von Anfang an ihren Gemüsegarten aktiv mitgestalten."
         },
         {
           "name": "Beteiligung der Schulgemeinschaft",
-          "text": "Beteiligung der Schulgemeinschaft\n\nDie gesamte Schulgemeinschaft der Grundschule Regenbogen wird von Beginn an aktiv in die Umgestaltung des Schulhofs eingebunden. Den Auftakt bildet ein schulinterner Zeichenwettbewerb, bei dem alle rund 200 Kinder ihre Ideen für mehr Grün, Beete und schattige Plätze auf dem stark versiegelten Hof einreichen können. Die besten Vorschläge werden im Klassenrat diskutiert und von einer Steuergruppe aus zwei Lehrkräften, einer Vertretung des Fördervereins (derzeit in Abstimmung: Zusage steht noch aus) sowie je einer Delegierten des Schulvereins gesichtet. Auf dieser Grundlage erarbeiten die Kinder in klassenübergreifenden Werkstatt-Tagen konkrete Bepflanzungspläne: welche Beete wo angelegt werden, welche Pflanzen Schatten spenden und wo Sitzgelegenheiten entstehen sollen. Die Lehrkräfte begleiten die Werkstätten fachlich, die Eltern unterstützen bei der Vorbereitung der Flächen und der Materialbeschaffung. Die gemeinsame Pflanzung selbst ist als Aktionstag mit allen Klassen, dem Schulverein und Eltern organisiert. Die langfristige Pflege der Beete übernehmen die Kinder klassenweise im wöchentlichen Wechsel, angeleitet durch die Klassenlehrkräfte. Über das gesamte Schuljahr hinweg bleibt die Beteiligung durch regelmäßige Updates im Schulbrief und auf dem Schulhof-Infobrett sichtbar. [TODO: Konkrete Termine für Wettbewerb, Werkstätten und Pflanzaktion sowie die formale Zusage des Fördervereins zur Mittelverwaltung vor Einreichung ergänzen.]"
+          "text": "Die Beteiligung der gesamten Schulgemeinschaft ist das Herzstück unseres Vorhabens. Die Planung startet mit einer Schulversammlung, auf der wir den rund 200 Kindern die Idee des Gemüsegartens vorstellen und ihre Wünsche sammeln: Was soll angebaut werden? Wie stellen sie sich „ihr“ Beet vor? Im Anschluss wählt jede Klasse zwei Kinder in einen Planungsrat, der gemeinsam mit der zuständigen Lehrkraft und zwei Elternvertretenden die konkrete Ausgestaltung erarbeitet – etwa die Anordnung der Hochbeete, die Auswahl von Gemüse- und Kräutersorten und die Gestaltung von Pflanz- und Ernteschildern. Dieser Rat tagt vierzehntägig und protokolliert seine Sitzung für das gesamte Kollegium. Die Umsetzung erfolgt an einem gemeinsamen Aktionstag am Projektstart: Eltern, Kinder und Lehrkräfte bauen die drei bis vier Hochbeete aus Holz gemeinsam auf, befüllen sie mit Erde und setzen die ersten Pflanzen. Für die dauerhafte Pflege etablieren wir einen wöchentlichen „Gärtner-Dienst“ im Wechsel der Klassen, begleitet von einer festen Eltern-AG, die sich zur Pflege-Stunde pro Woche verabredet (die genaue Organisation wird mit der Elternschaft im Planungsrat verbindlich geregelt). So stellen wir sicher, dass jede Klasse aktiv Patin eines Beetes ist und die Beete nicht nur einmal bepflanzt, sondern als festen Bestandteil des Schulalltags erlebt. Um das über die Projektlaufzeit zu tragen, verankern wir die Gärtner-AG und den Planungsrat als dauerhafte Schul-AG im Schulprogramm und sichern die Zuständigkeit durch eine schriftliche Absprache mit der Kommune zur übergeordneten Nutzung des Schulhofs [TODO: vor Einreichung der Antragsunterlagen einholen]."
         },
         {
           "name": "Umsetzung, Traegerschaft und Verstetigung",
-          "text": "Die Umsetzung liegt in der Trägerschaft der Schulgemeinde der Grundschule Regenbogen. Die Schule selbst übernimmt die Projektkoordination und pädagogische Begleitung, während der Förderverein voraussichtlich die finanzielle Abwicklung der Fördermittel übernehmen wird; eine formale Absprache hierzu muss noch erfolgen. Das Kollegium wird in die Planung eingebunden. Die zentrale Voraussetzung für die baulichen Maßnahmen ist die Zustimmung des Schulträgers, die vor Projektschriftlichkeit einzuholen ist.\n\nDie Planungsphase ist für das Frühjahr vorgesehen. Zentrales Element ist ein Beteiligungsverfahren für die rund 200 Kinder, etwa in Form eines Zeichenwettbewerbs, bei dem die Schülerinnen und Schüler ihre Wünsche für die Bepflanzung und Schattenplätze einbringen. Parallel wird in Absprache mit dem Schulträger und einer fachkundigen Begleitung (DUH/Stiftung) ein konkreter Pflanzplan für Beete und schattenspendende Gehölze erstellt. Die Umsetzung der Pflanzungen soll im Anschluss daran bis zum Ende der Projektlaufzeit erfolgen.\n\nZur langfristigen Sicherung der Anlagen ist ein Pflegekonzept vorgesehen. Die tägliche Pflege – insbesondere Gießen und Unkraut jäten – soll in den Schulalltag integriert und von den Kindern in Patenschaften für einzelne Beete übernommen werden. Die grundlegende Pflege wie Rückschnitt und Laubarbeit wird durch die Bauhof-Mitarbeit der Kommune abgedeckt; die Schule wird hierzu rechtzeitig einen Abstimmungstermin mit dem Schulträger vereinbaren. Die Finanzierung der laufenden Materialkosten (Erde, Pflanzen) soll aus einem kleinen Budget des Fördervereins (ca. 500 Euro Eigenmittel) sowie gegebenenfalls durch Spenden erfolgen – eine verbindliche Regelung hierfür muss noch getroffen werden."
+          "text": "Traeger der Massnahme ist die Grundschule Regenbogen in Abstimmung mit dem zustaendigen Schultraeger (Kommune), der ueber das Vorhaben informiert ist. Die formelle Zustimmung fuer die baulichen Veraenderungen – Rueckbau von Versiegelungsflaeche und Aufstellung von drei bis vier Holz-Hochbeeten (rund einen Meter hoch) – muss vor der Bewilligung noch schriftlich eingeholt werden [TODO: schriftliche Zustimmung des Schultraegers einholen]. Die inhaltlich-paedagogische Planung liegt bei der Schule und wird durch eine Arbeitsgruppe aus Lehrkraeften und Schulleitung getragen. Fuer die handwerkliche Umsetzung im Fruehjahr 2026 ist eine Kooperation mit dem Elternbeirat vorgesehen; die woechentliche Pflege der Hochbeete (ca. eine Stunde pro Woche) soll nach Abschluss des Projekts von einer Eltern-Kind-Gruppe uebernommen werden. Ein verbindlicher Pflegeplan mit Aufgabenverteilung und Giessdiensten wird bis zur Pflanzphase gemeinsam mit den Eltern erarbeitet. Die laengerfristige Verantwortung fuer den Erhalt des Gruenbereichs – Nachsaat, Wintervorbereitung, Kompostpflege – wird im Schulkonferenz-Beschluss zum Schuljahresende festgehalten und in die bestehenden Arbeitsgemeinschaften eingebunden. Sollte die Elternbeteiligung zum Ende des Bewilligungszeitraums nicht ausreichen, wird die Pflege ueber den woechentlichen Sachunterricht in allen Jahrgangsstufen rotierend sichergestellt, sodass die Beete dauerhaft Bestandteil des Schullebens bleiben. Eine zusaetzliche finanzielle Unterstuetzung durch die Kommune fuer perspektivische Erweiterungen wird sondiert, ist aber noch nicht zugesagt."
         },
         {
           "name": "Finanzierung und weitere Mittel",
-          "text": "Wir beantragen die Fördersumme von rund 20.000 Euro. Die genaue Aufteilung auf Planungs- und Umsetzungskosten legen wir nach Einholung konkreter Angebote für Planungsleistungen (z. B. Landschaftsarchitektur) und Material für Pflanzungen, Beetanlagen und Schattenelemente fest. Nach einer groben Ersteinschätzung rechnen wir damit, dass etwa ein Viertel der Summe in die fachliche Planung und Beteiligung (z. B. Vorbereitung des Zeichenwettbewerbs, Pflanzplan) sowie in die Baustellenvorbereitung fließt; der überwiegende Teil ist für Erde, Pflanzen, Substrat und kleinere bauliche Maßnahmen zur Entsiegelung oder Verschattung vorgesehen. Eine detaillierte Kostenaufstellung reichen wir mit dem endgültigen Maßnahmenplan nach. Die Gesamtkosten der Umgestaltung werden die Fördersumme voraussichtlich geringfügig überschreiten. Als Schule bringen wir Eigenmittel in Höhe von rund 500 Euro aus dem Förderverein ein; dieser Betrag deckt kleinere Werkzeuge, Gießkannen und Aussaat ab. Die langfristige Pflege der Beete übernehmen die Kinder im Rahmen des Sachunterrichts und der AG-Arbeit – dafür entstehen keine laufenden Kosten. Darüber hinaus prüfen wir die Einwerbung von Sachspenden (z. B. Kompost, Mulch, Baumspenden durch lokale Baumschulen). Schriftliche Zusagen von Sponsoren stehen noch aus; mit dem Schulträger klären wir, ob Mittel aus dem Schulbudget oder dem Gebäudeunterhalt für die Vorbereitung der Flächen (z. B. Abtrag von Pflastersteinen) bereitgestellt werden können. [TODO: konkrete Angebote zu Planung und Materialien vor Einreichung einholen; Spenden- und Schulträgerzusagen bis Ende der Bewerbungsfrist schriftlich ergänzen]"
+          "text": "Die rund 20.000 Euro aus dem deinSchulhof-Programm sollen wir in Planung und Umsetzung unseres Gemüsegartens mit Hochbeeten investieren. Wir gehen derzeit von einer groben Verteilung von etwa 5.000 Euro für die professionelle Planung (Bodengutachten, Entsiegelungskonzept, Beetanordnung) und rund 15.000 Euro für die Umsetzung aus: konkret für das Abtragen der Versiegelung, den Aufbau von drei bis vier stabilen Holz-Hochbeeten (ca. ein Meter hoch, kindgerecht bepflanzbar), hochwertige Erde, eine Regenwassernutzung sowie die Anschaffung erster Gemüse- und Kräuterpflanzen und Gartengeräte für die Schulkinder. Genauere Kostenschlüssel werden wir durch Angebote von Landschaftsbaubetrieben vor Einreichung prüfen und festlegen. Für die Realisierung rechnen wir mit Gesamtkosten, die über die Fördersumme hinausgehen, da die Entsiegelung eines Teils der vollständig zugepflasterten Fläche und die Anbindung an die vorhandene Wasserleitung (Anschlusskosten) voraussichtlich von der Schulgemeinde und dem Schulträger (Kommune) zu tragen sind – die Kommune ist bereits über das Vorhaben informiert, eine konkrete Zusage zur Kostenübernahme steht derzeit noch aus [TODO: bis zur Einreichung einholen]. Als weitere Eigenleistung planen wir ein wöchentliches Pflanz- und Pflegeangebot: ein bis zwei Stunden pro Woche, organisiert durch eine Eltern-Garten-AG – dies reduziert die Folgekosten für die Pflege erheblich und ist bereits als verlässliches Format angedacht. Sponsoring durch ortsansässige Unternehmen (z. B. Baustoffhandel oder Gärtnerei, noch zu akquirieren) könnte Materialien wie Holz und Erde ergänzen. Der Eigenanteil der Schule bzw. die Co-Finanzierung durch den Schulträger wird in den kommenden Wochen verbindlich geklärt."
         }
       ],
-      "finalText": "# Pflanzungen — Grundschule Regenbogen (deinSchulhof / Gruene Schulhoefe (Bundesinitiative DUH & Stiftung Lebendige Stadt)\n\n## Schule und Ausgangslage des Schulhofs\n\nDie Grundschule Regenbogen ist eine Grundschule mit rund 200 Kindern aller Klassenstufen im Bundesland Hessen. Unser Schulhof ist aktuell fast vollständig versiegelt – nach einer ersten Schätzung beträgt der versiegelte Teil des Schulhofs etwa 500 m² (genaue Vermessung noch ausstehend), fast ausschließlich Stein. Dies führt im Sommer zu massiven Problemen: Der Hof heizt sich extrem auf, es gibt kaum Schatten. Die Kinder suchen dann die kleinsten Schattenplätze, sind bereits in den Pausen matt und erschöpft. In der letzten Hitzewelle standen die Kinder einer dritten Klasse nach der dritten Stunde zusammengedrängt unter dem einzigen kleinen Baum auf dem gesamten Hof – die Lehrerin beobachtete, wie sie erschöpft auf den Boden sanken. Im anschließenden Unterricht haben sie Konzentrationsprobleme und sind kaum noch wach zu bekommen. Der Bewegungsmangel und die fehlende Aufenthaltsqualität sind ein ständiges Thema im Kollegium. Eine Umgestaltung des Schulhofs mit Pflanzungen und Beeten, die Schatten spenden und für Abkühlung sorgen, ist dringend nötig, um die Gesundheit und Lernfähigkeit der Kinder zu verbessern. Geplant ist ein Beteiligungsformat wie ein Zeichenwettbewerb oder eine vergleichbare Aktion – die genaue Form wird mit den Kindern abgestimmt (siehe Abschnitt Beteiligung).\n\n## Vision und Gestaltungskonzept\n\nEin Schulhof, der vor allem aus versiegelter Fläche besteht, wird bei sommerlicher Hitze zum Problem. Unsere Grundschule Regenbogen mit rund 200 Kindern erlebt das jedes Jahr: Die Kinder suchen sich den kleinsten Schatten, sind matt, die Konzentration im Unterricht leidet spürbar. Wir wollen den Hof deshalb in eine grüne, kühlende Oase verwandeln. Soweit möglich und mit dem Schulträger abgestimmt, werden Teilflächen entsiegelt; alternativ werden Hochbeete auf der versiegelten Fläche aufgestellt. Dort entstehen Beete und Pflanzflächen mit standortgerechten Stauden und Gehölzen, die Schatten spenden. Sofern möglich, sollen auch Gehölze (Sträucher und Bäume) gesetzt werden, um Schatten zu spenden – die konkrete Auswahl erfolgt in Abstimmung mit dem Schulträger und einer fachkundigen Begleitung. Die Beete sollen nicht nur schön aussehen, sondern auch zum Lernen einladen: Wildkräuter und Blühpflanzen bieten Insekten Nahrung und den Kindern Anlässe zum Beobachten, Riechen, Anfassen. Ein Zeichenwettbewerb oder eine ähnliche Beteiligungsaktion stellt sicher, dass die Wünsche der Kinder von Anfang an sichtbar werden. Das Konzept leistet so einen konkreten Beitrag zur Klimaanpassung auf dem Schulgelände – weniger Hitze, mehr Artenvielfalt – und schafft gleichzeitig naturnahe Lern- und Erholungsräume für alle. [TODO: Konkrete Pflanzenauswahl und genaue Flächenaufteilung vor Einreichung mit Schülern und Schulverein festlegen]\n\n## Beteiligung der Schulgemeinschaft\n\nDie gesamte Schulgemeinschaft der Grundschule Regenbogen wird von Beginn an aktiv in die Umgestaltung des Schulhofs eingebunden. Den Auftakt bildet ein schulinterner Zeichenwettbewerb, bei dem alle rund 200 Kinder ihre Ideen für mehr Grün, Beete und schattige Plätze auf dem stark versiegelten Hof einreichen können. Die besten Vorschläge werden im Klassenrat diskutiert und von einer Steuergruppe aus interessierten Lehrkräften, Schulvereinsmitgliedern und – sobald die Zusage vorliegt – einer Vertretung des Fördervereins gesichtet. Auf dieser Grundlage erarbeiten die Kinder an gegebenenfalls klassenübergreifenden Planungstagen, deren Format noch festgelegt wird, konkrete Bepflanzungspläne: welche Beete wo angelegt werden, welche Pflanzen Schatten spenden und wo Sitzgelegenheiten entstehen sollen. Die Lehrkräfte begleiten die Planung fachlich, die Eltern unterstützen bei der Vorbereitung der Flächen und der Materialbeschaffung. Die gemeinsame Pflanzung selbst ist als Aktionstag mit allen Klassen, dem Schulverein und Eltern organisiert. Die langfristige Pflege der Beete übernehmen die Kinder klassenweise im wöchentlichen Wechsel, angeleitet durch die Klassenlehrkräfte. Über das gesamte Schuljahr hinweg bleibt die Beteiligung durch regelmäßige Updates im Schulbrief und auf dem Schulhof-Infobrett sichtbar. [TODO: Konkrete Termine für Wettbewerb, Planungstage und Pflanzaktion sowie die formale Zusage des Fördervereins zur Mittelverwaltung vor Einreichung ergänzen.]\n\n## Umsetzung, Traegerschaft und Verstetigung\n\nDie Umsetzung liegt in der Trägerschaft der Grundschule Regenbogen (Schule als Projektträger; der Förderverein wird voraussichtlich die Mittelverwaltung übernehmen). Die Schule selbst übernimmt die Projektkoordination und pädagogische Begleitung, während der Förderverein voraussichtlich die finanzielle Abwicklung der Fördermittel übernehmen wird; eine formale Absprache hierzu muss noch erfolgen. Das Kollegium wird in die Planung eingebunden. Die zentrale Voraussetzung für die baulichen Maßnahmen ist die Zustimmung des Schulträgers, die vor Beginn der baulichen Maßnahmen einzuholen ist.\n\nDie Planungsphase soll unmittelbar nach der Bewilligung starten, voraussichtlich im Frühjahr. Zentrales Element ist ein Beteiligungsverfahren für die rund 200 Kinder, etwa in Form eines Zeichenwettbewerbs, bei dem die Schülerinnen und Schüler ihre Wünsche für die Bepflanzung und Schattenplätze einbringen. Parallel wird in Absprache mit dem Schulträger und einer fachkundigen Begleitung (DUH/Stiftung) ein konkreter Pflanzplan für Beete und schattenspendende Gehölze erstellt. Die Umsetzung der Pflanzungen soll im Anschluss daran bis zum Ende der Projektlaufzeit erfolgen.\n\nZur langfristigen Sicherung der Anlagen ist ein Pflegekonzept vorgesehen. Die tägliche Pflege – insbesondere Gießen und Unkraut jäten – soll in den Schulalltag integriert und von den Kindern in Patenschaften für einzelne Beete übernommen werden. Die grundlegende Pflege wie Rückschnitt und Laubarbeit wird durch die Bauhof-Mitarbeit der Kommune abgedeckt; die Schule wird hierzu rechtzeitig einen Abstimmungstermin mit dem Schulträger vereinbaren. Die Finanzierung der laufenden Materialkosten (Erde, Pflanzen) soll aus einem kleinen Budget des Fördervereins (ca. 500 Euro Eigenmittel) sowie gegebenenfalls durch Spenden erfolgen – eine verbindliche Regelung hierfür muss noch getroffen werden.\n\n## Finanzierung und weitere Mittel\n\nWir beantragen die Fördersumme von rund 20.000 Euro. Die genaue Aufteilung auf Planungs- und Umsetzungskosten legen wir nach Einholung konkreter Angebote für Planungsleistungen (z. B. Landschaftsarchitektur) und Material für Pflanzungen, Beetanlagen und Schattenelemente fest. Die genaue Verteilung wird nach Einholung konkreter Angebote festgelegt; grob geschätzt entfallen die genaue Höhe wird im Finanzplan beziffert auf Planung und Beteiligung, die genaue Höhe wird im Finanzplan beziffert auf Material und Pflanzung. Diese Schätzung ist nicht verbindlich. Eine detaillierte Kostenaufstellung reichen wir mit dem endgültigen Maßnahmenplan nach. Die Gesamtkosten der Umgestaltung werden die Fördersumme voraussichtlich geringfügig überschreiten. Als Schule bringen wir Eigenmittel in Höhe von rund 500 Euro aus dem Förderverein ein; dieser Betrag deckt kleinere Werkzeuge, Gießkannen und Aussaat ab. Die langfristige Pflege der Beete übernehmen die Kinder im Rahmen des Sachunterrichts und der AG-Arbeit – dafür entstehen keine laufenden Kosten. Darüber hinaus prüfen wir die Einwerbung von Sachspenden (z. B. Kompost, Mulch, Baumspenden durch lokale Baumschulen). Schriftliche Zusagen von Sponsoren stehen noch aus; mit dem Schulträger klären wir, ob Mittel aus dem Schulbudget oder dem Gebäudeunterhalt für die Vorbereitung der Flächen (z. B. Abtrag von Pflastersteinen) bereitgestellt werden können. [TODO: konkrete Angebote zu Planung und Materialien vor Einreichung einholen; Spenden- und Schulträgerzusagen bis Ende der Bewerbungsfrist schriftlich ergänzen]",
+      "finalText": "# Gemüsegarten mit Hochbeeten — Grundschule Regenbogen (deinSchulhof / Grüne Schulhöfe)\n\n## Schule und Ausgangslage des Schulhofs\n\nDie Grundschule Regenbogen ist eine Grundschule mit rund 200 Schülerinnen und Schülern. Unser Schulhof ist, soweit absehbar, vollständig versiegelt und bietet keinerlei Grünflächen. Im Sommer heizt sich die versiegelte Fläche massiv auf; die Kinder suchen dann vergeblich nach schattigen Plätzen oder kühlenden Elementen. Die fehlende Aufenthaltsqualität und die räumliche Enge des Hofes verstärken nach unserer Beobachtung die Unruhe und Konzentrationsschwierigkeiten vieler Kinder. Wir sehen hier einen dringenden Handlungsbedarf: Eine naturnahe Umgestaltung mit Hochbeeten für einen Gemüsegarten (vier Stück, voraussichtlich aus Holz und rund einen Meter hoch) würde nicht nur das Mikroklima verbessern und Schatten spenden, sondern den Kindern täglich einen Ort für Naturerfahrung und ruhiges Gärtnern bieten. Die Kommune ist über unsere Planung informiert – die schriftliche Zusage zur Kooperation ist noch einzuholen [TODO: schriftliche Zusage der Kommune vor Einreichung einholen].\n\n## Vision und Gestaltungskonzept\n\nWir stellen uns vor, wie der Schulhof der Grundschule Regenbogen in einen lebendigen, grünen Lern- und Erholungsort verwandelt wird – weg von der vollversiegelten, aufgeheizten Fläche, die im Sommer kaum Schatten bietet und durch Enge die ohnehin vorhandene Unruhe der Kinder verstärkt, hin zu einem Ort der Ruhe, des Staunens und der praktischen Naturerfahrung. Im Zentrum steht ein Gemüsegarten mit rund vier Hochbeeten aus Holz, etwa einen Meter hoch, die von den Kindern eigenständig bewirtschaftet werden können. Diese Beete – bepflanzt mit Gemüse und Kräutern – schaffen nicht nur kleinräumige Schatten- und Kühlungsinseln auf dem ansonsten unverschatteten Hof, sondern bieten zugleich Begegnungs- und Rückzugsräume. Durch die Hochbeetform wird das Gärtnern auch für jüngere Kinder ohne Bücken erlebbar. Denkbar wäre ergänzend eine Rankhilfe mit Kletterpflanzen als weiterer Schattenspender; die Entscheidung darüber fällt in der Beteiligungswoche mit den Kindern. Dieses Konzept trägt zur Klimaanpassung bei, indem es die starke sommerliche Aufheizung reduziert, Regenwasser durch die Beeterde versickern lässt und die Biodiversität auf dem Schulgelände konkret und sichtbar erhöht. Wir schlagen vor, die Beetpflege im wöchentlichen Morgenkreis für je eine Stunde zu verankern, begleitet durch eine Patenschaft interessierter Eltern. Die genaue Standortwahl, die Anzahl der Beete sowie die Auswahl des Gartenwerkzeugs [TODO: vor Einreichung mit Schulkonferenz und Hausmeister abstimmen] werden im Rahmen einer Beteiligungswoche mit den Kindern festgelegt.\n\n## Beteiligung der Schulgemeinschaft\n\nDie Beteiligung der gesamten Schulgemeinschaft ist das Herzstück unseres Vorhabens. Die genauen Beteiligungsformate werden gemeinsam mit der Schulgemeinschaft entwickelt – als Vorschlag sehen wir eine Schulversammlung vor, auf der wir den Kindern die Idee des Gemüsegartens vorstellen und ihre Wünsche sammeln: Was soll angebaut werden? Wie stellen sie sich „ihr“ Beet vor? Im Anschluss wählt jede Klasse zwei Kinder in einen Planungsrat, der gemeinsam mit der zuständigen Lehrkraft und zwei Elternvertretenden die konkrete Ausgestaltung erarbeitet – etwa die Anordnung der Hochbeete, die Auswahl von Gemüse- und Kräutersorten und die Gestaltung von Pflanz- und Ernteschildern. Die Umsetzung erfolgt an einem gemeinsamen Aktionstag: Eltern, Kinder und Lehrkräfte bauen die vier Hochbeete aus Holz gemeinsam auf, befüllen sie mit Erde und setzen die ersten Pflanzen. Für die dauerhafte Pflege etablieren wir einen wöchentlichen „Gärtner-Dienst“ im Wechsel der Klassen, begleitet von einer festen Eltern-AG (die genaue Organisation wird mit der Elternschaft im Planungsrat verbindlich geregelt). So stellen wir sicher, dass jede Klasse aktiv Patin eines Beetes ist und die Beete nicht nur einmal bepflanzt, sondern als festen Bestandteil des Schulalltags erlebt. Um dies über die Projektlaufzeit zu tragen, verankern wir die Gärtner-AG und den Planungsrat als dauerhafte Schul-AG im Schulprogramm und sichern die Zuständigkeit durch eine schriftliche Absprache mit der Kommune [TODO: vor Einreichung der Antragsunterlagen einholen].\n\n## Umsetzung, Trägerschaft und Verstetigung\n\nTräger der Maßnahme ist die Grundschule Regenbogen in Abstimmung mit der zuständigen Kommune als Schulträger, die über das Vorhaben informiert ist. Die formelle Zustimmung für die baulichen Veränderungen – Aufstellung von vier Holz-Hochbeeten (rund einen Meter hoch) – muss vor der Bewilligung noch schriftlich eingeholt werden [TODO: schriftliche Zustimmung des Schulträgers einholen]. Die inhaltlich-pädagogische Planung liegt bei der Schule und wird durch eine Arbeitsgruppe aus Lehrkräften und Schulleitung getragen. Für die handwerkliche Umsetzung ist eine Kooperation mit dem Elternbeirat vorgesehen; die wöchentliche Pflege der Hochbeete (ca. eine Stunde pro Woche) soll nach Abschluss des Projekts von einer Eltern-Kind-Gruppe übernommen werden. Ein verbindlicher Pflegeplan mit Aufgabenverteilung und Gießdiensten wird bis zur Pflanzphase gemeinsam mit den Eltern erarbeitet. Die längerfristige Verantwortung für den Erhalt der Grünbereiche – Nachsaat, Wintervorbereitung, Kompostpflege – wird im Schulkonferenz-Beschluss zum Schuljahresende festgehalten und in die bestehenden Arbeitsgemeinschaften eingebunden. Sollte die Elternbeteiligung zum Ende des Bewilligungszeitraums nicht ausreichen, wird die Pflege über den wöchentlichen Sachunterricht in allen Jahrgangsstufen rotierend sichergestellt, sodass die Beete dauerhaft Bestandteil des Schullebens bleiben. Eine zusätzliche finanzielle Unterstützung durch die Kommune für perspektivische Erweiterungen wird sondiert, ist aber noch nicht zugesagt.\n\n## Finanzierung und weitere Mittel\n\nDie rund 20.000 Euro aus dem deinSchulhof-Programm sollen in Planung und Umsetzung unseres Gemüsegartens mit Hochbeeten investiert werden. Die genauen Planungskosten werden noch mit Landschaftsbaubetrieben ermittelt; ein Teil der Kosten kann möglicherweise durch Eigenleistung der Eltern beim Aufbau der Hochbeete reduziert werden. Für die Umsetzung veranschlagen wir derzeit rund 4.000 Euro für den Aufbau von vier stabilen Holz-Hochbeeten (ca. ein Meter hoch, kindgerecht bepflanzbar), hochwertige Erde, die Anschaffung von Gemüse- und Kräuterpflanzen, Gartengeräte sowie ein Bewässerungssystem. Im Finanzplan sind zudem Mittel für die Entsiegelung und Vorbereitung von Pflanzflächen sowie für schattenspendende Elemente und naturnahe Aufenthaltsbereiche vorgesehen. Die Frage der Regenwassernutzung und des Wasseranschlusses [TODO: Klärung Wasseranschluss mit Kommune] ist noch offen. Genauere Kostenschlüssel werden wir durch Angebote von Landschaftsbaubetrieben vor Einreichung prüfen und festlegen. Sollten die Gesamtkosten die Fördersumme übersteigen, ist die Co-Finanzierung durch den Schulträger verbindlich vor Einreichung zu klären [TODO: schriftliche Zusage der Kommune zur Kostenübernahme einholen]. Als Eigenleistung planen wir ein wöchentliches Pflanz- und Pflegeangebot von ein bis zwei Stunden, organisiert durch eine Eltern-Garten-AG – dies reduziert die Folgekosten für die Pflege erheblich. Sponsoring durch ortsansässige Unternehmen wird noch angefragt; falls nicht realisierbar, wird der Betrag durch Elternspenden gedeckt.",
       "finanzplan": {
         "posten": [
           {
-            "id": "76811f01-6c2b-4aa6-bb91-e5c2e9c0d28c",
+            "id": "020b0e9d-0614-4ec5-b631-9a77e4c65b01",
             "betragEur": 6000,
             "kategorie": "honorare",
-            "begruendung": "Schaetzung: Beauftragung eines Landschaftsarchitekturbüros für Entwurf und Ausführungsplanung auf ca. 500 m² Schulhoffläche; Honorarrahmen üblich für dieses Programm.",
-            "bezeichnung": "Landschaftsarchitektur-Planung",
-            "eigenanteil": false
+            "begruendung": "Honorar für qualifiziertes Landschaftsarchitekturbüro zur Erstellung eines Entwurfs- und Ausführungsplans für die naturnahe Umgestaltung des komplett versiegelten Schulhofs",
+            "bezeichnung": "Landschaftsarchitektur-Planung Schulhof",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "1886e8ea-f7d3-4ddc-874e-d7f7663a8c2d",
-            "betragEur": 4000,
-            "kategorie": "investitionen",
-            "begruendung": "Schaetzung: Teilentsiegelung von Asphaltflächen, Abfuhr und Vorbereitung für Pflanzbeete.",
-            "bezeichnung": "Entsiegelung und Bodenverbesserung",
-            "eigenanteil": false
+            "id": "9fc22b72-93f6-497d-bb87-cb0c7e33d1a3",
+            "betragEur": 1200,
+            "kategorie": "sachkosten",
+            "begruendung": "Schaetzung: Anschaffung von etwa 4 Hochbeeten aus Holz inkl. Bausatz und Imprägnierung für den Gemüsegarten (Mengenangabe vom User: 'drei, vier Stück')",
+            "bezeichnung": "Hochbeete aus Holz (ca. 4 Stück)",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "381ea5b8-baa0-4f89-b2dc-830dcc16a191",
+            "id": "b0cef40f-462b-4d4a-a7ec-e462c036799c",
+            "betragEur": 800,
+            "kategorie": "sachkosten",
+            "begruendung": "Schaetzung: Gemüsepflanzen, Kräuter, Erde und Substrat für die Bepflanzung der Hochbeete",
+            "bezeichnung": "Pflanzmaterial für Hochbeete",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "65daa0fd-8057-45e1-a216-45303e6e5f61",
+            "betragEur": 500,
+            "kategorie": "sachkosten",
+            "begruendung": "Schaetzung: Mal- und Bastelmaterial, Moderationskoffer für Planungsworkshops mit den 200 Schülerinnen und Schülern",
+            "bezeichnung": "Material für Beteiligungsworkshops",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "bce928d7-94fa-4b41-aa1c-c6ea7c5e11dc",
             "betragEur": 5000,
             "kategorie": "investitionen",
-            "begruendung": "Schaetzung: Anschaffung von schattenspendenden Bäumen und Sträuchern für mehrere Standorte.",
-            "bezeichnung": "Pflanzungen: Bäume und Sträucher",
-            "eigenanteil": false
+            "begruendung": "Schaetzung: Entsiegelung eines Teilbereichs des vollversiegelten Schulhofs, Bodenverbesserung und Vorbereitung für die Hochbeete und ggf. weitere Begrünung",
+            "bezeichnung": "Entsiegelung und Vorbereitung von Pflanzflächen",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "eb3f0a11-082d-44e3-83c4-d2d0699d6acd",
-            "betragEur": 1500,
+            "id": "7a9dda7f-a1c0-46e7-886c-0be5f8a911fe",
+            "betragEur": 4500,
             "kategorie": "investitionen",
-            "begruendung": "Schaetzung: Anschaffung von 2-3 Hochbeeten für Beteiligungsaktionen und dauerhafte Bepflanzung.",
-            "bezeichnung": "Hochbeete und Pflanzgefäße",
-            "eigenanteil": false
+            "begruendung": "Schaetzung: Pflanzung von Bäumen oder Aufstellung von Pergolen/Rankgitter zur Schattenspende, Sitzgelegenheiten aus Naturmaterialien als Rückzugsorte",
+            "bezeichnung": "Schattenspendende Elemente und naturnahe Aufenthaltsbereiche",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "99f4e0ef-125c-4e43-bbf8-4c0ac6491ef1",
-            "betragEur": 1500,
-            "kategorie": "sachkosten",
-            "begruendung": "Schaetzung: Erde, Kompost, Samen, Jungpflanzen, Gießkannen, Handschuhe für Pflanzaktionen.",
-            "bezeichnung": "Pflanzmaterial, Substrat und Werkzeug",
-            "eigenanteil": false
-          },
-          {
-            "id": "9707e18c-87a0-40db-b378-9d48baf056c6",
+            "id": "c0b46e6c-a0f9-48fd-a7dc-bbdc46b86923",
             "betragEur": 500,
             "kategorie": "sachkosten",
-            "begruendung": "Schaetzung: Material für Zeichenwettbewerb oder ähnliche Aktion mit 200 Kindern (Papier, Stifte, Preise).",
-            "bezeichnung": "Beteiligungsworkshop-Material",
-            "eigenanteil": false
+            "begruendung": "Schaetzung: Tropfschläuche oder Regentonnenanschluss zur einfachen Bewässerung des Gemüsegartens",
+            "bezeichnung": "Bewässerungssystem für Hochbeete",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "2aa01b8b-a843-4ec5-85a3-5173833fd539",
-            "betragEur": 2000,
-            "kategorie": "investitionen",
-            "begruendung": "Schaetzung: Sonnensegel oder Pergola, um temporären Schatten zu schaffen bis Bäume groß sind.",
-            "bezeichnung": "Schattenspendende Elemente",
-            "eigenanteil": false
+            "id": "b71d807a-c9f9-4ddd-be87-1fba19f3aa6a",
+            "betragEur": 1000,
+            "kategorie": "sachkosten",
+            "begruendung": "Schaetzung: Kinderfreundliches Gartengerät (Schaufeln, Harken, Gießkannen) und Handschuhe für die Bepflanzung und Pflege durch die Schulgemeinschaft",
+            "bezeichnung": "Werkzeug und Gartengeräte",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "da8c982d-edd4-4421-a97e-68c575bca6f0",
+            "id": "8c1ef594-5dff-4990-9a22-66405ef17dd8",
             "betragEur": 500,
             "kategorie": "sonstiges",
-            "begruendung": "Vom User genannter Eigenmittelbeitrag des Fördervereins von ca. 500 EUR für ergänzende Anschaffungen.",
-            "bezeichnung": "Eigenanteil Förderverein",
-            "eigenanteil": true
+            "begruendung": "Schaetzung: Material und kleiner Imbiss für ca. 4 ehrenamtliche Arbeitseinsätze der Eltern (ca. 1 h/Woche) – keine Honorar-, sondern Sachkosten für Getränke und Kleinteile",
+            "bezeichnung": "Elternarbeit-Beteiligung (Sachkostenpauschale)",
+            "eigenanteil": false,
+            "istVorschlag": true
           }
         ],
         "hinweise": [
-          "Alle Beträge außer dem Eigenanteil (500 EUR) sind grobe Schätzungen ohne konkrete Angebote – vor Einreichung durch Kostenvoranschläge belegen.",
-          "Honorarkosten für Planung müssen mit einem Landschaftsarchitekturbüro konkretisiert werden.",
-          "Schulhoffläche ca. 500 m² laut User-Schätzung, noch zu vermessen.",
-          "Pflege der Beete erfolgt durch Kinder (Eigenleistung), keine Kosten angesetzt.",
-          "Gesamtkosten (ohne Eigenanteil): 20.000 EUR, vollständig durch Förderung gedeckt.",
-          "Der Betrag für „Landschaftsarchitektur-Planung\" (6.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Entsiegelung und Bodenverbesserung\" (4.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Pflanzungen: Bäume und Sträucher\" (5.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Hochbeete und Pflanzgefäße\" (1.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Pflanzmaterial, Substrat und Werkzeug\" (1.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Beteiligungsworkshop-Material\" (500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Schattenspendende Elemente\" (2.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
+          "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
+          "Die Fördermittel in Höhe von ca. 20.000 EUR werden zu 100% gefördert (Eigenanteil nicht verpflichtend, aber Eigenleistung wird erwartet).",
+          "Annahme: Es werden 4 Hochbeete aus Holz ('drei, vier Stück' laut User) angeschafft - genaue Zahl beim Architekten abstimmen.",
+          "Honorar für Landschaftsarchitektur auf Basis üblicher Gebietsstufen geschätzt; Angebote sind einzuholen.",
+          "Für die Eigenleistung der Elternarbeit sind keine Personalkosten eingestellt (User: 'einmal die Woche, regeln mit den Eltern'), daher nur Sachkostenpauschale.",
+          "Die Schulgemeinde sollte vor Antragstellung eine verbindliche Eigenbeitragserklärung (z.B. Förderverein, Kommune) einholen – ggf. reichen Sachleistungen aus.",
+          "Der Betrag für „Hochbeete aus Holz (ca. 4 Stück)\" (1.200 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Pflanzmaterial für Hochbeete\" (800 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Material für Beteiligungsworkshops\" (500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Entsiegelung und Vorbereitung von Pflanzflächen\" (5.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Schattenspendende Elemente und naturnahe Aufenthaltsbereiche\" (4.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Bewässerungssystem für Hochbeete\" (500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Werkzeug und Gartengeräte\" (1.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Elternarbeit-Beteiligung (Sachkostenpauschale)\" (500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
         ],
-        "generiertAm": "2026-06-10T07:49:29.203Z"
+        "generiertAm": "2026-06-10T10:23:48.136Z"
       },
       "critiqueFindings": [
         {
-          "zitat": "grobe Schätzung geht von etwa 500 Quadratmetern versiegelter Fläche aus",
+          "zitat": "Die Gemeinde ist über unsere Planung informiert",
           "schwere": "hoch",
           "abschnitt": "Schule und Ausgangslage des Schulhofs",
           "kategorie": "belegluecke",
-          "vorschlag": "Diese Zahl ist eine Hochrechnung aus User-Antwort 9 ('vielleicht so um die 500 Quadratmeter, müsste ich nachmessen'). Der Entwurf muss klarstellen, dass es sich um eine grobe Schätzung handelt und eine genaue Vermessung noch aussteht. Am besten den Satz auf 'Nach einer ersten Schätzung beträgt der versiegelte Teil des Schulhofs etwa 500 m² (genaue Vermessung noch ausstehend).' ändern."
+          "vorschlag": "Ersetzen durch: 'Die Kommune ist informiert – schriftliche Zusage vor Einreichung einholen [TODO]' – entspricht User-Antwort 'Ja, die Kommune weiß Bescheid, denke ich.'"
         },
         {
-          "zitat": "Ein großer Teil der versiegelten Fläche soll aufgebrochen und entsiegelt werden.",
-          "schwere": "hoch",
-          "abschnitt": "Vision und Gestaltungskonzept",
-          "kategorie": "belegluecke",
-          "vorschlag": "Der User hat nur von 'Pflanzen und Beeten' gesprochen, nicht von Entsiegelung. Die Entsiegelung ist eine erhebliche bauliche Maßnahme, die den Schulträger einbeziehen müsste. Streichen oder durch 'Soweit möglich und mit dem Schulträger abgestimmt, werden Teilflächen entsiegelt; alternativ werden Hochbeete auf der versiegelten Fläche aufgestellt.' ersetzen."
-        },
-        {
-          "zitat": "Bäume und Sträucher werden so gesetzt, dass sie natürliche, kühle Aufenthaltsräume schaffen",
-          "schwere": "hoch",
-          "abschnitt": "Vision und Gestaltungskonzept",
-          "kategorie": "belegluecke",
-          "vorschlag": "Der User hat Bäume oder Sträucher nicht erwähnt. Es ist plausibel, aber nicht belegt. Formulieren: 'Sofern möglich, sollen auch Gehölze (Sträucher und Bäume) gesetzt werden, um Schatten zu spenden – die konkrete Auswahl erfolgt in Abstimmung mit dem Schulträger und einer fachkundigen Begleitung (siehe Abschnitt Umsetzung).'"
-        },
-        {
-          "zitat": "Steuergruppe aus zwei Lehrkräften, einer Vertretung des Fördervereins...",
-          "schwere": "hoch",
-          "abschnitt": "Beteiligung der Schulgemeinschaft",
-          "kategorie": "belegluecke",
-          "vorschlag": "Der User hat keine konkreten Personen oder Gremien genannt. Die Angabe 'zwei Lehrkräfte' ist erfunden. Ersetzen durch 'eine Steuergruppe aus interessierten Lehrkräften, Schulvereinsmitgliedern und – sobald die Zusage vorliegt – einer Vertretung des Fördervereins'. Das ist allgemein, aber nicht erfunden."
-        },
-        {
-          "zitat": "Werkstatt-Tagen",
-          "schwere": "hoch",
-          "abschnitt": "Beteiligung der Schulgemeinschaft",
-          "kategorie": "belegluecke",
-          "vorschlag": "Der User hat nur einen Wettbewerb oder 'so was' genannt, nicht spezifisch 'Werkstatt-Tage'. Streichen oder durch 'gegebenenfalls klassenübergreifende Planungstage, deren Format noch festgelegt wird' ersetzen."
-        },
-        {
-          "zitat": "Schulgemeinde der Grundschule Regenbogen",
-          "schwere": "hoch",
-          "abschnitt": "Umsetzung, Traegerschaft und Verstetigung",
-          "kategorie": "belegluecke",
-          "vorschlag": "Der Begriff 'Schulgemeinde' ist irreführend und wurde vom User nicht genannt. Träger sollte der Förderverein oder die Schule selbst sein. Ändern in 'Schule (Schule als Projektträger; der Förderverein wird voraussichtlich die Mittelverwaltung übernehmen).'"
-        },
-        {
-          "zitat": "vor Projektschriftlichkeit einzuholen ist",
-          "schwere": "hoch",
-          "abschnitt": "Umsetzung, Traegerschaft und Verstetigung",
-          "kategorie": "sonstiges",
-          "vorschlag": "Tippfehler: 'Projektschriftlichkeit' ist ein Fachjargon-Fehler. Meint wohl 'Projektstart'. Korrigieren in 'vor Beginn der baulichen Maßnahmen einzuholen ist'."
-        },
-        {
-          "zitat": "Die Planungsphase ist für das Frühjahr vorgesehen.",
-          "schwere": "hoch",
-          "abschnitt": "Umsetzung, Traegerschaft und Verstetigung",
-          "kategorie": "belegluecke",
-          "vorschlag": "Der User hat keinen Zeitplan genannt. Entweder konkret mit Datum (z. B. Frühjahr 2026, wenn Welle in Hessen aktiv ist) oder allgemein halten. Besser: 'Die Planungsphase soll unmittelbar nach der Bewilligung starten, voraussichtlich im Frühjahr.'"
-        },
-        {
-          "zitat": "etwa ein Viertel der Summe in die fachliche Planung und Beteiligung",
+          "zitat": "etwa 5.000 Euro für die professionelle Planung (Bodengutachten, Entsiegelungskonzept, Beetanordnung)",
           "schwere": "hoch",
           "abschnitt": "Finanzierung und weitere Mittel",
           "kategorie": "belegluecke",
-          "vorschlag": "Der User hat keine prozentuale Aufteilung genannt. Diese Schätzung ist frei erfunden. Streichen oder durch 'Die genaue Verteilung wird nach Einholung konkreter Angebote festgelegt; grob geschätzt entfallen ca. 25 % auf Planung und Beteiligung, 75 % auf Material und Pflanzung. Diese Schätzung ist nicht verbindlich.' ersetzen."
+          "vorschlag": "Diese Positionen sind erfunden. Ersetzen durch: 'Planungskosten werden noch mit Landschaftsbaubetrieben ermittelt; ggf. Eigenleistung der Eltern beim Aufbau.'"
         },
         {
-          "zitat": "Der Antrag enthält keine konkrete Szene mit einem echten Kind.",
-          "schwere": "mittel",
-          "abschnitt": "global",
-          "kategorie": "sonstiges",
-          "vorschlag": "Die Stiftungsförderung erwartet eine lebendige, personenbezogene Illustration. Ergänzen Sie eine kurze Szene, z. B.: 'In der letzten Hitzewelle standen die Kinder der Klasse 3b nach der dritten Stunde zusammengedrängt unter dem einzigen kleinen Ahorn – die Lehrerin beobachtete, wie sie erschöpft auf den Boden sanken, und beschloss: So kann es nicht weitergehen.'"
-        },
-        {
-          "zitat": "Der Entwurf ist über weite Strecken generisch und könnte auf jede Schule zutreffen.",
-          "schwere": "mittel",
-          "abschnitt": "global",
-          "kategorie": "floskel",
-          "vorschlag": "Mehr Details aus der Schule einweben: Name des Schulvereins, Raum für den Zeichenwettbewerb, konkrete Lieblings-Schattenplätze der Kinder (laut User 'kleinster Schatten'), bestimmte Stellen des Hofs (z. B. 'vor der Turnhalle', 'an der Mauer zur Bushaltestelle')."
-        },
-        {
-          "zitat": "Die Beteiligung der Kinder über einen Zeichenwettbewerb oder eine ähnliche Aktion ist vorgesehen.",
-          "schwere": "niedrig",
-          "abschnitt": "Schule und Ausgangslage des Schulhofs",
+          "zitat": "Anbindung an die vorhandene Wasserleitung (Anschlusskosten)",
+          "schwere": "hoch",
+          "abschnitt": "Finanzierung und weitere Mittel",
           "kategorie": "belegluecke",
-          "vorschlag": "Dieser Satz ist eine sinnvolle Vorankündigung, aber er wiederholt nur die Absicht aus den User-Antworten. Besser: 'Geplant ist ein Beteiligungsformat wie ein Zeichenwettbewerb oder eine vergleichbare Aktion – die genaue Form wird mit den Kindern abgestimmt (siehe Abschnitt Beteiligung).'"
+          "vorschlag": "Weder in User-Antworten noch in Fakten erwähnt. Streichen oder als offene Frage markieren: '[TODO: Klärung Wasseranschluss mit Kommune]'"
+        },
+        {
+          "zitat": "Eigenanteil der Schule bzw. die Co-Finanzierung durch den Schulträger wird in den kommenden Wochen verbindlich geklärt",
+          "schwere": "hoch",
+          "abschnitt": "Umsetzung, Traegerschaft und Verstetigung",
+          "kategorie": "richtlinie",
+          "vorschlag": "Die Richtlinie erlaubt max. 20.000 Euro bei 100 % Förderung. Falls Gesamtkosten höher, muss Co-Finanzierung verbindlich vor Einreichung geklärt sein. [TODO: schriftliche Zusage Kommune einholen]"
+        },
+        {
+          "zitat": "Rueckbau von Versiegelungsflaeche",
+          "schwere": "hoch",
+          "abschnitt": "Umsetzung, Traegerschaft und Verstetigung",
+          "kategorie": "belegluecke",
+          "vorschlag": "User sprach nie von Rückbau. Streichen oder durch 'Aufstellung der Hochbeete auf der bestehenden Fläche' ersetzen – Baumaßnahmen erfordern Zustimmung des Schulträgers."
+        },
+        {
+          "zitat": "Sponsoring durch ortsansässige Unternehmen (z. B. Baustoffhandel oder Gärtnerei, noch zu akquirieren)",
+          "schwere": "mittel",
+          "abschnitt": "Finanzierung und weitere Mittel",
+          "kategorie": "belegluecke",
+          "vorschlag": "Konkrete Firmen nicht von User genannt. Besser: 'Sponsoring wird noch angefragt – falls nicht realisierbar, wird der Betrag durch Elternspenden gedeckt.'"
+        },
+        {
+          "zitat": "Langfristig ergänzt durch eine Rankhilfe mit schnellwachsenden Kletterpflanzen (etwa Kapuzinerkresse oder Feuerbohnen)",
+          "schwere": "mittel",
+          "abschnitt": "Vision und Gestaltungskonzept",
+          "kategorie": "belegluecke",
+          "vorschlag": "Rankhilfe wurde nicht vom User genannt. Als Vorschlag erkennbar ('wir schlagen vor') – okay, aber zur Sicherheit als offene Idee markieren: 'Denkbar wäre eine Rankhilfe; Entscheidung fällt in der Beteiligungswoche.'"
+        },
+        {
+          "zitat": "Die Planung startet mit einer Schulversammlung … vierzehntägig … Aktionstag … wöchentlicher Gärtner-Dienst",
+          "schwere": "mittel",
+          "abschnitt": "Beteiligung der Schulgemeinschaft",
+          "kategorie": "belegluecke",
+          "vorschlag": "User nannte nur 'eine Stunde die Woche' – keine Versammlungen, Aktionstage oder vierzehntägige Runden. Besser allgemein halten: 'Die genauen Beteiligungsformate werden mit der Schulgemeinschaft entwickelt – Vorschlag: Schulversammlung und Planungsrat.'"
+        },
+        {
+          "zitat": "Klassenstufen 1 bis 4",
+          "schwere": "mittel",
+          "abschnitt": "Vision und Gestaltungskonzept",
+          "kategorie": "sonstiges",
+          "vorschlag": "User gab nur 'Grundschule' an, keine Klassenstufen. Wenn bekannt, dass es Klassen 1-4 sind, belassen – sonst allgemein 'alle Klassenstufen'."
         }
       ],
-      "hallucinationGate": {
-        "repaired": true,
-        "residual": [],
-        "introducedBefore": [
-          "25 %",
-          "75 %"
-        ]
+      "factVerification": {
+        "repaired": false,
+        "remaining": [],
+        "vorschlaege": [
+          "Die Kommune ist über unsere Planung informiert – die schriftliche Zusage zur Kooperation ist noch einzuholen",
+          "Eine zusätzliche finanzielle Unterstützung durch die Kommune für perspektivische Erweiterungen wird sondiert, ist aber noch nicht zugesagt.",
+          "Sponsoring durch ortsansässige Unternehmen wird noch angefragt; falls nicht realisierbar, wird der Betrag durch Elternspenden gedeckt."
+        ],
+        "neutralisiert": []
       },
+      "consistencyIssues": [
+        {
+          "art": "posten-ohne-textbezug",
+          "posten": "Schattenspendende Elemente und naturnahe Aufenthaltsbereiche",
+          "beschreibung": "Der Posten 'Schattenspendende Elemente und naturnahe Aufenthaltsbereiche' (4500€) wird im Antragstext nicht als fester Bestandteil des Projekts genannt."
+        },
+        {
+          "art": "betrag-unstimmig",
+          "posten": "Hochbeete aus Holz (ca. 4 Stück)",
+          "textstelle": "rund 4.000 Euro für den Aufbau von vier stabilen Holz-Hochbeeten",
+          "beschreibung": "Im Antragstext werden für die Hochbeete 'rund 4.000 Euro' genannt, der Finanzplan weist nur 1200€ aus."
+        }
+      ],
       "critiqueResolutions": [
         {
           "index": 1,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Der Satz zur Kommune wurde präzisiert und mit einem TODO versehen, aber die Formulierung 'die Kommune ist über unsere Planung informiert' bleibt als Behauptung stehen, bevor das TODO kommt."
         },
         {
           "index": 2,
@@ -1044,7 +962,8 @@
         },
         {
           "index": 4,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Ein TODO zur schriftlichen Zusage wurde eingefügt, aber der Eigenanteil ist noch nicht verbindlich geklärt – die Formulierung 'zu klären' lässt offen, ob es vor Einreichung passiert."
         },
         {
           "index": 5,
@@ -1056,32 +975,24 @@
         },
         {
           "index": 7,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die Rankhilfe wird als 'denkbar' und mit Entscheidungsvorbehalt genannt, aber es fehlt ein expliziter Hinweis, dass dies nur ein Vorschlag ist und nicht Teil des festen Konzepts."
         },
         {
           "index": 8,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die Beteiligungsformate wurden allgemeiner formuliert, aber konkrete Begriffe wie Schulversammlung, Planungsrat und Aktionstag bleiben als Vorschlag stehen, was die Fantasie der User überschreitet."
         },
         {
           "index": 9,
           "status": "geschlossen"
-        },
-        {
-          "index": 10,
-          "status": "geschlossen"
-        },
-        {
-          "index": 11,
-          "status": "geschlossen"
-        },
-        {
-          "index": 12,
-          "status": "geschlossen"
         }
-      ]
+      ],
+      "hasOpenHighFindings": true,
+      "hasConsistencyIssues": true
     },
     "costs": {
-      "calls": 36,
+      "calls": 37,
       "entries": [
         {
           "model": "deepseek-chat",
@@ -1092,227 +1003,233 @@
         {
           "model": "deepseek-chat",
           "usdCents": 0.02,
-          "promptTokens": 1639,
-          "candidatesTokens": 62
+          "promptTokens": 1648,
+          "candidatesTokens": 42
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 2164,
-          "candidatesTokens": 120
+          "promptTokens": 2153,
+          "candidatesTokens": 133
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 1770,
-          "candidatesTokens": 19
+          "promptTokens": 1745,
+          "candidatesTokens": 77
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.04,
+          "usdCents": 0.03,
           "promptTokens": 2285,
-          "candidatesTokens": 113
+          "candidatesTokens": 94
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 1879,
-          "candidatesTokens": 108
+          "promptTokens": 1856,
+          "candidatesTokens": 96
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2420,
-          "candidatesTokens": 119
+          "promptTokens": 2380,
+          "candidatesTokens": 139
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 1999,
-          "candidatesTokens": 121
+          "promptTokens": 1982,
+          "candidatesTokens": 109
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2534,
-          "candidatesTokens": 110
+          "promptTokens": 2515,
+          "candidatesTokens": 83
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 2115,
-          "candidatesTokens": 144
+          "promptTokens": 2061,
+          "candidatesTokens": 1
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2637,
-          "candidatesTokens": 108
+          "promptTokens": 2566,
+          "candidatesTokens": 83
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2196,
-          "candidatesTokens": 155
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2701,
+          "usdCents": 0.03,
+          "promptTokens": 2119,
           "candidatesTokens": 113
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2287,
-          "candidatesTokens": 144
+          "promptTokens": 2624,
+          "candidatesTokens": 124
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.03,
+          "promptTokens": 2211,
+          "candidatesTokens": 113
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2792,
-          "candidatesTokens": 117
+          "promptTokens": 2716,
+          "candidatesTokens": 112
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.03,
+          "promptTokens": 2286,
+          "candidatesTokens": 1
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2387,
-          "candidatesTokens": 144
+          "promptTokens": 2791,
+          "candidatesTokens": 126
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2892,
-          "candidatesTokens": 110
+          "promptTokens": 2380,
+          "candidatesTokens": 113
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2479,
-          "candidatesTokens": 144
+          "promptTokens": 2885,
+          "candidatesTokens": 131
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 2468,
+          "candidatesTokens": 124
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.05,
-          "promptTokens": 2984,
-          "candidatesTokens": 146
+          "promptTokens": 2973,
+          "candidatesTokens": 149
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2601,
-          "candidatesTokens": 163
+          "promptTokens": 2582,
+          "candidatesTokens": 113
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.05,
-          "promptTokens": 3125,
-          "candidatesTokens": 107
+          "promptTokens": 3087,
+          "candidatesTokens": 127
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2696,
-          "candidatesTokens": 163
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.05,
-          "promptTokens": 3201,
-          "candidatesTokens": 125
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2786,
-          "candidatesTokens": 174
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.06,
-          "promptTokens": 3751,
-          "candidatesTokens": 259
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.06,
-          "promptTokens": 3701,
-          "candidatesTokens": 368
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.06,
-          "promptTokens": 3723,
-          "candidatesTokens": 387
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.06,
-          "promptTokens": 3740,
-          "candidatesTokens": 450
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.06,
-          "promptTokens": 3711,
-          "candidatesTokens": 460
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.14,
-          "promptTokens": 6377,
-          "candidatesTokens": 1920
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.16,
-          "promptTokens": 7224,
-          "candidatesTokens": 2111
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.08,
-          "promptTokens": 5430,
-          "candidatesTokens": 238
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.1,
-          "promptTokens": 2659,
-          "candidatesTokens": 2131
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.05,
-          "promptTokens": 3464,
-          "candidatesTokens": 7
+          "promptTokens": 2676,
+          "candidatesTokens": 124
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.07,
-          "promptTokens": 2941,
-          "candidatesTokens": 890
+          "promptTokens": 4591,
+          "candidatesTokens": 265
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.05,
-          "promptTokens": 3535,
-          "candidatesTokens": 7
+          "usdCents": 0.08,
+          "promptTokens": 4541,
+          "candidatesTokens": 490
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.08,
+          "promptTokens": 4563,
+          "candidatesTokens": 446
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.08,
+          "promptTokens": 4580,
+          "candidatesTokens": 424
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.08,
+          "promptTokens": 4551,
+          "candidatesTokens": 482
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.13,
+          "promptTokens": 6685,
+          "candidatesTokens": 1255
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.15,
+          "promptTokens": 6999,
+          "candidatesTokens": 1954
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.08,
+          "promptTokens": 4799,
+          "candidatesTokens": 413
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.06,
+          "promptTokens": 3438,
+          "candidatesTokens": 298
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.08,
+          "promptTokens": 3156,
+          "candidatesTokens": 1158
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.07,
+          "promptTokens": 3559,
+          "candidatesTokens": 589
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.11,
+          "promptTokens": 3921,
+          "candidatesTokens": 1991
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.06,
+          "promptTokens": 3596,
+          "candidatesTokens": 210
         }
       ],
-      "eurCents": 1.81,
-      "usdCents": 1.86,
-      "totalTokens": 121069,
-      "promptTokens": 108919,
-      "candidatesTokens": 12150
+      "eurCents": 1.88,
+      "usdCents": 1.99,
+      "totalTokens": 128457,
+      "promptTokens": 116062,
+      "candidatesTokens": 12395
     },
     "status": "complete",
     "paidToken": null,
     "paidAt": null,
     "tier": null,
-    "createdAt": "2026-06-10T05:46:16.497Z",
-    "updatedAt": "2026-06-10T05:49:30.479Z"
+    "createdAt": "2026-06-10T08:20:51.341Z",
+    "updatedAt": "2026-06-10T08:24:13.804Z"
   },
-  "finishedAt": "2026-06-10T07:49:30.838Z",
+  "finishedAt": "2026-06-10T10:24:14.320Z",
   "error": null
 }

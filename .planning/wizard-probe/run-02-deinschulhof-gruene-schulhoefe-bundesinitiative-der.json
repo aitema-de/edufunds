@@ -6,15 +6,15 @@
     "bundesland": "DE-NI"
   },
   "idee": "Den Schulhof schoener machen.",
-  "startedAt": "2026-06-10T07:39:43.573Z",
+  "startedAt": "2026-06-10T10:16:23.228Z",
   "match": {
     "kind": "ranking",
     "matches": [
       {
         "id": "deinschulhof-gruene-schulhoefe-bundesinitiative-der",
-        "score": 78,
-        "passt_weil": "Foerdert exakt die naturnahe Umgestaltung von Schulhoefen mit Beteiligung und Klimaanpassung.",
-        "achtung_bei": "Nur Schule bewerben, DuH-Programm mit begrenztem Budget pro Jahr pruefen.",
+        "score": 85,
+        "passt_weil": "Speziell fuer naturnahe Schulhofumgestaltung, bundesweit und fuer Grundschulen geeignet.",
+        "achtung_bei": "Fokus auf oekologischer Umgestaltung; bauliche Anteile klaeren.",
         "programm": {
           "id": "deinschulhof-gruene-schulhoefe-bundesinitiative-der",
           "name": "deinSchulhof / Gruene Schulhoefe (Bundesinitiative DUH & Stiftung Lebendige Stadt)",
@@ -35,9 +35,9 @@
       },
       {
         "id": "niedersaechsische-bingo-umweltstiftung-bingo-die",
-        "score": 74,
-        "passt_weil": "Speziell fuer Niedersachsen, foerdert Umweltbildung und Schulgruen – passt thematisch und regional.",
-        "achtung_bei": "Antrag mit konkretem Pflanz- und Bauplan einreichen.",
+        "score": 75,
+        "passt_weil": "Landesstiftung Niedersachsen foerdert Umweltprojekte wie Schulgarten und Schulhofbegruenung.",
+        "achtung_bei": "Foerdersumme bis 30.000 EUR; Antragsfristen beachten.",
         "programm": {
           "id": "niedersaechsische-bingo-umweltstiftung-bingo-die",
           "name": "Niedersaechsische Bingo-Umweltstiftung (BINGO! Die Umweltlotterie)",
@@ -61,15 +61,15 @@
     "costs": {
       "calls": 1,
       "promptTokens": 6018,
-      "candidatesTokens": 214,
-      "totalTokens": 6232,
+      "candidatesTokens": 200,
+      "totalTokens": 6218,
       "usdCents": 0.09,
       "eurCents": 0.08,
       "entries": [
         {
           "model": "deepseek-chat",
           "promptTokens": 6018,
-          "candidatesTokens": 214,
+          "candidatesTokens": 200,
           "usdCents": 0.09
         }
       ]
@@ -79,16 +79,16 @@
   "gewaehltesProgramm": {
     "id": "deinschulhof-gruene-schulhoefe-bundesinitiative-der",
     "name": "deinSchulhof / Gruene Schulhoefe (Bundesinitiative DUH & Stiftung Lebendige Stadt)",
-    "score": 78,
-    "passt_weil": "Foerdert exakt die naturnahe Umgestaltung von Schulhoefen mit Beteiligung und Klimaanpassung."
+    "score": 85,
+    "passt_weil": "Speziell fuer naturnahe Schulhofumgestaltung, bundesweit und fuer Grundschulen geeignet."
   },
-  "sessionToken": "162dc606-a442-4aa1-8503-998494a8b655",
+  "sessionToken": "ba1e38d8-4086-4f89-b22a-b9ff44118f4b",
   "transcript": [
     {
       "runde": 1,
-      "frage": "Was ist die genaue Größe des Schulhofs und wie hoch ist der Versiegelungsgrad (in Prozent oder Quadratmetern)? Gibt es konkrete Probleme wie Hitze, fehlende Schattenplätze oder Wasseransammlungen?",
-      "rationale": "Fokus auf konkrete Daten zur Ausgangslage, um den Ist-Zustand im Antragszahlen schildern zu können.",
-      "antwort": "Keine Ahnung, so grob 500 Quadratmeter schätze ich, ist halt viel Beton, wird im Sommer sehr heiß.",
+      "frage": "Wie viele Kinder besuchen die Astrid-Lindgren-Grundschule und wie stark ist der Schulhof aktuell versiegelt (z. B. geschätzte Fläche in m² oder Anteil Beton/Asphalt)?",
+      "rationale": "Größe der Schule und Versiegelungsgrad sind zentral für die Dringlichkeit und realistische Planung der Entsiegelung – erstes Kernkriterium laut Antragsstruktur.",
+      "antwort": "So um die 300 Kinder, schätze ich. Und der Hof ist halt ziemlich zugepflastert, genau weiß ich das nicht.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
@@ -99,247 +99,217 @@
     },
     {
       "runde": 2,
-      "frage": "Die Schule hat also einen stark versiegelten, etwa 500 m² großen Schulhof, der sich im Sommer stark aufheizt. Für die Bewerbung brauchen wir eine konkrete einleitende Szene: Können Sie mir eine typische Situation aus dem Schulalltag schildern, die die Notwendigkeit eines grüneren Schulhofs greifbar macht – was erleben die Kinder an heißen Tagen?",
-      "rationale": "Eine konkrete Szene ist ein zentrales Stilmittel für Stiftungsanträge (Priorität 2) und muss aus der Antwort des Nutzers abgeleitet werden.",
-      "antwort": "Im Sommer ist halt kaum einer draußen, die Kinder sitzen nur noch im Schatten an der Wand.",
+      "frage": "Können Sie kurz beschreiben, wie genau der Hof genutzt wird – gibt es zum Beispiel eine Betonfläche mit ein paar Bäumen, oder ist alles asphaltiert und im Sommer kaum auszuhalten?",
+      "rationale": "Für die konkrete Bedarfsszene und den Versiegelungsgrad brauchen wir eine bildhafte Beschreibung, nicht nur eine grobe Schätzung.",
+      "antwort": "Ach, so eine typische Betonwüste halt, mit ein paar Bäumen.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Astrid-Lindgren-Grundschule",
-          "bundesland": "DE-NI"
+          "bundesland": "DE-NI",
+          "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt."
         }
       }
     },
     {
       "runde": 3,
-      "frage": "Welche Klassenstufen besuchen die Kinder und wie viele Schülerinnen und Schüler sind es insgesamt? Das hilft, die Zielgruppe genau zu beschreiben.",
-      "rationale": "Laut Priorität 3 muss die Zielgruppe sehr spezifisch sein (Alter, Klassenstufe).",
-      "antwort": "Klassen 1 bis 4, so um die 200 Kinder, denk ich mal.",
+      "frage": "Welche genauen Probleme entstehen dadurch – zum Beispiel wird es im Sommer extrem heiß, oder es gibt keine Sitzmöglichkeiten für die Kinder? Schildern Sie bitte eine konkrete Situation, etwa: 'An heißen Tagen können die Kinder nirgendwo Schatten finden und flüchten ins Gebäude' oder so.",
+      "rationale": "Zur Erfüllung des Antragsabschnitts 'Schule und Ausgangslage' brauchen wir einen konkreten Bedarf, der die Dringlichkeit belegt.",
+      "antwort": "Im Sommer wird es zu heiß, dann drängeln sich alle unter den paar Bäumen.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Astrid-Lindgren-Grundschule",
           "bundesland": "DE-NI",
-          "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand"
-        },
-        "projekt": {
-          "zielgruppe": "Klassen 1 bis 4"
+          "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
         }
       }
     },
     {
       "runde": 4,
-      "frage": "Sie sagten, bei Hitze sitzen die Kinder nur im Schatten an der Wand – wie viele Kinder sind das dann ungefähr gleichzeitig draußen, und welcher genaue Bereich am Schulhof wird zum Problem? (z.B. „Die asphaltierte Fläche vor der Turnhalle, etwa 200 m², wo sich im Juli alle drängen“)",
-      "rationale": "Brauche eine konkrete Szene mit Ort und Zahl, um den Bedarf bildhaft zu machen (Priorität 2 – konkrete Szene als Einstieg).",
-      "antwort": "Weiß ich nicht genau, so zwanzig, dreißig vielleicht, an der Wand zur Turnhalle.",
+      "frage": "Um die Zielgruppe konkret zu beschreiben: Gibt es an Ihrer Schule Schülerinnen oder Schüler mit besonderen Herausforderungen – etwa viele Kinder mit Förderbedarf im sozio-emotionalen Bereich oder solche, die kaum Zugang zu Natur haben? Welche Klassenstufen sind besonders betroffen?",
+      "rationale": "Stiftungs-Priorität 3: Zielgruppe sehr spezifisch benennen (Alter, Klassenstufe, Herausforderung), nicht vage 'benachteiligte Schüler'.",
+      "antwort": "Ja, viele Kinder haben wenig Naturerfahrung, und einige mit Förderbedarf sind auch dabei – betrifft vor allem die dritten und vierten Klassen.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Astrid-Lindgren-Grundschule",
           "bundesland": "DE-NI",
-          "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand"
+          "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
         },
         "projekt": {
-          "zielgruppe": "Klassen 1 bis 4"
+          "zielgruppe": "Schülerinnen und Schüler der dritten und vierten Klassen, viele mit wenig Naturerfahrung und einige mit Förderbedarf"
         }
       }
     },
     {
       "runde": 5,
-      "frage": "Sie haben etwa 200 Kinder in Klasse 1–4 – wie viele dieser Kinder haben einen besonderen Förderbedarf, z.B. im sozial-emotionalen Bereich oder beim Lernen? Das hilft uns, die Zielgruppe für die Stiftung noch schärfer zu fassen.",
-      "rationale": "Stiftungen fordern sehr spezifische Zielgruppenangaben (z.B. '14 SuS mit Förderbedarf sozio-emotional'), daher muss ich hier konkret nachhaken.",
-      "antwort": "Weiß ich nicht genau, müsste man in den Akten nachschauen.",
+      "frage": "Sie haben die dritten und vierten Klassen als Hauptzielgruppe genannt. Können Sie bitte genauer sagen, wie viele Kinder das sind, und wie viele davon einen spezifischen Förderbedarf (etwa sozio-emotional) haben? Das hilft, die Dringlichkeit und den konkreten Nutzen der Umgestaltung für diese Gruppe zu untermauern.",
+      "rationale": "Zielgruppe muss laut Stiftungspriorität sehr spezifisch sein (Alter, Anzahl, Herausforderung).",
+      "antwort": "Keine genauen Zahlen parat, müsste ich erfragen.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Astrid-Lindgren-Grundschule",
           "bundesland": "DE-NI",
-          "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand"
+          "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
         },
         "projekt": {
-          "zielgruppe": "Klassen 1 bis 4"
+          "zielgruppe": "Schülerinnen und Schüler der dritten und vierten Klassen, viele mit wenig Naturerfahrung und einige mit Förderbedarf"
         }
       }
     },
     {
       "runde": 6,
-      "frage": "Um die Zielgruppe für die Stiftung noch präziser zu beschreiben: Können Sie in etwa sagen, wie viele Ihrer 200 Schülerinnen und Schüler einen besonderen Förderbedarf haben – zum Beispiel im sozial-emotionalen Bereich oder beim Lernen? Eine grobe Schätzung oder ein Blick in die Akten hilft sehr.",
-      "rationale": "Die Stiftung erwartet eine sehr spezifische Zielgruppenbeschreibung mit konkreten Herausforderungen – das fehlt noch.",
-      "antwort": "Äh, so ungefähr ein Drittel vielleicht, müsste ich nachgucken.",
+      "frage": "Könnten Sie den ungefähren Anteil der versiegelten Fläche am Schulhof in Prozent schätzen? Oder die Gesamtgröße des Schulhofs? Das brauchen wir für die präzise Beschreibung der Ausgangslage.",
+      "rationale": "Für den Programm-Schwerpunkt Entsiegelung und Begrünung brauchen wir eine konkrete Kennzahl zur aktuellen Versiegelung.",
+      "antwort": "Weiß ich nicht genau, müsste ich nachmessen lassen.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Astrid-Lindgren-Grundschule",
           "bundesland": "DE-NI",
-          "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand"
+          "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
         },
         "projekt": {
-          "zielgruppe": "Klassen 1 bis 4"
+          "zielgruppe": "Schülerinnen und Schüler der dritten und vierten Klassen, viele mit wenig Naturerfahrung und einige mit Förderbedarf"
         }
       }
     },
     {
       "runde": 7,
-      "frage": "Haben Sie schon eine Idee, wie der Schulhof nach der Umgestaltung konkret aussehen soll – z.B. ein entsiegelter Bereich mit Bäumen zum Beschatten oder ein kleines Beet für Hochbeete? Das hilft, das Gestaltungskonzept bildhaft zu machen.",
-      "rationale": "Die Vision fehlt noch für den Abschnitt [vision-konzept].",
-      "antwort": "Ja, so'n bisschen Grün und vielleicht was zum Sitzen, so ungefähr halt.",
+      "frage": "Können Sie in 1-2 Sätzen eine konkrete Szene schildern, die zeigt, warum der Schulhof jetzt umgestaltet werden muss – etwa: 'In der dritten Klasse sitzt Mia in der Pause immer allein auf der Betonkante, weil es keinen schattigen Platz zum Spielen gibt.'? Das gibt dem Antrag einen lebendigen Einstieg.",
+      "rationale": "Ein konkreter Einstieg mit einer echten Situation ist für Stiftungsanträge zentral (Priorität 2).",
+      "antwort": "Ja, so ähnlich. Ein Kind sitzt da halt immer allein rum.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Astrid-Lindgren-Grundschule",
           "bundesland": "DE-NI",
-          "schuelerzahl": 200,
-          "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand; ca. 1/3 der Schüler mit Förderbedarf (Schätzung), Klassen 1-4"
+          "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
         },
         "projekt": {
-          "zielgruppe": "Klassen 1 bis 4",
-          "aktivitaeten": [
-            "etwas Grün",
-            "etwas zum Sitzen"
-          ]
+          "zielgruppe": "Schülerinnen und Schüler der dritten und vierten Klassen, viele mit wenig Naturerfahrung und einige mit Förderbedarf"
         }
       }
     },
     {
       "runde": 8,
-      "frage": "Sie haben also eine grobe Idee: etwas Grün, etwas zum Sitzen. Damit die Jury sich das konkret vorstellen kann: Welche zwei konkreten Elemente sollen auf Ihrem Schulhof entstehen – zum Beispiel ein schattenspendender Baum mit Sitzbank oder ein kleines Hochbeet?",
-      "rationale": "Die Vision muss bildhaft werden, damit das Gestaltungskonzept lebendig wirkt – Stiftungen lieben konkrete Szenen.",
-      "antwort": "Ja, so'n Baum mit Bank und vielleicht noch'n Hochbeet, so in der Art.",
+      "frage": "Sie haben ein Kind erwähnt, das in der Pause allein dasitzt. Können Sie mir eine konkrete Szene nennen – etwa eine Beobachtung aus der letzten Woche – die zeigt, wie das Fehlen von grünen, bespielbaren Orten das Miteinander der Kinder beeinträchtigt?",
+      "rationale": "Eine lebendige, konkrete Eingangsszene ist das wichtigste Stilmittel für Stiftungsanträge – sie macht den Bedarf greifbar und emotional nachvollziehbar.",
+      "antwort": "Ja, da sitzt halt immer ein Kind allein auf der Bank, weil es nirgendwo hingehen kann.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Astrid-Lindgren-Grundschule",
           "bundesland": "DE-NI",
-          "schuelerzahl": 200,
-          "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand; ca. 1/3 der Schüler mit Förderbedarf (Schätzung), Klassen 1-4"
+          "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
         },
         "projekt": {
-          "zielgruppe": "Klassen 1 bis 4",
-          "aktivitaeten": [
-            "etwas Grün",
-            "etwas zum Sitzen",
-            "Baum mit Bank",
-            "Hochbeet"
-          ]
+          "zielgruppe": "Schülerinnen und Schüler der dritten und vierten Klassen, viele mit wenig Naturerfahrung und einige mit Förderbedarf"
         }
       }
     },
     {
       "runde": 9,
-      "frage": "Wie werden die Schülerinnen und Schüler in die Planung eingebunden? Gibt es bereits eine Umwelt-AG oder planen Sie einen Workshop, bei dem die Kinder ihre Wünsche für den Schulhof einbringen können? Das ist für den Antrag ein zentrales Kriterium.",
-      "rationale": "Beteiligung der Schulgemeinschaft ist Kernkriterium – wir brauchen konkrete Formate, um den Antrag in diesem Pflichtabschnitt zu füllen.",
-      "antwort": "Ja, klar, die Kinder sollen auf jeden Fall mitreden – vielleicht im Sachunterricht oder so.",
+      "frage": "Das klingt nach einem klaren Bedarf. Um den Antrag lebendig zu machen: Könnten Sie mir eine konkrete Beobachtung aus der letzten Woche schildern, etwa wie ein bestimmtes Kind (Name geändert) unter der fehlenden Grünfläche leidet, z.B. „Lena sitzt jeden Tag auf der heißen Betonmauer, weil sie keinen schattigen Spielplatz findet“?",
+      "rationale": "Stiftungen brauchen einen bildhaften Einstieg, der die Dringlichkeit greifbar macht – eine konkrete Szene ist hier noch zu vage.",
+      "antwort": "Ja, so ähnlich, ein Kind saß neulich einfach nur da, weil es zu heiß war zum Toben.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Astrid-Lindgren-Grundschule",
           "bundesland": "DE-NI",
-          "schuelerzahl": 200,
-          "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand; ca. 1/3 der Schüler mit Förderbedarf (Schätzung), Klassen 1-4"
+          "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
         },
         "projekt": {
-          "zielgruppe": "Klassen 1 bis 4",
-          "aktivitaeten": [
-            "etwas Grün",
-            "etwas zum Sitzen",
-            "Baum mit Bank",
-            "Hochbeet"
-          ]
+          "zielgruppe": "Schülerinnen und Schüler der dritten und vierten Klassen, viele mit wenig Naturerfahrung und einige mit Förderbedarf"
         }
       }
     },
     {
       "runde": 10,
-      "frage": "Wie werden die Kinder im Sachunterricht konkret beteiligt? Welche Methode oder welches Format planen Sie, damit alle 200 Schüler Wünsche äußern können – zum Beispiel eine Zeichenaktion, eine Abstimmung oder ein Zukunftsworkshop?",
-      "rationale": "Beteiligung ist Kernkriterium; der Antrag braucht ein konkretes Format, nicht nur eine vage Idee.",
-      "antwort": "Ja, malen oder so, im Sachunterricht – genau weiß ich das noch nicht.",
+      "frage": "Sie haben die Zielgruppe genannt – jetzt wird es konkret für den Beteiligungsabschnitt: Wie stellen Sie sich vor, dass die Kinder bei der Planung des neuen Schulhofs mitreden? Zum Beispiel: Gibt es eine Schulhof-AG, oder wollen Sie einen Zeichen-Workshop machen, bei dem die Kinder ihre Wünsche aufmalen?",
+      "rationale": "Beteiligung ist ein Kernkriterium des Programms; eine konkrete Methode muss im Antrag stehen.",
+      "antwort": "Ja, so einen Zeichen-Workshop, das klingt gut, oder dass die Klassensprecher das mal sammeln.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Astrid-Lindgren-Grundschule",
           "bundesland": "DE-NI",
-          "schuelerzahl": 200,
-          "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand; ca. 1/3 der Schüler mit Förderbedarf (Schätzung), Klassen 1-4"
+          "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
         },
         "projekt": {
-          "zielgruppe": "Klassen 1 bis 4",
+          "zielgruppe": "Schülerinnen und Schüler der dritten und vierten Klassen, viele mit wenig Naturerfahrung und einige mit Förderbedarf",
           "aktivitaeten": [
-            "etwas Grün",
-            "etwas zum Sitzen",
-            "Baum mit Bank",
-            "Hochbeet"
+            "Zeichen-Workshop, bei dem die Kinder ihre Wünsche aufmalen",
+            "Klassensprecher sammeln Wünsche"
           ]
         }
       }
     },
     {
       "runde": 11,
-      "frage": "Wer wird den grünen Schulhof nach der Umgestaltung pflegen? Reicht die Hausmeisterstunde pro Woche oder braucht es eine Garten-AG mit Elternbeteiligung – und wie ist das langfristig gesichert?",
-      "rationale": "Der Bereich Nachhaltigkeit/Verstetigung ist noch offen; Stiftungen legen Wert auf realistische Pflegekonzepte.",
-      "antwort": "Muss ich noch klären, wer das macht.",
+      "frage": "Zeigt der Schulträger oder die Kommune bereits Interesse, den neuen Schulhof später zu pflegen? Eine kurze schriftliche Absichtserklärung wäre für den Antrag wertvoll.",
+      "rationale": "Die Frage zielt auf den Pflichtabschnitt 'Umsetzung, Trägerschaft und Verstetigung' – Nachhaltigkeit ist für Stiftungen ein zentrales Kriterium.",
+      "antwort": "Ja, die haben grundsätzlich Interesse, aber ob die das schriftlich geben, müsste ich noch mal nachfragen.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Astrid-Lindgren-Grundschule",
           "bundesland": "DE-NI",
-          "schuelerzahl": 200,
-          "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand; ca. 1/3 der Schüler mit Förderbedarf (Schätzung), Klassen 1-4"
+          "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
         },
         "projekt": {
-          "zielgruppe": "Klassen 1 bis 4",
+          "zielgruppe": "Schülerinnen und Schüler der dritten und vierten Klassen, viele mit wenig Naturerfahrung und einige mit Förderbedarf",
           "aktivitaeten": [
-            "etwas Grün",
-            "etwas zum Sitzen",
-            "Baum mit Bank",
-            "Hochbeet"
+            "Zeichen-Workshop, bei dem die Kinder ihre Wünsche aufmalen",
+            "Klassensprecher sammeln Wünsche"
           ]
         }
       }
     },
     {
       "runde": 12,
-      "frage": "Wer trägt die Umgestaltung rechtlich und organisatorisch – die Schule selbst, der Schulförderverein oder die Kommune? Und gibt es bereits eine mündliche oder schriftliche Zustimmung des Schulträgers zu den geplanten Baumaßnahmen?",
-      "rationale": "Für den Abschnitt Umsetzung/Tragerschaft muss die rechtliche Trägerschaft geklärt sein, und der Antrag benötigt eine Bestätigung der Zustimmung des Schulträgers.",
-      "antwort": "Da läuft alles über die Kommune, denk ich. So richtig zugesagt hat noch niemand.",
+      "frage": "Um die Finanzierung zu konkretisieren: Können Sie einen groben Betrag nennen, den der Förderverein oder die Kommune beisteuern könnte, damit die 20.000 € für die Umsetzung reichen? Zum Beispiel 2.000 € Eigenleistung oder 5.000 € vom Schulträger?",
+      "rationale": "Der Finanzierungsabschnitt benötigt konkrete Zahlen zu Kofinanzierung, um die Plausibilität des Budgets darzustellen.",
+      "antwort": "Da müsste ich erstmal mit dem Förderverein sprechen, so genau weiß ich das nicht.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Astrid-Lindgren-Grundschule",
           "bundesland": "DE-NI",
-          "schuelerzahl": 200,
-          "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand; ca. 1/3 der Schüler mit Förderbedarf (Schätzung), Klassen 1-4"
+          "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
         },
         "projekt": {
-          "zielgruppe": "Klassen 1 bis 4",
+          "zielgruppe": "Schülerinnen und Schüler der dritten und vierten Klassen, viele mit wenig Naturerfahrung und einige mit Förderbedarf",
           "aktivitaeten": [
-            "etwas Grün",
-            "etwas zum Sitzen",
-            "Baum mit Bank",
-            "Hochbeet"
+            "Zeichen-Workshop, bei dem die Kinder ihre Wünsche aufmalen",
+            "Klassensprecher sammeln Wünsche"
           ]
         }
       }
     }
   ],
   "finalState": {
-    "sessionToken": "162dc606-a442-4aa1-8503-998494a8b655",
+    "sessionToken": "ba1e38d8-4086-4f89-b22a-b9ff44118f4b",
     "foerderprogrammId": "deinschulhof-gruene-schulhoefe-bundesinitiative-der",
     "foerderprogrammName": "deinSchulhof / Gruene Schulhoefe (Bundesinitiative DUH & Stiftung Lebendige Stadt)",
     "phase": "complete",
     "messages": [
       {
-        "at": "2026-06-10T07:39:51.301Z",
-        "id": "9150dd86-ff6a-477a-9400-418ae568fc93",
+        "at": "2026-06-10T10:16:30.284Z",
+        "id": "a19d6b52-6a03-4158-8387-6a681fbe88ea",
         "kind": "question",
         "meta": {
-          "rationale": "Fokus auf konkrete Daten zur Ausgangslage, um den Ist-Zustand im Antragszahlen schildern zu können."
+          "rationale": "Größe der Schule und Versiegelungsgrad sind zentral für die Dringlichkeit und realistische Planung der Entsiegelung – erstes Kernkriterium laut Antragsstruktur."
         },
         "role": "ai",
-        "content": "Was ist die genaue Größe des Schulhofs und wie hoch ist der Versiegelungsgrad (in Prozent oder Quadratmetern)? Gibt es konkrete Probleme wie Hitze, fehlende Schattenplätze oder Wasseransammlungen?"
+        "content": "Wie viele Kinder besuchen die Astrid-Lindgren-Grundschule und wie stark ist der Schulhof aktuell versiegelt (z. B. geschätzte Fläche in m² oder Anteil Beton/Asphalt)?"
       },
       {
-        "at": "2026-06-10T07:39:53.412Z",
-        "id": "1fc5e606-5854-48c0-b9f8-85f462ea79e8",
+        "at": "2026-06-10T10:16:32.069Z",
+        "id": "1486e8e5-3020-4541-baca-b873bb5cbad4",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -351,21 +321,21 @@
           }
         },
         "role": "user",
-        "content": "Keine Ahnung, so grob 500 Quadratmeter schätze ich, ist halt viel Beton, wird im Sommer sehr heiß."
+        "content": "So um die 300 Kinder, schätze ich. Und der Hof ist halt ziemlich zugepflastert, genau weiß ich das nicht."
       },
       {
-        "at": "2026-06-10T07:39:58.312Z",
-        "id": "cea3aab5-3de2-4a72-bf5d-c19d035ae4cb",
+        "at": "2026-06-10T10:16:35.691Z",
+        "id": "26bd960a-f508-42c1-ad7f-06d4eab0ffc7",
         "kind": "question",
         "meta": {
-          "rationale": "Eine konkrete Szene ist ein zentrales Stilmittel für Stiftungsanträge (Priorität 2) und muss aus der Antwort des Nutzers abgeleitet werden."
+          "rationale": "Für die konkrete Bedarfsszene und den Versiegelungsgrad brauchen wir eine bildhafte Beschreibung, nicht nur eine grobe Schätzung."
         },
         "role": "ai",
-        "content": "Die Schule hat also einen stark versiegelten, etwa 500 m² großen Schulhof, der sich im Sommer stark aufheizt. Für die Bewerbung brauchen wir eine konkrete einleitende Szene: Können Sie mir eine typische Situation aus dem Schulalltag schildern, die die Notwendigkeit eines grüneren Schulhofs greifbar macht – was erleben die Kinder an heißen Tagen?"
+        "content": "Können Sie kurz beschreiben, wie genau der Hof genutzt wird – gibt es zum Beispiel eine Betonfläche mit ein paar Bäumen, oder ist alles asphaltiert und im Sommer kaum auszuhalten?"
       },
       {
-        "at": "2026-06-10T07:40:00.018Z",
-        "id": "1e4dc045-e914-4255-824b-17b499cd75e0",
+        "at": "2026-06-10T10:16:36.905Z",
+        "id": "ae3ee261-1767-411c-82a8-52b9b43e40c7",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -377,47 +347,21 @@
           }
         },
         "role": "user",
-        "content": "Im Sommer ist halt kaum einer draußen, die Kinder sitzen nur noch im Schatten an der Wand."
+        "content": "Ach, so eine typische Betonwüste halt, mit ein paar Bäumen."
       },
       {
-        "at": "2026-06-10T07:40:03.780Z",
-        "id": "5c51ef78-355b-47f0-9738-f1a5f04d06d4",
+        "at": "2026-06-10T10:16:42.245Z",
+        "id": "72a65b78-02a0-4773-af75-045b2d9334c3",
         "kind": "question",
         "meta": {
-          "rationale": "Laut Priorität 3 muss die Zielgruppe sehr spezifisch sein (Alter, Klassenstufe)."
+          "rationale": "Zur Erfüllung des Antragsabschnitts 'Schule und Ausgangslage' brauchen wir einen konkreten Bedarf, der die Dringlichkeit belegt."
         },
         "role": "ai",
-        "content": "Welche Klassenstufen besuchen die Kinder und wie viele Schülerinnen und Schüler sind es insgesamt? Das hilft, die Zielgruppe genau zu beschreiben."
+        "content": "Welche genauen Probleme entstehen dadurch – zum Beispiel wird es im Sommer extrem heiß, oder es gibt keine Sitzmöglichkeiten für die Kinder? Schildern Sie bitte eine konkrete Situation, etwa: 'An heißen Tagen können die Kinder nirgendwo Schatten finden und flüchten ins Gebäude' oder so."
       },
       {
-        "at": "2026-06-10T07:40:04.462Z",
-        "id": "bea12c4c-3162-4833-bb25-0e5ce20923c4",
-        "kind": "answer",
-        "meta": {
-          "factsBefore": {
-            "schule": {
-              "typ": "Grundschule",
-              "name": "Astrid-Lindgren-Grundschule",
-              "bundesland": "DE-NI"
-            }
-          }
-        },
-        "role": "user",
-        "content": "Klassen 1 bis 4, so um die 200 Kinder, denk ich mal."
-      },
-      {
-        "at": "2026-06-10T07:40:10.546Z",
-        "id": "1df2f1f2-0c9b-454c-8bd2-dec575276c2b",
-        "kind": "question",
-        "meta": {
-          "rationale": "Brauche eine konkrete Szene mit Ort und Zahl, um den Bedarf bildhaft zu machen (Priorität 2 – konkrete Szene als Einstieg)."
-        },
-        "role": "ai",
-        "content": "Sie sagten, bei Hitze sitzen die Kinder nur im Schatten an der Wand – wie viele Kinder sind das dann ungefähr gleichzeitig draußen, und welcher genaue Bereich am Schulhof wird zum Problem? (z.B. „Die asphaltierte Fläche vor der Turnhalle, etwa 200 m², wo sich im Juli alle drängen“)"
-      },
-      {
-        "at": "2026-06-10T07:40:12.208Z",
-        "id": "23ed32a1-4ad2-4fed-ab99-40ac4f255f51",
+        "at": "2026-06-10T10:16:43.650Z",
+        "id": "9c9098a1-b77c-41f1-8d94-d67ec944761d",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -425,29 +369,26 @@
               "typ": "Grundschule",
               "name": "Astrid-Lindgren-Grundschule",
               "bundesland": "DE-NI",
-              "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand"
-            },
-            "projekt": {
-              "zielgruppe": "Klassen 1 bis 4"
+              "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt."
             }
           }
         },
         "role": "user",
-        "content": "Weiß ich nicht genau, so zwanzig, dreißig vielleicht, an der Wand zur Turnhalle."
+        "content": "Im Sommer wird es zu heiß, dann drängeln sich alle unter den paar Bäumen."
       },
       {
-        "at": "2026-06-10T07:40:17.687Z",
-        "id": "34577697-827b-4af0-a666-ade9e324f124",
+        "at": "2026-06-10T10:16:48.444Z",
+        "id": "46c759f5-9b1a-4b15-93e2-47c7689714ff",
         "kind": "question",
         "meta": {
-          "rationale": "Stiftungen fordern sehr spezifische Zielgruppenangaben (z.B. '14 SuS mit Förderbedarf sozio-emotional'), daher muss ich hier konkret nachhaken."
+          "rationale": "Stiftungs-Priorität 3: Zielgruppe sehr spezifisch benennen (Alter, Klassenstufe, Herausforderung), nicht vage 'benachteiligte Schüler'."
         },
         "role": "ai",
-        "content": "Sie haben etwa 200 Kinder in Klasse 1–4 – wie viele dieser Kinder haben einen besonderen Förderbedarf, z.B. im sozial-emotionalen Bereich oder beim Lernen? Das hilft uns, die Zielgruppe für die Stiftung noch schärfer zu fassen."
+        "content": "Um die Zielgruppe konkret zu beschreiben: Gibt es an Ihrer Schule Schülerinnen oder Schüler mit besonderen Herausforderungen – etwa viele Kinder mit Förderbedarf im sozio-emotionalen Bereich oder solche, die kaum Zugang zu Natur haben? Welche Klassenstufen sind besonders betroffen?"
       },
       {
-        "at": "2026-06-10T07:40:19.038Z",
-        "id": "e7e79146-56fa-4099-aef4-76785f536ea8",
+        "at": "2026-06-10T10:16:50.250Z",
+        "id": "2b279474-01a7-481f-8561-5614086f610f",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -455,29 +396,26 @@
               "typ": "Grundschule",
               "name": "Astrid-Lindgren-Grundschule",
               "bundesland": "DE-NI",
-              "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand"
-            },
-            "projekt": {
-              "zielgruppe": "Klassen 1 bis 4"
+              "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
             }
           }
         },
         "role": "user",
-        "content": "Weiß ich nicht genau, müsste man in den Akten nachschauen."
+        "content": "Ja, viele Kinder haben wenig Naturerfahrung, und einige mit Förderbedarf sind auch dabei – betrifft vor allem die dritten und vierten Klassen."
       },
       {
-        "at": "2026-06-10T07:40:24.729Z",
-        "id": "2c7f7e53-9a62-455e-8dbf-7c5b13338b13",
+        "at": "2026-06-10T10:16:55.551Z",
+        "id": "b14897fc-fb4d-4974-acca-2f0d63ef4876",
         "kind": "question",
         "meta": {
-          "rationale": "Die Stiftung erwartet eine sehr spezifische Zielgruppenbeschreibung mit konkreten Herausforderungen – das fehlt noch."
+          "rationale": "Zielgruppe muss laut Stiftungspriorität sehr spezifisch sein (Alter, Anzahl, Herausforderung)."
         },
         "role": "ai",
-        "content": "Um die Zielgruppe für die Stiftung noch präziser zu beschreiben: Können Sie in etwa sagen, wie viele Ihrer 200 Schülerinnen und Schüler einen besonderen Förderbedarf haben – zum Beispiel im sozial-emotionalen Bereich oder beim Lernen? Eine grobe Schätzung oder ein Blick in die Akten hilft sehr."
+        "content": "Sie haben die dritten und vierten Klassen als Hauptzielgruppe genannt. Können Sie bitte genauer sagen, wie viele Kinder das sind, und wie viele davon einen spezifischen Förderbedarf (etwa sozio-emotional) haben? Das hilft, die Dringlichkeit und den konkreten Nutzen der Umgestaltung für diese Gruppe zu untermauern."
       },
       {
-        "at": "2026-06-10T07:40:26.335Z",
-        "id": "0f3284f8-0712-4792-bd6d-10845f633e3b",
+        "at": "2026-06-10T10:16:56.894Z",
+        "id": "b0e53f68-ce76-44ee-a3ec-4bdb57d0fbc4",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -485,29 +423,29 @@
               "typ": "Grundschule",
               "name": "Astrid-Lindgren-Grundschule",
               "bundesland": "DE-NI",
-              "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand"
+              "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
             },
             "projekt": {
-              "zielgruppe": "Klassen 1 bis 4"
+              "zielgruppe": "Schülerinnen und Schüler der dritten und vierten Klassen, viele mit wenig Naturerfahrung und einige mit Förderbedarf"
             }
           }
         },
         "role": "user",
-        "content": "Äh, so ungefähr ein Drittel vielleicht, müsste ich nachgucken."
+        "content": "Keine genauen Zahlen parat, müsste ich erfragen."
       },
       {
-        "at": "2026-06-10T07:40:31.300Z",
-        "id": "0f492d88-109d-4ecc-bd03-cc247a30b80e",
+        "at": "2026-06-10T10:17:02.219Z",
+        "id": "b789089a-efbe-4a82-aafc-70836a77af95",
         "kind": "question",
         "meta": {
-          "rationale": "Die Vision fehlt noch für den Abschnitt [vision-konzept]."
+          "rationale": "Für den Programm-Schwerpunkt Entsiegelung und Begrünung brauchen wir eine konkrete Kennzahl zur aktuellen Versiegelung."
         },
         "role": "ai",
-        "content": "Haben Sie schon eine Idee, wie der Schulhof nach der Umgestaltung konkret aussehen soll – z.B. ein entsiegelter Bereich mit Bäumen zum Beschatten oder ein kleines Beet für Hochbeete? Das hilft, das Gestaltungskonzept bildhaft zu machen."
+        "content": "Könnten Sie den ungefähren Anteil der versiegelten Fläche am Schulhof in Prozent schätzen? Oder die Gesamtgröße des Schulhofs? Das brauchen wir für die präzise Beschreibung der Ausgangslage."
       },
       {
-        "at": "2026-06-10T07:40:32.986Z",
-        "id": "7d522240-48fd-493f-9b10-3d55beb3f432",
+        "at": "2026-06-10T10:17:03.454Z",
+        "id": "16e25939-92b9-469e-9a5b-57ef7ae33915",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -515,29 +453,29 @@
               "typ": "Grundschule",
               "name": "Astrid-Lindgren-Grundschule",
               "bundesland": "DE-NI",
-              "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand"
+              "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
             },
             "projekt": {
-              "zielgruppe": "Klassen 1 bis 4"
+              "zielgruppe": "Schülerinnen und Schüler der dritten und vierten Klassen, viele mit wenig Naturerfahrung und einige mit Förderbedarf"
             }
           }
         },
         "role": "user",
-        "content": "Ja, so'n bisschen Grün und vielleicht was zum Sitzen, so ungefähr halt."
+        "content": "Weiß ich nicht genau, müsste ich nachmessen lassen."
       },
       {
-        "at": "2026-06-10T07:40:38.617Z",
-        "id": "9694eed9-5f6f-4219-803a-a07692719f9c",
+        "at": "2026-06-10T10:17:08.722Z",
+        "id": "c992cfc9-4903-449e-927b-2a4d7f6a9fc1",
         "kind": "question",
         "meta": {
-          "rationale": "Die Vision muss bildhaft werden, damit das Gestaltungskonzept lebendig wirkt – Stiftungen lieben konkrete Szenen."
+          "rationale": "Ein konkreter Einstieg mit einer echten Situation ist für Stiftungsanträge zentral (Priorität 2)."
         },
         "role": "ai",
-        "content": "Sie haben also eine grobe Idee: etwas Grün, etwas zum Sitzen. Damit die Jury sich das konkret vorstellen kann: Welche zwei konkreten Elemente sollen auf Ihrem Schulhof entstehen – zum Beispiel ein schattenspendender Baum mit Sitzbank oder ein kleines Hochbeet?"
+        "content": "Können Sie in 1-2 Sätzen eine konkrete Szene schildern, die zeigt, warum der Schulhof jetzt umgestaltet werden muss – etwa: 'In der dritten Klasse sitzt Mia in der Pause immer allein auf der Betonkante, weil es keinen schattigen Platz zum Spielen gibt.'? Das gibt dem Antrag einen lebendigen Einstieg."
       },
       {
-        "at": "2026-06-10T07:40:40.327Z",
-        "id": "1ed1e32f-db33-4339-acd0-cd8736b95fa3",
+        "at": "2026-06-10T10:17:10.422Z",
+        "id": "32e6ae5a-26ae-4839-aa8f-4fc18372de74",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -545,34 +483,153 @@
               "typ": "Grundschule",
               "name": "Astrid-Lindgren-Grundschule",
               "bundesland": "DE-NI",
-              "schuelerzahl": 200,
-              "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand; ca. 1/3 der Schüler mit Förderbedarf (Schätzung), Klassen 1-4"
+              "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
             },
             "projekt": {
-              "zielgruppe": "Klassen 1 bis 4",
+              "zielgruppe": "Schülerinnen und Schüler der dritten und vierten Klassen, viele mit wenig Naturerfahrung und einige mit Förderbedarf"
+            }
+          }
+        },
+        "role": "user",
+        "content": "Ja, so ähnlich. Ein Kind sitzt da halt immer allein rum."
+      },
+      {
+        "at": "2026-06-10T10:17:16.045Z",
+        "id": "26bcc1e2-f577-4931-88e9-e647e7b0aacf",
+        "kind": "question",
+        "meta": {
+          "rationale": "Eine lebendige, konkrete Eingangsszene ist das wichtigste Stilmittel für Stiftungsanträge – sie macht den Bedarf greifbar und emotional nachvollziehbar."
+        },
+        "role": "ai",
+        "content": "Sie haben ein Kind erwähnt, das in der Pause allein dasitzt. Können Sie mir eine konkrete Szene nennen – etwa eine Beobachtung aus der letzten Woche – die zeigt, wie das Fehlen von grünen, bespielbaren Orten das Miteinander der Kinder beeinträchtigt?"
+      },
+      {
+        "at": "2026-06-10T10:17:17.756Z",
+        "id": "c99e4b13-a408-490c-b80b-e5b52ddd5d5f",
+        "kind": "answer",
+        "meta": {
+          "factsBefore": {
+            "schule": {
+              "typ": "Grundschule",
+              "name": "Astrid-Lindgren-Grundschule",
+              "bundesland": "DE-NI",
+              "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
+            },
+            "projekt": {
+              "zielgruppe": "Schülerinnen und Schüler der dritten und vierten Klassen, viele mit wenig Naturerfahrung und einige mit Förderbedarf"
+            }
+          }
+        },
+        "role": "user",
+        "content": "Ja, da sitzt halt immer ein Kind allein auf der Bank, weil es nirgendwo hingehen kann."
+      },
+      {
+        "at": "2026-06-10T10:17:24.433Z",
+        "id": "65a1d5bf-47cc-4c1d-86dd-890d77a4c938",
+        "kind": "question",
+        "meta": {
+          "rationale": "Stiftungen brauchen einen bildhaften Einstieg, der die Dringlichkeit greifbar macht – eine konkrete Szene ist hier noch zu vage."
+        },
+        "role": "ai",
+        "content": "Das klingt nach einem klaren Bedarf. Um den Antrag lebendig zu machen: Könnten Sie mir eine konkrete Beobachtung aus der letzten Woche schildern, etwa wie ein bestimmtes Kind (Name geändert) unter der fehlenden Grünfläche leidet, z.B. „Lena sitzt jeden Tag auf der heißen Betonmauer, weil sie keinen schattigen Spielplatz findet“?"
+      },
+      {
+        "at": "2026-06-10T10:17:35.138Z",
+        "id": "c6dcefae-93a2-4904-928b-9741b00eda52",
+        "kind": "answer",
+        "meta": {
+          "factsBefore": {
+            "schule": {
+              "typ": "Grundschule",
+              "name": "Astrid-Lindgren-Grundschule",
+              "bundesland": "DE-NI",
+              "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
+            },
+            "projekt": {
+              "zielgruppe": "Schülerinnen und Schüler der dritten und vierten Klassen, viele mit wenig Naturerfahrung und einige mit Förderbedarf"
+            }
+          }
+        },
+        "role": "user",
+        "content": "Ja, so ähnlich, ein Kind saß neulich einfach nur da, weil es zu heiß war zum Toben."
+      },
+      {
+        "at": "2026-06-10T10:17:39.473Z",
+        "id": "5b5471c7-ffa2-49b1-b91a-36fe5fb2b323",
+        "kind": "question",
+        "meta": {
+          "rationale": "Beteiligung ist ein Kernkriterium des Programms; eine konkrete Methode muss im Antrag stehen."
+        },
+        "role": "ai",
+        "content": "Sie haben die Zielgruppe genannt – jetzt wird es konkret für den Beteiligungsabschnitt: Wie stellen Sie sich vor, dass die Kinder bei der Planung des neuen Schulhofs mitreden? Zum Beispiel: Gibt es eine Schulhof-AG, oder wollen Sie einen Zeichen-Workshop machen, bei dem die Kinder ihre Wünsche aufmalen?"
+      },
+      {
+        "at": "2026-06-10T10:17:41.221Z",
+        "id": "09a99bde-1c55-45d0-9d1f-4e61e7454727",
+        "kind": "answer",
+        "meta": {
+          "factsBefore": {
+            "schule": {
+              "typ": "Grundschule",
+              "name": "Astrid-Lindgren-Grundschule",
+              "bundesland": "DE-NI",
+              "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
+            },
+            "projekt": {
+              "zielgruppe": "Schülerinnen und Schüler der dritten und vierten Klassen, viele mit wenig Naturerfahrung und einige mit Förderbedarf"
+            }
+          }
+        },
+        "role": "user",
+        "content": "Ja, so einen Zeichen-Workshop, das klingt gut, oder dass die Klassensprecher das mal sammeln."
+      },
+      {
+        "at": "2026-06-10T10:17:46.707Z",
+        "id": "93daea6e-679c-48cf-aa4e-1e745046d669",
+        "kind": "question",
+        "meta": {
+          "rationale": "Die Frage zielt auf den Pflichtabschnitt 'Umsetzung, Trägerschaft und Verstetigung' – Nachhaltigkeit ist für Stiftungen ein zentrales Kriterium."
+        },
+        "role": "ai",
+        "content": "Zeigt der Schulträger oder die Kommune bereits Interesse, den neuen Schulhof später zu pflegen? Eine kurze schriftliche Absichtserklärung wäre für den Antrag wertvoll."
+      },
+      {
+        "at": "2026-06-10T10:17:48.345Z",
+        "id": "6146fd67-fefe-482c-8eea-151e8e75d4d4",
+        "kind": "answer",
+        "meta": {
+          "factsBefore": {
+            "schule": {
+              "typ": "Grundschule",
+              "name": "Astrid-Lindgren-Grundschule",
+              "bundesland": "DE-NI",
+              "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
+            },
+            "projekt": {
+              "zielgruppe": "Schülerinnen und Schüler der dritten und vierten Klassen, viele mit wenig Naturerfahrung und einige mit Förderbedarf",
               "aktivitaeten": [
-                "etwas Grün",
-                "etwas zum Sitzen"
+                "Zeichen-Workshop, bei dem die Kinder ihre Wünsche aufmalen",
+                "Klassensprecher sammeln Wünsche"
               ]
             }
           }
         },
         "role": "user",
-        "content": "Ja, so'n Baum mit Bank und vielleicht noch'n Hochbeet, so in der Art."
+        "content": "Ja, die haben grundsätzlich Interesse, aber ob die das schriftlich geben, müsste ich noch mal nachfragen."
       },
       {
-        "at": "2026-06-10T07:40:45.067Z",
-        "id": "8ba0f4e9-ea51-4106-adc2-9906512648c6",
+        "at": "2026-06-10T10:17:54.616Z",
+        "id": "6a3876cd-c552-46e7-a1df-774b317edba6",
         "kind": "question",
         "meta": {
-          "rationale": "Beteiligung der Schulgemeinschaft ist Kernkriterium – wir brauchen konkrete Formate, um den Antrag in diesem Pflichtabschnitt zu füllen."
+          "rationale": "Der Finanzierungsabschnitt benötigt konkrete Zahlen zu Kofinanzierung, um die Plausibilität des Budgets darzustellen."
         },
         "role": "ai",
-        "content": "Wie werden die Schülerinnen und Schüler in die Planung eingebunden? Gibt es bereits eine Umwelt-AG oder planen Sie einen Workshop, bei dem die Kinder ihre Wünsche für den Schulhof einbringen können? Das ist für den Antrag ein zentrales Kriterium."
+        "content": "Um die Finanzierung zu konkretisieren: Können Sie einen groben Betrag nennen, den der Förderverein oder die Kommune beisteuern könnte, damit die 20.000 € für die Umsetzung reichen? Zum Beispiel 2.000 € Eigenleistung oder 5.000 € vom Schulträger?"
       },
       {
-        "at": "2026-06-10T07:40:46.830Z",
-        "id": "c03d6bf4-c202-4a5c-b374-fba0335a0833",
+        "at": "2026-06-10T10:17:56.265Z",
+        "id": "d4274b3a-4aa6-4903-b874-9de0d3ebd10f",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -580,133 +637,19 @@
               "typ": "Grundschule",
               "name": "Astrid-Lindgren-Grundschule",
               "bundesland": "DE-NI",
-              "schuelerzahl": 200,
-              "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand; ca. 1/3 der Schüler mit Förderbedarf (Schätzung), Klassen 1-4"
+              "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
             },
             "projekt": {
-              "zielgruppe": "Klassen 1 bis 4",
+              "zielgruppe": "Schülerinnen und Schüler der dritten und vierten Klassen, viele mit wenig Naturerfahrung und einige mit Förderbedarf",
               "aktivitaeten": [
-                "etwas Grün",
-                "etwas zum Sitzen",
-                "Baum mit Bank",
-                "Hochbeet"
+                "Zeichen-Workshop, bei dem die Kinder ihre Wünsche aufmalen",
+                "Klassensprecher sammeln Wünsche"
               ]
             }
           }
         },
         "role": "user",
-        "content": "Ja, klar, die Kinder sollen auf jeden Fall mitreden – vielleicht im Sachunterricht oder so."
-      },
-      {
-        "at": "2026-06-10T07:40:53.027Z",
-        "id": "5b175543-8c56-4747-ba80-2eafbfbcd5bd",
-        "kind": "question",
-        "meta": {
-          "rationale": "Beteiligung ist Kernkriterium; der Antrag braucht ein konkretes Format, nicht nur eine vage Idee."
-        },
-        "role": "ai",
-        "content": "Wie werden die Kinder im Sachunterricht konkret beteiligt? Welche Methode oder welches Format planen Sie, damit alle 200 Schüler Wünsche äußern können – zum Beispiel eine Zeichenaktion, eine Abstimmung oder ein Zukunftsworkshop?"
-      },
-      {
-        "at": "2026-06-10T07:40:54.736Z",
-        "id": "44f9ab8e-922c-4970-8eb4-45874d3f132e",
-        "kind": "answer",
-        "meta": {
-          "factsBefore": {
-            "schule": {
-              "typ": "Grundschule",
-              "name": "Astrid-Lindgren-Grundschule",
-              "bundesland": "DE-NI",
-              "schuelerzahl": 200,
-              "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand; ca. 1/3 der Schüler mit Förderbedarf (Schätzung), Klassen 1-4"
-            },
-            "projekt": {
-              "zielgruppe": "Klassen 1 bis 4",
-              "aktivitaeten": [
-                "etwas Grün",
-                "etwas zum Sitzen",
-                "Baum mit Bank",
-                "Hochbeet"
-              ]
-            }
-          }
-        },
-        "role": "user",
-        "content": "Ja, malen oder so, im Sachunterricht – genau weiß ich das noch nicht."
-      },
-      {
-        "at": "2026-06-10T07:41:00.071Z",
-        "id": "ab575192-64fa-4b62-8c90-88169f71d443",
-        "kind": "question",
-        "meta": {
-          "rationale": "Der Bereich Nachhaltigkeit/Verstetigung ist noch offen; Stiftungen legen Wert auf realistische Pflegekonzepte."
-        },
-        "role": "ai",
-        "content": "Wer wird den grünen Schulhof nach der Umgestaltung pflegen? Reicht die Hausmeisterstunde pro Woche oder braucht es eine Garten-AG mit Elternbeteiligung – und wie ist das langfristig gesichert?"
-      },
-      {
-        "at": "2026-06-10T07:41:01.391Z",
-        "id": "a2efecf2-83b9-4415-9b43-2413864ef477",
-        "kind": "answer",
-        "meta": {
-          "factsBefore": {
-            "schule": {
-              "typ": "Grundschule",
-              "name": "Astrid-Lindgren-Grundschule",
-              "bundesland": "DE-NI",
-              "schuelerzahl": 200,
-              "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand; ca. 1/3 der Schüler mit Förderbedarf (Schätzung), Klassen 1-4"
-            },
-            "projekt": {
-              "zielgruppe": "Klassen 1 bis 4",
-              "aktivitaeten": [
-                "etwas Grün",
-                "etwas zum Sitzen",
-                "Baum mit Bank",
-                "Hochbeet"
-              ]
-            }
-          }
-        },
-        "role": "user",
-        "content": "Muss ich noch klären, wer das macht."
-      },
-      {
-        "at": "2026-06-10T07:41:05.940Z",
-        "id": "593d85c0-0a26-42c9-a629-8c31f1ce6975",
-        "kind": "question",
-        "meta": {
-          "rationale": "Für den Abschnitt Umsetzung/Tragerschaft muss die rechtliche Trägerschaft geklärt sein, und der Antrag benötigt eine Bestätigung der Zustimmung des Schulträgers."
-        },
-        "role": "ai",
-        "content": "Wer trägt die Umgestaltung rechtlich und organisatorisch – die Schule selbst, der Schulförderverein oder die Kommune? Und gibt es bereits eine mündliche oder schriftliche Zustimmung des Schulträgers zu den geplanten Baumaßnahmen?"
-      },
-      {
-        "at": "2026-06-10T07:41:07.578Z",
-        "id": "593245e4-0e63-4301-805f-9a31856c88d2",
-        "kind": "answer",
-        "meta": {
-          "factsBefore": {
-            "schule": {
-              "typ": "Grundschule",
-              "name": "Astrid-Lindgren-Grundschule",
-              "bundesland": "DE-NI",
-              "schuelerzahl": 200,
-              "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand; ca. 1/3 der Schüler mit Förderbedarf (Schätzung), Klassen 1-4"
-            },
-            "projekt": {
-              "zielgruppe": "Klassen 1 bis 4",
-              "aktivitaeten": [
-                "etwas Grün",
-                "etwas zum Sitzen",
-                "Baum mit Bank",
-                "Hochbeet"
-              ]
-            }
-          }
-        },
-        "role": "user",
-        "content": "Da läuft alles über die Kommune, denk ich. So richtig zugesagt hat noch niemand."
+        "content": "Da müsste ich erstmal mit dem Förderverein sprechen, so genau weiß ich das nicht."
       }
     ],
     "facts": {
@@ -714,16 +657,13 @@
         "typ": "Grundschule",
         "name": "Astrid-Lindgren-Grundschule",
         "bundesland": "DE-NI",
-        "schuelerzahl": 200,
-        "besonderheiten": "Schulhof stark versiegelt, ca. 500 m², wird im Sommer sehr heiß, Kinder sitzen nur im Schatten an der Wand; ca. 1/3 der Schüler mit Förderbedarf (Schätzung), Klassen 1-4"
+        "besonderheiten": "Der Schulhof ist eine Betonwüste mit ein paar Bäumen, stark versiegelt. Im Sommer wird es zu heiß, alle drängeln sich unter den paar Bäumen."
       },
       "projekt": {
-        "zielgruppe": "Klassen 1 bis 4",
+        "zielgruppe": "Schülerinnen und Schüler der dritten und vierten Klassen, viele mit wenig Naturerfahrung und einige mit Förderbedarf",
         "aktivitaeten": [
-          "etwas Grün",
-          "etwas zum Sitzen",
-          "Baum mit Bank",
-          "Hochbeet"
+          "Zeichen-Workshop, bei dem die Kinder ihre Wünsche aufmalen",
+          "Klassensprecher sammeln Wünsche"
         ]
       }
     },
@@ -733,7 +673,7 @@
     },
     "generation": {
       "outline": {
-        "titel": "etwas Grün — Astrid-Lindgren-Grundschule (deinSchulhof / Gruene Schulhoefe (Bundesinitiative DUH &…",
+        "titel": "Zeichen-Workshop, bei dem die Kinder ihre Wünsche aufmalen — Astrid-Lindgren-Grundschule…",
         "abschnitte": [
           {
             "name": "Schule und Ausgangslage des Schulhofs",
@@ -757,141 +697,176 @@
           }
         ]
       },
-      "critique": "Zusammenfassung: Entwurf weist zahlreiche Halluzinationen auf (erfundene Details zu Kommune, Beteiligungsformaten, Zeitplan, Patenschaftssystem). Grundstruktur ist erkennbar, aber viele Passagen sind erfunden oder nicht belegt. Dringende Überarbeitung nötig.\n\n1. [HOCH · belegluecke · Vision und Gestaltungskonzept] \"Wir planen, einen Teil der versiegelten Fläche zu entsiegeln und dort eine kleine Baumgruppe zu pflanzen\"\n   → User-Antworten enthalten keine 'Baumgruppe' sondern nur 'einen Baum mit Bank'. Ersetze durch 'einen Baum mit Sitzgelegenheit'.\n2. [HOCH · belegluecke · Vision und Gestaltungskonzept] \"die genaue Größe der Entsiegelungsfläche steht noch nicht fest; sie wird im Rahmen der Abstimmung mit der Kommune konkretisiert\"\n   → Der Begriff 'Entsiegelung' stammt nicht aus User-Antworten. User spricht nur von 'etwas Grün' und 'Hochbeet'. Streiche oder ersetze durch 'vorbereitende Bodenarbeiten' und kläre mit Schulträger.\n3. [HOCH · belegluecke · Vision und Gestaltungskonzept] \"Im Sachunterricht wollen wir Ideen sammeln und Wunschbilder malen lassen\"\n   → User sagte: 'vielleicht im Sachunterricht oder so' und 'malen oder so – genau weiß ich das noch nicht'. Formuliere als vage Idee, nicht als festen Plan.\n4. [HOCH · belegluecke · Beteiligung der Schulgemeinschaft] \"Eine Elternbefragung sowie die Einbindung des Kollegiums sind vorgesehen\"\n   → User erwähnt weder Elternbefragung noch Kollegiumsbeteiligung explizit. Streiche oder ersetze durch 'Eine Beteiligung von Eltern und Kollegium ist angedacht, aber noch nicht konkret geplant.'\n5. [HOCH · belegluecke · Beteiligung der Schulgemeinschaft] \"schließlich ein Aktionstag, an dem Kinder, Eltern und Lehrkräfte gemeinsam pflanzen, bauen und gestalten\"\n   → User sagte nur 'muss ich noch klären, wer das macht'. Kein Aktionstag erwähnt. Streiche oder formuliere als unverbindliche Idee.\n6. [HOCH · belegluecke · Umsetzung, Traegerschaft und Verstetigung] \"Die Planungsphase wird bis zum Frühjahr abgeschlossen.\"\n   → Kein Zeitplan in User-Antworten. Streiche oder ersetze durch 'Ein konkreter Zeitplan wird noch erstellt.'\n7. [HOCH · belegluecke · Umsetzung, Traegerschaft und Verstetigung] \"Die Bewässerung des Baumes wird in den Dienstplan der Hauswirtschaft oder des Hausmeisterdienstes eingebunden.\"\n   → Keine solche Planung in User-Antworten. Streiche oder formuliere als 'Die langfristige Pflege muss noch geklärt werden (TODO: mit Hausmeister und Kommune abstimmen).'\n8. [HOCH · belegluecke · Finanzierung und weitere Mittel] \"Die Bau-AG des Fördervereins der Schule kann bei den Pflanz- und Bauarbeiten unterstützen\"\n   → User erwähnt keinen Förderverein und keine Bau-AG. Streiche oder ersetze durch 'Ob der Förderverein (falls vorhanden) unterstützen kann, muss noch geklärt werden.'\n9. [HOCH · richtlinie · global] \"FEHLT\"\n   → Es fehlt ein konkreter, bildhafter Einstieg mit einem echten Kind oder einer konkreten Szene. Ergänze einen kurzen Absatz wie: 'Lena (8 Jahre) sitzt in der Pause auf dem heißen Betonboden im Schatten der Turnhalle – es gibt keine Bank, keinen Baum. Das wollen wir ändern.'\n10. [HOCH · richtlinie · global] \"FEHLT\"\n   → Die Stiftungs-Mission (Klimaschutz, Naturerleben, Gesundheit) wird nicht explizit aufgegriffen. Ergänze einen Satz wie: 'Mit der naturnahen Umgestaltung fördern wir direkt die Ziele von deinSchulhof: mehr Aufenthaltsqualität, Klimaanpassung und Naturerleben für alle Kinder.'\n11. [HOCH · belegluecke · Umsetzung, Traegerschaft und Verstetigung] \"Da die Kommune als Schulträger für die Grundstückspflege zuständig ist, werden die Pflegekosten für die Grünflächen (Mahd, Baumpflege) in den städtischen Haushalt übernommen.\"\n   → User sagte 'muss ich noch klären' und 'so richtig zugesagt hat noch niemand'. Formuliere als 'Die Übernahme der Pflegekosten durch die Kommune muss noch schriftlich zugesagt werden (TODO: vor Einreichung klären).'\n12. [MITTEL · sonstiges · Schule und Ausgangslage des Schulhofs] \"Der Schulhof umfasst schätzungsweise 500 Quadratmeter und ist nahezu vollständig versiegelt – es dominiert Beton\"\n   → User sagte 'grob 500 Quadratmeter schätze ich, ist halt viel Beton'. Die 500 m² sind okay, aber 'nahezu vollständig versiegelt' und 'Beton' sind nicht explizit belegt. Ersetze durch 'der Boden ist überwiegend versiegelt (Asphalt/Beton).'",
+      "critique": "Zusammenfassung: Der Entwurf ist inhaltlich stark und partizipativ, aber enthält mehrere Halluzinationen (Schulträger-Kommunikation, Fördervereins-Zusage, Landschaftsarchitekt, Ganztagsverankerung) und eine Unschärfe bei der Zielgruppe. Die formale Struktur erfüllt die Richtlinie weitgehend.\n\n1. [HOCH · belegluecke · Umsetzung, Traegerschaft und Verstetigung] \"Ein Antrag auf denkmalschutz- oder baurechtliche Genehmigung sowie eine Freigabe des Gebäudemanagements sind erforderlich; die konkrete Prüfung läuft\"\n   → Diese Details sind erfunden. Streichen und durch allgemeine Formulierung ersetzen: 'Die baulichen Maßnahmen werden vorab mit dem Schulträger abgestimmt; die erforderlichen Genehmigungen sind vor Einreichung einzuholen [TODO: Prüfung mit Schulträger aufnehmen].'\n2. [HOCH · belegluecke · Umsetzung, Traegerschaft und Verstetigung] \"einem Landschaftsarchitekten oder Umweltpädagogen\"\n   → Der User nannte keine externe Fachkraft. Ersetzen durch: 'möglicherweise unterstützt durch eine externe Fachkraft [TODO: Angebote einholen]'.\n3. [HOCH · belegluecke · Schule und Ausgangslage des Schulhofs] \"rund 300 Kindern\"\n   → User sagte 'So um die 300 Kinder, schätze ich'. Die ungefähre Angabe ist zulässig, aber als eindeutige Zahl ('rund 300') grenzwertig. Besser: 'etwa 300 Kinder' oder 'ca. 300 Kinder'.\n4. [HOCH · belegluecke · Beteiligung der Schulgemeinschaft] \"Der Förderverein hat grundsätzliches Interesse signalisiert\"\n   → User sagte: 'die haben grundsätzlich Interesse, aber ob die das schriftlich geben, müsste ich noch mal nachfragen'. Die Aussage 'hat grundsätzliches Interesse signalisiert' suggeriert eine erfolgte Kommunikation. Präziser: 'der Förderverein hat mündlich Interesse bekundet [TODO: schriftliche Zusage einholen]'.\n5. [HOCH · belegluecke · Umsetzung, Traegerschaft und Verstetigung] \"verankern wir die Pflege als festen Bestandteil der Klassenleitungs- und Ganztagsaufgaben\"\n   → User erwähnte keine Verankerung in Klassenleitung oder Ganztag. Streichen oder als Vorschlag formulieren: 'Eine mögliche Verstetigung könnte über Klassenpatenschaften erfolgen [TODO: mit Kollegium abstimmen]'.\n6. [MITTEL · belegluecke · Schule und Ausgangslage des Schulhofs] \"insbesondere in den dritten und vierten Klassen\"\n   → User sagte: 'betrifft vor allem die dritten und vierten Klassen'. Die Aussage ist korrekt abgeleitet, aber der Entwurf verengt die Zielgruppe auf diese Klassenstufen. Bitte prüfen, ob tatsächlich nur diese gemeint sind; ansonsten generalisieren.\n7. [MITTEL · sonstiges · Finanzierung und weitere Mittel] \"voraussichtlich rund 4.000 Euro... voraussichtlich rund 16.000 Euro\"\n   → Diese Schätzung ist ohne User-Angabe plausibel, aber ohne Angebote spekulativ. Bitte durch 'geplante Verwendung: xx% für Planung, yy% für Umsetzung' ersetzen und auf fehlende Detailkalkulation hinweisen [TODO: Angebote einholen].\n8. [MITTEL · sonstiges · Umsetzung, Traegerschaft und Verstetigung] \"Die organisatorische und pädagogische Leitung übernimmt das Kollegium\"\n   → Konkrete Personen oder Funktionen fehlen. Besser: 'ein Projektteam aus zwei Lehrkräften und der Schulleitung übernimmt die Koordination [TODO: Team benennen]'.\n9. [MITTEL · sonstiges · global] \"Zielgruppe sind Schüler der dritten und vierten Klassen\"\n   → In der Vision wird nur diese Zielgruppe genannt, obwohl die ganze Schule betroffen ist. Zielgruppe klarer fassen: 'insbesondere die Klassen 3/4, aber der Hof dient allen 300 Kindern'.",
       "sections": [
         {
           "name": "Schule und Ausgangslage des Schulhofs",
-          "text": "Die Astrid-Lindgren-Grundschule ist eine Grundschule der Klassen 1 bis 4 in Niedersachsen mit rund 200 Schülerinnen und Schülern. Unser Schulhof umfasst schätzungsweise 500 Quadratmeter und ist nahezu vollständig versiegelt – es dominiert Beton, dazwischen lediglich einige wenige Fugen mit Restbewuchs. Diese Gestaltung ist vor allem an heißen Sommertagen ein Problem: Der Schulhof heizt sich stark auf, sodass die Kinder die pralle Sonne meiden und sich in den schmalen Schattenstreifen an der Turnhallenwand drängen. Aufenthaltsqualität gibt es dort nicht – es gibt weder Bänke noch schattenspendende Bäume, und die Kinder sitzen auf dem blanken Beton. Zudem fehlt es an natürlichen Elementen wie Grünflächen, Rankpflanzen oder Hochbeeten, die zum Verweilen und Entdecken einladen würden. Ein Teil der Schülerschaft hat besonderen Förderbedarf (Schätzung der Schulleitung: etwa ein Drittel, genaue Erhebung folgt vor Einreichung); gerade diese Kinder profitieren von einem naturnahen Pausenraum, der Ruhe und Anregung zugleich bietet. Die Umgestaltung ist aus unserer Sicht dringend, denn der jetzige Zustand schränkt die Erholungs- und Bewegungsmöglichkeiten für alle Kinder in den Pausen und im Ganztagsbetrieb massiv ein. Ein Baum mit einer Sitzgelegenheit und ein Hochbeet – so die ersten konkreten Wünsche des Kollegiums und der Schüler – wären ein erster, aber wichtiger Schritt, um dem Schulhof ein Stück Grün und damit mehr Aufenthaltsqualität zurückzugeben."
+          "text": "Die Astrid-Lindgren-Grundschule ist eine Grundschule mit rund 300 Kindern, deren Schulhof eine stark versiegelte Betonfläche mit nur wenigen Bäumen darstellt. Die genaue Versiegelungsrate wurde noch nicht vermessen [TODO: Quadratmeterzahl und exakten Versiegelungsgrad vor Einreichung ermitteln]. Die fehlende Begrünung führt insbesondere an heißen Sommertagen zu einer spürbaren Überhitzung: Die Kinder drängeln sich dann unter den wenigen schattenspendenden Bäumen, aktives Toben oder ruhiger Aufenthalt sind auf dem Großteil der Fläche kaum möglich. Aus Sicht des Kollegiums ist dieser Zustand für eine Grundschule, deren Schülerinnen und Schüler täglich mehrere Stunden auf dem Hof verbringen, nicht mehr tragbar. Hinzu kommt ein pädagogischer Handlungsdruck: Viele Kinder, insbesondere in den dritten und vierten Klassen, haben wenig Naturerfahrung und einige verfügen über Förderbedarf. Der monotone, heiße Hof bietet kaum Anreize für selbstbestimmtes Spiel oder Rückzug. Ein wiederkehrendes Bild ist das eines einzelnen Kindes, das allein auf einer Bank sitzt – weil es an heißen Tagen nirgendwo hingehen kann und die Betonlandschaft keine Spielimpulse gibt. Eine Umgestaltung ist gerade an dieser Schule dringend, um einen Schulhof zu schaffen, der sowohl Hitzeschutz und Aufenthaltsqualität als auch sinnliche Naturerfahrungen für alle Kinder ermöglicht."
         },
         {
           "name": "Vision und Gestaltungskonzept",
-          "text": "Unser Schulhof ist heute eine 500 Quadratmeter große Betonfläche. Im Sommer wird er zur Hitzefalle: Die Kinder drücken sich dann in den schmalen Schattenstreifen an der Turnhallenwand, draußen spielen mag dann kaum noch jemand. Das wollen wir ändern. In unserer Vision verwandelt sich dieser graue, aufgeheizte Ort in einen grünen, kühlen Lebensraum. Wir planen, einen Teil der versiegelten Fläche zu entsiegeln und dort eine kleine Baumgruppe zu pflanzen; unter den Bäumen sollen Bänke und Sitzgelegenheiten aus Naturmaterialien entstehen – ein schattiger Aufenthaltsort für heiße Sommertage. Zusätzlich wird ein Hochbeet angelegt, das die Kinder selbst bepflanzen und pflegen können. Dieser Ort soll nicht nur gut aussehen, sondern auch zum Erleben und Lernen einladen: Die Klassen 1 bis 4 können dort im Sachunterricht beobachten, wie Pflanzen wachsen, welche Insekten sich ansiedeln und wie Schatten tatsächlich die Temperatur senkt. Die genaue Größe der Entsiegelungsfläche steht noch nicht fest; sie wird im Rahmen der Abstimmung mit der Kommune konkretisiert [TODO: mit dem kommunalen Grünflächenamt vor Einreichung abstimmen]. Schon mit den genannten Elementen – Baum, Hochbeet, entsiegelte Erde – leistet das Konzept einen messbaren Beitrag zur Klimaanpassung (Kühlung, Versickerung) und schafft neue Lebensräume für Insekten und Vögel. Die Kinder sollen von Anfang an mitreden: Im Sachunterricht wollen wir Ideen sammeln und Wunschbilder malen lassen, um ihre Perspektive direkt in die Planung einzubeziehen. Das genaue Beteiligungsformat [TODO: gemeinsam mit den Klassenlehrkräften entwickeln] wird im Vorfeld festgelegt. Unser Ziel ist ein Schulhof, der nicht nur kühler und grüner ist, sondern den Kindern auch das Gefühl gibt: Das hier ist unser Ort."
+          "text": "Unser Schulhof ist heute eine fast vollständig versiegelte Fläche mit einigen Bäumen. Im Hochsommer heizen sich die Flächen so stark auf, dass kaum ein Aufenthalt möglich ist; die Kinder drängen sich dann unter den wenigen Schattenplätzen und einzelne Kinder sitzen allein auf Bänken, weil es zum Toben zu heiß ist. Diese Beobachtungen haben in den dritten und vierten Klassen einen Wunschprozess angestoßen: In einem Zeichen-Workshop malen die Kinder ihre Idealbilder des Hofes, und die Klassensprecher sammeln die Wünsche strukturiert – das Interesse des Kollegiums ist grundsätzlich vorhanden. Aus diesen Kinderideen entwickeln wir ein Gestaltungskonzept, das den Schulhof schrittweise entsiegelt und begrünt. Konkret schwebt uns vor, einen Teil der Betonflächen aufzubrechen und durch wasserdurchlässige Beläge oder Pflaster mit Rasenfugen zu ersetzen sowie neue Hochbeete und Pflanzflächen anzulegen. Es sollen mehrere naturnahe Zonen entstehen: eine ruhige Sitzecke mit heimischen Sträuchern und Stauden unter den bestehenden Bäumen, die an heißen Tagen echten Schatten bietet; eine kleine Wildblumenwiese, die Insekten anzieht und als Beobachtungsort für den Sachunterricht dient. Das Konzept trägt zur Klimaanpassung bei, indem die Entsiegelung und neue Vegetation die Hitzebildung mindern, Regenwasser versickern lassen und das Mikroklima spürbar verbessern. Für die Biodiversität pflanzen wir Pollen- und Nektarquellen für Insekten sowie Beerensträucher, die Vögeln Nahrung bieten. Die genaue Verteilung der Flächen und die Priorisierung der Maßnahmen werden auf Basis der Kinderzeichnungen und -wünsche im Rahmen eines Beteiligungsworkshops [TODO: Termin und Format mit Klassenleitungen abstimmen] gemeinsam mit den Schülerinnen und Schülern festgelegt. Der Förderverein hat grundsätzliches Interesse signalisiert [TODO: schriftliche Zusage vor Einreichung einholen], und wir gehen voraussichtlich von einer Umgestaltung aus, die mit rund 20.000 Euro realisierbar ist – der genaue Kostenplan wird anhand von Angeboten für Entsiegelung, Erde, Pflanzen und Sitzgelegenheiten vor Bewerbungsschluss erstellt."
         },
         {
           "name": "Beteiligung der Schulgemeinschaft",
-          "text": "An der Astrid-Lindgren-Grundschule mit rund 200 Kindern in den Klassen 1 bis 4 ist die Beteiligung der gesamten Schulgemeinschaft der Kern des Vorhabens. Die Schülerinnen und Schüler werden von Anfang an in die Planung einbezogen, voraussichtlich im Sachunterricht. Dort sollen die Kinder ihre Ideen für den Schulhof entwickeln und aufmalen: Was wünschen sie sich? Erste genannte Wünsche sind Grün, Sitzgelegenheiten, ein Baum mit Bank und ein Hochbeet. Die konkrete Ausgestaltung der Beteiligungsformate – etwa als Workshop oder Malaktion über mehrere Tage – ist noch festzulegen. Eine Elternbefragung sowie die Einbindung des Kollegiums sind vorgesehen; wer die Organisation federführend übernimmt, ist derzeit noch zu klären [TODO: Verantwortliche benennen]. Über die gesamte Projektlaufzeit von Planung bis Umsetzung hinweg wird die Beteiligung in mehreren aufeinanderfolgenden Schleifen organisiert: Nach der Ideensammlung folgen eine gemeinsame Abstimmung über die finale Auswahl der Elemente und schließlich ein Aktionstag, an dem Kinder, Eltern und Lehrkräfte gemeinsam pflanzen, bauen und gestalten. Die genaue zeitliche Abfolge und die Anzahl der Beteiligungstermine werden gemeinsam mit dem Kollegium und der Kommune abgestimmt; schriftliche Zusagen der Kommune liegen noch nicht vor. Ziel ist, dass jedes Kind – unabhängig von Förderbedarf – eine konkrete, sichtbare Spur auf dem neuen Schulhof hinterlässt."
+          "text": "Die Beteiligung der gesamten Schulgemeinschaft ist der Kern unseres Projekts, denn nur mit den Wünschen und dem Engagement aller Beteiligten kann aus der Betonwüste ein naturnaher Lebensraum werden. Die Planung beginnt mit einem Zeichen-Workshop für die Schülerinnen und Schüler der dritten und vierten Klassen – der Zielgruppe, die den Schulhof im Alltag am intensivsten nutzt. Die Kinder malen ihre Wunschorte auf, von schattigen Sitzecken über Kletterbäume bis zu Blumenbeeten. Parallel dazu sammeln die Klassensprecher aller Klassen die Ideen und Wünsche ihrer Mitschüler, um auch die Stimmen der Jüngeren sichtbar zu machen. Wir schlagen vor, diese Sammlung in einer gemeinsamen Ausstellung zu präsentieren, aus der dann konkrete Planungsschwerpunkte abgeleitet werden – etwa eine Begrünung der versiegelten Flächen und Sitzgelegenheiten unter den bestehenden Bäumen, damit kein Kind mehr allein in der Hitze sitzen muss. Für die weitere Konkretisierung ist ein ganztägiger Planungsworkshop mit Schülervertretung, interessierten Eltern und dem Kollegium denkbar, moderiert durch eine noch zu gewinnende Fachkraft für partizipative Freiraumplanung. Zudem soll eine schulhof-AG eingerichtet werden, die die Umsetzung der einzelnen Bausteine (z. B. Pflanzaktionen, Bau von Hochbeeten oder Sitzmöbeln) über die Projektlaufzeit begleitet. Auch der Förderverein hat grundsätzliches Interesse signalisiert; seine schriftliche Beteiligungserklärung ist vor Einreichung noch einzuholen [TODO: Zusage des Fördervereins einholen]. Auf diese Weise bleibt der Beteiligungsprozess nicht auf eine einmalige Ideensammlung beschränkt, sondern wird zum durchgängigen Gestaltungsprinzip."
         },
         {
           "name": "Umsetzung, Traegerschaft und Verstetigung",
-          "text": "Die Trägerschaft für das Vorhaben „etwas Grün“ liegt bei der Astrid-Lindgren-Grundschule. Da bauliche Veränderungen am Schulhof (Entsiegelung, Pflanzung eines Baumes, Aufstellen einer Bank, Anlegen eines Hochbeetes) erforderlich sind, muss die Kommune als Schulträger der Maßnahme zustimmen. Eine formale Zusage liegt derzeit noch nicht vor; diese wird vor Antragseinreichung eingeholt. Die Projektsteuerung erfolgt durch die Schulleitung im Austausch mit dem Kollegium, die Organisation der praktischen Umsetzung ist noch zu klären. [TODO: Zuständigkeit (z. B. Hausmeister, Bauhof, externe Firma) vor Einreichung festlegen.]\n\nDie Planungsphase wird bis zum Frühjahr abgeschlossen. Die Kinder der Klassen 1 bis 4 werden im Rahmen des Sachunterrichts beteiligt: Sie zeichnen ihre Wünsche („etwas Grün“, „etwas zum Sitzen“) und diskutieren die Gestaltung, um den stark versiegelten, im Sommer überhitzten Schulhof naturnah zu verändern. Die genaue Beteiligungsform (z. B. Malen, Abstimmung) wird im Sachunterricht der beteiligten Klassen entwickelt. [TODO: Zeitplan für die Kinderbeteiligung und konkrete Methode vor Einreichung ergänzen.] Die Umsetzung aller Maßnahmen soll bis zum offiziellen Projektende der Förderung abgeschlossen sein.\n\nFür die langfristige Pflege und den Erhalt der neuen Elemente – insbesondere des Baumes, des Hochbeetes und der begrünten Flächen – wird ein einfaches Patenschaftssystem im Schulalltag verankert. Die Pflege des Hochbeetes kann beispielsweise im Sachunterricht als wiederkehrende Aufgabe übernommen werden. Die Bewässerung des Baumes wird in den Dienstplan der Hauswirtschaft oder des Hausmeisterdienstes [TODO: genaue Personengruppe nach Klärung ergänzen] eingebunden. Da die Kommune als Schulträger für die Grundstückspflege zuständig ist, werden die Pflegekosten für die Grünflächen (Mahd, Baumpflege) in den städtischen Haushalt übernommen. Eine schriftliche Bestätigung der Kommune zu dieser Kostenübernahme wird vor Antragstellung eingeholt."
+          "text": "Die Planung, Umsetzung und langfristige Sicherung des naturnahen Schulhofs gliedern wir in drei Phasen, die auf klaren Verantwortlichkeiten und einer festen Kooperation mit dem Schulträger beruhen. Trägerin der Maßnahme ist die Astrid-Lindgren-Grundschule selbst. Für die Bauphase stimmen wir alle baulichen Veränderungen – wie das Entsiegeln von Flächen oder das Anlegen von Beeten – vorab mit dem Schulträger (Kommune) ab und holen dessen schriftliche Zustimmung ein. Ein Antrag auf denkmalschutz- oder baurechtliche Genehmigung sowie eine Freigabe des Gebäudemanagements sind erforderlich; die konkrete Prüfung läuft [TODO: Zustimmung des Schulträgers vor Einreichung einholen]. Die organisatorische und pädagogische Leitung übernimmt das Kollegium, unterstützt durch den Förderverein der Schule, mit dem wir die Feinabstimmung noch führen [TODO: schriftliche Zusage des Fördervereins zur Mittelverwaltung und Mithilfe bei Pflanzaktionen einholen]. Die erste Phase der Planung bis zum Frühjahr 2026 wird von einem partizipativen Prozess getragen: Ein Zeichen-Workshop mit den Kindern der dritten und vierten Klassen, ergänzt durch eine Sammlung der Wünsche über die Klassensprecher, bildet die konkrete Bedarfsgrundlage. Aus diesen Ideen – etwa nach schattigen Sitzgelegenheiten oder Klettermöglichkeiten – entwickeln wir gemeinsam mit einem Landschaftsarchitekten oder Umweltpädagogen eine naturnahe Gestaltungsskizze. Die zweite Phase (Umsetzung bis Projektende) erfolgt über schulische Projekttage, an denen Eltern, Lehrkräfte und Kinder die geplanten Elemente – Hochbeete, Sitzstufen aus Naturstein, ein kleines Wasserbecken – in Eigenarbeit und unter fachlicher Anleitung realisieren. Um die Pflege und den Erhalt des grünen Schulhofs nach Projektende zu sichern, etablieren wir einen einfachen Pflegeplan: Jede Klasse übernimmt für ein Beet oder eine Pflanzfläche eine Patenschaft, begleitet von einem Schulgärtner oder einer Honorarkraft [TODO: Finanzierung einer regelmäßigen Pflege und ggf. einer Anleitung durch den Förderverein oder die Kommune klären]. Zudem verankern wir die Pflege als festen Bestandteil der Klassenleitungs- und Ganztagsaufgaben, sodass der Schulhof auch ohne zusätzliche Projektmittel dauerhaft lebendig bleibt."
         },
         {
           "name": "Finanzierung und weitere Mittel",
-          "text": "Wir beantragen Fördermittel von rund 20.000 Euro. Diese Summe teilen wir in zwei Schritte: Ein erster Anteil von etwa 4.000 bis 5.000 Euro ist für die Planung vorgesehen – das umfasst eine Bestandsaufnahme und ein Beteiligungsverfahren mit den Kindern (z. B. im Sachunterricht durch Malen und Diskutieren), die Auswahl von geeigneten Pflanzen, Sitzgelegenheiten und eines Baumes sowie eine Entwurfszeichnung durch eine fachkundige Planerin. Der zweite, größere Anteil von rund 15.000 bis 16.000 Euro fließt in die Umsetzung. Wir wollen auf den rund 500 m² stark versiegelten Schulhof eine Grünfläche mit einem Baum samt Bank und mindestens ein Hochbeet anlegen. Zusätzlich zu den Projektmitteln bringen wir Eigenleistungen ein. Der Schulträger (Kommune) wird voraussichtlich Material- und Gerätekosten für die Entsiegelung sowie die Vorbereitung der Pflanzflächen übernehmen; eine schriftliche Zusage liegt noch nicht vor, steht jedoch in Aussicht. Die Bau-AG des Fördervereins der Schule kann bei den Pflanz- und Bauarbeiten unterstützen – die konkrete Zusage und Höhe der Beteiligung (z. B. Sachspenden oder Gartenmaterial) werden wir bis zur Antragstellung einholen. Die geschätzten Gesamtkosten des Projekts beziffern wir auf rund 25.000 bis 28.000 Euro. Sollte die Bewilligungssumme geringer ausfallen oder die Eigenanteile nicht vollständig gedeckt werden, können wir die Zahl der Hochbeete reduzieren und die Pflanzfläche verkleinern. [TODO: Angebote für Baum, Bank, Hochbeet-Material und Pflanzsubstrat, schriftliche Zusage des Schulträgers und des Fördervereins vor Einreichung einholen]"
+          "text": "Die Fördermittel in Höhe von rund 20.000 Euro sind für die an unserer Schule dringend notwendige naturnahe Umgestaltung des Schulhofs vorgesehen. Der derzeit fast vollständig versiegelte und mit wenigen Bäumen bestandene Hof heizt sich im Sommer stark auf, sodass die Kinder kaum Aufenthalts- und Spielmöglichkeiten haben. Die rund 300 Schülerinnen und Schüler drängeln sich dann unter den wenigen schattigen Plätzen. Die beantragte Summe soll wie folgt eingesetzt werden: Ein erster Teil (voraussichtlich rund 4.000 Euro, Schätzung) fließt in die fachliche Planung, die gemeinsam mit einer Fachkraft für naturnahe Freiraumgestaltung die Kinderwünsche aus dem geplanten Zeichen-Workshop und der Sammlung durch die Klassensprecher aufgreift. Der Großteil (voraussichtlich rund 16.000 Euro, Schätzung) ist für die konkrete Umsetzung von entsiegelten Flächen, neuen Pflanzbereichen, Sitzgelegenheiten im Schatten und naturnahen Spielelementen vorgesehen. Da die geschätzten Gesamtkosten über den 20.000 Euro liegen, werden ergänzende Mittel eingeworben: Der Förderverein hat grundsätzliches Interesse signalisiert, eine schriftliche Zusage steht hier noch aus [TODO: vor Einreichung einholen]. Zudem wird die Schule Eigenleistung in Form von Elternarbeit und schulischen Projekttagen einbringen (Sachkosten hierfür noch nicht beziffert [TODO: konkretisieren]). Auch eine Anfrage beim Schulträger bezüglich einer Co-Finanzierung über das Landesumweltministerium Niedersachsen ist vorgesehen, sobald die Ausschreibungswelle aktiv ist. Eine detaillierte Kostenaufstellung wird mit der Planungsfachkraft vor Einreichung der Bewerbung erstellt und dem Antrag beigefügt."
         }
       ],
-      "finalText": "# etwas Grün — Astrid-Lindgren-Grundschule (deinSchulhof / Gruene Schulhoefe (Bundesinitiative DUH &…\n\n## Schule und Ausgangslage des Schulhofs\n\nEin Kind sitzt in der Pause auf dem heißen Boden im Schatten der Turnhallenwand – es gibt keine Bank, keinen Baum. Die Astrid-Lindgren-Grundschule ist eine Grundschule der Klassen 1 bis 4 in Niedersachsen mit rund 200 Schülerinnen und Schülern. Unser Schulhof umfasst schätzungsweise 500 Quadratmeter; der Boden ist überwiegend versiegelt (Asphalt/Beton). Diese Gestaltung ist vor allem an heißen Sommertagen ein Problem: Der Schulhof heizt sich stark auf, sodass die Kinder die pralle Sonne meiden und sich in den schmalen Schattenstreifen an der Turnhallenwand drängen. Aufenthaltsqualität gibt es dort nicht – es gibt weder Bänke noch schattenspendende Bäume. Es fehlt an natürlichen Elementen wie Grünflächen, Rankpflanzen oder Hochbeeten, die zum Verweilen und Entdecken einladen würden. Ein Teil der Schülerschaft hat besonderen Förderbedarf (Schätzung der Schulleitung: etwa ein Drittel, genaue Erhebung folgt vor Einreichung). Mit der naturnahen Umgestaltung fördern wir direkt die Ziele von deinSchulhof: mehr Aufenthaltsqualität, Klimaanpassung und Naturerleben für alle Kinder.\n\n## Vision und Gestaltungskonzept\n\nUnser Schulhof ist heute eine 500 Quadratmeter große versiegelte Fläche. Im Sommer wird er zur Hitzefalle: Die Kinder drücken sich dann in den schmalen Schattenstreifen an der Turnhallenwand. Das wollen wir ändern. In unserer Vision verwandelt sich dieser graue, aufgeheizte Ort in einen grünen, kühlen Lebensraum. Wir planen, einen Baum mit einer Sitzgelegenheit zu pflanzen – ein schattiger Aufenthaltsort für heiße Sommertage. Zusätzlich soll ein Hochbeet angelegt werden, das die Kinder selbst bepflanzen und pflegen können. Dieser Ort soll nicht nur gut aussehen, sondern auch zum Erleben und Lernen einladen: Die Klassen 1 bis 4 können dort im Sachunterricht beobachten, wie Pflanzen wachsen, welche Insekten sich ansiedeln und wie Schatten tatsächlich die Temperatur senkt. Die genaue Größe der vorzubereitenden Bodenarbeiten steht noch nicht fest; sie wird im Rahmen der Abstimmung mit dem Schulträger konkretisiert [TODO: mit der Kommune vor Einreichung abstimmen]. Die Kinder sollen von Anfang an mitreden: Vielleicht im Sachunterricht könnten sie ihre Ideen malen und Wünsche sammeln – die genaue Form der Beteiligung ist noch zu entwickeln [TODO: gemeinsam mit den Klassenlehrkräften festlegen]. Unser Ziel ist ein Schulhof, der nicht nur kühler und grüner ist, sondern den Kindern auch das Gefühl gibt: Das hier ist unser Ort.\n\n## Beteiligung der Schulgemeinschaft\n\nAn der Astrid-Lindgren-Grundschule mit rund 200 Kindern in den Klassen 1 bis 4 ist die Beteiligung der Schulgemeinschaft der Kern des Vorhabens. Die Schülerinnen und Schüler sollen von Anfang an in die Planung einbezogen werden – beispielsweise im Sachunterricht durch Malen oder eine andere geeignete Methode. Das genaue Format ist noch festzulegen [TODO: gemeinsam mit den Klassenlehrkräften entwickeln]. Erste genannte Wünsche der Kinder sind etwas Grün, etwas zum Sitzen, ein Baum mit Bank und ein Hochbeet. Eine Beteiligung von Eltern und Kollegium ist angedacht, aber noch nicht konkret geplant [TODO: Verantwortliche und Formate festlegen]. Über die gesamte Projektlaufzeit hinweg wird die Beteiligung in mehreren Schritten organisiert: Nach der Ideensammlung folgt eine gemeinsame Abstimmung über die finale Auswahl der Elemente. Die zeitliche Abfolge wird gemeinsam mit dem Kollegium und der Kommune abgestimmt; schriftliche Zusagen der Kommune liegen noch nicht vor. Ziel ist, dass jedes Kind – unabhängig von Förderbedarf – eine konkrete, sichtbare Spur auf dem neuen Schulhof hinterlässt.\n\n## Umsetzung, Traegerschaft und Verstetigung\n\nDie Trägerschaft für das Vorhaben liegt bei der Astrid-Lindgren-Grundschule. Da bauliche Veränderungen am Schulhof (Vorbereitung der Pflanzfläche für einen Baum, Aufstellen einer Bank, Anlegen eines Hochbeetes) erforderlich sind, muss die Kommune als Schulträger der Maßnahme zustimmen. Eine formale Zusage liegt derzeit noch nicht vor; diese wird vor Antragseinreichung eingeholt. Die Projektsteuerung erfolgt durch die Schulleitung im Austausch mit dem Kollegium. [TODO: Zuständigkeit für die praktische Umsetzung vor Einreichung klären.]\n\nEin konkreter Zeitplan wird noch erstellt [TODO: Zeitplan für Planung und Umsetzung entwickeln]. Die Kinder der Klassen 1 bis 4 werden im Rahmen des Sachunterrichts beteiligt: Sie zeichnen ihre Wünsche und diskutieren die Gestaltung, um den stark versiegelten, im Sommer überhitzten Schulhof naturnah zu verändern. Die genaue Beteiligungsform wird im Vorfeld entwickelt [TODO: konkrete Methode vor Einreichung ergänzen]. Die Umsetzung aller Maßnahmen soll bis zum offiziellen Projektende der Förderung abgeschlossen sein.\n\nFür die langfristige Pflege und den Erhalt der neuen Elemente muss noch ein Konzept erarbeitet werden [TODO: mit Hausmeister und Kommune abstimmen]. Die Pflege des Hochbeetes könnte beispielsweise im Sachunterricht als wiederkehrende Aufgabe übernommen werden. Die Übernahme der Pflegekosten für Grünflächen durch die Kommune muss noch schriftlich zugesagt werden [TODO: vor Einreichung klären].\n\n## Finanzierung und weitere Mittel\n\nWir beantragen Fördermittel; die genaue Höhe wird im Finanzplan beziffert (Angebote werden vor Einreichung eingeholt). Diese Summe teilen wir in zwei Schritte: Ein erster Anteil ist für die Planung vorgesehen – das umfasst eine Bestandsaufnahme und ein Beteiligungsverfahren mit den Kindern, die Auswahl von geeigneten Pflanzen und Sitzgelegenheiten sowie eine Entwurfszeichnung. Der zweite, größere Anteil fließt in die Umsetzung. Wir wollen auf den rund 500 m² stark versiegelten Schulhof eine Grünfläche mit einem Baum samt Bank und mindestens ein Hochbeet anlegen. Zusätzlich zu den Projektmitteln bringen wir Eigenleistungen ein. Der Schulträger (Kommune) wird voraussichtlich Material- und Gerätekosten für die Vorbereitung der Pflanzflächen übernehmen; eine schriftliche Zusage liegt noch nicht vor und muss eingeholt werden [TODO: schriftliche Zusage des Schulträgers einholen]. Ob der Förderverein der Schule unterstützen kann, muss noch geklärt werden [TODO: Beteiligung des Fördervereins prüfen]. Die genauen Gesamtkosten des Projekts werden im Finanzplan beziffert. Sollte die Bewilligungssumme geringer ausfallen oder die Eigenanteile nicht vollständig gedeckt werden, können wir den Umfang der Maßnahmen reduzieren. [TODO: Angebote für Baum, Bank, Hochbeet-Material und Pflanzsubstrat vor Einreichung einholen]",
+      "finalText": "# Naturnahe Umgestaltung des Schulhofs der Astrid-Lindgren-Grundschule\n\n## Schule und Ausgangslage des Schulhofs\n\nDie Astrid-Lindgren-Grundschule ist eine Grundschule mit etwa 300 Kindern, deren Schulhof eine stark versiegelte Betonfläche mit nur wenigen Bäumen darstellt. Die genaue Versiegelungsrate wurde noch nicht vermessen [TODO: Quadratmeterzahl und exakten Versiegelungsgrad vor Einreichung ermitteln]. Die fehlende Begrünung führt insbesondere an heißen Sommertagen zu einer spürbaren Überhitzung: Die Kinder drängeln sich dann unter den wenigen schattenspendenden Bäumen, aktives Toben oder ruhiger Aufenthalt sind auf dem Großteil der Fläche kaum möglich. Aus Sicht des Kollegiums ist dieser Zustand für eine Grundschule, deren Schülerinnen und Schüler täglich mehrere Stunden auf dem Hof verbringen, nicht mehr tragbar. Hinzu kommt ein pädagogischer Handlungsdruck: Viele Kinder haben wenig Naturerfahrung und einige verfügen über Förderbedarf. Der monotone, heiße Hof bietet kaum Anreize für selbstbestimmtes Spiel oder Rückzug. Ein wiederkehrendes Bild ist das eines einzelnen Kindes, das allein auf einer Bank sitzt – weil es an heißen Tagen nirgendwo hingehen kann und die Betonlandschaft keine Spielimpulse gibt. Eine Umgestaltung ist gerade an dieser Schule dringend, um einen Schulhof zu schaffen, der sowohl Hitzeschutz und Aufenthaltsqualität als auch sinnliche Naturerfahrungen für alle Kinder ermöglicht.\n\n## Vision und Gestaltungskonzept\n\nUnser Schulhof ist heute eine fast vollständig versiegelte Fläche mit einigen Bäumen. Im Hochsommer heizen sich die Flächen so stark auf, dass kaum ein Aufenthalt möglich ist; die Kinder drängen sich dann unter den wenigen Schattenplätzen und einzelne Kinder sitzen allein auf Bänken, weil es zum Toben zu heiß ist. Diese Beobachtungen haben einen Wunschprozess angestoßen: In einem Zeichen-Workshop malen die Kinder ihre Idealbilder des Hofes, und die Klassensprecher sammeln die Wünsche strukturiert – das Interesse des Kollegiums ist grundsätzlich vorhanden. Aus diesen Kinderideen entwickeln wir ein Gestaltungskonzept, das den Schulhof schrittweise entsiegelt und begrünt. Konkret schwebt uns vor, einen Teil der Betonflächen aufzubrechen und durch wasserdurchlässige Beläge oder Pflaster mit Rasenfugen zu ersetzen sowie neue Hochbeete und Pflanzflächen anzulegen. Es sollen mehrere naturnahe Zonen entstehen: eine ruhige Sitzecke mit heimischen Sträuchern und Stauden unter den bestehenden Bäumen, die an heißen Tagen echten Schatten bietet; eine kleine Wildblumenwiese, die Insekten anzieht und als Beobachtungsort für den Sachunterricht dient. Das Konzept zielt darauf ab, zur Klimaanpassung beizutragen, indem die Entsiegelung und neue Vegetation die Hitzebildung mindern, Regenwasser versickern lassen und das Mikroklima verbessern können. Für die Biodiversität pflanzen wir Pollen- und Nektarquellen für Insekten sowie Beerensträucher, die Vögeln Nahrung bieten. Die genaue Verteilung der Flächen und die Priorisierung der Maßnahmen werden auf Basis der Kinderzeichnungen und -wünsche im Rahmen eines Beteiligungsworkshops [TODO: Termin und Format mit Klassenleitungen abstimmen] gemeinsam mit den Schülerinnen und Schülern festgelegt. Die Umsetzung umfasst die Entsiegelung ausgewählter Flächen und die Pflanzung von Bäumen und Sträuchern. Der genaue Kostenplan wird anhand von Angeboten für Entsiegelung, Erde, Pflanzen und Sitzgelegenheiten erstellt, wobei der Zeitpunkt der Erstellung noch festzulegen ist.\n\n## Beteiligung der Schulgemeinschaft\n\nDie Beteiligung der gesamten Schulgemeinschaft ist der Kern unseres Projekts, denn nur mit den Wünschen und dem Engagement aller Beteiligten kann aus der Betonwüste ein naturnaher Lebensraum werden. Die Planung beginnt mit einem Zeichen-Workshop für die Schülerinnen und Schüler – insbesondere der dritten und vierten Klassen, die den Schulhof im Alltag intensiv nutzen und deren Perspektive uns besonders wichtig ist. Die Kinder malen ihre Wunschorte auf, von schattigen Sitzecken über Kletterbäume bis zu Blumenbeeten. Parallel dazu sammeln die Klassensprecher aller Klassen die Ideen und Wünsche ihrer Mitschüler, um auch die Stimmen der Jüngeren sichtbar zu machen. Wir schlagen vor, diese Sammlung in einer gemeinsamen Ausstellung zu präsentieren, aus der dann konkrete Planungsschwerpunkte abgeleitet werden – etwa eine Begrünung der versiegelten Flächen und Sitzgelegenheiten unter den bestehenden Bäumen, damit kein Kind mehr allein in der Hitze sitzen muss. Für die weitere Konkretisierung ist ein ganztägiger Planungsworkshop mit Schülervertretung, interessierten Eltern und dem Kollegium denkbar, moderiert durch eine noch zu gewinnende Fachkraft für partizipative Freiraumplanung [TODO: Angebote für Moderation einholen]. Zudem soll eine Schulhof-AG eingerichtet werden, die die Umsetzung der einzelnen Bausteine (z. B. Pflanzaktionen, Bau von Hochbeeten oder Sitzmöbeln) über die Projektlaufzeit begleitet. Auch der Förderverein hat mündlich Interesse bekundet [TODO: schriftliche Zusage des Fördervereins vor Einreichung einholen]. Auf diese Weise bleibt der Beteiligungsprozess nicht auf eine einmalige Ideensammlung beschränkt, sondern wird zum durchgängigen Gestaltungsprinzip.\n\n## Umsetzung, Trägerschaft und Verstetigung\n\nDie Planung, Umsetzung und langfristige Sicherung des naturnahen Schulhofs gliedern wir in drei Phasen, die auf klaren Verantwortlichkeiten und einer festen Kooperation mit dem Schulträger beruhen. Trägerin der Maßnahme ist die Astrid-Lindgren-Grundschule selbst. Für die Bauphase stimmen wir alle baulichen Veränderungen – wie das Entsiegeln von Flächen oder das Anlegen von Beeten – vorab mit dem Schulträger (Kommune) ab und holen dessen schriftliche Zustimmung ein; die erforderlichen Genehmigungen sind vor Einreichung einzuholen [TODO: Prüfung mit Schulträger aufnehmen]. Die organisatorische und pädagogische Koordination übernimmt ein noch zu benennendes Projektteam [TODO: Team benennen], unterstützt durch den Förderverein der Schule, mit dem wir die Feinabstimmung noch führen [TODO: schriftliche Zusage des Fördervereins zur Mittelverwaltung und Mithilfe bei Pflanzaktionen einholen]. Die erste Phase der Planung bis zum Frühjahr 2026 wird von einem partizipativen Prozess getragen: Ein Zeichen-Workshop mit den Kindern, ergänzt durch eine Sammlung der Wünsche über die Klassensprecher, bildet die konkrete Bedarfsgrundlage. Aus diesen Ideen – etwa nach schattigen Sitzgelegenheiten oder Klettermöglichkeiten – entwickeln wir gemeinsam mit einer externen Fachkraft eine naturnahe Gestaltungsskizze [TODO: Angebote für Landschaftsarchitektur oder Umweltpädagogik einholen]. Die zweite Phase (Umsetzung bis Projektende) erfolgt über schulische Projekttage, an denen Eltern, Lehrkräfte und Kinder die geplanten Elemente – wie Hochbeete und Sitzgelegenheiten – in Eigenarbeit und unter fachlicher Anleitung realisieren. Um die Pflege und den Erhalt des grünen Schulhofs nach Projektende zu sichern, etablieren wir einen einfachen Pflegeplan. Eine mögliche Verstetigung könnte über Klassenpatenschaften für Beete oder Pflanzflächen erfolgen [TODO: mit Kollegium abstimmen und Finanzierung einer regelmäßigen Pflege durch Förderverein oder Kommune klären].\n\n## Finanzierung und weitere Mittel\n\nDie Fördermittel in Höhe von 20.000 Euro sind für die an unserer Schule dringend notwendige naturnahe Umgestaltung des Schulhofs vorgesehen. Der derzeit fast vollständig versiegelte und mit wenigen Bäumen bestandene Hof heizt sich im Sommer stark auf, sodass die Kinder kaum Aufenthalts- und Spielmöglichkeiten haben. Die etwa 300 Schülerinnen und Schüler drängeln sich dann unter den wenigen schattigen Plätzen. Die beantragte Summe soll wie folgt eingesetzt werden: Ein Teil fließt in die fachliche Planung durch ein Landschaftsarchitekturbüro, die gemeinsam mit einer Fachkraft für naturnahe Freiraumgestaltung die Kinderwünsche aus dem geplanten Zeichen-Workshop und der Sammlung durch die Klassensprecher aufgreift. Der Großteil ist für die Entsiegelung von Flächen und die Pflanzung von Bäumen und Sträuchern vorgesehen. Daneben sind Mittel für Materialien der Beteiligungsworkshops sowie ein Puffer für unvorhergesehene Ausgaben eingeplant. Da die geschätzten Gesamtkosten über den 20.000 Euro liegen könnten, werden ergänzende Mittel eingeworben: Der Förderverein hat mündlich Interesse bekundet, eine schriftliche Zusage steht hier noch aus [TODO: vor Einreichung einholen]. Zudem wird die Schule Eigenleistung in Form von Elternarbeit und schulischen Projekttagen einbringen (Sachkosten hierfür noch nicht beziffert [TODO: konkretisieren]). Auch eine Anfrage bei einem noch zu bestimmenden Träger bezüglich einer Co-Finanzierung ist vorgesehen, sobald die Ausschreibungswelle aktiv ist. Eine detaillierte Kostenaufstellung wird mit der Planungsfachkraft vor Einreichung der Bewerbung erstellt und dem Antrag beigefügt [TODO: Angebote einholen].",
       "finanzplan": {
-        "posten": [],
-        "hinweise": [
-          "Es wurden keine Kostenangaben gemacht — der Finanzplan ist noch zu beziffern. Konkrete Betraege werden ueber Angebote vor Einreichung ermittelt.",
-          "Konkrete Beträge werden über Angebote vor Einreichung ermittelt.",
-          "Die Förderung erfordert keine Eigenmittel, jedoch kann ein kommunaler Eigenanteil abgestimmt werden."
+        "posten": [
+          {
+            "id": "69d56e9b-b48e-41bb-b129-f7bab155de83",
+            "betragEur": 10000,
+            "kategorie": "honorare",
+            "begruendung": "Schaetzung: Planungshonorar für Entwurfs- und Ausführungsplanung der naturnahen Schulhofumgestaltung; Betrag angelehnt an übliche Fördersumme und Richtlinie.",
+            "bezeichnung": "Honorar Landschaftsarchitekturbüro",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "74bd0559-f45e-429b-a3b0-00a7417d686a",
+            "betragEur": 6000,
+            "kategorie": "investitionen",
+            "begruendung": "Schaetzung: Teilentsiegelung von asphaltierten Flächen sowie Pflanzung von Bäumen und Sträuchern zur Beschattung, inklusive Substrat.",
+            "bezeichnung": "Entsiegelung und Pflanzung",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "e5a79bf6-1c96-4cbf-a88a-5e86ecf98ac1",
+            "betragEur": 2000,
+            "kategorie": "sachkosten",
+            "begruendung": "Schaetzung: Material für Zeichen-Workshops der 3. und 4. Klassen und Sammelaktionen der Klassensprecher (z.B. Stifte, Papier, Präsentationsmaterial).",
+            "bezeichnung": "Material für Beteiligungsworkshops",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "2b7c3462-8db5-4522-a17c-fd0feae74647",
+            "betragEur": 2000,
+            "kategorie": "sonstiges",
+            "begruendung": "Schaetzung: Reserve für zusätzliche Kleinmaterialien oder Planungsanpassungen, da genaue Flächengröße noch nicht bekannt.",
+            "bezeichnung": "Puffer für unvorhergesehene Ausgaben",
+            "eigenanteil": false,
+            "istVorschlag": true
+          }
         ],
-        "generiertAm": "2026-06-10T07:42:54.226Z",
-        "unbeziffert": true,
-        "kostenrahmen": [
-          "Honorar für Landschaftsarchitekturbüro für Planung der naturnahen Umgestaltung",
-          "Beschaffung von Pflanzen, Substrat und Hochbeeten für die Begrünung",
-          "Material für schattenspendende Elemente wie Baum mit Sitzbank",
-          "Sachkosten für Beteiligungsworkshops mit Schülerinnen und Schülern",
-          "Kosten für Entsiegelung von Asphaltflächen zur Schaffung neuer Aufenthaltsbereiche"
-        ]
+        "hinweise": [
+          "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
+          "Alle Beträge sind grobe Schätzungen ohne konkrete Angebote – vor Antragseinreichung durch Kostenvoranschläge belegen.",
+          "Schülergröße (ca. 300 Kinder) und genaue Schulhoffläche sind noch zu ermitteln; abhängig davon können Investitionskosten für Entsiegelung variieren.",
+          "Eigenanteil nicht erforderlich, aber Eigenleistungen (z.B. Schulgarten-AG bei Bepflanzung) sind erwünscht – ggf. später ergänzen.",
+          "Der Betrag für „Honorar Landschaftsarchitekturbüro\" (10.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Entsiegelung und Pflanzung\" (6.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Material für Beteiligungsworkshops\" (2.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Puffer für unvorhergesehene Ausgaben\" (2.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
+        ],
+        "generiertAm": "2026-06-10T10:20:17.186Z"
       },
       "critiqueFindings": [
         {
-          "zitat": "Wir planen, einen Teil der versiegelten Fläche zu entsiegeln und dort eine kleine Baumgruppe zu pflanzen",
+          "zitat": "Ein Antrag auf denkmalschutz- oder baurechtliche Genehmigung sowie eine Freigabe des Gebäudemanagements sind erforderlich; die konkrete Prüfung läuft",
           "schwere": "hoch",
-          "abschnitt": "Vision und Gestaltungskonzept",
+          "abschnitt": "Umsetzung, Traegerschaft und Verstetigung",
           "kategorie": "belegluecke",
-          "vorschlag": "User-Antworten enthalten keine 'Baumgruppe' sondern nur 'einen Baum mit Bank'. Ersetze durch 'einen Baum mit Sitzgelegenheit'."
+          "vorschlag": "Diese Details sind erfunden. Streichen und durch allgemeine Formulierung ersetzen: 'Die baulichen Maßnahmen werden vorab mit dem Schulträger abgestimmt; die erforderlichen Genehmigungen sind vor Einreichung einzuholen [TODO: Prüfung mit Schulträger aufnehmen].'"
         },
         {
-          "zitat": "die genaue Größe der Entsiegelungsfläche steht noch nicht fest; sie wird im Rahmen der Abstimmung mit der Kommune konkretisiert",
+          "zitat": "einem Landschaftsarchitekten oder Umweltpädagogen",
           "schwere": "hoch",
-          "abschnitt": "Vision und Gestaltungskonzept",
+          "abschnitt": "Umsetzung, Traegerschaft und Verstetigung",
           "kategorie": "belegluecke",
-          "vorschlag": "Der Begriff 'Entsiegelung' stammt nicht aus User-Antworten. User spricht nur von 'etwas Grün' und 'Hochbeet'. Streiche oder ersetze durch 'vorbereitende Bodenarbeiten' und kläre mit Schulträger."
+          "vorschlag": "Der User nannte keine externe Fachkraft. Ersetzen durch: 'möglicherweise unterstützt durch eine externe Fachkraft [TODO: Angebote einholen]'."
         },
         {
-          "zitat": "Im Sachunterricht wollen wir Ideen sammeln und Wunschbilder malen lassen",
+          "zitat": "rund 300 Kindern",
           "schwere": "hoch",
-          "abschnitt": "Vision und Gestaltungskonzept",
+          "abschnitt": "Schule und Ausgangslage des Schulhofs",
           "kategorie": "belegluecke",
-          "vorschlag": "User sagte: 'vielleicht im Sachunterricht oder so' und 'malen oder so – genau weiß ich das noch nicht'. Formuliere als vage Idee, nicht als festen Plan."
+          "vorschlag": "User sagte 'So um die 300 Kinder, schätze ich'. Die ungefähre Angabe ist zulässig, aber als eindeutige Zahl ('rund 300') grenzwertig. Besser: 'etwa 300 Kinder' oder 'ca. 300 Kinder'."
         },
         {
-          "zitat": "Eine Elternbefragung sowie die Einbindung des Kollegiums sind vorgesehen",
+          "zitat": "Der Förderverein hat grundsätzliches Interesse signalisiert",
           "schwere": "hoch",
           "abschnitt": "Beteiligung der Schulgemeinschaft",
           "kategorie": "belegluecke",
-          "vorschlag": "User erwähnt weder Elternbefragung noch Kollegiumsbeteiligung explizit. Streiche oder ersetze durch 'Eine Beteiligung von Eltern und Kollegium ist angedacht, aber noch nicht konkret geplant.'"
+          "vorschlag": "User sagte: 'die haben grundsätzlich Interesse, aber ob die das schriftlich geben, müsste ich noch mal nachfragen'. Die Aussage 'hat grundsätzliches Interesse signalisiert' suggeriert eine erfolgte Kommunikation. Präziser: 'der Förderverein hat mündlich Interesse bekundet [TODO: schriftliche Zusage einholen]'."
         },
         {
-          "zitat": "schließlich ein Aktionstag, an dem Kinder, Eltern und Lehrkräfte gemeinsam pflanzen, bauen und gestalten",
-          "schwere": "hoch",
-          "abschnitt": "Beteiligung der Schulgemeinschaft",
-          "kategorie": "belegluecke",
-          "vorschlag": "User sagte nur 'muss ich noch klären, wer das macht'. Kein Aktionstag erwähnt. Streiche oder formuliere als unverbindliche Idee."
-        },
-        {
-          "zitat": "Die Planungsphase wird bis zum Frühjahr abgeschlossen.",
+          "zitat": "verankern wir die Pflege als festen Bestandteil der Klassenleitungs- und Ganztagsaufgaben",
           "schwere": "hoch",
           "abschnitt": "Umsetzung, Traegerschaft und Verstetigung",
           "kategorie": "belegluecke",
-          "vorschlag": "Kein Zeitplan in User-Antworten. Streiche oder ersetze durch 'Ein konkreter Zeitplan wird noch erstellt.'"
+          "vorschlag": "User erwähnte keine Verankerung in Klassenleitung oder Ganztag. Streichen oder als Vorschlag formulieren: 'Eine mögliche Verstetigung könnte über Klassenpatenschaften erfolgen [TODO: mit Kollegium abstimmen]'."
         },
         {
-          "zitat": "Die Bewässerung des Baumes wird in den Dienstplan der Hauswirtschaft oder des Hausmeisterdienstes eingebunden.",
-          "schwere": "hoch",
-          "abschnitt": "Umsetzung, Traegerschaft und Verstetigung",
-          "kategorie": "belegluecke",
-          "vorschlag": "Keine solche Planung in User-Antworten. Streiche oder formuliere als 'Die langfristige Pflege muss noch geklärt werden (TODO: mit Hausmeister und Kommune abstimmen).'"
-        },
-        {
-          "zitat": "Die Bau-AG des Fördervereins der Schule kann bei den Pflanz- und Bauarbeiten unterstützen",
-          "schwere": "hoch",
-          "abschnitt": "Finanzierung und weitere Mittel",
-          "kategorie": "belegluecke",
-          "vorschlag": "User erwähnt keinen Förderverein und keine Bau-AG. Streiche oder ersetze durch 'Ob der Förderverein (falls vorhanden) unterstützen kann, muss noch geklärt werden.'"
-        },
-        {
-          "zitat": "FEHLT",
-          "schwere": "hoch",
-          "abschnitt": "global",
-          "kategorie": "richtlinie",
-          "vorschlag": "Es fehlt ein konkreter, bildhafter Einstieg mit einem echten Kind oder einer konkreten Szene. Ergänze einen kurzen Absatz wie: 'Lena (8 Jahre) sitzt in der Pause auf dem heißen Betonboden im Schatten der Turnhalle – es gibt keine Bank, keinen Baum. Das wollen wir ändern.'"
-        },
-        {
-          "zitat": "FEHLT",
-          "schwere": "hoch",
-          "abschnitt": "global",
-          "kategorie": "richtlinie",
-          "vorschlag": "Die Stiftungs-Mission (Klimaschutz, Naturerleben, Gesundheit) wird nicht explizit aufgegriffen. Ergänze einen Satz wie: 'Mit der naturnahen Umgestaltung fördern wir direkt die Ziele von deinSchulhof: mehr Aufenthaltsqualität, Klimaanpassung und Naturerleben für alle Kinder.'"
-        },
-        {
-          "zitat": "Da die Kommune als Schulträger für die Grundstückspflege zuständig ist, werden die Pflegekosten für die Grünflächen (Mahd, Baumpflege) in den städtischen Haushalt übernommen.",
-          "schwere": "hoch",
-          "abschnitt": "Umsetzung, Traegerschaft und Verstetigung",
-          "kategorie": "belegluecke",
-          "vorschlag": "User sagte 'muss ich noch klären' und 'so richtig zugesagt hat noch niemand'. Formuliere als 'Die Übernahme der Pflegekosten durch die Kommune muss noch schriftlich zugesagt werden (TODO: vor Einreichung klären).'"
-        },
-        {
-          "zitat": "Der Schulhof umfasst schätzungsweise 500 Quadratmeter und ist nahezu vollständig versiegelt – es dominiert Beton",
+          "zitat": "insbesondere in den dritten und vierten Klassen",
           "schwere": "mittel",
           "abschnitt": "Schule und Ausgangslage des Schulhofs",
+          "kategorie": "belegluecke",
+          "vorschlag": "User sagte: 'betrifft vor allem die dritten und vierten Klassen'. Die Aussage ist korrekt abgeleitet, aber der Entwurf verengt die Zielgruppe auf diese Klassenstufen. Bitte prüfen, ob tatsächlich nur diese gemeint sind; ansonsten generalisieren."
+        },
+        {
+          "zitat": "voraussichtlich rund 4.000 Euro... voraussichtlich rund 16.000 Euro",
+          "schwere": "mittel",
+          "abschnitt": "Finanzierung und weitere Mittel",
           "kategorie": "sonstiges",
-          "vorschlag": "User sagte 'grob 500 Quadratmeter schätze ich, ist halt viel Beton'. Die 500 m² sind okay, aber 'nahezu vollständig versiegelt' und 'Beton' sind nicht explizit belegt. Ersetze durch 'der Boden ist überwiegend versiegelt (Asphalt/Beton).'"
+          "vorschlag": "Diese Schätzung ist ohne User-Angabe plausibel, aber ohne Angebote spekulativ. Bitte durch 'geplante Verwendung: xx% für Planung, yy% für Umsetzung' ersetzen und auf fehlende Detailkalkulation hinweisen [TODO: Angebote einholen]."
+        },
+        {
+          "zitat": "Die organisatorische und pädagogische Leitung übernimmt das Kollegium",
+          "schwere": "mittel",
+          "abschnitt": "Umsetzung, Traegerschaft und Verstetigung",
+          "kategorie": "sonstiges",
+          "vorschlag": "Konkrete Personen oder Funktionen fehlen. Besser: 'ein Projektteam aus zwei Lehrkräften und der Schulleitung übernimmt die Koordination [TODO: Team benennen]'."
+        },
+        {
+          "zitat": "Zielgruppe sind Schüler der dritten und vierten Klassen",
+          "schwere": "mittel",
+          "abschnitt": "global",
+          "kategorie": "sonstiges",
+          "vorschlag": "In der Vision wird nur diese Zielgruppe genannt, obwohl die ganze Schule betroffen ist. Zielgruppe klarer fassen: 'insbesondere die Klassen 3/4, aber der Hof dient allen 300 Kindern'."
         }
       ],
       "factVerification": {
-        "flagged": [
-          "es gibt keine Bank, keinen Baum",
-          "Lena (8 Jahre) sitzt in der Pause auf dem heißen Boden im Schatten der Turnhallenwand"
-        ],
         "repaired": true,
-        "remaining": [
-          "es gibt keine Bank, keinen Baum"
+        "remaining": [],
+        "vorschlaege": [
+          "wir schlagen vor, diese Sammlung in einer gemeinsamen Ausstellung zu präsentieren",
+          "Auch der Förderverein hat mündlich Interesse bekundet",
+          "In einem Zeichen-Workshop malen die Kinder ihre Idealbilder des Hofes",
+          "eine Schulhof-AG eingerichtet werden"
+        ],
+        "neutralisiert": [
+          "Das Konzept trägt zur Klimaanpassung bei, indem die Entsiegelung und neue Vegetation die Hitzebildung mindern, Regenwasser versickern lassen und das Mikroklima spürbar verbessern.",
+          "Die organisatorische und pädagogische Koordination übernimmt ein Projektteam aus zwei Lehrkräften und der Schulleitung",
+          "Auch eine Anfrage beim Schulträger bezüglich einer Co-Finanzierung über das Landesumweltministerium Niedersachsen ist vorgesehen",
+          "Der genaue Kostenplan wird anhand von Angeboten für Entsiegelung, Erde, Pflanzen und Sitzgelegenheiten vor Bewerbungsschluss erstellt."
+        ]
+      },
+      "consistencyIssues": [
+        {
+          "art": "betrag-unstimmig",
+          "posten": "Alle Posten",
+          "textstelle": "Die Fördermittel in Höhe von 20.000 Euro sind ... vorgesehen.",
+          "beschreibung": "Der Antragstext nennt eine Fördersumme von 20.000 Euro, die Summe der Finanzplan-Posten beträgt jedoch nur 10.000 + 6.000 + 2.000 + 2.000 = 20.000 Euro."
+        }
+      ],
+      "hallucinationGate": {
+        "repaired": true,
+        "residual": [],
+        "introducedBefore": [
+          "20 Prozent",
+          "80 Prozent"
         ]
       },
       "critiqueResolutions": [
@@ -917,7 +892,8 @@
         },
         {
           "index": 6,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die Zielgruppe wird in der Beteiligung auf dritte und vierte Klassen fokussiert, in der Gesamtschau aber nicht explizit als alleinige Zielgruppe genannt; die Unschärfe bleibt leicht bestehen."
         },
         {
           "index": 7,
@@ -929,255 +905,263 @@
         },
         {
           "index": 9,
-          "status": "geschlossen"
-        },
-        {
-          "index": 10,
-          "status": "geschlossen"
-        },
-        {
-          "index": 11,
-          "status": "geschlossen"
-        },
-        {
-          "index": 12,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "In der Vision wird weiterhin auf die dritten und vierten Klassen als besonders betroffen abgestellt, obwohl die ganze Schule genannt ist; der Hinweis auf alle 300 Kinder fehlt im Fließtext."
         }
-      ]
+      ],
+      "hasConsistencyIssues": true
     },
     "costs": {
-      "calls": 36,
+      "calls": 39,
       "entries": [
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
           "promptTokens": 2095,
-          "candidatesTokens": 106
+          "candidatesTokens": 112
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.02,
-          "promptTokens": 1675,
-          "candidatesTokens": 43
+          "promptTokens": 1671,
+          "candidatesTokens": 1
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 2180,
-          "candidatesTokens": 154
+          "promptTokens": 2176,
+          "candidatesTokens": 102
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 1799,
-          "candidatesTokens": 43
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.03,
-          "promptTokens": 2304,
-          "candidatesTokens": 77
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.03,
-          "promptTokens": 1857,
-          "candidatesTokens": 104
+          "promptTokens": 1742,
+          "candidatesTokens": 72
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2423,
-          "candidatesTokens": 137
+          "promptTokens": 2276,
+          "candidatesTokens": 132
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 2028,
-          "candidatesTokens": 104
+          "promptTokens": 1872,
+          "candidatesTokens": 80
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2533,
-          "candidatesTokens": 122
+          "promptTokens": 2396,
+          "candidatesTokens": 127
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 2113,
-          "candidatesTokens": 70
+          "promptTokens": 1996,
+          "candidatesTokens": 132
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2618,
-          "candidatesTokens": 124
+          "promptTokens": 2542,
+          "candidatesTokens": 127
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 2215,
-          "candidatesTokens": 104
+          "promptTokens": 2139,
+          "candidatesTokens": 132
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2720,
-          "candidatesTokens": 100
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2307,
+          "promptTokens": 2644,
           "candidatesTokens": 108
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2869,
-          "candidatesTokens": 120
+          "usdCents": 0.03,
+          "promptTokens": 2217,
+          "candidatesTokens": 132
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2458,
-          "candidatesTokens": 48
+          "promptTokens": 2722,
+          "candidatesTokens": 135
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 2327,
+          "candidatesTokens": 132
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 2832,
+          "candidatesTokens": 135
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 2431,
+          "candidatesTokens": 132
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.05,
-          "promptTokens": 2977,
+          "promptTokens": 2936,
+          "candidatesTokens": 152
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 2559,
           "candidatesTokens": 121
         },
         {
           "model": "deepseek-chat",
+          "usdCents": 0.05,
+          "promptTokens": 3064,
+          "candidatesTokens": 125
+        },
+        {
+          "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2562,
-          "candidatesTokens": 175
+          "promptTokens": 2674,
+          "candidatesTokens": 161
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.05,
-          "promptTokens": 3067,
-          "candidatesTokens": 107
+          "promptTokens": 3224,
+          "candidatesTokens": 106
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2645,
-          "candidatesTokens": 175
+          "promptTokens": 2800,
+          "candidatesTokens": 166
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.05,
-          "promptTokens": 3150,
-          "candidatesTokens": 104
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2715,
-          "candidatesTokens": 175
+          "promptTokens": 3305,
+          "candidatesTokens": 127
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.05,
-          "promptTokens": 3220,
-          "candidatesTokens": 124
+          "promptTokens": 2903,
+          "candidatesTokens": 166
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2807,
-          "candidatesTokens": 175
+          "usdCents": 0.08,
+          "promptTokens": 4703,
+          "candidatesTokens": 341
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.06,
-          "promptTokens": 3769,
-          "candidatesTokens": 407
+          "usdCents": 0.08,
+          "promptTokens": 4653,
+          "candidatesTokens": 574
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.07,
-          "promptTokens": 3719,
-          "candidatesTokens": 472
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.06,
-          "promptTokens": 3741,
-          "candidatesTokens": 367
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.07,
-          "promptTokens": 3758,
-          "candidatesTokens": 538
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.06,
-          "promptTokens": 3729,
+          "usdCents": 0.08,
+          "promptTokens": 4675,
           "candidatesTokens": 443
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.15,
-          "promptTokens": 6699,
-          "candidatesTokens": 2080
+          "usdCents": 0.08,
+          "promptTokens": 4692,
+          "candidatesTokens": 596
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.15,
-          "promptTokens": 7265,
-          "candidatesTokens": 1784
+          "usdCents": 0.08,
+          "promptTokens": 4663,
+          "candidatesTokens": 448
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.07,
-          "promptTokens": 4838,
-          "candidatesTokens": 238
+          "usdCents": 0.14,
+          "promptTokens": 7092,
+          "candidatesTokens": 1286
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.17,
+          "promptTokens": 7375,
+          "candidatesTokens": 2330
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.08,
+          "promptTokens": 5203,
+          "candidatesTokens": 293
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.11,
+          "promptTokens": 2880,
+          "candidatesTokens": 2312
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.08,
+          "promptTokens": 3907,
+          "candidatesTokens": 852
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.11,
+          "promptTokens": 3230,
+          "candidatesTokens": 2311
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.06,
+          "promptTokens": 3268,
+          "candidatesTokens": 548
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.06,
+          "promptTokens": 3391,
+          "candidatesTokens": 325
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.12,
+          "promptTokens": 3506,
+          "candidatesTokens": 2363
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.05,
-          "promptTokens": 3150,
-          "candidatesTokens": 169
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.08,
-          "promptTokens": 2432,
-          "candidatesTokens": 1780
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.03,
-          "promptTokens": 1597,
-          "candidatesTokens": 177
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.08,
-          "promptTokens": 2103,
-          "candidatesTokens": 1767
+          "promptTokens": 3443,
+          "candidatesTokens": 125
         }
       ],
-      "eurCents": 1.76,
-      "usdCents": 1.83,
-      "totalTokens": 119079,
-      "promptTokens": 106137,
-      "candidatesTokens": 12942
+      "eurCents": 2.18,
+      "usdCents": 2.3,
+      "totalTokens": 144286,
+      "promptTokens": 126224,
+      "candidatesTokens": 18062
     },
     "status": "complete",
     "paidToken": null,
     "paidAt": null,
     "tier": null,
-    "createdAt": "2026-06-10T05:39:48.199Z",
-    "updatedAt": "2026-06-10T05:43:07.747Z"
+    "createdAt": "2026-06-10T08:16:27.159Z",
+    "updatedAt": "2026-06-10T08:20:41.735Z"
   },
-  "finishedAt": "2026-06-10T07:43:08.724Z",
+  "finishedAt": "2026-06-10T10:20:42.404Z",
   "error": null
 }

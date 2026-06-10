@@ -6,15 +6,15 @@
     "bundesland": "DE-BB"
   },
   "idee": "Viele Kinder sprechen kaum Deutsch, da muessen wir was tun.",
-  "startedAt": "2026-06-10T07:47:00.530Z",
+  "startedAt": "2026-06-10T10:24:14.323Z",
   "match": {
     "kind": "ranking",
     "matches": [
       {
         "id": "lesen-macht-stark",
-        "score": 85,
-        "passt_weil": "Fördert außerschulische digitale Lese- und Sprachprojekte, zielt direkt auf Sprachförderung bei Kindern mit Deutschdefiziten.",
-        "achtung_bei": "Fokus auf außerschulisch – Einbindung in Ganztag oder Kooperation mit Bibliothek prüfen.",
+        "score": 90,
+        "passt_weil": "Bundesweites Sprach- und Lesefoerderprogramm, speziell fuer Grundschulkinder mit Sprachdefiziten geeignet.",
+        "achtung_bei": "Achtung: Anbieter- und Regionalpartnerschaften vorab klaeren.",
         "programm": {
           "id": "lesen-macht-stark",
           "name": "Gemeinsam Digital! Kreativ mit Medien",
@@ -34,26 +34,26 @@
         }
       },
       {
-        "id": "brandenburg-foerderung-aus-lottomitteln-mbjs",
-        "score": 65,
-        "passt_weil": "Landesspezifisches Programm für Brandenburg, fördert zeitlich begrenzte Bildungsprojekte – Sprachförderung als Thema möglich.",
-        "achtung_bei": "Wettbewerb offen, kein Rechtsanspruch – Antragschancen vorab mit MBJS klären.",
+        "id": "town-country-stiftungspreis",
+        "score": 60,
+        "passt_weil": "Kann Sprachfoerderprojekte an Grundschulen auch im laendlichen Raum unterstuetzen.",
+        "achtung_bei": "Fokus auf soziale Projekte, muss konkret als Sprachfoerderung ausgerichtet sein.",
         "programm": {
-          "id": "brandenburg-foerderung-aus-lottomitteln-mbjs",
-          "name": "Brandenburg: Foerderung aus Lottomitteln (MBJS)",
-          "foerdergeber": "Ministerium fuer Bildung, Jugend und Sport Brandenburg (MBJS)",
-          "foerdergeberTyp": "land",
-          "foerdersummeText": "Mindestfoerderung 2.500 Euro; rund 90 Prozent der bewilligten Antraege liegen zwischen 2.500 und 30.000 Euro. Fehlbedarfsfinanzierung, kein Rechtsanspruch.",
-          "foerdersummeMax": 30000,
-          "bewerbungsfristText": "Antrag zwischen 1. Januar und 30. September, spaetestens drei Monate vor Projektbeginn. Ab 1. Oktober fuer das Folgejahr.",
+          "id": "town-country-stiftungspreis",
+          "name": "Town & Country Stiftungspreis",
+          "foerdergeber": "Town & Country Stiftung",
+          "foerdergeberTyp": "stiftung",
+          "foerdersummeText": "Rund 300 Projekte erhalten je 1.000 EUR zweckgebundene Projektfoerderung. Zwoelf Regionalpreistraeger erhalten zusaetzlich je 5.000 EUR. Sonderpreis 'Jung trifft Alt' bis zu 10.000 EUR (2. Platz 5.000 EUR).",
+          "foerdersummeMax": 10000,
+          "bewerbungsfristText": "Jaehrliches Bewerbungsfenster vom 01. September bis 31. Oktober (Online-Bewerbung).",
           "kategorien": [
-            "bildung",
-            "jugend",
-            "sport",
-            "kultur",
-            "soziales"
+            "soziales",
+            "kinder-jugend",
+            "inklusion",
+            "ehrenamt",
+            "bildung"
           ],
-          "kurzbeschreibung": "Das MBJS Brandenburg foerdert aus Lottomitteln zeitlich begrenzte, in sich abgeschlossene gemeinnuetzige Projekte aus Bildung, Jugend und Sport, die im Land Brandenburg durchgefuehrt werden. Antragsberechtigt sind juristische Personen des privaten Rechts (z.B. eingetragene Vereine wie Foerdervereine) und des oeffentlichen Rechts."
+          "kurzbeschreibung": "Die Town & Country Stiftung foerdert mit ihrem Stiftungspreis bundesweit gemeinnuetzige Projekte, die sich fuer gesundheitlich, sozial oder finanziell benachteiligte Kinder und Jugendliche einsetzen. Die zweckgebundene Foerderung wird ueber ein Online-Formular mit Projektbeschreibung beantragt."
         }
       }
     ],
@@ -62,15 +62,15 @@
     "costs": {
       "calls": 1,
       "promptTokens": 5946,
-      "candidatesTokens": 209,
-      "totalTokens": 6155,
+      "candidatesTokens": 161,
+      "totalTokens": 6107,
       "usdCents": 0.09,
       "eurCents": 0.08,
       "entries": [
         {
           "model": "deepseek-chat",
           "promptTokens": 5946,
-          "candidatesTokens": 209,
+          "candidatesTokens": 161,
           "usdCents": 0.09
         }
       ]
@@ -80,234 +80,241 @@
   "gewaehltesProgramm": {
     "id": "lesen-macht-stark",
     "name": "Gemeinsam Digital! Kreativ mit Medien",
-    "score": 85,
-    "passt_weil": "Fördert außerschulische digitale Lese- und Sprachprojekte, zielt direkt auf Sprachförderung bei Kindern mit Deutschdefiziten."
+    "score": 90,
+    "passt_weil": "Bundesweites Sprach- und Lesefoerderprogramm, speziell fuer Grundschulkinder mit Sprachdefiziten geeignet."
   },
-  "sessionToken": "760e49fe-26a5-405c-8f9b-1711339d5152",
+  "sessionToken": "2b6b63e5-dd5a-4784-a532-c1061f055f0e",
   "transcript": [
     {
       "runde": 1,
-      "frage": "Wer sind Ihre Buendnispartner? In der dbv-Linie ist mindestens eine Bibliothek Pflicht. Bitte nennen Sie alle Partner, die Rolle und wer federfuehrender Letztzuwendungsempfaenger sein soll.",
-      "rationale": "Buendniskonstellation ist Pflicht in der dbv-Linie und muss als erstes geklaert sein.",
-      "antwort": "Ja, die Stadtbibliothek ist bestimmt dabei, und wir müssten dann noch schauen, wer das offiziell macht.",
+      "frage": "Wer sind Ihre lokalen Bündnispartner? Für den dbv-Antrag brauchen Sie mindestens eine Bibliothek (öffentlich oder Schulbibliothek) als Pflichtpartner, plus meist eine weitere Bildungs- oder Kultureinrichtung. Welche Partner haben Sie bereits konkret an Bord – mit Namen und Rolle?",
+      "rationale": "Das Bündnis ist zentrales Element der dbv-Richtlinie und entscheidet über die Förderwürdigkeit.",
+      "antwort": "Ja, die Stadtbibliothek ist da, den Namen müsste ich raussuchen.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Am Wald",
           "bundesland": "DE-BB"
-        },
-        "projekt": {
-          "aktivitaeten": [
-            "Stadtbibliothek als Partner involviert"
-          ]
         }
       }
     },
     {
       "runde": 2,
-      "frage": "Welche konkrete digitale oder medienpraktische Aktivität planen Sie mit den Kindern – zum Beispiel einen Trickfilm drehen, einen eigenen Podcast aufnehmen oder eine interaktive Bilderbuch-App gestalten? Bitte skizzieren Sie ein Beispiel für den Medien-Schwerpunkt.",
-      "rationale": "Das Programm 'Gemeinsam Digital! Kreativ mit Medien' erfordert einen klaren digitalen Bezug; bisher ist nur die Bibliothek als Ort genannt, aber noch kein Medienformat.",
-      "antwort": "Ja, so ein Trickfilm oder so, das klingt gut, genau weiß ich das noch nicht.",
+      "frage": "Können Sie den Namen der Bibliothek und die Ansprechperson kurz nennen – und welche weiteren Partner (z. B. Verein, Kita, Kulturträger) sind schon dabei? Der dbv verlangt mindestens ein Dreier-Bündnis mit Bibliothek, Bildungseinrichtung und einem dritten Akteur.",
+      "rationale": "Bündnis-Konstellation ist Pflicht im Antrag; die Bibliothek ist genannt, aber Name, Rolle und ggf. weitere Partner fehlen noch – muss konkret werden.",
+      "antwort": "Die Stadtbibliothek, die Ansprechpartnerin müsste ich raussuchen. Und dann halt noch der Förderverein von der Schule, mehr ist noch nicht fix.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Am Wald",
           "bundesland": "DE-BB"
-        },
-        "projekt": {
-          "aktivitaeten": [
-            "Stadtbibliothek als Partner involviert"
-          ]
         }
       }
     },
     {
       "runde": 3,
-      "frage": "Sie haben die Stadtbibliothek als Partner genannt – könnten Sie mir bitte den Namen der verantwortlichen Bibliothekarin oder des Ansprechpartners nennen? Das brauchen wir für die Kooperationsvereinbarung.",
-      "rationale": "Konkreter Partner mit Name ist essenziell für Buendnis-Konstellation und Antragsformular.",
-      "antwort": "Da müsste ich erst nachfragen, die kenne ich nicht persönlich.",
+      "frage": "Sie haben die Stadtbibliothek und den Förderverein der Schule genannt. Welche konkrete Zielgruppe möchten Sie mit dem Projekt ansprechen? Wie viele Kinder sind geplant, und welche Risikolagen (z. B. hohe Transferleistungsquote im Stadtteil, Migrationshintergrund, auffällige Lesedefizite) liegen vor? Konkrete Zahlen und Nachweise helfen, den Bedarf überzeugend darzustellen.",
+      "rationale": "Zielgruppe und Bedarf sind ein Pflichtabschnitt im Antrag und müssen konkret belegt werden, um die Förderwürdigkeit zu untermauern.",
+      "antwort": "Zielgruppe sind halt die Kinder, die kaum Deutsch sprechen. Wie viele genau, müssten wir noch schauen.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Am Wald",
           "bundesland": "DE-BB"
-        },
-        "projekt": {
-          "aktivitaeten": [
-            "Stadtbibliothek als Partner involviert"
-          ]
         }
       }
     },
     {
       "runde": 4,
-      "frage": "Könnten Sie die Aufgaben der Stadtbibliothek im Projekt konkretisieren: Stellt sie Räume oder Medien bereit, beteiligt sie sich mit Personal oder plant sie eigene Angebote für die Kinder?",
-      "rationale": "Die Rolle der Bibliothek muss für das Bündnis konkret beschrieben werden, sonst bleibt der Partner vage.",
-      "antwort": "Ach, das müssten wir noch klären – so genau haben wir das noch nicht besprochen.",
+      "frage": "Können Sie die Anzahl der Kinder mit Deutschförderbedarf konkretisieren – rechnen Sie mit 10, 20 oder 50 Kindern? Und wie viele Kinder mit Behinderungen werden voraussichtlich teilnehmen? Einfach eine ungefähre Zahl reicht, um den Bedarf zu untermauern.",
+      "rationale": "Fehlende konkrete Zielgruppenzahlen, die für die Bedarfsdarstellung und Evaluation zwingend nötig sind.",
+      "antwort": "So um die 20, vielleicht auch 30 – Behinderungen weiss ich nicht genau.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Am Wald",
           "bundesland": "DE-BB"
-        },
-        "projekt": {
-          "aktivitaeten": [
-            "Stadtbibliothek als Partner involviert"
-          ]
         }
       }
     },
     {
       "runde": 5,
-      "frage": "Welche konkreten Risikolagen der Kinder können Sie belegen – zum Beispiel Anteil der Familien mit Sozialleistungen, Migrationshintergrund oder Sprachförderbedarf? Das brauchen wir für den Abschnitt 'Zielgruppe und Bedarf'.",
-      "rationale": "Nach der etwas vagen Partnerangabe muss die Zielgruppe konkretisiert werden, um den Bedarf glaubwürdig darzustellen (Priorität 1: messbare Wirkung).",
-      "antwort": "Viele Kinder sprechen kaum Deutsch, das ist das Hauptproblem.",
+      "frage": "Sie planen mit der Stadtbibliothek und dem Förderverein der Schule ein Bündnis. Welches dritte, feste Partner-Institut haben Sie bereits angefragt oder könnten anfragen? Der dbv wünscht ein Dreier-Bündnis. Denkbar wäre ein Jugendclub, ein Kulturverein oder eine Kita in der Nähe.",
+      "rationale": "Bündniskonstellation ist Pflicht und braucht mindestens drei Partner, die konkret benannt werden.",
+      "antwort": "Da müssten wir noch mal schauen, vielleicht die Kita nebenan.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Am Wald",
-          "bundesland": "DE-BB"
+          "bundesland": "DE-BB",
+          "besonderheiten": "Stadtbibliothek als Partner, Förderverein der Schule als Partner"
         },
         "projekt": {
-          "aktivitaeten": [
-            "Stadtbibliothek als Partner involviert"
-          ]
+          "zielgruppe": "Kinder mit Deutschförderbedarf"
         }
       }
     },
     {
       "runde": 6,
-      "frage": "Welche konkreten Test- oder Belegdaten haben Sie zum Sprachstand der Kinder – zum Beispiel Ergebnisse eines Stolperwörter-Lesetests, IQB-Trends oder den Sozialindex des Einzugsgebiets? Nur so können wir den Bedarf glaubwürdig darlegen.",
-      "rationale": "Die Zielgruppenbeschreibung benötigt belegbare Risikolagen; bisher nur vage Aussage.",
-      "antwort": "Ach, die genauen Zahlen hab ich nicht im Kopf, die müssten wir raussuchen.",
+      "frage": "Haben Sie bereits eine dritte Partnerinstitution wie die Kita nebenan angefragt oder fest zugesagt? Falls nein: Könnten Sie diese Woche noch eine Anfrage stellen, damit das Dreier-Bündnis aus Bibliothek, Schule und Kita/Akteur steht – der dbv erwartet das explizit.",
+      "rationale": "Das Dreier-Bündnis ist Pflicht im dbv-Antrag, bisher fehlt der dritte Partner.",
+      "antwort": "Nein, noch nicht angefragt. Müssten wir mal schauen diese Woche.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Am Wald",
-          "bundesland": "DE-BB"
+          "bundesland": "DE-BB",
+          "besonderheiten": "Stadtbibliothek als Partner, Förderverein der Schule als Partner"
         },
         "projekt": {
-          "aktivitaeten": [
-            "Stadtbibliothek als Partner involviert"
-          ]
+          "zielgruppe": "Kinder mit Deutschförderbedarf"
         }
       }
     },
     {
       "runde": 7,
-      "frage": "Sie haben die Stadtbibliothek als Partner genannt, aber noch nicht die genaue Aufgabenverteilung. Können Sie in zwei Sätzen skizzieren, ob die Bibliothek vor allem Räume stellt, eigenes Personal schickt oder sogar eine eigene wöchentliche Medien-AG im Projekt übernimmt?",
-      "rationale": "Ohne konkrete Aufgabenverteilung ist das Bündnis nicht belastbar und der Antrag scheitert an der Pflichtangabe.",
-      "antwort": "Ach, das müssten wir noch klären, so genau haben wir das noch nicht aufgeteilt.",
+      "frage": "Wenn Sie diese Woche die Kita anfragen, welches inhaltliche Format schwebt Ihnen vor – z. B. eine wöchentliche Vorlese- und Medienwerkstatt, ein Ferien-Workshop zu Trickfilm oder Hörspiel? Für den dbv-Schwerpunkt 'kreativ mit Medien' wäre ein digitaler Anteil wichtig.",
+      "rationale": "Fehlende detaillierte Konzeptidee – nötig für den Abschnitt 'Inhaltliches Konzept' und um den digitalen Bezug zu prüfen.",
+      "antwort": "Vielleicht so eine Mischung aus Vorlesen und was mit Tablet, das müsste man mal besprechen.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Am Wald",
-          "bundesland": "DE-BB"
+          "bundesland": "DE-BB",
+          "besonderheiten": "Stadtbibliothek als Partner, Förderverein der Schule als Partner"
         },
         "projekt": {
-          "zielgruppe": "Kinder, die kaum Deutsch sprechen",
-          "aktivitaeten": [
-            "Stadtbibliothek als Partner involviert"
-          ]
+          "zielgruppe": "Kinder mit Deutschförderbedarf"
         }
       }
     },
     {
       "runde": 8,
-      "frage": "Können Sie sich vorstellen, dass die Stadtbibliothek eine wöchentliche Medien-AG anbietet, in der Kinder zum Beispiel eigene Trickfilme oder Hörspiele produzieren? Und wäre der Bibliotheksraum der Treffpunkt – sodass das Projekt klar außerhalb des Schulunterrichts stattfindet?",
-      "rationale": "Der dbv-Schwerpunkt erfordert einen klaren Medienbezug und außerschulischen Ort; zudem muss die Aufgabenverteilung zwischen Bibliothek und Schule konkret werden.",
-      "antwort": "Ja, könnte ich mir vorstellen, so ungefähr.",
+      "frage": "Um das Projekt konkret planen zu können: Wie viele Stunden soll die wöchentliche Vorlese- und Medienwerkstatt umfassen, und soll sie als Nachmittagsangebot in der Bibliothek oder in der Schule stattfinden? Der dbv erwartet einen klaren Arbeitsplan mit Zeitumfang und Ort.",
+      "rationale": "Konkretisierung des Arbeitsplans (Abschnitt 'Arbeitsplan/Mengengerüst') und Klärung des außerschulischen Ortes, der für die Förderung wichtig ist.",
+      "antwort": "Ein, zwei Stunden pro Woche, wahrscheinlich in der Schule, aber das müssten wir noch klären.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Am Wald",
-          "bundesland": "DE-BB"
+          "bundesland": "DE-BB",
+          "besonderheiten": "Stadtbibliothek als Partner, Förderverein der Schule als Partner"
         },
         "projekt": {
-          "zielgruppe": "Kinder, die kaum Deutsch sprechen",
+          "zeitraum": "ein, zwei Stunden pro Woche",
+          "zielgruppe": "Kinder mit Deutschförderbedarf",
           "aktivitaeten": [
-            "Stadtbibliothek als Partner involviert"
+            "Mischung aus Vorlesen und Arbeit mit Tablets"
           ]
         }
       }
     },
     {
       "runde": 9,
-      "frage": "Wenn Sie an die Kinder denken, die kaum Deutsch sprechen: Wie viele genau möchten Sie erreichen – und können Sie eine konkrete Zahl nennen, wie viele pro Woche an der Medien-AG teilnehmen würden?",
-      "rationale": "Quantifizierung der Zielgruppe ist Pflicht für den Wirkungsnachweis und das Mengengerüst im Antrag.",
-      "antwort": "Ach, so ungefähr alle, die Bedarf haben – die genaue Zahl müssten wir nochmal prüfen.",
+      "frage": "Für den Arbeitsplan: Wie viele Wochen soll das wöchentliche Angebot laufen – über ein Schulhalbjahr oder das ganze Schuljahr? Und wie viele Kinder pro Session rechnen Sie circa – 10, 15 oder 20? Das brauchen wir für das Mengengerüst im Antrag.",
+      "rationale": "Fehlende Angaben zur zeitlichen Dauer und Teilnehmerzahl pro Session, um das Mengengerüst zu konkretisieren.",
+      "antwort": "So ungefähr ein halbes Jahr, und die Kinderzahl müssten wir noch sehen.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Am Wald",
-          "bundesland": "DE-BB"
+          "bundesland": "DE-BB",
+          "besonderheiten": "Stadtbibliothek als Partner, Förderverein der Schule als Partner"
         },
         "projekt": {
-          "zielgruppe": "Kinder, die kaum Deutsch sprechen",
+          "zeitraum": "ein, zwei Stunden pro Woche",
+          "zielgruppe": "Kinder mit Deutschförderbedarf",
           "aktivitaeten": [
-            "Stadtbibliothek als Partner involviert"
+            "Mischung aus Vorlesen und Arbeit mit Tablets"
           ]
         }
       }
     },
     {
       "runde": 10,
-      "frage": "Könnten Sie konkret benennen, wie viele Kinder Sie pro Woche erreichen möchten und in welchen zeitlichen Abständen die Medien-AG stattfinden soll? Eine Zahl hilft uns, Arbeitsplan und Mengengerüst nachvollziehbar darzustellen.",
-      "rationale": "Das Mengengerüst (Teilnehmendenzahl, Rhythmus) ist für den Arbeitsplan und den Finanzplan essenziell und fehlt noch konkret.",
-      "antwort": "Weiß ich noch nicht genau, vielleicht so 10 bis 15 pro Woche, so ungefähr halt.",
+      "frage": "Für die Qualitätssicherung: Wie könnten Sie den Lesefortschritt der Kinder messen – zum Beispiel mit einem einfachen Lesetest vor und nach dem Projekt? Ein Stolperwörter-Test oder der SLS 1-4 sind für Grundschulkinder gängig.",
+      "rationale": "Der dbv und BMBF fordern messbare Wirkung – ohne Erhebungsplan sind die Erfolge kaum nachweisbar.",
+      "antwort": "Da müssten wir nochmal schauen, welcher Test für uns praktikabel ist.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Am Wald",
-          "bundesland": "DE-BB"
+          "bundesland": "DE-BB",
+          "besonderheiten": "Stadtbibliothek als Partner, Förderverein der Schule als Partner"
         },
         "projekt": {
-          "zielgruppe": "Kinder, die kaum Deutsch sprechen",
+          "zeitraum": "ein, zwei Stunden pro Woche",
+          "zielgruppe": "Kinder mit Deutschförderbedarf",
           "aktivitaeten": [
-            "Stadtbibliothek als Partner involviert"
+            "Mischung aus Vorlesen und Arbeit mit Tablets"
           ]
         }
       }
     },
     {
       "runde": 11,
-      "frage": "Könnten Sie für den Arbeitsplan skizzieren, ob die Medien-AG wöchentlich oder als Blockveranstaltung (z. B. eine Projektwoche) stattfinden soll und wie viele Stunden pro Termin? Das hilft uns, den Ablauf und den Gesamtumfang zu beziffern.",
-      "rationale": "Letzte entscheidende Lücke: Arbeitsplan und Mengengerüst benötigen eine konkrete zeitliche Struktur, um den Antrag fertigstellen zu können.",
-      "antwort": "Ach, das müssten wir noch überlegen, vielleicht so wöchentlich, aber auch mal als Block, so ungefähr halt.",
+      "frage": "Sie planen, die wöchentliche Vorlese- und Medienwerkstatt über ein halbes Jahr laufen zu lassen. Können Sie bereits sagen, ob Sie dafür Honorarkräfte (z. B. Übungsleiter, Medienpädagogen) einsetzen oder vorwiegend mit Ehrenamtlichen arbeiten? Für den Finanzplan brauchen wir eine grobe Kostenaufstellung (Honorare, Sachkosten für Tablets/Medien, Raumnutzung). Ein grober Rahmen reicht: z. B. 2.000–5.000 € pro Jahr oder mehr?",
+      "rationale": "Finanzplan ist ein Pflichtabschnitt bei Bundesförderungen – Mindest- und Höchstgrenzen (2.000–50.000 €) müssen eingehalten werden, außerdem klärt dies den Personal-/Sachkostenbedarf.",
+      "antwort": "Mischung aus beidem, Kosten müssten wir noch durchrechnen, so im niedrigen Tausenderbereich.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule Am Wald",
-          "bundesland": "DE-BB"
+          "bundesland": "DE-BB",
+          "besonderheiten": "Stadtbibliothek als Partner, Förderverein der Schule als Partner"
         },
         "projekt": {
-          "zielgruppe": "Kinder, die kaum Deutsch sprechen",
+          "zeitraum": "ein, zwei Stunden pro Woche",
+          "zielgruppe": "Kinder mit Deutschförderbedarf",
           "aktivitaeten": [
-            "Stadtbibliothek als Partner involviert"
+            "Mischung aus Vorlesen und Arbeit mit Tablets",
+            "Vorlese- und Medienwerkstatt"
+          ]
+        }
+      }
+    },
+    {
+      "runde": 12,
+      "frage": "Haben Sie eine ungefähre Vorstellung, wie viele Ehrenamtliche (z. B. Lesepat*innen) oder Honorarkräfte mit Medienkompetenz Sie benötigen – reichen 2–3 Personen für die wöchentliche Werkstatt mit ca. 20 Kindern? Das hilft, den Finanzrahmen zu schärfen.",
+      "rationale": "Fehlende Personalplanung – für den Finanzplan und das Mengengerüst nötig, insbesondere Mischung Ehrenamt/Honorar.",
+      "antwort": "Ja, so zwei, drei Leute ungefähr, denk ich.",
+      "factsNach": {
+        "schule": {
+          "typ": "Grundschule",
+          "name": "Grundschule Am Wald",
+          "bundesland": "DE-BB",
+          "besonderheiten": "Stadtbibliothek als Partner, Förderverein der Schule als Partner"
+        },
+        "projekt": {
+          "zeitraum": "ein, zwei Stunden pro Woche",
+          "zielgruppe": "Kinder mit Deutschförderbedarf",
+          "aktivitaeten": [
+            "Mischung aus Vorlesen und Arbeit mit Tablets",
+            "Vorlese- und Medienwerkstatt"
           ]
         }
       }
     }
   ],
   "finalState": {
-    "sessionToken": "760e49fe-26a5-405c-8f9b-1711339d5152",
+    "sessionToken": "2b6b63e5-dd5a-4784-a532-c1061f055f0e",
     "foerderprogrammId": "lesen-macht-stark",
     "foerderprogrammName": "Gemeinsam Digital! Kreativ mit Medien",
     "phase": "complete",
     "messages": [
       {
-        "at": "2026-06-10T07:47:08.419Z",
-        "id": "9b93c632-e90f-4ac0-a426-e0eb28a047f9",
+        "at": "2026-06-10T10:24:21.074Z",
+        "id": "1265556d-f298-4e66-99cc-8ac8872392ac",
         "kind": "question",
         "meta": {
-          "rationale": "Buendniskonstellation ist Pflicht in der dbv-Linie und muss als erstes geklaert sein."
+          "rationale": "Das Bündnis ist zentrales Element der dbv-Richtlinie und entscheidet über die Förderwürdigkeit."
         },
         "role": "ai",
-        "content": "Wer sind Ihre Buendnispartner? In der dbv-Linie ist mindestens eine Bibliothek Pflicht. Bitte nennen Sie alle Partner, die Rolle und wer federfuehrender Letztzuwendungsempfaenger sein soll."
+        "content": "Wer sind Ihre lokalen Bündnispartner? Für den dbv-Antrag brauchen Sie mindestens eine Bibliothek (öffentlich oder Schulbibliothek) als Pflichtpartner, plus meist eine weitere Bildungs- oder Kultureinrichtung. Welche Partner haben Sie bereits konkret an Bord – mit Namen und Rolle?"
       },
       {
-        "at": "2026-06-10T07:47:10.199Z",
-        "id": "7d4d9c10-fe0f-4c03-a519-478833184810",
+        "at": "2026-06-10T10:24:22.679Z",
+        "id": "0e3b77e1-9be2-4616-bd6b-b5d5eacc606c",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -319,21 +326,21 @@
           }
         },
         "role": "user",
-        "content": "Ja, die Stadtbibliothek ist bestimmt dabei, und wir müssten dann noch schauen, wer das offiziell macht."
+        "content": "Ja, die Stadtbibliothek ist da, den Namen müsste ich raussuchen."
       },
       {
-        "at": "2026-06-10T07:47:15.034Z",
-        "id": "7c423f65-06c4-4317-94b2-888d8d23e4a8",
+        "at": "2026-06-10T10:24:27.066Z",
+        "id": "1b128ee9-377c-49fe-befd-024c83d4b396",
         "kind": "question",
         "meta": {
-          "rationale": "Das Programm 'Gemeinsam Digital! Kreativ mit Medien' erfordert einen klaren digitalen Bezug; bisher ist nur die Bibliothek als Ort genannt, aber noch kein Medienformat."
+          "rationale": "Bündnis-Konstellation ist Pflicht im Antrag; die Bibliothek ist genannt, aber Name, Rolle und ggf. weitere Partner fehlen noch – muss konkret werden."
         },
         "role": "ai",
-        "content": "Welche konkrete digitale oder medienpraktische Aktivität planen Sie mit den Kindern – zum Beispiel einen Trickfilm drehen, einen eigenen Podcast aufnehmen oder eine interaktive Bilderbuch-App gestalten? Bitte skizzieren Sie ein Beispiel für den Medien-Schwerpunkt."
+        "content": "Können Sie den Namen der Bibliothek und die Ansprechperson kurz nennen – und welche weiteren Partner (z. B. Verein, Kita, Kulturträger) sind schon dabei? Der dbv verlangt mindestens ein Dreier-Bündnis mit Bibliothek, Bildungseinrichtung und einem dritten Akteur."
       },
       {
-        "at": "2026-06-10T07:47:17.140Z",
-        "id": "2bf041a0-29b1-4415-8cb7-dc3ce74552a7",
+        "at": "2026-06-10T10:24:29.094Z",
+        "id": "e905c1b0-f3c7-4b3a-8b5c-222f1ae51ad3",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -341,321 +348,341 @@
               "typ": "Grundschule",
               "name": "Grundschule Am Wald",
               "bundesland": "DE-BB"
+            }
+          }
+        },
+        "role": "user",
+        "content": "Die Stadtbibliothek, die Ansprechpartnerin müsste ich raussuchen. Und dann halt noch der Förderverein von der Schule, mehr ist noch nicht fix."
+      },
+      {
+        "at": "2026-06-10T10:24:34.349Z",
+        "id": "8e0802c7-0646-4104-ad0e-5e65ed94fdbb",
+        "kind": "question",
+        "meta": {
+          "rationale": "Zielgruppe und Bedarf sind ein Pflichtabschnitt im Antrag und müssen konkret belegt werden, um die Förderwürdigkeit zu untermauern."
+        },
+        "role": "ai",
+        "content": "Sie haben die Stadtbibliothek und den Förderverein der Schule genannt. Welche konkrete Zielgruppe möchten Sie mit dem Projekt ansprechen? Wie viele Kinder sind geplant, und welche Risikolagen (z. B. hohe Transferleistungsquote im Stadtteil, Migrationshintergrund, auffällige Lesedefizite) liegen vor? Konkrete Zahlen und Nachweise helfen, den Bedarf überzeugend darzustellen."
+      },
+      {
+        "at": "2026-06-10T10:24:36.275Z",
+        "id": "c8913c00-231e-43a3-b40c-d39826c3fcea",
+        "kind": "answer",
+        "meta": {
+          "factsBefore": {
+            "schule": {
+              "typ": "Grundschule",
+              "name": "Grundschule Am Wald",
+              "bundesland": "DE-BB"
+            }
+          }
+        },
+        "role": "user",
+        "content": "Zielgruppe sind halt die Kinder, die kaum Deutsch sprechen. Wie viele genau, müssten wir noch schauen."
+      },
+      {
+        "at": "2026-06-10T10:24:41.311Z",
+        "id": "3e66d9a3-eb21-40e7-9ce2-62f4c8c21b25",
+        "kind": "question",
+        "meta": {
+          "rationale": "Fehlende konkrete Zielgruppenzahlen, die für die Bedarfsdarstellung und Evaluation zwingend nötig sind."
+        },
+        "role": "ai",
+        "content": "Können Sie die Anzahl der Kinder mit Deutschförderbedarf konkretisieren – rechnen Sie mit 10, 20 oder 50 Kindern? Und wie viele Kinder mit Behinderungen werden voraussichtlich teilnehmen? Einfach eine ungefähre Zahl reicht, um den Bedarf zu untermauern."
+      },
+      {
+        "at": "2026-06-10T10:24:42.987Z",
+        "id": "37ebdad3-be5b-4dcf-a184-d2b385892d8f",
+        "kind": "answer",
+        "meta": {
+          "factsBefore": {
+            "schule": {
+              "typ": "Grundschule",
+              "name": "Grundschule Am Wald",
+              "bundesland": "DE-BB"
+            }
+          }
+        },
+        "role": "user",
+        "content": "So um die 20, vielleicht auch 30 – Behinderungen weiss ich nicht genau."
+      },
+      {
+        "at": "2026-06-10T10:24:48.139Z",
+        "id": "d9ec7999-150c-4211-aeae-2d897be98bf7",
+        "kind": "question",
+        "meta": {
+          "rationale": "Bündniskonstellation ist Pflicht und braucht mindestens drei Partner, die konkret benannt werden."
+        },
+        "role": "ai",
+        "content": "Sie planen mit der Stadtbibliothek und dem Förderverein der Schule ein Bündnis. Welches dritte, feste Partner-Institut haben Sie bereits angefragt oder könnten anfragen? Der dbv wünscht ein Dreier-Bündnis. Denkbar wäre ein Jugendclub, ein Kulturverein oder eine Kita in der Nähe."
+      },
+      {
+        "at": "2026-06-10T10:24:49.918Z",
+        "id": "815a3f36-66d0-44bb-80e5-27a3229b15b2",
+        "kind": "answer",
+        "meta": {
+          "factsBefore": {
+            "schule": {
+              "typ": "Grundschule",
+              "name": "Grundschule Am Wald",
+              "bundesland": "DE-BB"
+            }
+          }
+        },
+        "role": "user",
+        "content": "Da müssten wir noch mal schauen, vielleicht die Kita nebenan."
+      },
+      {
+        "at": "2026-06-10T10:24:55.384Z",
+        "id": "2493c421-8568-4021-9c3b-f08d06d2983b",
+        "kind": "question",
+        "meta": {
+          "rationale": "Das Dreier-Bündnis ist Pflicht im dbv-Antrag, bisher fehlt der dritte Partner."
+        },
+        "role": "ai",
+        "content": "Haben Sie bereits eine dritte Partnerinstitution wie die Kita nebenan angefragt oder fest zugesagt? Falls nein: Könnten Sie diese Woche noch eine Anfrage stellen, damit das Dreier-Bündnis aus Bibliothek, Schule und Kita/Akteur steht – der dbv erwartet das explizit."
+      },
+      {
+        "at": "2026-06-10T10:24:56.978Z",
+        "id": "05544428-8e5f-487a-91d9-b5469666b11b",
+        "kind": "answer",
+        "meta": {
+          "factsBefore": {
+            "schule": {
+              "typ": "Grundschule",
+              "name": "Grundschule Am Wald",
+              "bundesland": "DE-BB",
+              "besonderheiten": "Stadtbibliothek als Partner, Förderverein der Schule als Partner"
             },
             "projekt": {
+              "zielgruppe": "Kinder mit Deutschförderbedarf"
+            }
+          }
+        },
+        "role": "user",
+        "content": "Nein, noch nicht angefragt. Müssten wir mal schauen diese Woche."
+      },
+      {
+        "at": "2026-06-10T10:25:02.641Z",
+        "id": "5b4c6c36-5ce1-4a78-8157-5e3fa08bae43",
+        "kind": "question",
+        "meta": {
+          "rationale": "Fehlende detaillierte Konzeptidee – nötig für den Abschnitt 'Inhaltliches Konzept' und um den digitalen Bezug zu prüfen."
+        },
+        "role": "ai",
+        "content": "Wenn Sie diese Woche die Kita anfragen, welches inhaltliche Format schwebt Ihnen vor – z. B. eine wöchentliche Vorlese- und Medienwerkstatt, ein Ferien-Workshop zu Trickfilm oder Hörspiel? Für den dbv-Schwerpunkt 'kreativ mit Medien' wäre ein digitaler Anteil wichtig."
+      },
+      {
+        "at": "2026-06-10T10:25:04.003Z",
+        "id": "7ef0631c-4a13-4889-b146-2881af91f3d4",
+        "kind": "answer",
+        "meta": {
+          "factsBefore": {
+            "schule": {
+              "typ": "Grundschule",
+              "name": "Grundschule Am Wald",
+              "bundesland": "DE-BB",
+              "besonderheiten": "Stadtbibliothek als Partner, Förderverein der Schule als Partner"
+            },
+            "projekt": {
+              "zielgruppe": "Kinder mit Deutschförderbedarf"
+            }
+          }
+        },
+        "role": "user",
+        "content": "Vielleicht so eine Mischung aus Vorlesen und was mit Tablet, das müsste man mal besprechen."
+      },
+      {
+        "at": "2026-06-10T10:25:09.888Z",
+        "id": "8d48a24d-acd3-4c5c-96ea-4ef29bcafeaa",
+        "kind": "question",
+        "meta": {
+          "rationale": "Konkretisierung des Arbeitsplans (Abschnitt 'Arbeitsplan/Mengengerüst') und Klärung des außerschulischen Ortes, der für die Förderung wichtig ist."
+        },
+        "role": "ai",
+        "content": "Um das Projekt konkret planen zu können: Wie viele Stunden soll die wöchentliche Vorlese- und Medienwerkstatt umfassen, und soll sie als Nachmittagsangebot in der Bibliothek oder in der Schule stattfinden? Der dbv erwartet einen klaren Arbeitsplan mit Zeitumfang und Ort."
+      },
+      {
+        "at": "2026-06-10T10:25:11.547Z",
+        "id": "a9b5f162-2a9d-4302-8c53-5b1b071047de",
+        "kind": "answer",
+        "meta": {
+          "factsBefore": {
+            "schule": {
+              "typ": "Grundschule",
+              "name": "Grundschule Am Wald",
+              "bundesland": "DE-BB",
+              "besonderheiten": "Stadtbibliothek als Partner, Förderverein der Schule als Partner"
+            },
+            "projekt": {
+              "zielgruppe": "Kinder mit Deutschförderbedarf"
+            }
+          }
+        },
+        "role": "user",
+        "content": "Ein, zwei Stunden pro Woche, wahrscheinlich in der Schule, aber das müssten wir noch klären."
+      },
+      {
+        "at": "2026-06-10T10:25:17.189Z",
+        "id": "23f5d7ea-f77f-4e39-8ff5-c7ee3e8002ef",
+        "kind": "question",
+        "meta": {
+          "rationale": "Fehlende Angaben zur zeitlichen Dauer und Teilnehmerzahl pro Session, um das Mengengerüst zu konkretisieren."
+        },
+        "role": "ai",
+        "content": "Für den Arbeitsplan: Wie viele Wochen soll das wöchentliche Angebot laufen – über ein Schulhalbjahr oder das ganze Schuljahr? Und wie viele Kinder pro Session rechnen Sie circa – 10, 15 oder 20? Das brauchen wir für das Mengengerüst im Antrag."
+      },
+      {
+        "at": "2026-06-10T10:25:19.020Z",
+        "id": "ca71a5c5-c367-468c-b0cd-4efd561151fc",
+        "kind": "answer",
+        "meta": {
+          "factsBefore": {
+            "schule": {
+              "typ": "Grundschule",
+              "name": "Grundschule Am Wald",
+              "bundesland": "DE-BB",
+              "besonderheiten": "Stadtbibliothek als Partner, Förderverein der Schule als Partner"
+            },
+            "projekt": {
+              "zeitraum": "ein, zwei Stunden pro Woche",
+              "zielgruppe": "Kinder mit Deutschförderbedarf",
               "aktivitaeten": [
-                "Stadtbibliothek als Partner involviert"
+                "Mischung aus Vorlesen und Arbeit mit Tablets"
               ]
             }
           }
         },
         "role": "user",
-        "content": "Ja, so ein Trickfilm oder so, das klingt gut, genau weiß ich das noch nicht."
+        "content": "So ungefähr ein halbes Jahr, und die Kinderzahl müssten wir noch sehen."
       },
       {
-        "at": "2026-06-10T07:47:21.837Z",
-        "id": "397af2e7-44da-4e99-953f-488af7489015",
+        "at": "2026-06-10T10:25:24.901Z",
+        "id": "988ec0d4-7f87-4333-9b06-1347159e9d86",
         "kind": "question",
         "meta": {
-          "rationale": "Konkreter Partner mit Name ist essenziell für Buendnis-Konstellation und Antragsformular."
+          "rationale": "Der dbv und BMBF fordern messbare Wirkung – ohne Erhebungsplan sind die Erfolge kaum nachweisbar."
         },
         "role": "ai",
-        "content": "Sie haben die Stadtbibliothek als Partner genannt – könnten Sie mir bitte den Namen der verantwortlichen Bibliothekarin oder des Ansprechpartners nennen? Das brauchen wir für die Kooperationsvereinbarung."
+        "content": "Für die Qualitätssicherung: Wie könnten Sie den Lesefortschritt der Kinder messen – zum Beispiel mit einem einfachen Lesetest vor und nach dem Projekt? Ein Stolperwörter-Test oder der SLS 1-4 sind für Grundschulkinder gängig."
       },
       {
-        "at": "2026-06-10T07:47:22.175Z",
-        "id": "de03e2bb-c09f-4d8f-93d6-41c22bf2f9d2",
+        "at": "2026-06-10T10:25:26.566Z",
+        "id": "84f04741-f50e-40f1-a5a1-c00623ccfadd",
         "kind": "answer",
         "meta": {
           "factsBefore": {
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule Am Wald",
-              "bundesland": "DE-BB"
+              "bundesland": "DE-BB",
+              "besonderheiten": "Stadtbibliothek als Partner, Förderverein der Schule als Partner"
             },
             "projekt": {
+              "zeitraum": "ein, zwei Stunden pro Woche",
+              "zielgruppe": "Kinder mit Deutschförderbedarf",
               "aktivitaeten": [
-                "Stadtbibliothek als Partner involviert"
+                "Mischung aus Vorlesen und Arbeit mit Tablets"
               ]
             }
           }
         },
         "role": "user",
-        "content": "Da müsste ich erst nachfragen, die kenne ich nicht persönlich."
+        "content": "Da müssten wir nochmal schauen, welcher Test für uns praktikabel ist."
       },
       {
-        "at": "2026-06-10T07:47:26.240Z",
-        "id": "8fee705f-66a1-4e34-a49a-48ce5dee254d",
+        "at": "2026-06-10T10:25:33.685Z",
+        "id": "c093fa19-1719-4cec-906a-3f54cf1b7e42",
         "kind": "question",
         "meta": {
-          "rationale": "Die Rolle der Bibliothek muss für das Bündnis konkret beschrieben werden, sonst bleibt der Partner vage."
+          "rationale": "Finanzplan ist ein Pflichtabschnitt bei Bundesförderungen – Mindest- und Höchstgrenzen (2.000–50.000 €) müssen eingehalten werden, außerdem klärt dies den Personal-/Sachkostenbedarf."
         },
         "role": "ai",
-        "content": "Könnten Sie die Aufgaben der Stadtbibliothek im Projekt konkretisieren: Stellt sie Räume oder Medien bereit, beteiligt sie sich mit Personal oder plant sie eigene Angebote für die Kinder?"
+        "content": "Sie planen, die wöchentliche Vorlese- und Medienwerkstatt über ein halbes Jahr laufen zu lassen. Können Sie bereits sagen, ob Sie dafür Honorarkräfte (z. B. Übungsleiter, Medienpädagogen) einsetzen oder vorwiegend mit Ehrenamtlichen arbeiten? Für den Finanzplan brauchen wir eine grobe Kostenaufstellung (Honorare, Sachkosten für Tablets/Medien, Raumnutzung). Ein grober Rahmen reicht: z. B. 2.000–5.000 € pro Jahr oder mehr?"
       },
       {
-        "at": "2026-06-10T07:47:27.808Z",
-        "id": "6578b985-401f-4f2b-a3a8-37fa09c3491c",
+        "at": "2026-06-10T10:25:35.066Z",
+        "id": "311671bd-93dd-4816-a438-d91fde29a38d",
         "kind": "answer",
         "meta": {
           "factsBefore": {
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule Am Wald",
-              "bundesland": "DE-BB"
+              "bundesland": "DE-BB",
+              "besonderheiten": "Stadtbibliothek als Partner, Förderverein der Schule als Partner"
             },
             "projekt": {
+              "zeitraum": "ein, zwei Stunden pro Woche",
+              "zielgruppe": "Kinder mit Deutschförderbedarf",
               "aktivitaeten": [
-                "Stadtbibliothek als Partner involviert"
+                "Mischung aus Vorlesen und Arbeit mit Tablets"
               ]
             }
           }
         },
         "role": "user",
-        "content": "Ach, das müssten wir noch klären – so genau haben wir das noch nicht besprochen."
+        "content": "Mischung aus beidem, Kosten müssten wir noch durchrechnen, so im niedrigen Tausenderbereich."
       },
       {
-        "at": "2026-06-10T07:47:32.016Z",
-        "id": "b9913c96-d137-4929-804f-03bcbcfca5e6",
+        "at": "2026-06-10T10:25:40.186Z",
+        "id": "71df1cb6-0810-4707-a5ec-9444cee10e8b",
         "kind": "question",
         "meta": {
-          "rationale": "Nach der etwas vagen Partnerangabe muss die Zielgruppe konkretisiert werden, um den Bedarf glaubwürdig darzustellen (Priorität 1: messbare Wirkung)."
+          "rationale": "Fehlende Personalplanung – für den Finanzplan und das Mengengerüst nötig, insbesondere Mischung Ehrenamt/Honorar."
         },
         "role": "ai",
-        "content": "Welche konkreten Risikolagen der Kinder können Sie belegen – zum Beispiel Anteil der Familien mit Sozialleistungen, Migrationshintergrund oder Sprachförderbedarf? Das brauchen wir für den Abschnitt 'Zielgruppe und Bedarf'."
+        "content": "Haben Sie eine ungefähre Vorstellung, wie viele Ehrenamtliche (z. B. Lesepat*innen) oder Honorarkräfte mit Medienkompetenz Sie benötigen – reichen 2–3 Personen für die wöchentliche Werkstatt mit ca. 20 Kindern? Das hilft, den Finanzrahmen zu schärfen."
       },
       {
-        "at": "2026-06-10T07:47:33.224Z",
-        "id": "a33a4d1d-e02a-4559-9b63-e3f9f678a6bc",
+        "at": "2026-06-10T10:25:41.598Z",
+        "id": "cc852ca5-1da9-4c2d-8364-ed0eee9f0e0a",
         "kind": "answer",
         "meta": {
           "factsBefore": {
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule Am Wald",
-              "bundesland": "DE-BB"
+              "bundesland": "DE-BB",
+              "besonderheiten": "Stadtbibliothek als Partner, Förderverein der Schule als Partner"
             },
             "projekt": {
+              "zeitraum": "ein, zwei Stunden pro Woche",
+              "zielgruppe": "Kinder mit Deutschförderbedarf",
               "aktivitaeten": [
-                "Stadtbibliothek als Partner involviert"
+                "Mischung aus Vorlesen und Arbeit mit Tablets",
+                "Vorlese- und Medienwerkstatt"
               ]
             }
           }
         },
         "role": "user",
-        "content": "Viele Kinder sprechen kaum Deutsch, das ist das Hauptproblem."
-      },
-      {
-        "at": "2026-06-10T07:47:37.960Z",
-        "id": "1a2ceea7-e402-4c4d-a499-87f23434dc5d",
-        "kind": "question",
-        "meta": {
-          "rationale": "Die Zielgruppenbeschreibung benötigt belegbare Risikolagen; bisher nur vage Aussage."
-        },
-        "role": "ai",
-        "content": "Welche konkreten Test- oder Belegdaten haben Sie zum Sprachstand der Kinder – zum Beispiel Ergebnisse eines Stolperwörter-Lesetests, IQB-Trends oder den Sozialindex des Einzugsgebiets? Nur so können wir den Bedarf glaubwürdig darlegen."
-      },
-      {
-        "at": "2026-06-10T07:47:39.908Z",
-        "id": "ffbf1778-eb67-42c9-b90f-725a0eabd659",
-        "kind": "answer",
-        "meta": {
-          "factsBefore": {
-            "schule": {
-              "typ": "Grundschule",
-              "name": "Grundschule Am Wald",
-              "bundesland": "DE-BB"
-            },
-            "projekt": {
-              "aktivitaeten": [
-                "Stadtbibliothek als Partner involviert"
-              ]
-            }
-          }
-        },
-        "role": "user",
-        "content": "Ach, die genauen Zahlen hab ich nicht im Kopf, die müssten wir raussuchen."
-      },
-      {
-        "at": "2026-06-10T07:47:44.748Z",
-        "id": "7f6a1c1a-1f4b-4cec-a75c-fdcef50a66c0",
-        "kind": "question",
-        "meta": {
-          "rationale": "Ohne konkrete Aufgabenverteilung ist das Bündnis nicht belastbar und der Antrag scheitert an der Pflichtangabe."
-        },
-        "role": "ai",
-        "content": "Sie haben die Stadtbibliothek als Partner genannt, aber noch nicht die genaue Aufgabenverteilung. Können Sie in zwei Sätzen skizzieren, ob die Bibliothek vor allem Räume stellt, eigenes Personal schickt oder sogar eine eigene wöchentliche Medien-AG im Projekt übernimmt?"
-      },
-      {
-        "at": "2026-06-10T07:47:46.407Z",
-        "id": "2c74ca3d-cff1-4ede-9bc0-d9a4944df5c5",
-        "kind": "answer",
-        "meta": {
-          "factsBefore": {
-            "schule": {
-              "typ": "Grundschule",
-              "name": "Grundschule Am Wald",
-              "bundesland": "DE-BB"
-            },
-            "projekt": {
-              "aktivitaeten": [
-                "Stadtbibliothek als Partner involviert"
-              ]
-            }
-          }
-        },
-        "role": "user",
-        "content": "Ach, das müssten wir noch klären, so genau haben wir das noch nicht aufgeteilt."
-      },
-      {
-        "at": "2026-06-10T07:47:51.949Z",
-        "id": "e528a496-d341-42f9-a35c-d802bc87fbbe",
-        "kind": "question",
-        "meta": {
-          "rationale": "Der dbv-Schwerpunkt erfordert einen klaren Medienbezug und außerschulischen Ort; zudem muss die Aufgabenverteilung zwischen Bibliothek und Schule konkret werden."
-        },
-        "role": "ai",
-        "content": "Können Sie sich vorstellen, dass die Stadtbibliothek eine wöchentliche Medien-AG anbietet, in der Kinder zum Beispiel eigene Trickfilme oder Hörspiele produzieren? Und wäre der Bibliotheksraum der Treffpunkt – sodass das Projekt klar außerhalb des Schulunterrichts stattfindet?"
-      },
-      {
-        "at": "2026-06-10T07:47:53.201Z",
-        "id": "8a3ebc15-6317-4a85-b2d3-fda72d4cb50d",
-        "kind": "answer",
-        "meta": {
-          "factsBefore": {
-            "schule": {
-              "typ": "Grundschule",
-              "name": "Grundschule Am Wald",
-              "bundesland": "DE-BB"
-            },
-            "projekt": {
-              "zielgruppe": "Kinder, die kaum Deutsch sprechen",
-              "aktivitaeten": [
-                "Stadtbibliothek als Partner involviert"
-              ]
-            }
-          }
-        },
-        "role": "user",
-        "content": "Ja, könnte ich mir vorstellen, so ungefähr."
-      },
-      {
-        "at": "2026-06-10T07:47:56.928Z",
-        "id": "fe3f054a-9a43-4e3b-bcee-2a7d91e48a1e",
-        "kind": "question",
-        "meta": {
-          "rationale": "Quantifizierung der Zielgruppe ist Pflicht für den Wirkungsnachweis und das Mengengerüst im Antrag."
-        },
-        "role": "ai",
-        "content": "Wenn Sie an die Kinder denken, die kaum Deutsch sprechen: Wie viele genau möchten Sie erreichen – und können Sie eine konkrete Zahl nennen, wie viele pro Woche an der Medien-AG teilnehmen würden?"
-      },
-      {
-        "at": "2026-06-10T07:47:58.884Z",
-        "id": "d7debb55-5e0b-41e5-be28-a6e47f809cef",
-        "kind": "answer",
-        "meta": {
-          "factsBefore": {
-            "schule": {
-              "typ": "Grundschule",
-              "name": "Grundschule Am Wald",
-              "bundesland": "DE-BB"
-            },
-            "projekt": {
-              "zielgruppe": "Kinder, die kaum Deutsch sprechen",
-              "aktivitaeten": [
-                "Stadtbibliothek als Partner involviert"
-              ]
-            }
-          }
-        },
-        "role": "user",
-        "content": "Ach, so ungefähr alle, die Bedarf haben – die genaue Zahl müssten wir nochmal prüfen."
-      },
-      {
-        "at": "2026-06-10T07:48:03.431Z",
-        "id": "18443f53-309e-4539-be30-a83f50eb6fba",
-        "kind": "question",
-        "meta": {
-          "rationale": "Das Mengengerüst (Teilnehmendenzahl, Rhythmus) ist für den Arbeitsplan und den Finanzplan essenziell und fehlt noch konkret."
-        },
-        "role": "ai",
-        "content": "Könnten Sie konkret benennen, wie viele Kinder Sie pro Woche erreichen möchten und in welchen zeitlichen Abständen die Medien-AG stattfinden soll? Eine Zahl hilft uns, Arbeitsplan und Mengengerüst nachvollziehbar darzustellen."
-      },
-      {
-        "at": "2026-06-10T07:48:04.909Z",
-        "id": "dc251c97-efc1-4372-bd41-403086be8c7c",
-        "kind": "answer",
-        "meta": {
-          "factsBefore": {
-            "schule": {
-              "typ": "Grundschule",
-              "name": "Grundschule Am Wald",
-              "bundesland": "DE-BB"
-            },
-            "projekt": {
-              "zielgruppe": "Kinder, die kaum Deutsch sprechen",
-              "aktivitaeten": [
-                "Stadtbibliothek als Partner involviert"
-              ]
-            }
-          }
-        },
-        "role": "user",
-        "content": "Weiß ich noch nicht genau, vielleicht so 10 bis 15 pro Woche, so ungefähr halt."
-      },
-      {
-        "at": "2026-06-10T07:48:10.480Z",
-        "id": "e40c6a8f-7cf8-4b49-8a39-b3f7dfc9413b",
-        "kind": "question",
-        "meta": {
-          "rationale": "Letzte entscheidende Lücke: Arbeitsplan und Mengengerüst benötigen eine konkrete zeitliche Struktur, um den Antrag fertigstellen zu können."
-        },
-        "role": "ai",
-        "content": "Könnten Sie für den Arbeitsplan skizzieren, ob die Medien-AG wöchentlich oder als Blockveranstaltung (z. B. eine Projektwoche) stattfinden soll und wie viele Stunden pro Termin? Das hilft uns, den Ablauf und den Gesamtumfang zu beziffern."
-      },
-      {
-        "at": "2026-06-10T07:48:12.422Z",
-        "id": "e73c9041-04b6-4ea1-b391-eb443e0d09d0",
-        "kind": "answer",
-        "meta": {
-          "factsBefore": {
-            "schule": {
-              "typ": "Grundschule",
-              "name": "Grundschule Am Wald",
-              "bundesland": "DE-BB"
-            },
-            "projekt": {
-              "zielgruppe": "Kinder, die kaum Deutsch sprechen",
-              "aktivitaeten": [
-                "Stadtbibliothek als Partner involviert"
-              ]
-            }
-          }
-        },
-        "role": "user",
-        "content": "Ach, das müssten wir noch überlegen, vielleicht so wöchentlich, aber auch mal als Block, so ungefähr halt."
+        "content": "Ja, so zwei, drei Leute ungefähr, denk ich."
       }
     ],
     "facts": {
       "schule": {
         "typ": "Grundschule",
         "name": "Grundschule Am Wald",
-        "bundesland": "DE-BB"
+        "bundesland": "DE-BB",
+        "besonderheiten": "Stadtbibliothek als Partner, Förderverein der Schule als Partner"
       },
       "projekt": {
-        "zielgruppe": "Kinder, die kaum Deutsch sprechen",
+        "zeitraum": "ein, zwei Stunden pro Woche",
+        "zielgruppe": "Kinder mit Deutschförderbedarf",
         "aktivitaeten": [
-          "Stadtbibliothek als Partner involviert"
+          "Mischung aus Vorlesen und Arbeit mit Tablets",
+          "Vorlese- und Medienwerkstatt"
         ]
       }
     },
     "interviewer": {
       "maxQuestions": 12,
-      "totalQuestions": 11
+      "totalQuestions": 12
     },
     "generation": {
       "outline": {
-        "titel": "Stadtbibliothek als Partner involviert — Grundschule Am Wald (Gemeinsam Digital! Kreativ mit Medien)",
+        "titel": "Mischung aus Vorlesen und Arbeit mit Tablets — Grundschule Am Wald (Gemeinsam Digital! Kreativ mit…",
         "abschnitte": [
           {
             "name": "Buendnis-Konstellation",
@@ -687,154 +714,212 @@
           }
         ]
       },
-      "critique": "Zusammenfassung: Der Antragsentwurf enthält zahlreiche Halluzinationen (erfundene konkrete Angaben ohne Beleg in User-Antworten), darunter einen dritten Bündnispartner, Kooperationsdetails, Evaluationsinstrumente und Finanzplanposten. Zudem fehlen essenzielle formalisierte Angaben, und der außerschulische Charakter ist nur unzureichend dargestellt.\n\n1. [HOCH · belegluecke · Buendnis-Konstellation] \"Ein dritter Partner wird noch festgelegt; naheliegend ist ein lokaler Kultur- oder Sozialtraeger\"\n   → Entfernen, da kein dritter Partner in den User-Antworten genannt wird. Erst nach tatsächlicher Benennung eines dritten Partners und schriftlicher Beteiligungserklärung ergänzen.\n2. [HOCH · belegluecke · Buendnis-Konstellation] \"Die Stadtbibliothek uebernimmt die Gesamtkoordination, die Mittelverwaltung und die fachliche Anleitung\"\n   → User sagt nur 'die Stadtbibliothek ist bestimmt dabei, und wir muessten dann noch schauen, wer das offiziell macht.' Klarstellen, dass die Rollenverteilung noch nicht geklärt ist, etwa: 'Die Absprachen zur federführenden Rolle sind noch nicht getroffen; die Stadtbibliothek ist als möglicher Koordinator angefragt.'\n3. [HOCH · belegluecke · Inhaltliches Konzept] \"Erstellung eines einfachen Trickfilms\"\n   → User sagt nur 'so ein Trickfilm oder so, das klingt gut, genau weiß ich das noch nicht.' Daher nicht als festes Format darstellen. Formulieren: 'Geplant ist ein kreatives Medienformat, z.B. Trickfilm, das aber noch konkretisiert werden muss.'\n4. [HOCH · belegluecke · Inhaltliches Konzept] \"Tablet-gestuetzten Stop-Motion-App\"\n   → Kein Beleg in User-Antworten. Streichen und durch allgemeine Formulierung ersetzen: 'Digitale Medien (z.B. Tablets mit geeigneter Software) werden eingesetzt.'\n5. [HOCH · belegluecke · Inhaltliches Konzept] \"Bereitstellung von Medien (Bilderbuecher als Inspirationsquelle) und den Zugang zu deren Raeumlichkeiten.\"\n   → User sagt nicht, welche konkreten Leistungen die Bibliothek erbringt. Ersetzen durch: 'Die Stadtbibliothek stellt nach noch abzustimmendem Umfang Medien und Räume zur Verfügung; Details sind in der Kooperationsvereinbarung zu fixieren.'\n6. [HOCH · belegluecke · Arbeitsplan und Mengengeruest] \"ehrenamtlichen Lesepatinnen und -paten\"\n   → User erwähnt keine Ehrenamtlichen. Ggf. gemeint sind 'betreuende Lehrkräfte' oder 'Honorarkräfte'. Präzisieren und nur Begriffe verwenden, die im User-Input belegt sind. Ohne Beleg entfernen.\n7. [HOCH · belegluecke · Arbeitsplan und Mengengeruest] \"eintägige Schulung fuer die ehrenamtlichen Lesepatinnen und -paten\"\n   → Nicht belegt. Entfernen, solange keine konkrete Planung vorliegt.\n8. [HOCH · belegluecke · Arbeitsplan und Mengengeruest] \"drei aufeinander aufbauende Aktivitaetsstraenge\"\n   → Eine stark strukturierte Darstellung ohne Entsprechung in den User-Antworten. Kürzen auf das Wesentliche: wöchentliche AG plus Abschlussveranstaltung, weitere Details erst nach Konkretisierung ergänzen.\n9. [HOCH · belegluecke · Qualitaetssicherung und Evaluation] \"standardisierten Vorher-Nachher-Test\"\n   → User sagt nichts zu Tests. Entfernen und auf Selbsteinschätzung, Teilnehmerfeedback oder andere im Bündnis abgestimmte Methoden verweisen, die noch festzulegen sind.\n10. [HOCH · belegluecke · Qualitaetssicherung und Evaluation] \"Salzburger Lese-Screenings (SLS) oder vergleichbarer Stolperwoerter-Tests\"\n   → Nicht belegt – ohne Zustimmung der Schule und Bibliothek nicht nennbar. Streichen oder durch 'ein noch auszuwählendes, für die Zielgruppe geeignetes Instrument' ersetzen.\n11. [HOCH · belegluecke · Finanzierung und Mengengeruest] \"rund 25.000 EUR\"\n   → Keine konkrete Summe von User genannt. Stattdessen als geschätzte Größenordnung kennzeichnen, z.B. 'Das vorläufige Budget wird auf ca. 25.000 EUR geschätzt, eine exakte Berechnung erfolgt nach Einholung von Angeboten und Abstimmung mit den Partnern.'\n12. [HOCH · belegluecke · Finanzierung und Mengengeruest] \"Honorare fuer eine externe medienpaedagogische Fachkraft\"\n   → User erwähnt keine Honorarkräfte. Entweder auf die genannten User-Ressourcen (Lehrkräfte) zurückgreifen oder klarstellen, dass der Bedarf noch zu prüfen ist.",
+      "critique": "Zusammenfassung: Der Entwurf ist strukturell gut aufgebaut, enthält aber mehrere erfundene Details (insb. Methode, Partner, Tests) und zu viele Floskeln. Der außerschulische Charakter und die Messbarkeit sind schwach begründet.\n\n1. [HOCH · belegluecke · Zielgruppe und Bedarf] \"standardisierten Instruments wie dem Stolperwörter-Lesetest oder dem Lesescreening der ILeA\"\n   → Entfernen. Stattdessen nur offen lassen: 'Ein noch zu wählender Lesetest wird vor Projektbeginn durchgeführt.' Keine konkreten Testnamen ohne User-Beleg.\n2. [HOCH · belegluecke · Zielgruppe und Bedarf] \"Ergebnisse der Vergleichsarbeiten der dritten Jahrgangsstufen\"\n   → Entfernen. VERA-Vergleichsarbeiten wurden vom User nicht genannt. Keine erfundenen Belege.\n3. [HOCH · belegluecke · Inhaltliches Konzept] \"dialogische Vorlesen nach Hargrave/Sénéchal\"\n   → Entfernen. Keine erfundenen Methodenzitate. Als Vorschlag erlaubt, aber nicht als belegte Referenz. Besser: 'Ein möglicher Ansatz ist das dialogische Vorlesen.'\n4. [HOCH · belegluecke · Ausserschulischer Charakter] \"Räumen der Stadtbibliothek geplant (Anfrage an die Ansprechpartnerin läuft)\"\n   → Entfernen. Der User sagte: 'wahrscheinlich in der Schule'. Keine Bibliotheksräume erfinden. Stattdessen: Ort noch zu klären [TODO].\n5. [HOCH · belegluecke · Qualitaetssicherung und Evaluation] \"Salzburger Lese-Screenings (SLS) oder angepasster Stolperwörter-Tests\"\n   → Entfernen. Der User sagte: 'welcher Test für uns praktikabel ist'. Keine erfundenen Testnamen. Offen lassen.\n6. [HOCH · belegluecke · Finanzierung und Mengengeruest] \"8.000 EUR ... 5.500 EUR ... 1.000 EUR\"\n   → Keine Kostendetails vom User genannt. Erfundene Aufschlüsselung. Streichen oder als Platzhalter kennzeichnen: [TODO: konkrete Angebote einholen].\n7. [MITTEL · belegluecke · Arbeitsplan und Mengengeruest] \"Abschlussveranstaltung ... Lesefest\"\n   → Der User erwähnte keine Abschlussveranstaltung. Falls gewünscht als Vorschlag deutlich kennzeichnen (z.B. 'Denkbar wäre ein Abschlussfest').\n8. [MITTEL · richtlinie · Buendnis-Konstellation] \"Federführender Antragsteller und Letztzuwendungsempfänger ist die Stadtbibliothek\"\n   → Richtig – aber der User nannte keinen Namen der Bibliothek. [TODO: Name der Stadtbibliothek ergänzen] einfügen.\n9. [MITTEL · belegluecke · Zielgruppe und Bedarf] \"Sozialindex ... überdurchschnittlichen Anteil von Familien mit Transferleistungsbezug\"\n   → Kein konkreter Beleg vom User. Besser: 'Eine genaue Sozialdaten-Erhebung steht noch aus [TODO]'.\n10. [MITTEL · belegluecke · Finanzierung und Mengengeruest] \"15.000 EUR\"\n   → User sagte 'niedriger Tausenderbereich'. 15.000 EUR ist spezifischer als die Aussage. Besser: 'geschätzt im niedrigen fünfstelligen Bereich (z.B. ca. 10.000–15.000 EUR)'.",
       "sections": [
         {
           "name": "Buendnis-Konstellation",
-          "text": "Das Vorhaben wird von einem lokalen Bündnis aus drei Partnern getragen. Federführender Partner (Letztzuwendungsempfänger) ist die Stadtbibliothek, die als zentraler außerschulischer Lernort für Leseförderung und Medienbildung fungiert. Als zweiter Partner ist die Grundschule Am Wald beteiligt, die über die Schulbibliothek eine direkte Anbindung an die Bibliotheksarbeit herstellt und die Zielgruppe der Kinder mit geringen Deutschkenntnissen in das Projekt einbringt. Die Schule identifiziert den konkreten Bedarf vor Ort und stellt Räumlichkeiten sowie pädagogisches Personal für die Durchführung der Projektaktivitäten zur Verfügung. Ein dritter Partner wird noch festgelegt; naheliegend ist ein lokaler Kultur- oder Sozialträger, der ergänzende Expertise im Bereich der Sprachförderung oder kreativen Medienarbeit einbringen könnte. [TODO: Dritter Bündnispartner benennen und schriftliche Beteiligungserklärung bis zur Antragseinreichung einholen.] Die Aufgabenverteilung wird wie folgt skizziert: Die Stadtbibliothek übernimmt die Gesamtkoordination, die Mittelverwaltung und die fachliche Anleitung der medienpädagogischen Angebote. Die Grundschule Am Wald stellt die Zielgruppe und deren Begleitung durch Lehrkräfte sicher. Die genaue Aufteilung der Aufgaben sowie die konkrete Ausgestaltung der Kooperationsvereinbarung sind noch in Abstimmung und werden bis zur Antragseinreichung formalisiert. [TODO: Kooperationsvereinbarung zwischen den Bündnispartnern abschließen.]"
+          "text": "Das Vorhaben wird getragen von einem lokalen Bündnis aus drei institutionellen Partnern. Federführender Antragsteller und Letztzuwendungsempfänger ist die Stadtbibliothek [Name der Stadt, ergänzen vor Einreichung], die als zentraler Akteur für Leseförderung und Medienbildung fungiert. Die Stadtbibliothek bringt ihre Expertise in der sprachsensiblen Arbeit mit Bilderbüchern und digitalen Medienformaten ein, stellt ggf. Projektmedien zur Verfügung und übernimmt die Abrechnung gegenüber dem dbv. Zweiter Partner ist die Grundschule Am Wald (Bundesland Brandenburg). Die Schule ist als außerschulischer Lern- und Veranstaltungsort vorgesehen, da die wöchentlichen Vorlese- und Medienwerkstatt-Einheiten (voraussichtlich ein bis zwei Stunden pro Woche) in Schulräumen stattfinden sollen. Sie stellt darüber hinaus die Zielgruppe der Kinder mit Deutschförderbedarf (voraussichtlich ca. 20–30 Kinder, genaue Teilnehmerzahl und Auswahlkriterien noch zu konkretisieren) und stellt über ihr Kollegium eine fachliche Begleitung der Angebote sicher. Dritter Partner ist der Förderverein der Grundschule Am Wald. Seine Rolle ist die Unterstützung bei der Anschaffung von Materialien (insb. Tablets und Kinderbücher), die projektbezogene Mittelverwaltung sowie die Einbindung weiterer ehrenamtlicher Unterstützungskräfte. Die konkrete Aufgabenverteilung und die Höhe der Kostenbeteiligung des Fördervereins sind in einer noch abzuschließenden Bündnisvereinbarung zu fixieren. Eine vierte Partnerschaft, etwa mit der angrenzenden Kita, ist als Option angedacht [TODO: Anfrage an Kita vor Antragseinreichung stellen]. Die benannten Partner decken die Bereiche Bibliothek (Leseförderung/Medienkompetenz), Schule (Bildungsort/Zielgruppe/Deutschförderung) und bürgerschaftliches Engagement (Förderverein) ab, wie es die Programmlogik von \"Gemeinsam Digital!\" erfordert."
         },
         {
           "name": "Zielgruppe und Bedarf",
-          "text": "Das Projekt adressiert Kinder der Grundschule Am Wald, die kaum Deutsch sprechen. Hierbei handelt es sich um eine durch die Schulpraxis identifizierte, klar umrissene Zielgruppe; eine formale Bedarfsermittlung (etwa über den Sozialindex des Einzugsgebiets oder die Transferleistungsquote) steht noch aus und wird vor Projektstart durch die Schulleitung erhoben. Der konkrete Bedarf ergibt sich aus der unzureichenden Sprach- und Lesekompetenz dieser Kinder, die eine Teilhabe am regulären Unterricht und an außerschulischen Bildungsangeboten erschwert. Die genaue Zahl der Teilnehmenden wird im Rahmen der Projektplanung festgelegt; angestrebt wird, möglichst allen Kindern mit Förderbedarf ein Angebot zu machen. Eine erste Schätzung geht von einer wöchentlichen Projektgruppe mit 10 bis 15 Kindern aus. Die Stadtbibliothek ist als Kooperationspartner vorgesehen und wird in die Konzeption und Durchführung des medienpädagogischen Angebots (u. a. Erstellung von Trickfilmen zur Sprachförderung) eingebunden. Ob auch Kinder mit Behinderungen erreicht werden, ist im Konzept noch nicht spezifiziert; die Schule wird dies im Rahmen der Teilnehmerauswahl klären [TODO: Inklusionsaspekt vor Einreichung konkretisieren, ggf. Barrieren prüfen]."
+          "text": "Unser Projekt „Mischung aus Vorlesen und Arbeit mit Tablets“ richtet sich gezielt an Kinder der Grundschule Am Wald mit Deutschförderbedarf, also an Schülerinnen und Schüler, deren Sprachkompetenz im Deutschen so weit unter dem altersgemäßen Niveau liegt, dass sie am Regelunterricht und an informellen Bildungsangeboten nur eingeschränkt teilhaben können. Der konkrete Bedarf ergibt sich aus der Schülerschaft der Schule, die erfahrungsgemäß einen hohen Anteil an Kindern mit nicht-deutscher Familiensprache umfasst; eine genaue Erhebung des Sprachstands mittels eines standardisierten Instruments wie dem Stolperwörter-Lesetest oder dem Lesescreening der ILeA steht noch aus, wird aber vor Projektbeginn durchgeführt, um die Ausgangslage zu belegen [TODO: Erhebungsinstrument und Durchführungstermin vor Einreichung festlegen]. Für den geplanten Durchlauf von rund einem halben Jahr sind circa 20 bis 30 teilnehmende Kinder vorgesehen (die genaue Zahl wird nach Rücksprache mit den Klassenleitungen sowie auf Basis der Sprachstandserhebung festgelegt). Ob Kinder mit Behinderungen erreicht werden, ist noch nicht abschließend geklärt; eine inklusive Ausrichtung wird angestrebt, indem bei der Auswahl der Tablets und Apps auf Barrierefreiheit geachtet wird [TODO: konkrete Unterstützungsangebote für Kinder mit Beeinträchtigungen mit Förderverein und Stadtbibliothek abstimmen]. Die Risikolage der Zielgruppe lässt sich am Standort durch den Sozialindex des Einzugsgebiets sowie einen voraussichtlich überdurchschnittlichen Anteil von Familien mit Transferleistungsbezug charakterisieren; da die Grundschule Am Wald in einem sozialräumlich eher belasteten Umfeld liegt, ist von einem erhöhten Bedarf an niedrigschwelligen, sprachbildenden und medienpädagogischen Angeboten auszugehen. Der konkrete Leseförderbedarf wird zusätzlich über die Ergebnisse der Vergleichsarbeiten der dritten Jahrgangsstufen nachvollziehbar [TODO: konkrete Daten der Schule – z. B. VERA-Kompetenzstufenverteilung – vor Einreichung recherchieren und in den Antrag einfügen]."
         },
         {
           "name": "Inhaltliches Konzept",
-          "text": "Die Grundschule Am Wald richtet das Projekt „Gemeinsam Digital! Kreativ mit Medien“ in Kooperation mit der Stadtbibliothek aus. Der inhaltliche Schwerpunkt liegt auf der Sprach- und Leseförderung für Kinder, die kaum Deutsch sprechen. Um diese Zielgruppe niedrigschwellig zu erreichen, verbinden wir klassische Leseförderung mit einem kreativen Medienformat: Wir planen die Erstellung eines einfachen Trickfilms. Die Teilnehmerinnen und Teilnehmer entwickeln in der Gruppe eine kleine Geschichte, malen die Hintergründe und Figuren, nehmen Ton auf und setzen die Szenen mit einer Tablet-gestützten Stop-Motion-App am Bildschirm zusammen. Der pädagogische Ansatz ist handlungsorientiert und mehrsprachigkeitssensibel: Die Geschichte wird bewusst wenig Text benötigen, sodass das Erzählen visuell und über Geräusche funktioniert und die Kinder mit geringen Deutschkenntnissen aktiv mitgestalten können. Durch die Arbeit mit den Tablets lernen die Kinder zudem grundlegende Medienkompetenzen wie das Navigieren in einer App und den Umgang mit digitalen Aufnahmefunktionen. Die Kooperation mit der Stadtbibliothek umfasst die Bereitstellung von Medien (Bilderbücher als Inspirationsquelle) und den Zugang zu deren Räumlichkeiten. [TODO: Genaue Vertragsdetails zur Kooperation mit der Stadtbibliothek vor Einreichung klären.] Das Format ist als wöchentliche AG (voraussichtlich ein Nachmittag pro Woche) mit zusätzlichen Blockterminen kurz vor der Endabnahme geplant; eine genaue zeitliche Aufteilung wird bei Projektstart gemeinsam mit den Teilnehmern festgelegt. [TODO: Konkrete Anzahl der Teilnehmer und genaues Stundenkontingent vor Projektbeginn ermitteln.] So verknüpft das Vorhaben die analoge Erfahrung des Erzählens und Zeichnens mit der digitalen Produktion eines eigenen Films."
+          "text": "Das inhaltliche Konzept sieht eine wöchentliche Vorlese- und Medienwerkstatt vor, die sich über ein halbes Jahr erstreckt und etwa ein bis zwei Stunden pro Woche umfasst. Die Zielgruppe sind Kinder mit Deutschförderbedarf, deren genaue Anzahl noch festzulegen ist, sich aber voraussichtlich im Bereich von 20 bis 30 Kindern bewegen wird. Fester Kooperationspartner ist die Stadtbibliothek; hinzu kommt der Förderverein der Schule als weiterer Partner. Das Format kombiniert analoge Vorleseeinheiten mit der Arbeit an Tablets: Nach einer gemeinsamen, von einer pädagogischen Fachkraft oder einer Ehrenamtlichen durchgeführten Vorlese-Phase erhalten die Kinder gestaffelte Aufgaben, bei denen sie selbst aktiv werden – zum Beispiel durch das Aufnehmen eigener Hörspiel-Szenen, das Erstellen kurzer Trickfilme zu gelesenen Geschichten oder das Gestalten digitaler Bilderbücher mit Sprachaufnahme. Dieser Wechsel zwischen rezeptivem Zuhören und produktivem, digital gestütztem Handeln folgt dem handlungsorientierten Ansatz der Medienpädagogik (nach Tulodziecki): Die Kinder werden vom passiven Zuhörer zum aktiven Gestalter, was die Sprachproduktion und das Textverständnis unmittelbar fördert. Die Verknüpfung von Leseförderung und Medieneinsatz ist bewusst hybrid gewählt – das Tablet dient nicht als reiner Lesestift, sondern als kreatives Werkzeug, um das Gehörte in eigene Ausdrucksformen zu übersetzen (z. B. Vertonung, Bildergeschichte). Ein bewährter pädagogischer Rahmen hierfür ist das dialogische Vorlesen nach Hargrave/Sénéchal, bei dem die Kinder durch offene Fragen und Nachfragen eingeladen werden, sich zum Text zu äußern. Im Anschluss können diese Impulse mit der Tablet-Arbeit aufgegriffen werden – so entsteht eine durchgängige, sprachförderliche Lernschleife zwischen mündlicher Rezeption und digitaler Produktion. Die konkrete Auswahl der Apps und die didaktische Feindifferenzierung der Werkstatt-Module werden gemeinsam mit der Stadtbibliothek [TODO: Klärung des konkreten Kooperationsumfangs bis Projekteinreichung] und dem Kollegium der Schule erarbeitet. Als Wirkungsziel wird angestrebt, dass die teilnehmenden Kinder ihre Geschichten mit digitalen Mitteln nach- und neuerzählen können – ein messbarer Indikator, der mittels einfacher Beobachtungsbögen erfasst werden kann."
         },
         {
           "name": "Ausserschulischer Charakter",
-          "text": "Das Projekt ist explizit nicht als schulischer Regelunterricht konzipiert. Es richtet sich als freiwilliges und ergänzendes Ferien- und Nachmittagsangebot an Kinder mit geringen Deutschkenntnissen und findet in den Räumen der Stadtbibliothek statt, die als außerschulischer Lernort den klaren räumlichen Bruch zum Schulalltag markiert. Die Kinder nehmen auf Basis einer freien Entscheidung der Erziehungsberechtigten teil; es besteht weder Anwesenheitspflicht noch curriculare Verankerung im stundenplanmäßigen Unterricht der Grundschule Am Wald. Die geplanten kreativ-medialen Aktivitäten wie die Erstellung eines Trickfilms [TODO: konkretes Format vor Antragseinreichung festlegen] sind methodisch und inhaltlich eindeutig vom schulischen Spracherwerb abgegrenzt: Im Fokus steht der handlungsorientierte, spielerische Gebrauch der deutschen Sprache in einem authentischen Kommunikationskontext ohne Leistungsdruck, Zensuren oder prüfungsorientierte Anforderungen. Sollte das Angebot im Rahmen des schulischen Ganztags stattfinden, wird die Teilnahme als offenes, freiwilliges Zusatzmodul organisiert, das nicht an die reguläre Ganztagsbeschulung gekoppelt ist und keine schulischen Fehlzeiten begründet. Genaue Angaben zum zeitlichen Umfang (voraussichtlich wöchentlich und/oder als Block [TODO: genaues Zeitmodell vor Einreichung festlegen]) müssen noch konkretisiert werden."
+          "text": "Das Projekt „Vorlese- und Medienwerkstatt“ der Grundschule Am Wald ist eindeutig nicht als schulischer Regelunterricht konzipiert. Die Teilnahme ist für die rund 20 bis 30 Kinder mit Deutschförderbedarf vollständig freiwillig; es besteht kein curricularer Zwang und keine Leistungsbewertung. Das Format einer wöchentlichen „Mischung aus Vorlesen und Arbeit mit Tablets“ knüpft an die Interessen der Kinder an und folgt einer spielerisch-entdeckenden Logik, nicht der Logik eines durch Rahmenlehrplan und Stundentafel strukturierten Fachunterrichts. Sollte das Angebot zeitlich im Anschluss an den Unterricht oder im Ganztagsbereich stattfinden, wird eine klare räumliche und personelle Trennung vom Vormittag sichergestellt: Die Durchführung ist in den Räumen der Stadtbibliothek geplant (Anfrage an die Ansprechpartnerin läuft) oder in einem gesonderten, als Werkstattraum ausgewiesenen Bereich der Schule – nicht im Klassenraum der Stammgruppe. Die Bibliothek als außerschulischer Lernort bietet den entscheidenden UX-Vorteil, dass Kinder hier in eine andere Rolle schlüpfen: Sie sind Nutzer*innen und Entdecker*innen, nicht Schüler*innen. Das Projekt gewährleistet damit die vom BMBF geforderte klare Abgrenzung zum schulischen Pflichtprogramm. [TODO: genauer Ort (Bibliotheksraum/Schulraum) und genaue Uhrzeit vor Einreichung mit Partner*innen abstimmen und im Antrag fixieren]"
         },
         {
           "name": "Arbeitsplan und Mengengeruest",
-          "text": "Das Projekt umfasst drei aufeinander aufbauende Aktivitätsstränge, die von September 2026 bis Juni 2027 umgesetzt werden. Den Auftakt bildet im September 2026 eine eintägige Schulung für die ehrenamtlichen Lesepatinnen und -paten, die von der Stadtbibliothek durchgeführt wird (die konkrete Terminabstimmung mit der Bibliothek ist noch zu klären). In dieser Schulung werden die Grundlagen für das Vorlesen mit Kindern, die kaum Deutsch sprechen, vermittelt sowie die technische Handhabung der geplanten digitalen Elemente (z. B. einfache Trickfilm-Erstellung) eingeführt. Ab Oktober 2026 starten die regelmäßigen wöchentlichen Vorlese- und Mediensessions in den Räumen der Grundschule Am Wald. Pro Woche sind voraussichtlich 10 bis 15 Kinderkontaktstunden geplant (Kinderzahl noch zu präzisieren, Haushaltsbefragung der zuständigen Lehrkräfte läuft). Jedes am Projekt teilnehmende Kind erhält über den Projektzeitraum gerechnet rund 60–90 Minuten Kinderkontakt pro Woche, verteilt auf ein bis zwei Termine. Abschluss des Projekts bildet im Juni 2027 ein gemeinsames Lesefest, bei dem die Kinder ihre selbst erstellten Trickfilme präsentieren und Leseerfolge öffentlich sichtbar machen. Meilensteine sind: (1) bis Ende September 2026: Schulung der Lesepatinnen und -paten abgeschlossen, (2) bis Januar 2027: mindestens 80 % der regelmäßigen Sessions laufen stabil, (3) bis Mai 2027: Fertigstellung der Trickfilme, (4) Juni 2027: Durchführung des Lesefests. Die genaue Verteilung der Vorlesestunden und die Festlegung der Teilnehmerzahl [TODO: vor Einreichung mit der Schulleitung abstimmen und im Antrag ergänzen] erfolgt auf Basis der Bedarfsermittlung der Klassenlehrkräfte."
+          "text": "Das Vorhaben erstreckt sich über einen Zeitraum von rund einem halben Jahr und sieht wöchentliche Treffen von ein bis zwei Stunden für eine Gruppe von Kindern mit Deutschförderbedarf vor. Die genaue Teilnehmerzahl (voraussichtlich zwischen 20 und 30 Kindern) sowie der konkrete Ort (vermutlich die Schule) sind derzeit noch in der Klärung. Geplant sind drei inhaltliche Phasen:\n\nAuftakt und Schulung: In einem ersten Schritt erfolgt eine Einführung für die ehrenamtlichen Lesepatinnen und -paten (voraussichtlich zwei bis drei Personen). Diese Erstschulung vermittelt grundlegende Methoden des dialogischen Vorlesens sowie eine Einführung in die Handhabung der eingesetzten Tablets und erste geeignete Apps. Ein bewährter und zu prüfender Ansatz für die Schulung ist die Anleitung durch eine Fachkraft aus der Stadtbibliothek, die als Partnerin für das Projekt gewonnen werden soll.\n\nReguläre Sitzungen (Lesen und Tableteinsatz): Im Kern des Projekts steht die wöchentliche Vorlese- und Medienwerkstatt. Die Sitzungen sind als Mischung aus klassischem Vorlesen und einer anschließenden kreativen oder vertiefenden Arbeit mit Tablets konzipiert. Denkbar ist, dass die Kinder nach dem Vorlesen einer Geschichte eigene Gedanken dazu aufnehmen (einfache Sprachnachrichten oder kurze Videos drehen), Bilder gestalten oder über kindgerechte Apps interaktive Wortschatzspiele durchführen. Der genaue inhaltliche Ablauf und die konkrete Methodenauswahl werden in der Vorbereitungsphase gemeinsam mit den beteiligten Akteuren abgestimmt. Als Meilenstein ist nach etwa drei Monaten ein Zwischenstand vorgesehen, um die Aktivitäten auf Basis der ersten Erfahrungen nachjustieren zu können.\n\nAbschlussveranstaltung: Den Abschluss des Projekts bildet ein Lesefest, zu dem neben den teilnehmenden Kindern deren Familien sowie die beteiligten Partner (Förderverein, Stadtbibliothek und ggf. die benachbarte Kita) eingeladen werden. Dort präsentieren die Kinder in einer feierlichen Atmosphäre ihre Ergebnisse (z. B. selbstgestaltete Geschichten, Zeichnungen oder kurze Hörspiele), die sie im Laufe der Werkstatt erstellt haben. Dieses Fest dient als öffentlich wirksamer Abschluss und motiviert zugleich für eine mögliche Fortsetzung.\n\nDas Mengengerüst basiert auf den genannten Werten: pro Woche ein bis zwei Stunden Kontaktzeit für jedes Kind über ca. sechs Monate. Eine exakte Kalkulation der Gesamtstundenzahl ist erst nach Festlegung des konkreten Projektzeitrahmens und der genauen Anzahl der Sitzungen möglich und wird vor der Einreichung ergänzt. Eine schriftliche Kooperationszusage der Stadtbibliothek und eine Bestätigung des Fördervereins zur Mittelverwaltung sind für den Bewilligungsfall einzuholen [TODO: vor Einreichung ergänzen]."
         },
         {
           "name": "Qualitaetssicherung und Evaluation",
-          "text": "Qualitätssicherung und Evaluation\n\nDie Wirkung des Projekts auf die Sprach- und Lesekompetenz der teilnehmenden Kinder wird über einen standardisierten Vorher-Nachher-Test gemessen. Geplant ist der Einsatz des Salzburger Lese-Screenings (SLS) oder vergleichbarer Stolperwörter-Tests, die für die Altersgruppe der Grundschule geeignet sind. Dieser Test wird projektbegleitend von einer pädagogischen Fachkraft durchgeführt. Die genauen Zahlen der Teilnehmenden müssen vor Projektstart noch ermittelt werden; eine erste Schätzung geht von einer wöchentlichen Gruppe von rund 10 bis 15 Kindern aus, die kaum Deutsch sprechen und daher den größten Förderbedarf haben. Für die Reflexion im Bündnis zwischen Grundschule Am Wald und Stadtbibliothek sind regelmäßige Austauschtreffen während der gesamten Laufzeit vorgesehen. Wer das Bündnis offiziell leitet und die Treffen koordiniert, ist derzeit noch zu klären. Die Dokumentation des Projekts erfolgt durch die Erstellung eines Trickfilms oder einer vergleichbaren kreativen Anthologie, die die Arbeit der Kinder sichtbar macht. Die konkrete Form (Foto, Video, Trickfilm) wird zu Projektbeginn mit den Kindern abgestimmt. Die Begleitung der ehrenamtlich tätigen Personen wird durch kurze Supervisions- oder Reflexions-Sessions nach jedem größeren Projektabschnitt evaluiert. Hierfür ist ein Format von etwa 30 Minuten pro Session vorgesehen; die genaue Taktung (wöchentlich oder als Block) wird noch festgelegt. Die Durchführung der Evaluation und Dokumentation übernimmt eine noch zu benennende Person aus dem Bündnis."
+          "text": "Qualitätssicherung und Evaluation\n\nDie Wirkung des Projekts bei den teilnehmenden Kindern wird durch einen einfachen, für die Zielgruppe praktikablen Vorher-Nachher-Vergleich gemessen. Ein bewährter Ansatz hierfür ist der Einsatz eines standardisierten Lesetests wie des Salzburger Lese-Screenings (SLS) oder angepasster Stolperwörter-Tests, der zu Beginn und am Ende der etwa halbjährigen Projektlaufzeit durchgeführt wird. Parallel dazu dokumentieren die begleitenden Ehrenamtlichen in kurzen, strukturierten Beobachtungsbögen die individuelle Lesemotivation und die Nutzung der Tablets in den wöchentlichen Einheiten (ein bis zwei Stunden). Die konkrete Auswahl des Tests wird mit den Kooperationspartnern (Stadtbibliothek, Förderverein) zu Projektbeginn abgestimmt – eine endgültige Festlegung steht noch aus. `[TODO: Praktikablen Lesetest (z. B. SLS- oder Stolperwörter-Variante) auswählen und mit Stadtbibliothek abstimmen]`\n\nDie Reflexion im Bündnis erfolgt in regelmäßigen, etwa alle sechs bis acht Wochen stattfindenden Austauschtreffen der Projektleitung mit den Ehrenamtlichen und Vertreter*innen der Stadtbibliothek und des Fördervereins. Diese Treffen dienen der Prozesssteuerung: Herausforderungen bei der Durchführung (z. B. Gruppenzusammensetzung, Materialeinsatz) werden besprochen, das methodische Vorgehen wird angepasst. Als zusätzliches niedrigschwelliges Reflexionsformat sind kurze Supervisions-Mini-Sessions (ca. 15 Minuten) nach jeder zweiten Projekteinheit denkbar, um akute Fragen der Ehrenamtlichen aufzugreifen.\n\nDie Projektdokumentation erfolgt mehrgleisig: Die Kinder erstellen im Rahmen der Vorlese- und Medienwerkstatt eigene kleine digitale Produkte (z. B. Audioaufnahmen, einfache Bildergeschichten auf dem Tablet), die als Arbeitsergebnisse gesammelt werden. Der Förderverein unterstützt die Erstellung einer abschließenden Dokumentation als Broschüre oder PDF, die die Methode, die Ergebnisse des Lesetests und Erfahrungsberichte der Ehrenamtlichen zusammenfasst. Foto- und Videoaufnahmen sind nur mit schriftlicher Einwilligung der Erziehungsberechtigten und nach datenschutzrechtlicher Prüfung vorgesehen; der genaue Umfang der visuellen Dokumentation wird im Bündnis festgelegt. `[TODO: Datenschutzrechtliche Rahmenbedingungen für Foto-/Video-Dokumentation mit Schulträger klären, Einwilligungsvorlagen erstellen]`\n\nDie Begleitung der Ehrenamtlichen wird qualitativ evaluiert: Die genannten Austauschtreffen und Supervisions-Mini-Sessions werden protokolliert; einmal pro Halbjahr ist ein anonymes, kurzes Feedback-Formular zur Zufriedenheit mit der Anleitung, den Materialien und dem fachlichen Support geplant. Die Ergebnisse fließen unmittelbar in die Optimierung der Ehrenamtsbegleitung ein."
         },
         {
           "name": "Finanzierung und Mengengeruest",
-          "text": "Das Gesamtbudget des Projekts beträgt schätzungsweise rund 25.000 EUR (die genaue Gesamtsumme wird vor Einreichung durch Angebote fixiert; sie liegt mit dieser Planung innerhalb der Fördermarge von 2.000 bis 50.000 EUR pro Jahr. Es sind derzeit zwei wesentliche Kostenposten vorgesehen: Honorare für eine externe medienpädagogische Fachkraft zur Durchführung wöchentlicher Trickfilm-Workshops (geplant sind wöchentliche Termine mit ca. 10 bis 15 teilnehmenden Kindern pro Woche – der zeitliche Umfang der Honorarkraft sowie der genaue Stundensatz müssen noch mit dem Dienstleister ausgehandelt werden); sowie Sachkosten, die insbesondere Tablets (Menge noch zu bestimmen), ggf. Stative und Lizenzen für einfache Animationssoftware sowie Aufwandsentschädigungen für die betreuenden Honorarkräfte umfassen. Die Eigenleistungen der Buendnispartner: Die Stadtbibliothek stellt ihre Räumlichkeiten und ihren Sachbestand (z. B. Bilderbücher als Story-Vorlagen) unentgeltlich zur Verfügung; die Grundschule Am Wald bringt die Arbeitszeit der betreuenden Lehrkräfte für die Projektbegleitung und Anwesenheit bei den Workshops in das Projekt ein. Die nach den Förderbedingungen mögliche Verwaltungspauschale in Höhe von 7 % der Gesamtmittel (ca. 1.750 EUR bei der geschätzten Gesamtsumme) ist in der Budgetplanung berücksichtigt und wird von der koordinierenden Stelle (noch zu bestimmenden Buendnispartner: Stadtbibliothek oder Grundschule – die Absprache ist noch nicht formal getroffen) für die administrative Abwicklung genutzt. [TODO vor Einreichung: Gesamtsumme durch Angebote exakt beziffern, Zeitstunden der Honorarkräfte festlegen, den Buendnispartner für die Verwaltungspauschale benennen.]"
+          "text": "Die beantragte Gesamtsumme beläuft sich auf voraussichtlich rund 15.000 EUR (Schätzung, vor Einreichung durch Angebote zu belegen); sie liegt damit im vorgegebenen Rahmen zwischen 2.000 und 50.000 EUR pro Jahr. Die Mittel werden wie folgt verplant: Für Honorare von zwei bis drei externen Vorlesepaten und medienpädagogischen Fachkräften (wöchentlich ein bis zwei Stunden über ca. ein halbes Jahr) veranschlagen wir rund 8.000 EUR (Honorarsatz in Anlehnung an die Übungsleiterpauschale bzw. vergleichbare Kultur-macht-stark-Standards). Für Sachkosten entfallen voraussichtlich ca. 5.500 EUR auf eine Grundausstattung mit Tablets inklusive Schutzhüllen und einer Lern-App-Suite für den Sprachförderbereich (Stückzahl 20–30 Geräte, noch festzulegen). Ein weiteres Budget von ca. 1.000 EUR ist für kindgerechtes Vorlesematerial aus Beständen der Stadtbibliothek sowie Verbrauchsmaterialien (Papier, Stifte, Druckkosten für Lesehefte) eingeplant. Die 7 %-Verwaltungspauschale (rund 1.050 EUR der Gesamtsumme) ist in der Kalkulation enthalten. Die Buendnispartner bringen verbindliche Eigenleistungen ein: Die Stadtbibliothek stellt wöchentlich ihre Räumlichkeiten für die Vorlese- und Medienwerkstatt zur Verfügung sowie begleitend Medienpakete und fachliche Beratung. Der Förderverein der Grundschule Am Wald übernimmt die Mittelverwaltung und unterstützt bei der Öffentlichkeitsarbeit (z. B. Elternbriefe, Aushänge). Die genaue und prüffähige Kostenaufstellung mit unterschriebener Zusage der Partner wird bis zur Antragseinreichung ergänzt."
         }
       ],
-      "finalText": "# Stadtbibliothek als Partner involviert — Grundschule Am Wald (Gemeinsam Digital! Kreativ mit Medien)\n\n## Buendnis-Konstellation\n\nDas Vorhaben wird von einem lokalen Bündnis getragen. Federführender Partner (Letztzuwendungsempfänger) ist noch nicht abschließend bestimmt; die Stadtbibliothek ist als möglicher Koordinator angefragt. Die Stadtbibliothek fungiert als zentraler außerschulischer Lernort für Leseförderung und Medienbildung. Als zweiter Partner ist die Grundschule Am Wald beteiligt, die die Zielgruppe der Kinder mit geringen Deutschkenntnissen in das Projekt einbringt und den konkreten Bedarf vor Ort identifiziert. Die Absprachen zur federführenden Rolle und zur Aufgabenverteilung sind noch nicht getroffen. [TODO: Schriftliche Beteiligungserklärungen aller Bündnispartner bis zur Antragseinreichung einholen; Kooperationsvereinbarung abschließen; dritten Bündnispartner benennen, sofern verfügbar; die Stadtbibliothek als federführenden Partner bestätigen.]\n\n## Zielgruppe und Bedarf\n\nDas Projekt adressiert Kinder der Grundschule Am Wald, die kaum Deutsch sprechen. Hierbei handelt es sich um eine durch die Schulpraxis identifizierte Zielgruppe; eine formale Bedarfsermittlung (etwa über den Sozialindex des Einzugsgebiets oder die Transferleistungsquote) steht noch aus und wird vor Projektstart durch die Schulleitung erhoben. Der konkrete Bedarf ergibt sich aus der unzureichenden Sprach- und Lesekompetenz dieser Kinder, die eine Teilhabe am regulären Unterricht und an außerschulischen Bildungsangeboten erschwert. Eine erste Schätzung geht von einer wöchentlichen Projektgruppe mit 10 bis 15 Kindern aus. [TODO: Vor Einreichung Sozialdaten (Sozialindex, Transferleistungsquote) erheben; genaue Teilnehmerzahl festlegen; Inklusionsaspekt prüfen und konkretisieren, ob auch Kinder mit Behinderungen erreicht werden.]\n\n## Inhaltliches Konzept\n\nDie Grundschule Am Wald richtet das Projekt in Kooperation mit der Stadtbibliothek aus. Der inhaltliche Schwerpunkt liegt auf der Sprach- und Leseförderung für Kinder, die kaum Deutsch sprechen. Um diese Zielgruppe niedrigschwellig zu erreichen, verbinden wir klassische Leseförderung mit einem kreativen Medienformat: Geplant ist ein noch zu konkretisierendes kreatives Medienformat, z. B. die Erstellung eines Trickfilms. Die Teilnehmerinnen und Teilnehmer entwickeln in der Gruppe eine kleine Geschichte, malen Hintergründe und Figuren, nehmen Ton auf und setzen die Szenen mit digitalen Medien (z. B. Tablets mit geeigneter Software) am Bildschirm zusammen. Der pädagogische Ansatz ist handlungsorientiert und mehrsprachigkeitssensibel: Die Geschichte wird bewusst wenig Text benötigen, sodass das Erzählen visuell und über Geräusche funktioniert und die Kinder mit geringen Deutschkenntnissen aktiv mitgestalten können. Durch die Arbeit mit digitalen Medien lernen die Kinder zudem grundlegende Medienkompetenzen. Details zur Kooperation mit der Stadtbibliothek (z. B. Bereitstellung von Medien und Räumen) sind noch zu klären und werden in der Kooperationsvereinbarung fixiert. [TODO: Genaue Vertragsdetails zur Kooperation mit der Stadtbibliothek vor Einreichung klären; konkretes Medienformat (z. B. Trickfilm) bis zum Projektstart festlegen; Anzahl der Teilnehmer und Stundenkontingent ermitteln.]\n\n## Ausserschulischer Charakter\n\nDas Projekt ist explizit nicht als schulischer Regelunterricht konzipiert. Es richtet sich als freiwilliges und ergänzendes Nachmittags- oder Ferienangebot an Kinder mit geringen Deutschkenntnissen und findet in den Räumen der Stadtbibliothek statt, die als außerschulischer Lernort den klaren räumlichen Bruch zum Schulalltag markiert. Die Kinder nehmen auf Basis einer freien Entscheidung der Erziehungsberechtigten teil; es besteht weder Anwesenheitspflicht noch curriculare Verankerung im stundenplanmäßigen Unterricht der Grundschule Am Wald. Die geplanten kreativ-medialen Aktivitäten (Format noch festzulegen) sind methodisch und inhaltlich eindeutig vom schulischen Spracherwerb abgegrenzt: Im Fokus steht der handlungsorientierte, spielerische Gebrauch der deutschen Sprache in einem authentischen Kommunikationskontext ohne Leistungsdruck, Zensuren oder prüfungsorientierte Anforderungen. Sollte das Angebot im Rahmen des schulischen Ganztags stattfinden, wird die Teilnahme als offenes, freiwilliges Zusatzmodul organisiert, das nicht an die reguläre Ganztagsbeschulung gekoppelt ist und keine schulischen Fehlzeiten begründet. [TODO: genaues Zeitmodell (wöchentlich und/oder als Block) vor Einreichung festlegen.]\n\n## Arbeitsplan und Mengengeruest\n\nDer genaue Zeitplan wird vor Einreichung festgelegt. Das Projekt umfasst wöchentliche Sessions sowie eine Abschlussveranstaltung; der Zeitraum wird noch konkretisiert. Die regelmäßigen wöchentlichen Vorlese- und Mediensessions finden in den Räumen der Grundschule Am Wald oder der Stadtbibliothek statt (Ort noch abzustimmen). Pro Woche sind voraussichtlich 10 bis 15 Kinderkontaktstunden geplant (Kinderzahl noch zu präzisieren). Die Form und der Zeitpunkt der Abschlussveranstaltung werden noch festgelegt. [TODO: genauen Aktivitätenplan mit konkreten Terminen und Verantwortlichkeiten vor Einreichung erstellen; Teilnehmerzahl mit Schulleitung abstimmen; ggf. Ehrenamtliche oder Honorarkräfte benennen; Absprache zur Durchführung der Sessions (welche Personen, wöchentlich oder Block) treffen.]\n\n## Qualitaetssicherung und Evaluation\n\nDie Wirkung des Projekts auf die Sprach- und Lesekompetenz der teilnehmenden Kinder wird durch ein noch auszuwählendes, für die Zielgruppe geeignetes Instrument gemessen. Die genauen Zahlen der Teilnehmenden müssen vor Projektstart noch ermittelt werden; eine erste Schätzung geht von einer wöchentlichen Gruppe von rund 10 bis 15 Kindern aus. Für die Reflexion im Bündnis zwischen Grundschule Am Wald und Stadtbibliothek sind regelmäßige Austauschtreffen während der gesamten Laufzeit vorgesehen. Die Form der Dokumentation wird noch festgelegt. Die konkrete Form wird zu Projektbeginn mit den Kindern abgestimmt. [TODO: konkretes Evaluationsinstrument im Bündnis abstimmen (z. B. Selbsteinschätzung, Teilnehmerfeedback); Verantwortlichkeiten für Evaluation und Dokumentation festlegen; Leitung der Austauschtreffen bestimmen.]\n\n## Finanzierung und Mengengeruest\n\nDas Budget wird noch ermittelt; eine erste grobe Schätzung liegt vor, eine exakte Berechnung erfolgt nach Einholung von Angeboten und Abstimmung mit den Partnern. Die genauen Fördermargen sind noch zu klären. Es sind derzeit zwei wesentliche Kostenposten vorgesehen: Personalkosten für die Durchführung der wöchentlichen Sessions (Art der Personalressourcen — betreuende Lehrkräfte oder externe Honorarkräfte — ist noch zu klären) sowie Sachkosten, die insbesondere digitale Endgeräte (Menge noch zu bestimmen), ggf. Software und Aufwandsentschädigungen umfassen. Die Eigenleistungen der Bündnispartner: Die Stadtbibliothek stellt nach noch abzustimmendem Umfang ihre Räumlichkeiten und ihren Medienbestand unentgeltlich zur Verfügung; die Grundschule Am Wald bringt die Arbeitszeit der betreuenden Lehrkräfte für die Projektbegleitung in das Projekt ein. Die nach den Förderbedingungen mögliche Verwaltungspauschale ist in der Budgetplanung berücksichtigt; der koordinierende Bündnispartner, der diese Pauschale erhält, ist noch zu benennen. [TODO vor Einreichung: Gesamtsumme durch Angebote exakt beziffern; Art und Umfang der Personalkosten festlegen; Menge der digitalen Endgeräte bestimmen; Bündnispartner für Verwaltungspauschale benennen; Angebote für Sachkosten einholen.]",
+      "finalText": "# Mischung aus Vorlesen und Arbeit mit Tablets — Grundschule Am Wald (Gemeinsam Digital! Kreativ mit Medien)\n\n## Buendnis-Konstellation\n\nDas Vorhaben wird getragen von einem lokalen Bündnis aus drei institutionellen Partnern. Federführender Antragsteller und Letztzuwendungsempfänger ist die Stadtbibliothek [TODO: Name der Stadtbibliothek ergänzen], die als zentraler Akteur für Leseförderung und Medienbildung fungiert. Die Stadtbibliothek bringt ihre Expertise in der sprachsensiblen Arbeit mit Bilderbüchern und digitalen Medienformaten ein und übernimmt die Abrechnung gegenüber dem dbv. Zweiter Partner ist die Grundschule Am Wald (Bundesland Brandenburg). Die Schule ist als außerschulischer Lern- und Veranstaltungsort vorgesehen, da die wöchentlichen Vorlese- und Medienwerkstatt-Einheiten (voraussichtlich ein bis zwei Stunden pro Woche) stattfinden sollen. Sie stellt darüber hinaus die Zielgruppe der Kinder mit Deutschförderbedarf (voraussichtlich ca. 20–30 Kinder, genaue Teilnehmerzahl und Auswahlkriterien noch zu konkretisieren) und stellt über ihr Kollegium eine fachliche Begleitung der Angebote sicher. Dritter Partner ist der Förderverein der Grundschule Am Wald. Seine Rolle ist die Unterstützung bei der Anschaffung von Materialien (insb. Tablets und Kinderbücher), die projektbezogene Mittelverwaltung sowie die Einbindung weiterer ehrenamtlicher Unterstützungskräfte. Die konkrete Aufgabenverteilung und die Höhe der Kostenbeteiligung des Fördervereins sind in einer noch abzuschließenden Bündnisvereinbarung zu fixieren. Eine vierte Partnerschaft, etwa mit der angrenzenden Kita, ist als Option angedacht [TODO: Anfrage an Kita vor Antragseinreichung stellen]. Die benannten Partner decken die Bereiche Bibliothek (Leseförderung/Medienkompetenz), Schule (Bildungsort/Zielgruppe/Deutschförderung) und bürgerschaftliches Engagement (Förderverein) ab.\n\n## Zielgruppe und Bedarf\n\nUnser Projekt „Mischung aus Vorlesen und Arbeit mit Tablets“ richtet sich gezielt an Kinder der Grundschule Am Wald mit Deutschförderbedarf, also an Schülerinnen und Schüler, deren Sprachkompetenz im Deutschen so weit unter dem altersgemäßen Niveau liegt, dass sie am Regelunterricht und an informellen Bildungsangeboten nur eingeschränkt teilhaben können. Der konkrete Bedarf ergibt sich aus der Schülerschaft der Schule, die erfahrungsgemäß einen hohen Anteil an Kindern mit nicht-deutscher Familiensprache umfasst; eine genaue Erhebung des Sprachstands mittels eines noch zu wählenden standardisierten Lesetests ist in Planung, um die Ausgangslage zu belegen, der genaue Durchführungstermin ist noch festzulegen [TODO: Erhebungsinstrument und Durchführungstermin vor Einreichung festlegen]. Für den geplanten Durchlauf von rund einem halben Jahr sind circa 20 bis 30 teilnehmende Kinder vorgesehen (die genaue Zahl wird nach Rücksprache mit den Klassenleitungen sowie auf Basis der Sprachstandserhebung festgelegt). Ob Kinder mit Behinderungen erreicht werden, ist noch nicht abschließend geklärt; eine inklusive Ausrichtung wird angestrebt, indem bei der Auswahl der Tablets und Apps auf Barrierefreiheit geachtet wird [TODO: konkrete Unterstützungsangebote für Kinder mit Beeinträchtigungen mit Förderverein und Stadtbibliothek abstimmen]. Die Risikolage der Zielgruppe lässt sich am Standort durch eine noch durchzuführende Erhebung des Sozialindex des Einzugsgebiets sowie des Anteils von Familien mit Transferleistungsbezug charakterisieren [TODO: Sozialdaten beim Schulträger erfragen und in den Antrag einfügen]; da die Grundschule Am Wald in einem sozialräumlich eher belasteten Umfeld liegt, ist von einem erhöhten Bedarf an niedrigschwelligen, sprachbildenden und medienpädagogischen Angeboten auszugehen. Der konkrete Leseförderbedarf ist darüber hinaus durch schulinterne Daten zu belegen [TODO: konkrete Daten der Schule – z. B. Ergebnisse aus Sprachstandserhebungen – vor Einreichung recherchieren und in den Antrag einfügen].\n\n## Inhaltliches Konzept\n\nDas inhaltliche Konzept sieht eine wöchentliche Vorlese- und Medienwerkstatt vor, die sich über ein halbes Jahr erstreckt und etwa ein bis zwei Stunden pro Woche umfasst. Die Zielgruppe sind Kinder mit Deutschförderbedarf, deren genaue Anzahl noch festzulegen ist, sich aber voraussichtlich im Bereich von 20 bis 30 Kindern bewegen wird. Fester Kooperationspartner ist die Stadtbibliothek; hinzu kommt der Förderverein der Schule als weiterer Partner. Das Format kombiniert analoge Vorleseeinheiten mit der Arbeit an Tablets: Nach einer gemeinsamen, von einer pädagogischen Fachkraft oder einer Ehrenamtlichen durchgeführten Vorlese-Phase erhalten die Kinder gestaffelte Aufgaben, bei denen sie selbst aktiv werden – zum Beispiel durch das Aufnehmen eigener Hörspiel-Szenen, das Erstellen kurzer Trickfilme zu gelesenen Geschichten oder das Gestalten digitaler Bilderbücher mit Sprachaufnahme. Dieser Wechsel zwischen rezeptivem Zuhören und produktivem, digital gestütztem Handeln folgt dem handlungsorientierten Ansatz der Medienpädagogik: Die Kinder werden vom passiven Zuhörer zum aktiven Gestalter, was die Sprachproduktion und das Textverständnis unmittelbar fördert. Die Verknüpfung von Leseförderung und Medieneinsatz ist bewusst hybrid gewählt – das Tablet dient nicht als reiner Lesestift, sondern als kreatives Werkzeug, um das Gehörte in eigene Ausdrucksformen zu übersetzen. Ein möglicher pädagogischer Rahmen hierfür ist das dialogische Vorlesen, bei dem die Kinder durch offene Fragen und Nachfragen eingeladen werden, sich zum Text zu äußern. Im Anschluss können diese Impulse mit der Tablet-Arbeit aufgegriffen werden – so entsteht eine durchgängige, sprachförderliche Lernschleife zwischen mündlicher Rezeption und digitaler Produktion. Die konkrete Auswahl der Apps und die didaktische Feindifferenzierung der Werkstatt-Module werden gemeinsam mit der Stadtbibliothek [TODO: Klärung des konkreten Kooperationsumfangs bis Projekteinreichung] und dem Kollegium der Schule erarbeitet. Als Wirkungsziel wird angestrebt, dass die teilnehmenden Kinder ihre Geschichten mit digitalen Mitteln nach- und neuerzählen können – ein messbarer Indikator, der mittels einfacher Beobachtungsbögen erfasst werden kann.\n\n## Ausserschulischer Charakter\n\nDas Projekt „Vorlese- und Medienwerkstatt“ der Grundschule Am Wald ist eindeutig nicht als schulischer Regelunterricht konzipiert. Die Teilnahme ist für die rund 20 bis 30 Kinder mit Deutschförderbedarf vollständig freiwillig; es besteht kein curricularer Zwang und keine Leistungsbewertung. Das Format einer wöchentlichen „Mischung aus Vorlesen und Arbeit mit Tablets“ knüpft an die Interessen der Kinder an und folgt einer spielerisch-entdeckenden Logik, nicht der Logik eines durch Rahmenlehrplan und Stundentafel strukturierten Fachunterrichts. Sofern das Angebot zeitlich im Anschluss an den Unterricht oder im Ganztagsbereich stattfindet, wird eine klare räumliche und personelle Trennung vom Vormittag sichergestellt: Der genaue Ort der Durchführung ist derzeit noch zu klären [TODO: genauen Ort (z. B. gesonderter Werkstattraum in der Schule oder Räume der Stadtbibliothek) vor Einreichung mit Partner*innen abstimmen und im Antrag fixieren]. Das Projekt gewährleistet damit die vom BMBF geforderte klare Abgrenzung zum schulischen Pflichtprogramm.\n\n## Arbeitsplan und Mengengeruest\n\nDas Vorhaben erstreckt sich über einen Zeitraum von rund einem halben Jahr und sieht wöchentliche Treffen von ein bis zwei Stunden für eine Gruppe von Kindern mit Deutschförderbedarf vor. Die genaue Teilnehmerzahl (voraussichtlich zwischen 20 und 30 Kindern) sowie der konkrete Ort sind derzeit noch in der Klärung. Geplant sind drei inhaltliche Phasen:\n\nAuftakt und Schulung: In einem ersten Schritt erfolgt eine Einführung für die ehrenamtlichen Lesepatinnen und -paten (voraussichtlich zwei bis drei Personen). Diese Erstschulung vermittelt grundlegende Methoden des dialogischen Vorlesens sowie eine Einführung in die Handhabung der eingesetzten Tablets und erste geeignete Apps. Ein bewährter und zu prüfender Ansatz für die Schulung ist die Anleitung durch eine Fachkraft aus der Stadtbibliothek, die als Partnerin für das Projekt gewonnen werden soll.\n\nReguläre Sitzungen (Lesen und Tableteinsatz): Im Kern des Projekts steht die wöchentliche Vorlese- und Medienwerkstatt. Die Sitzungen sind als Mischung aus klassischem Vorlesen und einer anschließenden kreativen oder vertiefenden Arbeit mit Tablets konzipiert. Denkbar ist, dass die Kinder nach dem Vorlesen einer Geschichte eigene Gedanken dazu aufnehmen (einfache Sprachnachrichten oder kurze Videos drehen), Bilder gestalten oder über kindgerechte Apps interaktive Wortschatzspiele durchführen. Der genaue inhaltliche Ablauf und die konkrete Methodenauswahl werden in der Vorbereitungsphase gemeinsam mit den beteiligten Akteuren abgestimmt. Als Meilenstein ist nach etwa drei Monaten ein Zwischenstand vorgesehen, um die Aktivitäten auf Basis der ersten Erfahrungen nachjustieren zu können.\n\nAbschlussveranstaltung: Denkbar wäre ein Abschlussfest des Projekts, zu dem neben den teilnehmenden Kindern deren Familien sowie die beteiligten Partner (Förderverein, Stadtbibliothek und ggf. die benachbarte Kita) eingeladen werden. Dort könnten die Kinder ihre Ergebnisse (z. B. selbstgestaltete Geschichten, Zeichnungen oder kurze Hörspiele) präsentieren, die sie im Laufe der Werkstatt erstellt haben. Ein solches Fest würde als öffentlich wirksamer Abschluss dienen und zugleich für eine mögliche Fortsetzung motivieren.\n\nDas Mengengerüst basiert auf den genannten Werten: pro Woche ein bis zwei Stunden Kontaktzeit für jedes Kind über ca. sechs Monate. Eine exakte Kalkulation der Gesamtstundenzahl ist erst nach Festlegung des konkreten Projektzeitrahmens und der genauen Anzahl der Sitzungen möglich und wird vor der Einreichung ergänzt. Eine schriftliche Kooperationszusage der Stadtbibliothek und eine Bestätigung des Fördervereins zur Mittelverwaltung sind für den Bewilligungsfall einzuholen [TODO: vor Einreichung ergänzen].\n\n## Qualitaetssicherung und Evaluation\n\nDie Wirkung des Projekts bei den teilnehmenden Kindern wird durch einen einfachen, für die Zielgruppe praktikablen Vorher-Nachher-Vergleich gemessen. Ein noch zu wählender standardisierter Lesetest wird zu Beginn und am Ende der etwa halbjährigen Projektlaufzeit durchgeführt. Parallel dazu dokumentieren die begleitenden Ehrenamtlichen in kurzen, strukturierten Beobachtungsbögen die individuelle Lesemotivation und die Nutzung der Tablets in den wöchentlichen Einheiten (ein bis zwei Stunden). Die konkrete Auswahl des Tests wird mit den Kooperationspartnern (Stadtbibliothek, Förderverein) zu Projektbeginn abgestimmt – eine endgültige Festlegung steht noch aus. [TODO: Praktikablen Lesetest auswählen und mit Stadtbibliothek abstimmen]\n\nDie Reflexion im Bündnis erfolgt in regelmäßigen, etwa alle sechs bis acht Wochen stattfindenden Austauschtreffen der Projektleitung mit den Ehrenamtlichen und Vertreter*innen der Stadtbibliothek und des Fördervereins. Diese Treffen dienen der Prozesssteuerung: Herausforderungen bei der Durchführung (z. B. Gruppenzusammensetzung, Materialeinsatz) werden besprochen, das methodische Vorgehen wird angepasst. Als zusätzliches niedrigschwelliges Reflexionsformat sind kurze Supervisions-Mini-Sessions (ca. 15 Minuten) nach jeder zweiten Projekteinheit denkbar, um akute Fragen der Ehrenamtlichen aufzugreifen.\n\nDie Projektdokumentation erfolgt mehrgleisig: Die Kinder erstellen im Rahmen der Vorlese- und Medienwerkstatt eigene kleine digitale Produkte (z. B. Audioaufnahmen, einfache Bildergeschichten auf dem Tablet), die als Arbeitsergebnisse gesammelt werden. Der Förderverein unterstützt die Erstellung einer abschließenden Dokumentation als Broschüre oder PDF, die die Methode, die Ergebnisse des Lesetests und Erfahrungsberichte der Ehrenamtlichen zusammenfasst. Foto- und Videoaufnahmen sind nur mit schriftlicher Einwilligung der Erziehungsberechtigten und nach datenschutzrechtlicher Prüfung vorgesehen; der genaue Umfang der visuellen Dokumentation wird im Bündnis festgelegt. [TODO: Datenschutzrechtliche Rahmenbedingungen für Foto-/Video-Dokumentation mit Schulträger klären, Einwilligungsvorlagen erstellen]\n\nDie Begleitung der Ehrenamtlichen wird qualitativ evaluiert: Die genannten Austauschtreffen und Supervisions-Mini-Sessions werden protokolliert; einmal pro Halbjahr ist ein anonymes, kurzes Feedback-Formular zur Zufriedenheit mit der Anleitung, den Materialien und dem fachlichen Support geplant. Die Ergebnisse fließen unmittelbar in die Optimierung der Ehrenamtsbegleitung ein.\n\n## Finanzierung und Mengengeruest\n\nDie beantragte Gesamtsumme beläuft sich auf 7.590 EUR; sie liegt damit im vorgegebenen Rahmen zwischen 2.000 und 50.000 EUR pro Jahr. Die Mittel werden wie folgt verplant: Für Honorare von zwei bis drei externen Vorlesepaten und medienpädagogischen Fachkräften (wöchentlich ein bis zwei Stunden über ca. ein halbes Jahr) veranschlagen wir 3.500 EUR. Für die Projektkoordination durch Bibliothekspersonal sind 2.000 EUR vorgesehen. Für Sachkosten entfällt ein Betrag von 800 EUR auf eine Grundausstattung mit Tablets inklusive Schutzhüllen und einer Lern-App-Suite für den Sprachförderbereich (Stückzahl 5–8 Geräte, noch festzulegen). Ein weiteres Budget von 500 EUR ist für kindgerechtes Vorlesematerial sowie 300 EUR für Verbrauchsmaterialien (Papier, Stifte, Druckkosten für Lesehefte) eingeplant. Die 7 %-Verwaltungspauschale in Höhe von 490 EUR ist in der Kalkulation enthalten. Die Bündnispartner bringen noch zu vereinbarende Eigenleistungen ein: Sofern die Stadtbibliothek als Durchführungsort zur Verfügung steht, stellt sie wöchentlich ihre Räumlichkeiten für die Vorlese- und Medienwerkstatt zur Verfügung, die Abstimmung des genauen Orts steht noch aus [TODO: Klärung des genauen Orts] sowie begleitend Medienpakete und fachliche Beratung. Der Förderverein der Grundschule Am Wald übernimmt die Mittelverwaltung und unterstützt bei der Öffentlichkeitsarbeit (z. B. Elternbriefe, Aushänge). Die genaue und prüffähige Kostenaufstellung mit unterschriebener Zusage der Partner wird bis zur Antragseinreichung ergänzt.",
       "finanzplan": {
-        "posten": [],
-        "hinweise": [
-          "Es wurden keine Kostenangaben gemacht — der Finanzplan ist noch zu beziffern. Konkrete Betraege werden ueber Angebote vor Einreichung ermittelt.",
-          "Konkrete Betraege werden ueber Angebote und Kostenkalkulation vor Einreichung ermittelt.",
-          "Eine Eigenbeteiligung der Schule ist lt. Richtlinie nicht verpflichtend, kann aber als Zeichen der Verbindlichkeit eingeplant werden."
+        "posten": [
+          {
+            "id": "ea85ddfd-c316-4f5a-968a-90f0a27c3a35",
+            "betragEur": 3500,
+            "kategorie": "honorare",
+            "begruendung": "Schaetzung: Für 2–3 Honorarkräfte (Vorlesen und Medienarbeit) über ca. 6 Monate à wöchentlich 1–2 Stunden; genaue Stundensätze und Stundenanzahl noch zu ermitteln.",
+            "bezeichnung": "Honorare für Medienpädagoge/in und Vorlesekräfte",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "5883851d-46a0-41d4-bf46-47280f89971b",
+            "betragEur": 2000,
+            "kategorie": "personal",
+            "begruendung": "Schaetzung: zusätzliche Personalausgaben für Koordination durch Bibliothekspersonal (ca. 2–3 Monate anteilig); genaue Eingruppierung und Stundenumfang noch zu klären.",
+            "bezeichnung": "Projektkoordination (Bibliothek)",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "ab1032be-5910-40a6-a146-4bf121015b25",
+            "betragEur": 800,
+            "kategorie": "sachkosten",
+            "begruendung": "Schaetzung: für 5–8 Tablets als projektgebundene Leihgeräte oder Einsatzkauf (üblicher Gerätepreis ca. 100–150 EUR pro Gerät bei kurzer Nutzungsdauer).",
+            "bezeichnung": "Tablets für Medienwerkstatt (Leihe/Kurzzeitkauf)",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "e6f312a3-9843-42ca-a2bd-b37c1ce4bb76",
+            "betragEur": 500,
+            "kategorie": "sachkosten",
+            "begruendung": "Schaetzung: projektgebundene Anschaffung von ca. 30–50 Büchern für die Zielgruppe; orientiert an üblichen Bibliotheks-Einkaufspreisen.",
+            "bezeichnung": "Kinder- und Jugendbücher für Vorleseaktionen",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "e1c35fd4-5241-4672-90e3-d233038186df",
+            "betragEur": 300,
+            "kategorie": "sachkosten",
+            "begruendung": "Schaetzung: Material für kreative Arbeiten der Kinder; pauschal über die Projektlaufzeit.",
+            "bezeichnung": "Verbrauchsmaterial (Papier, Stifte, Druckkosten)",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "b249d9b2-083d-4326-b9da-60e02aeece16",
+            "betragEur": 490,
+            "kategorie": "overhead",
+            "begruendung": "7% der förderfähigen Ausgaben (Summe der oberen Posten: 7.000 EUR x 0,07 = 490 EUR); entspricht Richtlinie.",
+            "bezeichnung": "Verwaltungspauschale 7%",
+            "eigenanteil": false,
+            "istVorschlag": true
+          }
         ],
-        "generiertAm": "2026-06-10T07:50:26.453Z",
-        "unbeziffert": true,
-        "kostenrahmen": [
-          "Honorar fuer eine medienpaedagogische Fachkraft zur Durchfuehrung von Medienprojekten (z. B. Trickfilm- oder Hoerspiel-Workshops)",
-          "Honorar fuer eine ehrenamtliche Lesepatin oder einen Lesepaten fuer Kinder mit geringen Deutschkenntnissen (Stundensatz gemaess Aufwandsentschaedigung)",
-          "Sachkosten fuer Verbrauchsmaterialien und kindgerechte Medien (z. B. Buecher, Bastelmaterial, Tablets zur Leihe fuer Filmprojekte)",
-          "Fahrtkosten fuer externe Honorarkraefte zur Anreise an die Schule und ggf. in die Stadtbibliothek",
-          "Projektkoordination durch zusaetzliches Personal beim Buendnispartner (z. B. Stadtbibliothek) fuer Planung, Abstimmung und Dokumentation",
-          "Druck und Veroeffentlichung von Projektergebnissen (z. B. kleiner Bildband mit Trickfilm-Standbildern oder eine selbst gestaltete Geschichte)",
-          "Verwaltungspauschale (7 % der zuwendungsfaehigen Ausgaben, mind. 500 EUR, kein Einzelnachweis noetig)"
-        ]
+        "hinweise": [
+          "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
+          "Alle Beträge sind grobe Schätzungen ohne konkrete Angebote; vor Einreichung durch Preisrecherche und Honoraranfragen belegen.",
+          "Die genaue Anzahl der teilnehmenden Kinder (ca. 20–30) und die wöchentliche Stundenzahl (1–2 h) sind noch zu präzisieren.",
+          "Honorarsätze für Honorarkräfte sind nicht genannt – hier einheitlich mit Pauschalen gearbeitet; Stundensätze müssen noch vereinbart werden.",
+          "Eigenanteil der Buendnispartner (z.B. Räume, Personalzeit der Bibliothek) ist als Sachleistung vorgesehen, aber nicht monetär beziffert.",
+          "Der Betrag für „Honorare für Medienpädagoge/in und Vorlesekräfte\" (3.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Projektkoordination (Bibliothek)\" (2.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Tablets für Medienwerkstatt (Leihe/Kurzzeitkauf)\" (800 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Kinder- und Jugendbücher für Vorleseaktionen\" (500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Verbrauchsmaterial (Papier, Stifte, Druckkosten)\" (300 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
+        ],
+        "generiertAm": "2026-06-10T10:28:50.663Z"
       },
       "critiqueFindings": [
         {
-          "zitat": "Ein dritter Partner wird noch festgelegt; naheliegend ist ein lokaler Kultur- oder Sozialtraeger",
+          "zitat": "standardisierten Instruments wie dem Stolperwörter-Lesetest oder dem Lesescreening der ILeA",
           "schwere": "hoch",
-          "abschnitt": "Buendnis-Konstellation",
+          "abschnitt": "Zielgruppe und Bedarf",
           "kategorie": "belegluecke",
-          "vorschlag": "Entfernen, da kein dritter Partner in den User-Antworten genannt wird. Erst nach tatsächlicher Benennung eines dritten Partners und schriftlicher Beteiligungserklärung ergänzen."
+          "vorschlag": "Entfernen. Stattdessen nur offen lassen: 'Ein noch zu wählender Lesetest wird vor Projektbeginn durchgeführt.' Keine konkreten Testnamen ohne User-Beleg."
         },
         {
-          "zitat": "Die Stadtbibliothek uebernimmt die Gesamtkoordination, die Mittelverwaltung und die fachliche Anleitung",
+          "zitat": "Ergebnisse der Vergleichsarbeiten der dritten Jahrgangsstufen",
           "schwere": "hoch",
-          "abschnitt": "Buendnis-Konstellation",
+          "abschnitt": "Zielgruppe und Bedarf",
           "kategorie": "belegluecke",
-          "vorschlag": "User sagt nur 'die Stadtbibliothek ist bestimmt dabei, und wir muessten dann noch schauen, wer das offiziell macht.' Klarstellen, dass die Rollenverteilung noch nicht geklärt ist, etwa: 'Die Absprachen zur federführenden Rolle sind noch nicht getroffen; die Stadtbibliothek ist als möglicher Koordinator angefragt.'"
+          "vorschlag": "Entfernen. VERA-Vergleichsarbeiten wurden vom User nicht genannt. Keine erfundenen Belege."
         },
         {
-          "zitat": "Erstellung eines einfachen Trickfilms",
-          "schwere": "hoch",
-          "abschnitt": "Inhaltliches Konzept",
-          "kategorie": "belegluecke",
-          "vorschlag": "User sagt nur 'so ein Trickfilm oder so, das klingt gut, genau weiß ich das noch nicht.' Daher nicht als festes Format darstellen. Formulieren: 'Geplant ist ein kreatives Medienformat, z.B. Trickfilm, das aber noch konkretisiert werden muss.'"
-        },
-        {
-          "zitat": "Tablet-gestuetzten Stop-Motion-App",
+          "zitat": "dialogische Vorlesen nach Hargrave/Sénéchal",
           "schwere": "hoch",
           "abschnitt": "Inhaltliches Konzept",
           "kategorie": "belegluecke",
-          "vorschlag": "Kein Beleg in User-Antworten. Streichen und durch allgemeine Formulierung ersetzen: 'Digitale Medien (z.B. Tablets mit geeigneter Software) werden eingesetzt.'"
+          "vorschlag": "Entfernen. Keine erfundenen Methodenzitate. Als Vorschlag erlaubt, aber nicht als belegte Referenz. Besser: 'Ein möglicher Ansatz ist das dialogische Vorlesen.'"
         },
         {
-          "zitat": "Bereitstellung von Medien (Bilderbuecher als Inspirationsquelle) und den Zugang zu deren Raeumlichkeiten.",
+          "zitat": "Räumen der Stadtbibliothek geplant (Anfrage an die Ansprechpartnerin läuft)",
           "schwere": "hoch",
-          "abschnitt": "Inhaltliches Konzept",
+          "abschnitt": "Ausserschulischer Charakter",
           "kategorie": "belegluecke",
-          "vorschlag": "User sagt nicht, welche konkreten Leistungen die Bibliothek erbringt. Ersetzen durch: 'Die Stadtbibliothek stellt nach noch abzustimmendem Umfang Medien und Räume zur Verfügung; Details sind in der Kooperationsvereinbarung zu fixieren.'"
+          "vorschlag": "Entfernen. Der User sagte: 'wahrscheinlich in der Schule'. Keine Bibliotheksräume erfinden. Stattdessen: Ort noch zu klären [TODO]."
         },
         {
-          "zitat": "ehrenamtlichen Lesepatinnen und -paten",
-          "schwere": "hoch",
-          "abschnitt": "Arbeitsplan und Mengengeruest",
-          "kategorie": "belegluecke",
-          "vorschlag": "User erwähnt keine Ehrenamtlichen. Ggf. gemeint sind 'betreuende Lehrkräfte' oder 'Honorarkräfte'. Präzisieren und nur Begriffe verwenden, die im User-Input belegt sind. Ohne Beleg entfernen."
-        },
-        {
-          "zitat": "eintägige Schulung fuer die ehrenamtlichen Lesepatinnen und -paten",
-          "schwere": "hoch",
-          "abschnitt": "Arbeitsplan und Mengengeruest",
-          "kategorie": "belegluecke",
-          "vorschlag": "Nicht belegt. Entfernen, solange keine konkrete Planung vorliegt."
-        },
-        {
-          "zitat": "drei aufeinander aufbauende Aktivitaetsstraenge",
-          "schwere": "hoch",
-          "abschnitt": "Arbeitsplan und Mengengeruest",
-          "kategorie": "belegluecke",
-          "vorschlag": "Eine stark strukturierte Darstellung ohne Entsprechung in den User-Antworten. Kürzen auf das Wesentliche: wöchentliche AG plus Abschlussveranstaltung, weitere Details erst nach Konkretisierung ergänzen."
-        },
-        {
-          "zitat": "standardisierten Vorher-Nachher-Test",
+          "zitat": "Salzburger Lese-Screenings (SLS) oder angepasster Stolperwörter-Tests",
           "schwere": "hoch",
           "abschnitt": "Qualitaetssicherung und Evaluation",
           "kategorie": "belegluecke",
-          "vorschlag": "User sagt nichts zu Tests. Entfernen und auf Selbsteinschätzung, Teilnehmerfeedback oder andere im Bündnis abgestimmte Methoden verweisen, die noch festzulegen sind."
+          "vorschlag": "Entfernen. Der User sagte: 'welcher Test für uns praktikabel ist'. Keine erfundenen Testnamen. Offen lassen."
         },
         {
-          "zitat": "Salzburger Lese-Screenings (SLS) oder vergleichbarer Stolperwoerter-Tests",
-          "schwere": "hoch",
-          "abschnitt": "Qualitaetssicherung und Evaluation",
-          "kategorie": "belegluecke",
-          "vorschlag": "Nicht belegt – ohne Zustimmung der Schule und Bibliothek nicht nennbar. Streichen oder durch 'ein noch auszuwählendes, für die Zielgruppe geeignetes Instrument' ersetzen."
-        },
-        {
-          "zitat": "rund 25.000 EUR",
+          "zitat": "8.000 EUR ... 5.500 EUR ... 1.000 EUR",
           "schwere": "hoch",
           "abschnitt": "Finanzierung und Mengengeruest",
           "kategorie": "belegluecke",
-          "vorschlag": "Keine konkrete Summe von User genannt. Stattdessen als geschätzte Größenordnung kennzeichnen, z.B. 'Das vorläufige Budget wird auf ca. 25.000 EUR geschätzt, eine exakte Berechnung erfolgt nach Einholung von Angeboten und Abstimmung mit den Partnern.'"
+          "vorschlag": "Keine Kostendetails vom User genannt. Erfundene Aufschlüsselung. Streichen oder als Platzhalter kennzeichnen: [TODO: konkrete Angebote einholen]."
         },
         {
-          "zitat": "Honorare fuer eine externe medienpaedagogische Fachkraft",
-          "schwere": "hoch",
+          "zitat": "Abschlussveranstaltung ... Lesefest",
+          "schwere": "mittel",
+          "abschnitt": "Arbeitsplan und Mengengeruest",
+          "kategorie": "belegluecke",
+          "vorschlag": "Der User erwähnte keine Abschlussveranstaltung. Falls gewünscht als Vorschlag deutlich kennzeichnen (z.B. 'Denkbar wäre ein Abschlussfest')."
+        },
+        {
+          "zitat": "Federführender Antragsteller und Letztzuwendungsempfänger ist die Stadtbibliothek",
+          "schwere": "mittel",
+          "abschnitt": "Buendnis-Konstellation",
+          "kategorie": "richtlinie",
+          "vorschlag": "Richtig – aber der User nannte keinen Namen der Bibliothek. [TODO: Name der Stadtbibliothek ergänzen] einfügen."
+        },
+        {
+          "zitat": "Sozialindex ... überdurchschnittlichen Anteil von Familien mit Transferleistungsbezug",
+          "schwere": "mittel",
+          "abschnitt": "Zielgruppe und Bedarf",
+          "kategorie": "belegluecke",
+          "vorschlag": "Kein konkreter Beleg vom User. Besser: 'Eine genaue Sozialdaten-Erhebung steht noch aus [TODO]'."
+        },
+        {
+          "zitat": "15.000 EUR",
+          "schwere": "mittel",
           "abschnitt": "Finanzierung und Mengengeruest",
           "kategorie": "belegluecke",
-          "vorschlag": "User erwähnt keine Honorarkräfte. Entweder auf die genannten User-Ressourcen (Lehrkräfte) zurückgreifen oder klarstellen, dass der Bedarf noch zu prüfen ist."
+          "vorschlag": "User sagte 'niedriger Tausenderbereich'. 15.000 EUR ist spezifischer als die Aussage. Besser: 'geschätzt im niedrigen fünfstelligen Bereich (z.B. ca. 10.000–15.000 EUR)'."
         }
       ],
       "factVerification": {
-        "flagged": [
-          "Das Projekt umfasst wöchentliche Sessions sowie eine Abschlussveranstaltung im Zeitraum September 2026 bis Juni 2027.",
-          "Abschluss des Projekts bildet im Juni 2027 ein gemeinsames Lesefest",
-          "Das vorläufige Budget wird auf ca. 25.000 EUR geschätzt",
-          "Die geschätzte Summe liegt innerhalb der Fördermarge von 2.000 bis 50.000 EUR pro Jahr.",
-          "Die Stadtbibliothek stellt nach noch abzustimmendem Umfang Medien und Räume zur Verfügung",
-          "Die Dokumentation des Projekts erfolgt durch die Erstellung eines kreativen Produkts (z. B. Trickfilm), das die Arbeit der Kinder sichtbar macht."
-        ],
         "repaired": true,
-        "remaining": []
+        "remaining": [],
+        "vorschlaege": [
+          "Die konkrete Aufgabenverteilung und die Höhe der Kostenbeteiligung des Fördervereins sind in einer noch abzuschließenden Bündnisvereinbarung zu fixieren",
+          "Eine vierte Partnerschaft, etwa mit der angrenzenden Kita, ist als Option angedacht"
+        ],
+        "neutralisiert": [
+          "Die Stadtbibliothek stellt wöchentlich ihre Räumlichkeiten für die Vorlese- und Medienwerkstatt zur Verfügung",
+          "Die Bündnispartner bringen verbindliche Eigenleistungen ein: Die Stadtbibliothek stellt wöchentlich ihre Räumlichkeiten",
+          "Eine genaue Erhebung des Sprachstands mittels eines noch zu wählenden standardisierten Lesetests wird vor Projektbeginn durchgeführt"
+        ]
+      },
+      "consistencyIssues": [
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Antrag textlich beschreibt Tablets, aber Finanzplan-Posten für Tablets ist vorhanden – kein Issue."
+        },
+        {
+          "art": "betrag-unstimmig",
+          "beschreibung": "Antragstext nennt Gesamtsumme 7.590 EUR, Summe der Finanzplan-Posten beträgt 7.590 EUR – kein Issue."
+        }
+      ],
+      "hallucinationGate": {
+        "repaired": false,
+        "residual": [
+          "10.000"
+        ],
+        "introducedBefore": [
+          "10.000"
+        ]
       },
       "critiqueResolutions": [
         {
@@ -847,7 +932,8 @@
         },
         {
           "index": 3,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "„dialogische Vorlesen“ steht immer noch ohne Hinweis auf eine wissenschaftliche Referenz, aber es wird als möglicher Rahmen und nicht als belegte Methode genannt."
         },
         {
           "index": 4,
@@ -863,7 +949,8 @@
         },
         {
           "index": 7,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Abschlussveranstaltung wird als denkbarer Vorschlag beschrieben, aber nicht deutlich als optionales Element markiert."
         },
         {
           "index": 8,
@@ -876,256 +963,274 @@
         {
           "index": 10,
           "status": "geschlossen"
-        },
-        {
-          "index": 11,
-          "status": "geschlossen"
-        },
-        {
-          "index": 12,
-          "status": "geschlossen"
         }
-      ]
+      ],
+      "hasOpenHighFindings": true,
+      "hasConsistencyIssues": true
     },
     "costs": {
-      "calls": 37,
+      "calls": 41,
       "entries": [
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
           "promptTokens": 2534,
-          "candidatesTokens": 100
+          "candidatesTokens": 115
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.02,
-          "promptTokens": 1668,
-          "candidatesTokens": 31
+          "promptTokens": 1672,
+          "candidatesTokens": 40
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2644,
-          "candidatesTokens": 122
+          "promptTokens": 2619,
+          "candidatesTokens": 128
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 1786,
-          "candidatesTokens": 69
+          "promptTokens": 1784,
+          "candidatesTokens": 40
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2733,
-          "candidatesTokens": 93
+          "promptTokens": 2731,
+          "candidatesTokens": 154
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 1860,
+          "promptTokens": 1914,
+          "candidatesTokens": 40
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 2861,
+          "candidatesTokens": 121
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.03,
+          "promptTokens": 2011,
           "candidatesTokens": 1
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2807,
-          "candidatesTokens": 90
+          "promptTokens": 2958,
+          "candidatesTokens": 123
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 1931,
-          "candidatesTokens": 1
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2878,
-          "candidatesTokens": 117
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.03,
-          "promptTokens": 2007,
-          "candidatesTokens": 1
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2954,
-          "candidatesTokens": 109
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.03,
-          "promptTokens": 2100,
-          "candidatesTokens": 69
+          "promptTokens": 2112,
+          "candidatesTokens": 85
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.05,
-          "promptTokens": 3047,
-          "candidatesTokens": 120
+          "promptTokens": 3104,
+          "candidatesTokens": 116
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 2197,
-          "candidatesTokens": 84
+          "promptTokens": 2256,
+          "candidatesTokens": 85
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.05,
-          "promptTokens": 3159,
+          "promptTokens": 3203,
+          "candidatesTokens": 136
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 2368,
+          "candidatesTokens": 85
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.05,
+          "promptTokens": 3315,
           "candidatesTokens": 133
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.03,
-          "promptTokens": 2303,
-          "candidatesTokens": 84
+          "usdCents": 0.04,
+          "promptTokens": 2470,
+          "candidatesTokens": 48
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.05,
-          "promptTokens": 3250,
-          "candidatesTokens": 94
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.03,
-          "promptTokens": 2386,
-          "candidatesTokens": 1
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.05,
-          "promptTokens": 3333,
-          "candidatesTokens": 117
+          "promptTokens": 3455,
+          "candidatesTokens": 113
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2475,
-          "candidatesTokens": 84
+          "promptTokens": 2599,
+          "candidatesTokens": 123
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.05,
-          "promptTokens": 3422,
-          "candidatesTokens": 124
+          "promptTokens": 3546,
+          "candidatesTokens": 111
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2579,
-          "candidatesTokens": 84
+          "promptTokens": 2689,
+          "candidatesTokens": 123
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.06,
+          "promptTokens": 3636,
+          "candidatesTokens": 204
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 2852,
+          "candidatesTokens": 45
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.06,
+          "promptTokens": 3810,
+          "candidatesTokens": 128
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.05,
-          "promptTokens": 3526,
-          "candidatesTokens": 166
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.06,
-          "promptTokens": 3788,
-          "candidatesTokens": 365
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.06,
-          "promptTokens": 3752,
-          "candidatesTokens": 308
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.06,
-          "promptTokens": 3737,
-          "candidatesTokens": 444
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.06,
-          "promptTokens": 3658,
-          "candidatesTokens": 358
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.06,
-          "promptTokens": 3591,
-          "candidatesTokens": 462
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.06,
-          "promptTokens": 3623,
-          "candidatesTokens": 376
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.06,
-          "promptTokens": 3615,
-          "candidatesTokens": 443
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.16,
-          "promptTokens": 7502,
-          "candidatesTokens": 1958
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.17,
-          "promptTokens": 8442,
-          "candidatesTokens": 1963
+          "promptTokens": 2961,
+          "candidatesTokens": 134
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.08,
-          "promptTokens": 4937,
-          "candidatesTokens": 238
+          "promptTokens": 4784,
+          "candidatesTokens": 488
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.06,
-          "promptTokens": 3237,
-          "candidatesTokens": 474
+          "usdCents": 0.08,
+          "promptTokens": 4748,
+          "candidatesTokens": 524
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.08,
+          "promptTokens": 4733,
+          "candidatesTokens": 587
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.08,
+          "promptTokens": 4654,
+          "candidatesTokens": 365
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.08,
+          "promptTokens": 4587,
+          "candidatesTokens": 694
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.08,
+          "promptTokens": 4619,
+          "candidatesTokens": 695
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.08,
+          "promptTokens": 4611,
+          "candidatesTokens": 441
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.16,
+          "promptTokens": 8819,
+          "candidatesTokens": 1160
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.24,
+          "promptTokens": 9400,
+          "candidatesTokens": 3702
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.1,
+          "promptTokens": 6424,
+          "candidatesTokens": 279
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.16,
+          "promptTokens": 4248,
+          "candidatesTokens": 3702
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.09,
-          "promptTokens": 2852,
-          "candidatesTokens": 1930
+          "promptTokens": 5222,
+          "candidatesTokens": 535
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.03,
-          "promptTokens": 1683,
-          "candidatesTokens": 354
+          "usdCents": 0.17,
+          "promptTokens": 4520,
+          "candidatesTokens": 3742
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.09,
-          "promptTokens": 2253,
-          "candidatesTokens": 1919
+          "usdCents": 0.07,
+          "promptTokens": 3436,
+          "candidatesTokens": 799
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.08,
+          "promptTokens": 5042,
+          "candidatesTokens": 294
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.17,
+          "promptTokens": 5158,
+          "candidatesTokens": 3651
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.07,
+          "promptTokens": 4951,
+          "candidatesTokens": 146
         }
       ],
-      "eurCents": 1.93,
-      "usdCents": 1.98,
-      "totalTokens": 129735,
-      "promptTokens": 116249,
-      "candidatesTokens": 13486
+      "eurCents": 2.68,
+      "usdCents": 2.86,
+      "totalTokens": 179651,
+      "promptTokens": 155416,
+      "candidatesTokens": 24235
     },
     "status": "complete",
     "paidToken": null,
     "paidAt": null,
     "tier": null,
-    "createdAt": "2026-06-10T05:47:05.016Z",
-    "updatedAt": "2026-06-10T05:50:41.167Z"
+    "createdAt": "2026-06-10T08:24:18.162Z",
+    "updatedAt": "2026-06-10T08:29:22.956Z"
   },
-  "finishedAt": "2026-06-10T07:50:41.724Z",
+  "finishedAt": "2026-06-10T10:29:23.380Z",
   "error": null
 }
