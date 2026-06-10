@@ -912,6 +912,101 @@ ${finalText}`;
 }
 
 // ============================================================================
+// FAKT-VERIFIKATIONS-PASS (Probe 09.06., Hebel 1b — nach dem Zahlen-Gate)
+// Das deterministische Halluzinations-Gate faengt nur Zahlen/Eigennamen. Dieser
+// LLM-Pass prueft NARRATIVE, pruefbare Behauptungen (Partner, Termine, Zusagen,
+// Mengen, Kanaele, Verfahren) gegen die Nutzer-Ground-Truth — bewusst OHNE den
+// Entwurf, damit auch im Section-Schritt erfundene Fakten erfasst werden.
+// ============================================================================
+
+export const FACT_VERIFICATION_DETECT_SYSTEM = `Du bist ein strenger Faktenpruefer fuer Foerderantraege. Du bekommst einen fertigen Antragstext, die GESICHERTEN Nutzerangaben (Ground Truth) und den Programm-Kontext. Deine einzige Aufgabe: konkrete, UEBERPRUEFBARE Tatsachenbehauptungen im Antrag finden, die NICHT durch die Nutzerangaben gedeckt sind — also vom Schreibmodell frei erfunden wurden.
+
+## Was du flaggst (nur SPEZIFISCHE, NACHPRUEFBARE Behauptungen ueber DIESE Schule/dieses Projekt)
+- PARTNER: ein benannter externer Partner/Verein/Betrieb/Person und dessen Rolle ("die Stadtbuecherei stellt Raeume", "in Kooperation mit dem oertlichen Sportverein"), den der Nutzer nicht genannt hat.
+- TERMIN: ein konkretes Datum, ein Zeitplan oder Meilensteinplan ("ab September 2026", "in der dreimonatigen Pilotphase", "Auftaktveranstaltung im Oktober"), der nicht aus den Nutzerangaben stammt.
+- ZUSAGE: eine feststehende Zusage/Genehmigung Dritter ("der Schultraeger hat zugestimmt", "die Eltern beteiligen sich"), die der Nutzer nicht bestaetigt hat.
+- MENGE: eine konkrete Stueckzahl/Reichweite/Frequenz ("alle 12 Klassen", "woechentlich", "120 teilnehmende Kinder"), die nicht in den Nutzerangaben steht.
+- KANAL: ein konkreter Verbreitungs-/Dokumentationsweg ("Verbreitung ueber den Schul-Newsletter und die Lokalpresse"), den der Nutzer nicht genannt hat.
+- VERFAHREN: ein konkretes Verfahren/eine Methode als feststehend dargestellt, das der Nutzer nicht beschrieben hat.
+
+## Was du NIEMALS flaggst
+- Allgemeine Aussagen ueber das Thema, den Foerderzweck oder paedagogischen Wert ("digitale Kompetenzen sind fuer die Teilhabe wichtig") — das ist legitime Rahmung, keine Tatsachenbehauptung.
+- Eine sinngemaesse Wiedergabe oder nachvollziehbare Ausgestaltung der vom Nutzer selbst genannten Projektidee.
+- Bereits EHRLICH MARKIERTE Luecken/Vorbehalte ("noch zu klaeren", "[TODO: …]", "liegt derzeit nicht vor", "noch einzuholen", "voraussichtlich", "wird vor Einreichung festgelegt") — die sind erwuenscht und bleiben unangetastet.
+- Angaben, die in der Ground Truth oder im Programm-Kontext stehen.
+- Reine Zahlen/Eigennamen ohne Tatsachen-Charakter (die deckt ein anderer Pruefschritt ab).
+
+## Ausgabe
+AUSSCHLIESSLICH valides JSON, keine Markdown-Fences:
+{
+  "claims": [
+    {
+      "zitat": "woertliches Kurzzitat aus dem Antrag (max 120 Zeichen, exakt wie im Text)",
+      "art": "partner" | "termin" | "zusage" | "menge" | "kanal" | "verfahren" | "sonstiges",
+      "warum": "1 Satz: warum diese Behauptung durch die Nutzerangaben nicht gedeckt ist"
+    }
+  ]
+}
+
+Regeln
+- "claims": [] ist eine voellig gueltige und HAEUFIGE Antwort. Im Zweifel NICHT flaggen — lieber eine echte Erfindung uebersehen als legitimen Inhalt zerstoeren.
+- Das "zitat" MUSS woertlich (Zeichen fuer Zeichen) im Antragstext vorkommen, sonst wird es verworfen.
+- Maximal 8 Eintraege, die gravierendsten zuerst.`;
+
+export function buildFactVerificationDetectPrompt(
+  finalText: string,
+  groundTruth: string,
+  programmKontext: string
+): string {
+  return `GESICHERTE NUTZERANGABEN (Ground Truth — nur was hier steht, gilt als belegt):
+${groundTruth || "(keine strukturierten Angaben)"}
+
+PROGRAMM-KONTEXT (legitime Rahmung, KEINE flagbare Erfindung):
+${programmKontext}
+
+ANTRAGSTEXT (auf erfundene, nicht gedeckte Tatsachenbehauptungen pruefen):
+${finalText}
+
+Liefere die claims-Liste.`;
+}
+
+export const FACT_VERIFICATION_REPAIR_SYSTEM = `Du ueberarbeitest einen fertigen Foerderantrag CHIRURGISCH. Ein Faktenpruefer hat konkrete Behauptungen markiert, die NICHT durch die Nutzerangaben gedeckt sind — sie wurden frei erfunden. Du bekommst genau diese Stellen.
+
+## Aufgabe
+Entschaerfe AUSSCHLIESSLICH die gelisteten Behauptungen. Lass den restlichen Text Wort fuer Wort unveraendert.
+- Wandle jede markierte Behauptung in einen ehrlichen, offenen Punkt um, statt sie als feststehende Tatsache zu behaupten:
+  - erfundener Partner → "ein noch zu gewinnender Kooperationspartner" / "noch zu klaeren".
+  - erfundener Termin/Zeitplan → "der genaue Zeitplan wird vor Einreichung festgelegt".
+  - erfundene Zusage Dritter → "die Zustimmung von … ist noch einzuholen".
+  - erfundene Menge/Reichweite/Frequenz → "in noch zu bestimmendem Umfang".
+  - erfundener Kanal/Verfahren → "die Form der Verbreitung/Umsetzung wird noch festgelegt".
+- Eine erfundene Angabe behebt man durch Streichen oder einen ehrlichen Luecken-Marker — NIEMALS durch eine andere Erfindung. Erfinde keine Ersatz-Fakten, -Namen, -Zahlen oder -Termine.
+- Schon vorhandene ehrliche Luecken-Marker bleiben unveraendert.
+
+## Strikte Grenzen
+- Aendere NICHTS an Struktur, Titel, Abschnittsreihenfolge, Stil oder an Angaben, die nicht markiert sind.
+
+## Ausgabeformat (Markdown)
+- Antragstitel als H1 ("# Titel"), Abschnitte als H2 ("## Abschnittsname"), Absaetze durch Leerzeilen getrennt.
+- KEINE HTML-Tags, KEINE Code-Fences.
+Gib NUR den bereinigten Antragstext aus — keinerlei Kommentare davor oder danach.`;
+
+export function buildFactVerificationRepairPrompt(
+  finalText: string,
+  claims: Array<{ zitat: string; art: string; warum: string }>
+): string {
+  const list = claims.length
+    ? claims.map((c, i) => `${i + 1}. [${c.art}] "${c.zitat}" — ${c.warum}`).join("\n")
+    : "- (keine)";
+  return `ERFUNDENE BEHAUPTUNGEN (durch keine Nutzerangabe gedeckt — diese entschaerfen):
+${list}
+
+ANTRAGSTEXT (chirurgisch bereinigen — nur die gelisteten Stellen anfassen):
+
+${finalText}`;
+}
+
+// ============================================================================
 // RECHECK (nach Revision: wurden die Findings tatsächlich adressiert?)
 // ============================================================================
 

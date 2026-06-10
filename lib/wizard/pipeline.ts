@@ -37,6 +37,11 @@ import {
   detectIntroduced,
   repairIntroduced,
 } from "./hallucination-gate";
+import {
+  buildGroundTruth,
+  buildProgrammKontext,
+  verifyFacts,
+} from "./fact-verification";
 import type { Usage } from "./pricing";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
 import { generateFinanzplan } from "./finanzplan-generator";
@@ -452,6 +457,55 @@ export async function runPipeline(
   }
 
   // =========================================================================
+  // Fakt-Verifikations-Pass (Probe 09.06., Hebel 1b)
+  // Das Zahlen-Gate oben faengt nur Zahlen/Eigennamen, die die Revision NEU
+  // einfuehrt. Dieser LLM-Pass schliesst die zwei verbleibenden Luecken:
+  // (1) NARRATIVE Erfindungen (Partner-Rollen, Termine, Zusagen, Mengen, Kanaele,
+  // Verfahren) und (2) SECTION-STAGE-Halluzinationen (schon im Entwurf, daher vom
+  // Zahlen-Gate als "gedeckt" gewertet). Geprueft wird gegen die Nutzer-Ground-
+  // Truth (Facts + Antworten, OHNE Entwurf). Repair degradiert ungedeckte
+  // Behauptungen zu ehrlichen Luecken-Markern — uebernommen nur bei
+  // deterministisch nachgewiesener Verbesserung (Never-Worse, wie das Zahlen-Gate).
+  // Laeuft NACH dem Zahlen-Gate (Zahlen/Namen schon bereinigt) und VOR finanzplan.
+  // =========================================================================
+  let factVerification: GenerationArtefacts["factVerification"];
+  {
+    const groundTruth = buildGroundTruth(facts, userAnswers);
+    // Ohne jede Nutzer-Ground-Truth waere jeder konkrete Fakt "ungedeckt" — dann
+    // wuerde der Pass den ganzen Antrag entkernen. In dem Fall ueberspringen
+    // (der Unbeziffert-Modus/die markierten Luecken tragen die Ehrlichkeit).
+    if (groundTruth.trim().length >= 20) {
+      emit({ stage: "revision", message: "Fakt-Verifikation" });
+      try {
+        const fv = await verifyFacts(
+          finalRes.value ?? "",
+          groundTruth,
+          buildProgrammKontext(programm),
+          {
+            detect: (system, user) => generateJson<unknown>(MODEL_FLASH, system, user, { maxTokens: 4000 }),
+            revise: (system, user) => generateText(MODEL_PRO, system, user),
+            models: { detect: MODEL_FLASH, revise: MODEL_PRO },
+          }
+        );
+        finalRes = { value: fv.finalText, usage: finalRes.usage };
+        usages.push(...fv.usages);
+        if (fv.flagged.length > 0) {
+          factVerification = {
+            flagged: fv.flagged,
+            remaining: fv.remaining,
+            repaired: fv.repaired,
+          };
+          console.log(
+            `[pipeline] Fakt-Verifikation: ${fv.flagged.length} ungedeckte Behauptung(en) → ${fv.remaining.length} verbleibend (repaired=${fv.repaired})`
+          );
+        }
+      } catch (fvErr) {
+        console.error("[pipeline] Fakt-Verifikation fehlgeschlagen:", fvErr);
+      }
+    }
+  }
+
+  // =========================================================================
   // Phase 5 D-20 Hebel 2 — Compliance-Check-Stage (PIPELINE_COMPLIANCE_STAGE)
   // Silent-Stage gegenueber GeneratingProgress.tsx — kein UI-Update.
   // Loop-Count enforced: max 1 Iteration (T-05-06-01 DoS-Mitigation).
@@ -561,6 +615,7 @@ export async function runPipeline(
       critiqueResolutions: resolutions.length ? resolutions : undefined,
       hasOpenHighFindings: hasOpenHigh || undefined,
       hallucinationGate,
+      factVerification,
       consistencyIssues: consistencyIssues.length ? consistencyIssues : undefined,
       hasConsistencyIssues: consistencyIssues.length > 0 || undefined,
       finalText: finalRes.value,

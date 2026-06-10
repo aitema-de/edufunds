@@ -165,6 +165,14 @@ export interface GenerationArtefacts {
    * ueberhaupt Treffer vorlagen.
    */
   hallucinationGate?: { introducedBefore: string[]; residual: string[]; repaired: boolean };
+  /**
+   * Fakt-Verifikations-Pass (Probe 09.06., Hebel 1b): narrative, nicht durch die
+   * Nutzer-Ground-Truth gedeckte Tatsachenbehauptungen (Partner/Termine/Zusagen/
+   * Mengen/Kanaele/Verfahren), die der Zahlen-Gate nicht faengt. `flagged` =
+   * anker-geprueft erkannt, `remaining` = danach noch im Text, `repaired` = ob
+   * der Repair uebernommen wurde. Nur gesetzt, wenn Treffer vorlagen.
+   */
+  factVerification?: { flagged: string[]; remaining: string[]; repaired: boolean };
   /** Inkonsistenzen zwischen Antragstext und Finanzplan (Cross-Check). */
   consistencyIssues?: ConsistencyIssue[];
   /** True, wenn mindestens ein Konsistenz-Issue gefunden wurde. */
