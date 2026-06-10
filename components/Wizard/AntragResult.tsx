@@ -9,6 +9,7 @@ import type { Finanzplan, GenerationArtefacts } from "@/lib/wizard/types";
 import { formatEur, type CostLedger } from "@/lib/wizard/pricing";
 import { FinanzplanView } from "./FinanzplanView";
 import { FinanzplanEditor } from "./FinanzplanEditor";
+import { TextVorschlaegeEditor } from "./TextVorschlaegeEditor";
 import { renderFinanzplanMarkdown } from "@/lib/wizard/finanzplan-markdown";
 import { PaywallGate } from "./PaywallGate";
 import { AntragSectionNav, slugifyHeading } from "./AntragSectionNav";
@@ -173,8 +174,14 @@ export function AntragResult({
   const [showCritique, setShowCritique] = useState(false);
   const [pdfBusy, setPdfBusy] = useState(false);
   const [ackOpenFindings, setAckOpenFindings] = useState(false);
+  // #4 (Produktvision): Antragstext + Text-Vorschläge sind live editierbar.
+  // Beides als State, damit Bestätigen/Bearbeiten/Entfernen sofort im
+  // gerenderten Antrag UND im Export (combinedText) wirken.
+  const [text, setText] = useState(generation.finalText ?? "");
+  const [textVorschlaege, setTextVorschlaege] = useState<string[]>(
+    generation.factVerification?.vorschlaege ?? []
+  );
   const printRef = useRef<HTMLDivElement>(null);
-  const text = generation.finalText ?? "";
   const finanzplanMarkdown = generation.finanzplan
     ? renderFinanzplanMarkdown(generation.finanzplan)
     : "";
@@ -379,19 +386,25 @@ export function AntragResult({
           <PaywallGate sessionToken={sessionToken} priceEur={29.9} tierLabel="Einzelantrag" />
         )}
       </div>
-      {paid && generation.factVerification && generation.factVerification.vorschlaege.length > 0 && (
+      {paid && textVorschlaege.length > 0 && sessionToken && (
+        <TextVorschlaegeEditor
+          sessionToken={sessionToken}
+          finalText={text}
+          vorschlaege={textVorschlaege}
+          onChange={({ finalText, vorschlaege }) => {
+            setText(finalText);
+            setTextVorschlaege(vorschlaege);
+          }}
+        />
+      )}
+      {paid && textVorschlaege.length > 0 && !sessionToken && (
         <div className="mt-6 rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 p-4">
           <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#0a1628]">
             <Sparkles className="h-4 w-4 text-[#c9a227]" />
             Vorschläge des Assistenten im Antragstext — bitte prüfen
           </div>
-          <p className="mb-3 text-xs text-slate-600">
-            Diese Formulierungen hat der Assistent ergänzt, weil sie den Antrag fachlich
-            stärken — sie stammen nicht aus deinen Angaben. Prüfe sie, behalte sie wenn sie
-            passen, oder passe sie direkt im Antragstext oben an.
-          </p>
           <ul className="space-y-1.5 text-xs text-[#1e3a61]">
-            {generation.factVerification.vorschlaege.map((v, i) => (
+            {textVorschlaege.map((v, i) => (
               <li key={i} className="flex gap-2 rounded border border-[#0a1628]/10 bg-white p-2">
                 <span className="shrink-0 text-[#c9a227]">›</span>
                 <span>„{v}"</span>
