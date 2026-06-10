@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { AlertCircle, Check, Download, Info, Loader2, Plus, Trash2, ShieldCheck, Wand2, X } from "lucide-react";
+import { AlertCircle, Check, Download, Info, Loader2, Plus, Sparkles, Trash2, ShieldCheck, Wand2, X } from "lucide-react";
 import type { Finanzplan, Finanzposten } from "@/lib/wizard/types";
 
 type ValidationResult = {
@@ -76,9 +76,15 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
   };
 
   const updatePosten = (id: string, patch: Partial<Finanzposten>) => {
-    setPosten((prev) => prev.map((p) => (p.id === id ? { ...p, ...patch } : p)));
+    // Sobald der Nutzer einen Posten bearbeitet, übernimmt er ihn → kein Vorschlag mehr.
+    setPosten((prev) => prev.map((p) => (p.id === id ? { ...p, ...patch, istVorschlag: false } : p)));
     setDirty(true);
   };
+
+  /** Vorschlag ohne inhaltliche Änderung bestätigen (istVorschlag → belegt). */
+  const confirmVorschlag = (id: string) => updatePosten(id, {});
+
+  const vorschlagCount = useMemo(() => posten.filter((p) => p.istVorschlag).length, [posten]);
 
   const save = async () => {
     setBusy(true);
@@ -226,6 +232,16 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
         </div>
       )}
 
+      {!legitimized && vorschlagCount > 0 && (
+        <div className="mb-3 flex items-start gap-2 rounded-lg border border-[#c9a227]/40 bg-[#c9a227]/10 p-3 text-xs text-[#0a1628]">
+          <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-[#c9a227]" />
+          <div>
+            <span className="font-semibold">{vorschlagCount} {vorschlagCount === 1 ? "Betrag ist ein Vorschlag" : "Beträge sind Vorschläge"} des Assistenten.</span>{" "}
+            Diese Beträge hat der Assistent auf Basis üblicher Kosten geschätzt — prüfe sie, passe sie an eure echten Angebote an oder bestätige sie mit „✓".
+          </div>
+        </div>
+      )}
+
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
@@ -241,6 +257,11 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
             {posten.map((p) => (
               <tr key={p.id} className="border-b border-[#0a1628]/10 align-top">
                 <td className="py-2 pr-3">
+                  {p.istVorschlag && (
+                    <span className="mb-1 inline-flex items-center gap-1 rounded-full border border-[#c9a227]/50 bg-[#c9a227]/10 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-[#b8921e]">
+                      <Sparkles className="h-3 w-3" /> Vorschlag
+                    </span>
+                  )}
                   <input
                     type="text"
                     value={p.bezeichnung}
@@ -296,14 +317,27 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
                 </td>
                 <td className="py-2">
                   {!legitimized && (
-                    <button
-                      type="button"
-                      onClick={() => removePosten(p.id)}
-                      className="rounded p-1 text-slate-500 hover:bg-red-500/20 hover:text-red-400"
-                      title="Posten entfernen"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </button>
+                    <div className="flex items-center gap-1">
+                      {p.istVorschlag && (
+                        <button
+                          type="button"
+                          onClick={() => confirmVorschlag(p.id)}
+                          className="rounded p-1 text-emerald-600 hover:bg-emerald-500/15"
+                          title="Vorschlag bestätigen (Betrag übernehmen)"
+                          aria-label="Vorschlag bestätigen"
+                        >
+                          <Check className="h-4 w-4" />
+                        </button>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => removePosten(p.id)}
+                        className="rounded p-1 text-slate-500 hover:bg-red-500/20 hover:text-red-400"
+                        title="Posten entfernen"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </div>
                   )}
                 </td>
               </tr>

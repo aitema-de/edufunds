@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { AlertTriangle, Check, Copy, Download, FileDown, Loader2, PenLine, RefreshCw } from "lucide-react";
+import { AlertTriangle, Check, Copy, Download, FileDown, Loader2, PenLine, RefreshCw, Sparkles } from "lucide-react";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type { Finanzplan, GenerationArtefacts } from "@/lib/wizard/types";
 import { formatEur, type CostLedger } from "@/lib/wizard/pricing";
@@ -328,6 +328,27 @@ export function AntragResult({
           <PaywallGate sessionToken={sessionToken} priceEur={29.9} tierLabel="Einzelantrag" />
         )}
       </div>
+      {paid && generation.factVerification && generation.factVerification.vorschlaege.length > 0 && (
+        <div className="mt-6 rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 p-4">
+          <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#0a1628]">
+            <Sparkles className="h-4 w-4 text-[#c9a227]" />
+            Vorschläge des Assistenten im Antragstext — bitte prüfen
+          </div>
+          <p className="mb-3 text-xs text-slate-600">
+            Diese Formulierungen hat der Assistent ergänzt, weil sie den Antrag fachlich
+            stärken — sie stammen nicht aus deinen Angaben. Prüfe sie, behalte sie wenn sie
+            passen, oder passe sie direkt im Antragstext oben an.
+          </p>
+          <ul className="space-y-1.5 text-xs text-[#1e3a61]">
+            {generation.factVerification.vorschlaege.map((v, i) => (
+              <li key={i} className="flex gap-2 rounded border border-[#0a1628]/10 bg-white p-2">
+                <span className="shrink-0 text-[#c9a227]">›</span>
+                <span>„{v}"</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       {costs && costs.calls > 0 && (
         <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-[#0a1628]/10 bg-[#f8f5f0] px-4 py-2 text-xs text-slate-500">
           <span>
