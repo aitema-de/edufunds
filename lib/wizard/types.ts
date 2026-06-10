@@ -175,13 +175,20 @@ export interface GenerationArtefacts {
    */
   hallucinationGate?: { introducedBefore: string[]; residual: string[]; repaired: boolean };
   /**
-   * Fakt-Verifikations-Pass (Probe 09.06., Hebel 1b): narrative, nicht durch die
-   * Nutzer-Ground-Truth gedeckte Tatsachenbehauptungen (Partner/Termine/Zusagen/
-   * Mengen/Kanaele/Verfahren), die der Zahlen-Gate nicht faengt. `flagged` =
-   * anker-geprueft erkannt, `remaining` = danach noch im Text, `repaired` = ob
-   * der Repair uebernommen wurde. Nur gesetzt, wenn Treffer vorlagen.
+   * Fakt-Verifikations-Pass (dreistufig, Produktvision 2026-06-10): prueft
+   * konkrete Behauptungen gegen die Nutzer-Ground-Truth. `neutralisiert` =
+   * Widersprueche/falsche Tatsachen, die entschaerft wurden; `vorschlaege` =
+   * sinnvolle Ausgestaltungen, die im Text BLEIBEN und dem Nutzer zur Bestaetigung
+   * vorgelegt werden; `remaining` = nach dem Repair noch vorhandene
+   * Neutralisierungs-Zitate; `repaired` = ob der Repair uebernommen wurde. Nur
+   * gesetzt, wenn Treffer vorlagen.
    */
-  factVerification?: { flagged: string[]; remaining: string[]; repaired: boolean };
+  factVerification?: {
+    neutralisiert: string[];
+    vorschlaege: string[];
+    remaining: string[];
+    repaired: boolean;
+  };
   /** Inkonsistenzen zwischen Antragstext und Finanzplan (Cross-Check). */
   consistencyIssues?: ConsistencyIssue[];
   /** True, wenn mindestens ein Konsistenz-Issue gefunden wurde. */

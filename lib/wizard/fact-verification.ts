@@ -41,9 +41,18 @@ import {
 export interface FactClaim {
   /** Woertliches Kurzzitat aus dem Antrag (Anker fuer Praesenz-Pruefung + Repair). */
   zitat: string;
-  art: "partner" | "termin" | "zusage" | "menge" | "kanal" | "verfahren" | "sonstiges";
+  /**
+   * Produktvision 2026-06-10 — dreistufig:
+   * - "widerspruch": widerspricht einer Nutzeraussage → entfernen.
+   * - "tatsache": ungesicherte Tatsache/Zusage/Quelle als feststehend → zu Vorbehalt entschaerfen.
+   * - "vorschlag": plausible, nicht widerspruechliche Ausgestaltung → BEHALTEN + auflisten.
+   */
+  art: "widerspruch" | "tatsache" | "vorschlag";
   warum: string;
 }
+
+/** Arten, deren Behauptung neutralisiert (entschaerft/entfernt) wird. */
+const NEUTRALISIEREN: ReadonlyArray<FactClaim["art"]> = ["widerspruch", "tatsache"];
 
 // ---------------------------------------------------------------------------
 // Ground Truth (NUR Nutzerangaben — bewusst OHNE Entwurf)
@@ -115,9 +124,7 @@ function quotePresent(text: string, zitat: string): boolean {
 export function anchorClaims(raw: unknown, finalText: string): FactClaim[] {
   const src = (raw ?? {}) as { claims?: unknown };
   if (!Array.isArray(src.claims)) return [];
-  const ARTEN: ReadonlyArray<FactClaim["art"]> = [
-    "partner", "termin", "zusage", "menge", "kanal", "verfahren", "sonstiges",
-  ];
+  const ARTEN: ReadonlyArray<FactClaim["art"]> = ["widerspruch", "tatsache", "vorschlag"];
   const out: FactClaim[] = [];
   const seen = new Set<string>();
   for (const c of src.claims as Array<Record<string, unknown>>) {
@@ -127,7 +134,8 @@ export function anchorClaims(raw: unknown, finalText: string): FactClaim[] {
     const key = normalizeWs(zitat);
     if (seen.has(key)) continue;
     seen.add(key);
-    const art = ARTEN.includes(c.art as FactClaim["art"]) ? (c.art as FactClaim["art"]) : "sonstiges";
+    // Im Zweifel "vorschlag" (behalten+markieren statt loeschen) — Vision.
+    const art = ARTEN.includes(c.art as FactClaim["art"]) ? (c.art as FactClaim["art"]) : "vorschlag";
     const warum = typeof c.warum === "string" && c.warum.trim() ? c.warum.trim() : "nicht durch Nutzerangaben gedeckt";
     out.push({ zitat, art, warum });
     if (out.length >= MAX_CLAIMS) break;
@@ -150,9 +158,11 @@ export interface FactVerificationDeps {
 export interface FactVerificationResult {
   /** Bereinigter (oder unveraenderter) Antragstext. */
   finalText: string;
-  /** Anker-geprueft erkannte, ungedeckte Behauptungen (Zitate). */
-  flagged: string[];
-  /** Nach dem (uebernommenen) Repair noch woertlich vorhandene geflaggte Zitate. */
+  /** Neutralisierte Widersprueche/falsche Tatsachen (Zitate, vor dem Repair). */
+  neutralisiert: string[];
+  /** Sinnvolle Ausgestaltungen, die im Text BLEIBEN — dem Nutzer zur Bestaetigung vorgelegt. */
+  vorschlaege: string[];
+  /** Nach dem (uebernommenen) Repair noch vorhandene Neutralisierungs-Zitate. */
   remaining: string[];
   /** true, wenn der Repair uebernommen wurde. */
   repaired: boolean;
@@ -162,7 +172,7 @@ export interface FactVerificationResult {
 // Ein uebernommener Repair darf den Text nicht massiv kuerzen (Anti-Truncation).
 const MIN_LENGTH_RATIO = 0.6;
 
-/** Wie viele der geflaggten Zitate stehen noch woertlich im Text? */
+/** Wie viele der gelisteten Zitate stehen noch woertlich im Text? */
 function countPresent(text: string, claims: FactClaim[]): number {
   return claims.filter((c) => quotePresent(text, c.zitat)).length;
 }
@@ -174,10 +184,12 @@ function hardHallucinationCount(text: string, groundTruth: string): number {
 }
 
 /**
- * Prueft den finalText gegen die Nutzer-Ground-Truth und entschaerft narrative,
- * ungedeckte Tatsachenbehauptungen. No-op (kein Repair-Call), wenn der Detektor
- * nichts Ankerbares findet. Uebernahme nur bei deterministisch nachgewiesener
- * Verbesserung (Never-Worse).
+ * Produktvision 2026-06-10 (dreistufig): prueft den finalText gegen die Nutzer-
+ * Ground-Truth. WIDERSPRUECHE und ungesicherte TATSACHEN werden per chirurgischem
+ * Repair neutralisiert (Uebernahme nur bei deterministisch nachgewiesener
+ * Verbesserung — Never-Worse). Sinnvolle VORSCHLAEGE (Ausgestaltung/Optionen)
+ * BLEIBEN im Text und werden separat als zu bestaetigende Vorschlaege zurueckgegeben.
+ * Kein Repair-Call, wenn es nur Vorschlaege (nichts zu neutralisieren) gibt.
  */
 export async function verifyFacts(
   finalText: string,
@@ -194,32 +206,41 @@ export async function verifyFacts(
   usages.push({ model: deps.models.detect, usage: det.usage });
 
   const claims = anchorClaims(det.value, finalText);
-  if (claims.length === 0) {
-    return { finalText, flagged: [], remaining: [], repaired: false, usages };
+  const zuNeutralisieren = claims.filter((c) => NEUTRALISIEREN.includes(c.art));
+  const vorschlaege = claims.filter((c) => c.art === "vorschlag").map((c) => c.zitat);
+
+  // Nichts zu neutralisieren → Text unveraendert lassen (Vorschlaege bleiben drin
+  // und werden nur aufgelistet). Kein Repair-Call.
+  if (zuNeutralisieren.length === 0) {
+    return { finalText, neutralisiert: [], vorschlaege, remaining: [], repaired: false, usages };
   }
 
   const rev = await deps.revise(
     FACT_VERIFICATION_REPAIR_SYSTEM,
-    buildFactVerificationRepairPrompt(finalText, claims)
+    buildFactVerificationRepairPrompt(finalText, zuNeutralisieren)
   );
   usages.push({ model: deps.models.revise, usage: rev.usage });
 
   const candidate = typeof rev.value === "string" && rev.value.trim() ? rev.value : finalText;
 
-  const beforePresent = countPresent(finalText, claims);
-  const afterPresent = countPresent(candidate, claims);
+  const beforePresent = countPresent(finalText, zuNeutralisieren);
+  const afterPresent = countPresent(candidate, zuNeutralisieren);
   const lengthOk = candidate.length >= finalText.length * MIN_LENGTH_RATIO;
   const noNewHard =
     hardHallucinationCount(candidate, groundTruth) <= hardHallucinationCount(finalText, groundTruth);
   const accept = lengthOk && afterPresent < beforePresent && noNewHard;
 
   const result = accept ? candidate : finalText;
-  const flagged = claims.map((c) => c.zitat);
+  // Vorschlaege, die nach dem Repair noch im Text stehen, dem Nutzer vorlegen.
+  const vorschlaegeImText = claims
+    .filter((c) => c.art === "vorschlag" && quotePresent(result, c.zitat))
+    .map((c) => c.zitat);
 
   return {
     finalText: result,
-    flagged,
-    remaining: claims.filter((c) => quotePresent(result, c.zitat)).map((c) => c.zitat),
+    neutralisiert: zuNeutralisieren.map((c) => c.zitat),
+    vorschlaege: vorschlaegeImText,
+    remaining: zuNeutralisieren.filter((c) => quotePresent(result, c.zitat)).map((c) => c.zitat),
     repaired: accept,
     usages,
   };

@@ -60,12 +60,14 @@ async function main() {
   if (!fv) {
     console.log("Keine ungedeckten Behauptungen erkannt (oder Ground-Truth zu duenn → uebersprungen).");
   } else {
-    console.log("flagged:  ", fv.flagged.length);
-    fv.flagged.forEach((f) => console.log("   • " + f));
+    console.log("neutralisiert:", fv.neutralisiert.length);
+    fv.neutralisiert.forEach((f) => console.log("   ✗ " + f));
+    console.log("vorschlaege (behalten):", fv.vorschlaege.length);
+    fv.vorschlaege.forEach((f) => console.log("   ⟨Vorschlag⟩ " + f));
     console.log("remaining:", fv.remaining.length, fv.remaining.join(" | "));
     console.log("repaired: ", fv.repaired ? "✅ uebernommen" : "verworfen (kein Fortschritt)");
-    const neverWorse = fv.remaining.length <= fv.flagged.length;
-    console.log("nie verschlimmert (remaining <= flagged):", neverWorse ? "✅" : "❌");
+    const neverWorse = fv.remaining.length <= fv.neutralisiert.length;
+    console.log("nie verschlimmert (remaining <= neutralisiert):", neverWorse ? "✅" : "❌");
   }
 
   // === Teil B: isolierter Direkttest mit klar erfundenem Text ===
@@ -84,8 +86,10 @@ In Kooperation mit dem oertlichen Medienzentrum und der Buergerstiftung Lindenpa
     revise: (system, user) => generateText(MODEL_PRO, system, user),
     models: { detect: MODEL_FLASH, revise: MODEL_PRO },
   });
-  console.log("flagged: ", res.flagged.length);
-  res.flagged.forEach((f) => console.log("   • " + f));
+  console.log("neutralisiert:", res.neutralisiert.length);
+  res.neutralisiert.forEach((f) => console.log("   ✗ " + f));
+  console.log("vorschlaege (behalten):", res.vorschlaege.length);
+  res.vorschlaege.forEach((f) => console.log("   ⟨Vorschlag⟩ " + f));
   console.log("repaired:", res.repaired ? "✅ uebernommen" : "verworfen");
   console.log("remaining:", res.remaining.length, res.remaining.join(" | "));
   console.log("\n--- bereinigter Text (Teil B) ---\n" + res.finalText);

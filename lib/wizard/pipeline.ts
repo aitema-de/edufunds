@@ -27,8 +27,6 @@ import {
   buildRevisionPrompt,
   buildRecheckPrompt,
   buildConsistencyPrompt,
-  KOSTEN_ENTZIFFERUNG_SYSTEM,
-  buildKostenEntzifferungPrompt,
 } from "./prompts";
 import { MODEL_FLASH, MODEL_PRO, generateJson, generateText } from "./llm";
 import { reviseForConsistency } from "./consistency-revision";
@@ -489,14 +487,15 @@ export async function runPipeline(
         );
         finalRes = { value: fv.finalText, usage: finalRes.usage };
         usages.push(...fv.usages);
-        if (fv.flagged.length > 0) {
+        if (fv.neutralisiert.length > 0 || fv.vorschlaege.length > 0) {
           factVerification = {
-            flagged: fv.flagged,
+            neutralisiert: fv.neutralisiert,
+            vorschlaege: fv.vorschlaege,
             remaining: fv.remaining,
             repaired: fv.repaired,
           };
           console.log(
-            `[pipeline] Fakt-Verifikation: ${fv.flagged.length} ungedeckte Behauptung(en) → ${fv.remaining.length} verbleibend (repaired=${fv.repaired})`
+            `[pipeline] Fakt-Verifikation: ${fv.neutralisiert.length} neutralisiert (→ ${fv.remaining.length} verbleibend, repaired=${fv.repaired}), ${fv.vorschlaege.length} Vorschlag/Vorschläge behalten`
           );
         }
       } catch (fvErr) {
@@ -584,25 +583,12 @@ export async function runPipeline(
         console.error("[pipeline] Konsistenz-Revision fehlgeschlagen:", revErr);
       }
     }
-  } else if (finanzRes.plan.unbeziffert) {
-    // Unbeziffert-Modus: der Finanzplan hat keine Euro-Posten. Damit der Antragstext
-    // nicht erfundene Betraege als Fakt nennt (Ehrlichkeits-Asymmetrie), die Euro-
-    // Betraege aus dem Text entfernen/entschaerfen. Fehlschlag behaelt Originaltext.
-    try {
-      emit({ stage: "consistency", message: "Euro-Beträge aus Text entfernen (unbeziffert)" });
-      const ent = await generateText(
-        MODEL_PRO,
-        KOSTEN_ENTZIFFERUNG_SYSTEM,
-        buildKostenEntzifferungPrompt(finalRes.value)
-      );
-      if (ent.value && ent.value.trim().length > 0) {
-        finalRes = { value: ent.value, usage: finalRes.usage };
-      }
-      usages.push({ model: MODEL_PRO, usage: ent.usage });
-    } catch (entErr) {
-      console.error("[pipeline] Kosten-Entzifferung fehlgeschlagen:", entErr);
-    }
   }
+  // Hinweis (Produktvision 2026-06-10): Der frühere unbeziffert-Zweig
+  // (Euro-Beträge per KOSTEN_ENTZIFFERUNG aus dem Text streichen) entfällt — der
+  // Finanzplan-Generator erstellt jetzt immer einen bezifferten Plan mit als
+  // Vorschlag markierten Beträgen; der Text behält seine (als Schätzung
+  // gekennzeichneten) Beträge und wird per Konsistenz-Revision daran angeglichen.
 
   emit({ stage: "done", message: "Fertig" });
 

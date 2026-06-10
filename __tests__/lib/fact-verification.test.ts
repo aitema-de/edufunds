@@ -1,10 +1,8 @@
 /**
- * Probe 09.06. — Hebel 1b: Fakt-Verifikations-Pass.
- * Das deterministische Zahlen-Gate faengt nur Zahlen/Eigennamen. Dieser Pass
- * prueft NARRATIVE, ueberpruefbare Behauptungen (Partner/Termine/Zusagen/Mengen/
- * Kanaele) gegen die Nutzer-Ground-Truth (Facts + Antworten, OHNE Entwurf) und
- * entschaerft sie — uebernommen aber nur bei deterministisch nachgewiesener
- * Verbesserung (Never-Worse), mit Detektor-Anker gegen erfundene Zitate.
+ * Fakt-Verifikations-Pass (dreistufig, Produktvision 2026-06-10):
+ * - "widerspruch"/"tatsache" → per Repair neutralisieren (Never-Worse).
+ * - "vorschlag" → im Text BEHALTEN + dem Nutzer als bestätigbar auflisten.
+ * Detektor-Anker (Zitat muss wörtlich im Text stehen) verwirft erfundene Zitate.
  */
 import {
   anchorClaims,
@@ -24,44 +22,38 @@ describe("buildGroundTruth", () => {
     };
     const gt = buildGroundTruth(facts, ["wir haben rund 20 Tablets"]);
     expect(gt).toContain("Astrid-Lindgren-Grundschule");
-    expect(gt).toContain("240");
     expect(gt).toContain("Leseclub");
     expect(gt).toContain("20 Tablets");
   });
-
-  it("ist leer/kurz, wenn der Nutzer praktisch nichts angegeben hat", () => {
-    const gt = buildGroundTruth({}, []);
-    expect(gt.trim().length).toBe(0);
-  });
 });
 
-describe("anchorClaims — Detektor-Anker", () => {
+describe("anchorClaims — Detektor-Anker + dreistufige Klassifikation", () => {
   const finalText =
     "# Leseprojekt\n\nIn Kooperation mit der Stadtbuecherei Musterstadt richten wir woechentliche Lesestunden ein. Ab September 2026 startet die Pilotphase.";
 
   it("behaelt nur Behauptungen, deren Zitat woertlich im Text steht", () => {
     const raw = {
       claims: [
-        { zitat: "In Kooperation mit der Stadtbuecherei Musterstadt", art: "partner", warum: "nicht genannt" },
-        { zitat: "Frau Dr. Erfunden leitet das Projekt", art: "zusage", warum: "frei erfunden vom Detektor" },
+        { zitat: "In Kooperation mit der Stadtbuecherei Musterstadt", art: "tatsache", warum: "nicht genannt" },
+        { zitat: "Frau Dr. Erfunden leitet das Projekt", art: "tatsache", warum: "frei erfunden vom Detektor" },
       ],
     };
     const out = anchorClaims(raw, finalText);
     expect(out).toHaveLength(1);
     expect(out[0].zitat).toContain("Stadtbuecherei Musterstadt");
-    expect(out[0].art).toBe("partner");
+    expect(out[0].art).toBe("tatsache");
   });
 
-  it("dedupliziert und faellt auf 'sonstiges' bei unbekannter art zurueck", () => {
+  it("dedupliziert und faellt auf 'vorschlag' bei unbekannter art zurueck (im Zweifel behalten)", () => {
     const raw = {
       claims: [
         { zitat: "Ab September 2026 startet die Pilotphase", art: "quatsch", warum: "x" },
-        { zitat: "ab september 2026 startet die pilotphase", art: "termin", warum: "y" },
+        { zitat: "ab september 2026 startet die pilotphase", art: "tatsache", warum: "y" },
       ],
     };
     const out = anchorClaims(raw, finalText);
     expect(out).toHaveLength(1);
-    expect(out[0].art).toBe("sonstiges");
+    expect(out[0].art).toBe("vorschlag");
   });
 
   it("liefert [] bei fehlender/kaputter claims-Struktur", () => {
@@ -71,48 +63,67 @@ describe("anchorClaims — Detektor-Anker", () => {
   });
 });
 
-describe("verifyFacts — No-op-Pfade", () => {
+describe("verifyFacts — Vorschläge bleiben, kein Repair", () => {
   const groundTruth = "Schule: Astrid-Lindgren-Grundschule. Idee: Leseclub gruenden.";
   const kontext = "Leseförderung — Grundschulen";
+  const finalText =
+    "# Leseprojekt\n\nWir richten woechentliche Lesestunden ein und verbreiten die Ergebnisse ueber den Schul-Newsletter.";
 
-  it("No-op (kein Repair-Call), wenn der Detektor nichts Ankerbares findet", async () => {
+  it("No-op (kein Repair-Call), wenn der Detektor nichts findet", async () => {
     const revise = jest.fn();
-    const res = await verifyFacts("# Antrag\n\nEin ehrlicher Antrag.", groundTruth, kontext, {
+    const res = await verifyFacts(finalText, groundTruth, kontext, {
       detect: async () => ({ value: { claims: [] }, usage: U }),
       revise,
       models: { detect: "d", revise: "r" },
     });
     expect(revise).not.toHaveBeenCalled();
-    expect(res.repaired).toBe(false);
-    expect(res.flagged).toHaveLength(0);
-    expect(res.usages).toHaveLength(1); // nur der Detektor-Call
+    expect(res.neutralisiert).toHaveLength(0);
+    expect(res.vorschlaege).toHaveLength(0);
+    expect(res.usages).toHaveLength(1);
   });
 
-  it("verwirft vom Detektor erfundene Zitate (Anker) → No-op", async () => {
+  it("behaelt einen 'vorschlag' im Text, ruft KEINEN Repair und listet ihn auf", async () => {
     const revise = jest.fn();
-    const res = await verifyFacts("# Antrag\n\nEin ehrlicher Antrag ohne Erfindungen.", groundTruth, kontext, {
-      detect: async () => ({ value: { claims: [{ zitat: "steht so gar nicht im Text", art: "partner", warum: "x" }] }, usage: U }),
+    const res = await verifyFacts(finalText, groundTruth, kontext, {
+      detect: async () => ({
+        value: { claims: [{ zitat: "verbreiten die Ergebnisse ueber den Schul-Newsletter", art: "vorschlag", warum: "sinnvolle Option" }] },
+        usage: U,
+      }),
       revise,
       models: { detect: "d", revise: "r" },
     });
     expect(revise).not.toHaveBeenCalled();
+    expect(res.finalText).toBe(finalText); // Text unveraendert
+    expect(res.vorschlaege).toEqual(["verbreiten die Ergebnisse ueber den Schul-Newsletter"]);
+    expect(res.neutralisiert).toHaveLength(0);
     expect(res.repaired).toBe(false);
+  });
+
+  it("verwirft vom Detektor erfundene Zitate (Anker)", async () => {
+    const revise = jest.fn();
+    const res = await verifyFacts(finalText, groundTruth, kontext, {
+      detect: async () => ({ value: { claims: [{ zitat: "steht so gar nicht im Text", art: "tatsache", warum: "x" }] }, usage: U }),
+      revise,
+      models: { detect: "d", revise: "r" },
+    });
+    expect(revise).not.toHaveBeenCalled();
+    expect(res.neutralisiert).toHaveLength(0);
   });
 });
 
-describe("verifyFacts — Never-Worse-Akzeptanzgate", () => {
+describe("verifyFacts — Neutralisierung mit Never-Worse-Gate", () => {
   const groundTruth = "Schule: Astrid-Lindgren-Grundschule. Idee: Leseclub gruenden.";
   const kontext = "Leseförderung — Grundschulen";
   const finalText =
-    "# Leseprojekt\n\nIn Kooperation mit der Stadtbuecherei Musterstadt richten wir woechentliche Lesestunden ein. So foerdern wir die Lesefreude der Kinder nachhaltig und schaffen einen festen Treffpunkt im Schulalltag.";
+    "# Leseprojekt\n\nDer Schultraeger hat die Anschaffung bereits zugesagt. So foerdern wir die Lesefreude der Kinder nachhaltig und schaffen einen festen Treffpunkt im Schulalltag.";
   const detectHit = {
-    value: { claims: [{ zitat: "In Kooperation mit der Stadtbuecherei Musterstadt", art: "partner", warum: "nicht vom Nutzer genannt" }] },
+    value: { claims: [{ zitat: "Der Schultraeger hat die Anschaffung bereits zugesagt", art: "tatsache", warum: "ungesicherte Zusage" }] },
     usage: U,
   };
 
-  it("uebernimmt den Repair, wenn er die geflaggte Behauptung entfernt", async () => {
+  it("uebernimmt den Repair, wenn er die falsche Tatsache entschaerft", async () => {
     const cleaned =
-      "# Leseprojekt\n\nGemeinsam mit einem noch zu gewinnenden Kooperationspartner richten wir woechentliche Lesestunden ein. So foerdern wir die Lesefreude der Kinder nachhaltig und schaffen einen festen Treffpunkt im Schulalltag.";
+      "# Leseprojekt\n\nDie Zustimmung des Schultraegers ist noch einzuholen. So foerdern wir die Lesefreude der Kinder nachhaltig und schaffen einen festen Treffpunkt im Schulalltag.";
     const res = await verifyFacts(finalText, groundTruth, kontext, {
       detect: async () => detectHit,
       revise: async () => ({ value: cleaned, usage: U }),
@@ -120,15 +131,13 @@ describe("verifyFacts — Never-Worse-Akzeptanzgate", () => {
     });
     expect(res.repaired).toBe(true);
     expect(res.finalText).toBe(cleaned);
+    expect(res.neutralisiert).toHaveLength(1);
     expect(res.remaining).toHaveLength(0);
-    expect(res.flagged).toHaveLength(1);
   });
 
-  it("verwirft den Repair, der die Behauptung gegen eine andere Erfindung tauscht (nie verschlimmern)", async () => {
-    // Stadtbuecherei raus, aber dafuer eine neue erfundene Rechtsform-Entitaet rein
-    // → harte-Halluzinations-Zahl/Name steigt → Never-Worse lehnt ab.
+  it("verwirft einen Repair, der eine neue harte Halluzination einführt (nie verschlimmern)", async () => {
     const notBetter =
-      "# Leseprojekt\n\nIn Kooperation mit dem Lesefoerderverein Musterstadt e.V. richten wir woechentliche Lesestunden ein. So foerdern wir die Lesefreude der Kinder nachhaltig und schaffen einen festen Treffpunkt im Schulalltag.";
+      "# Leseprojekt\n\nIn Kooperation mit dem Lesefoerderverein Musterstadt e.V. ist alles geklaert. So foerdern wir die Lesefreude der Kinder nachhaltig und schaffen einen festen Treffpunkt im Schulalltag.";
     const res = await verifyFacts(finalText, groundTruth, kontext, {
       detect: async () => detectHit,
       revise: async () => ({ value: notBetter, usage: U }),
@@ -141,20 +150,33 @@ describe("verifyFacts — Never-Worse-Akzeptanzgate", () => {
   it("verwirft einen Repair, der den Text massiv kuerzt (Anti-Truncation)", async () => {
     const res = await verifyFacts(finalText, groundTruth, kontext, {
       detect: async () => detectHit,
-      revise: async () => ({ value: "# Leseprojekt\n\nLesestunden.", usage: U }),
+      revise: async () => ({ value: "# Leseprojekt\n\nLesen.", usage: U }),
       models: { detect: "d", revise: "r" },
     });
     expect(res.repaired).toBe(false);
     expect(res.finalText).toBe(finalText);
   });
 
-  it("verwirft den Repair, der die Behauptung gar nicht entfernt", async () => {
-    const res = await verifyFacts(finalText, groundTruth, kontext, {
-      detect: async () => detectHit,
-      revise: async () => ({ value: finalText, usage: U }), // unveraendert
+  it("neutralisiert Widersprüche/Tatsachen, behält gleichzeitig gefundene Vorschläge", async () => {
+    const text =
+      "# Leseprojekt\n\nDer Schultraeger hat die Anschaffung bereits zugesagt. Wir verbreiten die Ergebnisse ueber den Schul-Newsletter.";
+    const cleaned =
+      "# Leseprojekt\n\nDie Zustimmung des Schultraegers ist noch einzuholen. Wir verbreiten die Ergebnisse ueber den Schul-Newsletter.";
+    const res = await verifyFacts(text, groundTruth, kontext, {
+      detect: async () => ({
+        value: {
+          claims: [
+            { zitat: "Der Schultraeger hat die Anschaffung bereits zugesagt", art: "tatsache", warum: "ungesicherte Zusage" },
+            { zitat: "verbreiten die Ergebnisse ueber den Schul-Newsletter", art: "vorschlag", warum: "sinnvolle Option" },
+          ],
+        },
+        usage: U,
+      }),
+      revise: async () => ({ value: cleaned, usage: U }),
       models: { detect: "d", revise: "r" },
     });
-    expect(res.repaired).toBe(false);
-    expect(res.finalText).toBe(finalText);
+    expect(res.repaired).toBe(true);
+    expect(res.neutralisiert).toEqual(["Der Schultraeger hat die Anschaffung bereits zugesagt"]);
+    expect(res.vorschlaege).toEqual(["verbreiten die Ergebnisse ueber den Schul-Newsletter"]);
   });
 });

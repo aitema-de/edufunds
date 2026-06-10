@@ -924,22 +924,21 @@ ${finalText}`;
 // Entwurf, damit auch im Section-Schritt erfundene Fakten erfasst werden.
 // ============================================================================
 
-export const FACT_VERIFICATION_DETECT_SYSTEM = `Du bist ein strenger Faktenpruefer fuer Foerderantraege. Du bekommst einen fertigen Antragstext, die GESICHERTEN Nutzerangaben (Ground Truth) und den Programm-Kontext. Deine einzige Aufgabe: konkrete, UEBERPRUEFBARE Tatsachenbehauptungen im Antrag finden, die NICHT durch die Nutzerangaben gedeckt sind — also vom Schreibmodell frei erfunden wurden.
+export const FACT_VERIFICATION_DETECT_SYSTEM = `Du bist ein strenger Faktenpruefer fuer Foerderantraege. Du bekommst einen fertigen Antragstext, die GESICHERTEN Nutzerangaben (Ground Truth) und den Programm-Kontext. Du findest konkrete Behauptungen im Antrag, die NICHT durch die Nutzerangaben gedeckt sind, und KLASSIFIZIERST jede in genau eine von drei Arten. Der Assistent darf das Vorhaben fachlich ausgestalten — erfundene Ausgestaltung ist ERWUENSCHT, solange sie als Vorschlag erkennbar bleibt und der Nutzeraussage nicht widerspricht.
 
-## Was du flaggst (nur SPEZIFISCHE, NACHPRUEFBARE Behauptungen ueber DIESE Schule/dieses Projekt)
-- PARTNER: ein benannter externer Partner/Verein/Betrieb/Person und dessen Rolle ("die Stadtbuecherei stellt Raeume", "in Kooperation mit dem oertlichen Sportverein"), den der Nutzer nicht genannt hat.
-- TERMIN: ein konkretes Datum, ein Zeitplan oder Meilensteinplan ("ab September 2026", "in der dreimonatigen Pilotphase", "Auftaktveranstaltung im Oktober"), der nicht aus den Nutzerangaben stammt.
-- ZUSAGE: eine feststehende Zusage/Genehmigung Dritter ("der Schultraeger hat zugestimmt", "die Eltern beteiligen sich"), die der Nutzer nicht bestaetigt hat.
-- MENGE: eine konkrete Stueckzahl/Reichweite/Frequenz ("alle 12 Klassen", "woechentlich", "120 teilnehmende Kinder"), die nicht in den Nutzerangaben steht.
-- KANAL: ein konkreter Verbreitungs-/Dokumentationsweg ("Verbreitung ueber den Schul-Newsletter und die Lokalpresse"), den der Nutzer nicht genannt hat.
-- VERFAHREN: ein konkretes Verfahren/eine Methode als feststehend dargestellt, das der Nutzer nicht beschrieben hat.
+## Drei Arten (klassifiziere jede ungedeckte Behauptung)
+1. "widerspruch" — die Behauptung WIDERSPRICHT einer Nutzeraussage. Beispiel: Nutzer sagte "machen die Lehrkraefte nebenher / keine externe Kraft", Antrag behauptet eine bezahlte externe Honorarstelle. Diese gehoeren NICHT in den Antrag → werden entfernt.
+2. "tatsache" — die Behauptung stellt eine ungesicherte TATSACHE/ZUSAGE/ein vergangenes Ereignis als FESTSTEHEND dar, obwohl der Nutzer sie nicht bestaetigt hat: eine erteilte Zusage/Genehmigung Dritter ("der Schultraeger hat zugestimmt", "die Eltern beteiligen sich"), ein benannter realer Partner samt Rolle als gesichert ("in Kooperation mit der Stadtbuecherei Musterstadt"), ein konkretes Datum/abgeschlossenes Ereignis, eine erfundene Beleg-QUELLE ("laut Sprachstandserhebung", "gemaess Schulstatistik", "7% gemaess Richtlinie"). Solche FALSCHEN TATSACHEN werden zu ehrlichen Vorbehalten entschaerft ("… ist noch einzuholen / noch zu klaeren").
+3. "vorschlag" — eine plausible, zum Vorhaben passende AUSGESTALTUNG oder OPTION, die der Nutzer nur nicht genannt hat: eine sinnvolle Methode/ein Format ("dialogisches Vorlesen"), ein moeglicher Verbreitungsweg ("Verbreitung ueber den Schul-Newsletter"), eine vorgeschlagene Mengen-/Zeitstruktur ("woechentliche Sessions"), wofuer Mittel verwendet werden koennten. Das ist der MEHRWERT des Assistenten → BLEIBT im Text und wird dem Nutzer als zu bestaetigender Vorschlag aufgelistet. NICHT entfernen.
+
+Faustregel: widerspricht es dem Nutzer? → "widerspruch". Behauptet es eine ungesicherte Tatsache/Zusage/Quelle als feststehend? → "tatsache". Ist es eine sinnvolle, nicht widerspruechliche Ausgestaltung/Option? → "vorschlag".
 
 ## Was du NIEMALS flaggst
-- Allgemeine Aussagen ueber das Thema, den Foerderzweck oder paedagogischen Wert ("digitale Kompetenzen sind fuer die Teilhabe wichtig") — das ist legitime Rahmung, keine Tatsachenbehauptung.
-- Eine sinngemaesse Wiedergabe oder nachvollziehbare Ausgestaltung der vom Nutzer selbst genannten Projektidee.
-- Bereits EHRLICH MARKIERTE Luecken/Vorbehalte ("noch zu klaeren", "[TODO: …]", "liegt derzeit nicht vor", "noch einzuholen", "voraussichtlich", "wird vor Einreichung festgelegt") — die sind erwuenscht und bleiben unangetastet.
-- Angaben, die in der Ground Truth oder im Programm-Kontext stehen.
-- Reine Zahlen/Eigennamen ohne Tatsachen-Charakter (die deckt ein anderer Pruefschritt ab).
+- Allgemeine fachliche Rahmung, paedagogische Theorie, Foerderzweck-Bezug ("digitale Kompetenzen staerken Bildungsgerechtigkeit") — legitim, keine Behauptung ueber DIESE Schule.
+- Sinngemaesse Wiedergabe der vom Nutzer genannten Projektidee.
+- Bereits EHRLICH MARKIERTE Vorbehalte ("noch zu klaeren", "[TODO: …]", "voraussichtlich", "wird vor Einreichung festgelegt").
+- Angaben aus Ground Truth oder Programm-Kontext.
+- Reine Zahlen/Eigennamen ohne Tatsachen-Charakter (anderer Pruefschritt).
 
 ## Ausgabe
 AUSSCHLIESSLICH valides JSON, keine Markdown-Fences:
@@ -947,16 +946,16 @@ AUSSCHLIESSLICH valides JSON, keine Markdown-Fences:
   "claims": [
     {
       "zitat": "woertliches Kurzzitat aus dem Antrag (max 120 Zeichen, exakt wie im Text)",
-      "art": "partner" | "termin" | "zusage" | "menge" | "kanal" | "verfahren" | "sonstiges",
-      "warum": "1 Satz: warum diese Behauptung durch die Nutzerangaben nicht gedeckt ist"
+      "art": "widerspruch" | "tatsache" | "vorschlag",
+      "warum": "1 Satz: warum nicht gedeckt + woran du die Art festmachst"
     }
   ]
 }
 
 Regeln
-- "claims": [] ist eine voellig gueltige und HAEUFIGE Antwort. Im Zweifel NICHT flaggen — lieber eine echte Erfindung uebersehen als legitimen Inhalt zerstoeren.
+- "claims": [] ist gueltig. Im Zweifel zwischen "tatsache" und "vorschlag" → "vorschlag" (lieber behalten+markieren als loeschen). Nur bei echtem Widerspruch "widerspruch".
 - Das "zitat" MUSS woertlich (Zeichen fuer Zeichen) im Antragstext vorkommen, sonst wird es verworfen.
-- Maximal 8 Eintraege, die gravierendsten zuerst.`;
+- Maximal 10 Eintraege, die gravierendsten (widerspruch/tatsache) zuerst.`;
 
 export function buildFactVerificationDetectPrompt(
   finalText: string,
@@ -975,21 +974,20 @@ ${finalText}
 Liefere die claims-Liste.`;
 }
 
-export const FACT_VERIFICATION_REPAIR_SYSTEM = `Du ueberarbeitest einen fertigen Foerderantrag CHIRURGISCH. Ein Faktenpruefer hat konkrete Behauptungen markiert, die NICHT durch die Nutzerangaben gedeckt sind — sie wurden frei erfunden. Du bekommst genau diese Stellen.
+export const FACT_VERIFICATION_REPAIR_SYSTEM = `Du ueberarbeitest einen fertigen Foerderantrag CHIRURGISCH. Ein Faktenpruefer hat Stellen markiert, die der Nutzeraussage WIDERSPRECHEN oder eine ungesicherte Tatsache/Zusage als feststehend behaupten. NUR diese Stellen fasst du an.
 
 ## Aufgabe
-Entschaerfe AUSSCHLIESSLICH die gelisteten Behauptungen. Lass den restlichen Text Wort fuer Wort unveraendert.
-- Wandle jede markierte Behauptung in einen ehrlichen, offenen Punkt um, statt sie als feststehende Tatsache zu behaupten:
-  - erfundener Partner → "ein noch zu gewinnender Kooperationspartner" / "noch zu klaeren".
-  - erfundener Termin/Zeitplan → "der genaue Zeitplan wird vor Einreichung festgelegt".
+- Bei einem WIDERSPRUCH zur Nutzeraussage (z. B. bezahlte externe Kraft, obwohl der Nutzer "machen die Lehrkraefte selbst" sagte): die widerspruechliche Behauptung STREICHEN bzw. an die Nutzeraussage angleichen. Keine Ersatzerfindung.
+- Bei einer ungesicherten TATSACHE/ZUSAGE/QUELLE, die als feststehend behauptet wird: in einen ehrlichen Vorbehalt umwandeln:
   - erfundene Zusage Dritter → "die Zustimmung von … ist noch einzuholen".
-  - erfundene Menge/Reichweite/Frequenz → "in noch zu bestimmendem Umfang".
-  - erfundener Kanal/Verfahren → "die Form der Verbreitung/Umsetzung wird noch festgelegt".
-- Eine erfundene Angabe behebt man durch Streichen oder einen ehrlichen Luecken-Marker — NIEMALS durch eine andere Erfindung. Erfinde keine Ersatz-Fakten, -Namen, -Zahlen oder -Termine.
-- Schon vorhandene ehrliche Luecken-Marker bleiben unveraendert.
+  - benannter Partner als gesichert → "ein noch zu gewinnender Kooperationspartner".
+  - erfundene Beleg-Quelle ("laut Sprachstandserhebung", "7% gemaess Richtlinie") → die Quelle/den Beleg streichen oder als "noch zu belegen" kennzeichnen.
+  - abgeschlossenes Ereignis/Datum → "voraussichtlich / noch festzulegen".
+- Eine erfundene Angabe behebt man durch Streichen oder einen ehrlichen Vorbehalt — NIEMALS durch eine andere Erfindung.
 
-## Strikte Grenzen
-- Aendere NICHTS an Struktur, Titel, Abschnittsreihenfolge, Stil oder an Angaben, die nicht markiert sind.
+## WICHTIG — was du NICHT anfasst
+- Alles, was NICHT in der Liste steht, bleibt Wort fuer Wort unveraendert — insbesondere sinnvolle fachliche Ausgestaltungen/Vorschlaege (Methoden, Formate, moegliche Verbreitungswege). Die sind erwuenscht und werden dem Nutzer separat als Vorschlag angezeigt.
+- KEINE Aenderung an Struktur, Titel, Abschnittsreihenfolge oder Stil.
 
 ## Ausgabeformat (Markdown)
 - Antragstitel als H1 ("# Titel"), Abschnitte als H2 ("## Abschnittsname"), Absaetze durch Leerzeilen getrennt.
@@ -1003,10 +1001,10 @@ export function buildFactVerificationRepairPrompt(
   const list = claims.length
     ? claims.map((c, i) => `${i + 1}. [${c.art}] "${c.zitat}" — ${c.warum}`).join("\n")
     : "- (keine)";
-  return `ERFUNDENE BEHAUPTUNGEN (durch keine Nutzerangabe gedeckt — diese entschaerfen):
+  return `ZU ENTSCHAERFENDE STELLEN (Widerspruch zur Nutzeraussage oder ungesicherte Tatsache):
 ${list}
 
-ANTRAGSTEXT (chirurgisch bereinigen — nur die gelisteten Stellen anfassen):
+ANTRAGSTEXT (chirurgisch bereinigen — NUR die gelisteten Stellen anfassen, Vorschlaege/Ausgestaltungen unangetastet lassen):
 
 ${finalText}`;
 }
