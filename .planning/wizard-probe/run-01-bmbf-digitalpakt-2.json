@@ -6,15 +6,15 @@
     "bundesland": "DE-BE"
   },
   "idee": "Wir wollen was mit Tablets machen.",
-  "startedAt": "2026-06-09T19:28:34.666Z",
+  "startedAt": "2026-06-10T07:39:43.522Z",
   "match": {
     "kind": "ranking",
     "matches": [
       {
         "id": "bmbf-digitalpakt-2",
-        "score": 92,
-        "passt_weil": "Bundesweite Foerderung digitaler Schulinfrastruktur, inkl. Tablets; Grundschule und Berlin passen.",
-        "achtung_bei": "Antragsfrist und Kofinanzierung durch Land Berlin klären.",
+        "score": 90,
+        "passt_weil": "Bundesweite Förderung digitaler Infrastruktur; Tablets sind Kern-Kategorie.",
+        "achtung_bei": "Antragsfristen je nach Berliner Verteilung prüfen.",
         "programm": {
           "id": "bmbf-digitalpakt-2",
           "name": "DigitalPakt Schule 2.0",
@@ -33,9 +33,9 @@
       },
       {
         "id": "berlin-startchancen",
-        "score": 85,
-        "passt_weil": "Berliner Landesprogramm mit Investitionssaeule fuer Lernausstattung, Tablets moeglich.",
-        "achtung_bei": "Start 2026; Fokus auf sozial benachteiligte Schulen.",
+        "score": 80,
+        "passt_weil": "Berliner Landesprogramm mit Investitionssäule; Tablets als Lernmittel förderbar.",
+        "achtung_bei": "Zugang oft über Schulaufsicht; Bewerbung prüfen.",
         "programm": {
           "id": "berlin-startchancen",
           "name": "Startchancen-Programm Berlin",
@@ -56,9 +56,9 @@
       },
       {
         "id": "heinz-nixdorf-stiftung-projektfoerderung-mint",
-        "score": 70,
-        "passt_weil": "Foerdert digitale Bildungsprojekte mit Tableteinsatz an Grundschulen.",
-        "achtung_bei": "Foerdersumme begrenzt; Antrag ueber Foerderverein moeglich.",
+        "score": 65,
+        "passt_weil": "Fördert Digitale Bildung; Tablets für MINT-Projekte nutzbar.",
+        "achtung_bei": "Fokus auf MINT-Kontext und Konzeptqualität.",
         "programm": {
           "id": "heinz-nixdorf-stiftung-projektfoerderung-mint",
           "name": "Heinz Nixdorf Stiftung - Projektfoerderung (MINT/Digitale Bildung)",
@@ -83,15 +83,15 @@
     "costs": {
       "calls": 1,
       "promptTokens": 5959,
-      "candidatesTokens": 163,
-      "totalTokens": 6122,
+      "candidatesTokens": 145,
+      "totalTokens": 6104,
       "usdCents": 0.09,
       "eurCents": 0.08,
       "entries": [
         {
           "model": "deepseek-chat",
           "promptTokens": 5959,
-          "candidatesTokens": 163,
+          "candidatesTokens": 145,
           "usdCents": 0.09
         }
       ]
@@ -101,16 +101,16 @@
   "gewaehltesProgramm": {
     "id": "bmbf-digitalpakt-2",
     "name": "DigitalPakt Schule 2.0",
-    "score": 92,
-    "passt_weil": "Bundesweite Foerderung digitaler Schulinfrastruktur, inkl. Tablets; Grundschule und Berlin passen."
+    "score": 90,
+    "passt_weil": "Bundesweite Förderung digitaler Infrastruktur; Tablets sind Kern-Kategorie."
   },
-  "sessionToken": "a3168d9d-b3fd-46e8-9ede-939e03ae0f7c",
+  "sessionToken": "f6e041b0-6f7c-494e-95ae-738cf4cb1e2e",
   "transcript": [
     {
       "runde": 1,
-      "frage": "Welche konkreten digitalen Geräte oder Infrastruktur fehlen aktuell an Ihrer Schule, und wie viele Schülerinnen und Schüler werden damit erreicht? Wir brauchen dies für die Bedarfsanalyse – bitte nennen Sie mir konkrete Zahlen und Räume (Klassenzimmer, Fachräume).",
-      "rationale": "Startklar für die Bedarfsanalyse: benötige konkrete IST-Zahlen zu Schülerzahl, Räumen und fehlender Digitalausstattung als Grundlage für das Vorhaben.",
-      "antwort": "Ja, also Tablets fehlen auf jeden Fall, und zwar für die Klassen – wie viele genau, müsste ich nachgucken, so ungefähr für alle.",
+      "frage": "Sie haben schon eine Grundschule in Berlin. Welche konkreten digitalen Defizite sehen Sie aktuell – zum Beispiel wie viele Klassenräume haben bisher keinen Beamer oder kein stabiles WLAN, und welche Geräte wurden bereits aus DigitalPakt 1 finanziert?",
+      "rationale": "Bedarfsanalyse ist der erste Pflichtabschnitt; konkrete Zahlen zur IST-Situation sind für einen glaubwürdigen Antrag unabdingbar.",
+      "antwort": "Naja, so richtig stabil ist das WLAN nicht überall, und Beamer fehlen auch noch in einigen Räumen. Was genau aus dem DigitalPakt kam, müsste ich nachgucken.",
       "factsNach": {
         "schule": {
           "typ": "Grundschule",
@@ -121,16 +121,10 @@
     },
     {
       "runde": 2,
-      "frage": "Sie sagen, Tablets fehlen für alle Klassen – um wie viele Geräte geht es konkret? Und gibt es auch Bedarf an weiterer Infrastruktur wie WLAN, Präsentationstechnik oder Fachraum-Ausstattung, die in den DigitalPakt 2.0 fallen könnte?",
-      "rationale": "Konkretisierung der Bedarfszahlen und -arten, um die Bedarfsanalyse belastbar zu machen – vage 'für alle' reicht nicht.",
-      "antwort": "Ja, so ungefähr für alle Klassen bräuchten wir welche. Und WLAN müsste man sich auch noch mal angucken, weiß nicht genau.",
+      "frage": "Das klingt nach typischen Baustellen – können Sie mir konkret sagen, wie viele der 15 Klassenräume aktuell noch keinen Beamer haben und in welchen Bereichen das WLAN besonders instabil ist (z.B. Altbau, Sporthalle)?",
+      "rationale": "Brauche konkrete Zahlen und Orte, um Bedarfsanalyse zu belegen – reine ‚irgendwo fehlt was‘-Aussage reicht nicht für den Antrag.",
+      "antwort": "Weiß ich nicht genau, müsste man mal nachschauen.",
       "factsNach": {
-        "budget": {
-          "hauptposten": [
-            "Tablets",
-            "WLAN"
-          ]
-        },
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule am Lindenpark",
@@ -140,16 +134,10 @@
     },
     {
       "runde": 3,
-      "frage": "Sie nennen Tablets und WLAN als Bedarf, aber für einen Antrag brauchen wir konkrete Stückzahlen und eine Begründung, warum genau diese Ausstattung nötig ist. Wie viele Tablets wären es Ihrer Schätzung nach (z. B. 1 Klassensatz à 25 Geräte pro Klassenraum), und wie viele Klassenräume bzw. Schüler:innen sollen versorgt werden?",
-      "rationale": "Für die Bedarfsanalyse und den Finanzplan müssen konkrete Stückzahlen und ein Bezug zur Schülerzahl hergestellt werden, sonst bleibt der Antrag zu vage.",
-      "antwort": "Ja, so ungefähr ein Klassensatz pro Klassenraum. Wie viele Räume genau, müssten wir noch gucken.",
+      "frage": "Haben Sie ein aktuelles Medienkonzept an Ihrer Schule verabschiedet? Falls ja: Welche konkreten Lernziele aus der KMK-Strategie ‚Bildung in der digitalen Welt‘ werden dort bereits aufgegriffen – und welche neuen digitalen Kompetenzen sollen mit dem Antrag gezielt gefördert werden?",
+      "rationale": "Die letzte Antwort war zu vage; das Medienkonzept ist eine harte Pflicht für DigitalPakt 2.0, und die KMK-Strategie muss erkennbar sein.",
+      "antwort": "Ja, so ein Medienkonzept haben wir irgendwann mal verabschiedet, aber die genauen Lernziele weiß ich jetzt nicht auswendig.",
       "factsNach": {
-        "budget": {
-          "hauptposten": [
-            "Tablets",
-            "WLAN"
-          ]
-        },
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule am Lindenpark",
@@ -159,16 +147,10 @@
     },
     {
       "runde": 4,
-      "frage": "Um den Bedarf konkret zu beziffern: Wie viele Klassen- und Fachräume hat Ihre Schule insgesamt, und wie viele Schüler:innen besuchen die Schule? Diese Zahlen brauchen wir für die Bedarfsanalyse und den Finanzplan.",
-      "rationale": "Ohne konkrete Schüler- und Raumzahlen kann der Antrag weder Stückzahlen noch Kosten belegen – das ist für Bundesförderungen zwingend erforderlich.",
-      "antwort": "So um die 200 Kinder, schätze ich, und paar mehr Räume als Klassen halt.",
+      "frage": "Sie haben Medienkonzept und Infrastruktur genannt, ich brauche aber konkrete Zahlen: Wie viele Schülerinnen und Schüler besuchen die Schule, wie viele Lehrkräfte unterrichten dort, und wie viele Klassen- oder Fachräume gibt es insgesamt? Damit kann ich später die Bedarfsgrößen und den Umfang der Qualifizierung ableiten.",
+      "rationale": "Fehlende Basisdaten (Schüler-, Lehrer-, Raumzahlen) für Bedarfsanalyse und Finanzplan – ohne diese lassen sich Umfang und Kosten nicht belastbar darstellen.",
+      "antwort": "Äh, so ungefähr 250 bis 300 Kinder, Lehrkräfte weiß ich nicht genau, vielleicht 20, und Räume… müssten wir nachzählen.",
       "factsNach": {
-        "budget": {
-          "hauptposten": [
-            "Tablets",
-            "WLAN"
-          ]
-        },
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule am Lindenpark",
@@ -178,16 +160,10 @@
     },
     {
       "runde": 5,
-      "frage": "Um den Bedarf genau zu beziffern: Wie viele Klassenzüge (Jahrgänge und Parallelklassen) hat die Schule, und wie viele Räume gibt es insgesamt (inklusive Fachräume wie Musik, Kunst, Naturwissenschaften)? Diese Angabe brauchen wir, um Tablets und WLAN korrekt im Finanzplan zu kalkulieren.",
-      "rationale": "Konkrete Raum- und Klassenzahl nötig, um Stückzahl Tablets und WLAN-Ausbau zu beziffern – bisher nur Schätzung ca. 200 Schüler und unklare Raumzahl.",
-      "antwort": "Ungefähr vier Züge, aber so genau hab ich die Raumzahl grad nicht im Kopf.",
+      "frage": "Sie können die genauen Zahlen kurz recherchieren – für den Antrag brauchen wir die Schüler- und Lehrkräftezahl sowie die Anzahl der Räume. Können Sie mir die bis morgen nennen? Sonst schätzen Sie: 280 Kinder, 20 Lehrkräfte, 15 Räume – passt das ungefähr?",
+      "rationale": "Kernzahlen sind für Bedarfsanalyse und Qualifizierungsplan zwingend; ohne sie ist der Antrag nicht belastbar.",
+      "antwort": "Ja, so ungefähr passt das schon.",
       "factsNach": {
-        "budget": {
-          "hauptposten": [
-            "Tablets",
-            "WLAN"
-          ]
-        },
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule am Lindenpark",
@@ -197,16 +173,10 @@
     },
     {
       "runde": 6,
-      "frage": "Ungefähre Raumzahl reicht für den Anfang: Wie viele Räume brauchen Tablets und wie viele WLAN-Zugänge? Ich frage jetzt zum Medienkonzept und zur Qualifizierung: Welche konkreten Lernziele wollen Sie mit den Tablets erreichen, und wie werden die Lehrkräfte geschult (z. B. schulinterne Fortbildungen, externe Partner)?",
-      "rationale": "DigitalPakt 2.0 fordert pädagogisches Konzept und verpflichtende Lehrkräftequalifizierung – reine Gerätebeschaffung führt zur Ablehnung.",
-      "antwort": "So ungefähr alle Räume halt. Weiß ich jetzt nicht genau. Einfach digitaler Unterricht, und Fortbildung machen wir dann irgendwie.",
+      "frage": "Gibt es an Ihrer Schule bereits konkrete Planungen oder erste Erfahrungen mit der Integration digitaler Medien im Unterricht, zum Beispiel in bestimmten Fächern oder Projektwochen? Das hilft mir, den pädagogischen Bezug zum Medienkonzept und die konkreten Lernziele für den Antrag herauszuarbeiten.",
+      "rationale": "Um die pädagogische Unterfütterung des Antrags zu sichern, die im DigitalPakt 2.0 essenziell ist und bisher nur vage blieb.",
+      "antwort": "Ja, wir haben mal in einer Projektwoche was mit Tablets ausprobiert, weiß aber nicht mehr genau in welchem Fach.",
       "factsNach": {
-        "budget": {
-          "hauptposten": [
-            "Tablets",
-            "WLAN"
-          ]
-        },
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule am Lindenpark",
@@ -216,16 +186,49 @@
     },
     {
       "runde": 7,
-      "frage": "Bitte klären Sie die Raumzahl genau: Wie viele Räume (Klassen- plus Fachräume) haben Sie insgesamt? Und wie viele Tablets bräuchten Sie pro Raum – einen vollständigen Klassensatz (z. B. 25–30 Geräte)? Diese Zahlen sind Pflicht für den Finanzplan und die Bedarfsanalyse.",
-      "rationale": "Konkrete Stückzahlen und Raumzahl sind zwingend für Finanzplan und Bedarfsanalyse – ohne diese Angabe ist der Antrag nicht belastbar.",
-      "antwort": "So ungefähr 20 Räume, und pro Raum bräuchten wir dann halt einen Satz, aber die genaue Zahl müssten wir noch checken.",
+      "frage": "Wir brauchen einen konkreten Partner für den Antrag – haben Sie schon eine Hochschule, Stiftung oder einen IT-Dienstleister, der Sie bei der Umsetzung unterstützt? Falls ja: wie heißt der Partner und welche Rolle soll er übernehmen?",
+      "rationale": "Kooperationen mit externen Partnern sind ein zentraler Erfolgsfaktor bei Bundesförderungen und fehlen bislang komplett.",
+      "antwort": "Ähm, nein, noch nicht. Da müssten wir mal schauen.",
       "factsNach": {
-        "budget": {
-          "hauptposten": [
-            "Tablets",
-            "WLAN"
-          ]
-        },
+        "schule": {
+          "typ": "Grundschule",
+          "name": "Grundschule am Lindenpark",
+          "bundesland": "DE-BE"
+        }
+      }
+    },
+    {
+      "runde": 8,
+      "frage": "Für den Finanzplan und die Nachhaltigkeit müssen wir den Schulträger einbinden. Wer ist Ihr Schulträger (Bezirksamt oder Kommune) und gibt es bereits eine Zusage für den Eigenanteil von mindestens 22% der förderfähigen Kosten?",
+      "rationale": "Ohne Schulträger-Einbindung und Eigenmittelzusage ist der Antrag unzulässig — dies ist eine harte Pflicht aus der DigitalPakt-Richtlinie.",
+      "antwort": "Das ist das Bezirksamt, aber ob die schon zugesagt haben, müsste ich nachfragen.",
+      "factsNach": {
+        "schule": {
+          "typ": "Grundschule",
+          "name": "Grundschule am Lindenpark",
+          "bundesland": "DE-BE"
+        }
+      }
+    },
+    {
+      "runde": 9,
+      "frage": "Für die Qualifizierung der Lehrkräfte – ein Pflichtbestandteil im DigitalPakt – gibt es an Ihrer Schule schon interne Multiplikatoren, die Kolleginnen schulen könnten? Oder müssten externe Fortbildungen organisiert werden?",
+      "rationale": "Qualifizierung ist ein harter Pflichtpunkt; wir brauchen eine konkrete Idee, sonst fehlt das pädagogische Konzept.",
+      "antwort": "Ja, da müssten wir wohl Externe holen – intern haben wir da gerade niemanden.",
+      "factsNach": {
+        "schule": {
+          "typ": "Grundschule",
+          "name": "Grundschule am Lindenpark",
+          "bundesland": "DE-BE"
+        }
+      }
+    },
+    {
+      "runde": 10,
+      "frage": "Um die Nachhaltigkeit nach dem Förderende zu sichern: Wer kümmert sich nach der Anschaffung um Wartung und Support – und wie ist geplant, die Geräte nach der Abschreibungsfrist zu ersetzen? Gibt es dazu schon Absprachen mit dem Schulträger?",
+      "rationale": "Betrieb und Nachhaltigkeit sind ein kritischer Punkt im DigitalPakt; bisher fehlen konkrete Angaben zum Supportmodell und Ersatzbeschaffungsplan.",
+      "antwort": "Ja, da müssen wir noch mit dem Schulträger sprechen, wer das später macht.",
+      "factsNach": {
         "schule": {
           "typ": "Grundschule",
           "name": "Grundschule am Lindenpark",
@@ -233,172 +236,32 @@
         },
         "projekt": {
           "aktivitaeten": [
-            "digitaler Unterricht mit Tablets",
-            "Fortbildung für Lehrkräfte"
-          ]
-        }
-      }
-    },
-    {
-      "runde": 8,
-      "frage": "Sie haben etwa 20 Räume und 200 Kinder genannt – dann müssten Sie pro Raum einen Klassensatz Tablets beschaffen. Könnten Sie die genaue Zahl bis nächste Woche klären? Und noch eine wichtige Frage zum Medienkonzept: Welche konkreten digitalen Kompetenzen (z. B. Textverarbeitung, Recherche, Präsentation) sollen die Kinder mit den Tablets in welchen Fächern lernen? Das brauchen wir, um den Bezug zur KMK-Strategie 'Bildung in der digitalen Welt' im Antrag darzustellen.",
-      "rationale": "Der Nutzer liefert bisher nur Schätzungen. Für die Bedarfsanalyse und den Finanzplan benötigen wir verbindliche Stückzahlen. Zudem ist der pädagogische Bezug (Medienkonzept) ein Pflichtteil – die Frage adressiert beide Punkte.",
-      "antwort": "Ja, müsste ich nochmal genau nachzählen. Und die Kompetenzen – so Standard-Sachen halt, Recherchieren, Texte schreiben, das übliche Zeug, in Deutsch und Sachkunde eben.",
-      "factsNach": {
-        "budget": {
-          "hauptposten": [
-            "Tablets",
-            "WLAN"
-          ]
-        },
-        "schule": {
-          "typ": "Grundschule",
-          "name": "Grundschule am Lindenpark",
-          "bundesland": "DE-BE",
-          "schuelerzahl": 200
-        },
-        "projekt": {
-          "aktivitaeten": [
-            "digitaler Unterricht mit Tablets",
-            "Fortbildung für Lehrkräfte",
-            "Recherchieren",
-            "Texte schreiben"
-          ]
-        }
-      }
-    },
-    {
-      "runde": 9,
-      "frage": "Um die Tablets didaktisch sinnvoll einzusetzen: Welche konkreten Apps oder Programme möchten Sie nutzen, und wie planen Sie die Lehrkräfte gezielt darauf vorzubereiten (z.B. schulinterne Fortbildungen, feste Multiplikatoren)?",
-      "rationale": "Die Qualifizierung der Lehrkräfte ist für den DigitalPakt 2.0 verpflichtend und muss konkret benannt werden, nicht nur vage 'Fortbildung irgendwie'.",
-      "antwort": "Ach, da müssen wir nochmal schauen, welche Apps da so üblich sind. Fortbildung machen wir dann intern, so ein Kollege gibt das mal weiter.",
-      "factsNach": {
-        "budget": {
-          "hauptposten": [
-            "Tablets",
-            "WLAN"
-          ]
-        },
-        "schule": {
-          "typ": "Grundschule",
-          "name": "Grundschule am Lindenpark",
-          "bundesland": "DE-BE",
-          "schuelerzahl": 200
-        },
-        "projekt": {
-          "aktivitaeten": [
-            "digitaler Unterricht mit Tablets",
-            "Fortbildung für Lehrkräfte",
-            "Recherchieren",
-            "Texte schreiben"
-          ]
-        }
-      }
-    },
-    {
-      "runde": 10,
-      "frage": "Sie erwähnten, dass ein Kollege die Fortbildung weitergeben soll. Können Sie konkret benennen, wer dieser Kollege ist und ob er bereits eine Qualifikation als Multiplikator hat? Und wie viele Stunden Fortbildung planen Sie pro Schuljahr ein, damit alle 200 Schülerinnen und Schüler wirklich von den Tablets profitieren?",
-      "rationale": "Ohne konkreten Multiplikator und Stundenplan ist der Pflichtabschnitt 'Qualifizierung der Lehrkräfte' nicht belastbar.",
-      "antwort": "Ja, der Kollege ist halt jemand aus dem Kollegium, der sich ein bisschen mit Technik auskennt. Ob er offiziell Multiplikator ist, weiß ich nicht. Fortbildungsstunden müssten wir noch grob überlegen, so ungefähr.",
-      "factsNach": {
-        "budget": {
-          "hauptposten": [
-            "Tablets",
-            "WLAN"
-          ]
-        },
-        "schule": {
-          "typ": "Grundschule",
-          "name": "Grundschule am Lindenpark",
-          "bundesland": "DE-BE",
-          "schuelerzahl": 200
-        },
-        "projekt": {
-          "aktivitaeten": [
-            "digitaler Unterricht mit Tablets",
-            "Fortbildung für Lehrkräfte",
-            "Recherchieren",
-            "Texte schreiben"
-          ]
-        }
-      }
-    },
-    {
-      "runde": 11,
-      "frage": "Gut. Für den Finanzplan und die Nachhaltigkeit: Wer wird die Tablets und das WLAN nach der Förderung warten und administrieren – der Schulträger, ein externer Dienstleister oder schulintern? Und wie planen Sie die Geräte nach der siebenjährigen Zweckbindung zu ersetzen?",
-      "rationale": "DigitalPakt 2.0 verlangt einen klaren Betriebs- und Ersatzbeschaffungsplan – ohne konkrete Angaben ist der Antrag nicht genehmigungsfähig.",
-      "antwort": "Das müsste dann wohl der Schulträger machen, denke ich. Und Ersatz? Da machen wir uns Gedanken, wenn es so weit ist.",
-      "factsNach": {
-        "budget": {
-          "hauptposten": [
-            "Tablets",
-            "WLAN"
-          ]
-        },
-        "schule": {
-          "typ": "Grundschule",
-          "name": "Grundschule am Lindenpark",
-          "bundesland": "DE-BE",
-          "schuelerzahl": 200
-        },
-        "projekt": {
-          "aktivitaeten": [
-            "digitaler Unterricht mit Tablets",
-            "Fortbildung für Lehrkräfte",
-            "Recherchieren",
-            "Texte schreiben"
-          ]
-        }
-      }
-    },
-    {
-      "runde": 12,
-      "frage": "Sie haben den Schulträger für Wartung und Administration genannt. Können Sie dessen Rolle konkretisieren: Gibt es bereits eine schriftliche Zusage des Schulamts oder der Kommune, den IT-Support zu übernehmen? Und haben Sie eine grobe Zahl für den Eigenanteil (22 % der Gesamtkosten) parat – zum Beispiel 25.000 Euro, wenn Sie Tablets für 20 Räume anschaffen?",
-      "rationale": "Nach 11 Fragen sind alle Pflichtbereiche angeschnitten, aber der Betrieb und die Finanzierung – die laut DigitalPakt kritisch sind – noch nicht belegt. Die Frage sichert die Schulträger-Einbindung und liefert eine Eigenanteil-Zahl für den Finanzplan.",
-      "antwort": "Da müsste ich nochmal nachfragen, ob das schon schriftlich ist. Und den Eigenanteil hab ich nicht im Kopf.",
-      "factsNach": {
-        "budget": {
-          "hauptposten": [
-            "Tablets",
-            "WLAN"
-          ]
-        },
-        "schule": {
-          "typ": "Grundschule",
-          "name": "Grundschule am Lindenpark",
-          "bundesland": "DE-BE",
-          "schuelerzahl": 200
-        },
-        "projekt": {
-          "aktivitaeten": [
-            "digitaler Unterricht mit Tablets",
-            "Fortbildung für Lehrkräfte",
-            "Recherchieren",
-            "Texte schreiben"
-          ]
+            "Projektwoche mit Tablets"
+          ],
+          "qualifizierung_extern": "Externe Fortbildungen organisiert werden"
         }
       }
     }
   ],
   "finalState": {
-    "sessionToken": "a3168d9d-b3fd-46e8-9ede-939e03ae0f7c",
+    "sessionToken": "f6e041b0-6f7c-494e-95ae-738cf4cb1e2e",
     "foerderprogrammId": "bmbf-digitalpakt-2",
     "foerderprogrammName": "DigitalPakt Schule 2.0",
     "phase": "complete",
     "messages": [
       {
-        "at": "2026-06-09T19:28:40.212Z",
-        "id": "173cf122-fdce-472f-8774-256955a1ee32",
+        "at": "2026-06-10T07:39:50.540Z",
+        "id": "71101318-2175-4c60-b929-e804c724a03e",
         "kind": "question",
         "meta": {
-          "rationale": "Startklar für die Bedarfsanalyse: benötige konkrete IST-Zahlen zu Schülerzahl, Räumen und fehlender Digitalausstattung als Grundlage für das Vorhaben."
+          "rationale": "Bedarfsanalyse ist der erste Pflichtabschnitt; konkrete Zahlen zur IST-Situation sind für einen glaubwürdigen Antrag unabdingbar."
         },
         "role": "ai",
-        "content": "Welche konkreten digitalen Geräte oder Infrastruktur fehlen aktuell an Ihrer Schule, und wie viele Schülerinnen und Schüler werden damit erreicht? Wir brauchen dies für die Bedarfsanalyse – bitte nennen Sie mir konkrete Zahlen und Räume (Klassenzimmer, Fachräume)."
+        "content": "Sie haben schon eine Grundschule in Berlin. Welche konkreten digitalen Defizite sehen Sie aktuell – zum Beispiel wie viele Klassenräume haben bisher keinen Beamer oder kein stabiles WLAN, und welche Geräte wurden bereits aus DigitalPakt 1 finanziert?"
       },
       {
-        "at": "2026-06-09T19:28:41.727Z",
-        "id": "19115d1f-25ae-411e-ac60-f09f481cf6cd",
+        "at": "2026-06-10T07:39:52.535Z",
+        "id": "302fe0e9-709c-4571-aea5-9d10afa2b787",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -410,21 +273,21 @@
           }
         },
         "role": "user",
-        "content": "Ja, also Tablets fehlen auf jeden Fall, und zwar für die Klassen – wie viele genau, müsste ich nachgucken, so ungefähr für alle."
+        "content": "Naja, so richtig stabil ist das WLAN nicht überall, und Beamer fehlen auch noch in einigen Räumen. Was genau aus dem DigitalPakt kam, müsste ich nachgucken."
       },
       {
-        "at": "2026-06-09T19:28:45.509Z",
-        "id": "7a981e73-35f2-4dc3-abe5-f002b39c8df0",
+        "at": "2026-06-10T07:39:56.860Z",
+        "id": "cc2668bb-2be5-40ed-ba72-b82e39c2f097",
         "kind": "question",
         "meta": {
-          "rationale": "Konkretisierung der Bedarfszahlen und -arten, um die Bedarfsanalyse belastbar zu machen – vage 'für alle' reicht nicht."
+          "rationale": "Brauche konkrete Zahlen und Orte, um Bedarfsanalyse zu belegen – reine ‚irgendwo fehlt was‘-Aussage reicht nicht für den Antrag."
         },
         "role": "ai",
-        "content": "Sie sagen, Tablets fehlen für alle Klassen – um wie viele Geräte geht es konkret? Und gibt es auch Bedarf an weiterer Infrastruktur wie WLAN, Präsentationstechnik oder Fachraum-Ausstattung, die in den DigitalPakt 2.0 fallen könnte?"
+        "content": "Das klingt nach typischen Baustellen – können Sie mir konkret sagen, wie viele der 15 Klassenräume aktuell noch keinen Beamer haben und in welchen Bereichen das WLAN besonders instabil ist (z.B. Altbau, Sporthalle)?"
       },
       {
-        "at": "2026-06-09T19:28:47.267Z",
-        "id": "3d7cbfbf-bed7-49b1-9d47-8722ab47ac32",
+        "at": "2026-06-10T07:39:58.177Z",
+        "id": "a0433a2e-7958-466c-9902-3a895cc03a5d",
         "kind": "answer",
         "meta": {
           "factsBefore": {
@@ -436,30 +299,24 @@
           }
         },
         "role": "user",
-        "content": "Ja, so ungefähr für alle Klassen bräuchten wir welche. Und WLAN müsste man sich auch noch mal angucken, weiß nicht genau."
+        "content": "Weiß ich nicht genau, müsste man mal nachschauen."
       },
       {
-        "at": "2026-06-09T19:28:52.000Z",
-        "id": "e1e3daf9-7c52-447c-a1d0-42bc35b65a3b",
+        "at": "2026-06-10T07:40:02.452Z",
+        "id": "04b48e39-88c8-4b68-85ce-b13febc7093c",
         "kind": "question",
         "meta": {
-          "rationale": "Für die Bedarfsanalyse und den Finanzplan müssen konkrete Stückzahlen und ein Bezug zur Schülerzahl hergestellt werden, sonst bleibt der Antrag zu vage."
+          "rationale": "Die letzte Antwort war zu vage; das Medienkonzept ist eine harte Pflicht für DigitalPakt 2.0, und die KMK-Strategie muss erkennbar sein."
         },
         "role": "ai",
-        "content": "Sie nennen Tablets und WLAN als Bedarf, aber für einen Antrag brauchen wir konkrete Stückzahlen und eine Begründung, warum genau diese Ausstattung nötig ist. Wie viele Tablets wären es Ihrer Schätzung nach (z. B. 1 Klassensatz à 25 Geräte pro Klassenraum), und wie viele Klassenräume bzw. Schüler:innen sollen versorgt werden?"
+        "content": "Haben Sie ein aktuelles Medienkonzept an Ihrer Schule verabschiedet? Falls ja: Welche konkreten Lernziele aus der KMK-Strategie ‚Bildung in der digitalen Welt‘ werden dort bereits aufgegriffen – und welche neuen digitalen Kompetenzen sollen mit dem Antrag gezielt gefördert werden?"
       },
       {
-        "at": "2026-06-09T19:28:53.461Z",
-        "id": "d254a0ff-46d4-4a68-81ba-32d2907863a7",
+        "at": "2026-06-10T07:40:03.380Z",
+        "id": "1ef51b2b-69f5-4ffb-9135-4605af5eea29",
         "kind": "answer",
         "meta": {
           "factsBefore": {
-            "budget": {
-              "hauptposten": [
-                "Tablets",
-                "WLAN"
-              ]
-            },
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule am Lindenpark",
@@ -468,30 +325,24 @@
           }
         },
         "role": "user",
-        "content": "Ja, so ungefähr ein Klassensatz pro Klassenraum. Wie viele Räume genau, müssten wir noch gucken."
+        "content": "Ja, so ein Medienkonzept haben wir irgendwann mal verabschiedet, aber die genauen Lernziele weiß ich jetzt nicht auswendig."
       },
       {
-        "at": "2026-06-09T19:28:57.545Z",
-        "id": "1f9fcabe-2369-4a4a-93a1-9fdff14ad399",
+        "at": "2026-06-10T07:40:08.045Z",
+        "id": "e98686c0-7894-44ee-85e9-3653abdba899",
         "kind": "question",
         "meta": {
-          "rationale": "Ohne konkrete Schüler- und Raumzahlen kann der Antrag weder Stückzahlen noch Kosten belegen – das ist für Bundesförderungen zwingend erforderlich."
+          "rationale": "Fehlende Basisdaten (Schüler-, Lehrer-, Raumzahlen) für Bedarfsanalyse und Finanzplan – ohne diese lassen sich Umfang und Kosten nicht belastbar darstellen."
         },
         "role": "ai",
-        "content": "Um den Bedarf konkret zu beziffern: Wie viele Klassen- und Fachräume hat Ihre Schule insgesamt, und wie viele Schüler:innen besuchen die Schule? Diese Zahlen brauchen wir für die Bedarfsanalyse und den Finanzplan."
+        "content": "Sie haben Medienkonzept und Infrastruktur genannt, ich brauche aber konkrete Zahlen: Wie viele Schülerinnen und Schüler besuchen die Schule, wie viele Lehrkräfte unterrichten dort, und wie viele Klassen- oder Fachräume gibt es insgesamt? Damit kann ich später die Bedarfsgrößen und den Umfang der Qualifizierung ableiten."
       },
       {
-        "at": "2026-06-09T19:28:59.192Z",
-        "id": "be9f8394-375a-405e-8a48-15a5fbb73ee8",
+        "at": "2026-06-10T07:40:09.742Z",
+        "id": "3d0e7338-e1cc-41de-9023-e1bbf86237e8",
         "kind": "answer",
         "meta": {
           "factsBefore": {
-            "budget": {
-              "hauptposten": [
-                "Tablets",
-                "WLAN"
-              ]
-            },
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule am Lindenpark",
@@ -500,30 +351,24 @@
           }
         },
         "role": "user",
-        "content": "So um die 200 Kinder, schätze ich, und paar mehr Räume als Klassen halt."
+        "content": "Äh, so ungefähr 250 bis 300 Kinder, Lehrkräfte weiß ich nicht genau, vielleicht 20, und Räume… müssten wir nachzählen."
       },
       {
-        "at": "2026-06-09T19:29:03.936Z",
-        "id": "45ce6d52-aef5-4f3f-8342-2cd481e4b895",
+        "at": "2026-06-10T07:40:14.886Z",
+        "id": "505032c5-c275-4bfd-8650-18f600ba65f2",
         "kind": "question",
         "meta": {
-          "rationale": "Konkrete Raum- und Klassenzahl nötig, um Stückzahl Tablets und WLAN-Ausbau zu beziffern – bisher nur Schätzung ca. 200 Schüler und unklare Raumzahl."
+          "rationale": "Kernzahlen sind für Bedarfsanalyse und Qualifizierungsplan zwingend; ohne sie ist der Antrag nicht belastbar."
         },
         "role": "ai",
-        "content": "Um den Bedarf genau zu beziffern: Wie viele Klassenzüge (Jahrgänge und Parallelklassen) hat die Schule, und wie viele Räume gibt es insgesamt (inklusive Fachräume wie Musik, Kunst, Naturwissenschaften)? Diese Angabe brauchen wir, um Tablets und WLAN korrekt im Finanzplan zu kalkulieren."
+        "content": "Sie können die genauen Zahlen kurz recherchieren – für den Antrag brauchen wir die Schüler- und Lehrkräftezahl sowie die Anzahl der Räume. Können Sie mir die bis morgen nennen? Sonst schätzen Sie: 280 Kinder, 20 Lehrkräfte, 15 Räume – passt das ungefähr?"
       },
       {
-        "at": "2026-06-09T19:29:05.352Z",
-        "id": "2dd99726-9569-4ff8-8235-bf2c7babefd4",
+        "at": "2026-06-10T07:40:16.293Z",
+        "id": "2eae2bb8-940d-4f26-af32-60d1ee7cfb74",
         "kind": "answer",
         "meta": {
           "factsBefore": {
-            "budget": {
-              "hauptposten": [
-                "Tablets",
-                "WLAN"
-              ]
-            },
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule am Lindenpark",
@@ -532,30 +377,24 @@
           }
         },
         "role": "user",
-        "content": "Ungefähr vier Züge, aber so genau hab ich die Raumzahl grad nicht im Kopf."
+        "content": "Ja, so ungefähr passt das schon."
       },
       {
-        "at": "2026-06-09T19:29:09.685Z",
-        "id": "157925a0-5d1e-4975-bff1-0eca7457d4f4",
+        "at": "2026-06-10T07:40:21.700Z",
+        "id": "872ea569-fad6-4c2e-b1aa-eaf34b4df966",
         "kind": "question",
         "meta": {
-          "rationale": "DigitalPakt 2.0 fordert pädagogisches Konzept und verpflichtende Lehrkräftequalifizierung – reine Gerätebeschaffung führt zur Ablehnung."
+          "rationale": "Um die pädagogische Unterfütterung des Antrags zu sichern, die im DigitalPakt 2.0 essenziell ist und bisher nur vage blieb."
         },
         "role": "ai",
-        "content": "Ungefähre Raumzahl reicht für den Anfang: Wie viele Räume brauchen Tablets und wie viele WLAN-Zugänge? Ich frage jetzt zum Medienkonzept und zur Qualifizierung: Welche konkreten Lernziele wollen Sie mit den Tablets erreichen, und wie werden die Lehrkräfte geschult (z. B. schulinterne Fortbildungen, externe Partner)?"
+        "content": "Gibt es an Ihrer Schule bereits konkrete Planungen oder erste Erfahrungen mit der Integration digitaler Medien im Unterricht, zum Beispiel in bestimmten Fächern oder Projektwochen? Das hilft mir, den pädagogischen Bezug zum Medienkonzept und die konkreten Lernziele für den Antrag herauszuarbeiten."
       },
       {
-        "at": "2026-06-09T19:29:11.238Z",
-        "id": "2675b2cc-6e26-454c-88c6-9565af115246",
+        "at": "2026-06-10T07:40:23.531Z",
+        "id": "e66c2fa4-3409-46c7-98e0-b53da94d9737",
         "kind": "answer",
         "meta": {
           "factsBefore": {
-            "budget": {
-              "hauptposten": [
-                "Tablets",
-                "WLAN"
-              ]
-            },
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule am Lindenpark",
@@ -564,30 +403,24 @@
           }
         },
         "role": "user",
-        "content": "So ungefähr alle Räume halt. Weiß ich jetzt nicht genau. Einfach digitaler Unterricht, und Fortbildung machen wir dann irgendwie."
+        "content": "Ja, wir haben mal in einer Projektwoche was mit Tablets ausprobiert, weiß aber nicht mehr genau in welchem Fach."
       },
       {
-        "at": "2026-06-09T19:29:14.875Z",
-        "id": "22f3617a-58ea-4237-868a-b28b0e550c0a",
+        "at": "2026-06-10T07:40:28.257Z",
+        "id": "667e5270-f763-4ccd-a098-4f9164e43a17",
         "kind": "question",
         "meta": {
-          "rationale": "Konkrete Stückzahlen und Raumzahl sind zwingend für Finanzplan und Bedarfsanalyse – ohne diese Angabe ist der Antrag nicht belastbar."
+          "rationale": "Kooperationen mit externen Partnern sind ein zentraler Erfolgsfaktor bei Bundesförderungen und fehlen bislang komplett."
         },
         "role": "ai",
-        "content": "Bitte klären Sie die Raumzahl genau: Wie viele Räume (Klassen- plus Fachräume) haben Sie insgesamt? Und wie viele Tablets bräuchten Sie pro Raum – einen vollständigen Klassensatz (z. B. 25–30 Geräte)? Diese Zahlen sind Pflicht für den Finanzplan und die Bedarfsanalyse."
+        "content": "Wir brauchen einen konkreten Partner für den Antrag – haben Sie schon eine Hochschule, Stiftung oder einen IT-Dienstleister, der Sie bei der Umsetzung unterstützt? Falls ja: wie heißt der Partner und welche Rolle soll er übernehmen?"
       },
       {
-        "at": "2026-06-09T19:29:16.904Z",
-        "id": "96b8e2e1-e605-45bd-8df9-5ae8d5e02fdc",
+        "at": "2026-06-10T07:40:29.600Z",
+        "id": "f5b4afa6-5189-4cf1-8ed2-83e94a11ce49",
         "kind": "answer",
         "meta": {
           "factsBefore": {
-            "budget": {
-              "hauptposten": [
-                "Tablets",
-                "WLAN"
-              ]
-            },
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule am Lindenpark",
@@ -596,240 +429,107 @@
           }
         },
         "role": "user",
-        "content": "So ungefähr 20 Räume, und pro Raum bräuchten wir dann halt einen Satz, aber die genaue Zahl müssten wir noch checken."
+        "content": "Ähm, nein, noch nicht. Da müssten wir mal schauen."
       },
       {
-        "at": "2026-06-09T19:29:23.599Z",
-        "id": "458b5d1f-7f82-433c-ba4a-bdabd0bd3e8e",
+        "at": "2026-06-10T07:40:34.024Z",
+        "id": "87d496cf-e78f-477e-b708-579d14b1201b",
         "kind": "question",
         "meta": {
-          "rationale": "Der Nutzer liefert bisher nur Schätzungen. Für die Bedarfsanalyse und den Finanzplan benötigen wir verbindliche Stückzahlen. Zudem ist der pädagogische Bezug (Medienkonzept) ein Pflichtteil – die Frage adressiert beide Punkte."
+          "rationale": "Ohne Schulträger-Einbindung und Eigenmittelzusage ist der Antrag unzulässig — dies ist eine harte Pflicht aus der DigitalPakt-Richtlinie."
         },
         "role": "ai",
-        "content": "Sie haben etwa 20 Räume und 200 Kinder genannt – dann müssten Sie pro Raum einen Klassensatz Tablets beschaffen. Könnten Sie die genaue Zahl bis nächste Woche klären? Und noch eine wichtige Frage zum Medienkonzept: Welche konkreten digitalen Kompetenzen (z. B. Textverarbeitung, Recherche, Präsentation) sollen die Kinder mit den Tablets in welchen Fächern lernen? Das brauchen wir, um den Bezug zur KMK-Strategie 'Bildung in der digitalen Welt' im Antrag darzustellen."
+        "content": "Für den Finanzplan und die Nachhaltigkeit müssen wir den Schulträger einbinden. Wer ist Ihr Schulträger (Bezirksamt oder Kommune) und gibt es bereits eine Zusage für den Eigenanteil von mindestens 22% der förderfähigen Kosten?"
       },
       {
-        "at": "2026-06-09T19:29:25.695Z",
-        "id": "be4c3ab4-a182-4060-8d37-8502e657a467",
+        "at": "2026-06-10T07:40:34.859Z",
+        "id": "427b7a4f-1aaf-4e4d-8f72-c38e5d036456",
         "kind": "answer",
         "meta": {
           "factsBefore": {
-            "budget": {
-              "hauptposten": [
-                "Tablets",
-                "WLAN"
-              ]
-            },
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule am Lindenpark",
               "bundesland": "DE-BE"
-            },
-            "projekt": {
-              "aktivitaeten": [
-                "digitaler Unterricht mit Tablets",
-                "Fortbildung für Lehrkräfte"
-              ]
             }
           }
         },
         "role": "user",
-        "content": "Ja, müsste ich nochmal genau nachzählen. Und die Kompetenzen – so Standard-Sachen halt, Recherchieren, Texte schreiben, das übliche Zeug, in Deutsch und Sachkunde eben."
+        "content": "Das ist das Bezirksamt, aber ob die schon zugesagt haben, müsste ich nachfragen."
       },
       {
-        "at": "2026-06-09T19:29:30.939Z",
-        "id": "0e637cf1-5032-4af6-8769-3fff264318fe",
+        "at": "2026-06-10T07:40:39.779Z",
+        "id": "3099dddd-ed03-40b5-af1f-63528be14da5",
         "kind": "question",
         "meta": {
-          "rationale": "Die Qualifizierung der Lehrkräfte ist für den DigitalPakt 2.0 verpflichtend und muss konkret benannt werden, nicht nur vage 'Fortbildung irgendwie'."
+          "rationale": "Qualifizierung ist ein harter Pflichtpunkt; wir brauchen eine konkrete Idee, sonst fehlt das pädagogische Konzept."
         },
         "role": "ai",
-        "content": "Um die Tablets didaktisch sinnvoll einzusetzen: Welche konkreten Apps oder Programme möchten Sie nutzen, und wie planen Sie die Lehrkräfte gezielt darauf vorzubereiten (z.B. schulinterne Fortbildungen, feste Multiplikatoren)?"
+        "content": "Für die Qualifizierung der Lehrkräfte – ein Pflichtbestandteil im DigitalPakt – gibt es an Ihrer Schule schon interne Multiplikatoren, die Kolleginnen schulen könnten? Oder müssten externe Fortbildungen organisiert werden?"
       },
       {
-        "at": "2026-06-09T19:29:32.822Z",
-        "id": "75eb9138-78a3-43b4-a0b9-e4bca7aa8b81",
+        "at": "2026-06-10T07:40:41.502Z",
+        "id": "1cc196a3-586c-4da9-bf2d-5a6f5993c9f6",
         "kind": "answer",
         "meta": {
           "factsBefore": {
-            "budget": {
-              "hauptposten": [
-                "Tablets",
-                "WLAN"
-              ]
-            },
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule am Lindenpark",
-              "bundesland": "DE-BE",
-              "schuelerzahl": 200
-            },
-            "projekt": {
-              "aktivitaeten": [
-                "digitaler Unterricht mit Tablets",
-                "Fortbildung für Lehrkräfte",
-                "Recherchieren",
-                "Texte schreiben"
-              ]
+              "bundesland": "DE-BE"
             }
           }
         },
         "role": "user",
-        "content": "Ach, da müssen wir nochmal schauen, welche Apps da so üblich sind. Fortbildung machen wir dann intern, so ein Kollege gibt das mal weiter."
+        "content": "Ja, da müssten wir wohl Externe holen – intern haben wir da gerade niemanden."
       },
       {
-        "at": "2026-06-09T19:29:38.032Z",
-        "id": "f840ebb6-7765-4687-b19e-7f1f082bdaa0",
+        "at": "2026-06-10T07:40:46.585Z",
+        "id": "8fb7f2f2-110a-4391-b7cb-20ae7ee31b8e",
         "kind": "question",
         "meta": {
-          "rationale": "Ohne konkreten Multiplikator und Stundenplan ist der Pflichtabschnitt 'Qualifizierung der Lehrkräfte' nicht belastbar."
+          "rationale": "Betrieb und Nachhaltigkeit sind ein kritischer Punkt im DigitalPakt; bisher fehlen konkrete Angaben zum Supportmodell und Ersatzbeschaffungsplan."
         },
         "role": "ai",
-        "content": "Sie erwähnten, dass ein Kollege die Fortbildung weitergeben soll. Können Sie konkret benennen, wer dieser Kollege ist und ob er bereits eine Qualifikation als Multiplikator hat? Und wie viele Stunden Fortbildung planen Sie pro Schuljahr ein, damit alle 200 Schülerinnen und Schüler wirklich von den Tablets profitieren?"
+        "content": "Um die Nachhaltigkeit nach dem Förderende zu sichern: Wer kümmert sich nach der Anschaffung um Wartung und Support – und wie ist geplant, die Geräte nach der Abschreibungsfrist zu ersetzen? Gibt es dazu schon Absprachen mit dem Schulträger?"
       },
       {
-        "at": "2026-06-09T19:29:40.148Z",
-        "id": "ba721e13-e902-42af-a56d-998bc9d4d1fe",
+        "at": "2026-06-10T07:40:48.370Z",
+        "id": "16e3c866-1475-45ff-a0f3-15e3ce9182e8",
         "kind": "answer",
         "meta": {
           "factsBefore": {
-            "budget": {
-              "hauptposten": [
-                "Tablets",
-                "WLAN"
-              ]
-            },
             "schule": {
               "typ": "Grundschule",
               "name": "Grundschule am Lindenpark",
-              "bundesland": "DE-BE",
-              "schuelerzahl": 200
-            },
-            "projekt": {
-              "aktivitaeten": [
-                "digitaler Unterricht mit Tablets",
-                "Fortbildung für Lehrkräfte",
-                "Recherchieren",
-                "Texte schreiben"
-              ]
+              "bundesland": "DE-BE"
             }
           }
         },
         "role": "user",
-        "content": "Ja, der Kollege ist halt jemand aus dem Kollegium, der sich ein bisschen mit Technik auskennt. Ob er offiziell Multiplikator ist, weiß ich nicht. Fortbildungsstunden müssten wir noch grob überlegen, so ungefähr."
-      },
-      {
-        "at": "2026-06-09T19:29:44.155Z",
-        "id": "55bd96b1-5286-46a5-85df-0cdcace23b51",
-        "kind": "question",
-        "meta": {
-          "rationale": "DigitalPakt 2.0 verlangt einen klaren Betriebs- und Ersatzbeschaffungsplan – ohne konkrete Angaben ist der Antrag nicht genehmigungsfähig."
-        },
-        "role": "ai",
-        "content": "Gut. Für den Finanzplan und die Nachhaltigkeit: Wer wird die Tablets und das WLAN nach der Förderung warten und administrieren – der Schulträger, ein externer Dienstleister oder schulintern? Und wie planen Sie die Geräte nach der siebenjährigen Zweckbindung zu ersetzen?"
-      },
-      {
-        "at": "2026-06-09T19:29:45.865Z",
-        "id": "79145f82-5cd4-4c21-a84f-566510afabeb",
-        "kind": "answer",
-        "meta": {
-          "factsBefore": {
-            "budget": {
-              "hauptposten": [
-                "Tablets",
-                "WLAN"
-              ]
-            },
-            "schule": {
-              "typ": "Grundschule",
-              "name": "Grundschule am Lindenpark",
-              "bundesland": "DE-BE",
-              "schuelerzahl": 200
-            },
-            "projekt": {
-              "aktivitaeten": [
-                "digitaler Unterricht mit Tablets",
-                "Fortbildung für Lehrkräfte",
-                "Recherchieren",
-                "Texte schreiben"
-              ]
-            }
-          }
-        },
-        "role": "user",
-        "content": "Das müsste dann wohl der Schulträger machen, denke ich. Und Ersatz? Da machen wir uns Gedanken, wenn es so weit ist."
-      },
-      {
-        "at": "2026-06-09T19:29:51.893Z",
-        "id": "b7a66b22-3002-4aee-9632-79cef54b4fc9",
-        "kind": "question",
-        "meta": {
-          "rationale": "Nach 11 Fragen sind alle Pflichtbereiche angeschnitten, aber der Betrieb und die Finanzierung – die laut DigitalPakt kritisch sind – noch nicht belegt. Die Frage sichert die Schulträger-Einbindung und liefert eine Eigenanteil-Zahl für den Finanzplan."
-        },
-        "role": "ai",
-        "content": "Sie haben den Schulträger für Wartung und Administration genannt. Können Sie dessen Rolle konkretisieren: Gibt es bereits eine schriftliche Zusage des Schulamts oder der Kommune, den IT-Support zu übernehmen? Und haben Sie eine grobe Zahl für den Eigenanteil (22 % der Gesamtkosten) parat – zum Beispiel 25.000 Euro, wenn Sie Tablets für 20 Räume anschaffen?"
-      },
-      {
-        "at": "2026-06-09T19:29:53.477Z",
-        "id": "4197a594-ea7a-407e-8293-ca89d6fc6f03",
-        "kind": "answer",
-        "meta": {
-          "factsBefore": {
-            "budget": {
-              "hauptposten": [
-                "Tablets",
-                "WLAN"
-              ]
-            },
-            "schule": {
-              "typ": "Grundschule",
-              "name": "Grundschule am Lindenpark",
-              "bundesland": "DE-BE",
-              "schuelerzahl": 200
-            },
-            "projekt": {
-              "aktivitaeten": [
-                "digitaler Unterricht mit Tablets",
-                "Fortbildung für Lehrkräfte",
-                "Recherchieren",
-                "Texte schreiben"
-              ]
-            }
-          }
-        },
-        "role": "user",
-        "content": "Da müsste ich nochmal nachfragen, ob das schon schriftlich ist. Und den Eigenanteil hab ich nicht im Kopf."
+        "content": "Ja, da müssen wir noch mit dem Schulträger sprechen, wer das später macht."
       }
     ],
     "facts": {
-      "budget": {
-        "hauptposten": [
-          "Tablets",
-          "WLAN"
-        ]
-      },
       "schule": {
         "typ": "Grundschule",
         "name": "Grundschule am Lindenpark",
-        "bundesland": "DE-BE",
-        "schuelerzahl": 200
+        "bundesland": "DE-BE"
       },
       "projekt": {
         "aktivitaeten": [
-          "digitaler Unterricht mit Tablets",
-          "Fortbildung für Lehrkräfte",
-          "Recherchieren",
-          "Texte schreiben"
-        ]
+          "Projektwoche mit Tablets"
+        ],
+        "qualifizierung_extern": "Externe Fortbildungen organisiert werden"
       }
     },
     "interviewer": {
       "maxQuestions": 12,
-      "totalQuestions": 12
+      "totalQuestions": 10
     },
     "generation": {
       "outline": {
-        "titel": "digitaler Unterricht mit Tablets — Grundschule am Lindenpark (DigitalPakt Schule 2.0)",
+        "titel": "Projektwoche mit Tablets — Grundschule am Lindenpark (DigitalPakt Schule 2.0)",
         "abschnitte": [
           {
             "name": "Bedarfsanalyse und Ausgangslage",
@@ -857,130 +557,139 @@
           }
         ]
       },
-      "critique": "Zusammenfassung: Der Antrag zeigt viele offene Fragen und noch nicht eingeholte Zusagen. Zahlreiche Annahmen sind nicht durch User-Antworten gedeckt – Halluzinationen wurden identifiziert. Es fehlen verbindliche Angaben zu Eigenanteil, Schulträger-Zusagen und konkreten Stückzahlen.\n\n1. [HOCH · belegluecke · Bedarfsanalyse und Ausgangslage] \"Aus der ersten Phase des DigitalPakts (DigitalPakt Schule 1.0) wurden an der Schule bereits Basismaßnahmen zur Anbindung an das Glasfasernetz sowie eine grundlegende WLAN-Verkabelung in Teilen des Gebäudes realisiert.\"\n   → Diese Aussage ist nicht durch User-Antworten gedeckt. Streichen oder durch eine Formulierung ersetzen, die nur das wiedergibt, was der User gesagt hat: z.B. 'WLAN-Infrastruktur muss noch geprüft werden'.\n2. [HOCH · belegluecke · Bezug zum Medienkonzept der Schule] \"Unser Vorhaben knüpft an das bestehende schulische Medienkonzept der Grundschule am Lindenpark an\"\n   → Der User hat kein Medienkonzept erwähnt. Streichen oder umformulieren zu: 'Ein Medienkonzept ist in Erarbeitung bzw. liegt vor – noch zu bestätigen.'\n3. [HOCH · belegluecke · Bezug zum Medienkonzept der Schule] \"die von der KMK-Strategie „Bildung in der digitalen Welt“ geforderten Kompetenzen im Bereich „Suchen, Verarbeiten und Aufbewahren“ sowie „Produzieren und Präsentieren“.\"\n   → Der User hat keinen Bezug zur KMK-Strategie hergestellt. Streichen oder ergänzen: 'Bezug zur KMK-Strategie wird noch hergestellt – [TODO: einfügen nach Abstimmung mit Schulleitung].'\n4. [HOCH · belegluecke · Qualifizierung der Lehrkräefte] \"Die Qualifizierung der Lehrkräfte erfolgt in einem zweistufigen Modell\"\n   → User sprach nur von einem Kollegen, der Wissen weitergibt – kein zweistufiges Modell. Streichen und durch einfachere Beschreibung ersetzen: 'Geplant ist eine interne Fortbildung durch einen technikaffinen Kollegen, Umfang noch offen.'\n5. [HOCH · belegluecke · Finanzplan / Kosten- und Finanzierungsuebersicht] \"Der Schulträger hat Interesse signalisiert, die Mittelverwaltung zu übernehmen.\"\n   → User sagte: 'Das müsste dann wohl der Schulträger machen' – keine Signalisierung von Interesse. Streichen oder durch 'Eine schriftliche Zusage des Schulträgers zur Mittelverwaltung ist noch einzuholen.' ersetzen.\n6. [MITTEL · sonstiges · Beschreibung des Vorhabens] \"vorgesehen ist die Beschaffung von Tablets für einen Klassensatz pro Klassenraum (voraussichtlich rund 20 Räume, genaue Zahl wird vor Antragseinreichung ermittelt)\"\n   → Der User sagte 'ungefähr 20 Räume' und 'pro Raum ein Satz', die Stückzahl ist also noch unbestimmt. Die Formulierung ist akzeptabel, aber besser: 'ca. 20 Sätze, genaue Anzahl in Abstimmung mit Raumplanung festzulegen' – wird so bereits gesagt.\n7. [MITTEL · sonstiges · Beschreibung des Vorhabens] \"Der Umsetzungsplan sieht folgende Phasen vor: Zunächst erfolgt die Abstimmung mit dem Schulträger zur WLAN-Prüfung und Klärung der Geräteverwaltung (z. B. MDM-Lösung, hierzu [TODO: Abstimmung mit Schulträger vor Einreichung schriftlich festhalten]).\"\n   → MDM-Lösung wurde vom User nicht genannt. 'MDM-Lösung' streichen oder durch 'Geräteverwaltung (Details mit Schulträger klären)' ersetzen.\n8. [MITTEL · sonstiges · Betrieb und Nachhaltigkeit nach Foerderende] \"Für Wartung, Support und Administration während und nach der Förderphase sehen wir die Zuständigkeit beim Schulträger.\"\n   → User sagte nur 'Das müsste dann wohl der Schulträger machen' – das ist eine Annahme. Formulierung abschwächen: 'Die Zuständigkeit des Schulträgers für Wartung etc. wird vorausgesetzt, eine schriftliche Bestätigung ist noch einzuholen.'\n9. [MITTEL · sonstiges · Betrieb und Nachhaltigkeit nach Foerderende] \"Die WLAN-Infrastruktur selbst unterliegt keiner mobilen Abnutzung und kann bei auslegungsgemäßer Installation durch den Schulträger ohne Austausch weiterbetrieben werden.\"\n   → Diese technische Aussage ist nicht durch User belegt. Streichen oder pauschal halten: 'WLAN-Infrastruktur wird nachhaltig ausgelegt, Details mit Schulträger zu klären.'\n10. [MITTEL · inkonsistenz · Finanzplan / Kosten- und Finanzierungsuebersicht] \"bei schätzungsweise 20 Räumen und vier Zügen ergibt sich ein Bedarf von voraussichtlich 20-24 Klassensätzen (ca. 200 Geräte, exakte Stückzahl in Abstimmung mit der Raumplanung noch festzulegen).\"\n   → Wenn pro Raum ein Klassensatz und 20 Räume, dann 20 Sätze, nicht 20-24. Inkonsistent mit 'ca. 200 Geräte' bei 20-24 Sätzen (ca. 160-192 Geräte bei 8 Geräten/Satz?). Präzise Zahl erst nach Raumplanung. Besser als Spanne: 'ca. 20 Sätze (20 Räume), exakte Gerätezahl noch offen.'\n11. [MITTEL · sonstiges · Finanzplan / Kosten- und Finanzierungsuebersicht] \"Größter Einzelposten ist die Beschaffung von Tablets: Ziel ist ein Klassensatz pro Klassenraum; bei schätzungsweise 20 Räumen und vier Zügen ergibt sich ein Bedarf von voraussichtlich 20-24 Klassensätzen (ca. 200 Geräte, exakte Stückzahl in Abstimmung mit der Raumplanung noch festzulegen).\"\n   → Die Zahl '20-24' ist aus den User-Antworten nicht ableitbar (User sagte nur 'ungefähr 20 Räume'). Besser: 'ca. 20 Sätze, genaue Anzahl noch zu ermitteln'. 'Vier Züge' ist korrekt aus User-Antwort.",
+      "critique": "Zusammenfassung: Der Entwurf ist strukturell gut gegliedert, aber enthält erhebliche, teils erfundene Präzisierungen (Halluzinationen). Die Schwächen liegen in fehlenden Belegen, unkonkreten Indikatoren und nicht gesicherten Zusagen. Das Vorhaben ist zudem zu schmal (einwöchige Projektwoche) und sollte in ein umfassendes Konzept eingebettet werden.\n\n1. [HOCH · belegluecke · Bezug zum Medienkonzept der Schule] \"adressieren wir zentrale Kompetenzbereiche der KMK-Strategie „Bildung in der digitalen Welt“\"\n   → Halluzination: User gab keine Hinweise auf KMK-Kenntnisse. Streichen oder durch neutrale Formulierung ersetzen (z.B. ‚laut grober Zielrichtung des Medienkonzepts‘) und Beleg vor Einreichung sicherstellen.\n2. [HOCH · belegluecke · Beschreibung des Vorhabens] \"Beispielsweise an Rechtschreibübungen in Deutsch oder an spielerischen Mathe-Aufgaben.\"\n   → Halluzination: Keine Angabe durch User. Streichen oder durch allgemeine Formulierung ersetzen, z.B. ‚in ausgewählten Fächern auf Basis der Lern-App-Lizenzen‘. Erst nach Festlegung der Apps konkretisieren.\n3. [HOCH · belegluecke · Betrieb und Nachhaltigkeit nach Foerderende] \"Eine schriftliche Zusage zur Übernahme des IT-Betriebs nach Förderende liegt derzeit nicht vor. Die genaue Zuständigkeit wird im Rahmen einer Vereinbarung zwischen Schulleitung und Schulträger festgelegt\"\n   → Halluzination: User sagt, dass noch keine Zusage vorliegt. Der Punkt ist korrekt als offen gekennzeichnet, aber für den Fördergeber ist eine bloße Absicht ohne verbindliche Schulträgererklärung nicht ausreichend. Vor Einreichung eine schriftliche Zusage des Bezirksamts einholen und als Anlage beifügen.\n4. [HOCH · richtlinie · global] \"Projektwoche mit Tablets\"\n   → Der Antragstitel nennt lediglich eine Aktivität (Projektwoche), nicht das übergreifende Vorhaben. Umbenennen in z.B. ‚Digitalisierung des Grundschulunterrichts mit Tablets‘, um den Rahmen klarzustellen. Die Projektwoche kann ein Teil des Vorhabens sein.\n5. [MITTEL · belegluecke · Bedarfsanalyse und Ausgangslage] \"Das geplante Vorhaben einer Projektwoche mit Tablets knüpft an das bestehende Medienkonzept der Grundschule am Lindenpark an\"\n   → Präzisieren, ob und wann das Medienkonzept verabschiedet wurde, und konkrete Kompetenzerwartungen daraus zitieren. Oder als Lücke markieren und vor Einreichung ergänzen.\n6. [MITTEL · belegluecke · Beschreibung des Vorhabens] \"Konkret beschafft werden sollen hierfür ein mobiler Tabletkoffer mit voraussichtlich 25 bis 30 Geräten (Stückzahl noch festzulegen)\"\n   → Die Stückzahl ist vage. Stützahlen anhand der Schülerzahl (250-300) und der angestrebten Nutzung (evtl. klassenweise Einsätze) begründen. Alternativ eine klare Formel nennen: ‚mindestens 25, maximal 30‘ reicht, wenn begründet.\n7. [MITTEL · belegluecke · Qualifizierung der Lehrkraefte] \"Wir gehen davon aus, dass eine eintägige oder zwei halbtägige Schulungen ausreichend sind\"\n   → Diese Einschätzung ist nicht belegt. Die Fortbildungsdauer sollte mit einem externen Anbieter abgestimmt und mit nachvollziehbarem Niveau begründet werden (z.B. ‚Einsteiger-Grundlagenschulung‘).\n8. [MITTEL · sonstiges · Betrieb und Nachhaltigkeit nach Foerderende] \"Der konkrete Jahresetat für Ersatzbeschaffungen wird im Zuge der Medienkonzept-Überarbeitung kalkuliert\"\n   → Nachhaltigkeitskonzept ist noch unkonkret. Statt vager Absichtserklärung: konkreten Zeitplan für die Erstellung eines Ersatzbeschaffungsplans mit Schulträger angeben (z.B. ‚bis Q2/2027‘).\n9. [MITTEL · inkonsistenz · Finanzplan] \"Gesamtkosten belaufen sich somit auf voraussichtlich 39.000 €\"\n   → Die Einzelposten (30.000 Tablets + 5.000 Lizenzen + 4.000 Fortbildung = 39.000) sind schlüssig, aber die Fortbildungskosten sind im Text (4.000 €) nicht begründet. Bitte markieren, ob die Fortbildung für 20 Lehrkräfte oder externen Anbieter kalkuliert ist. Eigenanteil von 20 % (7.800 €) entspricht nicht der Richtlinie (22 % mindestens). Korrigieren: 22 % von 39.000 = 8.580 €, Fördersumme max. 30.420 €.\n10. [NIEDRIG · sonstiges · Bezug zum Medienkonzept der Schule] \"ein konkretes Fach aus einer früheren Erprobungsphase [TODO: Dokumentation der bisherigen Tableterfahrung vor Einreichung erfragen]\"\n   → Das [TODO] wird im Text genannt, aber es fehlt die konkrete Angabe eines Faches. Vor Einreichung das Fach anhand der früheren Projektwoche recherchieren und benennen.",
       "sections": [
         {
           "name": "Bedarfsanalyse und Ausgangslage",
-          "text": "Die Grundschule am Lindenpark ist eine vierzügige Grundschule mit rund 200 Schülerinnen und Schülern in Berlin. Die Schule verfügt nach eigener Einschätzung über ca. 20 Räume, die für den Unterricht genutzt werden. Aus der ersten Phase des DigitalPakts (DigitalPakt Schule 1.0) wurden an der Schule bereits Basismaßnahmen zur Anbindung an das Glasfasernetz sowie eine grundlegende WLAN-Verkabelung in Teilen des Gebäudes realisiert. Die vorhandene WLAN-Infrastruktur ist jedoch nicht flächendeckend leistungsfähig und müsste insbesondere in den bislang noch nicht oder unzureichend versorgten Räumen nachgerüstet werden. Endgeräte in Form von Tablets für den schulischen Einsatz sind an der Schule bislang nicht in ausreichender Zahl vorhanden. Die Schule hat noch keine Klassensätze angeschafft; die vorhandenen wenigen Geräte stammen aus privaten Beständen von Lehrkräften und können den Regelunterricht nicht systematisch unterstützen. Der konkrete Bedarf liegt in der Anschaffung von einem Klassensatz Tablets pro Klassenraum, also voraussichtlich rund 20 Sätze (die genaue Stückzahl ist noch in Abstimmung mit dem Schulträger festzulegen). Parallel dazu ist die Ertüchtigung der WLAN-Infrastruktur auf dem gesamten Schulgelände erforderlich. Pädagogisch besteht der Bedarf an digital gestütztem Unterricht vorrangig in den Fächern Deutsch und Sachkunde – konkret in den Kompetenzbereichen Recherchieren sowie Texte schreiben. Die Nutzung von Lern-Apps und digitalen Werkzeugen setzt neben der Hardware-Verfügbarkeit eine systematische Fortbildung der Lehrkräfte voraus. Geplant ist ein internes Fortbildungsformat, das von einem technikaffinen Kollegen aus dem Kollegium durchgeführt wird. [TODO: Umfang und Anzahl der Fortbildungsstunden vor Einreichung festlegen und in Abstimmung mit der Schulkonferenz formalisieren.] Die Mittelverwaltung und die Klärung des erforderlichen Eigenanteils erfolgen in Absprache mit dem Schulträger; eine schriftliche Zusage hierzu liegt derzeit noch nicht vor."
+          "text": "Die Grundschule am Lindenpark ist eine Grundschule in Berlin. An der Schule lernen schätzungsweise 250 bis 300 Schüler, unterrichtet von etwa 20 Lehrkräften. Eine genaue Anzahl der Räume sowie eine detaillierte Bestandsaufnahme der vorhandenen digitalen Infrastruktur muss noch erfolgen. Bereits aus dem Vorläuferprogramm DigitalPakt 1 finanzierte Maßnahmen sind derzeit nicht dokumentiert und müssen vor Projektbeginn durch die Schulleitung recherchiert werden. Aus Sicht des Kollegiums besteht ein konkreter digitaler Bedarf in zwei Bereichen: Erstens ist die WLAN-Abdeckung nicht in allen Räumen stabil, zweitens fehlen in einigen Räumen noch digitale Präsentationsmöglichkeiten (Beamer). Darüber hinaus gibt es erste praktische Erfahrungen mit dem pädagogischen Einsatz von Tablets, die im Rahmen einer früheren Projektwoche gesammelt wurden – eine systematische Verankerung im Unterricht hat jedoch noch nicht stattgefunden. Ein Medienkonzept liegt vor, die darin formulierten konkreten Lernziele für den Tablet-Einsatz sind jedoch nicht abschließend definiert und werden im Zuge dieses Vorhabens präzisiert. [TODO: Vor Einreichung durch eine strukturierte Bestandsaufnahme (Anzahl Räume, vorhandene Endgeräte, WLAN-Ausleuchtung) zu ergänzen.]"
         },
         {
           "name": "Bezug zum Medienkonzept der Schule",
-          "text": "Unser Vorhaben knüpft an das bestehende schulische Medienkonzept der Grundschule am Lindenpark an, das für die Klassenstufen 1 bis 6 Grundfertigkeiten im Umgang mit digitalen Werkzeugen vorsieht. Derzeit fehlt uns jedoch die Ausstattung, um diese Ziele systematisch umzusetzen. Mit der Anschaffung von Tablets – angedacht ist ein Klassensatz pro Raum auf Basis der ca. 20 Räume – und einer Verbesserung der WLAN-Infrastruktur schaffen wir die technischen Voraussetzungen, um die im Medienkonzept verankerten Kompetenzbereiche flächendeckend zu adressieren.\n\nIm Zentrum stehen die von der KMK-Strategie „Bildung in der digitalen Welt“ geforderten Kompetenzen im Bereich „Suchen, Verarbeiten und Aufbewahren“ sowie „Produzieren und Präsentieren“. In den Fächern Deutsch und Sachunterricht werden die Schülerinnen und Schüler künftig regelmäßig mit den Tablets arbeiten: Sie recherchieren zu Unterrichtsthemen, erstellen eigene Texte digital und lernen, ihre Ergebnisse zu strukturieren und zu präsentieren. Dies schließt den kritischen Umgang mit Quellen und die grundlegende Bedienung von Endgeräten ein.\n\nDa viele Lehrkräfte bislang wenig Erfahrung mit dem Tablet-Einsatz im Unterricht haben, ist die Fortbildung des Kollegiums ein integraler Bestandteil des Vorhabens. Geplant ist eine interne Schulung durch einen technikaffinen Kollegen, der sein Wissen an das gesamte Team weitergibt. [TODO: Umfang der Fortbildung (z. B. Anzahl Stunden) und didaktisches Konzept vor Einreichung konkretisieren.] Die Einführung der Geräte wird so mit einer gezielten pädagogischen Qualifizierung verknüpft, die langfristig im Medienkonzept verankert bleibt."
+          "text": "Das geplante Vorhaben einer Projektwoche mit Tablets knüpft an das bestehende Medienkonzept der Grundschule am Lindenpark an, das in früheren Jahren verabschiedet wurde. [TODO: aktuelles Medienkonzept vor Einreichung sichten und die darin verankerten Lernziele und Kompetenzerwartungen ergänzen]. Mit der Projektwoche adressieren wir zentrale Kompetenzbereiche der KMK-Strategie „Bildung in der digitalen Welt“, insbesondere das „Bedienen und Anwenden“ digitaler Werkzeuge sowie den kritischen Umgang mit Medien. Die Schülerinnen und Schüler erproben Tablets als Arbeitsmittel in verschiedenen Fächern; ein konkretes Fach aus einer früheren Erprobungsphase [TODO: Dokumentation der bisherigen Tableterfahrung vor Einreichung erfragen] soll dabei aufgegriffen und vertieft werden. Die Maßnahme zielt darauf ab, Medienkompetenz nicht isoliert, sondern fächerintegrativ zu fördern. Die für die Durchführung notwendige externe Fortbildung stellt sicher, dass die Lehrkräfte die Einsatzmöglichkeiten der Tablets didaktisch fundiert umsetzen können. Eine langfristige Verankerung der Tabletnutzung im Schulalltag über die Projektwoche hinaus ist beabsichtigt, jedoch [TODO: Festlegung der Anschlusskonzepte und Verantwortlichkeiten mit dem Kollegium vor Antragstellung abstimmen]."
         },
         {
           "name": "Beschreibung des Vorhabens",
-          "text": "Im Rahmen des Vorhabens „digitaler Unterricht mit Tablets“ sollen an der Grundschule am Lindenpark (rund 200 Schülerinnen und Schüler, vier Züge) zentrale Voraussetzungen für einen digital gestützten Unterricht in den Fächern Deutsch und Sachkunde geschaffen werden. Konkret vorgesehen ist die Beschaffung von Tablets für einen Klassensatz pro Klassenraum (voraussichtlich rund 20 Räume, genaue Zahl wird vor Antragseinreichung ermittelt) sowie die Prüfung und ggf. Optimierung der WLAN-Infrastruktur im Schulgebäude (technische Prüfung durch den Schulträger steht noch aus: Zusage liegt nicht vor, eine schriftliche Bestätigung ist vor Antragstellung einzuholen). Die Tablets sollen den Schülerinnen und Schülern ermöglichen, im Unterricht eigenständig zu recherchieren, Texte zu verfassen und digitale Arbeitsmaterialien zu nutzen — basierend auf den im Team abzustimmenden Lern-Apps (Auswahl steht noch aus). Flankiert wird die Beschaffung durch eine interne Fortbildungsmaßnahme: Ein technikaffiner Kollege aus dem Kollegium wird sein Wissen an die weiteren Lehrkräfte weitergeben (genauer Zeitumfang der Fortbildung [TODO: vor Einreichung festlegen und dokumentieren]). Der Umsetzungsplan sieht folgende Phasen vor: Zunächst erfolgt die Abstimmung mit dem Schulträger zur WLAN-Prüfung und Klärung der Geräteverwaltung (z. B. MDM-Lösung, hierzu [TODO: Abstimmung mit Schulträger vor Einreichung schriftlich festhalten]). Parallel werden Angebote für Tablets und ggf. mobiles WLAN-Equipment eingeholt. Nach Bewilligung und Beschaffung erfolgt die technische Einrichtung (durch den Schulträger oder externen Dienstleister, Details noch zu klären), gefolgt von der schulinternen Fortbildung und der schrittweisen Ausrollung in den Klassen. Ein konkreter Zeitplan (z. B. Starttermin, Phasendauer) wird nach Vorliegen der WLAN-Prüfung und verbindlicher Zusage des Schulträgers erstellt. Die Mittelverwaltung [TODO: durch schriftliche Zusage einer berechtigten Stelle (Schulträger oder Förderverein) vor Einreichung klären]. Der Eigenanteil der Schule [TODO: Höhe und Deckung mit Schulträger abstimmen]."
+          "text": "Wir beantragen die Förderung einer einwöchigen Projektwoche an der Grundschule am Lindenpark, in der alle Schülerinnen und Schüler der Schule (ca. 250 bis 300 Kinder) mit Tablets arbeiten. Ziel ist es, die aus einer früheren, kleineren Projektwoche gewonnenen Erfahrungen systematisch auszubauen und an die gesamte Schülerschaft zu tragen. Konkret beschafft werden sollen hierfür ein mobiler Tabletkoffer mit voraussichtlich 25 bis 30 Geräten (Stückzahl noch festzulegen) sowie Lizenzen für grundschulgeeignete Lern-Apps, vor allem für die Fächer Deutsch und Mathematik. Das Vorhaben umfasst drei Phasen: In der Vorbereitungsphase (ca. drei Monate vor der Projektwoche) wird die technische Infrastruktur aufgebaut – der Tabletkoffer muss eingerichtet und das WLAN an den Nutzungsorten überprüft werden, da das derzeitige Funknetz an der Schule nicht überall stabil ist. Parallel dazu wird eine externe Fortbildung für das Kollegium (ca. 20 Lehrkräfte) organisiert, da für die pädagogische Einführung der Tablets und die App-Nutzung intern keine Expertise vorhanden ist. Die Durchführungsphase bildet die fünftägige Projektwoche selbst, in der jede Klasse an mindestens zwei Projekttagen mit den Tablets arbeitet – beispielsweise an Rechtschreibübungen in Deutsch oder an spielerischen Mathe-Aufgaben. Die Nachbereitungsphase (ca. zwei Wochen nach der Projektwoche) dient der Evaluation: Das Kollegium wertet in einer Dienstbesprechung aus, welche Apps und Arbeitsformate sich bewährt haben und wie die Geräte dauerhaft – auch über die Projektwoche hinaus – im Regelunterricht eingesetzt werden können. [TODO: Klärung mit dem Schulträger, wer die Tablets nach der Projektwoche langfristig administriert (MDM-Administration), und formale Zusage des Bezirksamts als Schulträger sind vor Einreichung einzuholen.]"
         },
         {
           "name": "Qualifizierung der Lehrkraefte",
-          "text": "Die Qualifizierung der Lehrkräfte erfolgt in einem zweistufigen Modell, das auf die schulischen Ressourcen abgestimmt ist. Zunächst wird eine schulinterne Fortbildung durch einen Kollegen aus dem eigenen Kollegium organisiert. Dieser Kollege, der sich mit Technik auskennt, gibt grundlegende Kenntnisse zur Bedienung der Tablets und zur Durchführung des digitalen Unterrichts, z. B. für Recherche und das Verfassen von Texten in Deutsch und Sachkunde, an die übrigen Lehrkräfte weiter. Ob dieser Kollege offiziell als Multiplikator benannt ist, wird noch geklärt. Die konkrete Anzahl der Fortbildungsstunden wird derzeit grob geplant und vor Einreichung präzisiert [TODO: konkrete Stundenanzahl einfügen].  \n\nParallel dazu ist die externe Administration und technische Einrichtung der Geräte (WLAN, Basis-Software) durch den Schulträger vorgesehen. Detaillierte Absprachen zur Übernahme dieser Aufgaben, zum Geräte-Management sowie zum Ersatzbedarf bei Defekten bestehen noch nicht und werden im Rahmen der Konzeptabstimmung mit dem Schulträger getroffen [TODO: schriftliche Zusage des Schulträgers einholen]. Weil die Kompetenzen im Kollegium heterogen sind, soll die interne Fortbildung durch zielgerichtete, kompakte Einheiten ergänzt werden. Eine Bedarfsabfrage zu den genauen Lerninhalten der Apps wird vor Beginn der Maßnahme durchgeführt, um die Fortbildung passgenau auf die didaktischen Vorhaben in den einzelnen Klassenstufen zuzuschneiden."
+          "text": "Die Qualifizierung der Lehrkräfte für den Einsatz der neuen Tablets erfolgt im Rahmen des Projektvorhabens über externe Fortbildungen. Da an unserer Schule intern derzeit keine Kollegin und kein Kollegium über die notwendigen Qualifikationen als Multiplikator für die Tablet-Arbeit verfügt, wird die Fortbildung extern organisiert und durchgeführt. Die Schulung wird praxisnah gestaltet und an den konkreten Inhalten der geplanten Projektwoche ausgerichtet. Im Fokus steht die Vermittlung grundlegender Bedienkompetenz sowie didaktischer Einsatzszenarien für den Tablet-Einsatz im Grundschulunterricht. Die Auswahl der externen Anbieter, der genaue zeitliche Umfang der Fortbildung sowie der konkrete Termin sind noch festzulegen [TODO: Angebote einholen und Qualifizierungsfahrplan vor Bewilligung erstellen]. Wir gehen davon aus, dass eine eintägige oder zwei halbtägige Schulungen ausreichend sind, um das Kollegium für die erste Projektwoche fit zu machen. Nach der Projektwoche ist eine kurze Reflexionsrunde geplant, um den Fortbildungsbedarf für eine mögliche Verstetigung des Tablet-Einsatzes zu ermitteln."
         },
         {
           "name": "Betrieb und Nachhaltigkeit nach Foerderende",
-          "text": "Die langfristige Sicherung der angeschafften Tablets und des WLANs setzt verbindliche Regelungen für die Betriebsphase und den Gerätelebenszyklus voraus. Für Wartung, Support und Administration während und nach der Förderphase sehen wir die Zuständigkeit beim Schulträger. Ein entsprechender schriftlicher Nachweis oder eine Zusicherung des Schulträgers wird vor Bewilligung eingeholt [TODO: schriftliche Bestätigung des Schulträgers zur Übernahme von Support, Wartung und Administration einholen]. Eine IT-Administration durch den Schulträger ist für unsere Grundschule eine Grundvoraussetzung, da die technische Betreuung der Geräte weder durch die pädagogischen Lehrkräfte noch durch einen einzelnen technikaffinen Kollegen mit dieser Verantwortung abgedeckt werden kann. Der kollegiumsinterne Multiplikator wird in einer abgespeckten Funktion für die pädagogische Fortbildung und Anwenderunterstützung zuständig sein, nicht für den reinen IT-Support. Die Fortbildungsstunden hierfür sind noch grob zu planen [TODO: Umfang der Anrechnungsstunden für den Medien-Multiplikator prüfen].\n\nFür den Ersatz der Tablets nach der üblichen Abschreibungsfrist erstellen wir während der Förderlaufzeit einen konkreten Ersatzbeschaffungsplan. Da eine langfristige Finanzierung über den Schulträger zu klären ist und wir hierzu noch keine verbindliche Zusage haben, formulieren wir den Plan als Empfehlung für die Haushaltsplanung des Schulträgers [TODO: Prüfung, ob der Schulträger eine Ersatzbeschaffung über den DigitalPakt hinaus im Haushalt plant]. Die WLAN-Infrastruktur selbst unterliegt keiner mobilen Abnutzung und kann bei auslegungsgemäßer Installation durch den Schulträger ohne Austausch weiterbetrieben werden. Die Verwaltung der Geräte (Einrichtung, Updates, Virenschutz) wird durch den Schulträger sichergestellt; die genaue Umsetzung (MDM, Geräteverwaltung) ist im Rahmen der schulischen IT-Richtlinie mit dem Schulträger noch abzustimmen [TODO: technisches Umsetzungskonzept mit Schulträger klären]."
+          "text": "Während der Förderphase verantwortet die Schule die pädagogische Einbettung der Tablets; die externe Fortbildungsorganisation wird über eingeworbene Mittel sichergestellt. Für Administration, Wartung und Support der Geräte und der zugehörigen Netzinfrastruktur sind Abstimmungen mit dem Bezirksamt als Schulträger noch nicht abgeschlossen. Eine schriftliche Zusage zur Übernahme des IT-Betriebs nach Förderende liegt derzeit nicht vor. Die genaue Zuständigkeit wird im Rahmen einer Vereinbarung zwischen Schulleitung und Schulträger festgelegt, die bis zur Mittelabrufung vorzulegen ist. Intern steht für diese Aufgaben gegenwärtig kein eigenes Personal zur Verfügung; die Schule wird daher bei der Ausschreibung der Geräte auf ein Wartungs- und Supportpaket durch den Hersteller oder einen externen Dienstleister achten. Die Abschreibungsfrist für mobile Endgeräte beträgt in der Regel drei bis fünf Jahre. Einen Ersatzbeschaffungsplan aus laufenden Haushaltsmitteln hat die Schule noch nicht erstellt. Der konkrete Jahresetat für Ersatzbeschaffungen wird im Zuge der Medienkonzept-Überarbeitung kalkuliert und mit dem Schulträger abgestimmt. [TODO: verbindliche Zusage des Schulträgers zur Betriebskostenübernahme und zum Ersatzbeschaffungszyklus vor Antragstellung einholen]"
         },
         {
           "name": "Finanzplan / Kosten- und Finanzierungsuebersicht",
-          "text": "Für das Vorhaben „digitaler Unterricht mit Tablets“ an der Grundschule am Lindenpark sind folgende Kostenpositionen vorgesehen. Größter Einzelposten ist die Beschaffung von Tablets: Ziel ist ein Klassensatz pro Klassenraum; bei schätzungsweise 20 Räumen und vier Zügen ergibt sich ein Bedarf von voraussichtlich 20-24 Klassensätzen (ca. 200 Geräte, exakte Stückzahl in Abstimmung mit der Raumplanung noch festzulegen). Die konkreten Gerätekosten sind vor Einreichung durch Angebote zu belegen. Zweite Sachinvestition ist die Prüfung und ggf. Aufrüstung der WLAN-Infrastruktur in allen Räumen; hierfür fallen voraussichtlich Kosten für Access Points und Installation an (konkrete Summe nach Standortbegehung zu ermitteln). Als dritte Position sind Fortbildungskosten vorgesehen: Ein Kollege aus dem eigenen Kollegium, der sich mit Technik auskennt, soll die Lehrkräfte schulen. Für interne Fortbildungsstunden sowie ggf. Freistellung des Multiplikators (Status noch zu klären) sind Personalkostenanteile einzuplanen (Umfang und Vergütung noch mit Schulträger abzustimmen). Die genaue Höhe des Eigenanteils des Schulträgers ist noch nicht schriftlich fixiert und muss vor Antragstellung eingeholt werden; der Schulträger hat Interesse signalisiert, die Mittelverwaltung zu übernehmen. Eine detaillierte Kostenaufstellung mit Angeboten und verbindlicher Eigenmittel-Zusage des Schulträgers wird bis zur Antragseinreichung ergänzt."
+          "text": "Der Finanzplan gliedert sich in drei Posten: Sachkosten für die Beschaffung von Tablets und weiterer digitaler Endgeräte, Kosten für Lizenzierungen und Lernsoftware sowie Mittel für die externe Fortbildung des Kollegiums. Für die Anschaffung von Tablets (voraussichtliche Stückzahl: ca. 25 bis 30 Geräte, exakte Zahl wird nach Bedarfsermittlung festgelegt) kalkulieren wir einen Betrag in Höhe von rund 30.000 €. Für die erforderlichen App-Lizenzen und ggf. Verwaltungssoftware (MDM-Struktur, Absprache mit Schulträger noch ausstehend) sind ca. 5.000 € eingeplant. Die Durchführung einer Projektwoche setzt eine fundierte Einarbeitung der Lehrkräfte voraus; hierfür werden rund 4.000 € für externe Fortbildungsangebote veranschlagt. Die Gesamtkosten belaufen sich somit auf voraussichtlich 39.000 €. Davon beantragen wir Fördermittel in Höhe von 31.200 € (entspricht 80 % der Gesamtsumme). Die verbleibenden 7.800 € (20 %) sind als Eigenmittel vorgesehen; über die Zusage des Bezirksamtes als Schulträger für diesen Kofinanzierungsanteil steht eine formale Bestätigung noch aus, die wir vor der Einreichung einholen werden. Die genaue Höhe der Einzelposten ist vor Antragstellung durch mindestens zwei Vergleichsangebote je Kategorie zu belegen."
         }
       ],
-      "finalText": "# digitaler Unterricht mit Tablets — Grundschule am Lindenpark (DigitalPakt Schule 2.0)\n\n## Bedarfsanalyse und Ausgangslage\n\nDie Grundschule am Lindenpark ist eine vierzügige Grundschule mit rund 200 Schülerinnen und Schülern in Berlin. Die Schule verfügt über ca. 20 Räume, die für den Unterricht genutzt werden. Die vorhandene WLAN-Infrastruktur muss noch geprüft werden; ob und in welchem Umfang Maßnahmen aus dem DigitalPakt 1.0 umgesetzt wurden, ist derzeit nicht dokumentiert. Endgeräte in Form von Tablets für den schulischen Einsatz sind an der Schule bislang nicht in ausreichender Zahl vorhanden. Die Schule hat noch keine Klassensätze angeschafft; die vorhandenen wenigen Geräte stammen aus privaten Beständen von Lehrkräften und können den Regelunterricht nicht systematisch unterstützen. Der konkrete Bedarf liegt in der Anschaffung von einem Klassensatz Tablets pro Klassenraum, also voraussichtlich rund 20 Sätze (die genaue Stückzahl ist noch in Abstimmung mit dem Schulträger festzulegen). Parallel dazu ist die Ertüchtigung der WLAN-Infrastruktur auf dem gesamten Schulgelände erforderlich. Pädagogisch besteht der Bedarf an digital gestütztem Unterricht vorrangig in den Fächern Deutsch und Sachkunde – konkret in den Kompetenzbereichen Recherchieren sowie Texte schreiben. Die Nutzung von Lern-Apps und digitalen Werkzeugen setzt neben der Hardware-Verfügbarkeit eine systematische Fortbildung der Lehrkräfte voraus. Geplant ist ein internes Fortbildungsformat, das von einem technikaffinen Kollegen aus dem Kollegium durchgeführt wird. [TODO: Umfang und Anzahl der Fortbildungsstunden vor Einreichung festlegen und in Abstimmung mit der Schulkonferenz formalisieren.] Die Mittelverwaltung und die Klärung des erforderlichen Eigenanteils erfolgen in Absprache mit dem Schulträger; eine schriftliche Zusage hierzu liegt derzeit noch nicht vor.\n\n## Bezug zum Medienkonzept der Schule\n\nEin Medienkonzept liegt an der Grundschule am Lindenpark derzeit in schriftlicher Form noch nicht vor bzw. ist noch zu bestätigen. [TODO: Vorhandensein und Inkraftsetzung des Medienkonzepts vor Einreichung klären.] Das Vorhaben zielt darauf ab, die technischen Voraussetzungen zu schaffen, um digitale Kompetenzen der Schülerinnen und Schüler systematisch aufzubauen. [TODO: Bezug zur KMK-Strategie 'Bildung in der digitalen Welt' nach Abstimmung mit der Schulleitung einfügen.]\n\nIm Zentrum stehen die Kompetenzbereiche Recherchieren sowie Texte schreiben. In den Fächern Deutsch und Sachunterricht werden die Schülerinnen und Schüler künftig regelmäßig mit den Tablets arbeiten: Sie recherchieren zu Unterrichtsthemen, erstellen eigene Texte digital und lernen, ihre Ergebnisse zu strukturieren und zu präsentieren.\n\nDa viele Lehrkräfte bislang wenig Erfahrung mit dem Tablet-Einsatz im Unterricht haben, ist die Fortbildung des Kollegiums ein integraler Bestandteil des Vorhabens. Geplant ist eine interne Schulung durch einen technikaffinen Kollegen, der sein Wissen an das gesamte Team weitergibt. [TODO: Umfang der Fortbildung (z. B. Anzahl Stunden) und didaktisches Konzept vor Einreichung konkretisieren.] Die Einführung der Geräte wird so mit einer gezielten pädagogischen Qualifizierung verknüpft.\n\n## Beschreibung des Vorhabens\n\nIm Rahmen des Vorhabens „digitaler Unterricht mit Tablets“ sollen an der Grundschule am Lindenpark (rund 200 Schülerinnen und Schüler, vier Züge) zentrale Voraussetzungen für einen digital gestützten Unterricht in den Fächern Deutsch und Sachkunde geschaffen werden. Konkret vorgesehen ist die Beschaffung von Tablets für einen Klassensatz pro Klassenraum (voraussichtlich ca. 20 Sätze, genaue Anzahl in Abstimmung mit der Raumplanung noch festzulegen) sowie die Prüfung und ggf. Optimierung der WLAN-Infrastruktur im Schulgebäude (technische Prüfung durch den Schulträger steht noch aus: eine schriftliche Bestätigung ist vor Antragstellung einzuholen). Die Tablets sollen den Schülerinnen und Schülern ermöglichen, im Unterricht eigenständig zu recherchieren, Texte zu verfassen und digitale Arbeitsmaterialien zu nutzen — basierend auf den im Team abzustimmenden Lern-Apps (Auswahl steht noch aus). Flankiert wird die Beschaffung durch eine interne Fortbildungsmaßnahme: Ein technikaffiner Kollege aus dem Kollegium wird sein Wissen an die weiteren Lehrkräfte weitergeben (genauer Zeitumfang der Fortbildung [TODO: vor Einreichung festlegen und dokumentieren]). Der Umsetzungsplan sieht folgende Phasen vor: Zunächst erfolgt die Abstimmung mit dem Schulträger zur WLAN-Prüfung und Klärung der Geräteverwaltung (Details mit Schulträger klären, [TODO: schriftliche Festhaltung vor Einreichung]). Parallel werden Angebote für Tablets und ggf. mobiles WLAN-Equipment eingeholt. Nach Bewilligung und Beschaffung erfolgt die technische Einrichtung (durch den Schulträger oder externen Dienstleister, Details noch zu klären), gefolgt von der schulinternen Fortbildung und der schrittweisen Ausrollung in den Klassen. Ein konkreter Zeitplan (z. B. Starttermin, Phasendauer) wird nach Vorliegen der WLAN-Prüfung und verbindlicher Zusage des Schulträgers erstellt. Die Mittelverwaltung [TODO: durch schriftliche Zusage einer berechtigten Stelle (Schulträger oder Förderverein) vor Einreichung klären]. Der Eigenanteil der Schule [TODO: Höhe und Deckung mit Schulträger abstimmen].\n\n## Qualifizierung der Lehrkräfte\n\nDie Qualifizierung der Lehrkräfte erfolgt über eine interne Fortbildung durch einen technikaffinen Kollegen aus dem eigenen Kollegium. Dieser Kollege gibt grundlegende Kenntnisse zur Bedienung der Tablets und zur Durchführung des digitalen Unterrichts, z. B. für Recherche und das Verfassen von Texten in Deutsch und Sachkunde, an die übrigen Lehrkräfte weiter. Ob dieser Kollege offiziell als Multiplikator benannt ist, wird noch geklärt. Die konkrete Anzahl der Fortbildungsstunden wird derzeit grob geplant und vor Einreichung präzisiert [TODO: konkrete Stundenanzahl einfügen].\n\nParallel dazu ist die externe Administration und technische Einrichtung der Geräte (WLAN, Basis-Software) durch den Schulträger vorgesehen. Detaillierte Absprachen zur Übernahme dieser Aufgaben, zum Geräte-Management sowie zum Ersatzbedarf bei Defekten bestehen noch nicht und werden im Rahmen der Konzeptabstimmung mit dem Schulträger getroffen [TODO: schriftliche Zusage des Schulträgers einholen]. Weil die Kompetenzen im Kollegium heterogen sind, soll die interne Fortbildung durch zielgerichtete, kompakte Einheiten ergänzt werden. Eine Bedarfsabfrage zu den genauen Lerninhalten wird vor Beginn der Maßnahme durchgeführt, um die Fortbildung auf die didaktischen Vorhaben in den einzelnen Klassenstufen auszurichten.\n\n## Betrieb und Nachhaltigkeit nach Förderende\n\nDie langfristige Sicherung der angeschafften Tablets und des WLANs setzt verbindliche Regelungen für die Betriebsphase und den Gerätelebenszyklus voraus. Für Wartung, Support und Administration während und nach der Förderphase wird die Zuständigkeit beim Schulträger vorausgesetzt. Eine schriftliche Bestätigung des Schulträgers zur Übernahme von Support, Wartung und Administration ist noch einzuholen [TODO: schriftliche Bestätigung einholen]. Eine IT-Administration durch den Schulträger ist für unsere Grundschule eine Grundvoraussetzung, da die technische Betreuung der Geräte weder durch die pädagogischen Lehrkräfte noch durch einen einzelnen technikaffinen Kollegen mit dieser Verantwortung abgedeckt werden kann. Der kollegiumsinterne Multiplikator wird für die pädagogische Fortbildung und Anwenderunterstützung zuständig sein, nicht für den reinen IT-Support. Die Fortbildungsstunden hierfür sind noch grob zu planen [TODO: Umfang der Anrechnungsstunden für den Medien-Multiplikator prüfen].\n\nFür den Ersatz der Tablets nach der üblichen Abschreibungsfrist erstellen wir während der Förderlaufzeit einen konkreten Ersatzbeschaffungsplan. Da eine langfristige Finanzierung über den Schulträger zu klären ist und wir hierzu noch keine verbindliche Zusage haben, formulieren wir den Plan als Empfehlung für die Haushaltsplanung des Schulträgers [TODO: Prüfung, ob der Schulträger eine Ersatzbeschaffung über den DigitalPakt hinaus im Haushalt plant]. Die WLAN-Infrastruktur wird nachhaltig ausgelegt, Details sind mit dem Schulträger zu klären [TODO: technisches Umsetzungskonzept mit Schulträger klären]. Die Verwaltung der Geräte (Einrichtung, Updates, Virenschutz) wird durch den Schulträger sichergestellt; die genaue Umsetzung ist im Rahmen der schulischen IT-Richtlinie mit dem Schulträger noch abzustimmen [TODO: technisches Umsetzungskonzept mit Schulträger klären].\n\n## Finanzplan / Kosten- und Finanzierungsübersicht\n\nFür das Vorhaben „digitaler Unterricht mit Tablets“ an der Grundschule am Lindenpark sind folgende Kostenpositionen vorgesehen. Größter Einzelposten ist die Beschaffung von Tablets: Ziel ist ein Klassensatz pro Klassenraum; bei ca. 20 Räumen ergibt sich ein Bedarf von voraussichtlich ca. 20 Sätzen (exakte Gerätezahl in Abstimmung mit der Raumplanung noch festzulegen). Die konkreten Gerätekosten sind vor Einreichung durch Angebote zu belegen. Zweite Sachinvestition ist die Prüfung und ggf. Aufrüstung der WLAN-Infrastruktur in allen Räumen; hierfür fallen voraussichtlich Kosten für Access Points und Installation an (konkrete Summe nach Standortbegehung zu ermitteln). Als dritte Position sind Fortbildungskosten vorgesehen: Ein Kollege aus dem eigenen Kollegium, der sich mit Technik auskennt, soll die Lehrkräfte schulen. Für interne Fortbildungsstunden sowie ggf. Freistellung des Multiplikators (Status noch zu klären) sind Personalkostenanteile einzuplanen (Umfang und Vergütung noch mit Schulträger abzustimmen). Die genaue Höhe des Eigenanteils des Schulträgers ist noch nicht schriftlich fixiert und muss vor Antragstellung eingeholt werden [TODO: schriftliche Zusage des Schulträgers zur Mittelverwaltung einholen]. Eine detaillierte Kostenaufstellung mit Angeboten und verbindlicher Eigenmittel-Zusage des Schulträgers wird bis zur Antragseinreichung ergänzt.",
+      "finalText": "# Digitalisierung des Grundschulunterrichts mit Tablets — Grundschule am Lindenpark (DigitalPakt Schule 2.0)\n\n## Bedarfsanalyse und Ausgangslage\n\nDie Grundschule am Lindenpark ist eine Grundschule in Berlin. An der Schule lernen schätzungsweise 250 bis 300 Schüler, unterrichtet von etwa 20 Lehrkräften. Eine genaue Anzahl der Räume sowie eine detaillierte Bestandsaufnahme der vorhandenen digitalen Infrastruktur muss noch erfolgen. Bereits aus dem Vorläuferprogramm DigitalPakt 1 finanzierte Maßnahmen sind derzeit nicht dokumentiert und müssen vor Projektbeginn durch die Schulleitung recherchiert werden. Aus Sicht des Kollegiums besteht ein konkreter digitaler Bedarf in zwei Bereichen: Erstens ist die WLAN-Abdeckung nicht in allen Räumen stabil, zweitens fehlen in einigen Räumen noch digitale Präsentationsmöglichkeiten (Beamer). Darüber hinaus gibt es erste praktische Erfahrungen mit dem pädagogischen Einsatz von Tablets, die im Rahmen einer früheren Projektwoche gesammelt wurden – eine systematische Verankerung im Unterricht hat jedoch noch nicht stattgefunden. Ein Medienkonzept liegt vor, die darin formulierten konkreten Lernziele für den Tablet-Einsatz sind jedoch nicht abschließend definiert und werden im Zuge dieses Vorhabens präzisiert. [TODO: Vor Einreichung durch eine strukturierte Bestandsaufnahme (Anzahl Räume, vorhandene Endgeräte, WLAN-Ausleuchtung) zu ergänzen.]\n\n## Bezug zum Medienkonzept der Schule\n\nDas geplante Vorhaben knüpft an das bestehende Medienkonzept der Grundschule am Lindenpark an. [TODO: Vor Einreichung das aktuelle Medienkonzept sichten, Datum der Verabschiedung ergänzen und konkrete Kompetenzerwartungen daraus zitieren.] Mit der geplanten Projektwoche adressieren wir laut grober Zielrichtung des Medienkonzepts zentrale Kompetenzbereiche, insbesondere den Umgang mit digitalen Werkzeugen und Medien. Die Schülerinnen und Schüler erproben Tablets als Arbeitsmittel in verschiedenen Fächern. [TODO: Aus der früheren Erprobungsphase das konkrete Fach recherchieren und benennen.] Die Maßnahme zielt darauf ab, Medienkompetenz nicht isoliert, sondern fächerintegrativ zu fördern. Die für die Durchführung notwendige externe Fortbildung stellt sicher, dass die Lehrkräfte die Einsatzmöglichkeiten der Tablets didaktisch fundiert umsetzen können. Eine langfristige Verankerung der Tabletnutzung im Schulalltag über die Projektwoche hinaus ist beabsichtigt, jedoch [TODO: Festlegung der Anschlusskonzepte und Verantwortlichkeiten mit dem Kollegium vor Antragstellung abstimmen].\n\n## Beschreibung des Vorhabens\n\nWir beantragen die Förderung einer einwöchigen Projektwoche an der Grundschule am Lindenpark als ersten Baustein zur systematischen Einführung digitaler Lernwerkzeuge. In der Projektwoche arbeiten alle Schülerinnen und Schüler der Schule (ca. 250 bis 300 Kinder) mit Tablets. Ziel ist es, die aus einer früheren, kleineren Projektwoche gewonnenen Erfahrungen systematisch auszubauen und an die gesamte Schülerschaft zu tragen. Konkret beschafft werden sollen hierfür ein mobiler Tabletkoffer mit voraussichtlich 25 bis 30 Geräten (Stückzahl noch festzulegen – Begründung: Bei einer Klassenstärke von ca. 25 bis 30 Schülern ermöglicht diese Menge klassenweise Einsätze) sowie Lizenzen für grundschulgeeignete Lern-Apps, vor allem für die Fächer Deutsch und Mathematik. Das Vorhaben umfasst drei Phasen: In der Vorbereitungsphase (ca. drei Monate vor der Projektwoche) wird die technische Infrastruktur aufgebaut – der Tabletkoffer muss eingerichtet und das WLAN an den Nutzungsorten überprüft werden, da das derzeitige Funknetz an der Schule nicht überall stabil ist. Parallel dazu wird eine externe Fortbildung für das Kollegium (ca. 20 Lehrkräfte) organisiert, da für die pädagogische Einführung der Tablets und die App-Nutzung intern keine Expertise vorhanden ist. Die Durchführungsphase bildet die fünftägige Projektwoche selbst, in der jede Klasse an mindestens zwei Projekttagen mit den Tablets in ausgewählten Fächern auf Basis der erworbenen Lern-App-Lizenzen arbeitet. Die Nachbereitungsphase (ca. zwei Wochen nach der Projektwoche) dient der Evaluation: Das Kollegium wertet in einer Dienstbesprechung aus, welche Apps und Arbeitsformate sich bewährt haben und wie die Geräte dauerhaft – auch über die Projektwoche hinaus – im Regelunterricht eingesetzt werden können. [TODO: Klärung mit dem Schulträger, wer die Tablets nach der Projektwoche langfristig administriert (MDM-Administration), und formale Zusage des Bezirksamts als Schulträger sind vor Einreichung einzuholen.]\n\n## Qualifizierung der Lehrkraefte\n\nDie Qualifizierung der Lehrkräfte für den Einsatz der neuen Tablets erfolgt im Rahmen des Projektvorhabens über externe Fortbildungen. Da an unserer Schule intern derzeit keine Kollegin und kein Kollegium über die notwendigen Qualifikationen als Multiplikator für die Tablet-Arbeit verfügt, wird die Fortbildung extern organisiert und durchgeführt. Die Schulung wird praxisnah gestaltet und an den konkreten Inhalten der geplanten Projektwoche ausgerichtet. Im Fokus steht die Vermittlung grundlegender Bedienkompetenz sowie didaktischer Einsatzszenarien für den Tablet-Einsatz im Grundschulunterricht (Einsteiger-Grundlagenschulung). Die Auswahl der externen Anbieter, der genaue zeitliche Umfang der Fortbildung sowie der konkrete Termin sind noch festzulegen – die Dauer wird mit dem externen Anbieter auf Basis des Schulungsniveaus abgestimmt [TODO: Angebote einholen und Qualifizierungsfahrplan vor Bewilligung erstellen]. Nach der Projektwoche ist eine kurze Reflexionsrunde geplant, um den Fortbildungsbedarf für eine mögliche Verstetigung des Tablet-Einsatzes zu ermitteln.\n\n## Betrieb und Nachhaltigkeit nach Foerderende\n\nWährend der Förderphase verantwortet die Schule die pädagogische Einbettung der Tablets; die externe Fortbildungsorganisation wird über eingeworbene Mittel sichergestellt. Für Administration, Wartung und Support der Geräte und der zugehörigen Netzinfrastruktur sind Abstimmungen mit dem Bezirksamt als Schulträger noch nicht abgeschlossen. Eine schriftliche Zusage des Bezirksamts zur Übernahme des IT-Betriebs nach Förderende ist vor Einreichung verbindlich einzuholen und als Anlage beizufügen. Intern steht für diese Aufgaben gegenwärtig kein eigenes Personal zur Verfügung; die Schule wird daher bei der Ausschreibung der Geräte auf ein Wartungs- und Supportpaket durch den Hersteller oder einen externen Dienstleister achten. Die Abschreibungsfrist für mobile Endgeräte beträgt in der Regel drei bis fünf Jahre. Einen Ersatzbeschaffungsplan aus laufenden Haushaltsmitteln hat die Schule noch nicht erstellt. [TODO: Bis zu einem noch zu bestimmenden Zeitpunkt einen konkreten Ersatzbeschaffungsplan mit Zeitplan in Abstimmung mit dem Schulträger erstellen und den Jahresetat für Ersatzbeschaffungen kalkulieren.] [TODO: verbindliche Zusage des Schulträgers zur Betriebskostenübernahme und zum Ersatzbeschaffungszyklus vor Antragstellung einholen]\n\n## Finanzplan / Kosten- und Finanzierungsuebersicht\n\nDer Finanzplan gliedert sich in drei Posten: Sachkosten für die Beschaffung von Tablets und weiterer digitaler Endgeräte, Kosten für Lizenzierungen und Lernsoftware sowie Mittel für die externe Fortbildung des Kollegiums. Für die Anschaffung von Tablets (voraussichtliche Stückzahl: ca. 25 bis 30 Geräte, exakte Zahl wird nach Bedarfsermittlung festgelegt) kalkulieren wir einen Betrag, der im Finanzplan beziffert wird (Angebote werden vor Einreichung eingeholt). Für die erforderlichen App-Lizenzen und ggf. Verwaltungssoftware (MDM-Struktur, Absprache mit Schulträger noch ausstehend) sind die genauen Kosten im Finanzplan beziffert (Angebote werden vor Einreichung eingeholt). Die Durchführung einer Projektwoche setzt eine fundierte Einarbeitung der Lehrkräfte voraus; hierfür werden die Kosten für externe Fortbildungsangebote (kalkuliert für die Schulung von ca. 20 Lehrkräften durch einen externen Anbieter) im Finanzplan beziffert. Die Gesamtkosten belaufen sich auf einen Betrag, der im Finanzplan beziffert wird. Der Eigenanteil beträgt gemäß Richtlinie mindestens 22 %, also die genaue Höhe wird im Finanzplan beziffert. Wir beantragen daher Fördermittel in Höhe eines Betrags, der im Finanzplan beziffert wird. Die verbleibenden Mittel sind als Eigenmittel vorgesehen; über die Zusage des Bezirksamtes als Schulträger für diesen Kofinanzierungsanteil steht eine formale Bestätigung noch aus, die wir vor der Einreichung einholen werden. Die genaue Höhe der Einzelposten ist vor Antragstellung durch mindestens zwei Vergleichsangebote je Kategorie zu belegen.",
       "finanzplan": {
         "posten": [],
         "hinweise": [
           "Es wurden keine Kostenangaben gemacht — der Finanzplan ist noch zu beziffern. Konkrete Betraege werden ueber Angebote vor Einreichung ermittelt.",
-          "Konkrete Stueckzahlen und Betraege werden durch eine Bedarfsermittlung vor Antragstellung festgelegt.",
-          "Die genauen Marken und Modelle der Tablets sowie die WLAN-Komponenten werden nach Ausschreibung ermittelt."
+          "Konkrete Beträge werden über Angebote vor Einreichung ermittelt.",
+          "Die genaue Anzahl der benötigten Endgeräte und Räume ist noch zu klären."
         ],
-        "generiertAm": "2026-06-09T19:31:16.612Z",
+        "generiertAm": "2026-06-10T07:42:39.751Z",
         "unbeziffert": true,
         "kostenrahmen": [
-          "Anschaffung von Tablets als Klassensaetze fuer alle Klassenraeume",
-          "Aufbau bzw. Ertuechtigung des WLAN-Netzes im gesamten Schulgebaeude",
-          "Lizenzen fuer Bildungssoftware und Apps fuer den digitalen Unterricht",
-          "Honorar fuer eine externe Fortbildung zur Mediendidaktik (alternativ: Freistellung und Aufwandsentschaedigung fuer interne Multiplikatoren)",
-          "Eigenanteil des Schultraegers (Hoehe noch zu klaeren)"
+          "Anschaffung von Klassensätzen mobiler Endgeräte (Tablets) für den Einsatz in Projektwochen und im Regelunterricht",
+          "Aufbau und Optimierung einer stabilen WLAN-Infrastruktur in allen Unterrichtsräumen",
+          "Beschaffung von digitalen Präsentationsgeräten (z. B. Displays, Beamer) für fehlende Räume",
+          "Honorare und Reisekosten für externe Fortbildungen zur Mediendidaktik und zum Tableteinsatz im Unterricht",
+          "Lizenzen für Bildungssoftware und Lernplattformen zur Nutzung auf den Endgeräten",
+          "Personal für IT-Administration und First-Level-Support (z. B. IT-Administrator/in für die Schule oder im Verbund)",
+          "Eigenanteil des Schulträgers (Höhe noch zu klären)"
         ]
       },
       "critiqueFindings": [
         {
-          "zitat": "Aus der ersten Phase des DigitalPakts (DigitalPakt Schule 1.0) wurden an der Schule bereits Basismaßnahmen zur Anbindung an das Glasfasernetz sowie eine grundlegende WLAN-Verkabelung in Teilen des Gebäudes realisiert.",
+          "zitat": "adressieren wir zentrale Kompetenzbereiche der KMK-Strategie „Bildung in der digitalen Welt“",
           "schwere": "hoch",
+          "abschnitt": "Bezug zum Medienkonzept der Schule",
+          "kategorie": "belegluecke",
+          "vorschlag": "Halluzination: User gab keine Hinweise auf KMK-Kenntnisse. Streichen oder durch neutrale Formulierung ersetzen (z.B. ‚laut grober Zielrichtung des Medienkonzepts‘) und Beleg vor Einreichung sicherstellen."
+        },
+        {
+          "zitat": "Beispielsweise an Rechtschreibübungen in Deutsch oder an spielerischen Mathe-Aufgaben.",
+          "schwere": "hoch",
+          "abschnitt": "Beschreibung des Vorhabens",
+          "kategorie": "belegluecke",
+          "vorschlag": "Halluzination: Keine Angabe durch User. Streichen oder durch allgemeine Formulierung ersetzen, z.B. ‚in ausgewählten Fächern auf Basis der Lern-App-Lizenzen‘. Erst nach Festlegung der Apps konkretisieren."
+        },
+        {
+          "zitat": "Eine schriftliche Zusage zur Übernahme des IT-Betriebs nach Förderende liegt derzeit nicht vor. Die genaue Zuständigkeit wird im Rahmen einer Vereinbarung zwischen Schulleitung und Schulträger festgelegt",
+          "schwere": "hoch",
+          "abschnitt": "Betrieb und Nachhaltigkeit nach Foerderende",
+          "kategorie": "belegluecke",
+          "vorschlag": "Halluzination: User sagt, dass noch keine Zusage vorliegt. Der Punkt ist korrekt als offen gekennzeichnet, aber für den Fördergeber ist eine bloße Absicht ohne verbindliche Schulträgererklärung nicht ausreichend. Vor Einreichung eine schriftliche Zusage des Bezirksamts einholen und als Anlage beifügen."
+        },
+        {
+          "zitat": "Projektwoche mit Tablets",
+          "schwere": "hoch",
+          "abschnitt": "global",
+          "kategorie": "richtlinie",
+          "vorschlag": "Der Antragstitel nennt lediglich eine Aktivität (Projektwoche), nicht das übergreifende Vorhaben. Umbenennen in z.B. ‚Digitalisierung des Grundschulunterrichts mit Tablets‘, um den Rahmen klarzustellen. Die Projektwoche kann ein Teil des Vorhabens sein."
+        },
+        {
+          "zitat": "Das geplante Vorhaben einer Projektwoche mit Tablets knüpft an das bestehende Medienkonzept der Grundschule am Lindenpark an",
+          "schwere": "mittel",
           "abschnitt": "Bedarfsanalyse und Ausgangslage",
           "kategorie": "belegluecke",
-          "vorschlag": "Diese Aussage ist nicht durch User-Antworten gedeckt. Streichen oder durch eine Formulierung ersetzen, die nur das wiedergibt, was der User gesagt hat: z.B. 'WLAN-Infrastruktur muss noch geprüft werden'."
+          "vorschlag": "Präzisieren, ob und wann das Medienkonzept verabschiedet wurde, und konkrete Kompetenzerwartungen daraus zitieren. Oder als Lücke markieren und vor Einreichung ergänzen."
         },
         {
-          "zitat": "Unser Vorhaben knüpft an das bestehende schulische Medienkonzept der Grundschule am Lindenpark an",
-          "schwere": "hoch",
-          "abschnitt": "Bezug zum Medienkonzept der Schule",
-          "kategorie": "belegluecke",
-          "vorschlag": "Der User hat kein Medienkonzept erwähnt. Streichen oder umformulieren zu: 'Ein Medienkonzept ist in Erarbeitung bzw. liegt vor – noch zu bestätigen.'"
-        },
-        {
-          "zitat": "die von der KMK-Strategie „Bildung in der digitalen Welt“ geforderten Kompetenzen im Bereich „Suchen, Verarbeiten und Aufbewahren“ sowie „Produzieren und Präsentieren“.",
-          "schwere": "hoch",
-          "abschnitt": "Bezug zum Medienkonzept der Schule",
-          "kategorie": "belegluecke",
-          "vorschlag": "Der User hat keinen Bezug zur KMK-Strategie hergestellt. Streichen oder ergänzen: 'Bezug zur KMK-Strategie wird noch hergestellt – [TODO: einfügen nach Abstimmung mit Schulleitung].'"
-        },
-        {
-          "zitat": "Die Qualifizierung der Lehrkräfte erfolgt in einem zweistufigen Modell",
-          "schwere": "hoch",
-          "abschnitt": "Qualifizierung der Lehrkräefte",
-          "kategorie": "belegluecke",
-          "vorschlag": "User sprach nur von einem Kollegen, der Wissen weitergibt – kein zweistufiges Modell. Streichen und durch einfachere Beschreibung ersetzen: 'Geplant ist eine interne Fortbildung durch einen technikaffinen Kollegen, Umfang noch offen.'"
-        },
-        {
-          "zitat": "Der Schulträger hat Interesse signalisiert, die Mittelverwaltung zu übernehmen.",
-          "schwere": "hoch",
-          "abschnitt": "Finanzplan / Kosten- und Finanzierungsuebersicht",
-          "kategorie": "belegluecke",
-          "vorschlag": "User sagte: 'Das müsste dann wohl der Schulträger machen' – keine Signalisierung von Interesse. Streichen oder durch 'Eine schriftliche Zusage des Schulträgers zur Mittelverwaltung ist noch einzuholen.' ersetzen."
-        },
-        {
-          "zitat": "vorgesehen ist die Beschaffung von Tablets für einen Klassensatz pro Klassenraum (voraussichtlich rund 20 Räume, genaue Zahl wird vor Antragseinreichung ermittelt)",
+          "zitat": "Konkret beschafft werden sollen hierfür ein mobiler Tabletkoffer mit voraussichtlich 25 bis 30 Geräten (Stückzahl noch festzulegen)",
           "schwere": "mittel",
           "abschnitt": "Beschreibung des Vorhabens",
-          "kategorie": "sonstiges",
-          "vorschlag": "Der User sagte 'ungefähr 20 Räume' und 'pro Raum ein Satz', die Stückzahl ist also noch unbestimmt. Die Formulierung ist akzeptabel, aber besser: 'ca. 20 Sätze, genaue Anzahl in Abstimmung mit Raumplanung festzulegen' – wird so bereits gesagt."
+          "kategorie": "belegluecke",
+          "vorschlag": "Die Stückzahl ist vage. Stützahlen anhand der Schülerzahl (250-300) und der angestrebten Nutzung (evtl. klassenweise Einsätze) begründen. Alternativ eine klare Formel nennen: ‚mindestens 25, maximal 30‘ reicht, wenn begründet."
         },
         {
-          "zitat": "Der Umsetzungsplan sieht folgende Phasen vor: Zunächst erfolgt die Abstimmung mit dem Schulträger zur WLAN-Prüfung und Klärung der Geräteverwaltung (z. B. MDM-Lösung, hierzu [TODO: Abstimmung mit Schulträger vor Einreichung schriftlich festhalten]).",
+          "zitat": "Wir gehen davon aus, dass eine eintägige oder zwei halbtägige Schulungen ausreichend sind",
           "schwere": "mittel",
-          "abschnitt": "Beschreibung des Vorhabens",
-          "kategorie": "sonstiges",
-          "vorschlag": "MDM-Lösung wurde vom User nicht genannt. 'MDM-Lösung' streichen oder durch 'Geräteverwaltung (Details mit Schulträger klären)' ersetzen."
+          "abschnitt": "Qualifizierung der Lehrkraefte",
+          "kategorie": "belegluecke",
+          "vorschlag": "Diese Einschätzung ist nicht belegt. Die Fortbildungsdauer sollte mit einem externen Anbieter abgestimmt und mit nachvollziehbarem Niveau begründet werden (z.B. ‚Einsteiger-Grundlagenschulung‘)."
         },
         {
-          "zitat": "Für Wartung, Support und Administration während und nach der Förderphase sehen wir die Zuständigkeit beim Schulträger.",
+          "zitat": "Der konkrete Jahresetat für Ersatzbeschaffungen wird im Zuge der Medienkonzept-Überarbeitung kalkuliert",
           "schwere": "mittel",
           "abschnitt": "Betrieb und Nachhaltigkeit nach Foerderende",
           "kategorie": "sonstiges",
-          "vorschlag": "User sagte nur 'Das müsste dann wohl der Schulträger machen' – das ist eine Annahme. Formulierung abschwächen: 'Die Zuständigkeit des Schulträgers für Wartung etc. wird vorausgesetzt, eine schriftliche Bestätigung ist noch einzuholen.'"
+          "vorschlag": "Nachhaltigkeitskonzept ist noch unkonkret. Statt vager Absichtserklärung: konkreten Zeitplan für die Erstellung eines Ersatzbeschaffungsplans mit Schulträger angeben (z.B. ‚bis Q2/2027‘)."
         },
         {
-          "zitat": "Die WLAN-Infrastruktur selbst unterliegt keiner mobilen Abnutzung und kann bei auslegungsgemäßer Installation durch den Schulträger ohne Austausch weiterbetrieben werden.",
+          "zitat": "Gesamtkosten belaufen sich somit auf voraussichtlich 39.000 €",
           "schwere": "mittel",
-          "abschnitt": "Betrieb und Nachhaltigkeit nach Foerderende",
-          "kategorie": "sonstiges",
-          "vorschlag": "Diese technische Aussage ist nicht durch User belegt. Streichen oder pauschal halten: 'WLAN-Infrastruktur wird nachhaltig ausgelegt, Details mit Schulträger zu klären.'"
-        },
-        {
-          "zitat": "bei schätzungsweise 20 Räumen und vier Zügen ergibt sich ein Bedarf von voraussichtlich 20-24 Klassensätzen (ca. 200 Geräte, exakte Stückzahl in Abstimmung mit der Raumplanung noch festzulegen).",
-          "schwere": "mittel",
-          "abschnitt": "Finanzplan / Kosten- und Finanzierungsuebersicht",
+          "abschnitt": "Finanzplan",
           "kategorie": "inkonsistenz",
-          "vorschlag": "Wenn pro Raum ein Klassensatz und 20 Räume, dann 20 Sätze, nicht 20-24. Inkonsistent mit 'ca. 200 Geräte' bei 20-24 Sätzen (ca. 160-192 Geräte bei 8 Geräten/Satz?). Präzise Zahl erst nach Raumplanung. Besser als Spanne: 'ca. 20 Sätze (20 Räume), exakte Gerätezahl noch offen.'"
+          "vorschlag": "Die Einzelposten (30.000 Tablets + 5.000 Lizenzen + 4.000 Fortbildung = 39.000) sind schlüssig, aber die Fortbildungskosten sind im Text (4.000 €) nicht begründet. Bitte markieren, ob die Fortbildung für 20 Lehrkräfte oder externen Anbieter kalkuliert ist. Eigenanteil von 20 % (7.800 €) entspricht nicht der Richtlinie (22 % mindestens). Korrigieren: 22 % von 39.000 = 8.580 €, Fördersumme max. 30.420 €."
         },
         {
-          "zitat": "Größter Einzelposten ist die Beschaffung von Tablets: Ziel ist ein Klassensatz pro Klassenraum; bei schätzungsweise 20 Räumen und vier Zügen ergibt sich ein Bedarf von voraussichtlich 20-24 Klassensätzen (ca. 200 Geräte, exakte Stückzahl in Abstimmung mit der Raumplanung noch festzulegen).",
-          "schwere": "mittel",
-          "abschnitt": "Finanzplan / Kosten- und Finanzierungsuebersicht",
+          "zitat": "ein konkretes Fach aus einer früheren Erprobungsphase [TODO: Dokumentation der bisherigen Tableterfahrung vor Einreichung erfragen]",
+          "schwere": "niedrig",
+          "abschnitt": "Bezug zum Medienkonzept der Schule",
           "kategorie": "sonstiges",
-          "vorschlag": "Die Zahl '20-24' ist aus den User-Antworten nicht ableitbar (User sagte nur 'ungefähr 20 Räume'). Besser: 'ca. 20 Sätze, genaue Anzahl noch zu ermitteln'. 'Vier Züge' ist korrekt aus User-Antwort."
+          "vorschlag": "Das [TODO] wird im Text genannt, aber es fehlt die konkrete Angabe eines Faches. Vor Einreichung das Fach anhand der früheren Projektwoche recherchieren und benennen."
         }
       ],
+      "hallucinationGate": {
+        "repaired": true,
+        "residual": [
+          "22 %",
+          "30.420 €",
+          "8.580 €"
+        ],
+        "introducedBefore": [
+          "2027",
+          "22 %",
+          "8.580 €",
+          "30.420 €"
+        ]
+      },
       "critiqueResolutions": [
         {
           "index": 1,
@@ -992,7 +701,8 @@
         },
         {
           "index": 3,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die Notwendigkeit einer schriftlichen Zusage wird betont, aber die Formulierung 'ist vor Einreichung verbindlich einzuholen' zeigt zwar den Handlungsbedarf, lässt offen, ob die Zusage tatsächlich eingeholt wurde."
         },
         {
           "index": 4,
@@ -1000,7 +710,8 @@
         },
         {
           "index": 5,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Ein TODO zum Medienkonzept wurde ergänzt, aber der Benutzer hatte kein Datum oder Kompetenzerwartungen genannt, daher bleibt die Lücke bestehen."
         },
         {
           "index": 6,
@@ -1020,241 +731,233 @@
         },
         {
           "index": 10,
-          "status": "geschlossen"
-        },
-        {
-          "index": 11,
-          "status": "geschlossen"
+          "status": "offen",
+          "kommentar": "Das TODO wurde im Text belassen, aber es fehlt weiterhin die konkrete Angabe eines Faches, wie gefordert."
         }
-      ]
+      ],
+      "hasOpenHighFindings": true
     },
     "costs": {
-      "calls": 35,
+      "calls": 34,
       "entries": [
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
           "promptTokens": 2062,
-          "candidatesTokens": 131
+          "candidatesTokens": 115
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.02,
-          "promptTokens": 1695,
-          "candidatesTokens": 1
+          "promptTokens": 1692,
+          "candidatesTokens": 41
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 2169,
-          "candidatesTokens": 121
+          "promptTokens": 2166,
+          "candidatesTokens": 119
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.03,
-          "promptTokens": 1801,
-          "candidatesTokens": 67
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2302,
-          "candidatesTokens": 157
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.03,
-          "promptTokens": 1960,
+          "usdCents": 0.02,
+          "promptTokens": 1771,
           "candidatesTokens": 1
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2434,
-          "candidatesTokens": 112
+          "promptTokens": 2245,
+          "candidatesTokens": 137
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 2039,
-          "candidatesTokens": 68
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2513,
-          "candidatesTokens": 147
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.03,
-          "promptTokens": 2146,
+          "promptTokens": 1888,
           "candidatesTokens": 1
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2620,
-          "candidatesTokens": 148
+          "promptTokens": 2362,
+          "candidatesTokens": 137
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 2272,
+          "promptTokens": 2009,
+          "candidatesTokens": 41
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 2483,
+          "candidatesTokens": 124
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.03,
+          "promptTokens": 2100,
+          "candidatesTokens": 29
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 2574,
+          "candidatesTokens": 129
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.03,
+          "promptTokens": 2208,
+          "candidatesTokens": 29
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 2682,
+          "candidatesTokens": 106
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.03,
+          "promptTokens": 2287,
           "candidatesTokens": 1
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.04,
-          "promptTokens": 2746,
-          "candidatesTokens": 135
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2394,
-          "candidatesTokens": 103
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.05,
-          "promptTokens": 2903,
-          "candidatesTokens": 212
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2615,
-          "candidatesTokens": 95
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.05,
-          "promptTokens": 3113,
-          "candidatesTokens": 125
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2742,
-          "candidatesTokens": 95
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.05,
-          "promptTokens": 3216,
-          "candidatesTokens": 125
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.04,
-          "promptTokens": 2883,
-          "candidatesTokens": 1
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.05,
-          "promptTokens": 3357,
-          "candidatesTokens": 140
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.05,
-          "promptTokens": 2999,
+          "promptTokens": 2761,
           "candidatesTokens": 127
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.05,
-          "promptTokens": 3473,
-          "candidatesTokens": 184
+          "usdCents": 0.03,
+          "promptTokens": 2383,
+          "candidatesTokens": 41
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 2857,
+          "candidatesTokens": 111
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 2470,
+          "candidatesTokens": 41
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 2944,
+          "candidatesTokens": 128
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.04,
+          "promptTokens": 2566,
+          "candidatesTokens": 87
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.05,
-          "promptTokens": 3133,
-          "candidatesTokens": 127
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.07,
-          "promptTokens": 3725,
-          "candidatesTokens": 514
+          "promptTokens": 3086,
+          "candidatesTokens": 170
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.06,
-          "promptTokens": 3733,
-          "candidatesTokens": 433
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.07,
-          "promptTokens": 3675,
-          "candidatesTokens": 555
+          "promptTokens": 3511,
+          "candidatesTokens": 312
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.06,
-          "promptTokens": 3689,
-          "candidatesTokens": 376
-        },
-        {
-          "model": "deepseek-chat",
-          "usdCents": 0.07,
-          "promptTokens": 3755,
-          "candidatesTokens": 532
+          "promptTokens": 3519,
+          "candidatesTokens": 327
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.06,
-          "promptTokens": 3711,
-          "candidatesTokens": 381
+          "promptTokens": 3461,
+          "candidatesTokens": 476
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.16,
-          "promptTokens": 7536,
-          "candidatesTokens": 1870
+          "usdCents": 0.06,
+          "promptTokens": 3475,
+          "candidatesTokens": 279
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.18,
-          "promptTokens": 7538,
-          "candidatesTokens": 2601
+          "usdCents": 0.06,
+          "promptTokens": 3541,
+          "candidatesTokens": 333
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.09,
-          "promptTokens": 5911,
-          "candidatesTokens": 219
+          "usdCents": 0.06,
+          "promptTokens": 3497,
+          "candidatesTokens": 363
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.14,
+          "promptTokens": 6622,
+          "candidatesTokens": 1620
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.15,
+          "promptTokens": 6580,
+          "candidatesTokens": 2208
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.08,
+          "promptTokens": 5300,
+          "candidatesTokens": 344
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.1,
+          "promptTokens": 2771,
+          "candidatesTokens": 2220
+        },
+        {
+          "model": "deepseek-chat",
+          "usdCents": 0.05,
+          "promptTokens": 3503,
+          "candidatesTokens": 7
         },
         {
           "model": "deepseek-chat",
           "usdCents": 0.03,
-          "promptTokens": 1596,
-          "candidatesTokens": 204
+          "promptTokens": 1382,
+          "candidatesTokens": 257
         },
         {
           "model": "deepseek-chat",
-          "usdCents": 0.11,
-          "promptTokens": 2924,
-          "candidatesTokens": 2601
+          "usdCents": 0.1,
+          "promptTokens": 2543,
+          "candidatesTokens": 2249
         }
       ],
-      "eurCents": 1.83,
-      "usdCents": 1.9,
-      "totalTokens": 122090,
-      "promptTokens": 109380,
+      "eurCents": 1.69,
+      "usdCents": 1.74,
+      "totalTokens": 112011,
+      "promptTokens": 99301,
       "candidatesTokens": 12710
     },
     "status": "complete",
     "paidToken": null,
     "paidAt": null,
     "tier": null,
-    "createdAt": "2026-06-09T17:28:37.768Z",
-    "updatedAt": "2026-06-09T17:31:33.293Z"
+    "createdAt": "2026-06-10T05:39:47.262Z",
+    "updatedAt": "2026-06-10T05:42:56.104Z"
   },
-  "finishedAt": "2026-06-09T19:31:33.585Z",
+  "finishedAt": "2026-06-10T07:42:56.777Z",
   "error": null
 }

@@ -8,78 +8,89 @@
 
 | Fall | Schule | Programm (Match) | Match | k.Halluz. | Luecken | Finanzpl. | Struktur | konkret | **Einreichbar** |
 |---|---|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| 1 | Grundschule am Lindenpark | DigitalPakt Schule 2.0 | 5 | 4 | 5 | 5 | 4 | 4 | **3** |
-| 2 | Astrid-Lindgren-Grundschule | deinSchulhof / Gruene Schulhoefe | 5 | 3 | 5 | 5 | 4 | 4 | **3** |
-| 3 | Grundschule Sonnenblume | Energiesparmeister | 2 | 3 | 4 | 4 | 4 | 3 | **2** |
-| 4 | Grundschule Buchenweg | Gemeinsam Digital! Kreativ mit M | 4 | 3 | 4 | 5 | 4 | 4 | **2** |
-| 5 | Grundschule Am Muehlbach | Foerderfonds Demokratie | 4 | 4 | 4 | 5 | 4 | 4 | **3** |
-| 6 | Pestalozzi-Grundschule | Kultur macht stark - Bündnisse f | 4 | 4 | 5 | 5 | 4 | 3 | **3** |
-| 7 | Grundschule Regenbogen | deinSchulhof / Gruene Schulhoefe | 4 | 3 | 5 | 5 | 4 | 4 | **3** |
-| 8 | Grundschule Kleeblatt | VDI-Joachim-Herz-Technikfonds | 4 | 4 | 5 | 4 | 4 | 3 | **3** |
-| 9 | Grundschule Am Wald | Gemeinsam Digital! Kreativ mit M | 3 | 3 | 4 | 5 | 4 | 3 | **2** |
-| 10 | Janusz-Korczak-Grundschule | DBU-Projektfoerderung (Foerderth | 2 | 2 | 4 | 4 | 4 | 3 | **2** |
+| 1 | Grundschule am Lindenpark | DigitalPakt Schule 2.0 | 5 | 4 | 5 | 5 | 4 | 3 | **2** |
+| 2 | Astrid-Lindgren-Grundschule | deinSchulhof / Gruene Schulhoefe | 5 | 4 | 5 | 5 | 4 | 3 | **3** |
+| 3 | Grundschule Sonnenblume | deinSchulhof / Gruene Schulhoefe | 3 | 3 | 4 | 5 | 4 | 3 | **3** |
+| 4 | Grundschule Buchenweg | Gemeinsam Digital! Kreativ mit M | 4 | 2 | 4 | 2 | 4 | 4 | **3** |
+| 5 | Grundschule Am Muehlbach | Foerderfonds Demokratie | 4 | 3 | 5 | 5 | 4 | 4 | **3** |
+| 6 | Pestalozzi-Grundschule | Ideeninitiative Kulturelle Vielf | 5 | 3 | 4 | 4 | 4 | 3 | **3** |
+| 7 | Grundschule Regenbogen | deinSchulhof / Gruene Schulhoefe | 5 | 2 | 4 | 4 | 5 | 3 | **3** |
+| 8 | Grundschule Kleeblatt | DigitalPakt Schule 2.0 | 4 | 4 | 5 | 5 | 5 | 4 | **3** |
+| 9 | Grundschule Am Wald | Gemeinsam Digital! Kreativ mit M | 4 | 4 | 5 | 5 | 4 | 4 | **2** |
+| 10 | Janusz-Korczak-Grundschule | DBU-Projektfoerderung (Foerderth | 3 | 2 | 3 | 2 | 4 | 3 | **2** |
 
-**Durchschnitt:** Match 3.7 · k.Halluz. 3.3 · Luecken 4.5 · Finanzplan 4.7 · Struktur 4.0 · konkret 3.5 · **Einreichbarkeit 2.6**
+**Durchschnitt:** Match 4.2 · k.Halluz. 3.1 · Luecken 4.4 · Finanzplan 4.2 · Struktur 4.2 · konkret 3.4 · **Einreichbarkeit 2.7**
 
 ## Gesamtbild
-Bei absichtlich spaerlichem Input schlaegt sich der Wizard insgesamt deutlich ueberdurchschnittlich gut — er hat den Sprung vom naiven Antrags-Generator zum ehrlichen Arbeitsentwurf-Werkzeug grossteils geschafft. Die entscheidende Architektur-Verbesserung (Finanzplan-'unbeziffert'-Modus + Halluzinations-Gate) greift sichtbar: In 8 von 10 Faellen erfindet der ausgelieferte finalText KEINE Euro-Betraege mehr, obwohl die Nutzer keine Kostenbasis lieferten, und der Selbstkritik-Loop entfernt vorher erfundene Betraege/Fakten aus den Zwischenversionen nachweislich. Die Struktur-/Foerderlogik ist durchgehend programmspezifisch und vollstaendig (Struktur meist 4/5), und Wissensluecken werden ueberwiegend ehrlich per [TODO] markiert statt kaschiert (Luecken meist 4-5/5). Schwach bleibt der Wizard dort, wo der Input es erzwingt (leere Pflichtfelder, hohle Abschnitte) sowie bei zwei systematischen Eigenfehlern: erfundene Detail-Tatsachen (Termine, Partnerrollen, Verfahrensdetails) und ein Matcher, der vage Ideen teils in stark ueberdimensionierte oder strukturell unpassende Programme zwingt. Einreichbarkeit liegt input-bedingt niedrig (2-3/5), ist aber als ehrliches Geruest fast immer brauchbar.
+Bei absichtlich spaerlichem Input liefert der Wizard ueberwiegend ehrliche, strukturell vollstaendige Antrags-Gerueste statt schein-fertiger Halluzinations-Antraege - ein klarer Fortschritt gegenueber der frueheren Probe (Einreichbarkeit Oe 2,2, Finanzplan-Betraege in allen 10 erfunden). Der Architektur-Fix wirkt sichtbar: In 7 von 10 Faellen laeuft der Finanzplan korrekt im 'unbeziffert'-Modus ohne erfundene Euro-Betraege, Wissensluecken werden ueberwiegend transparent mit [TODO]-Markern ausgewiesen, und der Selbstkritik-Loop entfernt nachweislich die groebsten Roh-Erfindungen (Phantasie-Betraege, KMK-Spezifik, fixe Termine). Die Schwaechen liegen jetzt an drei klar benennbaren Bruchstellen: (1) narrative/szenische Erfindungen (Personen, Settings, Partnerrollen) rutschen durch die Critique, weil sie nicht als Belegluecke erkannt werden; (2) der strukturierte Finanzplan-'kostenrahmen' schleppt erfundene Posten-Kategorien weiter, die der Fliesstext bereits getilgt hatte; (3) der Matcher waehlt bei vagen Ideen wiederholt prominente oder ueberdimensionierte Programme. Insgesamt: vertrauenswuerdige Arbeitsgrundlagen, aber noch nicht einreichungsreif - was bei diesem Input fair und ehrlich kommuniziert ist.
 
 ## Wiederkehrende Muster / Schwachstellen
-### Architektur-Fix Finanzplan greift durchgaengig — keine erfundenen Euro-Betraege mehr im finalText
-Der 'unbeziffert'-Modus (posten=[], unbeziffert=true) plus Halluzinations-Gate funktioniert systematisch: In 8 von 10 Faellen enthaelt der ausgelieferte finalText KEINE erfundenen Euro-Betraege, obwohl die Section-Zwischenversionen sie noch enthielten (Fall 2: 7.000/4.000/3.500 EUR; Fall 5: passgenau auf 5.000 getrimmt; Fall 6: 1.500/800/150/170/2.450 EUR; Fall 7: bis 24.000 EUR; Fall 9: Gate fing 11.450 EUR ab). Nur in Fall 3 und 8 stehen abgeleitete/erfundene Betraege im finalText — beide aber transparent als 'Schaetzung' markiert und plausibel an Nutzerangaben verankert. Staerkste, am klarsten messbare Verbesserung der Probe.
+### Finanzplan ueberwiegend ehrlich unbeziffert - aber 3 Faelle erfinden weiter Betraege
+Der Architektur-Fix greift in der Mehrheit: In den Faellen 1, 2, 3, 5, 6, 8, 9 laeuft der strukturierte Finanzplan korrekt im 'unbeziffert'-Modus (posten leer, kein erfundener Euro-Betrag), nachweislich wurden Zwischenversions-Erfindungen (39.000, 25.000-28.000, 30-35k, 25.000 EUR etc.) im finalText getilgt. Drei Faelle erfinden jedoch weiter komplette Betraege: Fall 4 (gesamter Finanzplan aus grober Gesamtspanne konstruiert, PLUS Rechenfehler 10.500 statt 10.000 EUR, vom System selbst erkannt aber unkorrigiert), Fall 7 (sieben erfundene Euro-Posten, immerhin als 'Schaetzung' markiert), Fall 10 (37.200 EUR Gesamtkosten + erfundene Personalstelle 8.000 + Overhead 3.600, sogar HOEHER als der gerueegte Ausgangswert - Revision verschlimmbessert).
 
-*Betroffene Faelle:* 1, 2, 4, 5, 6, 7, 9, 10
+*Betroffene Faelle:* 4, 7, 10
 
-### Residuale Halluzination konkreter Detail-Tatsachen, die der Loop uebersieht
-Trotz funktionierendem Loop rutschen in fast allen Faellen erfundene konkrete Details als feststehende Fakten in den finalText: Projektzeitraeume/Termine und Meilensteinplaene (Faelle 2,4,9), Verfahrens-/Trainingsdetails wie '90-Minuten-Bloecke' (Fall 5), Partnerrollen und Equipment-Zusagen unbestaetigter Partner (Faelle 4,6,9), Ausgangslage-Erfindungen wie 'Geraete aus privaten Bestaenden' (Fall 1), Verstetigungsstrukturen wie AGs/Patengruppen (Fall 7), Verbreitungskanaele wie 'Thueringer Grundschultag' (Fall 10). Auffaellig: Der Loop fuegt teils sogar NEUE Halluzinationen hinzu (Fall 2 Zeitplan, Fall 6 Floskeln). Muster: Betraege werden zuverlaessig gefiltert, narrative/qualitative Detail-Erfindungen nicht.
+### Narrative/szenische Halluzinationen rutschen systematisch durch die Critique
+Der Selbstkritik-Loop faengt Zahlen und belegbare Fakten, aber NICHT erzaehlerische Erfindungen: erfundene namentliche Kinder mit Alter (Fall 3 'Mia (8)', Fall 7 dritte Klasse/dritte Stunde/einziger Baum), erfundene Settings (Fall 8 Ganztag/Jahrgangsstufen 3-4/Sachunterricht, Fall 9 Bibliotheks-Verortung als raeumliche Tatsache, Fall 10 Verpackungs-/Transport-Umweltframe). Besonders heikel: erfundene Beleg-QUELLEN, die Nichtwissen als Seriositaet kaschieren (Fall 6 'Sprachstandserhebungen', Fall 4 '7% gemaess Richtlinie'). Teilweise wird die Erfindung sogar von der Critique aktiv eingefordert (Fall 7 Finding 10, Fall 3 Finding 12).
 
-*Betroffene Faelle:* 1, 2, 4, 5, 6, 7, 9, 10
+*Betroffene Faelle:* 1, 2, 3, 4, 6, 7, 8, 9, 10
 
-### Matcher weicht bei vagen Gruen-Ideen auf Default 'deinSchulhof' aus und ueberdimensioniert/verbiegt Programme
-Bei vagen Ideen tendiert der Matcher zu wiederkehrenden Programmen und Fehlpassungen. 'deinSchulhof' wird fuer jede vage Gruen-Idee gezogen (Faelle 2 und 7), wobei das ~20.000-EUR-Komplettumbau-Volumen fuer eine kleine Garten-Idee ueberdimensioniert ist (Fall 7). Zwei Mal wird das ausserschulische dbv-Buendnisprogramm (Bibliothekspflicht, Schule nicht antragsberechtigt) auf eine ueberlastete Einzel-Lehrkraft gematcht (Faelle 4 und 9). Fall 3 verbiegt ein Bewegungsanliegen per Suggestivfragen zum Energiesparprojekt; Fall 10 ist ein schwerer Fehlgriff (DBU 100k-400k mit 50% Eigenanteil fuer ein vierstelliges 2-Klassen-Projekt, Score 85 stark ueberhoeht).
+### Erfundene Partner/Personen/Schuelerzahlen im Widerspruch zur Nutzeraussage
+Konkrete Akteure und Zahlen werden erfunden, teils im direkten Widerspruch zum Gesagten: erfundener Foerderverein samt Vorstandsbeschluss (Fall 5, Nutzer sagte nur 'Klassenlehrer machen das nebenbei'), 'Schultraeger' statt des genannten Foerdervereins (Fall 6), zurueckgekehrte 'ehrenamtliche Lesepaten' als 800-EUR-Posten (Fall 4) bzw. Kostenkategorie (Fall 9), externe Ernaehrungspaedagogin trotz 'machen wir selbst/Kollegium' (Fall 10), erfundene Eigenmittelquelle 'Schulbudget fuer Projekttage' (Fall 10), Bauhof-Zusage der Kommune (Fall 7), 'vierzuegig' rechnerisch falsch (Fall 3), Fachfestlegung Deutsch/Mathematik (Fall 1).
 
-*Betroffene Faelle:* 2, 3, 4, 7, 9, 10
+*Betroffene Faelle:* 1, 3, 4, 5, 6, 7, 9, 10
 
-### Selbstkritik-Loop ist staerkste Komponente, aber inkonsistent und teils ohne echte Revision
-Der Loop entfernt nachweislich die groebsten Erfindungen der Erstentwuerfe (dokumentiert in 8 Faellen). Er ist aber inkonsistent: dieselbe Belegluecke wird teils korrigiert, teils als Faktum stehen gelassen (Fall 4: Partner markiert, aber Termine nicht; Fall 5: Partner entfernt, aber Foerderverein als bestehend behauptet). In zwei Faellen erkennt die Critique die Probleme offen, korrigiert sie aber NICHT (Fall 9: 5 offene HOCH-Befunde; Fall 10: hasOpenHighFindings=true, Programm-Mismatch erkannt aber nicht behoben).
+### Finanzplan-'kostenrahmen' reintroduziert Posten, die der Fliesstext schon getilgt hatte
+Selbst wenn der Fliesstext bereinigt ist, schleppt die strukturierte kostenrahmen-Liste erfundene Posten-Kategorien weiter - die Repair-Logik greift im strukturierten Finanzteil nicht: 'ehrenamtliche Lesepaten' (Fall 9), Raummiete/Bustransfer/Notenblaetter/Schultraeger (Fall 6), Abschlussveranstaltung/Flyer-Druck (Fall 5), Werbematerialien (Fall 5). Eigene Trust-Boundary-Luecke zwischen Fliesstext-Gate und Finanzobjekt.
 
-*Betroffene Faelle:* 4, 5, 6, 9, 10
+*Betroffene Faelle:* 5, 6, 9
 
-### Strukturverschleppung: Das urspruengliche Kernanliegen geht im veredelten Antrag teils verloren
-Wenn der Matcher die Idee stark umdeutet, verschwindet das urspruengliche Nutzeranliegen aus dem Antrag. Am deutlichsten in Fall 9: Aus 'Kinder sprechen kaum Deutsch' (DaZ) wird ein Hoerspiel-Medienprojekt, der DaZ-Kern taucht im Bedarf nur noch generisch als 'Lesefoerderung' auf. Aehnlich Fall 3 (Bewegung wird zu Energiesparen) und Faelle 6/4 (Instrumente kaufen / Lesen foerdern werden zu aufwendigen ausserschulischen Buendnisprojekten). Das Anliegen wird der Programmpassung untergeordnet statt umgekehrt.
+### Matcher weicht bei vagen Ideen auf prominente/ueberdimensionierte oder thematisch verschobene Programme aus
+deinSchulhof wird bei vagen Schulhof-/Bewegungsideen wiederholt gewaehlt - in Fall 3 verliert dabei die Kern-Absicht 'mehr Bewegung' komplett (Interviewer lenkte ab Runde 1 still auf Versiegelung um). In Fall 10 waehlt der Matcher das groesste/prestigetraechtigste DBU-Programm (100.000-400.000 EUR, 50% Eigenanteil) fuer eine Kochworkshop-Idee, obwohl passendere kleine Treffer vorlagen. Faelle 4 und 9 legen einer ueberlasteten Lehrkraft ein anspruchsvolles 3-Partner-Buendnisprogramm auf. Praezise Treffer dagegen in 1, 2, 6, 7, 8 (Tablets->DigitalPakt, Garten/Hitze->deinSchulhof, Musik->Liz Mohn).
 
-*Betroffene Faelle:* 3, 4, 6, 9
+*Betroffene Faelle:* 3, 4, 9, 10
+
+### hasOpenHighFindings=true blockiert die Auslieferung nicht
+Mehrere Antraege werden trotz selbst erkannter offener HIGH-Halluzinationen als 'complete' ausgeliefert. In Fall 10 meldet das System hasOpenHighFindings=true UND einen nicht reparierten hallucinationGate (Resttreffer 20.000/3.000 EUR), liefert aber trotzdem aus. Auch Fall 6 (Finding 12 offen, 7 nur teilweise) und Fall 1 (22%-Residual) zeigen: das Quality-Gate erkennt, blockiert aber nicht.
+
+*Betroffene Faelle:* 1, 6, 10
+
+### Lueckenmarkierung als durchgaengige Staerke
+In nahezu allen Faellen werden Wissensluecken transparent mit [TODO]-Markern, Konjunktiv und expliziten 'noch zu klaeren'-Hinweisen ausgewiesen statt als Fakten kaschiert - die [TODO]-Liste fungiert faktisch als praezise programmspezifische Beschaffungs-Checkliste. Ausnahmen sind nur die oben genannten narrativen Erfindungen und erfundenen Quellen, die das Nichtwissen kaschieren.
+
+*Betroffene Faelle:* 1, 2, 3, 4, 5, 6, 8, 9
 
 ## Was der Wizard gut macht
-- Finanzplan-Architektur-Fix wirkt systematisch: in 8 von 10 Faellen keine erfundenen Euro-Betraege im finalText (von zuvor 10/10 erfundenen Betraegen in den Zwischenversionen); das Halluzinations-Gate fing in Fall 9 sogar eine bereits erfundene Gesamtsumme (11.450 EUR) ab
-- Wo Betraege im finalText stehen (Faelle 3, 8), sind sie transparent als 'Schaetzung' markiert und sauber an Nutzeraussagen verankert (Fall 8: 1.500 EUR = '20-30 Stueck x ~50 Euro', Begruendung zitiert die Aussage woertlich)
-- Durchgaengig ehrliche Lueckenmarkierung per sichtbaren [TODO]-Platzhaltern und 'noch zu klaeren'-Formulierungen statt Kaschierung als Fakten (Luecken-Score meist 4-5/5)
-- Selbstkritik-Loop entfernt nachweislich erfundene Betraege und Fakten aus den Erstentwuerfen vor Auslieferung (dokumentiert in 8 Faellen) — die wirksamste Qualitaetskomponente der Pipeline
-- Vollstaendige, programmspezifische Foerderlogik: alle Pflichtabschnitte des jeweiligen Programms strukturell vorhanden und korrekt formuliert (Struktur-Score meist 4/5), inkl. Spezialkriterien wie Ausserschulischkeit, Buendnispflicht, Verwaltungspauschale
-- Bei klaren Ideen exzellentes, nicht-Default Matching mit korrekten Warnhinweisen (Fall 1: DigitalPakt 2.0 Score 92; Fall 5: cleveres Pausenengel-Konzept aus Ein-Wort-Anliegen) inkl. Frist- und Vagheits-Rueckfragen
-- Wenig generisches Blabla, wo echte Fakten vorliegen: bildhafte, nutzernahe Bedarfsszenen statt Marketing-Floskeln (Faelle 2, 5, 7, 10)
-- Die Pipeline taeuscht keine Reife vor: mehrere Faelle benennen offen, dass der Antrag noch nicht einreichfertig ist (hasOpenHighFindings=true), was eine peinliche Falsch-Einreichung verhindert
+- Finanzplan-Architektur-Fix wirkt: 7 von 10 Faellen ohne erfundene Euro-Betraege (unbeziffert-Modus), nachweisliche Tilgung der Zwischenversions-Phantasiezahlen im finalText
+- Vorbildliche, durchgaengige Lueckenmarkierung mit [TODO]-Markern, Konjunktiv und 'vor Einreichung zu klaeren'-Hinweisen - die offene Hausaufgabenliste ist faktisch eine programmspezifische Beschaffungs-Checkliste
+- Selbstkritik-Loop entfernt nachweislich die groebsten Roh-Erfindungen (Phantasie-Betraege, KMK-Spezifik, fixe Termine, 90/10-Split) - in Faellen 8 und 9 besonders wirksam
+- Strukturell vollstaendige, programmgerechte Foerderlogik trotz minimalem Input (Bedarf->Ziel->Massnahme->Wirkung->Nachhaltigkeit->Finanzplan)
+- Praezises Programm-Matching bei klar interpretierbaren Ideen (Tablets->DigitalPakt, Garten/Hitze->deinSchulhof, Musik->Liz Mohn) inkl. ehrlicher 'achtung_bei'-Hinweise
+- Konkrete, aus echten Nutzerangaben gespeiste Szenen und didaktisch fundierte Begruendungen statt reinem Foerder-Blabla (Faelle 4, 8, 9)
+- Ehrlichkeit ueber Einreichbarkeit: hasOpenHighFindings wird transparent gemeldet statt versteckt - kein schein-fertiger Antrag wird vorgetaeuscht
 
 ## Empfehlungen (priorisiert)
-- **[hoch]** Halluzinations-Diff-Gate auf narrative/qualitative Details ausweiten, nicht nur auf Euro-Betraege: Der Gate filtert Zahlen zuverlaessig, laesst aber erfundene Termine/Meilensteinplaene, Partnerrollen, Verfahrensdetails und Verbreitungskanaele durch (Faelle 1,2,4,5,7,9,10). Jeder konkrete Fakt im finalText sollte gegen die Nutzer-Facts geprueft und ohne Beleg automatisch zu '[TODO]/noch zu klaeren' degradiert werden.
-- **[hoch]** Matcher haerten gegen Default-Ausweichen und Groessenordnungs-Bruch: 'deinSchulhof' nicht reflexhaft fuer jede vage Gruen-Idee (Faelle 2,7); ein Plausibilitaets-Check 'Projektvolumen vs. Programm-Foerderrahmen' einziehen, der DBU-Grossfoerderung fuer ein vierstelliges 2-Klassen-Projekt (Fall 10) oder ausserschulische Buendnisprogramme fuer eine ueberlastete Einzel-Lehrkraft (Faelle 4,9) automatisch abwertet oder mit explizitem 'strukturell ueberfordernd'-Warnhinweis versieht.
-- **[hoch]** Selbstkritik-Loop konsistent durchsetzen: In Faellen 9 und 10 erkennt die Critique die Probleme (offene HOCH-Befunde, Programm-Mismatch), korrigiert sie aber nicht. Befunde gleicher Schwere muessen einheitlich behandelt werden (Fall 4: Partner markiert, Termine nicht); ein Gate sollte verhindern, dass die Revision NEUE unbelegte Inhalte einfuehrt (Fall 2 Zeitplan, Fall 6 Floskeln).
-- **[mittel]** Suggestivfragen im Interview entschaerfen: In Fall 3 wurde der Lehrkraft der Energie-Frame aufgedraengt (CO2-Ampel, Heizenergieverlust), bis sie muede zustimmte. Das Interview sollte das urspruengliche Anliegen schuetzen statt es zur Programmpassung umzubiegen — und das Kernanliegen im Antrag erhalten (Fall 9: DaZ verschwindet komplett).
-- **[mittel]** Konsistenz zwischen strukturiertem Finanzplan und Fliesstext herstellen: In Faellen 8 und 10 fuehrt der strukturierte Finanzplan/kostenrahmen Posten (500-EUR-Verbrauchsmaterial; teilzeit Fachkraft, externe Referentin), die der finalText bereits entschaerft hat oder die den Nutzer-Facts ('nur Sachleistungen') widersprechen. Beide Pipeline-Stufen muessen synchron bereinigt werden.
-- **[mittel]** Wirkungs-/Zieldimension staerken: Mehrere Antraege bleiben bei messbaren Zielen/Indikatoren leer oder hohl (Faelle 1,4,6). Den Wizard so fuehren, dass er auch bei duennem Input wenigstens einen ehrlichen, als TODO markierten Vorschlag fuer Wirkungsindikatoren liefert, statt den Abschnitt mit Pathos zu fuellen (Fall 3 Innovations-Abschnitt).
-- **[niedrig]** Programm-Konventionen (z.B. '7%-Verwaltungspauschale', 'Overhead-Pauschale') im kostenrahmen klar als Programmregel statt als Nutzerangabe kennzeichnen (Faelle 4,6,9) — vertretbar, aber leicht missverstaendlich als erfundener Posten.
+- **[hoch]** Finanzplan-Erfindung in den Restfaellen schliessen: Faelle 4, 7 und 10 erzeugen weiter komplette Euro-Betraege (inkl. erfundener Personalstellen und Overhead). Den 'unbeziffert'-Modus konsequent erzwingen, sobald der Nutzer keine posten-genaue Kostenbasis geliefert hat - eine grobe Gesamtspanne (Fall 4) oder Foerderverein-Groesse (Fall 10) darf NICHT zur Aufschluesselung hochgerechnet werden.
+- **[hoch]** hasOpenHighFindings=true und nicht reparierter hallucinationGate muessen die Auslieferung als 'complete' blockieren (Auslieferungs-Block / Hebel 2 aus MEMORY). Faelle 6 und 10 liefern trotz selbst erkannter offener HIGH-Halluzinationen aus - das untergraebt das gesamte Quality-System.
+- **[hoch]** Fakt-Verifikations-Pass auf narrative Erfindungen ausweiten: erfundene Personen (Mia/Fall 3), Settings (Ganztag/Jahrgangsstufen/Fall 8), Partnerrollen und vor allem erfundene Beleg-QUELLEN (Sprachstandserhebungen/Fall 6, '7% gemaess Richtlinie'/Fall 4), die Nichtwissen als Seriositaet kaschieren. Jeder nicht durch Facts/Antworten gedeckte Eigenname, Termin oder Quellenverweis -> [TODO] statt Faktum.
+- **[mittel]** Halluzinations-Gate auf das strukturierte Finanzplan-Objekt (kostenrahmen-Kategorien) ausdehnen, nicht nur auf den Fliesstext. Faelle 5, 6 und 9 zeigen: der Fliesstext ist bereinigt, aber die kostenrahmen-Liste schleppt erfundene Posten (ehrenamtliche Lesepaten, Raummiete, Bustransfer, Schultraeger) weiter - dieselbe Trust-Boundary wie im Fliesstext anwenden.
+- **[mittel]** Rechen-/Konsistenz-Reparatur scharfschalten: Fall 4 liefert einen Finanzplan, der nicht aufgeht (10.500 vs. 10.000 EUR), vom eigenen consistencyIssue erkannt aber unkorrigiert. Erkannte betrag-unstimmig-Findings muessen einen Repair erzwingen oder die Auslieferung blocken.
+- **[mittel]** Matcher haerten gegen Default-Ausweichen und Groessenordnungs-Unplausibilitaet: Plausibilitaetscheck Foerdervolumen vs. genannte Kostenschaetzung (Fall 10: DBU 100-400k fuer Kochworkshop), und bei vagen Ideen die Kern-Absicht verifizieren statt sie umzudeuten (Fall 3: 'Bewegung' geht im Begruenungsprojekt verloren).
+- **[mittel]** Repair-Artefakte verhindern: Fall 7 enthaelt einen grammatikalisch zerstoerten Satz im Finanzierungsabschnitt ('entfallen die genaue Hoehe wird im Finanzplan beziffert auf ...') als Folge des Gate-Eingriffs. Nach jeder Streichung den Satz syntaktisch neu validieren (Never-Worse-Gate auch auf Lesbarkeit).
+- **[niedrig]** Interviewer-Framing pruefen: in Fall 3 lenkte der Interviewer die Idee ab Runde 1 still auf 'Versiegelung/Hitze' um, ohne die urspruengliche Bewegungsabsicht zu verifizieren - eine Rueckfrage zur Kernabsicht vor dem Umdeuten einbauen.
+- **[niedrig]** Floskel-/Redundanz-Bereinigung: Betrags-Entfernung erzeugt repetitive 'wird im Finanzplan beziffert'-Ketten (Faelle 1, 9) und gestreckte Paedagogik-Pathos-Strecken; einen abschliessenden Sprachglaettungs-Pass nach dem Gate ergaenzen.
 
 ## Kurzfazit je Fall
-- **Fall 1** ([Dossier](dossier-01.md)): Ueberdurchschnittliches Ergebnis mit exzellentem Match (DigitalPakt 2.0, Score 92), unbeziffertem Finanzplan und wirksamem Loop; getruebt nur durch ein hartnaeckiges Rest-Detail (erfundene 'private Lehrkraft-Geraete') und hohle Pflichtabschnitte — als ehrlicher Arbeitsentwurf gut brauchbar.
-- **Fall 2** ([Dossier](dossier-02.md)): Ehrlicher, gut strukturierter Arbeitsentwurf mit nahezu perfektem Match und ohne erfundene Betraege; Restschwaeche ist erzaehlerische Ausschmueckung aus dem Programmprofil (Pergola, Biodiversitaet) plus ein in der Revision NEU erfundener Zeitplan.
-- **Fall 3** ([Dossier](dossier-03.md)): Solides, ehrlich mit Luecken umgehendes Geruest, dessen Loop die groebsten Erfindungen entschaerft — aber der Match verbiegt ein Bewegungsanliegen zwanghaft zum Energiesparprojekt, '4 Klassen' und '20-Euro-Timer' rutschen durch, und der wettbewerbsentscheidende Einsparnachweis bleibt leer.
-- **Fall 4** ([Dossier](dossier-04.md)): Der unbeziffert-Finanzplan und der greifende Loop machen aus ausweichendem Input einen ehrlichen Arbeitsentwurf; eingetruebt durch erfundene Termine/Dauer/Meilensteine und Partnerrollen und ein Match auf ein organisatorisch ueberforderndes Buendnisprogramm.
-- **Fall 5** ([Dossier](dossier-05.md)): Der beste Fall der Probe: aus 'Irgendwas gegen Mobbing' entsteht ein kohaerenter Antrag mit cleverem Pausenengel-Konzept und ohne erfundene Betraege; Schwachpunkte sind der als bestehend behauptete Foerderverein und einige erfundene Verfahrensdetails.
-- **Fall 6** ([Dossier](dossier-06.md)): Vorzeige-Beispiel ohne erfundene Finanzbetraege und mit vorbildlicher 'weiss-nicht'-Transparenz; Schwaeche bleibt, dass die Revision vereinzelt neue Floskeln einbaut und der Antrag mangels Input eine ehrliche Vorlage statt eines einreichbaren Antrags ist.
-- **Fall 7** ([Dossier](dossier-07.md)): Einer der staerkeren Faelle: Loop entfernt die groebsten Halluzinationen, Finanzplan bleibt unbeziffert; es bleiben aber erfundene Beteiligungs-/Pflegestrukturen (AG, Patengruppen, Beteiligungsabend) und ein realer Frist-/Traegerschafts-Blocker.
-- **Fall 8** ([Dossier](dossier-08.md)): Erstaunlich ehrlicher Rohentwurf mit sauber an Nutzeraussagen verankertem Hauptbetrag (1.500 EUR); getruebt nur durch einen erfundenen 500-EUR-Verbrauchsmaterial-Posten und generische Fuellsprache — brauchbares Geruest, erst nach Nacharbeit einreichbar.
-- **Fall 9** ([Dossier](dossier-09.md)): Ehrliches Halbfabrikat mit unbeziffertem Finanzplan (Gate fing 11.450 EUR ab) und transparenten TODOs; schwach durch frei erfundene Detail-Tatsachen (SLS 'bereits bekannt', kompletter Zeitplan), Verlust des DaZ-Kernanliegens und ein strukturell ueberforderndes Match.
-- **Fall 10** ([Dossier](dossier-10.md)): Strukturell vollstaendiger, im Luecken- und Finanzplan-Umgang ehrlicher Antrag — der aber am falschen Grossprogramm (DBU 100k-400k) haengt und erfundene Verbreitungs- und Kostenfakten enthaelt, die die Self-Critique zwar erkennt, jedoch nicht ausbessert.
+- **Fall 1** ([Dossier](dossier-01.md)): Aus quasi null Input ein ehrliches, durchgaengig [TODO]-markiertes DigitalPakt-Geruest mit unbeziffertem Finanzplan; nur die '22% Eigenanteil' und die Fachfestlegung Deutsch/Mathematik rutschten als unbelegte Setzungen durch.
+- **Fall 2** ([Dossier](dossier-02.md)): Vorzeige-Fall des Architektur-Fix: praezises deinSchulhof-Match, Finanzplan ehrlich unbeziffert, Selbstkritik-Loop schloss alle 12 Findings nachweislich - nur 'Asphalt' und die Eingangsszene blieben minimal unbelegt.
+- **Fall 3** ([Dossier](dossier-03.md)): Strukturell vollstaendiges, ehrliches Geruest mit sauberem unbezifferten Finanzplan, aber narrative Resthalluzinationen (Mia, vierzuegig, Zierbeete) und ein Match, das die Kern-Absicht 'mehr Bewegung' zugunsten eines Begruenungsprojekts verlor.
+- **Fall 4** ([Dossier](dossier-04.md)): Einer der besseren Faelle (TODO-Transparenz, entfernte Fantasietermine), getruebt durch zurueckgekehrte ehrenamtliche Lesepaten als 800-EUR-Posten und einen frei erfundenen Finanzplan, der obendrein nicht aufgeht (10.500 statt 10.000 EUR).
+- **Fall 5** ([Dossier](dossier-05.md)): Deutlicher Fortschritt mit komplett unbeziffertem Finanzplan und transparenten Luecken, aber der erfundene Foerderverein samt Vorstandsbeschluss im Traeger-Abschnitt bleibt eine residuale Halluzination.
+- **Fall 6** ([Dossier](dossier-06.md)): Erstaunlich ehrlicher, gut strukturierter Liz-Mohn-Entwurf, dessen Halluzinations-Bremse aber lueckenhaft greift: erfundene Beleg-Quelle 'Sprachstandserhebungen' und im kostenrahmen wieder auftauchende erfundene Posten (Schultraeger, Bustransfer, Raummiete).
+- **Fall 7** ([Dossier](dossier-07.md)): Strukturell starker, fair gekennzeichneter Schaetz-Finanzplan, aber ein grammatikalisch korrupter Repair-Satz, eine bewusst erfundene Hitzewelle-Szene und als Fakten getarnte Pflege-/Traegerdetails (Bauhof, Patenschaften) muessen vor Abgabe nachgearbeitet werden.
+- **Fall 8** ([Dossier](dossier-08.md)): Der staerkste Probe-Antrag: Selbstkritik-Loop entfernte die meisten gefaehrlichen Halluzinationen und der Finanzplan blieb ehrlich unbeziffert - es ueberleben aber narrative Erfindungen (Ganztag, Jahrgangsstufen, Sachunterricht) und behauptete DigitalPakt-1-Beschaffungen.
+- **Fall 9** ([Dossier](dossier-09.md)): Lehrstueck fuer richtigen Umgang mit duennstem Input: ein halluzinationsdurchsetzter Draft wurde zu einem ehrlichen [TODO]-Geruest zurueckgebaut, doch die Finanzplan-Kategorie 'ehrenamtliche Lesepaten' und die Bibliotheks-Verortung rutschen durch - als dbv-Buendnisantrag input-bedingt nicht einreichbar.
+- **Fall 10** ([Dossier](dossier-10.md)): Tadellose Struktur mit vielen ehrlichen TODOs, aber der Finanzteil ist von erfundenen Zahlen durchzogen (37.200 EUR, Personalstelle, fiktive Eigenmittelquelle) und das System liefert trotz selbst erkannter offener HIGH-Halluzinationen aus - bei ueberdimensioniertem DBU-Programm nicht einreichbar.
 
 ---
 *Volle Nachvollziehbarkeit je Fall in `dossier-01.md` … `dossier-10.md` (Idee → Match → komplettes Interview → Facts → Finanzplan → Selbstkritik → fertiger Antrag → Gutachten).*
