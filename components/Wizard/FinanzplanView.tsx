@@ -1,7 +1,7 @@
 "use client";
 
 import type { Finanzplan, Finanzposten } from "@/lib/wizard/types";
-import { Wallet } from "lucide-react";
+import { Sparkles, Wallet } from "lucide-react";
 
 interface Props {
   plan: Finanzplan;
@@ -46,9 +46,24 @@ export function FinanzplanView({ plan }: Props) {
       </div>
 
       {plan.posten.length === 0 ? (
-        <p className="text-sm text-slate-600">
-          Kein Finanzplan erzeugt — ggf. fehlten Richtlinien-Daten.
-        </p>
+        plan.unbeziffert && plan.kostenrahmen?.length ? (
+          <div>
+            <p className="text-sm text-slate-600">
+              Es liegen noch keine Kostenangaben vor — der Finanzplan ist daher noch{" "}
+              <strong>unbeziffert</strong>. Die folgenden Positionen werden vor Einreichung
+              durch konkrete Angebote beziffert:
+            </p>
+            <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-[#1e3a61]">
+              {plan.kostenrahmen.map((k, i) => (
+                <li key={i}>{k}</li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <p className="text-sm text-slate-600">
+            Kein Finanzplan erzeugt — ggf. fehlten Richtlinien-Daten.
+          </p>
+        )
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -65,7 +80,14 @@ export function FinanzplanView({ plan }: Props) {
                 posten.map((p) => (
                   <tr key={p.id} className="border-b border-[#0a1628]/10 align-top">
                       <td className="py-2 pr-4">
-                        <div className="text-[#1e3a61]">{p.bezeichnung}</div>
+                        <div className="flex items-center gap-1.5 text-[#1e3a61]">
+                          {p.bezeichnung}
+                          {p.istVorschlag && (
+                            <span className="inline-flex items-center gap-1 rounded-full border border-[#c9a227]/50 bg-[#c9a227]/10 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wide text-[#b8921e]">
+                              <Sparkles className="h-2.5 w-2.5" /> Vorschlag
+                            </span>
+                          )}
+                        </div>
                         {p.begruendung && (
                           <div className="text-xs text-slate-500">{p.begruendung}</div>
                         )}
@@ -111,6 +133,13 @@ export function FinanzplanView({ plan }: Props) {
               <li key={i}>{h}</li>
             ))}
           </ul>
+        </div>
+      )}
+
+      {plan.posten.some((p) => p.istVorschlag) && (
+        <div className="mt-3 flex items-center gap-1.5 text-[11px] text-[#b8921e]">
+          <Sparkles className="h-3 w-3" />
+          <span>„Vorschlag" = vom Assistenten geschätzter Betrag — vor Einreichung bestätigen oder anpassen.</span>
         </div>
       )}
 

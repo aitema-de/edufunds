@@ -19,8 +19,7 @@ const footerLinks = {
     title: "Unternehmen",
     links: [
       { label: "Über uns", href: "/ueber-uns" },
-      { label: "Kontakt", href: "/kontakt" },
-      { label: "Blog", href: "/blog" }
+      { label: "Kontakt", href: "/kontakt" }
     ]
   },
   legal: {
@@ -86,16 +85,15 @@ export function Footer() {
             transition={{ duration: 0.5 }}
             className="col-span-2"
           >
-            <Link href="/" className="inline-block mb-6 group">
-              <div className="flex items-center gap-2.5">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#c9a227] to-[#e4c55a] flex items-center justify-center shadow-lg group-hover:shadow-[#c9a227]/35 transition-shadow">
-                  <span className="text-xl font-bold text-[#0a1628]">€</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-bold text-xl text-[#f8f5f0]">EduFunds</span>
-                  <span className="text-xs text-[#94a3b8] -mt-1">Schulförderung</span>
-                </div>
-              </div>
+            <Link href="/" className="inline-block mb-6 group" aria-label="EduFunds - Zur Startseite">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/edufunds-logo.svg"
+                alt="EduFunds"
+                width={344}
+                height={120}
+                className="h-11 w-auto transition-transform group-hover:scale-[1.02]"
+              />
             </Link>
             <p className="text-[#94a3b8] text-sm leading-relaxed mb-6 max-w-xs">
               Die intelligente Plattform für Schulförderung. Finden Sie passende Programme und erstellen Sie erfolgreiche Anträge mit KI-Unterstützung.

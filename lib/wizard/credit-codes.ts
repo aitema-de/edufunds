@@ -114,6 +114,8 @@ export async function createCreditCode(params: {
   source?: string;
   expiresAt?: string;
   note?: string;
+  /** Optionale Kopplung an eine Stripe-Checkout-Session (B3, Idempotenz). */
+  stripeSessionId?: string;
 }): Promise<CreditCode> {
   if (!Number.isInteger(params.creditsTotal) || params.creditsTotal <= 0) {
     throw new Error("creditsTotal muss eine positive Ganzzahl sein");
@@ -133,8 +135,8 @@ export async function createCreditCode(params: {
         created_at: Date;
       }>(
         `INSERT INTO credit_codes
-           (code, credits_total, org_name, purchaser_email, source, expires_at, note)
-         VALUES ($1, $2, $3, $4, $5, $6, $7)
+           (code, credits_total, org_name, purchaser_email, source, expires_at, note, stripe_session_id)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
          RETURNING id, code, credits_total, credits_used, org_name, purchaser_email, source, expires_at, created_at`,
         [
           code,
@@ -144,6 +146,7 @@ export async function createCreditCode(params: {
           params.source ?? "manual",
           params.expiresAt ?? null,
           params.note ?? null,
+          params.stripeSessionId ?? null,
         ]
       );
       const row = res.rows[0];
@@ -159,8 +162,16 @@ export async function createCreditCode(params: {
         createdAt: row.created_at.toISOString(),
       };
     } catch (e: unknown) {
-      // 23505 = unique_violation -> neuen Code versuchen
-      if (typeof e === "object" && e !== null && (e as { code?: string }).code === "23505") {
+      // 23505 = unique_violation. NUR bei Code-Kollision neuen Code versuchen.
+      // Eine Kollision auf stripe_session_id (B3-Idempotenz) bedeutet: dieselbe
+      // Stripe-Session wurde bereits verarbeitet — Retry mit neuem Code wuerde
+      // den Konflikt nicht aufloesen, also durchreichen (Aufrufer behandelt ihn).
+      const err = e as { code?: string; constraint?: string } | null;
+      if (
+        typeof e === "object" &&
+        err?.code === "23505" &&
+        err.constraint !== "uniq_credit_codes_stripe_session"
+      ) {
         continue;
       }
       throw e;

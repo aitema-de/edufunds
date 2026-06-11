@@ -16,6 +16,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
+import { query } from "@/lib/db";
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || "";
 const GITHUB_REPO = process.env.GITHUB_REPO || "Aitema-gmbh/edufunds";
@@ -102,7 +103,29 @@ function validate(p: unknown): { valid: true; payload: FeedbackPayload } | { val
   };
 }
 
-async function getNextTicketNumber(): Promise<number> {
+/**
+ * Laufende Ticketnummer. Primär atomar+monoton aus einer DB-Sequenz
+ * (feedback_tickets.id, Migration 008) — unabhängig von ClickUp. Fällt bei
+ * DB-Fehler auf die alte ClickUp-Zählung (max #NNN + 1) zurück.
+ */
+async function getNextTicketNumber(type: string, url?: string): Promise<number> {
+  try {
+    const res = await query<{ id: number }>(
+      `INSERT INTO feedback_tickets (feedback_type, url) VALUES ($1, $2) RETURNING id`,
+      [type, url ?? null]
+    );
+    if (res.rowCount === 1) return res.rows[0].id;
+  } catch (e) {
+    console.error(
+      "[feedback] DB-Ticketnummer fehlgeschlagen, Fallback ClickUp:",
+      e instanceof Error ? e.message : e
+    );
+  }
+  return clickUpMaxPlusOne();
+}
+
+/** Fallback: laufende Nummer aus dem Maximum der ClickUp-Tasknamen (#NNN). */
+async function clickUpMaxPlusOne(): Promise<number> {
   if (!CLICKUP_TOKEN || !CLICKUP_LIST_ID) return 0;
   try {
     const r = await fetch(
@@ -347,7 +370,7 @@ export async function POST(req: NextRequest) {
     payload.userAgent = req.headers.get("user-agent") || "unknown";
   }
 
-  const nextNum = await getNextTicketNumber();
+  const nextNum = await getNextTicketNumber(payload.type, payload.url);
   const ticket = nextNum > 0 ? `#${String(nextNum).padStart(3, "0")}` : "";
 
   const [githubRes, clickupRes, notifyRes, confirmRes] = await Promise.allSettled([

@@ -16,9 +16,25 @@ export interface MatchEntry {
     foerdersummeText?: string;
     foerdersummeMax?: number;
     bewerbungsfristText?: string;
+    bewerbungsfristEnde?: string;
     kategorien?: string[];
     kurzbeschreibung?: string;
   };
+}
+
+/**
+ * Antragsfrist abgelaufen? Vergleicht bewerbungsfristEnde (ISO) mit heute.
+ * Achtung: viele Programme haben jährlich WIEDERKEHRENDE Fristen — eine
+ * abgelaufene Frist bedeutet nicht zwingend "Programm tot". Deshalb wird hier
+ * nur markiert/nach unten sortiert, NICHT ausgeblendet.
+ */
+export function isFristAbgelaufen(ende?: string): boolean {
+  if (!ende) return false;
+  const d = new Date(ende);
+  if (Number.isNaN(d.getTime())) return false;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return d < today;
 }
 
 interface Props {
@@ -65,15 +81,26 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
     );
   }
 
+  // Abgelaufene Fristen ans Ende (stabil — gleiche Passungs-Reihenfolge innerhalb der Gruppen).
+  const sorted = [...matches].sort(
+    (a, b) =>
+      Number(isFristAbgelaufen(a.programm.bewerbungsfristEnde)) -
+      Number(isFristAbgelaufen(b.programm.bewerbungsfristEnde))
+  );
+
   return (
     <div className="space-y-4">
       <div className="text-sm text-slate-600">
         {matches.length} Programm{matches.length === 1 ? "" : "e"} passen zu deinem Anliegen. Sortiert nach Passung:
       </div>
-      {matches.map((m) => (
+      {sorted.map((m) => {
+        const expired = isFristAbgelaufen(m.programm.bewerbungsfristEnde);
+        return (
         <article
           key={m.id}
-          className="rounded-2xl border border-[#0a1628]/8 bg-white p-5 shadow-[0_4px_20px_-4px_rgba(10,22,40,0.06)] transition hover:border-[#c9a227]/30 hover:shadow-[0_8px_28px_-6px_rgba(10,22,40,0.1)]"
+          className={`rounded-2xl border bg-white p-5 shadow-[0_4px_20px_-4px_rgba(10,22,40,0.06)] transition hover:shadow-[0_8px_28px_-6px_rgba(10,22,40,0.1)] ${
+            expired ? "border-[#0a1628]/8 opacity-75" : "border-[#0a1628]/8 hover:border-[#c9a227]/30"
+          }`}
         >
           <div className="mb-3 flex flex-wrap items-start justify-between gap-3">
             <div className="min-w-0 flex-1">
@@ -94,6 +121,11 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
                 )}
                 {m.programm.bewerbungsfristText && (
                   <span>· Frist: {m.programm.bewerbungsfristText}</span>
+                )}
+                {expired && (
+                  <span className="rounded-full border border-red-300 bg-red-50 px-2 py-0.5 text-[11px] font-medium text-red-700">
+                    Frist abgelaufen
+                  </span>
                 )}
               </div>
             </div>
@@ -144,7 +176,8 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
             </button>
           </div>
         </article>
-      ))}
+        );
+      })}
     </div>
   );
 }

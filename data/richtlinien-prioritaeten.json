@@ -1,20 +1,9 @@
 {
-  "generatedAt": "2026-04-27T10:09:58.688Z",
+  "generatedAt": "2026-06-11T12:05:37.709Z",
   "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
   "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
-  "total": 155,
+  "total": 105,
   "items": [
-    {
-      "programmId": "kfw-erp-digitalisierung",
-      "name": "ERP Digitalisierung und Innovation",
-      "foerdergeberTyp": "bund",
-      "foerdersummeMax": 25000000,
-      "reichweite": "alle",
-      "infoLink": "https://www.kfw.de",
-      "score": 108,
-      "status": "skip",
-      "skipReason": "Kreditprogramm fuer Unternehmen — fuer oeffentliche Schultraeger praktisch unbrauchbar. Bei Bedarf revertieren."
-    },
     {
       "programmId": "erasmus-schulentwicklung",
       "name": "Europäische Partnerschaften für Schulentwicklung",
@@ -36,15 +25,14 @@
       "status": "done"
     },
     {
-      "programmId": "bundesweit-ganztag",
-      "name": "Investitionsprogramm Ganztagsausbau",
-      "foerdergeberTyp": "bund",
-      "foerdersummeMax": 500000,
-      "reichweite": "alle",
-      "infoLink": "https://www.ganztagsschulen.org/de/service/investitionsprogramm-ganztagsausbau/investitionsprogramm-ganztagsausbau_node.html",
-      "score": 89,
-      "status": "expired",
-      "skipReason": "Phase-3-Smoke-Befund: Investitionsprogramm Ganztagsausbau geschlossen (CONTEXT D-06 Test-Anker)"
+      "programmId": "bildung-durch-bewegung",
+      "name": "Bildung durch Bewegung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 800000,
+      "reichweite": "DE-BW",
+      "infoLink": "https://dietmar-hopp-stiftung.de/foerderbereiche/bildung.html",
+      "score": 91,
+      "status": "done"
     },
     {
       "programmId": "berlin-startchancen",
@@ -77,15 +65,44 @@
       "status": "done"
     },
     {
-      "programmId": "nrwbank-moderne-schule",
-      "name": "NRW.BANK.Moderne Schule",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 10000000,
-      "reichweite": "DE-NW",
-      "infoLink": "https://www.nrwbank.de/de/foerderung/foerderprodukte/15713/nrwbank-moderne-schule.html",
+      "programmId": "bildungsagenda-ns-unrecht-foerderperiode-2026",
+      "name": "Bildungsagenda NS-Unrecht (Foerderperiode 2026-2029)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 500000,
+      "reichweite": "?",
+      "infoLink": "https://www.stiftung-evz.de/",
+      "score": 87,
+      "status": "done"
+    },
+    {
+      "programmId": "dbu-projektfoerderung-foerderthema-nachhaltigkeitskommunikation-und",
+      "name": "DBU-Projektfoerderung (Foerderthema Nachhaltigkeitskommunikation und -bildung)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 400000,
+      "reichweite": "?",
+      "infoLink": "https://www.dbu.de/foerderung/projektfoerderung/foerderung-beantragen/",
+      "score": 86,
+      "status": "done"
+    },
+    {
+      "programmId": "feb-foerderprogramm-entwicklungspolitische-bildung",
+      "name": "FEB - Foerderprogramm Entwicklungspolitische Bildung",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 20000,
+      "reichweite": "?",
+      "infoLink": "https://feb.engagement-global.de/antragstellung.html",
+      "score": 83,
+      "status": "done"
+    },
+    {
+      "programmId": "stiftung-polytechnische-gesellschaft-projektfoerderung",
+      "name": "Stiftung Polytechnische Gesellschaft - Projektfoerderung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 100000,
+      "reichweite": "DE-HE",
+      "infoLink": "https://sptg.de/foerderung",
       "score": 82,
-      "status": "expired",
-      "skipReason": "Phase-3-Smoke-Befund: Foerderprogramm eingestellt, Frist 27.02.2026 ausgelaufen (CONTEXT D-06 Test-Anker)"
+      "status": "done"
     },
     {
       "programmId": "bosch-schulpreis",
@@ -119,7 +136,7 @@
     },
     {
       "programmId": "lesen-macht-stark",
-      "name": "Gemeinsam Digital! Kreativ mit Medien",
+      "name": "Gemeinsam Digital! Kreativ mit Medien (ehem. Lesen macht stark)",
       "foerdergeberTyp": "bund",
       "foerdersummeMax": 50000,
       "reichweite": "alle",
@@ -138,6 +155,26 @@
       "status": "done"
     },
     {
+      "programmId": "fonds-fuer-antisemitismus-bekaempfung-und",
+      "name": "Fonds fuer Antisemitismus-Bekaempfung und Aufklaerung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 50000,
+      "reichweite": "?",
+      "infoLink": "https://www.ghst.de/en/fund-for-anti-semitism-prevention-and-education",
+      "score": 77,
+      "status": "done"
+    },
+    {
+      "programmId": "mixed-up-wettbewerb-mixed-up",
+      "name": "MIXED UP Wettbewerb (Preis + Kick-Off-Foerderung)",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 5000,
+      "reichweite": "?",
+      "infoLink": "https://www.bkj.de/projekte/mixed-up-wettbewerb/",
+      "score": 77,
+      "status": "done"
+    },
+    {
       "programmId": "ferry-porsche-challenge",
       "name": "Ferry Porsche Challenge",
       "foerdergeberTyp": "stiftung",
@@ -145,6 +182,66 @@
       "reichweite": "DE-BW/DE-SN",
       "infoLink": "https://ferry-porsche-challenge.de",
       "score": 76.8,
+      "status": "done"
+    },
+    {
+      "programmId": "ki-schulpreis",
+      "name": "KI-Schulpreis",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 40000,
+      "reichweite": "?",
+      "infoLink": "https://ki-schulpreis.land-der-ideen.de/",
+      "score": 76,
+      "status": "done"
+    },
+    {
+      "programmId": "umweltpreis-sachsen-anhalt-sunk-projektfoerderung",
+      "name": "Umweltpreis Sachsen-Anhalt (SUNK) & Projektfoerderung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 20000,
+      "reichweite": "DE-ST",
+      "infoLink": "https://www.foerdersuche.org/foerderung/stiftung-umwelt-natur-klimaschutz-sachsen-anhalt",
+      "score": 75,
+      "status": "done"
+    },
+    {
+      "programmId": "niedersaechsische-bingo-umweltstiftung-bingo-die",
+      "name": "Niedersaechsische Bingo-Umweltstiftung (BINGO! Die Umweltlotterie)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 30000,
+      "reichweite": "DE-NI",
+      "infoLink": "https://www.bingo-umweltstiftung.de/wie-stelle-ich-einen-antrag-2/",
+      "score": 74.8,
+      "status": "done"
+    },
+    {
+      "programmId": "perlenfonds",
+      "name": "Perlenfonds",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 25000,
+      "reichweite": "?",
+      "infoLink": "https://www.joachim-herz-stiftung.de/foerdern/aktuelle-ausschreibungen/perlenfonds",
+      "score": 74,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderlinie-psychische-gesundheit",
+      "name": "Foerderlinie Psychische Gesundheit",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 25000,
+      "reichweite": "DE-HE",
+      "infoLink": "https://sptg.de/foerderung/psychische-gesundheit",
+      "score": 74,
+      "status": "done"
+    },
+    {
+      "programmId": "kunstvoll-projektpartnerschaften-zwischen-schulen-und",
+      "name": "KUNSTVOLL - Projektpartnerschaften zwischen Schulen und Kunstschaffenden (Hessen / Frankfurt RheinMain)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 15000,
+      "reichweite": "DE-HE",
+      "infoLink": "https://kulturberatung-hessen.de/aktuelles/foerderprogramm-kunstvoll-projektpartnerschaften-zwischen-schulen-und-kunstschaffenden",
+      "score": 73.8,
       "status": "done"
     },
     {
@@ -158,15 +255,74 @@
       "status": "done"
     },
     {
-      "programmId": "ferry-porsche-challenge-2025",
-      "name": "Ferry Porsche Challenge 2025",
+      "programmId": "deinschulhof-gruene-schulhoefe-bundesinitiative-der",
+      "name": "deinSchulhof / Gruene Schulhoefe (Bundesinitiative DUH & Stiftung Lebendige Stadt)",
       "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 75000,
-      "reichweite": "DE-BW/DE-SN",
-      "infoLink": "https://ferry-porsche-challenge.de",
-      "score": 72.8,
-      "status": "skip",
-      "skipReason": "Dublette zu ferry-porsche-challenge (2026-06-01 dedupliziert)"
+      "foerdersummeMax": 20000,
+      "reichweite": "?",
+      "infoLink": "https://www.duh.de/informieren/natur-und-umwelt-vor-ort/schulhoefe/",
+      "score": 73,
+      "status": "done"
+    },
+    {
+      "programmId": "labs-for-chips",
+      "name": "LABS for CHIPS",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 2000,
+      "reichweite": "?",
+      "infoLink": "https://www.invent-a-chip.de/invent-a-chip/labs-for-chips",
+      "score": 73,
+      "status": "done"
+    },
+    {
+      "programmId": "pwc-stiftung-foerderung-kulturelle-bildung",
+      "name": "PwC-Stiftung - Foerderung Kulturelle Bildung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 25000,
+      "reichweite": "?",
+      "infoLink": "https://pwc-stiftung.de/foerderung/",
+      "score": 72,
+      "status": "done"
+    },
+    {
+      "programmId": "ewe-stiftung-foerderantrag",
+      "name": "EWE Stiftung Foerderantrag",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 10000,
+      "reichweite": "DE-NI",
+      "infoLink": "https://www.ewe-stiftung.de/foerderantrag/foerderkriterien/",
+      "score": 72,
+      "status": "done"
+    },
+    {
+      "programmId": "deutsche-bahn-stiftung-jaehrliche-foerderausschreibung",
+      "name": "Deutsche Bahn Stiftung - Jaehrliche Foerderausschreibung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 15000,
+      "reichweite": "?",
+      "infoLink": "https://www.deutschebahnstiftung.de/dbs/foerderung",
+      "score": 71.8,
+      "status": "done"
+    },
+    {
+      "programmId": "heinz-nixdorf-stiftung-projektfoerderung-mint",
+      "name": "Heinz Nixdorf Stiftung - Projektfoerderung (MINT/Digitale Bildung)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 15000,
+      "reichweite": "?",
+      "infoLink": "https://www.heinz-nixdorf-stiftung.de/",
+      "score": 71.8,
+      "status": "done"
+    },
+    {
+      "programmId": "konzeptwettbewerb-schuelerforschungszentren",
+      "name": "Konzeptwettbewerb Schuelerforschungszentren",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 15000,
+      "reichweite": "?",
+      "infoLink": "https://schuelerforschungszentren.de/foerderungen/konzeptwettbewerb",
+      "score": 71.8,
+      "status": "done"
     },
     {
       "programmId": "playmobil-hobpreis",
@@ -189,15 +345,24 @@
       "status": "done"
     },
     {
-      "programmId": "sh-ganztag-196mio",
-      "name": "Investitionsprogramm Ganztagsausbau SH (GGSK II)",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 500000,
-      "reichweite": "DE-SH",
-      "infoLink": "https://www.ib-sh.de/produkt/investitionsprogramm-ganztagsausbau-ggsk-ii/",
-      "score": 69,
-      "status": "skip",
-      "skipReason": "Reines Schulträger-/Kommunen-Investitionsprogramm (GGSK II), keine konzeptbasierte Schul-Antragsförderung. Antragsberechtigt sind laut IB.SH-Produktseite und Amtsblatt SH 25/2024 die \"Schulträger\" (Kommunen/Träger), nicht die Schule oder ihr Förderverein selbst. Gefördert werden ausschließlich bauliche Investitionen (Neubau, Umbau, Sanierung) und Ausstattungsinvestitionen mit bis zu 85% der zuwendungsfähigen Ausgaben — keine fördernde schriftliche Bewerbung/Konzept durch die Schule, sondern baulicher Verwendungsnachweis. Zusätzlich ist die Antragsfrist am 31.12.2025 abgelaufen (Quelle: https://www.ib-sh.de/produkt/investitionsprogramm-ganztagsausbau-ggsk-ii/ ). Damit kein Fit fuer EduFunds."
+      "programmId": "dslk-schulpreis-bildung-fuer-nachhaltige",
+      "name": "DSLK-Schulpreis Bildung fuer nachhaltige Entwicklung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 10000,
+      "reichweite": "?",
+      "infoLink": "https://deutscher-schulleitungskongress.de/nachhaltigkeitspreis/",
+      "score": 70,
+      "status": "done"
+    },
+    {
+      "programmId": "town-country-stiftungspreis",
+      "name": "Town & Country Stiftungspreis",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 10000,
+      "reichweite": "?",
+      "infoLink": "https://www.tc-stiftung.de/stiftungspreis/",
+      "score": 70,
+      "status": "done"
     },
     {
       "programmId": "hector-kinderakademie",
@@ -207,6 +372,46 @@
       "reichweite": "DE-BW",
       "infoLink": "https://www.hector-stiftung.de",
       "score": 69,
+      "status": "done"
+    },
+    {
+      "programmId": "lernen-in-langenhorn",
+      "name": "Lernen in Langenhorn",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "DE-HH",
+      "infoLink": "https://www.joachim-herz-stiftung.de/foerdern/ganzjaehrige-ausschreibungen",
+      "score": 69,
+      "status": "done"
+    },
+    {
+      "programmId": "thueringer-klimaschutzpreis-die-blaue-libelle",
+      "name": "Thueringer Klimaschutzpreis Die blaue Libelle",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "DE-TH",
+      "infoLink": "https://www.klimastiftung-thueringen.de/projekte-foerderung/",
+      "score": 69,
+      "status": "done"
+    },
+    {
+      "programmId": "ideeninitiative-kulturelle-vielfalt-mit-musik",
+      "name": "Ideeninitiative Kulturelle Vielfalt mit Musik",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 7500,
+      "reichweite": "?",
+      "infoLink": "https://bewerbung.kultur-und-musikstiftung.de/",
+      "score": 68.8,
+      "status": "done"
+    },
+    {
+      "programmId": "deine-idee-deine-schule-dein",
+      "name": "Deine Idee? Deine Schule. Dein Klima!",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 4500,
+      "reichweite": "DE-SN",
+      "infoLink": "https://www.saechsische-jugendstiftung.de/",
+      "score": 68.5,
       "status": "done"
     },
     {
@@ -220,26 +425,34 @@
       "status": "done"
     },
     {
-      "programmId": "koerber-mint-regionen",
-      "name": "MINT-Regionen",
+      "programmId": "bremen-gewoba-stiftung-zur-foerderung",
+      "name": "Bremen: GEWOBA-Stiftung zur Foerderung der Bildung im oeffentlichen Schulwesen",
       "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 30000,
-      "reichweite": "alle",
-      "infoLink": "https://koerber-stiftung.de/projekte/bereich-bildung",
-      "score": 66.8,
-      "status": "skip",
-      "skipReason": "Der Foerderwettbewerb MINT-Regionen (Stifterverband + Koerber-Stiftung, bis zu 30.000 EUR) richtet sich ausdruecklich an REGIONALE NETZWERKE aus Partnern von Bildung, Wissenschaft, Wirtschaft, Gesellschaft und Kommunalverwaltung, nicht an einzelne Schulen. Antragsberechtigt sind koordinierende Akteure/Kommunen, die ein regionales MINT-Netzwerk aufbauen; eine Schule (oder ihr Foerderverein) kann nicht allein beantragen. Zudem foerdert das Programm laut Ausschreibung den Aufbau/die Koordination von Netzwerken, NICHT einzelne Schulprojekte (\"nicht die Foerderung neuer MINT-Projekte, sondern bessere Vernetzung\"). Faellt damit unter die Ausschluesse 'Dachverband/Netzwerk ohne eigenes Programm' und 'Kommunen-Programm (Schule beantragt nicht selbst)'. Belege: https://www.stifterverband.org/mintregionen und https://www.stifterverband.org/mintregionen/faq sowie https://koerber-stiftung.de/projekte/ (Antragsberechtigte = regionale Netzwerke/koordinierende Akteure)."
+      "foerdersummeMax": 4000,
+      "reichweite": "DE-HB",
+      "infoLink": "https://www.foerdersuche.org/foerderung/gewoba-stiftung-zur-foerderung-der-bildung-im-oeffentlichen-schulwesen",
+      "score": 68,
+      "status": "done"
     },
     {
-      "programmId": "telekom-stiftung-respect",
-      "name": "Respect Magarete",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 25000,
-      "reichweite": "alle",
-      "infoLink": "https://www.telekom-stiftung.de",
-      "score": 66,
-      "status": "skip",
-      "skipReason": "Das Programm \"Respect Magarete\" (telekom-stiftung-respect) konnte nicht als reales Förderprogramm verifiziert werden. Recherche der offiziellen Seite telekom-stiftung.de (Programm-Übersicht mit ~25 Initiativen wie Technik Scouts, Ich kann was!, KI-Schulpreis, Junior-Ingenieur-Akademie), des Antragsportals und gezielte Websuchen ergaben KEIN Programm namens \"Respect\", \"Respekt\", \"Magarete\" oder \"Margarete\" bei der Deutschen Telekom Stiftung. Der Programmname wirkt verstümmelt/fehlerhaft; weder Name noch die angegebene Fördersumme von 25.000 EUR lassen sich einer existierenden Ausschreibung zuordnen (Telekom-Stiftung ist MINT-fokussiert; z. B. \"Ich kann was!\" fördert max. 10.000 EUR und richtet sich an offene Kinder-/Jugendarbeit, nicht an Schulanträge). Ein Dossier wäre nur durch Erfinden der gesamten Richtlinie möglich, was gegen die Regel \"keine erfundenen Daten\" verstößt. Geprüfte Quellen: https://www.telekom-stiftung.de/ , https://www.telekom-stiftung.de/projekte , https://www.telekom-stiftung.de/stiftung/ausschreibungen"
+      "programmId": "deutsch-griechisches-jugendwerk-dgjw-foerderung",
+      "name": "Deutsch-Griechisches Jugendwerk (DGJW) - Foerderung Schulbegegnungen",
+      "foerdergeberTyp": "sonstige",
+      "foerdersummeMax": 50000,
+      "reichweite": "?",
+      "infoLink": "https://dgjw-egin.org/antrag-stellen/",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "brandenburg-foerderung-aus-lottomitteln-mbjs",
+      "name": "Brandenburg: Foerderung aus Lottomitteln (MBJS)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 30000,
+      "reichweite": "DE-BB",
+      "infoLink": "https://mbjs-fachportal.brandenburg.de/und-mehr/foerderung-aus-lottomitteln.html",
+      "score": 66.8,
+      "status": "done"
     },
     {
       "programmId": "europaschulen-nrw-2026",
@@ -262,15 +475,14 @@
       "status": "done"
     },
     {
-      "programmId": "rag-stiftung-schulprojekte",
-      "name": "RAG-Stiftung Schulprojekte",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 15000,
-      "reichweite": "DE-NW/DE-SL",
-      "infoLink": "https://www.rag-stiftung.de/foerderung/bildung/schulprojekte",
-      "score": 65.8,
-      "status": "skip",
-      "skipReason": "Keine offene Schul-Antragsfoerderung. Die offiziellen Fördergrundsätze der RAG-Stiftung (PDF, https://www.rag-stiftung.de/fileadmin/user_upload/Bildung/Foerdergrundsaetze_der_RAG-Stiftung.pdf) beschreiben eine strategische Stiftung, die selbst-initiierte, skalierbare Modell- und Pilotprojekte mit Modellcharakter in Kooperation mit \"kompetenten Partnern\" (Hochschulen, etablierte Bildungstraeger) foerdert — keine Einzelschule reicht hier einen eigenen Antrag/ein Konzept ein. Die unter /foerderung/bildung/schulprojekte gelisteten Projekte (Chancenwerk, BildungsTandems, Quinoa-Schule Herne, GemeinsamGANZTAG) sind stiftungs-initiierte Partnerprogramme, bei denen die Stiftung Lead-Foerderer ist und Schulen nur Beteiligungs-/Standorte bzw. Beguenstigte sind, nicht Antragsteller. Antragsberechtigt sind laut Stiftung gemeinnuetzige Organisationen (Vereine/Hochschulen), die regionenweit (Ruhrgebiet/Saarland/Ibbenbueren) taetig sind — nicht die einzelne Schule. Es gibt kein Antragsformular, keine Schul-Ausschreibung und keine Fristen fuer Schulen; \"alle wesentlichen Variablen werden vor Start vereinbart\" (individuelle Projektvereinbarung). Die im Programm-Datensatz angegebene Foerdersumme von 15.000 EUR ist nirgends belegt; die Foerderung laeuft auf Ebene grosser mehrjaehriger strategischer Partnerschaften. Damit liegt der Ausschlussgrund \"Dachverband/strategische Stiftung ohne offenes Schul-Bewerbungsprogramm, Schule beantragt nicht selbst\" vor."
+      "programmId": "berliner-projektfonds-kulturelle-bildung",
+      "name": "Berliner Projektfonds Kulturelle Bildung",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 25000,
+      "reichweite": "DE-BE",
+      "infoLink": "https://www.kulturformen.berlin/foerdern/berliner-projektfonds-kulturelle-bildung/",
+      "score": 66,
+      "status": "done"
     },
     {
       "programmId": "hessen-esf-praxis",
@@ -283,26 +495,24 @@
       "status": "done"
     },
     {
-      "programmId": "bmbf-bop",
-      "name": "Berufsorientierungsprogramm (BOP)",
-      "foerdergeberTyp": "bund",
-      "foerdersummeMax": 500,
-      "reichweite": "alle",
-      "infoLink": "https://www.bildungsketten.de/bildungsketten/de/schule/praktische-berufsorientierung/praktische-berufsorientierung_node.html",
+      "programmId": "foerderfonds-demokratie",
+      "name": "Foerderfonds Demokratie",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "?",
+      "infoLink": "https://www.foerderfonds-demokratie.de/ausschreibung",
       "score": 65,
-      "status": "skip",
-      "skipReason": "Schulen sind NICHT antragsberechtigt. Laut Förderdatenbank des Bundes (foerderdatenbank.de) und BOP-Richtlinie 2022 sind ausschliesslich \"juristische Personen des oeffentlichen oder privaten Rechts, die Traeger von Berufsbildungsstaetten sind\" antragsberechtigt; Schulen fungieren nur als Kooperationspartner ohne eigenen Antrag. Die Berufsbildungsstaette beantragt die Foerderung und erhaelt die Zuschuesse (z.B. 200 EUR/Schueler Potenzialanalyse, 40 EUR/BO-Tag), die Massnahme wird Schuelern kostenfrei angeboten; eine Kostenbeteiligung von Schule/Schuelern/Dritten ist sogar unzulaessig. Die Schule (oder ihr Foerderverein) reicht somit keinen foerdernden schriftlichen Antrag ein und erhaelt kein Geld - damit kein Fit fuer einen Schul-Antragsassistenten. Beleg: https://www.foerderdatenbank.de/FDB/Content/DE/Foerderprogramm/Bund/BMBF/berufsorientierungsprogramm-des-bmbf-bop.html"
+      "status": "done"
     },
     {
-      "programmId": "denkmal-aktiv-nrw",
-      "name": "denkmal aktiv - Kulturerbe macht Schule",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 1900,
-      "reichweite": "DE-NW",
-      "infoLink": "https://denkmal-aktiv.de",
-      "score": 64.8,
-      "status": "skip",
-      "skipReason": "Dublette von denkmal-aktiv-bundesweit-2026 (denkmal-aktiv.de) (Audit 2026-06-01)"
+      "programmId": "jugend-demokratiefonds-berlin-berliner-jugendbudget",
+      "name": "Jugend-Demokratiefonds Berlin / Berliner Jugendbudget (STARK gemacht!)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 20000,
+      "reichweite": "DE-BE",
+      "infoLink": "https://stark-gemacht.de/",
+      "score": 65,
+      "status": "done"
     },
     {
       "programmId": "denkmal-aktiv-bundesweit-2026",
@@ -315,26 +525,34 @@
       "status": "done"
     },
     {
-      "programmId": "alfred-toepfer-kultur",
-      "name": "Kulturelle Bildung in Schulen",
+      "programmId": "vdi-joachim-herz-technikfonds",
+      "name": "VDI-Joachim-Herz-Technikfonds",
       "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 15000,
-      "reichweite": "alle",
-      "infoLink": "https://www.toepfer-stiftung.de",
-      "score": 63.8,
-      "status": "skip",
-      "skipReason": "Fehl-Fit: fördert Schulen nur via HH-Kulturfonds, kein bundesweites Schul-Antragsprogramm (Audit 2026-06-01)"
+      "foerdersummeMax": 3000,
+      "reichweite": "?",
+      "infoLink": "https://www.joachim-herz-stiftung.de/foerdern/ganzjaehrige-ausschreibungen/vdi-joachim-herz-technikfonds",
+      "score": 64.8,
+      "status": "done"
     },
     {
-      "programmId": "siemens-stiftung-mint-hub",
-      "name": "MINT-Hub & Maker Education",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 8000,
-      "reichweite": "alle",
-      "infoLink": "https://www.siemens-stiftung.org",
-      "score": 63,
-      "status": "skip",
-      "skipReason": "Fehl-Fit: physischer Lernort/Workshops (TüftelLab), keine Geld-Förderung per Antrag (Audit 2026-06-01)"
+      "programmId": "deutsch-polnisches-jugendwerk-dpjw-projektfoerderung",
+      "name": "Deutsch-Polnisches Jugendwerk (DPJW) - Projektfoerderung Schulaustausch",
+      "foerdergeberTyp": "sonstige",
+      "foerdersummeMax": 25000,
+      "reichweite": "?",
+      "infoLink": "https://dpjw.org/projektfoerderung/",
+      "score": 64,
+      "status": "done"
+    },
+    {
+      "programmId": "ermoeglichungsbudget-fuer-innovative-schul-und",
+      "name": "Ermoeglichungsbudget fuer innovative Schul- und Unterrichtsentwicklung (Niedersachsen)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 15000,
+      "reichweite": "DE-NI",
+      "infoLink": "https://www.mk.niedersachsen.de/startseite/aktuelles/presseinformationen/ermoglichungsbudget-niedersachsen-stellt-schulen-350-000-euro-fur-innovative-schul-und-unterrichtsentwicklung-zur-verfugung-242870.html",
+      "score": 63.8,
+      "status": "done"
     },
     {
       "programmId": "bayern-kulturfonds",
@@ -343,6 +561,16 @@
       "foerdersummeMax": 50000,
       "reichweite": "DE-BY",
       "infoLink": "https://www.km.bayern.de/ministerium/kooperationen-und-stiftungen/kulturfonds",
+      "score": 63,
+      "status": "done"
+    },
+    {
+      "programmId": "gate-german-apprenticeship-training-exchange",
+      "name": "GATE - German Apprenticeship Training Exchange",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 20000,
+      "reichweite": "?",
+      "infoLink": "https://www.joachim-herz-stiftung.de/foerdern/ganzjaehrige-ausschreibungen",
       "score": 63,
       "status": "done"
     },
@@ -357,15 +585,44 @@
       "status": "done"
     },
     {
-      "programmId": "bw-denkmal-aktiv-2026",
-      "name": "denkmal aktiv - Kulturerbe macht Schule (DEUTSCHE STIFTUNG DENKMALSCHUTZ)",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 1900,
-      "reichweite": "alle",
-      "infoLink": "https://denkmal-aktiv.de",
-      "score": 62.8,
-      "status": "skip",
-      "skipReason": "Dublette von denkmal-aktiv-bundesweit-2026 (denkmal-aktiv.de) (Audit 2026-06-01)"
+      "programmId": "demokratie-verstaerker-innen-2026",
+      "name": "Demokratie-Verstaerker*innen 2026",
+      "foerdergeberTyp": "sonstige",
+      "foerdersummeMax": 10000,
+      "reichweite": "DE-HE",
+      "infoLink": "https://www.ekkw.de/kirche/aktuell/jetzt-bewerben-demokratie-verstaerkerinnen-2026",
+      "score": 62,
+      "status": "done"
+    },
+    {
+      "programmId": "demokratische-beteiligung-von-schuelerinnen-und",
+      "name": "Demokratische Beteiligung von Schuelerinnen und Schuelern (Niedersachsen)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 10000,
+      "reichweite": "DE-NI",
+      "infoLink": "https://www.aewb-nds.de/themen/dbs",
+      "score": 62,
+      "status": "done"
+    },
+    {
+      "programmId": "gruen-macht-schule",
+      "name": "Gruen macht Schule",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 10000,
+      "reichweite": "DE-BE",
+      "infoLink": "https://www.gruen-macht-schule.de/de/foerderung/foerderantrag",
+      "score": 62,
+      "status": "done"
+    },
+    {
+      "programmId": "landesprogramm-weltoffenes-sachsen-fuer-demokratie",
+      "name": "Landesprogramm Weltoffenes Sachsen fuer Demokratie und Toleranz (WOS)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 10000,
+      "reichweite": "DE-SN",
+      "infoLink": "https://www.politische.bildung.sachsen.de/partner-und-programme-4030.html",
+      "score": 62,
+      "status": "done"
     },
     {
       "programmId": "jugendbruecke-beruflicher-austausch-2026-27",
@@ -378,15 +635,34 @@
       "status": "done"
     },
     {
-      "programmId": "denkmalschutz-denkmal-aktiv",
-      "name": "denkmal aktiv – Kulturerbe macht Schule",
+      "programmId": "aktions-und-bildungswochen-gegen-antisemitismus",
+      "name": "Aktions- und Bildungswochen gegen Antisemitismus",
       "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 1900,
-      "reichweite": "alle",
-      "infoLink": "https://denkmal-aktiv.de",
-      "score": 60.8,
-      "status": "skip",
-      "skipReason": "Dublette von denkmal-aktiv-bundesweit-2026 (denkmal-aktiv.de) (Audit 2026-06-01)"
+      "foerdersummeMax": 1500,
+      "reichweite": "?",
+      "infoLink": "https://www.amadeu-antonio-stiftung.de/projektfoerderung/foerderbilanz/",
+      "score": 61.8,
+      "status": "done"
+    },
+    {
+      "programmId": "aktionsprogramm-hauptsache-musik-niedersachsen",
+      "name": "Aktionsprogramm HAUPTSACHE:MUSIK (Niedersachsen)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 15000,
+      "reichweite": "DE-NI",
+      "infoLink": "https://www.mk.niedersachsen.de/startseite/schule/schulerinnen_und_schuler_eltern/hauptsache_musik/aktionsprogramm-hauptsache-musik-5772.html",
+      "score": 61.8,
+      "status": "done"
+    },
+    {
+      "programmId": "landesprogramm-kultur-und-schule-nrw",
+      "name": "Landesprogramm Kultur und Schule (NRW)",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 8400,
+      "reichweite": "DE-NW",
+      "infoLink": "https://www.mkw.nrw/themen/kultur/kunst-und-kulturfoerderung/landesprogramm-kultur-und-schule",
+      "score": 61.2,
+      "status": "done"
     },
     {
       "programmId": "hopp-foundation-schulpreis",
@@ -419,6 +695,16 @@
       "status": "done"
     },
     {
+      "programmId": "dsee-mikrofoerderung",
+      "name": "DSEE-Mikrofoerderung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 1500,
+      "reichweite": "?",
+      "infoLink": "https://www.deutsche-stiftung-engagement-und-ehrenamt.de/foerderung/aktuelle-programme/",
+      "score": 59.8,
+      "status": "done"
+    },
+    {
       "programmId": "aok-gesundheit",
       "name": "Gesunde Schule",
       "foerdergeberTyp": "stiftung",
@@ -426,8 +712,7 @@
       "reichweite": "alle",
       "infoLink": "https://www.aok.de/pk/leistungen/schulen/gesundheitsprogramme/",
       "score": 59.4,
-      "status": "skip",
-      "skipReason": "Fehl-Fit: fragmentierte Landes-/Regionalprogramme, kein einheitliches Bund-Antragsprogramm (Audit 2026-06-01)"
+      "status": "open"
     },
     {
       "programmId": "chemie-fonds",
@@ -440,26 +725,14 @@
       "status": "done"
     },
     {
-      "programmId": "sparkasse-elbe-elster-ausland",
-      "name": "Schulische Auslandsstipendien",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 5000,
-      "reichweite": "DE-BB",
-      "infoLink": "https://www.spk-elbe-elster.de/de/home/ihre-sparkasse/Sparkassenstiftung/foerderung/auslandsstipendium.html",
-      "score": 59,
-      "status": "skip",
-      "skipReason": "Individuelles Schueler-Stipendium, keine Schul-Antragsfoerderung. Laut offizieller Programmseite (spk-elbe-elster.de) richtet sich das Auslandsstipendium an \"Einzelschueler\" ab dem 9. Schuljahr, die einen schulischen Auslandsaufenthalt verbringen moechten; Empfaenger ist der/die einzelne Schueler/in. Antragsunterlagen sind 2 Zeugnisse, Schulamtsgenehmigung und Nachweis der Kundenbeziehung zur Sparkasse - kein Schul-/Foerdervereins-Konzept. Faellt unter den Ausschluss \"individuelle Schueler-Stipendien/-Preise\"."
-    },
-    {
       "programmId": "baywa-waldschule",
       "name": "Waldschulprojekt",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 5000,
-      "reichweite": "alle",
+      "reichweite": "DE-BY",
       "infoLink": "https://www.baywastiftung.de/projekte/waldschule",
       "score": 59,
-      "status": "skip",
-      "skipReason": "Fehl-Fit: Sachleistungs-Modell analog Schulgarten (Audit 2026-06-01)"
+      "status": "open"
     },
     {
       "programmId": "stiftung-bildung-preis",
@@ -512,26 +785,34 @@
       "status": "done"
     },
     {
-      "programmId": "th-mint-digital",
-      "name": "MINT- und Digital-Schulen Thüringen",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 30000,
-      "reichweite": "DE-TH",
-      "infoLink": "https://mintthueringen.de",
-      "score": 56.8,
-      "status": "skip",
-      "skipReason": "\"MINT Thüringen\" (mintthueringen.de) inkl. der Auszeichnungen \"Digitale Schule\" und \"MINT-freundliche Schule\" ist KEINE monetäre Antragsförderung, sondern ein Auszeichnungs-/Siegel-Programm. Schulen durchlaufen eine Selbsteinschätzung/ein digitales Profil und bewerben sich über die nationale Plattform mintzukunftschaffen.de; bei Erfüllung der Kriterien erhalten sie das Siegel \"Digitale Schule\" bzw. \"MINT-freundliche Schule\" für 3 Jahre (Quelle: https://mintthueringen.de/ueber-mint-thueringen/digitale-schule/ - \"für drei Jahre mit dem Siegel ausgezeichnet\"; keine Angabe zu Preisgeld/Förderung). Die angebotene Unterstützung besteht ausschliesslich aus Zugang zu Netzwerken (STIFT, Stiftung Bildung für Thüringen), Schülerkursen und Lehrkräftefortbildungen sowie dem MINTMAX-Programm - reine Sach-/Vernetzungsleistung ohne fördernden Geldzuschuss. Es gibt keinen schriftlichen Antrag, mit dem eine Schule Geld erhalten kann; die in den Programmdaten genannten 30.000 EUR sind durch keine Quelle belegt. Damit fällt das Programm unter die Ausschlusskriterien (Dachverband/Netzwerk ohne eigenes Geld-Programm bzw. blosse Auszeichnung/Workshop-Teilnahme)."
+      "programmId": "energiesparmeister",
+      "name": "Energiesparmeister",
+      "foerdergeberTyp": "sonstige",
+      "foerdersummeMax": 5000,
+      "reichweite": "?",
+      "infoLink": "https://www.energiesparmeister.de/",
+      "score": 57,
+      "status": "done"
     },
     {
-      "programmId": "bw-mint-digital",
-      "name": "MINT- und Digital-Schulen Baden-Württemberg",
+      "programmId": "sozialgenial-hilft-foerderfonds",
+      "name": "sozialgenial hilft-Foerderfonds",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 500,
+      "reichweite": "?",
+      "infoLink": "https://www.aktive-buergerschaft.de/service-learning/sozialgenial-hilft-foerderfonds/",
+      "score": 57,
+      "status": "done"
+    },
+    {
+      "programmId": "zukunftsschule-sh-nachhaltigkeitspreisgelder-der-sparkassen",
+      "name": "Zukunftsschule.SH - Nachhaltigkeitspreisgelder der Sparkassen",
       "foerdergeberTyp": "land",
-      "foerdersummeMax": 30000,
-      "reichweite": "DE-BW",
-      "infoLink": "https://km.baden-wuerttemberg.de",
-      "score": 56.8,
-      "status": "skip",
-      "skipReason": "Das Programm \"MINT- und Digital-Schulen Baden-Württemberg\" bezeichnet die Auszeichnungen \"MINT-freundliche Schule\" und \"Digitale Schule\" der Initiative MINT Zukunft schaffen (mit dem KM BW als Landespartner). Laut Anbieter (mintzukunftschaffen.de/mint-freundliche-schule) handelt es sich um ein reines Signet/Titel OHNE finanzielle Foerderung: \"Anerkennung und Sichtbarmachung, nicht Geldmittel\". Schulen reichen zwar einen standardisierten 14-Kriterien-Katalog ueber ein Bewerbungsportal ein, erhalten dafuer aber kein Geld (kein Zuschuss, kein Preisgeld, keine Anschubfinanzierung) - nur Vernetzung, MINT-MAX-Partnerprogramm und Sichtbarkeit. Die KM-BW-Seite beschreibt eine MINT-Strategie, kein antragsbasiertes Foerderprogramm mit Auszahlung. Damit kein Fit (Auszeichnung ohne foerdernde Bewerbung)."
+      "foerdersummeMax": 5000,
+      "reichweite": "DE-SH",
+      "infoLink": "https://fachportal.lernnetz.de/sh/themen/zukunftsschule.html",
+      "score": 57,
+      "status": "done"
     },
     {
       "programmId": "bw-mikro-makro-mint",
@@ -544,15 +825,14 @@
       "status": "done"
     },
     {
-      "programmId": "sn-mint-digital-37",
-      "name": "37 MINT- und Digital-Schulen Sachsen",
+      "programmId": "saechsischer-schulgartenwettbewerb-aus-grau-macht",
+      "name": "Saechsischer Schulgartenwettbewerb AUS GRAU MACHT GRUEN",
       "foerdergeberTyp": "land",
-      "foerdersummeMax": 25000,
+      "foerdersummeMax": 2500,
       "reichweite": "DE-SN",
-      "infoLink": "https://www.mintzukunftschaffen.de",
+      "infoLink": "https://www.schulgarten.sachsen.de/schulgartenwettbewerb.htm",
       "score": 56,
-      "status": "skip",
-      "skipReason": "\"37 MINT- und Digital-Schulen Sachsen\" bezeichnet die Ehrung von 37 saechsischen Schulen 2025 im Rahmen der Initiative \"MINT Zukunft schaffen!\" mit den Siegeln \"MINT-freundliche Schule\" und \"Digitale Schule\". Es handelt sich um ein reines Auszeichnungs-/Signet-Programm, KEINE Antragsfoerderung: Laut offizieller FAQ (mintzukunftschaffen.de/faq-bewerbung-...) erhalten ausgezeichnete Schulen ausschliesslich Urkunde, Tuerschild, Listung im Dashboard und PR-Material/Logo - \"kein Foerdergeld, Zuschuss oder Preisgeld\" (Bewerbung selbst ist kostenfrei). Die in den Programm-Metadaten genannten 25.000 EUR haben keine Grundlage in der realen Ausschreibung. Damit liegt kein foerderfaehiger schriftlicher Antrag mit Geldzahlung vor (Quelle: https://mintzukunftschaffen.de/2025/09/02/sachsens-kultusminister-clemens-wuerdigt-37-schulen-fuer-spitzenleistung-in-mint-und-digitalisierung/ ; https://mintzukunftschaffen.de/faq-bewerbung-als-mint-freundliche-schule-und-digitale-schule/).\""
+      "status": "done"
     },
     {
       "programmId": "hamburg-kultur-schule",
@@ -574,17 +854,6 @@
       "infoLink": "https://mbjs.brandenburg.de/bildung.html",
       "score": 55,
       "status": "done"
-    },
-    {
-      "programmId": "mintspace-schulpreis",
-      "name": "MINTSPACE-Schulpreis",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 2000,
-      "reichweite": "alle",
-      "infoLink": "https://www.jugend-forscht.de/netzwerk/informationen-fuer-schulen.html",
-      "score": 55,
-      "status": "skip",
-      "skipReason": "Keine echte Schul-Antragsfoerderung. Der MINTSPACE-Schulpreis (Hohenloher + Stiftung Jugend forscht) wird primaer von der Jugend-forscht-Jury bei den 92 Regionalwettbewerben vergeben (Schule reicht keinen Antrag ein) und besteht aus Sachleistungen: Gedenktafel + Experimentier-Tableau (Wert ca. 50 EUR). Fuer den Bundespreis koennen Regionalsieger zwar selbst etwas einreichen, jedoch nur ein KREATIVES Format (Foto, Zeichnung, Collage, Video, Gedicht oder 3D-Modell), kein schriftliches Foerderkonzept mit Budget. Die Preise sind zudem reine Einrichtungs-/Moebelgutscheine (1. Platz 3.000 EUR, 2. Platz 2.000 EUR, Plaetze 3-10 je 500 EUR), die nur beim Schulausstatter Hohenloher einloesbar sind = Sachleistung, kein frei verwendbarer Zuschuss/Geldpreis. Damit faellt das Programm sowohl unter 'reine Sachleistung' als auch unter 'Programm ohne foerdernde schriftliche Bewerbung'. Beleg: https://www.hohenloher.de/de/unternehmen/mintspace-schulpreis/ (Bewerbung via Jury + kreative Einreichung, Preise als Einrichtungsgutscheine)."
     },
     {
       "programmId": "sachsen-klimaschulen-2026",
@@ -637,37 +906,24 @@
       "status": "done"
     },
     {
-      "programmId": "jugend-forscht-schulpreis",
-      "name": "Jugend forscht-Schulpreis",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 1000,
-      "reichweite": "alle",
-      "infoLink": "https://www.jugend-forscht.de/teilnahme/ablauf/preise.html",
-      "score": 52,
-      "status": "skip",
-      "skipReason": "Der Jugend forscht-Schulpreis ist ein Jury-Preis fuer Schulen, kein antragsbasiertes Foerderprogramm. Laut Stiftung Jugend forscht (jugend-forscht.de/teilnahme/ablauf/preise.html) zeichnet die Kultusministerkonferenz jaehrlich drei Schulen mit dem \"Preis der Jugend forscht Schule\" aus, basierend auf ihren Strukturen und der Wettbewerbsteilnahme ihrer Schueler - es gibt KEINE schriftliche Foerderbewerbung der Schule. Der gesponserte MINTSPACE-Schulpreis (hohenloher.de) wird von der Jury an Regionalwettbewerben automatisch an Schulen mit besonderem Engagement vergeben, ohne Antrag (\"Alle Regionalsieger erhalten automatisch eine Preistafel ... ohne weiteren Antrag\"). Eine Schule kann den Preis also nicht durch Einreichen eines schriftlichen Antrags/Konzepts erhalten, sondern erhaelt ihn als Auszeichnung infolge der Wettbewerbsergebnisse ihrer Schueler. Damit kein Fit fuer eine Schul-Antragsfoerderung (individueller/institutioneller Preis, von Jury vergeben, keine foerdernde schriftliche Bewerbung)."
-    },
-    {
-      "programmId": "bayern-mint-freundliche-schulen",
-      "name": "MINT-freundliche Schulen Bayern",
+      "programmId": "bayern-alltagskompetenzen-schule-fuers-leben",
+      "name": "Bayern: Alltagskompetenzen - Schule fuers Leben",
       "foerdergeberTyp": "land",
-      "foerdersummeMax": 10000,
+      "foerdersummeMax": 910,
       "reichweite": "DE-BY",
-      "infoLink": "https://www.km.bayern.de",
-      "score": 52,
-      "status": "skip",
-      "skipReason": "Die \"MINT-freundliche Schule\" (Bayern, Ehrungspartner vbw, Initiative MINT Zukunft schaffen!) ist eine reine Auszeichnung/ein Signet, KEINE Geldfoerderung. Schulen bewerben sich zwar online (Kriterienkatalog: mind. 10 von 14 MINT-Kriterien nachweisen), erhalten aber kein Preisgeld, keinen Zuschuss und keine Anschubfinanzierung. Belegt durch mintzukunftschaffen.de/mint-freundliche-schule/ und bildunginbayern.de: Nutzen = Signet (3 Jahre gueltig), Sichtbarkeit, Vernetzung mit Partnerunternehmen und Zugang zum MINTMAX-Partnerprogramm. Kein finanzieller Foerderbetrag verbunden -> faellt unter Ausschlusskriterium \"Programme ohne foerdernde Geldleistung / reine Anerkennung\". Der angegebene foerdersummeMax von 10.000 EUR entspricht keiner realen Geldleistung des Programms."
+      "infoLink": "https://www.bayernportal.de/dokumente/leistung/4656588570168",
+      "score": 51.6,
+      "status": "done"
     },
     {
-      "programmId": "sparkasse-erfurt-exzellenz",
-      "name": "Preise für exzellente Schüler",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 300,
-      "reichweite": "DE-TH",
-      "infoLink": "https://www.sparkasse-mittelthueringen.de/de/home/ihre-sparkasse/ihre-sparkasse-vor-ort/sparkassenstiftung-erfurt.html",
-      "score": 46.8,
-      "status": "skip",
-      "skipReason": "Fehl-Fit: individuelle Schülerpreise, regional (Erfurt), kein Schul-Förderantrag (Audit 2026-06-01)"
+      "programmId": "deutsch-franzoesisches-jugendwerk-dfjw-foerderung",
+      "name": "Deutsch-Franzoesisches Jugendwerk (DFJW) - Foerderung Schulaustausch",
+      "foerdergeberTyp": "sonstige",
+      "foerdersummeMax": 800,
+      "reichweite": "?",
+      "infoLink": "https://www.dfjw.org/programme-aus-und-fortbildungen/zuschuesse-fuer-einen-schulaustausch-beantragen",
+      "score": 47,
+      "status": "done"
     },
     {
       "programmId": "niedersachsen-sport",
@@ -680,37 +936,54 @@
       "status": "done"
     },
     {
-      "programmId": "sachsen-anhalt-digital",
-      "name": "Digitale Endgeräte Sachsen-Anhalt",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 1000,
-      "reichweite": "DE-ST",
-      "infoLink": "https://www.bildung-lsa.de/",
-      "score": 40,
-      "status": "skip",
-      "skipReason": "Reines Schultraeger-/Kommunen-Programm: Die \"IKT-Richtlinie Schulen\" Sachsen-Anhalt (\"Kleiner Digitalpakt\", Foerderquote 80%, Bewilligungsstelle Investitionsbank Sachsen-Anhalt) richtet sich laut Ministeriums-Pressemitteilung und IB ausschliesslich an \"alle oeffentlichen und freien Schultraeger\" als Antragsberechtigte (Kommunen, Landkreise, freie Traeger). Einzelne Schulen oder ihre Foerdervereine sind nicht antragsberechtigt und reichen keinen eigenen Antrag ein; gefoerdert werden Investitionen in Endgeraete/Multimedia-Arbeitsstationen, kein von der Schule verfasstes Foerderkonzept. Damit liegt kein Fit fuer einen KI-Antragsassistenten fuer Schulen vor (Ausschlusskriterium \"reines Kommunen-Programm, Schule beantragt nicht selbst\"). Belege: mb.sachsen-anhalt.de (PM Feussner, Schultraeger antragsberechtigt) und ib-sachsen-anhalt.de/de/oeffentliche-einrichtungen/digitalisieren/ikt-an-schulen."
-    },
-    {
-      "programmId": "bmbf-ganztag-bildungskommunen",
-      "name": "Ganztag in Bildungskommunen (BMBF ESF Plus)",
-      "foerdergeberTyp": "bund",
+      "programmId": "stiftung-berliner-sparkasse-projektfoerderung",
+      "name": "Stiftung Berliner Sparkasse - Projektfoerderung",
+      "foerdergeberTyp": "stiftung",
       "foerdersummeMax": null,
-      "reichweite": "alle",
-      "infoLink": "https://www.transferinitiative.de/ganztag.php",
-      "score": 40,
-      "status": "skip",
-      "skipReason": "Reines Kommunen-Programm: Antragsberechtigt sind laut Foerderrichtlinie/ESF-Aufruf ausschliesslich kreisfreie Staedte, kreisangehoerige Staedte mit eigenem Jugendamt und Landkreise (in Kooperation mit mind. zwei Gemeinden). Schulen oder Foerdervereine koennen NICHT selbst beantragen; gefoerdert wird die kommunale Koordinierung der Ganztagsbildung (Personalkosten Koordinierungsstelle). Damit kein Schul-Antragsfoerderprogramm. Beleg: esf.de Aufruf 2024-06-20 und transferinitiative.de/ganztag.php ('Schulen koennen nicht selbst beantragen', Antragsberechtigte = Kommunen)."
-    },
-    {
-      "programmId": "bildungskommunen-bmbf",
-      "name": "Ganztag in Bildungskommunen",
-      "foerdergeberTyp": "bund",
-      "foerdersummeMax": null,
-      "reichweite": "alle",
-      "infoLink": "https://www.bmbfsfj.bund.de/resource/blob/276378/3f45ba8ee1183000e42e3f19420b0376/bildungskommunen-de-data.pdf",
+      "reichweite": "DE-BE",
+      "infoLink": "https://www.stiftung-berliner-sparkasse.de/",
       "score": 32,
-      "status": "skip",
-      "skipReason": "Dublette von bmbf-ganztag-bildungskommunen (Audit 2026-06-01)"
+      "status": "done"
+    },
+    {
+      "programmId": "wilo-foundation-bildung-mint-foerderung",
+      "name": "Wilo-Foundation - Bildung (MINT-Foerderung)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "DE-NW",
+      "infoLink": "https://www.wilo-foundation.de/foerderprojekte/bildung-soziales/",
+      "score": 32,
+      "status": "done"
+    },
+    {
+      "programmId": "innogy-stiftung-fuer-energie-und",
+      "name": "innogy Stiftung fuer Energie und Gesellschaft - Projektfoerderung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "?",
+      "infoLink": "https://innogy-stiftung.com/ueber-die-stiftung/foerderantraege/",
+      "score": 30,
+      "status": "done"
+    },
+    {
+      "programmId": "mint-school",
+      "name": "MINT@School",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "DE-BW",
+      "infoLink": "https://vector-stiftung.de/foerderbereiche/",
+      "score": 30,
+      "status": "done"
+    },
+    {
+      "programmId": "projektfoerderung-dieter-schwarz-stiftung",
+      "name": "Projektfoerderung Dieter Schwarz Stiftung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "DE-BW",
+      "infoLink": "https://www.dieter-schwarz-stiftung.de/antrag.html",
+      "score": 30,
+      "status": "done"
     },
     {
       "programmId": "berdelle-naturwissenschaft",
@@ -723,17 +996,6 @@
       "status": "done"
     },
     {
-      "programmId": "bosch-100-prozent-schulen",
-      "name": "100-Prozent-Schulen",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": null,
-      "reichweite": "alle",
-      "infoLink": "https://www.bosch-stiftung.de/de/presse/2025/05/basiskompetenzen-fuer-alle-grundschuelerinnen-start-der-bundesweiten-initiative-100",
-      "score": 24,
-      "status": "skip",
-      "skipReason": "Kein Fit: \"100-Prozent-Schulen\" (DKJS gemeinsam mit Robert Bosch Stiftung, Beisheim Stiftung, Crespo Foundation) ist ein Schulentwicklungs- und Begleitprogramm, keine Antragsfoerderung fuer einzelne Schulen. Schulen schliessen sich freiwillig zu regionalen Clustern (mind. 5 Grundschulen) zusammen und werden von der DKJS-Fachstelle mit \"Austausch, Qualifizierung und Schulentwicklungsberatung\" begleitet (mind. 3 Cluster-Treffen/Jahr) — reine Prozessbegleitung/Fortbildung als Sachleistung, kein Zuschuss/Preisgeld an die Schule. Keine der vier offiziellen Quellen (bosch-stiftung.de/de/projekt/100-prozent-schulen, dkjs.de/100-prozent-schulen, crespo-foundation.de, Pressemitteilung) nennt eine Ausschreibung, Bewerbungsfrist, einreichbares Konzept/Antrag oder Foerdersumme fuer Schulen; Aufnahme erfolgt ueber Interesse/Kontakt in Abstimmung mit der Schulaufsicht. Die Stiftungsmittel finanzieren das Programm/die Fachstelle, nicht eine von der Schule beantragte Zuwendung. Damit fehlt die geforderte fördernde schriftliche Bewerbung (vgl. Ausschluss \"blosse Workshop-/Programmteilnahme\", \"reine Sachleistung\", \"ohne foerdernde schriftliche Bewerbung\")."
-    },
-    {
       "programmId": "reinhold-beitlich",
       "name": "Erziehung und Bildung",
       "foerdergeberTyp": "stiftung",
@@ -744,17 +1006,6 @@
       "status": "done"
     },
     {
-      "programmId": "sparkassen-schulservice",
-      "name": "Finanzielle Bildung - SchulService",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": null,
-      "reichweite": "alle",
-      "infoLink": "https://www.sparkassenstiftung.de",
-      "score": 22,
-      "status": "skip",
-      "skipReason": "Der Sparkassen-SchulService \"Finanzielle Bildung\" (sparkassen-schulservice.de) ist KEINE antragsbasierte Schul-Foerderung, sondern ein reines Angebot aus kostenlosen Unterrichtsmaterialien plus kostenlosen Schulvortraegen. Belegt durch die offizielle Seite: \"Lehrerinnen und Lehrer nutzen alle Inhalte der Plattform kostenlos und ohne Registrierung\", Materialien als Klassensaetze (bis 35 Exemplare/Monat) kostenlos bestellbar, und Vortraege ohne Kosten fuer die Schule (Honorare/Reisekosten traegt der DSGV). Eine Schule erhaelt also Sachleistung und Workshop-Teilnahme, aber KEIN Geld ueber eine foerdernde schriftliche Bewerbung/ein Konzept. Damit Ausschluss-Kriterium \"reine Sachleistung\" und \"blosse Workshop-Teilnahme\". Die separaten regionalen Sparkassen-Schulwettbewerbe mit Preisgeld (z.B. Schwarzwald-Baar, Westholstein) sind eigenstaendige, lokal von einzelnen Sparkassen ausgelobte Wettbewerbe und nicht dieses bundesweite SchulService-Programm. Quellen: https://www.sparkassen-schulservice.de/ , https://www.sparkassen-schulservice.de/schulvortraege/"
-    },
-    {
       "programmId": "baywa-schulgarten",
       "name": "Schulgartenprojekt 'Gemüse pflanzen. Gesundheit ernten.'",
       "foerdergeberTyp": "stiftung",
@@ -762,786 +1013,46 @@
       "reichweite": "alle",
       "infoLink": "https://www.baywastiftung.de/projekte/schulgarten",
       "score": 22,
-      "status": "skip",
-      "skipReason": "Fehl-Fit: Sachleistung (Hochbeet-Set per Formular), kein Antrag (Audit 2026-06-01)"
-    },
-    {
-      "programmId": "baywa-opflanzt",
-      "name": "O'pflanzt is!",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": null,
-      "reichweite": "alle",
-      "infoLink": "https://www.baywastiftung.de/projekte/opflanzt-is",
-      "score": 22,
-      "status": "skip",
-      "skipReason": "\"O'pflanzt is!\" ist ein eigenes Aufforstungs-/Pflanzprojekt der BayWa Stiftung gemeinsam mit den Bayerischen Staatsforsten (seit 2022, 100.000 Bäume bis 2024, Pflanzaktionen im bayerischen Staatswald 2025–2030). Es gibt KEIN Antragsverfahren, mit dem eine Schule (oder ihr Förderverein) ein schriftliches Konzept einreichen und dafür Geld/Zuschuss/Preisgeld erhalten könnte. Schulen sind nur über die Spenden-Aktion \"Lauf für den Wald\" beteiligt – dort SAMMELN Schüler Spenden für das Projekt (Schule gibt Geld, erhält keines). Damit fehlt die fördernde schriftliche Bewerbung; kein Fit. Belege: https://www.baywastiftung.de/projekte/opflanzt-is und https://www.baywastiftung.de/aktuelles/laufen-fur-den-wald (Stiftungs-eigenes Projekt ohne Schul-Antragsförderung).\""
-    },
-    {
-      "programmId": "baywa-laufen-wald",
-      "name": "Laufen für den Wald",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": null,
-      "reichweite": "alle",
-      "infoLink": "https://www.baywastiftung.de",
-      "score": 22,
-      "status": "skip",
-      "skipReason": "\"Laufen für den Wald\" der BayWa Stiftung ist ein Spendenlauf-Aktionsformat, keine Antragsförderung. Schulen organisieren selbst einen Sponsorenlauf; Schüler sammeln pro gelaufenem Kilometer Spenden. Mindestens 50% der erlaufenen Spenden fließen in das Aufforstungsprojekt \"O'pflanzt is!\", die Schule darf bis zu 50% ihres selbst erlaufenen Erlöses für eigene Projekte behalten. Es gibt keine schriftliche Bewerbung/kein Konzept, das eingereicht wird, um Fördergeld zu erhalten — die Schule generiert die Mittel selbst durch Fundraising, statt Geld zu beantragen. Quelle: https://www.baywastiftung.de/aktuelles/laufen-fur-den-wald"
-    },
-    {
-      "programmId": "stifterverband-kompass",
-      "name": "Kompass Bildungsförderung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": null,
-      "reichweite": "alle",
-      "infoLink": "https://www.stifterverband.org",
-      "score": 22,
-      "status": "skip",
-      "skipReason": "\"Kompass Bildungsfoerderung Deutschland\" ist KEINE Antragsfoerderung, sondern ein Such-/Navigationstool und Report des Stifterverbands (mit McKinsey). Laut offizieller Quelle (stifterverband.org/medien/kompass_bildungsfoerderung_deutschland) erfasst er 130 zivilgesellschaftliche Initiativen und Schuelerwettbewerbe und bietet Schulen ein Web-Tool zum Filtern passender externer Foerderangebote nach Zielgruppe/Schulstufe/Thema. Schulen koennen dort weder einen Antrag noch ein Konzept einreichen und kein Geld erhalten (\"Schools cannot apply to Kompass for money\") — es vermittelt lediglich externe Partner. Damit fehlt die foerdernde schriftliche Bewerbung; kein Fit."
-    },
-    {
-      "programmId": "mint-zukunft-siegel",
-      "name": "MINT-freundliche Schule",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": null,
-      "reichweite": "alle",
-      "infoLink": "https://mintzukunftschaffen.de/mint-freundliche-schule",
-      "score": 22,
-      "status": "skip",
-      "skipReason": "\"MINT-freundliche Schule\" ist eine reine Auszeichnung/Guetesiegel der Initiative \"MINT Zukunft schaffen\", keine Antragsfoerderung. Schulen fuellen einen Katalog mit 14 MINT-Kriterien (Selbsteinschaetzung) aus und erhalten bei Ehrung ausschliesslich nicht-monetaere Leistungen: Urkunde, Tuerschild, Logo/Pressematerial und eine 3-jaehrige Listung auf der Webseite. Laut offizieller FAQ und Programmseite gibt es kein Preisgeld, keinen Zuschuss und keine Anschubfinanzierung. Damit fehlt das konstituierende Merkmal einer Schul-Antragsfoerderung (Geldfluss fuer ein eingereichtes Konzept). Belege: https://mintzukunftschaffen.de/mint-freundliche-schule/ und https://mintzukunftschaffen.de/faq-bewerbung-als-mint-freundliche-schule-und-digitale-schule/"
-    },
-    {
-      "programmId": "arbeitskreis-bildung",
-      "name": "Arbeitskreis Bildung - Jahrestagung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": null,
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftungen.org/verband/was-wir-tun/vernetzungsangebote/arbeitskreise/arbeitskreis-bildung.html",
-      "score": 22,
-      "status": "skip",
-      "skipReason": "Der \"Arbeitskreis Bildung\" ist ein reines Vernetzungs- und Austauschformat des Bundesverbands Deutscher Stiftungen fuer bildungsaktive Stiftungen, mit einer jaehrlichen Jahrestagung (2026 Thema KI in der Bildung). Es handelt sich um ein Dachverband-/Netzwerkangebot OHNE eigenes Foerderprogramm: Es gibt keine Zuschuesse, Preisgelder oder Anschubfinanzierung, fuer die sich Schulen oder Foerdervereine schriftlich bewerben koennten. Schulen sind nicht antragsberechtigt; das Angebot richtet sich ausschliesslich an Stiftungen als Mitglieder (Quelle: https://www.stiftungen.org/verband/was-wir-tun/vernetzungsangebote/arbeitskreise/arbeitskreis-bildung.html). Damit kein Fit gemaess Vetting (Netzwerk ohne eigenes Programm, keine foerdernde schriftliche Bewerbung)."
-    },
-    {
-      "programmId": "netzwerk-stiftungen-bildung",
-      "name": "Netzwerk Stiftungen und Bildung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": null,
-      "reichweite": "alle",
-      "infoLink": "https://www.netzwerk-stiftungen-bildung.de",
-      "score": 22,
-      "status": "skip",
-      "skipReason": "Fehl-Fit: Dachverband/Netzwerk, kein eigenes Förderprogramm (Audit 2026-06-01)"
-    },
-    {
-      "programmId": "arbeiterkind-schulen",
-      "name": "ArbeiterKind.de Schulkooperation",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": null,
-      "reichweite": "alle",
-      "infoLink": "https://www.arbeiterkind.de",
-      "score": 20,
-      "status": "skip",
-      "skipReason": "Keine Schul-Antragsfoerderung. Die ArbeiterKind.de-Schulkooperation umfasst laut offizieller Seite (arbeiterkind.de/in-deiner-schule) ausschliesslich kostenlose ehrenamtliche Angebote: 90-minuetige Schulvortraege (\"Warum/Was/Wie studieren?\"), Info-Staende an Berufsorientierungstagen und Mentoring durch Ehrenamtliche. Schulen reichen keinen schriftlichen Antrag bzw. kein Konzept ein und erhalten kein Geld (kein Zuschuss, Preisgeld oder Anschubfinanzierung). Die unter \"Stipendien fuer Schueler:innen\" praesentierten Foerderungen sind individuelle Schueler-Stipendien externer Stiftungen, die ArbeiterKind.de lediglich als Informationsportal vorstellt - keine schulische Antragsfoerderung. Damit liegt eine reine Workshop-/Vortrags-Teilnahme plus individuelle Schueler-Stipendien vor, beides explizite Ausschlussgruende."
-    },
-    {
-      "programmId": "l-bank-digitalpakt",
-      "name": "DigitalPakt Schule L-Bank (BW)",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": null,
-      "reichweite": "DE-BW",
-      "infoLink": "https://www.l-bank.de/produkte/finanzhilfen/digitalpakt.html",
-      "score": 12,
-      "status": "skip",
-      "skipReason": "Antragsberechtigt und Zuwendungsempfaenger beim DigitalPakt Schule der L-Bank (BW) sind ausschliesslich die Schultraeger (Kommunen bei oeffentlichen Schulen bzw. der Traeger von Ersatz-/Pflege-/Gesundheitsschulen), nicht die einzelne Schule. Laut L-Bank-Programminfo: \"Zuwendungsempfaenger ... koennen Traeger oeffentlicher Schulen, Traeger von Ersatzschulen ... sein.\" Eigenanteil (mind. 20% oeffentlich / 5,4% frei) traegt der Schultraeger; foerderfaehig sind Infrastruktur-Investitionen (Netzwerke, Endgeraete, Anzeigegeraete) auf Basis eines traegerseitigen Medienentwicklungsplans, kein von der Schule eingereichtes Foerderkonzept. Auch DigitalPakt 2.0 (ab 2026) bleibt Schultraeger-gefuehrt. Damit reines Kommunen-/Traeger-Programm, die Schule beantragt nicht selbst und erhaelt kein Geld direkt -> kein Fit fuer EduFunds. Quellen: https://www.l-bank.de/produkte/finanzhilfen/digitalpakt.html ; https://www.digitalpaktschule.de/de/baden-wurttemberg-1786.html ; https://www.digitalpaktschule.de/de/schultraeger-1704.html ; https://km.baden-wuerttemberg.de/de/schule/digitalisierung/digitalpakt-schule-1-und-2"
-    },
-    {
-      "programmId": "first-lego-league",
-      "name": "Digitale Schule Sachsen - FIRST LEGO League",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": null,
-      "reichweite": "DE-SN",
-      "infoLink": "https://www.first-lego-league.org/de/foerdern",
-      "score": 12,
-      "status": "skip",
-      "skipReason": "Die FIRST-LEGO-League-\"Förderung\" (inkl. \"Digitale Schule Sachsen\", koordiniert von HANDS on TECHNOLOGY e.V.) ist eine reine Sachleistungs-/Sponsoring-Förderung: Schulen/Klassen erhalten ein Klassenpaket (~2.000 EUR Wert) mit LEGO-Robotik-Sets (MINDSTORMS/SPIKE Prime), Spielfeldern, Saison- und Unterrichtsmaterialien sowie die Übernahme der Teilnahmegebühr — kein frei verwendbarer Geldzuschuss und kein Preisgeld. Die \"Bewerbung\" erfolgt über ein kurzes Förder-Antragsformular per E-Mail an kh@hands-on-technology.org (Belege: first-lego-league.org/en/support/funding-opportunities; mitmachfonds-sachsen.de/first-lego-league-klassenprojekt). Es gibt keinen schriftlichen Antragstext/kein Projektkonzept, das eine Fördersumme bestimmt — die Förderung ist die Bereitstellung von Material-/Geräte-Sets plus gedeckter Teilnahmegebühr. Damit greift die Ausschlussregel \"reine Sachleistung (Material-/Geräte-Sets ohne Antragstext)\"; ein KI-Antragsassistent kann keinen fördernden Antragstext beitragen."
-    },
-    {
-      "programmId": "aktions-und-bildungswochen-gegen-antisemitismus",
-      "name": "Aktions- und Bildungswochen gegen Antisemitismus",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 1500,
-      "reichweite": "alle",
-      "infoLink": "https://www.amadeu-antonio-stiftung.de/projektfoerderung/foerderbilanz/",
-      "score": 62,
-      "status": "done"
-    },
-    {
-      "programmId": "allianz-foundation-vormals-allianz-umweltstiftung",
-      "skipReason": "Die fruehere Allianz Umweltstiftung wurde in die neue Allianz Foundation ueberfuehrt (infoLink defunct). Das aktuelle Foerderprogramm schliesst laut offizieller Ausschreibung \"schulische und universitaere Aktivitaeten\" ausdruecklich von der Foerderung aus. Gefoerdert werden grosse, translokale/systemische Zivilgesellschafts-, Klima- und Kulturprojekte (80.000-200.000 EUR, europaweit/Mittelmeerraum) - kein passendes Programm fuer einzelne Schulprojekte, auch nicht ueber einen Foerderverein, da die Aktivitaetskategorie selbst ausgeschlossen ist.",
-      "name": "allianz-foundation-vormals-allianz-umweltstiftung",
-      "status": "skip"
-    },
-    {
-      "programmId": "bildungsagenda-ns-unrecht-foerderperiode-2026",
-      "name": "Bildungsagenda NS-Unrecht (Foerderperiode 2026-2029)",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 500000,
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftung-evz.de/",
-      "score": 87,
-      "status": "done"
-    },
-    {
-      "programmId": "dbu-projektfoerderung-foerderthema-nachhaltigkeitskommunikation-und",
-      "name": "DBU-Projektfoerderung (Foerderthema Nachhaltigkeitskommunikation und -bildung)",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 400000,
-      "reichweite": "alle",
-      "infoLink": "https://www.dbu.de/foerderung/projektfoerderung/foerderung-beantragen/",
-      "score": 86,
-      "status": "done"
-    },
-    {
-      "programmId": "deinschulhof-gruene-schulhoefe-bundesinitiative-der",
-      "name": "deinSchulhof / Gruene Schulhoefe (Bundesinitiative DUH & Stiftung Lebendige Stadt)",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 20000,
-      "reichweite": "alle",
-      "infoLink": "https://www.duh.de/informieren/natur-und-umwelt-vor-ort/schulhoefe/",
-      "score": 73,
-      "status": "done"
-    },
-    {
-      "programmId": "deutsch-franzoesisches-jugendwerk-dfjw-foerderung",
-      "name": "Deutsch-Franzoesisches Jugendwerk (DFJW) - Foerderung Schulaustausch",
-      "foerdergeberTyp": "sonstige",
-      "foerdersummeMax": 800,
-      "reichweite": "alle",
-      "infoLink": "https://www.dfjw.org/programme-aus-und-fortbildungen/zuschuesse-fuer-einen-schulaustausch-beantragen",
-      "score": 52,
-      "status": "done"
-    },
-    {
-      "programmId": "deutsch-griechisches-jugendwerk-dgjw-foerderung",
-      "name": "Deutsch-Griechisches Jugendwerk (DGJW) - Foerderung Schulbegegnungen",
-      "foerdergeberTyp": "sonstige",
-      "foerdersummeMax": 50000,
-      "reichweite": "alle",
-      "infoLink": "https://dgjw-egin.org/antrag-stellen/",
-      "score": 72,
-      "status": "done"
-    },
-    {
-      "programmId": "deutsch-polnisches-jugendwerk-dpjw-projektfoerderung",
-      "name": "Deutsch-Polnisches Jugendwerk (DPJW) - Projektfoerderung Schulaustausch",
-      "foerdergeberTyp": "sonstige",
-      "foerdersummeMax": 25000,
-      "reichweite": "alle",
-      "infoLink": "https://dpjw.org/projektfoerderung/",
-      "score": 69,
-      "status": "done"
-    },
-    {
-      "programmId": "deutsche-bahn-stiftung-jaehrliche-foerderausschreibung",
-      "name": "Deutsche Bahn Stiftung - Jaehrliche Foerderausschreibung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 15000,
-      "reichweite": "alle",
-      "infoLink": "https://www.deutschebahnstiftung.de/dbs/foerderung",
-      "score": 72,
-      "status": "done"
-    },
-    {
-      "programmId": "deutscher-lehrkraeftepreis-unterricht-innovativ",
-      "skipReason": "Reine Auszeichnung/Jury-Wettbewerb fuer bereits durchgefuehrte Unterrichtsprojekte (Projekt muss in den letzten zwei Schuljahren bereits stattgefunden haben). Es werden einzelne Lehrkraefte fuer geleistete Arbeit geehrt (Selbst- oder Schueler-Nominierung), keine projektgebundene Antrags-Foerderung fuer ein konkretes geplantes Vorhaben. Preisgeld (2.000/1.500/1.000 EUR fuer Platz 1-3) ist Ehrung fuer Vergangenes, kein beantragbarer Zuschuss; Rechtsweg ausgeschlossen. Antragsteller sind Personen, nicht Schule/Foerderverein. Passt damit nicht zum Antrags-Wizard.",
-      "name": "deutscher-lehrkraeftepreis-unterricht-innovativ",
-      "status": "skip"
-    },
-    {
-      "programmId": "deutscher-lesepreis",
-      "skipReason": "Reine Jury-Auszeichnung fuer bereits geleistete Arbeit: Das Projekt muss in 2025/2026 bereits umgesetzt worden sein, beworben wird abgeschlossenes Engagement. Das Preisgeld (Schul-Kategorie 4.500 EUR) ist ein Ehrungsbetrag, keine projektgebundene Antrags-Foerderung fuer ein konkretes kuenftiges Vorhaben. Damit Skip-Kriterium 'reiner Preis/Wettbewerb ohne projektgebundene Foerderung' erfuellt (Bedingung b nicht gegeben).",
-      "name": "deutscher-lesepreis",
-      "status": "skip"
-    },
-    {
-      "programmId": "dsee-mikrofoerderung",
-      "name": "DSEE-Mikrofoerderung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 1500,
-      "reichweite": "alle",
-      "infoLink": "https://www.deutsche-stiftung-engagement-und-ehrenamt.de/foerderung/aktuelle-programme/",
-      "score": 60,
-      "status": "done"
-    },
-    {
-      "programmId": "dslk-schulpreis-bildung-fuer-nachhaltige",
-      "name": "DSLK-Schulpreis Bildung fuer nachhaltige Entwicklung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 10000,
-      "reichweite": "alle",
-      "infoLink": "https://deutscher-schulleitungskongress.de/nachhaltigkeitspreis/",
-      "score": 70,
-      "status": "done"
-    },
-    {
-      "programmId": "energiesparmeister",
-      "name": "Energiesparmeister",
-      "foerdergeberTyp": "sonstige",
-      "foerdersummeMax": 5000,
-      "reichweite": "alle",
-      "infoLink": "https://www.energiesparmeister.de/",
-      "score": 62,
-      "status": "done"
-    },
-    {
-      "programmId": "energiesparmeister-wettbewerb",
-      "skipReason": "Reiner Jury-Wettbewerb/Auszeichnung: Schulen/Lehrkraefte/Schueler reichen eine Beschreibung eines bereits umgesetzten Klimaschutzprojekts ein, eine Expertenjury kuert je Bundesland einen Sieger (2.500 EUR Preisgeld, Bundessieger +2.500 EUR, Sonderpreis 1.000 EUR). Das Preisgeld ist eine Ehrung fuer bereits geleistetes Engagement, keine projektgebundene Antrags-Foerderung fuer ein konkret geplantes Vorhaben (keine Zweckbindung erkennbar). Damit faellt es unter reine Preise/Auszeichnungen und passt nicht zum Antrags-Wizard.",
-      "name": "energiesparmeister-wettbewerb",
-      "status": "skip"
-    },
-    {
-      "programmId": "feb-foerderprogramm-entwicklungspolitische-bildung",
-      "name": "FEB - Foerderprogramm Entwicklungspolitische Bildung",
-      "foerdergeberTyp": "bund",
-      "foerdersummeMax": 20000,
-      "reichweite": "alle",
-      "infoLink": "https://feb.engagement-global.de/antragstellung.html",
-      "score": 83,
-      "status": "done"
-    },
-    {
-      "programmId": "fonds-fuer-antisemitismus-bekaempfung-und",
-      "name": "Fonds fuer Antisemitismus-Bekaempfung und Aufklaerung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 50000,
-      "reichweite": "alle",
-      "infoLink": "https://www.ghst.de/en/fund-for-anti-semitism-prevention-and-education",
-      "score": 77,
-      "status": "done"
-    },
-    {
-      "programmId": "foerderfonds-demokratie",
-      "name": "Foerderfonds Demokratie",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 5000,
-      "reichweite": "alle",
-      "infoLink": "https://www.foerderfonds-demokratie.de/ausschreibung",
-      "score": 65,
-      "status": "done"
-    },
-    {
-      "programmId": "gate-german-apprenticeship-training-exchange",
-      "name": "GATE - German Apprenticeship Training Exchange",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 20000,
-      "reichweite": "alle",
-      "infoLink": "https://www.joachim-herz-stiftung.de/foerdern/ganzjaehrige-ausschreibungen",
-      "score": 63,
-      "status": "done"
-    },
-    {
-      "programmId": "heinz-nixdorf-stiftung-projektfoerderung-mint",
-      "name": "Heinz Nixdorf Stiftung - Projektfoerderung (MINT/Digitale Bildung)",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 15000,
-      "reichweite": "alle",
-      "infoLink": "https://www.heinz-nixdorf-stiftung.de/",
-      "score": 72,
-      "status": "done"
-    },
-    {
-      "programmId": "ideeninitiative-kulturelle-vielfalt-mit-musik",
-      "name": "Ideeninitiative Kulturelle Vielfalt mit Musik",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 7500,
-      "reichweite": "alle",
-      "infoLink": "https://bewerbung.kultur-und-musikstiftung.de/",
-      "score": 69,
-      "status": "done"
-    },
-    {
-      "programmId": "innogy-stiftung-fuer-energie-und",
-      "name": "innogy Stiftung fuer Energie und Gesellschaft - Projektfoerderung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 0,
-      "reichweite": "alle",
-      "infoLink": "https://innogy-stiftung.com/ueber-die-stiftung/foerderantraege/",
-      "score": 60,
-      "status": "done"
-    },
-    {
-      "programmId": "ki-schulpreis",
-      "name": "KI-Schulpreis",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 40000,
-      "reichweite": "alle",
-      "infoLink": "https://ki-schulpreis.land-der-ideen.de/",
-      "score": 76,
-      "status": "done"
-    },
-    {
-      "programmId": "kindertiger-drehbuchpreis-im-rahmen-der",
-      "skipReason": "Reine Branchen-Auszeichnung der Filmwirtschaft: Antragsberechtigt sind ausschliesslich Drehbuchautor*innen, Produzent*innen und Verleiher*innen bereits verfilmter Kinderfilm-Drehbuecher; das Preisgeld (5.000 + 15.000 EUR) geht an die Autor*innen und ist an die Entwicklung eines neuen Drehbuchs gebunden. Schulen koennen NICHT beantragen (Kinder wirken nur als Jury mit, Verleihung im Rahmen der SchulKinoWochen). Keine projektgebundene Antrags-Foerderung fuer Schulen/Foerdervereine.",
-      "name": "kindertiger-drehbuchpreis-im-rahmen-der",
-      "status": "skip"
-    },
-    {
-      "programmId": "konzeptwettbewerb-schuelerforschungszentren",
-      "name": "Konzeptwettbewerb Schuelerforschungszentren",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 15000,
-      "reichweite": "alle",
-      "infoLink": "https://schuelerforschungszentren.de/foerderungen/konzeptwettbewerb",
-      "score": 72,
-      "status": "done"
-    },
-    {
-      "programmId": "labs-for-chips",
-      "name": "LABS for CHIPS",
-      "foerdergeberTyp": "bund",
-      "foerdersummeMax": 2000,
-      "reichweite": "alle",
-      "infoLink": "https://www.invent-a-chip.de/invent-a-chip/labs-for-chips",
-      "score": 73,
-      "status": "done"
-    },
-    {
-      "programmId": "margot-friedlaender-preis-schulpreis-kategorie",
-      "skipReason": "Reine Auszeichnung/Jury-Wettbewerb fuer bereits geleistetes Engagement. Eine unabhaengige Jury kuert Preistraeger anhand vorhandenen Engagements; eingereicht wird eine Bewerbung/Nominierung des bestehenden Engagements, kein projektgebundener Foerderantrag mit Kostenplan fuer ein konkret geplantes Vorhaben. Das Preisgeld (25.000 EUR) soll zwar der Weiterfuehrung dienen, ist aber kein beantragbarer Projektzuschuss. Erfuellt damit nicht die Wizard-Kriterien (keine antragsgebundene Projektfoerderung).",
-      "name": "margot-friedlaender-preis-schulpreis-kategorie",
-      "status": "skip"
-    },
-    {
-      "programmId": "mixed-up-wettbewerb-mixed-up",
-      "name": "MIXED UP Wettbewerb (Preis + Kick-Off-Foerderung)",
-      "foerdergeberTyp": "bund",
-      "foerdersummeMax": 5000,
-      "reichweite": "alle",
-      "infoLink": "https://www.bkj.de/projekte/mixed-up-wettbewerb/",
-      "score": 77,
-      "status": "done"
-    },
-    {
-      "programmId": "perlenfonds",
-      "name": "Perlenfonds",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 25000,
-      "reichweite": "alle",
-      "infoLink": "https://www.joachim-herz-stiftung.de/foerdern/aktuelle-ausschreibungen/perlenfonds",
-      "score": 74,
-      "status": "done"
-    },
-    {
-      "programmId": "projektfoerderung-der-deutschen-bundesstiftung-umwelt",
-      "name": "Projektfoerderung der Deutschen Bundesstiftung Umwelt (DBU)",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 125000,
-      "reichweite": "alle",
-      "infoLink": "https://www.dbu.de/foerderung/projektfoerderung/",
-      "score": 81,
-      "status": "skip",
-      "skipReason": "Dublette zu dbu-projektfoerderung-foerderthema-nachhaltigkeitskommunikation-und (2026-06-01 dedupliziert)"
-    },
-    {
-      "programmId": "pwc-stiftung-foerderung-kulturelle-bildung",
-      "name": "PwC-Stiftung - Foerderung Kulturelle Bildung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 25000,
-      "reichweite": "alle",
-      "infoLink": "https://pwc-stiftung.de/foerderung/",
-      "score": 72,
-      "status": "done"
-    },
-    {
-      "programmId": "schulwettbewerb-zur-entwicklungspolitik-alle-fuer",
-      "skipReason": "Reiner Jury-Wettbewerb mit Preisgeldern als Auszeichnung, keine projektgebundene Antrags-Foerderung. Eingereicht werden kreative Wettbewerbsbeitraege (Filme, Fotos, Kunstwerke etc.) bzw. beim Schulpreis eine max. 5-seitige Selbstdarstellung des bestehenden Schulprofils im globalen Lernen. Die Preisgelder (Kategoriepreise 500/1000/2000 EUR, Schulpreis 5x5000 EUR) sind ungebundene Anerkennungspreise fuer bereits geleistete Arbeit/bestehendes Profil, nicht zweckgebunden fuer ein konkret geplantes Vorhaben. Damit erfuellt es die Wizard-Bedingung (schriftliche Bewerbung UND zweckgebundene Projektfoerderung) nicht.",
-      "name": "schulwettbewerb-zur-entwicklungspolitik-alle-fuer",
-      "status": "skip"
-    },
-    {
-      "programmId": "sozialgenial-hilft-foerderfonds",
-      "name": "sozialgenial hilft-Foerderfonds",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 500,
-      "reichweite": "alle",
-      "infoLink": "https://www.aktive-buergerschaft.de/service-learning/sozialgenial-hilft-foerderfonds/",
-      "score": 57,
-      "status": "done"
-    },
-    {
-      "programmId": "town-country-stiftungspreis",
-      "name": "Town & Country Stiftungspreis",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 10000,
-      "reichweite": "alle",
-      "infoLink": "https://www.tc-stiftung.de/stiftungspreis/",
-      "score": 70,
-      "status": "done"
-    },
-    {
-      "programmId": "vdi-joachim-herz-technikfonds",
-      "name": "VDI-Joachim-Herz-Technikfonds",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 3000,
-      "reichweite": "alle",
-      "infoLink": "https://www.joachim-herz-stiftung.de/foerdern/ganzjaehrige-ausschreibungen/vdi-joachim-herz-technikfonds",
-      "score": 65,
-      "status": "done"
-    },
-    {
-      "programmId": "wettbewerb-aktiv-fuer-demokratie-und",
-      "skipReason": "Reine Jury-Auszeichnung fuer bereits abgeschlossene, ueberwiegend ehrenamtlich getragene Projekte (Best-Practice-Wuerdigung) statt projektgebundener Antrags-Foerderung. Laufende/geplante Vorhaben sind ausdruecklich ausgeschlossen, es wird kein Projektkonzept fuer ein neues Vorhaben eingereicht und das Preisgeld ist nicht zweckgebunden an ein geplantes Projekt. Zudem sind Schulunterrichtsprojekte und rein hauptamtliche Durchfuehrung explizit ausgeschlossen - passt nicht zum EduFunds-Antrags-Wizard.",
-      "name": "wettbewerb-aktiv-fuer-demokratie-und",
-      "status": "skip"
-    },
-    {
-      "programmId": "aktionsprogramm-hauptsache-musik-niedersachsen",
-      "name": "Aktionsprogramm HAUPTSACHE:MUSIK (Niedersachsen)",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 15000,
-      "reichweite": "DE-NI",
-      "infoLink": "https://www.mk.niedersachsen.de/startseite/schule/schulerinnen_und_schuler_eltern/hauptsache_musik/aktionsprogramm-hauptsache-musik-5772.html",
-      "score": 70,
-      "status": "done"
-    },
-    {
-      "programmId": "bayern-alltagskompetenzen-schule-fuers-leben",
-      "name": "Bayern: Alltagskompetenzen - Schule fuers Leben",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 910,
-      "reichweite": "DE-BY",
-      "infoLink": "https://www.bayernportal.de/dokumente/leistung/4656588570168",
-      "score": 60,
-      "status": "done"
-    },
-    {
-      "programmId": "berliner-projektfonds-kulturelle-bildung",
-      "name": "Berliner Projektfonds Kulturelle Bildung",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 25000,
-      "reichweite": "DE-BE",
-      "infoLink": "https://www.kulturformen.berlin/foerdern/berliner-projektfonds-kulturelle-bildung/",
-      "score": 74,
-      "status": "done"
-    },
-    {
-      "programmId": "bildung-durch-bewegung",
-      "name": "Bildung durch Bewegung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 800000,
-      "reichweite": "DE-BW",
-      "infoLink": "https://dietmar-hopp-stiftung.de/foerderbereiche/bildung.html",
-      "score": 91,
-      "status": "done"
-    },
-    {
-      "programmId": "brandenburg-foerderung-aus-lottomitteln-mbjs",
-      "name": "Brandenburg: Foerderung aus Lottomitteln (MBJS)",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 30000,
-      "reichweite": "DE-BB",
-      "infoLink": "https://mbjs-fachportal.brandenburg.de/und-mehr/foerderung-aus-lottomitteln.html",
-      "score": 75,
-      "status": "done"
-    },
-    {
-      "programmId": "brandenburg-inisek-i-initiative-sekundarstufe",
-      "skipReason": "Zuwendungsempfaenger sind ausschliesslich die zwei zentral per ILB-Ausschreibung ausgewaehlten INISEK-Regionalpartner (juristische Personen des Privatrechts), nicht Schulen. Schulen stellen keinen eigenen Foerderantrag, sondern melden nur ihren Bedarf an den Regionalpartner. Eine einzelne Schule oder ihr Foerderverein kann INISEK I nicht selbst beantragen - damit kein schriftlicher, von der Schule einreichbarer Projektantrag. Zudem ESF-2014-2020-Periode ausgelaufen, aktuell keine Antraege.",
-      "name": "brandenburg-inisek-i-initiative-sekundarstufe",
-      "status": "skip"
-    },
-    {
-      "programmId": "bremen-gewoba-stiftung-zur-foerderung",
-      "name": "Bremen: GEWOBA-Stiftung zur Foerderung der Bildung im oeffentlichen Schulwesen",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 4000,
-      "reichweite": "DE-HB",
-      "infoLink": "https://www.foerdersuche.org/foerderung/gewoba-stiftung-zur-foerderung-der-bildung-im-oeffentlichen-schulwesen",
-      "score": 68,
-      "status": "done"
+      "status": "open"
     },
     {
       "programmId": "bremen-swb-bildungsinitiative",
       "name": "Bremen: swb-Bildungsinitiative",
       "foerdergeberTyp": "sonstige",
-      "foerdersummeMax": 0,
+      "foerdersummeMax": null,
       "reichweite": "DE-HB",
       "infoLink": "https://www.swb-bildungsinitiative.de/foerderung.php",
-      "score": 57,
-      "status": "done"
-    },
-    {
-      "programmId": "deine-idee-deine-schule-dein",
-      "name": "Deine Idee? Deine Schule. Dein Klima!",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 4500,
-      "reichweite": "DE-SN",
-      "infoLink": "https://www.saechsische-jugendstiftung.de/",
-      "score": 69,
-      "status": "done"
-    },
-    {
-      "programmId": "demokratie-verstaerker-innen-2026",
-      "name": "Demokratie-Verstaerker*innen 2026",
-      "foerdergeberTyp": "sonstige",
-      "foerdersummeMax": 10000,
-      "reichweite": "DE-HE",
-      "infoLink": "https://www.ekkw.de/kirche/aktuell/jetzt-bewerben-demokratie-verstaerkerinnen-2026",
-      "score": 67,
-      "status": "done"
-    },
-    {
-      "programmId": "demokratische-beteiligung-von-schuelerinnen-und",
-      "name": "Demokratische Beteiligung von Schuelerinnen und Schuelern (Niedersachsen)",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 10000,
-      "reichweite": "DE-NI",
-      "infoLink": "https://www.aewb-nds.de/themen/dbs",
-      "score": 70,
-      "status": "done"
-    },
-    {
-      "programmId": "ermoeglichungsbudget-fuer-innovative-schul-und",
-      "name": "Ermoeglichungsbudget fuer innovative Schul- und Unterrichtsentwicklung (Niedersachsen)",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 15000,
-      "reichweite": "DE-NI",
-      "infoLink": "https://www.mk.niedersachsen.de/startseite/aktuelles/presseinformationen/ermoglichungsbudget-niedersachsen-stellt-schulen-350-000-euro-fur-innovative-schul-und-unterrichtsentwicklung-zur-verfugung-242870.html",
-      "score": 72,
-      "status": "done"
-    },
-    {
-      "programmId": "ewe-stiftung-mint-und-umweltbildung",
-      "name": "EWE Stiftung - MINT- und Umweltbildung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 20000,
-      "reichweite": "DE-NI",
-      "infoLink": "https://www.ewe-stiftung.de/aktuelles/mint-und-umweltbildung/",
-      "score": 75,
-      "status": "skip",
-      "skipReason": "Dublette zu ewe-stiftung-foerderantrag (2026-06-01 dedupliziert)"
-    },
-    {
-      "programmId": "ewe-stiftung-foerderantrag",
-      "name": "EWE Stiftung Foerderantrag",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 10000,
-      "reichweite": "DE-NI",
-      "infoLink": "https://www.ewe-stiftung.de/foerderantrag/foerderkriterien/",
-      "score": 72,
-      "status": "done"
-    },
-    {
-      "programmId": "foerderlinie-psychische-gesundheit",
-      "name": "Foerderlinie Psychische Gesundheit",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 25000,
-      "reichweite": "DE-HE",
-      "infoLink": "https://sptg.de/foerderung/psychische-gesundheit",
-      "score": 74,
+      "score": 22,
       "status": "done"
     },
     {
       "programmId": "foerderrichtlinie-medienbildung-medienbildung-sachsen-rl",
       "name": "Foerderrichtlinie Medienbildung (Medienbildung.Sachsen)",
       "foerdergeberTyp": "land",
-      "foerdersummeMax": 0,
+      "foerdersummeMax": null,
       "reichweite": "DE-SN",
       "infoLink": "https://www.medienbildung.sachsen.de/foerderrichtlinie-6552.html",
-      "score": 60,
+      "score": 22,
       "status": "done"
     },
     {
-      "programmId": "gruen-macht-schule",
-      "name": "Gruen macht Schule",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 10000,
-      "reichweite": "DE-BE",
-      "infoLink": "https://www.gruen-macht-schule.de/de/foerderung/foerderantrag",
-      "score": 70,
-      "status": "done"
-    },
-    {
-      "programmId": "jugend-demokratiefonds-berlin-berliner-jugendbudget",
-      "name": "Jugend-Demokratiefonds Berlin / Berliner Jugendbudget (STARK gemacht!)",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 20000,
-      "reichweite": "DE-BE",
-      "infoLink": "https://stark-gemacht.de/",
-      "score": 73,
-      "status": "done"
-    },
-    {
-      "programmId": "kunstvoll-projektpartnerschaften-zwischen-schulen-und",
-      "name": "KUNSTVOLL - Projektpartnerschaften zwischen Schulen und Kunstschaffenden (Hessen / Frankfurt RheinMain)",
+      "programmId": "dkjs-sport",
+      "name": "Sport und Bewegung in der Grundschule",
       "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 15000,
-      "reichweite": "DE-HE",
-      "infoLink": "https://kulturberatung-hessen.de/aktuelles/foerderprogramm-kunstvoll-projektpartnerschaften-zwischen-schulen-und-kunstschaffenden",
-      "score": 74,
-      "status": "done"
-    },
-    {
-      "programmId": "landesprogramm-kultur-und-schule-nrw",
-      "name": "Landesprogramm Kultur und Schule (NRW)",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 8400,
-      "reichweite": "DE-NW",
-      "infoLink": "https://www.mkw.nrw/themen/kultur/kunst-und-kulturfoerderung/landesprogramm-kultur-und-schule",
-      "score": 69,
-      "status": "done"
-    },
-    {
-      "programmId": "landesprogramm-weltoffenes-sachsen-fuer-demokratie",
-      "name": "Landesprogramm Weltoffenes Sachsen fuer Demokratie und Toleranz (WOS)",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 10000,
-      "reichweite": "DE-SN",
-      "infoLink": "https://www.politische.bildung.sachsen.de/partner-und-programme-4030.html",
-      "score": 70,
-      "status": "done"
-    },
-    {
-      "programmId": "lernen-in-langenhorn",
-      "name": "Lernen in Langenhorn",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 5000,
-      "reichweite": "DE-HH",
-      "infoLink": "https://www.joachim-herz-stiftung.de/foerdern/ganzjaehrige-ausschreibungen",
-      "score": 69,
-      "status": "done"
-    },
-    {
-      "programmId": "mint-regionalfonds-rheinland-pfalz",
-      "skipReason": "Der MINT-Regionalfonds ist ein Anschub-/Strukturinstrument fuer MINT-Regionen und MINT-Initiativen zum Aufbau eines regionalen Public-Private-Partnership-Finanzierungsmodells. Antragsberechtigt sind regionale Koordinierungsstellen bzw. Projekttraeger (z.B. Hochschulen wie TH Bingen, Ausbildungszentren), nicht einzelne Schulen oder Foerdervereine. Der Antrag ist ausdruecklich formlos mit individueller Beratung, Foerderhoehen und Fristen sind nicht oeffentlich beziffert und es existiert keine definierte schriftliche Antragsstruktur fuer den Wizard. Schulbezogene Projektfoerderung laeuft ueber separate Programme (MINT-Foerdermassnahmen/Wettbewerbe fuer Schulen), nicht ueber diesen Fonds.",
-      "name": "mint-regionalfonds-rheinland-pfalz",
-      "status": "skip"
-    },
-    {
-      "programmId": "mint-school",
-      "name": "MINT@School",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 0,
-      "reichweite": "DE-BW",
-      "infoLink": "https://vector-stiftung.de/foerderbereiche/",
-      "score": 60,
-      "status": "done"
-    },
-    {
-      "programmId": "niedersaechsische-bingo-umweltstiftung-bingo-die",
-      "name": "Niedersaechsische Bingo-Umweltstiftung (BINGO! Die Umweltlotterie)",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 30000,
-      "reichweite": "DE-NI",
-      "infoLink": "https://www.bingo-umweltstiftung.de/wie-stelle-ich-einen-antrag-2/",
-      "score": 75,
-      "status": "done"
-    },
-    {
-      "programmId": "projektfoerderung-dieter-schwarz-stiftung",
-      "name": "Projektfoerderung Dieter Schwarz Stiftung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 0,
-      "reichweite": "DE-BW",
-      "infoLink": "https://www.dieter-schwarz-stiftung.de/antrag.html",
-      "score": 60,
-      "status": "done"
+      "foerdersummeMax": null,
+      "reichweite": "alle",
+      "infoLink": "https://www.dkhw.de",
+      "score": 20,
+      "status": "open"
     },
     {
       "programmId": "projektfoerderung-der-landeszentrale-fuer-politische",
       "name": "Projektfoerderung der Landeszentrale fuer politische Bildung Sachsen-Anhalt (LpB LSA)",
       "foerdergeberTyp": "land",
-      "foerdersummeMax": 0,
+      "foerdersummeMax": null,
       "reichweite": "DE-ST",
       "infoLink": "https://lpb.sachsen-anhalt.de/service/foerderung",
-      "score": 58,
-      "status": "done"
-    },
-    {
-      "programmId": "saarlaendischer-schulpreis",
-      "skipReason": "Reine Auszeichnung/Jury-Wettbewerb fuer bereits geleistete ganzheitliche Schul- und Unterrichtsentwicklung. Schulen reichen eine Selbstdarstellung ihrer bestehenden Qualitaet in sechs Qualitaetsbereichen ein, danach 1,5-taegiger Jury-Schulbesuch. Das Preisgeld (Hauptpreis 10.000 EUR plus bis zu drei weitere Preise) ist eine Praemie fuer geleistete Arbeit, NICHT zweckgebundene Projektfoerderung fuer ein konkret beantragtes Vorhaben. Damit kein Antrags-Wizard-Fall (keine projektgebundene Foerderung).",
-      "name": "saarlaendischer-schulpreis",
-      "status": "skip"
-    },
-    {
-      "programmId": "saechsischer-schulgartenwettbewerb-aus-grau-macht",
-      "name": "Saechsischer Schulgartenwettbewerb AUS GRAU MACHT GRUEN",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 2500,
-      "reichweite": "DE-SN",
-      "infoLink": "https://www.schulgarten.sachsen.de/schulgartenwettbewerb.htm",
-      "score": 64,
-      "status": "done"
-    },
-    {
-      "programmId": "schulpreis-demokratie-und-werte-er",
-      "skipReason": "Reine Auszeichnung / Jury-Wettbewerb. Das Bewerbungsverfahren ist eine Selbsteinschaetzung zum Ist-Stand der bereits geleisteten Demokratie- und Wertebildung; die Jury kuert sieben Schulen, die diese Arbeit \"besonders fest im Schulalltag verankert haben\". Das Preisgeld (2.000 EUR je Schule) ist ein nicht zweckgebundenes Preisgeld fuer bereits geleistete Arbeit, keine projektgebundene Antragsfoerderung mit Mittelverwendungsnachweis. Faellt unter Skip-Kriterium \"reine Ehrung/Preis fuer bereits geleistete Arbeit\".",
-      "name": "schulpreis-demokratie-und-werte-er",
-      "status": "skip"
-    },
-    {
-      "programmId": "stiftung-berliner-sparkasse-projektfoerderung",
-      "name": "Stiftung Berliner Sparkasse - Projektfoerderung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 0,
-      "reichweite": "DE-BE",
-      "infoLink": "https://www.stiftung-berliner-sparkasse.de/",
-      "score": 62,
-      "status": "done"
-    },
-    {
-      "programmId": "stiftung-polytechnische-gesellschaft-projektfoerderung",
-      "name": "Stiftung Polytechnische Gesellschaft - Projektfoerderung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 100000,
-      "reichweite": "DE-HE",
-      "infoLink": "https://sptg.de/foerderung",
-      "score": 82,
-      "status": "done"
-    },
-    {
-      "programmId": "thueringer-klimaschutzpreis-die-blaue-libelle",
-      "name": "Thueringer Klimaschutzpreis Die blaue Libelle",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 5000,
-      "reichweite": "DE-TH",
-      "infoLink": "https://www.klimastiftung-thueringen.de/projekte-foerderung/",
-      "score": 69,
-      "status": "done"
-    },
-    {
-      "programmId": "thueringer-landeswettbewerb-demokratie-schule",
-      "skipReason": "Reiner Jury-Wettbewerb / Auszeichnung fuer bereits geleistete Demokratiebildungs-Projekte. Eingereicht wird eine Dokumentation abgeschlossener Arbeit (PowerPoint, Kurzfilm oder PDF), kein projektgebundenes Antragskonzept. Die Preisgelder (gestaffelt 250-750 EUR, Pool bis 2.500 EUR) sind allgemeine, nicht zweckgebundene Auszeichnungen, keine beantragbare Projektfoerderung mit schriftlichem Foerderantrag. Damit nicht fuer den Antrags-Wizard geeignet (Quellen: bildung.thueringen.de/bildung/politische-bildung/landeswettbewerb und .../wettbewerb).",
-      "name": "thueringer-landeswettbewerb-demokratie-schule",
-      "status": "skip"
-    },
-    {
-      "programmId": "umweltpreis-sachsen-anhalt-sunk-projektfoerderung",
-      "name": "Umweltpreis Sachsen-Anhalt (SUNK) & Projektfoerderung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 20000,
-      "reichweite": "DE-ST",
-      "infoLink": "https://www.foerdersuche.org/foerderung/stiftung-umwelt-natur-klimaschutz-sachsen-anhalt",
-      "score": 75,
-      "status": "done"
-    },
-    {
-      "programmId": "wilo-foundation-bildung-mint-foerderung",
-      "name": "Wilo-Foundation - Bildung (MINT-Foerderung)",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 0,
-      "reichweite": "DE-NW",
-      "infoLink": "https://www.wilo-foundation.de/foerderprojekte/bildung-soziales/",
-      "score": 62,
-      "status": "done"
-    },
-    {
-      "programmId": "zukunftsschule-sh-nachhaltigkeitspreisgelder-der-sparkassen",
-      "name": "Zukunftsschule.SH - Nachhaltigkeitspreisgelder der Sparkassen",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 5000,
-      "reichweite": "DE-SH",
-      "infoLink": "https://fachportal.lernnetz.de/sh/themen/zukunftsschule.html",
-      "score": 65,
+      "score": 20,
       "status": "done"
     }
   ]

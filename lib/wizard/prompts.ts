@@ -12,7 +12,7 @@ import { PIPELINE_CONFIG } from "./config";
 // ============================================================================
 
 const SHARP_HALLU_VERBOTS_BLOCK = `
-## VERBOTSLISTE — UAT-28.04.-Marker (Phase 5 Hebel 1)
+## VERBOTSLISTE — keine erfundenen Konkreta (Phase 5 Hebel 1 + Probe 09.06.)
 
 Erwaehne NIE folgende Dinge, wenn sie nicht aus den User-Antworten explizit hervorgehen:
 - Aktenzeichen, Beschluss-Daten, Geschaeftszeichen — auch nicht im Format "Az 123/2026"
@@ -23,25 +23,42 @@ Erwaehne NIE folgende Dinge, wenn sie nicht aus den User-Antworten explizit herv
 - Haushaltsstellen oder Buchungs-Codes — diese sind IMMER Erfindung
 - KMK-Bezuege oder Curriculum-Zitate wenn User "kenne KMK nicht" gesagt hat
 - Konkrete Partner-Namen die nicht in den User-Antworten genannt wurden
+- **Erhebungen/Studien/Belege als Faktum** (VERA-Vergleichsarbeiten, Bedarfsanalysen,
+  Schulstatistiken, "Sekretariatseinschaetzung", "sozialraeumliche Belastung") — wenn der
+  User keine Erhebung nannte, ist jede Evidenz-Behauptung erfunden.
+- **Marken-, Produkt- oder App-Namen** (Anton, Bettermarks, iPad 10. Gen, Antolin, …) —
+  wenn der User nur allgemein "Lern-Apps", "Tablets", "Instrumente" sagte: NICHT spezifizieren.
+- **Externe Partner / Vereine / Kooperationen / Foerdervereine / Honorarkraefte** (Medienpaedagoge,
+  Landschaftsbuero, Stadtbibliothek-als-Partner, Schulsozialarbeit), die der User nicht genannt hat.
+- **Konkrete Zeitplaene / Quartals-Termine / Mess-Instrumente als feststehend** ("4-Phasen-Plan ab Q3",
+  "monatliche Hospitationen", "Pre/Post-Smiley-Skala wird eingesetzt") ohne User-Beleg.
+  ABER: eine fachlich passende METHODE / ein FORMAT als klar erkennbarer VORSCHLAG ("ein bewaehrter Ansatz
+  ist dialogisches Vorlesen", "wir schlagen Storytelling-Einheiten vor", "denkbar ist eine Vorher-Nachher-
+  Erhebung") ist ERLAUBT und erwuenscht — das ist fachliche Ausgestaltung, keine erfundene Tatsache ueber die Schule.
+- **Hochgerechnete Teil-/Mengenzahlen** ("ca. 150 Nutzer" aus "60% von 250", "25 Tablets" aus
+  "20-30 vielleicht") — eine vom User genannte Spanne darf NIE zu einer festen Zahl werden.
+- **Zusagen mit Rechtsfolge** als feststehend ausgeben: Gemeinnuetzigkeit ("ist als gemeinnuetzig
+  anerkannt"), eigenes Bankkonto, Mittel-Verwaltungsberechtigung, "muendliche Zusage des Foerdervereins",
+  erteilte Schultraeger-/Schulkonferenz-Zustimmung — wenn der User das nicht ausdruecklich bestaetigt hat,
+  ist es eine Falschangabe gegenueber dem Foerdergeber. Nur als noch einzuholenden Schritt formulieren.
 
-**Few-Shot-Negativbeispiele (typische Halluzinationen aus UAT-Erhebung 28.04.):**
+**Few-Shot-Negativbeispiele (mit ehrlicher GUT-Alternative):**
 
-SCHLECHT (erfunden):
-"Gemaess KMK-Strategie 'Bildung in der digitalen Welt' wird der Schultraeger nach TV-L E9 IT-Personal bereitstellen."
-GUT (ehrlich-vage, wenn User keine Details gab):
-"Die geplante IT-Personalstelle wird gemaess den tariflichen Vorgaben des Schultraegers eingruppiert (Details mit Schultraeger im Vergabeverfahren)."
+SCHLECHT (erfunden): "Gemaess KMK-Strategie 'Bildung in der digitalen Welt' wird der Schultraeger nach TV-L E9 IT-Personal bereitstellen."
+GUT: "Die geplante IT-Personalstelle wird gemaess den tariflichen Vorgaben des Schultraegers eingruppiert (Details mit Schultraeger im Vergabeverfahren noch zu klaeren)."
 
-SCHLECHT:
-"Mit Schreiben des Bezirksamts Berlin-Mitte vom 12.12.2025 (Az 123/2026) wurde das Vorhaben bewilligt."
-GUT:
-"Die formale Befassung der Schulkonferenz und des Schultraegers ist im Antrags-Verfahren vorgesehen (Stand: Bewilligung steht aus)."
+SCHLECHT: "Die VERA-Vergleichsarbeiten der letzten Jahre zeigen erkennbare Lernrueckstaende in Rechtschreibung und Mathematik."
+GUT: "Aus Sicht des Kollegiums besteht in den Bereichen Lesen und Mathematik Foerderbedarf. [TODO: durch konkrete Daten — z. B. Vergleichsarbeiten — vor Einreichung belegen]"
 
-SCHLECHT:
-"Haushaltsstelle 1234/56789, TV-L E9a, 4h × 50 Wochen × 20 EUR/h."
-GUT:
-"Die Personalkosten fuer die IT-Koordination sind im Finanzplan als Schaetzposten eingetragen — genaue Saetze werden im Vergabeverfahren eingeholt."
+SCHLECHT: "Beschafft werden 25 iPads der 10. Generation samt Lizenzen fuer Anton und Bettermarks fuer rund 150 Nutzer."
+GUT: "Beschafft werden Tablets (Stueckzahl im Rahmen von 20-30, exakte Zahl noch festzulegen) sowie Lern-App-Lizenzen fuer Mathe/Deutsch. [TODO: konkrete Geraete und Apps auswaehlen]"
 
-**Wenn User-Antworten zu vag sind:** Lieber kuerzer und ehrlich als erfunden. Setze stattdessen Luecken-Marker \`[TODO: Schultraegerangabe einholen]\` ein.
+SCHLECHT: "Der Foerderverein hat die Mittelverwaltung muendlich zugesagt und ist als gemeinnuetzig anerkannt."
+GUT: "Als Mittelverwalter kommt der Foerderverein in Frage; die formale Zusage und der Gemeinnuetzigkeits-Nachweis sind vor Antragstellung einzuholen."
+
+**Grundregel:** Lieber kuerzer und ehrlich als erfunden. Wo eine konkrete Angabe fehlt, setze einen sichtbaren
+Luecken-Marker \`[TODO: … einholen]\` in den Text — NICHT eine plausibel klingende Erfindung und NICHT eine
+nichtssagende Floskel. Eine echte, vom User genannte Angabe ist mehr wert als zehn erfundene.
 `;
 
 const RECHECK_AUDIT_BLOCK = `
@@ -386,13 +403,28 @@ NIEMALS in den Antragstext aufnehmen, wenn nicht im User-Input belegt:
 
 Wenn ein Pflicht-Abschnitt der Richtlinie eine Information verlangt, die im User-Input nicht steht, formuliere das ehrlich: "Eine schriftliche Zusage liegt noch nicht vor", "die genaue Verteilung wird im Rahmen der …-Konzept-Überarbeitung festgelegt". KEIN Erfinden.
 
+## Fachliche Qualität & Theorie — bring dein Wissen AKTIV ein (Produktvision)
+Du bist nicht nur Schreibkraft, sondern fachlicher Berater. Ziel: ein Antrag, der mindestens so gut ist wie der einer erfahrenen Antragsexpertin. Der Antrag soll professionell, fachlich fundiert und förderstark sein. Greife dafür auf dein Fachwissen zurück:
+- **Wissenschaftliche & emanzipatorisch-pädagogische Theorie** mit SUBSTANZ: benenne passende Konzepte/Modelle (z. B. Bildungsgerechtigkeit/Teilhabe, Selbstwirksamkeit, partizipative/handlungsorientierte Didaktik, BNE, demokratiepädagogische Ansätze, kulturelle Teilhabe) und wende sie KONKRET auf das Vorhaben an — nicht als Etikett, sondern erklärend, warum dieser Ansatz hier wirkt.
+- **Förderrelevante Fachsprache**, die Fördergeber erwarten (Ausgangslage/Bedarf, Wirkungslogik/Ziele-Maßnahmen-Wirkung, Zielgruppe, Nachhaltigkeit/Verstetigung, Partizipation) — immer am konkreten Vorhaben verankert, nie hohl.
+- **Sozioökonomischer Kontext des Standorts** darf eingebracht werden, aber als erkennbare Annahme/Vorschlag ("erfahrungsgemäß", "der Standort legt nahe", "voraussichtlich") — NICHT als feststehende Tatsache über genau diese Schule.
+
+## Was ist Vorschlag vs. Tatsache (zentrale Unterscheidung)
+- Eine fachliche AUSGESTALTUNG (eine passende Methode, ein Format, ein Verbreitungsweg, theoretische Rahmung, plausibler Standortkontext), die der User nicht genannt hat, ist ein erwünschter VORSCHLAG — formuliere ihn klar als solchen ("Ein bewährter Ansatz hierfür ist …", "Wir schlagen vor, …", "Es bietet sich an, …", "denkbar ist …"). So erkennt der Nutzer, was er bestätigen/anpassen kann.
+- Eine TATSACHE über diese Schule (Zahlen, erteilte Zusagen, benannte reale Partner, Belege/Studien, Aktenzeichen, Termine) bleibt tabu, wenn nicht im User-Input — niemals als feststehend behaupten. Hier gilt weiter das Halluzinations-Verbot oben.
+- Faustregel: fachliche Klugheit als Vorschlag = ja; erfundene Fakten über die Schule = nein.
+
+## Adaptive Vorschlags-Dichte
+- Wo der User KONKRET war, ergänze sparsam — nur Vorschläge, die den Antrag substanziell verbessern.
+- Wo der User WENIG lieferte, gestalte aktiver fachlich aus (als Vorschlag erkennbar) — der Antrag soll trotz dünnem Input hochwertig und vollständig wirken, ohne Fakten über die Schule zu erfinden.
+
 ## Inhaltliche Regeln
 - Verwende AUSSCHLIESSLICH Fakten aus den mitgelieferten Daten. Halluziniere NICHTS — erfinde keine Zahlen, Namen, Ereignisse.
 - Konkret statt abstrakt. Wo Zahlen/Namen/Orte in den Fakten stehen: nenne sie.
 - Formuliere aus Sicht der Schule ("wir", "an unserer Schule").
 
-## Floskeln-Verbot
-Diese Wendungen KOMMEN NICHT vor: "fördert Teilhabe", "ganzheitlicher Ansatz", "schafft Mehrwert", "in der heutigen Zeit", "es ist unerlässlich", "innovativer Ansatz", "passgenau", "zukunftsweisend". Stattdessen: sag konkret, was passiert, für wen, wie gemessen.
+## Leerformel-Verbot (nicht: Fachsprache-Verbot)
+Verboten sind LEERE Floskeln OHNE Substanz — als Etikett, das nichts erklärt: "ganzheitlicher Ansatz", "schafft Mehrwert", "in der heutigen Zeit", "es ist unerlässlich", "innovativer Ansatz", "passgenau", "zukunftsweisend", oder ein hingeworfenes "fördert Teilhabe" ohne zu sagen wie. Erlaubt und ERWÜNSCHT ist dieselbe fachliche Sprache MIT Substanz: schreibe nicht "fördert Teilhabe", sondern erkläre, WIE das Vorhaben Teilhabe/Bildungsgerechtigkeit konkret stärkt (für wen, wodurch, mit welcher erwarteten Wirkung). Fachbegriffe ja — aber immer am konkreten Vorhaben verankert und erklärt, nie als Schmuckwort.
 
 ## Form
 - Keine Überschrift, keine Markdown-Formatierung, kein # oder **.
@@ -437,7 +469,11 @@ FOKUS: ${abschnitt.fokus}
 FAKTEN:
 ${JSON.stringify(facts, null, 2)}${userAnswersBlock}
 
-Schreibe den Abschnitt. Erfinde KEINE Aktenzeichen, Beschluss-Daten, Tarif-Berechnungen, Phasen-Quartale, MDM-Lösungen, Rahmenverträge oder Strategie-Zitate, die nicht im User-Input belegt sind. Lieber kürzer als erfunden.`;
+Schreibe den Abschnitt. Erfinde KEINE Aktenzeichen, Beschluss-Daten, Tarif-Berechnungen, Phasen-Quartale, MDM-Lösungen, Rahmenverträge oder Strategie-Zitate, die nicht im User-Input belegt sind. Lieber kürzer als erfunden.
+
+KONKRETHEIT richtig: Deine Konkretheit speist sich aus den ECHTEN Angaben des Users (genannte Szenen, Namen, Zahlen, Beispiele) — greife genau diese als wiederkehrende, glaubwürdige Anker auf. Wo der User KEINE Angabe gemacht hat, hast du zwei erlaubte Optionen: (a) den Punkt weglassen/knapp halten, oder (b) einen sichtbaren Lücken-Marker \`[TODO: … vor Einreichung ergänzen]\` setzen. NICHT erlaubt: die Lücke mit erfundenen Konkreta füllen ODER mit nichtssagenden Floskeln überdecken. Eine vom User offen gelassene Frage ("weiß ich nicht", "müssten wir klären") darf NIE als feststehende Tatsache oder erteilte Zusage formuliert werden.
+
+GELDBETRÄGE UND MENGEN IM TEXT: Jeden Euro-Betrag, jede Stückzahl und jeden Termin, den der User NICHT selbst genannt hat, kennzeichne im Fließtext sichtbar als Schätzung — z. B. "voraussichtlich rund 15.000 € (Schätzung, vor Einreichung durch Angebote zu belegen)" oder "ca. 25 Geräte (Anzahl noch festzulegen)". NIE als feststehende Kalkulation oder beschlossene Summe formulieren. Der Fließtext muss bei Zahlen genauso ehrlich sein wie der Finanzplan — keine Asymmetrie, bei der die Tabelle "Schätzung" sagt und der Text dieselbe Zahl als Fakt behauptet.`;
 
   // Hebel 3: Dossier-Injection (PIPELINE_USE_VORBILD_FORMULIERUNGEN)
   if (!PIPELINE_CONFIG.useVorbildFormulierungen || !richtlinie) {
@@ -490,9 +526,17 @@ Verdächtige Halluzinations-Marker — bei JEDEM solchen Element prüfen, ob es 
 - **Behörden-/Personennamen** (z. B. konkretes Bezirksamt, "Frau X aus Abteilung Y") — wenn User nur "der Träger" oder "das Schulamt" sagte: ERFUNDEN.
 - **Bezirks-/Ortsangaben** — wenn User nur eine Stadt nannte, darf der Bezirk nicht erfunden werden.
 - **Schülerzahlen, Klassengrößen, Lehrkräftezahlen** — exakte Zahlen müssen aus User-Antwort stammen.
-- **Methodische Konkretisierungen** ("standardisiertes Beobachtungsraster", "monatliche Hospitationen", "TV-L E9a") — wenn User nichts dergleichen sagte: ERFUNDEN.
+- **Methodische Konkretisierungen als feststehend** ("es wird ein standardisiertes Beobachtungsraster eingesetzt", "monatliche Hospitationen finden statt", "TV-L E9a") — wenn als Tatsache behauptet ohne User-Beleg: flaggen. Als klar erkennbarer VORSCHLAG ("ein möglicher Ansatz ist …", "wir schlagen … vor") ist die Methode KEINE Halluzination — nicht flaggen.
 - **Zitate aus KMK-Strategie, Rahmenlehrplan, anderen Dokumenten** — wenn User selbst sagte "kenne ich nicht so genau": jede konkrete KMK-Verortung im Entwurf ist erfunden.
 - **Einrichtungen, die User nicht erwähnte** ("Willkommensklassen", "Fachräume Naturwissenschaften") — wenn nicht im User-Input: ERFUNDEN.
+- **Erhebungen/Studien/Belege** ("VERA-Vergleichsarbeiten zeigen…", "Bedarfsanalyse ergab…", "Sekretariatseinschätzung") — wenn der User keine Erhebung nannte: ERFUNDEN.
+- **Marken-/Produkt-/App-Namen** (Anton, Bettermarks, "iPad 10. Generation", Antolin) — wenn User nur allgemein ("Lern-Apps", "Tablets") sprach: ERFUNDEN.
+- **Externe Partner/Vereine/Honorarkräfte** (Medienpädagoge, Landschaftsbüro, Förderverein, Schulsozialarbeit, Stadtbibliothek-als-Partner) — wenn nicht vom User genannt: ERFUNDEN.
+- **Phasen-Zeitpläne mit festen Terminen** ("4-Phasen-Plan ab Q3", feste Monatstermine) ohne User-Beleg: flaggen. Pädagogische Methoden/Formate ("dialogisches Vorlesen", "Storytelling") sind als erkennbarer VORSCHLAG erlaubt (fachliche Ausgestaltung) — nur flaggen, wenn als feststehende Tatsache über die Schule behauptet.
+- **Zusagen mit Rechtsfolge als feststehend** ("ist als gemeinnützig anerkannt", "eigenes Bankkonto", "mündliche Zusage des Fördervereins", "Schulträger hat zugestimmt") — wenn nicht ausdrücklich vom User bestätigt: ERFUNDEN, Schwere "hoch" — Falschangabe ggü. dem Fördergeber.
+- **Subgruppe→Gesamtzahl-Hochrechnung** ("ca. 150 Nutzer" aus "60 % von 250", feste Stückzahl aus einer Spanne "20-30"): wenn der User eine Spanne/Schätzung gab, ist die feste Zahl ERFUNDEN.
+
+Zusätzlich Schwere "hoch": Stellen, an denen der Entwurf eine vom User offen gelassene Frage ("weiß ich nicht", "müssten wir klären") als feststehende Tatsache oder verbindliche Zusage formuliert (kaschierte Lücke).
 
 ## ZWEITE Prüfung — Richtlinien & Konsistenz
 1. Richtlinien-Verstöße (fehlender Pflichtabschnitt, Stilverstoß, Zeichenlimit, Eigenanteil nicht adressiert).
@@ -584,6 +628,19 @@ NIEMALS in Bezeichnung oder Begruendung erfinden:
 - **Marken-/Modellnamen** ("Apple Pencil", "Microsoft Surface") — wenn der User nur "Stifte" oder "Tablets" sagte: nicht spezifizieren.
 - **Erfundene Mengen-Aufschluesselungen** ("16 pro Klasse", "2 Lehrkraefte freigestellt") — nur wenn der User konkrete Mengen genannt hat.
 - **Bildungsrabatt-Annahmen** ("ca. 90 EUR in Bildungstarifen plus Versand") — wenn der User nur einen Endpreis nannte: diesen verwenden.
+- **Erfundene Personal-/Partner-Posten, die der User-Aussage widersprechen** — sagte der User z. B. "macht eine Kollegin nebenher / nicht offiziell", darf daraus KEIN bezahlter Personalposten werden. Sagte er "erstmal nur die Lehrkraefte", keine externe Honorarkraft erfinden.
+
+## Schaetz-Ehrlichkeit (HART — wichtigster Punkt bei vagem Input)
+Ein Finanzplan MUSS Betraege enthalten — aber er darf erfundene Betraege nicht als belegte Kalkulation tarnen.
+- Hat der User fuer einen Posten KEINEN Betrag/Preis/keine Menge genannt, ist der Betrag eine **Schaetzung**. Beginne die \`begruendung\` solcher Posten dann mit dem Wort **"Schaetzung:"** (z. B. "Schaetzung: Klassensatz Tablets, ueblicher Geraetepreis, Stueckzahl noch festzulegen").
+- Schaetzbetraege: konservativ und **rund** halten (z. B. 3.000, nicht 3.140). Keine erfundene Splittung ("25 × 540 EUR"), wenn der User die Menge nicht nannte — dann eine ehrliche Pauschale.
+- Hat der User INSGESAMT keine einzige Geldangabe gemacht, setze in \`hinweise\` als ERSTEN Eintrag: "Alle Betraege sind grobe Schaetzungen ohne Angaben der Schule — vor Einreichung durch Angebote belegen."
+- Erfinde keine Posten fuer Leistungen, die der User nicht erwaehnt hat, nur um den Plan "vollstaendig" wirken zu lassen.
+
+## Konsistenz (HART — der Plan muss sachlich aufgehen)
+- Die Summe aller Posten muss rechnerisch stimmen. Hat der User eine Gesamt-/Globalsumme genannt, MUESSEN die Foerderposten (ohne Eigenanteil) in der Summe dieser Zahl entsprechen (±2 %) — du gestaltest die genannte Globalsumme aus, du erfindest keine hoehere. Hat der User KEINE Summe genannt, waehle plausible, runde Einzelbetraege und nenne die Gesamtsumme stimmig.
+- Erfinde keinen Posten, der einer Nutzeraussage WIDERSPRICHT (sagte der User "machen wir selbst" / "Lehrkraefte nebenher", KEINE bezahlte Personal-/Honorarstelle dafuer). Solche widerspruechlichen Posten gehoeren NICHT in den Plan.
+- Ergaenzende Posten, die der User NICHT genannt hat, aber die fuer ein gutes Vorhaben sinnvoll sind, sind als Vorschlag ERLAUBT (begruendung mit "Schaetzung:" beginnen) — sie werden dem Nutzer als bestaetigbarer Vorschlag angezeigt.
 
 ## Regeln
 - Nutze NUR Kostenkategorien und Obergrenzen, die in der mitgelieferten Richtlinie als foerderfaehig markiert sind.
@@ -648,13 +705,81 @@ ${JSON.stringify(facts, null, 2)}${userAnswersBlock}
 Erstelle den Finanzplan. Erfinde keine Tarif-Stufen, Honorarsaetze, Marken-/Modellnamen oder Mengen-Aufschluesselungen, die nicht im User-Input belegt sind. Lieber Pauschalen mit "in hinweise erlaeutert" als erfundene Splittungen.`;
 }
 
+// ============================================================================
+// FINANZPLAN — UNBEZIFFERTER KOSTENRAHMEN (kein Nutzer-Budget vorhanden)
+// Probe 09.06.: Wenn der Nutzer KEINE Betraege/Preise genannt hat, werden bewusst
+// KEINE erfundenen Euro-Posten erzeugt. Stattdessen eine beschreibende Liste der
+// voraussichtlich noetigen Kostenpositionen OHNE Zahlen.
+// ============================================================================
+
+export const FINANZPLAN_KOSTENRAHMEN_SYSTEM = `Du erstellst einen UNBEZIFFERTEN Kostenrahmen fuer einen Foerderantrag an einer deutschen Schule.
+
+WICHTIG: Der Nutzer hat KEINE Betraege, Preise, Stueckpreise oder ein Budget genannt. Du darfst deshalb KEINE Euro-Betraege erfinden — auch keine "geschaetzten". Liste stattdessen die voraussichtlich noetigen Kostenpositionen, abgeleitet aus den tatsaechlich genannten Projektinhalten.
+
+Regeln:
+- Jede Position = EIN kurzer, konkreter Satz, der beschreibt, WOFUER Kosten entstehen (z. B. "Anschaffung von Tablets fuer den Klasseneinsatz" oder "Honorar fuer eine externe Fortbildung zur Mediendidaktik"). KEINE Zahl, kein Euro-Betrag, keine Stueckzahl-Hochrechnung.
+- Nur Positionen, die sich aus den genannten Inhalten ergeben. Nichts erfinden, was der Nutzer nicht erwaehnt hat.
+- 3-7 Positionen. Wenn die Richtlinie einen Eigenanteil verlangt, eine Position "Eigenanteil des Schultraegers (Hoehe noch zu klaeren)" ergaenzen.
+- Keine Marken-/Modellnamen, keine erfundenen Partner.
+
+Ausgabe AUSSCHLIESSLICH valides JSON, keine Fences:
+{
+  "kostenrahmen": ["Position 1 ...", "Position 2 ..."],
+  "hinweise": ["optional, z. B. 'Konkrete Betraege werden ueber Angebote vor Einreichung ermittelt.'"]
+}`;
+
+export function buildFinanzplanKostenrahmenPrompt(
+  programm: Foerderprogramm,
+  facts: WizardFacts,
+  richtlinie: Richtlinie | null | undefined,
+  userAnswers?: string[]
+): string {
+  const rl = richtlinie
+    ? `\n\nFOERDERFAEHIGE KOSTENARTEN (Richtlinie):\n${JSON.stringify(richtlinie.kostenpositionen ?? null)}\nEigenmittel-Pflicht: ${richtlinie.eigenmittel?.pflicht ? "ja" : "nein"}`
+    : "";
+  const ua = userAnswers?.length
+    ? `\n\nROHE USER-ANTWORTEN (Quelle fuer die Positionen):\n${userAnswers.map((a, i) => `[Antwort ${i + 1}] ${a}`).join("\n")}`
+    : "";
+  return `PROGRAMM:
+${programmBlock(programm)}${rl}
+
+PROJEKTFAKTEN:
+${JSON.stringify(facts, null, 2)}${ua}
+
+Der Nutzer hat keine Kostenangaben gemacht. Erstelle einen unbezifferten Kostenrahmen (Positionen OHNE Euro-Betraege) gemaess Schema.`;
+}
+
+/**
+ * Entfernt unbelegte Euro-Betraege aus dem Antragstext, wenn der Finanzplan
+ * unbeziffert ist — beseitigt die "Ehrlichkeits-Asymmetrie" (Text nennt Zahlen
+ * als Fakt, Finanzplan hat keine).
+ */
+export const KOSTEN_ENTZIFFERUNG_SYSTEM = `Du ueberarbeitest einen fertigen Foerderantrag MINIMAL. Hintergrund: Es liegt noch KEINE Kostenbasis vor — der Finanzplan ist unbeziffert. Im Antragstext duerfen deshalb KEINE konkreten Euro-Betraege oder daraus abgeleitete Rechnungen stehen, die der Nutzer nicht belegt hat.
+
+Aufgabe:
+- Entferne jeden konkreten Euro-Betrag (z. B. "15.000 EUR", "ca. 500 € pro Geraet", "Gesamtkosten von 30.000 Euro") und ersetze ihn durch eine ehrliche Formulierung wie "die genauen Kosten werden im Finanzplan beziffert (Angebote werden vor Einreichung eingeholt)" oder lass den Halbsatz einfach weg.
+- Konkrete MENGEN/Sachbedarf, die der Nutzer selbst nannte, duerfen bleiben (z. B. "rund 20 Tablets"), aber OHNE erfundenen Preis.
+- Aendere NICHTS an Struktur, Titel, Abschnittsreihenfolge oder am uebrigen Inhalt. Keine neuen Inhalte.
+
+Ausgabe: NUR der ueberarbeitete Antragstext als Markdown (H1-Titel, H2-Abschnitte), keine Kommentare davor/danach.`;
+
+export function buildKostenEntzifferungPrompt(finalText: string): string {
+  return `ANTRAGSTEXT (zu bereinigen — nur Euro-Betraege entschaerfen):\n\n${finalText}`;
+}
+
 const REVISION_SYSTEM_BASE = `Du bist der Antragsautor. Überarbeite den Entwurf anhand des Gutachtens. Struktur, Titel und Abschnittsreihenfolge bleiben erhalten. Verwende NUR die mitgelieferten Fakten. Füge keine neuen Behauptungen oder Zahlen ein.
+
+## Ehrlichkeit bewahren — niemals verschlimmern (WICHTIG)
+- Die Revision darf NIEMALS neue konkrete Fakten, Partner, Zahlen, Methoden, Termine oder Zusagen einführen, die nicht im Entwurf oder in den Fakten stehen. Ein Halluzinations-Finding behebt man durch STREICHEN oder durch einen ehrlichen Lücken-Marker — nicht durch eine andere Erfindung.
+- Vorhandene ehrliche Lücken-Marker und Vorbehalte ("liegt derzeit nicht vor", "noch einzuholen", "[TODO: …]", "ist noch zu klären") BLEIBEN erhalten. Wandle eine offene Frage NIE in eine feststehende Tatsache oder verbindliche Zusage um (z. B. aus "Schulträger muss noch zustimmen" darf NICHT "Schulträger hat zugestimmt" werden).
+- Wenn der User etwas verneint oder offen gelassen hat, formuliere es als noch zu klärenden Schritt — nicht als erledigt.
+- Geldbeträge, Stückzahlen und Termine, die nicht vom User stammen, müssen auch im Fließtext als Schätzung/Vorbehalt erscheinen ("voraussichtlich ca. …, noch zu belegen") — NIE als feststehende Kalkulation. Wenn der Finanzplan einen Betrag als Schätzung führt, darf der Text dieselbe Zahl nicht als Fakt behaupten (keine Ehrlichkeits-Asymmetrie).
 
 ## Umgang mit dem Gutachten
 Das Gutachten liefert nummerierte Findings mit Abschnitt, wörtlichem Zitat, Schwere und konkretem Vorschlag. Arbeite sie in dieser Reihenfolge ab: erst alle "hoch"-Findings (Richtlinien-Verstöße dürfen nicht stehenbleiben), dann "mittel", dann "niedrig". Bei "FEHLT" ergänze den fehlenden Inhalt aus den Fakten, ohne zu halluzinieren.
 
-## Floskeln-Verbot (nochmal!)
-Keine dieser Wendungen: "fördert Teilhabe", "ganzheitlicher Ansatz", "schafft Mehrwert", "in der heutigen Zeit", "es ist unerlässlich", "innovativer Ansatz", "passgenau", "zukunftsweisend". Wenn das Gutachten solche Stellen nennt, ersetze sie durch konkrete Formulierungen.
+## Leerformel-Verbot (nicht: Fachsprache-Verbot)
+Tilge LEERE Schmuckfloskeln ohne Substanz ("ganzheitlicher Ansatz", "schafft Mehrwert", "in der heutigen Zeit", "es ist unerlässlich", "innovativer Ansatz", "passgenau", "zukunftsweisend", hingeworfenes "fördert Teilhabe"). ERSETZE sie durch fachlich SUBSTANZIELLE Formulierungen — nicht durch Weglassen von Fachlichkeit. Professionelle Förder-Fachsprache und theoretische Rahmung (Wirkungslogik, Bildungsgerechtigkeit, Selbstwirksamkeit, Partizipation, BNE …) BLEIBEN erhalten bzw. werden gestärkt, solange sie konkret am Vorhaben verankert sind. Fachlich begründete VORSCHLÄGE (Methoden, Formate), erkennbar als solche formuliert, NICHT entfernen.
 
 ## Ausgabeformat (Markdown)
 - Antragstitel als erste Zeile als H1: "# Titel"
@@ -677,7 +802,7 @@ export const CONSISTENCY_SYSTEM = `Du prüfst, ob der Antragstext und der Finanz
 ## Was ein Issue ist
 - "posten-ohne-textbezug": Ein Finanzposten taucht im Antrag nicht auf — weder direkt benannt noch sinngemäß in der passenden Sektion beschrieben.
 - "textbezug-ohne-posten": Der Antragstext nennt eine konkrete Kostenart (Geräte, Honorare, Fortbildungen, Fahrten), ohne dass es im Finanzplan einen entsprechenden Posten gibt.
-- "betrag-unstimmig": Im Antrag genannte Zahlen/Größen widersprechen den Beträgen im Finanzplan (z. B. "15 Tablets à 500 €" im Text, aber Finanzplan hat 20 × 400 €).
+- "betrag-unstimmig": Im Antrag genannte Zahlen/Größen widersprechen den Beträgen im Finanzplan (z. B. "15 Tablets à 500 €" im Text, aber Finanzplan hat 20 × 400 €). DAZU GEHÖRT AUSDRÜCKLICH die Gesamtsumme: Nennt der Antragstext eine Gesamt-/Projektsumme oder beantragte Fördersumme, die deutlich (>20 %) von der Summe der Finanzplan-Posten abweicht, ist das ein "betrag-unstimmig"-Issue mit Schwere-Bezug auf beide Zahlen. Rechne die Posten-Summe und vergleiche sie mit jeder im Text genannten Gesamtsumme.
 - "sonstiges": Andere klare Widersprüche.
 
 ## Was KEIN Issue ist
@@ -761,6 +886,145 @@ GEFUNDENE INKONSISTENZEN:
 ${issueList}
 
 Überarbeite den Antragstext minimal so, dass alle gelisteten Inkonsistenzen aufgelöst sind und Text und Finanzplan zusammenpassen. Gib nur den überarbeiteten Antrag aus.`;
+}
+
+// ============================================================================
+// HALLUZINATIONS-DIFF-GATE (Probe 09.06., Hebel 1 — nach der Revision)
+// ============================================================================
+
+export const HALLUCINATION_GATE_SYSTEM = `Du überarbeitest einen fertigen Förderantrag CHIRURGISCH. In der letzten Überarbeitung sind konkrete Angaben in den Text geraten, die NICHT aus den Quellen (Nutzerangaben oder vorheriger Entwurf) stammen — sie wurden also frei erfunden. Du bekommst eine Liste genau dieser Angaben.
+
+## Aufgabe
+Entferne oder entschärfe AUSSCHLIESSLICH die gelisteten Angaben. Lass den restlichen Text Wort für Wort unverändert.
+
+- Erfundene Geldbeträge / Mengen / Prozentzahlen: streiche die Zahl oder ersetze sie durch eine ehrliche Formulierung ("die genaue Höhe wird im Finanzplan beziffert", "Anzahl wird vor Einreichung festgelegt", "in noch zu bestimmender Höhe"). Erfinde KEINE Ersatzzahl.
+- Erfundene Partner, Organisationen, Vereine (z. B. mit "e.V."/"gGmbH") oder Personen: streiche den Namen oder formuliere ihn als noch zu gewinnenden, unbenannten Partner ("eine noch zu gewinnende Kooperationspartnerin", "ein externer Anbieter, der noch ausgewählt wird"). Behaupte KEINE konkrete Zusage.
+- Eine erfundene Angabe behebt man durch Streichen oder einen ehrlichen Lücken-Marker — NIEMALS durch eine andere Erfindung.
+
+## Strikte Grenzen
+- Ändere NICHTS an Struktur, Titel, Abschnittsreihenfolge, Stil oder an Angaben, die nicht in der Liste stehen.
+- Erzeuge keine neuen Inhalte, keine neuen Zahlen, keine neuen Namen.
+
+## Ausgabeformat (Markdown)
+- Antragstitel als H1 ("# Titel"), Abschnitte als H2 ("## Abschnittsname"), Absätze durch Leerzeilen getrennt.
+- KEINE HTML-Tags, KEINE Code-Fences.
+Gib NUR den bereinigten Antragstext aus — keinerlei Kommentare davor oder danach.`;
+
+export function buildHallucinationGatePrompt(
+  finalText: string,
+  introduced: { numbers: string[]; entities: string[] }
+): string {
+  const numList = introduced.numbers.length
+    ? introduced.numbers.map((n) => `- ${n}`).join("\n")
+    : "- (keine)";
+  const entList = introduced.entities.length
+    ? introduced.entities.map((e) => `- ${e}`).join("\n")
+    : "- (keine)";
+
+  return `ERFUNDENE ANGABEN (in der letzten Überarbeitung neu hinzugekommen, durch KEINE Quelle gedeckt — diese bereinigen):
+
+Zahlen / Beträge / Mengen:
+${numList}
+
+Eigennamen / Partner / Personen:
+${entList}
+
+ANTRAGSTEXT (chirurgisch bereinigen — nur die gelisteten Angaben anfassen):
+
+${finalText}`;
+}
+
+// ============================================================================
+// FAKT-VERIFIKATIONS-PASS (Probe 09.06., Hebel 1b — nach dem Zahlen-Gate)
+// Das deterministische Halluzinations-Gate faengt nur Zahlen/Eigennamen. Dieser
+// LLM-Pass prueft NARRATIVE, pruefbare Behauptungen (Partner, Termine, Zusagen,
+// Mengen, Kanaele, Verfahren) gegen die Nutzer-Ground-Truth — bewusst OHNE den
+// Entwurf, damit auch im Section-Schritt erfundene Fakten erfasst werden.
+// ============================================================================
+
+export const FACT_VERIFICATION_DETECT_SYSTEM = `Du bist ein strenger Faktenpruefer fuer Foerderantraege. Du bekommst einen fertigen Antragstext, die GESICHERTEN Nutzerangaben (Ground Truth) und den Programm-Kontext. Du findest konkrete Behauptungen im Antrag, die NICHT durch die Nutzerangaben gedeckt sind, und KLASSIFIZIERST jede in genau eine von drei Arten. Der Assistent darf das Vorhaben fachlich ausgestalten — erfundene Ausgestaltung ist ERWUENSCHT, solange sie als Vorschlag erkennbar bleibt und der Nutzeraussage nicht widerspricht.
+
+## Drei Arten (klassifiziere jede ungedeckte Behauptung)
+1. "widerspruch" — die Behauptung WIDERSPRICHT einer Nutzeraussage. Beispiel: Nutzer sagte "machen die Lehrkraefte nebenher / keine externe Kraft", Antrag behauptet eine bezahlte externe Honorarstelle. Diese gehoeren NICHT in den Antrag → werden entfernt.
+2. "tatsache" — die Behauptung stellt eine ungesicherte TATSACHE/ZUSAGE/ein vergangenes Ereignis als FESTSTEHEND dar, obwohl der Nutzer sie nicht bestaetigt hat: eine erteilte Zusage/Genehmigung Dritter ("der Schultraeger hat zugestimmt", "die Eltern beteiligen sich"), ein benannter realer Partner samt Rolle als gesichert ("in Kooperation mit der Stadtbuecherei Musterstadt"), ein konkretes Datum/abgeschlossenes Ereignis, eine erfundene Beleg-QUELLE ("laut Sprachstandserhebung", "gemaess Schulstatistik", "7% gemaess Richtlinie"). Solche FALSCHEN TATSACHEN werden zu ehrlichen Vorbehalten entschaerft ("… ist noch einzuholen / noch zu klaeren").
+3. "vorschlag" — eine plausible, zum Vorhaben passende AUSGESTALTUNG oder OPTION, die der Nutzer nur nicht genannt hat: eine sinnvolle Methode/ein Format ("dialogisches Vorlesen"), ein moeglicher Verbreitungsweg ("Verbreitung ueber den Schul-Newsletter"), eine vorgeschlagene Mengen-/Zeitstruktur ("woechentliche Sessions"), wofuer Mittel verwendet werden koennten. Das ist der MEHRWERT des Assistenten → BLEIBT im Text und wird dem Nutzer als zu bestaetigender Vorschlag aufgelistet. NICHT entfernen.
+
+Faustregel: widerspricht es dem Nutzer? → "widerspruch". Behauptet es eine ungesicherte Tatsache/Zusage/Quelle als feststehend? → "tatsache". Ist es eine sinnvolle, nicht widerspruechliche Ausgestaltung/Option? → "vorschlag".
+
+## Was du NIEMALS flaggst
+- Allgemeine fachliche Rahmung, paedagogische Theorie, Foerderzweck-Bezug ("digitale Kompetenzen staerken Bildungsgerechtigkeit") — legitim, keine Behauptung ueber DIESE Schule.
+- Sinngemaesse Wiedergabe der vom Nutzer genannten Projektidee.
+- Bereits EHRLICH MARKIERTE Vorbehalte ("noch zu klaeren", "[TODO: …]", "voraussichtlich", "wird vor Einreichung festgelegt").
+- Angaben aus Ground Truth oder Programm-Kontext.
+- Reine Zahlen/Eigennamen ohne Tatsachen-Charakter (anderer Pruefschritt).
+
+## Ausgabe
+AUSSCHLIESSLICH valides JSON, keine Markdown-Fences:
+{
+  "claims": [
+    {
+      "zitat": "woertliches Kurzzitat aus dem Antrag (max 120 Zeichen, exakt wie im Text)",
+      "art": "widerspruch" | "tatsache" | "vorschlag",
+      "warum": "1 Satz: warum nicht gedeckt + woran du die Art festmachst"
+    }
+  ]
+}
+
+Regeln
+- "claims": [] ist gueltig. Im Zweifel zwischen "tatsache" und "vorschlag" → "vorschlag" (lieber behalten+markieren als loeschen). Nur bei echtem Widerspruch "widerspruch".
+- Das "zitat" MUSS woertlich (Zeichen fuer Zeichen) im Antragstext vorkommen, sonst wird es verworfen.
+- Maximal 10 Eintraege, die gravierendsten (widerspruch/tatsache) zuerst.`;
+
+export function buildFactVerificationDetectPrompt(
+  finalText: string,
+  groundTruth: string,
+  programmKontext: string
+): string {
+  return `GESICHERTE NUTZERANGABEN (Ground Truth — nur was hier steht, gilt als belegt):
+${groundTruth || "(keine strukturierten Angaben)"}
+
+PROGRAMM-KONTEXT (legitime Rahmung, KEINE flagbare Erfindung):
+${programmKontext}
+
+ANTRAGSTEXT (auf erfundene, nicht gedeckte Tatsachenbehauptungen pruefen):
+${finalText}
+
+Liefere die claims-Liste.`;
+}
+
+export const FACT_VERIFICATION_REPAIR_SYSTEM = `Du ueberarbeitest einen fertigen Foerderantrag CHIRURGISCH. Ein Faktenpruefer hat Stellen markiert, die der Nutzeraussage WIDERSPRECHEN oder eine ungesicherte Tatsache/Zusage als feststehend behaupten. NUR diese Stellen fasst du an.
+
+## Aufgabe
+- Bei einem WIDERSPRUCH zur Nutzeraussage (z. B. bezahlte externe Kraft, obwohl der Nutzer "machen die Lehrkraefte selbst" sagte): die widerspruechliche Behauptung STREICHEN bzw. an die Nutzeraussage angleichen. Keine Ersatzerfindung.
+- Bei einer ungesicherten TATSACHE/ZUSAGE/QUELLE, die als feststehend behauptet wird: in einen ehrlichen Vorbehalt umwandeln:
+  - erfundene Zusage Dritter → "die Zustimmung von … ist noch einzuholen".
+  - benannter Partner als gesichert → "ein noch zu gewinnender Kooperationspartner".
+  - erfundene Beleg-Quelle ("laut Sprachstandserhebung", "7% gemaess Richtlinie") → die Quelle/den Beleg streichen oder als "noch zu belegen" kennzeichnen.
+  - abgeschlossenes Ereignis/Datum → "voraussichtlich / noch festzulegen".
+- Eine erfundene Angabe behebt man durch Streichen oder einen ehrlichen Vorbehalt — NIEMALS durch eine andere Erfindung.
+
+## WICHTIG — was du NICHT anfasst
+- Alles, was NICHT in der Liste steht, bleibt Wort fuer Wort unveraendert — insbesondere sinnvolle fachliche Ausgestaltungen/Vorschlaege (Methoden, Formate, moegliche Verbreitungswege). Die sind erwuenscht und werden dem Nutzer separat als Vorschlag angezeigt.
+- KEINE Aenderung an Struktur, Titel, Abschnittsreihenfolge oder Stil.
+
+## Ausgabeformat (Markdown)
+- Antragstitel als H1 ("# Titel"), Abschnitte als H2 ("## Abschnittsname"), Absaetze durch Leerzeilen getrennt.
+- KEINE HTML-Tags, KEINE Code-Fences.
+Gib NUR den bereinigten Antragstext aus — keinerlei Kommentare davor oder danach.`;
+
+export function buildFactVerificationRepairPrompt(
+  finalText: string,
+  claims: Array<{ zitat: string; art: string; warum: string }>
+): string {
+  const list = claims.length
+    ? claims.map((c, i) => `${i + 1}. [${c.art}] "${c.zitat}" — ${c.warum}`).join("\n")
+    : "- (keine)";
+  return `ZU ENTSCHAERFENDE STELLEN (Widerspruch zur Nutzeraussage oder ungesicherte Tatsache):
+${list}
+
+ANTRAGSTEXT (chirurgisch bereinigen — NUR die gelisteten Stellen anfassen, Vorschlaege/Ausgestaltungen unangetastet lassen):
+
+${finalText}`;
 }
 
 // ============================================================================

@@ -53,6 +53,59 @@ const MATCHER_MAX_TOKENS = 600;
  */
 const DRIFT_CAP_SCORE = 40;
 
+// =============================================================================
+// C5 — Groessenordnungs-Plausibilitaet (Hebel 3, Probe Fall 10: DBU 100k-400k
+// fuer ein ~9.500-EUR-Snack-Projekt einer Grundschule). Deterministischer
+// achtung_bei-Hinweis, wenn die Foerderhoehe eines Programms nicht zum
+// (optionalen) Projektbudget passt. Demotion nur bei BELEGTER starker
+// Ueberdimensionierung (Budget bekannt) — im budgetlosen Vage-Fall NUR ein
+// sichtbarer Hinweis, keine Score-Aenderung (kein riskantes Heuristik-Raten).
+// =============================================================================
+/** Ab dieser Mindest-Foerdersumme = Grossprojekt-Schiene (nur 3 Programme im Katalog, u.a. DBU). */
+const GROSSPROJEKT_MIN_EUR = 100_000;
+/** Programm-Min > Budget × Faktor → zu gross fuer das Vorhaben (Warnung). */
+const OVERSIZE_FACTOR = 3;
+/** Programm-Min > Budget × Faktor → zusaetzlich demoten (belegte starke Ueberdimensionierung). */
+const SEVERE_OVERSIZE_FACTOR = 6;
+/** Budget > Programm-Max × Faktor → Programm zu klein fuers Vorhaben (Warnung). */
+const UNDERSIZE_FACTOR = 1.5;
+/** Score-Deckel bei belegter starker Ueberdimensionierung — demotet unter klar passende Treffer. */
+const SIZE_DEMOTE_CAP = 58;
+
+function fmtEur(n: number): string {
+  return n.toLocaleString("de-DE") + " EUR";
+}
+
+/**
+ * Liefert einen Groessenordnungs-Hinweis (oder "") fuer ein Programm relativ zum
+ * optionalen Projektbudget. Exportiert fuer Tests.
+ */
+export function sizeAchtung(p: Foerderprogramm, budget?: number): string {
+  const min = (p as { foerdersummeMin?: number | null }).foerdersummeMin;
+  const max = (p as { foerdersummeMax?: number | null }).foerdersummeMax;
+  if (typeof budget === "number" && budget > 0) {
+    if (typeof min === "number" && min > 0 && min > budget * OVERSIZE_FACTOR) {
+      return `Foerderung ab ${fmtEur(min)} — deutlich groesser als euer geschaetztes Vorhaben (~${fmtEur(budget)}); ggf. ein niedrigschwelligeres Programm pruefen.`;
+    }
+    if (typeof max === "number" && max > 0 && budget > max * UNDERSIZE_FACTOR) {
+      return `Foerderhoehe bis ${fmtEur(max)} — kleiner als euer Vorhaben (~${fmtEur(budget)}); ggf. ergaenzende Foerderquelle noetig.`;
+    }
+    return "";
+  }
+  // Kein Budget bekannt: nur die klar grossskalige Schiene markieren (keine Demotion).
+  if (typeof min === "number" && min >= GROSSPROJEKT_MIN_EUR) {
+    return `Grossprojekt-Foerderung (ab ${fmtEur(min)}, meist mit hohem Eigenanteil) — passt nur bei entsprechend grossem, mehrjaehrigem Vorhaben.`;
+  }
+  return "";
+}
+
+/** true, wenn der achtung_bei-Text bereits einen Groessen-/Foerderhoehen-Hinweis traegt (Dedupe). */
+function mentionsScale(text: string): boolean {
+  return /gro(ß|ss)projekt|f(oe|ö)rderh(oe|ö)he|f(oe|ö)rdersumme|niedrigschwellig|(ue|ü)berdimension|deutlich gr(oe|ö)sser/i.test(
+    text
+  );
+}
+
 /** Inklusions-Anker fuer aktion-mensch-schulkooperation. */
 function hasInklusionsAnchor(text: string): boolean {
   const t = text.toLowerCase();
@@ -101,20 +154,79 @@ const ALL_KATEGORIEN: string[] = (() => {
 })();
 
 /**
- * Extrahiert Themen aus dem Anliegen-Text via Wort-Grenzen-Match (Phase 2.3).
- * Verwendet Regex `\b<kat>\b` statt Substring-Match — eliminiert False-Positives
- * wie "ki" in "Kinder", "natur" in "natuerlich". Diakritika/Umlaut-Toleranz nicht
- * noetig, weil Kategorien in foerderprogramme.json bereits in ASCII-Form sind
- * (deutsche Umlaute wurden beim Dossier-Extract zu ae/oe/ue konvertiert).
+ * Hebel 3 — Theme-Alias-Cluster (umgangssprachlicher Begriff → kanonische Tags).
+ *
+ * Der reine `\b<kategorie>\b`-Match (unten) hat zwei Luecken, die bewirken, dass
+ * vage/umgangssprachliche Anliegen KEINEN Theme-Boost bekommen → der Top-N-Cut
+ * faellt auf den reinen Queue-Score zurueck = die Default-Magnete:
+ *   (a) Vokabel-Mismatch: Nutzer sagt "Tablets"/"programmieren", die Katalog-Tags
+ *       heissen "digitalisierung"/"informatik" — kein Substring-Treffer.
+ *   (b) Synonym-/Flexions-Splits im Tag-Vokabular selbst: "digitalisierung" (20×)
+ *       vs "digital" (4×) vs "digitales" (1×); "naturwissenschaft" vs Plural.
+ *
+ * Jeder Trigger (Stamm-Match) fuegt den GESAMTEN kanonischen Cluster zu den
+ * Anliegen-Themen hinzu — so erhaelt jedes Programm mit irgendeinem Cluster-Tag
+ * den Theme-Boost und wird in den LLM-Cut gezogen. Beeinflusst NUR den 40er-Cut
+ * (Kandidatenauswahl), nicht das finale Ranking — das macht weiterhin das LLM.
+ * Alle `tags` sind reale Kategorien aus foerderprogramme.json.
  */
-function extractAnliegenThemes(anliegen: string): Set<string> {
+const THEME_ALIASES: ReadonlyArray<{ trigger: RegExp; tags: readonly string[] }> = [
+  // Digital / Hardware (Probe Fall 1 "Tablets")
+  { trigger: /\b(tablet|ipad|laptop|notebook|computer|pc|hardware|wlan|smartboard|whiteboard|beamer|software|app|apps|digital|internet|ger(ae|ä)t)/i,
+    tags: ["digitalisierung", "digital", "digitales", "digitale-bildung", "medien", "medienbildung", "medienkompetenz", "hardware", "ausstattung", "cloud", "cybersicherheit"] },
+  // Programmieren / Informatik / Robotik (Probe Fall 8)
+  { trigger: /\b(programmier|coding|code|coden|informatik|roboter|robotik|3d.?druck|elektronik|gaming|scratch|calliope|micro.?bit)/i,
+    tags: ["informatik", "programmierung", "robotik", "mint", "technik", "digitalisierung", "elektronik", "mikroelektronik", "3d-druck"] },
+  // MINT / Mathe / Naturwissenschaft / Forschen (Korpus ev-015: "naturkundliche
+  // Exkursion"/"Aquarium" = Biologie/Naturkunde, traf bisher nur den Umwelt-Cluster)
+  { trigger: /\b(mint|mathe|rechnen|naturwissenschaft|naturkund|aquarium|forsch|experiment|physik|chemie|biologie|technik|logik|tueftel|t(ue|ü)ftel)/i,
+    tags: ["mint", "mathematik", "naturwissenschaft", "naturwissenschaften", "technik", "forschung", "experiment", "experimente", "physik", "chemie", "biologie", "logik", "wissenschaft"] },
+  // Sport / Bewegung (Probe Fall 3 "Bewegung")
+  { trigger: /\b(sport|beweg|turn|fussball|fu(ss|ß)ball|ballspiel|schwimm|fitness|motorik|toben|leichtathletik)/i,
+    tags: ["sport", "bewegung", "gesundheit", "tanz"] },
+  // Lesen / Sprache / DaZ (Probe Fall 4 "Lesen", Fall 9 "Deutsch")
+  { trigger: /\b(lese|buch|b(ue|ü)cher|bibliothek|vorlesen|sprach|deutsch|daz|daf|mehrsprach|alphabetis|wortschatz|schreiben)/i,
+    tags: ["lesen", "sprache", "sprachen", "deutsch", "integration", "chancengleichheit", "basiskompetenzen", "interkulturell"] },
+  // Kultur / Musik / Kunst / Theater (Probe Fall 6 "Musikinstrumente"; Korpus
+  // ev-027 "Konzertfahrten" = kulturell, traf bisher keinen Cluster)
+  { trigger: /\b(musik|instrument|theater|schauspiel|kunst|malen|basteln|kreativ|chor|konzert|band|film|tanz|gestalt)/i,
+    tags: ["kultur", "kunst", "kulturelle-bildung", "musik", "theater", "tanz", "film", "bildende-kunst", "kreativitaet", "kuenste"] },
+  // Natur / Umwelt / Garten / Schulhof (Probe Fall 2 "Schulhof", Fall 7 "Garten")
+  { trigger: /\b(garten|schulhof|schulgarten|au(ss|ß)engel(ae|ä)nde|hochbeet|beet|begr(ue|ü)n|pflanz|natur|umwelt|tiere|insekt|nabu|wald|teich|klima|nachhaltig|(oe|ö)ko|wasser|artenviel|gel(ae|ä)nde)/i,
+    tags: ["umwelt", "umweltbildung", "natur", "naturschutz", "naturerleben", "naturbildung", "nachhaltigkeit", "klimaschutz", "klima", "oekologie", "artenvielfalt", "wald", "garten", "schulgarten", "schulhof", "gartengestaltung", "wasser", "energie", "bne"] },
+  // Demokratie / Soziales / Mobbing / Gewalt (Probe Fall 5 "Mobbing")
+  { trigger: /\b(mobbing|gewalt|streit|konflikt|respekt|demokrat|mitbestimm|partizip|beteilig|toleranz|vielfalt|diskriminier|ausgrenz|zusammenleben|sozial|miteinander|zivilcourage)/i,
+    tags: ["demokratie", "politische-bildung", "partizipation", "beteiligung", "soziales", "praevention", "gewaltpraevention", "extremismuspraevention", "toleranz", "vielfalt", "respekt", "zusammenleben", "teilhabe", "zivilgesellschaft", "kinderschutz"] },
+  // Gesundheit / Ernaehrung (Probe Fall 10 "gesundes Essen")
+  { trigger: /\b(gesund|ern(ae|ä)hr|essen|kochen|koch|obst|gem(ue|ü)se|fr(ue|ü)hst(ue|ü)ck|verbraucher|haushalt|zahn|sucht)/i,
+    tags: ["gesundheit", "ernaehrung", "verbraucherbildung", "haushalt", "alltagskompetenzen", "praevention"] },
+  // Inklusion / Foerderbedarf
+  { trigger: /\b(inklusi|integration|f(oe|ö)rderbedarf|behinder|barriere|sonderp(ae|ä)dagog|benachteilig|migration|chancengleich|heterogen)/i,
+    tags: ["inklusion", "integration", "teilhabe", "barrierefreiheit", "barrierenabbau", "chancengleichheit", "vielfalt", "benachteiligung", "bildungsgerechtigkeit", "foerderung"] },
+] as const;
+
+/**
+ * Extrahiert Themen aus dem Anliegen-Text via Wort-Grenzen-Match (Phase 2.3) PLUS
+ * Alias-Cluster-Expansion (Hebel 3). Der `\b<kat>\b`-Match eliminiert False-Positives
+ * wie "ki" in "Kinder", "natur" in "natuerlich". Diakritika/Umlaut-Toleranz nicht
+ * noetig fuer den Exakt-Match, weil Kategorien in foerderprogramme.json bereits in
+ * ASCII-Form sind. Die Alias-Trigger decken umgangssprachliche/abgeleitete Begriffe
+ * UND Umlaut-Varianten ab. Exportiert fuer Tests.
+ */
+export function extractAnliegenThemes(anliegen: string): Set<string> {
   const t = anliegen.toLowerCase();
   const hits = new Set<string>();
+  // 1. Exakter Kategorie-Match (wie bisher).
   for (const kat of ALL_KATEGORIEN) {
-    // Escape regex-Sonderzeichen in Kategorie-Strings (selten, aber sicher).
     const escaped = kat.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const re = new RegExp(`\\b${escaped}\\b`, "i");
     if (re.test(t)) hits.add(kat);
+  }
+  // 2. Alias-Cluster: jeder Trigger zieht seinen gesamten Tag-Cluster herein.
+  for (const alias of THEME_ALIASES) {
+    if (alias.trigger.test(t)) {
+      for (const tag of alias.tags) hits.add(tag);
+    }
   }
   return hits;
 }
@@ -128,6 +240,53 @@ function themeBoost(programm: Foerderprogramm, anliegenThemes: Set<string>): num
     if (anliegenThemes.has(String(k).toLowerCase())) hits++;
   }
   return Math.min(hits, THEME_BOOST_MAX_HITS) * THEME_BOOST_PER_HIT;
+}
+
+/** Groesse des deterministischen Kandidaten-Cuts (= was an den LLM geht). */
+export const CUT_SIZE = MAX_LLM_CANDIDATES;
+
+/** Ein prefilter-Ueberlebender mit aufgeschluesseltem Sortier-Score. */
+export interface CutCandidate {
+  programm: Foerderprogramm;
+  /** QueueScore + themeBoost — bestimmt die Cut-Reihenfolge. */
+  sortScore: number;
+  queueScore: number;
+  themeBoost: number;
+}
+
+/** Ergebnis der deterministischen Kandidaten-Auswahl vor dem LLM. */
+export interface CutSelection {
+  /** Alle prefilter-Ueberlebenden, absteigend nach sortScore. */
+  ranked: CutCandidate[];
+  /** Die ersten CUT_SIZE Programme = exakt das, was an den LLM uebergeben wird. */
+  cut: Foerderprogramm[];
+  /** Die aus dem Anliegen extrahierten Themen-Tags (Diagnose). */
+  anliegenThemes: Set<string>;
+}
+
+/**
+ * Deterministische Kandidaten-Auswahl VOR dem LLM: prefilter (Status/Bundesland)
+ * → sortScore (QueueScore + themeBoost) → Top-CUT_SIZE.
+ *
+ * Exportiert fuer die Cut-Coverage-Eval (`scripts/eval-cut-coverage.ts`): misst
+ * rein deterministisch (ohne LLM-Rauschen), ob das fachlich passende Programm
+ * ueberhaupt in den Cut kommt. `runMatch` nutzt dieselbe Funktion → keine
+ * Logik-Drift zwischen Produktion und Messung.
+ */
+export function selectCutCandidates(input: MatchInput): CutSelection {
+  const filtered = prefilter(input, programme);
+  // previousAnliegen mitberuecksichtigen fuer D-09 Praezisierungs-Pfad.
+  const themeText = `${input.anliegen} ${input.previousAnliegen ?? ""}`;
+  const anliegenThemes = extractAnliegenThemes(themeText);
+  const ranked: CutCandidate[] = filtered
+    .map((p) => {
+      const queueScore = QUEUE_SCORES.get(p.id) ?? 0;
+      const boost = themeBoost(p, anliegenThemes);
+      return { programm: p, sortScore: queueScore + boost, queueScore, themeBoost: boost };
+    })
+    .sort((a, b) => b.sortScore - a.sortScore);
+  const cut = ranked.slice(0, CUT_SIZE).map((entry) => entry.programm);
+  return { ranked, cut, anliegenThemes };
 }
 
 export interface MatchInput {
@@ -213,8 +372,14 @@ function normalizeBundesland(raw: string | undefined): string | null {
 function prefilter(input: MatchInput, all: Foerderprogramm[]): Foerderprogramm[] {
   const blCode = normalizeBundesland(input.bundesland);
   return all.filter((p) => {
-    // Abgelaufene Fristen ausschliessen
-    if ((p as any).status && (p as any).status === "abgelaufen") return false;
+    // Nicht-aktive Programme ausschliessen. Bug-Fix (Hebel 3): der Filter pruefte
+    // bisher `status === "abgelaufen"` — diesen Wert gibt es im Katalog gar nicht
+    // (reale Werte: "aktiv" / "archiviert" / "review_needed"), der Filter war
+    // wirkungslos. "archiviert" = terminal (alte Wettbewerbsrunden, Dubletten),
+    // "review_needed" = noch nicht freigegeben (z. B. strategische Partnerschaften
+    // ohne offenen Call). Beide gehoeren nicht als Live-Treffer in den Cut.
+    const status = (p as any).status;
+    if (status === "archiviert" || status === "review_needed") return false;
 
     // Landesprogramme filtern: wenn User bundesland gesetzt hat und
     // Programm explizit andere Laender fordert
@@ -447,21 +612,10 @@ export async function runMatch(input: MatchInput): Promise<MatchResult> {
     );
   }
 
-  const filtered = prefilter(input, programme);
-
-  // Plan 02-09: Theme-Boost vor Top-N-Cut. Sortierung = QueueScore + ThemeBoost.
-  // previousAnliegen mitberuecksichtigen fuer D-09 Praezisierungs-Pfad.
-  const themeText = `${input.anliegen} ${input.previousAnliegen ?? ""}`;
-  const anliegenThemes = extractAnliegenThemes(themeText);
-  const topN = [...filtered]
-    .map((p) => ({
-      programm: p,
-      sortScore: (QUEUE_SCORES.get(p.id) ?? 0) + themeBoost(p, anliegenThemes),
-    }))
-    .sort((a, b) => b.sortScore - a.sortScore)
-    .slice(0, MAX_LLM_CANDIDATES)
-    .map((entry) => entry.programm);
-  const cards = topN.map(toCard);
+  // Plan 02-09: Deterministische Kandidaten-Auswahl (prefilter → QueueScore +
+  // ThemeBoost → Top-CUT_SIZE). Identisch zur Cut-Coverage-Eval (selectCutCandidates).
+  const selection = selectCutCandidates(input);
+  const cards = selection.cut.map(toCard);
 
   const { value: rawText, usage } = await generateText(
     MODEL_FLASH,
@@ -502,14 +656,33 @@ export async function runMatch(input: MatchInput): Promise<MatchResult> {
     if (m.id === "bmbf-digitalpakt-2" && !hasDigital) {
       effectiveScore = Math.min(effectiveScore, DRIFT_CAP_SCORE);
     }
-    if (effectiveScore < 50) continue;
     const p = programme.find((x) => x.id === m.id);
     if (!p) continue;
+
+    // C5 Groessenordnungs-Plausibilitaet: Hinweis immer, Demotion nur bei
+    // belegter starker Ueberdimensionierung (Budget bekannt & Min > Budget × 6).
+    const sizeNote = sizeAchtung(p, input.geschaetztesBudgetEur);
+    if (sizeNote && typeof input.geschaetztesBudgetEur === "number" && input.geschaetztesBudgetEur > 0) {
+      const min = (p as { foerdersummeMin?: number | null }).foerdersummeMin;
+      if (typeof min === "number" && min > input.geschaetztesBudgetEur * SEVERE_OVERSIZE_FACTOR) {
+        effectiveScore = Math.min(effectiveScore, SIZE_DEMOTE_CAP);
+      }
+    }
+
+    if (effectiveScore < 50) continue;
+
+    const achtung_bei =
+      sizeNote && !mentionsScale(m.achtung_bei)
+        ? m.achtung_bei
+          ? `${m.achtung_bei} ${sizeNote}`
+          : sizeNote
+        : m.achtung_bei;
+
     matches.push({
       id: m.id,
       score: Math.round(effectiveScore),
       passt_weil: m.passt_weil,
-      achtung_bei: m.achtung_bei,
+      achtung_bei,
       programm: p,
     });
   }
@@ -520,7 +693,7 @@ export async function runMatch(input: MatchInput): Promise<MatchResult> {
     kind: "ranking",
     matches: matches.slice(0, MAX_MATCHES),
     costs,
-    totalCandidates: filtered.length,
-    filteredOut: programme.length - filtered.length,
+    totalCandidates: selection.ranked.length,
+    filteredOut: programme.length - selection.ranked.length,
   };
 }

@@ -62,6 +62,15 @@ export interface Finanzposten {
   begruendung?: string;
   /** true, wenn dieser Posten als Eigenanteil gerechnet wird (nicht aus Foerderung, sondern Traeger/Schule). */
   eigenanteil?: boolean;
+  /**
+   * true, wenn der Betrag ein VORSCHLAG des Assistenten ist (vom Nutzer nicht
+   * beziffert/bestaetigt) — z. B. die Ausgestaltung einer genannten Globalsumme
+   * oder eine fachlich begruendete Schaetzung. Wird in der UI als "Vorschlag —
+   * bestaetigen/anpassen" angezeigt. false/undefined = am Nutzerinput belegt.
+   * Produktvision 2026-06-10: ergaenzende Vorschlaege werden MARKIERT, nicht
+   * geloescht; nur widerspruechliche Erfindungen werden ausgeschlossen.
+   */
+  istVorschlag?: boolean;
 }
 
 export interface Finanzplan {
@@ -72,6 +81,15 @@ export interface Finanzplan {
   legitimiertAm?: string;
   /** Kommentar des Generators, z. B. Hinweise auf offene Fragen. */
   hinweise?: string[];
+  /**
+   * true, wenn der Nutzer KEINE Kostenbasis geliefert hat (keine Betraege/Preise).
+   * Dann werden bewusst KEINE erfundenen Euro-Posten erzeugt; stattdessen steht in
+   * `kostenrahmen` eine beschreibende, unbezifferte Kostenaufstellung. Verhindert,
+   * dass frei geschaetzte Zahlen als Kalkulation erscheinen (Probe 09.06.).
+   */
+  unbeziffert?: boolean;
+  /** Beschreibende Kostenpositionen OHNE Betrag (nur im unbeziffert-Modus gesetzt). */
+  kostenrahmen?: string[];
 }
 
 export type CritiqueSchwere = "hoch" | "mittel" | "niedrig";
@@ -148,6 +166,29 @@ export interface GenerationArtefacts {
   critiqueResolutions?: FindingResolution[];
   /** True, wenn mind. ein Finding mit schwere=hoch nicht abschliessend geschlossen ist. */
   hasOpenHighFindings?: boolean;
+  /**
+   * Halluzinations-Diff-Gate (Probe 09.06., Hebel 1): in der Revisions-Stufe NEU
+   * eingefuehrte Zahlen/Eigennamen, die in keiner Quelle (Entwurf/Facts/Antworten)
+   * stehen. `introducedBefore` = vor dem Repair erkannt, `residual` = danach noch
+   * vorhanden, `repaired` = ob der Repair uebernommen wurde. Nur gesetzt, wenn
+   * ueberhaupt Treffer vorlagen.
+   */
+  hallucinationGate?: { introducedBefore: string[]; residual: string[]; repaired: boolean };
+  /**
+   * Fakt-Verifikations-Pass (dreistufig, Produktvision 2026-06-10): prueft
+   * konkrete Behauptungen gegen die Nutzer-Ground-Truth. `neutralisiert` =
+   * Widersprueche/falsche Tatsachen, die entschaerft wurden; `vorschlaege` =
+   * sinnvolle Ausgestaltungen, die im Text BLEIBEN und dem Nutzer zur Bestaetigung
+   * vorgelegt werden; `remaining` = nach dem Repair noch vorhandene
+   * Neutralisierungs-Zitate; `repaired` = ob der Repair uebernommen wurde. Nur
+   * gesetzt, wenn Treffer vorlagen.
+   */
+  factVerification?: {
+    neutralisiert: string[];
+    vorschlaege: string[];
+    remaining: string[];
+    repaired: boolean;
+  };
   /** Inkonsistenzen zwischen Antragstext und Finanzplan (Cross-Check). */
   consistencyIssues?: ConsistencyIssue[];
   /** True, wenn mindestens ein Konsistenz-Issue gefunden wurde. */

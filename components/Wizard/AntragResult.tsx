@@ -3,12 +3,13 @@
 import { useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { AlertTriangle, Check, Copy, Download, FileDown, Loader2, PenLine, RefreshCw } from "lucide-react";
+import { AlertTriangle, Check, Copy, Download, FileDown, Loader2, PenLine, RefreshCw, Sparkles } from "lucide-react";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type { Finanzplan, GenerationArtefacts } from "@/lib/wizard/types";
 import { formatEur, type CostLedger } from "@/lib/wizard/pricing";
 import { FinanzplanView } from "./FinanzplanView";
 import { FinanzplanEditor } from "./FinanzplanEditor";
+import { TextVorschlaegeEditor } from "./TextVorschlaegeEditor";
 import { renderFinanzplanMarkdown } from "@/lib/wizard/finanzplan-markdown";
 import { PaywallGate } from "./PaywallGate";
 import { AntragSectionNav, slugifyHeading } from "./AntragSectionNav";
@@ -172,20 +173,39 @@ export function AntragResult({
   const [copied, setCopied] = useState(false);
   const [showCritique, setShowCritique] = useState(false);
   const [pdfBusy, setPdfBusy] = useState(false);
+  const [ackOpenFindings, setAckOpenFindings] = useState(false);
+  // #4 (Produktvision): Antragstext + Text-Vorschläge sind live editierbar.
+  // Beides als State, damit Bestätigen/Bearbeiten/Entfernen sofort im
+  // gerenderten Antrag UND im Export (combinedText) wirken.
+  const [text, setText] = useState(generation.finalText ?? "");
+  const [textVorschlaege, setTextVorschlaege] = useState<string[]>(
+    generation.factVerification?.vorschlaege ?? []
+  );
   const printRef = useRef<HTMLDivElement>(null);
-  const text = generation.finalText ?? "";
   const finanzplanMarkdown = generation.finanzplan
     ? renderFinanzplanMarkdown(generation.finanzplan)
     : "";
   const combinedText = finanzplanMarkdown ? `${text}\n${finanzplanMarkdown}\n` : text;
 
+  // Hebel 2 (E2E-Probe 09.06.) — Auslieferungs-Block: Ein nicht abschliessend
+  // adressiertes hoch-Finding des KI-Gutachters ist ein echtes Qualitaetsrisiko.
+  // Der Export (Kopieren/Download/PDF) wird gesperrt, bis der Nutzer aktiv
+  // bestaetigt, dass er die offenen Hinweise kennt und den Antrag selbst prueft.
+  // Reine Konsistenz-Hinweise (von der Pipeline bereits abgeglichen) bleiben eine
+  // weiche Warnung ohne Sperre.
+  const hasOpenHigh = !!generation.hasOpenHighFindings;
+  const hasConsistency = !!generation.hasConsistencyIssues;
+  const exportBlocked = hasOpenHigh && !ackOpenFindings;
+
   const copy = async () => {
+    if (exportBlocked) return;
     await navigator.clipboard.writeText(combinedText);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   const download = (mime: string, ext: string) => {
+    if (exportBlocked) return;
     const blob = new Blob([combinedText], { type: mime });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -198,7 +218,7 @@ export function AntragResult({
   };
 
   const downloadPdf = async () => {
-    if (!printRef.current || pdfBusy) return;
+    if (exportBlocked || !printRef.current || pdfBusy) return;
     setPdfBusy(true);
     try {
       const html2pdf = (await loadHtml2pdf()) as {
@@ -236,7 +256,8 @@ export function AntragResult({
           <button
             type="button"
             onClick={copy}
-            className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-3 py-2 text-sm text-[#1e3a61] hover:bg-slate-100"
+            disabled={exportBlocked}
+            className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-3 py-2 text-sm text-[#1e3a61] hover:bg-slate-100 disabled:opacity-40 disabled:pointer-events-none"
           >
             {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
             {copied ? "Kopiert" : "Kopieren"}
@@ -244,22 +265,24 @@ export function AntragResult({
           <button
             type="button"
             onClick={() => download("text/plain;charset=utf-8", "txt")}
-            className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-3 py-2 text-sm text-[#1e3a61] hover:bg-slate-100"
+            disabled={exportBlocked}
+            className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-3 py-2 text-sm text-[#1e3a61] hover:bg-slate-100 disabled:opacity-40 disabled:pointer-events-none"
           >
             <Download className="h-4 w-4" /> .txt
           </button>
           <button
             type="button"
             onClick={() => download("application/msword", "doc")}
-            className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-3 py-2 text-sm text-[#1e3a61] hover:bg-slate-100"
+            disabled={exportBlocked}
+            className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-3 py-2 text-sm text-[#1e3a61] hover:bg-slate-100 disabled:opacity-40 disabled:pointer-events-none"
           >
             <Download className="h-4 w-4" /> .doc
           </button>
           <button
             type="button"
             onClick={downloadPdf}
-            disabled={pdfBusy}
-            className="inline-flex items-center gap-2 rounded-lg border border-[#c9a227]/40 bg-[#c9a227]/10 px-3 py-2 sm:py-3 text-sm text-[#1e3a61] transition hover:bg-[#c9a227]/20 disabled:opacity-50"
+            disabled={pdfBusy || exportBlocked}
+            className="inline-flex items-center gap-2 rounded-lg border border-[#c9a227]/40 bg-[#c9a227]/10 px-3 py-2 sm:py-3 text-sm text-[#1e3a61] transition hover:bg-[#c9a227]/20 disabled:opacity-50 disabled:pointer-events-none"
           >
             {pdfBusy ? (
               <Loader2 className="h-4 w-4 animate-spin" />
@@ -279,18 +302,53 @@ export function AntragResult({
           )}
         </div>
       </header>
-      {(generation.hasOpenHighFindings || generation.hasConsistencyIssues) && (
+      {hasOpenHigh && (
+        <div className="mb-5 rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-900">
+          <div className="flex items-start gap-3">
+            <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-red-600" />
+            <div>
+              <div className="font-semibold text-red-900">
+                Qualitätshinweise des KI-Prüfers — bitte vor Export prüfen
+              </div>
+              <ul className="mt-1 list-disc pl-5 text-xs text-red-800/90 space-y-0.5">
+                <li>
+                  Mindestens ein <strong>hoch</strong>-Finding des Gutachters ist nicht
+                  vollständig adressiert.
+                </li>
+                {hasConsistency && (
+                  <li>
+                    Antragstext und Finanzplan haben Inkonsistenzen (
+                    {generation.consistencyIssues?.length ?? 0}).
+                  </li>
+                )}
+                <li>Details unten unter „KI-Gutachten" — bitte selbst prüfen.</li>
+              </ul>
+            </div>
+          </div>
+          {paid && (
+            <label className="mt-3 flex items-start gap-2 rounded border border-red-300 bg-white p-2.5 text-xs text-red-900">
+              <input
+                type="checkbox"
+                checked={ackOpenFindings}
+                onChange={(e) => setAckOpenFindings(e.target.checked)}
+                className="mt-0.5 h-4 w-4 shrink-0 accent-red-600"
+              />
+              <span>
+                Ich habe die offenen Hinweise gelesen, den Antrag selbst geprüft und
+                übernehme die Verantwortung für die Einreichung.{" "}
+                <strong>Export ist bis dahin gesperrt.</strong>
+              </span>
+            </label>
+          )}
+        </div>
+      )}
+      {!hasOpenHigh && hasConsistency && (
         <div className="mb-5 flex items-start gap-3 rounded-lg border border-[#c9a227]/40 bg-[#c9a227]/10 p-4 text-sm text-[#0a1628]">
           <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#c9a227]" />
           <div>
             <div className="font-semibold text-[#0a1628]">Qualitätshinweise des KI-Prüfers</div>
             <ul className="mt-1 list-disc pl-5 text-xs text-[#1e3a61]/80 space-y-0.5">
-              {generation.hasOpenHighFindings && (
-                <li>Mindestens ein hoch-Finding des Gutachters ist nicht vollständig adressiert.</li>
-              )}
-              {generation.hasConsistencyIssues && (
-                <li>Antragstext und Finanzplan haben Inkonsistenzen ({generation.consistencyIssues?.length ?? 0}).</li>
-              )}
+              <li>Antragstext und Finanzplan haben Inkonsistenzen ({generation.consistencyIssues?.length ?? 0}).</li>
               <li>Details unten unter „KI-Gutachten" — vor Einreichung selbst prüfen.</li>
             </ul>
           </div>
@@ -328,6 +386,33 @@ export function AntragResult({
           <PaywallGate sessionToken={sessionToken} priceEur={29.9} tierLabel="Einzelantrag" />
         )}
       </div>
+      {paid && textVorschlaege.length > 0 && sessionToken && (
+        <TextVorschlaegeEditor
+          sessionToken={sessionToken}
+          finalText={text}
+          vorschlaege={textVorschlaege}
+          onChange={({ finalText, vorschlaege }) => {
+            setText(finalText);
+            setTextVorschlaege(vorschlaege);
+          }}
+        />
+      )}
+      {paid && textVorschlaege.length > 0 && !sessionToken && (
+        <div className="mt-6 rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 p-4">
+          <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#0a1628]">
+            <Sparkles className="h-4 w-4 text-[#c9a227]" />
+            Vorschläge des Assistenten im Antragstext — bitte prüfen
+          </div>
+          <ul className="space-y-1.5 text-xs text-[#1e3a61]">
+            {textVorschlaege.map((v, i) => (
+              <li key={i} className="flex gap-2 rounded border border-[#0a1628]/10 bg-white p-2">
+                <span className="shrink-0 text-[#c9a227]">›</span>
+                <span>„{v}"</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       {costs && costs.calls > 0 && (
         <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-[#0a1628]/10 bg-[#f8f5f0] px-4 py-2 text-xs text-slate-500">
           <span>

@@ -76,7 +76,6 @@
     "bundesland": "Niedersachsen",
     "geschaetztesBudgetEur": 25000,
     "expected_top3": [
-      "telekom-stiftung-jia",
       "telekom-junior-ingenieur-2026",
       "telekom-stiftung-mint-berufsorientierung",
       "vdi-joachim-herz-technikfonds"
@@ -96,8 +95,6 @@
     "geschaetztesBudgetEur": 18000,
     "expected_top3": [
       "lesen-macht-stark",
-      "sprache-macht-stark",
-      "mercator-integration",
       "claussen-simon-fonds-schulen-2026"
     ],
     "expected_off_target": [
@@ -134,14 +131,13 @@
     "geschaetztesBudgetEur": 32000,
     "expected_top3": [
       "aktion-mensch-schulkooperation",
-      "fritz-henkel-inklusion-2026",
       "dkjs-inklusion",
       "bildung-durch-bewegung"
     ],
     "expected_off_target": [
       "bmbf-digitalpakt-2"
     ],
-    "notes": "Goldstandard Inklusion. DigitalPakt klar off-target. Aktion-Mensch ist hier Top-3-Pflicht (kernzielgruppe). [2026-06-01 Pool-Expansion: expected_top3 um neu bedossierte, fachlich passende Discovery-Programme ergaenzt.]"
+    "notes": "Goldstandard Inklusion. DigitalPakt klar off-target. Aktion-Mensch ist hier Top-3-Pflicht (kernzielgruppe). [2026-06-11 Korpus-Fix: fritz-henkel-inklusion-2026 entfernt — Katalog-Text 'Keine direkte Foerderung fuer Einzelschulen (strategische Partnerschaften)', also nicht beantragbar (Klasse wie mercator/bmw in 84e2631).] [2026-06-01 Pool-Expansion: expected_top3 um neu bedossierte, fachlich passende Discovery-Programme ergaenzt.]"
   },
   {
     "id": "ev-009",
@@ -154,13 +150,12 @@
     "expected_top3": [
       "klimalab-2026",
       "schott-nachhaltigkeit",
-      "heinrich-boell-bildung",
       "dbu-projektfoerderung-foerderthema-nachhaltigkeitskommunikation-und"
     ],
     "expected_off_target": [
       "aktion-mensch-schulkooperation"
     ],
-    "notes": "Klima+BNE-Schwerpunkt. Inklusion ist Off-Target — Anliegen hat keinen Inklusionsfokus. [2026-06-01 Pool-Expansion: expected_top3 um neu bedossierte, fachlich passende Discovery-Programme ergaenzt.]"
+    "notes": "Klima+BNE-Schwerpunkt. Inklusion ist Off-Target — Anliegen hat keinen Inklusionsfokus. [2026-06-11 Korpus-Fix: heinrich-boell-bildung entfernt — Katalog-Text 'Keine direkte Foerderung fuer Einzelschulen (Forschung & Politikberatung)', also nicht beantragbar.] [2026-06-01 Pool-Expansion: expected_top3 um neu bedossierte, fachlich passende Discovery-Programme ergaenzt.]"
   },
   {
     "id": "ev-010",
@@ -171,15 +166,13 @@
     "bundesland": "Brandenburg",
     "geschaetztesBudgetEur": 14000,
     "expected_top3": [
-      "bmw-stiftung-demokratie",
-      "heinrich-boell-bildung",
       "foerderfonds-demokratie",
       "brandenburg-foerderung-aus-lottomitteln-mbjs"
     ],
     "expected_off_target": [
       "bmbf-digitalpakt-2"
     ],
-    "notes": "Eindeutiges Demokratie+Partizipation-Profil. DigitalPakt ist klar off-target. [2026-06-01 Pool-Expansion: expected_top3 um neu bedossierte, fachlich passende Discovery-Programme ergaenzt.]"
+    "notes": "Eindeutiges Demokratie+Partizipation-Profil. DigitalPakt ist klar off-target. [2026-06-11 Korpus-Fix: heinrich-boell-bildung entfernt — Katalog-Text 'Keine direkte Foerderung fuer Einzelschulen (Forschung & Politikberatung)', also nicht beantragbar.] [2026-06-01 Pool-Expansion: expected_top3 um neu bedossierte, fachlich passende Discovery-Programme ergaenzt.]"
   },
   {
     "id": "ev-011",
@@ -232,14 +225,13 @@
     "expected_top3": [
       "kultur-macht-stark",
       "hamburg-kultur-schule",
-      "bayern-kulturfonds",
       "neumayer-projektkultur",
       "pwc-stiftung-foerderung-kulturelle-bildung"
     ],
     "expected_off_target": [
       "bmbf-digitalpakt-2"
     ],
-    "notes": "Knapper Kultur-Antrag. Hamburg-Kultur als BL-Treffer (DE-HH). Bayern-Kulturfonds darf rein, weil bundesweit foerderbar. [2026-06-01 Pool-Expansion: expected_top3 um neu bedossierte, fachlich passende Discovery-Programme ergaenzt.]"
+    "notes": "Knapper Kultur-Antrag. Hamburg-Kultur als BL-Treffer (DE-HH). [2026-06-11 Korpus-Fix: bayern-kulturfonds entfernt — Programm ist Bayern-Landesfonds (bundeslaender=DE-BY), eine Hamburg-Schule kann dort nicht beantragen; alte Notiz 'bundesweit foerderbar' war faktisch falsch. Vom Cut-Coverage-Eval als korrekter prefilter-Ausschluss aufgedeckt.] [2026-06-01 Pool-Expansion: expected_top3 um neu bedossierte, fachlich passende Discovery-Programme ergaenzt.]"
   },
   {
     "id": "ev-015",
@@ -264,8 +256,6 @@
     "geschaetztesBudgetEur": 4500,
     "expected_top3": [
       "lesen-macht-stark",
-      "sprache-macht-stark",
-      "mercator-integration",
       "landesprogramm-kultur-und-schule-nrw"
     ],
     "expected_off_target": [
@@ -281,7 +271,6 @@
     "bundesland": "Bayern",
     "expected_top3": [
       "bmbf-digitalpakt-2",
-      "mercator-digitalisierung",
       "ibm-skillsbuild"
     ],
     "expected_off_target": [
@@ -298,8 +287,7 @@
     "geschaetztesBudgetEur": 15000,
     "expected_top3": [
       "aktion-mensch-schulkooperation",
-      "berlin-startchancen",
-      "playmobil-hobpreis"
+      "berlin-startchancen"
     ],
     "expected_off_target": [
       "bmbf-digitalpakt-2"
@@ -332,13 +320,12 @@
     "geschaetztesBudgetEur": 18000,
     "expected_top3": [
       "klimalab-2026",
-      "heinrich-boell-bildung",
       "schott-nachhaltigkeit"
     ],
     "expected_off_target": [
       "aktion-mensch-schulkooperation"
     ],
-    "notes": "Vag mit Nachhaltigkeits-Schwerpunkt. Klaerungsfrage in Phase 2: Projekt-Komponente vs Ausstattung trennen. Aktion-Mensch off-target."
+    "notes": "Vag mit Nachhaltigkeits-Schwerpunkt. Klaerungsfrage in Phase 2: Projekt-Komponente vs Ausstattung trennen. Aktion-Mensch off-target. [2026-06-11 Korpus-Fix: heinrich-boell-bildung entfernt — foerdert keine Einzelschulen (Forschung & Politikberatung).]"
   },
   {
     "id": "ev-021",
@@ -465,7 +452,6 @@
     "geschaetztesBudgetEur": 12000,
     "expected_top3": [
       "lesen-macht-stark",
-      "sprache-macht-stark",
       "berlin-startchancen"
     ],
     "expected_off_target": [

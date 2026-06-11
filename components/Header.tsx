@@ -74,14 +74,15 @@ export function Header() {
       >
         <div className="container mx-auto flex items-center justify-between px-4 h-16">
           {/* Logo */}
-          <Link href="/" className="group flex items-center gap-2" aria-label="EduFunds - Zur Startseite">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#c9a227] to-[#e4c55a] flex items-center justify-center shadow-lg group-hover:shadow-[#c9a227]/35 transition-shadow">
-              <span className="text-xl font-bold text-[#0a1628]">€</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-bold text-lg text-[#f8f5f0]">EduFunds</span>
-              <span className="text-[10px] text-[#94a3b8] -mt-1">Schulförderung</span>
-            </div>
+          <Link href="/" className="group flex items-center" aria-label="EduFunds - Zur Startseite">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/edufunds-logo.svg"
+              alt="EduFunds"
+              width={344}
+              height={120}
+              className="h-[54px] w-auto transition-transform group-hover:scale-[1.02]"
+            />
           </Link>
 
           {/* Desktop Navigation */}

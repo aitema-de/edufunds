@@ -30,6 +30,16 @@ import {
 } from "./prompts";
 import { MODEL_FLASH, MODEL_PRO, generateJson, generateText } from "./llm";
 import { reviseForConsistency } from "./consistency-revision";
+import {
+  buildAllowedCorpus,
+  detectIntroduced,
+  repairIntroduced,
+} from "./hallucination-gate";
+import {
+  buildGroundTruth,
+  buildProgrammKontext,
+  verifyFacts,
+} from "./fact-verification";
 import type { Usage } from "./pricing";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
 import { generateFinanzplan } from "./finanzplan-generator";
@@ -400,6 +410,101 @@ export async function runPipeline(
   }
 
   // =========================================================================
+  // Halluzinations-Diff-Gate (Probe 09.06., Hebel 1)
+  // Vergleicht die revidierte Fassung deterministisch gegen die erlaubten
+  // Quellen (Entwurf + Facts + User-Antworten). In der Revisions-Stufe NEU
+  // eingefuehrte Zahlen/Eigennamen, die in keiner Quelle stehen, sind mit
+  // hoher Wahrscheinlichkeit erfunden ("alte gegen neue Erfindung"). Ein
+  // gezielter Repair entfernt sie; uebernommen wird er nur bei deterministisch
+  // nachgewiesener Verbesserung — das Gate kann nie verschlimmern (Lehre Fall 5).
+  // Laeuft VOR consistency/finanzplan, damit spaeter legitim aus dem Finanzplan
+  // uebernommene Betraege nicht faelschlich als "neu" gewertet werden.
+  // =========================================================================
+  let hallucinationGate: GenerationArtefacts["hallucinationGate"];
+  {
+    const allowedCorpus = buildAllowedCorpus(draft, facts, userAnswers);
+    const introduced = detectIntroduced(finalRes.value ?? "", allowedCorpus);
+    const introducedBefore = [...introduced.numbers, ...introduced.entities];
+    if (introducedBefore.length > 0) {
+      emit({ stage: "revision", message: "Halluzinations-Diff-Gate" });
+      try {
+        const gate = await repairIntroduced(
+          finalRes.value ?? "",
+          introduced,
+          allowedCorpus,
+          {
+            revise: (system, user) => generateText(MODEL_PRO, system, user),
+            model: MODEL_PRO,
+          }
+        );
+        finalRes = { value: gate.finalText, usage: finalRes.usage };
+        usages.push(...gate.usages);
+        hallucinationGate = {
+          introducedBefore,
+          residual: gate.residual,
+          repaired: gate.repaired,
+        };
+        console.log(
+          `[pipeline] Halluzinations-Gate: ${introducedBefore.length} Treffer → ${gate.residual.length} verbleibend (repaired=${gate.repaired})`
+        );
+      } catch (gateErr) {
+        console.error("[pipeline] Halluzinations-Gate fehlgeschlagen:", gateErr);
+        hallucinationGate = { introducedBefore, residual: introducedBefore, repaired: false };
+      }
+    }
+  }
+
+  // =========================================================================
+  // Fakt-Verifikations-Pass (Probe 09.06., Hebel 1b)
+  // Das Zahlen-Gate oben faengt nur Zahlen/Eigennamen, die die Revision NEU
+  // einfuehrt. Dieser LLM-Pass schliesst die zwei verbleibenden Luecken:
+  // (1) NARRATIVE Erfindungen (Partner-Rollen, Termine, Zusagen, Mengen, Kanaele,
+  // Verfahren) und (2) SECTION-STAGE-Halluzinationen (schon im Entwurf, daher vom
+  // Zahlen-Gate als "gedeckt" gewertet). Geprueft wird gegen die Nutzer-Ground-
+  // Truth (Facts + Antworten, OHNE Entwurf). Repair degradiert ungedeckte
+  // Behauptungen zu ehrlichen Luecken-Markern — uebernommen nur bei
+  // deterministisch nachgewiesener Verbesserung (Never-Worse, wie das Zahlen-Gate).
+  // Laeuft NACH dem Zahlen-Gate (Zahlen/Namen schon bereinigt) und VOR finanzplan.
+  // =========================================================================
+  let factVerification: GenerationArtefacts["factVerification"];
+  {
+    const groundTruth = buildGroundTruth(facts, userAnswers);
+    // Ohne jede Nutzer-Ground-Truth waere jeder konkrete Fakt "ungedeckt" — dann
+    // wuerde der Pass den ganzen Antrag entkernen. In dem Fall ueberspringen
+    // (der Unbeziffert-Modus/die markierten Luecken tragen die Ehrlichkeit).
+    if (groundTruth.trim().length >= 20) {
+      emit({ stage: "revision", message: "Fakt-Verifikation" });
+      try {
+        const fv = await verifyFacts(
+          finalRes.value ?? "",
+          groundTruth,
+          buildProgrammKontext(programm),
+          {
+            detect: (system, user) => generateJson<unknown>(MODEL_FLASH, system, user, { maxTokens: 4000 }),
+            revise: (system, user) => generateText(MODEL_PRO, system, user),
+            models: { detect: MODEL_FLASH, revise: MODEL_PRO },
+          }
+        );
+        finalRes = { value: fv.finalText, usage: finalRes.usage };
+        usages.push(...fv.usages);
+        if (fv.neutralisiert.length > 0 || fv.vorschlaege.length > 0) {
+          factVerification = {
+            neutralisiert: fv.neutralisiert,
+            vorschlaege: fv.vorschlaege,
+            remaining: fv.remaining,
+            repaired: fv.repaired,
+          };
+          console.log(
+            `[pipeline] Fakt-Verifikation: ${fv.neutralisiert.length} neutralisiert (→ ${fv.remaining.length} verbleibend, repaired=${fv.repaired}), ${fv.vorschlaege.length} Vorschlag/Vorschläge behalten`
+          );
+        }
+      } catch (fvErr) {
+        console.error("[pipeline] Fakt-Verifikation fehlgeschlagen:", fvErr);
+      }
+    }
+  }
+
+  // =========================================================================
   // Phase 5 D-20 Hebel 2 — Compliance-Check-Stage (PIPELINE_COMPLIANCE_STAGE)
   // Silent-Stage gegenueber GeneratingProgress.tsx — kein UI-Update.
   // Loop-Count enforced: max 1 Iteration (T-05-06-01 DoS-Mitigation).
@@ -479,6 +584,22 @@ export async function runPipeline(
       }
     }
   }
+  // Hinweis (Produktvision 2026-06-10): Der frühere unbeziffert-Zweig
+  // (Euro-Beträge per KOSTEN_ENTZIFFERUNG aus dem Text streichen) entfällt — der
+  // Finanzplan-Generator erstellt jetzt immer einen bezifferten Plan mit als
+  // Vorschlag markierten Beträgen; der Text behält seine (als Schätzung
+  // gekennzeichneten) Beträge und wird per Konsistenz-Revision daran angeglichen.
+
+  // Final-Guard (Probe 09.06., Fall 3): Nach allen Stufen darf der Antragstext
+  // niemals leer sein. Ein leerer finalText entsteht aus einer transienten,
+  // erfolgreich-aber-leeren KI-Antwort (vom Retry-Layer abgefangen, im Rest-Risiko
+  // aber moeglich). Lieber ein ehrlicher Fehler (Route → Phase "failed",
+  // Retry-Pfad) als ein zahlendes Leer-Dokument.
+  if (!(finalRes.value ?? "").trim()) {
+    throw new Error(
+      "Pipeline ergab einen leeren Antragstext — vermutlich ein voruebergehender KI-Ausfall. Bitte erneut generieren."
+    );
+  }
 
   emit({ stage: "done", message: "Fertig" });
 
@@ -490,6 +611,8 @@ export async function runPipeline(
       critiqueFindings: critique.findings,
       critiqueResolutions: resolutions.length ? resolutions : undefined,
       hasOpenHighFindings: hasOpenHigh || undefined,
+      hallucinationGate,
+      factVerification,
       consistencyIssues: consistencyIssues.length ? consistencyIssues : undefined,
       hasConsistencyIssues: consistencyIssues.length > 0 || undefined,
       finalText: finalRes.value,

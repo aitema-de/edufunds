@@ -62,6 +62,20 @@ class LlmTimeoutError extends Error {
   }
 }
 
+/**
+ * Eine erfolgreiche, aber inhaltlich leere Modell-Antwort (kein Text). DeepSeek
+ * liefert das sporadisch bei transienter Auslastung — ohne Behandlung erscheint
+ * es als gueltiger Lauf mit 0 Zeichen (Probe 09.06., Fall 3). Wird als
+ * retrybar behandelt.
+ */
+class LlmEmptyResponseError extends Error {
+  status = 502 as const;
+  constructor(model: string) {
+    super(`KI-Aufruf an ${model} lieferte eine leere Antwort.`);
+    this.name = "LlmEmptyResponseError";
+  }
+}
+
 function withTimeout<T>(p: Promise<T>, model: string): Promise<T> {
   return new Promise<T>((resolve, reject) => {
     const t = setTimeout(() => reject(new LlmTimeoutError(model)), REQUEST_TIMEOUT_MS);
@@ -76,6 +90,76 @@ function withTimeout<T>(p: Promise<T>, model: string): Promise<T> {
       }
     );
   });
+}
+
+// ---------------------------------------------------------------------------
+// Retry-Layer
+// ---------------------------------------------------------------------------
+// Jeder LLM-Call ist ein Einzelversuch hinter einem Hard-Timeout. Transiente
+// Ausfaelle (Timeout, 429, 5xx, ECONNRESET der DeepSeek-Verbindung, leere
+// Antworten) fuehrten bisher direkt zu fehlgeschlagener Generierung bzw. einem
+// 0-Zeichen-Antrag. Dieser Layer wiederholt nur die deterministisch als
+// transient erkennbaren Faelle mit kurzem Backoff; nicht-transiente Fehler
+// (400/401/Validation) werden sofort durchgereicht.
+
+const MAX_LLM_ATTEMPTS = 3;
+const RETRY_BASE_DELAY_MS = 600;
+
+export interface RetryOptions {
+  /** Basis-Verzoegerung in ms (exponentieller Backoff). Tests setzen 0. */
+  baseDelayMs?: number;
+}
+
+/** Entscheidet deterministisch, ob ein Fehler einen erneuten Versuch lohnt. Exportiert fuer Tests. */
+export function isRetryableLlmError(err: unknown): boolean {
+  if (err instanceof LlmTimeoutError || err instanceof LlmEmptyResponseError) return true;
+  const status = (err as { status?: number } | null)?.status;
+  if (typeof status === "number" && (status === 429 || status >= 500)) return true;
+  const msg = (err instanceof Error ? err.message : String(err)).toLowerCase();
+  return (
+    msg.includes("econnreset") ||
+    msg.includes("econnrefused") ||
+    msg.includes("etimedout") ||
+    msg.includes("socket hang up") ||
+    msg.includes("network") ||
+    msg.includes("fetch failed") ||
+    msg.includes("timeout") ||
+    msg.includes("zeitlimit") ||
+    msg.includes("leere antwort") ||
+    msg.includes("kein valides json") ||
+    msg.includes("429") ||
+    msg.includes("too many requests") ||
+    msg.includes("overloaded") ||
+    msg.includes("unavailable") ||
+    msg.includes("503") ||
+    msg.includes("502") ||
+    msg.includes("500")
+  );
+}
+
+/** Fuehrt `fn` aus und wiederholt nur bei transienten Fehlern. Exportiert fuer Tests. */
+export async function withRetry<T>(
+  fn: () => Promise<T>,
+  model: string,
+  opts: RetryOptions = {}
+): Promise<T> {
+  const base = opts.baseDelayMs ?? RETRY_BASE_DELAY_MS;
+  let lastErr: unknown;
+  for (let attempt = 1; attempt <= MAX_LLM_ATTEMPTS; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      lastErr = err;
+      if (attempt >= MAX_LLM_ATTEMPTS || !isRetryableLlmError(err)) throw err;
+      const delay = base * 2 ** (attempt - 1);
+      console.warn(
+        `[wizard/llm] ${model} Versuch ${attempt}/${MAX_LLM_ATTEMPTS} fehlgeschlagen ` +
+          `(${err instanceof Error ? err.message : String(err)}) — neuer Versuch in ${delay} ms`
+      );
+      if (delay > 0) await new Promise((r) => setTimeout(r, delay));
+    }
+  }
+  throw lastErr;
 }
 
 export interface LlmResult<T> {
@@ -143,6 +227,7 @@ async function deepseekGenerateText(model: string, system: string, user: string,
     model
   );
   const text = (res.choices[0]?.message?.content ?? "").trim();
+  if (!text) throw new LlmEmptyResponseError(model);
   const usage: Usage = {
     promptTokens: res.usage?.prompt_tokens ?? 0,
     candidatesTokens: res.usage?.completion_tokens ?? 0,
@@ -199,7 +284,9 @@ async function geminiGenerateText(model: string, system: string, user: string, o
   });
   const res = await withTimeout(gm.generateContent(user), model);
   const usage = extractGeminiUsage(res.response);
-  return { value: res.response.text().trim(), usage };
+  const text = res.response.text().trim();
+  if (!text) throw new LlmEmptyResponseError(model);
+  return { value: text, usage };
 }
 
 // ---------------------------------------------------------------------------
@@ -207,15 +294,23 @@ async function geminiGenerateText(model: string, system: string, user: string, o
 // ---------------------------------------------------------------------------
 
 export async function generateJson<T>(model: string, system: string, user: string, opts: LlmOptions = {}): Promise<LlmResult<T>> {
-  return PROVIDER === "deepseek"
-    ? deepseekGenerateJson<T>(model, system, user, opts)
-    : geminiGenerateJson<T>(model, system, user, opts);
+  return withRetry(
+    () =>
+      PROVIDER === "deepseek"
+        ? deepseekGenerateJson<T>(model, system, user, opts)
+        : geminiGenerateJson<T>(model, system, user, opts),
+    model
+  );
 }
 
 export async function generateText(model: string, system: string, user: string, opts: LlmOptions = {}): Promise<LlmResult<string>> {
-  return PROVIDER === "deepseek"
-    ? deepseekGenerateText(model, system, user, opts)
-    : geminiGenerateText(model, system, user, opts);
+  return withRetry(
+    () =>
+      PROVIDER === "deepseek"
+        ? deepseekGenerateText(model, system, user, opts)
+        : geminiGenerateText(model, system, user, opts),
+    model
+  );
 }
 
 // ---------------------------------------------------------------------------

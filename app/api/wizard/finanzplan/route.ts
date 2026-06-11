@@ -23,6 +23,9 @@ function sanitizePosten(raw: unknown): Finanzposten | null {
     betragEur: Math.max(0, Math.round(r.betragEur)),
     begruendung: typeof r.begruendung === "string" ? r.begruendung.trim() || undefined : undefined,
     eigenanteil: Boolean(r.eigenanteil),
+    // Vorschlags-Markierung erhalten (Produktvision): nur explizit true bleibt
+    // Vorschlag; bestätigte/bearbeitete Posten kommen ohne das Flag zurück = belegt.
+    istVorschlag: r.istVorschlag === true ? true : undefined,
   };
 }
 

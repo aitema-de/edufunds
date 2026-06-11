@@ -1,0 +1,120 @@
+# Dossier Fall 07 — Grundschule Regenbogen
+
+> E2E-Testlauf des Antragswizards mit **absichtlich spaerlichem Input**. Dieses Dossier zeigt alle Informationen, die in jedem Schritt zur Verfuegung standen.
+
+## 1. Ausgangslage (Nutzer-Eingabe)
+- **Knappe Idee (woertlich):** „Einen Garten anlegen mit den Kindern."
+- **Schulprofil:** Grundschule Regenbogen · Grundschule · DE-HE
+
+## 2. Matching
+**Top-Treffer:** deinSchulhof / Gruene Schulhoefe (Bundesinitiative DUH & Stiftung Lebendige Stadt) — Score 80/100
+- *passt weil:* Bundesweite Initiative fuer naturnahe Schulhofgestaltung, ideal zum Anlegen eines Schulgartens.
+- *Achtung bei:* BL Hessen ist enthalten, Frist beachten.
+- *Weitere Treffer:* DBU-Projektfoerderung (Foerderthema Nachhaltigkeitskommunikation und -bildung) (75)
+
+## 3. Interview — vollstaendiges Frage/Antwort-Protokoll
+_Die Antworten gab eine Persona „ueberlastete Lehrkraft", die bewusst knapp/vage geantwortet hat._
+
+| # | Frage des Wizards | Antwort (bewusst vage) |
+|---|---|---|
+| 1 | Wie viele Kinder besuchen die Grundschule Regenbogen und wie stark ist der Schulhof aktuell versiegelt (geschätzter Anteil in Prozent)? | So um die 200 vielleicht, und der Hof ist halt komplett zugepflastert, schätze ich mal. |
+| 2 | Sie haben etwa 200 Kinder und einen komplett versiegelten Hof. Können Sie mir eine typische Pausensituation schildern – was genau fällt Kindern und Lehrkräften dort schwer? (z. B. zu heiß im Sommer, kein Schatten, keine Sitzgelegenheiten, Matschpfützen?) | Ja, im Sommer ist es viel zu heiß, die Kinder suchen vergeblich Schatten. |
+| 3 | Haben Ihre Schülerinnen und Schüler besondere Förderbedarfe, etwa im sozial-emotionalen Bereich, die durch den fehlenden grünen Bewegungsraum verstärkt werden? | Ja, viele Kinder sind unruhig, haben Konzentrationsschwierigkeiten – das wird durch die Enge bestimmt noch schlimmer. |
+| 4 | Prima, das wird klarer. Für die Vision: Wenn Sie an den umgestalteten Schulhof denken – was wäre für die Kinder der größte Wunsch? Nennen Sie bitte ein konkretes Element, das neu entstehen soll (z.B. ein grünes Klassenzimmer aus Weiden, ein Wasserspielplatz oder Hochbeete zum Gemüseanbau). | Ein Gemüsegarten halt, mit Hochbeeten, so ungefähr. |
+| 5 | Sie wollen Hochbeete anlegen. Wie viele Quadratmeter Schulhof haben Sie zur Verfügung und welchen Anteil davon sollen die Hochbeete einnehmen? | Weiss ich nicht genau, so ungefähr halt. |
+| 6 | Haben Sie eine konkrete Zahl, wie viele Hochbeete oder Quadratmeter Gemüsegarten Sie anlegen wollen? Das hilft der Jury, sich die Fläche vorzustellen. | So ungefähr ein paar Beete halt. |
+| 7 | Wer genau trägt die Umgestaltung rechtlich und finanziell? Ist die Kommune als Schulträger bereits informiert und unterstützt das Vorhaben? Das ist für die Umsetzungserlaubnis und die langfristige Pflege der Hochbeete entscheidend. | Ja, die Kommune weiß Bescheid, denke ich. Finanziell müssen wir noch schauen. |
+| 8 | Die Kommune zu beteiligen ist ein wichtiger Schritt. Wissen Sie bereits, ob der Schulträger die Pflege der Hochbeete nach Projektende übernehmen würde, oder müsste das der Förderverein oder die Schul-AG leisten? | Müssten wir noch klären, wer das dann macht. |
+| 9 | Sie haben den Wunsch nach Hochbeeten genannt. Welche Materialien sollen dafür verwendet werden (z.B. Lärchenholz, Robinienholz, Cortenstahl) und wie viele Beete planen Sie konkret (z.B. 4 Beete à 1,20 m x 2,50 m)? | Ein paar Beete, so aus Holz halt, genau weiß ich das noch nicht. |
+| 10 | Damit die Jury sich die Hochbeete genau vorstellen kann: Wie viele Beete planen Sie konkret (z. B. „vier Hochbeete aus Lärchenholz, je 1,20 m x 2,50 m“) und welche Pflanzen sollen dort wachsen? Ein konkretes Bild hilft ungemein. | So ungefähr drei, vier Stück. |
+| 11 | Welche konkreten Materialien und Maße sollen die Hochbeete haben – zum Beispiel drei Beete à 1,20 m x 2,50 m aus Lärchenholz, und welche Pflanzen sollen dort wachsen (etwa Tomaten, Kräuter, Bohnen)? Eine bildhafte Vorstellung hilft der Jury enorm. | Hochbeete halt, so ungefähr einen Meter hoch, Holz, Gemüse und Kräuter, was die Kinder mögen. |
+| 12 | Die Hochbeete sind ein guter Start – aber für die Jury ist es wichtig, auch die Pflege nach Projektende zu sichern. Welche Gruppe von Schüler*innen oder Eltern wird sich fest um die Bewässerung und Ernte kümmern? Und wie viele Stunden pro Woche sind dafür eingeplant? | Das regeln wir dann mit den Eltern, so ungefähr eine Stunde die Woche. |
+
+## 4. Vom System extrahierte Facts (Stand am Ende)
+- **schule:**
+  - **typ:** Grundschule
+  - **name:** Grundschule Regenbogen
+  - **bundesland:** DE-HE
+  - **schuelerzahl:** 200
+  - **besonderheiten:** Schulhof komplett versiegelt, im Sommer zu heiß, kein Schatten, viele Kinder unruhig mit Konzentrationsschwierigkeiten durch Enge verstärkt
+- **projekt:**
+  - **aktivitaeten:**
+    - Gemüsegarten mit Hochbeeten
+
+## 5. Generierter Finanzplan
+| Posten | Betrag | Vorschlag? | Begruendung | Eigenanteil |
+|---|---:|:--:|---|:--:|
+| Landschaftsarchitektur-Planung Schulhof | 6.000 € | ⟨Vorschlag⟩ | Honorar für qualifiziertes Landschaftsarchitekturbüro zur Erstellung eines Entwurfs- und Ausführungsplans für die naturnahe Umgestaltung des komplett versiegelten Schulhofs | — |
+| Hochbeete aus Holz (ca. 4 Stück) | 1.200 € | ⟨Vorschlag⟩ | Schaetzung: Anschaffung von etwa 4 Hochbeeten aus Holz inkl. Bausatz und Imprägnierung für den Gemüsegarten (Mengenangabe vom User: 'drei, vier Stück') | — |
+| Pflanzmaterial für Hochbeete | 800 € | ⟨Vorschlag⟩ | Schaetzung: Gemüsepflanzen, Kräuter, Erde und Substrat für die Bepflanzung der Hochbeete | — |
+| Material für Beteiligungsworkshops | 500 € | ⟨Vorschlag⟩ | Schaetzung: Mal- und Bastelmaterial, Moderationskoffer für Planungsworkshops mit den 200 Schülerinnen und Schülern | — |
+| Entsiegelung und Vorbereitung von Pflanzflächen | 5.000 € | ⟨Vorschlag⟩ | Schaetzung: Entsiegelung eines Teilbereichs des vollversiegelten Schulhofs, Bodenverbesserung und Vorbereitung für die Hochbeete und ggf. weitere Begrünung | — |
+| Schattenspendende Elemente und naturnahe Aufenthaltsbereiche | 4.500 € | ⟨Vorschlag⟩ | Schaetzung: Pflanzung von Bäumen oder Aufstellung von Pergolen/Rankgitter zur Schattenspende, Sitzgelegenheiten aus Naturmaterialien als Rückzugsorte | — |
+| Bewässerungssystem für Hochbeete | 500 € | ⟨Vorschlag⟩ | Schaetzung: Tropfschläuche oder Regentonnenanschluss zur einfachen Bewässerung des Gemüsegartens | — |
+| Werkzeug und Gartengeräte | 1.000 € | ⟨Vorschlag⟩ | Schaetzung: Kinderfreundliches Gartengerät (Schaufeln, Harken, Gießkannen) und Handschuhe für die Bepflanzung und Pflege durch die Schulgemeinschaft | — |
+| Elternarbeit-Beteiligung (Sachkostenpauschale) | 500 € | ⟨Vorschlag⟩ | Schaetzung: Material und kleiner Imbiss für ca. 4 ehrenamtliche Arbeitseinsätze der Eltern (ca. 1 h/Woche) – keine Honorar-, sondern Sachkosten für Getränke und Kleinteile | — |
+| **Summe** | **20.000 €** | 9/9 Vorschlag | | |
+
+*Hinweise:* Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen. · Die Fördermittel in Höhe von ca. 20.000 EUR werden zu 100% gefördert (Eigenanteil nicht verpflichtend, aber Eigenleistung wird erwartet). · Annahme: Es werden 4 Hochbeete aus Holz ('drei, vier Stück' laut User) angeschafft - genaue Zahl beim Architekten abstimmen. · Honorar für Landschaftsarchitektur auf Basis üblicher Gebietsstufen geschätzt; Angebote sind einzuholen. · Für die Eigenleistung der Elternarbeit sind keine Personalkosten eingestellt (User: 'einmal die Woche, regeln mit den Eltern'), daher nur Sachkostenpauschale. · Die Schulgemeinde sollte vor Antragstellung eine verbindliche Eigenbeitragserklärung (z.B. Förderverein, Kommune) einholen – ggf. reichen Sachleistungen aus. · Der Betrag für „Hochbeete aus Holz (ca. 4 Stück)" (1.200 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen. · Der Betrag für „Pflanzmaterial für Hochbeete" (800 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen. · Der Betrag für „Material für Beteiligungsworkshops" (500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen. · Der Betrag für „Entsiegelung und Vorbereitung von Pflanzflächen" (5.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen. · Der Betrag für „Schattenspendende Elemente und naturnahe Aufenthaltsbereiche" (4.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen. · Der Betrag für „Bewässerungssystem für Hochbeete" (500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen. · Der Betrag für „Werkzeug und Gartengeräte" (1.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen. · Der Betrag für „Elternarbeit-Beteiligung (Sachkostenpauschale)" (500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.
+
+## 6. Selbstkritik der KI (critiqueFindings)
+- **[hoch · belegluecke]** _Schule und Ausgangslage des Schulhofs:_ Ersetzen durch: 'Die Kommune ist informiert – schriftliche Zusage vor Einreichung einholen [TODO]' – entspricht User-Antwort 'Ja, die Kommune weiß Bescheid, denke ich.'
+- **[hoch · belegluecke]** _Finanzierung und weitere Mittel:_ Diese Positionen sind erfunden. Ersetzen durch: 'Planungskosten werden noch mit Landschaftsbaubetrieben ermittelt; ggf. Eigenleistung der Eltern beim Aufbau.'
+- **[hoch · belegluecke]** _Finanzierung und weitere Mittel:_ Weder in User-Antworten noch in Fakten erwähnt. Streichen oder als offene Frage markieren: '[TODO: Klärung Wasseranschluss mit Kommune]'
+- **[hoch · richtlinie]** _Umsetzung, Traegerschaft und Verstetigung:_ Die Richtlinie erlaubt max. 20.000 Euro bei 100 % Förderung. Falls Gesamtkosten höher, muss Co-Finanzierung verbindlich vor Einreichung geklärt sein. [TODO: schriftliche Zusage Kommune einholen]
+- **[hoch · belegluecke]** _Umsetzung, Traegerschaft und Verstetigung:_ User sprach nie von Rückbau. Streichen oder durch 'Aufstellung der Hochbeete auf der bestehenden Fläche' ersetzen – Baumaßnahmen erfordern Zustimmung des Schulträgers.
+- **[mittel · belegluecke]** _Finanzierung und weitere Mittel:_ Konkrete Firmen nicht von User genannt. Besser: 'Sponsoring wird noch angefragt – falls nicht realisierbar, wird der Betrag durch Elternspenden gedeckt.'
+- **[mittel · belegluecke]** _Vision und Gestaltungskonzept:_ Rankhilfe wurde nicht vom User genannt. Als Vorschlag erkennbar ('wir schlagen vor') – okay, aber zur Sicherheit als offene Idee markieren: 'Denkbar wäre eine Rankhilfe; Entscheidung fällt in der Beteiligungswoche.'
+- **[mittel · belegluecke]** _Beteiligung der Schulgemeinschaft:_ User nannte nur 'eine Stunde die Woche' – keine Versammlungen, Aktionstage oder vierzehntägige Runden. Besser allgemein halten: 'Die genauen Beteiligungsformate werden mit der Schulgemeinschaft entwickelt – Vorschlag: Schulversammlung und Planungsrat.'
+- **[mittel · sonstiges]** _Vision und Gestaltungskonzept:_ User gab nur 'Grundschule' an, keine Klassenstufen. Wenn bekannt, dass es Klassen 1-4 sind, belassen – sonst allgemein 'alle Klassenstufen'.
+
+## 7. Fertiger Antrag (Volltext, wie generiert)
+
+# Gemüsegarten mit Hochbeeten — Grundschule Regenbogen (deinSchulhof / Grüne Schulhöfe)
+
+## Schule und Ausgangslage des Schulhofs
+
+Die Grundschule Regenbogen ist eine Grundschule mit rund 200 Schülerinnen und Schülern. Unser Schulhof ist, soweit absehbar, vollständig versiegelt und bietet keinerlei Grünflächen. Im Sommer heizt sich die versiegelte Fläche massiv auf; die Kinder suchen dann vergeblich nach schattigen Plätzen oder kühlenden Elementen. Die fehlende Aufenthaltsqualität und die räumliche Enge des Hofes verstärken nach unserer Beobachtung die Unruhe und Konzentrationsschwierigkeiten vieler Kinder. Wir sehen hier einen dringenden Handlungsbedarf: Eine naturnahe Umgestaltung mit Hochbeeten für einen Gemüsegarten (vier Stück, voraussichtlich aus Holz und rund einen Meter hoch) würde nicht nur das Mikroklima verbessern und Schatten spenden, sondern den Kindern täglich einen Ort für Naturerfahrung und ruhiges Gärtnern bieten. Die Kommune ist über unsere Planung informiert – die schriftliche Zusage zur Kooperation ist noch einzuholen [TODO: schriftliche Zusage der Kommune vor Einreichung einholen].
+
+## Vision und Gestaltungskonzept
+
+Wir stellen uns vor, wie der Schulhof der Grundschule Regenbogen in einen lebendigen, grünen Lern- und Erholungsort verwandelt wird – weg von der vollversiegelten, aufgeheizten Fläche, die im Sommer kaum Schatten bietet und durch Enge die ohnehin vorhandene Unruhe der Kinder verstärkt, hin zu einem Ort der Ruhe, des Staunens und der praktischen Naturerfahrung. Im Zentrum steht ein Gemüsegarten mit rund vier Hochbeeten aus Holz, etwa einen Meter hoch, die von den Kindern eigenständig bewirtschaftet werden können. Diese Beete – bepflanzt mit Gemüse und Kräutern – schaffen nicht nur kleinräumige Schatten- und Kühlungsinseln auf dem ansonsten unverschatteten Hof, sondern bieten zugleich Begegnungs- und Rückzugsräume. Durch die Hochbeetform wird das Gärtnern auch für jüngere Kinder ohne Bücken erlebbar. Denkbar wäre ergänzend eine Rankhilfe mit Kletterpflanzen als weiterer Schattenspender; die Entscheidung darüber fällt in der Beteiligungswoche mit den Kindern. Dieses Konzept trägt zur Klimaanpassung bei, indem es die starke sommerliche Aufheizung reduziert, Regenwasser durch die Beeterde versickern lässt und die Biodiversität auf dem Schulgelände konkret und sichtbar erhöht. Wir schlagen vor, die Beetpflege im wöchentlichen Morgenkreis für je eine Stunde zu verankern, begleitet durch eine Patenschaft interessierter Eltern. Die genaue Standortwahl, die Anzahl der Beete sowie die Auswahl des Gartenwerkzeugs [TODO: vor Einreichung mit Schulkonferenz und Hausmeister abstimmen] werden im Rahmen einer Beteiligungswoche mit den Kindern festgelegt.
+
+## Beteiligung der Schulgemeinschaft
+
+Die Beteiligung der gesamten Schulgemeinschaft ist das Herzstück unseres Vorhabens. Die genauen Beteiligungsformate werden gemeinsam mit der Schulgemeinschaft entwickelt – als Vorschlag sehen wir eine Schulversammlung vor, auf der wir den Kindern die Idee des Gemüsegartens vorstellen und ihre Wünsche sammeln: Was soll angebaut werden? Wie stellen sie sich „ihr“ Beet vor? Im Anschluss wählt jede Klasse zwei Kinder in einen Planungsrat, der gemeinsam mit der zuständigen Lehrkraft und zwei Elternvertretenden die konkrete Ausgestaltung erarbeitet – etwa die Anordnung der Hochbeete, die Auswahl von Gemüse- und Kräutersorten und die Gestaltung von Pflanz- und Ernteschildern. Die Umsetzung erfolgt an einem gemeinsamen Aktionstag: Eltern, Kinder und Lehrkräfte bauen die vier Hochbeete aus Holz gemeinsam auf, befüllen sie mit Erde und setzen die ersten Pflanzen. Für die dauerhafte Pflege etablieren wir einen wöchentlichen „Gärtner-Dienst“ im Wechsel der Klassen, begleitet von einer festen Eltern-AG (die genaue Organisation wird mit der Elternschaft im Planungsrat verbindlich geregelt). So stellen wir sicher, dass jede Klasse aktiv Patin eines Beetes ist und die Beete nicht nur einmal bepflanzt, sondern als festen Bestandteil des Schulalltags erlebt. Um dies über die Projektlaufzeit zu tragen, verankern wir die Gärtner-AG und den Planungsrat als dauerhafte Schul-AG im Schulprogramm und sichern die Zuständigkeit durch eine schriftliche Absprache mit der Kommune [TODO: vor Einreichung der Antragsunterlagen einholen].
+
+## Umsetzung, Trägerschaft und Verstetigung
+
+Träger der Maßnahme ist die Grundschule Regenbogen in Abstimmung mit der zuständigen Kommune als Schulträger, die über das Vorhaben informiert ist. Die formelle Zustimmung für die baulichen Veränderungen – Aufstellung von vier Holz-Hochbeeten (rund einen Meter hoch) – muss vor der Bewilligung noch schriftlich eingeholt werden [TODO: schriftliche Zustimmung des Schulträgers einholen]. Die inhaltlich-pädagogische Planung liegt bei der Schule und wird durch eine Arbeitsgruppe aus Lehrkräften und Schulleitung getragen. Für die handwerkliche Umsetzung ist eine Kooperation mit dem Elternbeirat vorgesehen; die wöchentliche Pflege der Hochbeete (ca. eine Stunde pro Woche) soll nach Abschluss des Projekts von einer Eltern-Kind-Gruppe übernommen werden. Ein verbindlicher Pflegeplan mit Aufgabenverteilung und Gießdiensten wird bis zur Pflanzphase gemeinsam mit den Eltern erarbeitet. Die längerfristige Verantwortung für den Erhalt der Grünbereiche – Nachsaat, Wintervorbereitung, Kompostpflege – wird im Schulkonferenz-Beschluss zum Schuljahresende festgehalten und in die bestehenden Arbeitsgemeinschaften eingebunden. Sollte die Elternbeteiligung zum Ende des Bewilligungszeitraums nicht ausreichen, wird die Pflege über den wöchentlichen Sachunterricht in allen Jahrgangsstufen rotierend sichergestellt, sodass die Beete dauerhaft Bestandteil des Schullebens bleiben. Eine zusätzliche finanzielle Unterstützung durch die Kommune für perspektivische Erweiterungen wird sondiert, ist aber noch nicht zugesagt.
+
+## Finanzierung und weitere Mittel
+
+Die rund 20.000 Euro aus dem deinSchulhof-Programm sollen in Planung und Umsetzung unseres Gemüsegartens mit Hochbeeten investiert werden. Die genauen Planungskosten werden noch mit Landschaftsbaubetrieben ermittelt; ein Teil der Kosten kann möglicherweise durch Eigenleistung der Eltern beim Aufbau der Hochbeete reduziert werden. Für die Umsetzung veranschlagen wir derzeit rund 4.000 Euro für den Aufbau von vier stabilen Holz-Hochbeeten (ca. ein Meter hoch, kindgerecht bepflanzbar), hochwertige Erde, die Anschaffung von Gemüse- und Kräuterpflanzen, Gartengeräte sowie ein Bewässerungssystem. Im Finanzplan sind zudem Mittel für die Entsiegelung und Vorbereitung von Pflanzflächen sowie für schattenspendende Elemente und naturnahe Aufenthaltsbereiche vorgesehen. Die Frage der Regenwassernutzung und des Wasseranschlusses [TODO: Klärung Wasseranschluss mit Kommune] ist noch offen. Genauere Kostenschlüssel werden wir durch Angebote von Landschaftsbaubetrieben vor Einreichung prüfen und festlegen. Sollten die Gesamtkosten die Fördersumme übersteigen, ist die Co-Finanzierung durch den Schulträger verbindlich vor Einreichung zu klären [TODO: schriftliche Zusage der Kommune zur Kostenübernahme einholen]. Als Eigenleistung planen wir ein wöchentliches Pflanz- und Pflegeangebot von ein bis zwei Stunden, organisiert durch eine Eltern-Garten-AG – dies reduziert die Folgekosten für die Pflege erheblich. Sponsoring durch ortsansässige Unternehmen wird noch angefragt; falls nicht realisierbar, wird der Betrag durch Elternspenden gedeckt.
+
+## 8. Gutachten (Reviewer-Agent)
+| Dimension | Score (1–5) |
+|---|:--:|
+| Match-Angemessenheit | 5 |
+| Keine Halluzination | 4 |
+| Ehrlicher Umgang mit Luecken | 4 |
+| Finanzplan-Plausibilitaet | 4 |
+| Struktur/Foerderlogik | 5 |
+| Konkret statt Floskeln | 3 |
+| **Einreichbarkeit (gesamt)** | **4** |
+
+**Match:** Exzellent. Idee "Garten anlegen mit den Kindern" plus Befund "vollversiegelter, im Sommer überhitzter Schulhof ohne Schatten" trifft deinSchulhof/Grüne Schulhöfe (naturnahe Schulhofumgestaltung, Begrünung/Beschattung/Entsiegelung, Kinderbeteiligung, ~20.000 € pro Schule) punktgenau. Hessen ist im Programm enthalten; Vorbehalt "aktive Ausschreibungswelle" ist programm-, nicht matcher-bedingt. Kein Default-Ausweichen, der Treffer ist inhaltlich klar getragen.
+
+**Umgang mit Wissensluecken:** Ehrlicher Umgang mit dem extrem dünnen, durchgehend vagen Input. Kommune-Status ("informiert, schriftliche Zusage noch einzuholen") sauber mit [TODO] markiert; Trägerschaft/Co-Finanzierung/Wasseranschluss/Beetzahl/Pergola als offen bzw. als Vorschlag ("denkbar wäre", "wir schlagen vor") gekennzeichnet. Mehrere präzise [TODO]-Marker (Kommune-Zusage, Schulträger-Zustimmung, Wasseranschluss, Standort/Werkzeug). Abzug: ein paar Pflege-/Verstetigungsdetails (Sachunterricht-Rotation, Schulkonferenz-Beschluss zum Schuljahresende) sind als feste Verfahren statt als offene Vorschläge formuliert, obwohl der Nutzer dazu nur "regeln wir mit den Eltern, ca. 1 h/Woche" sagte.
+
+**Finanzplan:** Alle 9 Posten konsequent als ⟨Vorschlag⟩/Schätzung markiert, Begründungen beginnen mit "Schaetzung:", Hinweise warnen posten-für-posten ("ist geschätzt — bitte vor Einreichung belegen oder anpassen"). Summe 20.000 € sauber auf den Programmrahmen kalibriert, 100%-Förderung korrekt benannt, Eigenleistung der Eltern als Sachkostenpauschale statt erfundener Personalkosten realistisch behandelt. Posten (Planung, Entsiegelung, Hochbeete, Schatten, Bewässerung, Werkzeug, Beteiligungsmaterial) sind für eine naturnahe Schulhofumgestaltung fachlich plausibel und intern stimmig. Nach Produktphilosophie keine Halluzination, sondern der gewollte Schätz-Mehrwert. Leichter Abzug: Mengenangaben (4 Hochbeete) und Entsiegelung gehen über die Nutzeraussage hinaus, sind aber transparent als Schätzung/Annahme ausgewiesen.
+
+**Erfundene/halluzinierte Angaben (2):**
+- „wird die Pflege über den wöchentlichen Sachunterricht in allen Jahrgangsstufen rotierend sichergestellt, sodass die Beete dauerhaft Bestandteil des Schullebens bleiben" — Konkrete Verstetigungs-Zusicherung (Sachunterricht, alle Jahrgangsstufen, rotierend) als Faktum formuliert, ohne Vorschlags- oder TODO-Markierung. Der Nutzer sagte nur 'regeln wir mit den Eltern, ca. eine Stunde die Woche' und nannte weder Sachunterricht noch eine Rotation.
+- „wird im Schulkonferenz-Beschluss zum Schuljahresende festgehalten und in die bestehenden Arbeitsgemeinschaften eingebunden" — Ein konkreter Schulkonferenz-Beschluss zum Schuljahresende und bestehende AGs werden als feststehendes Verfahren behauptet, ohne Markierung. Vom Nutzer nicht gedeckt; er äußerte sich nur vage zur Pflegeorganisation.
+
+**Staerken:** Passgenauer, inhaltlich getragener Programm-Match (Garten/Hitze/Versiegelung -> deinSchulhof, Score 80); Vollständige, programmgerechte Förderlogik über alle fünf Pflichtabschnitte (Ausgangslage, Vision, Beteiligung, Trägerschaft/Verstetigung, Finanzierung); Durchgängig transparenter Schätz-Finanzplan: jeder Posten als ⟨Vorschlag⟩ markiert, Hinweise warnen posten-für-posten und stellen Beleg-Pflicht klar; Kritische Drittabhängigkeiten (Kommune-Zusage, Schulträger-Zustimmung, Co-Finanzierung) ehrlich als [TODO] vor Einreichung ausgewiesen statt als erledigt behauptet; Aktive, fachlich sinnvolle Ergänzungen (Klimaanpassung, Beteiligungswoche, Planungsrat) klar als Vorschlag eingeleitet ('wir schlagen vor', 'denkbar wäre')
+
+**Schwaechen:** Zwei Verstetigungsdetails (Sachunterricht-Rotation, Schulkonferenz-Beschluss zum Schuljahresende) als feste Verfahren statt als Vorschlag/TODO formuliert, obwohl Nutzer nur vage 'mit den Eltern, 1 h/Woche' nannte; Vereinzelte weiche Floskeln ('lebendiger, grüner Lern- und Erholungsort', 'Ort der Ruhe, des Staunens') statt durchweg konkreter Aussagen; Gremien-Detailtiefe (jede Klasse zwei Kinder, zwei Elternvertretende) ist für diesen dünnen Input sehr konkret ausgestaltet, wenn auch als Vorschlag gerahmt
+
+**Fazit:** Aus extrem dünnem, durchgehend vagem Input ein strukturell starker, fair gekennzeichneter Rohentwurf: passgenaues Programm, vollständige Förderlogik, ehrlicher Schätz-Finanzplan mit konsequenter ⟨Vorschlag⟩-Markierung und mehreren präzisen [TODO]-Markern für die echten Drittabhängigkeiten. Der tatsächlich abgedruckte Antragstext ist deutlich sauberer als das (offenbar fehlausgerichtete) eingebettete Alt-Gutachten suggeriert — die dort gerügten Erfindungen (Bauhof, Sonnensegel/Pergola, 25/75-Aufteilung, Hitzewelle-Szene) kommen im Text gar nicht vor. Verbleibende Schwäche sind zwei als Fakten formulierte Verstetigungsdetails, die noch als Vorschlag gerahmt werden müssten. Nach Bestätigung der markierten Vorschläge und Einholung der Kommune-Zusage realistisch einreichbar.

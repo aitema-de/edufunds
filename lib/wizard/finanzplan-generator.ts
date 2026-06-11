@@ -6,6 +6,29 @@ import { MODEL_PRO, generateJson } from "./llm";
 import { FINANZPLAN_SYSTEM, buildFinanzplanPrompt } from "./prompts";
 import type { Usage } from "./pricing";
 
+/**
+ * Grobe Geld-Erkennung in einer User-Antwort: eine Zahl unmittelbar mit
+ * Euro-Markierung (z. B. "10.000 EUR", "5000 €", "Euro 2000"). Reine Mengen
+ * ("200 Kinder", "20 Tablets") zaehlen NICHT als Kostenbasis.
+ */
+const MONEY_RE = /(?:\d[\d.\s]*\s*(?:€|eur\b|euro)|(?:€|euro|eur)\s*\d)/i;
+
+/**
+ * true, wenn der Nutzer eine Kostenbasis geliefert hat — entweder ein Budget in
+ * den Facts oder eine Geldangabe in den Roh-Antworten. Fehlt beides, wird der
+ * Finanzplan im unbeziffert-Modus erzeugt (keine erfundenen Euro-Betraege).
+ * Exportiert fuer Tests.
+ */
+export function hasUserKostenbasis(facts: WizardFacts, userAnswers?: string[]): boolean {
+  const b = facts?.budget;
+  if (b) {
+    if (typeof b.beantragt_eur === "number" && b.beantragt_eur > 0) return true;
+    if (typeof b.eigenmittel_eur === "number" && b.eigenmittel_eur > 0) return true;
+  }
+  if (userAnswers?.some((a) => MONEY_RE.test(a))) return true;
+  return false;
+}
+
 interface RawPosten {
   kategorie?: string;
   bezeichnung?: string;
@@ -95,6 +118,8 @@ export function applyStatedEigenanteil(
     betragEur: round,
     begruendung: "Vom Antragsteller zugesagte Eigenmittel.",
     eigenanteil: true,
+    // Am Nutzerinput verankert → kein Vorschlag, sondern belegt.
+    istVorschlag: false,
   };
   hinweise.push(
     `Eigenanteil von ${round.toLocaleString("de-DE")} EUR aus deinen Angaben als separater Posten ergaenzt.`
@@ -108,7 +133,7 @@ export function applyStatedEigenanteil(
  * Beträge, die der Nutzer leicht ungeprüft übernimmt.
  */
 const ESTIMATION_HEDGE =
-  /gesch[aä]tzt|auf basis (?:üblicher|von)|übliche[rn]? (?:tagess|stundens|honorar|s[aä]tze)|pauschal angenommen|orientiert sich an üblich|angenommene[rn]? (?:tagess|stundens|honorar)/i;
+  /gesch[aä]tzt|sch(?:ä|ae)tzung|auf basis (?:üblicher|von)|übliche[rn]? (?:tagess|stundens|honorar|s[aä]tze)|pauschal angenommen|orientiert sich an üblich|angenommene[rn]? (?:tagess|stundens|honorar)/i;
 
 /**
  * Markiert Posten mit eingestandenermaßen geschätztem Betrag durch einen
@@ -125,9 +150,92 @@ export function flagEstimatedAmounts(posten: Finanzposten[], hinweise: string[])
   }
 }
 
+function isAdmittedEstimate(p: Finanzposten): boolean {
+  return p.begruendung != null && ESTIMATION_HEDGE.test(p.begruendung);
+}
+
+/**
+ * Produktvision 2026-06-10 (Markierungs-Modell statt Löschen): Markiert jeden
+ * Posten, dessen Betrag NICHT am Nutzerinput verankert ist, als `istVorschlag`
+ * — ein bestätigbarer Assistenten-Vorschlag (z. B. Ausgestaltung einer genannten
+ * Globalsumme, fachlich begründete Schätzung). Vorschläge werden BEHALTEN und in
+ * der UI markiert, NICHT gelöscht (das war die alte, verworfene Kollaps-Logik).
+ *
+ * Regel: Ein Posten ist Vorschlag, wenn der Nutzer insgesamt keine Kostenbasis
+ * lieferte ODER das LLM den Betrag selbst als Schätzung begründet hat. Posten,
+ * deren `istVorschlag` bereits gesetzt ist (z. B. ein am Nutzer-Input verankerter
+ * Eigenanteil aus `applyStatedEigenanteil`), bleiben unangetastet. Exportiert für Tests.
+ */
+export function markVorschlaege(posten: Finanzposten[], hasBasis: boolean): Finanzposten[] {
+  return posten.map((p) => {
+    if (p.istVorschlag !== undefined) return p;
+    const vorschlag = !hasBasis || isAdmittedEstimate(p);
+    return { ...p, istVorschlag: vorschlag };
+  });
+}
+
+/**
+ * Freigabe = Sammelbestätigung (Produktvision 2026-06-10): Mit der Legitimierung
+ * des Finanzplans bestätigt der Nutzer alle verbliebenen Vorschlags-Beträge. Diese
+ * Funktion entfernt daher die `istVorschlag`-Markierung von allen Posten — sonst
+ * trägt ein bereits freigegebener Plan weiterhin „⟨Vorschlag⟩ — bitte bestätigen"-
+ * Badges (Widerspruch: freigegeben UND noch zu bestätigen). Analog zu „Edit =
+ * auto-confirm" im FinanzplanEditor. Exportiert für Tests.
+ */
+export function confirmAllVorschlaege(posten: Finanzposten[]): Finanzposten[] {
+  return posten.map((p) => (p.istVorschlag ? { ...p, istVorschlag: false } : p));
+}
+
 export interface FinanzplanUsage {
   model: string;
   usage: Usage;
+}
+
+function sumUsage(a: Usage, b: Usage): Usage {
+  return {
+    promptTokens: a.promptTokens + b.promptTokens,
+    candidatesTokens: a.candidatesTokens + b.candidatesTokens,
+  };
+}
+
+/**
+ * Letzter Sicherheitsanker (Probe 09.06., Fall 6): Wenn das LLM trotz
+ * Wiederholung keinen einzigen verwertbaren Posten liefert, darf der Finanzplan
+ * NICHT still leer ausgeliefert werden (voller Antragstext, aber 0 Posten). Statt
+ * eines leeren Plans wird ein ehrlicher, UNBEZIFFERTER Kostenrahmen erzeugt — aus
+ * den vom Nutzer genannten Hauptposten bzw. Projektaktivitaeten, sonst ein
+ * generischer Hinweis. So ist der Plan immer entweder bezifferte Vorschlaege ODER
+ * ein ehrlicher Kostenrahmen, nie leer. Exportiert fuer Tests.
+ */
+export function buildUnbezifferterFallback(
+  facts: WizardFacts,
+  llmHinweise?: string[]
+): Finanzplan {
+  const rahmen: string[] = [];
+  const hauptposten = facts?.budget?.hauptposten;
+  if (Array.isArray(hauptposten)) {
+    for (const h of hauptposten) if (typeof h === "string" && h.trim()) rahmen.push(h.trim());
+  }
+  if (rahmen.length === 0) {
+    const akt = facts?.projekt?.aktivitaeten;
+    if (Array.isArray(akt)) {
+      for (const a of akt) if (typeof a === "string" && a.trim()) rahmen.push(`Kosten für: ${a.trim()}`);
+    }
+  }
+  if (rahmen.length === 0) {
+    rahmen.push("Projektkosten werden vor Einreichung anhand konkreter Angebote beziffert.");
+  }
+  const hinweise = [
+    "Es konnte kein bezifferter Finanzplan erzeugt werden. Die folgenden Positionen sind als Kostenrahmen zu verstehen und vor Einreichung mit konkreten Beträgen zu hinterlegen.",
+    ...(llmHinweise?.length ? llmHinweise : []),
+  ];
+  return {
+    posten: [],
+    unbeziffert: true,
+    kostenrahmen: rahmen,
+    generiertAm: new Date().toISOString(),
+    hinweise,
+  };
 }
 
 export async function generateFinanzplan(
@@ -136,15 +244,44 @@ export async function generateFinanzplan(
   richtlinie: Richtlinie | null | undefined,
   userAnswers?: string[]
 ): Promise<{ plan: Finanzplan; usage: FinanzplanUsage }> {
-  const { value, usage } = await generateJson<RawResult>(
-    MODEL_PRO,
-    FINANZPLAN_SYSTEM,
-    buildFinanzplanPrompt(programm, facts, richtlinie, userAnswers)
-  );
+  // Produktvision 2026-06-10: Der Assistent erstellt IMMER einen bezifferten
+  // Finanzplan-Vorschlag — auch wenn der Nutzer keine Kostenbasis lieferte
+  // (dann aktiver, alle Beträge als Vorschlag markiert). Frühere Versionen haben
+  // ohne Kostenbasis nur einen unbezifferten Kostenrahmen erzeugt bzw. den Plan
+  // kollabiert (Löschen); das warf die wertvolle Ausgestaltung weg. Jetzt:
+  // beziffert vorschlagen + als bestätigbaren Vorschlag MARKIEREN.
+  const hasBasis = hasUserKostenbasis(facts, userAnswers);
+  const prompt = buildFinanzplanPrompt(programm, facts, richtlinie, userAnswers);
 
-  const posten = (value.posten ?? [])
+  let { value, usage } = await generateJson<RawResult>(MODEL_PRO, FINANZPLAN_SYSTEM, prompt);
+
+  let posten = (value.posten ?? [])
     .map(normalize)
     .filter((p): p is Finanzposten => p !== null);
+
+  // Fall 6 (Probe 09.06.): Ein leeres Posten-Array ist meist ein transienter
+  // Generierungs-Ausfall (der Retry-Layer in llm.ts faengt nur Fehler/Leer-Text,
+  // ein valides {posten:[]} ist inhaltlich leer, kein Fehler). Genau EIN gezielter
+  // Wiederholungs-Versuch, bevor wir auf den Kostenrahmen-Anker zurueckfallen.
+  if (posten.length === 0) {
+    const retry = await generateJson<RawResult>(MODEL_PRO, FINANZPLAN_SYSTEM, prompt);
+    usage = sumUsage(usage, retry.usage);
+    const retryPosten = (retry.value.posten ?? [])
+      .map(normalize)
+      .filter((p): p is Finanzposten => p !== null);
+    if (retryPosten.length > 0) {
+      value = retry.value;
+      posten = retryPosten;
+    }
+  }
+
+  // Immer noch leer → ehrlicher unbezifferter Kostenrahmen statt stillem Leerplan.
+  if (posten.length === 0) {
+    return {
+      plan: buildUnbezifferterFallback(facts, value.hinweise),
+      usage: { model: MODEL_PRO, usage },
+    };
+  }
 
   // Deterministische Eigenanteil-Normalisierung (siehe applyStatedEigenanteil):
   // garantiert, dass eine explizite Nutzer-Eigenmittelangabe als markierter
@@ -154,8 +291,26 @@ export async function generateFinanzplan(
   // QA-02: Posten mit eingestandenermaßen geschätztem Betrag warnend markieren.
   flagEstimatedAmounts(postenMitEigenanteil, hinweise);
 
+  // Vorschlags-Markierung: nicht am Nutzerinput verankerte Beträge als
+  // bestätigbare Vorschläge kennzeichnen (statt löschen). Die UI zeigt sie als
+  // "Vorschlag — bestätigen/anpassen".
+  const postenMarkiert = markVorschlaege(postenMitEigenanteil, hasBasis);
+
+  // Prominenter Sammelhinweis, sobald Vorschläge enthalten sind — macht
+  // transparent, welche Beträge der Nutzer noch bestätigen sollte.
+  const foerderposten = postenMarkiert.filter((p) => !p.eigenanteil);
+  const vorschlaege = foerderposten.filter((p) => p.istVorschlag);
+  if (vorschlaege.length > 0 && !hinweise.some((h) => h.includes("Vorschläge des Assistenten") || h.includes("Vorschlag des Assistenten"))) {
+    const alle = vorschlaege.length === foerderposten.length && foerderposten.length > 0;
+    hinweise.unshift(
+      alle
+        ? "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen."
+        : "Einzelne Beträge sind als Vorschläge des Assistenten markiert — bitte bestätigen oder anpassen."
+    );
+  }
+
   const plan: Finanzplan = {
-    posten: postenMitEigenanteil,
+    posten: postenMarkiert,
     generiertAm: new Date().toISOString(),
     hinweise: hinweise.length ? hinweise : undefined,
   };

@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { Suspense, memo, useMemo, useCallback } from "react";
+import { Suspense, memo, useMemo, useCallback, useRef } from "react";
 import useSWR from "swr";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -173,6 +173,9 @@ const Pagination = memo(function Pagination({
 
 // Hauptkomponente
 export default function FoerderprogrammePage() {
+  // Anker für Scroll-zum-Listenanfang beim Seitenwechsel
+  const listRef = useRef<HTMLDivElement>(null);
+
   // SWR für Daten-Fetching mit Caching
   const { data: foerderprogramme, error, isLoading } = useSWR<Foerderprogramm[]>(
     FOERDERPROGRAMME_CACHE_KEY,
@@ -289,6 +292,14 @@ export default function FoerderprogrammePage() {
     setFilterState(prev => ({ ...prev, [key]: value }));
     resetPage();
   }, [setFilterState, resetPage]);
+
+  // Handler für Seitenwechsel: Seite wechseln UND an den Listenanfang scrollen.
+  // Sonst bleibt der Viewport unten bei den Pagination-Buttons und die neue Seite
+  // erscheint "von ganz unten" statt von oben (Pilot-Bug #001).
+  const handlePageChange = useCallback((page: number) => {
+    goToPage(page);
+    listRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [goToPage]);
 
   if (error) {
     return (
@@ -467,7 +478,7 @@ export default function FoerderprogrammePage() {
           </div>
 
           {/* Ergebnis-Anzeige */}
-          <div className="mb-6">
+          <div ref={listRef} className="mb-6 scroll-mt-24">
             <h2 className="text-2xl font-bold text-[#0a1628]">
               {isLoading ? (
                 <span className="inline-block w-48 h-8 bg-[#ebe5dc] rounded animate-pulse" />
@@ -509,10 +520,10 @@ export default function FoerderprogrammePage() {
               </div>
 
               {/* Pagination */}
-              <Pagination 
-                currentPage={currentPage} 
-                totalPages={totalPages} 
-                onPageChange={goToPage}
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
               />
             </>
           )}

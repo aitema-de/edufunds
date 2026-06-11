@@ -45,6 +45,7 @@ export async function POST(req: NextRequest) {
           foerdersummeText: (m.programm as any).foerdersummeText,
           foerdersummeMax: (m.programm as any).foerdersummeMax,
           bewerbungsfristText: (m.programm as any).bewerbungsfristText,
+          bewerbungsfristEnde: (m.programm as any).bewerbungsfristEnde,
           kategorien: (m.programm as any).kategorien,
           kurzbeschreibung: (m.programm as any).kurzbeschreibung,
         },
