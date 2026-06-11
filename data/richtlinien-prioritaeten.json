@@ -2,8 +2,18 @@
   "generatedAt": "2026-04-27T10:09:58.688Z",
   "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
   "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
-  "total": 155,
+  "total": 156,
   "items": [
+    {
+      "programmId": "dkjs-sport",
+      "name": "Sport und Bewegung in der Grundschule",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "alle",
+      "infoLink": "https://www.dkjs.de",
+      "score": 20,
+      "status": "open"
+    },
     {
       "programmId": "kfw-erp-digitalisierung",
       "name": "ERP Digitalisierung und Innovation",

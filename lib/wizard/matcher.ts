@@ -187,8 +187,9 @@ const THEME_ALIASES: ReadonlyArray<{ trigger: RegExp; tags: readonly string[] }>
   // Lesen / Sprache / DaZ (Probe Fall 4 "Lesen", Fall 9 "Deutsch")
   { trigger: /\b(lese|buch|b(ue|ü)cher|bibliothek|vorlesen|sprach|deutsch|daz|daf|mehrsprach|alphabetis|wortschatz|schreiben)/i,
     tags: ["lesen", "sprache", "sprachen", "deutsch", "integration", "chancengleichheit", "basiskompetenzen", "interkulturell"] },
-  // Kultur / Musik / Kunst / Theater (Probe Fall 6 "Musikinstrumente")
-  { trigger: /\b(musik|instrument|theater|schauspiel|kunst|malen|basteln|kreativ|chor|band|film|tanz|gestalt)/i,
+  // Kultur / Musik / Kunst / Theater (Probe Fall 6 "Musikinstrumente"; Korpus
+  // ev-027 "Konzertfahrten" = kulturell, traf bisher keinen Cluster)
+  { trigger: /\b(musik|instrument|theater|schauspiel|kunst|malen|basteln|kreativ|chor|konzert|band|film|tanz|gestalt)/i,
     tags: ["kultur", "kunst", "kulturelle-bildung", "musik", "theater", "tanz", "film", "bildende-kunst", "kreativitaet", "kuenste"] },
   // Natur / Umwelt / Garten / Schulhof (Probe Fall 2 "Schulhof", Fall 7 "Garten")
   { trigger: /\b(garten|schulhof|schulgarten|au(ss|ß)engel(ae|ä)nde|hochbeet|beet|begr(ue|ü)n|pflanz|natur|umwelt|tiere|insekt|nabu|wald|teich|klima|nachhaltig|(oe|ö)ko|wasser|artenviel|gel(ae|ä)nde)/i,

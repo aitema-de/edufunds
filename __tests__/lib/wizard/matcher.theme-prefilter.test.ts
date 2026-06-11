@@ -59,6 +59,12 @@ describe("extractAnliegenThemes — Alias-Cluster (C3)", () => {
     expect(t.has("mint")).toBe(true);
   });
 
+  it("Konzert(fahrten) → Kultur-Cluster (ev-027)", () => {
+    const t = extractAnliegenThemes("Schulchor und Konzertfahrten foerdern.");
+    expect(t.has("kultur")).toBe(true);
+    expect(t.has("musik")).toBe(true);
+  });
+
   it("Synonym-Split: 'digital' zieht auch 'digitalisierung' (20× vs 4×)", () => {
     const t = extractAnliegenThemes("Wir moechten den digitalen Unterricht staerken.");
     expect(t.has("digital")).toBe(true);

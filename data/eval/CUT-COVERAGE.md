@@ -2,34 +2,28 @@
 
 > Deterministisch, kein LLM. Misst, ob das erwartete Programm in den 40er-Kandidaten-Cut kommt (= die Menge, die der Matcher dem LLM zum Ranken vorlegt). Fehlt es hier, kann kein Ranking-Schritt es mehr treffen — Fehler liegt in der Kandidaten-Auswahl, nicht im LLM.
 
-Generiert: 2026-06-11T11:16:43.676Z · Korpus: `data/eval/matcher-korpus.json` (19 bewertbare Eintraege)
+Generiert: 2026-06-11T11:31:29.962Z · Korpus: `data/eval/matcher-korpus.json` (19 bewertbare Eintraege)
 
 ## Aggregat
 
-**Cut-Coverage: 47/54 = 87.0%** (erwartete Programme, die im Katalog existieren und in den Cut kommen)
+**Cut-Coverage: 49/50 = 98.0%** (erwartete Programme, die im Katalog existieren und in den Cut kommen)
 
 | Kategorie | Coverage |
 |---|---|
-| ausfuehrlich | 23/26 = 88.5% |
+| ausfuehrlich | 23/23 = 100.0% |
 | kurz | 12/12 = 100.0% |
-| vag | 12/16 = 75.0% |
+| vag | 14/15 = 93.3% |
 
 | Status | Anzahl | Bedeutung |
 |---|---|---|
-| ✓ in_cut | 47 | erreicht den LLM |
-| ↓ below_cut | 7 | prefilter ok, sortScore zu niedrig (C3/Queue-Hebel) |
+| ✓ in_cut | 49 | erreicht den LLM |
+| ↓ below_cut | 1 | prefilter ok, sortScore zu niedrig (C3/Queue-Hebel) |
 | ✗ prefiltered_out | 0 | Status/Bundesland entfernt (Daten/C1) |
 | ∅ not_in_catalog | 0 | Korpus-Daten-Drift |
 | Off-Targets im Cut | 31 | breiter Cut, finaler Filter ist der LLM (informativ) |
 
-## Verfehlte erwartete Programme (7)
+## Verfehlte erwartete Programme (1)
 
 | Eintrag | Programm | Status | Detail |
 |---|---|---|---|
-| ev-008 | `fritz-henkel-inklusion-2026` | ↓ below_cut | Rang 68/116, sortScore 50 (Queue 0+Theme 50), Cut-Grenze 75, fehlt 25 |
-| ev-009 | `heinrich-boell-bildung` | ↓ below_cut | Rang 60/111, sortScore 50 (Queue 0+Theme 50), Cut-Grenze 69, fehlt 19 |
-| ev-010 | `heinrich-boell-bildung` | ↓ below_cut | Rang 57/106, sortScore 25 (Queue 0+Theme 25), Cut-Grenze 68, fehlt 43 |
-| ev-020 | `heinrich-boell-bildung` | ↓ below_cut | Rang 56/107, sortScore 50 (Queue 0+Theme 50), Cut-Grenze 68, fehlt 18 |
-| ev-021 | `stiftung-bildung-foerderfonds` | ↓ below_cut | Rang 96/178, sortScore 57 (Queue 57+Theme 0), Cut-Grenze 77.8, fehlt 20.8 |
-| ev-021 | `dkjs-sport` | ↓ below_cut | Rang 46/178, sortScore 75 (Queue 0+Theme 75), Cut-Grenze 77.8, fehlt 2.8 |
-| ev-027 | `hamburg-kultur-schule` | ↓ below_cut | Rang 50/107, sortScore 55.8 (Queue 55.8+Theme 0), Cut-Grenze 61.8, fehlt 6 |
+| ev-021 | `stiftung-bildung-foerderfonds` | ↓ below_cut | Rang 96/178, sortScore 57 (Queue 57+Theme 0), Cut-Grenze 78.8, fehlt 21.8 |
