@@ -52,6 +52,13 @@ describe("extractAnliegenThemes — Alias-Cluster (C3)", () => {
     expect(t.has("alltagskompetenzen")).toBe(true);
   });
 
+  it("naturkundliche Exkursion / Aquarium → Naturwissenschaft-Cluster (ev-015)", () => {
+    const t = extractAnliegenThemes("Schul-Aquarium und naturkundliche Exkursionen.");
+    expect(t.has("naturwissenschaft")).toBe(true);
+    expect(t.has("biologie")).toBe(true);
+    expect(t.has("mint")).toBe(true);
+  });
+
   it("Synonym-Split: 'digital' zieht auch 'digitalisierung' (20× vs 4×)", () => {
     const t = extractAnliegenThemes("Wir moechten den digitalen Unterricht staerken.");
     expect(t.has("digital")).toBe(true);

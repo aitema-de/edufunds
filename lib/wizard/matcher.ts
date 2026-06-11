@@ -177,8 +177,9 @@ const THEME_ALIASES: ReadonlyArray<{ trigger: RegExp; tags: readonly string[] }>
   // Programmieren / Informatik / Robotik (Probe Fall 8)
   { trigger: /\b(programmier|coding|code|coden|informatik|roboter|robotik|3d.?druck|elektronik|gaming|scratch|calliope|micro.?bit)/i,
     tags: ["informatik", "programmierung", "robotik", "mint", "technik", "digitalisierung", "elektronik", "mikroelektronik", "3d-druck"] },
-  // MINT / Mathe / Naturwissenschaft / Forschen
-  { trigger: /\b(mint|mathe|rechnen|naturwissenschaft|forsch|experiment|physik|chemie|biologie|technik|logik|tueftel|t(ue|ü)ftel)/i,
+  // MINT / Mathe / Naturwissenschaft / Forschen (Korpus ev-015: "naturkundliche
+  // Exkursion"/"Aquarium" = Biologie/Naturkunde, traf bisher nur den Umwelt-Cluster)
+  { trigger: /\b(mint|mathe|rechnen|naturwissenschaft|naturkund|aquarium|forsch|experiment|physik|chemie|biologie|technik|logik|tueftel|t(ue|ü)ftel)/i,
     tags: ["mint", "mathematik", "naturwissenschaft", "naturwissenschaften", "technik", "forschung", "experiment", "experimente", "physik", "chemie", "biologie", "logik", "wissenschaft"] },
   // Sport / Bewegung (Probe Fall 3 "Bewegung")
   { trigger: /\b(sport|beweg|turn|fussball|fu(ss|ß)ball|ballspiel|schwimm|fitness|motorik|toben|leichtathletik)/i,
