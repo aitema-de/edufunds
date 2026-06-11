@@ -112,6 +112,7 @@ jobs:
           retention-days: 14
 
       - name: Create Pull Request
+        id: cpr
         if: steps.diff.outputs.changed == 'true' && github.event.inputs.dry_run != 'true'
         uses: peter-evans/create-pull-request@v7
         with:
@@ -140,6 +141,47 @@ jobs:
           labels: |
             richtlinien-bot
             auto-generated
+
+      # Terminierter ClickUp-Task, sobald neue Programm-Kandidaten einen PR erzeugt
+      # haben — damit Kolja den Review sofort auf der Liste sieht. Werte kommen nur
+      # aus Action-Outputs (PR-Nummer/-URL), via env (kein untrusted Freitext).
+      - name: ClickUp-Task anlegen (terminiert)
+        if: steps.cpr.outputs.pull-request-number != ''
+        env:
+          CLICKUP_API_TOKEN: ${{ secrets.CLICKUP_API_TOKEN }}
+          CLICKUP_LIST_ID: "901523862748"
+          PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
+          PR_URL: ${{ steps.cpr.outputs.pull-request-url }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          if [ -z "${CLICKUP_API_TOKEN}" ]; then
+            echo "::warning::CLICKUP_API_TOKEN-Secret fehlt — kein ClickUp-Task angelegt. Unter Repo-Settings > Secrets hinterlegen (ClickUp Personal Token pk_...)."
+            exit 0
+          fi
+          DUE_MS=$(( ($(date +%s) + 5 * 86400) * 1000 ))
+          BODY=$(jq -n \
+            --arg prnum "${PR_NUMBER}" \
+            --arg pr "${PR_URL}" \
+            --arg run "${RUN_URL}" \
+            --argjson due "${DUE_MS}" \
+            '{
+              name: ("🔔 Neue Förderprogramm-Kandidaten — PR #" + $prnum + " reviewen"),
+              markdown_description: ("Der wöchentliche Förderprogramm-Scanner hat neue Kandidaten gefunden und einen Pull Request geöffnet. Bitte reviewen und mergen oder ablehnen (Reviewer-Checkliste steht im PR).\n\n**Pull Request:** " + $pr + "\n**Workflow-Lauf:** " + $run + "\n\nFrist: 5 Tage (automatisch gesetzt)."),
+              due_date: $due,
+              due_date_time: true,
+              priority: 2
+            }')
+          HTTP=$(curl -s -o /tmp/cu_resp.json -w '%{http_code}' -X POST \
+            "https://api.clickup.com/api/v2/list/${CLICKUP_LIST_ID}/task" \
+            -H "Authorization: ${CLICKUP_API_TOKEN}" \
+            -H "Content-Type: application/json" \
+            -d "${BODY}")
+          if [ "${HTTP}" = "200" ]; then
+            echo "ClickUp-Task angelegt (Frist +5 Tage): $(jq -r '.url // "ok"' /tmp/cu_resp.json)"
+          else
+            echo "::warning::ClickUp-Task fehlgeschlagen (HTTP ${HTTP}): $(cat /tmp/cu_resp.json)"
+          fi
 
       - name: Open failure issue
         if: steps.pflege.outputs.has_failures == 'true' && github.event.inputs.dry_run != 'true'
