@@ -53,6 +53,59 @@ const MATCHER_MAX_TOKENS = 600;
  */
 const DRIFT_CAP_SCORE = 40;
 
+// =============================================================================
+// C5 — Groessenordnungs-Plausibilitaet (Hebel 3, Probe Fall 10: DBU 100k-400k
+// fuer ein ~9.500-EUR-Snack-Projekt einer Grundschule). Deterministischer
+// achtung_bei-Hinweis, wenn die Foerderhoehe eines Programms nicht zum
+// (optionalen) Projektbudget passt. Demotion nur bei BELEGTER starker
+// Ueberdimensionierung (Budget bekannt) — im budgetlosen Vage-Fall NUR ein
+// sichtbarer Hinweis, keine Score-Aenderung (kein riskantes Heuristik-Raten).
+// =============================================================================
+/** Ab dieser Mindest-Foerdersumme = Grossprojekt-Schiene (nur 3 Programme im Katalog, u.a. DBU). */
+const GROSSPROJEKT_MIN_EUR = 100_000;
+/** Programm-Min > Budget × Faktor → zu gross fuer das Vorhaben (Warnung). */
+const OVERSIZE_FACTOR = 3;
+/** Programm-Min > Budget × Faktor → zusaetzlich demoten (belegte starke Ueberdimensionierung). */
+const SEVERE_OVERSIZE_FACTOR = 6;
+/** Budget > Programm-Max × Faktor → Programm zu klein fuers Vorhaben (Warnung). */
+const UNDERSIZE_FACTOR = 1.5;
+/** Score-Deckel bei belegter starker Ueberdimensionierung — demotet unter klar passende Treffer. */
+const SIZE_DEMOTE_CAP = 58;
+
+function fmtEur(n: number): string {
+  return n.toLocaleString("de-DE") + " EUR";
+}
+
+/**
+ * Liefert einen Groessenordnungs-Hinweis (oder "") fuer ein Programm relativ zum
+ * optionalen Projektbudget. Exportiert fuer Tests.
+ */
+export function sizeAchtung(p: Foerderprogramm, budget?: number): string {
+  const min = (p as { foerdersummeMin?: number | null }).foerdersummeMin;
+  const max = (p as { foerdersummeMax?: number | null }).foerdersummeMax;
+  if (typeof budget === "number" && budget > 0) {
+    if (typeof min === "number" && min > 0 && min > budget * OVERSIZE_FACTOR) {
+      return `Foerderung ab ${fmtEur(min)} — deutlich groesser als euer geschaetztes Vorhaben (~${fmtEur(budget)}); ggf. ein niedrigschwelligeres Programm pruefen.`;
+    }
+    if (typeof max === "number" && max > 0 && budget > max * UNDERSIZE_FACTOR) {
+      return `Foerderhoehe bis ${fmtEur(max)} — kleiner als euer Vorhaben (~${fmtEur(budget)}); ggf. ergaenzende Foerderquelle noetig.`;
+    }
+    return "";
+  }
+  // Kein Budget bekannt: nur die klar grossskalige Schiene markieren (keine Demotion).
+  if (typeof min === "number" && min >= GROSSPROJEKT_MIN_EUR) {
+    return `Grossprojekt-Foerderung (ab ${fmtEur(min)}, meist mit hohem Eigenanteil) — passt nur bei entsprechend grossem, mehrjaehrigem Vorhaben.`;
+  }
+  return "";
+}
+
+/** true, wenn der achtung_bei-Text bereits einen Groessen-/Foerderhoehen-Hinweis traegt (Dedupe). */
+function mentionsScale(text: string): boolean {
+  return /gro(ß|ss)projekt|f(oe|ö)rderh(oe|ö)he|f(oe|ö)rdersumme|niedrigschwellig|(ue|ü)berdimension|deutlich gr(oe|ö)sser/i.test(
+    text
+  );
+}
+
 /** Inklusions-Anker fuer aktion-mensch-schulkooperation. */
 function hasInklusionsAnchor(text: string): boolean {
   const t = text.toLowerCase();
@@ -565,14 +618,33 @@ export async function runMatch(input: MatchInput): Promise<MatchResult> {
     if (m.id === "bmbf-digitalpakt-2" && !hasDigital) {
       effectiveScore = Math.min(effectiveScore, DRIFT_CAP_SCORE);
     }
-    if (effectiveScore < 50) continue;
     const p = programme.find((x) => x.id === m.id);
     if (!p) continue;
+
+    // C5 Groessenordnungs-Plausibilitaet: Hinweis immer, Demotion nur bei
+    // belegter starker Ueberdimensionierung (Budget bekannt & Min > Budget × 6).
+    const sizeNote = sizeAchtung(p, input.geschaetztesBudgetEur);
+    if (sizeNote && typeof input.geschaetztesBudgetEur === "number" && input.geschaetztesBudgetEur > 0) {
+      const min = (p as { foerdersummeMin?: number | null }).foerdersummeMin;
+      if (typeof min === "number" && min > input.geschaetztesBudgetEur * SEVERE_OVERSIZE_FACTOR) {
+        effectiveScore = Math.min(effectiveScore, SIZE_DEMOTE_CAP);
+      }
+    }
+
+    if (effectiveScore < 50) continue;
+
+    const achtung_bei =
+      sizeNote && !mentionsScale(m.achtung_bei)
+        ? m.achtung_bei
+          ? `${m.achtung_bei} ${sizeNote}`
+          : sizeNote
+        : m.achtung_bei;
+
     matches.push({
       id: m.id,
       score: Math.round(effectiveScore),
       passt_weil: m.passt_weil,
-      achtung_bei: m.achtung_bei,
+      achtung_bei,
       programm: p,
     });
   }
