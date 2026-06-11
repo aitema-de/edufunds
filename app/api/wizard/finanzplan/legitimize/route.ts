@@ -4,6 +4,7 @@ import type { Foerderprogramm } from "@/lib/foerderSchema";
 import { getWizardSession, updateWizardSession } from "@/lib/wizard/session";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
 import { validateFinanzplan } from "@/lib/wizard/finanzplan-validator";
+import { confirmAllVorschlaege } from "@/lib/wizard/finanzplan-generator";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
 
@@ -50,7 +51,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const legitimiertPlan = { ...plan, legitimiertAm: new Date().toISOString() };
+    // Freigabe bestätigt alle verbliebenen Vorschlags-Beträge (Sammelbestätigung):
+    // ein freigegebener Plan darf keine „⟨Vorschlag⟩ — bitte bestätigen"-Badges
+    // mehr tragen (Widerspruch zur Freigabe).
+    const legitimiertPlan = {
+      ...plan,
+      posten: confirmAllVorschlaege(plan.posten),
+      legitimiertAm: new Date().toISOString(),
+    };
     const newData = {
       ...session.data,
       generation: {

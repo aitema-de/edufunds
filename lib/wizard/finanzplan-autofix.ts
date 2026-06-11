@@ -143,6 +143,9 @@ export function computeAutofixes({ posten, richtlinie }: AutofixContext): Autofi
                 betragEur: fehlbetrag,
                 begruendung: "Erfuellt die Eigenmittel-Pflicht der Foerderrichtlinie.",
                 eigenanteil: true,
+                // Vom Nutzer aktiv per Auto-Fix-Klick hinzugefuegt + deterministisch
+                // aus der Richtlinie berechnet → bestaetigt, kein offener Vorschlag.
+                istVorschlag: false,
               },
             ],
           });

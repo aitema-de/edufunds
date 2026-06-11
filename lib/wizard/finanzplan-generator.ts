@@ -174,6 +174,18 @@ export function markVorschlaege(posten: Finanzposten[], hasBasis: boolean): Fina
   });
 }
 
+/**
+ * Freigabe = Sammelbestätigung (Produktvision 2026-06-10): Mit der Legitimierung
+ * des Finanzplans bestätigt der Nutzer alle verbliebenen Vorschlags-Beträge. Diese
+ * Funktion entfernt daher die `istVorschlag`-Markierung von allen Posten — sonst
+ * trägt ein bereits freigegebener Plan weiterhin „⟨Vorschlag⟩ — bitte bestätigen"-
+ * Badges (Widerspruch: freigegeben UND noch zu bestätigen). Analog zu „Edit =
+ * auto-confirm" im FinanzplanEditor. Exportiert für Tests.
+ */
+export function confirmAllVorschlaege(posten: Finanzposten[]): Finanzposten[] {
+  return posten.map((p) => (p.istVorschlag ? { ...p, istVorschlag: false } : p));
+}
+
 export interface FinanzplanUsage {
   model: string;
   usage: Usage;

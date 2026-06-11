@@ -4,7 +4,11 @@
  * MARKIERT (istVorschlag), nicht gelöscht. Nur widersprüchliche Erfindungen
  * gehören (per Prompt) gar nicht erst in den Plan.
  */
-import { markVorschlaege, applyStatedEigenanteil } from "@/lib/wizard/finanzplan-generator";
+import {
+  markVorschlaege,
+  applyStatedEigenanteil,
+  confirmAllVorschlaege,
+} from "@/lib/wizard/finanzplan-generator";
 import type { Finanzposten, WizardFacts } from "@/lib/wizard/types";
 
 let n = 0;
@@ -52,6 +56,30 @@ describe("markVorschlaege", () => {
     const r = markVorschlaege([posten({ bezeichnung: "X", betragEur: 3000 })], false);
     expect(r[0].betragEur).toBe(3000);
     expect(r[0].bezeichnung).toBe("X");
+  });
+});
+
+describe("confirmAllVorschlaege (Freigabe = Sammelbestätigung)", () => {
+  it("entfernt istVorschlag von allen Posten", () => {
+    const out = confirmAllVorschlaege([
+      posten({ bezeichnung: "Tablets", istVorschlag: true }),
+      posten({ bezeichnung: "Honorar", istVorschlag: true }),
+      posten({ bezeichnung: "Eigenanteil", eigenanteil: true, istVorschlag: false }),
+    ]);
+    expect(out.every((p) => p.istVorschlag === false)).toBe(true);
+  });
+
+  it("verändert Beträge/Bezeichnungen nicht (nur die Markierung)", () => {
+    const out = confirmAllVorschlaege([posten({ bezeichnung: "X", betragEur: 4200, istVorschlag: true })]);
+    expect(out[0].betragEur).toBe(4200);
+    expect(out[0].bezeichnung).toBe("X");
+    expect(out[0].istVorschlag).toBe(false);
+  });
+
+  it("ist idempotent für bereits bestätigte Posten", () => {
+    const input = [posten({ bezeichnung: "Y", istVorschlag: false })];
+    const out = confirmAllVorschlaege(input);
+    expect(out[0].istVorschlag).toBe(false);
   });
 });
 
