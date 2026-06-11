@@ -179,6 +179,53 @@ export interface FinanzplanUsage {
   usage: Usage;
 }
 
+function sumUsage(a: Usage, b: Usage): Usage {
+  return {
+    promptTokens: a.promptTokens + b.promptTokens,
+    candidatesTokens: a.candidatesTokens + b.candidatesTokens,
+  };
+}
+
+/**
+ * Letzter Sicherheitsanker (Probe 09.06., Fall 6): Wenn das LLM trotz
+ * Wiederholung keinen einzigen verwertbaren Posten liefert, darf der Finanzplan
+ * NICHT still leer ausgeliefert werden (voller Antragstext, aber 0 Posten). Statt
+ * eines leeren Plans wird ein ehrlicher, UNBEZIFFERTER Kostenrahmen erzeugt — aus
+ * den vom Nutzer genannten Hauptposten bzw. Projektaktivitaeten, sonst ein
+ * generischer Hinweis. So ist der Plan immer entweder bezifferte Vorschlaege ODER
+ * ein ehrlicher Kostenrahmen, nie leer. Exportiert fuer Tests.
+ */
+export function buildUnbezifferterFallback(
+  facts: WizardFacts,
+  llmHinweise?: string[]
+): Finanzplan {
+  const rahmen: string[] = [];
+  const hauptposten = facts?.budget?.hauptposten;
+  if (Array.isArray(hauptposten)) {
+    for (const h of hauptposten) if (typeof h === "string" && h.trim()) rahmen.push(h.trim());
+  }
+  if (rahmen.length === 0) {
+    const akt = facts?.projekt?.aktivitaeten;
+    if (Array.isArray(akt)) {
+      for (const a of akt) if (typeof a === "string" && a.trim()) rahmen.push(`Kosten für: ${a.trim()}`);
+    }
+  }
+  if (rahmen.length === 0) {
+    rahmen.push("Projektkosten werden vor Einreichung anhand konkreter Angebote beziffert.");
+  }
+  const hinweise = [
+    "Es konnte kein bezifferter Finanzplan erzeugt werden. Die folgenden Positionen sind als Kostenrahmen zu verstehen und vor Einreichung mit konkreten Beträgen zu hinterlegen.",
+    ...(llmHinweise?.length ? llmHinweise : []),
+  ];
+  return {
+    posten: [],
+    unbeziffert: true,
+    kostenrahmen: rahmen,
+    generiertAm: new Date().toISOString(),
+    hinweise,
+  };
+}
+
 export async function generateFinanzplan(
   programm: Foerderprogramm,
   facts: WizardFacts,
@@ -192,16 +239,37 @@ export async function generateFinanzplan(
   // kollabiert (Löschen); das warf die wertvolle Ausgestaltung weg. Jetzt:
   // beziffert vorschlagen + als bestätigbaren Vorschlag MARKIEREN.
   const hasBasis = hasUserKostenbasis(facts, userAnswers);
+  const prompt = buildFinanzplanPrompt(programm, facts, richtlinie, userAnswers);
 
-  const { value, usage } = await generateJson<RawResult>(
-    MODEL_PRO,
-    FINANZPLAN_SYSTEM,
-    buildFinanzplanPrompt(programm, facts, richtlinie, userAnswers)
-  );
+  let { value, usage } = await generateJson<RawResult>(MODEL_PRO, FINANZPLAN_SYSTEM, prompt);
 
-  const posten = (value.posten ?? [])
+  let posten = (value.posten ?? [])
     .map(normalize)
     .filter((p): p is Finanzposten => p !== null);
+
+  // Fall 6 (Probe 09.06.): Ein leeres Posten-Array ist meist ein transienter
+  // Generierungs-Ausfall (der Retry-Layer in llm.ts faengt nur Fehler/Leer-Text,
+  // ein valides {posten:[]} ist inhaltlich leer, kein Fehler). Genau EIN gezielter
+  // Wiederholungs-Versuch, bevor wir auf den Kostenrahmen-Anker zurueckfallen.
+  if (posten.length === 0) {
+    const retry = await generateJson<RawResult>(MODEL_PRO, FINANZPLAN_SYSTEM, prompt);
+    usage = sumUsage(usage, retry.usage);
+    const retryPosten = (retry.value.posten ?? [])
+      .map(normalize)
+      .filter((p): p is Finanzposten => p !== null);
+    if (retryPosten.length > 0) {
+      value = retry.value;
+      posten = retryPosten;
+    }
+  }
+
+  // Immer noch leer → ehrlicher unbezifferter Kostenrahmen statt stillem Leerplan.
+  if (posten.length === 0) {
+    return {
+      plan: buildUnbezifferterFallback(facts, value.hinweise),
+      usage: { model: MODEL_PRO, usage },
+    };
+  }
 
   // Deterministische Eigenanteil-Normalisierung (siehe applyStatedEigenanteil):
   // garantiert, dass eine explizite Nutzer-Eigenmittelangabe als markierter

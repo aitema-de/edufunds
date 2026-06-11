@@ -590,6 +590,17 @@ export async function runPipeline(
   // Vorschlag markierten Beträgen; der Text behält seine (als Schätzung
   // gekennzeichneten) Beträge und wird per Konsistenz-Revision daran angeglichen.
 
+  // Final-Guard (Probe 09.06., Fall 3): Nach allen Stufen darf der Antragstext
+  // niemals leer sein. Ein leerer finalText entsteht aus einer transienten,
+  // erfolgreich-aber-leeren KI-Antwort (vom Retry-Layer abgefangen, im Rest-Risiko
+  // aber moeglich). Lieber ein ehrlicher Fehler (Route → Phase "failed",
+  // Retry-Pfad) als ein zahlendes Leer-Dokument.
+  if (!(finalRes.value ?? "").trim()) {
+    throw new Error(
+      "Pipeline ergab einen leeren Antragstext — vermutlich ein voruebergehender KI-Ausfall. Bitte erneut generieren."
+    );
+  }
+
   emit({ stage: "done", message: "Fertig" });
 
   return {

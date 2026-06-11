@@ -46,9 +46,24 @@ export function FinanzplanView({ plan }: Props) {
       </div>
 
       {plan.posten.length === 0 ? (
-        <p className="text-sm text-slate-600">
-          Kein Finanzplan erzeugt — ggf. fehlten Richtlinien-Daten.
-        </p>
+        plan.unbeziffert && plan.kostenrahmen?.length ? (
+          <div>
+            <p className="text-sm text-slate-600">
+              Es liegen noch keine Kostenangaben vor — der Finanzplan ist daher noch{" "}
+              <strong>unbeziffert</strong>. Die folgenden Positionen werden vor Einreichung
+              durch konkrete Angebote beziffert:
+            </p>
+            <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-[#1e3a61]">
+              {plan.kostenrahmen.map((k, i) => (
+                <li key={i}>{k}</li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <p className="text-sm text-slate-600">
+            Kein Finanzplan erzeugt — ggf. fehlten Richtlinien-Daten.
+          </p>
+        )
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
