@@ -149,7 +149,7 @@ jobs:
         if: steps.cpr.outputs.pull-request-number != ''
         env:
           CLICKUP_API_TOKEN: ${{ secrets.CLICKUP_API_TOKEN }}
-          CLICKUP_LIST_ID: "901523862748"
+          CLICKUP_LIST_ID: "901523863160"
           PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
           PR_URL: ${{ steps.cpr.outputs.pull-request-url }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
