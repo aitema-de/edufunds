@@ -101,20 +101,77 @@ const ALL_KATEGORIEN: string[] = (() => {
 })();
 
 /**
- * Extrahiert Themen aus dem Anliegen-Text via Wort-Grenzen-Match (Phase 2.3).
- * Verwendet Regex `\b<kat>\b` statt Substring-Match — eliminiert False-Positives
- * wie "ki" in "Kinder", "natur" in "natuerlich". Diakritika/Umlaut-Toleranz nicht
- * noetig, weil Kategorien in foerderprogramme.json bereits in ASCII-Form sind
- * (deutsche Umlaute wurden beim Dossier-Extract zu ae/oe/ue konvertiert).
+ * Hebel 3 — Theme-Alias-Cluster (umgangssprachlicher Begriff → kanonische Tags).
+ *
+ * Der reine `\b<kategorie>\b`-Match (unten) hat zwei Luecken, die bewirken, dass
+ * vage/umgangssprachliche Anliegen KEINEN Theme-Boost bekommen → der Top-N-Cut
+ * faellt auf den reinen Queue-Score zurueck = die Default-Magnete:
+ *   (a) Vokabel-Mismatch: Nutzer sagt "Tablets"/"programmieren", die Katalog-Tags
+ *       heissen "digitalisierung"/"informatik" — kein Substring-Treffer.
+ *   (b) Synonym-/Flexions-Splits im Tag-Vokabular selbst: "digitalisierung" (20×)
+ *       vs "digital" (4×) vs "digitales" (1×); "naturwissenschaft" vs Plural.
+ *
+ * Jeder Trigger (Stamm-Match) fuegt den GESAMTEN kanonischen Cluster zu den
+ * Anliegen-Themen hinzu — so erhaelt jedes Programm mit irgendeinem Cluster-Tag
+ * den Theme-Boost und wird in den LLM-Cut gezogen. Beeinflusst NUR den 40er-Cut
+ * (Kandidatenauswahl), nicht das finale Ranking — das macht weiterhin das LLM.
+ * Alle `tags` sind reale Kategorien aus foerderprogramme.json.
  */
-function extractAnliegenThemes(anliegen: string): Set<string> {
+const THEME_ALIASES: ReadonlyArray<{ trigger: RegExp; tags: readonly string[] }> = [
+  // Digital / Hardware (Probe Fall 1 "Tablets")
+  { trigger: /\b(tablet|ipad|laptop|notebook|computer|pc|hardware|wlan|smartboard|whiteboard|beamer|software|app|apps|digital|internet|ger(ae|ä)t)/i,
+    tags: ["digitalisierung", "digital", "digitales", "digitale-bildung", "medien", "medienbildung", "medienkompetenz", "hardware", "ausstattung", "cloud", "cybersicherheit"] },
+  // Programmieren / Informatik / Robotik (Probe Fall 8)
+  { trigger: /\b(programmier|coding|code|coden|informatik|roboter|robotik|3d.?druck|elektronik|gaming|scratch|calliope|micro.?bit)/i,
+    tags: ["informatik", "programmierung", "robotik", "mint", "technik", "digitalisierung", "elektronik", "mikroelektronik", "3d-druck"] },
+  // MINT / Mathe / Naturwissenschaft / Forschen
+  { trigger: /\b(mint|mathe|rechnen|naturwissenschaft|forsch|experiment|physik|chemie|biologie|technik|logik|tueftel|t(ue|ü)ftel)/i,
+    tags: ["mint", "mathematik", "naturwissenschaft", "naturwissenschaften", "technik", "forschung", "experiment", "experimente", "physik", "chemie", "biologie", "logik", "wissenschaft"] },
+  // Sport / Bewegung (Probe Fall 3 "Bewegung")
+  { trigger: /\b(sport|beweg|turn|fussball|fu(ss|ß)ball|ballspiel|schwimm|fitness|motorik|toben|leichtathletik)/i,
+    tags: ["sport", "bewegung", "gesundheit", "tanz"] },
+  // Lesen / Sprache / DaZ (Probe Fall 4 "Lesen", Fall 9 "Deutsch")
+  { trigger: /\b(lese|buch|b(ue|ü)cher|bibliothek|vorlesen|sprach|deutsch|daz|daf|mehrsprach|alphabetis|wortschatz|schreiben)/i,
+    tags: ["lesen", "sprache", "sprachen", "deutsch", "integration", "chancengleichheit", "basiskompetenzen", "interkulturell"] },
+  // Kultur / Musik / Kunst / Theater (Probe Fall 6 "Musikinstrumente")
+  { trigger: /\b(musik|instrument|theater|schauspiel|kunst|malen|basteln|kreativ|chor|band|film|tanz|gestalt)/i,
+    tags: ["kultur", "kunst", "kulturelle-bildung", "musik", "theater", "tanz", "film", "bildende-kunst", "kreativitaet", "kuenste"] },
+  // Natur / Umwelt / Garten / Schulhof (Probe Fall 2 "Schulhof", Fall 7 "Garten")
+  { trigger: /\b(garten|schulhof|schulgarten|au(ss|ß)engel(ae|ä)nde|hochbeet|beet|begr(ue|ü)n|pflanz|natur|umwelt|tiere|insekt|nabu|wald|teich|klima|nachhaltig|(oe|ö)ko|wasser|artenviel|gel(ae|ä)nde)/i,
+    tags: ["umwelt", "umweltbildung", "natur", "naturschutz", "naturerleben", "naturbildung", "nachhaltigkeit", "klimaschutz", "klima", "oekologie", "artenvielfalt", "wald", "garten", "schulgarten", "schulhof", "gartengestaltung", "wasser", "energie", "bne"] },
+  // Demokratie / Soziales / Mobbing / Gewalt (Probe Fall 5 "Mobbing")
+  { trigger: /\b(mobbing|gewalt|streit|konflikt|respekt|demokrat|mitbestimm|partizip|beteilig|toleranz|vielfalt|diskriminier|ausgrenz|zusammenleben|sozial|miteinander|zivilcourage)/i,
+    tags: ["demokratie", "politische-bildung", "partizipation", "beteiligung", "soziales", "praevention", "gewaltpraevention", "extremismuspraevention", "toleranz", "vielfalt", "respekt", "zusammenleben", "teilhabe", "zivilgesellschaft", "kinderschutz"] },
+  // Gesundheit / Ernaehrung (Probe Fall 10 "gesundes Essen")
+  { trigger: /\b(gesund|ern(ae|ä)hr|essen|kochen|koch|obst|gem(ue|ü)se|fr(ue|ü)hst(ue|ü)ck|verbraucher|haushalt|zahn|sucht)/i,
+    tags: ["gesundheit", "ernaehrung", "verbraucherbildung", "haushalt", "alltagskompetenzen", "praevention"] },
+  // Inklusion / Foerderbedarf
+  { trigger: /\b(inklusi|integration|f(oe|ö)rderbedarf|behinder|barriere|sonderp(ae|ä)dagog|benachteilig|migration|chancengleich|heterogen)/i,
+    tags: ["inklusion", "integration", "teilhabe", "barrierefreiheit", "barrierenabbau", "chancengleichheit", "vielfalt", "benachteiligung", "bildungsgerechtigkeit", "foerderung"] },
+] as const;
+
+/**
+ * Extrahiert Themen aus dem Anliegen-Text via Wort-Grenzen-Match (Phase 2.3) PLUS
+ * Alias-Cluster-Expansion (Hebel 3). Der `\b<kat>\b`-Match eliminiert False-Positives
+ * wie "ki" in "Kinder", "natur" in "natuerlich". Diakritika/Umlaut-Toleranz nicht
+ * noetig fuer den Exakt-Match, weil Kategorien in foerderprogramme.json bereits in
+ * ASCII-Form sind. Die Alias-Trigger decken umgangssprachliche/abgeleitete Begriffe
+ * UND Umlaut-Varianten ab. Exportiert fuer Tests.
+ */
+export function extractAnliegenThemes(anliegen: string): Set<string> {
   const t = anliegen.toLowerCase();
   const hits = new Set<string>();
+  // 1. Exakter Kategorie-Match (wie bisher).
   for (const kat of ALL_KATEGORIEN) {
-    // Escape regex-Sonderzeichen in Kategorie-Strings (selten, aber sicher).
     const escaped = kat.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const re = new RegExp(`\\b${escaped}\\b`, "i");
     if (re.test(t)) hits.add(kat);
+  }
+  // 2. Alias-Cluster: jeder Trigger zieht seinen gesamten Tag-Cluster herein.
+  for (const alias of THEME_ALIASES) {
+    if (alias.trigger.test(t)) {
+      for (const tag of alias.tags) hits.add(tag);
+    }
   }
   return hits;
 }
@@ -213,8 +270,14 @@ function normalizeBundesland(raw: string | undefined): string | null {
 function prefilter(input: MatchInput, all: Foerderprogramm[]): Foerderprogramm[] {
   const blCode = normalizeBundesland(input.bundesland);
   return all.filter((p) => {
-    // Abgelaufene Fristen ausschliessen
-    if ((p as any).status && (p as any).status === "abgelaufen") return false;
+    // Nicht-aktive Programme ausschliessen. Bug-Fix (Hebel 3): der Filter pruefte
+    // bisher `status === "abgelaufen"` — diesen Wert gibt es im Katalog gar nicht
+    // (reale Werte: "aktiv" / "archiviert" / "review_needed"), der Filter war
+    // wirkungslos. "archiviert" = terminal (alte Wettbewerbsrunden, Dubletten),
+    // "review_needed" = noch nicht freigegeben (z. B. strategische Partnerschaften
+    // ohne offenen Call). Beide gehoeren nicht als Live-Treffer in den Cut.
+    const status = (p as any).status;
+    if (status === "archiviert" || status === "review_needed") return false;
 
     // Landesprogramme filtern: wenn User bundesland gesetzt hat und
     // Programm explizit andere Laender fordert
