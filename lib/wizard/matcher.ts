@@ -240,6 +240,53 @@ function themeBoost(programm: Foerderprogramm, anliegenThemes: Set<string>): num
   return Math.min(hits, THEME_BOOST_MAX_HITS) * THEME_BOOST_PER_HIT;
 }
 
+/** Groesse des deterministischen Kandidaten-Cuts (= was an den LLM geht). */
+export const CUT_SIZE = MAX_LLM_CANDIDATES;
+
+/** Ein prefilter-Ueberlebender mit aufgeschluesseltem Sortier-Score. */
+export interface CutCandidate {
+  programm: Foerderprogramm;
+  /** QueueScore + themeBoost — bestimmt die Cut-Reihenfolge. */
+  sortScore: number;
+  queueScore: number;
+  themeBoost: number;
+}
+
+/** Ergebnis der deterministischen Kandidaten-Auswahl vor dem LLM. */
+export interface CutSelection {
+  /** Alle prefilter-Ueberlebenden, absteigend nach sortScore. */
+  ranked: CutCandidate[];
+  /** Die ersten CUT_SIZE Programme = exakt das, was an den LLM uebergeben wird. */
+  cut: Foerderprogramm[];
+  /** Die aus dem Anliegen extrahierten Themen-Tags (Diagnose). */
+  anliegenThemes: Set<string>;
+}
+
+/**
+ * Deterministische Kandidaten-Auswahl VOR dem LLM: prefilter (Status/Bundesland)
+ * → sortScore (QueueScore + themeBoost) → Top-CUT_SIZE.
+ *
+ * Exportiert fuer die Cut-Coverage-Eval (`scripts/eval-cut-coverage.ts`): misst
+ * rein deterministisch (ohne LLM-Rauschen), ob das fachlich passende Programm
+ * ueberhaupt in den Cut kommt. `runMatch` nutzt dieselbe Funktion → keine
+ * Logik-Drift zwischen Produktion und Messung.
+ */
+export function selectCutCandidates(input: MatchInput): CutSelection {
+  const filtered = prefilter(input, programme);
+  // previousAnliegen mitberuecksichtigen fuer D-09 Praezisierungs-Pfad.
+  const themeText = `${input.anliegen} ${input.previousAnliegen ?? ""}`;
+  const anliegenThemes = extractAnliegenThemes(themeText);
+  const ranked: CutCandidate[] = filtered
+    .map((p) => {
+      const queueScore = QUEUE_SCORES.get(p.id) ?? 0;
+      const boost = themeBoost(p, anliegenThemes);
+      return { programm: p, sortScore: queueScore + boost, queueScore, themeBoost: boost };
+    })
+    .sort((a, b) => b.sortScore - a.sortScore);
+  const cut = ranked.slice(0, CUT_SIZE).map((entry) => entry.programm);
+  return { ranked, cut, anliegenThemes };
+}
+
 export interface MatchInput {
   anliegen: string;
   schulname?: string;
@@ -563,21 +610,10 @@ export async function runMatch(input: MatchInput): Promise<MatchResult> {
     );
   }
 
-  const filtered = prefilter(input, programme);
-
-  // Plan 02-09: Theme-Boost vor Top-N-Cut. Sortierung = QueueScore + ThemeBoost.
-  // previousAnliegen mitberuecksichtigen fuer D-09 Praezisierungs-Pfad.
-  const themeText = `${input.anliegen} ${input.previousAnliegen ?? ""}`;
-  const anliegenThemes = extractAnliegenThemes(themeText);
-  const topN = [...filtered]
-    .map((p) => ({
-      programm: p,
-      sortScore: (QUEUE_SCORES.get(p.id) ?? 0) + themeBoost(p, anliegenThemes),
-    }))
-    .sort((a, b) => b.sortScore - a.sortScore)
-    .slice(0, MAX_LLM_CANDIDATES)
-    .map((entry) => entry.programm);
-  const cards = topN.map(toCard);
+  // Plan 02-09: Deterministische Kandidaten-Auswahl (prefilter → QueueScore +
+  // ThemeBoost → Top-CUT_SIZE). Identisch zur Cut-Coverage-Eval (selectCutCandidates).
+  const selection = selectCutCandidates(input);
+  const cards = selection.cut.map(toCard);
 
   const { value: rawText, usage } = await generateText(
     MODEL_FLASH,
@@ -655,7 +691,7 @@ export async function runMatch(input: MatchInput): Promise<MatchResult> {
     kind: "ranking",
     matches: matches.slice(0, MAX_MATCHES),
     costs,
-    totalCandidates: filtered.length,
-    filteredOut: programme.length - filtered.length,
+    totalCandidates: selection.ranked.length,
+    filteredOut: programme.length - selection.ranked.length,
   };
 }
