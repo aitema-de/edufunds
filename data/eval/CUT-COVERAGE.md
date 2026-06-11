@@ -2,7 +2,7 @@
 
 > Deterministisch, kein LLM. Misst, ob das erwartete Programm in den 40er-Kandidaten-Cut kommt (= die Menge, die der Matcher dem LLM zum Ranken vorlegt). Fehlt es hier, kann kein Ranking-Schritt es mehr treffen — Fehler liegt in der Kandidaten-Auswahl, nicht im LLM.
 
-Generiert: 2026-06-11T11:47:42.717Z · Korpus: `data/eval/matcher-korpus.json` (19 bewertbare Eintraege)
+Generiert: 2026-06-11T12:05:37.203Z · Korpus: `data/eval/matcher-korpus.json` (19 bewertbare Eintraege)
 
 ## Aggregat
 

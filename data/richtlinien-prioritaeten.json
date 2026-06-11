@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-11T11:45:12.405Z",
+  "generatedAt": "2026-06-11T12:05:37.709Z",
   "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
   "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
   "total": 105,
@@ -136,7 +136,7 @@
     },
     {
       "programmId": "lesen-macht-stark",
-      "name": "Gemeinsam Digital! Kreativ mit Medien",
+      "name": "Gemeinsam Digital! Kreativ mit Medien (ehem. Lesen macht stark)",
       "foerdergeberTyp": "bund",
       "foerdersummeMax": 50000,
       "reichweite": "alle",
