@@ -176,6 +176,29 @@ export async function withRetry<T>(
   throw lastErr;
 }
 
+// ---------------------------------------------------------------------------
+// Optionaler Client-seitiger Rate-Limiter
+// ---------------------------------------------------------------------------
+// Erzwingt einen Mindestabstand zwischen ausgehenden Requests. Default 0 (AUS)
+// → kein Effekt auf DeepSeek/Production und den bewaehrten Pfad. Sinnvoll gegen
+// 429 bei knapp limitierten Tarifen (z. B. Mistral Free-/Experiment-Tier ~1 req/s):
+//   LLM_MIN_REQUEST_INTERVAL_MS=1100
+// Serialisiert alle generate*-Aufrufe ueber eine Promise-Kette und haelt den
+// Abstand auch unter Nebenlaeufigkeit (viele Pipelines parallel) ein.
+const MIN_REQUEST_INTERVAL_MS = Math.max(0, Number(process.env.LLM_MIN_REQUEST_INTERVAL_MS) || 0);
+let rateChain: Promise<void> = Promise.resolve();
+let lastRequestStart = 0;
+function rateGate(): Promise<void> {
+  if (MIN_REQUEST_INTERVAL_MS <= 0) return Promise.resolve();
+  const next = rateChain.then(async () => {
+    const wait = lastRequestStart + MIN_REQUEST_INTERVAL_MS - Date.now();
+    if (wait > 0) await new Promise((r) => setTimeout(r, wait));
+    lastRequestStart = Date.now();
+  });
+  rateChain = next.catch(() => undefined);
+  return next;
+}
+
 export interface LlmResult<T> {
   value: T;
   usage: Usage;
@@ -392,6 +415,7 @@ function minimize(user: string, model: string): string {
 
 export async function generateJson<T>(model: string, system: string, user: string, opts: LlmOptions = {}): Promise<LlmResult<T>> {
   const safeUser = minimize(user, model);
+  await rateGate();
   return withRetry(
     () =>
       PROVIDER === "gemini"
@@ -405,6 +429,7 @@ export async function generateJson<T>(model: string, system: string, user: strin
 
 export async function generateText(model: string, system: string, user: string, opts: LlmOptions = {}): Promise<LlmResult<string>> {
   const safeUser = minimize(user, model);
+  await rateGate();
   return withRetry(
     () =>
       PROVIDER === "gemini"
