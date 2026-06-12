@@ -22,11 +22,16 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 APP_DIR="$(dirname "$SCRIPT_DIR")"
 
-# .env.local laden, falls Variablen nicht gesetzt sind.
-if [[ -f "$APP_DIR/.env.local" ]]; then
-  # shellcheck disable=SC1090
-  set -a; source <(grep -E '^(CRON_SECRET|NEXT_PUBLIC_APP_URL)=' "$APP_DIR/.env.local" || true); set +a
-fi
+# CRON_SECRET + URL aus der passenden Env-Datei laden (Prod zuerst, dann Dev),
+# falls nicht bereits gesetzt. Nur diese zwei Variablen werden gegrept — andere
+# Werte (z.B. FROM_EMAIL mit Leerzeichen/<>) würden beim Sourcen brechen.
+for ENVF in "$APP_DIR/.env.production" "$APP_DIR/.env.local"; do
+  if [[ -f "$ENVF" ]]; then
+    # shellcheck disable=SC1090
+    set -a; source <(grep -E '^(CRON_SECRET|NEXT_PUBLIC_APP_URL)=' "$ENVF" || true); set +a
+    break
+  fi
+done
 
 BASE_URL="${EDUFUNDS_BASE_URL:-${NEXT_PUBLIC_APP_URL:-https://app.edufunds.org}}"
 SECRET="${CRON_SECRET:-}"
