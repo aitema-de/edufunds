@@ -107,18 +107,27 @@ function renderTemplate(template: string, data: Record<string, string>): string 
  */
 function renderProgramCard(program: Program, index = 0): string {
   const num = String(index + 1).padStart(2, '0');
+  // Tabellenbasiert für robuste Darstellung in Outlook/Gmail (keine Flexbox /
+  // kein position:absolute): linke Spalte = Nummer, rechte Spalte = Inhalt;
+  // Titel/Frist im verschachtelten 2-Spalten-Layout (Titel links, Frist rechts).
   return `
-<div class="program-card">
-    <div class="program-index">${num}</div>
-    <div class="program-header">
-        <h3 class="program-title">${escapeHtml(program.name)}</h3>
-        <span class="program-deadline">${escapeHtml(program.deadline)}</span>
-    </div>
-    <div class="program-funder">${escapeHtml(program.funder)}</div>
-    <div class="program-target">Zielgruppe: ${escapeHtml(program.targetGroup)}</div>
-    <p class="program-description">${escapeHtml(program.description)}</p>
-    <a href="${escapeHtml(program.url)}" class="program-cta">Zum Programm →</a>
-</div>`;
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="program-card">
+    <tr>
+        <td width="46" valign="top" class="program-index">${num}</td>
+        <td valign="top" class="program-body">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td valign="top"><h3 class="program-title">${escapeHtml(program.name)}</h3></td>
+                    <td valign="top" align="right" class="deadline-cell"><span class="program-deadline">${escapeHtml(program.deadline)}</span></td>
+                </tr>
+            </table>
+            <div class="program-funder">${escapeHtml(program.funder)}</div>
+            <div class="program-target">Zielgruppe: ${escapeHtml(program.targetGroup)}</div>
+            <p class="program-description">${escapeHtml(program.description)}</p>
+            <a href="${escapeHtml(program.url)}" class="program-cta">Zum Programm &rarr;</a>
+        </td>
+    </tr>
+</table>`;
 }
 
 /**
@@ -146,10 +155,10 @@ function renderNewsItems(items: NewsItem[]): string {
       ? `${item.text.replace(/<a\s+href="([^"]+)">([^<]+)<\/a>/g, '<a href="$1" class="news-link">$2</a>')}`
       : escapeHtml(item.text);
     return `
-<li class="news-item">
-    <span class="news-bullet">&#9670;</span>
-    <span class="news-text">${text}</span>
-</li>`;
+<tr>
+    <td class="news-bullet" valign="top">&#9670;</td>
+    <td class="news-text">${text}</td>
+</tr>`;
   }).join('');
 }
 

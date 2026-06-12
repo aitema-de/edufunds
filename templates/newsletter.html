@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light">
     <title>{{newsletter_title}}</title>
+    <!--[if mso]><style type="text/css">body, table, td, p, a, h1, h2, h3, span { font-family: Georgia, 'Times New Roman', serif !important; }</style><![endif]-->
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { margin: 0; padding: 0; }
+        img { border: 0; line-height: 100%; }
+        table { border-collapse: collapse; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
             background-color: #efe8d8;
             color: #2a2620;
-            line-height: 1.65;
             -webkit-font-smoothing: antialiased;
         }
-
         .serif { font-family: Georgia, 'Iowan Old Style', 'Times New Roman', serif; }
         .label {
             font-size: 11px;
@@ -25,102 +26,58 @@
             font-weight: 700;
         }
 
-        .outer { width: 100%; background-color: #efe8d8; padding: 28px 16px; }
-
-        .container {
-            max-width: 620px;
-            margin: 0 auto;
-            background-color: #fffdf7;
-            border: 1px solid #e4d9bf;
-        }
-
         /* ---------- Masthead (Zeitungs-Titelkopf) ---------- */
-        .masthead {
-            padding: 32px 44px 0;
-            text-align: center;
-        }
+        .masthead { padding: 32px 44px 0; text-align: center; }
         .masthead .kicker {
-            font-size: 10px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #a59c8c;
-            margin-bottom: 14px;
+            font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+            color: #a59c8c; padding-bottom: 14px;
         }
         .wordmark {
             font-family: Georgia, 'Times New Roman', serif;
-            font-size: 44px;
-            font-weight: 700;
-            letter-spacing: -1px;
-            color: #23201b;
+            font-size: 44px; font-weight: 700; letter-spacing: -1px; color: #23201b;
         }
         .wordmark .dot { color: #c2772b; }
         .masthead .tagline {
-            font-size: 11px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: #8a8175;
-            margin-top: 6px;
+            font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+            color: #8a8175; padding-top: 6px;
         }
         .rule-thick { border-top: 3px solid #23201b; margin-top: 18px; font-size: 0; line-height: 0; }
         .rule-thin  { border-top: 1px solid #23201b; margin-top: 3px; font-size: 0; line-height: 0; }
-        .masthead .folio {
-            display: flex;
-            justify-content: space-between;
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #6b6457;
-            padding: 9px 1px 0;
+        .folio-cell {
+            font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+            color: #6b6457; padding: 10px 1px 0;
         }
 
         .body { padding: 8px 44px 0; }
 
-        /* ---------- Zierornament (wiederkehrendes Rauten-Motiv) ---------- */
-        .ornament { text-align: center; padding: 26px 0; line-height: 1; }
-        .ornament .orn-line {
-            display: inline-block;
-            width: 44px;
-            height: 1px;
-            background: #d8cdb2;
-            vertical-align: middle;
-            margin: 0 13px;
+        /* ---------- Zierornament (Rauten-Motiv) ---------- */
+        .ornament { width: 100%; }
+        .orn-side { border-bottom: 1px solid #d8cdb2; font-size: 0; line-height: 0; }
+        .orn-mid {
+            width: 1%; white-space: nowrap; padding: 0 16px;
+            color: #c2772b; font-size: 9px; letter-spacing: 4px;
         }
-        .ornament .orn-dia { color: #c2772b; font-size: 9px; vertical-align: middle; letter-spacing: 4px; }
 
         /* ---------- Persönlicher Brief ---------- */
         .letter { padding: 34px 0 8px; }
         .letter .label { display: block; margin-bottom: 14px; }
         .letter h1 {
             font-family: Georgia, 'Times New Roman', serif;
-            font-size: 27px;
-            line-height: 1.25;
-            font-weight: 700;
-            color: #2a2620;
-            margin-bottom: 18px;
+            font-size: 27px; line-height: 1.25; font-weight: 700;
+            color: #2a2620; margin: 0 0 18px;
         }
         .letter p {
             font-family: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
-            font-size: 16.5px;
-            line-height: 1.7;
-            color: #33302a;
-            margin-bottom: 14px;
+            font-size: 16.5px; line-height: 1.7; color: #33302a; margin: 0 0 14px;
         }
-        /* Initiale (Drop Cap) am Briefanfang */
+        /* Initiale (Drop Cap) — progressive enhancement, faellt sonst auf normalen Buchstaben zurueck */
         .letter p:first-of-type:first-letter {
-            float: left;
-            font-family: Georgia, 'Times New Roman', serif;
-            font-weight: 700;
-            font-size: 56px;
-            line-height: 42px;
-            padding: 6px 10px 0 0;
-            color: #1f4d3f;
+            float: left; font-family: Georgia, 'Times New Roman', serif; font-weight: 700;
+            font-size: 56px; line-height: 42px; padding: 6px 10px 0 0; color: #1f4d3f;
         }
         .letter .signature {
-            font-family: Georgia, 'Times New Roman', serif;
-            font-style: italic;
-            font-size: 17px;
-            color: #1f4d3f;
-            margin-top: 22px;
+            font-family: Georgia, 'Times New Roman', serif; font-style: italic;
+            font-size: 17px; color: #1f4d3f; margin-top: 22px;
         }
 
         /* ---------- Sektion ---------- */
@@ -128,230 +85,194 @@
         .section-head { margin-bottom: 22px; }
         .section-head h2 {
             font-family: Georgia, 'Times New Roman', serif;
-            font-size: 22px;
-            font-weight: 700;
-            color: #2a2620;
-            margin-top: 4px;
+            font-size: 22px; font-weight: 700; color: #2a2620; margin: 4px 0 0;
         }
 
         /* ---------- Programm-Einträge (von renderProgramCard) ---------- */
-        .program-card { position: relative; padding: 24px 0 24px 56px; border-top: 1px solid #ece3d0; }
-        .program-card:first-of-type { border-top: none; padding-top: 6px; }
+        .program-card { width: 100%; border-top: 1px solid #ece3d0; }
+        .program-card td { padding-top: 24px; padding-bottom: 24px; }
+        .program-card:first-of-type { border-top: none; }
+        .program-card:first-of-type td { padding-top: 6px; }
         .program-index {
-            position: absolute;
-            left: 0;
-            top: 22px;
+            width: 46px;
             font-family: Georgia, 'Times New Roman', serif;
-            font-size: 30px;
-            color: #d8b888;
-            line-height: 1;
-            letter-spacing: -1px;
-        }
-        .program-card:first-of-type .program-index { top: 4px; }
-        .program-header {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 6px 14px;
-            margin-bottom: 6px;
+            font-size: 30px; color: #d8b888; line-height: 1; letter-spacing: -1px;
         }
         .program-title {
+            display: block;
             font-family: Georgia, 'Times New Roman', serif;
-            font-size: 19px;
-            font-weight: 700;
-            color: #1f4d3f;
-            line-height: 1.3;
+            font-size: 19px; font-weight: 700; color: #1f4d3f; line-height: 1.3; margin: 0;
         }
+        .deadline-cell { padding-left: 12px; }
         .program-deadline {
-            flex-shrink: 0;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.3px;
-            color: #9a6b2f;
-            background-color: #f6ecd7;
-            padding: 3px 10px;
-            border-radius: 2px;
-            white-space: nowrap;
+            display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.3px;
+            color: #9a6b2f; background-color: #f6ecd7; padding: 3px 10px; border-radius: 2px; white-space: nowrap;
         }
         .program-funder {
-            font-size: 12px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #8a8175;
-            font-weight: 700;
-            margin-bottom: 10px;
+            font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+            color: #8a8175; font-weight: 700; margin: 10px 0 10px;
         }
         .program-target { font-size: 13px; color: #6b6457; margin-bottom: 8px; }
-        .program-description { font-size: 15px; color: #3d3830; margin-bottom: 12px; }
+        .program-description { font-size: 15px; line-height: 1.6; color: #3d3830; margin: 0 0 12px; }
         .program-cta {
-            display: inline-block;
-            font-size: 14px;
-            font-weight: 700;
-            color: #1f4d3f;
-            text-decoration: none;
-            border-bottom: 2px solid #c2772b;
-            padding-bottom: 1px;
+            display: inline-block; font-size: 14px; font-weight: 700; color: #1f4d3f;
+            text-decoration: none; border-bottom: 2px solid #c2772b; padding-bottom: 1px;
         }
 
         /* ---------- Praxis-Tipp ---------- */
-        .tip {
-            margin: 4px 0;
-            padding: 26px 28px;
-            background-color: #f3ecdb;
-            border-left: 3px solid #1f4d3f;
-        }
+        .tip { margin: 4px 0; padding: 26px 28px; background-color: #f3ecdb; border-left: 3px solid #1f4d3f; }
         .tip .label { display: block; margin-bottom: 10px; }
         .tip h2 {
             font-family: Georgia, 'Times New Roman', serif;
-            font-size: 20px;
-            font-weight: 700;
-            color: #2a2620;
-            margin-bottom: 12px;
+            font-size: 20px; font-weight: 700; color: #2a2620; margin: 0 0 12px;
         }
-        .tip p { font-size: 15px; color: #3d3830; margin-bottom: 10px; }
+        .tip p { font-size: 15px; line-height: 1.6; color: #3d3830; margin: 0 0 10px; }
 
         /* ---------- Insight ---------- */
         .insight .meta { margin-bottom: 6px; }
         .insight .readtime { font-size: 11px; letter-spacing: 1px; color: #a59c8c; margin-left: 8px; }
-        .insight p { font-size: 15px; color: #3d3830; margin-bottom: 14px; }
+        .insight p { font-size: 15px; line-height: 1.6; color: #3d3830; margin: 0 0 14px; }
         .cta-button {
-            display: inline-block;
-            margin-top: 6px;
-            background-color: #1f4d3f;
-            color: #fffdf7;
-            padding: 12px 26px;
-            border-radius: 3px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 0.3px;
+            display: inline-block; margin-top: 6px; background-color: #1f4d3f; color: #fffdf7;
+            padding: 12px 26px; border-radius: 3px; text-decoration: none; font-weight: 700;
+            font-size: 14px; letter-spacing: 0.3px;
         }
 
         /* ---------- Kurz notiert ---------- */
-        .news-list { list-style: none; }
-        .news-item {
-            display: flex;
-            gap: 12px;
-            padding: 11px 0;
-            border-bottom: 1px solid #f0e9d8;
-            font-size: 15px;
-            color: #3d3830;
-        }
-        .news-item:last-child { border-bottom: none; }
-        .news-bullet { color: #c2772b; font-size: 10px; line-height: 1.7; }
-        .news-link { color: #1f4d3f; text-decoration: underline; text-decoration-color: #c2772b; }
+        .news-list { width: 100%; }
+        .news-list td { padding: 11px 0; border-bottom: 1px solid #f0e9d8; vertical-align: top; }
+        .news-list tr:last-child td { border-bottom: none; }
+        .news-bullet { width: 22px; color: #c2772b; font-size: 10px; vertical-align: top; padding-top: 5px; }
+        .news-text { font-size: 15px; line-height: 1.6; color: #3d3830; }
+        .news-link { color: #1f4d3f; text-decoration: underline; }
 
         /* ---------- Über EduFunds (permanenter Disclaimer) ---------- */
-        .disclaimer {
-            margin: 0 44px;
-            padding: 6px 0 4px;
-        }
+        .disclaimer { padding: 6px 44px 4px; }
         .disclaimer .label { display: block; margin-bottom: 8px; }
-        .disclaimer p { font-size: 12px; line-height: 1.6; color: #8a8175; }
+        .disclaimer p { font-size: 12px; line-height: 1.6; color: #8a8175; margin: 0; }
 
         /* ---------- Footer ---------- */
-        .footer {
-            padding: 26px 44px 34px;
-            text-align: center;
-            font-size: 12px;
-            color: #9a917f;
-        }
+        .footer { padding: 26px 44px 34px; text-align: center; font-size: 12px; color: #9a917f; }
+        .footer p { margin: 0 0 8px; line-height: 1.6; }
         .footer a { color: #1f4d3f; text-decoration: none; border-bottom: 1px solid #d8cdb2; }
         .footer .org { margin-top: 12px; color: #b0a78f; }
 
         @media (max-width: 480px) {
-            .masthead, .body, .disclaimer, .footer { padding-left: 24px; padding-right: 24px; }
-            .disclaimer { margin: 0 24px; }
-            .letter h1 { font-size: 23px; }
-            .wordmark { font-size: 30px; }
+            .masthead, .body, .disclaimer, .footer { padding-left: 24px !important; padding-right: 24px !important; }
+            .letter h1 { font-size: 23px !important; }
+            .wordmark { font-size: 30px !important; }
         }
     </style>
 </head>
-<body>
-    <div class="outer">
-        <div class="container">
-            <!-- Masthead (Zeitungs-Titelkopf) -->
-            <div class="masthead">
-                <div class="kicker">Monatlicher Förder-Newsletter</div>
-                <div class="wordmark">EduFunds<span class="dot">.</span></div>
-                <div class="tagline">Fördermittel für Schulen &amp; Vereine</div>
-                <div class="rule-thick">&nbsp;</div>
-                <div class="rule-thin">&nbsp;</div>
-                <div class="folio">
-                    <span>{{issue_date}}</span>
-                    <span>{{issue_number}}</span>
-                </div>
-            </div>
+<body style="margin:0; padding:0; background-color:#efe8d8;">
+    <!-- Aeusserer Rahmen: volle Breite, zentrierter 620px-Kasten (tabellenbasiert fuer Outlook/Gmail) -->
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#efe8d8" style="background-color:#efe8d8;">
+        <tr>
+            <td align="center" style="padding:28px 16px;">
+                <table role="presentation" width="620" cellpadding="0" cellspacing="0" border="0" bgcolor="#fffdf7" style="width:620px; max-width:620px; background-color:#fffdf7; border:1px solid #e4d9bf;">
+                    <tr><td>
 
-            <div class="body">
-                <!-- Persönlicher Brief -->
-                <div class="letter">
-                    <span class="label">Editorial</span>
-                    <h1 class="serif">{{lead_title}}</h1>
-                    <p>{{lead_content}}</p>
-                    <div class="signature">{{signature}}</div>
-                </div>
+                        <!-- Masthead -->
+                        <div class="masthead">
+                            <div class="kicker">Monatlicher Förder-Newsletter</div>
+                            <div class="wordmark">EduFunds<span class="dot">.</span></div>
+                            <div class="tagline">Fördermittel für Schulen &amp; Vereine</div>
+                            <div class="rule-thick">&nbsp;</div>
+                            <div class="rule-thin">&nbsp;</div>
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td class="folio-cell" align="left">{{issue_date}}</td>
+                                    <td class="folio-cell" align="right">{{issue_number}}</td>
+                                </tr>
+                            </table>
+                        </div>
 
-                <div class="ornament"><span class="orn-line"></span><span class="orn-dia">&#9670;</span><span class="orn-line"></span></div>
+                        <div class="body">
+                            <!-- Persönlicher Brief -->
+                            <div class="letter">
+                                <span class="label">Editorial</span>
+                                <h1 class="serif">{{lead_title}}</h1>
+                                <p>{{lead_content}}</p>
+                                <div class="signature">{{signature}}</div>
+                            </div>
 
-                <!-- Förderprogramme -->
-                <div class="section">
-                    <div class="section-head">
-                        <span class="label">Drei Programme im Blick</span>
-                        <h2>Diese Förderungen lohnen sich gerade</h2>
-                    </div>
-                    {{programs}}
-                </div>
+                            <!-- Ornament -->
+                            <table role="presentation" class="ornament" cellpadding="0" cellspacing="0" border="0" style="margin:26px 0;">
+                                <tr>
+                                    <td class="orn-side">&nbsp;</td>
+                                    <td class="orn-mid">&#9670;</td>
+                                    <td class="orn-side">&nbsp;</td>
+                                </tr>
+                            </table>
 
-                <!-- Praxis-Tipp -->
-                <div class="tip">
-                    <span class="label">Aus der Praxis</span>
-                    <h2>{{tip_title}}</h2>
-                    {{tip_content}}
-                </div>
+                            <!-- Förderprogramme -->
+                            <div class="section">
+                                <div class="section-head">
+                                    <span class="label">Drei Programme im Blick</span>
+                                    <h2>Diese Förderungen lohnen sich gerade</h2>
+                                </div>
+                                {{programs}}
+                            </div>
 
-                <!-- Insight -->
-                <div class="section insight">
-                    <div class="section-head meta">
-                        <span class="label">{{insight_category}}</span>
-                        <span class="readtime">{{insight_read_time}} Min. Lesezeit</span>
-                        <h2 class="serif">{{insight_title}}</h2>
-                    </div>
-                    {{insight_content}}
-                    <a href="{{insight_cta_url}}" class="cta-button">{{insight_cta_text}}</a>
-                </div>
+                            <!-- Praxis-Tipp -->
+                            <div class="tip">
+                                <span class="label">Aus der Praxis</span>
+                                <h2>{{tip_title}}</h2>
+                                {{tip_content}}
+                            </div>
 
-                <!-- Kurz notiert -->
-                <div class="section" style="border-bottom:none;">
-                    <div class="section-head">
-                        <span class="label">Kurz notiert</span>
-                    </div>
-                    <ul class="news-list">
-                        {{news_items}}
-                    </ul>
-                </div>
+                            <!-- Insight -->
+                            <div class="section insight">
+                                <div class="section-head meta">
+                                    <span class="label">{{insight_category}}</span>
+                                    <span class="readtime">{{insight_read_time}} Min. Lesezeit</span>
+                                    <h2 class="serif">{{insight_title}}</h2>
+                                </div>
+                                {{insight_content}}
+                                <a href="{{insight_cta_url}}" class="cta-button">{{insight_cta_text}}</a>
+                            </div>
 
-                <div class="ornament"><span class="orn-line"></span><span class="orn-dia">&#9670;</span><span class="orn-line"></span></div>
-            </div>
+                            <!-- Kurz notiert -->
+                            <div class="section" style="border-bottom:none;">
+                                <div class="section-head">
+                                    <span class="label">Kurz notiert</span>
+                                </div>
+                                <table role="presentation" class="news-list" cellpadding="0" cellspacing="0" border="0">
+                                    {{news_items}}
+                                </table>
+                            </div>
 
-            <!-- Über EduFunds (permanenter Disclaimer) -->
-            <div class="disclaimer">
-                <span class="label">Über EduFunds</span>
-                <p>{{disclaimer}}</p>
-            </div>
+                            <!-- Ornament -->
+                            <table role="presentation" class="ornament" cellpadding="0" cellspacing="0" border="0" style="margin:6px 0 0;">
+                                <tr>
+                                    <td class="orn-side">&nbsp;</td>
+                                    <td class="orn-mid">&#9670;</td>
+                                    <td class="orn-side">&nbsp;</td>
+                                </tr>
+                            </table>
+                        </div>
 
-            <!-- Footer -->
-            <div class="footer">
-                <p>Sie erhalten diese E-Mail, weil Sie den EduFunds-Newsletter abonniert haben.</p>
-                <p style="margin-top:8px;">
-                    <a href="{{unsubscribe_url}}">Abbestellen</a> &nbsp;·&nbsp;
-                    <a href="https://edufunds.org/impressum">Impressum</a> &nbsp;·&nbsp;
-                    <a href="https://edufunds.org/datenschutz">Datenschutz</a>
-                </p>
-                <p class="org">© {{year}} EduFunds · aitema GmbH, Berlin</p>
-            </div>
-        </div>
-    </div>
+                        <!-- Über EduFunds (permanenter Disclaimer) -->
+                        <div class="disclaimer">
+                            <span class="label">Über EduFunds</span>
+                            <p>{{disclaimer}}</p>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="footer">
+                            <p>Sie erhalten diese E-Mail, weil Sie den EduFunds-Newsletter abonniert haben.</p>
+                            <p>
+                                <a href="{{unsubscribe_url}}">Abbestellen</a> &nbsp;·&nbsp;
+                                <a href="https://edufunds.org/impressum">Impressum</a> &nbsp;·&nbsp;
+                                <a href="https://edufunds.org/datenschutz">Datenschutz</a>
+                            </p>
+                            <p class="org">© {{year}} EduFunds · aitema GmbH, Berlin</p>
+                        </div>
+
+                    </td></tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>

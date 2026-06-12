@@ -142,6 +142,20 @@ unit-testbar ohne DB/Mailversand.
 - Live-Generierung + HTML-Render: `scripts/smoke-newsletter-generate.ts`.
 - DB-CRUD: gegen die Dev-DB verifiziert (Status-Automat + Idempotenz-Guards).
 
+## E-Mail-Client-Robustheit
+
+Das HTML ist bewusst tabellenbasiert aufgebaut (äußere Zentrierung, Titelkopf-
+Folio, Programm-Einträge, Ornamente, Kurzmeldungen = `<table role="presentation">`)
+mit `bgcolor`-Attributen — damit es auch in Outlook (Word-Engine) und Gmail trägt,
+die Flexbox/`position`/teils `<style>` ignorieren. Initiale (`::first-letter`) und
+einzelne CSS-Feinheiten sind „progressive enhancement": Wo ein Client sie nicht
+unterstützt, fällt es sauber auf normale Darstellung zurück (nichts bricht).
+
+> ⚠️ **Noch offen:** ein echter Testversand an reale Postfächer (Gmail **und**
+> Outlook) steht aus — die Browser-Vorschau (Chromium) bildet die Eigenheiten der
+> Mail-Renderer nicht 1:1 ab. Vor dem ersten echten Versand über den
+> „Testversand"-Button prüfen.
+
 ## Bekannte Punkte für den Reviewer
 
 - Der LLM erfindet gelegentlich **interne** Pfade in CTA/News
