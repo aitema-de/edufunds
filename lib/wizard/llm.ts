@@ -1,11 +1,11 @@
 /**
  * LLM-Wrapper mit Provider-Switch.
  *
- * Wahl des Providers ueber Env-Var `LLM_PROVIDER` (default `deepseek`).
+ * Wahl des Providers ueber Env-Var `LLM_PROVIDER` (default `mistral`, EU/DSGVO).
  * Unterstuetzt:
+ *   - `mistral`  → Mistral API (OpenAI-kompatibel, EU-gehostet) mit mistral-small-latest (DEFAULT)
  *   - `deepseek` → DeepSeek API (OpenAI-kompatibel) mit deepseek-chat
  *   - `gemini`   → Google Gemini API mit gemini-2.0-flash + gemini-2.5-pro
- *   - `mistral`  → Mistral API (OpenAI-kompatibel, EU-gehostet) mit mistral-small-latest
  *
  * Exports `generateJson`, `generateText`, `MODEL_INTERVIEW`, `MODEL_PIPELINE`.
  * `MODEL_INTERVIEW` und `MODEL_PIPELINE` sind die Modell-IDs, die in
@@ -26,8 +26,10 @@ export type LlmProvider = "deepseek" | "gemini" | "mistral";
 
 function resolveProvider(): LlmProvider {
   const p = process.env.LLM_PROVIDER;
-  if (p === "gemini" || p === "mistral") return p;
-  return "deepseek";
+  if (p === "deepseek" || p === "gemini") return p;
+  // Default: Mistral (EU-gehostet, DSGVO-konform — kein Drittland-Transfer).
+  // Live-Eval 2026-06-12 bestaetigte Paritaet mit DeepSeek (WIZ-01 100, WIZ-02 96,4).
+  return "mistral";
 }
 const PROVIDER: LlmProvider = resolveProvider();
 
