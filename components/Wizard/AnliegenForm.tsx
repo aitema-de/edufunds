@@ -1,7 +1,7 @@
 "use client";
 
 import { KeyboardEvent, useEffect, useState } from "react";
-import { Loader2, Sparkles } from "lucide-react";
+import { Loader2, Sparkles, Lock } from "lucide-react";
 import {
   loadSchoolProfile,
   saveSchoolProfile,
@@ -113,6 +113,15 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
             </span>
             <span>Strg/⌘+Enter sendet</span>
           </div>
+          <p className="mt-2 flex items-start gap-1.5 text-xs text-slate-500">
+            <Lock className="mt-0.5 h-3.5 w-3.5 shrink-0 text-slate-400" />
+            <span>
+              <strong className="font-medium text-slate-600">Bitte keine personenbezogenen Daten eingeben</strong>{" "}
+              — keine Namen von Schülern oder Einzelpersonen und keine Kontaktdaten. Der Antragstext
+              braucht sie nicht. Anonyme Angaben über Gruppen (z. B. „80 % mit Migrationshintergrund")
+              sind in Ordnung.
+            </span>
+          </p>
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

@@ -19,6 +19,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import OpenAI from "openai";
 import type { Usage } from "./pricing";
+import { scrubPiiForLlm } from "./pii-scrub";
 
 export type LlmProvider = "deepseek" | "gemini";
 
@@ -293,22 +294,40 @@ async function geminiGenerateText(model: string, system: string, user: string, o
 // Public API — Provider-Dispatch
 // ---------------------------------------------------------------------------
 
+/**
+ * Datenminimierung am Dritt-Land-Transfer: bevor Nutzer-Freitext den EU-DB-Host
+ * verlaesst, werden hochpraezise personenbezogene Identifikatoren (E-Mail/Tel/IBAN)
+ * aus dem `user`-Prompt entfernt (lib/wizard/pii-scrub.ts). System-Prompt bleibt
+ * unangetastet (rein eigene Instruktion, kein Nutzer-PII).
+ */
+function minimize(user: string, model: string): string {
+  const { text, redactions } = scrubPiiForLlm(user);
+  if (redactions > 0 && process.env.NODE_ENV !== "test") {
+    console.warn(
+      `[wizard/llm] Datenminimierung: ${redactions} personenbezogene(r) Identifikator(en) vor Versand an ${model} entfernt.`
+    );
+  }
+  return text;
+}
+
 export async function generateJson<T>(model: string, system: string, user: string, opts: LlmOptions = {}): Promise<LlmResult<T>> {
+  const safeUser = minimize(user, model);
   return withRetry(
     () =>
       PROVIDER === "deepseek"
-        ? deepseekGenerateJson<T>(model, system, user, opts)
-        : geminiGenerateJson<T>(model, system, user, opts),
+        ? deepseekGenerateJson<T>(model, system, safeUser, opts)
+        : geminiGenerateJson<T>(model, system, safeUser, opts),
     model
   );
 }
 
 export async function generateText(model: string, system: string, user: string, opts: LlmOptions = {}): Promise<LlmResult<string>> {
+  const safeUser = minimize(user, model);
   return withRetry(
     () =>
       PROVIDER === "deepseek"
-        ? deepseekGenerateText(model, system, user, opts)
-        : geminiGenerateText(model, system, user, opts),
+        ? deepseekGenerateText(model, system, safeUser, opts)
+        : geminiGenerateText(model, system, safeUser, opts),
     model
   );
 }
