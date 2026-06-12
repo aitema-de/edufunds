@@ -32,6 +32,8 @@ export interface NewsletterData {
   issueDate: string;
   leadTitle: string;
   leadContent: string;
+  /** Unterschrift unter der persönlichen Einleitung, z.B. "Kolja & das EduFunds-Team". */
+  signature?: string;
   programs: Program[];
   tipTitle: string;
   tipContent: string;
@@ -50,6 +52,27 @@ export interface RenderedNewsletter {
   text: string;
   subject: string;
 }
+
+// =============================================================================
+// Konstanten
+// =============================================================================
+
+/** Standard-Unterschrift unter der persönlichen Einleitung (per env überschreibbar). */
+export const DEFAULT_SIGNATURE =
+  process.env.NEWSLETTER_SIGNATURE || 'Kolja & das EduFunds-Team';
+
+/**
+ * Permanenter Disclaimer. Erscheint unverändert in JEDER Ausgabe — erklärt, was
+ * EduFunds ist, und grenzt die Inhalte rechtlich ab (keine Gewähr, keine Rechts-
+ * oder Förderberatung; maßgeblich ist immer der Fördergeber).
+ */
+export const DEFAULT_DISCLAIMER =
+  'EduFunds ist ein Angebot der aitema GmbH und unterstützt Schulen, Fördervereine ' +
+  'und Lehrkräfte dabei, passende Fördermittel zu finden und Anträge mit KI-Hilfe zu ' +
+  'schreiben. Die vorgestellten Programme und Angaben sind sorgfältig recherchiert, ' +
+  'aber ohne Gewähr: Fristen, Summen und Bedingungen können sich ändern — maßgeblich ' +
+  'ist stets der jeweilige Fördergeber. Dieser Newsletter ersetzt keine Rechts- oder ' +
+  'Förderberatung.';
 
 // =============================================================================
 // Template Loading
@@ -82,9 +105,11 @@ function renderTemplate(template: string, data: Record<string, string>): string 
 /**
  * Renders the HTML program card
  */
-function renderProgramCard(program: Program): string {
+function renderProgramCard(program: Program, index = 0): string {
+  const num = String(index + 1).padStart(2, '0');
   return `
 <div class="program-card">
+    <div class="program-index">${num}</div>
     <div class="program-header">
         <h3 class="program-title">${escapeHtml(program.name)}</h3>
         <span class="program-deadline">${escapeHtml(program.deadline)}</span>
@@ -116,14 +141,13 @@ ${p.description}
  * Renders news items for HTML
  */
 function renderNewsItems(items: NewsItem[]): string {
-  return items.map((item, index) => {
-    const bullet = ['●', '◆', '▸'][index % 3];
-    const text = item.url 
+  return items.map((item) => {
+    const text = item.url
       ? `${item.text.replace(/<a\s+href="([^"]+)">([^<]+)<\/a>/g, '<a href="$1" class="news-link">$2</a>')}`
       : escapeHtml(item.text);
     return `
 <li class="news-item">
-    <span class="news-bullet">${bullet}</span>
+    <span class="news-bullet">&#9670;</span>
     <span class="news-text">${text}</span>
 </li>`;
   }).join('');
@@ -204,7 +228,7 @@ export function generateNewsletter(
   const formattedDate = dateFormatter.format(new Date(data.issueDate));
   
   // Render programs
-  const programsHtml = data.programs.map(renderProgramCard).join('\n');
+  const programsHtml = data.programs.map((p, i) => renderProgramCard(p, i)).join('\n');
   const programsText = renderProgramsText(data.programs);
   
   // Render news items
@@ -217,7 +241,8 @@ export function generateNewsletter(
     issue_number: data.issueNumber,
     issue_date: formattedDate,
     lead_title: escapeHtml(data.leadTitle),
-    lead_content: escapeHtml(data.leadContent),
+    lead_content: escapeHtml(data.leadContent).replace(/\n+/g, '</p>\n<p>'),
+    signature: escapeHtml(data.signature || DEFAULT_SIGNATURE).replace(/\n/g, '<br>'),
     programs: programsHtml,
     tip_title: escapeHtml(data.tipTitle),
     tip_content: renderInsightContent(data.tipContent),
@@ -228,6 +253,7 @@ export function generateNewsletter(
     insight_cta_text: data.insightCtaText ? escapeHtml(data.insightCtaText) : '',
     insight_cta_url: data.insightCtaUrl || '',
     news_items: newsHtml,
+    disclaimer: escapeHtml(DEFAULT_DISCLAIMER),
     unsubscribe_url: unsubscribeUrl,
     year: String(data.year)
   };
@@ -238,6 +264,7 @@ export function generateNewsletter(
     .replace(/\{\{issue_date\}\}/g, formattedDate)
     .replace(/\{\{lead_title\}\}/g, data.leadTitle)
     .replace(/\{\{lead_content\}\}/g, data.leadContent)
+    .replace(/\{\{signature\}\}/g, data.signature || DEFAULT_SIGNATURE)
     .replace(/\{\{programs_text\}\}/g, programsText)
     .replace(/\{\{tip_title\}\}/g, data.tipTitle)
     .replace(/\{\{tip_content\}\}/g, data.tipContent)
@@ -245,6 +272,7 @@ export function generateNewsletter(
     .replace(/\{\{insight_title\}\}/g, data.insightTitle)
     .replace(/\{\{insight_content\}\}/g, renderInsightContentText(data.insightContent))
     .replace(/\{\{news_items_text\}\}/g, newsText)
+    .replace(/\{\{disclaimer\}\}/g, DEFAULT_DISCLAIMER)
     .replace(/\{\{unsubscribe_url\}\}/g, unsubscribeUrl)
     .replace(/\{\{year\}\}/g, String(data.year));
   
