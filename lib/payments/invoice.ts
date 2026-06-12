@@ -26,6 +26,16 @@ const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? "office@aitema.de";
 const VAT_RATE = 19;
 const LINE_ITEM_NAME = "EduFunds — Förderantrag (Einzelantrag)";
 
+/**
+ * Soll die lexoffice-Rechnung festgeschrieben werden (fortlaufende Nummer + PDF)?
+ * Default true. `LEXOFFICE_FINALIZE=false` erzeugt nur einen löschbaren Entwurf —
+ * für Generalprobe/Tests, damit kein echter, GoBD-bindender Beleg entsteht
+ * (lexoffice hat keine Sandbox). Siehe docs/GENERALPROBE-DEPLOY.md.
+ */
+export function invoiceFinalizeEnabled(): boolean {
+  return process.env.LEXOFFICE_FINALIZE !== "false";
+}
+
 export interface InvoiceJobParams {
   stripeSessionId: string;
   email?: string;
@@ -190,18 +200,31 @@ export async function runInvoiceJob(p: InvoiceJobParams): Promise<void> {
 
   try {
     if (!lexofficeConfigured()) throw new Error("LEXOFFICE_API_KEY fehlt");
-    const inv = await createInvoice({
-      address: { name: p.orgName, ...p.address },
-      lineItemName: LINE_ITEM_NAME,
-      grossAmount: p.grossCents / 100,
-      taxRatePercentage: VAT_RATE,
-      remark: p.vatId ? `USt-IdNr. des Kunden: ${p.vatId}` : undefined,
-    });
+    const finalize = invoiceFinalizeEnabled();
+    const inv = await createInvoice(
+      {
+        address: { name: p.orgName, ...p.address },
+        lineItemName: LINE_ITEM_NAME,
+        grossAmount: p.grossCents / 100,
+        taxRatePercentage: VAT_RATE,
+        remark: p.vatId ? `USt-IdNr. des Kunden: ${p.vatId}` : undefined,
+      },
+      { finalize }
+    );
     invoiceId = inv.id;
-    invoiceNumber = await getInvoiceNumber(inv.id);
-    const fileId = await getInvoiceDocumentFileId(inv.id);
-    pdf = await downloadFile(fileId);
-    console.log(`[invoice] Rechnung ${invoiceNumber ?? inv.id} erzeugt für ${p.stripeSessionId}`);
+    if (finalize) {
+      // Festgeschriebene Rechnung: Nummer + gerendertes PDF holen.
+      invoiceNumber = await getInvoiceNumber(inv.id);
+      const fileId = await getInvoiceDocumentFileId(inv.id);
+      pdf = await downloadFile(fileId);
+      console.log(`[invoice] Rechnung ${invoiceNumber ?? inv.id} erzeugt für ${p.stripeSessionId}`);
+    } else {
+      // Entwurf (Generalprobe): keine Nummer, kein PDF — Entwürfe sind nicht
+      // gerendert und manuell löschbar. Bestätigungsmail geht ohne Anhang raus.
+      console.log(
+        `[invoice] lexoffice-ENTWURF ${inv.id} erzeugt (LEXOFFICE_FINALIZE=false) für ${p.stripeSessionId} — keine Nummer/PDF`
+      );
+    }
   } catch (err) {
     console.error(`[invoice] lexoffice fehlgeschlagen für ${p.stripeSessionId}:`, err);
     await alertAdmin(p, err);

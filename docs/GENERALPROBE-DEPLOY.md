@@ -55,9 +55,9 @@ Auto-Deploy mit fehlender Konfiguration:
       ```
       ⚠️ `NEXT_PUBLIC_PAYWALL_DEV_MOCK` NICHT setzen (echter Stripe-Pfad).
 - [ ] **lexoffice-Rechnung entschärfen** für die Probe — sonst echte Rechnungsnummer.
-      Empfehlung: kleinen `LEXOFFICE_FINALIZE`-Schalter einbauen (Default true; für
-      die Probe `=false` → nur Entwurf, manuell löschbar). *(Claude kann das bauen.)*
-      Alternativ: erzeugte Test-Rechnung in lexoffice manuell stornieren.
+      ✅ Schalter gebaut: in `.env.production` für die Probe **`LEXOFFICE_FINALIZE=false`**
+      setzen → es entsteht nur ein löschbarer Entwurf (keine Nummer/PDF, Bestätigungsmail
+      ohne Anhang). Für den echten Go-Live wieder entfernen/`=true` (Default).
 
 ## Schritt 1 — Deploy
 - [ ] `feature/wizard-adaptive` → `staging` → `main` mergen (Workflow feature→staging→main).

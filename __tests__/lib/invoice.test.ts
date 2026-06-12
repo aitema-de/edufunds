@@ -8,7 +8,29 @@
 jest.mock("@/lib/db", () => ({ query: jest.fn() }));
 
 import { buildInvoiceBody } from "@/lib/lexoffice/client";
-import { vatFromGross, buildConfirmationEmail } from "@/lib/payments/invoice";
+import { vatFromGross, buildConfirmationEmail, invoiceFinalizeEnabled } from "@/lib/payments/invoice";
+
+describe("invoiceFinalizeEnabled — Generalprobe-Schalter", () => {
+  const orig = process.env.LEXOFFICE_FINALIZE;
+  afterEach(() => {
+    if (orig === undefined) delete process.env.LEXOFFICE_FINALIZE;
+    else process.env.LEXOFFICE_FINALIZE = orig;
+  });
+
+  it("ist standardmäßig true (festgeschriebene Rechnung)", () => {
+    delete process.env.LEXOFFICE_FINALIZE;
+    expect(invoiceFinalizeEnabled()).toBe(true);
+  });
+
+  it("nur exakt 'false' erzeugt einen Entwurf", () => {
+    process.env.LEXOFFICE_FINALIZE = "false";
+    expect(invoiceFinalizeEnabled()).toBe(false);
+    process.env.LEXOFFICE_FINALIZE = "true";
+    expect(invoiceFinalizeEnabled()).toBe(true);
+    process.env.LEXOFFICE_FINALIZE = "0";
+    expect(invoiceFinalizeEnabled()).toBe(true); // nur "false" schaltet ab
+  });
+});
 
 describe("vatFromGross", () => {
   it("29,90 € brutto bei 19 % → 25,13 netto / 4,77 USt", () => {
