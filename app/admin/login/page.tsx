@@ -23,7 +23,13 @@ export default function AdminLoginPage() {
 function LoginForm() {
   const router = useRouter();
   const params = useSearchParams();
-  const next = params.get('next') || '/admin/newsletter';
+  // Nur same-origin-relative Pfade als Redirect-Ziel zulassen (kein Open Redirect):
+  // absolute URLs (https://evil), protokoll-relative (//evil) und Backslash-Varianten ablehnen.
+  const rawNext = params.get('next') || '/admin/newsletter';
+  const next =
+    rawNext.startsWith('/') && !rawNext.startsWith('//') && !rawNext.startsWith('/\\')
+      ? rawNext
+      : '/admin/newsletter';
 
   const [email, setEmail] = useState('office@aitema.de');
   const [password, setPassword] = useState('');
