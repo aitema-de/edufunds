@@ -1,6 +1,6 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Shield, Server, Mail, Lock, UserCheck, FileText } from "lucide-react";
+import { Shield, Server, Mail, Lock, UserCheck, FileText, Sparkles } from "lucide-react";
 
 export const metadata = {
   title: "Datenschutz | EduFunds",
@@ -147,13 +147,65 @@ export default function DatenschutzPage() {
               </div>
             </section>
 
+            {/* KI-gestützte Antragserstellung */}
+            <section className="bg-white border border-[#0a1628]/8 shadow-sm rounded-2xl p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-[#c9a227]/20 flex items-center justify-center">
+                  <Sparkles className="h-5 w-5 text-[#c9a227]" />
+                </div>
+                <h2 className="text-xl font-semibold text-[#0a1628]">5. KI-gestützte Antragserstellung</h2>
+              </div>
+
+              <div className="text-[#0a1628]/80 space-y-4 text-base leading-relaxed">
+                <p>
+                  Für die Erstellung von Antragstexten und Finanzplänen verarbeiten wir die von Ihnen
+                  eingegebenen Schul- und Projektangaben mithilfe eines spezialisierten
+                  KI-Sprachmodells. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Erfüllung des mit
+                  Ihnen geschlossenen Vertrags).
+                </p>
+
+                <div>
+                  <h3 className="text-lg font-medium text-[#0a1628] mb-3">KI-Anbieter (Mistral AI, EU)</h3>
+                  <p>
+                    Als KI-Dienstleister setzen wir die Mistral AI SAS, 15 rue des Halles, 75001 Paris,
+                    Frankreich, ein. Die Verarbeitung erfolgt innerhalb der Europäischen Union; eine
+                    Übermittlung in ein Drittland findet nicht statt. Mistral ist unser
+                    Auftragsverarbeiter im Sinne von Art. 28 DSGVO; ein Vertrag zur Auftragsverarbeitung
+                    liegt vor. Ihre Eingaben und die erzeugten Ausgaben werden vom Anbieter
+                    <strong className="text-[#0a1628]"> nicht zum Training von KI-Modellen</strong> verwendet.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-medium text-[#0a1628] mb-3">Datenminimierung</h3>
+                  <p>
+                    An die KI werden ausschließlich institutions- und projektbezogene Angaben
+                    übermittelt. Wir bitten Sie, in den Eingabefeldern{" "}
+                    <strong className="text-[#0a1628]">keine personenbezogenen Daten</strong> (z. B. Namen von
+                    Schülern oder Einzelpersonen, Kontaktdaten) anzugeben. Technische Identifikatoren
+                    wie E-Mail-Adressen, Telefonnummern und IBANs werden vor der Übermittlung an die KI
+                    automatisch entfernt.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-medium text-[#0a1628] mb-3">Hinweis zu KI-Inhalten</h3>
+                  <p>
+                    Die von der KI erzeugten Texte und Finanzpläne sind maschinell generierte Vorschläge
+                    und vor einer Einreichung von Ihnen inhaltlich zu prüfen. Eine Förderzusage ist mit
+                    der Nutzung nicht verbunden.
+                  </p>
+                </div>
+              </div>
+            </section>
+
             {/* Ihre Rechte */}
             <section className="bg-white border border-[#0a1628]/8 shadow-sm rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-[#c9a227]/20 flex items-center justify-center">
                   <FileText className="h-5 w-5 text-[#c9a227]" />
                 </div>
-                <h2 className="text-xl font-semibold text-[#0a1628]">5. Ihre Rechte</h2>
+                <h2 className="text-xl font-semibold text-[#0a1628]">6. Ihre Rechte</h2>
               </div>
 
               <p className="text-[#0a1628]/80 mb-4 text-base">Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:</p>
@@ -198,7 +250,7 @@ export default function DatenschutzPage() {
                 <div className="w-10 h-10 rounded-xl bg-[#c9a227]/20 flex items-center justify-center">
                   <Lock className="h-5 w-5 text-[#c9a227]" />
                 </div>
-                <h2 className="text-xl font-semibold text-[#0a1628]">6. SSL-/TLS-Verschlüsselung</h2>
+                <h2 className="text-xl font-semibold text-[#0a1628]">7. SSL-/TLS-Verschlüsselung</h2>
               </div>
 
               <p className="text-[#0a1628]/80 leading-relaxed text-base">
@@ -212,7 +264,7 @@ export default function DatenschutzPage() {
 
           {/* Stand */}
           <p className="text-center text-[#64748b] text-sm mt-12">
-            Stand: Februar 2026
+            Stand: Juni 2026
           </p>
         </div>
       </main>

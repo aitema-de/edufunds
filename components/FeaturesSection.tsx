@@ -25,7 +25,7 @@ const benefits = [
   {
     icon: Shield,
     title: "DSGVO-konform",
-    description: "Ihre Daten sind sicher und werden ausschließlich in Deutschland verarbeitet.",
+    description: "Daten auf Servern in Deutschland, KI-Verarbeitung in der EU — ohne Drittland-Transfer und ohne Training mit Ihren Eingaben.",
   },
   {
     icon: Clock,
