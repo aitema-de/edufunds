@@ -32,8 +32,12 @@ noch der Key-Tausch (siehe `STRIPE-LIVE-CUTOVER.md`).
 Diese müssen **vor** dem Merge nach `main` erledigt sein, sonst deployt der
 Auto-Deploy mit fehlender Konfiguration:
 
-- [ ] **Stripe-Sandbox-Dashboard:** AGB-URL (`/agb`) unter Einstellungen → Checkout
-      hinterlegen (sonst lehnt der Checkout ab, `consent_collection`).
+- [ ] **AGB-Checkbox im Sandbox:** Die ToS-URL liegt unter „Öffentliche Angaben",
+      die im Sandbox aber gesperrt ist (Geschäftsprofil „unvollständig"). Daher für
+      die Generalprobe in `.env.production` **`STRIPE_TOS_CONSENT=off`** setzen — dann
+      läuft der Checkout ohne ToS-URL. Auf dem Live-Konto ist „Öffentliche Angaben"
+      verfügbar: dort `https://app.edufunds.org/agb` (+ `/datenschutz`) eintragen und
+      `STRIPE_TOS_CONSENT` wieder entfernen (Default = Checkbox an).
 - [ ] **Stripe-Sandbox-Webhook:** Endpoint `https://app.edufunds.org/api/stripe/webhook`
       anlegen, Events `checkout.session.completed/expired`, `charge.refunded`,
       `checkout.session.async_payment_failed` → Sandbox-`whsec_…` kopieren.
