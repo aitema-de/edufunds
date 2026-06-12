@@ -165,3 +165,47 @@ unterstützt, fällt es sauber auf normale Darstellung zurück (nichts bricht).
 - `templates/newsletter.html` wurde an die tatsächlichen Render-Keys von
   `generateNewsletter()` angeglichen (vorher rohe `{{intro_titel}}`-Platzhalter,
   die nie gefüllt wurden).
+
+## Go-Live-Runbook
+
+Reihenfolge zum Scharfschalten (Code liegt auf Branch `feature/newsletter`).
+
+**1. Mergen & deployen**
+```bash
+# feature/newsletter -> staging -> deploy
+git checkout staging && git merge --no-ff feature/newsletter
+./scripts/deploy-staging.sh          # danach auf staging.edufunds.org pruefen
+# nach erfolgreichem Test:
+git checkout main && git merge --no-ff staging
+./scripts/deploy-production.sh
+```
+
+**2. Migration auf Staging- und Prod-DB**
+```bash
+# pro Umgebung mit passender DATABASE_URL:
+npx tsx --env-file=.env.<env> scripts/apply-migration.ts db/migrations/010_newsletter_issues.sql
+```
+
+**3. Prod-Env setzen** (auf dem Server / in der CI):
+`CRON_SECRET` · `LLM_PROVIDER`+`MISTRAL_API_KEY` · `RESEND_API_KEY` ·
+`FROM_EMAIL` · `ADMIN_EMAIL` · `NEXT_PUBLIC_APP_URL` · optional `NEWSLETTER_SIGNATURE`.
+(`CRON_SECRET` existiert ggf. schon vom Retention-Cron.)
+
+**4. Resend-Absenderdomain verifizieren** — SPF/DKIM/DMARC für `FROM_EMAIL`
+im Resend-Dashboard. Ohne das: Spam/Bounces.
+
+**5. Testversand & Roundtrip prüfen**
+- Admin-Bereich `/admin/newsletter` → „Neuen Entwurf erstellen" → „Testversand"
+  an je eine **Gmail-** und **Outlook-Adresse**; Darstellung prüfen.
+- Anmeldung im Footer → Bestätigungsmail → bestätigt (Double-Opt-in).
+
+**6. Cron einrichten** (Server-Crontab, 1. des Monats 08:00):
+```cron
+0 8 1 * * /home/edufunds/edufunds-app/scripts/newsletter-cron.sh >> /var/log/edufunds-newsletter.log 2>&1
+```
+
+**7. Erste echte Ausgabe** — Cron (oder manueller Entwurf) → im Admin prüfen,
+ggf. interne CTA-Links korrigieren → freigeben → „An alle versenden".
+
+> Anmeldung ist bereits live: `components/NewsletterForm.tsx` sitzt im globalen
+> `components/Footer.tsx`, also auf jeder Seite.
