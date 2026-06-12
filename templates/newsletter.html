@@ -13,7 +13,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-            background-color: #efe8d8;
+            background-color: #e7ddc7;
             color: #2a2620;
             -webkit-font-smoothing: antialiased;
         }
@@ -158,18 +158,23 @@
         .footer .org { margin-top: 12px; color: #b0a78f; }
 
         @media (max-width: 480px) {
-            .masthead, .body, .disclaimer, .footer { padding-left: 24px !important; padding-right: 24px !important; }
+            .outer-pad { padding: 14px 10px !important; }
+            .masthead, .body, .disclaimer, .footer { padding-left: 22px !important; padding-right: 22px !important; }
+            .masthead { padding-top: 26px !important; }
             .letter h1 { font-size: 23px !important; }
-            .wordmark { font-size: 30px !important; }
+            .wordmark { font-size: 31px !important; }
+            .program-index { font-size: 24px !important; width: 36px !important; }
+            .section-head h2 { font-size: 20px !important; }
         }
     </style>
 </head>
-<body style="margin:0; padding:0; background-color:#efe8d8;">
+<body style="margin:0; padding:0; background-color:#e7ddc7;">
     <!-- Aeusserer Rahmen: volle Breite, zentrierter 620px-Kasten (tabellenbasiert fuer Outlook/Gmail) -->
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#efe8d8" style="background-color:#efe8d8;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#e7ddc7" style="background-color:#e7ddc7;">
         <tr>
-            <td align="center" style="padding:28px 16px;">
-                <table role="presentation" width="620" cellpadding="0" cellspacing="0" border="0" bgcolor="#fffdf7" style="width:620px; max-width:620px; background-color:#fffdf7; border:1px solid #e4d9bf;">
+            <td align="center" class="outer-pad" style="padding:28px 16px;">
+                <!--[if mso]><table role="presentation" width="620" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#fffdf7" style="width:100%; max-width:620px; table-layout:fixed; margin:0 auto; background-color:#fffdf7; border:1px solid #e4d9bf; box-shadow:0 2px 28px rgba(60,50,30,0.12);">
                     <tr><td>
 
                         <!-- Masthead -->
@@ -271,6 +276,7 @@
 
                     </td></tr>
                 </table>
+                <!--[if mso]></td></tr></table><![endif]-->
             </td>
         </tr>
     </table>
