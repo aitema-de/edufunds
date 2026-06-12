@@ -70,6 +70,19 @@ class MockIntersectionObserver {
   }
 }
 
+// Polyfill fuer TextEncoder/TextDecoder — jsdom liefert diese nicht global.
+// Benoetigt von Tests, die lib/payments/invoice.ts (lexoffice-Pfad) ueber den
+// stripe/webhook-Handler laden. Node stellt sie in 'node:util' bereit.
+{
+  const g = global as unknown as Record<string, unknown>
+  if (!g.TextEncoder || !g.TextDecoder) {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { TextEncoder, TextDecoder } = require('node:util')
+    if (!g.TextEncoder) g.TextEncoder = TextEncoder
+    if (!g.TextDecoder) g.TextDecoder = TextDecoder
+  }
+}
+
 // Mock ResizeObserver
 class MockResizeObserver {
   observe = jest.fn()
