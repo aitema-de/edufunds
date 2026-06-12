@@ -23,7 +23,7 @@ export default function ImpressumPage() {
               Impressum
             </h1>
             <p className="text-[#64748b] text-lg max-w-2xl mx-auto">
-              Informationen gemäß § 5 TMG und § 55 Abs. 2 RStV
+              Informationen gemäß § 5 DDG und § 18 Abs. 2 MStV
             </p>
           </div>
 
@@ -38,7 +38,7 @@ export default function ImpressumPage() {
                 <h2 className="text-xl font-semibold text-[#0a1628]">Dienstanbieter</h2>
               </div>
               <div className="space-y-3 text-[#0a1628]/80 text-base">
-                <p className="font-medium text-[#0a1628]">AITEMA GmbH i.G.</p>
+                <p className="font-medium text-[#0a1628]">AITEMA GmbH</p>
                 <div className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-[#94a3b8] mt-0.5 shrink-0" />
                   <div>
@@ -49,13 +49,23 @@ export default function ImpressumPage() {
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="h-5 w-5 text-[#94a3b8] shrink-0" />
-                  <a 
-                    href="mailto:office@aitema.de" 
+                  <a
+                    href="mailto:office@aitema.de"
                     className="text-[#c9a227] hover:text-[#e4c55a] transition-colors underline underline-offset-2"
                   >
                     office@aitema.de
                   </a>
                 </div>
+              </div>
+            </section>
+
+            {/* Registereintrag */}
+            <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
+              <h2 className="text-xl font-semibold text-[#0a1628] mb-4">Registereintrag</h2>
+              <div className="text-[#0a1628]/80 space-y-1 text-base">
+                <p>Eintragung im Handelsregister</p>
+                <p>Registergericht: Amtsgericht Charlottenburg (Berlin)</p>
+                <p>Registernummer: HRB 283978 B</p>
               </div>
             </section>
 
@@ -70,7 +80,7 @@ export default function ImpressumPage() {
             {/* Inhaltlich Verantwortlich */}
             <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#0a1628] mb-4">
-                Inhaltlich verantwortlich nach § 55 Abs. 2 RStV
+                Inhaltlich verantwortlich nach § 18 Abs. 2 MStV
               </h2>
               <div className="text-[#0a1628]/80 space-y-1 text-base">
                 <p className="font-medium text-[#0a1628]">Kolja Schumann</p>
@@ -105,9 +115,9 @@ export default function ImpressumPage() {
             <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#0a1628] mb-4">Haftung für Inhalte</h2>
               <p className="text-[#0a1628]/80 leading-relaxed text-base">
-                Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten 
-                nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als 
-                Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde 
+                Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten
+                nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als
+                Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde
                 Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige 
                 Tätigkeit hinweisen.
               </p>
@@ -138,7 +148,7 @@ export default function ImpressumPage() {
 
           {/* Stand */}
           <p className="text-center text-[#94a3b8] text-sm mt-12">
-            Stand: Februar 2026
+            Stand: Juni 2026
           </p>
         </div>
       </main>
