@@ -16,6 +16,10 @@
  *   - deepseek-v4-pro:   $1.74  / $3.48
  *     (Pro hat Promo bis 05.05.2026: $0.435 / $0.87 — wir
  *      tracken hier konservativ den regulaeren Preis.)
+ *
+ * Mistral La Plateforme (EU, Frankreich; Stand 2026-06):
+ *   - mistral-small-latest: $0.10 / $0.30  (Small 4, EU-Workhorse)
+ *   - mistral-large-latest: $0.50 / $1.50
  */
 
 export interface ModelPrice {
@@ -29,6 +33,9 @@ const USD_PER_M_TOKENS: Record<string, ModelPrice> = {
   "deepseek-chat": { inputPerMTokens: 0.14, outputPerMTokens: 0.28 },
   "deepseek-v4-flash": { inputPerMTokens: 0.14, outputPerMTokens: 0.28 },
   "deepseek-v4-pro": { inputPerMTokens: 1.74, outputPerMTokens: 3.48 },
+  // Mistral (EU, Frankreich) — Small 4, La Plateforme (Stand 2026-06):
+  "mistral-small-latest": { inputPerMTokens: 0.1, outputPerMTokens: 0.3 },
+  "mistral-large-latest": { inputPerMTokens: 0.5, outputPerMTokens: 1.5 },
 };
 
 const USD_TO_EUR = 0.92;
