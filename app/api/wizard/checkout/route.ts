@@ -97,6 +97,11 @@ export async function POST(req: NextRequest) {
         },
       ],
       allow_promotion_codes: true,
+      // AGB-Einbeziehung beim Kauf: Stripe zeigt eine Pflicht-Checkbox
+      // „Ich stimme den AGB zu". Die AGB-/ToS-URL wird im Stripe-Dashboard
+      // hinterlegt (Einstellungen → Checkout → Nutzungsbedingungen → /agb).
+      // Ohne hinterlegte URL lehnt Stripe die Session ab — siehe STRIPE-LIVE-CUTOVER.md.
+      consent_collection: { terms_of_service: "required" },
       locale: "de",
     });
 

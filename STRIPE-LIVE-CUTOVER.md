@@ -76,6 +76,16 @@ Im Dashboard **in den Live-Modus wechseln** (Schalter oben, „Testmodus" aus), 
 > Nur der Einzelantrag-Flow (`app/api/wizard/checkout/route.ts`) referenziert eine
 > feste Price-ID über `STRIPE_PRICE_EINZELANTRAG`.
 
+## Schritt 1b — AGB-URL im Dashboard hinterlegen (Pflicht!)
+
+Der Checkout fordert eine AGB-Zustimmung (`consent_collection.terms_of_service`).
+Stripe lehnt die Session ab, wenn keine ToS-URL hinterlegt ist:
+
+- [ ] Dashboard (Live-Modus): **Einstellungen → Checkout und Payment Links →
+      Nutzungsbedingungen** → `https://app.edufunds.org/agb` eintragen.
+- [ ] (Empfohlen) Datenschutz-URL ebenfalls: `https://app.edufunds.org/datenschutz`.
+- ⚠️ Gilt auch für die **Sandbox** — sonst bricht schon die Generalprobe.
+
 ## Schritt 2 — Live-Webhook-Endpoint einrichten
 
 Dashboard (Live-Modus): **Entwickler → Webhooks → Endpoint hinzufügen**
