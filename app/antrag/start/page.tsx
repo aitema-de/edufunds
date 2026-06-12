@@ -5,6 +5,8 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { StartClient } from "@/components/Wizard/StartClient";
+import { DsgvoTrust } from "@/components/DsgvoTrust";
+import { KiHinweis } from "@/components/KiHinweis";
 
 export const metadata: Metadata = {
   title: "Neuen Antrag starten – EduFunds",
@@ -42,7 +44,9 @@ export default function StartPage() {
         style={{ backgroundColor: "#f8f5f0" }}
       >
         <div className="container mx-auto max-w-3xl px-6">
+          <KiHinweis variant="interaktion" className="mb-6" />
           <StartClient />
+          <DsgvoTrust variant="compact" className="mt-8" />
         </div>
       </main>
       <Footer />

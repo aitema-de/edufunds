@@ -66,6 +66,11 @@ jest.mock("@/lib/payments/orders", () => ({
 jest.mock("resend", () => ({
   Resend: jest.fn().mockImplementation(() => ({ emails: { send: jest.fn() } })),
 }));
+// PAY-03: einzelantrag-Pfad ruft runInvoiceJob (lexoffice + pg). Best-effort,
+// hier gemockt — die Rechnungslogik wird separat getestet (smoke-lexoffice).
+jest.mock("@/lib/payments/invoice", () => ({
+  runInvoiceJob: jest.fn(),
+}));
 
 import { POST } from "@/app/api/stripe/webhook/route";
 import { getStripe, stripeConfigured } from "@/lib/stripe/client";

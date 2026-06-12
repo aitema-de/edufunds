@@ -70,7 +70,42 @@ export async function POST(req: NextRequest) {
           tier,
         },
       },
+      // B2B (Vertragspartner = Organisation): Rechnungsadresse + USt-ID erfassen,
+      // Org-Name + Bestellart als Pflicht-Custom-Fields. Liefert die Daten für die
+      // lexoffice-Rechnung und macht den Unternehmer-Charakter (§14 BGB) explizit.
+      billing_address_collection: "required",
+      tax_id_collection: { enabled: true },
+      custom_fields: [
+        {
+          key: "organisation",
+          label: { type: "custom", custom: "Name der Einrichtung / des Fördervereins" },
+          type: "text",
+          optional: false,
+        },
+        {
+          key: "bestellart",
+          label: { type: "custom", custom: "Ich bestelle im Namen einer" },
+          type: "dropdown",
+          dropdown: {
+            options: [
+              { label: "Schule / Einrichtung", value: "einrichtung" },
+              { label: "Förderverein", value: "foerderverein" },
+              { label: "Schulträger / Kommune", value: "traeger" },
+            ],
+          },
+          optional: false,
+        },
+      ],
       allow_promotion_codes: true,
+      // AGB-Einbeziehung beim Kauf: Stripe zeigt eine Pflicht-Checkbox
+      // „Ich stimme den AGB zu". Voraussetzung ist eine ToS-URL in den
+      // „Öffentlichen Angaben" des Stripe-Kontos (Live-Konto: vorhanden).
+      // Im Sandbox ist diese Seite gesperrt -> per STRIPE_TOS_CONSENT=off
+      // abschaltbar, damit die Generalprobe nicht an der fehlenden URL scheitert.
+      // Default: an (Live behält die Checkbox). Siehe STRIPE-LIVE-CUTOVER.md.
+      ...(process.env.STRIPE_TOS_CONSENT !== "off"
+        ? { consent_collection: { terms_of_service: "required" as const } }
+        : {}),
       locale: "de",
     });
 

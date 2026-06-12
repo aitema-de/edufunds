@@ -62,6 +62,7 @@ jobs:
             echo "🚀 Starting new container..."
             docker run -d --name edufunds-app \
               --network hetzner-stack_web \
+              --env-file /home/edufunds/edufunds-app/.env.production \
               -e NODE_ENV=production \
               -e DATABASE_URL="${{ secrets.DATABASE_URL }}" \
               -l 'traefik.enable=true' \

@@ -13,6 +13,7 @@ import { TextVorschlaegeEditor } from "./TextVorschlaegeEditor";
 import { renderFinanzplanMarkdown } from "@/lib/wizard/finanzplan-markdown";
 import { PaywallGate } from "./PaywallGate";
 import { AntragSectionNav, slugifyHeading } from "./AntragSectionNav";
+import { KiHinweis, KI_EXPORT_HINWEIS } from "@/components/KiHinweis";
 
 interface Props {
   programm: Foerderprogramm;
@@ -185,7 +186,12 @@ export function AntragResult({
   const finanzplanMarkdown = generation.finanzplan
     ? renderFinanzplanMarkdown(generation.finanzplan)
     : "";
-  const combinedText = finanzplanMarkdown ? `${text}\n${finanzplanMarkdown}\n` : text;
+  // AI-Act Art. 50(2): KI-Kennzeichnung wandert mit dem exportierten Dokument
+  // mit (Kopieren/.txt/.doc/PDF). Nur im Export, nicht im gerenderten Artikel —
+  // on-screen trägt das die <KiHinweis variant="ergebnis"/>-Leiste.
+  const exportFooter = `\n\n---\n${KI_EXPORT_HINWEIS}\n`;
+  const baseExport = finanzplanMarkdown ? `${text}\n${finanzplanMarkdown}\n` : text;
+  const combinedText = baseExport + exportFooter;
 
   // Hebel 2 (E2E-Probe 09.06.) — Auslieferungs-Block: Ein nicht abschliessend
   // adressiertes hoch-Finding des KI-Gutachters ist ein echtes Qualitaetsrisiko.
@@ -302,6 +308,7 @@ export function AntragResult({
           )}
         </div>
       </header>
+      <KiHinweis variant="ergebnis" className="mb-5" />
       {hasOpenHigh && (
         <div className="mb-5 rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-900">
           <div className="flex items-start gap-3">

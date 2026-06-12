@@ -100,6 +100,9 @@ stripe trigger checkout.session.completed
 
 ## 8. Production-Checkliste vor Live-Schaltung
 
+> **Sandbox → Live umstellen:** Detaillierte Cutover-Checkliste in
+> [`STRIPE-LIVE-CUTOVER.md`](./STRIPE-LIVE-CUTOVER.md) (Live-Konto seit 2026-06-12 aktiviert).
+
 - [ ] Test-Mode erfolgreich durchlaufen
 - [ ] Live-Keys in `.env.production` eingetragen
 - [ ] Live-Webhook-Endpoint in Stripe registriert

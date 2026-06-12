@@ -9,8 +9,19 @@ import {
   type QuotaCardResult,
 } from "@/lib/payments/orders";
 import { sendMail } from "@/lib/mail";
+import { runInvoiceJob } from "@/lib/payments/invoice";
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? "office@aitema.de";
+
+/**
+ * Org-/Vereinsname aus dem Stripe-Checkout-Custom-Field `organisation` (B2B —
+ * Pflichtfeld). Fallback auf den customer_details.name, falls (Alt-Sessions) leer.
+ */
+function orgNameFromSession(cs: Stripe.Checkout.Session): string {
+  const field = cs.custom_fields?.find((f) => f.key === "organisation");
+  const fromField = field?.text?.value?.trim();
+  return fromField || cs.customer_details?.name?.trim() || "Unbekannt";
+}
 
 /**
  * Verschickt die Bestaetigungs-/Admin-Mail fuer einen Kontingent-Kartenkauf (B3).
@@ -123,9 +134,24 @@ export async function POST(req: NextRequest) {
         console.log(
           `[stripe/webhook] Session ${token} -> paid (paidToken=${updated.paidToken})`
         );
-        // TODO PAY-03 (Mail-Hook): Invoice-Mail an Kaeufer ueber resend@^4.1.1 (sobald Stripe-Account live).
-        // TODO PAY-03 (State-Hook): UI-Flag "Antrag wurde bezahlt" + Confetti-Hinweis im naechsten Wizard-Mount.
-        // TODO PAY-03 (DB-Schema-Hook): Wenn Migration 004 paid-Status um Sub-Werte erweitert (refunded/expired), hier dispatchen.
+        // PAY-03: lexoffice-Rechnung + §312i-Bestelleingangsbestätigung.
+        // Best-effort + idempotent (runInvoiceJob wirft nicht, Marker via DB) —
+        // ein lexoffice-/Mailfehler darf den bereits bezahlten Kauf nicht 500en.
+        const addr = cs.customer_details?.address;
+        await runInvoiceJob({
+          stripeSessionId: cs.id,
+          email: cs.customer_details?.email ?? undefined,
+          orgName: orgNameFromSession(cs),
+          address: {
+            supplement: cs.customer_details?.name ?? undefined,
+            street: [addr?.line1, addr?.line2].filter(Boolean).join(", ") || undefined,
+            zip: addr?.postal_code ?? undefined,
+            city: addr?.city ?? undefined,
+            countryCode: addr?.country ?? undefined,
+          },
+          vatId: cs.customer_details?.tax_ids?.[0]?.value ?? undefined,
+          grossCents: cs.amount_total ?? 2990,
+        });
         break;
       }
       case "checkout.session.expired": {
