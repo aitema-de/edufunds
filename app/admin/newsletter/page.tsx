@@ -58,7 +58,10 @@ export default function NewsletterAdminPage() {
     setLoading(true);
     try {
       const res = await fetch('/api/newsletter/issues', { credentials: 'include' });
-      if (res.status === 401) { setMsg({ kind: 'err', text: 'Bitte als Admin einloggen.' }); return; }
+      if (res.status === 401) {
+        window.location.href = '/admin/login?next=/admin/newsletter';
+        return;
+      }
       const json = await res.json();
       if (json.success) {
         setIssues(json.issues);
