@@ -12,12 +12,19 @@
  */
 import { Resend } from "resend";
 
+export interface MailAttachment {
+  filename: string;
+  /** PDF-/Datei-Inhalt als Buffer oder Base64-String (Resend akzeptiert beides). */
+  content: Buffer | string;
+}
+
 export interface SendMailInput {
   to: string;
   subject: string;
   html: string;
   text: string;
   replyTo?: string;
+  attachments?: MailAttachment[];
 }
 
 function fromEmail(): string {
@@ -38,6 +45,7 @@ export async function sendMail(input: SendMailInput, ctx = "mail"): Promise<bool
       html: input.html,
       text: input.text,
       replyTo: input.replyTo,
+      ...(input.attachments?.length ? { attachments: input.attachments } : {}),
     });
     if (res.error) {
       console.error(

@@ -70,6 +70,32 @@ export async function POST(req: NextRequest) {
           tier,
         },
       },
+      // B2B (Vertragspartner = Organisation): Rechnungsadresse + USt-ID erfassen,
+      // Org-Name + Bestellart als Pflicht-Custom-Fields. Liefert die Daten für die
+      // lexoffice-Rechnung und macht den Unternehmer-Charakter (§14 BGB) explizit.
+      billing_address_collection: "required",
+      tax_id_collection: { enabled: true },
+      custom_fields: [
+        {
+          key: "organisation",
+          label: { type: "custom", custom: "Name der Einrichtung / des Fördervereins" },
+          type: "text",
+          optional: false,
+        },
+        {
+          key: "bestellart",
+          label: { type: "custom", custom: "Ich bestelle im Namen einer" },
+          type: "dropdown",
+          dropdown: {
+            options: [
+              { label: "Schule / Einrichtung", value: "einrichtung" },
+              { label: "Förderverein", value: "foerderverein" },
+              { label: "Schulträger / Kommune", value: "traeger" },
+            ],
+          },
+          optional: false,
+        },
+      ],
       allow_promotion_codes: true,
       locale: "de",
     });
