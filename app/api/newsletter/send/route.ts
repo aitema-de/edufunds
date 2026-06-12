@@ -208,7 +208,7 @@ export async function POST(request: Request) {
           );
 
           const { data, error } = await resend.emails.send({
-            from: process.env.FROM_EMAIL || 'EduFunds <newsletter@edufunds.org>',
+            from: process.env.FROM_EMAIL || 'EduFunds <noreply@aitema.de>',
             to: subscriber.email,
             subject: customSubject || subject,
             html,

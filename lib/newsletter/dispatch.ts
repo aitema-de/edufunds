@@ -96,7 +96,7 @@ export async function sendNewsletter(
     process.env.NEXT_PUBLIC_APP_URL ||
     'https://edufunds.org'
   ).replace(/\/$/, '');
-  const from = process.env.FROM_EMAIL || 'EduFunds <newsletter@edufunds.org>';
+  const from = process.env.FROM_EMAIL || 'EduFunds <noreply@aitema.de>';
   const replyTo = process.env.ADMIN_EMAIL || 'office@aitema.de';
   const batchSize = opts.batchSize ?? 10;
   const batchDelayMs = opts.batchDelayMs ?? 1000;

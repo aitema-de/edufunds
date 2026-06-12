@@ -95,7 +95,7 @@ async function sendConfirmationEmail(email: string, token: string): Promise<bool
       const resend = new Resend(resendApiKey);
       
       const { data, error } = await resend.emails.send({
-        from: 'EduFunds <newsletter@edufunds.de>',
+        from: process.env.FROM_EMAIL || 'EduFunds <noreply@aitema.de>',
         to: email,
         subject: 'Bestätigen Sie Ihre Newsletter-Anmeldung',
         html: getConfirmationEmailTemplate({ confirmationUrl, email }),
