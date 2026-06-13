@@ -194,10 +194,15 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
             </div>
           )}
 
+          {/* PILOT (temporaer): Solange der Dev-Mock aktiv ist, schaltet der
+              Hauptbutton ohne Zahlung frei — der echte Stripe-Checkout laeuft noch
+              im Sandbox-Modus und nimmt nur Testkarten an, was sich fuer Tester wie
+              „Button tut nichts" anfuehlt. Ist die Flag aus, gilt der normale
+              Stripe-Flow unveraendert. */}
           <button
             type="button"
-            onClick={startCheckout}
-            disabled={busy || isStripeDown}
+            onClick={DEV_MOCK_ENABLED ? devMockPay : startCheckout}
+            disabled={busy || (!DEV_MOCK_ENABLED && isStripeDown)}
             className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#c9a227] px-6 py-3 font-semibold text-white transition hover:bg-[#b8921e] disabled:opacity-50"
           >
             {busy ? (
@@ -206,13 +211,21 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
               <Sparkles className="h-5 w-5" />
             )}
             {busy
-              ? "Stripe-Checkout wird vorbereitet…"
-              : `Jetzt fuer ${priceEur.toLocaleString("de-DE", { minimumFractionDigits: 2 })} € freischalten`}
+              ? DEV_MOCK_ENABLED
+                ? "Wird freigeschaltet…"
+                : "Stripe-Checkout wird vorbereitet…"
+              : DEV_MOCK_ENABLED
+                ? "Jetzt freischalten (Pilot — keine Zahlung)"
+                : `Jetzt fuer ${priceEur.toLocaleString("de-DE", { minimumFractionDigits: 2 })} € freischalten`}
           </button>
 
           <div className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-slate-500">
             <ShieldCheck className="h-3 w-3" />
-            <span>Sichere Zahlung ueber Stripe — Kreditkarte, SEPA, Apple Pay</span>
+            <span>
+              {DEV_MOCK_ENABLED
+                ? "Pilotphase — Freischaltung kostenlos, keine Zahlung noetig"
+                : "Sichere Zahlung ueber Stripe — Kreditkarte, SEPA, Apple Pay"}
+            </span>
           </div>
 
           {/* Kontingent-Code (Schultraeger): Lehrkraft schaltet ohne eigene Zahlung frei */}
@@ -272,18 +285,6 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
               </div>
             )}
           </div>
-
-          {DEV_MOCK_ENABLED && (
-            <button
-              type="button"
-              onClick={devMockPay}
-              disabled={busy}
-              className="mt-3 w-full rounded-lg border border-[#0a1628]/15 px-4 py-2 text-xs text-slate-600 hover:bg-white disabled:opacity-50"
-              title="Nur im Entwicklungsmodus — simuliert eine erfolgreiche Zahlung ohne Stripe"
-            >
-              Dev-Mock: als bezahlt markieren
-            </button>
-          )}
 
           <p className="mt-4 text-xs text-slate-500">
             Nach der Zahlung bekommst du einen Download-Link. Dein Antrag bleibt darueber
