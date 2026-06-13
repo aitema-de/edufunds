@@ -1,4 +1,4 @@
-export const dynamic = 'force-static';
+export const dynamic = 'force-dynamic';
 
 import { z } from 'zod';
 import { NextResponse } from 'next/server';
