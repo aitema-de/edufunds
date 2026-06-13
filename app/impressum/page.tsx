@@ -38,7 +38,7 @@ export default function ImpressumPage() {
                 <h2 className="text-xl font-semibold text-[#0a1628]">Dienstanbieter</h2>
               </div>
               <div className="space-y-3 text-[#0a1628]/80 text-base">
-                <p className="font-medium text-[#0a1628]">AITEMA GmbH</p>
+                <p className="font-medium text-[#0a1628]">aitema GmbH</p>
                 <div className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-[#94a3b8] mt-0.5 shrink-0" />
                   <div>

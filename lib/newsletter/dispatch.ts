@@ -137,6 +137,7 @@ export async function sendNewsletter(
             replyTo,
             headers: {
               'List-Unsubscribe': `<${baseUrl}/api/newsletter/unsubscribe?token=${sub.unsubscribe_token}>`,
+              'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
               Precedence: 'bulk',
             },
           });

@@ -205,7 +205,7 @@ export function Footer() {
           <div className="flex flex-wrap items-center justify-center gap-2">
             <span>© {currentYear} EduFunds.</span>
             <span>Ein Projekt der</span>
-            <a href="https://aitema.de" target="_blank" rel="noopener noreferrer" className="text-[#c9a227] hover:underline">AITEMA GmbH</a>
+            <a href="https://aitema.de" target="_blank" rel="noopener noreferrer" className="text-[#c9a227] hover:underline">aitema GmbH</a>
           </div>
           <div className="flex items-center gap-1">
             <span>Made with</span>

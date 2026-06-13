@@ -31,7 +31,7 @@ export default function AGBPage() {
           <div className="bg-white rounded-xl p-6 mb-8 border-l-4 border-[#c9a227] shadow-sm">
             <p className="text-[#0a1628]/80 text-base leading-relaxed">
               Dies ist eine Übersetzung zur Information. Die deutsche Version ist rechtsverbindlich. 
-              Diese AGB gelten für Verträge zwischen der AITEMA GmbH und Unternehmern im Sinne 
+              Diese AGB gelten für Verträge zwischen der aitema GmbH und Unternehmern im Sinne 
               des § 14 BGB.
             </p>
           </div>
@@ -47,7 +47,7 @@ export default function AGBPage() {
               <div className="text-[#0a1628]/80 space-y-4 leading-relaxed text-base">
                 <p>
                   (1) Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge zwischen der 
-                  AITEMA GmbH, Prenzlauer Allee 229, 10405 Berlin (nachfolgend „Anbieter") 
+                  aitema GmbH, Prenzlauer Allee 229, 10405 Berlin (nachfolgend „Anbieter") 
                   und dem Kunden (nachfolgend „Kunde") über die Erbringung von Software-as-a-Service 
                   (SaaS) und Beratungsleistungen.
                 </p>
@@ -267,7 +267,7 @@ export default function AGBPage() {
             <section className="glass-strong rounded-2xl p-8">
               <h2 className="text-xl font-semibold text-[#f8f5f0] mb-4">Anbieter</h2>
               <div className="text-[#e2e8f0] space-y-2 text-base">
-                <p className="font-medium text-[#f8f5f0]">AITEMA GmbH</p>
+                <p className="font-medium text-[#f8f5f0]">aitema GmbH</p>
                 <p>Prenzlauer Allee 229</p>
                 <p>10405 Berlin</p>
                 <p className="text-[#94a3b8]">Deutschland</p>

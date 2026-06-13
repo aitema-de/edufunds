@@ -1,29 +1,69 @@
 export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 
-import { NextResponse } from 'next/server';
+import { unsubscribeNewsletterEntry } from '@/lib/db';
 
 /**
- * GET /api/newsletter/unsubscribe
- * 
- * Unsubscribes a user from the newsletter using their unique token.
- * Returns an HTML page with confirmation or error message.
- * 
- * NOTE: Static export - database operations not available.
- * In production, this should be handled by a serverful deployment.
+ * GET /api/newsletter/unsubscribe?token=...
+ *
+ * Meldet den Empfänger anhand seines Abmelde-Tokens ab und zeigt eine
+ * Bestätigungsseite. Unbekannte/abgelaufene Tokens werden freundlich als
+ * „bereits abgemeldet" behandelt (kein harter Fehler).
  */
-export async function GET() {
-  // Static export - no database access
-  // Return informational page
-  return new Response(
-    getUnsubscribePageHtml(
-      'Die Abmeldung ist im Moment nicht verfügbar. Bitte kontaktieren Sie uns direkt unter kontakt@edufunds.org.',
-      false
-    ),
-    {
-      status: 200,
-      headers: { 'Content-Type': 'text/html; charset=utf-8' },
+async function processUnsubscribe(token: string | null): Promise<{ message: string; isSuccess: boolean }> {
+  if (!token) {
+    return {
+      message: 'Kein gültiger Abmelde-Link. Bitte verwenden Sie den Abmelde-Link aus der E-Mail.',
+      isSuccess: false,
+    };
+  }
+  try {
+    const removed = await unsubscribeNewsletterEntry(token);
+    if (removed) {
+      return {
+        message: 'Sie wurden erfolgreich vom EduFunds-Newsletter abgemeldet. Schade, dass Sie gehen — Sie können sich jederzeit wieder anmelden.',
+        isSuccess: true,
+      };
     }
-  );
+    return {
+      message: 'Diese Adresse ist bereits abgemeldet oder der Link wurde schon verwendet. Sie erhalten keine weiteren Newsletter von uns.',
+      isSuccess: true,
+    };
+  } catch (err) {
+    console.error('[newsletter/unsubscribe] Fehler:', err);
+    return {
+      message: 'Die Abmeldung konnte gerade nicht verarbeitet werden. Bitte versuchen Sie es später erneut oder schreiben Sie an office@aitema.de.',
+      isSuccess: false,
+    };
+  }
+}
+
+export async function GET(request: Request) {
+  const token = new URL(request.url).searchParams.get('token');
+  const { message, isSuccess } = await processUnsubscribe(token);
+  return new Response(getUnsubscribePageHtml(message, isSuccess), {
+    status: 200,
+    headers: { 'Content-Type': 'text/html; charset=utf-8' },
+  });
+}
+
+/**
+ * POST = One-Click-Abmeldung (RFC 8058). Gmail/Microsoft rufen diesen Endpoint
+ * direkt auf, wenn der Header `List-Unsubscribe-Post: List-Unsubscribe=One-Click`
+ * gesetzt ist. Antwort muss schlicht 200 sein.
+ */
+export async function POST(request: Request) {
+  let token = new URL(request.url).searchParams.get('token');
+  if (!token) {
+    try {
+      const form = await request.formData();
+      token = (form.get('token') as string) || null;
+    } catch {
+      /* kein Formular-Body */
+    }
+  }
+  await processUnsubscribe(token);
+  return new Response('OK', { status: 200, headers: { 'Content-Type': 'text/plain' } });
 }
 
 /**
@@ -198,7 +238,7 @@ function getUnsubscribePageHtml(message: string, isSuccess: boolean): string {
         <a href="https://edufunds.org" class="button">Zurück zur Startseite</a>
         
         <div class="footer">
-            <p>Ein Projekt der <a href="https://aitema.de">AITEMA GmbH</a></p>
+            <p>Ein Projekt der <a href="https://aitema.de">aitema GmbH</a></p>
             <p style="margin-top: 8px;">© ${new Date().getFullYear()} EduFunds</p>
         </div>
     </div>

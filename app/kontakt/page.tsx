@@ -103,7 +103,7 @@ export default function KontaktPage() {
                     <div>
                       <h3 className="font-semibold mb-1" style={{ color: "#0a1628" }}>Anschrift</h3>
                       <p style={{ color: "#64748b" }}>
-                        EduFunds by Aitema GmbH<br />
+                        EduFunds by aitema GmbH<br />
                         Musterstraße 123<br />
                         10115 Berlin
                       </p>

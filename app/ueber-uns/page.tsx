@@ -162,7 +162,7 @@ export default function UeberUnsPage() {
                 Hinter EduFunds
               </h2>
               <p style={{ color: "#94a3b8" }}>
-                EduFunds ist ein Projekt der Aitema GmbH - Ihr Partner für digitale Bildungslösungen.
+                EduFunds ist ein Projekt der aitema GmbH - Ihr Partner für digitale Bildungslösungen.
               </p>
             </div>
 
@@ -179,7 +179,7 @@ export default function UeberUnsPage() {
                 <BookOpen className="w-10 h-10" style={{ color: "#c9a227" }} />
               </div>
               <h3 className="text-xl font-semibold mb-2" style={{ color: "#f8f5f0" }}>
-                Aitema GmbH
+                aitema GmbH
               </h3>
               <p style={{ color: "#94a3b8" }} className="mb-4">
                 Wir entwickeln innovative Lösungen für Bildungseinrichtungen. 

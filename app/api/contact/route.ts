@@ -200,7 +200,7 @@ function getUserEmailTemplate(data: ContactFormData) {
       </div>
       
       <div class="contact-info">
-        <p><strong>AITEMA GmbH</strong></p>
+        <p><strong>aitema GmbH</strong></p>
         <p>Prenzlauer Allee 229, 10405 Berlin</p>
         <p style="margin-top: 10px;">
           <a href="mailto:office@aitema.de">office@aitema.de</a>
@@ -236,7 +236,7 @@ WAS PASSIERT ALS NÄCHSTES?
 - Bei dringenden Anliegen erreichen Sie uns telefonisch
 
 ---
-AITEMA GmbH
+aitema GmbH
 Prenzlauer Allee 229, 10405 Berlin
 E-Mail: office@aitema.de
 

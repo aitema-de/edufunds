@@ -250,7 +250,15 @@ export function generateNewsletter(
     issue_number: data.issueNumber,
     issue_date: formattedDate,
     lead_title: escapeHtml(data.leadTitle),
-    lead_content: escapeHtml(data.leadContent).replace(/\n+/g, '</p>\n<p>'),
+    // Initiale (Drop Cap) als echtes, inline-gestyltes Element — E-Mail-Clients
+    // unterstützen ::first-letter nicht; float wirkt in den meisten Clients,
+    // sonst zeigt es schlicht einen großen Anfangsbuchstaben (graceful fallback).
+    lead_content: escapeHtml(data.leadContent)
+      .replace(
+        /^(\s*)(\S)/,
+        '$1<span style="float:left;font-family:Georgia,\'Times New Roman\',serif;font-weight:700;font-size:52px;line-height:40px;padding:2px 8px 0 0;color:#1f4d3f;">$2</span>'
+      )
+      .replace(/\n+/g, '</p>\n<p>'),
     signature: escapeHtml(data.signature || DEFAULT_SIGNATURE).replace(/\n/g, '<br>'),
     programs: programsHtml,
     tip_title: escapeHtml(data.tipTitle),

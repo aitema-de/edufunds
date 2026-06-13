@@ -142,13 +142,47 @@ export function conciseDeadline(text?: string): string {
   return head.length > 42 ? head.slice(0, 40).trimEnd() + '…' : head;
 }
 
+/**
+ * Stellt deutsche Umlaute in ASCII-geschriebenem Katalogtext wieder her — aber
+ * SICHER: nur über eine kuratierte Liste eindeutiger Wortstämme, kein blindes
+ * ae/oe/ue→ä/ö/ü (das würde „neue", „Goethe", „Israel", „aktuell", „Steuer" usw.
+ * zerstören). Stämme sind so gewählt, dass sie praktisch nie fälschlich greifen.
+ */
+const UMLAUT_STEMS: ReadonlyArray<readonly [string, string]> = [
+  ['foerder', 'förder'], ['ueber', 'über'], ['moeglich', 'möglich'],
+  ['schueler', 'schüler'], ['gemeinnuetz', 'gemeinnütz'], ['unterstuetz', 'unterstütz'],
+  ['verguet', 'vergüt'], ['regelmaess', 'regelmäß'], ['maessig', 'mäßig'],
+  ['gemaess', 'gemäß'], ['groess', 'größ'], ['zusaetz', 'zusätz'],
+  ['grundsaetz', 'grundsätz'], ['traeg', 'träg'], ['taet', 'tät'],
+  ['staedt', 'städt'], ['haeuf', 'häuf'], ['naehe', 'nähe'], ['raeum', 'räum'],
+  ['laeng', 'läng'], ['staerk', 'stärk'], ['waehr', 'währ'], ['faehig', 'fähig'],
+  ['buero', 'büro'], ['koenn', 'könn'], ['muess', 'müss'], ['wuerd', 'würd'],
+  ['wuensch', 'wünsch'], ['fuehr', 'führ'], ['fuehl', 'fühl'], ['frueh', 'früh'],
+  ['pruef', 'prüf'], ['gruend', 'gründ'], ['natuerlich', 'natürlich'],
+  ['fuer', 'für'], ['jaehr', 'jähr'], ['saeule', 'säule'], ['qualitaet', 'qualität'],
+  ['taetig', 'tätig'], ['paedagog', 'pädagog'], ['gelaende', 'gelände'],
+];
+
+function cap(s: string): string {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+export function restoreUmlauts(text: string): string {
+  let out = text;
+  for (const [from, to] of UMLAUT_STEMS) {
+    out = out.split(from).join(to);
+    out = out.split(cap(from)).join(cap(to));
+  }
+  return out;
+}
+
 function recordToProgram(rec: ProgramRecord, baseUrl: string): Program {
   return {
-    name: rec.name,
-    funder: rec.foerdergeber,
-    deadline: conciseDeadline(rec.bewerbungsfristText),
+    name: restoreUmlauts(rec.name),
+    funder: restoreUmlauts(rec.foerdergeber),
+    deadline: restoreUmlauts(conciseDeadline(rec.bewerbungsfristText)),
     targetGroup: buildTargetGroup(rec),
-    description: (rec.kurzbeschreibung || '').trim(),
+    description: restoreUmlauts((rec.kurzbeschreibung || '').trim()),
     url: `${baseUrl}/foerderprogramme/${rec.id}`,
   };
 }

@@ -69,7 +69,7 @@ export default function DatenschutzPage() {
               <div className="text-[#0a1628]/80 space-y-4 text-base">
                 <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
                 <div className="bg-white border border-[#0a1628]/8 shadow-sm rounded-xl p-6 space-y-2">
-                  <p className="font-medium text-[#0a1628]">AITEMA GmbH</p>
+                  <p className="font-medium text-[#0a1628]">aitema GmbH</p>
                   <p>Prenzlauer Allee 229</p>
                   <p>10405 Berlin</p>
                   <p className="text-[#94a3b8]">Deutschland</p>
