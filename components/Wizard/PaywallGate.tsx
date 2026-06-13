@@ -14,7 +14,7 @@ const DEV_MOCK_ENABLED = process.env.NEXT_PUBLIC_PAYWALL_DEV_MOCK === "1";
 
 const BENEFITS = [
   "Vollstaendiger Antragstext + Finanzplan",
-  "Download als PDF, Word und Text",
+  "Download als bearbeitbare Datei (RTF), PDF und Text",
   "Copy-&-Paste-Ansicht fuer eigene Vorlagen",
   "30 Tage Zugriff ueber Download-Link",
   "Nachtraegliches Editieren der Antworten bleibt moeglich",

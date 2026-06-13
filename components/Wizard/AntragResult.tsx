@@ -14,6 +14,7 @@ import { renderFinanzplanMarkdown } from "@/lib/wizard/finanzplan-markdown";
 import { PaywallGate } from "./PaywallGate";
 import { AntragSectionNav, slugifyHeading } from "./AntragSectionNav";
 import { KiHinweis, KI_EXPORT_HINWEIS } from "@/components/KiHinweis";
+import { markdownToRtf } from "@/lib/export/rtf";
 
 interface Props {
   programm: Foerderprogramm;
@@ -227,22 +228,13 @@ export function AntragResult({
     triggerDownload([combinedText], mime, ext);
   };
 
-  // .doc bisher: roher Markdown-Text mit Word-MIME -> oeffnet auf Mac/Pages
-  // unbrauchbar (literale ## / ** statt Formatierung). Jetzt: das bereits
-  // gerenderte HTML aus dem Druck-Klon in ein echtes Word-HTML-Dokument verpacken,
-  // sodass Absaetze/Ueberschriften erhalten bleiben und es sich auch auf Mac
-  // oeffnen laesst. PDF bleibt der empfohlene Primaer-Download.
-  const downloadDoc = () => {
+  // RTF = Default-Download: offenes, BEARBEITBARES Format, das Pages, Word,
+  // LibreOffice und Google Docs zuverlaessig oeffnen. Loest das fragile .doc=HTML
+  // ab (oeffnete auf Mac/Pages nicht) und ist fuers Weiterbearbeiten besser
+  // geeignet als das reine Ansichts-PDF.
+  const downloadRtf = () => {
     if (exportBlocked) return;
-    const inner = printRef.current?.innerHTML ?? combinedText.replace(/\n/g, "<br>");
-    const html =
-      "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
-      "xmlns:w='urn:schemas-microsoft-com:office:word' " +
-      "xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'>" +
-      "<title>Förderantrag</title></head><body>" +
-      inner +
-      "</body></html>";
-    triggerDownload(["﻿", html], "application/msword", "doc");
+    triggerDownload([markdownToRtf(combinedText, programm.name)], "application/rtf", "rtf");
   };
 
   const downloadPdf = async () => {
@@ -281,20 +273,29 @@ export function AntragResult({
           <p className="text-sm text-slate-600">für {programm.name}</p>
         </div>
         <div className={paid ? "flex flex-wrap items-center gap-2" : "hidden"}>
-          {/* PDF = empfohlener Primaer-Download: oeffnet zuverlaessig auf jedem
-              System inkl. Mac/Pages. .doc/.txt/Kopieren bleiben als Fallback. */}
+          {/* RTF = Default: offenes, bearbeitbares Dokument (Pages/Word/LibreOffice).
+              PDF zum Ansehen/Drucken, .txt + Kopieren als Fallback. */}
+          <button
+            type="button"
+            onClick={downloadRtf}
+            disabled={exportBlocked}
+            className="inline-flex items-center gap-2 rounded-lg bg-[#c9a227] px-4 py-2 sm:py-3 text-sm font-semibold text-white transition hover:bg-[#b8921e] disabled:opacity-50 disabled:pointer-events-none"
+          >
+            <Download className="h-4 w-4" /> Antrag herunterladen (bearbeitbar)
+          </button>
           <button
             type="button"
             onClick={downloadPdf}
             disabled={pdfBusy || exportBlocked}
-            className="inline-flex items-center gap-2 rounded-lg bg-[#c9a227] px-4 py-2 sm:py-3 text-sm font-semibold text-white transition hover:bg-[#b8921e] disabled:opacity-50 disabled:pointer-events-none"
+            title="PDF zum Ansehen und Drucken (nicht bearbeitbar)."
+            className="inline-flex items-center gap-2 rounded-lg border border-[#c9a227]/40 bg-[#c9a227]/10 px-3 py-2 text-sm text-[#1e3a61] transition hover:bg-[#c9a227]/20 disabled:opacity-50 disabled:pointer-events-none"
           >
             {pdfBusy ? (
               <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
               <FileDown className="h-4 w-4" />
             )}
-            PDF herunterladen
+            PDF
           </button>
           <button
             type="button"
@@ -304,15 +305,6 @@ export function AntragResult({
           >
             {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
             {copied ? "Kopiert" : "Kopieren"}
-          </button>
-          <button
-            type="button"
-            onClick={downloadDoc}
-            disabled={exportBlocked}
-            title="Word-Format — auf Mac/Pages ggf. eingeschraenkt; im Zweifel die PDF nutzen."
-            className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-3 py-2 text-sm text-[#1e3a61] hover:bg-slate-100 disabled:opacity-40 disabled:pointer-events-none"
-          >
-            <Download className="h-4 w-4" /> .doc
           </button>
           <button
             type="button"

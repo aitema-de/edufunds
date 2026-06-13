@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Sparkles, Loader2, Copy, Check, FileText, RefreshCw, Download, Wand2, FileDown } from "lucide-react";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import { generateAntrag, type ProjektDaten } from "@/lib/ki-antrag-generator";
+import { markdownToRtf } from "@/lib/export/rtf";
 
 // Dynamischer Import für html2pdf (nur im Browser)
 const loadHtml2pdf = async () => {
@@ -63,6 +64,20 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
     navigator.clipboard.writeText(generatedText);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  // RTF = Default-Download: offenes, BEARBEITBARES Format (Pages/Word/LibreOffice).
+  const downloadAsRtf = () => {
+    const rtf = markdownToRtf(generatedText, projektDaten.projekttitel || programm.name);
+    const blob = new Blob([rtf], { type: "application/rtf" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `Foerderantrag_${projektDaten.projekttitel.replace(/\s+/g, "_") || "Antrag"}.rtf`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   const downloadAsTxt = () => {
@@ -194,16 +209,26 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
               </div>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
-              {/* PDF = empfohlener Primaer-Download: oeffnet zuverlaessig auf jedem
-                  System inkl. Mac/Pages. Word/.doc und Text bleiben als Fallback. */}
+              {/* RTF = Default: offenes, bearbeitbares Dokument (Pages/Word/
+                  LibreOffice). PDF zum Ansehen/Drucken, Text + Kopieren als Fallback. */}
               <Button
                 variant="primary"
                 size="sm"
-                onClick={downloadAsPDF}
+                onClick={downloadAsRtf}
                 className="gap-2 bg-orange-500 hover:bg-orange-600 text-white"
               >
+                <Download className="h-4 w-4" />
+                Antrag herunterladen (bearbeitbar)
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={downloadAsPDF}
+                className="gap-2"
+                title="PDF zum Ansehen und Drucken (nicht bearbeitbar)."
+              >
                 <FileDown className="h-4 w-4" />
-                PDF herunterladen
+                PDF
               </Button>
               <Button
                 variant="outline"
@@ -213,16 +238,6 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
               >
                 {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                 {copied ? "Kopiert!" : "Kopieren"}
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={downloadAsDoc}
-                className="gap-2"
-                title="Word-Format — auf Mac/Pages ggf. eingeschraenkt; nutze im Zweifel die PDF."
-              >
-                <FileText className="h-4 w-4" />
-                Word
               </Button>
               <Button
                 variant="outline"
