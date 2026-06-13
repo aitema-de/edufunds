@@ -96,11 +96,16 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
   };
 
   const resultRef = useRef<HTMLDivElement>(null);
+  // Eigener, hell gestylter Klon nur fuer den PDF-Export. Die sichtbare Ansicht
+  // ist dunkel (bg-slate-900 / helle Schrift) — html2pdf rastert das Element 1:1,
+  // ein dunkles, am Mac kaum lesbares PDF waere die Folge. Der Klon rendert auf
+  // weissem Grund mit dunkler Serifenschrift = zuverlaessig auf Mac/Pages oeffenbar.
+  const pdfRef = useRef<HTMLDivElement>(null);
 
   const downloadAsPDF = async () => {
-    if (!resultRef.current) return;
-    
-    const element = resultRef.current;
+    if (!pdfRef.current) return;
+
+    const element = pdfRef.current;
     const opt = {
       margin: [20, 20, 20, 20],
       filename: `Foerderantrag_${projektDaten.projekttitel.replace(/\s+/g, "_")}.pdf`,
@@ -189,14 +194,16 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
               </div>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
+              {/* PDF = empfohlener Primaer-Download: oeffnet zuverlaessig auf jedem
+                  System inkl. Mac/Pages. Word/.doc und Text bleiben als Fallback. */}
               <Button
-                variant="outline"
+                variant="primary"
                 size="sm"
-                onClick={() => setStep("form")}
-                className="gap-2"
+                onClick={downloadAsPDF}
+                className="gap-2 bg-orange-500 hover:bg-orange-600 text-white"
               >
-                <RefreshCw className="h-4 w-4" />
-                Neu generieren
+                <FileDown className="h-4 w-4" />
+                PDF herunterladen
               </Button>
               <Button
                 variant="outline"
@@ -212,6 +219,7 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
                 size="sm"
                 onClick={downloadAsDoc}
                 className="gap-2"
+                title="Word-Format — auf Mac/Pages ggf. eingeschraenkt; nutze im Zweifel die PDF."
               >
                 <FileText className="h-4 w-4" />
                 Word
@@ -226,13 +234,13 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
                 Text
               </Button>
               <Button
-                variant="danger"
+                variant="outline"
                 size="sm"
-                onClick={downloadAsPDF}
+                onClick={() => setStep("form")}
                 className="gap-2"
               >
-                <FileDown className="h-4 w-4" />
-                PDF
+                <RefreshCw className="h-4 w-4" />
+                Neu generieren
               </Button>
             </div>
           </div>
@@ -257,6 +265,30 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
                   Beachten Sie die offiziellen Antragsrichtlinien von {programm.foerdergeber}.
                 </p>
               </div>
+            </div>
+          </div>
+
+          {/* Unsichtbarer, hell gestylter Klon nur fuer den PDF-Export — weisser
+              Grund, dunkle Serifenschrift, A4-Breite. Liefert ein sauber lesbares,
+              auf Mac/Pages zuverlaessig oeffenbares PDF (statt der dunklen Ansicht). */}
+          <div aria-hidden="true" style={{ position: "fixed", left: "-10000px", top: 0, width: "180mm" }}>
+            <div
+              ref={pdfRef}
+              style={{
+                backgroundColor: "#ffffff",
+                color: "#111827",
+                fontFamily: "Georgia, 'Times New Roman', serif",
+                fontSize: "11pt",
+                lineHeight: 1.5,
+                padding: "0 4mm",
+                whiteSpace: "pre-wrap",
+                wordBreak: "break-word",
+              }}
+            >
+              <div style={{ borderBottom: "1px solid #d1d5db", marginBottom: "12pt", paddingBottom: "6pt", fontSize: "9pt", color: "#6b7280" }}>
+                Förderantrag — {programm.name}
+              </div>
+              {generatedText}
             </div>
           </div>
         </CardContent>
