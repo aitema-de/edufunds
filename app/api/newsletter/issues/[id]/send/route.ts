@@ -69,7 +69,12 @@ export async function POST(
       issue.data,
       { subject: issue.subject ?? undefined, test: true, testEmails, baseUrl },
     );
-    return NextResponse.json({ success: true, test: true, stats: outcome.stats });
+    const ok = outcome.stats.successful > 0;
+    const firstError = outcome.results.find((r) => !r.success)?.error;
+    return NextResponse.json(
+      { success: ok, test: true, stats: outcome.stats, error: ok ? undefined : firstError },
+      { status: ok ? 200 : 502 }
+    );
   }
 
   // --- Live-Versand: nur freigegeben, atomarer Übergang nach 'sending' ---

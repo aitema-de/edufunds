@@ -174,8 +174,8 @@ export default function NewsletterAdminPage() {
       });
       const json = await res.json();
       setMsg(json.success
-        ? { kind: 'ok', text: `Testversand an ${email} ausgelöst.` }
-        : { kind: 'err', text: json.message || 'Testversand fehlgeschlagen' });
+        ? { kind: 'ok', text: `Testversand an ${email} gesendet (${json.stats?.successful ?? 1} ok).` }
+        : { kind: 'err', text: `Testversand fehlgeschlagen: ${json.error || json.message || 'unbekannter Fehler'}` });
     } finally {
       setBusy(null);
     }
