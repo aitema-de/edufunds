@@ -48,16 +48,46 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Rollback auf Zustand vor dieser Antwort
-    let data = rollbackBeforeMessage(session.data, messageId);
+    // Idempotenter Retry: Schlug bei einem vorherigen Edit der Folgefrage-Schritt
+    // (nextStep) fehl, liegt die editierte Antwort bereits als letzte
+    // (unverarbeitete) User-Nachricht in der Session — allerdings mit NEUER id.
+    // Ein erneutes Speichern traegt noch die alte messageId, die es nicht mehr
+    // gibt. Dann die letzte Antwort ersetzen statt 404 zu werfen (spiegelt die
+    // answer-Route), damit ein zweiter Versuch den Turn sauber abschliesst.
+    const msgs = session.data.messages;
+    const last = msgs[msgs.length - 1];
+    const targetExists = msgs.some((m) => m.id === messageId);
+    const isUnprocessedRetry =
+      !targetExists && last?.role === "user" && last.kind === "answer";
 
-    // Neue Antwort an der gleichen Stelle einfuegen — factsBefore jetzt = data.facts
-    data = appendMessage(data, {
-      role: "user",
-      kind: "answer",
-      content: trimmed,
-      meta: { factsBefore: data.facts, editedAt: new Date().toISOString() },
-    });
+    let data: typeof session.data;
+    if (isUnprocessedRetry) {
+      data = {
+        ...session.data,
+        messages: [
+          ...msgs.slice(0, -1),
+          { ...last, content: trimmed, at: new Date().toISOString() },
+        ],
+      };
+    } else {
+      // Rollback auf Zustand vor dieser Antwort
+      data = rollbackBeforeMessage(session.data, messageId);
+      // Neue Antwort an der gleichen Stelle einfuegen — factsBefore jetzt = data.facts
+      data = appendMessage(data, {
+        role: "user",
+        kind: "answer",
+        content: trimmed,
+        meta: { factsBefore: data.facts, editedAt: new Date().toISOString() },
+      });
+    }
+
+    // Datenverlust-Schutz: die editierte Antwort SOFORT persistieren, BEVOR die
+    // LLM-Stages laufen. Schlaegt eine Stage fehl (z. B. abgeschnittenes JSON aus
+    // dem LLM in nextStep), ueberlebt die Korrektur Reload + Retry. Frueher ging
+    // sie verloren, weil updateWizardSession erst NACH den LLM-Calls erreicht
+    // wurde — der Edit verschwand und im „Bisherigen Dialog" blieb der alte Text
+    // stehen (gemeldeter Pilot-Bug).
+    await updateWizardSession(sessionToken, data);
 
     // Stage 1: Fakten-Extraktion ueber den (durch Rollback bereinigten) Verlauf.
     const extracted = await extractFacts(data.messages, data.facts);
@@ -69,16 +99,35 @@ export async function POST(req: NextRequest) {
       };
     }
 
-    // Stage 2: Interviewer weiterfragen mit frischem Facts-Stand.
+    // Stage 2: Interviewer weiterfragen mit frischem Facts-Stand. Faellt nextStep
+    // aus (z. B. abgeschnittenes JSON), ist die Aenderung oben bereits gesichert —
+    // wir melden einen wiederholbaren Fehler statt die Korrektur zu verschlucken.
     const richtlinie = await loadRichtlinie(programm.id);
-    const { step, usage } = await nextStep(
-      programm,
-      data.messages,
-      data.facts,
-      data.interviewer.totalQuestions,
-      data.interviewer.maxQuestions,
-      richtlinie
-    );
+    let step: Awaited<ReturnType<typeof nextStep>>["step"];
+    let usage: Awaited<ReturnType<typeof nextStep>>["usage"];
+    try {
+      ({ step, usage } = await nextStep(
+        programm,
+        data.messages,
+        data.facts,
+        data.interviewer.totalQuestions,
+        data.interviewer.maxQuestions,
+        richtlinie
+      ));
+    } catch (stepErr) {
+      console.error(
+        "[wizard/edit-answer] nextStep fehlgeschlagen (Aenderung gesichert):",
+        stepErr
+      );
+      return NextResponse.json(
+        {
+          error:
+            "Die KI war kurz nicht erreichbar. Deine Änderung ist gespeichert — bitte speichere sie gleich noch einmal.",
+          retryable: true,
+        },
+        { status: 503 }
+      );
+    }
     data = { ...data, facts: step.updatedFacts };
 
     if (usage) {

@@ -407,8 +407,12 @@ export function WizardShell({ programm }: Props) {
   }, [state]);
 
   const editAnswer = useCallback(
-    async (messageId: string, newContent: string) => {
-      if (!state || busy) return;
+    async (messageId: string, newContent: string): Promise<boolean> => {
+      // Liefert true nur bei tatsaechlichem Erfolg zurueck. Der Aufrufer
+      // (ChronologySidebar) laesst den Editor bei false offen und zeigt den
+      // Fehler an — so wird ein fehlgeschlagenes Speichern nicht mehr als
+      // „nichts passiert / alter Text bleibt" missverstanden.
+      if (!state || busy) return false;
       setBusy(true);
       setError(null);
       try {
@@ -439,8 +443,10 @@ export function WizardShell({ programm }: Props) {
         });
         const synced = syncProfileFromFacts(body.facts);
         if (synced) setSchoolProfile(synced);
+        return true;
       } catch (e) {
         setError(e instanceof Error ? e.message : "Antwort konnte nicht aktualisiert werden");
+        return false;
       } finally {
         setBusy(false);
       }

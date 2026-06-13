@@ -8,7 +8,7 @@ import { FactsPanel } from "./FactsPanel";
 interface Props {
   messages: WizardMessage[];
   facts: WizardFacts;
-  onEditAnswer?: (messageId: string, newContent: string) => Promise<void> | void;
+  onEditAnswer?: (messageId: string, newContent: string) => Promise<boolean> | boolean;
   editBusy?: boolean;
   disableEdit?: boolean;
 }
@@ -23,19 +23,32 @@ export function ChronologySidebar({
   const qa = messages.filter((m) => m.kind === "question" || m.kind === "answer");
   const [editingId, setEditingId] = useState<string | null>(null);
   const [draft, setDraft] = useState("");
+  const [saveError, setSaveError] = useState<string | null>(null);
 
   const startEdit = (id: string, current: string) => {
     setEditingId(id);
     setDraft(current);
+    setSaveError(null);
   };
   const cancelEdit = () => {
     setEditingId(null);
     setDraft("");
+    setSaveError(null);
   };
   const saveEdit = async () => {
     if (!editingId || !onEditAnswer || !draft.trim()) return;
-    await onEditAnswer(editingId, draft.trim());
-    cancelEdit();
+    setSaveError(null);
+    // Editor NUR bei Erfolg schliessen. Schlaegt das Speichern fehl, bleibt der
+    // bearbeitete Text erhalten und der Fehler wird direkt am Editor angezeigt —
+    // statt den Editor zu schliessen und stillschweigend den alten Text zu zeigen.
+    const ok = await onEditAnswer(editingId, draft.trim());
+    if (ok) {
+      cancelEdit();
+    } else {
+      setSaveError(
+        "Speichern hat nicht geklappt. Dein Text steht noch hier — bitte „Speichern“ erneut klicken."
+      );
+    }
   };
 
   return (
@@ -102,6 +115,11 @@ export function ChronologySidebar({
                           {editBusy ? "Speichere…" : "Speichern"}
                         </button>
                       </div>
+                      {saveError && (
+                        <p className="mt-1.5 rounded border border-red-300 bg-red-50 p-2 text-[11px] text-red-700">
+                          {saveError}
+                        </p>
+                      )}
                       <p className="mt-1 text-[11px] text-slate-500">
                         Achtung: Alle späteren Fragen/Antworten werden verworfen und der
                         Dialog läuft ab hier neu.
