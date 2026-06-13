@@ -163,18 +163,27 @@ export default function NewsletterAdminPage() {
 
   const sendTest = async () => {
     if (!selected) return;
-    const email = window.prompt('Test-E-Mail-Adresse:');
-    if (!email) return;
+    const input = window.prompt('Test-E-Mail-Adresse(n) – mehrere mit Komma trennen:');
+    if (!input) return;
+    const emails = input
+      .split(/[\s,;]+/)
+      .map((e) => e.trim())
+      .filter((e) => e.includes('@'));
+    if (emails.length === 0) {
+      setMsg({ kind: 'err', text: 'Keine gültige E-Mail-Adresse erkannt.' });
+      return;
+    }
     setBusy('test');
     try {
       const res = await fetch(`/api/newsletter/issues/${selected.id}/send`, {
         method: 'POST', credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ test: true, testEmails: [email] }),
+        body: JSON.stringify({ test: true, testEmails: emails }),
       });
       const json = await res.json();
+      const failed = json.stats?.failed ?? 0;
       setMsg(json.success
-        ? { kind: 'ok', text: `Testversand an ${email} gesendet (${json.stats?.successful ?? 1} ok).` }
+        ? { kind: 'ok', text: `Testversand an ${emails.length} Adresse(n) gesendet (${json.stats?.successful ?? emails.length} ok${failed ? `, ${failed} fehlgeschlagen` : ''}).` }
         : { kind: 'err', text: `Testversand fehlgeschlagen: ${json.error || json.message || 'unbekannter Fehler'}` });
     } finally {
       setBusy(null);
