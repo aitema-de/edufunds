@@ -109,6 +109,17 @@ function getRateLimitType(pathname: string): string {
   if (pathname.includes('/api/wizard/')) {
     return 'wizard';
   }
+  // Admin-Newsletter-Routen (cookie-auth) NICHT mit dem öffentlichen Spam-Limit
+  // (5/h) belegen — sonst blockiert normale Admin-Nutzung (Liste/Öffnen/Freigabe/
+  // Versand) sofort. Diese Routen sind durch requireAdmin geschützt.
+  if (
+    pathname.includes('/api/newsletter/issues') ||
+    pathname.includes('/api/newsletter/send') ||
+    pathname.includes('/api/newsletter/preview')
+  ) {
+    return 'default';
+  }
+  // Öffentliche An-/Abmeldung: strenges Anti-Spam-Limit.
   if (pathname.includes('/api/newsletter')) {
     return 'newsletter';
   }
