@@ -193,6 +193,13 @@ export function rateLimit(request: NextRequest): {
     return { allowed: true };
   }
 
+  // Pilot-Freischaltung (Dev-Mock, kostenlos, kein echtes Geld) nicht limitieren.
+  // Sonst blockiert intensives UAT-Testen den Unlock-Button mit 429. Die Route
+  // ist ohnehin durch NEXT_PUBLIC_PAYWALL_DEV_MOCK==="1" + 403 abgesichert.
+  if (pathname === '/api/wizard/checkout/dev-mock') {
+    return { allowed: true };
+  }
+
   // Bestimme Rate-Limit-Typ
   const limitType = getRateLimitType(pathname);
   const config = RATE_LIMITS[limitType];

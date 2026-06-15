@@ -300,11 +300,14 @@ export async function runPipeline(
   programm: Foerderprogramm,
   facts: WizardFacts,
   richtlinie?: Richtlinie | null,
-  onEvent?: (e: PipelineEvent) => void,
+  onEvent?: (e: PipelineEvent) => void | Promise<void>,
   messages?: WizardMessage[]
 ): Promise<PipelineResult> {
-  const emit = (e: PipelineEvent) => {
-    try { onEvent?.(e); } catch (err) { console.warn("[pipeline] onEvent threw, ignoring:", err); }
+  const emit = async (e: PipelineEvent) => {
+    // Heartbeat MUSS abgewartet werden, sonst landet der Stage-Schreibvorgang
+    // (DB) verzoegert/ungeordnet und der Fortschrittsbalken hakt die Schritte
+    // nicht live ab. await => geordnete, sichtbare Heartbeats fuer das Polling.
+    try { await onEvent?.(e); } catch (err) { console.warn("[pipeline] onEvent threw, ignoring:", err); }
   };
   const usages: PipelineUsage[] = [];
 
@@ -330,9 +333,9 @@ export async function runPipeline(
             : a.stilhinweis ?? `Pflichtabschnitt ${a.id}`,
         })),
     };
-    emit({ stage: "outline", message: "Uebernehme Gliederung aus Foerderrichtlinie" });
+    await emit({ stage: "outline", message: "Uebernehme Gliederung aus Foerderrichtlinie" });
   } else {
-    emit({ stage: "outline", message: "Erstelle Gliederung" });
+    await emit({ stage: "outline", message: "Erstelle Gliederung" });
     try {
       const outlineRes = await generateJson<Outline>(
         MODEL_PRO,
@@ -345,7 +348,7 @@ export async function runPipeline(
       // Fallback: generische 7-Abschnitt-Standardgliederung. Section-Generierung
       // kann immer noch scheitern, aber der Pipeline-Start crasht nicht mehr.
       console.warn("[pipeline] Outline-LLM-Aufruf fehlgeschlagen, nutze generischen Fallback:", err);
-      emit({
+      await emit({
         stage: "outline",
         message: "LLM-Aufruf fehlgeschlagen — verwende Standard-Gliederung",
         payload: { fallback: true, reason: err instanceof Error ? err.message : String(err) },
@@ -356,7 +359,7 @@ export async function runPipeline(
 
   const sections: Array<{ name: string; text: string }> = [];
   for (const abschnitt of outline.abschnitte) {
-    emit({ stage: "section", message: `Schreibe Abschnitt: ${abschnitt.name}` });
+    await emit({ stage: "section", message: `Schreibe Abschnitt: ${abschnitt.name}` });
     const rl = richtlinie?.antragsstruktur?.abschnitte?.find(
       (a) => a.name === abschnitt.name
     );
@@ -371,7 +374,7 @@ export async function runPipeline(
 
   const draft = renderDraft(outline, sections);
 
-  emit({ stage: "critique", message: "Gutachten wird erstellt" });
+  await emit({ stage: "critique", message: "Gutachten wird erstellt" });
   const critiqueRes = await generateJson<unknown>(
     MODEL_PRO,
     CRITIQUE_SYSTEM,
@@ -384,7 +387,7 @@ export async function runPipeline(
   const critique = normalizeCritique(critiqueRes.value);
   const critiqueRendered = renderCritique(critique);
 
-  emit({ stage: "revision", message: "Finale Fassung" });
+  await emit({ stage: "revision", message: "Finale Fassung" });
   let finalRes = await generateText(
     MODEL_PRO,
     REVISION_SYSTEM,
@@ -395,7 +398,7 @@ export async function runPipeline(
   let resolutions: FindingResolution[] = [];
   let hasOpenHigh = false;
   if (critique.findings.length > 0) {
-    emit({ stage: "recheck", message: "Gutachten-Punkte prüfen" });
+    await emit({ stage: "recheck", message: "Gutachten-Punkte prüfen" });
     const recheckRes = await generateJson<unknown>(
       MODEL_FLASH,
       RECHECK_SYSTEM,
@@ -427,7 +430,7 @@ export async function runPipeline(
     const introduced = detectIntroduced(finalRes.value ?? "", allowedCorpus);
     const introducedBefore = [...introduced.numbers, ...introduced.entities];
     if (introducedBefore.length > 0) {
-      emit({ stage: "revision", message: "Halluzinations-Diff-Gate" });
+      await emit({ stage: "revision", message: "Halluzinations-Diff-Gate" });
       try {
         const gate = await repairIntroduced(
           finalRes.value ?? "",
@@ -474,7 +477,7 @@ export async function runPipeline(
     // wuerde der Pass den ganzen Antrag entkernen. In dem Fall ueberspringen
     // (der Unbeziffert-Modus/die markierten Luecken tragen die Ehrlichkeit).
     if (groundTruth.trim().length >= 20) {
-      emit({ stage: "revision", message: "Fakt-Verifikation" });
+      await emit({ stage: "revision", message: "Fakt-Verifikation" });
       try {
         const fv = await verifyFacts(
           finalRes.value ?? "",
@@ -512,7 +515,7 @@ export async function runPipeline(
   // =========================================================================
   let complianceLoopCount = 0;
   if (PIPELINE_CONFIG.complianceStageEnabled && richtlinie?.antragsstruktur?.abschnitte) {
-    emit({ stage: "compliance-check", message: "Pflichtabschnitt-Check" });
+    await emit({ stage: "compliance-check", message: "Pflichtabschnitt-Check" });
     const cc = await runComplianceCheck(
       finalRes.value ?? "",
       richtlinie.antragsstruktur.abschnitte
@@ -531,13 +534,13 @@ export async function runPipeline(
     }
   }
 
-  emit({ stage: "finanzplan", message: "Finanzplan-Entwurf" });
+  await emit({ stage: "finanzplan", message: "Finanzplan-Entwurf" });
   const finanzRes = await generateFinanzplan(programm, facts, richtlinie, userAnswers);
   usages.push(finanzRes.usage);
 
   let consistencyIssues: ConsistencyIssue[] = [];
   if (finanzRes.plan.posten.length > 0) {
-    emit({ stage: "consistency", message: "Antragstext × Finanzplan prüfen" });
+    await emit({ stage: "consistency", message: "Antragstext × Finanzplan prüfen" });
     const finanzplanJson = JSON.stringify(
       finanzRes.plan.posten.map((p) => ({
         kategorie: p.kategorie,
@@ -562,7 +565,7 @@ export async function runPipeline(
     // pruefen. Fehlschlag der Revision behaelt Originaltext + geflaggte Issues.
     if (consistencyIssues.length > 0) {
       try {
-        emit({ stage: "consistency", message: "Antragstext × Finanzplan angleichen" });
+        await emit({ stage: "consistency", message: "Antragstext × Finanzplan angleichen" });
         const reconciled = await reviseForConsistency(
           finalRes.value,
           finanzplanJson,
@@ -602,7 +605,7 @@ export async function runPipeline(
     );
   }
 
-  emit({ stage: "done", message: "Fertig" });
+  await emit({ stage: "done", message: "Fertig" });
 
   return {
     artefacts: {

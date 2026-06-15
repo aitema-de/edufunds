@@ -13,11 +13,11 @@ interface Props {
 const DEV_MOCK_ENABLED = process.env.NEXT_PUBLIC_PAYWALL_DEV_MOCK === "1";
 
 const BENEFITS = [
-  "Vollstaendiger Antragstext + Finanzplan",
+  "Vollständiger Antragstext + Finanzplan",
   "Download als bearbeitbare Datei (RTF), PDF und Text",
-  "Copy-&-Paste-Ansicht fuer eigene Vorlagen",
-  "30 Tage Zugriff ueber Download-Link",
-  "Nachtraegliches Editieren der Antworten bleibt moeglich",
+  "Copy-&-Paste-Ansicht für eigene Vorlagen",
+  "30 Tage Zugriff über Download-Link",
+  "Nachträgliches Editieren der Antworten bleibt möglich",
 ];
 
 type ErrorKind = "stripe-down" | "network" | "unknown";
@@ -51,7 +51,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
       });
       const body = await res.json().catch(() => ({}));
       if (!res.ok) {
-        setRedeemError(body.error ?? `Einloesung fehlgeschlagen (HTTP ${res.status}).`);
+        setRedeemError(body.error ?? `Einlösung fehlgeschlagen (HTTP ${res.status}).`);
         return;
       }
       if (body.paidToken) {
@@ -82,7 +82,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
         const kind: ErrorKind = res.status === 503 ? "stripe-down" : "unknown";
         const message =
           kind === "stripe-down"
-            ? "Die Zahlungsanbindung wird gerade fertig eingerichtet. Wir schalten sie in den naechsten Tagen frei — schreiben Sie uns an support@edufunds.org, falls Sie den Antrag dringend brauchen."
+            ? "Die Zahlungsanbindung wird gerade fertig eingerichtet. Wir schalten sie in den nächsten Tagen frei — schreiben Sie uns an support@edufunds.org, falls Sie den Antrag dringend brauchen."
             : (body.error ?? `Checkout konnte nicht gestartet werden (HTTP ${res.status}).`);
         setErrorState({ kind, message });
         return;
@@ -154,7 +154,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
           <p className="mb-5 text-sm text-slate-600">
             Ihr Antragstext und der Finanzplan sind fertig. Mit dem{" "}
             <strong className="text-[#1e3a61]">{tierLabel}</strong> bekommen Sie den
-            vollstaendigen Text und alle Downloads.
+            vollständigen Text und alle Downloads.
           </p>
 
           <ul className="mb-6 space-y-1.5 text-left">
@@ -183,7 +183,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
               {!isStripeDown && (
                 <button
                   type="button"
-                  onClick={startCheckout}
+                  onClick={DEV_MOCK_ENABLED ? devMockPay : startCheckout}
                   disabled={busy}
                   className="mt-2 inline-flex items-center gap-1.5 rounded border border-[#0a1628]/20 bg-white px-3 py-1 text-xs text-[#1e3a61] hover:bg-slate-100 disabled:opacity-50"
                 >
@@ -216,15 +216,15 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                 : "Stripe-Checkout wird vorbereitet…"
               : DEV_MOCK_ENABLED
                 ? "Jetzt freischalten (Pilot — keine Zahlung)"
-                : `Jetzt fuer ${priceEur.toLocaleString("de-DE", { minimumFractionDigits: 2 })} € freischalten`}
+                : `Jetzt für ${priceEur.toLocaleString("de-DE", { minimumFractionDigits: 2 })} € freischalten`}
           </button>
 
           <div className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-slate-500">
             <ShieldCheck className="h-3 w-3" />
             <span>
               {DEV_MOCK_ENABLED
-                ? "Pilotphase — Freischaltung kostenlos, keine Zahlung noetig"
-                : "Sichere Zahlung ueber Stripe — Kreditkarte, SEPA, Apple Pay"}
+                ? "Pilotphase — Freischaltung kostenlos, keine Zahlung nötig"
+                : "Sichere Zahlung über Stripe — Kreditkarte, SEPA, Apple Pay"}
             </span>
           </div>
 
@@ -287,8 +287,8 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
           </div>
 
           <p className="mt-4 text-xs text-slate-500">
-            Nach der Zahlung bekommen Sie einen Download-Link. Ihr Antrag bleibt darueber
-            30 Tage verfuegbar und ist auch unter „Meine Antraege" erreichbar.
+            Nach der Zahlung bekommen Sie einen Download-Link. Ihr Antrag bleibt darüber
+            30 Tage verfügbar und ist auch unter „Meine Anträge" erreichbar.
           </p>
         </div>
       </div>
