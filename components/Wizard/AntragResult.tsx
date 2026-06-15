@@ -16,6 +16,16 @@ import { AntragSectionNav, slugifyHeading } from "./AntragSectionNav";
 import { KiHinweis, KI_EXPORT_HINWEIS } from "@/components/KiHinweis";
 import { markdownToRtf } from "@/lib/export/rtf";
 
+/** Anzeige-Labels fuer Critique-Kategorien (Enum-Slugs -> Klartext mit Umlaut). */
+const CRITIQUE_KATEGORIE_LABELS: Record<string, string> = {
+  floskel: "Floskel",
+  redundanz: "Redundanz",
+  belegluecke: "Beleglücke",
+  richtlinie: "Richtlinie",
+  inkonsistenz: "Inkonsistenz",
+  sonstiges: "Sonstiges",
+};
+
 interface Props {
   programm: Foerderprogramm;
   generation: GenerationArtefacts;
@@ -470,7 +480,7 @@ export function AntragResult({
                         {f.schwere}
                       </span>
                       <span className="rounded-full border border-[#0a1628]/15 px-2 py-0.5 text-[10px] text-slate-600">
-                        {f.kategorie} · {f.abschnitt}
+                        {CRITIQUE_KATEGORIE_LABELS[f.kategorie] ?? f.kategorie} · {f.abschnitt}
                       </span>
                       <span className={`rounded-full border px-2 py-0.5 text-[10px] uppercase ${badge}`}>
                         {status}

@@ -4,6 +4,7 @@ import { useState, useMemo, memo } from "react";
 import Link from "next/link";
 import { Building2, Euro, Calendar, MapPin, ArrowRight } from "lucide-react";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
+import { formatKategorie } from "@/lib/kategorie-labels";
 
 interface GlassCardProps {
   programm: Foerderprogramm;
@@ -139,7 +140,7 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
                 key={kat}
                 className="px-2 py-1 rounded-md text-xs bg-[#f8f5f0] text-[#1e3a61] border border-[#ebe5dc]"
               >
-                {kat}
+                {formatKategorie(kat)}
               </span>
             ))}
           </div>
