@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
     }
     if (plan.legitimiertAm) {
       return NextResponse.json(
-        { error: "Finanzplan ist bereits freigegeben und kann nicht mehr geaendert werden." },
+        { error: "Finanzplan ist bereits freigegeben und kann nicht mehr geändert werden." },
         { status: 409 }
       );
     }
@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
     const action = actions.find((a) => a.id === actionId);
     if (!action) {
       return NextResponse.json(
-        { error: `Auto-Fix-Aktion '${actionId}' nicht (mehr) verfuegbar — Plan oder Richtlinie hat sich geaendert.` },
+        { error: `Auto-Fix-Aktion '${actionId}' nicht (mehr) verfügbar — Plan oder Richtlinie hat sich geändert.` },
         { status: 410 }
       );
     }

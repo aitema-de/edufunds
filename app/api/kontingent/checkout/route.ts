@@ -17,7 +17,7 @@ import { getStripe, stripeConfigured } from "@/lib/stripe/client";
 const checkoutSchema = z.object({
   packId: z.string().min(1, "Paket erforderlich"),
   orgName: z.string().trim().min(2, "Name der Organisation erforderlich").max(200),
-  email: z.string().trim().email("Gueltige E-Mail-Adresse erforderlich").max(200),
+  email: z.string().trim().email("Gültige E-Mail-Adresse erforderlich").max(200),
 });
 
 function appUrl(req: NextRequest): string {
@@ -32,12 +32,12 @@ export async function POST(req: NextRequest) {
   try {
     const raw = await req.json().catch(() => null);
     if (!raw) {
-      return NextResponse.json({ error: "Ungueltige Anfrage" }, { status: 400 });
+      return NextResponse.json({ error: "Ungültige Anfrage" }, { status: 400 });
     }
 
     const parsed = checkoutSchema.safeParse(raw);
     if (!parsed.success) {
-      const msg = parsed.error.errors[0]?.message ?? "Eingaben unvollstaendig";
+      const msg = parsed.error.errors[0]?.message ?? "Eingaben unvollständig";
       return NextResponse.json({ error: msg }, { status: 400 });
     }
     const { packId, orgName, email } = parsed.data;
@@ -71,7 +71,7 @@ export async function POST(req: NextRequest) {
             unit_amount: pack.priceCents,
             product_data: {
               name: `EduFunds Kontingent — ${pack.label}`,
-              description: `${pack.credits} Foerderantraege, 12 Monate gueltig`,
+              description: `${pack.credits} Förderanträge, 12 Monate gültig`,
             },
           },
           quantity: 1,

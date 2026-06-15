@@ -175,13 +175,13 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
 
   const exportCsv = () => {
     const rows: string[] = [];
-    rows.push(["Kategorie", "Bezeichnung", "Typ", "Betrag_EUR", "Begruendung"].join(";"));
+    rows.push(["Kategorie", "Bezeichnung", "Typ", "Betrag_EUR", "Begründung"].join(";"));
     for (const p of posten) {
       rows.push(
         [
           p.kategorie,
           `"${p.bezeichnung.replace(/"/g, '""')}"`,
-          p.eigenanteil ? "Eigenanteil" : "Foerderung",
+          p.eigenanteil ? "Eigenanteil" : "Förderung",
           String(p.betragEur),
           `"${(p.begruendung ?? "").replace(/"/g, '""')}"`,
         ].join(";")
@@ -394,7 +394,7 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
         <div className="mt-4 rounded-lg border border-[#c9a227]/40 bg-[#c9a227]/5 p-3">
           <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#c9a227]">
             <Wand2 className="h-3.5 w-3.5" />
-            Auto-Fix-Vorschlaege
+            Auto-Fix-Vorschläge
           </div>
           <ul className="space-y-2">
             {autofixes.map((a) => (

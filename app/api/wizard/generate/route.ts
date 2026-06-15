@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({
         sessionToken,
         phase: "generating",
-        message: "Pipeline laeuft bereits, polle /api/wizard/[token]",
+        message: "Pipeline läuft bereits, polle /api/wizard/[token]",
         generation: session.data.generation ?? null,
       });
     }

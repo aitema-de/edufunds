@@ -84,7 +84,7 @@ export function StartClient() {
         setMatchState({ kind: "ranking", matches: [] });
         setError({
           message:
-            "Anliegen ist vage geblieben — bitte praezisere die Eingabe oder probiere mehr Details.",
+            "Anliegen ist vage geblieben — bitte präzisere die Eingabe oder probiere mehr Details.",
         });
       } else if (body.kind === "ranking") {
         setMatchState({

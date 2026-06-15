@@ -115,7 +115,7 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
               onClick={closeModal}
               disabled={busy}
               className="absolute right-4 top-4 rounded-lg p-1 text-slate-500 transition hover:bg-[#f8f5f0] hover:text-[#0a1628] disabled:opacity-50"
-              aria-label="Schliessen"
+              aria-label="Schließen"
             >
               <X className="h-5 w-5" />
             </button>

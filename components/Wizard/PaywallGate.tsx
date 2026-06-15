@@ -102,7 +102,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
         message:
           e instanceof Error
             ? `Netzwerkfehler: ${e.message}`
-            : "Netzwerkfehler — bitte Verbindung pruefen und erneut versuchen.",
+            : "Netzwerkfehler — bitte Verbindung prüfen und erneut versuchen.",
       });
     } finally {
       setBusy(false);
@@ -237,7 +237,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-[#1e3a61] transition-colors hover:text-[#c9a227]"
               >
                 <Ticket className="h-4 w-4" />
-                Kontingent-Code einloesen
+                Kontingent-Code einlösen
               </button>
             ) : (
               <div className="text-left">
@@ -245,10 +245,10 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                   htmlFor="kontingent-code"
                   className="mb-1 block text-sm font-medium text-[#0a1628]"
                 >
-                  Kontingent-Code Ihres Traegers
+                  Kontingent-Code Ihres Trägers
                 </label>
                 <p className="mb-2 text-xs text-slate-500">
-                  Hat Ihr Schultraeger ein Kontingent gekauft, schalten Sie Ihren Antrag hiermit
+                  Hat Ihr Schulträger ein Kontingent gekauft, schalten Sie Ihren Antrag hiermit
                   frei — ohne eigene Zahlung.
                 </p>
                 <div className="flex gap-2">
@@ -276,7 +276,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                     ) : (
                       <Check className="h-4 w-4" />
                     )}
-                    Einloesen
+                    Einlösen
                   </button>
                 </div>
                 {redeemError && (

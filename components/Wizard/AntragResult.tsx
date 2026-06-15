@@ -59,7 +59,7 @@ function buildMarkdownComponents(paid: boolean, programmId: string) {
             <a
               href={`/antrag/${programmId}/wizard?editAnswer=true`}
               className="opacity-0 group-hover:opacity-100 text-slate-500 hover:text-[#1e3a61] transition"
-              title="Antwort zurueck und neu beantworten"
+              title="Antwort zurück und neu beantworten"
               aria-label="Sektion bearbeiten"
             >
               <PenLine className="h-3.5 w-3.5" />
