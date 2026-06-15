@@ -29,6 +29,8 @@ import {
 import type { Foerderprogramm } from '@/lib/foerderSchema';
 import foerderprogrammeData from '@/data/foerderprogramme.json';
 import { KIAntragAssistent } from "@/components/KIAntragAssistent";
+import { EinreichungInfo } from "@/components/Wizard/EinreichungInfo";
+import type { EinreichungInfo as EinreichungInfoData } from "@/lib/wizard/einreichung";
 import { formatKategorie } from "@/lib/kategorie-labels";
 import {
   Dialog,
@@ -144,9 +146,10 @@ function getSimilarPrograms(currentId: string, kategorien: string[], limit: numb
 
 interface FoerderprogrammDetailClientProps {
   programm: Foerderprogramm;
+  einreichung?: EinreichungInfoData | null;
 }
 
-export default function FoerderprogrammDetailClient({ programm }: FoerderprogrammDetailClientProps) {
+export default function FoerderprogrammDetailClient({ programm, einreichung }: FoerderprogrammDetailClientProps) {
   const [showKIAssistent, setShowKIAssistent] = useState(false);
 
   const countdown = useCountdown(programm.bewerbungsfristEnde ?? null);
@@ -449,6 +452,13 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
                   </p>
                 )}
               </section>
+
+              <EinreichungInfo
+                info={einreichung ?? null}
+                kontaktEmail={programm.kontaktEmail}
+                kontaktTelefon={programm.kontaktTelefon}
+                bewerbungsfristText={programm.bewerbungsfristText}
+              />
 
               <section className="glass rounded-2xl p-6">
                 <h2 className="text-xl font-bold text-[#0a1628] mb-4 flex items-center gap-3">

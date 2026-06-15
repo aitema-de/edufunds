@@ -9,6 +9,8 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { AntragResult } from "@/components/Wizard/AntragResult";
 import { getSessionByPaidToken } from "@/lib/wizard/session";
+import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
+import { getEinreichung } from "@/lib/wizard/einreichung";
 
 const foerderprogramme = foerderprogrammeData as Foerderprogramm[];
 
@@ -28,6 +30,9 @@ export default async function DownloadPage({ params }: Props) {
 
   const programm = foerderprogramme.find((p) => p.id === session.foerderprogrammId);
   if (!programm || !session.data.generation) notFound();
+
+  const richtlinie = await loadRichtlinie(session.foerderprogrammId);
+  const einreichung = getEinreichung(richtlinie);
 
   return (
     <>
@@ -64,6 +69,7 @@ export default async function DownloadPage({ params }: Props) {
             costs={session.data.costs ?? null}
             sessionToken={session.sessionToken}
             paidToken={session.paidToken ?? null}
+            einreichung={einreichung}
           />
         </div>
       </main>

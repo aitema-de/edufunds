@@ -15,6 +15,8 @@ import { PaywallGate } from "./PaywallGate";
 import { AntragSectionNav, slugifyHeading } from "./AntragSectionNav";
 import { KiHinweis, KI_EXPORT_HINWEIS } from "@/components/KiHinweis";
 import { markdownToRtf } from "@/lib/export/rtf";
+import { EinreichungInfo } from "./EinreichungInfo";
+import type { EinreichungInfo as EinreichungInfoData } from "@/lib/wizard/einreichung";
 
 /** Anzeige-Labels fuer Critique-Kategorien (Enum-Slugs -> Klartext mit Umlaut). */
 const CRITIQUE_KATEGORIE_LABELS: Record<string, string> = {
@@ -41,6 +43,7 @@ interface Props {
   sessionToken?: string;
   /** Wenn gesetzt, ist der Antrag bereits bezahlt — Paywall wird nicht angezeigt. */
   paidToken?: string | null;
+  einreichung?: EinreichungInfoData | null;
   onRestart?: () => void;
   onFinanzplanChange?: (plan: Finanzplan) => void;
 }
@@ -184,6 +187,7 @@ export function AntragResult({
   costs,
   sessionToken,
   paidToken,
+  einreichung,
   onRestart,
   onFinanzplanChange,
 }: Props) {
@@ -534,6 +538,17 @@ export function AntragResult({
           )}
         </details>
       )}
+
+      {/* So reichen Sie ein — direkt nach Antragstext/Downloads, damit der
+          Nutzer beim Copy-Paste weiss, wohin mit dem Antrag. */}
+      <div className="mt-6">
+        <EinreichungInfo
+          info={einreichung ?? null}
+          kontaktEmail={programm.kontaktEmail}
+          kontaktTelefon={programm.kontaktTelefon}
+          bewerbungsfristText={programm.bewerbungsfristText}
+        />
+      </div>
 
       {/* Unsichtbarer, druckoptimierter Klon für html2pdf — nur nach Zahlung rendern */}
       {paid && (

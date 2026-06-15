@@ -11,6 +11,7 @@ import type {
 } from "@/lib/wizard/types";
 import { STAGE_LABELS } from "@/lib/wizard/stage-labels";
 import type { CostLedger } from "@/lib/wizard/pricing";
+import type { EinreichungInfo } from "@/lib/wizard/einreichung";
 import {
   clearSchoolProfile,
   loadSchoolProfile,
@@ -53,9 +54,10 @@ const STORAGE_KEY_PREFIX = "edufunds.wizard.session.";
 
 interface Props {
   programm: Foerderprogramm;
+  einreichung?: EinreichungInfo | null;
 }
 
-export function WizardShell({ programm }: Props) {
+export function WizardShell({ programm, einreichung }: Props) {
   const storageKey = STORAGE_KEY_PREFIX + programm.id;
 
   const [state, setState] = useState<WizardApiState | null>(null);
@@ -629,6 +631,7 @@ export function WizardShell({ programm }: Props) {
         costs={state.costs ?? null}
         sessionToken={state.sessionToken}
         paidToken={state.paidToken ?? null}
+        einreichung={einreichung}
         onRestart={resetSession}
         onFinanzplanChange={(plan) => {
           setGeneration((g) => (g ? { ...g, finanzplan: plan } : g));
