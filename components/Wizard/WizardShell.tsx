@@ -20,6 +20,7 @@ import {
 } from "@/lib/wizard/school-profile-client";
 import {
   consumeHandoff,
+  clearHandoff,
   handoffToSeedFacts,
   type MatchHandoff,
 } from "@/lib/wizard/match-handoff-client";
@@ -67,6 +68,9 @@ export function WizardShell({ programm }: Props) {
   const [schoolProfile, setSchoolProfile] = useState<SchoolProfile | null>(null);
   const [handoff, setHandoff] = useState<MatchHandoff | null>(null);
   const [conflicts, setConflicts] = useState<Conflict[]>([]);
+  // Token einer gespeicherten Session, deren Laden gerade fehlschlug. Solange
+  // er gesetzt ist, bieten wir „Erneut laden" an, statt den Antrag zu verlieren.
+  const [resumeToken, setResumeToken] = useState<string | null>(null);
   const [readiness, setReadiness] = useState<ReadinessReport | null>(null);
 
   const loadSession = useCallback(async (token: string) => {
@@ -76,6 +80,16 @@ export function WizardShell({ programm }: Props) {
       const res = await fetch(`/api/wizard/${token}`);
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
+        // Nur wenn die Session serverseitig wirklich weg ist (404/410), den
+        // lokalen Token verwerfen. Bei transienten Fehlern (5xx, Netzwerk)
+        // bleibt der Token erhalten, damit der Antrag wiederfindbar ist.
+        if (res.status === 404 || res.status === 410) {
+          localStorage.removeItem(storageKey);
+          setResumeToken(null);
+          throw new Error(
+            body.error ?? "Dieser Antrag wurde nicht gefunden oder ist abgelaufen."
+          );
+        }
         throw new Error(body.error ?? `HTTP ${res.status}`);
       }
       const body = await res.json();
@@ -103,9 +117,12 @@ export function WizardShell({ programm }: Props) {
       });
       const synced = syncProfileFromFacts(body.facts ?? {});
       if (synced) setSchoolProfile(synced);
+      setResumeToken(null);
     } catch (e) {
-      localStorage.removeItem(storageKey);
-      setError(e instanceof Error ? e.message : "Session konnte nicht geladen werden.");
+      // Token NICHT loeschen — bei transienten Fehlern soll der Antrag beim
+      // naechsten Versuch wieder ladbar sein. resumeToken bleibt gesetzt,
+      // damit die UI „Erneut laden" anbietet (siehe !state-Zweig).
+      setError(e instanceof Error ? e.message : "Antrag konnte nicht geladen werden.");
     } finally {
       setBusy(false);
     }
@@ -135,6 +152,10 @@ export function WizardShell({ programm }: Props) {
       const body = (await res.json()) as WizardApiState;
       setState(body);
       localStorage.setItem(storageKey, body.sessionToken);
+      setResumeToken(body.sessionToken);
+      // Handoff erst jetzt verwerfen — nach erfolgreichem Start ist er
+      // sicher in die Session eingeflossen.
+      clearHandoff();
       const synced = syncProfileFromFacts(body.facts);
       if (synced) setSchoolProfile(synced);
       if (body.question) {
@@ -171,6 +192,7 @@ export function WizardShell({ programm }: Props) {
     }
     const existing = fromUrl ?? localStorage.getItem(storageKey);
     if (existing) {
+      setResumeToken(existing);
       loadSession(existing);
     } else {
       // Nur beim ersten Start (kein fortgesetztes Gespraech) Handoff konsumieren
@@ -462,6 +484,49 @@ export function WizardShell({ programm }: Props) {
     setError(null);
   }, [storageKey]);
 
+  // Wiederherstellungs-Ansicht: Es gibt einen gespeicherten Antrag, dessen
+  // Laden gerade fehlschlug. Statt den Antrag scheinbar zu verlieren (und nur
+  // „Wizard starten" anzubieten, was eine neue Session erzeugt), bieten wir
+  // hier prominent das erneute Laden an.
+  if (!state && resumeToken && error) {
+    return (
+      <div className="rounded-xl border border-amber-300 bg-amber-50 p-8 text-center">
+        <h2 className="mb-2 text-2xl font-semibold text-[#0a1628]">
+          Dein Antrag ist gespeichert
+        </h2>
+        <p className="mx-auto mb-2 max-w-xl text-slate-700">
+          Wir konnten ihn gerade nicht laden — das ist meist nur eine kurze
+          Verbindungsstörung. Dein Fortschritt ist sicher gespeichert und geht
+          nicht verloren.
+        </p>
+        <p className="mx-auto mb-6 max-w-xl text-sm text-slate-500">{error}</p>
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <button
+            type="button"
+            disabled={busy}
+            onClick={() => loadSession(resumeToken)}
+            className="rounded-lg bg-[#c9a227] px-6 py-3 font-semibold text-white transition hover:bg-[#b8921e] disabled:opacity-50"
+          >
+            {busy ? "Lade…" : "Antrag erneut laden"}
+          </button>
+          <a
+            href="/antrag/meine"
+            className="rounded-lg border border-[#0a1628]/15 px-6 py-3 font-medium text-[#1e3a61] transition hover:bg-white"
+          >
+            Meine Anträge
+          </a>
+        </div>
+        <button
+          type="button"
+          onClick={resetSession}
+          className="mt-5 text-xs text-slate-400 underline hover:text-slate-600"
+        >
+          Stattdessen neuen Antrag starten
+        </button>
+      </div>
+    );
+  }
+
   if (!state) {
     return (
       <>
@@ -580,6 +645,13 @@ export function WizardShell({ programm }: Props) {
         <div className="mb-4">
           <ResumeOptIn sessionToken={state.sessionToken} />
         </div>
+        <p className="mb-4 text-xs text-slate-500">
+          Dein Fortschritt wird automatisch gespeichert.{" "}
+          <a href="/antrag/meine" className="underline hover:text-slate-700">
+            Unter „Meine Anträge"
+          </a>{" "}
+          findest du ihn jederzeit wieder.
+        </p>
         {error && (
           <div className="mb-4">
             <WizardErrorBlock message={error} />

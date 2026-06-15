@@ -29,6 +29,7 @@ import {
 import type { Foerderprogramm } from '@/lib/foerderSchema';
 import foerderprogrammeData from '@/data/foerderprogramme.json';
 import { KIAntragAssistent } from "@/components/KIAntragAssistent";
+import { formatKategorie } from "@/lib/kategorie-labels";
 import {
   Dialog,
   DialogContent,
@@ -65,6 +66,8 @@ const SCHULFORMEN_MAP: Record<string, string> = {
   "realschule": "Realschule",
   "gymnasium": "Gymnasium",
   "gesamtschule": "Gesamtschule",
+  "iss": "Integrierte Sekundarschule (ISS)",
+  "iss-mit-go": "Integrierte Sekundarschule mit Oberstufe (ISS+GO)",
   "foerderschule": "Förderschule",
   "berufsschule": "Berufsschule",
 };
@@ -310,7 +313,7 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
                       key={kategorie}
                       className="px-4 py-2 rounded-xl bg-white text-slate-700 text-sm font-medium border border-[#0a1628]/15 hover:border-[#c9a227]/30 transition-colors"
                     >
-                      {kategorie.charAt(0).toUpperCase() + kategorie.slice(1).replace(/-/g, " ")}
+                      {formatKategorie(kategorie)}
                     </span>
                   ))}
                 </div>

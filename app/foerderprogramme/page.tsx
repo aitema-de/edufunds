@@ -10,6 +10,7 @@ import { ProgramCardSkeleton, ProgramCardSkeletonGrid } from "@/components/Progr
 import { Search, Filter, School, X, Landmark, MapPinned, HeartHandshake, Globe } from "lucide-react";
 import type { Foerderprogramm } from '@/lib/foerderSchema';
 import { foerderprogrammeFetcher, FOERDERPROGRAMME_CACHE_KEY, swrConfig } from "@/lib/swr-fetcher";
+import { formatKategorie } from "@/lib/kategorie-labels";
 import { useLocalStorage, useDebounce, usePagination } from "@/hooks/useLocalStorage";
 
 // Dynamic Import für GlassCard (Code-Splitting)
@@ -200,9 +201,9 @@ export default function FoerderprogrammePage() {
     const alleKategorien = Array.from(new Set(foerderprogramme.flatMap(p => p.kategorien))).sort();
     return [
       { value: "", label: "Alle Kategorien" },
-      ...alleKategorien.map(kat => ({ 
-        value: kat, 
-        label: kat.charAt(0).toUpperCase() + kat.slice(1).replace(/-/g, " ") 
+      ...alleKategorien.map(kat => ({
+        value: kat,
+        label: formatKategorie(kat)
       }))
     ];
   }, [foerderprogramme]);

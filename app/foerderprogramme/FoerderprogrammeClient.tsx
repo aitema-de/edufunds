@@ -2,6 +2,7 @@
 
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { formatKategorie } from "@/lib/kategorie-labels";
 import { Search, Filter, Building2, Euro, Calendar, MapPin, ArrowRight, School, X } from "lucide-react";
 
 import Link from "next/link";
@@ -50,7 +51,7 @@ const FOERDERGEBER_TYPEN = [
 const ALLE_KATEGORIEN = Array.from(new Set(foerderprogramme.flatMap(p => p.kategorien))).sort();
 const KATEGORIEN = [
   { value: "", label: "Alle Kategorien" },
-  ...ALLE_KATEGORIEN.map(kat => ({ value: kat, label: kat.charAt(0).toUpperCase() + kat.slice(1).replace(/-/g, " ") }))
+  ...ALLE_KATEGORIEN.map(kat => ({ value: kat, label: formatKategorie(kat) }))
 ];
 
 // Statistiken berechnen

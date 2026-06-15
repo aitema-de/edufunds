@@ -3,8 +3,13 @@
  * Der Wizard liest das beim Mount und uebernimmt es als seedFacts, sodass
  * die KI nicht mehr nach dem Anliegen fragt.
  *
- * Verwendet sessionStorage — das Objekt ueberlebt den Tab-Wechsel auf die
- * Wizard-Seite, aber nicht einen Browser-Neustart.
+ * Verwendet localStorage statt sessionStorage: sessionStorage ist tab-gebunden
+ * und in Safari beim Navigieren zwischen Seiten unzuverlaessig — der Handoff
+ * (und damit das eingegebene Anliegen) ging dabei verloren. localStorage
+ * ueberlebt Tab-Wechsel und Reload. Der Handoff wird NICHT mehr beim Lesen
+ * geloescht, sondern erst per clearHandoff(), nachdem die Wizard-Session
+ * erfolgreich gestartet wurde — so ueberlebt er auch einen fehlgeschlagenen
+ * Startversuch.
  */
 
 import type { WizardFacts } from "./types";
@@ -24,19 +29,27 @@ export interface MatchHandoff {
 export function saveHandoff(h: Omit<MatchHandoff, "savedAt">): void {
   if (typeof window === "undefined") return;
   const payload: MatchHandoff = { ...h, savedAt: new Date().toISOString() };
-  window.sessionStorage.setItem(KEY, JSON.stringify(payload));
+  window.localStorage.setItem(KEY, JSON.stringify(payload));
 }
 
+/**
+ * Liest den Handoff, OHNE ihn zu loeschen. Geloescht wird erst per
+ * clearHandoff() nach erfolgreichem Wizard-Start.
+ */
 export function consumeHandoff(): MatchHandoff | null {
   if (typeof window === "undefined") return null;
-  const raw = window.sessionStorage.getItem(KEY);
+  const raw = window.localStorage.getItem(KEY);
   if (!raw) return null;
-  window.sessionStorage.removeItem(KEY);
   try {
     return JSON.parse(raw) as MatchHandoff;
   } catch {
     return null;
   }
+}
+
+export function clearHandoff(): void {
+  if (typeof window === "undefined") return;
+  window.localStorage.removeItem(KEY);
 }
 
 export function handoffToSeedFacts(h: MatchHandoff): Partial<WizardFacts> {

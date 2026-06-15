@@ -26,6 +26,8 @@ const SCHULTYPEN = [
   "Hauptschule",
   "Realschule",
   "Gesamtschule",
+  "Integrierte Sekundarschule (ISS)",
+  "Integrierte Sekundarschule mit Oberstufe (ISS+GO)",
   "Gymnasium",
   "Oberschule",
   "Förderschule",
