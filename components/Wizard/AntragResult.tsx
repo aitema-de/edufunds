@@ -26,6 +26,14 @@ const CRITIQUE_KATEGORIE_LABELS: Record<string, string> = {
   sonstiges: "Sonstiges",
 };
 
+/** Anzeige-Labels fuer Konsistenz-Check-Arten (Enum-Slugs -> Klartext). */
+const CONSISTENCY_ART_LABELS: Record<string, string> = {
+  "posten-ohne-textbezug": "Posten ohne Textbezug",
+  "textbezug-ohne-posten": "Textbezug ohne Posten",
+  "betrag-unstimmig": "Betrag unstimmig",
+  sonstiges: "Sonstiges",
+};
+
 interface Props {
   programm: Foerderprogramm;
   generation: GenerationArtefacts;
@@ -509,7 +517,7 @@ export function AntragResult({
                   <div key={idx} className="rounded border border-[#0a1628]/15 bg-[#f8f5f0] p-2.5">
                     <div className="mb-1">
                       <span className="rounded-full border border-amber-500/40 px-2 py-0.5 text-[10px] uppercase text-amber-300">
-                        {i.art}
+                        {CONSISTENCY_ART_LABELS[i.art] ?? i.art}
                       </span>
                     </div>
                     <div className="text-[#1e3a61]">{i.beschreibung}</div>
