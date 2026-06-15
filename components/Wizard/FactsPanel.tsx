@@ -31,9 +31,13 @@ function formatValue(v: unknown): string {
 }
 
 function humanizeKey(k: string): string {
+  // Jedes Wort gross schreiben (nicht nur das erste), sonst entsteht
+  // "Erwartete ergebnisse" / "Messbare indikatoren".
   return k
     .replace(/_/g, " ")
-    .replace(/^./, (c) => c.toUpperCase());
+    .split(" ")
+    .map((w) => (w ? w.charAt(0).toUpperCase() + w.slice(1) : w))
+    .join(" ");
 }
 
 export function FactsPanel({ facts, compact }: Props) {
