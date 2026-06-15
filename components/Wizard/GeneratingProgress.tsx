@@ -45,10 +45,10 @@ export function GeneratingProgress({ stage, currentStage }: Props) {
         <Loader2 className="h-8 w-8 animate-spin text-[#c9a227]" />
         <div>
           <h3 className="text-xl font-semibold text-[#0a1628]">
-            Pipeline schreibt deinen Antrag
+            Pipeline schreibt Ihren Antrag
           </h3>
           <p className="text-sm text-slate-600">
-            Typisch 1–3 Minuten. Bleib auf der Seite — das Ergebnis erscheint automatisch.
+            Typisch 1–3 Minuten. Bleiben Sie auf der Seite — das Ergebnis erscheint automatisch.
           </p>
         </div>
       </div>

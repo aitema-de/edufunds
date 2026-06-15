@@ -11,7 +11,7 @@ import { KiHinweis } from "@/components/KiHinweis";
 export const metadata: Metadata = {
   title: "Neuen Antrag starten – EduFunds",
   description:
-    "Beschreibe dein Anliegen, und die KI findet die passendsten Förderprogramme aus über 135 Angeboten.",
+    "Beschreiben Sie Ihr Anliegen, und die KI findet die passendsten Förderprogramme aus über 135 Angeboten.",
 };
 
 export default function StartPage() {
@@ -26,7 +26,7 @@ export default function StartPage() {
         }}
         title="Neuen Antrag"
         titleAccent="starten"
-        subtitle="Beschreib dein Anliegen in deinen Worten. Die KI gleicht es mit über 135 Förderprogrammen ab und schlägt dir die fünf passendsten vor — mit Begründung. Danach startest du direkt den Antragswizard."
+        subtitle="Beschreiben Sie Ihr Anliegen in Ihren Worten. Die KI gleicht es mit über 135 Förderprogrammen ab und schlägt Ihnen die fünf passendsten vor — mit Begründung. Danach starten Sie direkt den Antragswizard."
       >
         <div className="flex justify-center">
           <Link

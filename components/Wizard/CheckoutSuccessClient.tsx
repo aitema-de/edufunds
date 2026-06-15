@@ -90,7 +90,7 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
       <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-8 text-center">
         <CheckCircle2 className="mx-auto mb-3 h-10 w-10 text-emerald-400" />
         <h1 className="mb-2 text-xl font-semibold text-[#0a1628]">Zahlung bestaetigt</h1>
-        <p className="mb-4 text-sm text-slate-700">Dein Antrag wird gleich geoeffnet.</p>
+        <p className="mb-4 text-sm text-slate-700">Ihr Antrag wird gleich geoeffnet.</p>
         <Link
           href={`/antrag/download/${paidToken}`}
           className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-600"
@@ -113,8 +113,8 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
           bei uns angekommen. Das passiert normalerweise innerhalb einer Minute.
         </p>
         <p className="mb-5 text-xs text-slate-600">
-          Du kannst diese Seite schliessen — sobald die Bestaetigung kommt, ist der Antrag
-          unter „Meine Antraege" erreichbar. Oder du wartest hier weiter:
+          Sie können diese Seite schliessen — sobald die Bestaetigung kommt, ist der Antrag
+          unter „Meine Antraege" erreichbar. Oder Sie warten hier weiter:
         </p>
         <div className="flex flex-wrap items-center justify-center gap-2">
           <button
@@ -144,8 +144,8 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
           Verbindungsproblem
         </h1>
         <p className="mb-3 text-sm text-slate-700">
-          Wir konnten den Zahlungs-Status mehrfach hintereinander nicht abfragen. Pruefe
-          deine Verbindung — die Zahlung selbst ist bei Stripe sicher und wird beim
+          Wir konnten den Zahlungs-Status mehrfach hintereinander nicht abfragen. Pruefen Sie
+          Ihre Verbindung — die Zahlung selbst ist bei Stripe sicher und wird beim
           naechsten Versuch erkannt.
         </p>
         {networkError && (
@@ -171,7 +171,7 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
           Kein Session-Token uebermittelt
         </h1>
         <p className="text-sm text-slate-700">
-          Bitte oeffne den Antrag ueber „Meine Antraege".
+          Bitte oeffnen Sie den Antrag ueber „Meine Antraege".
         </p>
         <Link
           href="/antrag/meine"

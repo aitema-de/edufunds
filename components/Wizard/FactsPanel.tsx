@@ -47,7 +47,7 @@ export function FactsPanel({ facts, compact }: Props) {
   if (!hasAny) {
     return (
       <p className="text-sm text-slate-500">
-        Werden aus deinen Antworten strukturiert extrahiert.
+        Werden aus Ihren Antworten strukturiert extrahiert.
       </p>
     );
   }

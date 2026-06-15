@@ -121,7 +121,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         {
           error:
-            "Die KI war kurz nicht erreichbar. Deine Antwort ist gespeichert — bitte sende sie gleich noch einmal.",
+            "Die KI war kurz nicht erreichbar. Ihre Antwort ist gespeichert — bitte senden Sie sie gleich noch einmal.",
           retryable: true,
         },
         { status: 503 }

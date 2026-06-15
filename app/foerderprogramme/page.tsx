@@ -340,7 +340,7 @@ export default function FoerderprogrammePage() {
                 href="/antrag/start"
                 className="inline-flex items-center gap-2 rounded-lg bg-[#c9a227] px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-[#b8921e]"
               >
-                Beschreib dein Anliegen → KI findet passende Programme
+                Beschreiben Sie Ihr Anliegen → KI findet passende Programme
               </a>
             </div>
           </div>

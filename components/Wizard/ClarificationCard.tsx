@@ -34,7 +34,7 @@ export function ClarificationCard({ question, onSubmit, onForceRanking, busy }: 
         aria-label="Anliegen praezisieren"
         value={praezisierung}
         onChange={(e) => setPraezisierung(e.target.value)}
-        placeholder="Praezisiere dein Anliegen hier..."
+        placeholder="Praezisieren Sie Ihr Anliegen hier..."
         className="w-full rounded-lg bg-white border border-[#0a1628]/15 px-4 py-3 text-sm text-[#0a1628] placeholder-slate-400 resize-none min-h-[80px] transition focus:border-[#c9a227] focus:outline-none focus:ring-2 focus:ring-[#c9a227]/15"
       />
       <div className="flex items-center justify-between flex-wrap gap-3">

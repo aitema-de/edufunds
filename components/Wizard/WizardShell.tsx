@@ -290,7 +290,7 @@ export function WizardShell({ programm }: Props) {
       // Server-Pipeline läuft im Hintergrund weiter (idempotent durch phase=complete-Check);
       // die Verbindung kann sich erholen (Cloudflare/Traefik-Hicccup, kurzfristiger TCP-Reset).
       if (consecutiveFailures === 5) {
-        setError("Server-Verbindung instabil — Pipeline läuft im Hintergrund weiter. Falls dein Antrag nicht binnen 2 Minuten erscheint, lade die Seite neu (deine Eingaben bleiben gespeichert).");
+        setError("Server-Verbindung instabil — Pipeline läuft im Hintergrund weiter. Falls Ihr Antrag nicht binnen 2 Minuten erscheint, laden Sie die Seite neu (Ihre Eingaben bleiben gespeichert).");
       }
       // Erstmal 2s zwischen Polls, ab dem 5. failure auf 8s drosseln (degraded mode).
       const nextInterval = consecutiveFailures >= 5 ? 8000 : 2000;
@@ -492,11 +492,11 @@ export function WizardShell({ programm }: Props) {
     return (
       <div className="rounded-xl border border-amber-300 bg-amber-50 p-8 text-center">
         <h2 className="mb-2 text-2xl font-semibold text-[#0a1628]">
-          Dein Antrag ist gespeichert
+          Ihr Antrag ist gespeichert
         </h2>
         <p className="mx-auto mb-2 max-w-xl text-slate-700">
           Wir konnten ihn gerade nicht laden — das ist meist nur eine kurze
-          Verbindungsstörung. Dein Fortschritt ist sicher gespeichert und geht
+          Verbindungsstörung. Ihr Fortschritt ist sicher gespeichert und geht
           nicht verloren.
         </p>
         <p className="mx-auto mb-6 max-w-xl text-sm text-slate-500">{error}</p>
@@ -536,13 +536,13 @@ export function WizardShell({ programm }: Props) {
           KI-Antragswizard
         </h2>
         <p className="mx-auto mb-6 max-w-xl text-slate-600">
-          Der Wizard führt dich in 6–12 gezielten Fragen durch die relevanten Punkte für
+          Der Wizard führt Sie in 6–12 gezielten Fragen durch die relevanten Punkte für
           „{programm.name}". Anschließend schreibt eine Pipeline mit Selbstkritik den Antragsentwurf.
         </p>
         {handoff && (
           <div className="mx-auto mb-4 max-w-xl rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 px-4 py-3 text-left text-sm text-slate-700">
             <div className="mb-1 font-medium text-[#c9a227]">
-              Dein Anliegen wird übernommen
+              Ihr Anliegen wird übernommen
             </div>
             <div className="text-slate-600 italic">
               „{handoff.anliegen.length > 200
@@ -611,7 +611,7 @@ export function WizardShell({ programm }: Props) {
   if (state.phase === "failed") {
     return (
       <WizardErrorBlock
-        message={error ?? "Die Generierung ist fehlgeschlagen. Pruefe deine Verbindung und versuche es erneut."}
+        message={error ?? "Die Generierung ist fehlgeschlagen. Pruefen Sie Ihre Verbindung und versuchen Sie es erneut."}
         onRetry={() => {
           setError(null);
           setState((s) => s ? { ...s, phase: "ready_to_generate" } : s);
@@ -646,11 +646,11 @@ export function WizardShell({ programm }: Props) {
           <ResumeOptIn sessionToken={state.sessionToken} />
         </div>
         <p className="mb-4 text-xs text-slate-500">
-          Dein Fortschritt wird automatisch gespeichert.{" "}
+          Ihr Fortschritt wird automatisch gespeichert.{" "}
           <a href="/antrag/meine" className="underline hover:text-slate-700">
             Unter „Meine Anträge"
           </a>{" "}
-          findest du ihn jederzeit wieder.
+          finden Sie ihn jederzeit wieder.
         </p>
         {error && (
           <div className="mb-4">
@@ -675,7 +675,7 @@ export function WizardShell({ programm }: Props) {
               Genug Informationen gesammelt
             </h3>
             <p className="mb-6 max-w-xl text-slate-700">
-              Die KI hat aus deinen Antworten diese Fakten erfasst. Passt das, schreibt sie jetzt den Antrag — sechs Schritte:
+              Die KI hat aus Ihren Antworten diese Fakten erfasst. Passt das, schreibt sie jetzt den Antrag — sechs Schritte:
               Gliederung → Abschnitte → Gutachten → Revision → Re-Check → Finanzplan + Konsistenzprüfung. Typisch 1–3 Minuten, ca. 0,20–0,35 € KI-Kosten.
             </p>
             <div className="mb-4 rounded-lg border border-[#0a1628]/10 bg-[#f8f5f0] p-4">

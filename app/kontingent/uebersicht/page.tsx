@@ -129,7 +129,7 @@ export default function KontingentUebersichtPage() {
               Meine Kontingente
             </h1>
             <p style={{ color: "#64748b" }}>
-              Verbrauch und Einlösungen deiner gekauften Kontingente – an deine E-Mail gebunden.
+              Verbrauch und Einlösungen Ihrer gekauften Kontingente – an Ihre E-Mail gebunden.
             </p>
           </div>
         </section>
@@ -138,7 +138,7 @@ export default function KontingentUebersichtPage() {
           <div className="container mx-auto px-6 max-w-3xl">
             {notice === "link-error" && (
               <div className="mb-6 rounded-lg border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm text-amber-800">
-                Der Link ist abgelaufen oder wurde bereits verwendet. Fordere unten einen neuen an.
+                Der Link ist abgelaufen oder wurde bereits verwendet. Fordern Sie unten einen neuen an.
               </div>
             )}
 
@@ -155,8 +155,8 @@ export default function KontingentUebersichtPage() {
                     <Check className="h-5 w-5" /> Link gesendet
                   </div>
                   <p className="mt-2 text-sm text-slate-600">
-                    Falls zu <strong>{loginEmail.trim()}</strong> Kontingente gehören, haben wir dir einen
-                    Link geschickt. Öffne ihn auf diesem Gerät, um deine Übersicht zu sehen (30 Minuten gültig).
+                    Falls zu <strong>{loginEmail.trim()}</strong> Kontingente gehören, haben wir Ihnen einen
+                    Link geschickt. Öffnen Sie ihn auf diesem Gerät, um Ihre Übersicht zu sehen (30 Minuten gültig).
                   </p>
                 </div>
               ) : (
@@ -166,7 +166,7 @@ export default function KontingentUebersichtPage() {
                     <h2 className="text-base font-semibold" style={{ color: INK }}>Anmelden</h2>
                   </div>
                   <p className="mb-3 text-sm text-slate-600">
-                    Gib die E-Mail ein, mit der du das Kontingent gekauft hast – wir schicken dir einen Link,
+                    Geben Sie die E-Mail ein, mit der Sie das Kontingent gekauft haben – wir schicken Ihnen einen Link,
                     ganz ohne Passwort.
                   </p>
                   <div className="flex flex-col gap-2 sm:flex-row">
@@ -297,7 +297,7 @@ export default function KontingentUebersichtPage() {
 
                 <p className="mt-6 flex items-center gap-2 text-xs" style={{ color: "#64748b" }}>
                   <ShieldCheck className="h-4 w-4" style={{ color: GOLD }} />
-                  Brauchst du mehr?{" "}
+                  Brauchen Sie mehr?{" "}
                   <Link href="/kontingent" className="underline" style={{ color: GOLD }}>
                     Weiteres Kontingent kaufen
                   </Link>

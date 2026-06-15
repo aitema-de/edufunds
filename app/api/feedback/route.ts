@@ -313,12 +313,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;l
 .description{background:white;padding:15px;border-radius:4px;border-left:4px solid #c9a227;margin:15px 0}
 .footer{margin-top:20px;font-size:12px;color:#475569}
 </style></head><body><div class="container">
-<div class="header"><h2 style="margin:0">Danke fuer dein Feedback!</h2><p style="margin:5px 0 0;opacity:0.9">EduFunds${prefix ? ` &mdash; Ticket ${prefix}` : ""}</p></div>
+<div class="header"><h2 style="margin:0">Danke fuer Ihr Feedback!</h2><p style="margin:5px 0 0;opacity:0.9">EduFunds${prefix ? ` &mdash; Ticket ${prefix}` : ""}</p></div>
 <div class="content">
 <p>Hallo,</p>
-<p>wir haben dein Feedback erhalten und kuemmern uns darum.</p>
+<p>wir haben Ihr Feedback erhalten und kuemmern uns darum.</p>
 <div class="description"><strong>${typeTitle}:</strong><br>${escapeHtml(payload.description).replace(/\n/g, "<br>")}</div>
-<p>Wir melden uns bei dir, sobald es Neuigkeiten gibt.</p>
+<p>Wir melden uns bei Ihnen, sobald es Neuigkeiten gibt.</p>
 <div class="footer"><p>Diese E-Mail wurde automatisch von EduFunds generiert.</p></div>
 </div></div></body></html>`;
 
@@ -328,7 +328,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;l
     body: JSON.stringify({
       from: "EduFunds <noreply@aitema.de>",
       to: [payload.email],
-      subject: `Dein Feedback wurde empfangen: ${typeTitle}${prefix ? ` (${prefix})` : ""}`,
+      subject: `Ihr Feedback wurde empfangen: ${typeTitle}${prefix ? ` (${prefix})` : ""}`,
       html,
     }),
   });

@@ -56,7 +56,7 @@ export function QuestionCard({
         value={answer}
         onChange={(e) => setAnswer(e.target.value)}
         onKeyDown={handleKey}
-        placeholder="Deine Antwort — gerne konkret mit Zahlen und Beispielen. (Strg/⌘+Enter sendet)"
+        placeholder="Ihre Antwort — gerne konkret mit Zahlen und Beispielen. (Strg/⌘+Enter sendet)"
         className="min-h-[140px] w-full rounded-lg border border-[#0a1628]/15 bg-white p-3 text-[#0a1628] placeholder-slate-400 focus:border-[#c9a227] focus:outline-none"
       />
       <div className="mt-3 flex items-center justify-between text-xs text-slate-500">

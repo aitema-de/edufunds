@@ -97,13 +97,13 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
       <div className="space-y-6">
         <div>
           <label className="mb-2 block text-sm font-medium text-[#1e3a61]">
-            Dein Anliegen <span className="text-red-500">*</span>
+            Ihr Anliegen <span className="text-red-500">*</span>
           </label>
           <textarea
             value={anliegen}
             onChange={(e) => setAnliegen(e.target.value)}
             onKeyDown={handleKey}
-            placeholder="Beschreibe, was du an deiner Schule umsetzen willst — konkret, mit Zielgruppe und Wirkung. Beispiel: Wir wollen 120 Fünft- und Sechstklässlern Programmieren mit Calliope näherbringen. 80 % Migrationshintergrund, MINT-Lücke spürbar."
+            placeholder="Beschreiben Sie, was Sie an Ihrer Schule umsetzen wollen — konkret, mit Zielgruppe und Wirkung. Beispiel: Wir wollen 120 Fünft- und Sechstklässlern Programmieren mit Calliope näherbringen. 80 % Migrationshintergrund, MINT-Lücke spürbar."
             rows={5}
             className="w-full rounded-lg border border-[#0a1628]/15 bg-[#f8f5f0]/60 p-3 sm:min-h-[140px] text-[#0a1628] placeholder-slate-400 transition focus:border-[#c9a227] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#c9a227]/15"
           />

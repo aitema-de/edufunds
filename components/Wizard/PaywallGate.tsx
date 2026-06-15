@@ -38,7 +38,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
   const redeemCode = async () => {
     const value = code.trim();
     if (!value) {
-      setRedeemError("Bitte gib einen Kontingent-Code ein.");
+      setRedeemError("Bitte geben Sie einen Kontingent-Code ein.");
       return;
     }
     setRedeemBusy(true);
@@ -82,7 +82,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
         const kind: ErrorKind = res.status === 503 ? "stripe-down" : "unknown";
         const message =
           kind === "stripe-down"
-            ? "Die Zahlungsanbindung wird gerade fertig eingerichtet. Wir schalten sie in den naechsten Tagen frei — schreib uns an support@edufunds.org, falls du den Antrag dringend brauchst."
+            ? "Die Zahlungsanbindung wird gerade fertig eingerichtet. Wir schalten sie in den naechsten Tagen frei — schreiben Sie uns an support@edufunds.org, falls Sie den Antrag dringend brauchen."
             : (body.error ?? `Checkout konnte nicht gestartet werden (HTTP ${res.status}).`);
         setErrorState({ kind, message });
         return;
@@ -152,8 +152,8 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
             Antrag + Finanzplan freischalten
           </h3>
           <p className="mb-5 text-sm text-slate-600">
-            Dein Antragstext und der Finanzplan sind fertig. Mit dem{" "}
-            <strong className="text-[#1e3a61]">{tierLabel}</strong> bekommst du den
+            Ihr Antragstext und der Finanzplan sind fertig. Mit dem{" "}
+            <strong className="text-[#1e3a61]">{tierLabel}</strong> bekommen Sie den
             vollstaendigen Text und alle Downloads.
           </p>
 
@@ -245,10 +245,10 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                   htmlFor="kontingent-code"
                   className="mb-1 block text-sm font-medium text-[#0a1628]"
                 >
-                  Kontingent-Code deines Traegers
+                  Kontingent-Code Ihres Traegers
                 </label>
                 <p className="mb-2 text-xs text-slate-500">
-                  Hat dein Schultraeger ein Kontingent gekauft, schalte deinen Antrag hiermit
+                  Hat Ihr Schultraeger ein Kontingent gekauft, schalten Sie Ihren Antrag hiermit
                   frei — ohne eigene Zahlung.
                 </p>
                 <div className="flex gap-2">
@@ -287,7 +287,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
           </div>
 
           <p className="mt-4 text-xs text-slate-500">
-            Nach der Zahlung bekommst du einen Download-Link. Dein Antrag bleibt darueber
+            Nach der Zahlung bekommen Sie einen Download-Link. Ihr Antrag bleibt darueber
             30 Tage verfuegbar und ist auch unter „Meine Antraege" erreichbar.
           </p>
         </div>
