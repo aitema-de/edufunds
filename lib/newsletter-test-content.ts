@@ -10,15 +10,39 @@ import { NewsletterData } from '@/lib/newsletter';
 export const testNewsletterData: NewsletterData = {
   issueNumber: 'Ausgabe #1',
   issueDate: '2025-02-12',
-  leadTitle: 'Der Frühling der Förderung beginnt!',
-  leadContent: 'Während die ersten Schneeglöckchen sprießen, erwachen auch neue Förderchancen für Schulen. In unserer ersten Ausgabe stellen wir Ihnen drei aktuelle Programme vor – von MINT-Auszeichnungen bis zu Kulturförderung. Plus: Der ultimative Tipp für Ihre nächste Projektskizze.',
-  
+  isKickoff: true,
+  leadTitle: 'Schön, dass Sie da sind!',
+  leadContent: 'Liebe Leserinnen und Leser,\n\nwillkommen zur allerersten Ausgabe des EduFunds-Newsletters! Wir freuen uns sehr, dass Sie dabei sind. Einmal im Monat schicken wir Ihnen von nun an die wichtigsten Förderchancen für Schulen und Vereine, einen handfesten Praxis-Tipp fürs Antragschreiben und einen Blick hinter die Kulissen der Bildungsförderung. Bevor es richtig losgeht, möchten wir uns kurz vorstellen – und erzählen, warum es EduFunds überhaupt gibt.',
+  stats: [
+    { value: '178', label: 'Förderprogramme im Blick' },
+    { value: '103', label: 'davon für KI-Anträge vorbereitet' },
+    { value: 'Minuten', label: 'bis zum Antragsentwurf statt Wochen' },
+  ],
+  introStory: {
+    lead: 'Schulen und Fördervereine stecken voller guter Ideen – ein Schulgarten, ein Leseclub, neue Tablets, ein Theaterprojekt. Das Geld dafür gäbe es oft sogar: In Deutschland existieren hunderte Förderprogramme. Nur findet sie kaum jemand, und die Anträge dahinter sind ein Dschungel aus Richtlinien, Fristen und Formularen.\n\nGenau hier setzen wir an. EduFunds ist ein Angebot der aitema GmbH aus Berlin: ein gepflegter Überblick über die Förderlandschaft, kombiniert mit einem KI-Assistenten, der Ihnen beim Schreiben des Antrags zur Seite steht – Schritt für Schritt, in verständlicher Sprache.',
+    points: [
+      {
+        label: 'Was uns antreibt',
+        text: 'Wir finden: Bildung sollte nicht an Formularen scheitern. Gute Ideen verdienen eine faire Chance auf Förderung – egal, ob eine Schule eine eigene Verwaltungskraft hat oder ob abends eine Lehrerin den Antrag am Küchentisch schreibt.',
+      },
+      {
+        label: 'Was Schulen & Vereine davon haben',
+        text: 'Statt wochenlang Richtlinien zu wälzen, sehen Sie in Minuten, welche Programme zu Ihrem Vorhaben passen. Das bedeutet: mehr passende Anträge, weniger verpasste Fristen – und am Ende mehr Geld für das, was Ihren Kindern zugutekommt.',
+      },
+      {
+        label: 'Was Antragstellende davon haben',
+        text: 'Sie bekommen keinen leeren Formularsatz, sondern einen strukturierten Antragsentwurf an die Hand. Weniger Frust, weniger Bürokratie – und wieder mehr Zeit für das Wesentliche: den Unterricht und die Kinder.',
+      },
+    ],
+  },
+
   programs: [
     {
       name: 'MINT-freundliche Schule 2025',
       funder: 'Initiative "MINT Zukunft schaffen!" (KMK & Wirtschaft)',
       deadline: '31. Mai 2025',
       targetGroup: 'Alle Schularten',
+      amount: 'Auszeichnung',
       description: 'Die bundesweite Auszeichnung für Schulen mit besonderem Engagement in Mathematik, Informatik, Naturwissenschaften und Technik. Beworbene Schulen profitieren von höherer Sichtbarkeit, Vernetzung mit Unternehmen und Anerkennung durch die Kultusministerkonferenz. Über 3.000 Schulen tragen bereits das Signet.',
       url: 'https://mintzukunftschaffen.de/schulen/'
     },
@@ -27,6 +51,7 @@ export const testNewsletterData: NewsletterData = {
       funder: 'Bundesministerium für Familie (BMFSFJ)',
       deadline: '28. Februar 2026',
       targetGroup: 'Schulen in Bündnissen mit Kultur/Sozialarbeit',
+      amount: 'bis zu 50.000 €',
       description: 'Förderung außerschulischer kultureller Bildungsprojekte für Kinder und Jugendliche in Risikolagen. Jährlich bis zu 50 Mio. € verfügbar. Schulen können sich im Ganztagsbereich oder in ländlichen Regionen bewerben. Mindestens 3 Partner aus Kultur, Bildung und Sozialarbeit nötig.',
       url: 'https://www.buendnisse-fuer-bildung.de'
     },
@@ -35,11 +60,12 @@ export const testNewsletterData: NewsletterData = {
       funder: 'EU-Programm / Nationale Agentur',
       deadline: '19. Februar 2026',
       targetGroup: 'Alle Schularten (mit EU-Partner)',
+      amount: 'bis zu 30.000 €',
       description: 'Langfristige Mobilität und Partnerschaften für Schulentwicklung. Die neue Akkreditierung ermöglicht strukturierte Auslandsaufenthalte für Lehrkräfte und Schüler. Förderzeitraum ab 1. Juni 2026. Besonderer Fokus auf Inklusion, Nachhaltigkeit und Digitalisierung.',
       url: 'https://erasmusplus.schule/foerderung/eine-akkreditierung-beantragen'
     }
   ],
-  
+
   tipTitle: 'Die erste Zeile zählt: So starten Sie Ihren Antrag',
   tipContent: 'Fördergeber lesen oft nur die ersten zwei Sätze, bevor sie entscheiden, ob sie weiterlesen. Starten Sie deshalb nie mit allgemeinen Floskeln wie "Bildung ist wichtig". Stattdessen: Beschreiben Sie sofort das konkrete Problem, das Ihr Projekt löst. Beispiel: "An unserer Schule fehlen 40 % der Schüler jährlich mindestens 20 Tage – wir wollen mit innovativen Präventionsprogrammen gegen das absentismusbedingte Lerndefizit vorgehen." Konkret, messbar, relevant!',
   

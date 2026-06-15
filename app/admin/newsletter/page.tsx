@@ -17,11 +17,17 @@ import {
 interface NewsItem { text: string; url?: string }
 interface Program {
   name: string; funder: string; deadline: string;
-  targetGroup: string; description: string; url: string;
+  targetGroup: string; description: string; url: string; amount?: string;
 }
+interface NewsletterStat { value: string; label: string }
+interface StoryPoint { label: string; text: string }
+interface IntroStory { lead: string; points: StoryPoint[] }
+interface AboutBox { title: string; body: string }
 interface NewsletterData {
   issueNumber: string; issueDate: string; leadTitle: string; leadContent: string;
   signature?: string;
+  isKickoff?: boolean; stats?: NewsletterStat[];
+  introStory?: IntroStory; aboutBox?: AboutBox;
   programs: Program[]; tipTitle: string; tipContent: string;
   insightCategory: string; insightReadTime: number; insightTitle: string;
   insightContent: string; insightCtaText?: string; insightCtaUrl?: string;
@@ -337,6 +343,26 @@ export default function NewsletterAdminPage() {
                         placeholder="Kolja & das EduFunds-Team"
                         onChange={(e) => upd({ signature: e.target.value })} />
                     </Field>
+
+                    {draft.introStory && (
+                      <IntroStoryEditor
+                        story={draft.introStory}
+                        disabled={!editable}
+                        onChange={(introStory) => upd({ introStory })}
+                      />
+                    )}
+                    {draft.aboutBox && (
+                      <div className="pt-2 border-t space-y-2">
+                        <span className="text-xs font-medium text-gray-500">„Was ist EduFunds?"-Box</span>
+                        <input className="inp" value={draft.aboutBox.title} disabled={!editable}
+                          placeholder="Titel"
+                          onChange={(e) => upd({ aboutBox: { ...draft.aboutBox!, title: e.target.value } })} />
+                        <textarea className="inp h-24" value={draft.aboutBox.body} disabled={!editable}
+                          placeholder="Kurztext"
+                          onChange={(e) => upd({ aboutBox: { ...draft.aboutBox!, body: e.target.value } })} />
+                      </div>
+                    )}
+
                     <Field label="Praxis-Tipp – Titel">
                       <input className="inp" value={draft.tipTitle} disabled={!editable}
                         onChange={(e) => upd({ tipTitle: e.target.value })} />
@@ -432,6 +458,32 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
       <span className="text-xs font-medium text-gray-500">{label}</span>
       <div className="mt-1">{children}</div>
     </label>
+  );
+}
+
+function IntroStoryEditor({
+  story, disabled, onChange,
+}: { story: IntroStory; disabled: boolean; onChange: (s: IntroStory) => void }) {
+  const setPoint = (i: number, patch: Partial<StoryPoint>) =>
+    onChange({ ...story, points: story.points.map((p, idx) => (idx === i ? { ...p, ...patch } : p)) });
+  return (
+    <div className="pt-2 border-t space-y-2">
+      <div className="flex items-center gap-2">
+        <span className="text-xs font-medium text-gray-500">Gründungsgeschichte (nur Erstausgabe)</span>
+        <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700">Kickoff</span>
+      </div>
+      <textarea className="inp h-28" value={story.lead} disabled={disabled}
+        placeholder="Erzähltext (Absätze mit Leerzeile trennen)"
+        onChange={(e) => onChange({ ...story, lead: e.target.value })} />
+      {story.points.map((p, i) => (
+        <div key={i} className="space-y-1 rounded-md bg-gray-50 p-2">
+          <input className="inp" value={p.label} disabled={disabled} placeholder="Label (z.B. Was uns antreibt)"
+            onChange={(e) => setPoint(i, { label: e.target.value })} />
+          <textarea className="inp h-20" value={p.text} disabled={disabled} placeholder="Text (2-3 Sätze)"
+            onChange={(e) => setPoint(i, { text: e.target.value })} />
+        </div>
+      ))}
+    </div>
   );
 }
 

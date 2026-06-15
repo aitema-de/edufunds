@@ -22,6 +22,7 @@ import {
   getCronIssueForMonth,
   getNextIssueNumber,
   getRecentProgramIds,
+  hasSentIssue,
 } from '@/lib/newsletter/issues';
 import { notifyDraftReady } from '@/lib/newsletter/notify';
 
@@ -66,12 +67,15 @@ async function handle(request: Request): Promise<NextResponse> {
 
     const excludeProgramIds = dryRun ? [] : await getRecentProgramIds(3);
     const issueNumber = dryRun ? 0 : await getNextIssueNumber();
+    // Erstausgabe (Kickoff mit Gründungsgeschichte), solange nichts versendet wurde.
+    const alreadySent = await hasSentIssue();
 
     const draft = await generateNewsletterDraft({
       now,
       issueNumber: issueNumber || 1,
       excludeProgramIds,
       baseUrl,
+      isKickoff: !alreadySent,
     });
 
     if (dryRun) {

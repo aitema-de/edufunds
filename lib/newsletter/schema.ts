@@ -20,11 +20,33 @@ export const programSchema = z.object({
   targetGroup: z.string().min(1),
   description: z.string().min(1),
   url: z.string().min(1),
+  amount: z.string().optional(),
 });
 
 export const newsItemSchema = z.object({
   text: z.string().min(1),
   url: z.string().optional(),
+});
+
+export const statSchema = z.object({
+  value: z.string().min(1),
+  label: z.string().min(1),
+});
+
+export const storyPointSchema = z.object({
+  label: z.string().min(2).max(60),
+  text: z.string().min(20),
+});
+
+/** Ausführliche Gründungsgeschichte der Erstausgabe (vom LLM im Kickoff-Modus). */
+export const introStorySchema = z.object({
+  lead: z.string().min(120),
+  points: z.array(storyPointSchema).min(2).max(4),
+});
+
+export const aboutBoxSchema = z.object({
+  title: z.string().min(2).max(60),
+  body: z.string().min(20),
 });
 
 /**
@@ -36,6 +58,8 @@ export const llmDraftSchema = z.object({
   leadTitle: z.string().min(3).max(120),
   // Persönlicher Brief der Macher — bewusst längere Mindestlänge.
   leadContent: z.string().min(120),
+  // Nur im Kickoff-Modus (Erstausgabe) erwartet — sonst optional/weggelassen.
+  introStory: introStorySchema.optional(),
   tipTitle: z.string().min(3).max(120),
   tipContent: z.string().min(40),
   insightCategory: z.string().min(2).max(40),
@@ -60,6 +84,10 @@ export const newsletterDataSchema = z.object({
   leadTitle: z.string().min(1),
   leadContent: z.string().min(1),
   signature: z.string().optional(),
+  isKickoff: z.boolean().optional(),
+  stats: z.array(statSchema).optional(),
+  introStory: introStorySchema.optional(),
+  aboutBox: aboutBoxSchema.optional(),
   programs: z.array(programSchema).min(1),
   tipTitle: z.string().min(1),
   tipContent: z.string().min(1),
