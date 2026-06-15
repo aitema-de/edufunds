@@ -669,6 +669,41 @@ export function WizardShell({ programm }: Props) {
             busy={busy}
           />
         )}
+        {state.phase === "interviewing" && !state.question && (
+          <div className="rounded-xl border border-[#c9a227]/40 bg-white p-6">
+            <h3 className="mb-1 text-lg font-semibold text-[#0a1628]">
+              Noch etwas ergänzen?
+            </h3>
+            <p className="mb-3 text-sm text-slate-600">
+              Schreiben Sie weitere Angaben, die im Antrag berücksichtigt werden sollen.
+              Die KI bezieht sie ein und stellt bei Bedarf eine Anschlussfrage.
+            </p>
+            <textarea
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              rows={4}
+              placeholder="Weitere Angaben zu Ihrem Vorhaben …"
+              className="w-full rounded-lg border border-[#0a1628]/15 bg-[#f8f5f0] p-3 text-sm text-[#0a1628] placeholder-slate-500 focus:border-[#c9a227] focus:outline-none focus:ring-2 focus:ring-[#c9a227]/20"
+            />
+            <div className="mt-3 flex flex-wrap items-center justify-end gap-3">
+              <button
+                type="button"
+                onClick={() => setState((s) => (s ? { ...s, phase: "ready_to_generate" } : s))}
+                className="rounded-lg border border-[#0a1628]/15 px-5 py-2 text-[#1e3a61] transition hover:bg-slate-100"
+              >
+                Fertig — zum Antrag
+              </button>
+              <button
+                type="button"
+                disabled={busy || !answer.trim()}
+                onClick={submitAnswer}
+                className="rounded-lg bg-[#c9a227] px-6 py-2 font-semibold text-white transition hover:bg-[#b8921e] disabled:opacity-50"
+              >
+                {busy ? "Sende…" : "Ergänzung senden"}
+              </button>
+            </div>
+          </div>
+        )}
         {canGenerate && (
           <div className="rounded-xl border border-[#c9a227]/40 bg-[#c9a227]/10 p-8">
             <h3 className="mb-2 text-xl font-semibold text-[#0a1628]">

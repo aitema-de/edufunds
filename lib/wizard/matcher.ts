@@ -621,7 +621,9 @@ export async function runMatch(input: MatchInput): Promise<MatchResult> {
     MODEL_FLASH,
     MATCHER_SYSTEM,
     buildUserPrompt(input, cards),
-    { maxTokens: MATCHER_MAX_TOKENS }
+    // temperature 0: identische Eingabe -> reproduzierbare Scores. Ohne das
+    // nutzt der Provider seinen Default (>0) und der Score schwankt pro Lauf.
+    { maxTokens: MATCHER_MAX_TOKENS, temperature: 0 }
   );
 
   const costs = addUsage(emptyLedger(), MODEL_FLASH, usage);

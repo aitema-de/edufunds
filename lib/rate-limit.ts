@@ -202,7 +202,14 @@ export function rateLimit(request: NextRequest): {
 
   // Bestimme Rate-Limit-Typ
   const limitType = getRateLimitType(pathname);
-  const config = RATE_LIMITS[limitType];
+  const baseConfig = RATE_LIMITS[limitType];
+  // Pilot/UAT (Dev-Mock aktiv): grosszuegigere Limits (x10), damit intensives
+  // Testen nicht staendig in 429 laeuft (Freischalten, Resume-Link, viele
+  // Wizard-Calls). Ohne die Flag gelten wieder die strikten Produktions-Limits.
+  const pilotMode = process.env.NEXT_PUBLIC_PAYWALL_DEV_MOCK === '1';
+  const config = pilotMode
+    ? { ...baseConfig, maxRequests: baseConfig.maxRequests * 10 }
+    : baseConfig;
 
   // Erstelle eindeutigen Identifier (IP + Route-Typ)
   const clientIP = getClientIP(request);

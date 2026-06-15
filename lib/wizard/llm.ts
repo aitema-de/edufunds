@@ -210,6 +210,9 @@ export interface LlmOptions {
   /** Hard-Cap fuer Output-Tokens. DeepSeek-Latenz ist linear in Output-Laenge —
    * fuer kurze, gerankte Antworten (Matcher) lohnt es sich, hier eng zu setzen. */
   maxTokens?: number;
+  /** Sampling-Temperatur. Default = Provider-Default (>0, nicht-deterministisch).
+   * Fuer reproduzierbare Ergebnisse (z. B. Matching-Scores) auf 0 setzen. */
+  temperature?: number;
 }
 
 // ---------------------------------------------------------------------------
@@ -238,6 +241,7 @@ async function deepseekGenerateJson<T>(model: string, system: string, user: stri
       ],
       response_format: { type: "json_object" },
       ...(opts.maxTokens ? { max_tokens: opts.maxTokens } : {}),
+      ...(opts.temperature !== undefined ? { temperature: opts.temperature } : {}),
     }),
     model
   );
@@ -262,6 +266,7 @@ async function deepseekGenerateText(model: string, system: string, user: string,
         { role: "user", content: user },
       ],
       ...(opts.maxTokens ? { max_tokens: opts.maxTokens } : {}),
+      ...(opts.temperature !== undefined ? { temperature: opts.temperature } : {}),
     }),
     model
   );
@@ -305,6 +310,7 @@ async function mistralGenerateJson<T>(model: string, system: string, user: strin
       ],
       response_format: { type: "json_object" },
       ...(opts.maxTokens ? { max_tokens: opts.maxTokens } : {}),
+      ...(opts.temperature !== undefined ? { temperature: opts.temperature } : {}),
     }),
     model
   );
@@ -329,6 +335,7 @@ async function mistralGenerateText(model: string, system: string, user: string, 
         { role: "user", content: user },
       ],
       ...(opts.maxTokens ? { max_tokens: opts.maxTokens } : {}),
+      ...(opts.temperature !== undefined ? { temperature: opts.temperature } : {}),
     }),
     model
   );

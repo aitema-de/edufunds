@@ -237,7 +237,7 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
           <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-[#c9a227]" />
           <div>
             <span className="font-semibold">{vorschlagCount} {vorschlagCount === 1 ? "Betrag ist ein Vorschlag" : "Beträge sind Vorschläge"} des Assistenten.</span>{" "}
-            Diese Beträge hat der Assistent auf Basis üblicher Kosten geschätzt — prüfe sie, passe sie an eure echten Angebote an oder bestätige sie mit „✓".
+            Diese Beträge hat der Assistent auf Basis üblicher Kosten geschätzt — prüfen Sie sie, passen Sie sie an Ihre echten Angebote an oder bestätigen Sie sie mit „✓".
           </div>
         </div>
       )}
