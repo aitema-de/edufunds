@@ -711,7 +711,7 @@ export function WizardShell({ programm }: Props) {
             </h3>
             <p className="mb-6 max-w-xl text-slate-700">
               Die KI hat aus Ihren Antworten diese Fakten erfasst. Passt das, schreibt sie jetzt den Antrag — sechs Schritte:
-              Gliederung → Abschnitte → Gutachten → Revision → Re-Check → Finanzplan + Konsistenzprüfung. Typisch 1–3 Minuten, ca. 0,20–0,35 € KI-Kosten.
+              Gliederung → Abschnitte → Gutachten → Revision → Re-Check → Finanzplan + Konsistenzprüfung. Typisch 1–3 Minuten.
             </p>
             <div className="mb-4 rounded-lg border border-[#0a1628]/10 bg-[#f8f5f0] p-4">
               <FactsPanel facts={state.facts} compact />

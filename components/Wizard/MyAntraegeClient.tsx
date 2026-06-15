@@ -8,7 +8,7 @@ import {
   removeLocalSession,
 } from "@/lib/wizard/session-index-client";
 import type { WizardPhase } from "@/lib/wizard/types";
-import { formatEur, type CostLedger } from "@/lib/wizard/pricing";
+import { type CostLedger } from "@/lib/wizard/pricing";
 
 interface SessionSummary {
   programmId: string;
@@ -386,11 +386,6 @@ export function MyAntraegeClient() {
                         </>
                       )}
                       Letzter Stand: {formatDate(s.updatedAt)}
-                      {s.costs && s.costs.calls > 0 && (
-                        <span className="ml-2 text-slate-600">
-                          · KI-Kosten: {formatEur(s.costs.eurCents)}
-                        </span>
-                      )}
                       {s.error && <span className="ml-2 text-red-500">· {s.error}</span>}
                     </div>
                   </div>

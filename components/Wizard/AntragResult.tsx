@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import { AlertTriangle, Check, Copy, Download, FileDown, Loader2, PenLine, RefreshCw, Sparkles } from "lucide-react";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type { Finanzplan, GenerationArtefacts } from "@/lib/wizard/types";
-import { formatEur, type CostLedger } from "@/lib/wizard/pricing";
+import { type CostLedger } from "@/lib/wizard/pricing";
 import { FinanzplanView } from "./FinanzplanView";
 import { FinanzplanEditor } from "./FinanzplanEditor";
 import { TextVorschlaegeEditor } from "./TextVorschlaegeEditor";
@@ -435,16 +435,6 @@ export function AntragResult({
               </li>
             ))}
           </ul>
-        </div>
-      )}
-      {costs && costs.calls > 0 && (
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-[#0a1628]/10 bg-[#f8f5f0] px-4 py-2 text-xs text-slate-500">
-          <span>
-            KI-Kosten dieses Antrags (geschätzt): <strong className="text-slate-700">{formatEur(costs.eurCents)}</strong>
-          </span>
-          <span>
-            {costs.calls} Calls · {costs.totalTokens.toLocaleString("de-DE")} Tokens
-          </span>
         </div>
       )}
       {paid && generation.critique && (
