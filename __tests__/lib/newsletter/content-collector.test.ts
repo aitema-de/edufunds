@@ -4,6 +4,7 @@
 import {
   collectNewsletterContent,
   conciseDeadline,
+  conciseAmount,
   _setCatalogForTest,
   type ProgramRecord,
 } from '@/lib/newsletter/content-collector';
@@ -89,6 +90,17 @@ describe('content-collector', () => {
     expect(conciseDeadline('Antrag bis 30. März 2026 einreichen')).toBe('Frist: 30. März 2026');
     expect(conciseDeadline('')).toBe('laufend');
     expect(conciseDeadline('Ein sehr langer Fristtext der definitiv über zweiundvierzig Zeichen liegt').length).toBeLessThanOrEqual(43);
+  });
+
+  it('bildet eine knappe Förderhöhe aus numerischen Feldern', () => {
+    expect(conciseAmount(REC({ foerdersummeMax: 50000 }))).toBe('bis zu 50.000 €');
+    expect(conciseAmount(REC({ foerdersummeMin: 5000, foerdersummeMax: 50000 }))).toBe('5.000–50.000 €');
+    expect(conciseAmount(REC({ foerdersummeMin: 1000 }))).toBe('ab 1.000 €');
+    // langer/satzartiger Freitext wird NICHT als Chip übernommen (Überlauf-Schutz)
+    expect(conciseAmount(REC({ foerdersummeText: '5€ pro Einheit, max. 1.000€ pro Verein' }))).toBeUndefined();
+    // kurzer, sauberer Freitext ist ok
+    expect(conciseAmount(REC({ foerdersummeText: 'Sachpreis' }))).toBe('Sachpreis');
+    expect(conciseAmount(REC({}))).toBeUndefined();
   });
 
   it('liefert für den echten Katalog drei valide Programme', () => {

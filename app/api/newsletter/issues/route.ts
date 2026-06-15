@@ -15,6 +15,7 @@ import {
   createIssue,
   getNextIssueNumber,
   getRecentProgramIds,
+  hasSentIssue,
   listIssues,
 } from '@/lib/newsletter/issues';
 
@@ -47,9 +48,10 @@ export async function POST(request: NextRequest) {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://edufunds.org';
     const now = new Date();
-    const [excludeProgramIds, issueNumber] = await Promise.all([
+    const [excludeProgramIds, issueNumber, alreadySent] = await Promise.all([
       getRecentProgramIds(3),
       getNextIssueNumber(),
+      hasSentIssue(),
     ]);
 
     const draft = await generateNewsletterDraft({
@@ -57,6 +59,8 @@ export async function POST(request: NextRequest) {
       issueNumber,
       excludeProgramIds,
       baseUrl,
+      // Erstausgabe (Kickoff), solange noch nichts versendet wurde.
+      isKickoff: !alreadySent,
     });
 
     const issue = await createIssue({

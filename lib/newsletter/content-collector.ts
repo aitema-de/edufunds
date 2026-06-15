@@ -176,6 +176,36 @@ export function restoreUmlauts(text: string): string {
   return out;
 }
 
+/** Tausenderpunkte (de) ohne ICU-Abhängigkeit: 50000 → "50.000". */
+function groupThousands(n: number): string {
+  return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
+/**
+ * Knappe Förderhöhe für die Programmkarte. Bevorzugt die numerischen Katalogfelder
+ * (eindeutig, kompakt); der freie `foerdersummeText` ist oft ein ganzer Satz und
+ * würde als Chip überlaufen — er wird nur übernommen, wenn er kurz genug ist.
+ * Gibt undefined zurück, wenn keine belastbare, knappe Angabe vorliegt.
+ */
+export function conciseAmount(rec: ProgramRecord): string | undefined {
+  const min = rec.foerdersummeMin;
+  const max = rec.foerdersummeMax;
+  if (typeof max === 'number' && max > 0) {
+    if (typeof min === 'number' && min > 0 && min !== max) {
+      return `${groupThousands(min)}–${groupThousands(max)} €`;
+    }
+    return `bis zu ${groupThousands(max)} €`;
+  }
+  if (typeof min === 'number' && min > 0) {
+    return `ab ${groupThousands(min)} €`;
+  }
+  const text = (rec.foerdersummeText || '').trim();
+  if (text && text.length <= 32 && !/[.;]/.test(text)) {
+    return restoreUmlauts(text);
+  }
+  return undefined;
+}
+
 function recordToProgram(rec: ProgramRecord, baseUrl: string): Program {
   return {
     name: restoreUmlauts(rec.name),
@@ -184,6 +214,7 @@ function recordToProgram(rec: ProgramRecord, baseUrl: string): Program {
     targetGroup: buildTargetGroup(rec),
     description: restoreUmlauts((rec.kurzbeschreibung || '').trim()),
     url: `${baseUrl}/foerderprogramme/${rec.id}`,
+    amount: conciseAmount(rec),
   };
 }
 

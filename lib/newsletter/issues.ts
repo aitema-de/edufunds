@@ -202,6 +202,19 @@ export async function getRecentProgramIds(lastN = 3): Promise<string[]> {
   return [...ids];
 }
 
+/**
+ * Wurde jemals eine Ausgabe wirklich versendet? Bestimmt, ob die nächste Ausgabe
+ * die "Erstausgabe" (Kickoff mit ausführlicher Gründungsgeschichte) ist —
+ * robuster als an der Ausgabennummer zu hängen, da unversendete Alt-Entwürfe die
+ * Nummerierung verschieben können.
+ */
+export async function hasSentIssue(): Promise<boolean> {
+  const rows = await rowsOf<{ n: string }>(
+    `SELECT count(*)::text AS n FROM newsletter_issues WHERE status = 'sent'`
+  );
+  return parseInt(rows[0]?.n ?? '0', 10) > 0;
+}
+
 /** Höchste bisherige Ausgabennummer (numerisch geparst aus "Ausgabe #N"). */
 export async function getNextIssueNumber(): Promise<number> {
   const rows = await rowsOf<{ issue_number: string }>(

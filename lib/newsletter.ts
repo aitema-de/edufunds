@@ -20,11 +20,43 @@ export interface Program {
   targetGroup: string;
   description: string;
   url: string;
+  /** Knappe Förderhöhe, z.B. "bis zu 50.000 €" (optional, aus dem Katalog). */
+  amount?: string;
 }
 
 export interface NewsItem {
   text: string;
   url?: string;
+}
+
+/** Eine Kennzahl der "EduFunds in Zahlen"-Leiste (echte Katalogwerte). */
+export interface NewsletterStat {
+  value: string;
+  label: string;
+}
+
+/** Ein Wertversprechen-Punkt der Gründungsgeschichte (nur Erstausgabe). */
+export interface StoryPoint {
+  label: string;
+  text: string;
+}
+
+/**
+ * Die ausführliche Gründungs-/Missionsgeschichte. Erscheint prominent NUR in der
+ * Erstausgabe (Kickoff): Was ist EduFunds, warum haben wir es gebaut, was treibt
+ * uns an, was haben Schulen und Antragstellende davon.
+ */
+export interface IntroStory {
+  /** Einleitender Erzähltext (1-2 Absätze, mit \n\n getrennt). */
+  lead: string;
+  /** Wertversprechen-Punkte (i.d.R. 3): Antrieb · Nutzen Schulen · Nutzen Antragstellende. */
+  points: StoryPoint[];
+}
+
+/** Kompakte "Was ist EduFunds?"-Box (jede Ausgabe ausser Kickoff). */
+export interface AboutBox {
+  title: string;
+  body: string;
 }
 
 export interface NewsletterData {
@@ -34,6 +66,14 @@ export interface NewsletterData {
   leadContent: string;
   /** Unterschrift unter der persönlichen Einleitung, z.B. "Kolja & das EduFunds-Team". */
   signature?: string;
+  /** Markiert die Erstausgabe → prominente Gründungsgeschichte statt kompakter Box. */
+  isKickoff?: boolean;
+  /** "EduFunds in Zahlen"-Leiste (echte Katalogwerte). */
+  stats?: NewsletterStat[];
+  /** Ausführliche Gründungsgeschichte — nur Erstausgabe. */
+  introStory?: IntroStory;
+  /** Kompakte "Was ist EduFunds?"-Box — Folgeausgaben (Default: DEFAULT_ABOUT_BOX). */
+  aboutBox?: AboutBox;
   programs: Program[];
   tipTitle: string;
   tipContent: string;
@@ -60,6 +100,24 @@ export interface RenderedNewsletter {
 /** Standard-Unterschrift unter der persönlichen Einleitung (per env überschreibbar). */
 export const DEFAULT_SIGNATURE =
   process.env.NEWSLETTER_SIGNATURE || 'Kolja & das EduFunds-Team';
+
+/**
+ * Kompakte "Was ist EduFunds?"-Box. Erscheint in jeder Folgeausgabe (nicht im
+ * Kickoff, dort trägt die ausführliche Gründungsgeschichte den Inhalt) und gibt
+ * neuen Leserinnen verlässlich in drei Sätzen das Wertversprechen — warm, konkret,
+ * ohne Marketing-Floskeln. Bewusst fest verdrahtet (nicht LLM) für gleichbleibende
+ * Qualität; pro Ausgabe im Admin überschreibbar.
+ */
+export const DEFAULT_ABOUT_BOX: AboutBox = {
+  title: 'Was ist EduFunds?',
+  body:
+    'EduFunds hilft Schulen, Fördervereinen und Lehrkräften, im Dickicht der ' +
+    'Bildungsförderung die passenden Programme zu finden — und Anträge mit ' +
+    'KI-Unterstützung Schritt für Schritt zu schreiben. Statt wochenlang ' +
+    'Richtlinien zu wälzen, sehen Sie in Minuten, welche Förderung zu Ihrem ' +
+    'Vorhaben passt, und erhalten einen fertig strukturierten Antragsentwurf. ' +
+    'Mehr Geld für gute Ideen, weniger Bürokratie — dafür sind wir angetreten.',
+};
 
 /**
  * Permanenter Disclaimer. Erscheint unverändert in JEDER Ausgabe — erklärt, was
@@ -122,7 +180,12 @@ function renderProgramCard(program: Program, index = 0): string {
                 </tr>
             </table>
             <div class="program-funder">${escapeHtml(program.funder)}</div>
-            <div class="program-target">Zielgruppe: ${escapeHtml(program.targetGroup)}</div>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td valign="top" class="program-target">Zielgruppe: ${escapeHtml(program.targetGroup)}</td>
+                    ${program.amount ? `<td valign="top" align="right" class="program-amount-cell"><span class="program-amount">${escapeHtml(program.amount)}</span></td>` : ''}
+                </tr>
+            </table>
             <p class="program-description">${escapeHtml(program.description)}</p>
             <a href="${escapeHtml(program.url)}" class="program-cta">Zum Programm &rarr;</a>
         </td>
@@ -138,7 +201,7 @@ function renderProgramsText(programs: Program[]): string {
 ${p.name}
 Fördergeber: ${p.funder}
 Frist: ${p.deadline}
-Zielgruppe: ${p.targetGroup}
+Zielgruppe: ${p.targetGroup}${p.amount ? `\nFörderhöhe: ${p.amount}` : ''}
 
 ${p.description}
 
@@ -202,6 +265,97 @@ function renderInsightContentText(content: string): string {
   return content;
 }
 
+/** Wandelt einen mehrabsätzigen Text (\n\n) in <p>-Absätze. */
+function paragraphsToHtml(content: string): string {
+  return content
+    .split(/\n{2,}/)
+    .map((p) => p.trim())
+    .filter(Boolean)
+    .map((p) => `<p>${escapeHtml(p)}</p>`)
+    .join('\n');
+}
+
+/**
+ * "EduFunds in Zahlen" — kompakte Kennzahlen-Leiste. Tabellenbasiert (eine Spalte
+ * pro Kennzahl) für robuste Darstellung in Outlook/Gmail. Liefert kompletten Block
+ * oder leeren String, damit er sich rückstandslos ausblenden lässt.
+ */
+function renderStats(stats?: NewsletterStat[]): string {
+  if (!stats || stats.length === 0) return '';
+  const cells = stats
+    .map(
+      (s) => `
+                    <td valign="top" align="center" class="stat-cell">
+                        <div class="stat-value">${escapeHtml(s.value)}</div>
+                        <div class="stat-label">${escapeHtml(s.label)}</div>
+                    </td>`
+    )
+    .join('');
+  return `
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="stat-strip">
+                                <tr>${cells}</tr>
+                            </table>`;
+}
+
+/**
+ * Ausführliche Gründungsgeschichte (nur Erstausgabe): Erzähl-Lead + Wertversprechen-
+ * Punkte mit Small-Caps-Labels. Kompletter Sektions-Block oder leerer String.
+ */
+function renderIntroStory(story?: IntroStory): string {
+  if (!story) return '';
+  const lead = paragraphsToHtml(story.lead);
+  const points = (story.points || [])
+    .map(
+      (p) => `
+                                <tr>
+                                    <td valign="top" class="story-point">
+                                        <span class="label story-point-label">${escapeHtml(p.label)}</span>
+                                        <p class="story-point-text">${escapeHtml(p.text)}</p>
+                                    </td>
+                                </tr>`
+    )
+    .join('');
+  return `
+                            <div class="section story">
+                                <div class="section-head">
+                                    <span class="label">Warum es EduFunds gibt</span>
+                                    <h2 class="serif">Unsere Geschichte in Kürze</h2>
+                                </div>
+                                <div class="story-lead">${lead}</div>
+                                ${points ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="story-points">${points}</table>` : ''}
+                            </div>`;
+}
+
+/** Kompakte "Was ist EduFunds?"-Box (Folgeausgaben). Block oder leerer String. */
+function renderAboutBox(box?: AboutBox): string {
+  if (!box) return '';
+  return `
+                            <div class="about-box">
+                                <span class="label about-box-title">${escapeHtml(box.title)}</span>
+                                <p class="about-box-body">${escapeHtml(box.body)}</p>
+                            </div>`;
+}
+
+/** Plaintext-Varianten der neuen Blöcke. */
+function renderStatsText(stats?: NewsletterStat[]): string {
+  if (!stats || stats.length === 0) return '';
+  const lines = stats.map((s) => `  ${s.value} — ${s.label}`).join('\n');
+  return `\nEDUFUNDS IN ZAHLEN\n${lines}\n`;
+}
+
+function renderIntroStoryText(story?: IntroStory): string {
+  if (!story) return '';
+  const points = (story.points || [])
+    .map((p) => `${p.label.toUpperCase()}\n${p.text}`)
+    .join('\n\n');
+  return `\nWARUM ES EDUFUNDS GIBT\n${'-'.repeat(80)}\n\n${story.lead}\n\n${points}\n`;
+}
+
+function renderAboutBoxText(box?: AboutBox): string {
+  if (!box) return '';
+  return `\n${box.title.toUpperCase()}\n${box.body}\n`;
+}
+
 // =============================================================================
 // Newsletter Generation
 // =============================================================================
@@ -243,7 +397,17 @@ export function generateNewsletter(
   // Render news items
   const newsHtml = renderNewsItems(data.newsItems);
   const newsText = renderNewsItemsText(data.newsItems);
-  
+
+  // Neue Blöcke (rein datengetrieben → robust): Kennzahlen (immer), ausführliche
+  // Gründungsgeschichte falls vorhanden (Erstausgabe), sonst die kompakte
+  // "Was ist EduFunds?"-Box. So bleibt nie beides leer (Kickoff-Fallback) und es
+  // gibt keine Doppelung (Story und Box schliessen sich gegenseitig aus).
+  const introStory = data.introStory;
+  const aboutBox = data.aboutBox ?? (introStory ? undefined : DEFAULT_ABOUT_BOX);
+  const statsHtml = renderStats(data.stats);
+  const introStoryHtml = renderIntroStory(introStory);
+  const aboutBoxHtml = renderAboutBox(aboutBox);
+
   // Prepare template data
   const templateData: Record<string, string> = {
     newsletter_title: generateSubjectLine(data),
@@ -260,6 +424,9 @@ export function generateNewsletter(
       )
       .replace(/\n+/g, '</p>\n<p>'),
     signature: escapeHtml(data.signature || DEFAULT_SIGNATURE).replace(/\n/g, '<br>'),
+    stats: statsHtml,
+    intro_story: introStoryHtml,
+    about_box: aboutBoxHtml,
     programs: programsHtml,
     tip_title: escapeHtml(data.tipTitle),
     tip_content: renderInsightContent(data.tipContent),
@@ -282,6 +449,9 @@ export function generateNewsletter(
     .replace(/\{\{lead_title\}\}/g, data.leadTitle)
     .replace(/\{\{lead_content\}\}/g, data.leadContent)
     .replace(/\{\{signature\}\}/g, data.signature || DEFAULT_SIGNATURE)
+    .replace(/\{\{stats_text\}\}/g, renderStatsText(data.stats))
+    .replace(/\{\{intro_story_text\}\}/g, renderIntroStoryText(introStory))
+    .replace(/\{\{about_box_text\}\}/g, renderAboutBoxText(aboutBox))
     .replace(/\{\{programs_text\}\}/g, programsText)
     .replace(/\{\{tip_title\}\}/g, data.tipTitle)
     .replace(/\{\{tip_content\}\}/g, data.tipContent)
