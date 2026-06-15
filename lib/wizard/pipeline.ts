@@ -50,6 +50,7 @@ import { PIPELINE_CONFIG } from "./config";
 const SCHWERE_VALID: readonly CritiqueSchwere[] = ["hoch", "mittel", "niedrig"];
 const KATEGORIE_VALID: readonly CritiqueKategorie[] = [
   "floskel",
+  "redundanz",
   "belegluecke",
   "richtlinie",
   "inkonsistenz",

@@ -31,7 +31,7 @@ export interface NextStepWithUsage {
  * gelten. Verbatim-Wiederholungen liegen bei ~1.0; echte Praezisierungs-
  * Nachfragen sind anders formuliert und liegen klar darunter.
  */
-const QUESTION_SIMILARITY_THRESHOLD = 0.8;
+const QUESTION_SIMILARITY_THRESHOLD = 0.72;
 
 function normalizeQuestion(s: string): string {
   return s

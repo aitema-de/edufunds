@@ -500,14 +500,14 @@ id|score|passt_weil|achtung_bei
 Regeln Form B:
 - id: exakt aus der Liste, kein Whitespace drum
 - score: ganze Zahl 50-100
-- passt_weil: max ~25 Worte, sachlich, mit konkretem Bezug zum Anliegen
-- achtung_bei: max ~20 Worte, kann LEER sein — dann Trailing-Pipe (\`id|score|text|\`)
+- passt_weil: max ~25 Worte, sachlich, mit konkretem Bezug zum Anliegen. ALLTAGSSPRACHLICH — kein Foerder-/Verwaltungsfachjargon. Statt "ausserschulischer Charakter" schreibe "freiwilliges Angebot neben dem Unterricht"; statt "Letztzuwendungsempfaenger" o. Ae. konkrete, verstaendliche Worte. Eine Schulleitung muss den Satz ohne Nachschlagen verstehen.
+- achtung_bei: max ~20 Worte, kann LEER sein — dann Trailing-Pipe (\`id|score|text|\`). Ebenfalls alltagssprachlich, kein Fachjargon.
 - Genau 4 Spalten — bei leerem achtung_bei: Trailing-Pipe ist PFLICHT, sonst wird die Zeile verworfen
 - Pipe-Char \`|\` im Text VERBOTEN
 
 Beispiele Form B:
 bmbf-digitalpakt-2|92|Bundesweite Foerderung digitaler Schulinfrastruktur, deckt Hardware ab.|Antragsfrist naht — Einreichung vor Juli pruefen.
-kultur-macht-stark|75|Foerdert ausserschulische Kulturprojekte wie Theater-AGs.|
+kultur-macht-stark|75|Foerdert freiwillige Kulturangebote neben dem Unterricht, etwa Theater- oder Musik-AGs.|
 
 ### NEGATIVBEISPIELE — was NICHT erlaubt ist:
 CLARIFY|Was wollt ihr genau?                       <- zu vage, keine Optionen

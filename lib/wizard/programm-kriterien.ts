@@ -144,7 +144,7 @@ const KRITERIEN: Record<string, ExtraGuidance> = {
   "kultur-macht-stark": {
     gewichtet: [
       "Buendnis aus MINDESTENS DREI lokalen Partnern (Kultur + Bildung + Sozialarbeit) ist Kern-Voraussetzung — kein Einzel-Schul-Antrag.",
-      "Ausserschulischer Charakter KRITISCH: Abgrenzung vom Regelunterricht muss glasklar sein — freiwillig, zusaetzlich, kein Pflicht-Curriculum.",
+      "Klare Trennung vom normalen Pflichtunterricht ist entscheidend: Das Angebot laeuft zusaetzlich und freiwillig — z. B. als Nachmittags-AG, Ferien- oder Wochenend-Format oder offener Treff, nicht als benoteter Teil des Stundenplans. WICHTIG fuer nutzersichtbare Begruendungen: dieses Kriterium ALLTAGSSPRACHLICH erklaeren (etwa 'foerdert freiwillige Angebote neben dem Unterricht wie Theater- oder Musik-AGs') statt mit dem Fachbegriff 'ausserschulisch' / 'Ausserschulischkeit'.",
       "Kulturbereich konkret benennen: Theater, Musik, Literatur, digitale Spielekultur, Alltagskultur, Zirkus etc. — kein generisches 'Kulturprojekt'.",
       "Zielgruppe mit Risikolagen belegen: Sozialindex des Stadtteils, Transferleistungsquote der Familien — kein abstraktes 'benachteiligte Kinder'.",
       "Diversitaetssensible und Empowerment-orientierte paedagogische Ansaetze sind besonders gefragt.",
