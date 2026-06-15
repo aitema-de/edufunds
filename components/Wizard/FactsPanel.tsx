@@ -30,13 +30,30 @@ function formatValue(v: unknown): string {
   return String(v);
 }
 
+// Bekannte Akronyme/Einheiten gross ausschreiben (sonst "Beantragt Eur").
+const ACRONYMS: Record<string, string> = {
+  eur: "EUR",
+  ki: "KI",
+  mint: "MINT",
+  plz: "PLZ",
+  url: "URL",
+  id: "ID",
+  it: "IT",
+  pdf: "PDF",
+};
+
 function humanizeKey(k: string): string {
   // Jedes Wort gross schreiben (nicht nur das erste), sonst entsteht
   // "Erwartete ergebnisse" / "Messbare indikatoren".
   return k
     .replace(/_/g, " ")
     .split(" ")
-    .map((w) => (w ? w.charAt(0).toUpperCase() + w.slice(1) : w))
+    .map((w) => {
+      if (!w) return w;
+      const acronym = ACRONYMS[w.toLowerCase()];
+      if (acronym) return acronym;
+      return w.charAt(0).toUpperCase() + w.slice(1);
+    })
     .join(" ");
 }
 

@@ -73,7 +73,7 @@ function buildMarkdownComponents(paid: boolean, programmId: string) {
       return (
         <h2
           id={id}
-          className="group mb-3 mt-8 flex items-center gap-2 text-lg font-semibold text-[#c9a227] scroll-mt-24"
+          className="group mb-3 mt-8 flex items-center gap-2 text-lg font-semibold text-[#7a5e12] scroll-mt-24"
         >
           <span>{children}</span>
           {paid && (
@@ -475,15 +475,15 @@ export function AntragResult({
                 const status = res?.status ?? "offen";
                 const badge =
                   status === "geschlossen"
-                    ? "border-green-500/40 text-green-300"
+                    ? "border-green-500/40 text-green-700"
                     : status === "teilweise"
-                      ? "border-yellow-500/40 text-yellow-300"
-                      : "border-red-500/40 text-red-300";
+                      ? "border-yellow-500/40 text-yellow-700"
+                      : "border-red-500/40 text-red-700";
                 const schwereBadge =
                   f.schwere === "hoch"
-                    ? "border-red-500/40 text-red-300"
+                    ? "border-red-500/40 text-red-700"
                     : f.schwere === "mittel"
-                      ? "border-[#c9a227]/40 text-[#c9a227]"
+                      ? "border-[#c9a227]/40 text-[#7a5e12]"
                       : "border-[#0a1628]/20 text-slate-700";
                 return (
                   <div key={i} className="rounded border border-[#0a1628]/15 bg-[#f8f5f0] p-2.5">
@@ -520,7 +520,7 @@ export function AntragResult({
                 {generation.consistencyIssues.map((i, idx) => (
                   <div key={idx} className="rounded border border-[#0a1628]/15 bg-[#f8f5f0] p-2.5">
                     <div className="mb-1">
-                      <span className="rounded-full border border-amber-500/40 px-2 py-0.5 text-[10px] uppercase text-amber-300">
+                      <span className="rounded-full border border-amber-500/40 px-2 py-0.5 text-[10px] uppercase text-amber-700">
                         {CONSISTENCY_ART_LABELS[i.art] ?? i.art}
                       </span>
                     </div>
