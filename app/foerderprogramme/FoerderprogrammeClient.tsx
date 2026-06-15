@@ -12,7 +12,7 @@ const foerderprogramme = foerderprogrammeData as Foerderprogramm[];
 
 import { useState, useMemo } from "react";
 
-// Schulformen-Optionen (nur Grundschule)
+// Schulformen-Optionen (alle Schularten)
 const SCHULFORMEN = [
   { value: "", label: "Grundschule" },
 ];
@@ -133,13 +133,13 @@ export default function FoerderprogrammePage() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style={{ backgroundColor: 'rgba(201, 162, 39, 0.1)', border: '1px solid rgba(201, 162, 39, 0.2)' }}>
               <School className="h-4 w-4" style={{ color: '#c9a227' }} />
-              <span className="text-sm font-medium" style={{ color: '#c9a227' }}>Förderfinder</span>
+              <span className="text-sm font-medium" style={{ color: '#7a5e12' }}>Förderfinder</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-4">
-              Förderprogramme für Grundschulen
+              Förderprogramme für Schulen
             </h1>
             <p className="text-slate-600 max-w-2xl mx-auto text-lg">
-              Finden Sie passende Förderungen für Ihre Grundschule. 
+              Finden Sie passende Förderungen für Ihre Schule.
               Aktuell {stats.total} Programme im Überblick.
             </p>
           </div>
@@ -147,7 +147,7 @@ export default function FoerderprogrammePage() {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
             <div className="glass rounded-xl p-4 text-center">
-              <div className="text-2xl font-bold" style={{ color: '#c9a227' }}>{stats.total}</div>
+              <div className="text-2xl font-bold" style={{ color: '#7a5e12' }}>{stats.total}</div>
               <div className="text-xs text-slate-500">Programme</div>
             </div>
             <div className="glass rounded-xl p-4 text-center">
@@ -175,7 +175,7 @@ export default function FoerderprogrammePage() {
                 <Filter className="h-5 w-5" style={{ color: '#c9a227' }} />
                 <h2 className="font-semibold text-[#1e3a61]">Filter</h2>
                 {aktiveFilterCount > 0 && (
-                  <span className="px-2 py-0.5 rounded-full text-xs" style={{ backgroundColor: 'rgba(201, 162, 39, 0.2)', color: '#c9a227' }}>
+                  <span className="px-2 py-0.5 rounded-full text-xs" style={{ backgroundColor: 'rgba(201, 162, 39, 0.2)', color: '#7a5e12' }}>
                     {aktiveFilterCount} aktiv
                   </span>
                 )}
@@ -318,7 +318,7 @@ export default function FoerderprogrammePage() {
                           {programm.foerdergeberTyp.toUpperCase()}
                         </span>
                         {programm.kiAntragGeeignet && (
-                          <span className="px-2 py-1 rounded-full text-xs font-medium bg-[#c9a227]/20 text-[#c9a227]">
+                          <span className="px-2 py-1 rounded-full text-xs font-medium bg-[#c9a227]/20 text-[#7a5e12]">
                             KI-geeignet
                           </span>
                         )}
@@ -330,7 +330,7 @@ export default function FoerderprogrammePage() {
                       </div>
 
                       {/* Titel */}
-                      <h3 className="text-xl font-bold text-[#0a1628] mb-2 group-hover:text-[#c9a227] transition-colors">
+                      <h3 className="text-xl font-bold text-[#0a1628] mb-2 group-hover:text-[#7a5e12] transition-colors">
                         {programm.name}
                       </h3>
 

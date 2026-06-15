@@ -91,7 +91,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="group relative px-4 py-2 text-sm font-medium text-[#94a3b8] transition-all hover:text-[#c9a227] rounded-lg hover:bg-[#f8f5f0]/5"
+                className="group relative px-4 py-2 text-sm font-medium text-[#475569] transition-all hover:text-[#c9a227] rounded-lg hover:bg-[#f8f5f0]/5"
               >
                 <span className="flex items-center gap-2">
                   {item.label}

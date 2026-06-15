@@ -70,7 +70,7 @@ export function FactsPanel({ facts, compact }: Props) {
         if (entries.length === 0) return null;
         return (
           <div key={key} className="rounded-lg border border-[#0a1628]/10 bg-[#f8f5f0] p-3">
-            <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#c9a227]">
+            <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#7a5e12]">
               <Icon className="h-3.5 w-3.5" />
               {label}
             </div>

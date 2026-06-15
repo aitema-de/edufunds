@@ -17,7 +17,7 @@ export default function AGBPage() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#c9a227]/10 border border-[#c9a227]/20 mb-6">
               <FileText className="h-4 w-4 text-[#c9a227]" />
-              <span className="text-sm font-medium text-[#c9a227]">Rechtliches</span>
+              <span className="text-sm font-medium text-[#7a5e12]">Rechtliches</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-4">
               Allgemeine Geschäftsbedingungen
@@ -41,7 +41,7 @@ export default function AGBPage() {
             {/* § 1 */}
             <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#0a1628] mb-4 flex items-center gap-3">
-                <span className="text-[#c9a227] font-bold">§ 1</span>
+                <span className="text-[#7a5e12] font-bold">§ 1</span>
                 Geltungsbereich
               </h2>
               <div className="text-[#0a1628]/80 space-y-4 leading-relaxed text-base">

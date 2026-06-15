@@ -519,7 +519,7 @@ export function WizardShell({ programm }: Props) {
         <button
           type="button"
           onClick={resetSession}
-          className="mt-5 text-xs text-slate-400 underline hover:text-slate-600"
+          className="mt-5 text-xs text-slate-600 underline hover:text-slate-600"
         >
           Stattdessen neuen Antrag starten
         </button>
@@ -541,7 +541,7 @@ export function WizardShell({ programm }: Props) {
         </p>
         {handoff && (
           <div className="mx-auto mb-4 max-w-xl rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 px-4 py-3 text-left text-sm text-slate-700">
-            <div className="mb-1 font-medium text-[#c9a227]">
+            <div className="mb-1 font-medium text-[#7a5e12]">
               Ihr Anliegen wird übernommen
             </div>
             <div className="text-slate-600 italic">
@@ -549,7 +549,7 @@ export function WizardShell({ programm }: Props) {
                 ? handoff.anliegen.slice(0, 200) + "…"
                 : handoff.anliegen}"
               {handoff.fromMatchScore && (
-                <span className="ml-2 text-xs text-[#c9a227]">
+                <span className="ml-2 text-xs text-[#7a5e12]">
                   · Passung {handoff.fromMatchScore} %
                 </span>
               )}
@@ -558,7 +558,7 @@ export function WizardShell({ programm }: Props) {
         )}
         {schoolProfile && (
           <div className="mx-auto mb-6 max-w-xl rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 px-4 py-3 text-left text-sm text-slate-700">
-            <div className="mb-1 font-medium text-[#c9a227]">
+            <div className="mb-1 font-medium text-[#7a5e12]">
               Bekanntes Schulprofil wird übernommen
             </div>
             <div className="text-slate-600">

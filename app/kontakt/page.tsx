@@ -27,11 +27,11 @@ export default function KontaktPage() {
               className="text-center max-w-3xl mx-auto"
             >
               <span className="inline-block px-4 py-2 rounded-full text-xs font-medium tracking-wider uppercase mb-6"
-                style={{ backgroundColor: "rgba(201, 162, 39, 0.1)", color: "#c9a227" }}>
+                style={{ backgroundColor: "rgba(201, 162, 39, 0.1)", color: "#7a5e12" }}>
                 Kontakt
               </span>
               <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "#0a1628" }}>
-                Wir sind für Sie <span style={{ color: "#c9a227" }}>da</span>
+                Wir sind für Sie <span style={{ color: "#7a5e12" }}>da</span>
               </h1>
               <p className="text-lg" style={{ color: "#64748b" }}>
                 Haben Sie Fragen zu Fördermitteln oder unserer Plattform? 
@@ -63,7 +63,7 @@ export default function KontaktPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1" style={{ color: "#0a1628" }}>E-Mail</h3>
-                      <a href="mailto:office@aitema.de" className="text-[#c9a227] hover:text-[#e4c55a] transition-colors underline underline-offset-2">
+                      <a href="mailto:office@aitema.de" className="text-[#7a5e12] hover:text-[#e4c55a] transition-colors underline underline-offset-2">
                         office@aitema.de
                       </a>
                     </div>
@@ -76,7 +76,7 @@ export default function KontaktPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1" style={{ color: "#0a1628" }}>Telefon</h3>
-                      <a href="tel:+491234567890" className="text-[#c9a227] hover:text-[#e4c55a] transition-colors underline underline-offset-2">
+                      <a href="tel:+491234567890" className="text-[#7a5e12] hover:text-[#e4c55a] transition-colors underline underline-offset-2">
                         +49 (0) 123 456 7890
                       </a>
                     </div>
@@ -144,7 +144,7 @@ export default function KontaktPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2" style={{ color: "#94a3b8" }}>
+                    <label className="block text-sm font-medium mb-2" style={{ color: "#475569" }}>
                       E-Mail *
                     </label>
                     <input
@@ -162,7 +162,7 @@ export default function KontaktPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2" style={{ color: "#94a3b8" }}>
+                    <label className="block text-sm font-medium mb-2" style={{ color: "#475569" }}>
                       Betreff *
                     </label>
                     <input
@@ -180,7 +180,7 @@ export default function KontaktPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2" style={{ color: "#94a3b8" }}>
+                    <label className="block text-sm font-medium mb-2" style={{ color: "#475569" }}>
                       Nachricht *
                     </label>
                     <textarea
@@ -204,8 +204,8 @@ export default function KontaktPage() {
                       required
                       className="mt-1"
                     />
-                    <label className="text-sm" style={{ color: "#94a3b8" }}>
-                      Ich habe die <Link href="/datenschutz" className="text-[#c9a227] hover:text-[#e4c55a] underline underline-offset-2">Datenschutzerklärung</Link> gelesen und stimme zu. *
+                    <label className="text-sm" style={{ color: "#475569" }}>
+                      Ich habe die <Link href="/datenschutz" className="text-[#7a5e12] hover:text-[#e4c55a] underline underline-offset-2">Datenschutzerklärung</Link> gelesen und stimme zu. *
                     </label>
                   </div>
 

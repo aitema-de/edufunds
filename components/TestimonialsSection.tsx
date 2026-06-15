@@ -104,7 +104,7 @@ export function TestimonialsSection() {
             Was unsere{" "}
             <span className="text-gradient-cyan">Nutzer sagen</span>
           </h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             Schulen in ganz Deutschland nutzen EduFunds erfolgreich
           </p>
         </motion.div>
@@ -139,7 +139,7 @@ export function TestimonialsSection() {
                 </div>
 
                 {/* Quote */}
-                <blockquote className="text-xl lg:text-2xl text-slate-300 leading-relaxed mb-8">
+                <blockquote className="text-xl lg:text-2xl text-slate-600 leading-relaxed mb-8">
                   &ldquo;{t.content}&rdquo;
                 </blockquote>
 
@@ -155,7 +155,7 @@ export function TestimonialsSection() {
                   </div>
                   <div>
                     <div className="font-semibold text-slate-100 text-lg">{t.name}</div>
-                    <div className="text-slate-400">{t.role}</div>
+                    <div className="text-slate-600">{t.role}</div>
                     <div className="text-sm text-cyan-400">{t.school}, {t.location}</div>
                   </div>
                 </div>

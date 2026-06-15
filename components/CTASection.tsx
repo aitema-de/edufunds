@@ -116,7 +116,7 @@ export function CTASection() {
             style={{ color: '#0a1628' }}
           >
             Bereit, Fördermittel{' '}
-            <span style={{ color: '#c9a227' }}>erfolgreich</span>
+            <span style={{ color: '#7a5e12' }}>erfolgreich</span>
             <br />
             zu beantragen?
           </motion.h2>
@@ -135,7 +135,7 @@ export function CTASection() {
             className="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed"
             style={{ color: '#1e3a61' }}
           >
-            Nutzen Sie EduFunds, um Förderanträge für Ihre Grundschule professionell zu erstellen.
+            Nutzen Sie EduFunds, um Förderanträge für Ihre Schule professionell zu erstellen.
           </motion.p>
 
           {/* Benefits */}
@@ -226,7 +226,7 @@ export function CTASection() {
         >
           {[
             { value: "130+", label: "Förderprogramme" },
-            { value: "100%", label: "Grundschulen" },
+            { value: "alle", label: "Schularten" },
             { value: "16", label: "Bundesländer" },
           ].map((stat, index) => (
             <motion.div

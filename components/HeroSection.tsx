@@ -96,7 +96,7 @@ export function HeroSection() {
             >
               Fördermittel für
               <br />
-              <span style={{ color: '#c9a227' }}>Schulen.</span>
+              <span style={{ color: '#7a5e12' }}>Schulen.</span>
               <br />
               <span className="text-4xl md:text-5xl lg:text-6xl italic opacity-60">
                 Vereinfacht.

@@ -47,7 +47,7 @@ interface Props {
 
 function scoreColor(score: number): string {
   if (score >= 85) return "text-emerald-700 bg-emerald-50 border-emerald-200";
-  if (score >= 70) return "text-[#c9a227] bg-[#c9a227]/10 border-[#c9a227]/30";
+  if (score >= 70) return "text-[#7a5e12] bg-[#c9a227]/10 border-[#c9a227]/30";
   return "text-slate-600 bg-slate-100 border-slate-200";
 }
 

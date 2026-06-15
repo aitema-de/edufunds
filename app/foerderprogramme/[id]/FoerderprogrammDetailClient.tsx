@@ -172,7 +172,7 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
           <div className="mb-6">
             <Link
               href="/foerderprogramme"
-              className="inline-flex items-center gap-2 text-slate-600 hover:text-[#c9a227] transition-colors"
+              className="inline-flex items-center gap-2 text-slate-600 hover:text-[#7a5e12] transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
               <span>Zurück zur Übersicht</span>
@@ -291,7 +291,7 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
                   Förderbetrag
                 </h2>
                 <div className="bg-gradient-to-br from-[#c9a227]/10 to-[#b08d1f]/5 rounded-xl p-6 border border-[#c9a227]/20">
-                  <div className="text-3xl md:text-4xl font-bold text-[#c9a227] mb-2">
+                  <div className="text-3xl md:text-4xl font-bold text-[#7a5e12] mb-2">
                     {programm.foerdersummeText}
                   </div>
                   {programm.foerdersummeMin && programm.foerdersummeMax && (
@@ -374,11 +374,11 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
                     <div className={`p-4 rounded-xl ${countdown.urgent ? 'bg-red-500/10 border border-red-500/20' : 'bg-[#c9a227]/10 border border-[#c9a227]/20'}`}>
                       <div className="flex items-center gap-2 mb-2">
                         <Clock className={`h-5 w-5 ${countdown.urgent ? 'text-red-400' : 'text-[#c9a227]'}`} />
-                        <span className={`text-sm font-medium ${countdown.urgent ? 'text-red-400' : 'text-[#c9a227]'}`}>
+                        <span className={`text-sm font-medium ${countdown.urgent ? 'text-red-400' : 'text-[#7a5e12]'}`}>
                           {countdown.urgent ? 'Bald ablaufend!' : 'Noch Zeit'}
                         </span>
                       </div>
-                      <div className={`text-3xl font-bold ${countdown.urgent ? 'text-red-400' : 'text-[#c9a227]'}`}>
+                      <div className={`text-3xl font-bold ${countdown.urgent ? 'text-red-400' : 'text-[#7a5e12]'}`}>
                         {countdown.days} <span className="text-lg font-normal">Tage</span>
                       </div>
                       {countdown.hours > 0 && (
@@ -535,13 +535,13 @@ export default function FoerderprogrammDetailClient({ programm }: Foerderprogram
                           <Sparkles className="h-4 w-4 text-[#c9a227]" />
                         )}
                       </div>
-                      <h3 className="text-lg font-bold text-[#0a1628] mb-2 group-hover:text-[#c9a227] transition-colors line-clamp-2">
+                      <h3 className="text-lg font-bold text-[#0a1628] mb-2 group-hover:text-[#7a5e12] transition-colors line-clamp-2">
                         {similar.name}
                       </h3>
                       <p className="text-slate-600 text-sm mb-4 line-clamp-2">
                         {similar.kurzbeschreibung}
                       </p>
-                      <div className="flex items-center gap-2 text-[#c9a227] text-sm font-medium">
+                      <div className="flex items-center gap-2 text-[#7a5e12] text-sm font-medium">
                         Details ansehen
                         <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </div>

@@ -121,7 +121,7 @@ export default function KontingentUebersichtPage() {
           <div className="container mx-auto px-6 max-w-3xl">
             <span
               className="inline-block px-4 py-2 rounded-full text-xs font-medium tracking-wider uppercase mb-4"
-              style={{ backgroundColor: "rgba(201, 162, 39, 0.1)", color: GOLD }}
+              style={{ backgroundColor: "rgba(201, 162, 39, 0.1)", color: "#7a5e12" }}
             >
               Käufer-Übersicht
             </span>
@@ -233,7 +233,7 @@ export default function KontingentUebersichtPage() {
                             <button
                               onClick={() => copy(c.code)}
                               className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-medium"
-                              style={{ color: GOLD }}
+                              style={{ color: "#7a5e12" }}
                             >
                               <Copy className="h-3.5 w-3.5" />
                               {copied === c.code ? "Kopiert" : "Kopieren"}
@@ -261,7 +261,7 @@ export default function KontingentUebersichtPage() {
                           </div>
                         </div>
 
-                        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs" style={{ color: "#94a3b8" }}>
+                        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs" style={{ color: "#475569" }}>
                           <span>Gekauft: {formatDate(c.createdAt)}</span>
                           <span className={c.expired ? "text-red-600" : ""}>
                             {c.expired ? "Abgelaufen am" : "Gültig bis"}: {formatDate(c.expiresAt)}
@@ -298,7 +298,7 @@ export default function KontingentUebersichtPage() {
                 <p className="mt-6 flex items-center gap-2 text-xs" style={{ color: "#64748b" }}>
                   <ShieldCheck className="h-4 w-4" style={{ color: GOLD }} />
                   Brauchen Sie mehr?{" "}
-                  <Link href="/kontingent" className="underline" style={{ color: GOLD }}>
+                  <Link href="/kontingent" className="underline" style={{ color: "#7a5e12" }}>
                     Weiteres Kontingent kaufen
                   </Link>
                 </p>

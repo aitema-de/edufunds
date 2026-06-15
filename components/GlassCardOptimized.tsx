@@ -83,7 +83,7 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
                   {typeConfig.label}
                 </span>
                 {programm.kiAntragGeeignet && (
-                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-[#c9a227]/15 text-[#c9a227]">
+                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-[#c9a227]/15 text-[#7a5e12]">
                     KI-geeignet
                   </span>
                 )}
@@ -117,7 +117,7 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
             {programm.foerdersummeText && (
               <span className="flex items-center gap-1">
                 <Euro className="h-4 w-4 text-[#c9a227] flex-shrink-0" />
-                <span className="truncate font-medium text-[#c9a227]">{programm.foerdersummeText}</span>
+                <span className="truncate font-medium text-[#7a5e12]">{programm.foerdersummeText}</span>
               </span>
             )}
             {programm.bewerbungsfristText && (
