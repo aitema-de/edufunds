@@ -13,12 +13,13 @@ import {
   CreditCard,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
 
 const navItems = [
   {
     href: "/foerderprogramme",
     label: "Förderprogramme",
-    badge: "130+",
+    badge: PROGRAMM_COUNT_LABEL,
     icon: Search,
   },
   {

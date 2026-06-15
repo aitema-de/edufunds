@@ -7,11 +7,11 @@ import { PageHero } from "@/components/PageHero";
 import { StartClient } from "@/components/Wizard/StartClient";
 import { DsgvoTrust } from "@/components/DsgvoTrust";
 import { KiHinweis } from "@/components/KiHinweis";
+import { PROGRAMM_COUNT_ROUNDED } from "@/lib/programm-count";
 
 export const metadata: Metadata = {
   title: "Neuen Antrag starten – EduFunds",
-  description:
-    "Beschreiben Sie Ihr Anliegen, und die KI findet die passendsten Förderprogramme aus über 135 Angeboten.",
+  description: `Beschreiben Sie Ihr Anliegen, und die KI findet die passendsten Förderprogramme aus über ${PROGRAMM_COUNT_ROUNDED} Angeboten.`,
 };
 
 export default function StartPage() {
@@ -26,7 +26,7 @@ export default function StartPage() {
         }}
         title="Neuen Antrag"
         titleAccent="starten"
-        subtitle="Beschreiben Sie Ihr Anliegen in Ihren Worten. Die KI gleicht es mit über 135 Förderprogrammen ab und schlägt Ihnen die fünf passendsten vor — mit Begründung. Danach starten Sie direkt den Antragswizard."
+        subtitle={`Beschreiben Sie Ihr Anliegen in Ihren Worten. Die KI gleicht es mit über ${PROGRAMM_COUNT_ROUNDED} Förderprogrammen ab und schlägt Ihnen die fünf passendsten vor — mit Begründung. Danach starten Sie direkt den Antragswizard.`}
       >
         <div className="flex justify-center">
           <Link

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, CheckCircle2, Shield, Zap, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
 
 export function CTASection() {
   const containerVariants = {
@@ -225,7 +226,7 @@ export function CTASection() {
           className="mt-16 grid grid-cols-3 gap-4 max-w-2xl mx-auto"
         >
           {[
-            { value: "130+", label: "Förderprogramme" },
+            { value: PROGRAMM_COUNT_LABEL, label: "Förderprogramme" },
             { value: "alle", label: "Schularten" },
             { value: "16", label: "Bundesländer" },
           ].map((stat, index) => (

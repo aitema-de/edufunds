@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Target, Heart, Lightbulb, Users, Award, BookOpen } from "lucide-react";
+import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
 
 const values = [
   {
@@ -95,7 +96,7 @@ export default function UeberUnsPage() {
                 className="grid grid-cols-2 gap-6"
               >
                 <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(201, 162, 39, 0.1)" }}>
-                  <div className="text-4xl font-bold mb-2" style={{ color: "#c9a227" }}>50+</div>
+                  <div className="text-4xl font-bold mb-2" style={{ color: "#c9a227" }}>{PROGRAMM_COUNT_LABEL}</div>
                   <div className="text-sm" style={{ color: "#0a1628" }}>Förderprogramme</div>
                 </div>
                 <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(10, 22, 40, 0.05)" }}>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { WebVitals } from "@/components/WebVitals";
 import { FeedbackButton } from "@/components/FeedbackButton";
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
     default: "EduFunds - Intelligente Schulförderung für Schulen",
     template: "%s | EduFunds"
   },
-  description: "Finden Sie passende Förderprogramme für Ihre Schule und erstellen Sie erfolgreiche Anträge mit KI-Unterstützung. 130+ Programme im Überblick.",
+  description: `Finden Sie passende Förderprogramme für Ihre Schule und erstellen Sie erfolgreiche Anträge mit KI-Unterstützung. ${PROGRAMM_COUNT_LABEL} Programme im Überblick.`,
   keywords: ["Schulförderung", "Fördermittel", "Schule", "Anträge", "KI", "Bildung", "Grundschule", "Förderprogramme"],
   authors: [{ name: "EduFunds" }],
   creator: "EduFunds",

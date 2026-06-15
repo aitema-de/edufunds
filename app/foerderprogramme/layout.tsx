@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import foerderprogrammeData from "@/data/foerderprogramme.json";
+import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
 
-const programCount = foerderprogrammeData.length >= 160 ? "160+" : foerderprogrammeData.length;
+const programCount = PROGRAMM_COUNT_LABEL;
 
 export const metadata: Metadata = {
   title: "Förderprogramme für Schulen",

@@ -10,6 +10,8 @@
  * sehen. Stattdessen Titel + erklaerender Text + Fallback-Aktionen.
  */
 
+import { PROGRAMM_COUNT_ROUNDED } from "@/lib/programm-count";
+
 export type WizardErrorKind =
   | "rate-limit"
   | "gemini-down"
@@ -45,8 +47,7 @@ export function classifyWizardError(
       kind: "rate-limit",
       raw: rawMessage,
       title: "Unsere KI ist gerade überlastet",
-      message:
-        "Das Modell hat sein Stunden-Kontingent ausgeschöpft. Versuchen Sie es in ein paar Minuten erneut, oder durchsuchen Sie unseren Katalog mit über 130 Programmen direkt.",
+      message: `Das Modell hat sein Stunden-Kontingent ausgeschöpft. Versuchen Sie es in ein paar Minuten erneut, oder durchsuchen Sie unseren Katalog mit über ${PROGRAMM_COUNT_ROUNDED} Programmen direkt.`,
       canRetry: true,
       hasManualFallback: true,
     };

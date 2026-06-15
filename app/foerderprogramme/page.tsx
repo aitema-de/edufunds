@@ -12,6 +12,7 @@ import type { Foerderprogramm } from '@/lib/foerderSchema';
 import { foerderprogrammeFetcher, FOERDERPROGRAMME_CACHE_KEY, swrConfig } from "@/lib/swr-fetcher";
 import { formatKategorie } from "@/lib/kategorie-labels";
 import { useLocalStorage, useDebounce, usePagination } from "@/hooks/useLocalStorage";
+import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
 
 // Dynamic Import für GlassCard (Code-Splitting)
 const GlassCard = dynamic(() => import("@/components/GlassCardOptimized").then(mod => ({ 
@@ -58,7 +59,7 @@ const StatsSection = memo(function StatsSection({ stats }: { stats: { total: num
         <div className="w-10 h-10 rounded-lg bg-[#c9a227]/15 flex items-center justify-center mx-auto mb-2">
           <School className="w-5 h-5 text-[#c9a227]" />
         </div>
-        <div className="text-2xl font-bold text-[#7a5e12]">{stats.total}</div>
+        <div className="text-2xl font-bold text-[#7a5e12]">{PROGRAMM_COUNT_LABEL}</div>
         <div className="text-xs text-[#1e3a61]">Schul-Programme</div>
       </div>
       <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)', boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)' }}>
@@ -333,7 +334,7 @@ export default function FoerderprogrammePage() {
             </h1>
             <p className="text-[#1e3a61] max-w-2xl mx-auto text-lg">
               Finden Sie passende Förderungen für Ihre Schule.
-              Aktuell {isLoading ? '...' : `${stats.total}+ Programme`} im Überblick.
+              Aktuell {isLoading ? '...' : `${PROGRAMM_COUNT_LABEL} Programme`} im Überblick.
             </p>
             <div className="mt-6">
               <a

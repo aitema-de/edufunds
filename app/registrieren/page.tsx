@@ -7,6 +7,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
 
 export default function RegistrierenPage() {
   const [formData, setFormData] = useState({
@@ -233,7 +234,7 @@ export default function RegistrierenPage() {
             >
               {[
                 "Kostenlos für immer",
-                "130+ Programme",
+                `${PROGRAMM_COUNT_LABEL} Programme`,
                 "Sofortiger Zugriff",
                 "DSGVO-konform",
               ].map((benefit, i) => (

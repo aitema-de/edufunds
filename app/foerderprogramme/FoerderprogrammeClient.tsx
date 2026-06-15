@@ -8,6 +8,7 @@ import { Search, Filter, Building2, Euro, Calendar, MapPin, ArrowRight, School, 
 import Link from "next/link";
 import type { Foerderprogramm } from '@/lib/foerderSchema';
 import foerderprogrammeData from '@/data/foerderprogramme.json';
+import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
 const foerderprogramme = foerderprogrammeData as Foerderprogramm[];
 
 import { useState, useMemo } from "react";
@@ -140,14 +141,14 @@ export default function FoerderprogrammePage() {
             </h1>
             <p className="text-slate-600 max-w-2xl mx-auto text-lg">
               Finden Sie passende Förderungen für Ihre Schule.
-              Aktuell {stats.total} Programme im Überblick.
+              Aktuell {PROGRAMM_COUNT_LABEL} Programme im Überblick.
             </p>
           </div>
 
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
             <div className="glass rounded-xl p-4 text-center">
-              <div className="text-2xl font-bold" style={{ color: '#7a5e12' }}>{stats.total}</div>
+              <div className="text-2xl font-bold" style={{ color: '#7a5e12' }}>{PROGRAMM_COUNT_LABEL}</div>
               <div className="text-xs text-slate-500">Programme</div>
             </div>
             <div className="glass rounded-xl p-4 text-center">
