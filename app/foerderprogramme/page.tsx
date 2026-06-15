@@ -11,6 +11,7 @@ import { Search, Filter, School, X, Landmark, MapPinned, HeartHandshake, Globe }
 import type { Foerderprogramm } from '@/lib/foerderSchema';
 import { foerderprogrammeFetcher, FOERDERPROGRAMME_CACHE_KEY, swrConfig } from "@/lib/swr-fetcher";
 import { formatKategorie } from "@/lib/kategorie-labels";
+import { isProgrammAbgelaufen } from "@/lib/programm-status";
 import { useLocalStorage, useDebounce, usePagination } from "@/hooks/useLocalStorage";
 import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
 
@@ -228,6 +229,8 @@ export default function FoerderprogrammePage() {
     const suche = debouncedSuchbegriff.toLowerCase().trim();
     
     return foerderprogramme.filter((programm) => {
+      // Abgelaufene Programme gehoeren ins Archiv, nicht in den aktiven Katalog.
+      if (isProgrammAbgelaufen(programm)) return false;
       // Suchbegriff
       if (suche) {
         const nameMatch = programm.name.toLowerCase().includes(suche);

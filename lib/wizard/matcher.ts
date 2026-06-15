@@ -15,6 +15,7 @@ import foerderprogrammeData from "@/data/foerderprogramme.json";
 import prioritaetenData from "@/data/richtlinien-prioritaeten.json";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import { MODEL_FLASH, generateText } from "./llm";
+import { isProgrammAbgelaufen } from "@/lib/programm-status";
 import { addUsage, emptyLedger, type CostLedger } from "./pricing";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
@@ -380,6 +381,9 @@ function prefilter(input: MatchInput, all: Foerderprogramm[]): Foerderprogramm[]
     // ohne offenen Call). Beide gehoeren nicht als Live-Treffer in den Cut.
     const status = (p as any).status;
     if (status === "archiviert" || status === "review_needed") return false;
+    // Abgelaufene Programme (Frist-Ende in der Vergangenheit) nicht matchen —
+    // sonst schreibt der Wizard einen Antrag fuer eine geschlossene Ausschreibung.
+    if (isProgrammAbgelaufen(p)) return false;
 
     // Landesprogramme filtern: wenn User bundesland gesetzt hat und
     // Programm explizit andere Laender fordert

@@ -64,11 +64,18 @@ export async function POST(req: NextRequest) {
       const richtlinie = await loadRichtlinie(programm.id);
       const onEvent = async (event: { stage: PipelineStage; message: string }) => {
         try {
+          // WICHTIG: zu Beginn der Generierung existiert antrag_data.generation
+          // noch nicht. jsonb_set auf '{generation,stage}' legt das fehlende
+          // Eltern-Objekt NICHT an und no-op't dann still — dadurch kam beim
+          // Polling nie ein Stage an und der Fortschrittsbalken hakte nichts ab.
+          // Loesung: generation per Merge (||) setzen/erweitern, statt nested set.
           await query(
             `UPDATE ki_antraege
                SET antrag_data = jsonb_set(
-                 jsonb_set(COALESCE(antrag_data, '{}'::jsonb), '{generation,stage}', to_jsonb($1::text)),
-                 '{generation,stageAt}', to_jsonb($2::text)
+                 COALESCE(antrag_data, '{}'::jsonb),
+                 '{generation}',
+                 COALESCE(antrag_data->'generation', '{}'::jsonb)
+                   || jsonb_build_object('stage', $1::text, 'stageAt', $2::text)
                ),
                updated_at = CURRENT_TIMESTAMP
              WHERE session_token = $3`,
