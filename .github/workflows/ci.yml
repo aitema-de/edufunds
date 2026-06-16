@@ -1,0 +1,32 @@
+name: CI (Typecheck + Tests)
+
+# Qualitaets-Gate: laeuft bei jedem PR sowie bei Push auf staging/main.
+# Ergaenzt die separate pipeline-eval.yml (LLM-Qualitaet) um die bisher in CI
+# FEHLENDEN Checks: TypeScript-Typecheck und die Jest-Test-Suite.
+on:
+  pull_request:
+  push:
+    branches: [staging, main]
+  workflow_dispatch:
+
+jobs:
+  typecheck-and-test:
+    runs-on: ubuntu-latest
+    name: Typecheck + Jest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: TypeScript Typecheck
+        run: npm run typecheck
+
+      - name: Jest Tests
+        run: npm test -- --ci

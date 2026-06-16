@@ -62,11 +62,24 @@ class MockIntersectionObserver {
 // jsdom ueberschreibt globalThis; daher explizit in global setzen.
 {
   const g = global as unknown as Record<string, unknown>
-  if (!g.Request && typeof globalThis.Request !== 'undefined') {
-    g.Request = globalThis.Request
-    g.Response = globalThis.Response
-    g.Headers = globalThis.Headers
-    g.fetch = globalThis.fetch
+  // Jedes Global einzeln setzen: jsdom liefert teils Request, aber NICHT fetch —
+  // ein gemeinsames `if (!g.Request)`-Gate liess fetch dann undefiniert
+  // ("fetch is not defined" in Komponenten, die im useEffect fetchen).
+  if (!g.Request && typeof globalThis.Request !== 'undefined') g.Request = globalThis.Request
+  if (!g.Response && typeof globalThis.Response !== 'undefined') g.Response = globalThis.Response
+  if (!g.Headers && typeof globalThis.Headers !== 'undefined') g.Headers = globalThis.Headers
+  if (!g.fetch) {
+    // Hermetischer Default-Mock (kein echtes Netz): Komponenten-Tests, die beim
+    // Mount fetchen, sollen nicht crashen/haengen. Tests mit konkreten
+    // Erwartungen ueberschreiben global.fetch selbst.
+    g.fetch = jest.fn(() =>
+      Promise.resolve({
+        ok: true,
+        status: 200,
+        json: () => Promise.resolve({}),
+        text: () => Promise.resolve(''),
+      })
+    )
   }
 }
 

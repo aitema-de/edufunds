@@ -1,5 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Header } from '@/components/Header';
+import { PROGRAMM_COUNT_LABEL } from '@/lib/programm-count';
 
 // Mock Framer Motion
 jest.mock('framer-motion', () => ({
@@ -18,38 +19,38 @@ describe('Header Komponente', () => {
     });
   });
 
-  it('sollte den Logo-Text rendern', () => {
+  it('sollte das Logo als Bild mit alt-Text rendern', () => {
     render(<Header />);
-    expect(screen.getByText('EduFunds')).toBeInTheDocument();
-    expect(screen.getByText('Schulförderung')).toBeInTheDocument();
+    const logo = screen.getByAltText('EduFunds');
+    expect(logo).toBeInTheDocument();
+    expect(logo).toHaveAttribute('src', '/edufunds-logo.svg');
   });
 
-  it('sollte den "Zum Hauptinhalt springen" Link rendern', () => {
+  it('sollte den "Inhalt überspringen" Skip-Link rendern', () => {
     render(<Header />);
-    const skipLink = screen.getByText('Zum Hauptinhalt springen');
+    const skipLink = screen.getByText('Inhalt überspringen');
     expect(skipLink).toBeInTheDocument();
     expect(skipLink).toHaveAttribute('href', '#main-content');
   });
 
   it('sollte die Hauptnavigation mit allen Links rendern', () => {
     render(<Header />);
-    
+
     expect(screen.getByText('Förderprogramme')).toBeInTheDocument();
-    expect(screen.getByText('Dashboard')).toBeInTheDocument();
-    expect(screen.getByText('So funktioniert\'s')).toBeInTheDocument();
     expect(screen.getByText('Preise')).toBeInTheDocument();
+    expect(screen.getByText('Über uns')).toBeInTheDocument();
+    expect(screen.getByText('Kontakt')).toBeInTheDocument();
   });
 
-  it('sollte das Badge "40+" bei Förderprogramme anzeigen', () => {
+  it('sollte das Programm-Anzahl-Badge bei Förderprogramme anzeigen', () => {
     render(<Header />);
-    expect(screen.getByText('40+')).toBeInTheDocument();
+    expect(screen.getByText(PROGRAMM_COUNT_LABEL)).toBeInTheDocument();
   });
 
-  it('sollte CTA-Buttons rendern', () => {
+  it('sollte den CTA-Button rendern', () => {
     render(<Header />);
-    
-    expect(screen.getByText('Anmelden')).toBeInTheDocument();
-    expect(screen.getByText('Kostenlos starten')).toBeInTheDocument();
+
+    expect(screen.getByText('Programme entdecken')).toBeInTheDocument();
   });
 
   it('sollte die Mobile-Menu-Button haben', () => {
@@ -60,37 +61,37 @@ describe('Header Komponente', () => {
 
   it('sollte das Mobile-Menü öffnen wenn der Button geklickt wird', () => {
     render(<Header />);
-    
+
     const menuButton = screen.getByLabelText('Menü öffnen');
     fireEvent.click(menuButton);
-    
+
     // Nach dem Öffnen sollte der Schließen-Button sichtbar sein
     expect(screen.getByLabelText('Menü schließen')).toBeInTheDocument();
   });
 
   it('sollte alle Navigationslinks im Mobile-Menü anzeigen', () => {
     render(<Header />);
-    
+
     const menuButton = screen.getByLabelText('Menü öffnen');
     fireEvent.click(menuButton);
-    
+
     expect(screen.getAllByText('Förderprogramme').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Dashboard').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('So funktioniert\'s').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Preise').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Über uns').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Kontakt').length).toBeGreaterThan(0);
   });
 
   it('sollte das Mobile-Menü schließen wenn der Schließen-Button geklickt wird', async () => {
     render(<Header />);
-    
+
     // Menü öffnen
     const openButton = screen.getByLabelText('Menü öffnen');
     fireEvent.click(openButton);
-    
+
     // Menü schließen
     const closeButton = screen.getByLabelText('Menü schließen');
     fireEvent.click(closeButton);
-    
+
     // Warten auf Animation/State-Update
     await waitFor(() => {
       expect(screen.queryByLabelText('Menü schließen')).not.toBeInTheDocument();
@@ -99,34 +100,34 @@ describe('Header Komponente', () => {
 
   it('sollte den Header mit korrekten ARIA-Attributen rendern', () => {
     render(<Header />);
-    
+
     const header = screen.getByRole('banner');
     expect(header).toBeInTheDocument();
-    
+
     const navigation = screen.getByRole('navigation');
     expect(navigation).toHaveAttribute('aria-label', 'Hauptnavigation');
   });
 
   it('sollte Links mit korrekten href-Attributen haben', () => {
     render(<Header />);
-    
+
     const foerderprogrammeLink = screen.getByText('Förderprogramme').closest('a');
     expect(foerderprogrammeLink).toHaveAttribute('href', '/foerderprogramme');
-    
-    const dashboardLink = screen.getByText('Dashboard').closest('a');
-    expect(dashboardLink).toHaveAttribute('href', '/dashboard');
+
+    const preiseLink = screen.getByText('Preise').closest('a');
+    expect(preiseLink).toHaveAttribute('href', '/preise');
   });
 
   it('sollte den Logo-Link zur Startseite haben', () => {
     render(<Header />);
-    
+
     const logoLink = screen.getByLabelText('EduFunds - Zur Startseite');
     expect(logoLink).toHaveAttribute('href', '/');
   });
 
   it('sollte den Scroll-Progress-Bar rendern', () => {
     render(<Header />);
-    
+
     // Die Progress-Bar sollte ein div mit width-Style sein
     const progressBar = document.querySelector('.h-full.bg-gradient-to-r');
     expect(progressBar).toBeInTheDocument();
@@ -134,7 +135,7 @@ describe('Header Komponente', () => {
 
   it('sollte den Header sticky positioniert haben', () => {
     render(<Header />);
-    
+
     const header = screen.getByRole('banner');
     expect(header).toHaveClass('sticky', 'top-0');
   });
