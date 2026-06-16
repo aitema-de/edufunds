@@ -47,7 +47,7 @@ interface Props {
 
 function scoreColor(score: number): string {
   if (score >= 85) return "text-emerald-700 bg-emerald-50 border-emerald-200";
-  if (score >= 70) return "text-[#c9a227] bg-[#c9a227]/10 border-[#c9a227]/30";
+  if (score >= 70) return "text-[#7a5e12] bg-[#c9a227]/10 border-[#c9a227]/30";
   return "text-slate-600 bg-slate-100 border-slate-200";
 }
 
@@ -63,9 +63,9 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
           Das passiert, wenn das Anliegen zu allgemein oder sehr speziell ist.
         </p>
         <ul className="mx-auto mb-6 max-w-md space-y-1 text-left text-sm text-slate-600">
-          <li>Nenne Zielgruppe und Zielwirkung konkreter (z. B. „Leseförderung Klasse 1–2, 30 Kinder").</li>
-          <li>Gib ein ungefähres Budget an (z. B. „5.000 bis 10.000 €").</li>
-          <li>Erkläre, was die Schule bereits hat und was fehlt.</li>
+          <li>Nennen Sie Zielgruppe und Zielwirkung konkreter (z. B. „Leseförderung Klasse 1–2, 30 Kinder").</li>
+          <li>Geben Sie ein ungefähres Budget an (z. B. „5.000 bis 10.000 €").</li>
+          <li>Erklären Sie, was die Schule bereits hat und was fehlt.</li>
         </ul>
         {onReset && (
           <button
@@ -91,7 +91,7 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
   return (
     <div className="space-y-4">
       <div className="text-sm text-slate-600">
-        {matches.length} Programm{matches.length === 1 ? "" : "e"} passen zu deinem Anliegen. Sortiert nach Passung:
+        {matches.length} Programm{matches.length === 1 ? "" : "e"} passen zu Ihrem Anliegen. Sortiert nach Passung:
       </div>
       {sorted.map((m) => {
         const expired = isFristAbgelaufen(m.programm.bewerbungsfristEnde);

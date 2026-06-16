@@ -9,6 +9,7 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { WizardShell } from "@/components/Wizard";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
+import { getEinreichung } from "@/lib/wizard/einreichung";
 
 const foerderprogramme = foerderprogrammeData as Foerderprogramm[];
 
@@ -34,6 +35,7 @@ export default async function WizardPage({ params }: Props) {
   if (!programm) notFound();
   const richtlinie = await loadRichtlinie(programm.id);
   const richtlinieStub = richtlinie?.version?.includes("stub") ?? false;
+  const einreichung = getEinreichung(richtlinie);
 
   return (
     <>
@@ -91,7 +93,7 @@ export default async function WizardPage({ params }: Props) {
         style={{ backgroundColor: "#f8f5f0" }}
       >
         <div className="container mx-auto px-4">
-          <WizardShell programm={programm} />
+          <WizardShell programm={programm} einreichung={einreichung} />
         </div>
       </main>
       <Footer />

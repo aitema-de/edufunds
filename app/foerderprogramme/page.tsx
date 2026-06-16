@@ -10,7 +10,10 @@ import { ProgramCardSkeleton, ProgramCardSkeletonGrid } from "@/components/Progr
 import { Search, Filter, School, X, Landmark, MapPinned, HeartHandshake, Globe } from "lucide-react";
 import type { Foerderprogramm } from '@/lib/foerderSchema';
 import { foerderprogrammeFetcher, FOERDERPROGRAMME_CACHE_KEY, swrConfig } from "@/lib/swr-fetcher";
+import { formatKategorie } from "@/lib/kategorie-labels";
+import { isProgrammAbgelaufen } from "@/lib/programm-status";
 import { useLocalStorage, useDebounce, usePagination } from "@/hooks/useLocalStorage";
+import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
 
 // Dynamic Import für GlassCard (Code-Splitting)
 const GlassCard = dynamic(() => import("@/components/GlassCardOptimized").then(mod => ({ 
@@ -57,8 +60,8 @@ const StatsSection = memo(function StatsSection({ stats }: { stats: { total: num
         <div className="w-10 h-10 rounded-lg bg-[#c9a227]/15 flex items-center justify-center mx-auto mb-2">
           <School className="w-5 h-5 text-[#c9a227]" />
         </div>
-        <div className="text-2xl font-bold text-[#c9a227]">{stats.total}</div>
-        <div className="text-xs text-[#1e3a61]">Grundschul-Programme</div>
+        <div className="text-2xl font-bold text-[#7a5e12]">{PROGRAMM_COUNT_LABEL}</div>
+        <div className="text-xs text-[#1e3a61]">Schul-Programme</div>
       </div>
       <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)', boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)' }}>
         <div className="w-10 h-10 rounded-lg bg-[#1a4d4d]/15 flex items-center justify-center mx-auto mb-2">
@@ -200,9 +203,9 @@ export default function FoerderprogrammePage() {
     const alleKategorien = Array.from(new Set(foerderprogramme.flatMap(p => p.kategorien))).sort();
     return [
       { value: "", label: "Alle Kategorien" },
-      ...alleKategorien.map(kat => ({ 
-        value: kat, 
-        label: kat.charAt(0).toUpperCase() + kat.slice(1).replace(/-/g, " ") 
+      ...alleKategorien.map(kat => ({
+        value: kat,
+        label: formatKategorie(kat)
       }))
     ];
   }, [foerderprogramme]);
@@ -226,6 +229,8 @@ export default function FoerderprogrammePage() {
     const suche = debouncedSuchbegriff.toLowerCase().trim();
     
     return foerderprogramme.filter((programm) => {
+      // Abgelaufene Programme gehoeren ins Archiv, nicht in den aktiven Katalog.
+      if (isProgrammAbgelaufen(programm)) return false;
       // Suchbegriff
       if (suche) {
         const nameMatch = programm.name.toLowerCase().includes(suche);
@@ -325,21 +330,21 @@ export default function FoerderprogrammePage() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#c9a227]/10 border border-[#c9a227]/20 mb-6">
               <School className="h-4 w-4 text-[#c9a227]" />
-              <span className="text-sm font-medium text-[#c9a227]">Förderfinder</span>
+              <span className="text-sm font-medium text-[#7a5e12]">Förderfinder</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-4">
-              Förderprogramme für Grundschulen
+              Förderprogramme für Schulen
             </h1>
             <p className="text-[#1e3a61] max-w-2xl mx-auto text-lg">
-              Finden Sie passende Förderungen für Ihre Grundschule.
-              Aktuell {isLoading ? '...' : `${stats.total}+ Programme`} im Überblick.
+              Finden Sie passende Förderungen für Ihre Schule.
+              Aktuell {isLoading ? '...' : `${PROGRAMM_COUNT_LABEL} Programme`} im Überblick.
             </p>
             <div className="mt-6">
               <a
                 href="/antrag/start"
                 className="inline-flex items-center gap-2 rounded-lg bg-[#c9a227] px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-[#b8921e]"
               >
-                Beschreib dein Anliegen → KI findet passende Programme
+                Beschreiben Sie Ihr Anliegen → KI findet passende Programme
               </a>
             </div>
           </div>
@@ -366,7 +371,7 @@ export default function FoerderprogrammePage() {
                 <Filter className="h-5 w-5 text-[#c9a227]" />
                 <h2 className="font-semibold text-[#0a1628]">Filter</h2>
                 {aktiveFilterCount > 0 && (
-                  <span className="px-2 py-0.5 rounded-full text-xs bg-[#c9a227]/15 text-[#c9a227]">
+                  <span className="px-2 py-0.5 rounded-full text-xs bg-[#c9a227]/15 text-[#7a5e12]">
                     {aktiveFilterCount} aktiv
                   </span>
                 )}
@@ -376,7 +381,7 @@ export default function FoerderprogrammePage() {
                   variant="ghost"
                   size="sm"
                   onClick={resetFilter}
-                  className="text-[#1e3a61] hover:text-[#c9a227]"
+                  className="text-[#1e3a61] hover:text-[#7a5e12]"
                 >
                   <X className="h-4 w-4" />
                   Filter zurücksetzen

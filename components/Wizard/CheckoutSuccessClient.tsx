@@ -89,8 +89,8 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
     return (
       <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-8 text-center">
         <CheckCircle2 className="mx-auto mb-3 h-10 w-10 text-emerald-400" />
-        <h1 className="mb-2 text-xl font-semibold text-[#0a1628]">Zahlung bestaetigt</h1>
-        <p className="mb-4 text-sm text-slate-700">Dein Antrag wird gleich geoeffnet.</p>
+        <h1 className="mb-2 text-xl font-semibold text-[#0a1628]">Zahlung bestätigt</h1>
+        <p className="mb-4 text-sm text-slate-700">Ihr Antrag wird gleich geöffnet.</p>
         <Link
           href={`/antrag/download/${paidToken}`}
           className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-600"
@@ -109,12 +109,12 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
           Freischaltung braucht noch einen Moment
         </h1>
         <p className="mb-4 text-sm text-slate-700">
-          Die Zahlung ist durch, aber die Bestaetigung vom Zahlungsanbieter ist noch nicht
+          Die Zahlung ist durch, aber die Bestätigung vom Zahlungsanbieter ist noch nicht
           bei uns angekommen. Das passiert normalerweise innerhalb einer Minute.
         </p>
         <p className="mb-5 text-xs text-slate-600">
-          Du kannst diese Seite schliessen — sobald die Bestaetigung kommt, ist der Antrag
-          unter „Meine Antraege" erreichbar. Oder du wartest hier weiter:
+          Sie können diese Seite schließen — sobald die Bestätigung kommt, ist der Antrag
+          unter „Meine Anträge" erreichbar. Oder Sie warten hier weiter:
         </p>
         <div className="flex flex-wrap items-center justify-center gap-2">
           <button
@@ -129,7 +129,7 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
             href="/antrag/meine"
             className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-4 py-2 text-sm text-[#1e3a61] hover:bg-white"
           >
-            Zu meinen Antraegen
+            Zu meinen Anträgen
           </Link>
         </div>
       </div>
@@ -144,9 +144,9 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
           Verbindungsproblem
         </h1>
         <p className="mb-3 text-sm text-slate-700">
-          Wir konnten den Zahlungs-Status mehrfach hintereinander nicht abfragen. Pruefe
-          deine Verbindung — die Zahlung selbst ist bei Stripe sicher und wird beim
-          naechsten Versuch erkannt.
+          Wir konnten den Zahlungs-Status mehrfach hintereinander nicht abfragen. Prüfen Sie
+          Ihre Verbindung — die Zahlung selbst ist bei Stripe sicher und wird beim
+          nächsten Versuch erkannt.
         </p>
         {networkError && (
           <p className="mb-4 font-mono text-xs text-red-300">{networkError}</p>
@@ -168,16 +168,16 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
       <div className="rounded-xl border border-red-500/40 bg-red-500/10 p-8 text-center">
         <AlertCircle className="mx-auto mb-3 h-10 w-10 text-red-400" />
         <h1 className="mb-2 text-xl font-semibold text-[#0a1628]">
-          Kein Session-Token uebermittelt
+          Kein Session-Token übermittelt
         </h1>
         <p className="text-sm text-slate-700">
-          Bitte oeffne den Antrag ueber „Meine Antraege".
+          Bitte öffnen Sie den Antrag über „Meine Anträge".
         </p>
         <Link
           href="/antrag/meine"
           className="mt-4 inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-4 py-2 text-sm text-[#1e3a61] hover:bg-white"
         >
-          Zu meinen Antraegen
+          Zu meinen Anträgen
         </Link>
       </div>
     );
@@ -189,9 +189,9 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
   return (
     <div className="rounded-xl border border-[#0a1628]/10 bg-white p-8 text-center">
       <Loader2 className="mx-auto mb-3 h-10 w-10 animate-spin text-[#c9a227]" />
-      <h1 className="mb-2 text-xl font-semibold text-[#0a1628]">Zahlung wird bestaetigt</h1>
+      <h1 className="mb-2 text-xl font-semibold text-[#0a1628]">Zahlung wird bestätigt</h1>
       <p className="mb-4 text-sm text-slate-600">
-        Stripe sendet uns gleich die Bestaetigung. Diese Seite leitet automatisch weiter,
+        Stripe sendet uns gleich die Bestätigung. Diese Seite leitet automatisch weiter,
         sobald sie da ist — meist nach wenigen Sekunden.
       </p>
       <div className="mx-auto mb-1 h-1 w-full max-w-xs overflow-hidden rounded-full bg-[#f8f5f0]">

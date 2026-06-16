@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, CheckCircle2, Shield, Zap, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
 
 export function CTASection() {
   const containerVariants = {
@@ -116,7 +117,7 @@ export function CTASection() {
             style={{ color: '#0a1628' }}
           >
             Bereit, Fördermittel{' '}
-            <span style={{ color: '#c9a227' }}>erfolgreich</span>
+            <span style={{ color: '#7a5e12' }}>erfolgreich</span>
             <br />
             zu beantragen?
           </motion.h2>
@@ -135,7 +136,7 @@ export function CTASection() {
             className="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed"
             style={{ color: '#1e3a61' }}
           >
-            Nutzen Sie EduFunds, um Förderanträge für Ihre Grundschule professionell zu erstellen.
+            Nutzen Sie EduFunds, um Förderanträge für Ihre Schule professionell zu erstellen.
           </motion.p>
 
           {/* Benefits */}
@@ -225,8 +226,8 @@ export function CTASection() {
           className="mt-16 grid grid-cols-3 gap-4 max-w-2xl mx-auto"
         >
           {[
-            { value: "130+", label: "Förderprogramme" },
-            { value: "100%", label: "Grundschulen" },
+            { value: PROGRAMM_COUNT_LABEL, label: "Förderprogramme" },
+            { value: "alle", label: "Schularten" },
             { value: "16", label: "Bundesländer" },
           ].map((stat, index) => (
             <motion.div

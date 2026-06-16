@@ -40,8 +40,8 @@ export function InfoCard({
     highlight: {
       background: "linear-gradient(135deg, rgba(201, 162, 39, 0.1) 0%, rgba(201, 162, 39, 0.02) 100%)",
       border: "1px solid rgba(201, 162, 39, 0.2)",
-      titleColor: "#f8f5f0",
-      textColor: "#94a3b8",
+      titleColor: "#0a1628",
+      textColor: "#334155",
       iconBg: "rgba(201, 162, 39, 0.2)",
       iconColor: "#c9a227",
     },

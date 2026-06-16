@@ -8,7 +8,7 @@ import {
   removeLocalSession,
 } from "@/lib/wizard/session-index-client";
 import type { WizardPhase } from "@/lib/wizard/types";
-import { formatEur, type CostLedger } from "@/lib/wizard/pricing";
+import { type CostLedger } from "@/lib/wizard/pricing";
 
 interface SessionSummary {
   programmId: string;
@@ -179,7 +179,7 @@ export function MyAntraegeClient() {
   }, [tick]);
 
   const handleRemove = (programmId: string) => {
-    if (!confirm("Diese Session aus dem Browser entfernen? (Auf dem Server bleibt sie bestehen und ist über einen Link weiter erreichbar, falls du einen hast.)")) {
+    if (!confirm("Diese Session aus dem Browser entfernen? (Auf dem Server bleibt sie bestehen und ist über einen Link weiter erreichbar, falls Sie einen haben.)")) {
       return;
     }
     removeLocalSession(programmId);
@@ -215,7 +215,7 @@ export function MyAntraegeClient() {
       {/* URL-Hinweise */}
       {notice === "link-error" && (
         <div className="rounded-lg border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm text-amber-800">
-          Der Link ist abgelaufen oder wurde bereits verwendet. Fordere unten einen neuen an.
+          Der Link ist abgelaufen oder wurde bereits verwendet. Fordern Sie unten einen neuen an.
         </div>
       )}
       {notice === "config-error" && (
@@ -234,7 +234,7 @@ export function MyAntraegeClient() {
         {identityEmail ? (
           <>
             <p className="mb-4 text-sm text-slate-600">
-              Angemeldet als <strong>{identityEmail}</strong>. Diese Anträge sind an deine E-Mail
+              Angemeldet als <strong>{identityEmail}</strong>. Diese Anträge sind an Ihre E-Mail
               gebunden und auf jedem Gerät erreichbar.
             </p>
             {serverSessions === null ? (
@@ -243,7 +243,7 @@ export function MyAntraegeClient() {
               </div>
             ) : serverSessions.length === 0 ? (
               <p className="text-sm text-slate-500">
-                Noch keine Anträge mit dieser E-Mail verknüpft. Tippe im Wizard auf „Auf anderem
+                Noch keine Anträge mit dieser E-Mail verknüpft. Tippen Sie im Wizard auf „Auf anderem
                 Gerät weitermachen", um einen Antrag zu binden.
               </p>
             ) : (
@@ -285,14 +285,14 @@ export function MyAntraegeClient() {
           <div className="flex items-start gap-2 text-sm text-slate-700">
             <Check className="mt-0.5 h-4 w-4 text-emerald-600" />
             <p>
-              Falls Anträge mit <strong>{email.trim()}</strong> verknüpft sind, haben wir dir einen
-              Link geschickt. Öffne ihn auf diesem Gerät, um deine Anträge zu sehen (30 Minuten gültig).
+              Falls Anträge mit <strong>{email.trim()}</strong> verknüpft sind, haben wir Ihnen einen
+              Link geschickt. Öffnen Sie ihn auf diesem Gerät, um Ihre Anträge zu sehen (30 Minuten gültig).
             </p>
           </div>
         ) : (
           <form onSubmit={requestMagicLink}>
             <p className="mb-2 text-sm text-slate-600">
-              Anträge auf einem anderen Gerät begonnen? Gib deine E-Mail ein – wir schicken dir einen
+              Anträge auf einem anderen Gerät begonnen? Geben Sie Ihre E-Mail ein – wir schicken Ihnen einen
               Link, ganz ohne Passwort.
             </p>
             <div className="flex flex-col gap-2 sm:flex-row">
@@ -350,7 +350,7 @@ export function MyAntraegeClient() {
               Noch kein Antrag begonnen
             </h3>
             <p className="mx-auto mb-6 max-w-md text-sm text-slate-600">
-              Schildere dein Anliegen und finde in Sekunden das passende Förderprogramm für deine Schule.
+              Schildern Sie Ihr Anliegen und finden Sie in Sekunden das passende Förderprogramm für Ihre Schule.
             </p>
             <Link
               href="/antrag/start"
@@ -386,11 +386,6 @@ export function MyAntraegeClient() {
                         </>
                       )}
                       Letzter Stand: {formatDate(s.updatedAt)}
-                      {s.costs && s.costs.calls > 0 && (
-                        <span className="ml-2 text-slate-600">
-                          · KI-Kosten: {formatEur(s.costs.eurCents)}
-                        </span>
-                      )}
                       {s.error && <span className="ml-2 text-red-500">· {s.error}</span>}
                     </div>
                   </div>

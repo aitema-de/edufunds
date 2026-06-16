@@ -4,6 +4,7 @@ import { useState, useMemo, memo } from "react";
 import Link from "next/link";
 import { Building2, Euro, Calendar, MapPin, ArrowRight } from "lucide-react";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
+import { formatKategorie } from "@/lib/kategorie-labels";
 
 interface GlassCardProps {
   programm: Foerderprogramm;
@@ -83,7 +84,7 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
                   {typeConfig.label}
                 </span>
                 {programm.kiAntragGeeignet && (
-                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-[#c9a227]/15 text-[#c9a227]">
+                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-[#c9a227]/15 text-[#7a5e12]">
                     KI-geeignet
                   </span>
                 )}
@@ -117,7 +118,7 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
             {programm.foerdersummeText && (
               <span className="flex items-center gap-1">
                 <Euro className="h-4 w-4 text-[#c9a227] flex-shrink-0" />
-                <span className="truncate font-medium text-[#c9a227]">{programm.foerdersummeText}</span>
+                <span className="truncate font-medium text-[#7a5e12]">{programm.foerdersummeText}</span>
               </span>
             )}
             {programm.bewerbungsfristText && (
@@ -139,7 +140,7 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
                 key={kat}
                 className="px-2 py-1 rounded-md text-xs bg-[#f8f5f0] text-[#1e3a61] border border-[#ebe5dc]"
               >
-                {kat}
+                {formatKategorie(kat)}
               </span>
             ))}
           </div>

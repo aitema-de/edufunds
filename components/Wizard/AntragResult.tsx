@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import { AlertTriangle, Check, Copy, Download, FileDown, Loader2, PenLine, RefreshCw, Sparkles } from "lucide-react";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type { Finanzplan, GenerationArtefacts } from "@/lib/wizard/types";
-import { formatEur, type CostLedger } from "@/lib/wizard/pricing";
+import { type CostLedger } from "@/lib/wizard/pricing";
 import { FinanzplanView } from "./FinanzplanView";
 import { FinanzplanEditor } from "./FinanzplanEditor";
 import { TextVorschlaegeEditor } from "./TextVorschlaegeEditor";
@@ -15,6 +15,26 @@ import { PaywallGate } from "./PaywallGate";
 import { AntragSectionNav, slugifyHeading } from "./AntragSectionNav";
 import { KiHinweis, KI_EXPORT_HINWEIS } from "@/components/KiHinweis";
 import { markdownToRtf } from "@/lib/export/rtf";
+import { EinreichungInfo } from "./EinreichungInfo";
+import type { EinreichungInfo as EinreichungInfoData } from "@/lib/wizard/einreichung";
+
+/** Anzeige-Labels fuer Critique-Kategorien (Enum-Slugs -> Klartext mit Umlaut). */
+const CRITIQUE_KATEGORIE_LABELS: Record<string, string> = {
+  floskel: "Floskel",
+  redundanz: "Redundanz",
+  belegluecke: "Beleglücke",
+  richtlinie: "Richtlinie",
+  inkonsistenz: "Inkonsistenz",
+  sonstiges: "Sonstiges",
+};
+
+/** Anzeige-Labels fuer Konsistenz-Check-Arten (Enum-Slugs -> Klartext). */
+const CONSISTENCY_ART_LABELS: Record<string, string> = {
+  "posten-ohne-textbezug": "Posten ohne Textbezug",
+  "textbezug-ohne-posten": "Textbezug ohne Posten",
+  "betrag-unstimmig": "Betrag unstimmig",
+  sonstiges: "Sonstiges",
+};
 
 interface Props {
   programm: Foerderprogramm;
@@ -23,6 +43,7 @@ interface Props {
   sessionToken?: string;
   /** Wenn gesetzt, ist der Antrag bereits bezahlt — Paywall wird nicht angezeigt. */
   paidToken?: string | null;
+  einreichung?: EinreichungInfoData | null;
   onRestart?: () => void;
   onFinanzplanChange?: (plan: Finanzplan) => void;
 }
@@ -52,14 +73,14 @@ function buildMarkdownComponents(paid: boolean, programmId: string) {
       return (
         <h2
           id={id}
-          className="group mb-3 mt-8 flex items-center gap-2 text-lg font-semibold text-[#c9a227] scroll-mt-24"
+          className="group mb-3 mt-8 flex items-center gap-2 text-lg font-semibold text-[#7a5e12] scroll-mt-24"
         >
           <span>{children}</span>
           {paid && (
             <a
               href={`/antrag/${programmId}/wizard?editAnswer=true`}
               className="opacity-0 group-hover:opacity-100 text-slate-500 hover:text-[#1e3a61] transition"
-              title="Antwort zurueck und neu beantworten"
+              title="Antwort zurück und neu beantworten"
               aria-label="Sektion bearbeiten"
             >
               <PenLine className="h-3.5 w-3.5" />
@@ -166,6 +187,7 @@ export function AntragResult({
   costs,
   sessionToken,
   paidToken,
+  einreichung,
   onRestart,
   onFinanzplanChange,
 }: Props) {
@@ -437,16 +459,6 @@ export function AntragResult({
           </ul>
         </div>
       )}
-      {costs && costs.calls > 0 && (
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-[#0a1628]/10 bg-[#f8f5f0] px-4 py-2 text-xs text-slate-500">
-          <span>
-            KI-Kosten dieses Antrags (geschätzt): <strong className="text-slate-700">{formatEur(costs.eurCents)}</strong>
-          </span>
-          <span>
-            {costs.calls} Calls · {costs.totalTokens.toLocaleString("de-DE")} Tokens
-          </span>
-        </div>
-      )}
       {paid && generation.critique && (
         <details
           className="mt-6 rounded-lg border border-[#0a1628]/15 bg-white p-4"
@@ -463,15 +475,15 @@ export function AntragResult({
                 const status = res?.status ?? "offen";
                 const badge =
                   status === "geschlossen"
-                    ? "border-green-500/40 text-green-300"
+                    ? "border-green-500/40 text-green-700"
                     : status === "teilweise"
-                      ? "border-yellow-500/40 text-yellow-300"
-                      : "border-red-500/40 text-red-300";
+                      ? "border-yellow-500/40 text-yellow-700"
+                      : "border-red-500/40 text-red-700";
                 const schwereBadge =
                   f.schwere === "hoch"
-                    ? "border-red-500/40 text-red-300"
+                    ? "border-red-500/40 text-red-700"
                     : f.schwere === "mittel"
-                      ? "border-[#c9a227]/40 text-[#c9a227]"
+                      ? "border-[#c9a227]/40 text-[#7a5e12]"
                       : "border-[#0a1628]/20 text-slate-700";
                 return (
                   <div key={i} className="rounded border border-[#0a1628]/15 bg-[#f8f5f0] p-2.5">
@@ -480,7 +492,7 @@ export function AntragResult({
                         {f.schwere}
                       </span>
                       <span className="rounded-full border border-[#0a1628]/15 px-2 py-0.5 text-[10px] text-slate-600">
-                        {f.kategorie} · {f.abschnitt}
+                        {CRITIQUE_KATEGORIE_LABELS[f.kategorie] ?? f.kategorie} · {f.abschnitt}
                       </span>
                       <span className={`rounded-full border px-2 py-0.5 text-[10px] uppercase ${badge}`}>
                         {status}
@@ -508,8 +520,8 @@ export function AntragResult({
                 {generation.consistencyIssues.map((i, idx) => (
                   <div key={idx} className="rounded border border-[#0a1628]/15 bg-[#f8f5f0] p-2.5">
                     <div className="mb-1">
-                      <span className="rounded-full border border-amber-500/40 px-2 py-0.5 text-[10px] uppercase text-amber-300">
-                        {i.art}
+                      <span className="rounded-full border border-amber-500/40 px-2 py-0.5 text-[10px] uppercase text-amber-700">
+                        {CONSISTENCY_ART_LABELS[i.art] ?? i.art}
                       </span>
                     </div>
                     <div className="text-[#1e3a61]">{i.beschreibung}</div>
@@ -526,6 +538,17 @@ export function AntragResult({
           )}
         </details>
       )}
+
+      {/* So reichen Sie ein — direkt nach Antragstext/Downloads, damit der
+          Nutzer beim Copy-Paste weiss, wohin mit dem Antrag. */}
+      <div className="mt-6">
+        <EinreichungInfo
+          info={einreichung ?? null}
+          kontaktEmail={programm.kontaktEmail}
+          kontaktTelefon={programm.kontaktTelefon}
+          bewerbungsfristText={programm.bewerbungsfristText}
+        />
+      </div>
 
       {/* Unsichtbarer, druckoptimierter Klon für html2pdf — nur nach Zahlung rendern */}
       {paid && (

@@ -76,7 +76,7 @@ export function TextVorschlaegeEditor({ sessionToken, finalText, vorschlaege, on
       </div>
       <p className="mb-3 text-xs text-slate-600">
         Diese Formulierungen hat der Assistent ergänzt, weil sie den Antrag fachlich stärken —
-        sie stammen nicht aus deinen Angaben. <strong>Übernehmen</strong> behält die Formulierung,
+        sie stammen nicht aus Ihren Angaben. <strong>Übernehmen</strong> behält die Formulierung,
         <strong> Bearbeiten</strong> passt sie im Antragstext an, <strong>Entfernen</strong> streicht
         sie aus dem Antrag.
       </p>

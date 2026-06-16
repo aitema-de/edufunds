@@ -17,12 +17,12 @@ const POINTS = [
   {
     icon: MapPin,
     title: "Daten in Deutschland",
-    text: "Eure Konto- und Antragsdaten liegen auf Servern in Deutschland (Hetzner).",
+    text: "Ihre Konto- und Antragsdaten liegen auf Servern in Deutschland (Hetzner).",
   },
   {
     icon: ShieldCheck,
     title: "Kein Training, gefiltert",
-    text: "Eure Eingaben trainieren keine KI-Modelle. Personenbezogene Angaben werden vor der Verarbeitung automatisch herausgefiltert.",
+    text: "Ihre Eingaben trainieren keine KI-Modelle. Personenbezogene Angaben werden vor der Verarbeitung automatisch herausgefiltert.",
   },
 ];
 
@@ -41,7 +41,7 @@ export function DsgvoTrust({
         <Lock className="mt-0.5 h-4 w-4 shrink-0 text-[#1a4d4d]" />
         <p className="text-xs leading-relaxed text-[#1e3a61]">
           <strong className="font-semibold text-[#0a1628]">DSGVO-konform:</strong>{" "}
-          KI-Verarbeitung in der EU, eure Daten auf Servern in Deutschland, kein Training mit euren
+          KI-Verarbeitung in der EU, Ihre Daten auf Servern in Deutschland, kein Training mit Ihren
           Eingaben. Personenbezogene Angaben werden vor der Verarbeitung herausgefiltert.{" "}
           <a
             href="/datenschutz"
@@ -66,7 +66,7 @@ export function DsgvoTrust({
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[#1e3a61]">
             Wir verarbeiten Schul- und Projektdaten verantwortungsvoll: in der EU, ohne
-            Drittland-Transfer und ohne dass eure Eingaben KI-Modelle trainieren.
+            Drittland-Transfer und ohne dass Ihre Eingaben KI-Modelle trainieren.
           </p>
         </div>
 

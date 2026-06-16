@@ -35,8 +35,8 @@ export function KumulierungsWarnung({ conflicts, onDismiss }: Props) {
               {hasError ? "Kumulierungs-Konflikt" : "Hinweis zur Doppelförderung"}
             </div>
             <div className="text-xs opacity-80">
-              Du hast laufende Anträge für andere Programme, die nicht oder nur bedingt mit dem
-              aktuellen kombinierbar sind. Bitte prüfen, bevor du beide einreichst.
+              Sie haben laufende Anträge für andere Programme, die nicht oder nur bedingt mit dem
+              aktuellen kombinierbar sind. Bitte prüfen, bevor Sie beide einreichen.
             </div>
           </div>
         </div>

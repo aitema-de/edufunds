@@ -46,7 +46,7 @@ export function ChronologySidebar({
       cancelEdit();
     } else {
       setSaveError(
-        "Speichern hat nicht geklappt. Dein Text steht noch hier — bitte „Speichern“ erneut klicken."
+        "Speichern hat nicht geklappt. Ihr Text steht noch hier — bitte „Speichern“ erneut klicken."
       );
     }
   };
@@ -73,7 +73,7 @@ export function ChronologySidebar({
                         m.role === "ai" ? "text-slate-600" : "text-[#1e3a61] font-medium"
                       }
                     >
-                      {m.role === "ai" ? "KI" : "Du"}
+                      {m.role === "ai" ? "KI" : "Sie"}
                     </div>
                     {canEdit && !isEditing && (
                       <button

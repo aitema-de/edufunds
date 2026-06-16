@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import type { Foerderprogramm } from '@/lib/foerderSchema';
 import foerderprogrammeData from '@/data/foerderprogramme.json';
 import FoerderprogrammDetailClient from "./FoerderprogrammDetailClient";
+import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
+import { getEinreichung } from "@/lib/wizard/einreichung";
 
 const foerderprogramme = foerderprogrammeData as Foerderprogramm[];
 
@@ -39,5 +41,8 @@ export default async function FoerderprogrammDetailPage({ params }: { params: Pr
     notFound();
   }
 
-  return <FoerderprogrammDetailClient programm={programm} />;
+  const richtlinie = await loadRichtlinie(programm.id);
+  const einreichung = getEinreichung(richtlinie);
+
+  return <FoerderprogrammDetailClient programm={programm} einreichung={einreichung} />;
 }

@@ -7,10 +7,11 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import type { Foerderprogramm } from '@/lib/foerderSchema';
 import foerderprogrammeData from '@/data/foerderprogramme.json';
+import { isProgrammAbgelaufen } from '@/lib/programm-status';
 const foerderprogramme = foerderprogrammeData as Foerderprogramm[];
 
-// Filtere abgelaufene Programme
-const archivProgramme = foerderprogramme.filter((p) => p.status === "abgelaufen");
+// Abgelaufene Programme = Frist-Ende in der Vergangenheit (oder Status beendet).
+const archivProgramme = foerderprogramme.filter((p) => isProgrammAbgelaufen(p));
 
 // Hilfsfunktion für Fördergeber-Typ Badge
 function getFoerdergeberBadgeClass(typ: string) {

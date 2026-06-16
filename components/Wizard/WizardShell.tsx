@@ -11,6 +11,7 @@ import type {
 } from "@/lib/wizard/types";
 import { STAGE_LABELS } from "@/lib/wizard/stage-labels";
 import type { CostLedger } from "@/lib/wizard/pricing";
+import type { EinreichungInfo } from "@/lib/wizard/einreichung";
 import {
   clearSchoolProfile,
   loadSchoolProfile,
@@ -20,6 +21,7 @@ import {
 } from "@/lib/wizard/school-profile-client";
 import {
   consumeHandoff,
+  clearHandoff,
   handoffToSeedFacts,
   type MatchHandoff,
 } from "@/lib/wizard/match-handoff-client";
@@ -52,9 +54,10 @@ const STORAGE_KEY_PREFIX = "edufunds.wizard.session.";
 
 interface Props {
   programm: Foerderprogramm;
+  einreichung?: EinreichungInfo | null;
 }
 
-export function WizardShell({ programm }: Props) {
+export function WizardShell({ programm, einreichung }: Props) {
   const storageKey = STORAGE_KEY_PREFIX + programm.id;
 
   const [state, setState] = useState<WizardApiState | null>(null);
@@ -67,6 +70,9 @@ export function WizardShell({ programm }: Props) {
   const [schoolProfile, setSchoolProfile] = useState<SchoolProfile | null>(null);
   const [handoff, setHandoff] = useState<MatchHandoff | null>(null);
   const [conflicts, setConflicts] = useState<Conflict[]>([]);
+  // Token einer gespeicherten Session, deren Laden gerade fehlschlug. Solange
+  // er gesetzt ist, bieten wir „Erneut laden" an, statt den Antrag zu verlieren.
+  const [resumeToken, setResumeToken] = useState<string | null>(null);
   const [readiness, setReadiness] = useState<ReadinessReport | null>(null);
 
   const loadSession = useCallback(async (token: string) => {
@@ -76,6 +82,16 @@ export function WizardShell({ programm }: Props) {
       const res = await fetch(`/api/wizard/${token}`);
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
+        // Nur wenn die Session serverseitig wirklich weg ist (404/410), den
+        // lokalen Token verwerfen. Bei transienten Fehlern (5xx, Netzwerk)
+        // bleibt der Token erhalten, damit der Antrag wiederfindbar ist.
+        if (res.status === 404 || res.status === 410) {
+          localStorage.removeItem(storageKey);
+          setResumeToken(null);
+          throw new Error(
+            body.error ?? "Dieser Antrag wurde nicht gefunden oder ist abgelaufen."
+          );
+        }
         throw new Error(body.error ?? `HTTP ${res.status}`);
       }
       const body = await res.json();
@@ -103,9 +119,12 @@ export function WizardShell({ programm }: Props) {
       });
       const synced = syncProfileFromFacts(body.facts ?? {});
       if (synced) setSchoolProfile(synced);
+      setResumeToken(null);
     } catch (e) {
-      localStorage.removeItem(storageKey);
-      setError(e instanceof Error ? e.message : "Session konnte nicht geladen werden.");
+      // Token NICHT loeschen — bei transienten Fehlern soll der Antrag beim
+      // naechsten Versuch wieder ladbar sein. resumeToken bleibt gesetzt,
+      // damit die UI „Erneut laden" anbietet (siehe !state-Zweig).
+      setError(e instanceof Error ? e.message : "Antrag konnte nicht geladen werden.");
     } finally {
       setBusy(false);
     }
@@ -135,6 +154,10 @@ export function WizardShell({ programm }: Props) {
       const body = (await res.json()) as WizardApiState;
       setState(body);
       localStorage.setItem(storageKey, body.sessionToken);
+      setResumeToken(body.sessionToken);
+      // Handoff erst jetzt verwerfen — nach erfolgreichem Start ist er
+      // sicher in die Session eingeflossen.
+      clearHandoff();
       const synced = syncProfileFromFacts(body.facts);
       if (synced) setSchoolProfile(synced);
       if (body.question) {
@@ -171,6 +194,7 @@ export function WizardShell({ programm }: Props) {
     }
     const existing = fromUrl ?? localStorage.getItem(storageKey);
     if (existing) {
+      setResumeToken(existing);
       loadSession(existing);
     } else {
       // Nur beim ersten Start (kein fortgesetztes Gespraech) Handoff konsumieren
@@ -268,7 +292,7 @@ export function WizardShell({ programm }: Props) {
       // Server-Pipeline läuft im Hintergrund weiter (idempotent durch phase=complete-Check);
       // die Verbindung kann sich erholen (Cloudflare/Traefik-Hicccup, kurzfristiger TCP-Reset).
       if (consecutiveFailures === 5) {
-        setError("Server-Verbindung instabil — Pipeline läuft im Hintergrund weiter. Falls dein Antrag nicht binnen 2 Minuten erscheint, lade die Seite neu (deine Eingaben bleiben gespeichert).");
+        setError("Server-Verbindung instabil — Pipeline läuft im Hintergrund weiter. Falls Ihr Antrag nicht binnen 2 Minuten erscheint, laden Sie die Seite neu (Ihre Eingaben bleiben gespeichert).");
       }
       // Erstmal 2s zwischen Polls, ab dem 5. failure auf 8s drosseln (degraded mode).
       const nextInterval = consecutiveFailures >= 5 ? 8000 : 2000;
@@ -462,6 +486,49 @@ export function WizardShell({ programm }: Props) {
     setError(null);
   }, [storageKey]);
 
+  // Wiederherstellungs-Ansicht: Es gibt einen gespeicherten Antrag, dessen
+  // Laden gerade fehlschlug. Statt den Antrag scheinbar zu verlieren (und nur
+  // „Wizard starten" anzubieten, was eine neue Session erzeugt), bieten wir
+  // hier prominent das erneute Laden an.
+  if (!state && resumeToken && error) {
+    return (
+      <div className="rounded-xl border border-amber-300 bg-amber-50 p-8 text-center">
+        <h2 className="mb-2 text-2xl font-semibold text-[#0a1628]">
+          Ihr Antrag ist gespeichert
+        </h2>
+        <p className="mx-auto mb-2 max-w-xl text-slate-700">
+          Wir konnten ihn gerade nicht laden — das ist meist nur eine kurze
+          Verbindungsstörung. Ihr Fortschritt ist sicher gespeichert und geht
+          nicht verloren.
+        </p>
+        <p className="mx-auto mb-6 max-w-xl text-sm text-slate-500">{error}</p>
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <button
+            type="button"
+            disabled={busy}
+            onClick={() => loadSession(resumeToken)}
+            className="rounded-lg bg-[#c9a227] px-6 py-3 font-semibold text-white transition hover:bg-[#b8921e] disabled:opacity-50"
+          >
+            {busy ? "Lade…" : "Antrag erneut laden"}
+          </button>
+          <a
+            href="/antrag/meine"
+            className="rounded-lg border border-[#0a1628]/15 px-6 py-3 font-medium text-[#1e3a61] transition hover:bg-white"
+          >
+            Meine Anträge
+          </a>
+        </div>
+        <button
+          type="button"
+          onClick={resetSession}
+          className="mt-5 text-xs text-slate-600 underline hover:text-slate-600"
+        >
+          Stattdessen neuen Antrag starten
+        </button>
+      </div>
+    );
+  }
+
   if (!state) {
     return (
       <>
@@ -471,20 +538,20 @@ export function WizardShell({ programm }: Props) {
           KI-Antragswizard
         </h2>
         <p className="mx-auto mb-6 max-w-xl text-slate-600">
-          Der Wizard führt dich in 6–12 gezielten Fragen durch die relevanten Punkte für
+          Der Wizard führt Sie in 6–12 gezielten Fragen durch die relevanten Punkte für
           „{programm.name}". Anschließend schreibt eine Pipeline mit Selbstkritik den Antragsentwurf.
         </p>
         {handoff && (
           <div className="mx-auto mb-4 max-w-xl rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 px-4 py-3 text-left text-sm text-slate-700">
-            <div className="mb-1 font-medium text-[#c9a227]">
-              Dein Anliegen wird übernommen
+            <div className="mb-1 font-medium text-[#7a5e12]">
+              Ihr Anliegen wird übernommen
             </div>
             <div className="text-slate-600 italic">
               „{handoff.anliegen.length > 200
                 ? handoff.anliegen.slice(0, 200) + "…"
                 : handoff.anliegen}"
               {handoff.fromMatchScore && (
-                <span className="ml-2 text-xs text-[#c9a227]">
+                <span className="ml-2 text-xs text-[#7a5e12]">
                   · Passung {handoff.fromMatchScore} %
                 </span>
               )}
@@ -493,7 +560,7 @@ export function WizardShell({ programm }: Props) {
         )}
         {schoolProfile && (
           <div className="mx-auto mb-6 max-w-xl rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 px-4 py-3 text-left text-sm text-slate-700">
-            <div className="mb-1 font-medium text-[#c9a227]">
+            <div className="mb-1 font-medium text-[#7a5e12]">
               Bekanntes Schulprofil wird übernommen
             </div>
             <div className="text-slate-600">
@@ -546,7 +613,7 @@ export function WizardShell({ programm }: Props) {
   if (state.phase === "failed") {
     return (
       <WizardErrorBlock
-        message={error ?? "Die Generierung ist fehlgeschlagen. Pruefe deine Verbindung und versuche es erneut."}
+        message={error ?? "Die Generierung ist fehlgeschlagen. Pruefen Sie Ihre Verbindung und versuchen Sie es erneut."}
         onRetry={() => {
           setError(null);
           setState((s) => s ? { ...s, phase: "ready_to_generate" } : s);
@@ -564,6 +631,7 @@ export function WizardShell({ programm }: Props) {
         costs={state.costs ?? null}
         sessionToken={state.sessionToken}
         paidToken={state.paidToken ?? null}
+        einreichung={einreichung}
         onRestart={resetSession}
         onFinanzplanChange={(plan) => {
           setGeneration((g) => (g ? { ...g, finanzplan: plan } : g));
@@ -580,6 +648,13 @@ export function WizardShell({ programm }: Props) {
         <div className="mb-4">
           <ResumeOptIn sessionToken={state.sessionToken} />
         </div>
+        <p className="mb-4 text-xs text-slate-500">
+          Ihr Fortschritt wird automatisch gespeichert.{" "}
+          <a href="/antrag/meine" className="underline hover:text-slate-700">
+            Unter „Meine Anträge"
+          </a>{" "}
+          finden Sie ihn jederzeit wieder.
+        </p>
         {error && (
           <div className="mb-4">
             <WizardErrorBlock message={error} />
@@ -597,17 +672,62 @@ export function WizardShell({ programm }: Props) {
             busy={busy}
           />
         )}
+        {state.phase === "interviewing" && !state.question && (
+          <div className="rounded-xl border border-[#c9a227]/40 bg-white p-6">
+            <h3 className="mb-1 text-lg font-semibold text-[#0a1628]">
+              Noch etwas ergänzen?
+            </h3>
+            <p className="mb-3 text-sm text-slate-600">
+              Schreiben Sie weitere Angaben, die im Antrag berücksichtigt werden sollen.
+              Die KI bezieht sie ein und stellt bei Bedarf eine Anschlussfrage.
+            </p>
+            <textarea
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              rows={4}
+              placeholder="Weitere Angaben zu Ihrem Vorhaben …"
+              className="w-full rounded-lg border border-[#0a1628]/15 bg-[#f8f5f0] p-3 text-sm text-[#0a1628] placeholder-slate-500 focus:border-[#c9a227] focus:outline-none focus:ring-2 focus:ring-[#c9a227]/20"
+            />
+            <div className="mt-3 flex flex-wrap items-center justify-end gap-3">
+              <button
+                type="button"
+                onClick={() => setState((s) => (s ? { ...s, phase: "ready_to_generate" } : s))}
+                className="rounded-lg border border-[#0a1628]/15 px-5 py-2 text-[#1e3a61] transition hover:bg-slate-100"
+              >
+                Fertig — zum Antrag
+              </button>
+              <button
+                type="button"
+                disabled={busy || !answer.trim()}
+                onClick={submitAnswer}
+                className="rounded-lg bg-[#c9a227] px-6 py-2 font-semibold text-white transition hover:bg-[#b8921e] disabled:opacity-50"
+              >
+                {busy ? "Sende…" : "Ergänzung senden"}
+              </button>
+            </div>
+          </div>
+        )}
         {canGenerate && (
           <div className="rounded-xl border border-[#c9a227]/40 bg-[#c9a227]/10 p-8">
             <h3 className="mb-2 text-xl font-semibold text-[#0a1628]">
               Genug Informationen gesammelt
             </h3>
-            <p className="mb-6 max-w-xl text-slate-700">
-              Die KI hat aus deinen Antworten diese Fakten erfasst. Passt das, schreibt sie jetzt den Antrag — sechs Schritte:
-              Gliederung → Abschnitte → Gutachten → Revision → Re-Check → Finanzplan + Konsistenzprüfung. Typisch 1–3 Minuten, ca. 0,20–0,35 € KI-Kosten.
+            <p className="mb-4 max-w-xl text-slate-700">
+              Die KI hat aus Ihren Antworten diese Fakten erfasst.{" "}
+              <strong>Stimmt etwas nicht?</strong> Fahren Sie über eine Kachel und klicken Sie auf das
+              Stift-Symbol, um den Wert direkt zu korrigieren. Für größere Änderungen bearbeiten Sie
+              eine Antwort in der Gesprächs-Chronik oder klicken Sie unten auf „Noch mehr ergänzen".
+              Passt alles, schreibt die KI den Antrag — sechs Schritte: Gliederung → Abschnitte →
+              Gutachten → Revision → Re-Check → Finanzplan + Konsistenzprüfung. Typisch 1–3 Minuten.
             </p>
             <div className="mb-4 rounded-lg border border-[#0a1628]/10 bg-[#f8f5f0] p-4">
-              <FactsPanel facts={state.facts} compact />
+              <FactsPanel
+                facts={state.facts}
+                compact
+                editable
+                sessionToken={state.sessionToken}
+                onFactsUpdate={(facts) => setState((s) => (s ? { ...s, facts } : s))}
+              />
             </div>
             {readiness && (
               <div className="mb-6">

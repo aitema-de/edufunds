@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Loader2, Copy, Check, FileText, RefreshCw, Download, Wand2, FileDown } from "lucide-react";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
+import { formatKategorie } from "@/lib/kategorie-labels";
 import { generateAntrag, type ProjektDaten } from "@/lib/ki-antrag-generator";
 import { markdownToRtf } from "@/lib/export/rtf";
 
@@ -338,7 +339,7 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
           <div className="flex flex-wrap gap-2">
             {programm.kategorien.slice(0, 4).map((kategorie) => (
               <Badge key={kategorie} variant="secondary" className="text-xs bg-slate-700 text-slate-300">
-                {kategorie.replace(/-/g, " ")}
+                {formatKategorie(kategorie)}
               </Badge>
             ))}
           </div>

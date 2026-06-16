@@ -17,7 +17,7 @@ export default function DatenschutzPage() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#c9a227]/10 border border-[#c9a227]/20 mb-6">
               <Shield className="h-4 w-4 text-[#c9a227]" />
-              <span className="text-sm font-medium text-[#c9a227]">DSGVO-konform</span>
+              <span className="text-sm font-medium text-[#7a5e12]">DSGVO-konform</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-4">
               Datenschutz
@@ -72,16 +72,16 @@ export default function DatenschutzPage() {
                   <p className="font-medium text-[#0a1628]">aitema GmbH</p>
                   <p>Prenzlauer Allee 229</p>
                   <p>10405 Berlin</p>
-                  <p className="text-[#94a3b8]">Deutschland</p>
+                  <p className="text-[#475569]">Deutschland</p>
                   <div className="pt-2">
-                    <p className="text-[#94a3b8]">Vertreten durch:</p>
+                    <p className="text-[#475569]">Vertreten durch:</p>
                     <p className="font-medium text-[#0a1628]">Kolja Schumann (Geschäftsführer)</p>
                   </div>
                   <div className="pt-2">
-                    <p className="text-[#94a3b8]">E-Mail:</p>
+                    <p className="text-[#475569]">E-Mail:</p>
                     <a 
-                      href="mailto:office@aitema.de" 
-                      className="text-[#c9a227] hover:text-[#e4c55a] transition-colors underline underline-offset-2"
+                      href="mailto:office@aitema.de"
+                      className="text-[#7a5e12] hover:text-[#e4c55a] transition-colors underline underline-offset-2"
                     >
                       office@aitema.de
                     </a>
@@ -212,23 +212,23 @@ export default function DatenschutzPage() {
               
               <ul className="space-y-3 text-[#0a1628]/80 text-base">
                 <li className="flex items-start gap-3">
-                  <span className="text-[#c9a227] mt-1">•</span>
+                  <span className="text-[#7a5e12] mt-1">•</span>
                   <span>Recht auf Auskunft (Art. 15 DSGVO)</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#c9a227] mt-1">•</span>
+                  <span className="text-[#7a5e12] mt-1">•</span>
                   <span>Recht auf Berichtigung (Art. 16 DSGVO)</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#c9a227] mt-1">•</span>
+                  <span className="text-[#7a5e12] mt-1">•</span>
                   <span>Recht auf Löschung (Art. 17 DSGVO)</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#c9a227] mt-1">•</span>
+                  <span className="text-[#7a5e12] mt-1">•</span>
                   <span>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#c9a227] mt-1">•</span>
+                  <span className="text-[#7a5e12] mt-1">•</span>
                   <span>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</span>
                 </li>
               </ul>
@@ -236,8 +236,8 @@ export default function DatenschutzPage() {
               <p className="text-[#0a1628]/80 mt-4 text-base">
                 Zur Ausübung Ihrer Rechte kontaktieren Sie bitte:{" "}
                 <a 
-                  href="mailto:office@aitema.de" 
-                  className="text-[#c9a227] hover:text-[#e4c55a] transition-colors underline underline-offset-2"
+                  href="mailto:office@aitema.de"
+                  className="text-[#7a5e12] hover:text-[#e4c55a] transition-colors underline underline-offset-2"
                 >
                   office@aitema.de
                 </a>

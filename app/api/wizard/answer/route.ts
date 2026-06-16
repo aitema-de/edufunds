@@ -40,7 +40,11 @@ export async function POST(req: NextRequest) {
         { status: 404 }
       );
     }
-    if (session.data.phase !== "interviewing") {
+    // "interviewing" = laufendes Interview; "ready_to_generate" = Interview war
+    // beendet, aber der Nutzer klickt "Noch mehr ergänzen" und reicht zusätzliche
+    // Angaben nach. Beide Phasen akzeptieren eine Antwort (nextStep re-evaluiert
+    // und liefert eine Folgefrage oder erneut ready).
+    if (session.data.phase !== "interviewing" && session.data.phase !== "ready_to_generate") {
       return NextResponse.json(
         { error: `Session ist in Phase ${session.data.phase}, keine Antwort erwartet` },
         { status: 409 }
@@ -121,7 +125,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         {
           error:
-            "Die KI war kurz nicht erreichbar. Deine Antwort ist gespeichert — bitte sende sie gleich noch einmal.",
+            "Die KI war kurz nicht erreichbar. Ihre Antwort ist gespeichert — bitte senden Sie sie gleich noch einmal.",
           retryable: true,
         },
         { status: 503 }

@@ -5,10 +5,11 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, School, Building2, HeartHandshake, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import foerderprogramme from "@/data/foerderprogramme.json";
+import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
 
 export function HeroSection() {
   const stats = {
-    total: "160+",
+    total: PROGRAMM_COUNT_LABEL,
     bund: foerderprogramme.filter(p => p.foerdergeberTyp === 'bund').length,
     land: foerderprogramme.filter(p => p.foerdergeberTyp === 'land').length,
     stiftung: foerderprogramme.filter(p => p.foerdergeberTyp === 'stiftung').length,
@@ -96,7 +97,7 @@ export function HeroSection() {
             >
               Fördermittel für
               <br />
-              <span style={{ color: '#c9a227' }}>Schulen.</span>
+              <span style={{ color: '#7a5e12' }}>Schulen.</span>
               <br />
               <span className="text-4xl md:text-5xl lg:text-6xl italic opacity-60">
                 Vereinfacht.
@@ -200,7 +201,7 @@ export function HeroSection() {
             {[
               'Für alle Schularten',
               'DSGVO-konform',
-              '130+ Programme',
+              `${PROGRAMM_COUNT_LABEL} Programme`,
             ].map((item) => (
               <div key={item} className="flex items-center gap-2">
                 <svg 

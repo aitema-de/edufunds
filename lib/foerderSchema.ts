@@ -7,7 +7,7 @@ export type Foerderprogramm = {
   foerdergeberTyp: 'bund' | 'land' | 'eu' | 'stiftung' | 'sonstige';
   
   // Zielgruppe
-  schulformen: ('grundschule' | 'hauptschule' | 'realschule' | 'gymnasium' | 'gesamtschule' | 'foerderschule' | 'berufsschule')[];
+  schulformen: ('grundschule' | 'hauptschule' | 'realschule' | 'gymnasium' | 'gesamtschule' | 'iss' | 'iss-mit-go' | 'foerderschule' | 'berufsschule')[];
   bundeslaender: string[];       // z.B. ["DE-BY", "DE-BE"] oder ["alle"]
   
   // Förderdetails

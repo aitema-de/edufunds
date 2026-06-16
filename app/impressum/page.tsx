@@ -17,7 +17,7 @@ export default function ImpressumPage() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#c9a227]/10 border border-[#c9a227]/20 mb-6">
               <Scale className="h-4 w-4 text-[#c9a227]" />
-              <span className="text-sm font-medium text-[#c9a227]">Rechtliche Informationen</span>
+              <span className="text-sm font-medium text-[#7a5e12]">Rechtliche Informationen</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-4">
               Impressum
@@ -44,14 +44,14 @@ export default function ImpressumPage() {
                   <div>
                     <p>Prenzlauer Allee 229</p>
                     <p>10405 Berlin</p>
-                    <p className="text-[#94a3b8]">Deutschland</p>
+                    <p className="text-[#475569]">Deutschland</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="h-5 w-5 text-[#94a3b8] shrink-0" />
                   <a
                     href="mailto:office@aitema.de"
-                    className="text-[#c9a227] hover:text-[#e4c55a] transition-colors underline underline-offset-2"
+                    className="text-[#7a5e12] hover:text-[#e4c55a] transition-colors underline underline-offset-2"
                   >
                     office@aitema.de
                   </a>
@@ -100,12 +100,12 @@ export default function ImpressumPage() {
                   href="https://ec.europa.eu/consumers/odr/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-[#c9a227] hover:text-[#e4c55a] transition-colors inline-flex items-center gap-2 underline underline-offset-2"
+                  className="text-[#7a5e12] hover:text-[#e4c55a] transition-colors inline-flex items-center gap-2 underline underline-offset-2"
                 >
                   https://ec.europa.eu/consumers/odr/
                 </a>
-                <p className="text-[#94a3b8] text-sm">
-                  Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer 
+                <p className="text-[#475569] text-sm">
+                  Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
                   Verbraucherschlichtungsstelle teilzunehmen.
                 </p>
               </div>
@@ -147,7 +147,7 @@ export default function ImpressumPage() {
           </div>
 
           {/* Stand */}
-          <p className="text-center text-[#94a3b8] text-sm mt-12">
+          <p className="text-center text-[#475569] text-sm mt-12">
             Stand: Juni 2026
           </p>
         </div>

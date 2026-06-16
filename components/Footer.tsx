@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Heart, ArrowRight, Sparkles } from "lucide-react";
 import { NewsletterForm } from "./NewsletterForm";
+import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
 
 const footerLinks = {
   product: {
@@ -33,7 +34,7 @@ const footerLinks = {
 };
 
 const stats = [
-  { value: "130+", label: "Förderprogramme" },
+  { value: PROGRAMM_COUNT_LABEL, label: "Förderprogramme" },
   { value: "90%", label: "Erfolgsquote" },
   { value: "24h", label: "Support" }
 ];

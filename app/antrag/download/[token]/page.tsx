@@ -9,6 +9,8 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { AntragResult } from "@/components/Wizard/AntragResult";
 import { getSessionByPaidToken } from "@/lib/wizard/session";
+import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
+import { getEinreichung } from "@/lib/wizard/einreichung";
 
 const foerderprogramme = foerderprogrammeData as Foerderprogramm[];
 
@@ -29,6 +31,9 @@ export default async function DownloadPage({ params }: Props) {
   const programm = foerderprogramme.find((p) => p.id === session.foerderprogrammId);
   if (!programm || !session.data.generation) notFound();
 
+  const richtlinie = await loadRichtlinie(session.foerderprogrammId);
+  const einreichung = getEinreichung(richtlinie);
+
   return (
     <>
       <Header />
@@ -38,9 +43,9 @@ export default async function DownloadPage({ params }: Props) {
           icon: <CheckCircle2 className="w-3.5 h-3.5" style={{ color: "#10b981" }} />,
           text: "Bezahlt · Freigeschaltet",
         }}
-        title="Dein Antrag —"
+        title="Ihr Antrag —"
         titleAccent="einsatzbereit"
-        subtitle="Kopiere den Volltext + Finanzplan in einem Rutsch ins Antrags-Portal oder lade eine der Dateien herunter. Dieser Download-Link bleibt 30 Tage aktiv — lege dir ein Bookmark an."
+        subtitle="Kopieren Sie den Volltext + Finanzplan in einem Rutsch ins Antrags-Portal oder laden Sie eine der Dateien herunter. Dieser Download-Link bleibt 30 Tage aktiv — legen Sie sich ein Bookmark an."
       >
         <div className="flex justify-center">
           <Link
@@ -64,6 +69,7 @@ export default async function DownloadPage({ params }: Props) {
             costs={session.data.costs ?? null}
             sessionToken={session.sessionToken}
             paidToken={session.paidToken ?? null}
+            einreichung={einreichung}
           />
         </div>
       </main>

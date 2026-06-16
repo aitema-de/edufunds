@@ -10,6 +10,8 @@
  * sehen. Stattdessen Titel + erklaerender Text + Fallback-Aktionen.
  */
 
+import { PROGRAMM_COUNT_ROUNDED } from "@/lib/programm-count";
+
 export type WizardErrorKind =
   | "rate-limit"
   | "gemini-down"
@@ -44,9 +46,8 @@ export function classifyWizardError(
     return {
       kind: "rate-limit",
       raw: rawMessage,
-      title: "Unsere KI ist gerade ueberlastet",
-      message:
-        "Das Modell hat sein Stunden-Kontingent ausgeschoepft. Versuche es in ein paar Minuten erneut, oder durchsuche unseren Katalog mit ueber 130 Programmen direkt.",
+      title: "Unsere KI ist gerade überlastet",
+      message: `Das Modell hat sein Stunden-Kontingent ausgeschöpft. Versuchen Sie es in ein paar Minuten erneut, oder durchsuchen Sie unseren Katalog mit über ${PROGRAMM_COUNT_ROUNDED} Programmen direkt.`,
       canRetry: true,
       hasManualFallback: true,
     };
@@ -58,7 +59,7 @@ export function classifyWizardError(
       raw: rawMessage,
       title: "Antwort kam nicht rechtzeitig",
       message:
-        "Die KI hat innerhalb von 30 Sekunden nicht geantwortet — meistens ein voruebergehendes Auslastungsproblem. Versuche es erneut.",
+        "Die KI hat innerhalb von 30 Sekunden nicht geantwortet — meistens ein vorübergehendes Auslastungsproblem. Versuchen Sie es erneut.",
       canRetry: true,
       hasManualFallback: true,
     };
@@ -75,7 +76,7 @@ export function classifyWizardError(
       raw: rawMessage,
       title: "KI-Anbindung gerade nicht erreichbar",
       message:
-        "Wir konnten die KI nicht erreichen oder bekamen eine ungewohnte Antwort. Das ist meist voruebergehend. Versuche es erneut, oder durchsuche den Katalog manuell.",
+        "Wir konnten die KI nicht erreichen oder bekamen eine ungewohnte Antwort. Das ist meist vorübergehend. Versuchen Sie es erneut, oder durchsuchen Sie den Katalog manuell.",
       canRetry: true,
       hasManualFallback: true,
     };
@@ -92,7 +93,7 @@ export function classifyWizardError(
     return {
       kind: "validation",
       raw: rawMessage,
-      title: "Eingabe prueft sich nicht",
+      title: "Eingabe ist nicht gültig",
       message: rawMessage,
       canRetry: false,
       hasManualFallback: false,
@@ -115,7 +116,7 @@ export function classifyWizardError(
     raw: rawMessage,
     title: "Etwas ist schiefgelaufen",
     message:
-      "Etwas Unerwartetes ist passiert. Versuche es erneut, oder durchsuche den Katalog manuell. Falls das Problem bleibt, schreib uns an support@edufunds.org.",
+      "Etwas Unerwartetes ist passiert. Versuchen Sie es erneut, oder durchsuchen Sie den Katalog manuell. Falls das Problem bleibt, schreiben Sie uns an support@edufunds.org.",
     canRetry: true,
     hasManualFallback: true,
   };

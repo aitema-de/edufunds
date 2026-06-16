@@ -115,7 +115,7 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
               onClick={closeModal}
               disabled={busy}
               className="absolute right-4 top-4 rounded-lg p-1 text-slate-500 transition hover:bg-[#f8f5f0] hover:text-[#0a1628] disabled:opacity-50"
-              aria-label="Schliessen"
+              aria-label="Schließen"
             >
               <X className="h-5 w-5" />
             </button>
@@ -126,12 +126,12 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
                 <h2 className="font-serif text-2xl text-[#0a1628] mb-2">Danke!</h2>
                 <p className="text-slate-600 mb-4">
                   {result.ticket
-                    ? `Dein Feedback ist als Ticket ${result.ticket} eingegangen.`
-                    : "Dein Feedback ist eingegangen."}
+                    ? `Ihr Feedback ist als Ticket ${result.ticket} eingegangen.`
+                    : "Ihr Feedback ist eingegangen."}
                 </p>
                 {wantsResponse && email.trim() && (
                   <p className="text-sm text-slate-500 mb-4">
-                    Du bekommst eine Bestätigung an <span className="text-[#1e3a61]">{email}</span>.
+                    Sie bekommen eine Bestätigung an <span className="text-[#1e3a61]">{email}</span>.
                   </p>
                 )}
                 <button
@@ -192,8 +192,8 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
                       type === "bug"
                         ? "Was sollte passieren — was ist stattdessen passiert?"
                         : type === "feature"
-                          ? "Welche Funktion vermisst du, was würde dir helfen?"
-                          : "Was möchtest du wissen?"
+                          ? "Welche Funktion vermissen Sie, was würde Ihnen helfen?"
+                          : "Was möchten Sie wissen?"
                     }
                     rows={4}
                     required
@@ -223,13 +223,13 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
                 {/* Email + wantsResponse */}
                 <div>
                   <label className="mb-1.5 block text-sm font-medium text-[#1e3a61]">
-                    Deine E-Mail <span className="text-slate-400 font-normal">(optional)</span>
+                    Ihre E-Mail <span className="text-slate-400 font-normal">(optional)</span>
                   </label>
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="du@beispiel.de"
+                    placeholder="sie@beispiel.de"
                     className="w-full rounded-lg border border-[#0a1628]/15 bg-[#f8f5f0]/60 px-3 py-2 text-[#0a1628] placeholder-slate-400 transition focus:border-[#c9a227] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#c9a227]/15"
                   />
                   {email.trim() && (
