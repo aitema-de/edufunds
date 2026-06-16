@@ -7,7 +7,7 @@ import { MyAntraegeClient } from "@/components/Wizard/MyAntraegeClient";
 
 export const metadata: Metadata = {
   title: "Meine Anträge – EduFunds",
-  description: "Deine laufenden und abgeschlossenen Antragsentwürfe aus dem KI-Wizard.",
+  description: "Ihre laufenden und abgeschlossenen Antragsentwürfe aus dem KI-Wizard.",
 };
 
 export default function MyAntraegePage() {
@@ -33,7 +33,7 @@ export default function MyAntraegePage() {
             </div>
             <h1 className="mb-2 text-3xl font-bold text-[#0a1628]">Meine Anträge</h1>
             <p className="max-w-2xl text-slate-600">
-              Alle Wizard-Sessions, die du in diesem Browser gestartet hast.
+              Alle Wizard-Sessions, die Sie in diesem Browser gestartet haben.
               Ohne Login — deshalb nur lokal. Cross-Device-Sync folgt in einer späteren Phase.
             </p>
           </div>

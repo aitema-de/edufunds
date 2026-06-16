@@ -63,7 +63,7 @@ function confirmPage(token: string, next: string): string {
 <body>
   <div class="card">
     <h1>Anmeldung bestätigen</h1>
-    <p>Klicke auf den Button, um dich anzumelden und deine Anträge bzw. Kontingente zu sehen.</p>
+    <p>Klicken Sie auf den Button, um sich anzumelden und Ihre Anträge bzw. Kontingente zu sehen.</p>
     <form method="post" action="/api/antrag/verify">
       <input type="hidden" name="token" value="${t}">
       <input type="hidden" name="next" value="${n}">

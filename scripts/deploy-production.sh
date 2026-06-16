@@ -49,7 +49,11 @@ git checkout $BRANCH
 git pull --ff-only origin $BRANCH
 
 echo "==> docker build"
-docker build -t edufunds:latest .
+# PILOT (temporaer): Paywall-Bypass aktiv, damit Pilot-Tester den Antrag ohne
+# Zahlung freischalten koennen (Stripe laeuft noch im Sandbox-Modus). NEXT_PUBLIC_*
+# wird zur Build-Zeit ins Bundle inlined — Client UND Server-Route lesen denselben
+# Wert. Vor dem echten Zahlungs-Go-Live: auf 0 setzen / Zeile entfernen.
+docker build --build-arg NEXT_PUBLIC_PAYWALL_DEV_MOCK=1 -t edufunds:latest .
 
 echo "==> Container swap"
 docker stop edufunds-app 2>/dev/null || true

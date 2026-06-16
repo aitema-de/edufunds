@@ -23,6 +23,7 @@ jest.mock('@/lib/wizard/school-profile-client', () => ({
 
 jest.mock('@/lib/wizard/match-handoff-client', () => ({
   consumeHandoff: jest.fn().mockReturnValue(null),
+  clearHandoff: jest.fn(),
   handoffToSeedFacts: jest.fn().mockReturnValue({}),
 }));
 

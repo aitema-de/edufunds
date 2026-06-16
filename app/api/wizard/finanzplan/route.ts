@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
     }
     if (session.data.generation?.finanzplan?.legitimiertAm) {
       return NextResponse.json(
-        { error: "Finanzplan ist bereits freigegeben und kann nicht mehr geaendert werden." },
+        { error: "Finanzplan ist bereits freigegeben und kann nicht mehr geändert werden." },
         { status: 409 }
       );
     }

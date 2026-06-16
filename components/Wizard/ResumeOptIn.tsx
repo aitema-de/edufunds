@@ -47,7 +47,7 @@ export function ResumeOptIn({ sessionToken }: { sessionToken: string }) {
           Gesichert
         </div>
         <p className="mt-1 text-slate-600">
-          Wir haben einen Link an <strong>{email.trim()}</strong> geschickt. Öffne ihn auf
+          Wir haben einen Link an <strong>{email.trim()}</strong> geschickt. Öffnen Sie ihn auf
           jedem Gerät, um hier weiterzumachen – unter „Meine Anträge".
         </p>
       </div>
@@ -76,8 +76,8 @@ export function ResumeOptIn({ sessionToken }: { sessionToken: string }) {
         Auf anderem Gerät weitermachen
       </label>
       <p className="mt-0.5 mb-2 text-xs text-slate-600">
-        Trag deine E-Mail ein – wir schicken dir einen Link, mit dem du diesen Antrag überall
-        wiederfindest. Kein Konto, kein Passwort.
+        Tragen Sie Ihre E-Mail ein – wir schicken Ihnen einen Link, mit dem Sie diesen Antrag überall
+        wiederfinden. Kein Konto, kein Passwort.
       </p>
       <div className="flex flex-col gap-2 sm:flex-row">
         <input

@@ -15,6 +15,7 @@ import foerderprogrammeData from "@/data/foerderprogramme.json";
 import prioritaetenData from "@/data/richtlinien-prioritaeten.json";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import { MODEL_FLASH, generateText } from "./llm";
+import { isProgrammAbgelaufen } from "@/lib/programm-status";
 import { addUsage, emptyLedger, type CostLedger } from "./pricing";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
@@ -380,6 +381,9 @@ function prefilter(input: MatchInput, all: Foerderprogramm[]): Foerderprogramm[]
     // ohne offenen Call). Beide gehoeren nicht als Live-Treffer in den Cut.
     const status = (p as any).status;
     if (status === "archiviert" || status === "review_needed") return false;
+    // Abgelaufene Programme (Frist-Ende in der Vergangenheit) nicht matchen —
+    // sonst schreibt der Wizard einen Antrag fuer eine geschlossene Ausschreibung.
+    if (isProgrammAbgelaufen(p)) return false;
 
     // Landesprogramme filtern: wenn User bundesland gesetzt hat und
     // Programm explizit andere Laender fordert
@@ -500,14 +504,14 @@ id|score|passt_weil|achtung_bei
 Regeln Form B:
 - id: exakt aus der Liste, kein Whitespace drum
 - score: ganze Zahl 50-100
-- passt_weil: max ~25 Worte, sachlich, mit konkretem Bezug zum Anliegen
-- achtung_bei: max ~20 Worte, kann LEER sein — dann Trailing-Pipe (\`id|score|text|\`)
+- passt_weil: max ~25 Worte, sachlich, mit konkretem Bezug zum Anliegen. ALLTAGSSPRACHLICH — kein Foerder-/Verwaltungsfachjargon. Statt "ausserschulischer Charakter" schreibe "freiwilliges Angebot neben dem Unterricht"; statt "Letztzuwendungsempfaenger" o. Ae. konkrete, verstaendliche Worte. Eine Schulleitung muss den Satz ohne Nachschlagen verstehen.
+- achtung_bei: max ~20 Worte, kann LEER sein — dann Trailing-Pipe (\`id|score|text|\`). Ebenfalls alltagssprachlich, kein Fachjargon.
 - Genau 4 Spalten — bei leerem achtung_bei: Trailing-Pipe ist PFLICHT, sonst wird die Zeile verworfen
 - Pipe-Char \`|\` im Text VERBOTEN
 
 Beispiele Form B:
 bmbf-digitalpakt-2|92|Bundesweite Foerderung digitaler Schulinfrastruktur, deckt Hardware ab.|Antragsfrist naht — Einreichung vor Juli pruefen.
-kultur-macht-stark|75|Foerdert ausserschulische Kulturprojekte wie Theater-AGs.|
+kultur-macht-stark|75|Foerdert freiwillige Kulturangebote neben dem Unterricht, etwa Theater- oder Musik-AGs.|
 
 ### NEGATIVBEISPIELE — was NICHT erlaubt ist:
 CLARIFY|Was wollt ihr genau?                       <- zu vage, keine Optionen
@@ -621,7 +625,9 @@ export async function runMatch(input: MatchInput): Promise<MatchResult> {
     MODEL_FLASH,
     MATCHER_SYSTEM,
     buildUserPrompt(input, cards),
-    { maxTokens: MATCHER_MAX_TOKENS }
+    // temperature 0: identische Eingabe -> reproduzierbare Scores. Ohne das
+    // nutzt der Provider seinen Default (>0) und der Score schwankt pro Lauf.
+    { maxTokens: MATCHER_MAX_TOKENS, temperature: 0 }
   );
 
   const costs = addUsage(emptyLedger(), MODEL_FLASH, usage);

@@ -9,7 +9,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Loader2, Copy, Check, FileText, RefreshCw, Download, Wand2, FileDown } from "lucide-react";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
+import { formatKategorie } from "@/lib/kategorie-labels";
 import { generateAntrag, type ProjektDaten } from "@/lib/ki-antrag-generator";
+import { markdownToRtf } from "@/lib/export/rtf";
 
 // Dynamischer Import für html2pdf (nur im Browser)
 const loadHtml2pdf = async () => {
@@ -65,6 +67,20 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
     setTimeout(() => setCopied(false), 2000);
   };
 
+  // RTF = Default-Download: offenes, BEARBEITBARES Format (Pages/Word/LibreOffice).
+  const downloadAsRtf = () => {
+    const rtf = markdownToRtf(generatedText, projektDaten.projekttitel || programm.name);
+    const blob = new Blob([rtf], { type: "application/rtf" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `Foerderantrag_${projektDaten.projekttitel.replace(/\s+/g, "_") || "Antrag"}.rtf`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   const downloadAsTxt = () => {
     const blob = new Blob([generatedText], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
@@ -96,11 +112,16 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
   };
 
   const resultRef = useRef<HTMLDivElement>(null);
+  // Eigener, hell gestylter Klon nur fuer den PDF-Export. Die sichtbare Ansicht
+  // ist dunkel (bg-slate-900 / helle Schrift) — html2pdf rastert das Element 1:1,
+  // ein dunkles, am Mac kaum lesbares PDF waere die Folge. Der Klon rendert auf
+  // weissem Grund mit dunkler Serifenschrift = zuverlaessig auf Mac/Pages oeffenbar.
+  const pdfRef = useRef<HTMLDivElement>(null);
 
   const downloadAsPDF = async () => {
-    if (!resultRef.current) return;
-    
-    const element = resultRef.current;
+    if (!pdfRef.current) return;
+
+    const element = pdfRef.current;
     const opt = {
       margin: [20, 20, 20, 20],
       filename: `Foerderantrag_${projektDaten.projekttitel.replace(/\s+/g, "_")}.pdf`,
@@ -189,14 +210,26 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
               </div>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
+              {/* RTF = Default: offenes, bearbeitbares Dokument (Pages/Word/
+                  LibreOffice). PDF zum Ansehen/Drucken, Text + Kopieren als Fallback. */}
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={downloadAsRtf}
+                className="gap-2 bg-orange-500 hover:bg-orange-600 text-white"
+              >
+                <Download className="h-4 w-4" />
+                Antrag herunterladen (bearbeitbar)
+              </Button>
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => setStep("form")}
+                onClick={downloadAsPDF}
                 className="gap-2"
+                title="PDF zum Ansehen und Drucken (nicht bearbeitbar)."
               >
-                <RefreshCw className="h-4 w-4" />
-                Neu generieren
+                <FileDown className="h-4 w-4" />
+                PDF
               </Button>
               <Button
                 variant="outline"
@@ -210,15 +243,6 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
               <Button
                 variant="outline"
                 size="sm"
-                onClick={downloadAsDoc}
-                className="gap-2"
-              >
-                <FileText className="h-4 w-4" />
-                Word
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
                 onClick={downloadAsTxt}
                 className="gap-2"
               >
@@ -226,13 +250,13 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
                 Text
               </Button>
               <Button
-                variant="danger"
+                variant="outline"
                 size="sm"
-                onClick={downloadAsPDF}
+                onClick={() => setStep("form")}
                 className="gap-2"
               >
-                <FileDown className="h-4 w-4" />
-                PDF
+                <RefreshCw className="h-4 w-4" />
+                Neu generieren
               </Button>
             </div>
           </div>
@@ -257,6 +281,30 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
                   Beachten Sie die offiziellen Antragsrichtlinien von {programm.foerdergeber}.
                 </p>
               </div>
+            </div>
+          </div>
+
+          {/* Unsichtbarer, hell gestylter Klon nur fuer den PDF-Export — weisser
+              Grund, dunkle Serifenschrift, A4-Breite. Liefert ein sauber lesbares,
+              auf Mac/Pages zuverlaessig oeffenbares PDF (statt der dunklen Ansicht). */}
+          <div aria-hidden="true" style={{ position: "fixed", left: "-10000px", top: 0, width: "180mm" }}>
+            <div
+              ref={pdfRef}
+              style={{
+                backgroundColor: "#ffffff",
+                color: "#111827",
+                fontFamily: "Georgia, 'Times New Roman', serif",
+                fontSize: "11pt",
+                lineHeight: 1.5,
+                padding: "0 4mm",
+                whiteSpace: "pre-wrap",
+                wordBreak: "break-word",
+              }}
+            >
+              <div style={{ borderBottom: "1px solid #d1d5db", marginBottom: "12pt", paddingBottom: "6pt", fontSize: "9pt", color: "#6b7280" }}>
+                Förderantrag — {programm.name}
+              </div>
+              {generatedText}
             </div>
           </div>
         </CardContent>
@@ -291,7 +339,7 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
           <div className="flex flex-wrap gap-2">
             {programm.kategorien.slice(0, 4).map((kategorie) => (
               <Badge key={kategorie} variant="secondary" className="text-xs bg-slate-700 text-slate-300">
-                {kategorie.replace(/-/g, " ")}
+                {formatKategorie(kategorie)}
               </Badge>
             ))}
           </div>

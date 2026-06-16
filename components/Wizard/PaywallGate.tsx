@@ -13,11 +13,11 @@ interface Props {
 const DEV_MOCK_ENABLED = process.env.NEXT_PUBLIC_PAYWALL_DEV_MOCK === "1";
 
 const BENEFITS = [
-  "Vollstaendiger Antragstext + Finanzplan",
-  "Download als PDF, Word und Text",
-  "Copy-&-Paste-Ansicht fuer eigene Vorlagen",
-  "30 Tage Zugriff ueber Download-Link",
-  "Nachtraegliches Editieren der Antworten bleibt moeglich",
+  "Vollständiger Antragstext + Finanzplan",
+  "Download als bearbeitbare Datei (RTF), PDF und Text",
+  "Copy-&-Paste-Ansicht für eigene Vorlagen",
+  "30 Tage Zugriff über Download-Link",
+  "Nachträgliches Editieren der Antworten bleibt möglich",
 ];
 
 type ErrorKind = "stripe-down" | "network" | "unknown";
@@ -38,7 +38,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
   const redeemCode = async () => {
     const value = code.trim();
     if (!value) {
-      setRedeemError("Bitte gib einen Kontingent-Code ein.");
+      setRedeemError("Bitte geben Sie einen Kontingent-Code ein.");
       return;
     }
     setRedeemBusy(true);
@@ -51,7 +51,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
       });
       const body = await res.json().catch(() => ({}));
       if (!res.ok) {
-        setRedeemError(body.error ?? `Einloesung fehlgeschlagen (HTTP ${res.status}).`);
+        setRedeemError(body.error ?? `Einlösung fehlgeschlagen (HTTP ${res.status}).`);
         return;
       }
       if (body.paidToken) {
@@ -82,7 +82,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
         const kind: ErrorKind = res.status === 503 ? "stripe-down" : "unknown";
         const message =
           kind === "stripe-down"
-            ? "Die Zahlungsanbindung wird gerade fertig eingerichtet. Wir schalten sie in den naechsten Tagen frei — schreib uns an support@edufunds.org, falls du den Antrag dringend brauchst."
+            ? "Die Zahlungsanbindung wird gerade fertig eingerichtet. Wir schalten sie in den nächsten Tagen frei — schreiben Sie uns an support@edufunds.org, falls Sie den Antrag dringend brauchen."
             : (body.error ?? `Checkout konnte nicht gestartet werden (HTTP ${res.status}).`);
         setErrorState({ kind, message });
         return;
@@ -102,7 +102,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
         message:
           e instanceof Error
             ? `Netzwerkfehler: ${e.message}`
-            : "Netzwerkfehler — bitte Verbindung pruefen und erneut versuchen.",
+            : "Netzwerkfehler — bitte Verbindung prüfen und erneut versuchen.",
       });
     } finally {
       setBusy(false);
@@ -152,9 +152,9 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
             Antrag + Finanzplan freischalten
           </h3>
           <p className="mb-5 text-sm text-slate-600">
-            Dein Antragstext und der Finanzplan sind fertig. Mit dem{" "}
-            <strong className="text-[#1e3a61]">{tierLabel}</strong> bekommst du den
-            vollstaendigen Text und alle Downloads.
+            Ihr Antragstext und der Finanzplan sind fertig. Mit dem{" "}
+            <strong className="text-[#1e3a61]">{tierLabel}</strong> bekommen Sie den
+            vollständigen Text und alle Downloads.
           </p>
 
           <ul className="mb-6 space-y-1.5 text-left">
@@ -183,7 +183,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
               {!isStripeDown && (
                 <button
                   type="button"
-                  onClick={startCheckout}
+                  onClick={DEV_MOCK_ENABLED ? devMockPay : startCheckout}
                   disabled={busy}
                   className="mt-2 inline-flex items-center gap-1.5 rounded border border-[#0a1628]/20 bg-white px-3 py-1 text-xs text-[#1e3a61] hover:bg-slate-100 disabled:opacity-50"
                 >
@@ -194,10 +194,15 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
             </div>
           )}
 
+          {/* PILOT (temporaer): Solange der Dev-Mock aktiv ist, schaltet der
+              Hauptbutton ohne Zahlung frei — der echte Stripe-Checkout laeuft noch
+              im Sandbox-Modus und nimmt nur Testkarten an, was sich fuer Tester wie
+              „Button tut nichts" anfuehlt. Ist die Flag aus, gilt der normale
+              Stripe-Flow unveraendert. */}
           <button
             type="button"
-            onClick={startCheckout}
-            disabled={busy || isStripeDown}
+            onClick={DEV_MOCK_ENABLED ? devMockPay : startCheckout}
+            disabled={busy || (!DEV_MOCK_ENABLED && isStripeDown)}
             className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#c9a227] px-6 py-3 font-semibold text-white transition hover:bg-[#b8921e] disabled:opacity-50"
           >
             {busy ? (
@@ -206,13 +211,21 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
               <Sparkles className="h-5 w-5" />
             )}
             {busy
-              ? "Stripe-Checkout wird vorbereitet…"
-              : `Jetzt fuer ${priceEur.toLocaleString("de-DE", { minimumFractionDigits: 2 })} € freischalten`}
+              ? DEV_MOCK_ENABLED
+                ? "Wird freigeschaltet…"
+                : "Stripe-Checkout wird vorbereitet…"
+              : DEV_MOCK_ENABLED
+                ? "Jetzt freischalten (Pilot — keine Zahlung)"
+                : `Jetzt für ${priceEur.toLocaleString("de-DE", { minimumFractionDigits: 2 })} € freischalten`}
           </button>
 
           <div className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-slate-500">
             <ShieldCheck className="h-3 w-3" />
-            <span>Sichere Zahlung ueber Stripe — Kreditkarte, SEPA, Apple Pay</span>
+            <span>
+              {DEV_MOCK_ENABLED
+                ? "Pilotphase — Freischaltung kostenlos, keine Zahlung nötig"
+                : "Sichere Zahlung über Stripe — Kreditkarte, SEPA, Apple Pay"}
+            </span>
           </div>
 
           {/* Kontingent-Code (Schultraeger): Lehrkraft schaltet ohne eigene Zahlung frei */}
@@ -224,7 +237,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-[#1e3a61] transition-colors hover:text-[#c9a227]"
               >
                 <Ticket className="h-4 w-4" />
-                Kontingent-Code einloesen
+                Kontingent-Code einlösen
               </button>
             ) : (
               <div className="text-left">
@@ -232,10 +245,10 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                   htmlFor="kontingent-code"
                   className="mb-1 block text-sm font-medium text-[#0a1628]"
                 >
-                  Kontingent-Code deines Traegers
+                  Kontingent-Code Ihres Trägers
                 </label>
                 <p className="mb-2 text-xs text-slate-500">
-                  Hat dein Schultraeger ein Kontingent gekauft, schalte deinen Antrag hiermit
+                  Hat Ihr Schulträger ein Kontingent gekauft, schalten Sie Ihren Antrag hiermit
                   frei — ohne eigene Zahlung.
                 </p>
                 <div className="flex gap-2">
@@ -263,7 +276,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                     ) : (
                       <Check className="h-4 w-4" />
                     )}
-                    Einloesen
+                    Einlösen
                   </button>
                 </div>
                 {redeemError && (
@@ -273,21 +286,9 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
             )}
           </div>
 
-          {DEV_MOCK_ENABLED && (
-            <button
-              type="button"
-              onClick={devMockPay}
-              disabled={busy}
-              className="mt-3 w-full rounded-lg border border-[#0a1628]/15 px-4 py-2 text-xs text-slate-600 hover:bg-white disabled:opacity-50"
-              title="Nur im Entwicklungsmodus — simuliert eine erfolgreiche Zahlung ohne Stripe"
-            >
-              Dev-Mock: als bezahlt markieren
-            </button>
-          )}
-
           <p className="mt-4 text-xs text-slate-500">
-            Nach der Zahlung bekommst du einen Download-Link. Dein Antrag bleibt darueber
-            30 Tage verfuegbar und ist auch unter „Meine Antraege" erreichbar.
+            Nach der Zahlung bekommen Sie einen Download-Link. Ihr Antrag bleibt darüber
+            30 Tage verfügbar und ist auch unter „Meine Anträge" erreichbar.
           </p>
         </div>
       </div>

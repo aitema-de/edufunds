@@ -95,6 +95,7 @@ export interface Finanzplan {
 export type CritiqueSchwere = "hoch" | "mittel" | "niedrig";
 export type CritiqueKategorie =
   | "floskel"
+  | "redundanz"
   | "belegluecke"
   | "richtlinie"
   | "inkonsistenz"

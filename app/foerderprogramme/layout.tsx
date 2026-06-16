@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import foerderprogrammeData from "@/data/foerderprogramme.json";
+import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
 
-const programCount = foerderprogrammeData.length >= 160 ? "160+" : foerderprogrammeData.length;
+const programCount = PROGRAMM_COUNT_LABEL;
 
 export const metadata: Metadata = {
-  title: "Förderprogramme für Grundschulen",
-  description: `Entdecken Sie ${programCount} Förderprogramme für Grundschulen. Bundesmittel, Landesmittel, Stiftungen und EU-Programme - mit KI-Antragsassistent.`,
+  title: "Förderprogramme für Schulen",
+  description: `Entdecken Sie ${programCount} Förderprogramme für Schulen. Bundesmittel, Landesmittel, Stiftungen und EU-Programme - mit KI-Antragsassistent.`,
   openGraph: {
-    title: "Förderprogramme für Grundschulen | EduFunds",
+    title: "Förderprogramme für Schulen | EduFunds",
     description: `${programCount} Förderprogramme im Überblick. Finden Sie passende Fördermittel für Ihre Schule.`,
     type: "website",
   },

@@ -17,8 +17,8 @@ const orderSchema = z.object({
   packId: z.string().min(1, "Paket erforderlich"),
   orgName: z.string().trim().min(2, "Name der Organisation erforderlich").max(200),
   contactName: z.string().trim().min(2, "Ansprechpartner erforderlich").max(200),
-  email: z.string().trim().email("Gueltige E-Mail-Adresse erforderlich").max(200),
-  billingAddress: z.string().trim().min(10, "Vollstaendige Rechnungsadresse erforderlich").max(1000),
+  email: z.string().trim().email("Gültige E-Mail-Adresse erforderlich").max(200),
+  billingAddress: z.string().trim().min(10, "Vollständige Rechnungsadresse erforderlich").max(1000),
   vatId: z.string().trim().max(50).optional(),
   poNumber: z.string().trim().max(100).optional(),
   note: z.string().trim().max(2000).optional(),
@@ -35,12 +35,12 @@ export async function POST(req: NextRequest) {
   try {
     const raw = await req.json().catch(() => null);
     if (!raw) {
-      return NextResponse.json({ error: "Ungueltige Anfrage" }, { status: 400 });
+      return NextResponse.json({ error: "Ungültige Anfrage" }, { status: 400 });
     }
 
     const parsed = orderSchema.safeParse(raw);
     if (!parsed.success) {
-      const msg = parsed.error.errors[0]?.message ?? "Eingaben unvollstaendig";
+      const msg = parsed.error.errors[0]?.message ?? "Eingaben unvollständig";
       return NextResponse.json({ error: msg }, { status: 400 });
     }
     const data = parsed.data;

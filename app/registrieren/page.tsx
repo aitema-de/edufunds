@@ -7,6 +7,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
 
 export default function RegistrierenPage() {
   const [formData, setFormData] = useState({
@@ -44,10 +45,10 @@ export default function RegistrierenPage() {
               <div className="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-6">
                 <CheckCircle className="w-10 h-10 text-green-500" />
               </div>
-              <h1 className="font-serif text-3xl mb-4" style={{ color: "#f8f5f0" }}>
+              <h1 className="font-serif text-3xl mb-4" style={{ color: "#0a1628" }}>
                 Willkommen bei EduFunds!
               </h1>
-              <p className="mb-8" style={{ color: "#94a3b8" }}>
+              <p className="mb-8" style={{ color: "#475569" }}>
                 Ihr Account wurde erfolgreich erstellt. Sie können jetzt alle Förderprogramme 
                 durchsuchen und Ihre ersten Anträge erstellen.
               </p>
@@ -61,7 +62,7 @@ export default function RegistrierenPage() {
                 </Link>
                 <Link
                   href="/"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[#c9a227]/50 text-[#c9a227] w-full justify-center"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[#c9a227]/50 text-[#7a5e12] w-full justify-center"
                 >
                   Zur Startseite
                 </Link>
@@ -86,10 +87,10 @@ export default function RegistrierenPage() {
               animate={{ opacity: 1, y: 0 }}
               className="text-center mb-10"
             >
-              <h1 className="font-serif text-3xl mb-4" style={{ color: "#f8f5f0" }}>
+              <h1 className="font-serif text-3xl mb-4" style={{ color: "#0a1628" }}>
                 Kostenlos registrieren
               </h1>
-              <p style={{ color: "#94a3b8" }}>
+              <p style={{ color: "#475569" }}>
                 Erstellen Sie Ihren kostenlosen Account und entdecken Sie passende 
                 Förderprogramme für Ihre Schule.
               </p>
@@ -233,13 +234,13 @@ export default function RegistrierenPage() {
             >
               {[
                 "Kostenlos für immer",
-                "130+ Programme",
+                `${PROGRAMM_COUNT_LABEL} Programme`,
                 "Sofortiger Zugriff",
                 "DSGVO-konform",
               ].map((benefit, i) => (
                 <div key={i} className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-[#c9a227] flex-shrink-0" />
-                  <span className="text-sm" style={{ color: "#94a3b8" }}>
+                  <span className="text-sm" style={{ color: "#475569" }}>
                     {benefit}
                   </span>
                 </div>

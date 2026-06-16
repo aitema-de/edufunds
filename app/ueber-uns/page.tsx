@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Target, Heart, Lightbulb, Users, Award, BookOpen } from "lucide-react";
+import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
 
 const values = [
   {
@@ -49,14 +50,14 @@ export default function UeberUnsPage() {
               className="text-center max-w-3xl mx-auto"
             >
               <span className="inline-block px-4 py-2 rounded-full text-xs font-medium tracking-wider uppercase mb-6"
-                style={{ backgroundColor: "rgba(201, 162, 39, 0.1)", color: "#c9a227" }}>
+                style={{ backgroundColor: "rgba(201, 162, 39, 0.1)", color: "#7a5e12" }}>
                 Über uns
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "#f8f5f0" }}>
-                Wir machen <span style={{ color: "#c9a227" }}>Fördermittel</span> einfach
+              <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "#0a1628" }}>
+                Wir machen <span style={{ color: "#7a5e12" }}>Fördermittel</span> einfach
               </h1>
-              <p className="text-lg" style={{ color: "#94a3b8" }}>
-                EduFunds ist die führende Plattform für Fördermittel an Grundschulen in Deutschland. 
+              <p className="text-lg" style={{ color: "#475569" }}>
+                EduFunds ist die führende Plattform für Fördermittel an Schulen in Deutschland.
                 Wir helfen Schulen, die passenden Förderprogramme zu finden und Anträge erfolgreich zu stellen.
               </p>
             </motion.div>
@@ -77,7 +78,7 @@ export default function UeberUnsPage() {
                   Unsere Mission
                 </h2>
                 <p className="text-lg mb-6" style={{ color: "#1e3a61" }}>
-                  Jede Grundschule verdient Zugang zu Fördermitteln. Doch der Weg bis zum Zuschuss 
+                  Jede Schule verdient Zugang zu Fördermitteln. Doch der Weg bis zum Zuschuss
                   ist oft steinig und kompliziert. Wir verändern das.
                 </p>
                 <p className="text-lg" style={{ color: "#1e3a61" }}>
@@ -95,7 +96,7 @@ export default function UeberUnsPage() {
                 className="grid grid-cols-2 gap-6"
               >
                 <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(201, 162, 39, 0.1)" }}>
-                  <div className="text-4xl font-bold mb-2" style={{ color: "#c9a227" }}>50+</div>
+                  <div className="text-4xl font-bold mb-2" style={{ color: "#c9a227" }}>{PROGRAMM_COUNT_LABEL}</div>
                   <div className="text-sm" style={{ color: "#0a1628" }}>Förderprogramme</div>
                 </div>
                 <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(10, 22, 40, 0.05)" }}>
@@ -103,8 +104,8 @@ export default function UeberUnsPage() {
                   <div className="text-sm" style={{ color: "#1e3a61" }}>Bundesländer</div>
                 </div>
                 <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(10, 22, 40, 0.05)" }}>
-                  <div className="text-4xl font-bold mb-2" style={{ color: "#0a1628" }}>100%</div>
-                  <div className="text-sm" style={{ color: "#1e3a61" }}>Grundschulen</div>
+                  <div className="text-4xl font-bold mb-2" style={{ color: "#0a1628" }}>alle</div>
+                  <div className="text-sm" style={{ color: "#1e3a61" }}>Schularten</div>
                 </div>
                 <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(201, 162, 39, 0.1)" }}>
                   <div className="text-4xl font-bold mb-2" style={{ color: "#c9a227" }}>KI</div>
@@ -119,10 +120,10 @@ export default function UeberUnsPage() {
         <section className="py-20">
           <div className="container mx-auto px-6">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl font-bold mb-4" style={{ color: "#f8f5f0" }}>
+              <h2 className="text-3xl font-bold mb-4" style={{ color: "#0a1628" }}>
                 Unsere Werte
               </h2>
-              <p style={{ color: "#94a3b8" }}>
+              <p style={{ color: "#475569" }}>
                 Diese Prinzipien leiten unsere Arbeit jeden Tag.
               </p>
             </div>
@@ -136,16 +137,16 @@ export default function UeberUnsPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="p-6 rounded-2xl"
-                  style={{ backgroundColor: "rgba(30, 58, 97, 0.3)", border: "1px solid rgba(201, 162, 39, 0.2)" }}
+                  style={{ backgroundColor: "rgba(255, 255, 255, 0.85)", border: "1px solid rgba(201, 162, 39, 0.2)" }}
                 >
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
                     style={{ backgroundColor: "rgba(201, 162, 39, 0.1)" }}>
                     <value.icon className="w-6 h-6" style={{ color: "#c9a227" }} />
                   </div>
-                  <h3 className="text-lg font-semibold mb-2" style={{ color: "#f8f5f0" }}>
+                  <h3 className="text-lg font-semibold mb-2" style={{ color: "#0a1628" }}>
                     {value.title}
                   </h3>
-                  <p className="text-sm" style={{ color: "#94a3b8" }}>
+                  <p className="text-sm" style={{ color: "#334155" }}>
                     {value.description}
                   </p>
                 </motion.div>
@@ -158,10 +159,10 @@ export default function UeberUnsPage() {
         <section className="py-20" style={{ backgroundColor: "rgba(201, 162, 39, 0.05)" }}>
           <div className="container mx-auto px-6">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl font-bold mb-4" style={{ color: "#f8f5f0" }}>
+              <h2 className="text-3xl font-bold mb-4" style={{ color: "#0a1628" }}>
                 Hinter EduFunds
               </h2>
-              <p style={{ color: "#94a3b8" }}>
+              <p style={{ color: "#475569" }}>
                 EduFunds ist ein Projekt der aitema GmbH - Ihr Partner für digitale Bildungslösungen.
               </p>
             </div>
@@ -172,21 +173,21 @@ export default function UeberUnsPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               className="max-w-2xl mx-auto p-8 rounded-2xl text-center"
-              style={{ backgroundColor: "rgba(30, 58, 97, 0.3)", border: "1px solid rgba(201, 162, 39, 0.2)" }}
+              style={{ backgroundColor: "rgba(255, 255, 255, 0.85)", border: "1px solid rgba(201, 162, 39, 0.2)" }}
             >
               <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center"
                 style={{ backgroundColor: "rgba(201, 162, 39, 0.2)" }}>
                 <BookOpen className="w-10 h-10" style={{ color: "#c9a227" }} />
               </div>
-              <h3 className="text-xl font-semibold mb-2" style={{ color: "#f8f5f0" }}>
+              <h3 className="text-xl font-semibold mb-2" style={{ color: "#0a1628" }}>
                 aitema GmbH
               </h3>
-              <p style={{ color: "#94a3b8" }} className="mb-4">
-                Wir entwickeln innovative Lösungen für Bildungseinrichtungen. 
-                Mit technologischer Expertise und pädagogischem Verständnis schaffen 
+              <p style={{ color: "#334155" }} className="mb-4">
+                Wir entwickeln innovative Lösungen für Bildungseinrichtungen.
+                Mit technologischer Expertise und pädagogischem Verständnis schaffen
                 wir Werkzeuge, die den Schulalltag erleichtern.
               </p>
-              <p style={{ color: "#c9a227" }} className="font-medium">
+              <p style={{ color: "#7a5e12" }} className="font-medium">
                 Ein Unternehmen mit Herz für Bildung
               </p>
             </motion.div>

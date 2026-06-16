@@ -31,10 +31,10 @@ export function ClarificationCard({ question, onSubmit, onForceRanking, busy }: 
         <h2 className="text-lg font-semibold text-[#0a1628]">{question}</h2>
       </div>
       <textarea
-        aria-label="Anliegen praezisieren"
+        aria-label="Anliegen präzisieren"
         value={praezisierung}
         onChange={(e) => setPraezisierung(e.target.value)}
-        placeholder="Praezisiere dein Anliegen hier..."
+        placeholder="Präzisieren Sie Ihr Anliegen hier..."
         className="w-full rounded-lg bg-white border border-[#0a1628]/15 px-4 py-3 text-sm text-[#0a1628] placeholder-slate-400 resize-none min-h-[80px] transition focus:border-[#c9a227] focus:outline-none focus:ring-2 focus:ring-[#c9a227]/15"
       />
       <div className="flex items-center justify-between flex-wrap gap-3">
@@ -52,7 +52,7 @@ export function ClarificationCard({ question, onSubmit, onForceRanking, busy }: 
           onClick={() => onSubmit(praezisierung)}
           className="inline-flex items-center gap-2 rounded-lg bg-[#1e3a61] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#0a1628] disabled:cursor-not-allowed disabled:opacity-50"
         >
-          Praezisieren
+          Präzisieren
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </button>
       </div>

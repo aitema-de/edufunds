@@ -27,6 +27,7 @@ export function PageHero({
   const bgColor = isLight ? "#f8f5f0" : "#0a1628";
   const textColor = isLight ? "#0a1628" : "#f8f5f0";
   const subtitleColor = isLight ? "#1e3a61" : "#94a3b8";
+  const accentColor = isLight ? "#7a5e12" : "#c9a227";
 
   return (
     <section
@@ -107,7 +108,7 @@ export function PageHero({
             {titleAccent && (
               <>
                 {" "}
-                <span style={{ color: "#c9a227" }}>{titleAccent}</span>
+                <span style={{ color: accentColor }}>{titleAccent}</span>
               </>
             )}
           </motion.h1>

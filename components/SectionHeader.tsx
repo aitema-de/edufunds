@@ -20,9 +20,10 @@ export function SectionHeader({
   align = "center",
 }: SectionHeaderProps) {
   const isLight = variant === "light";
-  const labelColor = isLight ? "#c9a227" : "#c9a227";
+  const labelColor = isLight ? "#7a5e12" : "#c9a227";
   const titleColor = isLight ? "#0a1628" : "#f8f5f0";
   const descriptionColor = isLight ? "#1e3a61" : "#94a3b8";
+  const accentColor = isLight ? "#7a5e12" : "#c9a227";
 
   const alignClass = {
     left: "text-left",
@@ -54,7 +55,7 @@ export function SectionHeader({
         {titleAccent && (
           <>
             {" "}
-            <span style={{ color: "#c9a227" }}>{titleAccent}</span>
+            <span style={{ color: accentColor }}>{titleAccent}</span>
           </>
         )}
       </h2>

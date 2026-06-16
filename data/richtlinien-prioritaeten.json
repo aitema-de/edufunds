@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-11T12:05:37.709Z",
+  "generatedAt": "2026-06-15T16:52:28.321Z",
   "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
   "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
   "total": 105,
@@ -66,7 +66,7 @@
     },
     {
       "programmId": "bildungsagenda-ns-unrecht-foerderperiode-2026",
-      "name": "Bildungsagenda NS-Unrecht (Foerderperiode 2026-2029)",
+      "name": "Bildungsagenda NS-Unrecht (Förderperiode 2026-2029)",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 500000,
       "reichweite": "?",
@@ -76,7 +76,7 @@
     },
     {
       "programmId": "dbu-projektfoerderung-foerderthema-nachhaltigkeitskommunikation-und",
-      "name": "DBU-Projektfoerderung (Foerderthema Nachhaltigkeitskommunikation und -bildung)",
+      "name": "DBU-Projektförderung (Förderthema Nachhaltigkeitskommunikation und -bildung)",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 400000,
       "reichweite": "?",
@@ -86,7 +86,7 @@
     },
     {
       "programmId": "feb-foerderprogramm-entwicklungspolitische-bildung",
-      "name": "FEB - Foerderprogramm Entwicklungspolitische Bildung",
+      "name": "FEB - Förderprogramm Entwicklungspolitische Bildung",
       "foerdergeberTyp": "bund",
       "foerdersummeMax": 20000,
       "reichweite": "?",
@@ -96,7 +96,7 @@
     },
     {
       "programmId": "stiftung-polytechnische-gesellschaft-projektfoerderung",
-      "name": "Stiftung Polytechnische Gesellschaft - Projektfoerderung",
+      "name": "Stiftung Polytechnische Gesellschaft - Projektförderung",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 100000,
       "reichweite": "DE-HE",
@@ -156,7 +156,7 @@
     },
     {
       "programmId": "fonds-fuer-antisemitismus-bekaempfung-und",
-      "name": "Fonds fuer Antisemitismus-Bekaempfung und Aufklaerung",
+      "name": "Fonds für Antisemitismus-Bekämpfung und Aufklärung",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 50000,
       "reichweite": "?",
@@ -166,7 +166,7 @@
     },
     {
       "programmId": "mixed-up-wettbewerb-mixed-up",
-      "name": "MIXED UP Wettbewerb (Preis + Kick-Off-Foerderung)",
+      "name": "MIXED UP Wettbewerb (Preis + Kick-Off-Förderung)",
       "foerdergeberTyp": "bund",
       "foerdersummeMax": 5000,
       "reichweite": "?",
@@ -196,7 +196,7 @@
     },
     {
       "programmId": "umweltpreis-sachsen-anhalt-sunk-projektfoerderung",
-      "name": "Umweltpreis Sachsen-Anhalt (SUNK) & Projektfoerderung",
+      "name": "Umweltpreis Sachsen-Anhalt (SUNK) & Projektförderung",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 20000,
       "reichweite": "DE-ST",
@@ -206,7 +206,7 @@
     },
     {
       "programmId": "niedersaechsische-bingo-umweltstiftung-bingo-die",
-      "name": "Niedersaechsische Bingo-Umweltstiftung (BINGO! Die Umweltlotterie)",
+      "name": "Niedersächsische Bingo-Umweltstiftung (BINGO! Die Umweltlotterie)",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 30000,
       "reichweite": "DE-NI",
@@ -226,7 +226,7 @@
     },
     {
       "programmId": "foerderlinie-psychische-gesundheit",
-      "name": "Foerderlinie Psychische Gesundheit",
+      "name": "Förderlinie Psychische Gesundheit",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 25000,
       "reichweite": "DE-HE",
@@ -256,7 +256,7 @@
     },
     {
       "programmId": "deinschulhof-gruene-schulhoefe-bundesinitiative-der",
-      "name": "deinSchulhof / Gruene Schulhoefe (Bundesinitiative DUH & Stiftung Lebendige Stadt)",
+      "name": "deinSchulhof / Grüne Schulhöfe (Bundesinitiative DUH & Stiftung Lebendige Stadt)",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 20000,
       "reichweite": "?",
@@ -276,7 +276,7 @@
     },
     {
       "programmId": "pwc-stiftung-foerderung-kulturelle-bildung",
-      "name": "PwC-Stiftung - Foerderung Kulturelle Bildung",
+      "name": "PwC-Stiftung - Förderung Kulturelle Bildung",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 25000,
       "reichweite": "?",
@@ -286,7 +286,7 @@
     },
     {
       "programmId": "ewe-stiftung-foerderantrag",
-      "name": "EWE Stiftung Foerderantrag",
+      "name": "EWE Stiftung Förderantrag",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 10000,
       "reichweite": "DE-NI",
@@ -296,7 +296,7 @@
     },
     {
       "programmId": "deutsche-bahn-stiftung-jaehrliche-foerderausschreibung",
-      "name": "Deutsche Bahn Stiftung - Jaehrliche Foerderausschreibung",
+      "name": "Deutsche Bahn Stiftung - Jährliche Förderausschreibung",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 15000,
       "reichweite": "?",
@@ -306,7 +306,7 @@
     },
     {
       "programmId": "heinz-nixdorf-stiftung-projektfoerderung-mint",
-      "name": "Heinz Nixdorf Stiftung - Projektfoerderung (MINT/Digitale Bildung)",
+      "name": "Heinz Nixdorf Stiftung - Projektförderung (MINT/Digitale Bildung)",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 15000,
       "reichweite": "?",
@@ -316,7 +316,7 @@
     },
     {
       "programmId": "konzeptwettbewerb-schuelerforschungszentren",
-      "name": "Konzeptwettbewerb Schuelerforschungszentren",
+      "name": "Konzeptwettbewerb Schülerforschungszentren",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 15000,
       "reichweite": "?",
@@ -346,7 +346,7 @@
     },
     {
       "programmId": "dslk-schulpreis-bildung-fuer-nachhaltige",
-      "name": "DSLK-Schulpreis Bildung fuer nachhaltige Entwicklung",
+      "name": "DSLK-Schulpreis Bildung für nachhaltige Entwicklung",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 10000,
       "reichweite": "?",
@@ -375,6 +375,16 @@
       "status": "done"
     },
     {
+      "programmId": "stiftung-bildung-foerderfonds",
+      "name": "Förderfonds der Stiftung Bildung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderfonds",
+      "score": 69,
+      "status": "done"
+    },
+    {
       "programmId": "lernen-in-langenhorn",
       "name": "Lernen in Langenhorn",
       "foerdergeberTyp": "stiftung",
@@ -386,7 +396,7 @@
     },
     {
       "programmId": "thueringer-klimaschutzpreis-die-blaue-libelle",
-      "name": "Thueringer Klimaschutzpreis Die blaue Libelle",
+      "name": "Thüringer Klimaschutzpreis Die blaue Libelle",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 5000,
       "reichweite": "DE-TH",
@@ -426,7 +436,7 @@
     },
     {
       "programmId": "bremen-gewoba-stiftung-zur-foerderung",
-      "name": "Bremen: GEWOBA-Stiftung zur Foerderung der Bildung im oeffentlichen Schulwesen",
+      "name": "Bremen: GEWOBA-Stiftung zur Förderung der Bildung im öffentlichen Schulwesen",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 4000,
       "reichweite": "DE-HB",
@@ -436,7 +446,7 @@
     },
     {
       "programmId": "deutsch-griechisches-jugendwerk-dgjw-foerderung",
-      "name": "Deutsch-Griechisches Jugendwerk (DGJW) - Foerderung Schulbegegnungen",
+      "name": "Deutsch-Griechisches Jugendwerk (DGJW) - Förderung Schulbegegnungen",
       "foerdergeberTyp": "sonstige",
       "foerdersummeMax": 50000,
       "reichweite": "?",
@@ -446,7 +456,7 @@
     },
     {
       "programmId": "brandenburg-foerderung-aus-lottomitteln-mbjs",
-      "name": "Brandenburg: Foerderung aus Lottomitteln (MBJS)",
+      "name": "Brandenburg: Förderung aus Lottomitteln (MBJS)",
       "foerdergeberTyp": "land",
       "foerdersummeMax": 30000,
       "reichweite": "DE-BB",
@@ -496,7 +506,7 @@
     },
     {
       "programmId": "foerderfonds-demokratie",
-      "name": "Foerderfonds Demokratie",
+      "name": "Förderfonds Demokratie",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 5000,
       "reichweite": "?",
@@ -536,7 +546,7 @@
     },
     {
       "programmId": "deutsch-polnisches-jugendwerk-dpjw-projektfoerderung",
-      "name": "Deutsch-Polnisches Jugendwerk (DPJW) - Projektfoerderung Schulaustausch",
+      "name": "Deutsch-Polnisches Jugendwerk (DPJW) - Projektförderung Schulaustausch",
       "foerdergeberTyp": "sonstige",
       "foerdersummeMax": 25000,
       "reichweite": "?",
@@ -546,7 +556,7 @@
     },
     {
       "programmId": "ermoeglichungsbudget-fuer-innovative-schul-und",
-      "name": "Ermoeglichungsbudget fuer innovative Schul- und Unterrichtsentwicklung (Niedersachsen)",
+      "name": "Ermöglichungsbudget für innovative Schul- und Unterrichtsentwicklung (Niedersachsen)",
       "foerdergeberTyp": "land",
       "foerdersummeMax": 15000,
       "reichweite": "DE-NI",
@@ -586,7 +596,7 @@
     },
     {
       "programmId": "demokratie-verstaerker-innen-2026",
-      "name": "Demokratie-Verstaerker*innen 2026",
+      "name": "Demokratie-Verstärker*innen 2026",
       "foerdergeberTyp": "sonstige",
       "foerdersummeMax": 10000,
       "reichweite": "DE-HE",
@@ -596,7 +606,7 @@
     },
     {
       "programmId": "demokratische-beteiligung-von-schuelerinnen-und",
-      "name": "Demokratische Beteiligung von Schuelerinnen und Schuelern (Niedersachsen)",
+      "name": "Demokratische Beteiligung von Schülerinnen und Schülern (Niedersachsen)",
       "foerdergeberTyp": "land",
       "foerdersummeMax": 10000,
       "reichweite": "DE-NI",
@@ -606,7 +616,7 @@
     },
     {
       "programmId": "gruen-macht-schule",
-      "name": "Gruen macht Schule",
+      "name": "Grün macht Schule",
       "foerdergeberTyp": "land",
       "foerdersummeMax": 10000,
       "reichweite": "DE-BE",
@@ -616,7 +626,7 @@
     },
     {
       "programmId": "landesprogramm-weltoffenes-sachsen-fuer-demokratie",
-      "name": "Landesprogramm Weltoffenes Sachsen fuer Demokratie und Toleranz (WOS)",
+      "name": "Landesprogramm Weltoffenes Sachsen für Demokratie und Toleranz (WOS)",
       "foerdergeberTyp": "land",
       "foerdersummeMax": 10000,
       "reichweite": "DE-SN",
@@ -696,7 +706,7 @@
     },
     {
       "programmId": "dsee-mikrofoerderung",
-      "name": "DSEE-Mikrofoerderung",
+      "name": "DSEE-Mikroförderung",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 1500,
       "reichweite": "?",
@@ -775,16 +785,6 @@
       "status": "done"
     },
     {
-      "programmId": "stiftung-bildung-foerderfonds",
-      "name": "Förderfonds der Stiftung Bildung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 5000,
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftungbildung.org/foerderfonds",
-      "score": 57,
-      "status": "done"
-    },
-    {
       "programmId": "energiesparmeister",
       "name": "Energiesparmeister",
       "foerdergeberTyp": "sonstige",
@@ -796,7 +796,7 @@
     },
     {
       "programmId": "sozialgenial-hilft-foerderfonds",
-      "name": "sozialgenial hilft-Foerderfonds",
+      "name": "sozialgenial hilft-Förderfonds",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 500,
       "reichweite": "?",
@@ -826,7 +826,7 @@
     },
     {
       "programmId": "saechsischer-schulgartenwettbewerb-aus-grau-macht",
-      "name": "Saechsischer Schulgartenwettbewerb AUS GRAU MACHT GRUEN",
+      "name": "Sächsischer Schulgartenwettbewerb AUS GRAU MACHT GRÜN",
       "foerdergeberTyp": "land",
       "foerdersummeMax": 2500,
       "reichweite": "DE-SN",
@@ -907,7 +907,7 @@
     },
     {
       "programmId": "bayern-alltagskompetenzen-schule-fuers-leben",
-      "name": "Bayern: Alltagskompetenzen - Schule fuers Leben",
+      "name": "Bayern: Alltagskompetenzen - Schule fürs Leben",
       "foerdergeberTyp": "land",
       "foerdersummeMax": 910,
       "reichweite": "DE-BY",
@@ -917,7 +917,7 @@
     },
     {
       "programmId": "deutsch-franzoesisches-jugendwerk-dfjw-foerderung",
-      "name": "Deutsch-Franzoesisches Jugendwerk (DFJW) - Foerderung Schulaustausch",
+      "name": "Deutsch-Französisches Jugendwerk (DFJW) - Förderung Schulaustausch",
       "foerdergeberTyp": "sonstige",
       "foerdersummeMax": 800,
       "reichweite": "?",
@@ -937,7 +937,7 @@
     },
     {
       "programmId": "stiftung-berliner-sparkasse-projektfoerderung",
-      "name": "Stiftung Berliner Sparkasse - Projektfoerderung",
+      "name": "Stiftung Berliner Sparkasse - Projektförderung",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": null,
       "reichweite": "DE-BE",
@@ -947,7 +947,7 @@
     },
     {
       "programmId": "wilo-foundation-bildung-mint-foerderung",
-      "name": "Wilo-Foundation - Bildung (MINT-Foerderung)",
+      "name": "Wilo-Foundation - Bildung (MINT-Förderung)",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": null,
       "reichweite": "DE-NW",
@@ -957,7 +957,7 @@
     },
     {
       "programmId": "innogy-stiftung-fuer-energie-und",
-      "name": "innogy Stiftung fuer Energie und Gesellschaft - Projektfoerderung",
+      "name": "innogy Stiftung für Energie und Gesellschaft - Projektförderung",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": null,
       "reichweite": "?",
@@ -977,7 +977,7 @@
     },
     {
       "programmId": "projektfoerderung-dieter-schwarz-stiftung",
-      "name": "Projektfoerderung Dieter Schwarz Stiftung",
+      "name": "Projektförderung Dieter Schwarz Stiftung",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": null,
       "reichweite": "DE-BW",
@@ -1027,7 +1027,7 @@
     },
     {
       "programmId": "foerderrichtlinie-medienbildung-medienbildung-sachsen-rl",
-      "name": "Foerderrichtlinie Medienbildung (Medienbildung.Sachsen)",
+      "name": "Förderrichtlinie Medienbildung (Medienbildung.Sachsen)",
       "foerdergeberTyp": "land",
       "foerdersummeMax": null,
       "reichweite": "DE-SN",
@@ -1047,7 +1047,7 @@
     },
     {
       "programmId": "projektfoerderung-der-landeszentrale-fuer-politische",
-      "name": "Projektfoerderung der Landeszentrale fuer politische Bildung Sachsen-Anhalt (LpB LSA)",
+      "name": "Projektförderung der Landeszentrale für politische Bildung Sachsen-Anhalt (LpB LSA)",
       "foerdergeberTyp": "land",
       "foerdersummeMax": null,
       "reichweite": "DE-ST",

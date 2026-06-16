@@ -44,11 +44,11 @@ export async function POST(req: NextRequest) {
     const consumed = await consumeCredit(code);
     if (!consumed.ok) {
       const map: Record<typeof consumed.reason, { status: number; message: string }> = {
-        unknown: { status: 404, message: "Code unbekannt. Bitte Eingabe pruefen." },
+        unknown: { status: 404, message: "Code unbekannt. Bitte Eingabe prüfen." },
         expired: { status: 410, message: "Dieser Kontingent-Code ist abgelaufen." },
         exhausted: {
           status: 409,
-          message: "Das Kontingent ist aufgebraucht. Bitte beim Traeger nachfragen.",
+          message: "Das Kontingent ist aufgebraucht. Bitte beim Träger nachfragen.",
         },
       };
       const r = map[consumed.reason];
@@ -75,6 +75,6 @@ export async function POST(req: NextRequest) {
     });
   } catch (err) {
     console.error("[api/wizard/redeem-code] Fehler:", err);
-    return NextResponse.json({ error: "Einloesung fehlgeschlagen" }, { status: 500 });
+    return NextResponse.json({ error: "Einlösung fehlgeschlagen" }, { status: 500 });
   }
 }

@@ -2,6 +2,7 @@
 // Diese Datei ruft den Backend-API-Endpoint auf, der Gemini nutzt
 
 import type { Foerderprogramm } from "@/lib/foerderSchema";
+import { formatKategorie } from "@/lib/kategorie-labels";
 
 export interface ProjektDaten {
   schulname: string;
@@ -91,9 +92,7 @@ export async function generateAntrag(
 
 // Fallback-Funktion wenn API nicht verfügbar
 function generateFallbackAntrag(programm: Foerderprogramm, projektDaten: ProjektDaten): string {
-  const kategorienText = programm.kategorien.map(k => 
-    k.charAt(0).toUpperCase() + k.slice(1).replace(/-/g, " ")
-  ).join(", ");
+  const kategorienText = programm.kategorien.map(formatKategorie).join(", ");
 
   return `# FÖRDERANTRAG
 

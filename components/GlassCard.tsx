@@ -1,6 +1,7 @@
 import { Building2, Euro, Calendar, MapPin, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
+import { formatKategorie } from "@/lib/kategorie-labels";
 
 interface GlassCardProps {
   programm: Foerderprogramm;
@@ -156,7 +157,7 @@ export function GlassCard({ programm }: GlassCardProps) {
                 key={kat}
                 className="px-2 py-1 rounded-md text-xs bg-slate-800 text-slate-400"
               >
-                {kat}
+                {formatKategorie(kat)}
               </span>
             ))}
           </div>
