@@ -11,6 +11,7 @@
  */
 
 import { NextResponse } from "next/server";
+import { secureEquals } from "@/lib/secure-compare";
 import { withClient } from "@/lib/db";
 import { runRetention } from "@/lib/retention";
 
@@ -25,7 +26,7 @@ function authorized(request: Request): boolean {
   const bearer = auth?.toLowerCase().startsWith("bearer ")
     ? auth.slice(7).trim()
     : undefined;
-  return headerKey === secret || bearer === secret;
+  return secureEquals(headerKey, secret) || secureEquals(bearer, secret);
 }
 
 async function handle(request: Request): Promise<NextResponse> {

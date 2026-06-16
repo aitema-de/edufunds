@@ -116,7 +116,7 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     console.error("[api/wizard/checkout] Fehler:", err);
     return NextResponse.json(
-      { error: err instanceof Error ? err.message : "Checkout fehlgeschlagen" },
+      { error: "Checkout fehlgeschlagen" },
       { status: 500 }
     );
   }

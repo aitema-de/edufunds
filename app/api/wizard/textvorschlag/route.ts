@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     console.error("[wizard/textvorschlag] Fehler:", err);
     return NextResponse.json(
-      { error: err instanceof Error ? err.message : "unbekannter Fehler" },
+      { error: "unbekannter Fehler" },
       { status: 500 }
     );
   }

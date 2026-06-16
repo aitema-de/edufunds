@@ -104,24 +104,43 @@ function validate(p: unknown): { valid: true; payload: FeedbackPayload } | { val
 }
 
 /**
+ * In-Memory-Hochwassermarke der zuletzt vergebenen Ticketnummer. Schützt davor,
+ * dass ein transienter DB-/ClickUp-Ausfall die laufende Nummer regredieren lässt
+ * (die alte „immer #001"-Falle). Wird beim Container-Neustart zurückgesetzt — das
+ * ist unkritisch, weil der primäre DB-Pfad dann ohnehin die echte (höhere) Nummer
+ * liefert und die Marke neu setzt.
+ */
+let highWaterTicket = 0;
+
+/**
  * Laufende Ticketnummer. Primär atomar+monoton aus einer DB-Sequenz
  * (feedback_tickets.id, Migration 008) — unabhängig von ClickUp. Fällt bei
- * DB-Fehler auf die alte ClickUp-Zählung (max #NNN + 1) zurück.
+ * DB-Fehler auf die alte ClickUp-Zählung (max #NNN + 1) zurück. Eine
+ * Hochwassermarke verhindert, dass dieser Fallback eine bereits vergebene
+ * Nummer (z. B. #001) erneut ausgibt.
  */
 async function getNextTicketNumber(type: string, url?: string): Promise<number> {
+  let candidate = 0;
   try {
     const res = await query<{ id: number }>(
       `INSERT INTO feedback_tickets (feedback_type, url) VALUES ($1, $2) RETURNING id`,
       [type, url ?? null]
     );
-    if (res.rowCount === 1) return res.rows[0].id;
+    if (res.rowCount === 1) candidate = res.rows[0].id;
   } catch (e) {
     console.error(
       "[feedback] DB-Ticketnummer fehlgeschlagen, Fallback ClickUp:",
       e instanceof Error ? e.message : e
     );
   }
-  return clickUpMaxPlusOne();
+
+  if (candidate <= 0) candidate = await clickUpMaxPlusOne();
+
+  // Nie unter eine bereits vergebene Nummer zurückfallen. 0 bleibt 0 (= keine
+  // Nummer, kein Präfix) — nur echte Nummern werden gegen die Marke geschützt.
+  if (candidate > 0 && candidate <= highWaterTicket) candidate = highWaterTicket + 1;
+  if (candidate > highWaterTicket) highWaterTicket = candidate;
+  return candidate;
 }
 
 /** Fallback: laufende Nummer aus dem Maximum der ClickUp-Tasknamen (#NNN). */
@@ -137,7 +156,8 @@ async function clickUpMaxPlusOne(): Promise<number> {
     const tasks = (data.tasks as Array<{ name: string }>) || [];
     let max = 0;
     for (const t of tasks) {
-      const m = t.name.match(/^#(\d{3,})/);
+      // 1+ Ziffern (nicht nur 3-stellig), damit auch #1/#01-Altbestände zählen.
+      const m = t.name.match(/^#(\d+)/);
       if (m) {
         const n = parseInt(m[1], 10);
         if (n > max) max = n;

@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     console.error("[api/match] Fehler:", err);
     return NextResponse.json(
-      { error: err instanceof Error ? err.message : "Matching fehlgeschlagen" },
+      { error: "Matching fehlgeschlagen" },
       { status: 500 }
     );
   }

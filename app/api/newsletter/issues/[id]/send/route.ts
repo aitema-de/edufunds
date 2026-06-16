@@ -115,7 +115,7 @@ export async function POST(
     await markFailed(id);
     console.error('[api/newsletter/issues/:id/send] Fehler:', err);
     return NextResponse.json(
-      { success: false, message: 'Versandfehler', error: err instanceof Error ? err.message : String(err) },
+      { success: false, message: 'Versandfehler' },
       { status: 500 }
     );
   }

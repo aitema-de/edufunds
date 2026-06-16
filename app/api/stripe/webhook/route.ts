@@ -183,7 +183,7 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     console.error("[stripe/webhook] Handler-Fehler:", err);
     return NextResponse.json(
-      { error: err instanceof Error ? err.message : "handler failed" },
+      { error: "handler failed" },
       { status: 500 }
     );
   }
