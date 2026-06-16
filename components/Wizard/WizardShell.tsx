@@ -714,13 +714,20 @@ export function WizardShell({ programm, einreichung }: Props) {
             </h3>
             <p className="mb-4 max-w-xl text-slate-700">
               Die KI hat aus Ihren Antworten diese Fakten erfasst.{" "}
-              <strong>Stimmt etwas nicht?</strong> Bearbeiten Sie einzelne Antworten über das
-              Stift-Symbol in der Gesprächs-Chronik oder klicken Sie unten auf „Noch mehr ergänzen".
+              <strong>Stimmt etwas nicht?</strong> Fahren Sie über eine Kachel und klicken Sie auf das
+              Stift-Symbol, um den Wert direkt zu korrigieren. Für größere Änderungen bearbeiten Sie
+              eine Antwort in der Gesprächs-Chronik oder klicken Sie unten auf „Noch mehr ergänzen".
               Passt alles, schreibt die KI den Antrag — sechs Schritte: Gliederung → Abschnitte →
               Gutachten → Revision → Re-Check → Finanzplan + Konsistenzprüfung. Typisch 1–3 Minuten.
             </p>
             <div className="mb-4 rounded-lg border border-[#0a1628]/10 bg-[#f8f5f0] p-4">
-              <FactsPanel facts={state.facts} compact />
+              <FactsPanel
+                facts={state.facts}
+                compact
+                editable
+                sessionToken={state.sessionToken}
+                onFactsUpdate={(facts) => setState((s) => (s ? { ...s, facts } : s))}
+              />
             </div>
             {readiness && (
               <div className="mb-6">
