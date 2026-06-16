@@ -16,6 +16,7 @@
  */
 
 import { NextResponse } from 'next/server';
+import { secureEquals } from '@/lib/secure-compare';
 import { generateNewsletterDraft } from '@/lib/newsletter/generate-draft';
 import {
   createIssue,
@@ -37,7 +38,7 @@ function authorized(request: Request): boolean {
   const bearer = auth?.toLowerCase().startsWith('bearer ')
     ? auth.slice(7).trim()
     : undefined;
-  return headerKey === secret || bearer === secret;
+  return secureEquals(headerKey, secret) || secureEquals(bearer, secret);
 }
 
 async function handle(request: Request): Promise<NextResponse> {
