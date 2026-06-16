@@ -107,7 +107,7 @@ describe('ClarificationCard', () => {
     expect(hasHelp).toBe(true);
   });
 
-  it("rendert textarea mit aria-label='Anliegen praezisieren' — D-11", () => {
+  it("rendert textarea mit aria-label='Anliegen präzisieren' — D-11", () => {
     render(
       <ClarificationCard
         question={QUESTION}
@@ -115,12 +115,12 @@ describe('ClarificationCard', () => {
         onForceRanking={() => {}}
       />
     );
-    const textarea = screen.getByLabelText('Anliegen praezisieren');
+    const textarea = screen.getByLabelText('Anliegen präzisieren');
     expect(textarea).toBeInTheDocument();
     expect(textarea.tagName).toBe('TEXTAREA');
   });
 
-  it('Praezisieren-Button disabled wenn textarea leer — D-11', () => {
+  it('Präzisieren-Button disabled wenn textarea leer — D-11', () => {
     render(
       <ClarificationCard
         question={QUESTION}
@@ -128,11 +128,11 @@ describe('ClarificationCard', () => {
         onForceRanking={() => {}}
       />
     );
-    const button = screen.getByRole('button', { name: /Praezisieren/i });
+    const button = screen.getByRole('button', { name: /Präzisieren/i });
     expect(button).toBeDisabled();
   });
 
-  it("Klick auf 'Praezisieren' ruft onSubmit mit textarea-Wert — D-11", () => {
+  it("Klick auf 'Präzisieren' ruft onSubmit mit textarea-Wert — D-11", () => {
     const onSubmit = jest.fn();
     render(
       <ClarificationCard
@@ -141,9 +141,9 @@ describe('ClarificationCard', () => {
         onForceRanking={() => {}}
       />
     );
-    const textarea = screen.getByLabelText('Anliegen praezisieren');
+    const textarea = screen.getByLabelText('Anliegen präzisieren');
     fireEvent.change(textarea, { target: { value: 'Fokus liegt auf MINT in Berlin.' } });
-    const button = screen.getByRole('button', { name: /Praezisieren/i });
+    const button = screen.getByRole('button', { name: /Präzisieren/i });
     expect(button).not.toBeDisabled();
     fireEvent.click(button);
     expect(onSubmit).toHaveBeenCalledTimes(1);

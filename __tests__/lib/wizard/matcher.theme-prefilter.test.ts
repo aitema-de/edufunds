@@ -18,6 +18,7 @@ jest.mock("@/lib/wizard/llm", () => ({
 
 import { generateText } from "@/lib/wizard/llm";
 import { extractAnliegenThemes, runMatch } from "@/lib/wizard/matcher";
+import { isProgrammAbgelaufen } from "@/lib/programm-status";
 import foerderprogrammeData from "@/data/foerderprogramme.json";
 
 const programme = foerderprogrammeData as Array<{ id: string; status?: string }>;
@@ -94,12 +95,28 @@ describe("prefilter — Status-Filter (C1)", () => {
     });
   });
 
-  it("totalCandidates schliesst archiviert + review_needed aus", async () => {
-    const erwartet = programme.filter(
+  it("totalCandidates schliesst archiviert + review_needed + abgelaufen aus", async () => {
+    // Der prefilter im Matcher schliesst drei Klassen aus:
+    //  1. status === "archiviert"
+    //  2. status === "review_needed"
+    //  3. abgelaufene Programme (Frist-Ende in der Vergangenheit, isProgrammAbgelaufen)
+    // totalCandidates = prefilter-Ueberlebende; filteredOut = Gesamt - Ueberlebende.
+    const survivors = programme.filter(
+      (p) =>
+        p.status !== "archiviert" &&
+        p.status !== "review_needed" &&
+        !isProgrammAbgelaufen(p as never)
+    );
+    const erwartet = survivors.length;
+    const ausgeschlossen = programme.length - erwartet;
+    expect(ausgeschlossen).toBeGreaterThan(0); // sanity: es gibt ausgefilterte Programme
+
+    // Sanity: Status-Filter UND Ablauf-Filter greifen beide (sonst testet der
+    // Test versehentlich nur eine der beiden Bedingungen).
+    const nurStatus = programme.filter(
       (p) => p.status !== "archiviert" && p.status !== "review_needed"
     ).length;
-    const ausgeschlossen = programme.length - erwartet;
-    expect(ausgeschlossen).toBeGreaterThan(0); // sanity: es gibt nicht-aktive Programme
+    expect(erwartet).toBeLessThan(nurStatus); // d. h. mind. ein Programm ist abgelaufen
 
     const res = await runMatch({
       anliegen: "Wir wollen die Schulbibliothek mit neuen Buechern ausstatten und Lesen foerdern.",
