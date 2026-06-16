@@ -105,7 +105,7 @@ async function handle(request: Request): Promise<NextResponse> {
   } catch (err) {
     console.error('[cron/newsletter] Fehler:', err);
     return NextResponse.json(
-      { error: 'generation_failed', message: err instanceof Error ? err.message : String(err) },
+      { error: 'generation_failed' },
       { status: 500 }
     );
   }
