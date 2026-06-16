@@ -20,6 +20,7 @@
     "test:smoke": "node scripts/smoke-test.js",
     "test": "jest",
     "test:watch": "jest --watch",
+    "typecheck": "tsc --noEmit",
     "eval:matcher": "tsx --env-file=.env.local scripts/eval-matcher.ts"
   },
   "dependencies": {

@@ -1,6 +1,7 @@
 export const dynamic = 'force-static';
 
 import { NextResponse } from 'next/server';
+import { secureEquals } from '@/lib/secure-compare';
 import { Resend } from 'resend';
 import { 
   getConfirmedNewsletterEntries, 
@@ -97,7 +98,7 @@ function verifyAdminKey(request: Request): boolean {
     return false;
   }
   
-  return adminKey === expectedKey;
+  return secureEquals(adminKey, expectedKey);
 }
 
 interface SendResult {

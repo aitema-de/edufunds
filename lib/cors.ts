@@ -10,11 +10,13 @@
 const getAllowedOrigins = (): string[] => {
   const env = process.env.NODE_ENV || 'development';
   
-  // Production: Strikte Domain-Liste
+  // Production: Strikte Domain-Liste (explizit, keine Wildcards — vgl. Datei-Kopf)
   const productionOrigins = [
     'https://edufunds.org',
     'https://www.edufunds.org',
     'https://app.edufunds.org',
+    'https://staging.edufunds.org',
+    'https://pilot.edufunds.org',
   ];
   
   // Additional origins from env (comma-separated)
@@ -44,19 +46,12 @@ export function isOriginAllowed(origin: string | null): boolean {
   if (!origin) return false;
   
   const allowedOrigins = getAllowedOrigins();
-  
-  // Exakte Übereinstimmung
-  if (allowedOrigins.includes(origin)) {
-    return true;
-  }
-  
-  // Subdomain-Matching für edufunds.org
-  if (origin.endsWith('.edufunds.org') || 
-      origin.endsWith('.edufunds.de')) {
-    return true;
-  }
-  
-  return false;
+
+  // Nur exakte Uebereinstimmung. Frueher gab es ein endsWith('.edufunds.org')/
+  // ('.edufunds.de')-Wildcard — kombiniert mit Allow-Credentials:true ein
+  // Subdomain-Takeover-Risiko (jede beliebige Subdomain haette credentialed
+  // CORS-Requests stellen koennen). Weitere Origins via ALLOWED_ORIGINS-Env.
+  return allowedOrigins.includes(origin);
 }
 
 // CORS Headers für API-Routen

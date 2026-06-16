@@ -3,7 +3,14 @@ import {
   RichtlinieLegacySchema,
   validateForeignKeys,
 } from "@/lib/wizard/richtlinien-validator";
-import aktionMensch from "@/data/richtlinien/aktion-mensch-schulkooperation.json";
+
+// HINWEIS (aktualisiert): Frueher wurde hier das On-Disk-Dossier
+// `aktion-mensch-schulkooperation.json` als Legacy-Fixture verwendet. Inzwischen
+// sind ALLE 100 Dossiers in data/richtlinien/ auf den vollstaendigen Schema-Stand
+// migriert (alle 4 neuen Felder vorhanden) — es existiert kein echtes
+// Legacy-Dossier mehr auf der Platte. Deshalb wird der Legacy-Fall ueber das
+// inline-Fixture MIN_BASE (ohne die 4 neuen Felder) geprueft, das genau das
+// "fehlende neue Felder"-Szenario abbildet, das das Schema unterscheiden soll.
 
 // Minimaler valider Antragsstruktur-Block fuer in-line-Fixtures.
 const MIN_ANTRAGSSTRUKTUR = {
@@ -52,7 +59,8 @@ const MIN_STRICT_NEW_FIELDS = {
 describe("RichtlinieStrictSchema", () => {
   describe("strict mode", () => {
     it("sollte ein Legacy-Dossier ohne 4 neue Felder ablehnen", () => {
-      const result = RichtlinieStrictSchema.safeParse(aktionMensch);
+      // MIN_BASE enthaelt KEINES der 4 neuen Felder → strict muss ablehnen.
+      const result = RichtlinieStrictSchema.safeParse(MIN_BASE);
       expect(result.success).toBe(false);
     });
 
@@ -111,7 +119,8 @@ describe("RichtlinieStrictSchema", () => {
 
 describe("RichtlinieLegacySchema", () => {
   it("sollte ein Dossier ohne neue Felder akzeptieren", () => {
-    const result = RichtlinieLegacySchema.safeParse(aktionMensch);
+    // MIN_BASE hat keines der 4 neuen Felder → Legacy erlaubt das.
+    const result = RichtlinieLegacySchema.safeParse(MIN_BASE);
     expect(result.success).toBe(true);
   });
 

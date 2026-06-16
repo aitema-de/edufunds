@@ -10,6 +10,7 @@
  */
 
 import { SignJWT, jwtVerify } from 'jose';
+import { secureEquals } from '@/lib/secure-compare';
 import { cookies } from 'next/headers';
 import { NextRequest } from 'next/server';
 import bcrypt from 'bcryptjs';
@@ -142,7 +143,7 @@ export async function getAdminFromRequest(request: NextRequest): Promise<JWTPayl
   const adminKey = request.headers.get('x-admin-key');
   const expectedKey = process.env.NEWSLETTER_ADMIN_KEY;
   
-  if (adminKey && expectedKey && adminKey === expectedKey) {
+  if (secureEquals(adminKey, expectedKey)) {
     // Return pseudo-payload für Legacy-Auth
     return {
       sub: 'api-key',

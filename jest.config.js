@@ -20,7 +20,9 @@ const customJestConfig = {
   // Repos (inkl. package.json + Testdateien). Ohne diesen Ausschluss scannt Jest
   // sie mit, was Haste-Modul-Kollisionen und Hunderte Phantom-Failures aus
   // veralteten Daten-Snapshots erzeugt.
-  testPathIgnorePatterns: ['/node_modules/', '/.next/', '/e2e/', '/\\.claude/'],
+  // app/api/contact/test.ts ist ein manuelles ts-node-Skript (Funktionen statt
+  // it/describe), kein Jest-Test — sonst "must contain at least one test".
+  testPathIgnorePatterns: ['/node_modules/', '/.next/', '/e2e/', '/\\.claude/', '/app/api/contact/test\\.ts$'],
   // Verhindert zusaetzlich die Haste-Modul-Kollision (doppelte package.json) durch
   // die Agent-Worktrees unter /.claude/.
   modulePathIgnorePatterns: ['/\\.claude/'],

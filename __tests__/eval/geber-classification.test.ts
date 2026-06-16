@@ -50,17 +50,67 @@ describe("Geber-Klassifikation 11-Dossier-Mapping (D-28)", () => {
     warnSpy.mockRestore();
   });
 
-  it("alle 11 Dossier-IDs aus data/richtlinien/*.json sind im Mapping enthalten", () => {
+  /**
+   * HINWEIS (aktualisiert): Die urspruengliche Erwartung war, dass JEDE
+   * Dossier-ID aus data/richtlinien/ im MAPPING enthalten ist (Phase-5-Stand:
+   * 11 Dossiers == 11 Mapping-Eintraege). Der Katalog ist inzwischen auf ~100
+   * Dossiers gewachsen, das MAPPING ist laut Quell-Doku aber BEWUSST ein
+   * kuratierter Subset ("Scope: 11 Dossiers; neue Programme werden ad-hoc
+   * gepflegt; nicht gemappte IDs liefern 'unknown' + Console-Warning").
+   *
+   * Der Test prueft daher jetzt das DOKUMENTIERTE Verhalten:
+   *  - die explizit gemappten Stamm-Dossier-IDs, die noch auf der Platte
+   *    liegen, resolven zu einer bekannten Gruppe (!= "unknown"),
+   *  - on-disk-IDs, die NICHT im Mapping stehen, resolven zu "unknown"
+   *    (kein silent skip; Console-Warning).
+   */
+  const GEMAPPTE_STAMM_IDS = [
+    "bmbf-digitalpakt-2",
+    "berlin-startchancen",
+    "ensam-bmz",
+    "aktion-mensch-schulkooperation",
+    "klimalab-2026",
+    "erasmus-schule-2026",
+    "erasmus-schulentwicklung",
+    "bosch-schulpreis",
+    "ferry-porsche-challenge",
+    "kultur-macht-stark",
+  ];
+
+  it("die gemappten Stamm-Dossier-IDs resolven zu einer bekannten Geber-Gruppe", () => {
+    const dossierDir = resolve(__dirname, "../../data/richtlinien");
+    const onDisk = new Set(
+      readdirSync(dossierDir)
+        .filter((f) => f.endsWith(".json"))
+        .map((f) => f.replace(/\.json$/, ""))
+    );
+
+    const warnSpy = jest.spyOn(console, "warn").mockImplementation(() => {});
+    for (const id of GEMAPPTE_STAMM_IDS) {
+      // Sanity: die Stamm-IDs existieren noch im Katalog.
+      expect(onDisk.has(id)).toBe(true);
+      expect(getGeberGruppe(id)).not.toBe("unknown");
+    }
+    warnSpy.mockRestore();
+  });
+
+  it("nicht gemappte on-disk-IDs resolven zu 'unknown' mit Console-Warning", () => {
     const dossierDir = resolve(__dirname, "../../data/richtlinien");
     const ids = readdirSync(dossierDir)
       .filter((f) => f.endsWith(".json"))
       .map((f) => f.replace(/\.json$/, ""));
 
     const warnSpy = jest.spyOn(console, "warn").mockImplementation(() => {});
-    const unknownIds = ids.filter((id) => getGeberGruppe(id) === "unknown");
+    const ungemappt = ids.filter((id) => !GEMAPPTE_STAMM_IDS.includes(id));
+    // Der Katalog ist gewachsen → es gibt nicht gemappte Dossiers.
+    expect(ungemappt.length).toBeGreaterThan(0);
+    for (const id of ungemappt) {
+      expect(getGeberGruppe(id)).toBe("unknown");
+    }
+    // getGeberGruppe darf bei nicht gemappten IDs nicht silent sein.
+    expect(warnSpy).toHaveBeenCalled();
     warnSpy.mockRestore();
 
-    expect(unknownIds).toEqual([]);
     expect(ids.length).toBeGreaterThanOrEqual(11);
   });
 });

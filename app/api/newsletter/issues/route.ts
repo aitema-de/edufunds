@@ -78,7 +78,6 @@ export async function POST(request: NextRequest) {
       {
         success: false,
         message: 'Entwurf konnte nicht erzeugt werden',
-        error: err instanceof Error ? err.message : String(err),
       },
       { status: 500 }
     );

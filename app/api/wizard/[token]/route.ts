@@ -65,6 +65,13 @@ export async function PATCH(
       { status: 400 }
     );
   }
+  // DoS-Schutz: Fakt-Werte sind kurze Korrekturen, keine Freitext-Massen.
+  if (typeof value === "string" && value.length > 4000) {
+    return NextResponse.json(
+      { error: "Wert ist zu lang (max. 4.000 Zeichen)." },
+      { status: 400 }
+    );
+  }
 
   const session = await getWizardSession(token);
   if (!session) {

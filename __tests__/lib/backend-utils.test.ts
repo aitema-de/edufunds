@@ -1,16 +1,33 @@
 /**
- * Tests für Logger, Error-Handling und Rate-Limiting
+ * @jest-environment node
+ *
+ * Tests für Error-Handling (APIError, Errors-Factory, withRetry,
+ * Error-Code-Mappings).
+ *
+ * Node-Umgebung notwendig: `lib/errors.ts` importiert `NextResponse` aus
+ * 'next/server'. Dessen Modul-Initialisierung benoetigt den nativen
+ * `Request`-Global, der in jsdom fehlt (Node >=18 stellt ihn bereit). Gleiche
+ * Konvention wie die uebrigen Route-/next-server-Tests im Repo.
  */
 
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { 
-  APIError, 
-  Errors, 
-  withRetry, 
+// Hinweis: Test-Runner ist Jest (nicht Vitest). describe/it/expect/beforeEach sind
+// global verfuegbar; fuer Mocks/Fake-Timers wird `jest` statt `vi` verwendet.
+import {
+  APIError,
+  Errors,
+  withRetry,
   ERROR_STATUS_CODES,
-  USER_MESSAGES 
-} from '../lib/errors';
-import { checkRateLimit, RATE_LIMIT_CONFIGS } from '../lib/rate-limit';
+  USER_MESSAGES,
+} from '@/lib/errors';
+// HINWEIS: Die urspruenglichen Rate-Limiting-Tests importierten `checkRateLimit`
+// und `RATE_LIMIT_CONFIGS` aus '@/lib/rate-limit'. Diese Symbole existieren dort
+// NICHT (mehr): `lib/rate-limit.ts` exportiert nur `rateLimit`,
+// `checkEndpointRateLimit`, `logSuspiciousActivity`, `isRedisAvailable` und
+// `getRateLimitStatus`. `checkRateLimit` ist eine modul-private Funktion mit
+// abweichender Signatur (synchron, Config mit `windowMs`/`maxRequests`), und
+// `RATE_LIMIT_CONFIGS` gibt es im gesamten Repo nicht. Die betroffenen
+// Rate-Limiting-Testbloecke wurden daher entfernt, statt nicht vorhandene
+// Symbole zu erfinden oder Anwendungs-Code anzupassen.
 
 // =============================================================================
 // Error Handling Tests
@@ -79,62 +96,66 @@ describe('Error Handling', () => {
   });
 
   describe('withRetry', () => {
-    beforeEach(() => {
-      vi.useFakeTimers();
-    });
+    // HINWEIS: Die Backoff-Wartezeiten von `withRetry` nutzen `setTimeout` mit
+    // `Math.random()`-Jitter. Statt Fake-Timers (die mit dem internen
+    // await-sleep-Loop verzahnt sind und nicht-deterministisch flushen) werden
+    // hier echte Timer mit sehr kleinen `initialDelayMs` (1 ms) verwendet — die
+    // Tests bleiben dadurch schnell UND deterministisch.
 
     it('sollte erfolgreiche Operation ohne Retry ausführen', async () => {
-      const operation = vi.fn().mockResolvedValue('success');
-      
+      const operation = jest.fn().mockResolvedValue('success');
+
       const result = await withRetry(operation, { maxRetries: 3 });
-      
+
       expect(result).toBe('success');
       expect(operation).toHaveBeenCalledTimes(1);
     });
 
+    // HINWEIS zur tatsaechlichen `withRetry`-Semantik (lib/errors.ts):
+    // Es wird NICHT pauschal jeder Fehler wiederholt. `shouldRetry` retryed nur
+    // (a) `APIError` mit `isRetryable=true`, (b) Fehler mit einem
+    // `statusCode`/`status` aus `retryableStatusCodes` (408/429/500/502/503/504)
+    // oder (c) Fehler mit einem `code` aus `retryableErrors`
+    // (ECONNRESET/ETIMEDOUT/...). Ein nackter `new Error('...')` wird daher sofort
+    // durchgereicht. Die folgenden Tests verwenden deshalb bewusst einen
+    // retryable Fehler (HTTP-Status 503), um den Retry-Pfad zu treffen.
+    const makeRetryableError = (message: string) => {
+      const err = new Error(message) as Error & { status: number };
+      err.status = 503; // SERVICE_UNAVAILABLE -> in retryableStatusCodes
+      return err;
+    };
+
     it('sollte bei Fehler retryen und schließlich erfolgreich sein', async () => {
-      const operation = vi.fn()
-        .mockRejectedValueOnce(new Error('Temporary error'))
+      const operation = jest.fn()
+        .mockRejectedValueOnce(makeRetryableError('Temporary error'))
         .mockResolvedValueOnce('success');
-      
-      const retryPromise = withRetry(operation, { 
-        maxRetries: 3, 
-        initialDelayMs: 1000 
+
+      const result = await withRetry(operation, {
+        maxRetries: 3,
+        initialDelayMs: 1,
       });
-      
-      // Erster Versuch schlägt fehl
-      await vi.advanceTimersByTimeAsync(0);
-      
- // Retry nach 1s
-      await vi.advanceTimersByTimeAsync(1000);
-      
-      const result = await retryPromise;
+
       expect(result).toBe('success');
       expect(operation).toHaveBeenCalledTimes(2);
     });
 
     it('sollte nach maxRetries aufgeben', async () => {
-      const operation = vi.fn().mockRejectedValue(new Error('Persistent error'));
-      
-      const retryPromise = withRetry(operation, { 
-        maxRetries: 2, 
-        initialDelayMs: 100 
-      });
-      
-      // Alle Retries durchlaufen lassen
-      await vi.advanceTimersByTimeAsync(500);
-      
-      await expect(retryPromise).rejects.toThrow('Persistent error');
+      const operation = jest.fn().mockRejectedValue(makeRetryableError('Persistent error'));
+
+      await expect(
+        withRetry(operation, { maxRetries: 2, initialDelayMs: 1 })
+      ).rejects.toThrow('Persistent error');
+
       expect(operation).toHaveBeenCalledTimes(3); // Initial + 2 Retries
     });
 
     it('sollte APIError isRetryable respektieren', async () => {
       const validationError = new APIError('VALIDATION_ERROR', 'Invalid');
-      const operation = vi.fn().mockRejectedValue(validationError);
-      
+      const operation = jest.fn().mockRejectedValue(validationError);
+
       await expect(withRetry(operation, { maxRetries: 3 }))
         .rejects.toThrow(validationError);
-      
+
       // Sollte keinen Retry versuchen da nicht retryable
       expect(operation).toHaveBeenCalledTimes(1);
     });
@@ -142,77 +163,22 @@ describe('Error Handling', () => {
 });
 
 // =============================================================================
-// Rate Limiting Tests
+// Rate Limiting Tests — ENTFERNT
 // =============================================================================
-
-describe('Rate Limiting', () => {
-  describe('checkRateLimit', () => {
-    it('sollte ersten Request erlauben', async () => {
-      const result = await checkRateLimit('test-ip-1', RATE_LIMIT_CONFIGS.default);
-      
-      expect(result.allowed).toBe(true);
-      expect(result.limit).toBe(100);
-      expect(result.remaining).toBe(99);
-    });
-
-    it('sollte Count inkrementieren', async () => {
-      const config = { maxRequests: 5, windowSeconds: 60 };
-      
-      // 3 Requests
-      await checkRateLimit('test-ip-2', config);
-      await checkRateLimit('test-ip-2', config);
-      const result = await checkRateLimit('test-ip-2', config);
-      
-      expect(result.allowed).toBe(true);
-      expect(result.remaining).toBe(2);
-    });
-
-    it('sollte Limit blockieren', async () => {
-      const config = { maxRequests: 2, windowSeconds: 60 };
-      
-      await checkRateLimit('test-ip-3', config);
-      await checkRateLimit('test-ip-3', config);
-      const result = await checkRateLimit('test-ip-3', config);
-      
-      expect(result.allowed).toBe(false);
-      expect(result.remaining).toBe(0);
-      expect(result.retryAfter).toBeDefined();
-    });
-
-    it('sollte verschiedene Keys isolieren', async () => {
-      const config = { maxRequests: 2, windowSeconds: 60 };
-      
-      // User A maxed out
-      await checkRateLimit('user-a', config);
-      await checkRateLimit('user-a', config);
-      const resultA = await checkRateLimit('user-a', config);
-      
-      // User B sollte noch Zugriff haben
-      const resultB = await checkRateLimit('user-b', config);
-      
-      expect(resultA.allowed).toBe(false);
-      expect(resultB.allowed).toBe(true);
-      expect(resultB.remaining).toBe(1);
-    });
-  });
-
-  describe('Rate Limit Configs', () => {
-    it('sollte AI Generation Limits haben', () => {
-      expect(RATE_LIMIT_CONFIGS.aiGeneration.maxRequests).toBe(5);
-      expect(RATE_LIMIT_CONFIGS.aiGeneration.windowSeconds).toBe(60);
-    });
-
-    it('sollte Contact Limits haben', () => {
-      expect(RATE_LIMIT_CONFIGS.contact.maxRequests).toBe(3);
-      expect(RATE_LIMIT_CONFIGS.contact.windowSeconds).toBe(300);
-    });
-
-    it('sollte Newsletter Limits haben', () => {
-      expect(RATE_LIMIT_CONFIGS.newsletter.maxRequests).toBe(5);
-      expect(RATE_LIMIT_CONFIGS.newsletter.windowSeconds).toBe(3600);
-    });
-  });
-});
+// Die urspruenglichen Rate-Limiting-Bloecke ("Rate Limiting" + "Rate Limit
+// Configs") testeten eine API, die im Anwendungs-Code nicht existiert:
+//   - `checkRateLimit(key, config)` als exportierte, async Funktion mit
+//     Rueckgabe `{ allowed, limit, remaining, retryAfter }` und einer Config
+//     mit `windowSeconds`.
+//   - `RATE_LIMIT_CONFIGS` mit Keys wie `default`, `aiGeneration`, `contact`,
+//     `newsletter`.
+// Tatsaechlich exportiert `lib/rate-limit.ts` nur `rateLimit`,
+// `checkEndpointRateLimit`, `logSuspiciousActivity`, `isRedisAvailable` und
+// `getRateLimitStatus`. `checkRateLimit` ist dort modul-privat, synchron und
+// hat eine andere Signatur (Config mit `windowMs`); `RATE_LIMIT_CONFIGS` und
+// die getesteten Werte (z. B. `windowSeconds`, `aiGeneration`, `contact`)
+// existieren im gesamten Repo nicht. Da Anwendungs-Code nicht angefasst werden
+// darf und keine Symbole erfunden werden sollen, wurden diese Bloecke entfernt.
 
 // =============================================================================
 // Error Codes Mapping Tests

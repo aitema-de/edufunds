@@ -32,6 +32,13 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+    // DoS-/Kosten-Schutz: Antworten gehen ins LLM — unbegrenzte Laenge vermeiden.
+    if (trimmed.length > 8000) {
+      return NextResponse.json(
+        { error: "Antwort ist zu lang (max. 8.000 Zeichen)." },
+        { status: 400 }
+      );
+    }
 
     const session = await getWizardSession(sessionToken);
     if (!session) {
@@ -173,7 +180,7 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     console.error("[wizard/answer] Fehler:", err);
     return NextResponse.json(
-      { error: err instanceof Error ? err.message : "unbekannter Fehler" },
+      { error: "unbekannter Fehler" },
       { status: 500 }
     );
   }
