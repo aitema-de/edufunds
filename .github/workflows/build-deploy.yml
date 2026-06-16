@@ -1,11 +1,14 @@
 name: Build and Deploy EduFunds
 
 # 2026-06-09: `staging` aus den Push-Triggern entfernt — Staging wird manuell
-# ueber ./scripts/deploy-staging.sh deployt (s. deploy-staging.yml). `main`
-# (Production-Image-Build nach ghcr) bleibt unveraendert.
+# ueber ./scripts/deploy-staging.sh deployt (s. deploy-staging.yml).
+# 2026-06-16: auch `main` aus den Push-Triggern entfernt. Dieser Workflow baute
+# das ghcr-`:latest`-Image ohne --build-arg (Dockerfile-Default MOCK=0 = Paywall
+# scharf). Solange der Pilot bewusst mit Dev-Mock-Bypass laeuft, soll bei jedem
+# main-Push kein MOCK=0-`:latest` veroeffentlicht werden. Nur noch manuell.
+# Der Build-Schritt setzt zusaetzlich MOCK=1. VOR Zahlungs-Go-Live: Push-Trigger
+# reaktivieren UND MOCK=1 entfernen.
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 env:
@@ -63,6 +66,9 @@ jobs:
       with:
         context: .
         push: true
+        # MOCK=1 bis Stripe-Live fertig ist (s. Kopf-Kommentar). Vor Go-Live entfernen.
+        build-args: |
+          NEXT_PUBLIC_PAYWALL_DEV_MOCK=1
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         cache-from: type=gha

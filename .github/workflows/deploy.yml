@@ -1,8 +1,15 @@
 name: Deploy to Production (Hetzner Docker)
 
+# ACHTUNG (2026-06-16): Auto-Deploy bei Push auf `main` ist DEAKTIVIERT.
+# Grund: Dieser Workflow baute das Image ohne --build-arg, d.h. mit Dockerfile-
+# Default NEXT_PUBLIC_PAYWALL_DEV_MOCK=0 -> Zahlungs-Paywall scharf. Solange
+# Stripe-Live (Live-Keys/Webhook/Testkauf) nicht fertig ist, laeuft der Pilot
+# bewusst mit Dev-Mock-Bypass (MOCK=1). Production wird daher MANUELL ueber
+# ./scripts/deploy-production.sh deployt (baut mit --build-arg ...MOCK=1).
+# Der Build-Schritt unten setzt zur Absicherung ebenfalls MOCK=1, falls dieser
+# Workflow manuell (workflow_dispatch) ausgeloest wird.
+# VOR echtem Zahlungs-Go-Live: Push-Trigger wieder aktivieren UND MOCK=1 entfernen.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -27,8 +34,9 @@ jobs:
         uses: docker/setup-buildx-action@v3
       
       - name: Build Docker image
+        # MOCK=1 bis Stripe-Live fertig ist (s. Kopf-Kommentar). Vor Go-Live entfernen.
         run: |
-          docker build -t edufunds:latest .
+          docker build --build-arg NEXT_PUBLIC_PAYWALL_DEV_MOCK=1 -t edufunds:latest .
           docker save edufunds:latest | gzip > edufunds-image.tar.gz
       
       - name: Setup SSH
