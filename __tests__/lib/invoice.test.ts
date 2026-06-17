@@ -88,4 +88,26 @@ describe("buildConfirmationEmail", () => {
     expect(mail.subject).toBe("EduFunds — Bestellbestätigung");
     expect(mail.text).toContain("separat");
   });
+
+  it("mit downloadUrl: Link + 12-Monate-Hinweis in Text UND HTML", () => {
+    const url = "https://app.edufunds.org/antrag/download/abc-123";
+    const mail = buildConfirmationEmail({
+      orgName: "Musterschule e.V.",
+      grossCents: 2990,
+      hasPdf: false,
+      downloadUrl: url,
+    });
+    expect(mail.text).toContain(url);
+    expect(mail.text).toContain("12 Monate");
+    expect(mail.text).toContain("Meine Anträge");
+    expect(mail.html).toContain(`href="${url}"`);
+    expect(mail.html).toContain("12 Monate");
+  });
+
+  it("ohne downloadUrl: kein Download-Block (fail-safe)", () => {
+    const mail = buildConfirmationEmail({ orgName: "Förderverein X", grossCents: 2990, hasPdf: false });
+    expect(mail.text).not.toContain("/antrag/download/");
+    expect(mail.html).not.toContain("/antrag/download/");
+    expect(mail.html).not.toContain("Antrag öffnen");
+  });
 });

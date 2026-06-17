@@ -45,7 +45,7 @@ export default async function DownloadPage({ params }: Props) {
         }}
         title="Ihr Antrag —"
         titleAccent="einsatzbereit"
-        subtitle="Kopieren Sie den Volltext + Finanzplan in einem Rutsch ins Antrags-Portal oder laden Sie eine der Dateien herunter. Dieser Download-Link bleibt 30 Tage aktiv — legen Sie sich ein Bookmark an."
+        subtitle="Kopieren Sie den Volltext + Finanzplan in einem Rutsch ins Antrags-Portal oder laden Sie eine der Dateien herunter. Dieser Download-Link bleibt 12 Monate aktiv — legen Sie sich ein Bookmark an."
       >
         <div className="flex justify-center">
           <Link

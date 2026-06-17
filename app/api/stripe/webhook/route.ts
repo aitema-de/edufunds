@@ -10,6 +10,7 @@ import {
 } from "@/lib/payments/orders";
 import { sendMail } from "@/lib/mail";
 import { runInvoiceJob } from "@/lib/payments/invoice";
+import { trustedAppUrl } from "@/lib/app-url";
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? "office@aitema.de";
 
@@ -138,6 +139,14 @@ export async function POST(req: NextRequest) {
         // Best-effort + idempotent (runInvoiceJob wirft nicht, Marker via DB) —
         // ein lexoffice-/Mailfehler darf den bereits bezahlten Kauf nicht 500en.
         const addr = cs.customer_details?.address;
+        // Download-Link für die Bestätigungsmail aus VERTRAUENSWÜRDIGER Server-URL
+        // (nie aus Request-Headern — Host-Header-Injection-Schutz). Fehlt die Konfig,
+        // bleibt downloadUrl undefined und die Mail geht fail-safe ohne Link raus.
+        const appBase = trustedAppUrl();
+        const downloadUrl =
+          appBase && updated.paidToken
+            ? `${appBase}/antrag/download/${updated.paidToken}`
+            : undefined;
         await runInvoiceJob({
           stripeSessionId: cs.id,
           email: cs.customer_details?.email ?? undefined,
@@ -151,6 +160,7 @@ export async function POST(req: NextRequest) {
           },
           vatId: cs.customer_details?.tax_ids?.[0]?.value ?? undefined,
           grossCents: cs.amount_total ?? 2990,
+          downloadUrl,
         });
         break;
       }
