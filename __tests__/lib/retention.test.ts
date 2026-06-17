@@ -55,4 +55,31 @@ describe("buildRetentionPlan", () => {
     expect(op("anonymize_ip_contact_requests").params[0]).toBe(expected);
     expect(op("anonymize_ip_newsletter").params[0]).toBe(expected);
   });
+
+  it("anonymisiert bezahlte Anträge nach 12 Monaten, behält Audit-Refs, ist idempotent", () => {
+    const o = op("anonymize_expired_paid_antraege");
+    expect(o.kind).toBe("anonymize");
+    // Greift NUR bezahlte Anträge nach Fristablauf
+    expect(o.sql).toMatch(/status = 'paid'/);
+    expect(o.sql).toMatch(/paid_at < \$1/);
+    // PII wird entfernt
+    expect(o.sql).toMatch(/antrag_data = '\{"_anonymized": true\}'::jsonb/);
+    expect(o.sql).toMatch(/stripe_customer_email = NULL/);
+    expect(o.sql).toMatch(/author_email = NULL/);
+    // Audit-/GoBD-Referenzen werden NICHT angefasst
+    expect(o.sql).not.toMatch(/invoice_number/);
+    expect(o.sql).not.toMatch(/stripe_session_id/);
+    expect(o.sql).not.toMatch(/DELETE/);
+    // Idempotenz: bereits anonymisierte Zeilen werden ausgeschlossen
+    expect(o.sql).toMatch(/NOT jsonb_exists\(antrag_data, '_anonymized'\)/);
+    // Frist = paidAntragDays (Default 365)
+    const expected = new Date(
+      NOW.getTime() - DEFAULT_RETENTION.paidAntragDays * 86400000
+    ).toISOString();
+    expect(o.params[0]).toBe(expected);
+  });
+
+  it("Default-Frist für bezahlte Anträge = 365 Tage (12 Monate)", () => {
+    expect(DEFAULT_RETENTION.paidAntragDays).toBe(365);
+  });
 });

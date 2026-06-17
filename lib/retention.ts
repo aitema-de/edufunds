@@ -24,12 +24,20 @@ export interface RetentionOptions {
   abandonedDraftDays: number;
   /** IP-Adresse/User-Agent anonymisieren (NULL setzen) nach … Tagen. */
   ipAnonymizeDays: number;
+  /**
+   * Bezahlte Anträge: PII (Antragsinhalt + E-Mail) nach … Tagen anonymisieren.
+   * Der Antrag ist so lange abrufbar; danach wird der Inhalt entfernt. Audit-Refs
+   * (Rechnungsnummer, Stripe-Session, paid_at) bleiben für GoBD/Buchhaltung erhalten.
+   * Default 365 (= 12 Monate, deckt sich mit der UI-Zusage „12 Monate Zugriff").
+   */
+  paidAntragDays: number;
 }
 
 export const DEFAULT_RETENTION: RetentionOptions = {
   unconfirmedNewsletterDays: numFromEnv("RETENTION_UNCONFIRMED_NEWSLETTER_DAYS", 30),
   abandonedDraftDays: numFromEnv("RETENTION_ABANDONED_DRAFT_DAYS", 180),
   ipAnonymizeDays: numFromEnv("RETENTION_IP_DAYS", 90),
+  paidAntragDays: numFromEnv("RETENTION_PAID_ANTRAG_DAYS", 365),
 };
 
 function numFromEnv(key: string, fallback: number): number {
@@ -88,6 +96,26 @@ export function buildRetentionPlan(
               AND author_email IS NULL
               AND updated_at < $1`,
       params: [cutoff(opts.abandonedDraftDays)],
+    },
+    {
+      name: "anonymize_expired_paid_antraege",
+      description:
+        "Bezahlte Anträge nach Ablauf der Zugriffsfrist (Default 12 Monate) anonymisieren: " +
+        "Antragsinhalt + Käufer-/Autor-E-Mail + IP entfernen. Rechnungs-/Stripe-Referenzen " +
+        "(invoice_number, stripe_session_id, paid_at) bleiben für GoBD/Buchhaltung erhalten. " +
+        "Idempotent über den _anonymized-Tombstone.",
+      kind: "anonymize",
+      sql: `UPDATE ki_antraege
+               SET antrag_data = '{"_anonymized": true}'::jsonb,
+                   stripe_customer_email = NULL,
+                   author_email = NULL,
+                   ip_address = NULL
+             WHERE status = 'paid'
+               AND paid_at IS NOT NULL
+               AND paid_at < $1
+               AND antrag_data IS NOT NULL
+               AND NOT jsonb_exists(antrag_data, '_anonymized')`,
+      params: [cutoff(opts.paidAntragDays)],
     },
     {
       name: "anonymize_ip_ki_antraege",
