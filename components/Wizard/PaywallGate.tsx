@@ -16,7 +16,7 @@ const BENEFITS = [
   "Vollständiger Antragstext + Finanzplan",
   "Download als bearbeitbare Datei (RTF), PDF und Text",
   "Copy-&-Paste-Ansicht für eigene Vorlagen",
-  "30 Tage Zugriff über Download-Link",
+  "12 Monate Zugriff über Download-Link",
   "Nachträgliches Editieren der Antworten bleibt möglich",
 ];
 
@@ -288,7 +288,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
 
           <p className="mt-4 text-xs text-slate-500">
             Nach der Zahlung bekommen Sie einen Download-Link. Ihr Antrag bleibt darüber
-            30 Tage verfügbar und ist auch unter „Meine Anträge" erreichbar.
+            12 Monate verfügbar und ist auch unter „Meine Anträge" erreichbar.
           </p>
         </div>
       </div>

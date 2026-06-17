@@ -172,6 +172,12 @@ export async function tryMarkSessionPaid(
            paid_at = CURRENT_TIMESTAMP,
            stripe_session_id = COALESCE($2, stripe_session_id),
            stripe_customer_email = COALESCE($3, stripe_customer_email),
+           -- Antrag automatisch an die Kaeufer-E-Mail binden, damit er ohne
+           -- separaten Magic-Link-Opt-in geraeteuebergreifend unter "Meine Antraege"
+           -- auftaucht. lower+trim = identisch zu normalizeEmail() (identity.ts),
+           -- damit listSessionsByEmail() exakt matcht. Eine bereits explizit
+           -- gesetzte author_email (Magic-Link zuvor) wird NICHT ueberschrieben.
+           author_email = COALESCE(NULLIF(author_email, ''), lower(trim($3))),
            tier = COALESCE($4, tier),
            entitlement_source = COALESCE($5, entitlement_source),
            credit_code = COALESCE($6, credit_code),

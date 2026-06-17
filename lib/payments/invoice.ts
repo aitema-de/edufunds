@@ -51,6 +51,13 @@ export interface InvoiceJobParams {
   vatId?: string;
   /** Bruttobetrag in Cent, z. B. 2990. */
   grossCents: number;
+  /**
+   * Vollständige, vertrauenswürdige Download-URL des Antrags
+   * (`<trustedAppUrl>/antrag/download/<paidToken>`). Wird in die Bestätigungsmail
+   * als „über-heute-hinaus"-Zugang eingebettet. Fehlt sie (z. B. NEXT_PUBLIC_APP_URL
+   * nicht gesetzt), geht die Mail ohne Link raus (fail-safe).
+   */
+  downloadUrl?: string;
 }
 
 function escapeHtml(s: string): string {
@@ -104,8 +111,10 @@ export function buildConfirmationEmail(params: {
   grossCents: number;
   invoiceNumber?: string;
   hasPdf: boolean;
+  /** Vollständige Download-URL des Antrags. Fehlt sie, wird kein Link gerendert. */
+  downloadUrl?: string;
 }): { subject: string; html: string; text: string } {
-  const { orgName, grossCents, invoiceNumber, hasPdf } = params;
+  const { orgName, grossCents, invoiceNumber, hasPdf, downloadUrl } = params;
   const amount = formatEur(grossCents);
   const { vatCents } = vatFromGross(grossCents);
   const vatAmount = formatEur(vatCents);
@@ -117,12 +126,24 @@ export function buildConfirmationEmail(params: {
     ? `EduFunds — Bestellbestätigung & Rechnung ${invoiceNumber}`
     : `EduFunds — Bestellbestätigung`;
 
+  const linkTextBlock = downloadUrl
+    ? [
+        `Ihren Antrag öffnen und herunterladen:`,
+        downloadUrl,
+        ``,
+        `Dieser Link bleibt 12 Monate gültig — am besten als Lesezeichen speichern.`,
+        `Mit dieser E-Mail-Adresse finden Sie Ihren Antrag jederzeit auch unter „Meine Anträge" wieder.`,
+        ``,
+      ]
+    : [];
+
   const text = [
     `Vielen Dank für Ihre Bestellung bei EduFunds.`,
     ``,
     `Hiermit bestätigen wir den Eingang Ihrer Bestellung und das Zustandekommen des Vertrags.`,
     `Ihr Förderantrag ist freigeschaltet und steht Ihnen zum Export zur Verfügung.`,
     ``,
+    ...linkTextBlock,
     `Auftraggeber: ${orgName}`,
     `Leistung:     Förderantrag (Einzelantrag)`,
     `Betrag:       ${amount} (inkl. ${vatAmount} USt, 19 %)`,
@@ -137,6 +158,16 @@ export function buildConfirmationEmail(params: {
     <h2 style="color:#0a1628">Vielen Dank für Ihre Bestellung</h2>
     <p>Hiermit bestätigen wir den Eingang Ihrer Bestellung und das Zustandekommen des Vertrags.
        Ihr <strong>Förderantrag ist freigeschaltet</strong> und steht Ihnen zum Export zur Verfügung.</p>
+
+    ${downloadUrl ? `
+    <div style="margin:22px 0;padding:18px;border:1px solid #c9a227;border-radius:10px;background:#fbf7ec">
+      <a href="${escapeHtml(downloadUrl)}" style="display:inline-block;background:#c9a227;color:#fff;text-decoration:none;font-weight:bold;padding:12px 22px;border-radius:8px">Antrag öffnen &amp; herunterladen</a>
+      <p style="font-size:13px;color:#64748b;margin:12px 0 0">
+        Der Link bleibt <strong>12 Monate</strong> gültig — am besten als Lesezeichen speichern.
+        Mit dieser E-Mail-Adresse finden Sie Ihren Antrag jederzeit auch unter
+        <strong>„Meine Anträge"</strong> wieder.
+      </p>
+    </div>` : ``}
 
     <table style="width:100%;border-collapse:collapse;font-size:14px;margin:18px 0">
       <tr><td style="padding:4px 0;color:#64748b">Auftraggeber</td><td style="padding:4px 0;text-align:right">${escapeHtml(orgName)}</td></tr>
@@ -237,6 +268,7 @@ export async function runInvoiceJob(p: InvoiceJobParams): Promise<void> {
       grossCents: p.grossCents,
       invoiceNumber,
       hasPdf: Boolean(pdf),
+      downloadUrl: p.downloadUrl,
     });
     const attachments: MailAttachment[] | undefined = pdf
       ? [{ filename: `Rechnung-${invoiceNumber ?? "EduFunds"}.pdf`, content: pdf }]
