@@ -65,8 +65,8 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
       className="rounded-2xl p-6 md:p-8 transition-all group card-lift"
       style={{ 
         backgroundColor: '#ffffff', 
-        border: '1px solid rgba(10, 22, 40, 0.08)',
-        boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)'
+        border: '1px solid rgba(28, 25, 23, 0.08)',
+        boxShadow: '0 4px 20px -4px rgba(28, 25, 23, 0.05)'
       }}
     >
       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
@@ -84,7 +84,7 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
                   {typeConfig.label}
                 </span>
                 {programm.kiAntragGeeignet && (
-                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-[#c9a227]/15 text-[#7a5e12]">
+                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-[#78350f]/15 text-[#78350f]">
                     KI-geeignet
                   </span>
                 )}
@@ -96,39 +96,39 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
               </div>
               
               {/* Titel */}
-              <h3 className="text-xl font-bold text-[#0a1628] group-hover:text-[#c9a227] transition-colors line-clamp-2">
+              <h3 className="text-xl font-bold text-[#1c1917] group-hover:text-[#78350f] transition-colors line-clamp-2">
                 {programm.name}
               </h3>
             </div>
           </div>
 
           {/* Fördergeber */}
-          <p className="text-[#1e3a61] text-sm mb-3 flex items-center gap-2">
-            <Building2 className="h-4 w-4 flex-shrink-0 text-[#1e3a61]/60" />
+          <p className="text-[#57534e] text-sm mb-3 flex items-center gap-2">
+            <Building2 className="h-4 w-4 flex-shrink-0 text-[#57534e]/60" />
             <span className="truncate">{programm.foerdergeber}</span>
           </p>
 
           {/* Beschreibung */}
-          <p className="text-[#1e3a61]/80 text-sm leading-relaxed mb-4 line-clamp-3">
+          <p className="text-[#57534e]/80 text-sm leading-relaxed mb-4 line-clamp-3">
             {cleanedDescription}
           </p>
 
           {/* Details */}
-          <div className="flex flex-wrap gap-4 text-sm text-[#1e3a61] mb-4">
+          <div className="flex flex-wrap gap-4 text-sm text-[#57534e] mb-4">
             {programm.foerdersummeText && (
               <span className="flex items-center gap-1">
-                <Euro className="h-4 w-4 text-[#c9a227] flex-shrink-0" />
-                <span className="truncate font-medium text-[#7a5e12]">{programm.foerdersummeText}</span>
+                <Euro className="h-4 w-4 text-[#78350f] flex-shrink-0" />
+                <span className="truncate font-medium text-[#78350f]">{programm.foerdersummeText}</span>
               </span>
             )}
             {programm.bewerbungsfristText && (
               <span className="flex items-center gap-1">
-                <Calendar className="h-4 w-4 text-[#1e3a61]/50 flex-shrink-0" />
+                <Calendar className="h-4 w-4 text-[#57534e]/50 flex-shrink-0" />
                 <span className="truncate">{programm.bewerbungsfristText}</span>
               </span>
             )}
             <span className="flex items-center gap-1">
-              <MapPin className="h-4 w-4 text-[#1e3a61]/50 flex-shrink-0" />
+              <MapPin className="h-4 w-4 text-[#57534e]/50 flex-shrink-0" />
               {bundeslandText}
             </span>
           </div>
@@ -138,7 +138,7 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
             {programm.kategorien.slice(0, 5).map((kat) => (
               <span
                 key={kat}
-                className="px-2 py-1 rounded-md text-xs bg-[#f8f5f0] text-[#1e3a61] border border-[#ebe5dc]"
+                className="px-2 py-1 rounded-md text-xs bg-[#fdfdfc] text-[#57534e] border border-[#ebe5dc]"
               >
                 {formatKategorie(kat)}
               </span>
