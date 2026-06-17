@@ -26,24 +26,27 @@ ausschließlich den Wechsel Test → Live.**
 
 ---
 
-## 🚧 PREREQUISITE (Stand 2026-06-12): Wizard ist noch nicht in Production
+## ✅ Vorbedingungen (Stand 2026-06-17): erfüllt
 
-**Vor dem Stripe-Cutover steht ein vollständiger Prod-Deploy.** Befund vom 2026-06-12:
+Der frühere Blocker („Wizard nicht in Production") ist **erledigt**. Auf `app.edufunds.org`
+am 2026-06-17 verifiziert:
 
-- `app.edufunds.org` (Container `edufunds-app`) läuft seit **17.04.2026** auf **Vor-Wizard-Code**
-  (Branch `main`): **keine** Checkout-Route, **keine** `STRIPE_`-Variablen, nur `GEMINI_API_KEY`.
-- Der Wizard + Stripe-Checkout liegt nur auf `feature/wizard-adaptive` — **nie nach `main`
-  gemergt, nie nach Prod deployt**.
-- `deploy-production.sh` baut Branch **`main`** und startet `edufunds-app` per `docker run`
-  mit `--env-file /home/edufunds/edufunds-app/.env.production` (dort fehlen die Stripe-Werte).
-  Die `docker-compose.prod.yml` (`edufunds-nextjs`) ist NICHT der aktive Deploy-Pfad.
+- Wizard + Checkout **live**: `/api/wizard/checkout` und `/api/stripe/webhook` antworten `405`
+  (Route vorhanden, erwartet POST) — nicht mehr `404`.
+- `.env.production` enthält bereits: `STRIPE_SECRET_KEY` (**noch `sk_test_…`**),
+  `STRIPE_WEBHOOK_SECRET` (Test), `STRIPE_PRICE_EINZELANTRAG` (Test), `STRIPE_TOS_CONSENT`,
+  sowie `LEXOFFICE_API_KEY`, `MISTRAL_API_KEY`, `CRON_SECRET` (alle gesetzt).
+- **Migration 009** (`invoice_*`-Spalten auf `ki_antraege`) ist auf der Prod-DB **bereits angewandt**.
 
-**Nötige Reihenfolge vor diesem Cutover:**
-1. `feature/wizard-adaptive` → `staging` → `main` mergen (inkl. Entscheidung über offene
-   Compliance-Arbeit: Datenminimierung `39a9dd2`, Mistral-Branch).
-2. `.env.production` auf dem Server um Stripe- (und DeepSeek-)Variablen ergänzen — fehlen komplett.
-3. `./scripts/deploy-production.sh` (deployt `main`).
-4. Erst dann die Stripe-Live-Schritte unten.
+**Damit reduziert sich der Cutover auf reine Konfiguration:**
+1. Im Dashboard (Live-Modus): Produkt/Preis prüfen, ToS-URL, Webhook-Endpoint, API-Keys (Schritte 1–3).
+2. Drei Stripe-Werte test→live umstellen — **per `scripts/set-stripe-live-env.sh`** (Schritt 4).
+3. **Bypass aus dem Build:** `deploy-production.sh` baut seit 2026-06-17 standardmäßig **OHNE**
+   Paywall-Bypass (`NEXT_PUBLIC_PAYWALL_DEV_MOCK=0`). Ein Schutz bricht den Deploy ab, falls der
+   Key noch `sk_test` ist. Pilot-Builds nur noch explizit mit `--with-paywall-bypass` (Schritt 5).
+4. Deploy + echter Testkauf (Schritte 6–7).
+
+> Code-Änderung ist **nicht** nötig — der Umstieg ist reine Konfiguration.
 
 ---
 
@@ -106,21 +109,33 @@ Dashboard (Live-Modus): **Entwickler → API-Keys**
 - [ ] (Publishable Key `pk_live_…` nur falls clientseitig benötigt — aktuell nutzt der
       Code nur `STRIPE_SECRET_KEY`)
 
-## Schritt 4 — Production-ENV umstellen
+## Schritt 4 — Production-ENV umstellen (per Script)
 
-Auf dem Server: `root@49.13.15.44:/home/edufunds/edufunds-app/.env.production`
+Lokal im Repo ausführen — das Script liest die Werte versteckt ein und überträgt sie
+nur via ssh-stdin (kein Eintrag in History/argv/Chat), legt ein Backup an und ist idempotent:
 
+```bash
+./scripts/set-stripe-live-env.sh
+```
+
+Es fragt nacheinander ab und setzt in `.env.production`:
 - [ ] `STRIPE_SECRET_KEY=sk_live_…`            ← Live Secret Key (Schritt 3)
 - [ ] `STRIPE_WEBHOOK_SECRET=whsec_…`          ← **Live**-Webhook-Secret (Schritt 2)
-- [ ] `STRIPE_PRICE_EINZELANTRAG=price_…`      ← **Live**-Price-ID (Schritt 1)
-- [ ] `NEXT_PUBLIC_APP_URL=https://app.edufunds.org`  (bleibt)
-- [ ] `NEXT_PUBLIC_PAYWALL_DEV_MOCK` **NICHT gesetzt** (Dev-Mock muss in Prod aus sein!)
+- [ ] `STRIPE_PRICE_EINZELANTRAG=price_…`      ← **Live**-Price-ID (Schritt 1, Default vorbelegt)
 
+> `NEXT_PUBLIC_PAYWALL_DEV_MOCK` muss in der Env **nicht** gesetzt werden — der Bypass wird
+> ohnehin zur Build-Zeit gesteuert (siehe Schritt 5), nicht über die Runtime-Env.
 > Staging/Dev bleiben unverändert auf **Test**-Keys + Test-Webhook-Secret.
 
-## Schritt 5 — Deployen
+## Schritt 5 — Deployen (ohne Bypass = echte Zahlung)
 
-- [ ] `./scripts/deploy-production.sh`  (deployt `main` nach app.edufunds.org, zweifache Bestätigung)
+`deploy-production.sh` baut standardmäßig **ohne** Paywall-Bypass. Ein eingebauter Schutz
+**bricht ab**, falls `STRIPE_SECRET_KEY` noch `sk_test` ist — also unbedingt erst Schritt 4.
+
+- [ ] `./scripts/deploy-production.sh`  (deployt `main`, zweifache Bestätigung, Bypass aus)
+
+> Pilot-/UAT-Build mit kostenlosem Freischalten geht nur noch explizit:
+> `./scripts/deploy-production.sh --with-paywall-bypass` — **nicht** für den Go-Live.
 
 ## Schritt 6 — Live-Verifikation (echter Durchlauf)
 
