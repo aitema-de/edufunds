@@ -42,11 +42,22 @@ const RATE_LIMITS: Record<string, RateLimitConfig> = {
     windowMs: 60 * 60 * 1000, // 1 Stunde
     maxRequests: 5,
   },
-  // Wizard-Interview-Endpoints (start, answer, edit-answer, generate-question, ...)
-  // Realistischer Antrag: 12 Frage-Antwort-Cycles + Edits + ggf. Reload — daher 60/h
+  // Wizard-Interview-Endpoints (start, answer, edit-answer, readiness, [token]-Reload, ...)
+  // Ein gruendlicher Antrag erzeugt VIELE Calls: ~12 Frage-Antwort-Cycles, je mit
+  // readiness-Check + Session-Reload (/api/wizard/[token]), plus Edits/Textvorschlaege.
+  // 60/h war zu knapp (loeste 429 schon WAEHREND eines normalen Antrags aus, sobald
+  // der Pilot-x10-Bonus weg ist) -> 200/h. Missbrauch (>200 Wizard-Calls/h pro IP)
+  // wird weiter geblockt; der Bezahl-Klick liegt ohnehin im separaten 'checkout'-Bucket.
   wizard: {
     windowMs: 60 * 60 * 1000, // 1 Stunde
-    maxRequests: 60,
+    maxRequests: 200,
+  },
+  // Checkout/Bezahlung: bewusst NICHT im strengen wizard-Bucket — der Bezahl-Klick
+  // darf NIE durch vorherige Interview-Aktivitaet (429) blockiert werden, sonst
+  // verliert man die Conversion am teuersten Punkt. Erzeugt nur eine Stripe-Session.
+  checkout: {
+    windowMs: 15 * 60 * 1000, // 15 Minuten
+    maxRequests: 30,
   },
   // Newsletter (kostenlos, aber Spam-Gefahr)
   newsletter: {
@@ -102,9 +113,14 @@ function getRateLimitType(pathname: string): string {
     return 'auth';
   }
   // Pipeline-Generierung VOR der allgemeinen /api/wizard/-Klausel pruefen,
-  // damit /api/wizard/generate als 'ai' (5/h, teuer) gilt, nicht als 'wizard' (60/h).
+  // damit /api/wizard/generate als 'ai' (5/h, teuer) gilt, nicht als 'wizard'.
   if (pathname.includes('/api/assistant/generate') || pathname.includes('/api/wizard/generate')) {
     return 'ai';
+  }
+  // Checkout VOR der allgemeinen /api/wizard/-Klausel: eigener großzügiger Bucket,
+  // damit der Bezahl-Klick nie am ausgeschoepften Interview-Limit scheitert.
+  if (pathname.includes('/api/wizard/checkout')) {
+    return 'checkout';
   }
   if (pathname.includes('/api/wizard/')) {
     return 'wizard';
