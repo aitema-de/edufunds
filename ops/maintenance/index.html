@@ -78,6 +78,56 @@
       margin: 0 auto 10px;
       max-width: 44ch;
     }
+    .news {
+      margin-top: 30px;
+      padding-top: 26px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .news h2 {
+      font-size: 17px;
+      color: #e7edf5;
+      margin-bottom: 6px;
+    }
+    .news p { font-size: 14px; margin-bottom: 16px; }
+    .news-form {
+      display: flex;
+      gap: 8px;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    .news-form input[type="email"] {
+      flex: 1;
+      min-width: 0;
+      padding: 12px 14px;
+      border-radius: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+    }
+    .news-form input[type="email"]::placeholder { color: #8da3bd; }
+    .news-form input[type="email"]:focus { border-color: var(--gold); }
+    .news-form button {
+      padding: 12px 18px;
+      border-radius: 9px;
+      border: none;
+      background: var(--gold);
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .news-form button:hover { background: #b8921e; }
+    .news-form button:disabled { opacity: 0.55; cursor: default; }
+    .news-hint { margin-top: 10px; font-size: 12px; color: #8da3bd; }
+    .news-msg { margin-top: 12px; font-size: 14px; min-height: 1.2em; }
+    .news-msg.ok { color: #6ee7b7; }
+    .news-msg.err { color: #fca5a5; }
+    /* honeypot: vor Menschen verborgen, fängt Bots */
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
     .contact {
       margin-top: 28px;
       font-size: 15px;
@@ -94,6 +144,9 @@
       font-size: 12px;
       color: #6f819a;
     }
+    @media (max-width: 480px) {
+      .news-form { flex-direction: column; }
+    }
   </style>
 </head>
 <body>
@@ -106,11 +159,68 @@
       zu finden und Anträge in Minuten zu erstellen.
     </p>
     <p>Die Plattform geht in Kürze für alle online. Schauen Sie bald wieder vorbei.</p>
+
+    <div class="news">
+      <h2>Zum Start benachrichtigt werden</h2>
+      <p>Tragen Sie sich ein und wir melden uns, sobald EduFunds startet.</p>
+      <form class="news-form" id="news-form" novalidate>
+        <input type="text" class="hp" id="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <input type="email" id="news-email" name="email" placeholder="Ihre E-Mail-Adresse" required autocomplete="email" />
+        <button type="submit" id="news-btn">Newsletter abonnieren</button>
+      </form>
+      <div class="news-hint">Doppelte Bestätigung (Double-Opt-in). Abmeldung jederzeit möglich.</div>
+      <div class="news-msg" id="news-msg" role="status" aria-live="polite"></div>
+    </div>
+
     <div class="contact">
       Fragen oder Interesse am Pilotzugang?<br />
-      <a href="mailto:support@edufunds.org">support@edufunds.org</a>
+      <a href="mailto:office@edufunds.org">office@edufunds.org</a>
     </div>
     <div class="foot">EduFunds — ein Produkt der aitema GmbH</div>
   </main>
+
+  <script>
+    (function () {
+      var form = document.getElementById("news-form");
+      var btn = document.getElementById("news-btn");
+      var msg = document.getElementById("news-msg");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        // Honeypot: ausgefüllt = Bot -> still abbrechen mit Erfolgsschein.
+        if (document.getElementById("website").value) {
+          msg.textContent = "Vielen Dank!";
+          msg.className = "news-msg ok";
+          return;
+        }
+        var email = document.getElementById("news-email").value.trim();
+        if (!email) { return; }
+        btn.disabled = true;
+        msg.textContent = "Wird gesendet …";
+        msg.className = "news-msg";
+        fetch("/api/newsletter", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: email })
+        })
+          .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, b: b }; }); })
+          .then(function (res) {
+            if (res.b && res.b.success) {
+              msg.textContent = res.b.message || "Bitte bestätigen Sie die E-Mail in Ihrem Posteingang.";
+              msg.className = "news-msg ok";
+              form.reset();
+            } else {
+              msg.textContent = (res.b && res.b.message) || "Anmeldung fehlgeschlagen. Bitte später erneut versuchen.";
+              msg.className = "news-msg err";
+              btn.disabled = false;
+            }
+          })
+          .catch(function () {
+            msg.textContent = "Netzwerkfehler. Bitte später erneut versuchen.";
+            msg.className = "news-msg err";
+            btn.disabled = false;
+          });
+      });
+    })();
+  </script>
 </body>
 </html>

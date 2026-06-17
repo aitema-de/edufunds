@@ -25,45 +25,55 @@ case "$MODE" in
 esac
 
 if [ "$MODE" = "on" ]; then
-  echo "==> Wartungsseite auf Server kopieren"
+  echo "==> Wartungsseite + nginx-Config auf Server kopieren"
   ssh "$REMOTE" "mkdir -p $REMOTE_PATH/ops/maintenance"
   scp -q ops/maintenance/index.html "$REMOTE:$REMOTE_PATH/ops/maintenance/index.html"
+  scp -q ops/maintenance/nginx.conf "$REMOTE:$REMOTE_PATH/ops/maintenance/nginx.conf"
 fi
 
 ssh "$REMOTE" "MODE=$MODE REMOTE_PATH=$REMOTE_PATH NET=$NET bash -se" <<'EOF'
 set -euo pipefail
 
 router_labels() {
-  # $1 = service-name, $2 = port
+  # Eigener Router-Name 'edufunds-maint' mit HOHER Prioritaet, damit er den
+  # (weiterhin existierenden) catch-all 'edufunds-app'-Router ueberlagert.
+  # edufunds-app bleibt absichtlich LAUFEND als interner Proxy-Backend fuer
+  # /api/newsletter (siehe ops/maintenance/nginx.conf) — wird aber extern nie
+  # erreicht, weil dieser Router (Prio 1000) alles Eingehende gewinnt.
   echo "--label traefik.enable=true"
   echo "--label traefik.docker.network=$NET"
-  echo "--label traefik.http.routers.edufunds-app.rule=Host(\`app.edufunds.org\`)"
-  echo "--label traefik.http.routers.edufunds-app.entrypoints=websecure"
-  echo "--label traefik.http.routers.edufunds-app.tls=true"
-  echo "--label traefik.http.routers.edufunds-app.tls.certresolver=letsencrypt"
-  echo "--label traefik.http.routers.edufunds-app.service=$1"
-  echo "--label traefik.http.services.$1.loadbalancer.server.port=$2"
+  echo "--label traefik.http.routers.edufunds-maint.rule=Host(\`app.edufunds.org\`)"
+  echo "--label traefik.http.routers.edufunds-maint.priority=1000"
+  echo "--label traefik.http.routers.edufunds-maint.entrypoints=websecure"
+  echo "--label traefik.http.routers.edufunds-maint.tls=true"
+  echo "--label traefik.http.routers.edufunds-maint.tls.certresolver=letsencrypt"
+  echo "--label traefik.http.routers.edufunds-maint.service=edufunds-maint"
+  echo "--label traefik.http.services.edufunds-maint.loadbalancer.server.port=80"
 }
 
 case "$MODE" in
   on)
-    echo "==> Live-App stoppen (bleibt erhalten, nur gestoppt)"
-    docker stop edufunds-app 2>/dev/null || true
-    echo "==> Wartungs-Container starten (nginx:alpine)"
+    # WICHTIG: Wartungs-Container (Prio 1000) ZUERST, damit kein Fenster entsteht,
+    # in dem der catch-all edufunds-app-Router die volle App (Live-Stripe!) exponiert.
+    echo "==> Wartungs-Container starten (nginx:alpine, eigener Router Prio 1000)"
     docker rm -f edufunds-maintenance 2>/dev/null || true
     docker run -d --name edufunds-maintenance \
       --network "$NET" \
       --restart unless-stopped \
       -v "$REMOTE_PATH/ops/maintenance/index.html:/usr/share/nginx/html/index.html:ro" \
-      $(router_labels edufunds-maintenance 80) \
+      -v "$REMOTE_PATH/ops/maintenance/nginx.conf:/etc/nginx/conf.d/default.conf:ro" \
+      $(router_labels) \
       nginx:alpine >/dev/null
-    echo "==> Wartungsmodus AKTIV"
+    sleep 2
+    echo "==> Live-App starten (laeuft als interner /api/newsletter-Proxy-Backend, extern verborgen)"
+    docker start edufunds-app 2>/dev/null || echo "    WARN: edufunds-app existiert nicht — Newsletter-Proxy liefert 503 bis Deploy."
+    echo "==> Wartungsmodus AKTIV (Seite live, /api/newsletter funktional, Rest verborgen)"
     ;;
   off)
-    echo "==> Live-App wieder starten"
-    docker start edufunds-app 2>/dev/null || { echo "edufunds-app existiert nicht mehr — bitte ./scripts/deploy-production.sh"; }
-    echo "==> Wartungs-Container entfernen"
+    echo "==> Wartungs-Container entfernen (edufunds-app-Router uebernimmt wieder)"
     docker rm -f edufunds-maintenance 2>/dev/null || true
+    echo "==> Live-App sicherstellen"
+    docker start edufunds-app 2>/dev/null || { echo "edufunds-app existiert nicht mehr — bitte ./scripts/deploy-production.sh"; }
     echo "==> Wartungsmodus AUS — App wieder live"
     ;;
   status)
