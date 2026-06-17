@@ -129,25 +129,25 @@ export default function RootLayout({
       </head>
       <body
         className="antialiased"
-        style={{ backgroundColor: '#f8f5f0' }}
+        style={{ backgroundColor: '#fdfdfc' }}
       >
-        {/* Global Background Patterns */}
+        {/* Global Background Patterns — Editorial-Archival Paper-Canvas */}
         <div className="fixed inset-0 pointer-events-none z-0">
-          <div 
+          <div
             className="absolute inset-0"
             style={{
               backgroundImage: `
-                linear-gradient(var(--navy-800) 1px, transparent 1px),
-                linear-gradient(90deg, var(--navy-800) 1px, transparent 1px)
+                linear-gradient(#1c1917 1px, transparent 1px),
+                linear-gradient(90deg, #1c1917 1px, transparent 1px)
               `,
               backgroundSize: '60px 60px',
               opacity: 0.12
             }}
           />
-          <div 
+          <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `radial-gradient(var(--gold-500) 1.5px, transparent 1.5px)`,
+              backgroundImage: `radial-gradient(#78350f 1.5px, transparent 1.5px)`,
               backgroundSize: '24px 24px',
               opacity: 0.08
             }}
