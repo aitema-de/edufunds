@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -100,6 +101,13 @@ module.exports = {
           light: '#d4af37',
           dark: '#b08d1f',
         },
+
+        /* Editorial Archival — Refresh-Tokens (Welle 0). Als rgb(var/<alpha>)
+           definiert → Opacity-Modifier wie bg-paper/80, border-ink/5,
+           text-brandy/70 funktionieren. Dark-Mode flippt die CSS-Vars. */
+        paper: 'rgb(var(--paper) / <alpha-value>)',
+        ink: 'rgb(var(--ink) / <alpha-value>)',
+        brandy: 'rgb(var(--brandy) / <alpha-value>)',
       },
       
       /* Border Radius */
@@ -111,9 +119,9 @@ module.exports = {
       
       /* Font Families */
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-        serif: ['DM Serif Display', 'Georgia', 'serif'],
-        mono: ['Fira Code', 'monospace'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-serif)', 'Georgia', 'serif'],
+        mono: ['var(--font-mono)', 'Fira Code', 'monospace'],
       },
       
       /* Custom Animations */

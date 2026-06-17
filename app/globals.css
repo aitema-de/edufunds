@@ -3,8 +3,8 @@
    Primary: Gold (#c9a227) - Premium & Trust
    ============================================ */
 
-/* FONTS */
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+/* FONTS — self-hosted via next/font (layout.tsx): Newsreader (serif),
+   Outfit (sans), Fira Code (mono). CSS-Variablen --font-serif/-sans/-mono. */
 
 @tailwind base;
 @tailwind components;
@@ -87,6 +87,27 @@
     --orange-primary: #c9a227;          /* mapped to gold */
     --orange-light: #d4af37;
     --orange-dark: #b08d1f;
+
+    /* ==========================================================
+       EDITORIAL ARCHIVAL — Refresh-Tokens (Welle 0, 2026-06-17)
+       Neue Markenpalette der Lovable-Landing. ADDITIV: bestehende
+       gold/navy/parchment/teal bleiben unberuehrt, damit Welle 0
+       keine sichtbare Farbaenderung ausloest. Komponenten werden in
+       Welle 1+ schrittweise auf bg-paper/text-ink/text-brandy migriert.
+       Format = RGB-Kanaele (Space-separated) → Tailwind kann Opacity-
+       Modifier anwenden (z. B. border-ink/5, text-brandy/70).
+       ========================================================== */
+    --paper: 253 253 252;   /* #fdfdfc — Hintergrund, heller/kuehler als Parchment */
+    --ink: 28 25 23;        /* #1c1917 — warmes Fast-Schwarz (ersetzt Navy) */
+    --brandy: 120 53 15;    /* #78350f — Cognac-Akzent (ersetzt Gold; bessere WCAG) */
+  }
+
+  /* Dark-Mode (class-basiert). Noch kein Toggle verdrahtet — Fundament fuer
+     spaetere Wellen. Paper↔Ink flippen, Akzent wird Amber (#d97706). */
+  .dark {
+    --paper: 28 25 23;      /* #1c1917 */
+    --ink: 253 253 252;     /* #fdfdfc */
+    --brandy: 217 119 6;    /* #d97706 — Amber */
   }
 }
 
@@ -104,22 +125,19 @@
   
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family: var(--font-sans), system-ui, sans-serif;
     background-color: var(--parchment);
   }
-  
-  /* DM Serif Display ist nur in Weight 400 verfuegbar (Google Fonts). Wenn
-   * eine Komponente Tailwind `font-bold` (700) oder `font-semibold` (600) auf
-   * eine Headline anwendet, faked der Browser "fauxbold" durch Glyph-Verdickung —
-   * Display-Serifs verschwimmen dann an den Raendern. Deshalb erzwingen wir
-   * Weight 400 mit !important fuer alle Headings global; einzelne Komponenten
-   * koennen ihre `font-bold`-Tailwind-Klassen behalten (sind dann No-Op fuer
-   * Headings, wirken weiter bei <div>/<span>/<p>). Letter-Spacing leicht
-   * weniger straff (war -0.02em) fuer bessere Lesbarkeit bei groesseren
-   * Schriftgraden. (Befund 2026-05-27, BEFUND-UI-1 Pre-Pilot-Audit.)
+
+  /* Headings: Newsreader (Editorial-Serif). Anders als DM Serif Display bringt
+   * Newsreader echte Schriftschnitte (400/500/600) mit — kein Faux-Bold-Risiko.
+   * Wir halten Headings global auf Weight 400 (helle, editoriale Anmutung wie in
+   * der neuen Landing); component-seitige `font-semibold/bold` bleiben No-Op fuer
+   * Headings (wirken weiter bei <div>/<span>/<p>). Letter-Spacing wie gehabt.
+   * (Welle 0 Design-Refresh 2026-06-17; Ausgangsbefund BEFUND-UI-1 2026-05-27.)
    */
   h1, h2, h3, h4 {
-    font-family: 'DM Serif Display', Georgia, serif !important;
+    font-family: var(--font-serif), Georgia, serif !important;
     font-weight: 400 !important;
     letter-spacing: -0.015em;
     color: hsl(var(--foreground));
@@ -158,15 +176,15 @@
    ============================================ */
 @layer utilities {
   .font-mono {
-    font-family: 'Fira Code', monospace;
+    font-family: var(--font-mono), 'Fira Code', monospace;
   }
-  
+
   .font-serif {
-    font-family: 'DM Serif Display', Georgia, serif;
+    font-family: var(--font-serif), Georgia, serif;
   }
-  
+
   .font-sans {
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family: var(--font-sans), system-ui, sans-serif;
   }
   
   /* Primary Gradient - Gold */
