@@ -14,10 +14,12 @@ REMOTE=root@49.13.15.44
 REMOTE_PATH=/home/edufunds/edufunds-app
 BRANCH=main
 YES=0
+PAYWALL_BYPASS=0   # 0 = echte Zahlung (Go-Live). 1 = Pilot-Bypass (kostenlos freischalten).
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --yes|-y) YES=1; shift ;;
+    --with-paywall-bypass) PAYWALL_BYPASS=1; shift ;;  # nur fuer Pilot-/UAT-Builds
     -h|--help)
       sed -n '2,11p' "$0" | sed 's/^# \?//'
       exit 0
@@ -31,6 +33,11 @@ echo "    Remote:  $REMOTE"
 echo "    Branch:  $BRANCH"
 echo "    Ziel:    https://app.edufunds.org"
 echo "    WARNUNG: Live-Instanz fuer Endnutzer."
+if [ "$PAYWALL_BYPASS" -eq 1 ]; then
+  echo "    PAYWALL:  BYPASS AKTIV (--with-paywall-bypass) — Antrag kostenlos freischaltbar, KEINE echte Zahlung."
+else
+  echo "    PAYWALL:  AUS = echte Zahlung aktiv (Go-Live-Modus)."
+fi
 echo
 
 if [ "$YES" -ne 1 ]; then
@@ -48,12 +55,18 @@ git fetch origin
 git checkout $BRANCH
 git pull --ff-only origin $BRANCH
 
-echo "==> docker build"
-# PILOT (temporaer): Paywall-Bypass aktiv, damit Pilot-Tester den Antrag ohne
-# Zahlung freischalten koennen (Stripe laeuft noch im Sandbox-Modus). NEXT_PUBLIC_*
-# wird zur Build-Zeit ins Bundle inlined — Client UND Server-Route lesen denselben
-# Wert. Vor dem echten Zahlungs-Go-Live: auf 0 setzen / Zeile entfernen.
-docker build --build-arg NEXT_PUBLIC_PAYWALL_DEV_MOCK=1 -t edufunds:latest .
+# Go-Live-Schutz: Bypass AUS, aber Stripe-Key noch Test -> Checkout wuerde fuer
+# echte Kunden brechen. Hart stoppen, bevor gebaut/deployt wird.
+if [ "$PAYWALL_BYPASS" -eq 0 ] && grep -q '^STRIPE_SECRET_KEY=sk_test' .env.production; then
+  echo "ABBRUCH: Paywall-Bypass ist AUS (Go-Live), aber STRIPE_SECRET_KEY ist noch ein Test-Key (sk_test)." >&2
+  echo "         Erst Live-Keys setzen (scripts/set-stripe-live-env.sh) ODER Pilot mit --with-paywall-bypass deployen." >&2
+  exit 1
+fi
+
+echo "==> docker build (Paywall-Bypass=$PAYWALL_BYPASS)"
+# NEXT_PUBLIC_* wird zur Build-Zeit ins Bundle inlined — Client UND Server-Route
+# lesen denselben Wert. =0 (Default) => echte Zahlung. =1 => Pilot-Bypass.
+docker build --build-arg NEXT_PUBLIC_PAYWALL_DEV_MOCK=$PAYWALL_BYPASS -t edufunds:latest .
 
 echo "==> Container swap"
 docker stop edufunds-app 2>/dev/null || true
