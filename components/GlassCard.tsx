@@ -86,7 +86,7 @@ export function GlassCard({ programm }: GlassCardProps) {
   };
 
   return (
-    <article className="glass rounded-2xl p-6 md:p-8 hover:border-orange-500/30 transition-all group">
+    <article className="glass rounded-2xl p-6 md:p-8 hover:border-amber-500/30 transition-all group">
       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
         <div className="flex-1">
           {/* Header mit Icon und Badges */}
@@ -98,7 +98,7 @@ export function GlassCard({ programm }: GlassCardProps) {
                   {getTypeLabel()}
                 </span>
                 {programm.kiAntragGeeignet && (
-                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-orange-500/20 text-orange-400">
+                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-amber-500/20 text-amber-400">
                     KI-geeignet
                   </span>
                 )}
@@ -110,7 +110,7 @@ export function GlassCard({ programm }: GlassCardProps) {
               </div>
               
               {/* Titel */}
-              <h3 className="text-xl font-bold text-slate-100 group-hover:text-orange-400 transition-colors">
+              <h3 className="text-xl font-bold text-slate-100 group-hover:text-amber-400 transition-colors">
                 {programm.name}
               </h3>
             </div>

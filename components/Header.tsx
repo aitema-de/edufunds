@@ -62,7 +62,7 @@ export function Header() {
       {/* Skip to main content */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-[#0f1f38] focus:text-[#c9a227] focus:px-3 focus:py-1.5 focus:rounded-md focus:outline-none focus:ring-1 focus:ring-[#c9a227]/50 text-xs"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-[#1c1917] focus:text-[#d97706] focus:px-3 focus:py-1.5 focus:rounded-md focus:outline-none focus:ring-1 focus:ring-[#d97706]/50 text-xs"
       >
         Inhalt überspringen
       </a>
@@ -92,17 +92,17 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="group relative px-4 py-2 text-sm font-medium text-[#475569] transition-all hover:text-[#c9a227] rounded-lg hover:bg-[#f8f5f0]/5"
+                className="group relative px-4 py-2 text-sm font-medium text-[#a8a29e] transition-all hover:text-[#d97706] rounded-lg hover:bg-[#fdfdfc]/5"
               >
                 <span className="flex items-center gap-2">
                   {item.label}
                   {item.badge && (
-                    <span className="px-1.5 py-0.5 text-[10px] font-semibold rounded-full bg-[#c9a227]/20 text-[#c9a227] border border-[#c9a227]/20">
+                    <span className="px-1.5 py-0.5 text-[10px] font-semibold rounded-full bg-[#d97706]/20 text-[#d97706] border border-[#d97706]/20">
                       {item.badge}
                     </span>
                   )}
                 </span>
-                <span className="absolute bottom-0.5 left-4 right-4 h-0.5 bg-gradient-to-r from-[#c9a227] to-[#e4c55a] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
+                <span className="absolute bottom-0.5 left-4 right-4 h-0.5 bg-gradient-to-r from-[#d97706] to-[#fbbf24] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
               </Link>
             ))}
           </nav>
@@ -130,9 +130,9 @@ export function Header() {
         </div>
 
         {/* Scroll progress */}
-        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0a1628]/30">
+        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1c1917]/30">
           <div
-            className="h-full bg-gradient-to-r from-[#c9a227] to-[#e4c55a] transition-all duration-150"
+            className="h-full bg-gradient-to-r from-[#d97706] to-[#fbbf24] transition-all duration-150"
             style={{ width: `${scrollProgress}%` }}
           />
         </div>
@@ -167,12 +167,12 @@ export function Header() {
                     <Link
                       href={item.href}
                       onClick={() => setIsOpen(false)}
-                      className="flex items-center gap-3 p-4 rounded-xl glass hover:bg-[#f8f5f0]/5 transition-colors"
+                      className="flex items-center gap-3 p-4 rounded-xl glass hover:bg-[#fdfdfc]/5 transition-colors"
                     >
-                      <item.icon className="w-5 h-5 text-[#c9a227]" />
-                      <span className="text-[#f8f5f0]">{item.label}</span>
+                      <item.icon className="w-5 h-5 text-[#d97706]" />
+                      <span className="text-[#fdfdfc]">{item.label}</span>
                       {item.badge && (
-                        <span className="ml-auto px-2 py-0.5 text-xs font-semibold rounded-full bg-[#c9a227]/20 text-[#c9a227]">
+                        <span className="ml-auto px-2 py-0.5 text-xs font-semibold rounded-full bg-[#d97706]/20 text-[#d97706]">
                           {item.badge}
                         </span>
                       )}
