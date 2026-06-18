@@ -39,10 +39,10 @@ export function FinanzplanView({ plan }: Props) {
   }
 
   return (
-    <div className="rounded-xl border border-[#c9a227]/30 bg-[#f8f5f0] p-5">
+    <div className="rounded-xl border border-[#78350f]/30 bg-[#fdfdfc] p-5">
       <div className="mb-4 flex items-center gap-2">
-        <Wallet className="h-5 w-5 text-[#c9a227]" />
-        <h3 className="text-lg font-semibold text-[#0a1628]">Finanzplan-Entwurf</h3>
+        <Wallet className="h-5 w-5 text-[#78350f]" />
+        <h3 className="text-lg font-semibold text-[#1c1917]">Finanzplan-Entwurf</h3>
       </div>
 
       {plan.posten.length === 0 ? (
@@ -53,7 +53,7 @@ export function FinanzplanView({ plan }: Props) {
               <strong>unbeziffert</strong>. Die folgenden Positionen werden vor Einreichung
               durch konkrete Angebote beziffert:
             </p>
-            <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-[#1e3a61]">
+            <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-[#57534e]">
               {plan.kostenrahmen.map((k, i) => (
                 <li key={i}>{k}</li>
               ))}
@@ -68,7 +68,7 @@ export function FinanzplanView({ plan }: Props) {
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-[#0a1628]/15 text-left text-xs uppercase tracking-wider text-slate-500">
+              <tr className="border-b border-[#1c1917]/15 text-left text-xs uppercase tracking-wider text-slate-500">
                 <th className="pb-2 pr-4">Posten</th>
                 <th className="pb-2 pr-4">Kategorie</th>
                 <th className="pb-2 pr-4">Typ</th>
@@ -78,12 +78,12 @@ export function FinanzplanView({ plan }: Props) {
             <tbody>
               {[...byKategorie.entries()].flatMap(([kat, posten]) =>
                 posten.map((p) => (
-                  <tr key={p.id} className="border-b border-[#0a1628]/10 align-top">
+                  <tr key={p.id} className="border-b border-[#1c1917]/10 align-top">
                       <td className="py-2 pr-4">
-                        <div className="flex items-center gap-1.5 text-[#1e3a61]">
+                        <div className="flex items-center gap-1.5 text-[#57534e]">
                           {p.bezeichnung}
                           {p.istVorschlag && (
-                            <span className="inline-flex items-center gap-1 rounded-full border border-[#c9a227]/50 bg-[#c9a227]/10 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wide text-[#b8921e]">
+                            <span className="inline-flex items-center gap-1 rounded-full border border-[#78350f]/50 bg-[#78350f]/10 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wide text-[#92400e]">
                               <Sparkles className="h-2.5 w-2.5" /> Vorschlag
                             </span>
                           )}
@@ -102,19 +102,19 @@ export function FinanzplanView({ plan }: Props) {
                           <span className="text-xs text-emerald-400">Förderung</span>
                         )}
                       </td>
-                      <td className="py-2 text-right tabular-nums text-[#1e3a61]">
+                      <td className="py-2 text-right tabular-nums text-[#57534e]">
                         {formatEur(p.betragEur)}
                       </td>
                     </tr>
                 ))
               )}
-              <tr className="border-t-2 border-[#0a1628]/15">
+              <tr className="border-t-2 border-[#1c1917]/15">
                 <td colSpan={2} className="pt-3 text-slate-600">Gesamtvolumen</td>
                 <td className="pt-3 text-xs text-slate-500">
                   davon Förderung: {formatEur(foerderung)}
                   {eigen > 0 && " · Eigenanteil: " + formatEur(eigen)}
                 </td>
-                <td className="pt-3 text-right font-semibold tabular-nums text-[#0a1628]">
+                <td className="pt-3 text-right font-semibold tabular-nums text-[#1c1917]">
                   {formatEur(gesamt)}
                 </td>
               </tr>
@@ -124,8 +124,8 @@ export function FinanzplanView({ plan }: Props) {
       )}
 
       {plan.hinweise && plan.hinweise.length > 0 && (
-        <div className="mt-4 rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 p-3">
-          <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-[#c9a227]">
+        <div className="mt-4 rounded-lg border border-[#78350f]/30 bg-[#78350f]/5 p-3">
+          <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-[#78350f]">
             Hinweise der KI
           </div>
           <ul className="list-disc space-y-1 pl-5 text-xs text-slate-700">
@@ -137,7 +137,7 @@ export function FinanzplanView({ plan }: Props) {
       )}
 
       {plan.posten.some((p) => p.istVorschlag) && (
-        <div className="mt-3 flex items-center gap-1.5 text-[11px] text-[#b8921e]">
+        <div className="mt-3 flex items-center gap-1.5 text-[11px] text-[#92400e]">
           <Sparkles className="h-3 w-3" />
           <span>„Vorschlag" = vom Assistenten geschätzter Betrag — vor Einreichung bestätigen oder anpassen.</span>
         </div>

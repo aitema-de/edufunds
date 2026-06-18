@@ -19,7 +19,7 @@ export default function NotFound() {
             <div className="text-8xl font-bold text-slate-700 mb-4">404</div>
 
             {/* Title */}
-            <h1 className="text-3xl md:text-4xl font-bold text-[#0a1628] mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-[#1c1917] mb-4">
               Förderprogramm nicht gefunden
             </h1>
 
@@ -49,7 +49,7 @@ export default function NotFound() {
 
             {/* Additional Help */}
             <div className="mt-12 p-6 glass rounded-2xl">
-              <h2 className="text-lg font-semibold text-[#1e3a61] mb-2">
+              <h2 className="text-lg font-semibold text-[#57534e] mb-2">
                 Benötigen Sie Hilfe?
               </h2>
               <p className="text-slate-600 text-sm mb-4">
@@ -57,7 +57,7 @@ export default function NotFound() {
               </p>
               <Link
                 href="/kontakt"
-                className="text-[#c9a227] hover:text-[#e4c55a] transition-colors text-sm font-medium"
+                className="text-[#78350f] hover:text-[#d97706] transition-colors text-sm font-medium"
               >
                 Kontaktieren Sie uns →
               </Link>

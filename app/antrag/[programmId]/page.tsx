@@ -51,13 +51,13 @@ export default async function AntragPage({ params }: AntragPageProps) {
   return (
     <>
       <Header />
-      <main className="min-h-screen pt-24 pb-20 bg-[#f8f5f0]">
+      <main className="min-h-screen pt-24 pb-20 bg-[#fdfdfc]">
         <div className="container mx-auto px-4">
           {/* Breadcrumb */}
           <div className="mb-8">
             <Link 
               href={`/foerderprogramme/${programm.id}`}
-              className="inline-flex items-center gap-2 text-slate-600 hover:text-[#c9a227] transition-colors"
+              className="inline-flex items-center gap-2 text-slate-600 hover:text-[#78350f] transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
               Zurück zum Programm
@@ -67,11 +67,11 @@ export default async function AntragPage({ params }: AntragPageProps) {
           {/* Header */}
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 bg-[#c9a227]/10 rounded-lg">
-                <FileText className="h-6 w-6 text-[#c9a227]" />
+              <div className="p-2 bg-[#78350f]/10 rounded-lg">
+                <FileText className="h-6 w-6 text-[#78350f]" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-[#0a1628]">
+                <h1 className="text-3xl font-bold text-[#1c1917]">
                   Förderantrag erstellen
                 </h1>
                 <p className="text-slate-600">
@@ -91,25 +91,25 @@ export default async function AntragPage({ params }: AntragPageProps) {
 
           {/* Hinweise */}
           <div className="mt-12 max-w-2xl mx-auto">
-            <div className="p-6 rounded-xl bg-white border border-[#0a1628]/10">
-              <h3 className="font-semibold text-[#1e3a61] mb-3">
+            <div className="p-6 rounded-xl bg-white border border-[#1c1917]/10">
+              <h3 className="font-semibold text-[#57534e] mb-3">
                 Wichtige Hinweise
               </h3>
               <ul className="space-y-2 text-sm text-slate-600">
                 <li className="flex items-start gap-2">
-                  <span className="text-[#c9a227]">•</span>
+                  <span className="text-[#78350f]">•</span>
                   Der generierte Antrag ist ein Entwurf - überprüfen Sie ihn vor der Einreichung.
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#c9a227]">•</span>
+                  <span className="text-[#78350f]">•</span>
                   Stellen Sie sicher, dass alle Angaben zu Ihrer Schule korrekt sind.
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#c9a227]">•</span>
+                  <span className="text-[#78350f]">•</span>
                   Beachten Sie die offiziellen Antragsrichtlinien des Fördergebers.
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#c9a227]">•</span>
+                  <span className="text-[#78350f]">•</span>
                   Frist: {programm.bewerbungsfristText}
                 </li>
               </ul>

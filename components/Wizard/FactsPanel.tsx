@@ -145,8 +145,8 @@ export function FactsPanel({ facts, compact, editable, sessionToken, onFactsUpda
         );
         if (entries.length === 0) return null;
         return (
-          <div key={key} className="rounded-lg border border-[#0a1628]/10 bg-[#f8f5f0] p-3">
-            <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#7a5e12]">
+          <div key={key} className="rounded-lg border border-[#1c1917]/10 bg-[#fdfdfc] p-3">
+            <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#78350f]">
               <Icon className="h-3.5 w-3.5" />
               {label}
             </div>
@@ -166,7 +166,7 @@ export function FactsPanel({ facts, compact, editable, sessionToken, onFactsUpda
                             rows={Math.max(2, draft.split("\n").length)}
                             value={draft}
                             onChange={(e) => setDraft(e.target.value)}
-                            className="w-full rounded border border-[#c9a227]/60 bg-white px-2 py-1 text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-[#c9a227]"
+                            className="w-full rounded border border-[#78350f]/60 bg-white px-2 py-1 text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-[#78350f]"
                             placeholder="Ein Eintrag pro Zeile"
                             disabled={saving}
                           />
@@ -180,7 +180,7 @@ export function FactsPanel({ facts, compact, editable, sessionToken, onFactsUpda
                               if (e.key === "Enter") saveEdit(sectionKey, k);
                               if (e.key === "Escape") cancelEdit();
                             }}
-                            className="w-full rounded border border-[#c9a227]/60 bg-white px-2 py-1 text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-[#c9a227]"
+                            className="w-full rounded border border-[#78350f]/60 bg-white px-2 py-1 text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-[#78350f]"
                             disabled={saving}
                           />
                         )}
@@ -189,7 +189,7 @@ export function FactsPanel({ facts, compact, editable, sessionToken, onFactsUpda
                             type="button"
                             onClick={() => saveEdit(sectionKey, k)}
                             disabled={saving}
-                            className="inline-flex items-center gap-1 rounded bg-[#7a5e12] px-2 py-0.5 text-[11px] font-medium text-white transition hover:bg-[#664f0f] disabled:opacity-50"
+                            className="inline-flex items-center gap-1 rounded bg-[#78350f] px-2 py-0.5 text-[11px] font-medium text-white transition hover:bg-[#664f0f] disabled:opacity-50"
                           >
                             {saving ? <Loader2 className="h-3 w-3 animate-spin" /> : <Check className="h-3 w-3" />}
                             Speichern
@@ -198,7 +198,7 @@ export function FactsPanel({ facts, compact, editable, sessionToken, onFactsUpda
                             type="button"
                             onClick={cancelEdit}
                             disabled={saving}
-                            className="inline-flex items-center gap-1 rounded border border-[#0a1628]/15 px-2 py-0.5 text-[11px] text-slate-600 transition hover:bg-slate-100 disabled:opacity-50"
+                            className="inline-flex items-center gap-1 rounded border border-[#1c1917]/15 px-2 py-0.5 text-[11px] text-slate-600 transition hover:bg-slate-100 disabled:opacity-50"
                           >
                             <X className="h-3 w-3" />
                             Abbrechen
@@ -212,7 +212,7 @@ export function FactsPanel({ facts, compact, editable, sessionToken, onFactsUpda
                         <button
                           type="button"
                           onClick={() => startEdit(sectionKey, k, v)}
-                          className="shrink-0 text-slate-400 opacity-0 transition group-hover:opacity-100 hover:text-[#7a5e12] focus:opacity-100"
+                          className="shrink-0 text-slate-400 opacity-0 transition group-hover:opacity-100 hover:text-[#78350f] focus:opacity-100"
                           title="Fakt korrigieren"
                           aria-label={`${humanizeKey(k)} korrigieren`}
                         >

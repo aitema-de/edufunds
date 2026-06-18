@@ -82,8 +82,8 @@ export function AntragSectionNav({ articleRef }: Props) {
           href={`#${s.id}`}
           className={
             s.id === activeId
-              ? "block border-l-2 border-[#c9a227] pl-2 text-[#c9a227]"
-              : "block pl-2 text-slate-600 hover:text-[#1e3a61]"
+              ? "block border-l-2 border-[#78350f] pl-2 text-[#78350f]"
+              : "block pl-2 text-slate-600 hover:text-[#57534e]"
           }
         >
           {s.label}

@@ -89,7 +89,7 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
     return (
       <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-8 text-center">
         <CheckCircle2 className="mx-auto mb-3 h-10 w-10 text-emerald-400" />
-        <h1 className="mb-2 text-xl font-semibold text-[#0a1628]">Zahlung bestätigt</h1>
+        <h1 className="mb-2 text-xl font-semibold text-[#1c1917]">Zahlung bestätigt</h1>
         <p className="mb-4 text-sm text-slate-700">Ihr Antrag wird gleich geöffnet.</p>
         <Link
           href={`/antrag/download/${paidToken}`}
@@ -103,9 +103,9 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
 
   if (status === "timeout") {
     return (
-      <div className="rounded-xl border border-[#c9a227]/40 bg-[#c9a227]/10 p-8 text-center">
-        <AlertCircle className="mx-auto mb-3 h-10 w-10 text-[#c9a227]" />
-        <h1 className="mb-2 text-xl font-semibold text-[#0a1628]">
+      <div className="rounded-xl border border-[#78350f]/40 bg-[#78350f]/10 p-8 text-center">
+        <AlertCircle className="mx-auto mb-3 h-10 w-10 text-[#78350f]" />
+        <h1 className="mb-2 text-xl font-semibold text-[#1c1917]">
           Freischaltung braucht noch einen Moment
         </h1>
         <p className="mb-4 text-sm text-slate-700">
@@ -120,14 +120,14 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
           <button
             type="button"
             onClick={restart}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-[#0a1628]/20 bg-white px-4 py-2 text-sm text-[#0a1628] hover:bg-slate-100"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-[#1c1917]/20 bg-white px-4 py-2 text-sm text-[#1c1917] hover:bg-slate-100"
           >
             <RefreshCw className="h-3.5 w-3.5" />
             Weiter warten
           </button>
           <Link
             href="/antrag/meine"
-            className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-4 py-2 text-sm text-[#1e3a61] hover:bg-white"
+            className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 px-4 py-2 text-sm text-[#57534e] hover:bg-white"
           >
             Zu meinen Anträgen
           </Link>
@@ -140,7 +140,7 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
     return (
       <div className="rounded-xl border border-red-500/40 bg-red-500/10 p-8 text-center">
         <AlertCircle className="mx-auto mb-3 h-10 w-10 text-red-400" />
-        <h1 className="mb-2 text-xl font-semibold text-[#0a1628]">
+        <h1 className="mb-2 text-xl font-semibold text-[#1c1917]">
           Verbindungsproblem
         </h1>
         <p className="mb-3 text-sm text-slate-700">
@@ -167,7 +167,7 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
     return (
       <div className="rounded-xl border border-red-500/40 bg-red-500/10 p-8 text-center">
         <AlertCircle className="mx-auto mb-3 h-10 w-10 text-red-400" />
-        <h1 className="mb-2 text-xl font-semibold text-[#0a1628]">
+        <h1 className="mb-2 text-xl font-semibold text-[#1c1917]">
           Kein Session-Token übermittelt
         </h1>
         <p className="text-sm text-slate-700">
@@ -175,7 +175,7 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
         </p>
         <Link
           href="/antrag/meine"
-          className="mt-4 inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-4 py-2 text-sm text-[#1e3a61] hover:bg-white"
+          className="mt-4 inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 px-4 py-2 text-sm text-[#57534e] hover:bg-white"
         >
           Zu meinen Anträgen
         </Link>
@@ -187,16 +187,16 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
   const elapsedSec = Math.floor(elapsedMs / 1000);
   const progressPct = Math.min(100, (elapsedMs / MAX_WAIT_MS) * 100);
   return (
-    <div className="rounded-xl border border-[#0a1628]/10 bg-white p-8 text-center">
-      <Loader2 className="mx-auto mb-3 h-10 w-10 animate-spin text-[#c9a227]" />
-      <h1 className="mb-2 text-xl font-semibold text-[#0a1628]">Zahlung wird bestätigt</h1>
+    <div className="rounded-xl border border-[#1c1917]/10 bg-white p-8 text-center">
+      <Loader2 className="mx-auto mb-3 h-10 w-10 animate-spin text-[#78350f]" />
+      <h1 className="mb-2 text-xl font-semibold text-[#1c1917]">Zahlung wird bestätigt</h1>
       <p className="mb-4 text-sm text-slate-600">
         Stripe sendet uns gleich die Bestätigung. Diese Seite leitet automatisch weiter,
         sobald sie da ist — meist nach wenigen Sekunden.
       </p>
-      <div className="mx-auto mb-1 h-1 w-full max-w-xs overflow-hidden rounded-full bg-[#f8f5f0]">
+      <div className="mx-auto mb-1 h-1 w-full max-w-xs overflow-hidden rounded-full bg-[#fdfdfc]">
         <div
-          className="h-full bg-[#c9a227] transition-all duration-300 ease-linear"
+          className="h-full bg-[#78350f] transition-all duration-300 ease-linear"
           style={{ width: `${progressPct}%` }}
         />
       </div>

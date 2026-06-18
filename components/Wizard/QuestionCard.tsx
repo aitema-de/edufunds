@@ -33,7 +33,7 @@ export function QuestionCard({
   const progress = Math.min(100, (totalQuestions / maxQuestions) * 100);
 
   return (
-    <div className="rounded-xl border border-[#0a1628]/10 bg-white p-6">
+    <div className="rounded-xl border border-[#1c1917]/10 bg-white p-6">
       <div className="mb-4 flex items-center justify-between text-xs text-slate-500">
         <span>
           Frage {totalQuestions} von voraussichtlich 6–{maxQuestions}
@@ -44,11 +44,11 @@ export function QuestionCard({
       </div>
       <div className="mb-4 h-1 w-full rounded-full bg-slate-100">
         <div
-          className="h-1 rounded-full bg-[#c9a227] transition-all"
+          className="h-1 rounded-full bg-[#78350f] transition-all"
           style={{ width: `${progress}%` }}
         />
       </div>
-      <h3 className="mb-2 text-xl font-semibold text-[#0a1628]">{question}</h3>
+      <h3 className="mb-2 text-xl font-semibold text-[#1c1917]">{question}</h3>
       {rationale && (
         <p className="mb-4 text-sm text-slate-600">Warum? {rationale}</p>
       )}
@@ -57,7 +57,7 @@ export function QuestionCard({
         onChange={(e) => setAnswer(e.target.value)}
         onKeyDown={handleKey}
         placeholder="Ihre Antwort — gerne konkret mit Zahlen und Beispielen. (Strg/⌘+Enter sendet)"
-        className="min-h-[140px] w-full rounded-lg border border-[#0a1628]/15 bg-white p-3 text-[#0a1628] placeholder-slate-400 focus:border-[#c9a227] focus:outline-none"
+        className="min-h-[140px] w-full rounded-lg border border-[#1c1917]/15 bg-white p-3 text-[#1c1917] placeholder-slate-400 focus:border-[#78350f] focus:outline-none"
       />
       <div className="mt-3 flex items-center justify-between text-xs text-slate-500">
         <span>{answer.length} Zeichen</span>
@@ -65,7 +65,7 @@ export function QuestionCard({
           type="button"
           onClick={onSubmit}
           disabled={busy || !answer.trim()}
-          className="rounded-lg bg-[#c9a227] px-5 py-2 sm:py-3 text-sm font-semibold text-white transition hover:bg-[#b8921e] disabled:opacity-50"
+          className="rounded-lg bg-[#78350f] px-5 py-2 sm:py-3 text-sm font-semibold text-white transition hover:bg-[#92400e] disabled:opacity-50"
         >
           {busy ? "Sende…" : "Antworten"}
         </button>

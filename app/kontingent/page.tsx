@@ -17,8 +17,8 @@ interface OrderSuccess {
 
 type PayMethod = "invoice" | "card";
 
-const GOLD = "#c9a227";
-const INK = "#0a1628";
+const GOLD = "#78350f";
+const INK = "#1c1917";
 
 export default function KontingentPage() {
   const packs = useMemo(() => quotaPacks(), []);
@@ -150,17 +150,17 @@ export default function KontingentPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen" style={{ backgroundColor: "#f8f5f0" }}>
+      <main className="min-h-screen" style={{ backgroundColor: "#fdfdfc" }}>
         <section className="pt-32 pb-12">
           <div className="container mx-auto px-6 max-w-4xl text-center">
             <span
               className="inline-block px-4 py-2 rounded-full text-xs font-medium tracking-wider uppercase mb-6"
-              style={{ backgroundColor: "rgba(201, 162, 39, 0.1)", color: "#7a5e12" }}
+              style={{ backgroundColor: "rgba(120, 53, 15, 0.1)", color: "#78350f" }}
             >
               Kontingent für Schulen & Träger
             </span>
             <h1 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: INK }}>
-              Anträge zentral <span style={{ color: "#7a5e12" }}>vorab freischalten</span>
+              Anträge zentral <span style={{ color: "#78350f" }}>vorab freischalten</span>
             </h1>
             <p className="text-lg max-w-2xl mx-auto" style={{ color: "#64748b" }}>
               Kaufen Sie ein Kontingent – per Rechnung oder sofort per Karte. Ihre Lehrkräfte
@@ -169,7 +169,7 @@ export default function KontingentPage() {
             <a
               href="/kontingent/uebersicht"
               className="mt-4 inline-block text-sm font-medium underline"
-              style={{ color: "#7a5e12" }}
+              style={{ color: "#78350f" }}
             >
               Schon ein Kontingent gekauft? Zur Übersicht
             </a>
@@ -184,7 +184,7 @@ export default function KontingentPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="rounded-2xl p-8 bg-white shadow-sm"
-                style={{ border: "1px solid rgba(201, 162, 39, 0.3)" }}
+                style={{ border: "1px solid rgba(120, 53, 15, 0.3)" }}
               >
                 <div className="flex items-center gap-3 mb-6">
                   <div
@@ -221,7 +221,7 @@ export default function KontingentPage() {
                       <button
                         onClick={() => copyCode(cardCode.creditCode)}
                         className="flex items-center gap-2 text-sm font-medium px-3 py-2 rounded-lg transition-colors"
-                        style={{ color: "#7a5e12" }}
+                        style={{ color: "#78350f" }}
                       >
                         <Copy className="w-4 h-4" />
                         {copied ? "Kopiert" : "Kopieren"}
@@ -236,7 +236,7 @@ export default function KontingentPage() {
                   <p className="text-sm leading-relaxed" style={{ color: "#64748b" }}>
                     Ihre Zahlung war erfolgreich. Ihr Kontingent-Code wird in wenigen Augenblicken
                     per E-Mail versendet. Sollte er nicht ankommen, melden Sie sich unter{" "}
-                    <a href="mailto:office@aitema.de" style={{ color: "#7a5e12" }}>
+                    <a href="mailto:office@aitema.de" style={{ color: "#78350f" }}>
                       office@aitema.de
                     </a>
                     .
@@ -259,7 +259,7 @@ export default function KontingentPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="rounded-2xl p-8 bg-white shadow-sm"
-                style={{ border: "1px solid rgba(201, 162, 39, 0.3)" }}
+                style={{ border: "1px solid rgba(120, 53, 15, 0.3)" }}
               >
                 <div className="flex items-center gap-3 mb-6">
                   <div
@@ -294,7 +294,7 @@ export default function KontingentPage() {
                   <button
                     onClick={() => copyCode(success.creditCode)}
                     className="flex items-center gap-2 text-sm font-medium px-3 py-2 rounded-lg transition-colors"
-                    style={{ color: "#7a5e12" }}
+                    style={{ color: "#78350f" }}
                   >
                     <Copy className="w-4 h-4" />
                     {copied ? "Kopiert" : "Kopieren"}
@@ -513,7 +513,7 @@ const inputStyle: React.CSSProperties = {
   borderRadius: "10px",
   border: "1px solid rgba(10,22,40,0.15)",
   backgroundColor: "#fbfaf7",
-  color: "#0a1628",
+  color: "#1c1917",
   fontSize: "15px",
 };
 
