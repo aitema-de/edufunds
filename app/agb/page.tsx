@@ -11,15 +11,15 @@ export default function AGBPage() {
   return (
     <>
       <Header />
-      <main id="main-content" className="min-h-screen pt-24 pb-20 bg-[#f8f5f0]">
+      <main id="main-content" className="min-h-screen pt-24 pb-20 bg-[#fdfdfc]">
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#c9a227]/10 border border-[#c9a227]/20 mb-6">
-              <FileText className="h-4 w-4 text-[#c9a227]" />
-              <span className="text-sm font-medium text-[#7a5e12]">Rechtliches</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#78350f]/10 border border-[#78350f]/20 mb-6">
+              <FileText className="h-4 w-4 text-[#78350f]" />
+              <span className="text-sm font-medium text-[#78350f]">Rechtliches</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-[#1c1917] mb-4">
               Allgemeine Geschäftsbedingungen
             </h1>
             <p className="text-[#64748b] text-lg max-w-2xl mx-auto">
@@ -28,8 +28,8 @@ export default function AGBPage() {
           </div>
 
           {/* Hinweis */}
-          <div className="bg-white rounded-xl p-6 mb-8 border-l-4 border-[#c9a227] shadow-sm">
-            <p className="text-[#0a1628]/80 text-base leading-relaxed">
+          <div className="bg-white rounded-xl p-6 mb-8 border-l-4 border-[#78350f] shadow-sm">
+            <p className="text-[#1c1917]/80 text-base leading-relaxed">
               Dies ist eine Übersetzung zur Information. Die deutsche Version ist rechtsverbindlich. 
               Diese AGB gelten für Verträge zwischen der aitema GmbH und Unternehmern im Sinne 
               des § 14 BGB.
@@ -39,12 +39,12 @@ export default function AGBPage() {
           {/* Content */}
           <div className="space-y-8">
             {/* § 1 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#0a1628] mb-4 flex items-center gap-3">
-                <span className="text-[#7a5e12] font-bold">§ 1</span>
+            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
+              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
+                <span className="text-[#78350f] font-bold">§ 1</span>
                 Geltungsbereich
               </h2>
-              <div className="text-[#0a1628]/80 space-y-4 leading-relaxed text-base">
+              <div className="text-[#1c1917]/80 space-y-4 leading-relaxed text-base">
                 <p>
                   (1) Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge zwischen der 
                   aitema GmbH, Prenzlauer Allee 229, 10405 Berlin (nachfolgend „Anbieter") 
@@ -61,12 +61,12 @@ export default function AGBPage() {
             </section>
 
             {/* § 2 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#0a1628] mb-4 flex items-center gap-3">
-                <span className="text-[#7a5e12] font-bold">§ 2</span>
+            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
+              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
+                <span className="text-[#78350f] font-bold">§ 2</span>
                 Vertragsschluss
               </h2>
-              <p className="text-[#0a1628]/80 leading-relaxed text-base">
+              <p className="text-[#1c1917]/80 leading-relaxed text-base">
                 Der Vertrag kommt zustande durch: (a) Unterzeichnung eines individuellen Vertrags 
                 oder Angebots durch beide Parteien, (b) schriftliche Auftragsbestätigung durch den 
                 Anbieter aufgrund einer Bestellung durch den Kunden, oder (c) Aktivierung des 
@@ -75,43 +75,43 @@ export default function AGBPage() {
             </section>
 
             {/* § 3 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#0a1628] mb-6 flex items-center gap-3">
-                <span className="text-[#7a5e12] font-bold">§ 3</span>
+            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
+              <h2 className="text-xl font-semibold text-[#1c1917] mb-6 flex items-center gap-3">
+                <span className="text-[#78350f] font-bold">§ 3</span>
                 Leistungen
               </h2>
 
               <div className="space-y-6">
-                <div className="bg-[#f8f5f0] rounded-xl p-6 border border-[#0a1628]/8">
-                  <h3 className="text-lg font-medium text-[#0a1628] mb-3 flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-[#c9a227]" />
+                <div className="bg-[#fdfdfc] rounded-xl p-6 border border-[#1c1917]/8">
+                  <h3 className="text-lg font-medium text-[#1c1917] mb-3 flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-[#78350f]" />
                     SaaS-Leistungen
                   </h3>
-                  <p className="text-[#0a1628]/80 leading-relaxed text-base">
+                  <p className="text-[#1c1917]/80 leading-relaxed text-base">
                     Der Anbieter stellt dem Kunden die vertraglich vereinbarte Software zur Nutzung 
                     über das Internet zur Verfügung. Der Anbieter garantiert eine Verfügbarkeit der 
-                    Software von <strong className="text-[#0a1628]">98,5%</strong> im Jahresmittel.
+                    Software von <strong className="text-[#1c1917]">98,5%</strong> im Jahresmittel.
                   </p>
                 </div>
 
-                <div className="bg-[#f8f5f0] rounded-xl p-6 border border-[#0a1628]/8">
-                  <h3 className="text-lg font-medium text-[#0a1628] mb-3 flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-[#c9a227]" />
+                <div className="bg-[#fdfdfc] rounded-xl p-6 border border-[#1c1917]/8">
+                  <h3 className="text-lg font-medium text-[#1c1917] mb-3 flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-[#78350f]" />
                     Beratungsleistungen
                   </h3>
-                  <p className="text-[#0a1628]/80 leading-relaxed text-base">
+                  <p className="text-[#1c1917]/80 leading-relaxed text-base">
                     Beratungsleistungen werden auf Basis eines separaten Angebots oder einer 
                     Leistungsbeschreibung erbracht. Sofern nicht anders vereinbart, werden 
                     Beratungsleistungen nach Aufwand abgerechnet.
                   </p>
                 </div>
 
-                <div className="bg-[#f8f5f0] rounded-xl p-6 border border-[#0a1628]/8">
-                  <h3 className="text-lg font-medium text-[#0a1628] mb-3 flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-[#c9a227]" />
+                <div className="bg-[#fdfdfc] rounded-xl p-6 border border-[#1c1917]/8">
+                  <h3 className="text-lg font-medium text-[#1c1917] mb-3 flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-[#78350f]" />
                     Support
                   </h3>
-                  <p className="text-[#0a1628]/80 leading-relaxed text-base">
+                  <p className="text-[#1c1917]/80 leading-relaxed text-base">
                     Der Anbieter bietet Support per E-Mail an: Montag bis Freitag, 09:00 – 17:00 
                     (MEZ/MESZ), ausgenommen gesetzliche Feiertage in Berlin.
                   </p>
@@ -120,12 +120,12 @@ export default function AGBPage() {
             </section>
 
             {/* § 4 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#0a1628] mb-4 flex items-center gap-3">
-                <span className="text-[#7a5e12] font-bold">§ 4</span>
+            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
+              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
+                <span className="text-[#78350f] font-bold">§ 4</span>
                 Pflichten des Kunden
               </h2>
-              <p className="text-[#0a1628]/80 leading-relaxed text-base">
+              <p className="text-[#1c1917]/80 leading-relaxed text-base">
                 Der Kunde stellt sicher, dass die bereitgestellten Daten vollständig und richtig sind. 
                 Der Kunde ist verantwortlich für die sichere Aufbewahrung von Zugangsdaten, die 
                 Einhaltung geltender Gesetze, die Rechtmäßigkeit der eingegebenen Daten sowie die 
@@ -134,14 +134,14 @@ export default function AGBPage() {
             </section>
 
             {/* § 5 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#0a1628] mb-4 flex items-center gap-3">
-                <span className="text-[#7a5e12] font-bold">§ 5</span>
+            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
+              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
+                <span className="text-[#78350f] font-bold">§ 5</span>
                 Vergütung und Zahlung
               </h2>
-              <div className="text-[#0a1628]/80 space-y-4 text-base">
+              <div className="text-[#1c1917]/80 space-y-4 text-base">
                 <div className="flex items-center gap-3">
-                  <Euro className="h-5 w-5 text-[#c9a227]" />
+                  <Euro className="h-5 w-5 text-[#78350f]" />
                   <p>Alle Preise verstehen sich zuzüglich gesetzlicher Umsatzsteuer.</p>
                 </div>
                 <p className="leading-relaxed">
@@ -152,39 +152,39 @@ export default function AGBPage() {
             </section>
 
             {/* § 6 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#0a1628] mb-4 flex items-center gap-3">
-                <span className="text-[#7a5e12] font-bold">§ 6</span>
+            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
+              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
+                <span className="text-[#78350f] font-bold">§ 6</span>
                 Vertragslaufzeit und Kündigung
               </h2>
-              <div className="text-[#0a1628]/80 space-y-4 text-base">
+              <div className="text-[#1c1917]/80 space-y-4 text-base">
                 <div className="flex items-start gap-3">
-                  <Clock className="h-5 w-5 text-[#c9a227] mt-0.5 shrink-0" />
+                  <Clock className="h-5 w-5 text-[#78350f] mt-0.5 shrink-0" />
                   <div>
                     <p className="leading-relaxed">
-                      SaaS-Verträge haben eine Mindestlaufzeit von <strong className="text-[#0a1628]">12 Monaten</strong>. 
+                      SaaS-Verträge haben eine Mindestlaufzeit von <strong className="text-[#1c1917]">12 Monaten</strong>. 
                       Nach Ablauf verlängert sich der Vertrag automatisch um weitere 12 Monate, 
                       sofern nicht gekündigt wird.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Percent className="h-5 w-5 text-[#c9a227] mt-0.5 shrink-0" />
+                  <Percent className="h-5 w-5 text-[#78350f] mt-0.5 shrink-0" />
                   <p className="leading-relaxed">
                     SaaS-Verträge können nach der Mindestlaufzeit mit einer Kündigungsfrist von 
-                    <strong className="text-[#0a1628]"> 30 Tagen</strong> zum Ende eines Kalendermonats gekündigt werden.
+                    <strong className="text-[#1c1917]"> 30 Tagen</strong> zum Ende eines Kalendermonats gekündigt werden.
                   </p>
                 </div>
               </div>
             </section>
 
             {/* § 7 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#0a1628] mb-4 flex items-center gap-3">
-                <span className="text-[#7a5e12] font-bold">§ 7</span>
+            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
+              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
+                <span className="text-[#78350f] font-bold">§ 7</span>
                 Nutzungsrechte
               </h2>
-              <p className="text-[#0a1628]/80 leading-relaxed text-base">
+              <p className="text-[#1c1917]/80 leading-relaxed text-base">
                 Der Anbieter räumt dem Kunden ein einfaches, nicht übertragbares, nicht 
                 unterlizenzierbares Recht ein, die bereitgestellte Software für die Dauer des 
                 Vertrags zu nutzen. Der Kunde bleibt alleiniger Eigentümer aller Rechte an den 
@@ -193,14 +193,14 @@ export default function AGBPage() {
             </section>
 
             {/* § 8 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#0a1628] mb-4 flex items-center gap-3">
-                <span className="text-[#7a5e12] font-bold">§ 8</span>
+            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
+              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
+                <span className="text-[#78350f] font-bold">§ 8</span>
                 Datenschutz
               </h2>
-              <div className="text-[#0a1628]/80 space-y-4 text-base">
+              <div className="text-[#1c1917]/80 space-y-4 text-base">
                 <div className="flex items-start gap-3">
-                  <Shield className="h-5 w-5 text-[#c9a227] mt-0.5 shrink-0" />
+                  <Shield className="h-5 w-5 text-[#78350f] mt-0.5 shrink-0" />
                   <p className="leading-relaxed">
                     Die Parteien verpflichten sich, die geltenden Datenschutzvorschriften, insbesondere 
                     DSGVO und BDSG, einzuhalten. Soweit der Anbieter personenbezogene Daten im Auftrag 
@@ -209,18 +209,18 @@ export default function AGBPage() {
                   </p>
                 </div>
                 <p className="text-base">
-                  → <a href="/datenschutz" className="text-[#7a5e12] hover:text-[#c9a227] transition-colors underline underline-offset-2">Zur Datenschutzerklärung</a>
+                  → <a href="/datenschutz" className="text-[#78350f] hover:text-[#78350f] transition-colors underline underline-offset-2">Zur Datenschutzerklärung</a>
                 </p>
               </div>
             </section>
 
             {/* § 9 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#0a1628] mb-4 flex items-center gap-3">
-                <span className="text-[#7a5e12] font-bold">§ 9</span>
+            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
+              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
+                <span className="text-[#78350f] font-bold">§ 9</span>
                 Gewährleistung
               </h2>
-              <p className="text-[#0a1628]/80 leading-relaxed text-base">
+              <p className="text-[#1c1917]/80 leading-relaxed text-base">
                 Der Anbieter gewährleistet, dass die Software im Wesentlichen der vereinbarten 
                 Leistungsbeschreibung entspricht. Mängel werden innerhalb angemessener Frist 
                 beseitigt. Gewährleistungsansprüche verjähren 12 Monate nach Lieferung oder 
@@ -229,12 +229,12 @@ export default function AGBPage() {
             </section>
 
             {/* § 10 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#0a1628] mb-4 flex items-center gap-3">
-                <span className="text-[#7a5e12] font-bold">§ 10</span>
+            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
+              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
+                <span className="text-[#78350f] font-bold">§ 10</span>
                 Haftung
               </h2>
-              <div className="text-[#0a1628]/80 space-y-4 leading-relaxed text-base">
+              <div className="text-[#1c1917]/80 space-y-4 leading-relaxed text-base">
                 <p>
                   Der Anbieter haftet unbeschränkt bei Vorsatz und grober Fahrlässigkeit, für 
                   Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit sowie 
@@ -249,33 +249,33 @@ export default function AGBPage() {
             </section>
 
             {/* § 11-14 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#0a1628] mb-4 flex items-center gap-3">
-                <span className="text-[#7a5e12] font-bold">§ 11-14</span>
+            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
+              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
+                <span className="text-[#78350f] font-bold">§ 11-14</span>
                 Weitere Bestimmungen
               </h2>
-              <div className="text-[#0a1628]/80 space-y-3 text-base">
-                <p><strong className="text-[#0a1628]">Verschwiegenheit:</strong> 3 Jahre nach Vertragsende</p>
-                <p><strong className="text-[#0a1628]">Höhere Gewalt:</strong> Umfasst Pandemien, Cyberangriffe</p>
-                <p><strong className="text-[#0a1628]">Änderungen:</strong> 6 Wochen Vorankündigung</p>
-                <p><strong className="text-[#0a1628]">Anwendbares Recht:</strong> Deutsches Recht, unter Ausschluss des UN-Kaufrechts</p>
-                <p><strong className="text-[#0a1628]">Gerichtsstand:</strong> Berlin</p>
+              <div className="text-[#1c1917]/80 space-y-3 text-base">
+                <p><strong className="text-[#1c1917]">Verschwiegenheit:</strong> 3 Jahre nach Vertragsende</p>
+                <p><strong className="text-[#1c1917]">Höhere Gewalt:</strong> Umfasst Pandemien, Cyberangriffe</p>
+                <p><strong className="text-[#1c1917]">Änderungen:</strong> 6 Wochen Vorankündigung</p>
+                <p><strong className="text-[#1c1917]">Anwendbares Recht:</strong> Deutsches Recht, unter Ausschluss des UN-Kaufrechts</p>
+                <p><strong className="text-[#1c1917]">Gerichtsstand:</strong> Berlin</p>
               </div>
             </section>
 
             {/* Anbieter */}
-            <section className="bg-white rounded-2xl p-8 border border-[#0a1628]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#0a1628] mb-4">Anbieter</h2>
-              <div className="text-[#0a1628]/80 space-y-2 text-base">
-                <p className="font-medium text-[#0a1628]">aitema GmbH</p>
+            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
+              <h2 className="text-xl font-semibold text-[#1c1917] mb-4">Anbieter</h2>
+              <div className="text-[#1c1917]/80 space-y-2 text-base">
+                <p className="font-medium text-[#1c1917]">aitema GmbH</p>
                 <p>Prenzlauer Allee 229</p>
                 <p>10405 Berlin</p>
-                <p className="text-[#0a1628]/50">Deutschland</p>
+                <p className="text-[#1c1917]/50">Deutschland</p>
                 <p className="pt-2">
                   E-Mail:{" "}
                   <a 
                     href="mailto:office@aitema.de" 
-                    className="text-[#7a5e12] hover:text-[#c9a227] transition-colors underline underline-offset-2"
+                    className="text-[#78350f] hover:text-[#78350f] transition-colors underline underline-offset-2"
                   >
                     office@aitema.de
                   </a>

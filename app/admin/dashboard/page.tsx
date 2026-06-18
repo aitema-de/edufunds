@@ -144,7 +144,7 @@ function getStatusBgColor(status: 'healthy' | 'warning' | 'critical'): string {
 function getHttpStatusColor(code: number): string {
   if (code < 300) return 'text-emerald-400';
   if (code < 400) return 'text-amber-400';
-  if (code < 500) return 'text-[#c9a227]';
+  if (code < 500) return 'text-[#d97706]';
   return 'text-red-400';
 }
 

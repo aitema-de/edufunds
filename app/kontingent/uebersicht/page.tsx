@@ -23,8 +23,8 @@ interface BuyerCode {
   redemptions: Redemption[];
 }
 
-const GOLD = "#c9a227";
-const INK = "#0a1628";
+const GOLD = "#78350f";
+const INK = "#1c1917";
 const NEXT = "/kontingent/uebersicht";
 
 function sourceLabel(s: string): string {
@@ -116,12 +116,12 @@ export default function KontingentUebersichtPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen" style={{ backgroundColor: "#f8f5f0" }}>
+      <main className="min-h-screen" style={{ backgroundColor: "#fdfdfc" }}>
         <section className="pt-32 pb-10">
           <div className="container mx-auto px-6 max-w-3xl">
             <span
               className="inline-block px-4 py-2 rounded-full text-xs font-medium tracking-wider uppercase mb-4"
-              style={{ backgroundColor: "rgba(201, 162, 39, 0.1)", color: "#7a5e12" }}
+              style={{ backgroundColor: "rgba(120, 53, 15, 0.1)", color: "#78350f" }}
             >
               Käufer-Übersicht
             </span>
@@ -143,14 +143,14 @@ export default function KontingentUebersichtPage() {
             )}
 
             {loading ? (
-              <div className="flex items-center gap-3 rounded-xl border border-[#0a1628]/10 bg-white p-6 text-slate-700">
+              <div className="flex items-center gap-3 rounded-xl border border-[#1c1917]/10 bg-white p-6 text-slate-700">
                 <Loader2 className="h-5 w-5 animate-spin" style={{ color: GOLD }} />
                 Lade…
               </div>
             ) : !email ? (
               // Nicht angemeldet -> Magic-Link anfordern
               sent ? (
-                <div className="rounded-xl border border-[#0a1628]/10 bg-white p-6">
+                <div className="rounded-xl border border-[#1c1917]/10 bg-white p-6">
                   <div className="flex items-center gap-2 font-medium text-emerald-700">
                     <Check className="h-5 w-5" /> Link gesendet
                   </div>
@@ -160,7 +160,7 @@ export default function KontingentUebersichtPage() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={requestLink} className="rounded-xl border border-[#0a1628]/10 bg-white p-6">
+                <form onSubmit={requestLink} className="rounded-xl border border-[#1c1917]/10 bg-white p-6">
                   <div className="mb-3 flex items-center gap-2">
                     <Building2 className="h-5 w-5" style={{ color: GOLD }} />
                     <h2 className="text-base font-semibold" style={{ color: INK }}>Anmelden</h2>
@@ -176,7 +176,7 @@ export default function KontingentUebersichtPage() {
                       value={loginEmail}
                       onChange={(e) => setLoginEmail(e.target.value)}
                       placeholder="beschaffung@schule.de"
-                      className="flex-1 rounded-lg border border-[#0a1628]/15 bg-white px-3 py-2 text-sm"
+                      className="flex-1 rounded-lg border border-[#1c1917]/15 bg-white px-3 py-2 text-sm"
                       style={{ color: INK }}
                     />
                     <button
@@ -199,7 +199,7 @@ export default function KontingentUebersichtPage() {
                 </form>
               )
             ) : codes.length === 0 ? (
-              <div className="rounded-xl border border-[#0a1628]/10 bg-white p-8 text-center">
+              <div className="rounded-xl border border-[#1c1917]/10 bg-white p-8 text-center">
                 <p className="text-sm text-slate-600">
                   Angemeldet als <strong>{email}</strong>. Mit dieser E-Mail sind keine Kontingente verknüpft.
                 </p>
@@ -221,7 +221,7 @@ export default function KontingentUebersichtPage() {
                     const pct = c.creditsTotal > 0 ? Math.round((c.creditsUsed / c.creditsTotal) * 100) : 0;
                     const open = openCode === c.code;
                     return (
-                      <div key={c.code} className="rounded-xl border border-[#0a1628]/10 bg-white p-5">
+                      <div key={c.code} className="rounded-xl border border-[#1c1917]/10 bg-white p-5">
                         <div className="flex flex-wrap items-center justify-between gap-3">
                           <div className="flex items-center gap-2">
                             <span
@@ -233,7 +233,7 @@ export default function KontingentUebersichtPage() {
                             <button
                               onClick={() => copy(c.code)}
                               className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-medium"
-                              style={{ color: "#7a5e12" }}
+                              style={{ color: "#78350f" }}
                             >
                               <Copy className="h-3.5 w-3.5" />
                               {copied === c.code ? "Kopiert" : "Kopieren"}
@@ -273,7 +273,7 @@ export default function KontingentUebersichtPage() {
                             <button
                               onClick={() => setOpenCode(open ? null : c.code)}
                               className="flex items-center gap-1 text-sm font-medium"
-                              style={{ color: "#1e3a61" }}
+                              style={{ color: "#57534e" }}
                             >
                               <ChevronDown className={`h-4 w-4 transition-transform ${open ? "rotate-180" : ""}`} />
                               {c.redemptions.length} Einlösung{c.redemptions.length === 1 ? "" : "en"}
@@ -298,7 +298,7 @@ export default function KontingentUebersichtPage() {
                 <p className="mt-6 flex items-center gap-2 text-xs" style={{ color: "#64748b" }}>
                   <ShieldCheck className="h-4 w-4" style={{ color: GOLD }} />
                   Brauchen Sie mehr?{" "}
-                  <Link href="/kontingent" className="underline" style={{ color: "#7a5e12" }}>
+                  <Link href="/kontingent" className="underline" style={{ color: "#78350f" }}>
                     Weiteres Kontingent kaufen
                   </Link>
                 </p>

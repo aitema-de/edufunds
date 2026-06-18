@@ -40,11 +40,11 @@ function stageStatus(
 
 export function GeneratingProgress({ stage, currentStage }: Props) {
   return (
-    <div className="rounded-xl border border-[#c9a227]/40 bg-white p-10">
+    <div className="rounded-xl border border-[#78350f]/40 bg-white p-10">
       <div className="mb-6 flex items-center gap-3">
-        <Loader2 className="h-8 w-8 animate-spin text-[#c9a227]" />
+        <Loader2 className="h-8 w-8 animate-spin text-[#78350f]" />
         <div>
-          <h3 className="text-xl font-semibold text-[#0a1628]">
+          <h3 className="text-xl font-semibold text-[#1c1917]">
             Pipeline schreibt Ihren Antrag
           </h3>
           <p className="text-sm text-slate-600">
@@ -58,19 +58,19 @@ export function GeneratingProgress({ stage, currentStage }: Props) {
           const status = stageStatus(s.key, currentStage);
           const containerClass =
             status === "active"
-              ? "flex items-start gap-3 rounded-lg border border-[#c9a227]/40 bg-[#c9a227]/5 p-3"
+              ? "flex items-start gap-3 rounded-lg border border-[#78350f]/40 bg-[#78350f]/5 p-3"
               : status === "done"
-                ? "flex items-start gap-3 rounded-lg border border-[#0a1628]/10 bg-emerald-500/5 p-3"
-                : "flex items-start gap-3 rounded-lg border border-[#0a1628]/10 bg-[#f8f5f0] p-3";
+                ? "flex items-start gap-3 rounded-lg border border-[#1c1917]/10 bg-emerald-500/5 p-3"
+                : "flex items-start gap-3 rounded-lg border border-[#1c1917]/10 bg-[#fdfdfc] p-3";
           return (
             <li key={s.key} className={containerClass}>
               <div className="mt-0.5">
                 {status === "pending" && <Circle className="h-5 w-5 text-slate-600" />}
-                {status === "active" && <Loader2 className="h-5 w-5 animate-spin text-[#c9a227]" />}
+                {status === "active" && <Loader2 className="h-5 w-5 animate-spin text-[#78350f]" />}
                 {status === "done" && <CheckCircle className="h-5 w-5 text-emerald-400" />}
               </div>
               <div className="flex-1">
-                <div className="text-sm font-medium text-[#1e3a61]">{s.label}</div>
+                <div className="text-sm font-medium text-[#57534e]">{s.label}</div>
                 <div className="text-xs text-slate-500">{s.detail}</div>
               </div>
             </li>
@@ -79,7 +79,7 @@ export function GeneratingProgress({ stage, currentStage }: Props) {
       </ul>
 
       {stage && (
-        <p className="mt-6 text-center text-sm text-[#c9a227]">{stage}</p>
+        <p className="mt-6 text-center text-sm text-[#78350f]">{stage}</p>
       )}
     </div>
   );

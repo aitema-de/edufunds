@@ -59,9 +59,9 @@ export function ResumeOptIn({ sessionToken }: { sessionToken: string }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 bg-white/70 px-3 py-2 text-sm text-[#1e3a61] transition hover:border-[#c9a227]/50 hover:bg-[#c9a227]/5"
+        className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 bg-white/70 px-3 py-2 text-sm text-[#57534e] transition hover:border-[#78350f]/50 hover:bg-[#78350f]/5"
       >
-        <Smartphone className="h-4 w-4 text-[#c9a227]" />
+        <Smartphone className="h-4 w-4 text-[#78350f]" />
         Auf anderem Gerät weitermachen
       </button>
     );
@@ -70,9 +70,9 @@ export function ResumeOptIn({ sessionToken }: { sessionToken: string }) {
   return (
     <form
       onSubmit={submit}
-      className="rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 px-4 py-3"
+      className="rounded-lg border border-[#78350f]/30 bg-[#78350f]/5 px-4 py-3"
     >
-      <label className="block text-sm font-medium text-[#1e3a61]">
+      <label className="block text-sm font-medium text-[#57534e]">
         Auf anderem Gerät weitermachen
       </label>
       <p className="mt-0.5 mb-2 text-xs text-slate-600">
@@ -86,12 +86,12 @@ export function ResumeOptIn({ sessionToken }: { sessionToken: string }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="name@schule.de"
-          className="flex-1 rounded-lg border border-[#0a1628]/15 bg-white px-3 py-2 text-sm text-[#0a1628]"
+          className="flex-1 rounded-lg border border-[#1c1917]/15 bg-white px-3 py-2 text-sm text-[#1c1917]"
         />
         <button
           type="submit"
           disabled={busy}
-          className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#c9a227] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#b8921e] disabled:opacity-60"
+          className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#78350f] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#92400e] disabled:opacity-60"
         >
           {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
           Link senden

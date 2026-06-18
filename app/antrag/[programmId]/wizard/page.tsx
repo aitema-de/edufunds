@@ -43,7 +43,7 @@ export default async function WizardPage({ params }: Props) {
       <PageHero
         variant="light"
         badge={{
-          icon: <Sparkles className="w-3.5 h-3.5" style={{ color: "#c9a227" }} />,
+          icon: <Sparkles className="w-3.5 h-3.5" style={{ color: "#78350f" }} />,
           text: "KI-Antragswizard · Beta",
         }}
         title="Adaptive Befragung +"
@@ -54,14 +54,14 @@ export default async function WizardPage({ params }: Props) {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href={`/foerderprogramme/${programm.id}`}
-              className="inline-flex items-center gap-2 text-sm text-[#1e3a61] transition hover:text-[#c9a227]"
+              className="inline-flex items-center gap-2 text-sm text-[#57534e] transition hover:text-[#78350f]"
             >
               <ArrowLeft className="h-4 w-4" />
               Zurück zum Programm
             </Link>
             <Link
               href="/antrag/meine"
-              className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 bg-white/70 px-3 py-1.5 text-sm font-medium text-[#0a1628] backdrop-blur-sm transition hover:border-[#c9a227]/40 hover:text-[#c9a227]"
+              className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 bg-white/70 px-3 py-1.5 text-sm font-medium text-[#1c1917] backdrop-blur-sm transition hover:border-[#78350f]/40 hover:text-[#78350f]"
             >
               <FolderOpen className="h-4 w-4" />
               Meine Anträge
@@ -74,13 +74,13 @@ export default async function WizardPage({ params }: Props) {
             </div>
           )}
           {richtlinie && richtlinieStub && (
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#c9a227]/40 bg-[#c9a227]/10 px-3 py-1 text-xs text-[#b08d1f]">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#78350f]/40 bg-[#78350f]/10 px-3 py-1 text-xs text-[#78350f]">
               <AlertCircle className="h-3.5 w-3.5" />
               Richtlinie teilweise erfasst — einige Felder generisch
             </div>
           )}
           {!richtlinie && (
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#0a1628]/15 bg-white/70 px-3 py-1 text-xs text-slate-600 backdrop-blur-sm">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#1c1917]/15 bg-white/70 px-3 py-1 text-xs text-slate-600 backdrop-blur-sm">
               <AlertCircle className="h-3.5 w-3.5" />
               Keine Richtlinie erfasst — generische Struktur, offizielle Richtlinie parallel prüfen
             </div>
@@ -90,7 +90,7 @@ export default async function WizardPage({ params }: Props) {
       <main
         id="main-content"
         className="relative pb-24"
-        style={{ backgroundColor: "#f8f5f0" }}
+        style={{ backgroundColor: "#fdfdfc" }}
       >
         <div className="container mx-auto px-4">
           <WizardShell programm={programm} einreichung={einreichung} />

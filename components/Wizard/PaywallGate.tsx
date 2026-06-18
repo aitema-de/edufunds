@@ -142,18 +142,18 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
   return (
     <>
       {/* Dunkler Verlauf ueber dem Content — erwartet, dass der Eltern-Container `relative` ist. */}
-      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-[#0a1628]/40 via-[#0a1628]/80 to-[#0a1628]" />
+      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-[#1c1917]/40 via-[#1c1917]/80 to-[#1c1917]" />
       <div className="absolute inset-0 z-20 flex items-center justify-center p-6">
-        <div className="max-w-lg rounded-xl border border-[#c9a227]/40 bg-white/95 p-8 text-center shadow-2xl">
-          <div className="mb-4 inline-flex rounded-full bg-[#c9a227]/10 p-3">
-            <Lock className="h-6 w-6 text-[#c9a227]" />
+        <div className="max-w-lg rounded-xl border border-[#78350f]/40 bg-white/95 p-8 text-center shadow-2xl">
+          <div className="mb-4 inline-flex rounded-full bg-[#78350f]/10 p-3">
+            <Lock className="h-6 w-6 text-[#78350f]" />
           </div>
-          <h3 className="mb-2 text-2xl font-semibold text-[#0a1628]">
+          <h3 className="mb-2 text-2xl font-semibold text-[#1c1917]">
             Antrag + Finanzplan freischalten
           </h3>
           <p className="mb-5 text-sm text-slate-600">
             Ihr Antragstext und der Finanzplan sind fertig. Mit dem{" "}
-            <strong className="text-[#1e3a61]">{tierLabel}</strong> bekommen Sie den
+            <strong className="text-[#57534e]">{tierLabel}</strong> bekommen Sie den
             vollständigen Text und alle Downloads.
           </p>
 
@@ -167,7 +167,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
           </ul>
 
           <div className="mb-6 flex items-baseline justify-center gap-2">
-            <span className="text-4xl font-bold text-[#0a1628]">{priceEur.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €</span>
+            <span className="text-4xl font-bold text-[#1c1917]">{priceEur.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €</span>
             <span className="text-sm text-slate-600">einmalig</span>
           </div>
 
@@ -175,7 +175,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
             <div
               className={`mb-4 rounded-lg border p-3 text-left text-sm ${
                 isStripeDown
-                  ? "border-[#c9a227]/40 bg-[#c9a227]/10 text-[#1e3a61]"
+                  ? "border-[#78350f]/40 bg-[#78350f]/10 text-[#57534e]"
                   : "border-red-500/40 bg-red-500/10 text-red-200"
               }`}
             >
@@ -185,7 +185,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                   type="button"
                   onClick={DEV_MOCK_ENABLED ? devMockPay : startCheckout}
                   disabled={busy}
-                  className="mt-2 inline-flex items-center gap-1.5 rounded border border-[#0a1628]/20 bg-white px-3 py-1 text-xs text-[#1e3a61] hover:bg-slate-100 disabled:opacity-50"
+                  className="mt-2 inline-flex items-center gap-1.5 rounded border border-[#1c1917]/20 bg-white px-3 py-1 text-xs text-[#57534e] hover:bg-slate-100 disabled:opacity-50"
                 >
                   <RefreshCw className="h-3 w-3" />
                   Erneut versuchen
@@ -203,7 +203,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
             type="button"
             onClick={DEV_MOCK_ENABLED ? devMockPay : startCheckout}
             disabled={busy || (!DEV_MOCK_ENABLED && isStripeDown)}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#c9a227] px-6 py-3 font-semibold text-white transition hover:bg-[#b8921e] disabled:opacity-50"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#78350f] px-6 py-3 font-semibold text-white transition hover:bg-[#92400e] disabled:opacity-50"
           >
             {busy ? (
               <Loader2 className="h-5 w-5 animate-spin" />
@@ -234,7 +234,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
               <button
                 type="button"
                 onClick={() => setShowRedeem(true)}
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-[#1e3a61] transition-colors hover:text-[#c9a227]"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-[#57534e] transition-colors hover:text-[#78350f]"
               >
                 <Ticket className="h-4 w-4" />
                 Kontingent-Code einlösen
@@ -243,7 +243,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
               <div className="text-left">
                 <label
                   htmlFor="kontingent-code"
-                  className="mb-1 block text-sm font-medium text-[#0a1628]"
+                  className="mb-1 block text-sm font-medium text-[#1c1917]"
                 >
                   Kontingent-Code Ihres Trägers
                 </label>
@@ -263,13 +263,13 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                     placeholder="EDU-XXXX-XXXX"
                     autoComplete="off"
                     disabled={redeemBusy}
-                    className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm uppercase tracking-wider text-[#0a1628] placeholder:normal-case placeholder:tracking-normal focus:border-[#c9a227] focus:outline-none disabled:opacity-50"
+                    className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm uppercase tracking-wider text-[#1c1917] placeholder:normal-case placeholder:tracking-normal focus:border-[#78350f] focus:outline-none disabled:opacity-50"
                   />
                   <button
                     type="button"
                     onClick={redeemCode}
                     disabled={redeemBusy}
-                    className="inline-flex items-center gap-1.5 rounded-lg bg-[#1e3a61] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#16304f] disabled:opacity-50"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-[#57534e] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#16304f] disabled:opacity-50"
                   >
                     {redeemBusy ? (
                       <Loader2 className="h-4 w-4 animate-spin" />

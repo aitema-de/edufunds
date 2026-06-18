@@ -35,7 +35,7 @@ export default function RegistrierenPage() {
     return (
       <>
         <Header />
-        <main className="min-h-screen pt-32 pb-20" style={{ backgroundColor: "#f8f5f0" }}>
+        <main className="min-h-screen pt-32 pb-20" style={{ backgroundColor: "#fdfdfc" }}>
           <div className="container mx-auto px-6 max-w-md">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -45,7 +45,7 @@ export default function RegistrierenPage() {
               <div className="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-6">
                 <CheckCircle className="w-10 h-10 text-green-500" />
               </div>
-              <h1 className="font-serif text-3xl mb-4" style={{ color: "#0a1628" }}>
+              <h1 className="font-serif text-3xl mb-4" style={{ color: "#1c1917" }}>
                 Willkommen bei EduFunds!
               </h1>
               <p className="mb-8" style={{ color: "#475569" }}>
@@ -62,7 +62,7 @@ export default function RegistrierenPage() {
                 </Link>
                 <Link
                   href="/"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[#c9a227]/50 text-[#7a5e12] w-full justify-center"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[#d97706]/50 text-[#d97706] w-full justify-center"
                 >
                   Zur Startseite
                 </Link>
@@ -78,7 +78,7 @@ export default function RegistrierenPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen pt-32 pb-20" style={{ backgroundColor: "#f8f5f0" }}>
+      <main className="min-h-screen pt-32 pb-20" style={{ backgroundColor: "#fdfdfc" }}>
         <div className="container mx-auto px-6">
           <div className="max-w-md mx-auto">
             {/* Header */}
@@ -87,7 +87,7 @@ export default function RegistrierenPage() {
               animate={{ opacity: 1, y: 0 }}
               className="text-center mb-10"
             >
-              <h1 className="font-serif text-3xl mb-4" style={{ color: "#0a1628" }}>
+              <h1 className="font-serif text-3xl mb-4" style={{ color: "#1c1917" }}>
                 Kostenlos registrieren
               </h1>
               <p style={{ color: "#475569" }}>
@@ -103,23 +103,23 @@ export default function RegistrierenPage() {
               transition={{ delay: 0.1 }}
               className="p-8 rounded-2xl"
               style={{
-                backgroundColor: "rgba(15, 31, 56, 0.6)",
-                border: "1px solid rgba(201, 162, 39, 0.1)",
+                backgroundColor: "rgba(41, 37, 36, 0.6)",
+                border: "1px solid rgba(217, 119, 6, 0.1)",
               }}
             >
               <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Name */}
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: "#f8f5f0" }}>
+                  <label className="block text-sm font-medium mb-2" style={{ color: "#fdfdfc" }}>
                     Name
                   </label>
                   <div className="relative">
-                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: "#64748b" }} />
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: "#78716c" }} />
                     <input
                       type="text"
                       required
                       placeholder="Ihr vollständiger Name"
-                      className="w-full pl-12 pr-4 py-3 rounded-xl bg-[#050d18] border border-[#1e3a61] text-[#f8f5f0] placeholder:text-[#64748b] focus:border-[#c9a227] focus:outline-none transition-colors"
+                      className="w-full pl-12 pr-4 py-3 rounded-xl bg-[#1c1917] border border-[#a8a29e] text-[#fdfdfc] placeholder:text-[#78716c] focus:border-[#d97706] focus:outline-none transition-colors"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     />
@@ -128,16 +128,16 @@ export default function RegistrierenPage() {
 
                 {/* Email */}
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: "#f8f5f0" }}>
+                  <label className="block text-sm font-medium mb-2" style={{ color: "#fdfdfc" }}>
                     E-Mail
                   </label>
                   <div className="relative">
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: "#64748b" }} />
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: "#78716c" }} />
                     <input
                       type="email"
                       required
                       placeholder="ihre@email.de"
-                      className="w-full pl-12 pr-4 py-3 rounded-xl bg-[#050d18] border border-[#1e3a61] text-[#f8f5f0] placeholder:text-[#64748b] focus:border-[#c9a227] focus:outline-none transition-colors"
+                      className="w-full pl-12 pr-4 py-3 rounded-xl bg-[#1c1917] border border-[#a8a29e] text-[#fdfdfc] placeholder:text-[#78716c] focus:border-[#d97706] focus:outline-none transition-colors"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     />
@@ -146,16 +146,16 @@ export default function RegistrierenPage() {
 
                 {/* Schule */}
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: "#f8f5f0" }}>
+                  <label className="block text-sm font-medium mb-2" style={{ color: "#fdfdfc" }}>
                     Schule
                   </label>
                   <div className="relative">
-                    <School className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: "#64748b" }} />
+                    <School className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: "#78716c" }} />
                     <input
                       type="text"
                       required
                       placeholder="Name Ihrer Schule"
-                      className="w-full pl-12 pr-4 py-3 rounded-xl bg-[#050d18] border border-[#1e3a61] text-[#f8f5f0] placeholder:text-[#64748b] focus:border-[#c9a227] focus:outline-none transition-colors"
+                      className="w-full pl-12 pr-4 py-3 rounded-xl bg-[#1c1917] border border-[#a8a29e] text-[#fdfdfc] placeholder:text-[#78716c] focus:border-[#d97706] focus:outline-none transition-colors"
                       value={formData.schule}
                       onChange={(e) => setFormData({ ...formData, schule: e.target.value })}
                     />
@@ -164,17 +164,17 @@ export default function RegistrierenPage() {
 
                 {/* Password */}
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: "#f8f5f0" }}>
+                  <label className="block text-sm font-medium mb-2" style={{ color: "#fdfdfc" }}>
                     Passwort
                   </label>
                   <div className="relative">
-                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: "#64748b" }} />
+                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: "#78716c" }} />
                     <input
                       type="password"
                       required
                       placeholder="Mindestens 8 Zeichen"
                       minLength={8}
-                      className="w-full pl-12 pr-4 py-3 rounded-xl bg-[#050d18] border border-[#1e3a61] text-[#f8f5f0] placeholder:text-[#64748b] focus:border-[#c9a227] focus:outline-none transition-colors"
+                      className="w-full pl-12 pr-4 py-3 rounded-xl bg-[#1c1917] border border-[#a8a29e] text-[#fdfdfc] placeholder:text-[#78716c] focus:border-[#d97706] focus:outline-none transition-colors"
                       value={formData.password}
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     />
@@ -187,17 +187,17 @@ export default function RegistrierenPage() {
                     type="checkbox"
                     id="terms"
                     required
-                    className="mt-1 w-4 h-4 rounded border-[#1e3a61] bg-[#050d18] text-[#c9a227] focus:ring-[#c9a227]"
+                    className="mt-1 w-4 h-4 rounded border-[#a8a29e] bg-[#1c1917] text-[#d97706] focus:ring-[#d97706]"
                     checked={formData.acceptTerms}
                     onChange={(e) => setFormData({ ...formData, acceptTerms: e.target.checked })}
                   />
-                  <label htmlFor="terms" className="text-sm" style={{ color: "#94a3b8" }}>
+                  <label htmlFor="terms" className="text-sm" style={{ color: "#a8a29e" }}>
                     Ich akzeptiere die{" "}
-                    <Link href="/agb" className="text-[#c9a227] hover:underline">
+                    <Link href="/agb" className="text-[#d97706] hover:underline">
                       AGB
                     </Link>{" "}
                     und die{" "}
-                    <Link href="/datenschutz" className="text-[#c9a227] hover:underline">
+                    <Link href="/datenschutz" className="text-[#d97706] hover:underline">
                       Datenschutzerklärung
                     </Link>
                   </label>
@@ -217,9 +217,9 @@ export default function RegistrierenPage() {
               </form>
 
               {/* Login Link */}
-              <p className="mt-6 text-center text-sm" style={{ color: "#94a3b8" }}>
+              <p className="mt-6 text-center text-sm" style={{ color: "#a8a29e" }}>
                 Bereits registriert?{" "}
-                <Link href="/login" className="text-[#c9a227] hover:underline font-medium">
+                <Link href="/login" className="text-[#d97706] hover:underline font-medium">
                   Hier anmelden
                 </Link>
               </p>
@@ -239,7 +239,7 @@ export default function RegistrierenPage() {
                 "DSGVO-konform",
               ].map((benefit, i) => (
                 <div key={i} className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-[#c9a227] flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-[#d97706] flex-shrink-0" />
                   <span className="text-sm" style={{ color: "#475569" }}>
                     {benefit}
                   </span>

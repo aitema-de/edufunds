@@ -32,13 +32,13 @@ export function KiHinweis({
   const text =
     variant === "interaktion" ? (
       <>
-        <strong className="font-semibold text-[#0a1628]">Hinweis:</strong> Hier unterstützt Sie ein
+        <strong className="font-semibold text-[#1c1917]">Hinweis:</strong> Hier unterstützt Sie ein
         KI-Assistent. Ihre Angaben werden von einer künstlichen Intelligenz verarbeitet, um
         Förderprogramme zu finden und einen Antragsentwurf zu erstellen.
       </>
     ) : (
       <>
-        <strong className="font-semibold text-[#0a1628]">Mit KI erstellt:</strong> Dieser
+        <strong className="font-semibold text-[#1c1917]">Mit KI erstellt:</strong> Dieser
         Antragsentwurf wurde von einer künstlichen Intelligenz generiert. Bitte prüfen Sie ihn vor
         der Einreichung — die KI kann Fehler machen.
       </>
@@ -46,10 +46,10 @@ export function KiHinweis({
 
   return (
     <div
-      className={`flex items-start gap-3 rounded-xl border border-[#c9a227]/30 bg-[#c9a227]/[0.06] px-4 py-3 ${className}`}
+      className={`flex items-start gap-3 rounded-xl border border-[#78350f]/30 bg-[#78350f]/[0.06] px-4 py-3 ${className}`}
     >
-      <Icon className="mt-0.5 h-4 w-4 shrink-0 text-[#c9a227]" />
-      <p className="text-xs leading-relaxed text-[#1e3a61]">{text}</p>
+      <Icon className="mt-0.5 h-4 w-4 shrink-0 text-[#78350f]" />
+      <p className="text-xs leading-relaxed text-[#57534e]">{text}</p>
     </div>
   );
 }

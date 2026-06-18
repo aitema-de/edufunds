@@ -57,7 +57,7 @@ function buildMarkdownComponents(paid: boolean, programmId: string) {
   const usedIds = new Map<string, number>();
   return {
     h1: ({ children }: { children?: React.ReactNode }) => (
-      <h1 className="mb-6 text-2xl font-semibold text-[#0a1628]">{children}</h1>
+      <h1 className="mb-6 text-2xl font-semibold text-[#1c1917]">{children}</h1>
     ),
     h2: ({ children }: { children?: React.ReactNode }) => {
       const text =
@@ -73,13 +73,13 @@ function buildMarkdownComponents(paid: boolean, programmId: string) {
       return (
         <h2
           id={id}
-          className="group mb-3 mt-8 flex items-center gap-2 text-lg font-semibold text-[#7a5e12] scroll-mt-24"
+          className="group mb-3 mt-8 flex items-center gap-2 text-lg font-semibold text-[#78350f] scroll-mt-24"
         >
           <span>{children}</span>
           {paid && (
             <a
               href={`/antrag/${programmId}/wizard?editAnswer=true`}
-              className="opacity-0 group-hover:opacity-100 text-slate-500 hover:text-[#1e3a61] transition"
+              className="opacity-0 group-hover:opacity-100 text-slate-500 hover:text-[#57534e] transition"
               title="Antwort zurück und neu beantworten"
               aria-label="Sektion bearbeiten"
             >
@@ -90,22 +90,22 @@ function buildMarkdownComponents(paid: boolean, programmId: string) {
       );
     },
     h3: ({ children }: { children?: React.ReactNode }) => (
-      <h3 className="mb-2 mt-6 text-base font-semibold text-[#0a1628]">{children}</h3>
+      <h3 className="mb-2 mt-6 text-base font-semibold text-[#1c1917]">{children}</h3>
     ),
     p: ({ children }: { children?: React.ReactNode }) => (
-      <p className="mb-4 leading-relaxed text-[#1e3a61]">{children}</p>
+      <p className="mb-4 leading-relaxed text-[#57534e]">{children}</p>
     ),
     strong: ({ children }: { children?: React.ReactNode }) => (
-      <strong className="font-semibold text-[#0a1628]">{children}</strong>
+      <strong className="font-semibold text-[#1c1917]">{children}</strong>
     ),
     em: ({ children }: { children?: React.ReactNode }) => (
-      <em className="italic text-[#1e3a61]">{children}</em>
+      <em className="italic text-[#57534e]">{children}</em>
     ),
     ul: ({ children }: { children?: React.ReactNode }) => (
-      <ul className="mb-4 ml-6 list-disc space-y-1 text-[#1e3a61]">{children}</ul>
+      <ul className="mb-4 ml-6 list-disc space-y-1 text-[#57534e]">{children}</ul>
     ),
     ol: ({ children }: { children?: React.ReactNode }) => (
-      <ol className="mb-4 ml-6 list-decimal space-y-1 text-[#1e3a61]">{children}</ol>
+      <ol className="mb-4 ml-6 list-decimal space-y-1 text-[#57534e]">{children}</ol>
     ),
     li: ({ children }: { children?: React.ReactNode }) => (
       <li className="leading-relaxed">{children}</li>
@@ -286,10 +286,10 @@ export function AntragResult({
   };
 
   return (
-    <div className="rounded-xl border border-[#c9a227]/40 bg-white p-6">
+    <div className="rounded-xl border border-[#78350f]/40 bg-white p-6">
       <header className="mb-6 flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-semibold text-[#0a1628]">
+          <h2 className="text-2xl font-semibold text-[#1c1917]">
             Antragsentwurf {paid ? "freigeschaltet" : "fertig"}
           </h2>
           <p className="text-sm text-slate-600">für {programm.name}</p>
@@ -301,7 +301,7 @@ export function AntragResult({
             type="button"
             onClick={downloadRtf}
             disabled={exportBlocked}
-            className="inline-flex items-center gap-2 rounded-lg bg-[#c9a227] px-4 py-2 sm:py-3 text-sm font-semibold text-white transition hover:bg-[#b8921e] disabled:opacity-50 disabled:pointer-events-none"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#78350f] px-4 py-2 sm:py-3 text-sm font-semibold text-white transition hover:bg-[#92400e] disabled:opacity-50 disabled:pointer-events-none"
           >
             <Download className="h-4 w-4" /> Antrag herunterladen (bearbeitbar)
           </button>
@@ -310,7 +310,7 @@ export function AntragResult({
             onClick={downloadPdf}
             disabled={pdfBusy || exportBlocked}
             title="PDF zum Ansehen und Drucken (nicht bearbeitbar)."
-            className="inline-flex items-center gap-2 rounded-lg border border-[#c9a227]/40 bg-[#c9a227]/10 px-3 py-2 text-sm text-[#1e3a61] transition hover:bg-[#c9a227]/20 disabled:opacity-50 disabled:pointer-events-none"
+            className="inline-flex items-center gap-2 rounded-lg border border-[#78350f]/40 bg-[#78350f]/10 px-3 py-2 text-sm text-[#57534e] transition hover:bg-[#78350f]/20 disabled:opacity-50 disabled:pointer-events-none"
           >
             {pdfBusy ? (
               <Loader2 className="h-4 w-4 animate-spin" />
@@ -323,7 +323,7 @@ export function AntragResult({
             type="button"
             onClick={copy}
             disabled={exportBlocked}
-            className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-3 py-2 text-sm text-[#1e3a61] hover:bg-slate-100 disabled:opacity-40 disabled:pointer-events-none"
+            className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 px-3 py-2 text-sm text-[#57534e] hover:bg-slate-100 disabled:opacity-40 disabled:pointer-events-none"
           >
             {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
             {copied ? "Kopiert" : "Kopieren"}
@@ -332,7 +332,7 @@ export function AntragResult({
             type="button"
             onClick={() => download("text/plain;charset=utf-8", "txt")}
             disabled={exportBlocked}
-            className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-3 py-2 text-sm text-[#1e3a61] hover:bg-slate-100 disabled:opacity-40 disabled:pointer-events-none"
+            className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 px-3 py-2 text-sm text-[#57534e] hover:bg-slate-100 disabled:opacity-40 disabled:pointer-events-none"
           >
             <Download className="h-4 w-4" /> .txt
           </button>
@@ -340,7 +340,7 @@ export function AntragResult({
             <button
               type="button"
               onClick={onRestart}
-              className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-3 py-2 text-sm text-[#1e3a61] hover:bg-slate-100"
+              className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 px-3 py-2 text-sm text-[#57534e] hover:bg-slate-100"
             >
               <RefreshCw className="h-4 w-4" /> Neu
             </button>
@@ -389,11 +389,11 @@ export function AntragResult({
         </div>
       )}
       {!hasOpenHigh && hasConsistency && (
-        <div className="mb-5 flex items-start gap-3 rounded-lg border border-[#c9a227]/40 bg-[#c9a227]/10 p-4 text-sm text-[#0a1628]">
-          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#c9a227]" />
+        <div className="mb-5 flex items-start gap-3 rounded-lg border border-[#78350f]/40 bg-[#78350f]/10 p-4 text-sm text-[#1c1917]">
+          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#78350f]" />
           <div>
-            <div className="font-semibold text-[#0a1628]">Qualitätshinweise des KI-Prüfers</div>
-            <ul className="mt-1 list-disc pl-5 text-xs text-[#1e3a61]/80 space-y-0.5">
+            <div className="font-semibold text-[#1c1917]">Qualitätshinweise des KI-Prüfers</div>
+            <ul className="mt-1 list-disc pl-5 text-xs text-[#57534e]/80 space-y-0.5">
               <li>Antragstext und Finanzplan haben Inkonsistenzen ({generation.consistencyIssues?.length ?? 0}).</li>
               <li>Details unten unter „KI-Gutachten" — vor Einreichung selbst prüfen.</li>
             </ul>
@@ -405,7 +405,7 @@ export function AntragResult({
           <article
             ref={articleRef}
             className={
-              "rounded-lg border border-[#0a1628]/15 bg-white p-8 text-[#1e3a61] antrag-prose " +
+              "rounded-lg border border-[#1c1917]/15 bg-white p-8 text-[#57534e] antrag-prose " +
               (paid ? "" : "max-h-[420px] overflow-hidden blur-[3px] select-none")
             }
           >
@@ -444,15 +444,15 @@ export function AntragResult({
         />
       )}
       {paid && textVorschlaege.length > 0 && !sessionToken && (
-        <div className="mt-6 rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 p-4">
-          <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#0a1628]">
-            <Sparkles className="h-4 w-4 text-[#c9a227]" />
+        <div className="mt-6 rounded-lg border border-[#78350f]/30 bg-[#78350f]/5 p-4">
+          <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#1c1917]">
+            <Sparkles className="h-4 w-4 text-[#78350f]" />
             Vorschläge des Assistenten im Antragstext — bitte prüfen
           </div>
-          <ul className="space-y-1.5 text-xs text-[#1e3a61]">
+          <ul className="space-y-1.5 text-xs text-[#57534e]">
             {textVorschlaege.map((v, i) => (
-              <li key={i} className="flex gap-2 rounded border border-[#0a1628]/10 bg-white p-2">
-                <span className="shrink-0 text-[#c9a227]">›</span>
+              <li key={i} className="flex gap-2 rounded border border-[#1c1917]/10 bg-white p-2">
+                <span className="shrink-0 text-[#78350f]">›</span>
                 <span>„{v}"</span>
               </li>
             ))}
@@ -461,7 +461,7 @@ export function AntragResult({
       )}
       {paid && generation.critique && (
         <details
-          className="mt-6 rounded-lg border border-[#0a1628]/15 bg-white p-4"
+          className="mt-6 rounded-lg border border-[#1c1917]/15 bg-white p-4"
           open={showCritique}
           onToggle={(e) => setShowCritique((e.target as HTMLDetailsElement).open)}
         >
@@ -483,22 +483,22 @@ export function AntragResult({
                   f.schwere === "hoch"
                     ? "border-red-500/40 text-red-700"
                     : f.schwere === "mittel"
-                      ? "border-[#c9a227]/40 text-[#7a5e12]"
-                      : "border-[#0a1628]/20 text-slate-700";
+                      ? "border-[#78350f]/40 text-[#78350f]"
+                      : "border-[#1c1917]/20 text-slate-700";
                 return (
-                  <div key={i} className="rounded border border-[#0a1628]/15 bg-[#f8f5f0] p-2.5">
+                  <div key={i} className="rounded border border-[#1c1917]/15 bg-[#fdfdfc] p-2.5">
                     <div className="mb-1 flex flex-wrap items-center gap-1.5">
                       <span className={`rounded-full border px-2 py-0.5 text-[10px] uppercase ${schwereBadge}`}>
                         {f.schwere}
                       </span>
-                      <span className="rounded-full border border-[#0a1628]/15 px-2 py-0.5 text-[10px] text-slate-600">
+                      <span className="rounded-full border border-[#1c1917]/15 px-2 py-0.5 text-[10px] text-slate-600">
                         {CRITIQUE_KATEGORIE_LABELS[f.kategorie] ?? f.kategorie} · {f.abschnitt}
                       </span>
                       <span className={`rounded-full border px-2 py-0.5 text-[10px] uppercase ${badge}`}>
                         {status}
                       </span>
                     </div>
-                    <div className="mb-1 text-[#1e3a61]">„{f.zitat}"</div>
+                    <div className="mb-1 text-[#57534e]">„{f.zitat}"</div>
                     <div className="text-slate-600">→ {f.vorschlag}</div>
                     {res?.kommentar && (
                       <div className="mt-1 text-slate-500 italic">Re-Check: {res.kommentar}</div>
@@ -512,19 +512,19 @@ export function AntragResult({
             <pre className="mt-3 whitespace-pre-wrap text-xs text-slate-600">{generation.critique}</pre>
           )}
           {generation.consistencyIssues && generation.consistencyIssues.length > 0 && (
-            <div className="mt-4 border-t border-[#0a1628]/15 pt-3">
+            <div className="mt-4 border-t border-[#1c1917]/15 pt-3">
               <div className="mb-2 text-xs font-medium text-slate-700">
                 Konsistenz-Check Antrag × Finanzplan
               </div>
               <div className="space-y-2 text-xs text-slate-700">
                 {generation.consistencyIssues.map((i, idx) => (
-                  <div key={idx} className="rounded border border-[#0a1628]/15 bg-[#f8f5f0] p-2.5">
+                  <div key={idx} className="rounded border border-[#1c1917]/15 bg-[#fdfdfc] p-2.5">
                     <div className="mb-1">
                       <span className="rounded-full border border-amber-500/40 px-2 py-0.5 text-[10px] uppercase text-amber-700">
                         {CONSISTENCY_ART_LABELS[i.art] ?? i.art}
                       </span>
                     </div>
-                    <div className="text-[#1e3a61]">{i.beschreibung}</div>
+                    <div className="text-[#57534e]">{i.beschreibung}</div>
                     {i.posten && (
                       <div className="mt-0.5 text-slate-500">Posten: {i.posten}</div>
                     )}
