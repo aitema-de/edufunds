@@ -754,7 +754,7 @@ function Datenschutz() {
             </span>
             <Reveal>
               <h2 className="font-serif text-3xl md:text-5xl leading-tight text-balance" style={{ fontWeight: 500 }}>
-                KI darf in der Schule nichts <span className="italic text-brandy">verraten</span>.
+                Was die Schule anvertraut, bleibt <span className="italic text-brandy">vertraulich</span>.
               </h2>
             </Reveal>
             <p className="text-ink/70 max-w-[42ch] leading-relaxed">
