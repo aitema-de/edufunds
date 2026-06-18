@@ -39,7 +39,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen overflow-hidden" style={{ backgroundColor: '#f8f5f0' }}>
+    <section className="relative min-h-screen overflow-hidden" style={{ backgroundColor: '#fdfdfc' }}>
       {/* Geometric Background Elements */}
       <div className="absolute inset-0 geometric-grid" />
       <div className="absolute inset-0 dots-pattern" />
@@ -48,21 +48,21 @@ export function HeroSection() {
       <div 
         className="absolute top-[15%] right-[10%] w-64 h-64 animate-float hidden lg:block"
         style={{ 
-          background: 'linear-gradient(135deg, rgba(201, 162, 39, 0.08) 0%, rgba(201, 162, 39, 0.02) 100%)',
+          background: 'linear-gradient(135deg, rgba(120, 53, 15, 0.08) 0%, rgba(120, 53, 15, 0.02) 100%)',
           borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
         }}
       />
       <div 
         className="absolute bottom-[20%] left-[5%] w-48 h-48 animate-float-delayed hidden lg:block"
         style={{ 
-          background: 'linear-gradient(135deg, rgba(10, 22, 40, 0.06) 0%, rgba(10, 22, 40, 0.02) 100%)',
+          background: 'linear-gradient(135deg, rgba(28, 25, 23, 0.06) 0%, rgba(28, 25, 23, 0.02) 100%)',
           borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
         }}
       />
       <div 
         className="absolute top-[40%] left-[15%] w-24 h-24 animate-float-slow hidden lg:block"
         style={{ 
-          border: '2px solid rgba(201, 162, 39, 0.15)',
+          border: '2px solid rgba(120, 53, 15, 0.15)',
           borderRadius: '50%',
         }}
       />
@@ -79,12 +79,12 @@ export function HeroSection() {
             <div 
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs tracking-wider uppercase"
               style={{ 
-                backgroundColor: 'rgba(10, 22, 40, 0.05)',
-                border: '1px solid rgba(10, 22, 40, 0.1)',
-                color: '#0a1628',
+                backgroundColor: 'rgba(28, 25, 23, 0.05)',
+                border: '1px solid rgba(28, 25, 23, 0.1)',
+                color: '#1c1917',
               }}
             >
-              <Sparkles className="w-3.5 h-3.5" style={{ color: '#c9a227' }} />
+              <Sparkles className="w-3.5 h-3.5" style={{ color: '#78350f' }} />
               <span>KI-gestützter Antragsassistent</span>
             </div>
           </motion.div>
@@ -93,11 +93,11 @@ export function HeroSection() {
           <motion.div variants={itemVariants} className="text-center mb-8">
             <h1 
               className="font-serif tracking-tight mb-4"
-              style={{ color: '#0a1628' }}
+              style={{ color: '#1c1917' }}
             >
               Fördermittel für
               <br />
-              <span style={{ color: '#7a5e12' }}>Schulen.</span>
+              <span style={{ color: '#78350f' }}>Schulen.</span>
               <br />
               <span className="text-4xl md:text-5xl lg:text-6xl italic opacity-60">
                 Vereinfacht.
@@ -107,7 +107,7 @@ export function HeroSection() {
             <div className="flex justify-center mb-6">
               <div 
                 className="accent-line"
-                style={{ background: 'linear-gradient(90deg, #c9a227, #e4c55a)' }}
+                style={{ background: 'linear-gradient(90deg, #78350f, #d97706)' }}
               />
             </div>
           </motion.div>
@@ -116,7 +116,7 @@ export function HeroSection() {
           <motion.p
             variants={itemVariants}
             className="text-lg md:text-xl text-center max-w-2xl mx-auto mb-12 leading-relaxed"
-            style={{ color: '#1e3a61' }}
+            style={{ color: '#57534e' }}
           >
             Finden und beantragen Sie passende Förderungen für Ihre Schule 
             mit intelligenter Suche und KI-Unterstützung.
@@ -139,7 +139,7 @@ export function HeroSection() {
 
             <Button asChild size="lg" variant="outline-navy" className="group">
               <Link href="/foerderprogramme">
-                <Sparkles className="w-5 h-5 text-[#c9a227] group-hover:text-[#0a1628]" />
+                <Sparkles className="w-5 h-5 text-[#78350f] group-hover:text-[#1c1917]" />
                 <span className="font-semibold">KI-Assistent testen</span>
               </Link>
             </Button>
@@ -151,22 +151,22 @@ export function HeroSection() {
             className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto"
           >
             {[
-              { value: stats.total, label: 'Programme', icon: School, color: '#c9a227' },
+              { value: stats.total, label: 'Programme', icon: School, color: '#78350f' },
               { value: stats.bund, label: 'Bund', icon: Building2, color: '#1a4d4d' },
-              { value: stats.land, label: 'Länder', icon: HeartHandshake, color: '#1e3a61' },
-              { value: stats.stiftung, label: 'Stiftungen', icon: Sparkles, color: '#b08d1f' },
+              { value: stats.land, label: 'Länder', icon: HeartHandshake, color: '#57534e' },
+              { value: stats.stiftung, label: 'Stiftungen', icon: Sparkles, color: '#78350f' },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
                 className="group p-5 rounded-2xl transition-all duration-300"
                 style={{ 
                   backgroundColor: '#ffffff',
-                  border: '1px solid rgba(10, 22, 40, 0.06)',
-                  boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)',
+                  border: '1px solid rgba(28, 25, 23, 0.06)',
+                  boxShadow: '0 4px 20px -4px rgba(28, 25, 23, 0.05)',
                 }}
                 whileHover={{ 
                   y: -4,
-                  boxShadow: '0 12px 40px -8px rgba(10, 22, 40, 0.12)',
+                  boxShadow: '0 12px 40px -8px rgba(28, 25, 23, 0.12)',
                 }}
                 transition={{ duration: 0.3 }}
               >
@@ -178,13 +178,13 @@ export function HeroSection() {
                 </div>
                 <div 
                   className="text-3xl font-serif mb-1"
-                  style={{ color: '#0a1628' }}
+                  style={{ color: '#1c1917' }}
                 >
                   {stat.value}
                 </div>
                 <div 
                   className="text-sm font-medium"
-                  style={{ color: '#1e3a61', opacity: 0.7 }}
+                  style={{ color: '#57534e', opacity: 0.7 }}
                 >
                   {stat.label}
                 </div>
@@ -196,7 +196,7 @@ export function HeroSection() {
           <motion.div
             variants={itemVariants}
             className="mt-16 pt-8 border-t flex flex-wrap items-center justify-center gap-8"
-            style={{ borderColor: 'rgba(10, 22, 40, 0.08)' }}
+            style={{ borderColor: 'rgba(28, 25, 23, 0.08)' }}
           >
             {[
               'Für alle Schularten',
@@ -215,7 +215,7 @@ export function HeroSection() {
                 </svg>
                 <span 
                   className="text-sm font-medium"
-                  style={{ color: '#1e3a61' }}
+                  style={{ color: '#57534e' }}
                 >
                   {item}
                 </span>

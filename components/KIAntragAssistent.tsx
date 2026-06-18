@@ -160,12 +160,12 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
   // Generierung läuft
   if (step === "generating") {
     return (
-      <Card className="w-full max-w-2xl mx-auto border-orange-500/30">
+      <Card className="w-full max-w-2xl mx-auto border-amber-500/30">
         <CardContent className="pt-12 pb-12">
           <div className="flex flex-col items-center justify-center space-y-6">
             <div className="relative">
-              <div className="absolute inset-0 bg-orange-500/20 blur-xl rounded-full animate-pulse" />
-              <Loader2 className="h-16 w-16 text-orange-400 animate-spin relative" />
+              <div className="absolute inset-0 bg-amber-500/20 blur-xl rounded-full animate-pulse" />
+              <Loader2 className="h-16 w-16 text-amber-400 animate-spin relative" />
             </div>
             <div className="text-center space-y-2">
               <h3 className="text-xl font-semibold text-slate-100">
@@ -195,7 +195,7 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
   // Ergebnis anzeigen
   if (step === "result") {
     return (
-      <Card className="w-full max-w-4xl mx-auto border-orange-500/30">
+      <Card className="w-full max-w-4xl mx-auto border-amber-500/30">
         <CardHeader className="border-b border-slate-700/50">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-3">
@@ -216,7 +216,7 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
                 variant="primary"
                 size="sm"
                 onClick={downloadAsRtf}
-                className="gap-2 bg-orange-500 hover:bg-orange-600 text-white"
+                className="gap-2 bg-amber-500 hover:bg-amber-600 text-white"
               >
                 <Download className="h-4 w-4" />
                 Antrag herunterladen (bearbeitbar)
@@ -266,11 +266,11 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
             {generatedText}
           </div>
           
-          <div className="mt-6 p-4 bg-orange-500/10 rounded-lg border border-orange-500/20">
+          <div className="mt-6 p-4 bg-amber-500/10 rounded-lg border border-amber-500/20">
             <div className="flex items-start gap-3">
-              <Sparkles className="h-5 w-5 text-orange-400 mt-0.5" />
+              <Sparkles className="h-5 w-5 text-amber-400 mt-0.5" />
               <div className="text-sm text-slate-300">
-                <p className="font-medium text-orange-400 mb-1">KI-Hinweise</p>
+                <p className="font-medium text-amber-400 mb-1">KI-Hinweise</p>
                 <p>
                   Dieser Antrag wurde automatisch generiert und ist an die spezifischen Anforderungen 
                   {programm.foerdergeberTyp === "bund" ? " einer Bundesförderung" : 
@@ -314,11 +314,11 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
 
   // Formular anzeigen
   return (
-    <Card className="w-full max-w-2xl mx-auto border-orange-500/30">
+    <Card className="w-full max-w-2xl mx-auto border-amber-500/30">
       <CardHeader className="border-b border-slate-700/50">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-orange-500/10 rounded-lg">
-            <Wand2 className="h-6 w-6 text-orange-400" />
+          <div className="p-2 bg-amber-500/10 rounded-lg">
+            <Wand2 className="h-6 w-6 text-amber-400" />
           </div>
           <div>
             <CardTitle className="text-slate-100">KI-Antragsassistent</CardTitle>
@@ -332,7 +332,7 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
         {/* Programm Info */}
         <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700/50">
           <div className="flex items-center gap-2 mb-2">
-            <FileText className="h-4 w-4 text-orange-400" />
+            <FileText className="h-4 w-4 text-amber-400" />
             <span className="font-medium text-slate-200">Förderprogramm</span>
           </div>
           <p className="text-sm text-slate-400 mb-2">{programm.name}</p>
@@ -522,7 +522,7 @@ export function KIAntragAssistent({ programm, onClose }: KIAntragAssistentProps)
           <Button
             onClick={handleGenerate}
             disabled={!isFormValid()}
-            className="gap-2 bg-orange-500 hover:bg-orange-600 disabled:opacity-50"
+            className="gap-2 bg-amber-500 hover:bg-amber-600 disabled:opacity-50"
           >
             <Sparkles className="h-4 w-4" />
             KI-Antrag generieren
