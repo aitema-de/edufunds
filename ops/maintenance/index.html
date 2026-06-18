@@ -5,18 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
   <title>EduFunds — Bald verfügbar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Outfit:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
   <style>
     :root {
-      --navy: #0a1628;
-      --navy-soft: #1e3a61;
-      --gold: #c9a227;
+      /* Editorial Archival — Paper / Ink / Brandy */
+      --paper: #fdfdfc;
+      --ink: #1c1917;
+      --ink-70: rgba(28, 25, 23, 0.70);
+      --ink-55: rgba(28, 25, 23, 0.55);
+      --ink-10: rgba(28, 25, 23, 0.10);
+      --ink-05: rgba(28, 25, 23, 0.05);
+      --brandy: #78350f;
+      --brandy-hover: #92400e;
+      --serif: "Newsreader", Georgia, "Times New Roman", serif;
+      --sans: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 50% -10%, #16304f 0%, var(--navy) 60%);
-      color: #e7edf5;
+      font-family: var(--sans);
+      background-color: var(--paper);
+      background-image: radial-gradient(900px 500px at 50% -15%, rgba(120, 53, 15, 0.06) 0%, transparent 70%);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -24,117 +40,128 @@
       min-height: 100%;
     }
     .card {
-      max-width: 560px;
+      max-width: 580px;
       width: 100%;
       text-align: center;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(201, 162, 39, 0.35);
-      border-radius: 18px;
-      padding: 48px 40px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(6px);
+      background: var(--paper);
+      border: 1px solid var(--ink-10);
+      border-radius: 28px;
+      padding: 56px 44px;
+      box-shadow: 0 30px 70px -30px rgba(28, 25, 23, 0.18);
     }
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 13px;
-      letter-spacing: 0.08em;
+      font-size: 12px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(201, 162, 39, 0.4);
+      font-weight: 600;
+      color: var(--brandy);
+      border: 1px solid rgba(120, 53, 15, 0.25);
       border-radius: 999px;
       padding: 6px 14px;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
     .dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--gold);
-      box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.6);
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--brandy);
       animation: pulse 2s infinite;
     }
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.5); }
-      70% { box-shadow: 0 0 0 10px rgba(201, 162, 39, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(201, 162, 39, 0); }
+      0% { box-shadow: 0 0 0 0 rgba(120, 53, 15, 0.45); }
+      70% { box-shadow: 0 0 0 9px rgba(120, 53, 15, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(120, 53, 15, 0); }
     }
     .logo {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-bottom: 8px;
-    }
-    .logo span { color: var(--gold); }
-    h1 {
+      font-family: var(--serif);
+      font-style: italic;
       font-size: 30px;
-      line-height: 1.2;
-      margin: 18px 0 14px;
-      font-weight: 700;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 6px;
     }
+    .logo span { color: var(--brandy); }
+    h1 {
+      font-family: var(--serif);
+      font-size: 38px;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      margin: 20px auto 16px;
+      font-weight: 500;
+      max-width: 16ch;
+    }
+    h1 em { font-style: italic; color: var(--brandy); }
     p {
       font-size: 16px;
       line-height: 1.6;
-      color: #b9c6d8;
+      color: var(--ink-70);
       margin: 0 auto 10px;
-      max-width: 44ch;
+      max-width: 46ch;
     }
     .news {
-      margin-top: 30px;
-      padding-top: 26px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 34px;
+      padding-top: 28px;
+      border-top: 1px solid var(--ink-05);
     }
     .news h2 {
-      font-size: 17px;
-      color: #e7edf5;
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 20px;
+      color: var(--ink);
       margin-bottom: 6px;
     }
     .news p { font-size: 14px; margin-bottom: 16px; }
     .news-form {
       display: flex;
       gap: 8px;
-      max-width: 420px;
+      max-width: 440px;
       margin: 0 auto;
     }
     .news-form input[type="email"] {
       flex: 1;
       min-width: 0;
-      padding: 12px 14px;
-      border-radius: 9px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      background: rgba(255, 255, 255, 0.06);
-      color: #fff;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--ink-10);
+      background: #fff;
+      color: var(--ink);
+      font-family: var(--sans);
       font-size: 15px;
       outline: none;
+      transition: border-color 0.2s;
     }
-    .news-form input[type="email"]::placeholder { color: #8da3bd; }
-    .news-form input[type="email"]:focus { border-color: var(--gold); }
+    .news-form input[type="email"]::placeholder { color: var(--ink-55); }
+    .news-form input[type="email"]:focus { border-color: var(--brandy); }
     .news-form button {
-      padding: 12px 18px;
-      border-radius: 9px;
+      padding: 12px 22px;
+      border-radius: 999px;
       border: none;
-      background: var(--gold);
-      color: #fff;
-      font-weight: 700;
+      background: var(--brandy);
+      color: var(--paper);
+      font-family: var(--sans);
+      font-weight: 600;
       font-size: 15px;
       cursor: pointer;
       white-space: nowrap;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.2s;
     }
-    .news-form button:hover { background: #b8921e; }
-    .news-form button:disabled { opacity: 0.55; cursor: default; }
-    .news-hint { margin-top: 10px; font-size: 12px; color: #8da3bd; }
+    .news-form button:hover { background: var(--brandy-hover); transform: translateY(-1px); }
+    .news-form button:disabled { opacity: 0.55; cursor: default; transform: none; }
+    .news-hint { margin-top: 10px; font-size: 12px; color: var(--ink-55); }
     .news-msg { margin-top: 12px; font-size: 14px; min-height: 1.2em; }
-    .news-msg.ok { color: #6ee7b7; }
-    .news-msg.err { color: #fca5a5; }
+    .news-msg.ok { color: #047857; }
+    .news-msg.err { color: #b91c1c; }
     /* honeypot: vor Menschen verborgen, fängt Bots */
     .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
     .contact {
-      margin-top: 28px;
+      margin-top: 30px;
       font-size: 15px;
-      color: #cdd8e6;
+      color: var(--ink-70);
     }
     .contact a {
-      color: var(--gold);
+      color: var(--brandy);
       text-decoration: none;
       font-weight: 600;
     }
@@ -142,10 +169,13 @@
     .foot {
       margin-top: 32px;
       font-size: 12px;
-      color: #6f819a;
+      color: var(--ink-55);
     }
     @media (max-width: 480px) {
+      .card { padding: 40px 28px; }
+      h1 { font-size: 31px; }
       .news-form { flex-direction: column; }
+      .news-form button { border-radius: 999px; }
     }
   </style>
 </head>
@@ -153,7 +183,7 @@
   <main class="card">
     <span class="badge"><span class="dot"></span> Bald verfügbar</span>
     <div class="logo">Edu<span>Funds</span></div>
-    <h1>Wir legen gerade die letzte Hand an.</h1>
+    <h1>Wir legen gerade die <em>letzte Hand</em> an.</h1>
     <p>
       EduFunds hilft Schulen, Fördervereinen und Trägern, passende Fördermittel
       zu finden und Anträge in Minuten zu erstellen.
