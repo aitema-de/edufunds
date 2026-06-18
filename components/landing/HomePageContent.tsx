@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { ArrowRight, Check, Minus, ChevronDown } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { ArrowRight, Check, Minus, ChevronDown, Sparkles } from "lucide-react";
 import {
   HourglassIcon,
   StampIcon,
@@ -11,6 +11,7 @@ import {
   emblemForKategorie,
   markForTyp,
 } from "@/components/landing/emblems";
+import { PROGRAMM_COUNT_ROUNDED } from "@/lib/programm-count";
 
 /* ---------- Typen (echte Daten kommen serverseitig aus app/page.tsx) ---------- */
 export type LandingStats = {
@@ -53,10 +54,9 @@ export function HomePageContent({
   return (
     <>
       <Hero stats={stats} />
-      <ProductShowcase />
       <TrustStrip />
       <Problem />
-      <Prozess />
+      <LiveShowcase stats={stats} />
       <Datenschutz />
       <ProgrammeShowcase stats={stats} programme={programme} />
       <PreiseTeaser />
@@ -321,62 +321,334 @@ function HeroInfographic() {
 /* ======================================================================
    PRODUCT SHOWCASE — dunkel, animiertes Produkt-Mock (statt Video)
    ====================================================================== */
-function ProductShowcase() {
-  const facts = [
-    { n: "180+", l: "Geprüfte Programme" },
-    { n: "Minuten", l: "statt Wochen" },
-    { n: "EU-KI", l: "Mistral · Frankreich" },
-    { n: "DSGVO", l: "DE-Hosting" },
+function LiveShowcase({ stats }: { stats: LandingStats }) {
+  const steps = [
+    { n: "01", t: "Interview", b: "Kurzes Gespräch über Ihr Vorhaben." },
+    { n: "02", t: "Gliederung", b: "Automatische Argumentationskette." },
+    { n: "03", t: "Abschnitte", b: "Präzise Texte nach Richtlinie." },
+    { n: "04", t: "Finalfassung", b: "Unterschriftsreifes Dokument." },
   ];
+
+  // Donut-Segmente aus echten Förderquellen-Typen
+  const segs = [
+    { label: "Bund", n: stats.bund, color: "#78350f" },
+    { label: "Länder", n: stats.land, color: "#d97706" },
+    { label: "Stiftungen", n: stats.stiftung, color: "#a8a29e" },
+    { label: "EU", n: stats.eu, color: "#44403c" },
+  ];
+  const segSum = segs.reduce((a, s) => a + s.n, 0) || 1;
+  let acc = 0;
+  const conic = segs
+    .map((s) => {
+      const start = (acc / segSum) * 100;
+      acc += s.n;
+      const end = (acc / segSum) * 100;
+      return `${s.color} ${start}% ${end}%`;
+    })
+    .join(", ");
+
+  const bars = [
+    { h: 32, l: "5 T€" },
+    { h: 52, l: "25 T€" },
+    { h: 78, l: "150 T€" },
+    { h: 100, l: "500 T€" },
+    { h: 60, l: "div." },
+  ];
+
   return (
-    <section className="py-24 px-6 bg-[#1c1917] text-paper">
+    <section id="prozess" className="py-24 px-6 bg-paper">
       <div className="max-w-7xl mx-auto">
-        <div className="max-w-2xl mb-12 space-y-4">
-          <span className="text-xs uppercase tracking-widest text-amber-400 font-semibold">
-            Live-Einblick
+        {/* Überschrift */}
+        <div className="max-w-2xl mb-14">
+          <span className="text-xs uppercase tracking-widest text-brandy font-semibold">
+            So funktioniert&apos;s
           </span>
-          <h2 className="font-serif text-3xl md:text-5xl leading-tight text-balance text-paper" style={{ fontWeight: 500 }}>
-            So sieht <span className="italic text-amber-400">EduFunds</span> in Aktion aus.
+          <h2 className="font-serif text-3xl md:text-5xl leading-tight mt-3 text-balance" style={{ fontWeight: 500 }}>
+            Vom Bedarf zum <span className="italic text-brandy">fertigen Antrag</span>.
           </h2>
-          <p className="text-paper/70 max-w-[52ch] text-pretty leading-relaxed">
-            Vom Schul-Steckbrief zum unterschriftsreifen Antrag — in einer Sitzung.
-            Keine Vorlagen, keine 50-seitigen Richtlinien.
+          <p className="text-ink/70 mt-5 text-pretty leading-relaxed">
+            Vier Schritte, eine Sitzung — begleitet von unserer KI. Sehen Sie unten live,
+            wie ein Antrag entsteht, und die Demo in voller Länge.
           </p>
         </div>
 
-        {/* Produkt-Demo-Video */}
-        <div className="relative rounded-3xl overflow-hidden ring-1 ring-white/10 shadow-2xl bg-black">
-          <video
-            src="/edufunds-demo.mp4"
-            poster="/edufunds-demo-poster.jpg"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            aria-label="EduFunds Demo: vom Schulprofil zum fertigen Förderantrag"
-            className="block w-full h-auto aspect-video object-cover"
-          />
-
-          {/* Fakten-Leiste */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 border-t border-white/10">
-            {facts.map((f) => (
-              <div key={f.l} className="bg-[#161311] px-4 py-5 md:py-6 text-center">
-                <div className="font-serif text-2xl md:text-3xl text-amber-300 leading-none" style={{ fontWeight: 500 }}>
-                  {f.n}
+        {/* Timeline */}
+        <div className="relative grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6 mb-20">
+          <div className="hidden md:block absolute top-[31px] left-[12%] right-[12%] h-[3px] bg-ink/10 rounded-full overflow-hidden">
+            <motion.div
+              className="h-full bg-gradient-to-r from-brandy to-amber-500"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 1.4, ease: EASE }}
+              style={{ transformOrigin: "left" }}
+            />
+          </div>
+          {steps.map((s, i) => (
+            <Reveal key={s.n} delay={i * 0.12}>
+              <div className="relative text-center">
+                <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full border-2 border-brandy bg-paper font-serif italic text-2xl text-brandy shadow-[0_10px_26px_-12px_rgba(120,53,15,0.5)]">
+                  {s.n}
                 </div>
-                <div className="text-[10px] md:text-[11px] uppercase tracking-widest text-white/55 mt-2">
-                  {f.l}
-                </div>
+                <h4 className="font-semibold font-sans mb-1.5">{s.t}</h4>
+                <p className="text-sm text-ink/65 leading-relaxed max-w-[24ch] mx-auto">{s.b}</p>
               </div>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* Live-Generator (dunkel) + Video */}
+        <div className="grid lg:grid-cols-2 gap-6 items-stretch mb-6">
+          <LiveGenerator />
+
+          <div className="relative">
+            <div className="relative h-full rounded-3xl overflow-hidden ring-1 ring-ink/10 shadow-xl bg-black">
+              <video
+                src="/edufunds-demo.mp4"
+                poster="/edufunds-demo-poster.jpg"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                aria-label="EduFunds Demo: vom Schulprofil zum fertigen Förderantrag"
+                className="block w-full h-full min-h-[280px] object-cover"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
+              <div className="absolute left-5 bottom-4 text-paper">
+                <div className="font-serif text-lg" style={{ fontWeight: 500 }}>EduFunds in Aktion</div>
+                <div className="text-xs text-paper/75">Demo · 0:10</div>
+              </div>
+            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85, rotate: -8 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: -5 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
+              className="absolute -bottom-4 -right-3 bg-brandy text-paper rounded-2xl px-5 py-3 shadow-xl"
+            >
+              <div className="font-serif text-2xl leading-none" style={{ fontWeight: 500 }}>10 Min.</div>
+              <div className="text-[11px] text-paper/80 mt-1">statt 14 Tage</div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Dynamische Infografiken */}
+        <div className="grid md:grid-cols-3 gap-5 mt-12">
+          {/* In Zahlen */}
+          <div className="rounded-2xl border border-ink/10 bg-paper p-6">
+            <div className="text-[11px] uppercase tracking-widest text-brandy font-semibold mb-5">In Zahlen</div>
+            <div className="grid grid-cols-2 gap-5">
+              <div>
+                <div className="font-serif text-4xl leading-none text-ink"><CountUp to={PROGRAMM_COUNT_ROUNDED} suffix="+" /></div>
+                <div className="text-xs text-ink/65 mt-1.5">geprüfte Programme</div>
+              </div>
+              <div>
+                <div className="font-serif text-4xl leading-none text-ink"><CountUp to={stats.bundeslaender} /></div>
+                <div className="text-xs text-ink/65 mt-1.5">Bundesländer</div>
+              </div>
+              <div>
+                <div className="font-serif text-4xl leading-none text-ink"><CountUp to={100} suffix=" %" /></div>
+                <div className="text-xs text-ink/65 mt-1.5">DSGVO-konform</div>
+              </div>
+              <div>
+                <div className="font-serif text-4xl leading-none text-ink">EU</div>
+                <div className="text-xs text-ink/65 mt-1.5">KI aus Frankreich</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Donut Förderquellen */}
+          <div className="rounded-2xl border border-ink/10 bg-paper p-6">
+            <div className="text-[11px] uppercase tracking-widest text-brandy font-semibold mb-4">Förderquellen</div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.7, rotate: -90 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 1, ease: EASE }}
+              className="mx-auto size-32 rounded-full"
+              style={{
+                background: `conic-gradient(${conic})`,
+                WebkitMask: "radial-gradient(circle 40px at center, transparent 98%, #000)",
+                mask: "radial-gradient(circle 40px at center, transparent 98%, #000)",
+              }}
+            />
+            <div className="mt-4 space-y-1.5 text-xs text-ink/70">
+              {segs.map((s) => (
+                <span key={s.label} className="flex items-center gap-2">
+                  <i className="size-2.5 rounded-[3px]" style={{ background: s.color }} /> {s.label} · {s.n}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Balken Fördersummen */}
+          <div className="rounded-2xl border border-ink/10 bg-paper p-6">
+            <div className="text-[11px] uppercase tracking-widest text-brandy font-semibold mb-4">Typische Fördersummen</div>
+            <div className="flex items-end gap-3 h-[120px]">
+              {bars.map((b, i) => (
+                <motion.div
+                  key={b.l}
+                  initial={{ scaleY: 0 }}
+                  whileInView={{ scaleY: 1 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.8, delay: i * 0.1, ease: EASE }}
+                  style={{ height: `${b.h}%`, transformOrigin: "bottom" }}
+                  className="flex-1 rounded-t-lg bg-gradient-to-t from-brandy to-amber-500"
+                />
+              ))}
+            </div>
+            <div className="flex gap-3 mt-2 text-[11px] text-ink/45">
+              {bars.map((b) => (
+                <span key={b.l} className="flex-1 text-center">{b.l}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Live-Generator (dunkle „So entsteht ein Antrag"-Karte) ---------- */
+function LiveGenerator() {
+  const R = 26;
+  const C = 2 * Math.PI * R;
+  const docLines = [96, 88, 92, 70, 84];
+  const pipeline = [
+    { l: "Schulprofil ausgewertet", done: true },
+    { l: "Bedarf strukturiert", done: true },
+    { l: "Richtlinie abgeglichen", done: true },
+    { l: "Antragstext formuliert", done: false },
+  ];
+  const chips = [
+    { k: "Fördersumme", v: "428.500 €" },
+    { k: "Eigenanteil", v: "10 %" },
+    { k: "Laufzeit", v: "36 Mon." },
+    { k: "Frist", v: "31.03.26" },
+  ];
+  return (
+    <div className="rounded-3xl overflow-hidden ring-1 ring-ink/10 shadow-xl bg-[#161311] text-paper">
+      <div className="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-black/30">
+        <div className="flex items-center gap-1.5">
+          <span className="size-2.5 rounded-full bg-rose-400/60" />
+          <span className="size-2.5 rounded-full bg-amber-300/60" />
+          <span className="size-2.5 rounded-full bg-emerald-400/60" />
+        </div>
+        <span className="text-[11px] tracking-widest uppercase text-white/40">app.edufunds.org</span>
+        <span className="inline-flex items-center gap-1 text-[11px] text-amber-400 font-medium">
+          <Sparkles className="size-3" /> generiert
+        </span>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-[1.2fr_0.9fr]">
+        {/* Dokument */}
+        <div className="p-6 border-b sm:border-b-0 sm:border-r border-white/10">
+          <span className="text-[10px] uppercase tracking-widest text-white/40">Abschnitt 3 / 7</span>
+          <h4 className="font-serif text-lg mt-1 mb-4" style={{ fontWeight: 500 }}>Pädagogisches Konzept &amp; Bedarf</h4>
+          <div className="space-y-2.5">
+            {docLines.map((w, i) => (
+              <motion.div
+                key={i}
+                initial={{ scaleX: 0, opacity: 0 }}
+                whileInView={{ scaleX: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.15 + i * 0.18, ease: EASE }}
+                style={{ width: `${w}%`, transformOrigin: "left" }}
+                className="h-2.5 rounded-full bg-white/10"
+              />
+            ))}
+            <span className="inline-block h-3.5 w-[2px] bg-amber-400 align-middle animate-pulse" />
+          </div>
+
+          {/* Fortschritts-Ring */}
+          <div className="flex items-center gap-3 mt-6 pt-4 border-t border-white/10">
+            <div className="relative size-16 shrink-0">
+              <svg width="64" height="64" viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r={R} fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="6" />
+                <motion.circle
+                  cx="32" cy="32" r={R} fill="none" stroke="#f59e0b" strokeWidth="6" strokeLinecap="round"
+                  transform="rotate(-90 32 32)" strokeDasharray={C}
+                  initial={{ strokeDashoffset: C }}
+                  whileInView={{ strokeDashoffset: C * (1 - 0.76) }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 1.4, delay: 0.3, ease: EASE }}
+                />
+              </svg>
+              <span className="absolute inset-0 grid place-items-center text-sm font-bold text-amber-400">76%</span>
+            </div>
+            <div>
+              <div className="text-[11px] uppercase tracking-widest text-white/45">Fortschritt</div>
+              <div className="text-[13px] text-white/80 mt-1">Antragstext wird formuliert …</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Pipeline + Fakten */}
+        <div className="p-6 bg-black/20">
+          <span className="text-[10px] uppercase tracking-widest text-amber-400 font-semibold">Pipeline</span>
+          <div className="mt-4 space-y-3">
+            {pipeline.map((s, i) => (
+              <motion.div
+                key={s.l}
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.2 + i * 0.22, ease: EASE }}
+                className="flex items-center gap-2.5 text-[12.5px]"
+              >
+                <span className={`grid size-[18px] place-items-center rounded-full text-[10px] font-bold ${s.done ? "bg-emerald-400 text-[#1c1917]" : "bg-white/10 text-white/50"}`}>
+                  {s.done ? "✓" : i + 1}
+                </span>
+                <span className={s.done ? "text-white/85" : "text-white/50"}>{s.l}</span>
+              </motion.div>
+            ))}
+          </div>
+          <div className="grid grid-cols-2 gap-2 mt-4">
+            {chips.map((c, i) => (
+              <motion.div
+                key={c.k}
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 1.1 + i * 0.12, ease: EASE }}
+                className="rounded-lg bg-white/5 border border-white/10 px-2.5 py-2"
+              >
+                <div className="text-[9px] uppercase tracking-widest text-white/40">{c.k}</div>
+                <div className="font-serif text-[15px] mt-0.5">{c.v}</div>
+              </motion.div>
             ))}
           </div>
         </div>
-        <p className="text-xs text-white/40 mt-4">
-          Kurzer Einblick in EduFunds — vom Schulprofil zum fertigen Förderantrag.
-        </p>
       </div>
-    </section>
+    </div>
+  );
+}
+
+/* ---------- CountUp (zählt beim Sichtbarwerden hoch) ---------- */
+function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    if (!inView) return;
+    let raf = 0;
+    const start = performance.now();
+    const dur = 1200;
+    const tick = (now: number) => {
+      const p = Math.min((now - start) / dur, 1);
+      setVal(Math.floor(p * to));
+      if (p < 1) raf = requestAnimationFrame(tick);
+      else setVal(to);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, to]);
+  return (
+    <span ref={ref}>
+      {val}
+      {suffix}
+    </span>
   );
 }
 
@@ -437,47 +709,6 @@ function Problem() {
                 <p className="text-ink/60 text-sm leading-relaxed max-w-[35ch] text-pretty">
                   {it.body}
                 </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ======================================================================
-   PROZESS
-   ====================================================================== */
-function Prozess() {
-  const steps = [
-    { n: "01", t: "Interview", b: "Unsere KI führt Sie durch ein kurzes Gespräch über Ihr Vorhaben." },
-    { n: "02", t: "Gliederung", b: "Das System erstellt automatisch eine logische Argumentationskette." },
-    { n: "03", t: "Abschnitte", b: "Präzise Texte werden generiert, abgestimmt auf die Richtlinien." },
-    { n: "04", t: "Finalfassung", b: "Sie erhalten ein unterschriftsreifes Dokument inkl. aller Anhänge." },
-  ];
-  return (
-    <section id="prozess" className="py-24 px-6 bg-paper">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-16">
-          <span className="text-xs uppercase tracking-widest text-brandy font-semibold block mb-4">
-            Die Lösung
-          </span>
-          <Reveal>
-            <h2 className="font-serif text-3xl md:text-5xl max-w-[30ch] text-balance leading-tight" style={{ fontWeight: 500 }}>
-              Vom Bedarf zum fertigen Antrag in vier Schritten.
-            </h2>
-          </Reveal>
-        </div>
-        <div className="grid md:grid-cols-4 gap-8">
-          {steps.map((s, i) => (
-            <Reveal key={s.n} delay={i * 0.08}>
-              <div className="space-y-6">
-                <div className="text-6xl font-serif italic text-brandy/25 leading-none">{s.n}</div>
-                <div>
-                  <h4 className="font-semibold mb-2 font-sans">{s.t}</h4>
-                  <p className="text-sm text-ink/60 leading-relaxed">{s.b}</p>
-                </div>
               </div>
             </Reveal>
           ))}
