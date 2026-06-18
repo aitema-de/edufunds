@@ -328,7 +328,6 @@ function ProductShowcase() {
     { n: "EU-KI", l: "Mistral · Frankreich" },
     { n: "DSGVO", l: "DE-Hosting" },
   ];
-  const lines = [92, 78, 96, 64, 88, 52];
   return (
     <section className="py-24 px-6 bg-[#1c1917] text-paper">
       <div className="max-w-7xl mx-auto">
@@ -345,82 +344,19 @@ function ProductShowcase() {
           </p>
         </div>
 
-        {/* Editor-Mock */}
-        <div className="relative rounded-3xl overflow-hidden ring-1 ring-white/10 shadow-2xl bg-[#161311]">
-          <div className="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-black/30">
-            <div className="flex items-center gap-1.5">
-              <span className="size-2.5 rounded-full bg-rose-400/60" />
-              <span className="size-2.5 rounded-full bg-amber-300/60" />
-              <span className="size-2.5 rounded-full bg-emerald-400/60" />
-            </div>
-            <span className="text-[11px] tracking-widest uppercase text-white/40">
-              Antrag-Editor · DigitalPakt Schule 2.0
-            </span>
-            <span className="hidden sm:inline text-[11px] text-amber-400 font-medium">● generiert</span>
-          </div>
-
-          <div className="grid md:grid-cols-[1.5fr_1fr]">
-            {/* Dokument mit animiert „getipptem" Text */}
-            <div className="p-6 md:p-10 space-y-5 border-b md:border-b-0 md:border-r border-white/10">
-              <div className="space-y-1">
-                <span className="text-[10px] uppercase tracking-widest text-white/40">Abschnitt 3 von 7</span>
-                <h3 className="font-serif text-xl md:text-2xl text-paper" style={{ fontWeight: 500 }}>
-                  Pädagogisches Konzept &amp; Bedarf
-                </h3>
-              </div>
-              <div className="space-y-2.5">
-                {lines.map((w, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scaleX: 0 }}
-                    whileInView={{ opacity: 1, scaleX: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.15 + i * 0.18, ease: EASE }}
-                    style={{ width: `${w}%`, transformOrigin: "left" }}
-                    className="h-3 rounded-full bg-white/10"
-                  />
-                ))}
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: [0, 1, 0] }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, delay: 0.15 + lines.length * 0.18, repeat: Infinity }}
-                  className="inline-block h-4 w-[2px] bg-amber-400 align-middle"
-                />
-              </div>
-            </div>
-
-            {/* Sidebar — extrahierte Fakten */}
-            <div className="p-6 md:p-8 space-y-4 bg-black/20">
-              <span className="text-[10px] uppercase tracking-widest text-amber-400 font-semibold">
-                Aus der Richtlinie gezogen
-              </span>
-              {[
-                { k: "Fördergeber", v: "BMBF / Land" },
-                { k: "Fördersumme", v: "50.000 – 500.000 €" },
-                { k: "Eigenanteil", v: "10 %" },
-                { k: "Frist", v: "laufend ab 2026" },
-              ].map((f, i) => (
-                <motion.div
-                  key={f.k}
-                  initial={{ opacity: 0, x: 12 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.3 + i * 0.12, ease: EASE }}
-                  className="flex justify-between items-baseline gap-3 border-b border-white/10 pb-2.5"
-                >
-                  <span className="text-[11px] uppercase tracking-wider text-white/40">{f.k}</span>
-                  <span className="text-sm font-serif text-paper text-right">{f.v}</span>
-                </motion.div>
-              ))}
-              <div className="pt-2">
-                <span className="inline-flex items-center gap-2 text-xs text-white/55">
-                  <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
-                  Personenbezogene Daten vor KI-Aufruf maskiert
-                </span>
-              </div>
-            </div>
-          </div>
+        {/* Produkt-Demo-Video */}
+        <div className="relative rounded-3xl overflow-hidden ring-1 ring-white/10 shadow-2xl bg-black">
+          <video
+            src="/edufunds-demo.mp4"
+            poster="/edufunds-demo-poster.jpg"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-label="EduFunds Demo: vom Schulprofil zum fertigen Förderantrag"
+            className="block w-full h-auto aspect-video object-cover"
+          />
 
           {/* Fakten-Leiste */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 border-t border-white/10">
@@ -437,7 +373,7 @@ function ProductShowcase() {
           </div>
         </div>
         <p className="text-xs text-white/40 mt-4">
-          Illustration der Antragserstellung. Inhalte werden je Schule und Richtlinie individuell generiert.
+          Kurzer Einblick in EduFunds — vom Schulprofil zum fertigen Förderantrag.
         </p>
       </div>
     </section>
