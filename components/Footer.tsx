@@ -100,11 +100,11 @@ export function Footer() {
               Die intelligente Plattform für Schulförderung. Finden Sie passende Programme und erstellen Sie erfolgreiche Anträge mit KI-Unterstützung.
             </p>
             <div className="space-y-3 mb-6">
-              <a href="mailto:office@aitema.de" className="flex items-center gap-3 text-sm text-[#a8a29e] hover:text-[#d97706] transition-colors group">
+              <a href="mailto:office@edufunds.org" className="flex items-center gap-3 text-sm text-[#a8a29e] hover:text-[#d97706] transition-colors group">
                 <div className="w-8 h-8 rounded-lg bg-[#292524] flex items-center justify-center group-hover:bg-[#d97706]/20 transition-colors">
                   <Mail className="h-4 w-4 text-[#d97706]" />
                 </div>
-                office@aitema.de
+                office@edufunds.org
               </a>
               <div className="flex items-center gap-3 text-sm text-[#a8a29e]">
                 <div className="w-8 h-8 rounded-lg bg-[#292524] flex items-center justify-center">
