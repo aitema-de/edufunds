@@ -3,7 +3,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Clock, Send } from "lucide-react";
+import { Mail, MapPin, Clock, Send } from "lucide-react";
 import Link from "next/link";
 
 export default function KontaktPage() {
@@ -63,21 +63,8 @@ export default function KontaktPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1" style={{ color: "#1c1917" }}>E-Mail</h3>
-                      <a href="mailto:office@aitema.de" className="text-[#78350f] hover:text-[#d97706] transition-colors underline underline-offset-2">
-                        office@aitema.de
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center"
-                      style={{ backgroundColor: "rgba(120, 53, 15, 0.1)" }}>
-                      <Phone className="w-5 h-5" style={{ color: "#78350f" }} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-1" style={{ color: "#1c1917" }}>Telefon</h3>
-                      <a href="tel:+491234567890" className="text-[#78350f] hover:text-[#d97706] transition-colors underline underline-offset-2">
-                        +49 (0) 123 456 7890
+                      <a href="mailto:office@edufunds.org" className="text-[#78350f] hover:text-[#d97706] transition-colors underline underline-offset-2">
+                        office@edufunds.org
                       </a>
                     </div>
                   </div>
@@ -104,8 +91,8 @@ export default function KontaktPage() {
                       <h3 className="font-semibold mb-1" style={{ color: "#1c1917" }}>Anschrift</h3>
                       <p style={{ color: "#64748b" }}>
                         EduFunds by aitema GmbH<br />
-                        Musterstraße 123<br />
-                        10115 Berlin
+                        Prenzlauer Allee 229<br />
+                        10405 Berlin
                       </p>
                     </div>
                   </div>

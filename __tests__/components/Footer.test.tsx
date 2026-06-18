@@ -67,9 +67,9 @@ describe('Footer Komponente', () => {
   it('sollte die Kontakt-E-Mail rendern', () => {
     render(<Footer />);
 
-    const emailLink = screen.getByText('office@aitema.de');
+    const emailLink = screen.getByText('office@edufunds.org');
     expect(emailLink).toBeInTheDocument();
-    expect(emailLink.closest('a')).toHaveAttribute('href', 'mailto:office@aitema.de');
+    expect(emailLink.closest('a')).toHaveAttribute('href', 'mailto:office@edufunds.org');
   });
 
   it('sollte den Standort rendern', () => {
