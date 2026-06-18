@@ -14,6 +14,7 @@ jest.mock("@/lib/payments/orders", () => ({
   createEinzelInvoiceOrder: jest.fn(),
   buildEinzelInvoiceConfirmationEmail: jest.fn(() => ({ subject: "s", html: "h", text: "t" })),
   buildEinzelInvoiceAdminEmail: jest.fn(() => ({ subject: "s", html: "h", text: "t" })),
+  escapeHtml: (s: string) => s,
 }));
 jest.mock("@/lib/app-url", () => ({ trustedAppUrl: jest.fn(() => "https://app.edufunds.org") }));
 jest.mock("@/lib/mail", () => ({ sendMail: jest.fn(async () => true) }));

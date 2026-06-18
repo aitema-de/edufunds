@@ -229,7 +229,7 @@ export interface EmailContent {
 
 /** Baut die Bestellbestaetigung (Betrag, Bankverbindung, Verwendungszweck, Code). */
 /** HTML-Escaping für alle benutzerkontrollierten Felder an HTML-E-Mail-Senken. */
-function escapeHtml(s: string): string {
+export function escapeHtml(s: string): string {
   return s
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")

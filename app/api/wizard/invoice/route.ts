@@ -7,6 +7,7 @@ import {
   createEinzelInvoiceOrder,
   buildEinzelInvoiceConfirmationEmail,
   buildEinzelInvoiceAdminEmail,
+  escapeHtml,
   type EinzelInvoiceOrder,
 } from "@/lib/payments/orders";
 import { trustedAppUrl } from "@/lib/app-url";
@@ -103,12 +104,14 @@ export async function POST(req: NextRequest) {
     } catch (e) {
       // Antrag bleibt freigeschaltet; Accounting-Lücke darf nicht still bleiben.
       console.error("[api/wizard/invoice] Bestellung konnte nicht persistiert werden:", e);
+      const alertText = `paid_token: ${paidToken}\nSession: ${data.sessionToken}\nOrg: ${data.orgName}\nE-Mail: ${data.email}\nRechnung manuell erstellen.`;
       await sendMail(
         {
           to: ADMIN_EMAIL,
           subject: `⚠️ Einzelantrag-Rechnung: Bestellung NICHT persistiert (${data.orgName})`,
-          html: `<pre>paid_token: ${paidToken}\nSession: ${data.sessionToken}\nOrg: ${data.orgName}\nE-Mail: ${data.email}\nRechnung manuell erstellen.</pre>`,
-          text: `paid_token: ${paidToken}\nSession: ${data.sessionToken}\nOrg: ${data.orgName}\nE-Mail: ${data.email}\nRechnung manuell erstellen.`,
+          // Alle Werte escapen — orgName/email sind nutzerkontrolliert (XSS im Admin-Postfach).
+          html: `<pre>${escapeHtml(alertText)}</pre>`,
+          text: alertText,
         },
         "api/wizard/invoice"
       );
