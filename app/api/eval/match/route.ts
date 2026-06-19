@@ -32,6 +32,10 @@ export async function POST(req: NextRequest) {
       schultyp: p.schultyp,
       bundesland: p.bundesland,
       geschaetztesBudgetEur: p.geschaetztesBudgetEur,
+      // Antragsteller-Typ-Hardfilter (Eval-Befund 2026-06-19): explizit
+      // durchreichen, falls Persona/Frontend ihn liefert; sonst greift die
+      // Freitext-Heuristik in classifyApplicant.
+      antragstellerTyp: p.antragstellerTyp,
       forceRanking: true, // Eval will Vorschlaege, keine Rueckfrage
     });
     if (result.kind === "clarification") {

@@ -296,6 +296,21 @@ export interface MatchInput {
   schultyp?: string;
   bundesland?: string;
   geschaetztesBudgetEur?: number;
+  /**
+   * Eval-Befund 2026-06-19: Antragsteller-Typ-Hardfilter (analog zum
+   * BalkanGrant-Eligibility-Gate). EduFunds foerdert SCHULEN — antragsberechtigt
+   * sind Schule, Schultraeger und Foerderverein. Privatunternehmen und reine
+   * Kitas sind NICHT antragsberechtigt; fuer sie darf der Matcher keine
+   * Schulprogramme erfinden. Wenn gesetzt, hat dieser Wert Vorrang vor der
+   * Freitext-Heuristik (classifyApplicant).
+   */
+  antragstellerTyp?:
+    | "schule"
+    | "schultraeger"
+    | "foerderverein"
+    | "kita"
+    | "privatunternehmen"
+    | "sonstige";
   /** D-09: wenn true, unterdrueckt CLARIFY-Dispatch — der Matcher MUSS ranken. */
   forceRanking?: boolean;
   /** D-09: bei zweitem Aufruf nach Klaerungsfrage — urspruengliches Anliegen als Kontext. */
@@ -609,11 +624,102 @@ export function parsePipeMatches(text: string, validIds: Set<string>): RawMatch[
   return out;
 }
 
+/** Schultyp-Werte, die einen echten Schulkontext belegen (→ antragsberechtigt). */
+const SCHULTYP_WERTE = new Set([
+  "grundschule", "hauptschule", "realschule", "gymnasium", "gesamtschule",
+  "foerderschule", "förderschule", "berufsschule", "iss", "oberschule",
+  "sekundarschule", "gemeinschaftsschule", "schule",
+]);
+
+/**
+ * Antragsteller-Typ-Hardfilter (Eval-Befund 2026-06-19).
+ *
+ * EduFunds foerdert Schulen — antragsberechtigt sind **Schule, Schultraeger,
+ * Foerderverein**. **Privatunternehmen** (GmbH/Firma fuer den eigenen Betrieb)
+ * und **reine Kitas/Kindergaerten** sind NICHT antragsberechtigt; fuer sie darf
+ * der Matcher keine Schulprogramme vorschlagen (analog zur harten
+ * eligible:false-Pruefung im BalkanGrant-Matcher).
+ *
+ * Reihenfolge: explizites `antragstellerTyp` hat Vorrang; sonst konservative
+ * Freitext-Heuristik auf `schulname` + `anliegen`. Die Heuristik ist bewusst
+ * vorsichtig — sie sperrt nur bei klaren Nicht-Schul-Signalen UND fehlendem
+ * Schultyp, damit echte (auch private/gGmbH-getragene) Schulen nie faelschlich
+ * abgewiesen werden.
+ */
+export function classifyApplicant(input: MatchInput): {
+  eligible: boolean;
+  typ: NonNullable<MatchInput["antragstellerTyp"]> | "unbekannt";
+  grund: string;
+} {
+  const ELIGIBLE = new Set(["schule", "schultraeger", "foerderverein"]);
+
+  if (input.antragstellerTyp) {
+    const t = input.antragstellerTyp;
+    return ELIGIBLE.has(t)
+      ? { eligible: true, typ: t, grund: "antragsberechtigt (explizit)" }
+      : { eligible: false, typ: t, grund: `nicht antragsberechtigt: ${t}` };
+  }
+
+  const name = (input.schulname ?? "").toLowerCase();
+  const anliegen = (input.anliegen ?? "").toLowerCase();
+  const hay = `${name} ${anliegen}`;
+  const schultyp = (input.schultyp ?? "").trim().toLowerCase();
+  const hatSchultyp = SCHULTYP_WERTE.has(schultyp);
+
+  // Foerderverein ist ein zulaessiges Antrags-Vehikel FUER eine Schule.
+  if (/f[oö]rderverein/.test(hay)) {
+    return { eligible: true, typ: "foerderverein", grund: "Foerderverein (Schulfoerderung)" };
+  }
+
+  // Reine Kita/Kindergarten ohne Schulkontext → nicht antragsberechtigt.
+  if (/\b(kita|kindergarten|kindertagesst|kindertagespflege|krippe)\b/.test(hay) && !hatSchultyp) {
+    return { eligible: false, typ: "kita", grund: "Kita/Kindergarten ohne Schulkontext" };
+  }
+
+  // Privatunternehmen: Firmen-Rechtsform im Namen ODER betriebliches Anliegen,
+  // jeweils NUR ohne belegten Schultyp (echte Schulen — auch gGmbH-getragene —
+  // tragen einen Schultyp und werden so nicht erfasst). "gGmbH" loest die
+  // \bgmbh\b-Grenze bewusst nicht aus (vorangestelltes "g").
+  const firmenRechtsform = /\bgmbh\b|\bag\b|\bug\b|\bgbr\b|\bkg\b|\bohg\b|\bunternehmen\b|\bfirma\b|\bbetrieb\b/.test(name);
+  const betrieblichesAnliegen = /unser(?:es|em|en)?\s+(unternehmen|betrieb|firma|bauunternehmen)|f[uü]r\s+(?:unser|den)\s+betrieb|gewinn|maschinen f[uü]r|ausbau unseres/.test(anliegen);
+  if ((firmenRechtsform || betrieblichesAnliegen) && !hatSchultyp) {
+    return { eligible: false, typ: "privatunternehmen", grund: "Privatunternehmen ohne Schulkontext" };
+  }
+
+  // Default: als Schule behandeln (eligible).
+  return { eligible: true, typ: hatSchultyp ? "schule" : "unbekannt", grund: "Schulkontext angenommen" };
+}
+
 export async function runMatch(input: MatchInput): Promise<MatchResult> {
   if (!input.anliegen || input.anliegen.trim().length < 20) {
     throw new Error(
       "Bitte beschreibe dein Anliegen etwas ausfuehrlicher (mind. 20 Zeichen)."
     );
+  }
+
+  // Antragsteller-Typ-Hardfilter (Eval-Befund 2026-06-19): bevor ueberhaupt
+  // gerankt wird, pruefen, ob der Antragsteller antragsberechtigt ist. Fuer
+  // Privatunternehmen / reine Kitas darf der Matcher KEINE Schulprogramme
+  // vorschlagen. Greift auch bei forceRanking=true — Foerderfaehigkeit ist
+  // nicht verhandelbar (analog BalkanGrant eligible:false). Antwort als
+  // clarification mit ehrlicher Begruendung; der Eval-Endpunkt liefert dafuer []
+  // → no_match_invention_rate sinkt.
+  const elig = classifyApplicant(input);
+  if (!elig.eligible) {
+    const wofuer = elig.typ === "kita"
+      ? "Kitas und Kindergaerten"
+      : elig.typ === "privatunternehmen"
+        ? "Privatunternehmen"
+        : "dieser Antragstellertyp";
+    return {
+      kind: "clarification",
+      question:
+        `EduFunds vermittelt Foerderprogramme fuer SCHULEN. Antragsberechtigt sind ` +
+        `Schulen, Schultraeger und Foerdervereine — fuer ${wofuer} koennen wir keine ` +
+        `passenden Schulprogramme vorschlagen. Falls ein Foerderverein oder Schultraeger ` +
+        `stellvertretend fuer eine Schule beantragt, gib bitte die Schule an.`,
+      costs: emptyLedger(),
+    };
   }
 
   // Plan 02-09: Deterministische Kandidaten-Auswahl (prefilter → QueueScore +
