@@ -105,6 +105,7 @@ describe("prefilter — Status-Filter (C1)", () => {
       (p) =>
         p.status !== "archiviert" &&
         p.status !== "review_needed" &&
+        (p as { kiAntragGeeignet?: boolean }).kiAntragGeeignet !== false && // FP-GS-3
         !isProgrammAbgelaufen(p as never)
     );
     const erwartet = survivors.length;
@@ -114,7 +115,10 @@ describe("prefilter — Status-Filter (C1)", () => {
     // Sanity: Status-Filter UND Ablauf-Filter greifen beide (sonst testet der
     // Test versehentlich nur eine der beiden Bedingungen).
     const nurStatus = programme.filter(
-      (p) => p.status !== "archiviert" && p.status !== "review_needed"
+      (p) =>
+        p.status !== "archiviert" &&
+        p.status !== "review_needed" &&
+        (p as { kiAntragGeeignet?: boolean }).kiAntragGeeignet !== false
     ).length;
     expect(erwartet).toBeLessThan(nurStatus); // d. h. mind. ein Programm ist abgelaufen
 
