@@ -68,21 +68,35 @@ export default async function WizardPage({ params }: Props) {
             </Link>
           </div>
           {richtlinie && !richtlinieStub && (
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-3 py-1 text-xs text-emerald-700">
+            <div
+              className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-3 py-1 text-xs text-emerald-700"
+              title="Die offizielle Förderrichtlinie liegt strukturiert vor — der Antrag folgt ihren Pflichtabschnitten und wird gegen die Förderregeln geprüft."
+            >
               <ShieldCheck className="h-3.5 w-3.5" />
               Richtlinie erfasst — Antrag folgt offizieller Struktur
             </div>
           )}
           {richtlinie && richtlinieStub && (
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#78350f]/40 bg-[#78350f]/10 px-3 py-1 text-xs text-[#78350f]">
+            <div
+              className="inline-flex items-center gap-2 rounded-full border border-[#78350f]/40 bg-[#78350f]/10 px-3 py-1 text-xs text-[#78350f]"
+              title="Nur ein Teil der offiziellen Richtlinie ist erfasst — einige Abschnitte folgen einer Standardstruktur. Gleichen Sie den Antrag vor dem Einreichen mit der offiziellen Ausschreibung ab."
+            >
               <AlertCircle className="h-3.5 w-3.5" />
               Richtlinie teilweise erfasst — einige Felder generisch
             </div>
           )}
           {!richtlinie && (
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#1c1917]/15 bg-white/70 px-3 py-1 text-xs text-slate-600 backdrop-blur-sm">
-              <AlertCircle className="h-3.5 w-3.5" />
-              Keine Richtlinie erfasst — generische Struktur, offizielle Richtlinie parallel prüfen
+            <div className="flex flex-col items-center gap-1.5">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#1c1917]/15 bg-white/70 px-3 py-1 text-xs text-slate-600 backdrop-blur-sm">
+                <AlertCircle className="h-3.5 w-3.5" />
+                Keine offizielle Richtlinie hinterlegt — Antrag nutzt eine bewährte Standardstruktur
+              </div>
+              <p className="max-w-md text-center text-xs text-slate-500">
+                Inhaltlich vollwertig — Sie müssen nichts weiter tun. Weil uns die
+                Pflichtabschnitte dieses Programms aber nicht im Detail vorliegen, gleichen
+                Sie den fertigen Antrag vor dem Einreichen kurz mit der offiziellen
+                Ausschreibung ab.
+              </p>
             </div>
           )}
         </div>
