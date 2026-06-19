@@ -3,6 +3,7 @@
 import { KeyboardEvent, useEffect, useState } from "react";
 import { Loader2, Sparkles, Lock } from "lucide-react";
 import {
+  clearSchoolProfile,
   loadSchoolProfile,
   saveSchoolProfile,
 } from "@/lib/wizard/school-profile-client";
@@ -47,15 +48,28 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
   const [schultyp, setSchultyp] = useState("");
   const [bundesland, setBundesland] = useState("");
   const [budgetStr, setBudgetStr] = useState("");
+  // FP-GS-1: Wurden Schulfelder aus einem gespeicherten Profil vorausgefüllt,
+  // machen wir das sichtbar — sonst übernimmt eine andere Person am selben
+  // Browser unbemerkt fremde Schuldaten in ihren Antrag.
+  const [prefilledFromProfile, setPrefilledFromProfile] = useState(false);
 
   useEffect(() => {
     const p = loadSchoolProfile();
-    if (p) {
+    if (p && (p.name || p.typ || p.bundesland)) {
       if (p.name) setSchulname(p.name);
       if (p.typ) setSchultyp(p.typ);
       if (p.bundesland) setBundesland(p.bundesland);
+      setPrefilledFromProfile(true);
     }
   }, []);
+
+  const clearSchoolFields = () => {
+    setSchulname("");
+    setSchultyp("");
+    setBundesland("");
+    clearSchoolProfile();
+    setPrefilledFromProfile(false);
+  };
 
   const handleSubmit = async () => {
     const trimmed = anliegen.trim();
@@ -125,6 +139,22 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
             </span>
           </p>
         </div>
+
+        {prefilledFromProfile && (
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg border border-[#78350f]/30 bg-[#78350f]/5 px-3 py-2 text-xs text-slate-600">
+            <span>
+              Schulname, Schultyp und Bundesland stammen aus einer früheren Sitzung in
+              diesem Browser. Gehören sie nicht zu Ihnen, leeren Sie die Felder.
+            </span>
+            <button
+              type="button"
+              onClick={clearSchoolFields}
+              className="font-medium text-[#78350f] underline transition hover:text-[#92400e]"
+            >
+              Felder leeren
+            </button>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div>
