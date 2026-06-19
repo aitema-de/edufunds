@@ -337,13 +337,32 @@ export function AntragResult({
             <Download className="h-4 w-4" /> .txt
           </button>
           {onRestart && (
-            <button
-              type="button"
-              onClick={onRestart}
-              className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 px-3 py-2 text-sm text-[#57534e] hover:bg-slate-100"
-            >
-              <RefreshCw className="h-4 w-4" /> Neu
-            </button>
+            <>
+              {/* Optischer Trenner: „Neuer Antrag" ist eine andere Art Aktion als
+                  die Export-Buttons und soll fuer Wiederkehrer auffindbar sein (NEU-1). */}
+              <span
+                className="mx-1 hidden h-6 w-px self-center bg-slate-200 sm:block"
+                aria-hidden="true"
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  // Restart verwirft den lokalen Zeiger auf diesen fertigen Antrag —
+                  // vor dem Verlust kurz rueckfragen (er bleibt unter „Meine Anträge").
+                  if (
+                    window.confirm(
+                      "Diesen fertigen Antrag schließen und einen neuen starten? Sie finden ihn weiterhin unter „Meine Anträge“."
+                    )
+                  ) {
+                    onRestart();
+                  }
+                }}
+                title="Einen neuen Förderantrag beginnen"
+                className="inline-flex items-center gap-2 rounded-lg border border-[#78350f]/40 bg-[#78350f]/10 px-4 py-2 sm:py-3 text-sm font-semibold text-[#78350f] transition hover:bg-[#78350f]/20"
+              >
+                <RefreshCw className="h-4 w-4" /> Neuer Antrag
+              </button>
+            </>
           )}
         </div>
       </header>
