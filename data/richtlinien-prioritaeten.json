@@ -1,9 +1,19 @@
 {
-  "generatedAt": "2026-06-15T16:52:28.321Z",
+  "generatedAt": "2026-06-19T07:26:55.931Z",
   "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
   "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
   "total": 105,
   "items": [
+    {
+      "programmId": "bmbf-digitalpakt-2",
+      "name": "DigitalPakt Schule 2.0",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 500000,
+      "reichweite": "alle",
+      "infoLink": "https://www.digitalpaktschule.de/de/digitalpakt-2-0-1874.html",
+      "score": 95,
+      "status": "done"
+    },
     {
       "programmId": "erasmus-schulentwicklung",
       "name": "Europäische Partnerschaften für Schulentwicklung",
@@ -52,16 +62,6 @@
       "reichweite": "alle",
       "infoLink": "https://www.aktion-mensch.de/inklusion/bildung/foerderung/schul-kooperationen",
       "score": 87.4,
-      "status": "done"
-    },
-    {
-      "programmId": "bmbf-digitalpakt-2",
-      "name": "DigitalPakt Schule 2.0",
-      "foerdergeberTyp": "bund",
-      "foerdersummeMax": 500000,
-      "reichweite": "alle",
-      "infoLink": "https://www.digitalpaktschule.de/de/digitalpakt-2-0-1874.html",
-      "score": 87,
       "status": "done"
     },
     {

@@ -110,7 +110,7 @@ export function Header() {
           {/* CTA Buttons */}
           <div className="hidden lg:flex lg:items-center lg:gap-3">
             <Button asChild size="sm">
-              <Link href="/foerderprogramme">
+              <Link href="/antrag/start">
                 <Sparkles className="w-4 h-4" />
                 Programme entdecken
               </Link>
@@ -188,7 +188,7 @@ export function Header() {
               >
                 <Button asChild className="w-full">
                   <Link
-                    href="/foerderprogramme"
+                    href="/antrag/start"
                     onClick={() => setIsOpen(false)}
                   >
                     <Sparkles className="w-4 h-4" />

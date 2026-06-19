@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { Suspense, memo, useMemo, useCallback, useRef } from "react";
 import useSWR from "swr";
 import { Header } from "@/components/Header";
@@ -340,12 +341,13 @@ export default function FoerderprogrammePage() {
               Aktuell {isLoading ? '...' : `${PROGRAMM_COUNT_LABEL} Programme`} im Überblick.
             </p>
             <div className="mt-6">
-              <a
+              <Link
                 href="/antrag/start"
+                prefetch
                 className="inline-flex items-center gap-2 rounded-lg bg-[#78350f] px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-[#92400e]"
               >
                 Beschreiben Sie Ihr Anliegen → KI findet passende Programme
-              </a>
+              </Link>
             </div>
           </div>
 
