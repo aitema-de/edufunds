@@ -52,6 +52,14 @@ interface WizardApiState {
 
 const STORAGE_KEY_PREFIX = "edufunds.wizard.session.";
 
+/** Formatiert den ISO-Zeitstempel des Schulprofils als lesbares Datum (de-DE). */
+function formatProfileDate(iso?: string): string | null {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return null;
+  return d.toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" });
+}
+
 interface Props {
   programm: Foerderprogramm;
   einreichung?: EinreichungInfo | null;
@@ -561,26 +569,36 @@ export function WizardShell({ programm, einreichung }: Props) {
         {schoolProfile && (
           <div className="mx-auto mb-6 max-w-xl rounded-lg border border-[#78350f]/30 bg-[#78350f]/5 px-4 py-3 text-left text-sm text-slate-700">
             <div className="mb-1 font-medium text-[#78350f]">
-              Bekanntes Schulprofil wird übernommen
+              Schulprofil aus einer früheren Sitzung
             </div>
-            <div className="text-slate-600">
-              {[
-                schoolProfile.name,
-                schoolProfile.typ,
-                schoolProfile.bundesland,
-                schoolProfile.schuelerzahl ? `${schoolProfile.schuelerzahl} Schüler` : null,
-              ]
-                .filter(Boolean)
-                .join(" · ") || "Grunddaten vorhanden"}
+            <p className="mb-2 text-xs text-slate-500">
+              Diese Angaben stammen aus einem früheren Antrag in diesem Browser
+              {formatProfileDate(schoolProfile.updatedAt)
+                ? ` (zuletzt ergänzt am ${formatProfileDate(schoolProfile.updatedAt)})`
+                : ""}{" "}
+              und werden als Ausgangspunkt übernommen. Passen sie nicht zu diesem
+              Antrag, verwerfen Sie sie hier.
+            </p>
+            <div className="flex flex-wrap items-baseline gap-x-2 text-slate-700">
+              <span className="font-medium">
+                {[
+                  schoolProfile.name,
+                  schoolProfile.typ,
+                  schoolProfile.bundesland,
+                  schoolProfile.schuelerzahl ? `${schoolProfile.schuelerzahl} Schüler` : null,
+                ]
+                  .filter(Boolean)
+                  .join(" · ") || "Grunddaten vorhanden"}
+              </span>
               <button
                 type="button"
                 onClick={() => {
                   clearSchoolProfile();
                   setSchoolProfile(null);
                 }}
-                className="ml-2 text-xs text-slate-500 underline hover:text-slate-700"
+                className="text-xs text-slate-500 underline hover:text-slate-700"
               >
-                löschen
+                verwerfen
               </button>
             </div>
           </div>
@@ -642,6 +660,15 @@ export function WizardShell({ programm, einreichung }: Props) {
 
   const canGenerate = state.phase === "ready_to_generate";
 
+  // FP-NEU-B: Die angezeigte Fragenzahl aus den tatsaechlich gezeigten KI-Fragen
+  // ableiten statt aus dem server-internen Zaehler. Letzterer kann bei einem
+  // Resend (Netzwerk-Retry) doppelt hochzaehlen, sodass die Anzeige springt
+  // (z. B. „Frage 3" → „Frage 6"). Die Zahl der gezeigten Fragen waechst dagegen
+  // monoton um genau 1 pro Runde und entspricht dem, was der Nutzer wahrnimmt.
+  const gezeigteFragen = messages.filter(
+    (m) => m.role === "ai" && m.kind === "question"
+  ).length;
+
   return (
     <div className="grid gap-6 md:grid-cols-[1fr_320px]">
       <div>
@@ -664,7 +691,7 @@ export function WizardShell({ programm, einreichung }: Props) {
           <QuestionCard
             question={state.question.content}
             rationale={state.question.rationale}
-            totalQuestions={state.totalQuestions}
+            totalQuestions={gezeigteFragen || state.totalQuestions}
             maxQuestions={state.maxQuestions}
             answer={answer}
             setAnswer={setAnswer}
@@ -756,12 +783,12 @@ export function WizardShell({ programm, einreichung }: Props) {
                 }
                 title={
                   readiness?.status === "kritisch"
-                    ? "Es fehlen Kernfakten — der Antrag wird wahrscheinlich generisch. Besser erst ergänzen."
+                    ? "Sie können die oben markierten Felder noch ergänzen — oder den Antrag direkt schreiben lassen."
                     : undefined
                 }
               >
                 {readiness?.status === "kritisch"
-                  ? "Trotzdem generieren"
+                  ? "Antrag jetzt schreiben"
                   : "Antrag schreiben lassen"}
               </button>
             </div>
