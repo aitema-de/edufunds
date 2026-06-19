@@ -53,11 +53,12 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
       .trim() || "";
   }, [programm.kurzbeschreibung]);
 
-  // Bundesland-Text (memoized)
+  // Bundesland-Text (memoized). Leeres Array (Datenluecke) als "Bundesweit"
+  // statt irrefuehrendem "0 Bundeslaender" (FP-06).
   const bundeslandText = useMemo(() => {
-    return programm.bundeslaender.includes("alle")
-      ? "Alle Bundesländer"
-      : `${programm.bundeslaender.length} Bundesländer`;
+    const bl = programm.bundeslaender;
+    if (!bl || bl.length === 0 || bl.includes("alle")) return "Alle Bundesländer";
+    return bl.length === 1 ? "1 Bundesland" : `${bl.length} Bundesländer`;
   }, [programm.bundeslaender]);
 
   return (

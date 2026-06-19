@@ -21,13 +21,13 @@ describe('Footer Komponente', () => {
     render(<Footer />);
 
     expect(screen.getByText(PROGRAMM_COUNT_LABEL)).toBeInTheDocument();
-    expect(screen.getByText('90%')).toBeInTheDocument();
-    expect(screen.getByText('24h')).toBeInTheDocument();
+    expect(screen.getByText('DSGVO')).toBeInTheDocument();
+    expect(screen.getByText('Kein')).toBeInTheDocument();
 
     // "Förderprogramme" kommt mehrfach vor (Stats + Produkt-Spalte)
     expect(screen.getAllByText('Förderprogramme').length).toBeGreaterThan(0);
-    expect(screen.getByText('Erfolgsquote')).toBeInTheDocument();
-    expect(screen.getByText('Support')).toBeInTheDocument();
+    expect(screen.getByText('EU-Datenschutz')).toBeInTheDocument();
+    expect(screen.getByText('Abo')).toBeInTheDocument();
   });
 
   it('sollte die Produkt-Links rendern', () => {
