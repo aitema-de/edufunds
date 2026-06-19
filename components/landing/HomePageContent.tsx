@@ -285,7 +285,7 @@ function HeroInfographic() {
 
           <div className="grid grid-cols-2 gap-px bg-white/10 rounded-lg overflow-hidden mt-3">
             {[
-              { k: "Fördersumme", v: "428.500 €" },
+              { k: "Fördersumme", v: "≈ 250.000 €" },
               { k: "Eigenanteil", v: "10 %" },
               { k: "Laufzeit", v: "36 Monate" },
               { k: "Frist", v: "31.03.2026" },
@@ -296,6 +296,7 @@ function HeroInfographic() {
               </div>
             ))}
           </div>
+          <p className="text-[9px] text-white/35 mt-2">Illustratives Beispiel — keine realen Antragsdaten.</p>
         </div>
       </motion.div>
 
@@ -522,7 +523,7 @@ function LiveGenerator() {
     { l: "Antragstext formuliert", done: false },
   ];
   const chips = [
-    { k: "Fördersumme", v: "428.500 €" },
+    { k: "Fördersumme", v: "≈ 250.000 €" },
     { k: "Eigenanteil", v: "10 %" },
     { k: "Laufzeit", v: "36 Mon." },
     { k: "Frist", v: "31.03.26" },
@@ -619,6 +620,7 @@ function LiveGenerator() {
               </motion.div>
             ))}
           </div>
+          <p className="text-[9px] text-white/35 mt-3">Illustratives Beispiel — keine realen Antragsdaten.</p>
         </div>
       </div>
     </div>

@@ -291,15 +291,17 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
           {/* Main Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-8">
-              <section className={`${CARD} p-6 md:p-8`}>
-                <h2 className="font-serif text-2xl text-ink mb-4 flex items-center gap-3" style={{ fontWeight: 500 }}>
-                  <Info className="h-6 w-6 text-brandy" />
-                  Beschreibung
-                </h2>
-                <p className="text-ink/70 leading-relaxed text-lg">
-                  {programm.beschreibung || programm.kurzbeschreibung}
-                </p>
-              </section>
+              {programm.beschreibung && programm.beschreibung.trim() !== programm.kurzbeschreibung?.trim() && (
+                <section className={`${CARD} p-6 md:p-8`}>
+                  <h2 className="font-serif text-2xl text-ink mb-4 flex items-center gap-3" style={{ fontWeight: 500 }}>
+                    <Info className="h-6 w-6 text-brandy" />
+                    Beschreibung
+                  </h2>
+                  <p className="text-ink/70 leading-relaxed text-lg">
+                    {programm.beschreibung}
+                  </p>
+                </section>
+              )}
 
               <section className={`${CARD} p-6 md:p-8`}>
                 <h2 className="font-serif text-2xl text-ink mb-6 flex items-center gap-3" style={{ fontWeight: 500 }}>
