@@ -128,6 +128,55 @@ export function applyStatedEigenanteil(
 }
 
 /**
+ * H-V-2 (Pilot 19.06., SCHWER): Deterministischer Förderquoten-Check. Schreibt die
+ * Richtlinie eine maximale Förderquote bzw. einen Pflicht-Eigenanteil vor (z. B. DKHW:
+ * max 80 % Förderung / mind. 20 % Eigenanteil), darf die Förderung diesen Anteil an den
+ * GESAMTKOSTEN (= Förderung + Eigenanteil) nicht überschreiten. Im Pilot setzte die KI
+ * eine 100-%-Förderung (6.000 € Förderung bei 6.000 € Gesamtkosten) trotz 20-%-Pflicht-
+ * Eigenanteil → der Antrag hätte die Förderquote der Stiftung formal verletzt.
+ * Rein arithmetisch (kein LLM). Legt bei Verstoß einen konkreten, bezifferten Hinweis ab
+ * (inkl. fehlendem Mindest-Eigenanteil). Exportiert für Tests.
+ */
+export function checkFoerderquote(
+  foerderposten: Finanzposten[],
+  eigenposten: Finanzposten[],
+  richtlinie: Richtlinie | null | undefined,
+  hinweise: string[]
+): void {
+  if (!richtlinie) return;
+  const maxProzent = richtlinie.foerderhoehe?.maxProzentGesamtkosten;
+  const minEigen = richtlinie.eigenmittel?.mindestProzent;
+  // Zulässige Förder-Höchstquote bestimmen: explizite maxProzent ODER aus dem
+  // Pflicht-Eigenanteil abgeleitet (100 - mindestProzent).
+  let allowedMax: number | undefined;
+  if (typeof maxProzent === "number" && maxProzent > 0) {
+    allowedMax = maxProzent;
+  } else if (richtlinie.eigenmittel?.pflicht && typeof minEigen === "number" && minEigen > 0) {
+    allowedMax = 100 - minEigen;
+  }
+  if (allowedMax == null || allowedMax >= 100) return;
+
+  const foerderung = Math.round(foerderposten.reduce((s, p) => s + p.betragEur, 0));
+  const eigen = Math.round(eigenposten.reduce((s, p) => s + p.betragEur, 0));
+  const gesamt = foerderung + eigen;
+  if (gesamt <= 0 || foerderung <= 0) return;
+
+  const quote = (foerderung / gesamt) * 100;
+  if (quote <= allowedMax + 1) return; // 1 Prozentpunkt Toleranz gegen Rundung
+
+  // Erforderlicher Mindest-Eigenanteil, damit foerderung = allowedMax % der Gesamtkosten:
+  // eigen' = foerderung * (100 - allowedMax) / allowedMax.
+  const requiredEigen = Math.round((foerderung * (100 - allowedMax)) / allowedMax);
+  const fehlend = Math.max(0, requiredEigen - eigen);
+  const f = (n: number) => n.toLocaleString("de-DE");
+  hinweise.push(
+    `Die Förderung (${f(foerderung)} EUR) entspricht ${Math.round(quote)} % der Gesamtkosten — dieses Programm fördert höchstens ${allowedMax} %. ` +
+      `Es fehlt ein Eigenanteil von mind. ${f(fehlend)} EUR (Gesamtkosten dann ${f(foerderung + requiredEigen)} EUR). ` +
+      `Ergänzen Sie einen Eigenanteil-Posten oder senken Sie die beantragte Förderung, sonst verletzt der Antrag die Förderquote.`
+  );
+}
+
+/**
  * Begründungs-Sprache, die eingesteht, dass ein Betrag geschätzt/angenommen ist
  * (statt aus Nutzerangaben belegt). QA-02: solche Posten enthalten erfundene
  * Beträge, die der Nutzer leicht ungeprüft übernimmt.
@@ -340,8 +389,11 @@ export async function generateFinanzplan(
   // Prominenter Sammelhinweis, sobald Vorschläge enthalten sind — macht
   // transparent, welche Beträge der Nutzer noch bestätigen sollte.
   const foerderposten = postenMarkiert.filter((p) => !p.eigenanteil);
+  const eigenposten = postenMarkiert.filter((p) => p.eigenanteil);
   // H-GS-2b: Deckungs-Check Förderposten-Summe × beantragte Summe (deterministisch).
   checkBeantragtDeckung(foerderposten, facts, hinweise);
+  // H-V-2: Förderquoten-Check gegen die Richtlinie (max Förderquote / Pflicht-Eigenanteil).
+  checkFoerderquote(foerderposten, eigenposten, richtlinie, hinweise);
   const vorschlaege = foerderposten.filter((p) => p.istVorschlag);
   if (vorschlaege.length > 0 && !hinweise.some((h) => h.includes("Vorschläge des Assistenten") || h.includes("Vorschlag des Assistenten"))) {
     const alle = vorschlaege.length === foerderposten.length && foerderposten.length > 0;
