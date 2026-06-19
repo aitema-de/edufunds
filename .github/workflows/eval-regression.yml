@@ -1,0 +1,74 @@
+name: Grant-Eval Regression (Staging, alert-only)
+
+# Fördermatching-Qualitätsgate gegen staging.edufunds.org/api/eval/match.
+# Quelle der Eval-Logik + Baseline: privates Repo aitema-de/grant-eval-suite.
+#
+# Trigger: automatisch nach erfolgreichem Staging-Deploy (workflow_run) + manuell.
+#
+# ALERT-ONLY: Regression > regression.threshold (0.05) → ::warning::, kein Block
+# (Matching ist live + leicht nichtdeterministisch, Lauf kostet LLM-Calls).
+#
+# Benötigte Secrets (Repo-Settings → Secrets and variables → Actions):
+#   EVAL_SUITE_TOKEN    — PAT/Fine-grained-Token mit READ auf aitema-de/grant-eval-suite
+#   EDUFUNDS_EVAL_TOKEN — = EVAL_TOKEN/EVAL_SHARED_SECRET der Staging-App (X-Eval-Token)
+# Fehlt eines, überspringt der Job sauber.
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Deploy to Staging (Hetzner)"]   # = name: in deploy-staging.yml
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    # Bei workflow_run nur laufen, wenn der Deploy erfolgreich war.
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Pre-Flight — Secrets vorhanden?
+        id: pre
+        env:
+          HAS_SUITE: ${{ secrets.EVAL_SUITE_TOKEN != '' }}
+          HAS_EVAL: ${{ secrets.EDUFUNDS_EVAL_TOKEN != '' }}
+        run: |
+          if [ "$HAS_SUITE" != "true" ] || [ "$HAS_EVAL" != "true" ]; then
+            echo "::warning::EVAL_SUITE_TOKEN oder EDUFUNDS_EVAL_TOKEN fehlt — Eval übersprungen."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout grant-eval-suite
+        if: steps.pre.outputs.skip == 'false'
+        uses: actions/checkout@v4
+        with:
+          repository: aitema-de/grant-eval-suite
+          token: ${{ secrets.EVAL_SUITE_TOKEN }}
+          path: grant-eval-suite
+
+      - name: Setup Python
+        if: steps.pre.outputs.skip == 'false'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        if: steps.pre.outputs.skip == 'false'
+        run: pip install --quiet pyyaml
+
+      - name: Run eval (alert-only)
+        if: steps.pre.outputs.skip == 'false'
+        working-directory: grant-eval-suite
+        env:
+          EDUFUNDS_EVAL_TOKEN: ${{ secrets.EDUFUNDS_EVAL_TOKEN }}
+        run: |
+          set +e
+          python3 run_eval.py run --domain edufunds --no-applications --fail-on-regression
+          code=$?
+          if [ $code -ne 0 ]; then
+            echo "::warning::Grant-Eval Regression (edufunds) — KPI > Schwelle 0.05 unter Baseline. Details im Log."
+          fi
+          exit 0
