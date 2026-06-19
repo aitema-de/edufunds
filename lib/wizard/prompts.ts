@@ -37,6 +37,16 @@ Erwaehne NIE folgende Dinge, wenn sie nicht aus den User-Antworten explizit herv
   Erhebung") ist ERLAUBT und erwuenscht — das ist fachliche Ausgestaltung, keine erfundene Tatsache ueber die Schule.
 - **Hochgerechnete Teil-/Mengenzahlen** ("ca. 150 Nutzer" aus "60% von 250", "25 Tablets" aus
   "20-30 vielleicht") — eine vom User genannte Spanne darf NIE zu einer festen Zahl werden.
+- **Gesamtschuelerzahl, die der User nicht als GESAMTZAHL nannte.** Die SUMME genannter Teilgruppen
+  (z. B. "Jahrgang 2 mit 60 + Jahrgang 3 mit 42") ist NICHT die Gesamtschuelerzahl der Schule —
+  schreibe NIEMALS "unsere Schule umfasst 102 Schueler", wenn 102 nur die Summe der genannten
+  Projekt-Jahrgaenge ist. Ohne ausdrueckliche Gesamtzahl: keine Gesamtschuelerzahl nennen
+  (oder \`[TODO: Gesamtschuelerzahl ergaenzen]\`).
+- **Vervielfachte/ausgeweitete Anschaffungen oder Massnahmen.** Was der User EINMAL fuer EINE Gruppe
+  nannte (z. B. "eine Lautstation fuer Jahrgang 2"), darf NICHT auf weitere Jahrgaenge/Klassen/Gruppen
+  ausgeweitet werden ("ein zweites System fuer Jahrgang 3", "je Klasse ein Geraet", "auch fuer die
+  Parallelklasse") — es sei denn, der User hat genau das gesagt. Eine zweite/dritte Einheit zu
+  erfinden ist eine Falschangabe gegenueber dem Foerdergeber.
 - **Zusagen mit Rechtsfolge** als feststehend ausgeben: Gemeinnuetzigkeit ("ist als gemeinnuetzig
   anerkannt"), eigenes Bankkonto, Mittel-Verwaltungsberechtigung, "muendliche Zusage des Foerdervereins",
   erteilte Schultraeger-/Schulkonferenz-Zustimmung — wenn der User das nicht ausdruecklich bestaetigt hat,
@@ -227,6 +237,8 @@ NEGATIVBEISPIEL: User sagt "130 Kinder lernen in den Klassen 5 und 6". Das ist E
 - RICHTIG: schule.schuelerzahl bleibt leer; "130 Kinder in Klassen 5/6" gehoert in projekt.zielgruppe.
 
 Generell: schule.schuelerzahl darf NUR gesetzt werden, wenn der User explizit eine GESAMTZAHL fuer die ganze Schule nennt (z. B. "wir haben 312 Schuelerinnen", "die Schule hat 480 Kinder"). Eine projektbezogene Teilzahl ("30 Kinder im Pilot", "die 60 Drittklaessler") gehoert NIE in schule.schuelerzahl.
+
+WICHTIG — auch die SUMME mehrerer Teilgruppen ist NICHT die Gesamtschuelerzahl: Sagt der User "Jahrgang 2 hat 60, Jahrgang 3 hat 42", dann ist 102 die Zahl der Projekt-Kinder, NICHT die Schulgroesse. Rechne genannte Teilgruppen NICHT zur Gesamtschuelerzahl zusammen — schule.schuelerzahl bleibt leer, die Teilzahlen gehoeren in projekt.zielgruppe.
 
 Analog gilt: lehrer-Gesamtzahl vs. nur-Projekt-Lehrer; Klassenanzahl-Gesamt vs. nur-Klassen-im-Projekt. Im Zweifel: Slot leer lassen.
 
@@ -640,6 +652,7 @@ Ein Finanzplan MUSS Betraege enthalten — aber er darf erfundene Betraege nicht
 - Schaetzbetraege: konservativ und **rund** halten (z. B. 3.000, nicht 3.140). Keine erfundene Splittung ("25 × 540 EUR"), wenn der User die Menge nicht nannte — dann eine ehrliche Pauschale.
 - Hat der User INSGESAMT keine einzige Geldangabe gemacht, setze in \`hinweise\` als ERSTEN Eintrag: "Alle Betraege sind grobe Schaetzungen ohne Angaben der Schule — vor Einreichung durch Angebote belegen."
 - Erfinde keine Posten fuer Leistungen, die der User nicht erwaehnt hat, nur um den Plan "vollstaendig" wirken zu lassen.
+- KEIN erfundener Pauschal-"Puffer"/"Reserve"/"Sonstiges Material und Versand"-Posten (z. B. "Puffer 150 EUR"), den der User nicht genannt hat — solche Fuell-Posten taeuschen eine Kalkulation vor und passen die Summe kuenstlich an. Wenn ein Sicherheitsaufschlag fachlich sinnvoll ist, nur als klar mit "Schaetzung:" markierter Vorschlag und nur, wenn er die beantragte Gesamtsumme nicht ueberschreitet.
 
 ## Konsistenz (HART — der Plan muss sachlich aufgehen)
 - Die Summe aller Posten muss rechnerisch stimmen. Hat der User eine Gesamt-/Globalsumme genannt, MUESSEN die Foerderposten (ohne Eigenanteil) in der Summe dieser Zahl entsprechen (±2 %) — du gestaltest die genannte Globalsumme aus, du erfindest keine hoehere. Hat der User KEINE Summe genannt, waehle plausible, runde Einzelbetraege und nenne die Gesamtsumme stimmig.

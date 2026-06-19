@@ -155,6 +155,47 @@ function isAdmittedEstimate(p: Finanzposten): boolean {
 }
 
 /**
+ * H-GS-2b (Pilot 19.06.): Deterministischer Deckungs-Check. Der Pilot-Antrag
+ * beantragte 4.000 EUR, der KI-Finanzplan summierte aber nur 1.166 EUR an
+ * Förderposten — eine Lücke, die der KI-Prüfer zwar erkannte, aber nur vage als
+ * „Inkonsistenz" meldete. Hier vergleichen wir die SUMME der Förderposten
+ * (ohne Eigenanteil) mit der vom Nutzer beantragten Summe (facts.budget.beantragt_eur)
+ * und legen bei relevanter Abweichung einen konkreten, bezifferten Hinweis ab.
+ * Rein arithmetisch (kein LLM) → keine Halluzination, kein Eval-Risiko.
+ * Schwellen: relative Abweichung > 10 % UND absolute Lücke >= 100 EUR (gegen Rausch).
+ * Exportiert für Tests.
+ */
+export function checkBeantragtDeckung(
+  foerderposten: Finanzposten[],
+  facts: WizardFacts,
+  hinweise: string[]
+): void {
+  const beantragt = facts?.budget?.beantragt_eur;
+  if (typeof beantragt !== "number" || !Number.isFinite(beantragt) || beantragt <= 0) return;
+  if (foerderposten.length === 0) return;
+
+  const summe = Math.round(foerderposten.reduce((s, p) => s + p.betragEur, 0));
+  const diff = summe - beantragt;
+  const absLuecke = Math.abs(diff);
+  if (absLuecke < 100 || absLuecke / beantragt <= 0.1) return;
+
+  const sumStr = summe.toLocaleString("de-DE");
+  const beantragtStr = beantragt.toLocaleString("de-DE");
+  const lueckeStr = absLuecke.toLocaleString("de-DE");
+  if (diff < 0) {
+    hinweise.push(
+      `Der Finanzplan summiert die Förderposten auf ${sumStr} EUR, beantragt wurden aber ${beantragtStr} EUR. ` +
+        `Es fehlen ${lueckeStr} EUR an hinterlegten Posten — ergänzen Sie die fehlenden Kosten oder passen Sie die beantragte Summe an, damit Antrag und Finanzplan übereinstimmen.`
+    );
+  } else {
+    hinweise.push(
+      `Der Finanzplan summiert die Förderposten auf ${sumStr} EUR und übersteigt damit die beantragten ${beantragtStr} EUR um ${lueckeStr} EUR. ` +
+        `Bitte die beantragte Summe oder die Posten angleichen.`
+    );
+  }
+}
+
+/**
  * Produktvision 2026-06-10 (Markierungs-Modell statt Löschen): Markiert jeden
  * Posten, dessen Betrag NICHT am Nutzerinput verankert ist, als `istVorschlag`
  * — ein bestätigbarer Assistenten-Vorschlag (z. B. Ausgestaltung einer genannten
@@ -299,6 +340,8 @@ export async function generateFinanzplan(
   // Prominenter Sammelhinweis, sobald Vorschläge enthalten sind — macht
   // transparent, welche Beträge der Nutzer noch bestätigen sollte.
   const foerderposten = postenMarkiert.filter((p) => !p.eigenanteil);
+  // H-GS-2b: Deckungs-Check Förderposten-Summe × beantragte Summe (deterministisch).
+  checkBeantragtDeckung(foerderposten, facts, hinweise);
   const vorschlaege = foerderposten.filter((p) => p.istVorschlag);
   if (vorschlaege.length > 0 && !hinweise.some((h) => h.includes("Vorschläge des Assistenten") || h.includes("Vorschlag des Assistenten"))) {
     const alle = vorschlaege.length === foerderposten.length && foerderposten.length > 0;
