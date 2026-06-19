@@ -430,7 +430,12 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
                     )}
                   </div>
 
-                  {programm.bewerbungsart && (
+                  {/* Die grobe Bewerbungsart-Angabe ("Online-Antrag" etc.) nur zeigen,
+                      wenn KEIN ausfuehrlicher Einreichungsweg aus dem Dossier vorliegt.
+                      Sonst traegt die "So reichen Sie ein"-Sektion den (oft mehrstufigen)
+                      korrekten Weg — z. B. bei DigitalPakt: Schule erstellt Medienkonzept,
+                      Schultraeger stellt den Antrag ( "Online-Antrag" waere irrefuehrend). */}
+                  {programm.bewerbungsart && !einreichung?.einreichungsweg && (
                     <div className="pt-4 border-t border-ink/10">
                       <span className="text-sm text-ink/50">Bewerbungsart:</span>
                       <div className="text-ink/80 capitalize mt-1">
