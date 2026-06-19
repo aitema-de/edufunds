@@ -35,8 +35,8 @@ const footerLinks = {
 
 const stats = [
   { value: PROGRAMM_COUNT_LABEL, label: "Förderprogramme" },
-  { value: "90%", label: "Erfolgsquote" },
-  { value: "24h", label: "Support" }
+  { value: "DSGVO", label: "EU-Datenschutz" },
+  { value: "Kein", label: "Abo" }
 ];
 
 export function Footer() {

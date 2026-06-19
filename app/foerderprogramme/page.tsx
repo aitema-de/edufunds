@@ -53,6 +53,31 @@ const FOERDERGEBER_TYPEN = [
   { value: "eu", label: "EU" },
 ];
 
+// Schulformen fuer Filter + Freitextsuche (Code -> Anzeigename)
+const SCHULFORM_LABEL: Record<string, string> = {
+  grundschule: "Grundschule",
+  hauptschule: "Hauptschule",
+  realschule: "Realschule",
+  gymnasium: "Gymnasium",
+  gesamtschule: "Gesamtschule",
+  iss: "Integrierte Sekundarschule (ISS)",
+  "iss-mit-go": "Integrierte Sekundarschule mit Oberstufe (ISS+GO)",
+  foerderschule: "Förderschule",
+  berufsschule: "Berufsschule",
+};
+
+const SCHULFORMEN = [
+  { value: "", label: "Alle Schulformen" },
+  { value: "grundschule", label: "Grundschule" },
+  { value: "hauptschule", label: "Hauptschule" },
+  { value: "realschule", label: "Realschule" },
+  { value: "gymnasium", label: "Gymnasium" },
+  { value: "gesamtschule", label: "Gesamtschule" },
+  { value: "iss", label: "Integrierte Sekundarschule (ISS)" },
+  { value: "foerderschule", label: "Förderschule" },
+  { value: "berufsschule", label: "Berufsschule" },
+];
+
 // Memoized Statistik-Komponente
 const StatsSection = memo(function StatsSection({ stats }: { stats: { total: number; bund: number; land: number; stiftung: number; eu: number } }) {
   return (
@@ -192,7 +217,8 @@ export default function FoerderprogrammePage() {
     suchbegriff: "",
     bundesland: "",
     foerdergeberTyp: "",
-    kategorie: ""
+    kategorie: "",
+    schulform: ""
   });
 
   // Debounced Suchbegriff für bessere Performance
@@ -232,16 +258,26 @@ export default function FoerderprogrammePage() {
     return foerderprogramme.filter((programm) => {
       // Abgelaufene Programme gehoeren ins Archiv, nicht in den aktiven Katalog.
       if (isProgrammAbgelaufen(programm)) return false;
-      // Suchbegriff
+      // Suchbegriff — durchsucht Name, Beschreibung, Foerdergeber UND die
+      // Schulform-Tags (z. B. "Gymnasium") + Kategorien, damit eine Suche nach
+      // einer Schulart nicht ins Leere laeuft (FP-03).
       if (suche) {
         const nameMatch = programm.name.toLowerCase().includes(suche);
         if (nameMatch) return true;
-        
+
         const beschreibungMatch = programm.kurzbeschreibung?.toLowerCase().includes(suche);
         if (beschreibungMatch) return true;
-        
+
         const foerdergeberMatch = programm.foerdergeber.toLowerCase().includes(suche);
-        if (!foerdergeberMatch) return false;
+        if (foerdergeberMatch) return true;
+
+        const schulformMatch = programm.schulformen?.some(
+          (s) => s.toLowerCase().includes(suche) || (SCHULFORM_LABEL[s]?.toLowerCase().includes(suche) ?? false)
+        );
+        if (schulformMatch) return true;
+
+        const kategorieMatch = programm.kategorien?.some((k) => k.toLowerCase().includes(suche));
+        if (!kategorieMatch) return false;
       }
 
       // Bundesland
@@ -259,6 +295,11 @@ export default function FoerderprogrammePage() {
 
       // Kategorie
       if (filterState.kategorie && !programm.kategorien.includes(filterState.kategorie)) {
+        return false;
+      }
+
+      // Schulform (FP-09)
+      if (filterState.schulform && !programm.schulformen?.some((s) => s === filterState.schulform)) {
         return false;
       }
 
@@ -284,7 +325,8 @@ export default function FoerderprogrammePage() {
       suchbegriff: "",
       bundesland: "",
       foerdergeberTyp: "",
-      kategorie: ""
+      kategorie: "",
+      schulform: ""
     });
     resetPage();
   }, [setFilterState, resetPage]);
@@ -392,7 +434,7 @@ export default function FoerderprogrammePage() {
             </div>
 
             {/* Filter-Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
               {/* Suchfeld */}
               <div className="relative">
                 <label className="block text-xs text-[#57534e] mb-1.5">Suche</label>
@@ -475,6 +517,27 @@ export default function FoerderprogrammePage() {
                   }}
                 >
                   {kategorien.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Schulform-Dropdown (FP-09) */}
+              <div>
+                <label className="block text-xs text-[#57534e] mb-1.5">Schulform</label>
+                <select
+                  value={filterState.schulform || ""}
+                  onChange={(e) => handleFilterChange('schulform', e.target.value)}
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#fdfdfc] border border-[#ebe5dc] text-[#1c1917] text-sm focus:outline-none focus:border-[#78350f]/50 focus:ring-1 focus:ring-[#78350f]/50 transition-all cursor-pointer appearance-none"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2357534e' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'right 12px center'
+                  }}
+                >
+                  {SCHULFORMEN.map((option) => (
                     <option key={option.value} value={option.value}>
                       {option.label}
                     </option>
