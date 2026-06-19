@@ -56,6 +56,18 @@ describe("selectCutCandidates — Cut-Auswahl", () => {
     }
   });
 
+  it("prefilter (FP-GS-3): kein kiAntragGeeignet=false-Programm ueberlebt", () => {
+    // Lese-/Sprach-Anliegen wuerde sonst "Post und Schule" (deutsche-post-schule,
+    // kiAntragGeeignet=false, "keine direkte Foerderung") thematisch hochspuelen.
+    const sel = selectCutCandidates({
+      anliegen: "Digitale Lese-Apps, Lizenzen und Kopfhoerer fuer die Lesefoerderung in der Grundschule.",
+    });
+    for (const c of sel.ranked) {
+      expect((c.programm as { kiAntragGeeignet?: boolean }).kiAntragGeeignet).not.toBe(false);
+    }
+    expect(sel.ranked.map((c) => c.programm.id)).not.toContain("deutsche-post-schule");
+  });
+
   it("Bundesland-Filter: Landesprogramm eines anderen Landes faellt raus", () => {
     // Ein Programm finden, das explizit auf genau ein Land (nicht 'alle') gebunden ist.
     const landesProg = programme.find(

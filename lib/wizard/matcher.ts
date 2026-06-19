@@ -396,6 +396,16 @@ function prefilter(input: MatchInput, all: Foerderprogramm[]): Foerderprogramm[]
     // ohne offenen Call). Beide gehoeren nicht als Live-Treffer in den Cut.
     const status = (p as any).status;
     if (status === "archiviert" || status === "review_needed") return false;
+
+    // FP-GS-3: Programme, die der Katalog explizit als NICHT geeignet fuer die
+    // KI-Antragsgenerierung markiert (kiAntragGeeignet === false), gehoeren nicht
+    // in die Antrag-Matches. Beispiel "Post und Schule": bietet nur kostenlose
+    // Materialien / eine Lesekampagne, "keine direkte Foerderung" — der Wizard
+    // wuerde sonst einen Foerderantrag fuer ein Programm schreiben, das gar nichts
+    // finanziert (thematisch passt es, also schlaegt das LLM es vor). Diese
+    // Programme bleiben ueber /foerderprogramme auffindbar, nur eben nicht als
+    // Antrag-Treffer.
+    if ((p as any).kiAntragGeeignet === false) return false;
     // Abgelaufene Programme (Frist-Ende in der Vergangenheit) nicht matchen —
     // sonst schreibt der Wizard einen Antrag fuer eine geschlossene Ausschreibung.
     if (isProgrammAbgelaufen(p)) return false;
