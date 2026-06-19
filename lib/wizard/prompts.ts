@@ -47,6 +47,13 @@ Erwaehne NIE folgende Dinge, wenn sie nicht aus den User-Antworten explizit herv
   ausgeweitet werden ("ein zweites System fuer Jahrgang 3", "je Klasse ein Geraet", "auch fuer die
   Parallelklasse") — es sei denn, der User hat genau das gesagt. Eine zweite/dritte Einheit zu
   erfinden ist eine Falschangabe gegenueber dem Foerdergeber.
+- **Erfundene datierte Monats-/Quartalsplaene aus einem groben Zeitrahmen.** Sagt der User nur etwas
+  Grobes ("Start nach den Sommerferien, ca. 36 Termine, Abschlusskonzert am Schuljahresende"), erfinde
+  KEINEN datierten Ablauf ("Januar bis Mitte Februar …", "Mai bis Juni", "in den Winterferien",
+  "Phase 1 ab Q3"). Das ist erfunden UND oft in sich widerspruechlich (Sommerferien-Start bedeutet
+  Schuljahr ca. August–Juli, NICHT Januar–Juni). Gib den Zeitrahmen nur so konkret wieder, wie der User
+  ihn nannte ("im Schuljahr nach den Sommerferien, rund 36 woechentliche Termine, Abschluss zum
+  Schuljahresende") — ohne erfundene Monatszuordnung.
 - **Zusagen mit Rechtsfolge** als feststehend ausgeben: Gemeinnuetzigkeit ("ist als gemeinnuetzig
   anerkannt"), eigenes Bankkonto, Mittel-Verwaltungsberechtigung, "muendliche Zusage des Foerdervereins",
   erteilte Schultraeger-/Schulkonferenz-Zustimmung — wenn der User das nicht ausdruecklich bestaetigt hat,
@@ -656,6 +663,7 @@ Ein Finanzplan MUSS Betraege enthalten — aber er darf erfundene Betraege nicht
 
 ## Konsistenz (HART — der Plan muss sachlich aufgehen)
 - Die Summe aller Posten muss rechnerisch stimmen. Hat der User eine Gesamt-/Globalsumme genannt, MUESSEN die Foerderposten (ohne Eigenanteil) in der Summe dieser Zahl entsprechen (±2 %) — du gestaltest die genannte Globalsumme aus, du erfindest keine hoehere. Hat der User KEINE Summe genannt, waehle plausible, runde Einzelbetraege und nenne die Gesamtsumme stimmig.
+- **Foerderquote / Pflicht-Eigenanteil (HART):** GESAMTKOSTEN = Foerderung + Eigenanteil. Setze die Gesamtkosten NIEMALS gleich der beantragten Foerderung, wenn die Richtlinie einen Eigenanteil verlangt. Schreibt die Richtlinie eine maximale Foerderquote (z. B. max 80 % der Gesamtkosten) oder einen Mindest-Eigenanteil (z. B. 20 %) vor, dann darf die Foerdersumme diesen Anteil NICHT ueberschreiten — lege einen Eigenanteil-Posten (eigenanteil:true) in der noetigen Hoehe an (Beispiel: Gesamtkosten 7.500 EUR, max 80 % → Foerderung 6.000 EUR + Eigenanteil 1.500 EUR). Nannte der User die Gesamtkosten (z. B. "rund 7.500 EUR"), nimm DIESE als Gesamtkosten und teile sie korrekt in Foerderung und Eigenanteil — verwechsle die Gesamtkosten nicht mit der beantragten Foerderung.
 - Erfinde keinen Posten, der einer Nutzeraussage WIDERSPRICHT (sagte der User "machen wir selbst" / "Lehrkraefte nebenher", KEINE bezahlte Personal-/Honorarstelle dafuer). Solche widerspruechlichen Posten gehoeren NICHT in den Plan.
 - Ergaenzende Posten, die der User NICHT genannt hat, aber die fuer ein gutes Vorhaben sinnvoll sind, sind als Vorschlag ERLAUBT (begruendung mit "Schaetzung:" beginnen) — sie werden dem Nutzer als bestaetigbarer Vorschlag angezeigt.
 
