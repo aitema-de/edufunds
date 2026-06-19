@@ -404,14 +404,21 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
           {/* Kontingent-Code (Schultraeger): Lehrkraft schaltet ohne eigene Zahlung frei */}
           <div className="mt-5 border-t border-slate-200 pt-4">
             {!showRedeem ? (
-              <button
-                type="button"
-                onClick={() => setShowRedeem(true)}
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-[#57534e] transition-colors hover:text-[#78350f]"
-              >
-                <Ticket className="h-4 w-4" />
-                Kontingent-Code einlösen
-              </button>
+              <>
+                <button
+                  type="button"
+                  onClick={() => setShowRedeem(true)}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-[#57534e] transition-colors hover:text-[#78350f]"
+                >
+                  <Ticket className="h-4 w-4" />
+                  Kontingent-Code einlösen
+                </button>
+                {/* NEU-3: Kontext, damit niemand denkt, ein Code sei nötig. */}
+                <p className="mt-1 text-xs text-slate-400">
+                  Nur falls Ihr Schulträger ein Kontingent gekauft hat — sonst einfach
+                  oben freischalten.
+                </p>
+              </>
             ) : (
               <div className="text-left">
                 <label
