@@ -245,6 +245,156 @@ export function checkBeantragtDeckung(
 }
 
 /**
+ * Parst einen vom Nutzer in Freitext genannten Euro-Betrag (deutsche Schreibweise:
+ * "10.000" = 10000, "1.234,50" = 1234.5). Punkte/Leerzeichen sind Tausender-Trenner,
+ * Komma ist Dezimaltrenner. Gibt null bei nicht-parsebarem/nicht-positivem Wert.
+ * Exportiert für Tests.
+ */
+export function parseGermanAmount(raw: string): number | null {
+  let s = raw.trim();
+  let decimal = "";
+  const commaIdx = s.lastIndexOf(",");
+  if (commaIdx !== -1) {
+    decimal = s.slice(commaIdx + 1).replace(/\D/g, "");
+    s = s.slice(0, commaIdx);
+  }
+  const intPart = s.replace(/\D/g, "");
+  if (!intPart) return null;
+  const n = Number(intPart) + (decimal ? Number("0." + decimal) : 0);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+/** Global-Variante von MONEY_RE: erfasst die Zahl mit Euro-Markierung in beide Richtungen. */
+const MONEY_AMOUNT_RE = /(?:€|eur|euro)\s*(\d[\d.\s]*\d|\d)|(\d[\d.\s]*\d|\d)\s*(?:€|eur\b|euro)/gi;
+
+/**
+ * Extrahiert alle vom Nutzer in den Roh-Antworten genannten Euro-Beträge. Reine
+ * Mengen ("200 Kinder", "20 Tablets") ohne Euro-Markierung zählen NICHT (wie MONEY_RE).
+ * Exportiert für Tests.
+ */
+export function extractStatedAmounts(userAnswers?: string[]): number[] {
+  const out: number[] = [];
+  if (!userAnswers) return out;
+  for (const a of userAnswers) {
+    if (typeof a !== "string") continue;
+    for (const m of a.matchAll(MONEY_AMOUNT_RE)) {
+      const raw = m[1] ?? m[2];
+      if (!raw) continue;
+      const v = parseGermanAmount(raw);
+      if (v != null) out.push(Math.round(v));
+    }
+  }
+  return out;
+}
+
+/**
+ * P1-B (Pilot-Feedback 24.06.): Kostenplan-Transparenz. Die Testerin nannte einen
+ * Betrag, den der Generator "offenbar halbiert" hat — ohne Erklärung. Die bestehenden
+ * Checks greifen nur bei strukturiertem `facts.budget.beantragt_eur` (checkBeantragtDeckung)
+ * bzw. vorhandener Richtlinie (checkFoerderquote). Ein frei im Text genannter Betrag, den
+ * das LLM in Förderung + Eigenanteil aufteilt oder anpasst, blieb still. Dieser Check
+ * vergleicht den größten genannten Betrag mit der Plan-Summe und legt bei materieller
+ * Abweichung einen erklärenden Hinweis ab. Rein arithmetisch (kein LLM, kein Eval-Risiko).
+ * Komplementär zu checkBeantragtDeckung (deferiert, wenn ein strukturiertes Budget existiert).
+ * Exportiert für Tests.
+ */
+export function checkStatedAmountAdjusted(
+  foerderposten: Finanzposten[],
+  eigenposten: Finanzposten[],
+  facts: WizardFacts,
+  userAnswers: string[] | undefined,
+  hinweise: string[]
+): void {
+  const stated = extractStatedAmounts(userAnswers);
+  if (stated.length === 0) return;
+  const statedMax = Math.max(...stated);
+  if (statedMax < 100) return;
+
+  const foerderung = Math.round(foerderposten.reduce((s, p) => s + p.betragEur, 0));
+  const eigen = Math.round(eigenposten.reduce((s, p) => s + p.betragEur, 0));
+  const gesamt = foerderung + eigen;
+  if (foerderung <= 0) return;
+
+  const f = (n: number) => n.toLocaleString("de-DE");
+  const rel = (a: number, b: number) => Math.abs(a - b) / Math.max(1, b);
+
+  const statedEigenSet =
+    typeof facts?.budget?.eigenmittel_eur === "number" && facts.budget.eigenmittel_eur > 0;
+
+  // Fall A — Aufteilung: genannter Betrag ≈ Gesamtkosten, aber als Förderung + Eigenanteil
+  // gesplittet (= die "Halbierung", die die Testerin sah). Nur wenn der Eigenanteil NICHT
+  // schon vom Nutzer selbst genannt wurde (sonst war die Aufteilung gewollt).
+  if (
+    !statedEigenSet &&
+    eigen > 0 &&
+    rel(gesamt, statedMax) <= 0.1 &&
+    statedMax - foerderung >= 100 &&
+    rel(foerderung, statedMax) > 0.1
+  ) {
+    hinweise.push(
+      `Deinen genannten Betrag von ${f(statedMax)} EUR hat der Assistent als Gesamtkosten verstanden und in ${f(foerderung)} EUR Förderung + ${f(eigen)} EUR Eigenanteil aufgeteilt. ` +
+        `Falls du ${f(statedMax)} EUR als reine Fördersumme gemeint hast, passe den Finanzplan an.`
+    );
+    return;
+  }
+
+  // Fall B — Abweichung ohne strukturiertes Budget: dann ist checkBeantragtDeckung NICHT
+  // zuständig (es liest facts.budget.beantragt_eur). Erklärt eine still angepasste Summe.
+  const hasStructuredBeantragt =
+    typeof facts?.budget?.beantragt_eur === "number" &&
+    Number.isFinite(facts.budget.beantragt_eur) &&
+    (facts.budget.beantragt_eur as number) > 0;
+  if (hasStructuredBeantragt) return;
+
+  const diff = gesamt - statedMax;
+  if (Math.abs(diff) >= 100 && rel(gesamt, statedMax) > 0.1) {
+    hinweise.push(
+      diff < 0
+        ? `Du hast ${f(statedMax)} EUR genannt — der Finanzplan kommt aktuell auf ${f(gesamt)} EUR (also ${f(Math.abs(diff))} EUR weniger). ` +
+            `Falls die Anpassung nicht beabsichtigt ist, ergänze die fehlenden Posten oder passe die Beträge an.`
+        : `Du hast ${f(statedMax)} EUR genannt — der Finanzplan kommt aktuell auf ${f(gesamt)} EUR (also ${f(diff)} EUR mehr). ` +
+            `Bitte prüfe, ob die höhere Summe beabsichtigt ist.`
+    );
+  }
+}
+
+/**
+ * P1-A Backstop (Pilot-Feedback 24.06.): Deterministischer Ausschluss-Leck-Check. Hat der
+ * Nutzer ein Element ausdrücklich ausgeschlossen (`facts.ausgeschlossen`, befüllt vom
+ * Facts-Extractor) und taucht es trotzdem als Finanzposten auf, wird ein Hinweis gesetzt.
+ * Die Prompt-Prävention (FINANZPLAN_SYSTEM/SECTION) verhindert es vorab; dieser Check ist
+ * das sichtbare Sicherheitsnetz, falls das LLM doch durchrutscht. Konservativ: Treffer nur
+ * bei Voll-Phrase ODER signifikantem Leitwort (≥6 Zeichen) → keine Single-Common-Word-FPs.
+ * Rein deterministisch, nicht-destruktiv (nur Hinweis). Exportiert für Tests.
+ */
+export function checkAusschlussLeak(
+  posten: Finanzposten[],
+  facts: WizardFacts,
+  hinweise: string[]
+): void {
+  const ausg = facts?.ausgeschlossen;
+  if (!Array.isArray(ausg) || ausg.length === 0) return;
+  for (const raw of ausg) {
+    if (typeof raw !== "string" || !raw.trim()) continue;
+    const phrase = raw.trim();
+    const norm = phrase.toLowerCase();
+    const longest = norm
+      .split(/[^a-zäöüß]+/i)
+      .filter((w) => w.length >= 6)
+      .sort((a, b) => b.length - a.length)[0];
+    const hit = posten.find((p) => {
+      const hay = `${p.bezeichnung} ${p.begruendung ?? ""}`.toLowerCase();
+      return hay.includes(norm) || (longest ? hay.includes(longest) : false);
+    });
+    if (hit) {
+      hinweise.push(
+        `Der Posten „${hit.bezeichnung}" betrifft „${phrase}" — das hast du ausgeschlossen. Bitte entfernen oder prüfen, ob es doch gewollt ist.`
+      );
+    }
+  }
+}
+
+/**
  * Produktvision 2026-06-10 (Markierungs-Modell statt Löschen): Markiert jeden
  * Posten, dessen Betrag NICHT am Nutzerinput verankert ist, als `istVorschlag`
  * — ein bestätigbarer Assistenten-Vorschlag (z. B. Ausgestaltung einer genannten
@@ -394,6 +544,10 @@ export async function generateFinanzplan(
   checkBeantragtDeckung(foerderposten, facts, hinweise);
   // H-V-2: Förderquoten-Check gegen die Richtlinie (max Förderquote / Pflicht-Eigenanteil).
   checkFoerderquote(foerderposten, eigenposten, richtlinie, hinweise);
+  // P1-B (Feedback 24.06.): Transparenz, wenn ein frei genannter Betrag aufgeteilt/angepasst wurde.
+  checkStatedAmountAdjusted(foerderposten, eigenposten, facts, userAnswers, hinweise);
+  // P1-A Backstop (Feedback 24.06.): warnt, falls ein ausgeschlossenes Element als Posten durchrutscht.
+  checkAusschlussLeak(postenMarkiert, facts, hinweise);
   const vorschlaege = foerderposten.filter((p) => p.istVorschlag);
   if (vorschlaege.length > 0 && !hinweise.some((h) => h.includes("Vorschläge des Assistenten") || h.includes("Vorschlag des Assistenten"))) {
     const alle = vorschlaege.length === foerderposten.length && foerderposten.length > 0;
