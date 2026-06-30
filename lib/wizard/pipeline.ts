@@ -495,6 +495,7 @@ export async function runPipeline(
           factVerification = {
             neutralisiert: fv.neutralisiert,
             vorschlaege: fv.vorschlaege,
+            vorschlaegeBegruendung: fv.vorschlaegeBegruendung,
             remaining: fv.remaining,
             repaired: fv.repaired,
           };
