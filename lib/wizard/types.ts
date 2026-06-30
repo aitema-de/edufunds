@@ -196,6 +196,11 @@ export interface GenerationArtefacts {
   factVerification?: {
     neutralisiert: string[];
     vorschlaege: string[];
+    /**
+     * P2 (Feedback 24.06.): pro ergaenzter Formulierung die Begruendung des Detektors,
+     * damit die UI das "Warum" zeigen kann. Parallel zu `vorschlaege` (Lookup per zitat).
+     */
+    vorschlaegeBegruendung?: Array<{ zitat: string; warum: string }>;
     remaining: string[];
     repaired: boolean;
   };

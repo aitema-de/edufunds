@@ -7,8 +7,27 @@ interface Props {
   sessionToken: string;
   finalText: string;
   vorschlaege: string[];
+  /** P2 (Feedback 24.06.): optionale Begruendung pro Vorschlag (Lookup per zitat) — zeigt das "Warum". */
+  begruendungen?: Array<{ zitat: string; warum: string }>;
   /** Meldet die persistierten neuen Werte an den Parent (Antragstext + Restliste). */
   onChange: (next: { finalText: string; vorschlaege: string[] }) => void;
+}
+
+/**
+ * P2: nutzerfreundliche "Warum"-Begruendung fuer einen Vorschlag (Lookup per zitat).
+ * Der generische Detektor-Default wird neutral-positiv umformuliert. Exportiert, damit
+ * die schreibgeschuetzte Variante (AntragResult ohne Session) dieselbe Logik nutzt.
+ */
+export function provenanz(
+  begruendungen: Array<{ zitat: string; warum: string }> | undefined,
+  zitat: string
+): string | null {
+  const w = begruendungen?.find((b) => b.zitat === zitat)?.warum?.trim();
+  if (!w) return null;
+  if (/nicht durch nutzerangaben gedeckt/i.test(w)) {
+    return "fachliche Ergänzung des Assistenten, nicht aus Ihren Angaben";
+  }
+  return w;
 }
 
 /**
@@ -19,7 +38,7 @@ interface Props {
  * Der Client rechnet den neuen finalText + die Restliste aus und persistiert
  * sie über /api/wizard/textvorschlag; der Parent rendert beides live nach.
  */
-export function TextVorschlaegeEditor({ sessionToken, finalText, vorschlaege, onChange }: Props) {
+export function TextVorschlaegeEditor({ sessionToken, finalText, vorschlaege, begruendungen, onChange }: Props) {
   const [busy, setBusy] = useState<number | null>(null);
   const [editing, setEditing] = useState<number | null>(null);
   const [draft, setDraft] = useState("");
@@ -120,7 +139,14 @@ export function TextVorschlaegeEditor({ sessionToken, finalText, vorschlaege, on
             ) : (
               <div className="flex items-start gap-2">
                 <span className="shrink-0 text-[#78350f]">›</span>
-                <span className="flex-1">„{v}"</span>
+                <div className="flex-1">
+                  <span>„{v}"</span>
+                  {provenanz(begruendungen, v) && (
+                    <span className="mt-1 block text-[11px] italic text-[#78350f]/80">
+                      Warum ergänzt: {provenanz(begruendungen, v)}
+                    </span>
+                  )}
+                </div>
                 <div className="flex shrink-0 gap-1">
                   <button
                     type="button"
@@ -162,6 +188,15 @@ export function TextVorschlaegeEditor({ sessionToken, finalText, vorschlaege, on
           </li>
         ))}
       </ul>
+      <details className="mt-3 text-xs text-slate-600">
+        <summary className="cursor-pointer font-medium text-[#78350f]">Warum solche Begriffe?</summary>
+        <p className="mt-1.5 leading-relaxed">
+          Förderanträge nutzen bestimmte Signalwörter — etwa <em>Partizipation</em>, <em>Nachhaltigkeit</em>,{" "}
+          <em>Bildungsgerechtigkeit</em> oder <em>Wirkungsorientierung</em> —, weil Fördergeber genau darauf achten.
+          Der Assistent setzt sie bewusst ein, immer am konkreten Vorhaben verankert (nicht als hohle Floskel), um die
+          Förderchancen zu erhöhen. Sie können jede Formulierung übernehmen, anpassen oder entfernen.
+        </p>
+      </details>
     </div>
   );
 }

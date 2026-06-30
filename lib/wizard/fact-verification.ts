@@ -162,6 +162,12 @@ export interface FactVerificationResult {
   neutralisiert: string[];
   /** Sinnvolle Ausgestaltungen, die im Text BLEIBEN — dem Nutzer zur Bestaetigung vorgelegt. */
   vorschlaege: string[];
+  /**
+   * P2 (Feedback 24.06.): dieselben Vorschlaege mit ihrer Detektor-Begruendung (`warum`),
+   * damit die UI pro ergaenzter Formulierung erklaeren kann, WARUM sie aufgenommen wurde
+   * ("damit der Eindruck des Halluzinierens nicht entsteht"). Parallel zu `vorschlaege`.
+   */
+  vorschlaegeBegruendung: Array<{ zitat: string; warum: string }>;
   /** Nach dem (uebernommenen) Repair noch vorhandene Neutralisierungs-Zitate. */
   remaining: string[];
   /** true, wenn der Repair uebernommen wurde. */
@@ -207,12 +213,14 @@ export async function verifyFacts(
 
   const claims = anchorClaims(det.value, finalText);
   const zuNeutralisieren = claims.filter((c) => NEUTRALISIEREN.includes(c.art));
-  const vorschlaege = claims.filter((c) => c.art === "vorschlag").map((c) => c.zitat);
+  const vorschlagClaims = claims.filter((c) => c.art === "vorschlag");
+  const vorschlaege = vorschlagClaims.map((c) => c.zitat);
+  const vorschlaegeBegruendung = vorschlagClaims.map((c) => ({ zitat: c.zitat, warum: c.warum }));
 
   // Nichts zu neutralisieren → Text unveraendert lassen (Vorschlaege bleiben drin
   // und werden nur aufgelistet). Kein Repair-Call.
   if (zuNeutralisieren.length === 0) {
-    return { finalText, neutralisiert: [], vorschlaege, remaining: [], repaired: false, usages };
+    return { finalText, neutralisiert: [], vorschlaege, vorschlaegeBegruendung, remaining: [], repaired: false, usages };
   }
 
   const rev = await deps.revise(
@@ -232,14 +240,15 @@ export async function verifyFacts(
 
   const result = accept ? candidate : finalText;
   // Vorschlaege, die nach dem Repair noch im Text stehen, dem Nutzer vorlegen.
-  const vorschlaegeImText = claims
-    .filter((c) => c.art === "vorschlag" && quotePresent(result, c.zitat))
-    .map((c) => c.zitat);
+  const vorschlagClaimsImText = claims.filter(
+    (c) => c.art === "vorschlag" && quotePresent(result, c.zitat)
+  );
 
   return {
     finalText: result,
     neutralisiert: zuNeutralisieren.map((c) => c.zitat),
-    vorschlaege: vorschlaegeImText,
+    vorschlaege: vorschlagClaimsImText.map((c) => c.zitat),
+    vorschlaegeBegruendung: vorschlagClaimsImText.map((c) => ({ zitat: c.zitat, warum: c.warum })),
     remaining: zuNeutralisieren.filter((c) => quotePresent(result, c.zitat)).map((c) => c.zitat),
     repaired: accept,
     usages,

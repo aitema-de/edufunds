@@ -9,7 +9,7 @@ import type { Finanzplan, GenerationArtefacts } from "@/lib/wizard/types";
 import { type CostLedger } from "@/lib/wizard/pricing";
 import { FinanzplanView } from "./FinanzplanView";
 import { FinanzplanEditor } from "./FinanzplanEditor";
-import { TextVorschlaegeEditor } from "./TextVorschlaegeEditor";
+import { TextVorschlaegeEditor, provenanz } from "./TextVorschlaegeEditor";
 import { renderFinanzplanMarkdown } from "@/lib/wizard/finanzplan-markdown";
 import { PaywallGate } from "./PaywallGate";
 import { AntragSectionNav, slugifyHeading } from "./AntragSectionNav";
@@ -456,6 +456,7 @@ export function AntragResult({
           sessionToken={sessionToken}
           finalText={text}
           vorschlaege={textVorschlaege}
+          begruendungen={generation.factVerification?.vorschlaegeBegruendung}
           onChange={({ finalText, vorschlaege }) => {
             setText(finalText);
             setTextVorschlaege(vorschlaege);
@@ -469,12 +470,20 @@ export function AntragResult({
             Vorschläge des Assistenten im Antragstext — bitte prüfen
           </div>
           <ul className="space-y-1.5 text-xs text-[#57534e]">
-            {textVorschlaege.map((v, i) => (
-              <li key={i} className="flex gap-2 rounded border border-[#1c1917]/10 bg-white p-2">
-                <span className="shrink-0 text-[#78350f]">›</span>
-                <span>„{v}"</span>
-              </li>
-            ))}
+            {textVorschlaege.map((v, i) => {
+              const warum = provenanz(generation.factVerification?.vorschlaegeBegruendung, v);
+              return (
+                <li key={i} className="flex gap-2 rounded border border-[#1c1917]/10 bg-white p-2">
+                  <span className="shrink-0 text-[#78350f]">›</span>
+                  <div>
+                    <span>„{v}"</span>
+                    {warum && (
+                      <span className="mt-1 block text-[11px] italic text-[#78350f]/80">Warum ergänzt: {warum}</span>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}
