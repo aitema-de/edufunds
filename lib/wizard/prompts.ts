@@ -235,7 +235,8 @@ export const FACTS_EXTRACTOR_SYSTEM = `Du bist ein praeziser Extraktor fuer Foer
 - Erfinde KEINE Zahlen, Namen, Daten, Bezirke, Kompetenz-Frameworks (KMK etc.).
 - Wenn der User vage bleibt ("vielleicht 30 oder 40 Kinder"), trage NICHTS ein — Vagheit ist ein Signal an den Interviewer, nochmal nachzufragen.
 - Wenn der User eine Schaetzung markiert ("gefuehlsmaessig", "glaube ich"): NICHT als Fakt extrahieren.
-- Wenn der User explizit etwas verneint oder nicht weiss ("kenne ich nicht"): den Slot leer lassen.
+- Wenn der User etwas NICHT WEISS oder vage bleibt ("kenne ich nicht", "weiss nicht"): den Slot leer lassen — das ist KEIN Ausschluss.
+- Wenn der User ein konkretes Element AUSDRUECKLICH AUSSCHLIESST oder VERNEINT (z. B. "keine externen Honorarkraefte", "das machen wir selbst, ohne externe Kraefte", "keine neuen Geraete", "kein zusaetzliches Personal"): den betreffenden Slot leer lassen UND eine kurze Bezeichnung des ausgeschlossenen Elements in das Array \`ausgeschlossen\` aufnehmen (z. B. "externe Honorarkraefte", "neue Geraeteanschaffung"). Diese Liste verhindert spaeter, dass die Generierung das Abgewaehlte doch einbringt. WICHTIG: Nicht-Wissen ("weiss nicht") ist KEIN Ausschluss — nur ein klares Nein.
 - Eine Bezirksangabe nur uebernehmen, wenn der User selbst den Bezirk genannt hat. "Berlin" ist KEIN Hinweis auf einen bestimmten Bezirk.
 
 ## Subgruppe ist nicht Gesamtgruppe (haeufiger Fehler!)
@@ -288,8 +289,17 @@ Analog gilt: lehrer-Gesamtzahl vs. nur-Projekt-Lehrer; Klassenanzahl-Gesamt vs. 
   "programmpassung": {
     "kriterien_adressiert": string[],        // wenn der User Programm-Kriterien explizit aufgegriffen hat
     "offene_luecken": string[]               // wenn der User selbst Luecken benannt hat
-  }
+  },
+  "ausgeschlossen": string[]                 // Elemente, die der User AUSDRUECKLICH ausgeschlossen/verneint
+                                             // hat (z. B. "externe Honorarkraefte", "neue Geraete"). NUR
+                                             // explizite Ausschluesse — KEIN "weiss nicht". Kurze Bezeichnung
+                                             // des abgewaehlten Elements, keine ganzen Saetze.
 }
+
+## Ausschluss-Beispiel (haeufiger Fehler)
+NEGATIVBEISPIEL: User sagt "Externe Honorarkraefte brauchen wir nicht, das machen unsere Lehrkraefte."
+- FALSCH: honorare-Posten oder "externe Fachkraefte" irgendwo ableiten.
+- RICHTIG: ausgeschlossen = ["externe Honorarkraefte"] — und budget/Personal bleibt insoweit leer.
 
 ## Ausgabe
 AUSSCHLIESSLICH valides JSON, keine Markdown-Fences. Nur die Slots, die du gefuellt hast — leere Objekte/Arrays/Strings/null weglassen. Bei NICHTS gefunden: \`{}\`.`;
@@ -459,6 +469,25 @@ export const SECTION_SYSTEM = PIPELINE_CONFIG.sharpPrompts
   ? `${SECTION_SYSTEM_BASE}\n\n${SHARP_HALLU_VERBOTS_BLOCK}`
   : SECTION_SYSTEM_BASE;
 
+/**
+ * P1-A (Pilot-Feedback 24.06.): Baut einen harten "DARF NICHT VORKOMMEN"-Block aus den
+ * vom Nutzer ausdruecklich ausgeschlossenen Elementen (`facts.ausgeschlossen`). Leer, wenn
+ * keine Ausschluesse vorliegen — dann aendert sich am Prompt (und damit am Eval-Korpus, der
+ * keine Ausschluesse traegt) nichts. Wird in SECTION- und FINANZPLAN-Prompt injiziert.
+ */
+export function buildAusschlussBlock(facts: WizardFacts): string {
+  const ausg = (facts as WizardFacts)?.ausgeschlossen;
+  if (!Array.isArray(ausg)) return "";
+  const items = ausg
+    .filter((x): x is string => typeof x === "string" && x.trim().length > 0)
+    .map((x) => x.trim());
+  if (items.length === 0) return "";
+  return `\n\nVOM NUTZER AUSGESCHLOSSEN (HART — DARF NICHT VORKOMMEN):
+Der Nutzer hat folgende Elemente AUSDRUECKLICH ausgeschlossen oder verneint. Sie duerfen WEDER im Antragstext NOCH im Finanzplan auftauchen — auch nicht als Vorschlag, Option oder "denkbar waere":
+${items.map((x) => `- ${x}`).join("\n")}
+Wenn ein solches Element fachlich naheliegend waere, ignoriere diesen Impuls — der Nutzer hat es bewusst abgewaehlt.`;
+}
+
 export function buildSectionPrompt(
   programm: Foerderprogramm,
   facts: WizardFacts,
@@ -495,7 +524,7 @@ Schreibe den Abschnitt. Erfinde KEINE Aktenzeichen, Beschluss-Daten, Tarif-Berec
 
 KONKRETHEIT richtig: Deine Konkretheit speist sich aus den ECHTEN Angaben des Users (genannte Szenen, Namen, Zahlen, Beispiele) — greife genau diese als wiederkehrende, glaubwürdige Anker auf. Wo der User KEINE Angabe gemacht hat, hast du zwei erlaubte Optionen: (a) den Punkt weglassen/knapp halten, oder (b) einen sichtbaren Lücken-Marker \`[TODO: … vor Einreichung ergänzen]\` setzen. NICHT erlaubt: die Lücke mit erfundenen Konkreta füllen ODER mit nichtssagenden Floskeln überdecken. Eine vom User offen gelassene Frage ("weiß ich nicht", "müssten wir klären") darf NIE als feststehende Tatsache oder erteilte Zusage formuliert werden.
 
-GELDBETRÄGE UND MENGEN IM TEXT: Jeden Euro-Betrag, jede Stückzahl und jeden Termin, den der User NICHT selbst genannt hat, kennzeichne im Fließtext sichtbar als Schätzung — z. B. "voraussichtlich rund 15.000 € (Schätzung, vor Einreichung durch Angebote zu belegen)" oder "ca. 25 Geräte (Anzahl noch festzulegen)". NIE als feststehende Kalkulation oder beschlossene Summe formulieren. Der Fließtext muss bei Zahlen genauso ehrlich sein wie der Finanzplan — keine Asymmetrie, bei der die Tabelle "Schätzung" sagt und der Text dieselbe Zahl als Fakt behauptet.`;
+GELDBETRÄGE UND MENGEN IM TEXT: Jeden Euro-Betrag, jede Stückzahl und jeden Termin, den der User NICHT selbst genannt hat, kennzeichne im Fließtext sichtbar als Schätzung — z. B. "voraussichtlich rund 15.000 € (Schätzung, vor Einreichung durch Angebote zu belegen)" oder "ca. 25 Geräte (Anzahl noch festzulegen)". NIE als feststehende Kalkulation oder beschlossene Summe formulieren. Der Fließtext muss bei Zahlen genauso ehrlich sein wie der Finanzplan — keine Asymmetrie, bei der die Tabelle "Schätzung" sagt und der Text dieselbe Zahl als Fakt behauptet.${buildAusschlussBlock(facts)}`;
 
   // Hebel 3: Dossier-Injection (PIPELINE_USE_VORBILD_FORMULIERUNGEN)
   if (!PIPELINE_CONFIG.useVorbildFormulierungen || !richtlinie) {
@@ -725,7 +754,7 @@ ${programmBlock(programm)}
 ${rlBlock}
 
 PROJEKTFAKTEN:
-${JSON.stringify(facts, null, 2)}${userAnswersBlock}
+${JSON.stringify(facts, null, 2)}${userAnswersBlock}${buildAusschlussBlock(facts)}
 
 Erstelle den Finanzplan. Erfinde keine Tarif-Stufen, Honorarsaetze, Marken-/Modellnamen oder Mengen-Aufschluesselungen, die nicht im User-Input belegt sind. Lieber Pauschalen mit "in hinweise erlaeutert" als erfundene Splittungen.`;
 }

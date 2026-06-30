@@ -44,6 +44,15 @@ export interface WizardFacts {
     kriterien_adressiert?: string[];
     offene_luecken?: string[];
   };
+  /**
+   * Vom Nutzer AUSDRUECKLICH ausgeschlossene/verneinte Elemente (z. B.
+   * "externe Honorarkraefte", "neue Geraeteanschaffung"). Anders als ein leerer
+   * Slot (= unbekannt) ist dies ein POSITIVES Signal: diese Elemente duerfen
+   * weder im Antragstext noch im Finanzplan auftauchen — auch nicht als Vorschlag.
+   * Hintergrund: Pilot-Feedback 24.06. (KI brachte "externe Fachkraefte" trotz
+   * expliziter Verneinung). NUR explizite Ausschluesse, kein "weiss nicht".
+   */
+  ausgeschlossen?: string[];
   [k: string]: unknown;
 }
 
