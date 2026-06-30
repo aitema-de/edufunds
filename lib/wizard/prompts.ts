@@ -1,5 +1,5 @@
 import type { Foerderprogramm } from "@/lib/foerderSchema";
-import type { WizardFacts, WizardMessage, ConsistencyIssue } from "./types";
+import type { WizardFacts, WizardMessage, ConsistencyIssue, Texttiefe } from "./types";
 import { getGuidance } from "./geber-guidance";
 import { formatExtraGuidance, getExtraGuidance } from "./programm-kriterien";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
@@ -453,10 +453,13 @@ Du bist nicht nur Schreibkraft, sondern fachlicher Berater. Ziel: ein Antrag, de
 - Verwende AUSSCHLIESSLICH Fakten aus den mitgelieferten Daten. Halluziniere NICHTS — erfinde keine Zahlen, Namen, Ereignisse.
 - Konkret statt abstrakt. Wo Zahlen/Namen/Orte in den Fakten stehen: nenne sie.
 - Formuliere aus Sicht der Schule ("wir", "an unserer Schule").
-- **Bleib strikt beim FOKUS dieses Abschnitts.** Andere Abschnitte des Antrags decken Bedarf, Zielgruppe, Ziele, Maßnahmen und Wirkung jeweils eigenständig ab. Wiederhole den allgemeinen Bedarf oder die Zielgruppe NICHT breit, wenn das nicht der Fokus dieses Abschnitts ist — nimm sie höchstens in einem knappen Halbsatz als Bezug auf. So vermeidest du Dopplungen über den Gesamtantrag hinweg.
+- **Bleib strikt beim FOKUS dieses Abschnitts.** Andere Abschnitte des Antrags decken Bedarf, Zielgruppe, Ziele, Maßnahmen und Wirkung jeweils eigenständig ab. Wiederhole den allgemeinen Bedarf oder die Zielgruppe NICHT breit, wenn das nicht der Fokus dieses Abschnitts ist — nimm sie höchstens in einem knappen Halbsatz als Bezug auf. So vermeidest du Dopplungen über den Gesamtantrag hinweg. Die Entstehungs-/Motivationsgeschichte des Vorhabens (wie die Idee entstand, warum die Schule das angeht) gehört NUR in den Abschnitt, dessen Fokus das ist (typisch Ausgangslage/Einleitung) — in anderen Abschnitten setzt du sie als bekannt voraus, statt sie erneut zu erzählen.
 
 ## Leerformel-Verbot (nicht: Fachsprache-Verbot)
 Verboten sind LEERE Floskeln OHNE Substanz — als Etikett, das nichts erklärt: "ganzheitlicher Ansatz", "schafft Mehrwert", "in der heutigen Zeit", "es ist unerlässlich", "innovativer Ansatz", "passgenau", "zukunftsweisend", oder ein hingeworfenes "fördert Teilhabe" ohne zu sagen wie. Erlaubt und ERWÜNSCHT ist dieselbe fachliche Sprache MIT Substanz: schreibe nicht "fördert Teilhabe", sondern erkläre, WIE das Vorhaben Teilhabe/Bildungsgerechtigkeit konkret stärkt (für wen, wodurch, mit welcher erwarteten Wirkung). Fachbegriffe ja — aber immer am konkreten Vorhaben verankert und erklärt, nie als Schmuckwort.
+
+## Ziele & Wirkung konkret (wenn dieser Abschnitt Ziele/Wirkung/Nachhaltigkeit behandelt)
+Formuliere Ziele wirkungsorientiert statt vage: benenne, WAS sich für WEN beobachtbar ändert — entlang der Wirkungslogik Maßnahme → unmittelbares Ergebnis (Output) → angestrebte Wirkung (Outcome). Hat der User messbare Indikatoren/Kennzahlen genannt, nimm sie auf. Wo nicht, biete 1–2 realistische, zum Vorhaben passende Indikatoren als klar erkennbaren VORSCHLAG an ("messbar machen ließe sich das z. B. an …", "ein möglicher Indikator wäre …") — OHNE konkrete Baselines/Zielzahlen zu erfinden, die der User nicht nannte. Vermeide richtungslose Ziel-Floskeln ("die Kinder werden gefördert"): jedes Ziel braucht Zielgruppe, Richtung und ein beobachtbares Ergebnis.
 
 ## Form
 - Keine Überschrift, keine Markdown-Formatierung, kein # oder **.
@@ -486,6 +489,21 @@ export function buildAusschlussBlock(facts: WizardFacts): string {
 Der Nutzer hat folgende Elemente AUSDRUECKLICH ausgeschlossen oder verneint. Sie duerfen WEDER im Antragstext NOCH im Finanzplan auftauchen — auch nicht als Vorschlag, Option oder "denkbar waere":
 ${items.map((x) => `- ${x}`).join("\n")}
 Wenn ein solches Element fachlich naheliegend waere, ignoriere diesen Impuls — der Nutzer hat es bewusst abgewaehlt.`;
+}
+
+/**
+ * P3-B (Feedback 24.06.): Texttiefe-Direktive, die an den Section-Prompt angehängt wird.
+ * "standard"/undefined → leer (kein Prompt-/Eval-Effekt). Nur "knapp"/"ausfuehrlich" überschreiben
+ * die Standard-Längenvorgabe (150–400 Wörter) des SECTION_SYSTEM.
+ */
+export function texttiefeHint(t?: Texttiefe): string {
+  if (t === "knapp") {
+    return `\n\nTEXTTIEFE (Nutzerwahl: KNAPP): Halte diesen Abschnitt bewusst kurz (ca. 100–200 Wörter). Nur das Wesentliche, keine Ausschmückung, keine Wiederholung — dichte, präzise Sätze. Diese Vorgabe ersetzt die Standard-Längenvorgabe.`;
+  }
+  if (t === "ausfuehrlich") {
+    return `\n\nTEXTTIEFE (Nutzerwahl: AUSFÜHRLICH): Führe diesen Abschnitt gründlicher aus (ca. 300–550 Wörter) — mehr Kontext, Begründungstiefe und fachliche Einordnung, OHNE zu wiederholen oder zu floskeln. Diese Vorgabe ersetzt die Standard-Längenvorgabe.`;
+  }
+  return "";
 }
 
 export function buildSectionPrompt(
@@ -597,7 +615,7 @@ Zusätzlich Schwere "hoch": Stellen, an denen der Entwurf eine vom User offen ge
 
 ## DRITTE Prüfung — Schwächen
 5. Floskeln, unbelegte Behauptungen (Kategorie "floskel").
-6. **Redundanzen über Abschnitte hinweg (Kategorie "redundanz")** — wird derselbe Bedarf, dieselbe Zielgruppe, dasselbe Ziel oder dieselbe Maßnahme in mehreren Abschnitten nahezu wortgleich wiederholt? Das ist der häufigste Grund, warum Leser einen Antrag als "müsste neu geschrieben werden" empfinden. Pro betroffener Wiederholung ein Finding: Zitat der späteren Dopplung, Vorschlag = "kürzen und auf die Erstnennung verweisen" oder "auf den abschnittsspezifischen Aspekt zuspitzen". WICHTIG: Niemals einen Pflichtabschnitt ganz streichen — nur Redundanz INNERHALB beibehaltener Abschnitte verdichten.
+6. **Redundanzen über Abschnitte hinweg (Kategorie "redundanz")** — wird derselbe Bedarf, dieselbe Zielgruppe, dasselbe Ziel, dieselbe Maßnahme ODER die Entstehungs-/Motivationsgeschichte (wie die Projektidee entstand, warum die Schule sie angeht) in mehreren Abschnitten nahezu wortgleich wiederholt? Das ist der häufigste Grund, warum Leser einen Antrag als "müsste neu geschrieben werden" empfinden. Pro betroffener Wiederholung ein Finding: Zitat der späteren Dopplung, Vorschlag = "kürzen und auf die Erstnennung verweisen" oder "auf den abschnittsspezifischen Aspekt zuspitzen". WICHTIG: Niemals einen Pflichtabschnitt ganz streichen — nur Redundanz INNERHALB beibehaltener Abschnitte verdichten.
 7. Schwache/generische Abschnitte — austauschbar klingende Passagen.
 8. Fehlende Quantifizierungen, wo welche aus den User-Antworten ableitbar wären.
 9. Typ-spezifische Schwächen (siehe Prüffokus im User-Prompt).
@@ -838,6 +856,7 @@ Tilge LEERE Schmuckfloskeln ohne Substanz ("ganzheitlicher Ansatz", "schafft Meh
 ## Redundanz-Verbot (gegen "müsste neu geschrieben werden")
 Arbeite alle "redundanz"-Findings konsequent ab und tilge auch selbst erkannte Wiederholungen über Abschnitte hinweg:
 - Bedarf/Ausgangslage, Zielgruppe, Ziele und Maßnahmen werden je EINMAL substanziell ausgeführt — an der inhaltlich passendsten Stelle. Spätere Abschnitte wiederholen sie NICHT wortgleich, sondern setzen darauf auf ("auf dieser Grundlage …", "darauf aufbauend …").
+- Die Entstehungs-/Motivationsgeschichte des Vorhabens (wie die Idee entstand, warum die Schule sie angeht) wird GENAU EINMAL erzählt — an der passendsten Stelle (typisch Ausgangslage/Einleitung). Taucht dieselbe Genese-Erzählung in weiteren Abschnitten auf, verdichte sie dort auf einen knappen Rückbezug oder streiche sie; sie wirkt sonst generiert und inflationär.
 - Jeder Abschnitt behält seinen eigenen Fokus (Ausgangslage = Problem + Zahlen; Ziele = was sich messbar ändert; Maßnahmen = konkrete Schritte; Wirkung/Nachhaltigkeit = was nach der Förderung bleibt).
 - WICHTIG: Verdichten heißt umformulieren, nicht ausdünnen. ALLE Pflichtabschnitte bleiben erhalten und inhaltlich tragfähig — kein Abschnitt wird gestrichen oder auf einen bloßen Verweis reduziert. Struktur, Titel und Abschnittsreihenfolge bleiben unverändert.
 

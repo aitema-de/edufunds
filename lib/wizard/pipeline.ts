@@ -12,6 +12,7 @@ import type {
   PipelineStage,
   WizardFacts,
   WizardMessage,
+  Texttiefe,
 } from "./types";
 export type { PipelineStage } from "./types";
 import {
@@ -23,6 +24,7 @@ import {
   CONSISTENCY_SYSTEM,
   buildOutlinePrompt,
   buildSectionPrompt,
+  texttiefeHint,
   buildCritiquePrompt,
   buildRevisionPrompt,
   buildRecheckPrompt,
@@ -301,7 +303,8 @@ export async function runPipeline(
   facts: WizardFacts,
   richtlinie?: Richtlinie | null,
   onEvent?: (e: PipelineEvent) => void | Promise<void>,
-  messages?: WizardMessage[]
+  messages?: WizardMessage[],
+  options?: { texttiefe?: Texttiefe }
 ): Promise<PipelineResult> {
   const emit = async (e: PipelineEvent) => {
     // Heartbeat MUSS abgewartet werden, sonst landet der Stage-Schreibvorgang
@@ -366,7 +369,8 @@ export async function runPipeline(
     const res = await generateText(
       MODEL_PRO,
       SECTION_SYSTEM,
-      buildSectionPrompt(programm, facts, abschnitt, outline.titel, rl, userAnswers)
+      buildSectionPrompt(programm, facts, abschnitt, outline.titel, rl, userAnswers) +
+        texttiefeHint(options?.texttiefe)
     );
     usages.push({ model: MODEL_PRO, usage: res.usage });
     sections.push({ name: abschnitt.name, text: res.value });
