@@ -1,3 +1,9 @@
+/**
+ * P3-B (Feedback 24.06.): vom Nutzer wählbare Schreibtiefe für die Generierung.
+ * "standard" = bisheriges Verhalten (Default → eval-neutral).
+ */
+export type Texttiefe = "knapp" | "standard" | "ausfuehrlich";
+
 export type WizardPhase =
   | "interviewing"
   | "ready_to_generate"

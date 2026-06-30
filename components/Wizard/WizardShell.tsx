@@ -8,6 +8,7 @@ import type {
   WizardPhase,
   GenerationArtefacts,
   PipelineStage,
+  Texttiefe,
 } from "@/lib/wizard/types";
 import { STAGE_LABELS } from "@/lib/wizard/stage-labels";
 import type { CostLedger } from "@/lib/wizard/pricing";
@@ -74,6 +75,8 @@ export function WizardShell({ programm, einreichung }: Props) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [generation, setGeneration] = useState<GenerationArtefacts | null>(null);
+  // P3-B (Feedback 24.06.): vom Nutzer wählbare Schreibtiefe für die Generierung.
+  const [texttiefe, setTexttiefe] = useState<Texttiefe>("standard");
   const [generationStage, setGenerationStage] = useState<string>("");
   const [schoolProfile, setSchoolProfile] = useState<SchoolProfile | null>(null);
   const [handoff, setHandoff] = useState<MatchHandoff | null>(null);
@@ -406,7 +409,7 @@ export function WizardShell({ programm, einreichung }: Props) {
       const res = await fetch("/api/wizard/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sessionToken: state.sessionToken }),
+        body: JSON.stringify({ sessionToken: state.sessionToken, texttiefe }),
       });
       if (!res.ok) {
         // 409 = Pipeline lief schon durch (Idempotenz / Reload-Race). D-12-Polling
@@ -436,7 +439,7 @@ export function WizardShell({ programm, einreichung }: Props) {
     } finally {
       setBusy(false);
     }
-  }, [state]);
+  }, [state, texttiefe]);
 
   const editAnswer = useCallback(
     async (messageId: string, newContent: string): Promise<boolean> => {
@@ -761,6 +764,34 @@ export function WizardShell({ programm, einreichung }: Props) {
                 <ReadinessAmpel report={readiness} />
               </div>
             )}
+            <div className="mb-6">
+              <p className="mb-2 text-sm font-medium text-[#1c1917]">Schreibstil des Antrags</p>
+              <div className="flex flex-wrap gap-2" role="group" aria-label="Texttiefe wählen">
+                {([
+                  { key: "knapp", label: "Knapp", hint: "kurz & prägnant" },
+                  { key: "standard", label: "Standard", hint: "ausgewogen" },
+                  { key: "ausfuehrlich", label: "Ausführlich", hint: "mehr Tiefe" },
+                ] as { key: Texttiefe; label: string; hint: string }[]).map((opt) => {
+                  const active = texttiefe === opt.key;
+                  return (
+                    <button
+                      key={opt.key}
+                      type="button"
+                      aria-pressed={active}
+                      onClick={() => setTexttiefe(opt.key)}
+                      className={
+                        "rounded-lg border px-3 py-1.5 text-sm transition " +
+                        (active
+                          ? "border-[#78350f] bg-[#78350f] text-white"
+                          : "border-[#1c1917]/15 bg-[#fdfdfc] text-[#57534e] hover:bg-slate-100")
+                      }
+                    >
+                      {opt.label} <span className={active ? "text-white/70" : "text-slate-400"}>· {opt.hint}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
             <div className="flex flex-wrap items-center justify-end gap-3">
               <button
                 type="button"

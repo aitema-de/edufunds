@@ -1,5 +1,5 @@
 import type { Foerderprogramm } from "@/lib/foerderSchema";
-import type { WizardFacts, WizardMessage, ConsistencyIssue } from "./types";
+import type { WizardFacts, WizardMessage, ConsistencyIssue, Texttiefe } from "./types";
 import { getGuidance } from "./geber-guidance";
 import { formatExtraGuidance, getExtraGuidance } from "./programm-kriterien";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
@@ -458,6 +458,9 @@ Du bist nicht nur Schreibkraft, sondern fachlicher Berater. Ziel: ein Antrag, de
 ## Leerformel-Verbot (nicht: Fachsprache-Verbot)
 Verboten sind LEERE Floskeln OHNE Substanz — als Etikett, das nichts erklärt: "ganzheitlicher Ansatz", "schafft Mehrwert", "in der heutigen Zeit", "es ist unerlässlich", "innovativer Ansatz", "passgenau", "zukunftsweisend", oder ein hingeworfenes "fördert Teilhabe" ohne zu sagen wie. Erlaubt und ERWÜNSCHT ist dieselbe fachliche Sprache MIT Substanz: schreibe nicht "fördert Teilhabe", sondern erkläre, WIE das Vorhaben Teilhabe/Bildungsgerechtigkeit konkret stärkt (für wen, wodurch, mit welcher erwarteten Wirkung). Fachbegriffe ja — aber immer am konkreten Vorhaben verankert und erklärt, nie als Schmuckwort.
 
+## Ziele & Wirkung konkret (wenn dieser Abschnitt Ziele/Wirkung/Nachhaltigkeit behandelt)
+Formuliere Ziele wirkungsorientiert statt vage: benenne, WAS sich für WEN beobachtbar ändert — entlang der Wirkungslogik Maßnahme → unmittelbares Ergebnis (Output) → angestrebte Wirkung (Outcome). Hat der User messbare Indikatoren/Kennzahlen genannt, nimm sie auf. Wo nicht, biete 1–2 realistische, zum Vorhaben passende Indikatoren als klar erkennbaren VORSCHLAG an ("messbar machen ließe sich das z. B. an …", "ein möglicher Indikator wäre …") — OHNE konkrete Baselines/Zielzahlen zu erfinden, die der User nicht nannte. Vermeide richtungslose Ziel-Floskeln ("die Kinder werden gefördert"): jedes Ziel braucht Zielgruppe, Richtung und ein beobachtbares Ergebnis.
+
 ## Form
 - Keine Überschrift, keine Markdown-Formatierung, kein # oder **.
 - Fließtext, keine Listen (außer wenn die Fakten eindeutig auflistbar sind, z. B. Hauptposten im Budget).
@@ -486,6 +489,21 @@ export function buildAusschlussBlock(facts: WizardFacts): string {
 Der Nutzer hat folgende Elemente AUSDRUECKLICH ausgeschlossen oder verneint. Sie duerfen WEDER im Antragstext NOCH im Finanzplan auftauchen — auch nicht als Vorschlag, Option oder "denkbar waere":
 ${items.map((x) => `- ${x}`).join("\n")}
 Wenn ein solches Element fachlich naheliegend waere, ignoriere diesen Impuls — der Nutzer hat es bewusst abgewaehlt.`;
+}
+
+/**
+ * P3-B (Feedback 24.06.): Texttiefe-Direktive, die an den Section-Prompt angehängt wird.
+ * "standard"/undefined → leer (kein Prompt-/Eval-Effekt). Nur "knapp"/"ausfuehrlich" überschreiben
+ * die Standard-Längenvorgabe (150–400 Wörter) des SECTION_SYSTEM.
+ */
+export function texttiefeHint(t?: Texttiefe): string {
+  if (t === "knapp") {
+    return `\n\nTEXTTIEFE (Nutzerwahl: KNAPP): Halte diesen Abschnitt bewusst kurz (ca. 100–200 Wörter). Nur das Wesentliche, keine Ausschmückung, keine Wiederholung — dichte, präzise Sätze. Diese Vorgabe ersetzt die Standard-Längenvorgabe.`;
+  }
+  if (t === "ausfuehrlich") {
+    return `\n\nTEXTTIEFE (Nutzerwahl: AUSFÜHRLICH): Führe diesen Abschnitt gründlicher aus (ca. 300–550 Wörter) — mehr Kontext, Begründungstiefe und fachliche Einordnung, OHNE zu wiederholen oder zu floskeln. Diese Vorgabe ersetzt die Standard-Längenvorgabe.`;
+  }
+  return "";
 }
 
 export function buildSectionPrompt(
