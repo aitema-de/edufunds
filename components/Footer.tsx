@@ -86,15 +86,23 @@ export function Footer() {
             transition={{ duration: 0.5 }}
             className="col-span-2"
           >
-            <Link href="/" className="inline-block mb-6 group" aria-label="EduFunds - Zur Startseite">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/edufunds-logo.svg"
-                alt="EduFunds"
-                width={344}
-                height={120}
-                className="h-11 w-auto transition-transform group-hover:scale-[1.02]"
-              />
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2.5 mb-6 group"
+              aria-label="EduFunds - Zur Startseite"
+            >
+              <span
+                aria-hidden
+                className="flex size-9 shrink-0 items-center justify-center rounded-full border-[1.5px] border-gold-400/70 font-serif text-sm text-gold-300 transition-transform group-hover:scale-105"
+              >
+                Ef
+              </span>
+              <span
+                className="font-serif text-[22px] leading-none text-[#f6f1e9]"
+                style={{ fontWeight: 500 }}
+              >
+                Edu<span className="italic text-gold-300">Funds</span>
+              </span>
             </Link>
             <p className="text-[#a8a29e] text-sm leading-relaxed mb-6 max-w-xs">
               Die intelligente Plattform für Schulförderung. Finden Sie passende Programme und erstellen Sie erfolgreiche Anträge mit KI-Unterstützung.
