@@ -44,9 +44,11 @@ const fadeUp = {
    - DUNKLE Flaechen → amber (#d97706 / amber-200/300/400)
    Regel aus dem Design-Refresh (Welle 1–3).
 
-   Richtung F „Akademisch/Institut" (Welle 1, 2026-07-01): Hero + Programme-Band
+   Richtung F „Akademisch/Institut" (Welle 1+2, 2026-07-01): gesamte Home-Seite
    auf evergreen (#1e3d32) als Struktur-Farbe umgestellt, Gold (gold-Skala) als
-   Auszeichnung. brandy bleibt in den uebrigen Sektionen bis zur naechsten Welle. */
+   Auszeichnung — helle Flaechen: text-evergreen / italic text-gold-700; dunkle
+   Flaechen (evergreen/ink): gold-300/400. brandy bleibt auf den uebrigen
+   Seiten (Foerderprogramme, Wizard, Preise) bis zur naechsten Welle. */
 
 export function HomePageContent({
   stats,
@@ -276,8 +278,8 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
 
   // Donut-Segmente aus echten Förderquellen-Typen
   const segs = [
-    { label: "Bund", n: stats.bund, color: "#78350f" },
-    { label: "Länder", n: stats.land, color: "#d97706" },
+    { label: "Bund", n: stats.bund, color: "#1e3d32" },
+    { label: "Länder", n: stats.land, color: "#c9a227" },
     { label: "Stiftungen", n: stats.stiftung, color: "#a8a29e" },
     { label: "EU", n: stats.eu, color: "#44403c" },
   ];
@@ -305,11 +307,11 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
       <div className="max-w-7xl mx-auto">
         {/* Überschrift */}
         <div className="max-w-2xl mb-14">
-          <span className="text-xs uppercase tracking-widest text-brandy font-semibold">
+          <span className="text-xs uppercase tracking-widest text-evergreen font-semibold">
             So funktioniert&apos;s
           </span>
           <h2 className="font-serif text-3xl md:text-5xl leading-tight mt-3 text-balance" style={{ fontWeight: 500 }}>
-            Vom Bedarf zum <span className="italic text-brandy">fertigen Antrag</span>.
+            Vom Bedarf zum <span className="italic text-gold-700">fertigen Antrag</span>.
           </h2>
           <p className="text-ink/70 mt-5 text-pretty leading-relaxed">
             Vier Schritte, eine Sitzung — begleitet von unserer KI. Sehen Sie unten live,
@@ -321,7 +323,7 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
         <div className="relative grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6 mb-20">
           <div className="hidden md:block absolute top-[31px] left-[12%] right-[12%] h-[3px] bg-ink/10 rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-gradient-to-r from-brandy to-amber-500"
+              className="h-full bg-gradient-to-r from-evergreen to-gold-500"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true, margin: "-80px" }}
@@ -332,7 +334,7 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 0.12}>
               <div className="relative text-center">
-                <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full border-2 border-brandy bg-paper font-serif italic text-2xl text-brandy shadow-[0_10px_26px_-12px_rgba(120,53,15,0.5)]">
+                <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full border-2 border-gold-500 bg-paper font-serif italic text-2xl text-evergreen shadow-[0_10px_26px_-12px_rgba(30,61,50,0.45)]">
                   {s.n}
                 </div>
                 <h4 className="font-semibold font-sans mb-1.5">{s.t}</h4>
@@ -370,7 +372,7 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
               whileInView={{ opacity: 1, scale: 1, rotate: -5 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
-              className="absolute -bottom-4 -right-3 bg-brandy text-paper rounded-2xl px-5 py-3 shadow-xl"
+              className="absolute -bottom-4 -right-3 bg-evergreen text-paper rounded-2xl px-5 py-3 shadow-xl"
             >
               <div className="font-serif text-2xl leading-none" style={{ fontWeight: 500 }}>10 Min.</div>
               <div className="text-[11px] text-paper/80 mt-1">statt 14 Tage</div>
@@ -382,7 +384,7 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
         <div className="grid md:grid-cols-3 gap-5 mt-12">
           {/* In Zahlen */}
           <div className="rounded-2xl border border-ink/10 bg-paper p-6">
-            <div className="text-[11px] uppercase tracking-widest text-brandy font-semibold mb-5">In Zahlen</div>
+            <div className="text-[11px] uppercase tracking-widest text-evergreen font-semibold mb-5">In Zahlen</div>
             <div className="grid grid-cols-2 gap-5">
               <div>
                 <div className="font-serif text-4xl leading-none text-ink"><CountUp to={PROGRAMM_COUNT_ROUNDED} suffix="+" /></div>
@@ -405,7 +407,7 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
 
           {/* Donut Förderquellen */}
           <div className="rounded-2xl border border-ink/10 bg-paper p-6">
-            <div className="text-[11px] uppercase tracking-widest text-brandy font-semibold mb-4">Förderquellen</div>
+            <div className="text-[11px] uppercase tracking-widest text-evergreen font-semibold mb-4">Förderquellen</div>
             <motion.div
               initial={{ opacity: 0, scale: 0.7, rotate: -90 }}
               whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -429,7 +431,7 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
 
           {/* Balken Fördersummen */}
           <div className="rounded-2xl border border-ink/10 bg-paper p-6">
-            <div className="text-[11px] uppercase tracking-widest text-brandy font-semibold mb-4">Typische Fördersummen</div>
+            <div className="text-[11px] uppercase tracking-widest text-evergreen font-semibold mb-4">Typische Fördersummen</div>
             <div className="flex items-end gap-3 h-[120px]">
               {bars.map((b, i) => (
                 <motion.div
@@ -439,7 +441,7 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.8, delay: i * 0.1, ease: EASE }}
                   style={{ height: `${b.h}%`, transformOrigin: "bottom" }}
-                  className="flex-1 rounded-t-lg bg-gradient-to-t from-brandy to-amber-500"
+                  className="flex-1 rounded-t-lg bg-gradient-to-t from-evergreen to-evergreen-light"
                 />
               ))}
             </div>
@@ -481,7 +483,7 @@ function LiveGenerator() {
           <span className="size-2.5 rounded-full bg-emerald-400/60" />
         </div>
         <span className="text-[11px] tracking-widest uppercase text-white/40">app.edufunds.org</span>
-        <span className="inline-flex items-center gap-1 text-[11px] text-amber-400 font-medium">
+        <span className="inline-flex items-center gap-1 text-[11px] text-gold-400 font-medium">
           <Sparkles className="size-3" /> generiert
         </span>
       </div>
@@ -503,7 +505,7 @@ function LiveGenerator() {
                 className="h-2.5 rounded-full bg-white/10"
               />
             ))}
-            <span className="inline-block h-3.5 w-[2px] bg-amber-400 align-middle animate-pulse" />
+            <span className="inline-block h-3.5 w-[2px] bg-gold-400 align-middle animate-pulse" />
           </div>
 
           {/* Fortschritts-Ring */}
@@ -512,7 +514,7 @@ function LiveGenerator() {
               <svg width="64" height="64" viewBox="0 0 64 64">
                 <circle cx="32" cy="32" r={R} fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="6" />
                 <motion.circle
-                  cx="32" cy="32" r={R} fill="none" stroke="#f59e0b" strokeWidth="6" strokeLinecap="round"
+                  cx="32" cy="32" r={R} fill="none" stroke="#d4af37" strokeWidth="6" strokeLinecap="round"
                   transform="rotate(-90 32 32)" strokeDasharray={C}
                   initial={{ strokeDashoffset: C }}
                   whileInView={{ strokeDashoffset: C * (1 - 0.76) }}
@@ -520,7 +522,7 @@ function LiveGenerator() {
                   transition={{ duration: 1.4, delay: 0.3, ease: EASE }}
                 />
               </svg>
-              <span className="absolute inset-0 grid place-items-center text-sm font-bold text-amber-400">76%</span>
+              <span className="absolute inset-0 grid place-items-center text-sm font-bold text-gold-300">76%</span>
             </div>
             <div>
               <div className="text-[11px] uppercase tracking-widest text-white/45">Fortschritt</div>
@@ -531,7 +533,7 @@ function LiveGenerator() {
 
         {/* Pipeline + Fakten */}
         <div className="p-6 bg-black/20">
-          <span className="text-[10px] uppercase tracking-widest text-amber-400 font-semibold">Pipeline</span>
+          <span className="text-[10px] uppercase tracking-widest text-gold-400 font-semibold">Pipeline</span>
           <div className="mt-4 space-y-3">
             {pipeline.map((s, i) => (
               <motion.div
@@ -648,7 +650,7 @@ function Problem() {
           {items.map((it, i) => (
             <Reveal key={it.title} delay={i * 0.08}>
               <div className="space-y-4">
-                <div className="size-12 bg-paper rounded-full flex items-center justify-center ring-1 ring-brandy/15 text-brandy">
+                <div className="size-12 bg-paper rounded-full flex items-center justify-center ring-1 ring-evergreen/15 text-evergreen">
                   <it.Icon className="size-6" />
                 </div>
                 <h3 className="text-lg font-semibold font-sans">{it.title}</h3>
@@ -695,12 +697,12 @@ function Datenschutz() {
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-16">
           <div className="space-y-6">
-            <span className="text-xs uppercase tracking-widest text-brandy font-semibold">
+            <span className="text-xs uppercase tracking-widest text-evergreen font-semibold">
               Datenschutz · ohne Kompromiss
             </span>
             <Reveal>
               <h2 className="font-serif text-3xl md:text-5xl leading-tight text-balance" style={{ fontWeight: 500 }}>
-                Was die Schule anvertraut, bleibt <span className="italic text-brandy">vertraulich</span>.
+                Was die Schule anvertraut, bleibt <span className="italic text-gold-700">vertraulich</span>.
               </h2>
             </Reveal>
             <p className="text-ink/70 max-w-[42ch] leading-relaxed">
@@ -724,7 +726,7 @@ function Datenschutz() {
             {points.map((p, i) => (
               <Reveal key={p.title} delay={i * 0.06}>
                 <div className="bg-paper p-6 space-y-3 h-full">
-                  <span className="text-[10px] uppercase tracking-widest text-brandy font-semibold">
+                  <span className="text-[10px] uppercase tracking-widest text-evergreen font-semibold">
                     {p.kicker}
                   </span>
                   <h3 className="font-serif text-xl leading-snug" style={{ fontWeight: 500 }}>{p.title}</h3>
@@ -911,10 +913,10 @@ function PreiseTeaser() {
     <section id="preise" className="py-24 px-6 bg-[#f6f3ec] border-y border-ink/5">
       <div className="max-w-7xl mx-auto">
         <div className="max-w-3xl mb-16">
-          <span className="text-xs uppercase tracking-widest text-brandy font-semibold">Preise</span>
+          <span className="text-xs uppercase tracking-widest text-evergreen font-semibold">Preise</span>
           <Reveal>
             <h2 className="font-serif text-3xl md:text-5xl leading-tight mt-3 text-balance" style={{ fontWeight: 500 }}>
-              Pro Antrag bezahlen. <span className="italic text-brandy">Kein Abo.</span>
+              Pro Antrag bezahlen. <span className="italic text-gold-700">Kein Abo.</span>
             </h2>
           </Reveal>
           <p className="text-ink/65 mt-5 text-pretty leading-relaxed">
@@ -930,12 +932,12 @@ function PreiseTeaser() {
                 className={[
                   "relative rounded-2xl p-7 flex flex-col gap-6 ring-1 transition-all h-full",
                   t.featured
-                    ? "bg-[#1c1917] text-paper ring-[#1c1917] shadow-xl lg:-translate-y-2"
+                    ? "bg-evergreen text-paper ring-evergreen shadow-xl lg:-translate-y-2"
                     : "bg-paper text-ink ring-ink/10 hover:ring-ink/25",
                 ].join(" ")}
               >
                 {t.badge && (
-                  <span className="absolute -top-3 left-6 bg-brandy text-paper text-[10px] uppercase tracking-widest font-semibold px-3 py-1 rounded-full">
+                  <span className="absolute -top-3 left-6 bg-gold-500 text-ink text-[10px] uppercase tracking-widest font-semibold px-3 py-1 rounded-full">
                     {t.badge}
                   </span>
                 )}
@@ -972,7 +974,7 @@ function PreiseTeaser() {
                       ? "bg-paper text-ink hover:bg-paper/90"
                       : t.ghost
                       ? "ring-1 ring-ink/15 hover:ring-ink/30"
-                      : "bg-brandy text-paper hover:bg-brandy/90",
+                      : "bg-evergreen text-paper hover:bg-evergreen/90",
                   ].join(" ")}
                 >
                   {t.cta}
@@ -1032,7 +1034,7 @@ function FAQ() {
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between gap-4 text-left font-medium py-6 text-base hover:text-brandy transition-colors"
+                  className="w-full flex items-center justify-between gap-4 text-left font-medium py-6 text-base hover:text-evergreen transition-colors"
                   aria-expanded={isOpen}
                 >
                   <span>{it.q}</span>
@@ -1066,7 +1068,7 @@ function ClosingCta() {
   return (
     <section className="py-24 px-6 bg-paper">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-brandy text-paper rounded-[2rem] p-12 md:p-24 relative overflow-hidden">
+        <div className="bg-evergreen text-paper rounded-[2rem] p-12 md:p-24 relative overflow-hidden border-y-[3px] border-double border-gold-500/60">
           <div className="relative z-10 max-w-2xl">
             <h2 className="font-serif text-4xl md:text-6xl mb-8 leading-[1.05] text-paper" style={{ fontWeight: 500 }}>
               Bereit, Fördermittel für Ihre Schule zu heben?
@@ -1079,7 +1081,7 @@ function ClosingCta() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/foerderprogramme"
-                className="bg-paper text-brandy px-8 py-4 rounded-full font-semibold hover:bg-paper/90 transition-colors active:scale-[0.98] inline-flex items-center justify-center gap-2"
+                className="bg-paper text-evergreen px-8 py-4 rounded-full font-semibold hover:bg-paper/90 transition-colors active:scale-[0.98] inline-flex items-center justify-center gap-2"
               >
                 Förderfinder öffnen
                 <ArrowRight className="size-5" />

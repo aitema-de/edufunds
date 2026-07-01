@@ -46,12 +46,12 @@ export function Footer() {
     <footer className="relative overflow-hidden" style={{ backgroundColor: '#1c1917' }}>
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#d97706]/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#d4af37]/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#1a4d4d]/5 rounded-full blur-3xl" />
       </div>
 
       {/* Top gradient line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d97706]/50 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4af37]/50 to-transparent" />
 
       {/* Stats Bar */}
       <div className="relative border-b border-[#292524]">
@@ -100,15 +100,15 @@ export function Footer() {
               Die intelligente Plattform für Schulförderung. Finden Sie passende Programme und erstellen Sie erfolgreiche Anträge mit KI-Unterstützung.
             </p>
             <div className="space-y-3 mb-6">
-              <a href="mailto:office@edufunds.org" className="flex items-center gap-3 text-sm text-[#a8a29e] hover:text-[#d97706] transition-colors group">
-                <div className="w-8 h-8 rounded-lg bg-[#292524] flex items-center justify-center group-hover:bg-[#d97706]/20 transition-colors">
-                  <Mail className="h-4 w-4 text-[#d97706]" />
+              <a href="mailto:office@edufunds.org" className="flex items-center gap-3 text-sm text-[#a8a29e] hover:text-[#d4af37] transition-colors group">
+                <div className="w-8 h-8 rounded-lg bg-[#292524] flex items-center justify-center group-hover:bg-[#d4af37]/20 transition-colors">
+                  <Mail className="h-4 w-4 text-[#d4af37]" />
                 </div>
                 office@edufunds.org
               </a>
               <div className="flex items-center gap-3 text-sm text-[#a8a29e]">
                 <div className="w-8 h-8 rounded-lg bg-[#292524] flex items-center justify-center">
-                  <MapPin className="h-4 w-4 text-[#d97706]" />
+                  <MapPin className="h-4 w-4 text-[#d4af37]" />
                 </div>
                 Berlin, Deutschland
               </div>
@@ -119,18 +119,18 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter"
-                className="w-10 h-10 rounded-xl glass hover:bg-[#d97706]/20 hover:border-[#d97706]/30 border border-[#44403c]/50 flex items-center justify-center transition-all duration-300"
+                className="w-10 h-10 rounded-xl glass hover:bg-[#d4af37]/20 hover:border-[#d4af37]/30 border border-[#44403c]/50 flex items-center justify-center transition-all duration-300"
               >
-                <span className="text-[#a8a29e] hover:text-[#d97706] text-xs font-bold uppercase">T</span>
+                <span className="text-[#a8a29e] hover:text-[#d4af37] text-xs font-bold uppercase">T</span>
               </a>
               <a
                 href="https://linkedin.com/company/aitema"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="w-10 h-10 rounded-xl glass hover:bg-[#d97706]/20 hover:border-[#d97706]/30 border border-[#44403c]/50 flex items-center justify-center transition-all duration-300"
+                className="w-10 h-10 rounded-xl glass hover:bg-[#d4af37]/20 hover:border-[#d4af37]/30 border border-[#44403c]/50 flex items-center justify-center transition-all duration-300"
               >
-                <span className="text-[#a8a29e] hover:text-[#d97706] text-xs font-bold uppercase">L</span>
+                <span className="text-[#a8a29e] hover:text-[#d4af37] text-xs font-bold uppercase">L</span>
               </a>
             </div>
           </motion.div>
@@ -154,7 +154,7 @@ export function Footer() {
                       <li key={link.href}>
                         <Link
                           href={link.href}
-                          className="text-sm text-[#a8a29e] hover:text-[#d97706] transition-colors flex items-center gap-1 group"
+                          className="text-sm text-[#a8a29e] hover:text-[#d4af37] transition-colors flex items-center gap-1 group"
                         >
                           <ArrowRight className="h-3 w-3 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                           {link.label}
@@ -176,17 +176,17 @@ export function Footer() {
           transition={{ duration: 0.6 }}
           className="relative py-10 px-8 rounded-3xl glass-strong mb-10 overflow-hidden"
         >
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#d97706]/10 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#d4af37]/10 rounded-full blur-3xl" />
           <div className="relative max-w-3xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#d97706]/10 border border-[#d97706]/20 mb-4"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/20 mb-4"
             >
-              <Sparkles className="h-4 w-4 text-[#d97706]" />
-              <span className="text-sm font-medium text-[#d97706]">Bleiben Sie informiert</span>
+              <Sparkles className="h-4 w-4 text-[#d4af37]" />
+              <span className="text-sm font-medium text-[#d4af37]">Bleiben Sie informiert</span>
             </motion.div>
             <h3 className="text-2xl font-bold text-[#fdfdfc] mb-3">Newsletter abonnieren</h3>
             <p className="text-[#a8a29e] mb-6">Erhalten Sie wöchentlich Updates zu neuen Förderprogrammen, Tipps für erfolgreiche Anträge und exklusive Einblicke.</p>
@@ -206,7 +206,7 @@ export function Footer() {
           <div className="flex flex-wrap items-center justify-center gap-2">
             <span>© {currentYear} EduFunds.</span>
             <span>Ein Projekt der</span>
-            <a href="https://aitema.de" target="_blank" rel="noopener noreferrer" className="text-[#d97706] hover:underline">aitema GmbH</a>
+            <a href="https://aitema.de" target="_blank" rel="noopener noreferrer" className="text-[#d4af37] hover:underline">aitema GmbH</a>
           </div>
           <div className="flex items-center gap-1">
             <span>Made with</span>
