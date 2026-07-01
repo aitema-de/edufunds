@@ -326,15 +326,21 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
                   Geeignete Schulformen
                 </h2>
                 <div className="flex flex-wrap gap-2.5">
-                  {programm.schulformen.map((schulform) => (
-                    <span
-                      key={schulform}
-                      className="px-4 py-2 rounded-full bg-paper text-ink/80 text-sm font-medium ring-1 ring-ink/10 inline-flex items-center gap-2"
-                    >
-                      <CheckCircle2 className="h-4 w-4 text-evergreen" />
-                      {SCHULFORMEN_MAP[schulform] || schulform}
-                    </span>
-                  ))}
+                  {programm.schulformen.length === 0 ? (
+                    <p className="text-ink/60 text-sm">
+                      Dieses Programm richtet sich nicht direkt an einzelne Schulen — Details zur Zielgruppe finden Sie in der Beschreibung und beim Fördergeber.
+                    </p>
+                  ) : (
+                    programm.schulformen.map((schulform) => (
+                      <span
+                        key={schulform}
+                        className="px-4 py-2 rounded-full bg-paper text-ink/80 text-sm font-medium ring-1 ring-ink/10 inline-flex items-center gap-2"
+                      >
+                        <CheckCircle2 className="h-4 w-4 text-evergreen" />
+                        {SCHULFORMEN_MAP[schulform] || schulform}
+                      </span>
+                    ))
+                  )}
                 </div>
               </section>
 
