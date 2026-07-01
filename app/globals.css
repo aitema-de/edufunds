@@ -125,6 +125,26 @@
 }
 
 /* ============================================
+   PROGRAMM-TICKER (Richtung F, Home) — Endlos-Laufband.
+   Zwei identische Haelften im Track → -50% ergibt nahtlose Schleife.
+   Hover pausiert; prefers-reduced-motion stoppt die Animation komplett
+   (Inhalt bleibt als statische Zeile lesbar).
+   ============================================ */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ticker-track {
+  animation: ticker-scroll 48s linear infinite;
+}
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
+}
+
+/* ============================================
    BASE STYLES
    ============================================ */
 @layer base {

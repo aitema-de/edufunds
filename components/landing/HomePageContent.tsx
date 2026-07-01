@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { ArrowRight, Check, Minus, ChevronDown, Sparkles } from "lucide-react";
 import {
   HourglassIcon,
@@ -39,6 +39,27 @@ const fadeUp = {
   show: { opacity: 1, y: 0 },
 };
 
+/* Hero-Headline Wort fuer Wort (Blur-Reveal). `gold` = kursives Akzentwort,
+   `underline` = gezeichnete Gold-Linie nach dem Reveal. */
+const H1_WORDS: { w: string; gold?: boolean; underline?: boolean }[] = [
+  { w: "Jedes" },
+  { w: "Jahr" },
+  { w: "bleiben" },
+  { w: "Millionen" },
+  { w: "an" },
+  { w: "Fördermitteln", gold: true },
+  { w: "ungenutzt.", underline: true },
+];
+const h1Word = {
+  hidden: { opacity: 0, y: 20, filter: "blur(5px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.55, ease: EASE },
+  },
+};
+
 /* Editoriale Akzente:
    - HELLE Flaechen → brandy (#78350f, text-brandy / bg-brandy)
    - DUNKLE Flaechen → amber (#d97706 / amber-200/300/400)
@@ -60,7 +81,7 @@ export function HomePageContent({
   return (
     <>
       <Hero stats={stats} />
-      <TrustStrip />
+      <ProgrammTicker programme={programme} total={stats.total} />
       <Problem />
       <LiveShowcase stats={stats} />
       <Datenschutz />
@@ -83,8 +104,17 @@ function Hero({ stats }: { stats: LandingStats }) {
     { v: "DE", l: "Server" },
   ];
   return (
-    <section id="top" className="pt-20 pb-16 px-6 bg-paper">
-      <div className="max-w-7xl mx-auto">
+    <section id="top" className="relative overflow-hidden pt-20 pb-16 px-6 bg-paper">
+      {/* Feines Akten-Raster + warmer Gold-Schein (Richtung F) — rein dekorativ */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-40 [background-image:linear-gradient(#e9e4d8_1px,transparent_1px),linear-gradient(90deg,#e9e4d8_1px,transparent_1px)] [background-size:44px_44px] [mask-image:radial-gradient(75%_65%_at_62%_18%,#000,transparent_75%)]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 [background:radial-gradient(55%_45%_at_85%_8%,rgba(201,162,39,0.10),transparent_70%)]"
+      />
+      <div className="relative max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-center">
           <div className="space-y-7">
             <motion.div
@@ -111,13 +141,30 @@ function Hero({ stats }: { stats: LandingStats }) {
             <motion.h1
               initial="hidden"
               animate="show"
-              variants={fadeUp}
-              transition={{ duration: 0.7, ease: EASE }}
+              variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } } }}
               className="font-serif text-5xl md:text-7xl leading-[1.05] text-balance text-evergreen"
               style={{ fontWeight: 500 }}
             >
-              Jedes Jahr bleiben Millionen an{" "}
-              <span className="italic text-gold-700">Fördermitteln</span> ungenutzt.
+              {H1_WORDS.map(({ w, gold, underline }, i) => (
+                <Fragment key={`${w}-${i}`}>
+                  <motion.span
+                    variants={h1Word}
+                    className={`inline-block ${gold ? "italic text-gold-700" : ""} ${underline ? "relative" : ""}`}
+                  >
+                    {w}
+                    {underline && (
+                      <motion.span
+                        aria-hidden
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{ duration: 0.8, delay: 1.15, ease: EASE }}
+                        style={{ transformOrigin: "left" }}
+                        className="absolute -bottom-1.5 left-0 h-[5px] w-full rounded-full bg-gradient-to-r from-gold-500 to-gold-300"
+                      />
+                    )}
+                  </motion.span>{" "}
+                </Fragment>
+              ))}
             </motion.h1>
 
             <motion.p
@@ -248,14 +295,17 @@ function HeroCertPanel({ total }: { total: string }) {
           <span className="font-serif italic text-evergreen text-[15px] leading-snug">
             EduFunds — Ihr Antrag, fertig formuliert.
           </span>
-          <span
+          <motion.span
             aria-hidden
-            className="grid size-14 shrink-0 -rotate-12 place-content-center rounded-full border-2 border-gold-500/60 text-center text-[9px] font-semibold uppercase tracking-wider text-gold-700 leading-tight"
+            initial={{ opacity: 0, scale: 2.4, rotate: -40 }}
+            animate={{ opacity: 1, scale: 1, rotate: -12 }}
+            transition={{ type: "spring", stiffness: 220, damping: 15, delay: 1.5 }}
+            className="grid size-14 shrink-0 place-content-center rounded-full border-2 border-gold-500/60 text-center text-[9px] font-semibold uppercase tracking-wider text-gold-700 leading-tight"
           >
             Geprüft
             <br />
             {total}
-          </span>
+          </motion.span>
         </div>
         <p className="text-[10px] text-ink/40 mt-4">
           Illustratives Beispiel — keine realen Antragsdaten.
@@ -601,16 +651,44 @@ function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
 }
 
 /* ======================================================================
-   TRUST STRIP — Förderquellen
+   PROGRAMM-TICKER — Endlos-Laufband mit echten Programmnamen (Richtung F).
+   Ersetzt den statischen TrustStrip; die Foerderquellen-Info laeuft als
+   Abschlussitem mit. Zwei identische Haelften (2. aria-hidden) → nahtlose
+   CSS-Schleife (.ticker-track, globals.css); reduced-motion stoppt sie.
    ====================================================================== */
-function TrustStrip() {
-  const labels = ["BMBF", "Landesministerien", "ESF+", "Stiftungen", "Kommunen", "EU"];
+function ProgrammTicker({
+  programme,
+  total,
+}: {
+  programme: LandingProgramme[];
+  total: string;
+}) {
+  const items = [
+    ...programme.map((p) => p.name),
+    "aus Mitteln von BMBF · Landesministerien · ESF+ · Stiftungen · Kommunen · EU",
+  ];
   return (
-    <section className="border-y border-ink/5 bg-paper">
-      <div className="max-w-7xl mx-auto px-6 py-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-xs uppercase tracking-widest text-ink/40 font-medium">
-        <span className="text-ink/60">Programme aus Mitteln von</span>
-        {labels.map((l) => (
-          <span key={l}>{l}</span>
+    <section
+      aria-label={`Beispiele aus dem Katalog mit ${total} Programmen`}
+      className="relative overflow-hidden border-y border-gold-500/40 bg-evergreen py-3"
+    >
+      <div className="ticker-track flex w-max">
+        {[0, 1].map((half) => (
+          <ul
+            key={half}
+            aria-hidden={half === 1}
+            className="flex items-center gap-10 pr-10 whitespace-nowrap"
+          >
+            <li className="text-[10px] uppercase tracking-[0.25em] text-paper/60 font-medium">
+              Aus dem Katalog · {total} Programme
+            </li>
+            {items.map((n, i) => (
+              <li key={`${half}-${i}`} className="flex items-center gap-10">
+                <span className="font-serif italic text-[15px] text-gold-300">{n}</span>
+                <span aria-hidden className="size-1 rounded-full bg-gold-500/50" />
+              </li>
+            ))}
+          </ul>
         ))}
       </div>
     </section>
@@ -752,18 +830,24 @@ function ProgrammeShowcase({
   programme: LandingProgramme[];
 }) {
   const statCards = [
-    { n: stats.total, l: "Programme" },
-    { n: String(stats.bund), l: "Bundesmittel" },
-    { n: String(stats.land), l: "Landesmittel" },
-    { n: String(stats.stiftung), l: "Stiftungen" },
-    { n: String(stats.eu), l: "EU-Programme" },
+    // "180+" → CountUp bis 180 mit "+"-Suffix; Rest reine Zahlen
+    { n: parseInt(stats.total, 10) || 0, suffix: stats.total.replace(/^\d+/, ""), l: "Programme" },
+    { n: stats.bund, suffix: "", l: "Bundesmittel" },
+    { n: stats.land, suffix: "", l: "Landesmittel" },
+    { n: stats.stiftung, suffix: "", l: "Stiftungen" },
+    { n: stats.eu, suffix: "", l: "EU-Programme" },
   ];
   return (
     <section
       id="programme"
-      className="py-24 px-6 bg-evergreen text-paper border-y-[3px] border-double border-gold-500/70"
+      className="relative overflow-hidden py-24 px-6 bg-evergreen text-paper border-y-[3px] border-double border-gold-500/70"
     >
-      <div className="max-w-7xl mx-auto">
+      {/* Feines helles Raster auf dem Gruen — Akten-Textur (dekorativ) */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-50 [background-image:linear-gradient(rgba(253,253,252,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(253,253,252,0.05)_1px,transparent_1px)] [background-size:46px_46px]"
+      />
+      <div className="relative max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
           <div className="space-y-4">
             <Reveal>
@@ -787,7 +871,9 @@ function ProgrammeShowcase({
         <div className="grid grid-cols-2 md:grid-cols-5 gap-px bg-white/15 rounded-2xl overflow-hidden ring-1 ring-white/15 mb-12">
           {statCards.map((s) => (
             <div key={s.l} className="bg-evergreen px-4 py-5 text-center">
-              <div className="font-serif text-3xl md:text-4xl text-gold-300" style={{ fontWeight: 500 }}>{s.n}</div>
+              <div className="font-serif text-3xl md:text-4xl text-gold-300" style={{ fontWeight: 500 }}>
+                <CountUp to={s.n} suffix={s.suffix} />
+              </div>
               <div className="text-[11px] uppercase tracking-widest text-white/60 mt-1">{s.l}</div>
             </div>
           ))}
@@ -1068,7 +1154,20 @@ function ClosingCta() {
   return (
     <section className="py-24 px-6 bg-paper">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-evergreen text-paper rounded-[2rem] p-12 md:p-24 relative overflow-hidden border-y-[3px] border-double border-gold-500/60">
+        <div className="bg-evergreen text-paper rounded-[2rem] p-12 md:p-24 relative overflow-hidden border-[3px] border-double border-gold-500/60">
+          {/* Akten-Raster + Siegel-Ornament (dekorativ) */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-50 [background-image:linear-gradient(rgba(253,253,252,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(253,253,252,0.05)_1px,transparent_1px)] [background-size:46px_46px]"
+          />
+          <div
+            aria-hidden
+            className="absolute top-8 right-8 hidden md:grid size-24 -rotate-12 place-content-center rounded-full border-2 border-gold-300/40 text-center text-[11px] font-semibold uppercase tracking-wider text-gold-300/80 leading-tight"
+          >
+            Geprüft
+            <br />
+            {PROGRAMM_COUNT_ROUNDED}+
+          </div>
           <div className="relative z-10 max-w-2xl">
             <h2 className="font-serif text-4xl md:text-6xl mb-8 leading-[1.05] text-paper" style={{ fontWeight: 500 }}>
               Bereit, Fördermittel für Ihre Schule zu heben?
@@ -1097,7 +1196,7 @@ function ClosingCta() {
           <div className="absolute right-[-10%] bottom-[-10%] opacity-25 pointer-events-none">
             <div className="size-96 bg-paper rounded-full blur-3xl" />
           </div>
-          <div className="absolute -top-12 -right-8 opacity-10 pointer-events-none font-serif italic text-[14rem] leading-none select-none text-paper">
+          <div className="absolute -top-12 -right-8 opacity-10 pointer-events-none font-serif italic text-[14rem] leading-none select-none text-paper animate-float">
             €
           </div>
         </div>
