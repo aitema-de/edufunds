@@ -41,9 +41,17 @@ function renderEditor() {
 }
 
 describe("TextVorschlaegeEditor", () => {
+  it("stellt die Ergänzungen als Rückfrage dar (P4-A Teil 2): Frage-Header + Zähler", () => {
+    renderEditor();
+    expect(screen.getByText(/Stimmen diese ergänzten Angaben\?/)).toBeInTheDocument();
+    expect(screen.getByText(/noch 2 zu prüfen/)).toBeInTheDocument();
+    // Klar beschriftete Aktion statt Icon-only.
+    expect(screen.getAllByRole("button", { name: "Angabe bestätigen — trifft zu" })).toHaveLength(2);
+  });
+
   it("Bestätigen nimmt den Vorschlag aus der Liste, lässt den Antragstext unverändert", async () => {
     const onChange = renderEditor();
-    fireEvent.click(screen.getAllByRole("button", { name: "Vorschlag übernehmen" })[0]);
+    fireEvent.click(screen.getAllByRole("button", { name: "Angabe bestätigen — trifft zu" })[0]);
     await waitFor(() => expect(onChange).toHaveBeenCalled());
     expect(lastBody!.finalText).toBe(FINAL); // Text unverändert
     expect(lastBody!.vorschlaege).toEqual([V1]); // V0 raus
@@ -51,7 +59,7 @@ describe("TextVorschlaegeEditor", () => {
 
   it("Entfernen streicht den Satz aus dem Antragstext", async () => {
     const onChange = renderEditor();
-    fireEvent.click(screen.getAllByRole("button", { name: "Vorschlag entfernen" })[0]);
+    fireEvent.click(screen.getAllByRole("button", { name: "Angabe aus dem Antrag streichen" })[0]);
     await waitFor(() => expect(onChange).toHaveBeenCalled());
     expect(lastBody!.finalText).not.toContain(V0);
     expect(lastBody!.finalText).toContain(V1); // anderer Vorschlag bleibt im Text
@@ -60,7 +68,7 @@ describe("TextVorschlaegeEditor", () => {
 
   it("Bearbeiten ersetzt die Formulierung im Antragstext", async () => {
     const onChange = renderEditor();
-    fireEvent.click(screen.getAllByRole("button", { name: "Vorschlag bearbeiten" })[0]);
+    fireEvent.click(screen.getAllByRole("button", { name: "Formulierung anpassen" })[0]);
     const ta = screen.getByRole("textbox", { name: "Vorschlag bearbeiten" });
     fireEvent.change(ta, { target: { value: "Das Vorhaben fördert digitale Teilhabe." } });
     fireEvent.click(screen.getByRole("button", { name: /Übernehmen/ }));

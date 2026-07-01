@@ -32,9 +32,11 @@ export function provenanz(
 
 /**
  * Produktvision 2026-06-10 — #4: Text-Vorschläge interaktiv.
- * Jeder vom Assistenten ergänzte Satz (im Antragstext verankert) kann
- * bestätigt (aus der Liste nehmen, Text bleibt), bearbeitet (Formulierung im
- * Antragstext ersetzen) oder entfernt (aus dem Antragstext streichen) werden.
+ * P4-A Teil 2 (Feedback 24.06.): als aktive Rückfrage gerahmt — der Tester
+ * wünschte, dass die KI ergänzte, nicht aus den Eingaben gedeckte Angaben
+ * „markiert und nachfragt". Jeder ergänzte Satz (im Antragstext verankert)
+ * wird als Rückfrage gestellt: „Ja, trifft zu" (bestätigen, Text bleibt),
+ * „Anpassen" (Formulierung ersetzen) oder „Streichen" (aus dem Antrag nehmen).
  * Der Client rechnet den neuen finalText + die Restliste aus und persistiert
  * sie über /api/wizard/textvorschlag; der Parent rendert beides live nach.
  */
@@ -89,15 +91,18 @@ export function TextVorschlaegeEditor({ sessionToken, finalText, vorschlaege, be
 
   return (
     <div className="mt-6 rounded-lg border border-[#78350f]/30 bg-[#78350f]/5 p-4">
-      <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#1c1917]">
+      <div className="mb-2 flex flex-wrap items-center gap-2 text-sm font-semibold text-[#1c1917]">
         <Sparkles className="h-4 w-4 text-[#78350f]" />
-        Vorschläge des Assistenten im Antragstext — bitte prüfen
+        Kurze Rückfrage: Stimmen diese ergänzten Angaben?
+        <span className="rounded-full border border-[#78350f]/30 bg-white px-2 py-0.5 text-[11px] font-medium text-[#78350f]">
+          noch {vorschlaege.length} zu prüfen
+        </span>
       </div>
       <p className="mb-3 text-xs text-slate-600">
-        Diese Formulierungen hat der Assistent ergänzt, weil sie den Antrag fachlich stärken —
-        sie stammen nicht aus Ihren Angaben. <strong>Übernehmen</strong> behält die Formulierung,
-        <strong> Bearbeiten</strong> passt sie im Antragstext an, <strong>Entfernen</strong> streicht
-        sie aus dem Antrag.
+        Der Assistent hat diese Formulierungen ergänzt, weil sie den Antrag fachlich stärken —
+        sie stammen aber <strong>nicht direkt aus Ihren Angaben</strong>. Bitte prüfen Sie jede kurz:
+        <strong> Ja, trifft zu</strong> behält sie, <strong>Anpassen</strong> passt die Formulierung an,
+        <strong> Streichen</strong> nimmt sie aus dem Antrag.
       </p>
       {error && (
         <div className="mb-3 rounded border border-red-300 bg-red-50 px-3 py-2 text-xs text-red-800">
@@ -137,26 +142,28 @@ export function TextVorschlaegeEditor({ sessionToken, finalText, vorschlaege, be
                 </div>
               </div>
             ) : (
-              <div className="flex items-start gap-2">
-                <span className="shrink-0 text-[#78350f]">›</span>
-                <div className="flex-1">
-                  <span>„{v}"</span>
-                  {provenanz(begruendungen, v) && (
-                    <span className="mt-1 block text-[11px] italic text-[#78350f]/80">
-                      Warum ergänzt: {provenanz(begruendungen, v)}
-                    </span>
-                  )}
+              <div>
+                <div className="flex items-start gap-2">
+                  <span className="shrink-0 text-[#78350f]">›</span>
+                  <div className="flex-1">
+                    <span>„{v}"</span>
+                    {provenanz(begruendungen, v) && (
+                      <span className="mt-1 block text-[11px] italic text-[#78350f]/80">
+                        Warum ergänzt: {provenanz(begruendungen, v)}
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <div className="flex shrink-0 gap-1">
+                <div className="mt-2 flex flex-wrap gap-2 pl-4">
                   <button
                     type="button"
                     onClick={() => confirm(i)}
                     disabled={busy !== null}
-                    title="Übernehmen"
-                    aria-label="Vorschlag übernehmen"
-                    className="rounded p-1 text-emerald-600 hover:bg-emerald-50 disabled:opacity-40"
+                    aria-label="Angabe bestätigen — trifft zu"
+                    className="inline-flex items-center gap-1 rounded border border-emerald-300 bg-emerald-50 px-2 py-1 text-[11px] font-medium text-emerald-700 hover:bg-emerald-100 disabled:opacity-40"
                   >
-                    {busy === i ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Check className="h-3.5 w-3.5" />}
+                    {busy === i ? <Loader2 className="h-3 w-3 animate-spin" /> : <Check className="h-3 w-3" />}
+                    Ja, trifft zu
                   </button>
                   <button
                     type="button"
@@ -166,21 +173,21 @@ export function TextVorschlaegeEditor({ sessionToken, finalText, vorschlaege, be
                       setError(null);
                     }}
                     disabled={busy !== null}
-                    title="Bearbeiten"
-                    aria-label="Vorschlag bearbeiten"
-                    className="rounded p-1 text-[#57534e] hover:bg-slate-100 disabled:opacity-40"
+                    aria-label="Formulierung anpassen"
+                    className="inline-flex items-center gap-1 rounded border border-[#1c1917]/15 px-2 py-1 text-[11px] font-medium text-[#57534e] hover:bg-slate-100 disabled:opacity-40"
                   >
-                    <PenLine className="h-3.5 w-3.5" />
+                    <PenLine className="h-3 w-3" />
+                    Anpassen
                   </button>
                   <button
                     type="button"
                     onClick={() => remove(i)}
                     disabled={busy !== null}
-                    title="Entfernen"
-                    aria-label="Vorschlag entfernen"
-                    className="rounded p-1 text-red-500 hover:bg-red-50 disabled:opacity-40"
+                    aria-label="Angabe aus dem Antrag streichen"
+                    className="inline-flex items-center gap-1 rounded border border-red-200 px-2 py-1 text-[11px] font-medium text-red-600 hover:bg-red-50 disabled:opacity-40"
                   >
-                    <Trash2 className="h-3.5 w-3.5" />
+                    <Trash2 className="h-3 w-3" />
+                    Streichen
                   </button>
                 </div>
               </div>
