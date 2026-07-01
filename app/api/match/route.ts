@@ -43,6 +43,7 @@ export async function POST(req: NextRequest) {
           foerdergeber: (m.programm as any).foerdergeber,
           foerdergeberTyp: (m.programm as any).foerdergeberTyp,
           foerdersummeText: (m.programm as any).foerdersummeText,
+          foerdersummeMin: (m.programm as any).foerdersummeMin,
           foerdersummeMax: (m.programm as any).foerdersummeMax,
           bewerbungsfristText: (m.programm as any).bewerbungsfristText,
           bewerbungsfristEnde: (m.programm as any).bewerbungsfristEnde,
