@@ -156,12 +156,14 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
             Details ansehen
             <ArrowRight className="h-4 w-4" />
           </Link>
-          {programm.antragsLink && (
+          {/* Direkt in den adaptiven Wizard (nur bei KI-geeigneten Programmen);
+              Legacy-Route /antrag/[id] leitet ohnehin dorthin um. */}
+          {programm.kiAntragGeeignet && (
             <Link
-              href={`/antrag/${programm.id}`}
+              href={`/antrag/${programm.id}/wizard`}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl btn-outline text-sm whitespace-nowrap"
             >
-              Antrag starten
+              KI-Antrag erstellen
             </Link>
           )}
         </div>

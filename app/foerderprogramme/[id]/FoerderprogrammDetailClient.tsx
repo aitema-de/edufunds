@@ -27,16 +27,9 @@ import {
 } from "lucide-react";
 import type { Foerderprogramm } from '@/lib/foerderSchema';
 import foerderprogrammeData from '@/data/foerderprogramme.json';
-import { KIAntragAssistent } from "@/components/KIAntragAssistent";
 import { EinreichungInfo } from "@/components/Wizard/EinreichungInfo";
 import type { EinreichungInfo as EinreichungInfoData } from "@/lib/wizard/einreichung";
 import { formatKategorie } from "@/lib/kategorie-labels";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 
 const foerderprogramme = foerderprogrammeData as Foerderprogramm[];
 
@@ -152,7 +145,6 @@ interface FoerderprogrammDetailClientProps {
 }
 
 export default function FoerderprogrammDetailClient({ programm, einreichung }: FoerderprogrammDetailClientProps) {
-  const [showKIAssistent, setShowKIAssistent] = useState(false);
 
   const countdown = useCountdown(programm.bewerbungsfristEnde ?? null);
   const similarPrograms = getSimilarPrograms(programm.id, programm.kategorien);
@@ -233,23 +225,14 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
               </p>
 
               <div className="flex flex-wrap gap-4">
+                {/* Direkt in den adaptiven Wizard — Bezahlung regelt dort das
+                    PaywallGate (Legacy-localStorage-Gating entfernt, 2026-07-01) */}
                 {programm.kiAntragGeeignet && (
-                  <Button
-                    size="lg"
-                    onClick={() => {
-                      const hasSubscription = localStorage.getItem('edufunds_subscription') === 'active';
-                      const hasEinzelantrag = localStorage.getItem('edufunds_einzelantrag') === 'valid';
-
-                      if (!hasSubscription && !hasEinzelantrag) {
-                        window.location.href = '/preise?reason=ki_feature';
-                        return;
-                      }
-                      setShowKIAssistent(true);
-                    }}
-                  >
-                    <Wand2 className="h-5 w-5" />
-                    KI-Antrag generieren
-                    <span className="ml-2 text-xs bg-white/20 px-2 py-0.5 rounded">Pro</span>
+                  <Button asChild size="lg">
+                    <Link href={`/antrag/${programm.id}/wizard`}>
+                      <Wand2 className="h-5 w-5" />
+                      KI-Antrag erstellen
+                    </Link>
                   </Button>
                 )}
                 {programm.antragsLink && (
@@ -583,17 +566,6 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
           )}
         </div>
 
-        <Dialog open={showKIAssistent} onOpenChange={setShowKIAssistent}>
-          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-paper border-ink/10">
-            <DialogHeader className="sr-only">
-              <DialogTitle>KI-Antragsassistent</DialogTitle>
-            </DialogHeader>
-            <KIAntragAssistent
-              programm={programm}
-              onClose={() => setShowKIAssistent(false)}
-            />
-          </DialogContent>
-        </Dialog>
       </main>
       <Footer />
     </>
