@@ -92,7 +92,7 @@ export function ChronologySidebar({
                         value={draft}
                         onChange={(e) => setDraft(e.target.value)}
                         disabled={editBusy}
-                        className="min-h-[80px] w-full rounded border border-[#1c1917]/15 bg-white p-2 text-sm text-[#1c1917] focus:border-[#78350f] focus:outline-none"
+                        className="min-h-[80px] w-full rounded border border-[#1c1917]/15 bg-white p-2 text-sm text-[#1c1917] focus:border-[#1e3d32] focus:outline-none"
                         autoFocus
                       />
                       <div className="mt-1.5 flex items-center justify-end gap-2">
@@ -109,7 +109,7 @@ export function ChronologySidebar({
                           type="button"
                           onClick={saveEdit}
                           disabled={editBusy || !draft.trim()}
-                          className="inline-flex items-center gap-1 rounded bg-[#78350f] px-2 py-1 text-xs font-medium text-white hover:bg-[#92400e] disabled:opacity-50"
+                          className="inline-flex items-center gap-1 rounded bg-[#1e3d32] px-2 py-1 text-xs font-medium text-white hover:bg-[#2a5244] disabled:opacity-50"
                         >
                           <Check className="h-3 w-3" />
                           {editBusy ? "Speichere…" : "Speichern"}

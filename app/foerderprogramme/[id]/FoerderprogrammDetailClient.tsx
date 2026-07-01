@@ -177,7 +177,7 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
           <div className="mb-6">
             <Link
               href="/foerderprogramme"
-              className="inline-flex items-center gap-2 text-sm text-ink/60 hover:text-brandy transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-ink/60 hover:text-evergreen transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
               <span>Zurück zur Übersicht</span>
@@ -195,7 +195,7 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
                 backgroundSize: "22px 22px",
               }}
             />
-            <div className="pointer-events-none absolute -top-24 -right-24 size-72 rounded-full bg-brandy/[0.06] blur-3xl" />
+            <div className="pointer-events-none absolute -top-24 -right-24 size-72 rounded-full bg-evergreen/[0.06] blur-3xl" />
 
             <div className="relative p-8 md:p-12">
               <div className="flex flex-wrap items-center gap-3 mb-6">
@@ -203,7 +203,7 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
                   {foerdergeberStyle.label}
                 </span>
                 {programm.kiAntragGeeignet && (
-                  <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-brandy/10 text-brandy ring-1 ring-brandy/20 flex items-center gap-1.5">
+                  <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-evergreen/10 text-evergreen ring-1 ring-evergreen/20 flex items-center gap-1.5">
                     <Sparkles className="h-3.5 w-3.5" />
                     KI-geeignet
                   </span>
@@ -224,7 +224,7 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
               </h1>
 
               <div className="flex items-center gap-3 text-ink/70 mb-6">
-                <Building2 className="h-5 w-5 text-brandy" />
+                <Building2 className="h-5 w-5 text-evergreen" />
                 <span className="text-lg">{programm.foerdergeber}</span>
               </div>
 
@@ -294,7 +294,7 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
               {programm.beschreibung && programm.beschreibung.trim() !== programm.kurzbeschreibung?.trim() && (
                 <section className={`${CARD} p-6 md:p-8`}>
                   <h2 className="font-serif text-2xl text-ink mb-4 flex items-center gap-3" style={{ fontWeight: 500 }}>
-                    <Info className="h-6 w-6 text-brandy" />
+                    <Info className="h-6 w-6 text-evergreen" />
                     Beschreibung
                   </h2>
                   <p className="text-ink/70 leading-relaxed text-lg">
@@ -305,11 +305,11 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
 
               <section className={`${CARD} p-6 md:p-8`}>
                 <h2 className="font-serif text-2xl text-ink mb-6 flex items-center gap-3" style={{ fontWeight: 500 }}>
-                  <Euro className="h-6 w-6 text-brandy" />
+                  <Euro className="h-6 w-6 text-evergreen" />
                   Förderbetrag
                 </h2>
-                <div className="rounded-xl border border-brandy/20 bg-brandy/[0.06] p-6">
-                  <div className="font-serif text-3xl md:text-4xl text-brandy mb-2" style={{ fontWeight: 600 }}>
+                <div className="rounded-xl border border-evergreen/20 bg-evergreen/[0.06] p-6">
+                  <div className="font-serif text-3xl md:text-4xl text-evergreen mb-2" style={{ fontWeight: 600 }}>
                     {programm.foerdersummeText}
                   </div>
                   {programm.foerdersummeMin && programm.foerdersummeMax && (
@@ -322,14 +322,14 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
 
               <section className={`${CARD} p-6 md:p-8`}>
                 <h2 className="font-serif text-2xl text-ink mb-4 flex items-center gap-3" style={{ fontWeight: 500 }}>
-                  <Tag className="h-6 w-6 text-brandy" />
+                  <Tag className="h-6 w-6 text-evergreen" />
                   Kategorien
                 </h2>
                 <div className="flex flex-wrap gap-2.5">
                   {programm.kategorien.map((kategorie) => (
                     <span
                       key={kategorie}
-                      className="px-4 py-2 rounded-full bg-paper text-ink/70 text-sm font-medium ring-1 ring-ink/10 hover:ring-brandy/30 transition-colors"
+                      className="px-4 py-2 rounded-full bg-paper text-ink/70 text-sm font-medium ring-1 ring-ink/10 hover:ring-evergreen/30 transition-colors"
                     >
                       {formatKategorie(kategorie)}
                     </span>
@@ -339,7 +339,7 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
 
               <section className={`${CARD} p-6 md:p-8`}>
                 <h2 className="font-serif text-2xl text-ink mb-4 flex items-center gap-3" style={{ fontWeight: 500 }}>
-                  <School className="h-6 w-6 text-brandy" />
+                  <School className="h-6 w-6 text-evergreen" />
                   Geeignete Schulformen
                 </h2>
                 <div className="flex flex-wrap gap-2.5">
@@ -348,7 +348,7 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
                       key={schulform}
                       className="px-4 py-2 rounded-full bg-paper text-ink/80 text-sm font-medium ring-1 ring-ink/10 inline-flex items-center gap-2"
                     >
-                      <CheckCircle2 className="h-4 w-4 text-brandy" />
+                      <CheckCircle2 className="h-4 w-4 text-evergreen" />
                       {SCHULFORMEN_MAP[schulform] || schulform}
                     </span>
                   ))}
@@ -357,13 +357,13 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
 
               <section className={`${CARD} p-6 md:p-8`}>
                 <h2 className="font-serif text-2xl text-ink mb-4 flex items-center gap-3" style={{ fontWeight: 500 }}>
-                  <MapPin className="h-6 w-6 text-brandy" />
+                  <MapPin className="h-6 w-6 text-evergreen" />
                   Verfügbar in
                 </h2>
                 {programm.bundeslaender.includes("alle") ? (
-                  <div className="flex items-center gap-3 p-4 rounded-xl bg-brandy/[0.06] ring-1 ring-brandy/20">
-                    <CheckCircle2 className="h-5 w-5 text-brandy" />
-                    <span className="text-brandy font-semibold">Alle Bundesländer</span>
+                  <div className="flex items-center gap-3 p-4 rounded-xl bg-evergreen/[0.06] ring-1 ring-evergreen/20">
+                    <CheckCircle2 className="h-5 w-5 text-evergreen" />
+                    <span className="text-evergreen font-semibold">Alle Bundesländer</span>
                   </div>
                 ) : (
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5">
@@ -383,20 +383,20 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
             <div className="space-y-8">
               <section className={`${CARD} p-6`}>
                 <h2 className="font-serif text-xl text-ink mb-4 flex items-center gap-3" style={{ fontWeight: 500 }}>
-                  <Calendar className="h-5 w-5 text-brandy" />
+                  <Calendar className="h-5 w-5 text-evergreen" />
                   Bewerbungsfrist
                 </h2>
 
                 <div className="space-y-4">
                   {countdown && countdown.days > 0 && (
-                    <div className={`p-4 rounded-xl ring-1 ${countdown.urgent ? 'bg-red-50 ring-red-200' : 'bg-brandy/[0.06] ring-brandy/20'}`}>
+                    <div className={`p-4 rounded-xl ring-1 ${countdown.urgent ? 'bg-red-50 ring-red-200' : 'bg-evergreen/[0.06] ring-evergreen/20'}`}>
                       <div className="flex items-center gap-2 mb-2">
-                        <Clock className={`h-5 w-5 ${countdown.urgent ? 'text-red-600' : 'text-brandy'}`} />
-                        <span className={`text-sm font-medium ${countdown.urgent ? 'text-red-600' : 'text-brandy'}`}>
+                        <Clock className={`h-5 w-5 ${countdown.urgent ? 'text-red-600' : 'text-evergreen'}`} />
+                        <span className={`text-sm font-medium ${countdown.urgent ? 'text-red-600' : 'text-evergreen'}`}>
                           {countdown.urgent ? 'Bald ablaufend!' : 'Noch Zeit'}
                         </span>
                       </div>
-                      <div className={`font-serif text-3xl ${countdown.urgent ? 'text-red-600' : 'text-brandy'}`} style={{ fontWeight: 600 }}>
+                      <div className={`font-serif text-3xl ${countdown.urgent ? 'text-red-600' : 'text-evergreen'}`} style={{ fontWeight: 600 }}>
                         {countdown.days} <span className="text-lg font-normal">Tage</span>
                       </div>
                       {countdown.hours > 0 && (
@@ -450,16 +450,16 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
 
               <section className={`${CARD} p-6`}>
                 <h2 className="font-serif text-xl text-ink mb-4 flex items-center gap-3" style={{ fontWeight: 500 }}>
-                  <Mail className="h-5 w-5 text-brandy" />
+                  <Mail className="h-5 w-5 text-evergreen" />
                   Kontakt
                 </h2>
                 {programm.kontaktEmail ? (
                   <a
                     href={`mailto:${programm.kontaktEmail}`}
-                    className="flex items-center gap-3 p-4 rounded-xl bg-[#f6f3ec] ring-1 ring-ink/10 hover:ring-brandy/30 transition-colors group"
+                    className="flex items-center gap-3 p-4 rounded-xl bg-[#f6f3ec] ring-1 ring-ink/10 hover:ring-evergreen/30 transition-colors group"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-brandy/10 flex items-center justify-center group-hover:bg-brandy/20 transition-colors">
-                      <Mail className="h-5 w-5 text-brandy" />
+                    <div className="w-10 h-10 rounded-lg bg-evergreen/10 flex items-center justify-center group-hover:bg-evergreen/20 transition-colors">
+                      <Mail className="h-5 w-5 text-evergreen" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="text-sm text-ink/50">E-Mail</div>
@@ -482,7 +482,7 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
 
               <section className={`${CARD} p-6`}>
                 <h2 className="font-serif text-xl text-ink mb-4 flex items-center gap-3" style={{ fontWeight: 500 }}>
-                  <ExternalLink className="h-5 w-5 text-brandy" />
+                  <ExternalLink className="h-5 w-5 text-evergreen" />
                   Weitere Links
                 </h2>
                 <div className="space-y-3">
@@ -491,10 +491,10 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
                       href={programm.infoLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 rounded-xl bg-[#f6f3ec] ring-1 ring-ink/10 hover:ring-brandy/30 transition-colors group"
+                      className="flex items-center gap-3 p-4 rounded-xl bg-[#f6f3ec] ring-1 ring-ink/10 hover:ring-evergreen/30 transition-colors group"
                     >
-                      <div className="w-10 h-10 rounded-lg bg-brandy/10 flex items-center justify-center group-hover:bg-brandy/20 transition-colors">
-                        <Info className="h-5 w-5 text-brandy" />
+                      <div className="w-10 h-10 rounded-lg bg-evergreen/10 flex items-center justify-center group-hover:bg-evergreen/20 transition-colors">
+                        <Info className="h-5 w-5 text-evergreen" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="text-sm text-ink/50">Informationen</div>
@@ -508,10 +508,10 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
                       href={programm.antragsLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 rounded-xl bg-[#f6f3ec] ring-1 ring-ink/10 hover:ring-brandy/30 transition-colors group"
+                      className="flex items-center gap-3 p-4 rounded-xl bg-[#f6f3ec] ring-1 ring-ink/10 hover:ring-evergreen/30 transition-colors group"
                     >
-                      <div className="w-10 h-10 rounded-lg bg-brandy/10 flex items-center justify-center group-hover:bg-brandy/20 transition-colors">
-                        <FileText className="h-5 w-5 text-brandy" />
+                      <div className="w-10 h-10 rounded-lg bg-evergreen/10 flex items-center justify-center group-hover:bg-evergreen/20 transition-colors">
+                        <FileText className="h-5 w-5 text-evergreen" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="text-sm text-ink/50">Antrag</div>
@@ -526,12 +526,12 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
               {programm.kiAntragGeeignet && programm.kiHinweise && (
                 <section className={`${CARD} p-6`}>
                   <h2 className="font-serif text-xl text-ink mb-4 flex items-center gap-3" style={{ fontWeight: 500 }}>
-                    <Brain className="h-5 w-5 text-brandy" />
+                    <Brain className="h-5 w-5 text-evergreen" />
                     KI-Hinweise
                   </h2>
-                  <div className="p-4 rounded-xl bg-brandy/[0.06] ring-1 ring-brandy/20">
+                  <div className="p-4 rounded-xl bg-evergreen/[0.06] ring-1 ring-evergreen/20">
                     <div className="flex items-start gap-3">
-                      <Sparkles className="h-5 w-5 text-brandy mt-0.5 shrink-0" />
+                      <Sparkles className="h-5 w-5 text-evergreen mt-0.5 shrink-0" />
                       <p className="text-ink/70 text-sm leading-relaxed">
                         {programm.kiHinweise}
                       </p>
@@ -545,7 +545,7 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
           {similarPrograms.length > 0 && (
             <section className="mt-16">
               <h2 className="font-serif text-2xl text-ink mb-8 flex items-center gap-3" style={{ fontWeight: 500 }}>
-                <Tag className="h-6 w-6 text-brandy" />
+                <Tag className="h-6 w-6 text-evergreen" />
                 Ähnliche Programme
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -555,23 +555,23 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
                     <Link
                       key={similar.id}
                       href={`/foerderprogramme/${similar.id}`}
-                      className={`${CARD} p-6 shadow-sm hover:ring-1 hover:ring-brandy/30 hover:-translate-y-1 transition-all group`}
+                      className={`${CARD} p-6 shadow-sm hover:ring-1 hover:ring-evergreen/30 hover:-translate-y-1 transition-all group`}
                     >
                       <div className="flex items-start justify-between mb-4">
                         <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ring-1 ${similarStyle.bg} ${similarStyle.text} ${similarStyle.ring}`}>
                           {similarStyle.label}
                         </span>
                         {similar.kiAntragGeeignet && (
-                          <Sparkles className="h-4 w-4 text-brandy" />
+                          <Sparkles className="h-4 w-4 text-evergreen" />
                         )}
                       </div>
-                      <h3 className="font-serif text-lg text-ink mb-2 group-hover:text-brandy transition-colors line-clamp-2" style={{ fontWeight: 500 }}>
+                      <h3 className="font-serif text-lg text-ink mb-2 group-hover:text-evergreen transition-colors line-clamp-2" style={{ fontWeight: 500 }}>
                         {similar.name}
                       </h3>
                       <p className="text-ink/60 text-sm mb-4 line-clamp-2">
                         {similar.kurzbeschreibung}
                       </p>
-                      <div className="flex items-center gap-2 text-brandy text-sm font-medium">
+                      <div className="flex items-center gap-2 text-evergreen text-sm font-medium">
                         Details ansehen
                         <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </div>

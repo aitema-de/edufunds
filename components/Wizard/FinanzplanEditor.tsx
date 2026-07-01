@@ -209,7 +209,7 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
   }, []);
 
   return (
-    <div className="rounded-xl border border-[#78350f]/30 bg-[#fdfdfc] p-5">
+    <div className="rounded-xl border border-[#1e3d32]/30 bg-[#fdfdfc] p-5">
       <header className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <h3 className="text-lg font-semibold text-[#1c1917]">
           {legitimized ? "Finanzplan (freigegeben)" : "Finanzplan bearbeiten"}
@@ -233,8 +233,8 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
       )}
 
       {!legitimized && vorschlagCount > 0 && (
-        <div className="mb-3 flex items-start gap-2 rounded-lg border border-[#78350f]/40 bg-[#78350f]/10 p-3 text-xs text-[#1c1917]">
-          <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-[#78350f]" />
+        <div className="mb-3 flex items-start gap-2 rounded-lg border border-[#1e3d32]/40 bg-[#1e3d32]/10 p-3 text-xs text-[#1c1917]">
+          <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-[#1e3d32]" />
           <div>
             <span className="font-semibold">{vorschlagCount} {vorschlagCount === 1 ? "Betrag ist ein Vorschlag" : "Beträge sind Vorschläge"} des Assistenten.</span>{" "}
             Diese Beträge hat der Assistent auf Basis üblicher Kosten geschätzt — prüfen Sie sie, passen Sie sie an Ihre echten Angebote an oder bestätigen Sie sie mit „✓".
@@ -258,7 +258,7 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
               <tr key={p.id} className="border-b border-[#1c1917]/10 align-top">
                 <td className="py-2 pr-3">
                   {p.istVorschlag && (
-                    <span className="mb-1 inline-flex items-center gap-1 rounded-full border border-[#78350f]/50 bg-[#78350f]/10 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-[#92400e]">
+                    <span className="mb-1 inline-flex items-center gap-1 rounded-full border border-[#1e3d32]/50 bg-[#1e3d32]/10 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-[#2a5244]">
                       <Sparkles className="h-3 w-3" /> Vorschlag
                     </span>
                   )}
@@ -378,7 +378,7 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
               w.level === "error"
                 ? "border-red-500/30 bg-red-500/10 text-red-300"
                 : w.level === "warning"
-                  ? "border-[#78350f]/30 bg-[#78350f]/10 text-[#78350f]"
+                  ? "border-[#1e3d32]/30 bg-[#1e3d32]/10 text-[#1e3d32]"
                   : "border-[#1c1917]/15 bg-white text-slate-700";
             return (
               <div key={i} className={`flex items-start gap-2 rounded-lg border p-2 text-xs ${bg}`}>
@@ -391,8 +391,8 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
       )}
 
       {!legitimized && autofixes.length > 0 && (
-        <div className="mt-4 rounded-lg border border-[#78350f]/40 bg-[#78350f]/5 p-3">
-          <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#78350f]">
+        <div className="mt-4 rounded-lg border border-[#1e3d32]/40 bg-[#1e3d32]/5 p-3">
+          <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#1e3d32]">
             <Wand2 className="h-3.5 w-3.5" />
             Auto-Fix-Vorschläge
           </div>
@@ -407,7 +407,7 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
                   type="button"
                   disabled={autofixBusy !== null || busy}
                   onClick={() => applyAutofix(a.id)}
-                  className="inline-flex shrink-0 items-center gap-1.5 self-start rounded border border-[#78350f]/60 bg-[#78350f]/10 px-3 py-1.5 text-xs font-medium text-[#f5d36a] transition hover:bg-[#78350f]/20 disabled:opacity-50"
+                  className="inline-flex shrink-0 items-center gap-1.5 self-start rounded border border-[#1e3d32]/60 bg-[#1e3d32]/10 px-3 py-1.5 text-xs font-medium text-[#f5d36a] transition hover:bg-[#1e3d32]/20 disabled:opacity-50"
                 >
                   {autofixBusy === a.id ? (
                     <Loader2 className="h-3 w-3 animate-spin" />
@@ -441,7 +441,7 @@ export function FinanzplanEditor({ sessionToken, initialPlan, onChange }: Props)
                 ? "Fehler-Warnungen zuerst beheben"
                 : "Plan endgültig freigeben"
             }
-            className="inline-flex items-center gap-2 rounded-lg bg-[#78350f] px-5 py-2 font-semibold text-white transition hover:bg-[#92400e] disabled:opacity-50"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#1e3d32] px-5 py-2 font-semibold text-white transition hover:bg-[#2a5244] disabled:opacity-50"
           >
             {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <ShieldCheck className="h-4 w-4" />}
             Finanzplan freigeben

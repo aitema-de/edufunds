@@ -15,9 +15,9 @@ export default function DatenschutzPage() {
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#78350f]/10 border border-[#78350f]/20 mb-6">
-              <Shield className="h-4 w-4 text-[#78350f]" />
-              <span className="text-sm font-medium text-[#78350f]">DSGVO-konform</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1e3d32]/10 border border-[#1e3d32]/20 mb-6">
+              <Shield className="h-4 w-4 text-[#1e3d32]" />
+              <span className="text-sm font-medium text-[#1e3d32]">DSGVO-konform</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-[#1c1917] mb-4">
               Datenschutz
@@ -60,8 +60,8 @@ export default function DatenschutzPage() {
             {/* Verantwortlicher */}
             <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-[#78350f]/20 flex items-center justify-center">
-                  <UserCheck className="h-5 w-5 text-[#78350f]" />
+                <div className="w-10 h-10 rounded-xl bg-[#1e3d32]/20 flex items-center justify-center">
+                  <UserCheck className="h-5 w-5 text-[#1e3d32]" />
                 </div>
                 <h2 className="text-xl font-semibold text-[#1c1917]">2. Verantwortlicher</h2>
               </div>
@@ -81,7 +81,7 @@ export default function DatenschutzPage() {
                     <p className="text-[#475569]">E-Mail:</p>
                     <a 
                       href="mailto:office@aitema.de"
-                      className="text-[#78350f] hover:text-[#d97706] transition-colors underline underline-offset-2"
+                      className="text-[#1e3d32] hover:text-[#2a5244] transition-colors underline underline-offset-2"
                     >
                       office@aitema.de
                     </a>
@@ -93,8 +93,8 @@ export default function DatenschutzPage() {
             {/* Hosting */}
             <section className="bg-white border border-[#1c1917]/8 shadow-sm rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-[#78350f]/20 flex items-center justify-center">
-                  <Server className="h-5 w-5 text-[#78350f]" />
+                <div className="w-10 h-10 rounded-xl bg-[#1e3d32]/20 flex items-center justify-center">
+                  <Server className="h-5 w-5 text-[#1e3d32]" />
                 </div>
                 <h2 className="text-xl font-semibold text-[#1c1917]">3. Hosting und Content Delivery Network</h2>
               </div>
@@ -122,8 +122,8 @@ export default function DatenschutzPage() {
             {/* Kontaktformular */}
             <section className="bg-white border border-[#1c1917]/8 shadow-sm rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-[#78350f]/20 flex items-center justify-center">
-                  <Mail className="h-5 w-5 text-[#78350f]" />
+                <div className="w-10 h-10 rounded-xl bg-[#1e3d32]/20 flex items-center justify-center">
+                  <Mail className="h-5 w-5 text-[#1e3d32]" />
                 </div>
                 <h2 className="text-xl font-semibold text-[#1c1917]">4. Kontaktformular</h2>
               </div>
@@ -150,8 +150,8 @@ export default function DatenschutzPage() {
             {/* KI-gestützte Antragserstellung */}
             <section className="bg-white border border-[#1c1917]/8 shadow-sm rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-[#78350f]/20 flex items-center justify-center">
-                  <Sparkles className="h-5 w-5 text-[#78350f]" />
+                <div className="w-10 h-10 rounded-xl bg-[#1e3d32]/20 flex items-center justify-center">
+                  <Sparkles className="h-5 w-5 text-[#1e3d32]" />
                 </div>
                 <h2 className="text-xl font-semibold text-[#1c1917]">5. KI-gestützte Antragserstellung</h2>
               </div>
@@ -202,8 +202,8 @@ export default function DatenschutzPage() {
             {/* Ihre Rechte */}
             <section className="bg-white border border-[#1c1917]/8 shadow-sm rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-[#78350f]/20 flex items-center justify-center">
-                  <FileText className="h-5 w-5 text-[#78350f]" />
+                <div className="w-10 h-10 rounded-xl bg-[#1e3d32]/20 flex items-center justify-center">
+                  <FileText className="h-5 w-5 text-[#1e3d32]" />
                 </div>
                 <h2 className="text-xl font-semibold text-[#1c1917]">6. Ihre Rechte</h2>
               </div>
@@ -212,23 +212,23 @@ export default function DatenschutzPage() {
               
               <ul className="space-y-3 text-[#1c1917]/80 text-base">
                 <li className="flex items-start gap-3">
-                  <span className="text-[#78350f] mt-1">•</span>
+                  <span className="text-[#1e3d32] mt-1">•</span>
                   <span>Recht auf Auskunft (Art. 15 DSGVO)</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#78350f] mt-1">•</span>
+                  <span className="text-[#1e3d32] mt-1">•</span>
                   <span>Recht auf Berichtigung (Art. 16 DSGVO)</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#78350f] mt-1">•</span>
+                  <span className="text-[#1e3d32] mt-1">•</span>
                   <span>Recht auf Löschung (Art. 17 DSGVO)</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#78350f] mt-1">•</span>
+                  <span className="text-[#1e3d32] mt-1">•</span>
                   <span>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#78350f] mt-1">•</span>
+                  <span className="text-[#1e3d32] mt-1">•</span>
                   <span>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</span>
                 </li>
               </ul>
@@ -237,7 +237,7 @@ export default function DatenschutzPage() {
                 Zur Ausübung Ihrer Rechte kontaktieren Sie bitte:{" "}
                 <a 
                   href="mailto:office@aitema.de"
-                  className="text-[#78350f] hover:text-[#d97706] transition-colors underline underline-offset-2"
+                  className="text-[#1e3d32] hover:text-[#2a5244] transition-colors underline underline-offset-2"
                 >
                   office@aitema.de
                 </a>
@@ -247,8 +247,8 @@ export default function DatenschutzPage() {
             {/* SSL */}
             <section className="bg-white border border-[#1c1917]/8 shadow-sm rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-[#78350f]/20 flex items-center justify-center">
-                  <Lock className="h-5 w-5 text-[#78350f]" />
+                <div className="w-10 h-10 rounded-xl bg-[#1e3d32]/20 flex items-center justify-center">
+                  <Lock className="h-5 w-5 text-[#1e3d32]" />
                 </div>
                 <h2 className="text-xl font-semibold text-[#1c1917]">7. SSL-/TLS-Verschlüsselung</h2>
               </div>

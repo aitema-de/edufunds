@@ -23,7 +23,7 @@ interface BuyerCode {
   redemptions: Redemption[];
 }
 
-const GOLD = "#78350f";
+const GOLD = "#1e3d32";
 const INK = "#1c1917";
 const NEXT = "/kontingent/uebersicht";
 
@@ -121,7 +121,7 @@ export default function KontingentUebersichtPage() {
           <div className="container mx-auto px-6 max-w-3xl">
             <span
               className="inline-block px-4 py-2 rounded-full text-xs font-medium tracking-wider uppercase mb-4"
-              style={{ backgroundColor: "rgba(120, 53, 15, 0.1)", color: "#78350f" }}
+              style={{ backgroundColor: "rgba(30, 61, 50, 0.1)", color: "#1e3d32" }}
             >
               Käufer-Übersicht
             </span>
@@ -233,7 +233,7 @@ export default function KontingentUebersichtPage() {
                             <button
                               onClick={() => copy(c.code)}
                               className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-medium"
-                              style={{ color: "#78350f" }}
+                              style={{ color: "#1e3d32" }}
                             >
                               <Copy className="h-3.5 w-3.5" />
                               {copied === c.code ? "Kopiert" : "Kopieren"}
@@ -298,7 +298,7 @@ export default function KontingentUebersichtPage() {
                 <p className="mt-6 flex items-center gap-2 text-xs" style={{ color: "#64748b" }}>
                   <ShieldCheck className="h-4 w-4" style={{ color: GOLD }} />
                   Brauchen Sie mehr?{" "}
-                  <Link href="/kontingent" className="underline" style={{ color: "#78350f" }}>
+                  <Link href="/kontingent" className="underline" style={{ color: "#1e3d32" }}>
                     Weiteres Kontingent kaufen
                   </Link>
                 </p>

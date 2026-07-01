@@ -46,9 +46,9 @@ export function KiHinweis({
 
   return (
     <div
-      className={`flex items-start gap-3 rounded-xl border border-[#78350f]/30 bg-[#78350f]/[0.06] px-4 py-3 ${className}`}
+      className={`flex items-start gap-3 rounded-xl border border-[#1e3d32]/30 bg-[#1e3d32]/[0.06] px-4 py-3 ${className}`}
     >
-      <Icon className="mt-0.5 h-4 w-4 shrink-0 text-[#78350f]" />
+      <Icon className="mt-0.5 h-4 w-4 shrink-0 text-[#1e3d32]" />
       <p className="text-xs leading-relaxed text-[#57534e]">{text}</p>
     </div>
   );

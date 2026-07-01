@@ -38,7 +38,7 @@ export default function UeberUnsPage() {
         <section className="relative pt-32 pb-20 overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
-              backgroundImage: `radial-gradient(circle at 80% 20%, rgba(120, 53, 15, 0.15) 0%, transparent 50%)`,
+              backgroundImage: `radial-gradient(circle at 80% 20%, rgba(30, 61, 50, 0.15) 0%, transparent 50%)`,
             }} />
           </div>
           
@@ -50,11 +50,11 @@ export default function UeberUnsPage() {
               className="text-center max-w-3xl mx-auto"
             >
               <span className="inline-block px-4 py-2 rounded-full text-xs font-medium tracking-wider uppercase mb-6"
-                style={{ backgroundColor: "rgba(120, 53, 15, 0.1)", color: "#78350f" }}>
+                style={{ backgroundColor: "rgba(30, 61, 50, 0.1)", color: "#1e3d32" }}>
                 Über uns
               </span>
               <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "#1c1917" }}>
-                Wir machen <span style={{ color: "#78350f" }}>Fördermittel</span> einfach
+                Wir machen <span style={{ color: "#1e3d32" }}>Fördermittel</span> einfach
               </h1>
               <p className="text-lg" style={{ color: "#475569" }}>
                 EduFunds ist die führende Plattform für Fördermittel an Schulen in Deutschland.
@@ -95,8 +95,8 @@ export default function UeberUnsPage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="grid grid-cols-2 gap-6"
               >
-                <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(120, 53, 15, 0.1)" }}>
-                  <div className="text-4xl font-bold mb-2" style={{ color: "#78350f" }}>{PROGRAMM_COUNT_LABEL}</div>
+                <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(30, 61, 50, 0.1)" }}>
+                  <div className="text-4xl font-bold mb-2" style={{ color: "#1e3d32" }}>{PROGRAMM_COUNT_LABEL}</div>
                   <div className="text-sm" style={{ color: "#1c1917" }}>Förderprogramme</div>
                 </div>
                 <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(28, 25, 23, 0.05)" }}>
@@ -107,8 +107,8 @@ export default function UeberUnsPage() {
                   <div className="text-4xl font-bold mb-2" style={{ color: "#1c1917" }}>alle</div>
                   <div className="text-sm" style={{ color: "#57534e" }}>Schularten</div>
                 </div>
-                <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(120, 53, 15, 0.1)" }}>
-                  <div className="text-4xl font-bold mb-2" style={{ color: "#78350f" }}>KI</div>
+                <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(30, 61, 50, 0.1)" }}>
+                  <div className="text-4xl font-bold mb-2" style={{ color: "#1e3d32" }}>KI</div>
                   <div className="text-sm" style={{ color: "#1c1917" }}>Unterstützung</div>
                 </div>
               </motion.div>
@@ -137,11 +137,11 @@ export default function UeberUnsPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="p-6 rounded-2xl"
-                  style={{ backgroundColor: "rgba(255, 255, 255, 0.85)", border: "1px solid rgba(120, 53, 15, 0.2)" }}
+                  style={{ backgroundColor: "rgba(255, 255, 255, 0.85)", border: "1px solid rgba(30, 61, 50, 0.2)" }}
                 >
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
-                    style={{ backgroundColor: "rgba(120, 53, 15, 0.1)" }}>
-                    <value.icon className="w-6 h-6" style={{ color: "#78350f" }} />
+                    style={{ backgroundColor: "rgba(30, 61, 50, 0.1)" }}>
+                    <value.icon className="w-6 h-6" style={{ color: "#1e3d32" }} />
                   </div>
                   <h3 className="text-lg font-semibold mb-2" style={{ color: "#1c1917" }}>
                     {value.title}
@@ -156,7 +156,7 @@ export default function UeberUnsPage() {
         </section>
 
         {/* Team */}
-        <section className="py-20" style={{ backgroundColor: "rgba(120, 53, 15, 0.05)" }}>
+        <section className="py-20" style={{ backgroundColor: "rgba(30, 61, 50, 0.05)" }}>
           <div className="container mx-auto px-6">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-3xl font-bold mb-4" style={{ color: "#1c1917" }}>
@@ -173,11 +173,11 @@ export default function UeberUnsPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               className="max-w-2xl mx-auto p-8 rounded-2xl text-center"
-              style={{ backgroundColor: "rgba(255, 255, 255, 0.85)", border: "1px solid rgba(120, 53, 15, 0.2)" }}
+              style={{ backgroundColor: "rgba(255, 255, 255, 0.85)", border: "1px solid rgba(30, 61, 50, 0.2)" }}
             >
               <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center"
-                style={{ backgroundColor: "rgba(120, 53, 15, 0.2)" }}>
-                <BookOpen className="w-10 h-10" style={{ color: "#78350f" }} />
+                style={{ backgroundColor: "rgba(30, 61, 50, 0.2)" }}>
+                <BookOpen className="w-10 h-10" style={{ color: "#1e3d32" }} />
               </div>
               <h3 className="text-xl font-semibold mb-2" style={{ color: "#1c1917" }}>
                 aitema GmbH
@@ -187,7 +187,7 @@ export default function UeberUnsPage() {
                 Mit technologischer Expertise und pädagogischem Verständnis schaffen
                 wir Werkzeuge, die den Schulalltag erleichtern.
               </p>
-              <p style={{ color: "#78350f" }} className="font-medium">
+              <p style={{ color: "#1e3d32" }} className="font-medium">
                 Ein Unternehmen mit Herz für Bildung
               </p>
             </motion.div>

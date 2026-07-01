@@ -39,9 +39,9 @@ export function FinanzplanView({ plan }: Props) {
   }
 
   return (
-    <div className="rounded-xl border border-[#78350f]/30 bg-[#fdfdfc] p-5">
+    <div className="rounded-xl border border-[#1e3d32]/30 bg-[#fdfdfc] p-5">
       <div className="mb-4 flex items-center gap-2">
-        <Wallet className="h-5 w-5 text-[#78350f]" />
+        <Wallet className="h-5 w-5 text-[#1e3d32]" />
         <h3 className="text-lg font-semibold text-[#1c1917]">Finanzplan-Entwurf</h3>
       </div>
 
@@ -83,7 +83,7 @@ export function FinanzplanView({ plan }: Props) {
                         <div className="flex items-center gap-1.5 text-[#57534e]">
                           {p.bezeichnung}
                           {p.istVorschlag && (
-                            <span className="inline-flex items-center gap-1 rounded-full border border-[#78350f]/50 bg-[#78350f]/10 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wide text-[#92400e]">
+                            <span className="inline-flex items-center gap-1 rounded-full border border-[#1e3d32]/50 bg-[#1e3d32]/10 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wide text-[#2a5244]">
                               <Sparkles className="h-2.5 w-2.5" /> Vorschlag
                             </span>
                           )}
@@ -124,8 +124,8 @@ export function FinanzplanView({ plan }: Props) {
       )}
 
       {plan.hinweise && plan.hinweise.length > 0 && (
-        <div className="mt-4 rounded-lg border border-[#78350f]/30 bg-[#78350f]/5 p-3">
-          <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-[#78350f]">
+        <div className="mt-4 rounded-lg border border-[#1e3d32]/30 bg-[#1e3d32]/5 p-3">
+          <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-[#1e3d32]">
             Hinweise der KI
           </div>
           <ul className="list-disc space-y-1 pl-5 text-xs text-slate-700">
@@ -137,7 +137,7 @@ export function FinanzplanView({ plan }: Props) {
       )}
 
       {plan.posten.some((p) => p.istVorschlag) && (
-        <div className="mt-3 flex items-center gap-1.5 text-[11px] text-[#92400e]">
+        <div className="mt-3 flex items-center gap-1.5 text-[11px] text-[#2a5244]">
           <Sparkles className="h-3 w-3" />
           <span>„Vorschlag" = vom Assistenten geschätzter Betrag — vor Einreichung bestätigen oder anpassen.</span>
         </div>

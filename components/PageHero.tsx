@@ -27,7 +27,7 @@ export function PageHero({
   const bgColor = isLight ? "#fdfdfc" : "#1c1917";
   const textColor = isLight ? "#1c1917" : "#fdfdfc";
   const subtitleColor = isLight ? "#57534e" : "#a8a29e";
-  const accentColor = isLight ? "#78350f" : "#d97706";
+  const accentColor = isLight ? "#1e3d32" : "#d4af37";
 
   return (
     <section
@@ -88,7 +88,7 @@ export function PageHero({
                 border: `1px solid ${
                   isLight ? "rgba(28, 25, 23, 0.1)" : "rgba(217, 119, 6, 0.2)"
                 }`,
-                color: isLight ? "#1c1917" : "#d97706",
+                color: isLight ? "#1c1917" : "#d4af37",
               }}
             >
               {badge.icon}
@@ -123,7 +123,7 @@ export function PageHero({
             <div
               className="w-16 h-0.5"
               style={{
-                background: "linear-gradient(90deg, #78350f, #d97706)",
+                background: "linear-gradient(90deg, #1e3d32, #d4af37)",
               }}
             />
           </motion.div>

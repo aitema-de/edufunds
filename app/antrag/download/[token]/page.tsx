@@ -50,7 +50,7 @@ export default async function DownloadPage({ params }: Props) {
         <div className="flex justify-center">
           <Link
             href="/antrag/meine"
-            className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 bg-white/70 px-4 py-2 text-sm font-medium text-[#1c1917] backdrop-blur-sm transition hover:border-[#78350f]/40 hover:text-[#78350f]"
+            className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 bg-white/70 px-4 py-2 text-sm font-medium text-[#1c1917] backdrop-blur-sm transition hover:border-[#1e3d32]/40 hover:text-[#1e3d32]"
           >
             <ArrowLeft className="h-4 w-4" />
             Meine Anträge

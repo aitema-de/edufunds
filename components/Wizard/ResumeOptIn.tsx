@@ -59,9 +59,9 @@ export function ResumeOptIn({ sessionToken }: { sessionToken: string }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 bg-white/70 px-3 py-2 text-sm text-[#57534e] transition hover:border-[#78350f]/50 hover:bg-[#78350f]/5"
+        className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 bg-white/70 px-3 py-2 text-sm text-[#57534e] transition hover:border-[#1e3d32]/50 hover:bg-[#1e3d32]/5"
       >
-        <Smartphone className="h-4 w-4 text-[#78350f]" />
+        <Smartphone className="h-4 w-4 text-[#1e3d32]" />
         Auf anderem Gerät weitermachen
       </button>
     );
@@ -70,7 +70,7 @@ export function ResumeOptIn({ sessionToken }: { sessionToken: string }) {
   return (
     <form
       onSubmit={submit}
-      className="rounded-lg border border-[#78350f]/30 bg-[#78350f]/5 px-4 py-3"
+      className="rounded-lg border border-[#1e3d32]/30 bg-[#1e3d32]/5 px-4 py-3"
     >
       <label className="block text-sm font-medium text-[#57534e]">
         Auf anderem Gerät weitermachen
@@ -91,7 +91,7 @@ export function ResumeOptIn({ sessionToken }: { sessionToken: string }) {
         <button
           type="submit"
           disabled={busy}
-          className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#78350f] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#92400e] disabled:opacity-60"
+          className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#1e3d32] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#2a5244] disabled:opacity-60"
         >
           {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
           Link senden

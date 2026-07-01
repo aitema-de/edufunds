@@ -2,7 +2,7 @@
  * Editoriale SVG-Embleme & Icons fuer die Landing-Page.
  * Portiert aus der Lovable-Vorlage (Aitema-gmbh/edufunds-hub). Alle Formen
  * nutzen `currentColor` → Farbe kommt per `text-*`-Klasse vom Aufrufer
- * (hell: text-brandy, dunkel: text-amber-...).
+ * (hell: text-evergreen, dunkel: text-amber-...).
  */
 
 type Props = { className?: string };

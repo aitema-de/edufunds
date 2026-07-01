@@ -103,8 +103,8 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
 
   if (status === "timeout") {
     return (
-      <div className="rounded-xl border border-[#78350f]/40 bg-[#78350f]/10 p-8 text-center">
-        <AlertCircle className="mx-auto mb-3 h-10 w-10 text-[#78350f]" />
+      <div className="rounded-xl border border-[#1e3d32]/40 bg-[#1e3d32]/10 p-8 text-center">
+        <AlertCircle className="mx-auto mb-3 h-10 w-10 text-[#1e3d32]" />
         <h1 className="mb-2 text-xl font-semibold text-[#1c1917]">
           Freischaltung braucht noch einen Moment
         </h1>
@@ -188,7 +188,7 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
   const progressPct = Math.min(100, (elapsedMs / MAX_WAIT_MS) * 100);
   return (
     <div className="rounded-xl border border-[#1c1917]/10 bg-white p-8 text-center">
-      <Loader2 className="mx-auto mb-3 h-10 w-10 animate-spin text-[#78350f]" />
+      <Loader2 className="mx-auto mb-3 h-10 w-10 animate-spin text-[#1e3d32]" />
       <h1 className="mb-2 text-xl font-semibold text-[#1c1917]">Zahlung wird bestätigt</h1>
       <p className="mb-4 text-sm text-slate-600">
         Stripe sendet uns gleich die Bestätigung. Diese Seite leitet automatisch weiter,
@@ -196,7 +196,7 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
       </p>
       <div className="mx-auto mb-1 h-1 w-full max-w-xs overflow-hidden rounded-full bg-[#fdfdfc]">
         <div
-          className="h-full bg-[#78350f] transition-all duration-300 ease-linear"
+          className="h-full bg-[#1e3d32] transition-all duration-300 ease-linear"
           style={{ width: `${progressPct}%` }}
         />
       </div>

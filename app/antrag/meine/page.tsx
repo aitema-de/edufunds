@@ -19,7 +19,7 @@ export default function MyAntraegePage() {
           <div className="mb-8">
             <Link
               href="/foerderprogramme"
-              className="inline-flex items-center gap-2 text-slate-600 transition-colors hover:text-[#78350f]"
+              className="inline-flex items-center gap-2 text-slate-600 transition-colors hover:text-[#1e3d32]"
             >
               <ArrowLeft className="h-4 w-4" />
               Zur Förderprogramm-Übersicht
@@ -27,8 +27,8 @@ export default function MyAntraegePage() {
           </div>
           <div className="mb-10">
             <div className="mb-3 flex items-center gap-3">
-              <div className="rounded-lg bg-[#78350f]/10 p-2">
-                <FolderOpen className="h-6 w-6 text-[#78350f]" />
+              <div className="rounded-lg bg-[#1e3d32]/10 p-2">
+                <FolderOpen className="h-6 w-6 text-[#1e3d32]" />
               </div>
             </div>
             <h1 className="mb-2 text-3xl font-bold text-[#1c1917]">Meine Anträge</h1>

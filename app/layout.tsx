@@ -147,7 +147,7 @@ export default function RootLayout({
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `radial-gradient(#78350f 1.5px, transparent 1.5px)`,
+              backgroundImage: `radial-gradient(#1e3d32 1.5px, transparent 1.5px)`,
               backgroundSize: '24px 24px',
               opacity: 0.08
             }}

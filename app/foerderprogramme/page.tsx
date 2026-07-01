@@ -83,10 +83,10 @@ const StatsSection = memo(function StatsSection({ stats }: { stats: { total: num
   return (
     <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
       <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(28, 25, 23, 0.08)', boxShadow: '0 4px 20px -4px rgba(28, 25, 23, 0.05)' }}>
-        <div className="w-10 h-10 rounded-lg bg-[#78350f]/15 flex items-center justify-center mx-auto mb-2">
-          <School className="w-5 h-5 text-[#78350f]" />
+        <div className="w-10 h-10 rounded-lg bg-[#1e3d32]/15 flex items-center justify-center mx-auto mb-2">
+          <School className="w-5 h-5 text-[#1e3d32]" />
         </div>
-        <div className="text-2xl font-bold text-[#78350f]">{PROGRAMM_COUNT_LABEL}</div>
+        <div className="text-2xl font-bold text-[#1e3d32]">{PROGRAMM_COUNT_LABEL}</div>
         <div className="text-xs text-[#57534e]">Schul-Programme</div>
       </div>
       <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(28, 25, 23, 0.08)', boxShadow: '0 4px 20px -4px rgba(28, 25, 23, 0.05)' }}>
@@ -104,10 +104,10 @@ const StatsSection = memo(function StatsSection({ stats }: { stats: { total: num
         <div className="text-xs text-[#57534e]">Landesmittel</div>
       </div>
       <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(28, 25, 23, 0.08)', boxShadow: '0 4px 20px -4px rgba(28, 25, 23, 0.05)' }}>
-        <div className="w-10 h-10 rounded-lg bg-[#78350f]/15 flex items-center justify-center mx-auto mb-2">
-          <HeartHandshake className="w-5 h-5 text-[#78350f]" />
+        <div className="w-10 h-10 rounded-lg bg-[#1e3d32]/15 flex items-center justify-center mx-auto mb-2">
+          <HeartHandshake className="w-5 h-5 text-[#1e3d32]" />
         </div>
-        <div className="text-2xl font-bold text-[#78350f]">{stats.stiftung}</div>
+        <div className="text-2xl font-bold text-[#1e3d32]">{stats.stiftung}</div>
         <div className="text-xs text-[#57534e]">Stiftungen</div>
       </div>
       <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(28, 25, 23, 0.08)', boxShadow: '0 4px 20px -4px rgba(28, 25, 23, 0.05)' }}>
@@ -371,9 +371,9 @@ export default function FoerderprogrammePage() {
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#78350f]/10 border border-[#78350f]/20 mb-6">
-              <School className="h-4 w-4 text-[#78350f]" />
-              <span className="text-sm font-medium text-[#78350f]">Förderfinder</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1e3d32]/10 border border-[#1e3d32]/20 mb-6">
+              <School className="h-4 w-4 text-[#1e3d32]" />
+              <span className="text-sm font-medium text-[#1e3d32]">Förderfinder</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-[#1c1917] mb-4">
               Förderprogramme für Schulen
@@ -386,7 +386,7 @@ export default function FoerderprogrammePage() {
               <Link
                 href="/antrag/start"
                 prefetch
-                className="inline-flex items-center gap-2 rounded-lg bg-[#78350f] px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-[#92400e]"
+                className="inline-flex items-center gap-2 rounded-lg bg-[#1e3d32] px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-[#2a5244]"
               >
                 Beschreiben Sie Ihr Anliegen → KI findet passende Programme
               </Link>
@@ -412,10 +412,10 @@ export default function FoerderprogrammePage() {
           <div className="rounded-2xl p-6 mb-8" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(28, 25, 23, 0.08)', boxShadow: '0 4px 20px -4px rgba(28, 25, 23, 0.05)' }}>
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <Filter className="h-5 w-5 text-[#78350f]" />
+                <Filter className="h-5 w-5 text-[#1e3d32]" />
                 <h2 className="font-semibold text-[#1c1917]">Filter</h2>
                 {aktiveFilterCount > 0 && (
-                  <span className="px-2 py-0.5 rounded-full text-xs bg-[#78350f]/15 text-[#78350f]">
+                  <span className="px-2 py-0.5 rounded-full text-xs bg-[#1e3d32]/15 text-[#1e3d32]">
                     {aktiveFilterCount} aktiv
                   </span>
                 )}
@@ -425,7 +425,7 @@ export default function FoerderprogrammePage() {
                   variant="ghost"
                   size="sm"
                   onClick={resetFilter}
-                  className="text-[#57534e] hover:text-[#78350f]"
+                  className="text-[#57534e] hover:text-[#1e3d32]"
                 >
                   <X className="h-4 w-4" />
                   Filter zurücksetzen
@@ -445,7 +445,7 @@ export default function FoerderprogrammePage() {
                     placeholder="Name, Beschreibung..."
                     value={filterState.suchbegriff}
                     onChange={(e) => handleFilterChange('suchbegriff', e.target.value)}
-                    className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-[#fdfdfc] border border-[#ebe5dc] text-[#1c1917] text-sm placeholder:text-[#57534e]/50 focus:outline-none focus:border-[#78350f]/50 focus:ring-1 focus:ring-[#78350f]/50 transition-all"
+                    className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-[#fdfdfc] border border-[#ebe5dc] text-[#1c1917] text-sm placeholder:text-[#57534e]/50 focus:outline-none focus:border-[#1e3d32]/50 focus:ring-1 focus:ring-[#1e3d32]/50 transition-all"
                   />
                   {filterState.suchbegriff && (
                     <Button
@@ -467,7 +467,7 @@ export default function FoerderprogrammePage() {
                 <select
                   value={filterState.bundesland}
                   onChange={(e) => handleFilterChange('bundesland', e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#fdfdfc] border border-[#ebe5dc] text-[#1c1917] text-sm focus:outline-none focus:border-[#78350f]/50 focus:ring-1 focus:ring-[#78350f]/50 transition-all cursor-pointer appearance-none"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#fdfdfc] border border-[#ebe5dc] text-[#1c1917] text-sm focus:outline-none focus:border-[#1e3d32]/50 focus:ring-1 focus:ring-[#1e3d32]/50 transition-all cursor-pointer appearance-none"
                   style={{ 
                     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2357534e' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, 
                     backgroundRepeat: 'no-repeat', 
@@ -488,7 +488,7 @@ export default function FoerderprogrammePage() {
                 <select
                   value={filterState.foerdergeberTyp}
                   onChange={(e) => handleFilterChange('foerdergeberTyp', e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#fdfdfc] border border-[#ebe5dc] text-[#1c1917] text-sm focus:outline-none focus:border-[#78350f]/50 focus:ring-1 focus:ring-[#78350f]/50 transition-all cursor-pointer appearance-none"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#fdfdfc] border border-[#ebe5dc] text-[#1c1917] text-sm focus:outline-none focus:border-[#1e3d32]/50 focus:ring-1 focus:ring-[#1e3d32]/50 transition-all cursor-pointer appearance-none"
                   style={{ 
                     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2357534e' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, 
                     backgroundRepeat: 'no-repeat', 
@@ -509,7 +509,7 @@ export default function FoerderprogrammePage() {
                 <select
                   value={filterState.kategorie}
                   onChange={(e) => handleFilterChange('kategorie', e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#fdfdfc] border border-[#ebe5dc] text-[#1c1917] text-sm focus:outline-none focus:border-[#78350f]/50 focus:ring-1 focus:ring-[#78350f]/50 transition-all cursor-pointer appearance-none"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#fdfdfc] border border-[#ebe5dc] text-[#1c1917] text-sm focus:outline-none focus:border-[#1e3d32]/50 focus:ring-1 focus:ring-[#1e3d32]/50 transition-all cursor-pointer appearance-none"
                   style={{ 
                     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2357534e' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, 
                     backgroundRepeat: 'no-repeat', 
@@ -530,7 +530,7 @@ export default function FoerderprogrammePage() {
                 <select
                   value={filterState.schulform || ""}
                   onChange={(e) => handleFilterChange('schulform', e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#fdfdfc] border border-[#ebe5dc] text-[#1c1917] text-sm focus:outline-none focus:border-[#78350f]/50 focus:ring-1 focus:ring-[#78350f]/50 transition-all cursor-pointer appearance-none"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#fdfdfc] border border-[#ebe5dc] text-[#1c1917] text-sm focus:outline-none focus:border-[#1e3d32]/50 focus:ring-1 focus:ring-[#1e3d32]/50 transition-all cursor-pointer appearance-none"
                   style={{
                     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2357534e' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`,
                     backgroundRepeat: 'no-repeat',
@@ -600,7 +600,7 @@ export default function FoerderprogrammePage() {
 
           {/* Hinweis */}
           <div className="mt-12 rounded-2xl p-8 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(28, 25, 23, 0.08)', boxShadow: '0 4px 20px -4px rgba(28, 25, 23, 0.05)' }}>
-            <Search className="h-12 w-12 text-[#78350f] mx-auto mb-4" />
+            <Search className="h-12 w-12 text-[#1e3d32] mx-auto mb-4" />
             <h3 className="text-xl font-bold text-[#1c1917] mb-2">
               Mehr Programme werden ergänzt
             </h3>

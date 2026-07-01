@@ -24,9 +24,9 @@ export function WizardErrorBlock({ message, httpStatus, onRetry, busy, fallbackH
   const showFallback = state.hasManualFallback;
 
   return (
-    <div className="rounded-2xl border border-[#78350f]/30 bg-[#78350f]/8 p-4 text-sm shadow-[0_4px_20px_-4px_rgba(10,22,40,0.06)]">
+    <div className="rounded-2xl border border-[#1e3d32]/30 bg-[#1e3d32]/8 p-4 text-sm shadow-[0_4px_20px_-4px_rgba(10,22,40,0.06)]">
       <div className="flex items-start gap-2 text-[#57534e]">
-        <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#78350f]" />
+        <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#1e3d32]" />
         <div className="flex-1">
           <p className="font-semibold text-[#1c1917]">{state.title}</p>
           <p className="mt-1 leading-relaxed">{state.message}</p>
@@ -39,7 +39,7 @@ export function WizardErrorBlock({ message, httpStatus, onRetry, busy, fallbackH
               type="button"
               onClick={onRetry}
               disabled={busy}
-              className="inline-flex items-center gap-1.5 rounded border border-[#78350f]/40 bg-white px-3 py-1.5 text-xs font-medium text-[#1c1917] transition hover:border-[#78350f] hover:bg-[#78350f]/5 disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 rounded border border-[#1e3d32]/40 bg-white px-3 py-1.5 text-xs font-medium text-[#1c1917] transition hover:border-[#1e3d32] hover:bg-[#1e3d32]/5 disabled:opacity-50"
             >
               <RefreshCw className="h-3 w-3" />
               Erneut versuchen

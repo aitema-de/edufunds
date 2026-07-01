@@ -45,7 +45,7 @@ export function DsgvoTrust({
           Eingaben. Personenbezogene Angaben werden vor der Verarbeitung herausgefiltert.{" "}
           <a
             href="/datenschutz"
-            className="font-medium text-[#1a4d4d] underline underline-offset-2 hover:text-[#78350f]"
+            className="font-medium text-[#1a4d4d] underline underline-offset-2 hover:text-[#1e3d32]"
           >
             Mehr dazu
           </a>
@@ -62,7 +62,7 @@ export function DsgvoTrust({
             Datenschutz
           </span>
           <h2 className="font-serif text-2xl text-[#1c1917] md:text-3xl">
-            KI-Förderanträge — <span className="text-[#78350f]">DSGVO-konform</span>
+            KI-Förderanträge — <span className="text-[#1e3d32]">DSGVO-konform</span>
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[#57534e]">
             Wir verarbeiten Schul- und Projektdaten verantwortungsvoll: in der EU, ohne

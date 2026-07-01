@@ -49,7 +49,7 @@ interface Props {
 
 function scoreColor(score: number): string {
   if (score >= 85) return "text-emerald-700 bg-emerald-50 border-emerald-200";
-  if (score >= 70) return "text-[#78350f] bg-[#78350f]/10 border-[#78350f]/30";
+  if (score >= 70) return "text-[#1e3d32] bg-[#1e3d32]/10 border-[#1e3d32]/30";
   return "text-slate-600 bg-slate-100 border-slate-200";
 }
 
@@ -73,7 +73,7 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
           <button
             type="button"
             onClick={onReset}
-            className="inline-flex items-center gap-2 rounded-lg bg-[#78350f] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#92400e]"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#1e3d32] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#2a5244]"
           >
             Anliegen neu formulieren
             <ArrowRight className="h-4 w-4" />
@@ -102,7 +102,7 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
         <article
           key={m.id}
           className={`rounded-2xl border bg-white p-5 shadow-[0_4px_20px_-4px_rgba(10,22,40,0.06)] transition hover:shadow-[0_8px_28px_-6px_rgba(10,22,40,0.1)] ${
-            expired ? "border-[#1c1917]/8 opacity-75" : "border-[#1c1917]/8 hover:border-[#78350f]/30"
+            expired ? "border-[#1c1917]/8 opacity-75" : "border-[#1c1917]/8 hover:border-[#1e3d32]/30"
           }`}
         >
           <div className="mb-3 flex flex-wrap items-start justify-between gap-3">
@@ -149,18 +149,18 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
               </div>
             </div>
             {m.achtung_bei && (
-              <div className="flex items-start gap-2 rounded-lg bg-[#78350f]/10 border border-[#78350f]/30 px-3 py-2">
-                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#78350f]" aria-hidden="true" />
+              <div className="flex items-start gap-2 rounded-lg bg-[#1e3d32]/10 border border-[#1e3d32]/30 px-3 py-2">
+                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#1e3d32]" aria-hidden="true" />
                 <div>
-                  <span className="text-xs font-semibold text-[#78350f]">Achtung: </span>
+                  <span className="text-xs font-semibold text-[#1e3d32]">Achtung: </span>
                   <span className="text-sm text-[#57534e]">{m.achtung_bei}</span>
                 </div>
               </div>
             )}
           </div>
           {/* P4-B: Beantragungshöhe-Orientierung — deterministisch aus Katalog-Fördersummen. */}
-          <div className="mb-4 flex items-start gap-2 rounded-lg border border-[#1c1917]/10 bg-[#78350f]/[0.04] px-3 py-2">
-            <Coins className="mt-0.5 h-4 w-4 shrink-0 text-[#78350f]" aria-hidden="true" />
+          <div className="mb-4 flex items-start gap-2 rounded-lg border border-[#1c1917]/10 bg-[#1e3d32]/[0.04] px-3 py-2">
+            <Coins className="mt-0.5 h-4 w-4 shrink-0 text-[#1e3d32]" aria-hidden="true" />
             <div className="min-w-0">
               <p className="text-sm font-medium text-[#1c1917]">{foerderhoehe.headline}</p>
               {foerderhoehe.detail && (
@@ -174,7 +174,7 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <Link
               href={`/foerderprogramme/${m.programm.id}`}
-              className="inline-flex items-center gap-1.5 text-xs text-slate-600 transition hover:text-[#78350f]"
+              className="inline-flex items-center gap-1.5 text-xs text-slate-600 transition hover:text-[#1e3d32]"
             >
               <ExternalLink className="h-3.5 w-3.5" />
               Programm-Details ansehen
@@ -182,7 +182,7 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
             <button
               type="button"
               onClick={() => onStartAntrag(m)}
-              className="inline-flex items-center gap-2 rounded-lg bg-[#78350f] px-4 py-2 sm:py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#92400e]"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#1e3d32] px-4 py-2 sm:py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#2a5244]"
             >
               Antrag starten
               <ArrowRight className="h-4 w-4" />

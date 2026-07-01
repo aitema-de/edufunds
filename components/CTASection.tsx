@@ -42,7 +42,7 @@ export function CTASection() {
       <div 
         className="absolute -top-20 -right-20 w-96 h-96 hidden lg:block"
         style={{
-          background: 'linear-gradient(135deg, rgba(120, 53, 15, 0.06) 0%, transparent 70%)',
+          background: 'linear-gradient(135deg, rgba(30, 61, 50, 0.06) 0%, transparent 70%)',
           borderRadius: '50%',
         }}
       />
@@ -57,7 +57,7 @@ export function CTASection() {
       {/* Floating Elements */}
       <motion.div
         className="absolute top-20 left-[10%] w-4 h-4 hidden lg:block"
-        style={{ backgroundColor: '#78350f', borderRadius: '2px' }}
+        style={{ backgroundColor: '#1e3d32', borderRadius: '2px' }}
         animate={{ 
           y: [0, -15, 0], 
           rotate: [0, 90, 0],
@@ -75,7 +75,7 @@ export function CTASection() {
       <motion.div
         className="absolute top-1/2 right-[8%] w-6 h-6 hidden lg:block"
         style={{ 
-          border: '2px solid rgba(120, 53, 15, 0.3)',
+          border: '2px solid rgba(30, 61, 50, 0.3)',
           borderRadius: '4px',
         }}
         animate={{ 
@@ -104,7 +104,7 @@ export function CTASection() {
             >
               <span 
                 className="w-2 h-2 rounded-full animate-pulse"
-                style={{ backgroundColor: '#78350f' }}
+                style={{ backgroundColor: '#1e3d32' }}
               />
               Jetzt durchstarten
             </span>
@@ -117,7 +117,7 @@ export function CTASection() {
             style={{ color: '#1c1917' }}
           >
             Bereit, Fördermittel{' '}
-            <span style={{ color: '#78350f' }}>erfolgreich</span>
+            <span style={{ color: '#1e3d32' }}>erfolgreich</span>
             <br />
             zu beantragen?
           </motion.h2>
@@ -126,7 +126,7 @@ export function CTASection() {
           <motion.div variants={itemVariants} className="flex justify-center mb-8">
             <div 
               className="w-20 h-0.5"
-              style={{ background: 'linear-gradient(90deg, #78350f, #d97706)' }}
+              style={{ background: 'linear-gradient(90deg, #1e3d32, #d4af37)' }}
             />
           </motion.div>
 
@@ -246,7 +246,7 @@ export function CTASection() {
               <div 
                 className="text-3xl font-serif mb-1"
                 style={{ 
-                  background: 'linear-gradient(135deg, #78350f 0%, #78350f 100%)',
+                  background: 'linear-gradient(135deg, #1e3d32 0%, #1e3d32 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}

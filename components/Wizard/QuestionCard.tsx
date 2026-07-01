@@ -44,7 +44,7 @@ export function QuestionCard({
       </div>
       <div className="mb-4 h-1 w-full rounded-full bg-slate-100">
         <div
-          className="h-1 rounded-full bg-[#78350f] transition-all"
+          className="h-1 rounded-full bg-[#1e3d32] transition-all"
           style={{ width: `${progress}%` }}
         />
       </div>
@@ -57,7 +57,7 @@ export function QuestionCard({
         onChange={(e) => setAnswer(e.target.value)}
         onKeyDown={handleKey}
         placeholder="Ihre Antwort — gerne konkret mit Zahlen und Beispielen. (Strg/⌘+Enter sendet)"
-        className="min-h-[140px] w-full rounded-lg border border-[#1c1917]/15 bg-white p-3 text-[#1c1917] placeholder-slate-400 focus:border-[#78350f] focus:outline-none"
+        className="min-h-[140px] w-full rounded-lg border border-[#1c1917]/15 bg-white p-3 text-[#1c1917] placeholder-slate-400 focus:border-[#1e3d32] focus:outline-none"
       />
       <div className="mt-3 flex items-center justify-between text-xs text-slate-500">
         <span>{answer.length} Zeichen</span>
@@ -65,7 +65,7 @@ export function QuestionCard({
           type="button"
           onClick={onSubmit}
           disabled={busy || !answer.trim()}
-          className="rounded-lg bg-[#78350f] px-5 py-2 sm:py-3 text-sm font-semibold text-white transition hover:bg-[#92400e] disabled:opacity-50"
+          className="rounded-lg bg-[#1e3d32] px-5 py-2 sm:py-3 text-sm font-semibold text-white transition hover:bg-[#2a5244] disabled:opacity-50"
         >
           {busy ? "Sende…" : "Antworten"}
         </button>

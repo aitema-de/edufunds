@@ -521,7 +521,7 @@ export function WizardShell({ programm, einreichung, foerderhoehe }: Props) {
             type="button"
             disabled={busy}
             onClick={() => loadSession(resumeToken)}
-            className="rounded-lg bg-[#78350f] px-6 py-3 font-semibold text-white transition hover:bg-[#92400e] disabled:opacity-50"
+            className="rounded-lg bg-[#1e3d32] px-6 py-3 font-semibold text-white transition hover:bg-[#2a5244] disabled:opacity-50"
           >
             {busy ? "Lade…" : "Antrag erneut laden"}
           </button>
@@ -556,8 +556,8 @@ export function WizardShell({ programm, einreichung, foerderhoehe }: Props) {
           „{programm.name}". Anschließend schreibt eine Pipeline mit Selbstkritik den Antragsentwurf.
         </p>
         {handoff && (
-          <div className="mx-auto mb-4 max-w-xl rounded-lg border border-[#78350f]/30 bg-[#78350f]/5 px-4 py-3 text-left text-sm text-slate-700">
-            <div className="mb-1 font-medium text-[#78350f]">
+          <div className="mx-auto mb-4 max-w-xl rounded-lg border border-[#1e3d32]/30 bg-[#1e3d32]/5 px-4 py-3 text-left text-sm text-slate-700">
+            <div className="mb-1 font-medium text-[#1e3d32]">
               Ihr Anliegen wird übernommen
             </div>
             <div className="text-slate-600 italic">
@@ -565,7 +565,7 @@ export function WizardShell({ programm, einreichung, foerderhoehe }: Props) {
                 ? handoff.anliegen.slice(0, 200) + "…"
                 : handoff.anliegen}"
               {handoff.fromMatchScore && (
-                <span className="ml-2 text-xs text-[#78350f]">
+                <span className="ml-2 text-xs text-[#1e3d32]">
                   · Passung {handoff.fromMatchScore} %
                 </span>
               )}
@@ -573,8 +573,8 @@ export function WizardShell({ programm, einreichung, foerderhoehe }: Props) {
           </div>
         )}
         {schoolProfile && (
-          <div className="mx-auto mb-6 max-w-xl rounded-lg border border-[#78350f]/30 bg-[#78350f]/5 px-4 py-3 text-left text-sm text-slate-700">
-            <div className="mb-1 font-medium text-[#78350f]">
+          <div className="mx-auto mb-6 max-w-xl rounded-lg border border-[#1e3d32]/30 bg-[#1e3d32]/5 px-4 py-3 text-left text-sm text-slate-700">
+            <div className="mb-1 font-medium text-[#1e3d32]">
               Schulprofil aus einer früheren Sitzung
             </div>
             <p className="mb-2 text-xs text-slate-500">
@@ -618,7 +618,7 @@ export function WizardShell({ programm, einreichung, foerderhoehe }: Props) {
           type="button"
           disabled={busy}
           onClick={startSession}
-          className="rounded-lg bg-[#78350f] px-6 py-3 font-semibold text-white transition hover:bg-[#92400e] disabled:opacity-50"
+          className="rounded-lg bg-[#1e3d32] px-6 py-3 font-semibold text-white transition hover:bg-[#2a5244] disabled:opacity-50"
         >
           {busy ? "Starte…" : "Wizard starten"}
         </button>
@@ -707,7 +707,7 @@ export function WizardShell({ programm, einreichung, foerderhoehe }: Props) {
           />
         )}
         {state.phase === "interviewing" && !state.question && (
-          <div className="rounded-xl border border-[#78350f]/40 bg-white p-6">
+          <div className="rounded-xl border border-[#1e3d32]/40 bg-white p-6">
             <h3 className="mb-1 text-lg font-semibold text-[#1c1917]">
               Noch etwas ergänzen?
             </h3>
@@ -720,7 +720,7 @@ export function WizardShell({ programm, einreichung, foerderhoehe }: Props) {
               onChange={(e) => setAnswer(e.target.value)}
               rows={4}
               placeholder="Weitere Angaben zu Ihrem Vorhaben …"
-              className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc] p-3 text-sm text-[#1c1917] placeholder-slate-500 focus:border-[#78350f] focus:outline-none focus:ring-2 focus:ring-[#78350f]/20"
+              className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc] p-3 text-sm text-[#1c1917] placeholder-slate-500 focus:border-[#1e3d32] focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/20"
             />
             <div className="mt-3 flex flex-wrap items-center justify-end gap-3">
               <button
@@ -734,7 +734,7 @@ export function WizardShell({ programm, einreichung, foerderhoehe }: Props) {
                 type="button"
                 disabled={busy || !answer.trim()}
                 onClick={submitAnswer}
-                className="rounded-lg bg-[#78350f] px-6 py-2 font-semibold text-white transition hover:bg-[#92400e] disabled:opacity-50"
+                className="rounded-lg bg-[#1e3d32] px-6 py-2 font-semibold text-white transition hover:bg-[#2a5244] disabled:opacity-50"
               >
                 {busy ? "Sende…" : "Ergänzung senden"}
               </button>
@@ -742,7 +742,7 @@ export function WizardShell({ programm, einreichung, foerderhoehe }: Props) {
           </div>
         )}
         {canGenerate && (
-          <div className="rounded-xl border border-[#78350f]/40 bg-[#78350f]/10 p-8">
+          <div className="rounded-xl border border-[#1e3d32]/40 bg-[#1e3d32]/10 p-8">
             <h3 className="mb-2 text-xl font-semibold text-[#1c1917]">
               Genug Informationen gesammelt
             </h3>
@@ -786,7 +786,7 @@ export function WizardShell({ programm, einreichung, foerderhoehe }: Props) {
                       className={
                         "rounded-lg border px-3 py-1.5 text-sm transition " +
                         (active
-                          ? "border-[#78350f] bg-[#78350f] text-white"
+                          ? "border-[#1e3d32] bg-[#1e3d32] text-white"
                           : "border-[#1c1917]/15 bg-[#fdfdfc] text-[#57534e] hover:bg-slate-100")
                       }
                     >
@@ -814,7 +814,7 @@ export function WizardShell({ programm, einreichung, foerderhoehe }: Props) {
                   "rounded-lg px-6 py-2 font-semibold text-white transition disabled:opacity-50 " +
                   (readiness?.status === "kritisch"
                     ? "bg-amber-600 hover:bg-amber-700"
-                    : "bg-[#78350f] hover:bg-[#92400e]")
+                    : "bg-[#1e3d32] hover:bg-[#2a5244]")
                 }
                 title={
                   readiness?.status === "kritisch"

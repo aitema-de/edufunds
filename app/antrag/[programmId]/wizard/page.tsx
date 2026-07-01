@@ -43,7 +43,7 @@ export default async function WizardPage({ params }: Props) {
       <PageHero
         variant="light"
         badge={{
-          icon: <Sparkles className="w-3.5 h-3.5" style={{ color: "#78350f" }} />,
+          icon: <Sparkles className="w-3.5 h-3.5" style={{ color: "#1e3d32" }} />,
           text: "KI-Antragswizard · Beta",
         }}
         title="Adaptive Befragung +"
@@ -54,14 +54,14 @@ export default async function WizardPage({ params }: Props) {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href={`/foerderprogramme/${programm.id}`}
-              className="inline-flex items-center gap-2 text-sm text-[#57534e] transition hover:text-[#78350f]"
+              className="inline-flex items-center gap-2 text-sm text-[#57534e] transition hover:text-[#1e3d32]"
             >
               <ArrowLeft className="h-4 w-4" />
               Zurück zum Programm
             </Link>
             <Link
               href="/antrag/meine"
-              className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 bg-white/70 px-3 py-1.5 text-sm font-medium text-[#1c1917] backdrop-blur-sm transition hover:border-[#78350f]/40 hover:text-[#78350f]"
+              className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 bg-white/70 px-3 py-1.5 text-sm font-medium text-[#1c1917] backdrop-blur-sm transition hover:border-[#1e3d32]/40 hover:text-[#1e3d32]"
             >
               <FolderOpen className="h-4 w-4" />
               Meine Anträge
@@ -78,7 +78,7 @@ export default async function WizardPage({ params }: Props) {
           )}
           {richtlinie && richtlinieStub && (
             <div
-              className="inline-flex items-center gap-2 rounded-full border border-[#78350f]/40 bg-[#78350f]/10 px-3 py-1 text-xs text-[#78350f]"
+              className="inline-flex items-center gap-2 rounded-full border border-[#1e3d32]/40 bg-[#1e3d32]/10 px-3 py-1 text-xs text-[#1e3d32]"
               title="Nur ein Teil der offiziellen Richtlinie ist erfasst — einige Abschnitte folgen einer Standardstruktur. Gleichen Sie den Antrag vor dem Einreichen mit der offiziellen Ausschreibung ab."
             >
               <AlertCircle className="h-3.5 w-3.5" />
