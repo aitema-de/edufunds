@@ -12,7 +12,7 @@ const footerLinks = {
     links: [
       { label: "Förderprogramme", href: "/foerderprogramme" },
       { label: "Preise", href: "/preise" },
-      { label: "KI-Antragsassistent", href: "/#ki-assistent" },
+      { label: "KI-Antragsassistent", href: "/antrag/start" },
       { label: "Archiv", href: "/archiv" }
     ]
   },
