@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-01T22:30:43.051Z",
+  "generatedAt": "2026-07-01T22:43:46.706Z",
   "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
   "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
   "total": 105,
@@ -400,7 +400,7 @@
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 50000,
       "reichweite": "DE-BW",
-      "infoLink": "https://www.hector-stiftung.de",
+      "infoLink": "https://hector-kinderakademie.de/",
       "score": 69,
       "status": "done"
     },
@@ -480,7 +480,7 @@
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 2500,
       "reichweite": "DE-BW/DE-HE/DE-RP",
-      "infoLink": "https://www.jugend-forscht.de",
+      "infoLink": "https://www.hopp-foundation.de/foerderrichtlinen/",
       "score": 68,
       "status": "done"
     },
@@ -510,7 +510,7 @@
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 6000,
       "reichweite": "alle",
-      "infoLink": "https://www.telekom-stiftung.de",
+      "infoLink": "https://www.telekom-stiftung.de/aktivitaeten/mint-berufsorientierung",
       "score": 67.8,
       "status": "done"
     },
@@ -711,7 +711,7 @@
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 2500,
       "reichweite": "DE-BW",
-      "infoLink": "https://www.jugend-forscht.de",
+      "infoLink": "https://www.bwstiftung.de/de/programme/mikro-makro-mint",
       "score": 62,
       "status": "done"
     },
@@ -937,7 +937,7 @@
     },
     {
       "programmId": "niedersachsen-sport",
-      "name": "Sportförderung Niedersachsen Grundschulen (Sport Vernetzt)",
+      "name": "Sportförderung Niedersachsen (Sport Vernetzt)",
       "foerdergeberTyp": "land",
       "foerdersummeMax": 1000,
       "reichweite": "DE-NI",
