@@ -165,7 +165,7 @@ describe('Footer Komponente', () => {
       .filter((a): a is HTMLAnchorElement => a !== null);
     expect(foerderLinks.some((a) => a.getAttribute('href') === '/foerderprogramme')).toBe(true);
 
-    expect(screen.getByText('KI-Antragsassistent').closest('a')).toHaveAttribute('href', '/#ki-assistent');
+    expect(screen.getByText('KI-Antragsassistent').closest('a')).toHaveAttribute('href', '/antrag/start');
     expect(screen.getByText('Archiv').closest('a')).toHaveAttribute('href', '/archiv');
 
     const preiseLinks = screen

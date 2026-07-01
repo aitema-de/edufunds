@@ -114,7 +114,7 @@ function getRateLimitType(pathname: string): string {
   }
   // Pipeline-Generierung VOR der allgemeinen /api/wizard/-Klausel pruefen,
   // damit /api/wizard/generate als 'ai' (5/h, teuer) gilt, nicht als 'wizard'.
-  if (pathname.includes('/api/assistant/generate') || pathname.includes('/api/wizard/generate')) {
+  if (pathname.includes('/api/wizard/generate')) {
     return 'ai';
   }
   // Checkout VOR der allgemeinen /api/wizard/-Klausel: eigener großzügiger Bucket,
