@@ -1,34 +1,211 @@
 {
-  "version": "2026-05-19",
+  "version": "2026-07-01",
   "quellen": [
-    "https://erasmusplus.schule/news/erasmus-förderung-für-2026"
+    "https://erasmusplus.schule/foerderung/kurzzeitprojekt",
+    "https://www.erasmusplus.de/erasmus/schulbildung/"
   ],
   "foerderhoehe": {
-    "bemerkung": "Der Text nennt ein Gesamtbudget von fast 93 Millionen Euro für den Schulbereich in Deutschland für das Jahr 2026. Es werden keine Angaben zur Förderhöhe einzelner Projekte gemacht."
+    "bemerkung": "Keine konkreten Förderhöhen oder Prozentsätze im Volltext der Kurzzeitprojekte genannt. Die Förderbedingungen für Mobilitäten sind separat verlinkt, aber nicht im extrahierten Text enthalten."
   },
-  "kostenpositionen": [],
+  "kostenpositionen": [
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Reisekosten zu Partnereinrichtungen in Europa",
+        "Schüleraustausch und Schülerpraktika",
+        "Fortbildungen im Ausland für Lehrkräfte oder pädagogisches Personal",
+        "Hospitationen an Partnereinrichtungen",
+        "Kita-Austausch für Erzieherinnen und Erzieher"
+      ],
+      "beispielePasst": [
+        "Fahrtkosten zu einer Partnerschule in Spanien",
+        "Unterkunftskosten für eine Lehrkraft während einer Fortbildung in Frankreich",
+        "Verpflegungskosten für Schülerinnen und Schüler während eines Austauschs in Italien"
+      ],
+      "beispielePasstNicht": [
+        "Kosten für private Reisen ohne Bildungsbezug",
+        "Anschaffung von Equipment für die eigene Schule"
+      ]
+    },
+    {
+      "kategorie": "personal",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Personalkosten für Lehrkräfte oder pädagogisches Personal während der Mobilität",
+        "Ausfallzeiten während der Fortbildung oder des Austauschs"
+      ],
+      "beispielePasst": [
+        "Gehaltsfortzahlung für eine Lehrkraft während einer Hospitation im Ausland",
+        "Vertretungskosten für eine Lehrkraft während einer Fortbildung"
+      ],
+      "beispielePasstNicht": [
+        "Personalkosten für nicht am Projekt beteiligte Mitarbeiterinnen und Mitarbeiter"
+      ]
+    },
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Kosten für Unterkunft und Verpflegung während der Mobilität",
+        "Sprachvorbereitungskurse (z.B. Online Language Support)",
+        "Materialien für die Projektumsetzung"
+      ],
+      "beispielePasst": [
+        "Unterkunftskosten für eine Gruppe von Schülerinnen und Schülern während eines Austauschs",
+        "Kosten für einen Sprachkurs im Rahmen der Vorbereitung"
+      ],
+      "beispielePasstNicht": [
+        "Anschaffung von langfristig nutzbaren Geräten für die Schule"
+      ]
+    },
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": false,
+      "bedingungen": [],
+      "beispielePasst": [],
+      "beispielePasstNicht": [
+        "Honorare für externe Trainerinnen oder Trainer"
+      ]
+    },
+    {
+      "kategorie": "overhead",
+      "foerderfaehig": false,
+      "bedingungen": [],
+      "beispielePasst": [],
+      "beispielePasstNicht": [
+        "Allgemeine Verwaltungskosten der Einrichtung"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": false,
+      "bedingungen": [],
+      "beispielePasst": [],
+      "beispielePasstNicht": [
+        "Kauf von Hardware oder Software für die Schule"
+      ]
+    },
+    {
+      "kategorie": "sonstiges",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Alle Kosten müssen direkt mit den durchgeführten Mobilitätsaktivitäten zusammenhängen."
+      ],
+      "beispielePasst": [],
+      "beispielePasstNicht": [
+        "Kosten für nicht genehmigte Aktivitäten oder Erweiterungen"
+      ]
+    }
+  ],
   "eigenmittel": {
     "pflicht": false,
-    "bemerkung": "Im Text gibt es keine Informationen zur Notwendigkeit von Eigenmitteln."
+    "bemerkung": "Keine Pflicht zu Eigenmitteln im Volltext der Kurzzeitprojekte erwähnt. Eigenmittel können jedoch bei der Antragstellung als zusätzliche Finanzierungsquelle dienen."
   },
   "kumulierung": {
     "erlaubt": "bedingt",
-    "bemerkung": "Der Text enthält keine spezifischen Informationen zur Kumulierung mit anderen Förderungen. Dies ist in der Regel im Programmleitfaden geregelt."
+    "bedingungen": [
+      "Eine Einrichtung darf nur einen Antrag pro Antragstermin einreichen.",
+      "Innerhalb von fünf Jahren kann eine Einrichtung dreimal ein Kurzzeitprojekt durchführen."
+    ],
+    "unvereinbarMit": [
+      "Akkreditierung (für denselben Zeitraum)"
+    ],
+    "kombinationMoeglichMit": [
+      "eTwinning-Projekte",
+      "Digitale Austauschformate"
+    ]
   },
   "antragsstruktur": {
-    "bemerkung": "Der Text ist eine allgemeine Ankündigung. Details zu Antragsstruktur und -prozess sind dem 'Programmleitfaden' und den Antragsformularen zu entnehmen, die voraussichtlich am 19.11.2025 verfügbar sein werden."
+    "abschnitte": [
+      {
+        "id": "hintergrund",
+        "name": "Hintergrund",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Einrichtung stellt den Antrag und was sind ihre Schwerpunkte?",
+          "Welche Erfahrung hat die Einrichtung mit europäischer Zusammenarbeit oder Mobilität?"
+        ]
+      },
+      {
+        "id": "ziele",
+        "name": "Ziele",
+        "pflicht": true,
+        "leitfragen": [
+          "Was sind die Bedarfe und Herausforderungen der Einrichtung?",
+          "Was wollen Sie mit dem Projekt erreichen?",
+          "Wie hängen die Ziele mit der Entwicklung der Einrichtung zusammen?"
+        ]
+      },
+      {
+        "id": "aktivitaeten",
+        "name": "Aktivitäten",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Mobilitätsaktivitäten sind geplant (Art, Zielland, Dauer, Teilnehmende)?",
+          "Wie tragen die Aktivitäten zur Erreichung der Ziele bei?",
+          "Wie werden Teilnehmende ausgewählt und vorbereitet?"
+        ]
+      },
+      {
+        "id": "qualitaetsstandards",
+        "name": "Qualitätsstandards",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie stellen Sie die Einhaltung der Erasmus-Qualitätsstandards sicher?",
+          "Wie werden Inklusion, Vielfalt, Umweltverträglichkeit und digitale Bildung berücksichtigt?"
+        ]
+      },
+      {
+        "id": "follow-up",
+        "name": "Follow-up und Verbreitung",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie werden die Ergebnisse der Aktivitäten in die regulären Arbeitsabläufe der Einrichtung eingebunden?",
+          "Wie werden Sie die Ergebnisse verbreiten und mit anderen teilen?"
+        ]
+      }
+    ],
+    "anlagen": [
+      "Vertragsunterlagen (nach Bewilligung)",
+      "Teilnehmerberichte",
+      "Abschlussbericht",
+      "Dokumentation der Aktivitäten (z.B. Fotos, Präsentationen)"
+    ],
+    "einreichungsweg": "Online über das EU-Portal mit EU-Login und OID. Antragsformular: KA122-SCH.",
+    "bearbeitungsdauer": "Keine konkrete Bearbeitungsdauer im Volltext genannt. Antrag wird formal und inhaltlich begutachtet."
+  },
+  "fristLogik": {
+    "typ": "fixe_stichtage",
+    "stichtage": [
+      "2026-10-01"
+    ],
+    "jaehrlich_wiederkehrend": true
   },
   "notizen": [
-    "Dies ist ein allgemeiner Aufruf zur Einreichung von Anträgen für das Jahr 2026.",
-    "Ein neuer Projekttyp wird eingeführt: 'Europäische Partnerschaften für die Schulentwicklung'.",
-    "Ein besonderer Fokus liegt auf der Inklusion von Menschen mit geringeren Chancen, Menschen mit Behinderungen, Personen mit vielfältigem Hintergrund sowie aus der Ukraine geflohenen Personen.",
-    "Detaillierte Informationen zu den Förderbedingungen sind dem Programmleitfaden zu entnehmen, der im Text verlinkt ist.",
-    "Antragsberechtigt sind Schulen, Kitas und andere Bildungseinrichtungen."
+    "Kurzzeitprojekte haben eine Dauer von sechs bis 18 Monaten.",
+    "Projekte können zwischen dem 1. Januar und dem 31. Mai des Folgejahres beginnen.",
+    "Maximal 30 Personen können an einem Kurzzeitprojekt teilnehmen.",
+    "Antragsberechtigt sind vorschulische Einrichtungen, öffentliche allgemeinbildende Schulen, staatlich anerkannte Schulen und deren Träger sowie Studienseminare und Landesinstitute für Lehrerfortbildung.",
+    "Nicht antragsberechtigt sind berufliche Schulen (sämtliche Bildungsgänge)."
   ],
   "bestPractices": [],
-  "rejectGruende": [],
-  "vorbildFormulierungen": [],
-  "fristLogik": {
-    "typ": "rolling"
-  }
+  "rejectGruende": [
+    {
+      "grund": "Antrag enthält vorausgefüllte Inhalte oder wurde von externen Anbietern erstellt.",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Antrag muss Originalinhalte der antragstellenden Einrichtung enthalten. Externe Unterstützung bei der Erstellung ist nicht zulässig."
+    },
+    {
+      "grund": "Einrichtung reicht mehr als einen Antrag pro Antragstermin ein.",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Eine Einrichtung darf pro Antragstermin nur einen Antrag einreichen."
+    },
+    {
+      "grund": "Durchgeführte Aktivitäten entsprechen nicht den im Antrag gemachten Angaben.",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Sicherstellen, dass alle geplanten Aktivitäten tatsächlich umgesetzt und dokumentiert werden."
+    }
+  ],
+  "vorbildFormulierungen": []
 }

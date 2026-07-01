@@ -233,6 +233,28 @@ async function cmdNext(extraUrls: string[]): Promise<void> {
  *   abgebrochen, sondern ein Error geworfen — der Caller entscheidet ueber
  *   Failure-Klassifizierung.
  */
+/**
+ * Entfernt rekursiv alle Schluessel mit null-Wert. Manche LLM-Provider (z. B.
+ * mistral-small) setzen optionale Felder auf `null` statt sie wegzulassen — das
+ * bricht die Zod-Strict-Validierung (z. B. `maxZeichen: Expected number, received
+ * null`), obwohl "nicht vorhanden" gemeint ist. null == absent fuer optionale
+ * Felder, daher ist das Strippen semantisch neutral.
+ */
+function stripNullDeep<T>(value: T): T {
+  if (Array.isArray(value)) {
+    return value.map((v) => stripNullDeep(v)) as unknown as T;
+  }
+  if (value && typeof value === "object") {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
+      if (v === null) continue;
+      out[k] = stripNullDeep(v);
+    }
+    return out as T;
+  }
+  return value;
+}
+
 export async function runExtraction(
   programmId: string,
   srcs: string[],
@@ -330,6 +352,10 @@ Erstelle das Richtlinien-Dossier als JSON.`;
   // Version IMMER vom Skript setzen, nicht vom LLM. Verhindert, dass das
   // Beispiel-Datum aus dem SYSTEM_PROMPT in echten Dossiers landet.
   parsed.version = new Date().toISOString().slice(0, 10);
+
+  // Optionale Felder, die der Provider auf null gesetzt hat, entfernen (null ==
+  // absent). Verhindert falsch-negative Strict-Fehler wie maxZeichen: null.
+  parsed = stripNullDeep(parsed);
 
   // Runtime-Validierung gegen erweitertes Schema (Phase 3, FETCH-03).
   // Strict-Mode: alle 4 neuen Felder Pflicht. Bei Fehler: programmId-Status

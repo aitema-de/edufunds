@@ -1,34 +1,132 @@
 {
-  "version": "2026-05-19",
+  "version": "2026-07-01",
   "quellen": [
-    "https://fundraiser-magazin.de/klimalab-2026"
+    "https://engagiert-fuer-klimaschutz.de/klimalab/"
   ],
   "foerderhoehe": {
     "maxEur": 20000,
-    "bemerkung": "Die Förderung wird für einen Projektzeitraum von 12 Monaten gewährt."
+    "bemerkung": "Förderung pro Organisation für einen Zeitraum von 12 Monaten. Es werden 5 Organisationen ausgewählt."
   },
-  "kostenpositionen": [],
+  "kostenpositionen": [
+    {
+      "kategorie": "personal",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Personalressourcen für die Umsetzung von Klimaschutzmaßnahmen"
+      ],
+      "beispielePasst": [
+        "Einstellung einer Klimaschutzbeauftragten",
+        "Freistellung von Personal für Projektarbeit"
+      ]
+    },
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Sachmittel zur Umsetzung von Klimaschutzmaßnahmen"
+      ],
+      "beispielePasst": [
+        "Nachhaltige Beschaffung von Materialien",
+        "Kosten für Klimaschutzberatung"
+      ]
+    },
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Externe Expertise zur Prozessbegleitung und Beratung"
+      ],
+      "beispielePasst": [
+        "Honorare für Umwelt- und Klimaschutzberater*innen"
+      ]
+    },
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": false,
+      "bemerkung": "Nicht explizit erwähnt, daher nicht förderfähig."
+    },
+    {
+      "kategorie": "overhead",
+      "foerderfaehig": false,
+      "bemerkung": "Nicht explizit erwähnt, daher nicht förderfähig."
+    },
+    {
+      "kategorie": "sonstiges",
+      "foerderfaehig": false,
+      "bemerkung": "Nicht explizit erwähnt, daher nicht förderfähig."
+    }
+  ],
   "eigenmittel": {
     "pflicht": false,
-    "bemerkung": "Im Quelltext werden keine Angaben zur Erbringung von Eigenmitteln gemacht."
+    "bemerkung": "Keine Pflicht zu Eigenmitteln erwähnt."
   },
   "kumulierung": {
-    "erlaubt": "bedingt",
-    "bedingungen": [
-      "Keine Informationen zur Kumulierung in der Quelle vorhanden."
-    ]
+    "erlaubt": false,
+    "bemerkung": "Nicht explizit erwähnt, aber Auswahl von nur 5 Organisationen deutet auf exklusive Förderung hin."
   },
   "antragsstruktur": {
-    "abschnitte": [],
-    "einreichungsweg": "Bewerbungen sind bis zum 27. Februar 2026 möglich. Weitere Informationen zum Wettbewerb und zur Bewerbung sind auf der Webseite des Programms zu finden.",
-    "anlagen": []
+    "abschnitte": [
+      {
+        "id": "organisation",
+        "name": "Organisationsdaten",
+        "pflicht": true,
+        "leitfragen": [
+          "Name der Organisation",
+          "Rechtsform (z.B. e.V., gGmbH)",
+          "Kontaktdaten"
+        ]
+      },
+      {
+        "id": "projektidee",
+        "name": "Projektidee und Ziele",
+        "pflicht": true,
+        "leitfragen": [
+          "Beschreibung des Veränderungsprozesses",
+          "Ziele des Klimaschutzprojekts",
+          "Bezug zu Kernaktivitäten der Organisation"
+        ]
+      },
+      {
+        "id": "massnahmenplan",
+        "name": "Maßnahmenplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Konkrete Maßnahmen zur Verankerung von Klimaschutz",
+          "Zeitplan",
+          "Verantwortlichkeiten"
+        ]
+      },
+      {
+        "id": "budget",
+        "name": "Finanzierungsplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Geplante Verwendung der Fördermittel",
+          "Kostenaufstellung"
+        ]
+      },
+      {
+        "id": "nachhaltigkeit",
+        "name": "Nachhaltigkeit und Wirkung",
+        "pflicht": true,
+        "leitfragen": [
+          "Langfristige Verankerung von Klimaschutz in der Organisation",
+          "Erwartete Wirkung"
+        ]
+      }
+    ],
+    "anlagen": [
+      "Auszug aus Vereinsregister/Handelsregister"
+    ],
+    "einreichungsweg": "Onlinebewerbung über typeform.com",
+    "bearbeitungsdauer": "Zweistufiges Auswahlverfahren durch Programmteam und Stiftung Mercator"
   },
   "notizen": [
-    "Das KlimaLab ist ein Programm des Bundesnetzwerks Bürgerschaftliches Engagement (BBE).",
-    "Fördergeber und Kooperationspartner ist die Stiftung Mercator.",
-    "Zielgruppe sind gemeinnützige Organisationen (Vereine, Verbände etc.), die Klimaschutz fest in ihrem Selbstverständnis verankern wollen.",
-    "Beispiele für Vorhaben sind die Schaffung neuer Verantwortlichkeiten und Abläufe, die Überarbeitung des Leitbildes oder der Aufbau strategischer Partnerschaften.",
-    "Ausgewählte Organisationen erhalten zusätzlich zur finanziellen Förderung Unterstützung in Form von Beratung und Wissenstransfer."
+    "Förderzeitraum: 12 Monate, Beginn ab Juni 2026.",
+    "Bewerbungsfrist: 27. Februar 2026.",
+    "Zielgruppe: Gemeinnützige Organisationen (z.B. Vereine, Verbände, Stiftungen) mit eingetragener Rechtsform, die nicht vorrangig im Klima- und Umweltschutz tätig sind.",
+    "Voraussetzung: Klimaschutz muss bereits einen Platz in der Organisation haben und erste Ziele formuliert sein.",
+    "Fördermittel können unkompliziert im Förderzeitraum abgerufen werden."
   ],
   "bestPractices": [],
   "rejectGruende": [],
