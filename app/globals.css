@@ -102,6 +102,15 @@
     --paper: 253 253 252;   /* #fdfdfc — Hintergrund, heller/kuehler als Parchment */
     --ink: 28 25 23;        /* #1c1917 — warmes Fast-Schwarz (ersetzt Navy) */
     --brandy: 120 53 15;    /* #78350f — Cognac-Akzent (ersetzt Gold; bessere WCAG) */
+
+    /* ==========================================================
+       AKADEMISCH / INSTITUT — Richtung F (Welle 1, 2026-07-01)
+       Flaschengruen als Struktur-Farbe, Gold (bestehende gold-Skala)
+       als Auszeichnung. ADDITIV: paper/ink/brandy bleiben unberuehrt;
+       Migration Flaeche fuer Flaeche (Start: Home-Hero + Kennzahlband).
+       ========================================================== */
+    --evergreen: 30 61 50;        /* #1e3d32 — Flaschengruen */
+    --evergreen-light: 42 82 68;  /* #2a5244 — helleres Gruen (Verlaeufe/Hover) */
   }
 
   /* Dark-Mode (class-basiert). Noch kein Toggle verdrahtet — Fundament fuer
@@ -110,6 +119,8 @@
     --paper: 28 25 23;      /* #1c1917 */
     --ink: 253 253 252;     /* #fdfdfc */
     --brandy: 217 119 6;    /* #d97706 — Amber */
+    --evergreen: 158 199 179;       /* #9ec7b3 — helles Gruen, lesbar auf Ink */
+    --evergreen-light: 127 182 158; /* #7fb69e */
   }
 }
 
