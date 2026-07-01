@@ -13,15 +13,17 @@
   />
   <style>
     :root {
-      /* Editorial Archival — Paper / Ink / Brandy */
+      /* Akademisch/Institut (Richtung F) — Paper / Ink / Evergreen / Gold */
       --paper: #fdfdfc;
       --ink: #1c1917;
       --ink-70: rgba(28, 25, 23, 0.70);
       --ink-55: rgba(28, 25, 23, 0.55);
       --ink-10: rgba(28, 25, 23, 0.10);
       --ink-05: rgba(28, 25, 23, 0.05);
-      --brandy: #78350f;
-      --brandy-hover: #92400e;
+      --evergreen: #1e3b2a;
+      --evergreen-hover: #2a5244;
+      --gold: #b08c2e;
+      --gold-line: #d9b44a;
       --serif: "Newsreader", Georgia, "Times New Roman", serif;
       --sans: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
@@ -30,7 +32,7 @@
     body {
       font-family: var(--sans);
       background-color: var(--paper);
-      background-image: radial-gradient(900px 500px at 50% -15%, rgba(120, 53, 15, 0.06) 0%, transparent 70%);
+      background-image: radial-gradient(900px 500px at 50% -15%, rgba(201, 162, 39, 0.10) 0%, transparent 70%);
       color: var(--ink);
       -webkit-font-smoothing: antialiased;
       display: flex;
@@ -44,10 +46,12 @@
       width: 100%;
       text-align: center;
       background: var(--paper);
-      border: 1px solid var(--ink-10);
-      border-radius: 28px;
+      border: 1px solid #d8d2c2;
+      outline: 3px double #d8d2c2;
+      outline-offset: 6px;
+      border-radius: 10px;
       padding: 56px 44px;
-      box-shadow: 0 30px 70px -30px rgba(28, 25, 23, 0.18);
+      box-shadow: 0 30px 70px -30px rgba(30, 61, 50, 0.30);
     }
     .badge {
       display: inline-flex;
@@ -57,32 +61,24 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       font-weight: 600;
-      color: var(--brandy);
-      border: 1px solid rgba(120, 53, 15, 0.25);
+      color: var(--evergreen);
+      border: 1px solid rgba(176, 140, 46, 0.45);
       border-radius: 999px;
       padding: 6px 14px;
       margin-bottom: 28px;
     }
     .dot {
       width: 7px; height: 7px; border-radius: 50%;
-      background: var(--brandy);
+      background: var(--gold);
       animation: pulse 2s infinite;
     }
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(120, 53, 15, 0.45); }
-      70% { box-shadow: 0 0 0 9px rgba(120, 53, 15, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(120, 53, 15, 0); }
+      0% { box-shadow: 0 0 0 0 rgba(176, 140, 46, 0.45); }
+      70% { box-shadow: 0 0 0 9px rgba(176, 140, 46, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(176, 140, 46, 0); }
     }
-    .logo {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 30px;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      color: var(--ink);
-      margin-bottom: 6px;
-    }
-    .logo span { color: var(--brandy); }
+    .logo { margin-bottom: 6px; }
+    .logo svg { height: 56px; width: auto; }
     h1 {
       font-family: var(--serif);
       font-size: 38px;
@@ -92,7 +88,7 @@
       font-weight: 500;
       max-width: 16ch;
     }
-    h1 em { font-style: italic; color: var(--brandy); }
+    h1 em { font-style: italic; color: #967814; }
     p {
       font-size: 16px;
       line-height: 1.6;
@@ -133,12 +129,12 @@
       transition: border-color 0.2s;
     }
     .news-form input[type="email"]::placeholder { color: var(--ink-55); }
-    .news-form input[type="email"]:focus { border-color: var(--brandy); }
+    .news-form input[type="email"]:focus { border-color: var(--evergreen); }
     .news-form button {
       padding: 12px 22px;
       border-radius: 999px;
       border: none;
-      background: var(--brandy);
+      background: var(--evergreen);
       color: var(--paper);
       font-family: var(--sans);
       font-weight: 600;
@@ -147,7 +143,7 @@
       white-space: nowrap;
       transition: background 0.2s, transform 0.2s;
     }
-    .news-form button:hover { background: var(--brandy-hover); transform: translateY(-1px); }
+    .news-form button:hover { background: var(--evergreen-hover); transform: translateY(-1px); }
     .news-form button:disabled { opacity: 0.55; cursor: default; transform: none; }
     .news-hint { margin-top: 10px; font-size: 12px; color: var(--ink-55); }
     .news-msg { margin-top: 12px; font-size: 14px; min-height: 1.2em; }
@@ -161,7 +157,7 @@
       color: var(--ink-70);
     }
     .contact a {
-      color: var(--brandy);
+      color: var(--evergreen);
       text-decoration: none;
       font-weight: 600;
     }
@@ -182,7 +178,17 @@
 <body>
   <main class="card">
     <span class="badge"><span class="dot"></span> Bald verfügbar</span>
-    <div class="logo">Edu<span>Funds</span></div>
+    <div class="logo" role="img" aria-label="EduFunds"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 345 88" width="345" height="88">
+  
+  <g transform="translate(10,12)">
+    <circle cx="32" cy="32" r="30" fill="none" stroke="#B08C2E" stroke-width="2"></circle>
+    <path d="M25,47 L39,47" fill="none" stroke="#B08C2E" stroke-width="2.2" stroke-linecap="round"></path>
+    <path d="M32,47 C32,40 32,33 32,26" fill="none" stroke="#1E3B2A" stroke-width="2.5" stroke-linecap="round"></path>
+    <path d="M32,36 C26,35 22,30.5 22,25 C27.5,26 31.5,30 32,34 Z" fill="#1E3B2A"></path>
+    <path d="M32,29 C38,28 42,23.5 42,18 C36.5,19 32.5,23 32,27 Z" fill="#1E3B2A"></path>
+  </g>
+  <text x="92" y="58" font-family="&#39;Source Serif 4&#39;, Georgia, serif" font-size="40" font-weight="600" letter-spacing="-0.5"><tspan fill="#1E3B2A">Edu</tspan><tspan font-style="italic" fill="#B08C2E">Funds</tspan></text>
+</svg></div>
     <h1>Wir legen gerade die <em>letzte Hand</em> an.</h1>
     <p>
       EduFunds hilft Schulen, Fördervereinen und Trägern, passende Fördermittel
