@@ -42,7 +42,13 @@ const fadeUp = {
 /* Editoriale Akzente:
    - HELLE Flaechen → brandy (#78350f, text-brandy / bg-brandy)
    - DUNKLE Flaechen → amber (#d97706 / amber-200/300/400)
-   Regel aus dem Design-Refresh (Welle 1–3). */
+   Regel aus dem Design-Refresh (Welle 1–3).
+
+   Richtung F „Akademisch/Institut" (Welle 1+2, 2026-07-01): gesamte Home-Seite
+   auf evergreen (#1e3d32) als Struktur-Farbe umgestellt, Gold (gold-Skala) als
+   Auszeichnung — helle Flaechen: text-evergreen / italic text-gold-700; dunkle
+   Flaechen (evergreen/ink): gold-300/400. brandy bleibt auf den uebrigen
+   Seiten (Foerderprogramme, Wizard, Preise) bis zur naechsten Welle. */
 
 export function HomePageContent({
   stats,
@@ -86,10 +92,20 @@ function Hero({ stats }: { stats: LandingStats }) {
               animate="show"
               variants={fadeUp}
               transition={{ duration: 0.6, ease: EASE }}
-              className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-brandy font-semibold"
+              className="flex items-center gap-3.5"
             >
-              <span className="size-1.5 rounded-full bg-brandy" />
-              Fördermittel für Schulen. Vereinfacht.
+              <span
+                aria-hidden
+                className="flex size-12 shrink-0 items-center justify-center rounded-full border-2 border-gold-500 bg-white font-serif text-lg text-evergreen shadow-[0_0_0_4px_rgba(201,162,39,0.15)]"
+              >
+                Ef
+              </span>
+              <span className="text-xs uppercase tracking-widest text-evergreen font-semibold leading-snug">
+                Fördermittel für Schulen. Vereinfacht.
+                <span className="mt-0.5 block text-[10px] font-medium normal-case tracking-wider text-ink/45">
+                  Geprüft · Strukturiert · Unterschriftsreif
+                </span>
+              </span>
             </motion.div>
 
             <motion.h1
@@ -97,11 +113,11 @@ function Hero({ stats }: { stats: LandingStats }) {
               animate="show"
               variants={fadeUp}
               transition={{ duration: 0.7, ease: EASE }}
-              className="font-serif text-5xl md:text-7xl leading-[1.05] text-balance"
+              className="font-serif text-5xl md:text-7xl leading-[1.05] text-balance text-evergreen"
               style={{ fontWeight: 500 }}
             >
               Jedes Jahr bleiben Millionen an{" "}
-              <span className="italic text-brandy">Fördermitteln</span> ungenutzt.
+              <span className="italic text-gold-700">Fördermitteln</span> ungenutzt.
             </motion.h1>
 
             <motion.p
@@ -125,7 +141,7 @@ function Hero({ stats }: { stats: LandingStats }) {
             >
               <Link
                 href="/foerderprogramme"
-                className="bg-brandy text-paper py-2.5 pr-5 pl-5 flex items-center gap-2 rounded-full font-medium transition-transform hover:-translate-y-0.5 ring-1 ring-brandy"
+                className="bg-evergreen text-paper py-2.5 pr-5 pl-5 flex items-center gap-2 rounded-full font-medium transition-transform hover:-translate-y-0.5 ring-1 ring-evergreen shadow-[0_14px_30px_-14px_rgba(30,61,50,0.5)]"
               >
                 Förderfinder öffnen
                 <ArrowRight className="size-4 shrink-0" />
@@ -144,9 +160,9 @@ function Hero({ stats }: { stats: LandingStats }) {
               animate="show"
               variants={fadeUp}
               transition={{ duration: 0.7, delay: 0.28, ease: EASE }}
-              className="inline-flex items-center gap-2 text-sm text-ink/60 hover:text-brandy transition-colors group"
+              className="inline-flex items-center gap-2 text-sm text-ink/60 hover:text-evergreen transition-colors group"
             >
-              <span className="underline underline-offset-4 decoration-ink/20 group-hover:decoration-brandy">
+              <span className="underline underline-offset-4 decoration-ink/20 group-hover:decoration-evergreen">
                 Für Schulen &amp; Träger: Preise ansehen
               </span>
               <span aria-hidden>→</span>
@@ -161,7 +177,7 @@ function Hero({ stats }: { stats: LandingStats }) {
             >
               {heroStats.map((s) => (
                 <div key={s.l} className="bg-paper p-5 space-y-1">
-                  <span className="block text-2xl font-serif italic text-brandy">{s.v}</span>
+                  <span className="block text-2xl font-serif italic text-evergreen">{s.v}</span>
                   <span className="text-xs uppercase tracking-wider text-ink/50 font-medium">
                     {s.l}
                   </span>
@@ -176,7 +192,7 @@ function Hero({ stats }: { stats: LandingStats }) {
             transition={{ duration: 0.9, delay: 0.15, ease: EASE }}
             className="relative"
           >
-            <HeroInfographic />
+            <HeroCertPanel total={stats.total} />
           </motion.div>
         </div>
       </div>
@@ -184,137 +200,67 @@ function Hero({ stats }: { stats: LandingStats }) {
   );
 }
 
-/* ---------- HeroInfographic — editoriales Dashboard-Mock ---------- */
-function HeroInfographic() {
+/* ---------- HeroCertPanel — Urkunden-Panel (Richtung F: Akademisch/Institut).
+   Ersetzt das Dashboard-Mock: Antragsentwurf als „Urkunde" mit Doppelrahmen,
+   Datenzeilen und gedrehtem Pruefsiegel. Werte sind illustrativ (Disclaimer). */
+function HeroCertPanel({ total }: { total: string }) {
+  const rows = [
+    { k: "Beantragte Summe", v: "278.500 €", accent: "gold" },
+    { k: "Abschnitte", v: "4 von 5 fertig" },
+    { k: "Eignung (KI-geprüft)", v: "hoch", accent: "ok" },
+    { k: "Status", v: "unterschriftsreif in Minuten" },
+  ] as const;
   return (
-    <div className="relative aspect-[4/5] w-full max-w-md mx-auto lg:mx-0">
-      {/* Backdrop card — gefundene Programme */}
-      <motion.div
-        initial={{ opacity: 0, y: 20, rotate: -3 }}
-        animate={{ opacity: 1, y: 0, rotate: -4 }}
-        transition={{ duration: 0.9, delay: 0.3, ease: EASE }}
-        className="absolute top-6 -left-2 md:-left-6 w-[58%] bg-paper rounded-2xl ring-1 ring-ink/10 shadow-xl p-5 space-y-3"
-      >
-        <div className="flex items-center justify-between">
-          <span className="text-[10px] uppercase tracking-widest text-ink/40 font-semibold">
-            Treffer
+    <div className="w-full max-w-md mx-auto lg:mx-0 p-2">
+      <div className="rounded-md border border-[#d8d2c2] bg-white p-7 md:p-8 shadow-[0_30px_70px_-40px_rgba(30,61,50,0.45)] outline-double outline-[3px] outline-[#d8d2c2] outline-offset-[6px]">
+        <div className="border-b border-[#e7e2d4] pb-5 mb-3 text-center">
+          <span className="text-[10px] uppercase tracking-[0.22em] text-ink/45 font-medium">
+            Antragsentwurf
           </span>
-          <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
+          <h4 className="font-serif text-2xl text-evergreen mt-1.5" style={{ fontWeight: 600 }}>
+            DigitalPakt Schule 2.0
+          </h4>
         </div>
-        <div className="font-serif text-4xl text-ink leading-none">
-          12<span className="text-ink/30 text-2xl"> / 189</span>
-        </div>
-        <p className="text-xs text-ink/55 leading-relaxed">
-          passende Programme für Ihr Schulprofil — sortiert nach Fristen.
-        </p>
-        <div className="space-y-1.5 pt-1">
-          {[
-            { n: "DigitalPakt 2.0", d: "31.03." },
-            { n: "Startchancen", d: "15.04." },
-            { n: "Kultur macht stark", d: "30.06." },
-          ].map((p) => (
-            <div key={p.n} className="flex items-center justify-between text-[11px] border-t border-ink/5 pt-1.5">
-              <span className="font-medium text-ink truncate">{p.n}</span>
-              <span className="text-ink/40 tabular-nums">{p.d}</span>
+        <dl>
+          {rows.map((r, i) => (
+            <div
+              key={r.k}
+              className={`flex items-baseline justify-between gap-4 py-2.5 text-sm ${
+                i < rows.length - 1 ? "border-b border-[#f0ece0]" : ""
+              }`}
+            >
+              <dt className="text-ink/55">{r.k}</dt>
+              <dd
+                className={`font-semibold text-right ${
+                  "accent" in r && r.accent === "gold"
+                    ? "text-gold-700"
+                    : "accent" in r && r.accent === "ok"
+                    ? "text-emerald-700"
+                    : "text-ink"
+                }`}
+              >
+                {r.v}
+              </dd>
             </div>
           ))}
-        </div>
-      </motion.div>
-
-      {/* Main card — Antrag-Generator */}
-      <motion.div
-        initial={{ opacity: 0, y: 30, rotate: 0 }}
-        animate={{ opacity: 1, y: 0, rotate: 2 }}
-        transition={{ duration: 0.9, delay: 0.5, ease: EASE }}
-        className="absolute top-0 right-0 w-[78%] bg-[#1c1917] text-paper rounded-2xl shadow-2xl ring-1 ring-black/20 overflow-hidden"
-      >
-        <div className="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-black/30">
-          <div className="flex items-center gap-1.5">
-            <span className="size-2 rounded-full bg-rose-400/60" />
-            <span className="size-2 rounded-full bg-amber-300/60" />
-            <span className="size-2 rounded-full bg-emerald-400/60" />
-          </div>
-          <span className="text-[10px] tracking-widest uppercase text-white/40">
-            app.edufunds.org
+        </dl>
+        <div className="flex items-center justify-between gap-4 mt-5">
+          <span className="font-serif italic text-evergreen text-[15px] leading-snug">
+            EduFunds — Ihr Antrag, fertig formuliert.
+          </span>
+          <span
+            aria-hidden
+            className="grid size-14 shrink-0 -rotate-12 place-content-center rounded-full border-2 border-gold-500/60 text-center text-[9px] font-semibold uppercase tracking-wider text-gold-700 leading-tight"
+          >
+            Geprüft
+            <br />
+            {total}
           </span>
         </div>
-        <div className="p-5 space-y-4">
-          <div>
-            <span className="text-[10px] uppercase tracking-widest text-amber-400 font-semibold">
-              Antrag wird erstellt
-            </span>
-            <h4 className="font-serif text-lg leading-snug mt-1 text-paper">
-              DigitalPakt 2.0 · Beispielschule
-            </h4>
-          </div>
-
-          <div className="space-y-2">
-            {[
-              { l: "Schulprofil ausgewertet", done: true },
-              { l: "Bedarf strukturiert", done: true },
-              { l: "Richtlinie abgeglichen", done: true },
-              { l: "Antragstext formuliert", done: false },
-            ].map((s, i) => (
-              <div key={s.l} className="flex items-center gap-3 text-xs">
-                <span
-                  className={`size-4 rounded-full flex items-center justify-center text-[9px] font-bold ${
-                    s.done ? "bg-emerald-400 text-[#1c1917]" : "bg-white/10 text-white/40"
-                  }`}
-                >
-                  {s.done ? "✓" : i + 1}
-                </span>
-                <span className={s.done ? "text-white/85" : "text-white/45"}>{s.l}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="space-y-1.5 pt-1">
-            <div className="flex justify-between text-[10px] uppercase tracking-widest text-white/40">
-              <span>Fortschritt</span>
-              <span className="text-amber-400 font-semibold">76 %</span>
-            </div>
-            <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: "76%" }}
-                transition={{ duration: 1.6, delay: 1, ease: EASE }}
-                className="h-full bg-amber-500 rounded-full"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-px bg-white/10 rounded-lg overflow-hidden mt-3">
-            {[
-              { k: "Fördersumme", v: "≈ 250.000 €" },
-              { k: "Eigenanteil", v: "10 %" },
-              { k: "Laufzeit", v: "36 Monate" },
-              { k: "Frist", v: "31.03.2026" },
-            ].map((f) => (
-              <div key={f.k} className="bg-[#1c1917] p-2.5">
-                <div className="text-[9px] uppercase tracking-widest text-white/40">{f.k}</div>
-                <div className="text-sm font-serif text-paper mt-0.5">{f.v}</div>
-              </div>
-            ))}
-          </div>
-          <p className="text-[9px] text-white/35 mt-2">Illustratives Beispiel — keine realen Antragsdaten.</p>
-        </div>
-      </motion.div>
-
-      {/* Floating callout — Zeitersparnis */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8, rotate: -8 }}
-        animate={{ opacity: 1, scale: 1, rotate: -6 }}
-        transition={{ duration: 0.7, delay: 1.2, ease: EASE }}
-        className="absolute -bottom-2 left-4 md:left-0 bg-brandy text-paper rounded-2xl shadow-xl px-5 py-3.5 max-w-[62%]"
-      >
-        <div className="flex items-baseline gap-2">
-          <span className="font-serif text-3xl leading-none">Wochen</span>
-          <span className="text-paper/70 text-xs">→ Minuten</span>
-        </div>
-        <p className="text-[11px] text-paper/85 mt-1.5 leading-tight">
-          Vom Bedarf zum fertigen Antrag — in einer Sitzung.
+        <p className="text-[10px] text-ink/40 mt-4">
+          Illustratives Beispiel — keine realen Antragsdaten.
         </p>
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -332,8 +278,8 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
 
   // Donut-Segmente aus echten Förderquellen-Typen
   const segs = [
-    { label: "Bund", n: stats.bund, color: "#78350f" },
-    { label: "Länder", n: stats.land, color: "#d97706" },
+    { label: "Bund", n: stats.bund, color: "#1e3d32" },
+    { label: "Länder", n: stats.land, color: "#c9a227" },
     { label: "Stiftungen", n: stats.stiftung, color: "#a8a29e" },
     { label: "EU", n: stats.eu, color: "#44403c" },
   ];
@@ -361,11 +307,11 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
       <div className="max-w-7xl mx-auto">
         {/* Überschrift */}
         <div className="max-w-2xl mb-14">
-          <span className="text-xs uppercase tracking-widest text-brandy font-semibold">
+          <span className="text-xs uppercase tracking-widest text-evergreen font-semibold">
             So funktioniert&apos;s
           </span>
           <h2 className="font-serif text-3xl md:text-5xl leading-tight mt-3 text-balance" style={{ fontWeight: 500 }}>
-            Vom Bedarf zum <span className="italic text-brandy">fertigen Antrag</span>.
+            Vom Bedarf zum <span className="italic text-gold-700">fertigen Antrag</span>.
           </h2>
           <p className="text-ink/70 mt-5 text-pretty leading-relaxed">
             Vier Schritte, eine Sitzung — begleitet von unserer KI. Sehen Sie unten live,
@@ -377,7 +323,7 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
         <div className="relative grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6 mb-20">
           <div className="hidden md:block absolute top-[31px] left-[12%] right-[12%] h-[3px] bg-ink/10 rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-gradient-to-r from-brandy to-amber-500"
+              className="h-full bg-gradient-to-r from-evergreen to-gold-500"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true, margin: "-80px" }}
@@ -388,7 +334,7 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 0.12}>
               <div className="relative text-center">
-                <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full border-2 border-brandy bg-paper font-serif italic text-2xl text-brandy shadow-[0_10px_26px_-12px_rgba(120,53,15,0.5)]">
+                <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full border-2 border-gold-500 bg-paper font-serif italic text-2xl text-evergreen shadow-[0_10px_26px_-12px_rgba(30,61,50,0.45)]">
                   {s.n}
                 </div>
                 <h4 className="font-semibold font-sans mb-1.5">{s.t}</h4>
@@ -426,7 +372,7 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
               whileInView={{ opacity: 1, scale: 1, rotate: -5 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
-              className="absolute -bottom-4 -right-3 bg-brandy text-paper rounded-2xl px-5 py-3 shadow-xl"
+              className="absolute -bottom-4 -right-3 bg-evergreen text-paper rounded-2xl px-5 py-3 shadow-xl"
             >
               <div className="font-serif text-2xl leading-none" style={{ fontWeight: 500 }}>10 Min.</div>
               <div className="text-[11px] text-paper/80 mt-1">statt 14 Tage</div>
@@ -438,7 +384,7 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
         <div className="grid md:grid-cols-3 gap-5 mt-12">
           {/* In Zahlen */}
           <div className="rounded-2xl border border-ink/10 bg-paper p-6">
-            <div className="text-[11px] uppercase tracking-widest text-brandy font-semibold mb-5">In Zahlen</div>
+            <div className="text-[11px] uppercase tracking-widest text-evergreen font-semibold mb-5">In Zahlen</div>
             <div className="grid grid-cols-2 gap-5">
               <div>
                 <div className="font-serif text-4xl leading-none text-ink"><CountUp to={PROGRAMM_COUNT_ROUNDED} suffix="+" /></div>
@@ -461,7 +407,7 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
 
           {/* Donut Förderquellen */}
           <div className="rounded-2xl border border-ink/10 bg-paper p-6">
-            <div className="text-[11px] uppercase tracking-widest text-brandy font-semibold mb-4">Förderquellen</div>
+            <div className="text-[11px] uppercase tracking-widest text-evergreen font-semibold mb-4">Förderquellen</div>
             <motion.div
               initial={{ opacity: 0, scale: 0.7, rotate: -90 }}
               whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -485,7 +431,7 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
 
           {/* Balken Fördersummen */}
           <div className="rounded-2xl border border-ink/10 bg-paper p-6">
-            <div className="text-[11px] uppercase tracking-widest text-brandy font-semibold mb-4">Typische Fördersummen</div>
+            <div className="text-[11px] uppercase tracking-widest text-evergreen font-semibold mb-4">Typische Fördersummen</div>
             <div className="flex items-end gap-3 h-[120px]">
               {bars.map((b, i) => (
                 <motion.div
@@ -495,7 +441,7 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.8, delay: i * 0.1, ease: EASE }}
                   style={{ height: `${b.h}%`, transformOrigin: "bottom" }}
-                  className="flex-1 rounded-t-lg bg-gradient-to-t from-brandy to-amber-500"
+                  className="flex-1 rounded-t-lg bg-gradient-to-t from-evergreen to-evergreen-light"
                 />
               ))}
             </div>
@@ -537,7 +483,7 @@ function LiveGenerator() {
           <span className="size-2.5 rounded-full bg-emerald-400/60" />
         </div>
         <span className="text-[11px] tracking-widest uppercase text-white/40">app.edufunds.org</span>
-        <span className="inline-flex items-center gap-1 text-[11px] text-amber-400 font-medium">
+        <span className="inline-flex items-center gap-1 text-[11px] text-gold-400 font-medium">
           <Sparkles className="size-3" /> generiert
         </span>
       </div>
@@ -559,7 +505,7 @@ function LiveGenerator() {
                 className="h-2.5 rounded-full bg-white/10"
               />
             ))}
-            <span className="inline-block h-3.5 w-[2px] bg-amber-400 align-middle animate-pulse" />
+            <span className="inline-block h-3.5 w-[2px] bg-gold-400 align-middle animate-pulse" />
           </div>
 
           {/* Fortschritts-Ring */}
@@ -568,7 +514,7 @@ function LiveGenerator() {
               <svg width="64" height="64" viewBox="0 0 64 64">
                 <circle cx="32" cy="32" r={R} fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="6" />
                 <motion.circle
-                  cx="32" cy="32" r={R} fill="none" stroke="#f59e0b" strokeWidth="6" strokeLinecap="round"
+                  cx="32" cy="32" r={R} fill="none" stroke="#d4af37" strokeWidth="6" strokeLinecap="round"
                   transform="rotate(-90 32 32)" strokeDasharray={C}
                   initial={{ strokeDashoffset: C }}
                   whileInView={{ strokeDashoffset: C * (1 - 0.76) }}
@@ -576,7 +522,7 @@ function LiveGenerator() {
                   transition={{ duration: 1.4, delay: 0.3, ease: EASE }}
                 />
               </svg>
-              <span className="absolute inset-0 grid place-items-center text-sm font-bold text-amber-400">76%</span>
+              <span className="absolute inset-0 grid place-items-center text-sm font-bold text-gold-300">76%</span>
             </div>
             <div>
               <div className="text-[11px] uppercase tracking-widest text-white/45">Fortschritt</div>
@@ -587,7 +533,7 @@ function LiveGenerator() {
 
         {/* Pipeline + Fakten */}
         <div className="p-6 bg-black/20">
-          <span className="text-[10px] uppercase tracking-widest text-amber-400 font-semibold">Pipeline</span>
+          <span className="text-[10px] uppercase tracking-widest text-gold-400 font-semibold">Pipeline</span>
           <div className="mt-4 space-y-3">
             {pipeline.map((s, i) => (
               <motion.div
@@ -704,7 +650,7 @@ function Problem() {
           {items.map((it, i) => (
             <Reveal key={it.title} delay={i * 0.08}>
               <div className="space-y-4">
-                <div className="size-12 bg-paper rounded-full flex items-center justify-center ring-1 ring-brandy/15 text-brandy">
+                <div className="size-12 bg-paper rounded-full flex items-center justify-center ring-1 ring-evergreen/15 text-evergreen">
                   <it.Icon className="size-6" />
                 </div>
                 <h3 className="text-lg font-semibold font-sans">{it.title}</h3>
@@ -751,12 +697,12 @@ function Datenschutz() {
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-16">
           <div className="space-y-6">
-            <span className="text-xs uppercase tracking-widest text-brandy font-semibold">
+            <span className="text-xs uppercase tracking-widest text-evergreen font-semibold">
               Datenschutz · ohne Kompromiss
             </span>
             <Reveal>
               <h2 className="font-serif text-3xl md:text-5xl leading-tight text-balance" style={{ fontWeight: 500 }}>
-                Was die Schule anvertraut, bleibt <span className="italic text-brandy">vertraulich</span>.
+                Was die Schule anvertraut, bleibt <span className="italic text-gold-700">vertraulich</span>.
               </h2>
             </Reveal>
             <p className="text-ink/70 max-w-[42ch] leading-relaxed">
@@ -780,7 +726,7 @@ function Datenschutz() {
             {points.map((p, i) => (
               <Reveal key={p.title} delay={i * 0.06}>
                 <div className="bg-paper p-6 space-y-3 h-full">
-                  <span className="text-[10px] uppercase tracking-widest text-brandy font-semibold">
+                  <span className="text-[10px] uppercase tracking-widest text-evergreen font-semibold">
                     {p.kicker}
                   </span>
                   <h3 className="font-serif text-xl leading-snug" style={{ fontWeight: 500 }}>{p.title}</h3>
@@ -813,7 +759,10 @@ function ProgrammeShowcase({
     { n: String(stats.eu), l: "EU-Programme" },
   ];
   return (
-    <section id="programme" className="py-24 px-6 bg-[#1c1917] text-paper">
+    <section
+      id="programme"
+      className="py-24 px-6 bg-evergreen text-paper border-y-[3px] border-double border-gold-500/70"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
           <div className="space-y-4">
@@ -829,17 +778,17 @@ function ProgrammeShowcase({
           </div>
           <Link
             href="/foerderprogramme"
-            className="text-sm font-medium border-b border-white/80 pb-1 hover:text-amber-400 hover:border-amber-400 transition-colors self-start md:self-auto"
+            className="text-sm font-medium border-b border-white/80 pb-1 hover:text-gold-300 hover:border-gold-300 transition-colors self-start md:self-auto"
           >
             Alle {stats.total} Programme ansehen →
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-px bg-white/10 rounded-2xl overflow-hidden ring-1 ring-white/10 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-px bg-white/15 rounded-2xl overflow-hidden ring-1 ring-white/15 mb-12">
           {statCards.map((s) => (
-            <div key={s.l} className="bg-[#1c1917] px-4 py-5 text-center">
-              <div className="font-serif text-3xl md:text-4xl text-amber-300" style={{ fontWeight: 500 }}>{s.n}</div>
-              <div className="text-[11px] uppercase tracking-widest text-white/50 mt-1">{s.l}</div>
+            <div key={s.l} className="bg-evergreen px-4 py-5 text-center">
+              <div className="font-serif text-3xl md:text-4xl text-gold-300" style={{ fontWeight: 500 }}>{s.n}</div>
+              <div className="text-[11px] uppercase tracking-widest text-white/60 mt-1">{s.l}</div>
             </div>
           ))}
         </div>
@@ -855,7 +804,7 @@ function ProgrammeShowcase({
                 <div className="group bg-white/[0.04] p-7 rounded-2xl ring-1 ring-white/5 hover:ring-white/15 hover:-translate-y-1 transition-all flex flex-col justify-between gap-6 h-full">
                   <div className="space-y-5">
                     <div className="flex justify-between items-start gap-3">
-                      <Emblem className="size-14 text-amber-300" />
+                      <Emblem className="size-14 text-gold-300" />
                       <span className="px-2 py-1 bg-white/5 text-white/70 text-[10px] font-semibold uppercase tracking-wider rounded whitespace-nowrap">
                         {badge}
                       </span>
@@ -964,10 +913,10 @@ function PreiseTeaser() {
     <section id="preise" className="py-24 px-6 bg-[#f6f3ec] border-y border-ink/5">
       <div className="max-w-7xl mx-auto">
         <div className="max-w-3xl mb-16">
-          <span className="text-xs uppercase tracking-widest text-brandy font-semibold">Preise</span>
+          <span className="text-xs uppercase tracking-widest text-evergreen font-semibold">Preise</span>
           <Reveal>
             <h2 className="font-serif text-3xl md:text-5xl leading-tight mt-3 text-balance" style={{ fontWeight: 500 }}>
-              Pro Antrag bezahlen. <span className="italic text-brandy">Kein Abo.</span>
+              Pro Antrag bezahlen. <span className="italic text-gold-700">Kein Abo.</span>
             </h2>
           </Reveal>
           <p className="text-ink/65 mt-5 text-pretty leading-relaxed">
@@ -983,12 +932,12 @@ function PreiseTeaser() {
                 className={[
                   "relative rounded-2xl p-7 flex flex-col gap-6 ring-1 transition-all h-full",
                   t.featured
-                    ? "bg-[#1c1917] text-paper ring-[#1c1917] shadow-xl lg:-translate-y-2"
+                    ? "bg-evergreen text-paper ring-evergreen shadow-xl lg:-translate-y-2"
                     : "bg-paper text-ink ring-ink/10 hover:ring-ink/25",
                 ].join(" ")}
               >
                 {t.badge && (
-                  <span className="absolute -top-3 left-6 bg-brandy text-paper text-[10px] uppercase tracking-widest font-semibold px-3 py-1 rounded-full">
+                  <span className="absolute -top-3 left-6 bg-gold-500 text-ink text-[10px] uppercase tracking-widest font-semibold px-3 py-1 rounded-full">
                     {t.badge}
                   </span>
                 )}
@@ -1025,7 +974,7 @@ function PreiseTeaser() {
                       ? "bg-paper text-ink hover:bg-paper/90"
                       : t.ghost
                       ? "ring-1 ring-ink/15 hover:ring-ink/30"
-                      : "bg-brandy text-paper hover:bg-brandy/90",
+                      : "bg-evergreen text-paper hover:bg-evergreen/90",
                   ].join(" ")}
                 >
                   {t.cta}
@@ -1085,7 +1034,7 @@ function FAQ() {
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between gap-4 text-left font-medium py-6 text-base hover:text-brandy transition-colors"
+                  className="w-full flex items-center justify-between gap-4 text-left font-medium py-6 text-base hover:text-evergreen transition-colors"
                   aria-expanded={isOpen}
                 >
                   <span>{it.q}</span>
@@ -1119,7 +1068,7 @@ function ClosingCta() {
   return (
     <section className="py-24 px-6 bg-paper">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-brandy text-paper rounded-[2rem] p-12 md:p-24 relative overflow-hidden">
+        <div className="bg-evergreen text-paper rounded-[2rem] p-12 md:p-24 relative overflow-hidden border-y-[3px] border-double border-gold-500/60">
           <div className="relative z-10 max-w-2xl">
             <h2 className="font-serif text-4xl md:text-6xl mb-8 leading-[1.05] text-paper" style={{ fontWeight: 500 }}>
               Bereit, Fördermittel für Ihre Schule zu heben?
@@ -1132,7 +1081,7 @@ function ClosingCta() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/foerderprogramme"
-                className="bg-paper text-brandy px-8 py-4 rounded-full font-semibold hover:bg-paper/90 transition-colors active:scale-[0.98] inline-flex items-center justify-center gap-2"
+                className="bg-paper text-evergreen px-8 py-4 rounded-full font-semibold hover:bg-paper/90 transition-colors active:scale-[0.98] inline-flex items-center justify-center gap-2"
               >
                 Förderfinder öffnen
                 <ArrowRight className="size-5" />

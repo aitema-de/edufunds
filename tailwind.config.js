@@ -108,6 +108,13 @@ module.exports = {
         paper: 'rgb(var(--paper) / <alpha-value>)',
         ink: 'rgb(var(--ink) / <alpha-value>)',
         brandy: 'rgb(var(--brandy) / <alpha-value>)',
+
+        /* Akademisch/Institut — Richtung F (Welle 1). Flaschengruen als
+           Struktur-Farbe; Gold-Auszeichnung nutzt die bestehende gold-Skala. */
+        evergreen: {
+          DEFAULT: 'rgb(var(--evergreen) / <alpha-value>)',
+          light: 'rgb(var(--evergreen-light) / <alpha-value>)',
+        },
       },
       
       /* Border Radius */
