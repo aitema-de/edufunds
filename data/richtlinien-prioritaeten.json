@@ -1,9 +1,19 @@
 {
-  "generatedAt": "2026-06-19T07:26:55.931Z",
+  "generatedAt": "2026-07-01T22:30:43.051Z",
   "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
   "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
   "total": 105,
   "items": [
+    {
+      "programmId": "berlin-startchancen",
+      "name": "Startchancen-Programm Berlin",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 255000,
+      "reichweite": "DE-BE",
+      "infoLink": "https://www.berlin.de/sen/bildung/unterstuetzung/startchancen-programm/",
+      "score": 96.1,
+      "status": "done"
+    },
     {
       "programmId": "bmbf-digitalpakt-2",
       "name": "DigitalPakt Schule 2.0",
@@ -45,13 +55,23 @@
       "status": "done"
     },
     {
-      "programmId": "berlin-startchancen",
-      "name": "Startchancen-Programm Berlin",
-      "foerdergeberTyp": "bund",
-      "foerdersummeMax": 255000,
-      "reichweite": "DE-BE",
-      "infoLink": "https://www.berlin.de/sen/bildung/unterstuetzung/startchancen-programm/",
-      "score": 88.1,
+      "programmId": "bildungsagenda-ns-unrecht-foerderperiode-2026",
+      "name": "Bildungsagenda NS-Unrecht (Förderperiode 2026-2029)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 500000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftung-evz.de/",
+      "score": 89,
+      "status": "done"
+    },
+    {
+      "programmId": "dbu-projektfoerderung-foerderthema-nachhaltigkeitskommunikation-und",
+      "name": "DBU-Projektförderung (Förderthema Nachhaltigkeitskommunikation und -bildung)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 400000,
+      "reichweite": "alle",
+      "infoLink": "https://www.dbu.de/foerderung/projektfoerderung/foerderung-beantragen/",
+      "score": 88,
       "status": "done"
     },
     {
@@ -65,23 +85,23 @@
       "status": "done"
     },
     {
-      "programmId": "bildungsagenda-ns-unrecht-foerderperiode-2026",
-      "name": "Bildungsagenda NS-Unrecht (Förderperiode 2026-2029)",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 500000,
-      "reichweite": "?",
-      "infoLink": "https://www.stiftung-evz.de/",
+      "programmId": "kultur-macht-stark",
+      "name": "Kultur macht stark - Bündnisse für Bildung",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 50000,
+      "reichweite": "alle",
+      "infoLink": "https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/foerderung/foerderung_node.html",
       "score": 87,
       "status": "done"
     },
     {
-      "programmId": "dbu-projektfoerderung-foerderthema-nachhaltigkeitskommunikation-und",
-      "name": "DBU-Projektförderung (Förderthema Nachhaltigkeitskommunikation und -bildung)",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 400000,
-      "reichweite": "?",
-      "infoLink": "https://www.dbu.de/foerderung/projektfoerderung/foerderung-beantragen/",
-      "score": 86,
+      "programmId": "lesen-macht-stark",
+      "name": "Gemeinsam Digital! Kreativ mit Medien (ehem. Lesen macht stark)",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 50000,
+      "reichweite": "alle",
+      "infoLink": "https://www.bibliotheksverband.de/gemeinsam-digital-kreativ-mit-medien",
+      "score": 87,
       "status": "done"
     },
     {
@@ -89,9 +109,9 @@
       "name": "FEB - Förderprogramm Entwicklungspolitische Bildung",
       "foerdergeberTyp": "bund",
       "foerdersummeMax": 20000,
-      "reichweite": "?",
+      "reichweite": "alle",
       "infoLink": "https://feb.engagement-global.de/antragstellung.html",
-      "score": 83,
+      "score": 85,
       "status": "done"
     },
     {
@@ -125,23 +145,33 @@
       "status": "done"
     },
     {
-      "programmId": "kultur-macht-stark",
-      "name": "Kultur macht stark - Bündnisse für Bildung",
-      "foerdergeberTyp": "bund",
+      "programmId": "fonds-fuer-antisemitismus-bekaempfung-und",
+      "name": "Fonds für Antisemitismus-Bekämpfung und Aufklärung",
+      "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 50000,
       "reichweite": "alle",
-      "infoLink": "https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/foerderung/foerderung_node.html",
+      "infoLink": "https://www.ghst.de/en/fund-for-anti-semitism-prevention-and-education",
       "score": 79,
       "status": "done"
     },
     {
-      "programmId": "lesen-macht-stark",
-      "name": "Gemeinsam Digital! Kreativ mit Medien (ehem. Lesen macht stark)",
+      "programmId": "mixed-up-wettbewerb-mixed-up",
+      "name": "MIXED UP Wettbewerb (Preis + Kick-Off-Förderung)",
       "foerdergeberTyp": "bund",
-      "foerdersummeMax": 50000,
+      "foerdersummeMax": 5000,
       "reichweite": "alle",
-      "infoLink": "https://www.bibliotheksverband.de/gemeinsam-digital-kreativ-mit-medien",
+      "infoLink": "https://www.bkj.de/projekte/mixed-up-wettbewerb/",
       "score": 79,
+      "status": "done"
+    },
+    {
+      "programmId": "ki-schulpreis",
+      "name": "KI-Schulpreis",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 40000,
+      "reichweite": "alle",
+      "infoLink": "https://ki-schulpreis.land-der-ideen.de/",
+      "score": 78,
       "status": "done"
     },
     {
@@ -151,26 +181,6 @@
       "foerdersummeMax": 5000,
       "reichweite": "alle",
       "infoLink": "https://www.kmk-pad.org/programme/schulpartnerschaften-der-pasch-initiative",
-      "score": 77,
-      "status": "done"
-    },
-    {
-      "programmId": "fonds-fuer-antisemitismus-bekaempfung-und",
-      "name": "Fonds für Antisemitismus-Bekämpfung und Aufklärung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 50000,
-      "reichweite": "?",
-      "infoLink": "https://www.ghst.de/en/fund-for-anti-semitism-prevention-and-education",
-      "score": 77,
-      "status": "done"
-    },
-    {
-      "programmId": "mixed-up-wettbewerb-mixed-up",
-      "name": "MIXED UP Wettbewerb (Preis + Kick-Off-Förderung)",
-      "foerdergeberTyp": "bund",
-      "foerdersummeMax": 5000,
-      "reichweite": "?",
-      "infoLink": "https://www.bkj.de/projekte/mixed-up-wettbewerb/",
       "score": 77,
       "status": "done"
     },
@@ -185,13 +195,33 @@
       "status": "done"
     },
     {
-      "programmId": "ki-schulpreis",
-      "name": "KI-Schulpreis",
+      "programmId": "perlenfonds",
+      "name": "Perlenfonds",
       "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 40000,
-      "reichweite": "?",
-      "infoLink": "https://ki-schulpreis.land-der-ideen.de/",
+      "foerdersummeMax": 25000,
+      "reichweite": "alle",
+      "infoLink": "https://www.joachim-herz-stiftung.de/foerdern/aktuelle-ausschreibungen/perlenfonds",
       "score": 76,
+      "status": "done"
+    },
+    {
+      "programmId": "deinschulhof-gruene-schulhoefe-bundesinitiative-der",
+      "name": "deinSchulhof / Grüne Schulhöfe (Bundesinitiative DUH & Stiftung Lebendige Stadt)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 20000,
+      "reichweite": "alle",
+      "infoLink": "https://www.duh.de/informieren/natur-und-umwelt-vor-ort/schulhoefe/",
+      "score": 75,
+      "status": "done"
+    },
+    {
+      "programmId": "labs-for-chips",
+      "name": "LABS for CHIPS",
+      "foerdergeberTyp": "bund",
+      "foerdersummeMax": 2000,
+      "reichweite": "alle",
+      "infoLink": "https://www.invent-a-chip.de/invent-a-chip/labs-for-chips",
+      "score": 75,
       "status": "done"
     },
     {
@@ -215,12 +245,12 @@
       "status": "done"
     },
     {
-      "programmId": "perlenfonds",
-      "name": "Perlenfonds",
+      "programmId": "pwc-stiftung-foerderung-kulturelle-bildung",
+      "name": "PwC-Stiftung - Förderung Kulturelle Bildung",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 25000,
-      "reichweite": "?",
-      "infoLink": "https://www.joachim-herz-stiftung.de/foerdern/aktuelle-ausschreibungen/perlenfonds",
+      "reichweite": "alle",
+      "infoLink": "https://pwc-stiftung.de/foerderung/",
       "score": 74,
       "status": "done"
     },
@@ -232,6 +262,36 @@
       "reichweite": "DE-HE",
       "infoLink": "https://sptg.de/foerderung/psychische-gesundheit",
       "score": 74,
+      "status": "done"
+    },
+    {
+      "programmId": "deutsche-bahn-stiftung-jaehrliche-foerderausschreibung",
+      "name": "Deutsche Bahn Stiftung - Jährliche Förderausschreibung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 15000,
+      "reichweite": "alle",
+      "infoLink": "https://www.deutschebahnstiftung.de/dbs/foerderung",
+      "score": 73.8,
+      "status": "done"
+    },
+    {
+      "programmId": "heinz-nixdorf-stiftung-projektfoerderung-mint",
+      "name": "Heinz Nixdorf Stiftung - Projektförderung (MINT/Digitale Bildung)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 15000,
+      "reichweite": "alle",
+      "infoLink": "https://www.heinz-nixdorf-stiftung.de/",
+      "score": 73.8,
+      "status": "done"
+    },
+    {
+      "programmId": "konzeptwettbewerb-schuelerforschungszentren",
+      "name": "Konzeptwettbewerb Schülerforschungszentren",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 15000,
+      "reichweite": "alle",
+      "infoLink": "https://schuelerforschungszentren.de/foerderungen/konzeptwettbewerb",
+      "score": 73.8,
       "status": "done"
     },
     {
@@ -255,32 +315,32 @@
       "status": "done"
     },
     {
-      "programmId": "deinschulhof-gruene-schulhoefe-bundesinitiative-der",
-      "name": "deinSchulhof / Grüne Schulhöfe (Bundesinitiative DUH & Stiftung Lebendige Stadt)",
+      "programmId": "neumayer-projektkultur",
+      "name": "PROJEKT:KULTUR – Kulturarbeit an Schulen",
       "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 20000,
-      "reichweite": "?",
-      "infoLink": "https://www.duh.de/informieren/natur-und-umwelt-vor-ort/schulhoefe/",
-      "score": 73,
+      "foerdersummeMax": 10000,
+      "reichweite": "alle",
+      "infoLink": "https://www.neumayer-stiftung.de/project/kulturarbeit-an-schulen-pilotprojekt/",
+      "score": 72,
       "status": "done"
     },
     {
-      "programmId": "labs-for-chips",
-      "name": "LABS for CHIPS",
-      "foerdergeberTyp": "bund",
-      "foerdersummeMax": 2000,
-      "reichweite": "?",
-      "infoLink": "https://www.invent-a-chip.de/invent-a-chip/labs-for-chips",
-      "score": 73,
+      "programmId": "dslk-schulpreis-bildung-fuer-nachhaltige",
+      "name": "DSLK-Schulpreis Bildung für nachhaltige Entwicklung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 10000,
+      "reichweite": "alle",
+      "infoLink": "https://deutscher-schulleitungskongress.de/nachhaltigkeitspreis/",
+      "score": 72,
       "status": "done"
     },
     {
-      "programmId": "pwc-stiftung-foerderung-kulturelle-bildung",
-      "name": "PwC-Stiftung - Förderung Kulturelle Bildung",
+      "programmId": "town-country-stiftungspreis",
+      "name": "Town & Country Stiftungspreis",
       "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 25000,
-      "reichweite": "?",
-      "infoLink": "https://pwc-stiftung.de/foerderung/",
+      "foerdersummeMax": 10000,
+      "reichweite": "alle",
+      "infoLink": "https://www.tc-stiftung.de/stiftungspreis/",
       "score": 72,
       "status": "done"
     },
@@ -295,33 +355,23 @@
       "status": "done"
     },
     {
-      "programmId": "deutsche-bahn-stiftung-jaehrliche-foerderausschreibung",
-      "name": "Deutsche Bahn Stiftung - Jährliche Förderausschreibung",
+      "programmId": "stiftung-bildung-youstartn",
+      "name": "Förderpreis youstartN",
       "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 15000,
-      "reichweite": "?",
-      "infoLink": "https://www.deutschebahnstiftung.de/dbs/foerderung",
-      "score": 71.8,
+      "foerdersummeMax": 12000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderpreis-youstartn",
+      "score": 70.8,
       "status": "done"
     },
     {
-      "programmId": "heinz-nixdorf-stiftung-projektfoerderung-mint",
-      "name": "Heinz Nixdorf Stiftung - Projektförderung (MINT/Digitale Bildung)",
+      "programmId": "ideeninitiative-kulturelle-vielfalt-mit-musik",
+      "name": "Ideeninitiative Kulturelle Vielfalt mit Musik",
       "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 15000,
-      "reichweite": "?",
-      "infoLink": "https://www.heinz-nixdorf-stiftung.de/",
-      "score": 71.8,
-      "status": "done"
-    },
-    {
-      "programmId": "konzeptwettbewerb-schuelerforschungszentren",
-      "name": "Konzeptwettbewerb Schülerforschungszentren",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 15000,
-      "reichweite": "?",
-      "infoLink": "https://schuelerforschungszentren.de/foerderungen/konzeptwettbewerb",
-      "score": 71.8,
+      "foerdersummeMax": 7500,
+      "reichweite": "alle",
+      "infoLink": "https://bewerbung.kultur-und-musikstiftung.de/",
+      "score": 70.8,
       "status": "done"
     },
     {
@@ -341,26 +391,6 @@
       "foerdersummeMax": 10000,
       "reichweite": "DE-HH",
       "infoLink": "https://www.claussen-simon-stiftung.de/de/bildung-schule/claussen-simon-fonds-schulen/",
-      "score": 70,
-      "status": "done"
-    },
-    {
-      "programmId": "dslk-schulpreis-bildung-fuer-nachhaltige",
-      "name": "DSLK-Schulpreis Bildung für nachhaltige Entwicklung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 10000,
-      "reichweite": "?",
-      "infoLink": "https://deutscher-schulleitungskongress.de/nachhaltigkeitspreis/",
-      "score": 70,
-      "status": "done"
-    },
-    {
-      "programmId": "town-country-stiftungspreis",
-      "name": "Town & Country Stiftungspreis",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 10000,
-      "reichweite": "?",
-      "infoLink": "https://www.tc-stiftung.de/stiftungspreis/",
       "score": 70,
       "status": "done"
     },
@@ -385,6 +415,26 @@
       "status": "done"
     },
     {
+      "programmId": "bayern-kulturfonds",
+      "name": "Kulturfonds Bayern – Kulturelle Bildung",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 50000,
+      "reichweite": "DE-BY",
+      "infoLink": "https://www.km.bayern.de/ministerium/kooperationen-und-stiftungen/kulturfonds",
+      "score": 69,
+      "status": "done"
+    },
+    {
+      "programmId": "deutsch-griechisches-jugendwerk-dgjw-foerderung",
+      "name": "Deutsch-Griechisches Jugendwerk (DGJW) - Förderung Schulbegegnungen",
+      "foerdergeberTyp": "sonstige",
+      "foerdersummeMax": 50000,
+      "reichweite": "alle",
+      "infoLink": "https://dgjw-egin.org/antrag-stellen/",
+      "score": 69,
+      "status": "done"
+    },
+    {
       "programmId": "lernen-in-langenhorn",
       "name": "Lernen in Langenhorn",
       "foerdergeberTyp": "stiftung",
@@ -405,16 +455,6 @@
       "status": "done"
     },
     {
-      "programmId": "ideeninitiative-kulturelle-vielfalt-mit-musik",
-      "name": "Ideeninitiative Kulturelle Vielfalt mit Musik",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 7500,
-      "reichweite": "?",
-      "infoLink": "https://bewerbung.kultur-und-musikstiftung.de/",
-      "score": 68.8,
-      "status": "done"
-    },
-    {
       "programmId": "deine-idee-deine-schule-dein",
       "name": "Deine Idee? Deine Schule. Dein Klima!",
       "foerdergeberTyp": "stiftung",
@@ -422,6 +462,26 @@
       "reichweite": "DE-SN",
       "infoLink": "https://www.saechsische-jugendstiftung.de/",
       "score": 68.5,
+      "status": "done"
+    },
+    {
+      "programmId": "dkjs-sport",
+      "name": "Förderfonds Spielraum (Deutsches Kinderhilfswerk)",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 10000,
+      "reichweite": "alle",
+      "infoLink": "https://www.dkhw.de/foerderung-und-hilfe/projektfoerderung/",
+      "score": 68,
+      "status": "done"
+    },
+    {
+      "programmId": "hopp-foundation-schulpreis",
+      "name": "HOPP-Foundation-Schulpreis",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 2500,
+      "reichweite": "DE-BW/DE-HE/DE-RP",
+      "infoLink": "https://www.jugend-forscht.de",
+      "score": 68,
       "status": "done"
     },
     {
@@ -445,13 +505,83 @@
       "status": "done"
     },
     {
-      "programmId": "deutsch-griechisches-jugendwerk-dgjw-foerderung",
-      "name": "Deutsch-Griechisches Jugendwerk (DGJW) - Förderung Schulbegegnungen",
-      "foerdergeberTyp": "sonstige",
-      "foerdersummeMax": 50000,
-      "reichweite": "?",
-      "infoLink": "https://dgjw-egin.org/antrag-stellen/",
+      "programmId": "telekom-stiftung-mint-berufsorientierung",
+      "name": "MINT-Berufsorientierung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 6000,
+      "reichweite": "alle",
+      "infoLink": "https://www.telekom-stiftung.de",
+      "score": 67.8,
+      "status": "done"
+    },
+    {
+      "programmId": "aok-gesundheit",
+      "name": "Gesunde Schule",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5500,
+      "reichweite": "alle",
+      "infoLink": "https://www.aok.de/pk/leistungen/schulen/gesundheitsprogramme/",
+      "score": 67.4,
+      "status": "done"
+    },
+    {
+      "programmId": "chemie-fonds",
+      "name": "Chemie-Fonds der Chemischen Industrie",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.vci.de/fonds/schulpartnerschaft/unterrichtsfoerderung/seiten.jsp",
       "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "stiftung-bildung-preis",
+      "name": "Förderpreis 'Verein(t) für gute Kita und Schule'",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderpreis",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "telekom-stiftung-technik-scouts",
+      "name": "Technik Scouts",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.telekom-stiftung.de",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderfonds-demokratie",
+      "name": "Förderfonds Demokratie",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.foerderfonds-demokratie.de/ausschreibung",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "ruetgers-stiftung-mint",
+      "name": "RÜTGERS Stiftung MINT-Förderung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 3000,
+      "reichweite": "alle",
+      "infoLink": "https://ruetgers-stiftung.de",
+      "score": 66.8,
+      "status": "done"
+    },
+    {
+      "programmId": "vdi-joachim-herz-technikfonds",
+      "name": "VDI-Joachim-Herz-Technikfonds",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 3000,
+      "reichweite": "alle",
+      "infoLink": "https://www.joachim-herz-stiftung.de/foerdern/ganzjaehrige-ausschreibungen/vdi-joachim-herz-technikfonds",
+      "score": 66.8,
       "status": "done"
     },
     {
@@ -475,12 +605,12 @@
       "status": "done"
     },
     {
-      "programmId": "neumayer-projektkultur",
-      "name": "PROJEKT:KULTUR – Kulturarbeit an Schulen",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 10000,
+      "programmId": "deutsch-polnisches-jugendwerk-dpjw-projektfoerderung",
+      "name": "Deutsch-Polnisches Jugendwerk (DPJW) - Projektförderung Schulaustausch",
+      "foerdergeberTyp": "sonstige",
+      "foerdersummeMax": 25000,
       "reichweite": "alle",
-      "infoLink": "https://www.neumayer-stiftung.de/project/kulturarbeit-an-schulen-pilotprojekt/",
+      "infoLink": "https://dpjw.org/projektfoerderung/",
       "score": 66,
       "status": "done"
     },
@@ -505,12 +635,12 @@
       "status": "done"
     },
     {
-      "programmId": "foerderfonds-demokratie",
-      "name": "Förderfonds Demokratie",
+      "programmId": "gate-german-apprenticeship-training-exchange",
+      "name": "GATE - German Apprenticeship Training Exchange",
       "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 5000,
-      "reichweite": "?",
-      "infoLink": "https://www.foerderfonds-demokratie.de/ausschreibung",
+      "foerdersummeMax": 20000,
+      "reichweite": "alle",
+      "infoLink": "https://www.joachim-herz-stiftung.de/foerdern/ganzjaehrige-ausschreibungen",
       "score": 65,
       "status": "done"
     },
@@ -535,23 +665,24 @@
       "status": "done"
     },
     {
-      "programmId": "vdi-joachim-herz-technikfonds",
-      "name": "VDI-Joachim-Herz-Technikfonds",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 3000,
-      "reichweite": "?",
-      "infoLink": "https://www.joachim-herz-stiftung.de/foerdern/ganzjaehrige-ausschreibungen/vdi-joachim-herz-technikfonds",
-      "score": 64.8,
-      "status": "done"
+      "programmId": "hamburg-kultur-schule",
+      "name": "Projektfonds Kultur & Schule Hamburg",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 15000,
+      "reichweite": "DE-HH",
+      "infoLink": "https://kinderundjugendkultur.info/projektfonds/",
+      "score": 63.8,
+      "status": "done",
+      "skipReason": "Quelle HTTP 404 (infoLink dauerhaft nicht erreichbar)"
     },
     {
-      "programmId": "deutsch-polnisches-jugendwerk-dpjw-projektfoerderung",
-      "name": "Deutsch-Polnisches Jugendwerk (DPJW) - Projektförderung Schulaustausch",
-      "foerdergeberTyp": "sonstige",
-      "foerdersummeMax": 25000,
-      "reichweite": "?",
-      "infoLink": "https://dpjw.org/projektfoerderung/",
-      "score": 64,
+      "programmId": "aktions-und-bildungswochen-gegen-antisemitismus",
+      "name": "Aktions- und Bildungswochen gegen Antisemitismus",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 1500,
+      "reichweite": "alle",
+      "infoLink": "https://www.amadeu-antonio-stiftung.de/projektfoerderung/foerderbilanz/",
+      "score": 63.8,
       "status": "done"
     },
     {
@@ -565,33 +696,23 @@
       "status": "done"
     },
     {
-      "programmId": "bayern-kulturfonds",
-      "name": "Kulturfonds Bayern – Kulturelle Bildung",
+      "programmId": "brandenburg-kulturelle-bildung",
+      "name": "Landesförderprogramm Kulturelle Bildung und Partizipation",
       "foerdergeberTyp": "land",
-      "foerdersummeMax": 50000,
-      "reichweite": "DE-BY",
-      "infoLink": "https://www.km.bayern.de/ministerium/kooperationen-und-stiftungen/kulturfonds",
-      "score": 63,
-      "status": "done"
-    },
-    {
-      "programmId": "gate-german-apprenticeship-training-exchange",
-      "name": "GATE - German Apprenticeship Training Exchange",
-      "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 20000,
-      "reichweite": "?",
-      "infoLink": "https://www.joachim-herz-stiftung.de/foerdern/ganzjaehrige-ausschreibungen",
+      "reichweite": "DE-BB",
+      "infoLink": "https://mbjs.brandenburg.de/bildung.html",
       "score": 63,
       "status": "done"
     },
     {
-      "programmId": "stiftung-bildung-youstartn",
-      "name": "Förderpreis youstartN",
+      "programmId": "bw-mikro-makro-mint",
+      "name": "Mikro makro mint",
       "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 12000,
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftungbildung.org/foerderpreis-youstartn",
-      "score": 62.8,
+      "foerdersummeMax": 2500,
+      "reichweite": "DE-BW",
+      "infoLink": "https://www.jugend-forscht.de",
+      "score": 62,
       "status": "done"
     },
     {
@@ -635,6 +756,16 @@
       "status": "done"
     },
     {
+      "programmId": "sh-schule-trifft-kultur",
+      "name": "Schule trifft Kultur – Kultur trifft Schule",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 15000,
+      "reichweite": "DE-SH",
+      "infoLink": "https://kulturellebildung-sh.de/info/aktuelles/news/41",
+      "score": 61.8,
+      "status": "done"
+    },
+    {
       "programmId": "jugendbruecke-beruflicher-austausch-2026-27",
       "name": "Beruflicher Austausch 2026/27 (Deutsch-Türkische Jugendbrücke)",
       "foerdergeberTyp": "programm",
@@ -645,12 +776,12 @@
       "status": "done"
     },
     {
-      "programmId": "aktions-und-bildungswochen-gegen-antisemitismus",
-      "name": "Aktions- und Bildungswochen gegen Antisemitismus",
+      "programmId": "dsee-mikrofoerderung",
+      "name": "DSEE-Mikroförderung",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 1500,
-      "reichweite": "?",
-      "infoLink": "https://www.amadeu-antonio-stiftung.de/projektfoerderung/foerderbilanz/",
+      "reichweite": "alle",
+      "infoLink": "https://www.deutsche-stiftung-engagement-und-ehrenamt.de/foerderung/aktuelle-programme/",
       "score": 61.8,
       "status": "done"
     },
@@ -675,12 +806,32 @@
       "status": "done"
     },
     {
-      "programmId": "hopp-foundation-schulpreis",
-      "name": "HOPP-Foundation-Schulpreis",
+      "programmId": "schott-nachhaltigkeit",
+      "name": "SCHOTT Schule und Nachhaltigkeit",
+      "foerdergeberTyp": "sonstige",
+      "foerdersummeMax": 12500,
+      "reichweite": "alle",
+      "infoLink": "https://www.schott.com/de-de/news-and-media/pressemitteilungen/2025/bildung-fuer-nachhaltige-entwicklung-schott-foerdert-17-projekte-an-standorten-in-ganz-deutschland",
+      "score": 61,
+      "status": "done"
+    },
+    {
+      "programmId": "baywa-waldschule",
+      "name": "Waldschulprojekt",
       "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 2500,
-      "reichweite": "DE-BW/DE-HE/DE-RP",
-      "infoLink": "https://www.jugend-forscht.de",
+      "foerdersummeMax": 5000,
+      "reichweite": "DE-BY",
+      "infoLink": "https://www.baywastiftung.de/projekte/waldschule",
+      "score": 61,
+      "status": "done"
+    },
+    {
+      "programmId": "rheinland-pfalz-pad",
+      "name": "PAD-Austauschprogramme",
+      "foerdergeberTyp": "land",
+      "foerdersummeMax": 10000,
+      "reichweite": "DE-RP",
+      "infoLink": "https://bm.rlp.de",
       "score": 60,
       "status": "done"
     },
@@ -695,62 +846,22 @@
       "status": "done"
     },
     {
-      "programmId": "telekom-stiftung-mint-berufsorientierung",
-      "name": "MINT-Berufsorientierung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 6000,
-      "reichweite": "alle",
-      "infoLink": "https://www.telekom-stiftung.de",
-      "score": 59.8,
-      "status": "done"
-    },
-    {
-      "programmId": "dsee-mikrofoerderung",
-      "name": "DSEE-Mikroförderung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 1500,
-      "reichweite": "?",
-      "infoLink": "https://www.deutsche-stiftung-engagement-und-ehrenamt.de/foerderung/aktuelle-programme/",
-      "score": 59.8,
-      "status": "done"
-    },
-    {
-      "programmId": "aok-gesundheit",
-      "name": "Gesunde Schule",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 5500,
-      "reichweite": "alle",
-      "infoLink": "https://www.aok.de/pk/leistungen/schulen/gesundheitsprogramme/",
-      "score": 59.4,
-      "status": "done"
-    },
-    {
-      "programmId": "chemie-fonds",
-      "name": "Chemie-Fonds der Chemischen Industrie",
-      "foerdergeberTyp": "stiftung",
+      "programmId": "energiesparmeister",
+      "name": "Energiesparmeister",
+      "foerdergeberTyp": "sonstige",
       "foerdersummeMax": 5000,
       "reichweite": "alle",
-      "infoLink": "https://www.vci.de/fonds/schulpartnerschaft/unterrichtsfoerderung/seiten.jsp",
+      "infoLink": "https://www.energiesparmeister.de/",
       "score": 59,
       "status": "done"
     },
     {
-      "programmId": "baywa-waldschule",
-      "name": "Waldschulprojekt",
+      "programmId": "sozialgenial-hilft-foerderfonds",
+      "name": "sozialgenial hilft-Förderfonds",
       "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 5000,
-      "reichweite": "DE-BY",
-      "infoLink": "https://www.baywastiftung.de/projekte/waldschule",
-      "score": 59,
-      "status": "done"
-    },
-    {
-      "programmId": "stiftung-bildung-preis",
-      "name": "Förderpreis 'Verein(t) für gute Kita und Schule'",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 5000,
+      "foerdersummeMax": 500,
       "reichweite": "alle",
-      "infoLink": "https://www.stiftungbildung.org/foerderpreis",
+      "infoLink": "https://www.aktive-buergerschaft.de/service-learning/sozialgenial-hilft-foerderfonds/",
       "score": 59,
       "status": "done"
     },
@@ -761,46 +872,6 @@
       "foerdersummeMax": 50000,
       "reichweite": "DE-SH",
       "infoLink": "https://www.schleswig-holstein.de",
-      "score": 59,
-      "status": "done"
-    },
-    {
-      "programmId": "telekom-stiftung-technik-scouts",
-      "name": "Technik Scouts",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 5000,
-      "reichweite": "alle",
-      "infoLink": "https://www.telekom-stiftung.de",
-      "score": 59,
-      "status": "done"
-    },
-    {
-      "programmId": "ruetgers-stiftung-mint",
-      "name": "RÜTGERS Stiftung MINT-Förderung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 3000,
-      "reichweite": "alle",
-      "infoLink": "https://ruetgers-stiftung.de",
-      "score": 58.8,
-      "status": "done"
-    },
-    {
-      "programmId": "energiesparmeister",
-      "name": "Energiesparmeister",
-      "foerdergeberTyp": "sonstige",
-      "foerdersummeMax": 5000,
-      "reichweite": "?",
-      "infoLink": "https://www.energiesparmeister.de/",
-      "score": 57,
-      "status": "done"
-    },
-    {
-      "programmId": "sozialgenial-hilft-foerderfonds",
-      "name": "sozialgenial hilft-Förderfonds",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 500,
-      "reichweite": "?",
-      "infoLink": "https://www.aktive-buergerschaft.de/service-learning/sozialgenial-hilft-foerderfonds/",
       "score": 57,
       "status": "done"
     },
@@ -815,16 +886,6 @@
       "status": "done"
     },
     {
-      "programmId": "bw-mikro-makro-mint",
-      "name": "Mikro makro mint",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 2500,
-      "reichweite": "DE-BW",
-      "infoLink": "https://www.jugend-forscht.de",
-      "score": 56,
-      "status": "done"
-    },
-    {
       "programmId": "saechsischer-schulgartenwettbewerb-aus-grau-macht",
       "name": "Sächsischer Schulgartenwettbewerb AUS GRAU MACHT GRÜN",
       "foerdergeberTyp": "land",
@@ -832,27 +893,6 @@
       "reichweite": "DE-SN",
       "infoLink": "https://www.schulgarten.sachsen.de/schulgartenwettbewerb.htm",
       "score": 56,
-      "status": "done"
-    },
-    {
-      "programmId": "hamburg-kultur-schule",
-      "name": "Projektfonds Kultur & Schule Hamburg",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 15000,
-      "reichweite": "DE-HH",
-      "infoLink": "https://www.hamburg.de/politik-und-verwaltung/behoerden/behoerde-fuer-kultur-und-medien/themen/kulturfoerderung/projektfonds-kultur-und-schule-107046",
-      "score": 55.8,
-      "status": "done",
-      "skipReason": "Quelle HTTP 404 (infoLink dauerhaft nicht erreichbar)"
-    },
-    {
-      "programmId": "brandenburg-kulturelle-bildung",
-      "name": "Landesförderprogramm Kulturelle Bildung und Partizipation",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 20000,
-      "reichweite": "DE-BB",
-      "infoLink": "https://mbjs.brandenburg.de/bildung.html",
-      "score": 55,
       "status": "done"
     },
     {
@@ -866,26 +906,6 @@
       "status": "done"
     },
     {
-      "programmId": "sh-schule-trifft-kultur",
-      "name": "Schule trifft Kultur – Kultur trifft Schule",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 15000,
-      "reichweite": "DE-SH",
-      "infoLink": "https://kulturellebildung-sh.de/info/aktuelles/news/41",
-      "score": 53.8,
-      "status": "done"
-    },
-    {
-      "programmId": "schott-nachhaltigkeit",
-      "name": "SCHOTT Schule und Nachhaltigkeit",
-      "foerdergeberTyp": "sonstige",
-      "foerdersummeMax": 12500,
-      "reichweite": "alle",
-      "infoLink": "https://www.schott.com/de-de/news-and-media/pressemitteilungen/2025/bildung-fuer-nachhaltige-entwicklung-schott-foerdert-17-projekte-an-standorten-in-ganz-deutschland",
-      "score": 53,
-      "status": "done"
-    },
-    {
       "programmId": "uk-german-connection",
       "name": "UK-German Connection - Schulpartnerschaften UK/Deutschland",
       "foerdergeberTyp": "verband",
@@ -893,16 +913,6 @@
       "reichweite": "alle",
       "infoLink": "https://ukgermanconnection.org/pp/de/foerdermittel/",
       "score": 52.8,
-      "status": "done"
-    },
-    {
-      "programmId": "rheinland-pfalz-pad",
-      "name": "PAD-Austauschprogramme",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 10000,
-      "reichweite": "DE-RP",
-      "infoLink": "https://bm.rlp.de",
-      "score": 52,
       "status": "done"
     },
     {
@@ -920,9 +930,9 @@
       "name": "Deutsch-Französisches Jugendwerk (DFJW) - Förderung Schulaustausch",
       "foerdergeberTyp": "sonstige",
       "foerdersummeMax": 800,
-      "reichweite": "?",
+      "reichweite": "alle",
       "infoLink": "https://www.dfjw.org/programme-aus-und-fortbildungen/zuschuesse-fuer-einen-schulaustausch-beantragen",
-      "score": 47,
+      "score": 49,
       "status": "done"
     },
     {
@@ -932,7 +942,27 @@
       "foerdersummeMax": 1000,
       "reichweite": "DE-NI",
       "infoLink": "https://www.sportjugend-nds.de/schule-kita-verein/schule-sportverein",
-      "score": 40,
+      "score": 48,
+      "status": "done"
+    },
+    {
+      "programmId": "berdelle-naturwissenschaft",
+      "name": "Naturwissenschaften in der Schule",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "alle",
+      "infoLink": "https://berdelle-stiftung.de/foerderung/schueler/",
+      "score": 32,
+      "status": "done"
+    },
+    {
+      "programmId": "innogy-stiftung-fuer-energie-und",
+      "name": "innogy Stiftung für Energie und Gesellschaft - Projektförderung",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": null,
+      "reichweite": "alle",
+      "infoLink": "https://innogy-stiftung.com/ueber-die-stiftung/foerderantraege/",
+      "score": 32,
       "status": "done"
     },
     {
@@ -956,12 +986,12 @@
       "status": "done"
     },
     {
-      "programmId": "innogy-stiftung-fuer-energie-und",
-      "name": "innogy Stiftung für Energie und Gesellschaft - Projektförderung",
+      "programmId": "reinhold-beitlich",
+      "name": "Erziehung und Bildung",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": null,
-      "reichweite": "?",
-      "infoLink": "https://innogy-stiftung.com/ueber-die-stiftung/foerderantraege/",
+      "reichweite": "alle",
+      "infoLink": "https://www.reinhold-beitlich-stiftung.de",
       "score": 30,
       "status": "done"
     },
@@ -986,33 +1016,13 @@
       "status": "done"
     },
     {
-      "programmId": "berdelle-naturwissenschaft",
-      "name": "Naturwissenschaften in der Schule",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": null,
-      "reichweite": "alle",
-      "infoLink": "https://berdelle-stiftung.de/foerderung/schueler/",
-      "score": 24,
-      "status": "done"
-    },
-    {
-      "programmId": "reinhold-beitlich",
-      "name": "Erziehung und Bildung",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": null,
-      "reichweite": "alle",
-      "infoLink": "https://www.reinhold-beitlich-stiftung.de",
-      "score": 22,
-      "status": "done"
-    },
-    {
       "programmId": "baywa-schulgarten",
       "name": "Schulgartenprojekt 'Gemüse pflanzen. Gesundheit ernten.'",
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": null,
       "reichweite": "alle",
       "infoLink": "https://www.baywastiftung.de/projekte/schulgarten",
-      "score": 22,
+      "score": 24,
       "status": "done"
     },
     {
@@ -1033,16 +1043,6 @@
       "reichweite": "DE-SN",
       "infoLink": "https://www.medienbildung.sachsen.de/foerderrichtlinie-6552.html",
       "score": 22,
-      "status": "done"
-    },
-    {
-      "programmId": "dkjs-sport",
-      "name": "Sport und Bewegung in der Grundschule",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": null,
-      "reichweite": "alle",
-      "infoLink": "https://www.dkhw.de",
-      "score": 20,
       "status": "done"
     },
     {
