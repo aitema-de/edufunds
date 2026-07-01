@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { AlertTriangle, ArrowRight, CheckCircle, ExternalLink, SearchX, Star } from "lucide-react";
+import { AlertTriangle, ArrowRight, CheckCircle, Coins, ExternalLink, SearchX, Star } from "lucide-react";
+import { buildFoerderhoeheHinweis } from "@/lib/foerderhoehe-empfehlung";
 
 export interface MatchEntry {
   id: string;
@@ -14,6 +15,7 @@ export interface MatchEntry {
     foerdergeber?: string;
     foerdergeberTyp?: string;
     foerdersummeText?: string;
+    foerdersummeMin?: number;
     foerdersummeMax?: number;
     bewerbungsfristText?: string;
     bewerbungsfristEnde?: string;
@@ -95,6 +97,7 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
       </div>
       {sorted.map((m) => {
         const expired = isFristAbgelaufen(m.programm.bewerbungsfristEnde);
+        const foerderhoehe = buildFoerderhoeheHinweis(m.programm);
         return (
         <article
           key={m.id}
@@ -115,9 +118,6 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
                   <span className="rounded-full border border-[#1c1917]/15 px-2 py-0.5 capitalize text-[#57534e]">
                     {m.programm.foerdergeberTyp}
                   </span>
-                )}
-                {m.programm.foerdersummeText && (
-                  <span>· bis {m.programm.foerdersummeText}</span>
                 )}
                 {m.programm.bewerbungsfristText && (
                   <span>· Frist: {m.programm.bewerbungsfristText}</span>
@@ -157,6 +157,19 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
                 </div>
               </div>
             )}
+          </div>
+          {/* P4-B: Beantragungshöhe-Orientierung — deterministisch aus Katalog-Fördersummen. */}
+          <div className="mb-4 flex items-start gap-2 rounded-lg border border-[#1c1917]/10 bg-[#78350f]/[0.04] px-3 py-2">
+            <Coins className="mt-0.5 h-4 w-4 shrink-0 text-[#78350f]" aria-hidden="true" />
+            <div className="min-w-0">
+              <p className="text-sm font-medium text-[#1c1917]">{foerderhoehe.headline}</p>
+              {foerderhoehe.detail && (
+                <p className="mt-0.5 text-xs text-slate-600">{foerderhoehe.detail}</p>
+              )}
+              <p className="mt-1 text-[11px] text-slate-500">
+                Grobe Orientierung — wie viel Sie konkret beantragen, hängt von Ihren Projektkosten ab.
+              </p>
+            </div>
           </div>
           <div className="flex flex-wrap items-center justify-between gap-3">
             <Link
