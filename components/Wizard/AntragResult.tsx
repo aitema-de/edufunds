@@ -467,7 +467,7 @@ export function AntragResult({
         <div className="mt-6 rounded-lg border border-[#78350f]/30 bg-[#78350f]/5 p-4">
           <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#1c1917]">
             <Sparkles className="h-4 w-4 text-[#78350f]" />
-            Vorschläge des Assistenten im Antragstext — bitte prüfen
+            Ergänzte Angaben — vom Assistenten hinzugefügt, bitte prüfen
           </div>
           <ul className="space-y-1.5 text-xs text-[#57534e]">
             {textVorschlaege.map((v, i) => {
