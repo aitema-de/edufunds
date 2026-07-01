@@ -30,6 +30,7 @@ import { QuestionCard } from "./QuestionCard";
 import { ChronologySidebar } from "./ChronologySidebar";
 import { GeneratingProgress } from "./GeneratingProgress";
 import { AntragResult } from "./AntragResult";
+import type { Foerderhoehe } from "@/lib/foerderhoehe-empfehlung";
 import { FactsPanel } from "./FactsPanel";
 import { KumulierungsWarnung, type Conflict } from "./KumulierungsWarnung";
 import { ReadinessAmpel } from "./ReadinessAmpel";
@@ -64,9 +65,11 @@ function formatProfileDate(iso?: string): string | null {
 interface Props {
   programm: Foerderprogramm;
   einreichung?: EinreichungInfo | null;
+  /** P4-B M-Erweiterung: strukturierte Förderhöhe aus dem Dossier für die Beantragungshöhe-Empfehlung. */
+  foerderhoehe?: Foerderhoehe | null;
 }
 
-export function WizardShell({ programm, einreichung }: Props) {
+export function WizardShell({ programm, einreichung, foerderhoehe }: Props) {
   const storageKey = STORAGE_KEY_PREFIX + programm.id;
 
   const [state, setState] = useState<WizardApiState | null>(null);
@@ -649,6 +652,7 @@ export function WizardShell({ programm, einreichung }: Props) {
       <AntragResult
         programm={programm}
         generation={generation}
+        foerderhoehe={foerderhoehe}
         costs={state.costs ?? null}
         sessionToken={state.sessionToken}
         paidToken={state.paidToken ?? null}

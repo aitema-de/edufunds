@@ -3,8 +3,12 @@
 import { useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { AlertTriangle, Check, Copy, Download, FileDown, Loader2, PenLine, RefreshCw, Sparkles } from "lucide-react";
+import { AlertTriangle, Check, Coins, Copy, Download, FileDown, Loader2, PenLine, RefreshCw, Sparkles } from "lucide-react";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
+import {
+  buildBeantragungsEmpfehlung,
+  type Foerderhoehe,
+} from "@/lib/foerderhoehe-empfehlung";
 import type { Finanzplan, GenerationArtefacts } from "@/lib/wizard/types";
 import { type CostLedger } from "@/lib/wizard/pricing";
 import { FinanzplanView } from "./FinanzplanView";
@@ -39,6 +43,8 @@ const CONSISTENCY_ART_LABELS: Record<string, string> = {
 interface Props {
   programm: Foerderprogramm;
   generation: GenerationArtefacts;
+  /** P4-B M-Erweiterung: strukturierte Förderhöhe aus dem Dossier (für die Beantragungshöhe-Empfehlung). */
+  foerderhoehe?: Foerderhoehe | null;
   costs?: CostLedger | null;
   sessionToken?: string;
   /** Wenn gesetzt, ist der Antrag bereits bezahlt — Paywall wird nicht angezeigt. */
@@ -184,6 +190,7 @@ async function loadHtml2pdf() {
 export function AntragResult({
   programm,
   generation,
+  foerderhoehe,
   costs,
   sessionToken,
   paidToken,
@@ -206,6 +213,22 @@ export function AntragResult({
     generation.factVerification?.vorschlaege ?? []
   );
   const printRef = useRef<HTMLDivElement>(null);
+  // P4-B M-Erweiterung: kostenrelative Beantragungshöhe-Empfehlung. Das Projekt-
+  // volumen kommt deterministisch aus dem Finanzplan (Summe der Posten; nur wenn
+  // beziffert). Katalog-Zahlen dienen als Fallback, wenn kein Dossier-Deckel vorliegt.
+  const finanzplanGesamtEur =
+    generation.finanzplan && !generation.finanzplan.unbeziffert && generation.finanzplan.posten.length > 0
+      ? generation.finanzplan.posten.reduce((s, p) => s + p.betragEur, 0)
+      : undefined;
+  const beantragungsEmpfehlung = buildBeantragungsEmpfehlung({
+    foerderhoehe,
+    katalog: {
+      foerdersummeMin: programm.foerdersummeMin,
+      foerdersummeMax: programm.foerdersummeMax,
+      foerdersummeText: programm.foerdersummeText,
+    },
+    gesamtkostenEur: finanzplanGesamtEur,
+  });
   const finanzplanMarkdown = generation.finanzplan
     ? renderFinanzplanMarkdown(generation.finanzplan)
     : "";
@@ -445,6 +468,24 @@ export function AntragResult({
             ) : (
               <FinanzplanView plan={generation.finanzplan} />
             )}
+          </div>
+        )}
+        {paid && (beantragungsEmpfehlung.hatEmpfehlung || beantragungsEmpfehlung.detail) && (
+          <div className="mt-6 rounded-lg border border-[#78350f]/20 bg-[#78350f]/[0.04] p-4">
+            <div className="mb-1 flex items-center gap-2 text-sm font-semibold text-[#1c1917]">
+              <Coins className="h-4 w-4 text-[#78350f]" />
+              Wie viel sollten Sie beantragen?
+            </div>
+            <p className="text-sm text-[#57534e]">{beantragungsEmpfehlung.headline}</p>
+            {beantragungsEmpfehlung.basis && (
+              <p className="mt-1 text-xs text-slate-600">{beantragungsEmpfehlung.basis}</p>
+            )}
+            {beantragungsEmpfehlung.detail && (
+              <p className="mt-1 text-xs italic text-slate-600">{beantragungsEmpfehlung.detail}</p>
+            )}
+            <p className="mt-2 text-[11px] text-slate-500">
+              Grobe Orientierung — die tatsächliche Bewilligung entscheidet der Fördergeber.
+            </p>
           </div>
         )}
         {!paid && sessionToken && (
