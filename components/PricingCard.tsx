@@ -51,7 +51,7 @@ export function PricingCard({
         <div
           className="absolute -inset-0.5 rounded-2xl opacity-60 blur-sm group-hover:opacity-100 transition-opacity duration-500"
           style={{
-            background: "linear-gradient(135deg, #d97706 0%, #fbbf24 50%, #d97706 100%)",
+            background: "linear-gradient(135deg, #d4af37 0%, #e4c55a 50%, #d4af37 100%)",
           }}
         />
       )}
@@ -60,8 +60,8 @@ export function PricingCard({
       <div
         className={`relative h-full flex flex-col rounded-2xl transition-all duration-500 ${
           highlighted
-            ? "bg-[#1c1917] border-2 border-[#d97706]/50"
-            : "bg-[#1c1917]/60 border border-[#d97706]/10 hover:border-[#d97706]/30"
+            ? "bg-[#1c1917] border-2 border-[#d4af37]/50"
+            : "bg-[#1c1917]/60 border border-[#d4af37]/10 hover:border-[#d4af37]/30"
         }`}
       >
         {/* Badge */}
@@ -70,7 +70,7 @@ export function PricingCard({
             <div
               className="px-4 py-1.5 rounded-full text-sm font-semibold whitespace-nowrap"
               style={{
-                background: "linear-gradient(135deg, #d97706 0%, #b45309 100%)",
+                background: "linear-gradient(135deg, #d4af37 0%, #356152 100%)",
                 color: "#1c1917",
               }}
             >
@@ -91,7 +91,7 @@ export function PricingCard({
             >
               <Icon
                 className="w-6 h-6"
-                style={{ color: highlighted ? "#fbbf24" : "#d97706" }}
+                style={{ color: highlighted ? "#e4c55a" : "#d4af37" }}
               />
             </div>
             <div>
@@ -183,8 +183,8 @@ export function PricingCard({
             href={ctaLink}
             className={`w-full py-3.5 rounded-xl font-semibold text-center flex items-center justify-center gap-2 transition-colors ${
               highlighted
-                ? "bg-amber-600 text-[#1c1917] hover:bg-amber-500"
-                : "border-2 border-amber-600 text-amber-500 hover:bg-amber-600 hover:text-[#1c1917]"
+                ? "bg-gold-500 text-[#1c1917] hover:bg-gold-400"
+                : "border-2 border-gold-500 text-gold-400 hover:bg-gold-500 hover:text-[#1c1917]"
             }`}
           >
             {ctaText}

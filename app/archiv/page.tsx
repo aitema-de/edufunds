@@ -75,11 +75,11 @@ function ArchivEintrag({
     >
       {/* Zeitachse: Knoten + Verbindungslinie */}
       <div className="flex flex-col items-center" aria-hidden="true">
-        <span className="mt-1.5 flex h-4 w-4 items-center justify-center rounded-full border-2 border-[#78350f]/70 bg-[#fdfdfc]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#78350f]" />
+        <span className="mt-1.5 flex h-4 w-4 items-center justify-center rounded-full border-2 border-[#1e3d32]/70 bg-[#fdfdfc]">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#1e3d32]" />
         </span>
         {!isLast && (
-          <span className="mt-1 w-px flex-1 bg-gradient-to-b from-[#78350f]/35 to-[#78350f]/10" />
+          <span className="mt-1 w-px flex-1 bg-gradient-to-b from-[#1e3d32]/35 to-[#1e3d32]/10" />
         )}
       </div>
 
@@ -89,7 +89,7 @@ function ArchivEintrag({
           {ende && (
             <time
               dateTime={programm.bewerbungsfristEnde}
-              className="text-sm font-semibold tracking-tight text-[#78350f]"
+              className="text-sm font-semibold tracking-tight text-[#1e3d32]"
             >
               {ende}
             </time>
@@ -99,7 +99,7 @@ function ArchivEintrag({
             {geberLabel}
           </span>
           {wiederkehrend && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-[#78350f]/12 px-2 py-0.5 text-[11px] font-medium text-[#78350f]">
+            <span className="inline-flex items-center gap-1 rounded-full bg-[#1e3d32]/12 px-2 py-0.5 text-[11px] font-medium text-[#1e3d32]">
               <RotateCcw className="h-3 w-3" />
               Wiederkehrend – neue Runde erwartet
             </span>
@@ -131,7 +131,7 @@ function ArchivEintrag({
               href={programm.infoLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-medium text-[#78350f] transition-colors hover:text-[#78350f] hover:underline"
+              className="inline-flex items-center gap-1 font-medium text-[#1e3d32] transition-colors hover:text-[#1e3d32] hover:underline"
             >
               Information
               <ExternalLink className="h-3 w-3" />
@@ -157,9 +157,9 @@ export default function ArchivPage() {
         <div className="container mx-auto px-4">
           {/* Seitenkopf */}
           <div className="mx-auto mb-10 max-w-3xl text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#78350f]/30 bg-[#78350f]/10 px-4 py-2">
-              <Archive className="h-4 w-4 text-[#78350f]" />
-              <span className="text-sm font-medium text-[#78350f]">Archiv</span>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#1e3d32]/30 bg-[#1e3d32]/10 px-4 py-2">
+              <Archive className="h-4 w-4 text-[#1e3d32]" />
+              <span className="text-sm font-medium text-[#1e3d32]">Archiv</span>
             </div>
             <h1 className="mb-4 text-4xl font-bold text-[#1c1917] md:text-5xl">
               Abgelaufene Förderprogramme
@@ -175,7 +175,7 @@ export default function ArchivPage() {
           <div className="mx-auto mb-10 flex max-w-3xl items-center justify-between gap-4">
             <Link
               href="/foerderprogramme"
-              className="inline-flex items-center gap-2 text-sm font-medium text-[#78350f] transition-colors hover:text-[#78350f]"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[#1e3d32] transition-colors hover:text-[#1e3d32]"
             >
               <ArrowLeft className="h-4 w-4" />
               Zurück zu aktuellen Programmen
@@ -190,7 +190,7 @@ export default function ArchivPage() {
           {/* Zeitleiste */}
           {anzahl === 0 ? (
             <div className="mx-auto max-w-2xl rounded-2xl border border-[#1c1917]/10 bg-white/70 p-12 text-center">
-              <Archive className="mx-auto mb-4 h-14 w-14 text-[#78350f]/60" />
+              <Archive className="mx-auto mb-4 h-14 w-14 text-[#1e3d32]/60" />
               <h2 className="mb-2 text-xl font-bold text-[#1c1917]">
                 Keine abgelaufenen Programme
               </h2>
@@ -218,7 +218,7 @@ export default function ArchivPage() {
               Kennen Sie eine neue Ausschreibung zu einem dieser Programme?{" "}
               <Link
                 href="/kontakt"
-                className="font-medium text-[#78350f] underline-offset-2 hover:underline"
+                className="font-medium text-[#1e3d32] underline-offset-2 hover:underline"
               >
                 Schreiben Sie uns
               </Link>

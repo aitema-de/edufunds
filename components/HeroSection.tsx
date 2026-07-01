@@ -48,7 +48,7 @@ export function HeroSection() {
       <div 
         className="absolute top-[15%] right-[10%] w-64 h-64 animate-float hidden lg:block"
         style={{ 
-          background: 'linear-gradient(135deg, rgba(120, 53, 15, 0.08) 0%, rgba(120, 53, 15, 0.02) 100%)',
+          background: 'linear-gradient(135deg, rgba(30, 61, 50, 0.08) 0%, rgba(30, 61, 50, 0.02) 100%)',
           borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
         }}
       />
@@ -62,7 +62,7 @@ export function HeroSection() {
       <div 
         className="absolute top-[40%] left-[15%] w-24 h-24 animate-float-slow hidden lg:block"
         style={{ 
-          border: '2px solid rgba(120, 53, 15, 0.15)',
+          border: '2px solid rgba(30, 61, 50, 0.15)',
           borderRadius: '50%',
         }}
       />
@@ -84,7 +84,7 @@ export function HeroSection() {
                 color: '#1c1917',
               }}
             >
-              <Sparkles className="w-3.5 h-3.5" style={{ color: '#78350f' }} />
+              <Sparkles className="w-3.5 h-3.5" style={{ color: '#1e3d32' }} />
               <span>KI-gestützter Antragsassistent</span>
             </div>
           </motion.div>
@@ -97,7 +97,7 @@ export function HeroSection() {
             >
               Fördermittel für
               <br />
-              <span style={{ color: '#78350f' }}>Schulen.</span>
+              <span style={{ color: '#1e3d32' }}>Schulen.</span>
               <br />
               <span className="text-4xl md:text-5xl lg:text-6xl italic opacity-60">
                 Vereinfacht.
@@ -107,7 +107,7 @@ export function HeroSection() {
             <div className="flex justify-center mb-6">
               <div 
                 className="accent-line"
-                style={{ background: 'linear-gradient(90deg, #78350f, #d97706)' }}
+                style={{ background: 'linear-gradient(90deg, #1e3d32, #d4af37)' }}
               />
             </div>
           </motion.div>
@@ -139,7 +139,7 @@ export function HeroSection() {
 
             <Button asChild size="lg" variant="outline-navy" className="group">
               <Link href="/foerderprogramme">
-                <Sparkles className="w-5 h-5 text-[#78350f] group-hover:text-[#1c1917]" />
+                <Sparkles className="w-5 h-5 text-[#1e3d32] group-hover:text-[#1c1917]" />
                 <span className="font-semibold">KI-Assistent testen</span>
               </Link>
             </Button>
@@ -151,10 +151,10 @@ export function HeroSection() {
             className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto"
           >
             {[
-              { value: stats.total, label: 'Programme', icon: School, color: '#78350f' },
+              { value: stats.total, label: 'Programme', icon: School, color: '#1e3d32' },
               { value: stats.bund, label: 'Bund', icon: Building2, color: '#1a4d4d' },
               { value: stats.land, label: 'Länder', icon: HeartHandshake, color: '#57534e' },
-              { value: stats.stiftung, label: 'Stiftungen', icon: Sparkles, color: '#78350f' },
+              { value: stats.stiftung, label: 'Stiftungen', icon: Sparkles, color: '#1e3d32' },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}

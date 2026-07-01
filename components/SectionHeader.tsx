@@ -20,10 +20,10 @@ export function SectionHeader({
   align = "center",
 }: SectionHeaderProps) {
   const isLight = variant === "light";
-  const labelColor = isLight ? "#78350f" : "#d97706";
+  const labelColor = isLight ? "#1e3d32" : "#d4af37";
   const titleColor = isLight ? "#1c1917" : "#fdfdfc";
   const descriptionColor = isLight ? "#57534e" : "#a8a29e";
-  const accentColor = isLight ? "#78350f" : "#d97706";
+  const accentColor = isLight ? "#1e3d32" : "#d4af37";
 
   const alignClass = {
     left: "text-left",
@@ -62,7 +62,7 @@ export function SectionHeader({
       <div className={`flex ${align === "center" ? "justify-center" : align === "right" ? "justify-end" : ""} mb-6`}>
         <div
           className="w-16 h-0.5"
-          style={{ background: "linear-gradient(90deg, #78350f, #d97706)" }}
+          style={{ background: "linear-gradient(90deg, #1e3d32, #d4af37)" }}
         />
       </div>
       {description && (

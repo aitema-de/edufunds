@@ -21,7 +21,7 @@ export default function StartPage() {
       <PageHero
         variant="light"
         badge={{
-          icon: <Sparkles className="w-3.5 h-3.5" style={{ color: "#78350f" }} />,
+          icon: <Sparkles className="w-3.5 h-3.5" style={{ color: "#1e3d32" }} />,
           text: "KI-Antragsassistent · Beta",
         }}
         title="Neuen Antrag"
@@ -31,7 +31,7 @@ export default function StartPage() {
         <div className="flex justify-center">
           <Link
             href="/antrag/meine"
-            className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 bg-white/70 px-4 py-2 text-sm font-medium text-[#1c1917] backdrop-blur-sm transition hover:border-[#78350f]/40 hover:text-[#78350f]"
+            className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 bg-white/70 px-4 py-2 text-sm font-medium text-[#1c1917] backdrop-blur-sm transition hover:border-[#1e3d32]/40 hover:text-[#1e3d32]"
           >
             <FolderOpen className="h-4 w-4" />
             Meine Anträge

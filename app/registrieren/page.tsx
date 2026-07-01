@@ -62,7 +62,7 @@ export default function RegistrierenPage() {
                 </Link>
                 <Link
                   href="/"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[#d97706]/50 text-[#d97706] w-full justify-center"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[#d4af37]/50 text-[#d4af37] w-full justify-center"
                 >
                   Zur Startseite
                 </Link>
@@ -119,7 +119,7 @@ export default function RegistrierenPage() {
                       type="text"
                       required
                       placeholder="Ihr vollständiger Name"
-                      className="w-full pl-12 pr-4 py-3 rounded-xl bg-[#1c1917] border border-[#a8a29e] text-[#fdfdfc] placeholder:text-[#78716c] focus:border-[#d97706] focus:outline-none transition-colors"
+                      className="w-full pl-12 pr-4 py-3 rounded-xl bg-[#1c1917] border border-[#a8a29e] text-[#fdfdfc] placeholder:text-[#78716c] focus:border-[#d4af37] focus:outline-none transition-colors"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     />
@@ -137,7 +137,7 @@ export default function RegistrierenPage() {
                       type="email"
                       required
                       placeholder="ihre@email.de"
-                      className="w-full pl-12 pr-4 py-3 rounded-xl bg-[#1c1917] border border-[#a8a29e] text-[#fdfdfc] placeholder:text-[#78716c] focus:border-[#d97706] focus:outline-none transition-colors"
+                      className="w-full pl-12 pr-4 py-3 rounded-xl bg-[#1c1917] border border-[#a8a29e] text-[#fdfdfc] placeholder:text-[#78716c] focus:border-[#d4af37] focus:outline-none transition-colors"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     />
@@ -155,7 +155,7 @@ export default function RegistrierenPage() {
                       type="text"
                       required
                       placeholder="Name Ihrer Schule"
-                      className="w-full pl-12 pr-4 py-3 rounded-xl bg-[#1c1917] border border-[#a8a29e] text-[#fdfdfc] placeholder:text-[#78716c] focus:border-[#d97706] focus:outline-none transition-colors"
+                      className="w-full pl-12 pr-4 py-3 rounded-xl bg-[#1c1917] border border-[#a8a29e] text-[#fdfdfc] placeholder:text-[#78716c] focus:border-[#d4af37] focus:outline-none transition-colors"
                       value={formData.schule}
                       onChange={(e) => setFormData({ ...formData, schule: e.target.value })}
                     />
@@ -174,7 +174,7 @@ export default function RegistrierenPage() {
                       required
                       placeholder="Mindestens 8 Zeichen"
                       minLength={8}
-                      className="w-full pl-12 pr-4 py-3 rounded-xl bg-[#1c1917] border border-[#a8a29e] text-[#fdfdfc] placeholder:text-[#78716c] focus:border-[#d97706] focus:outline-none transition-colors"
+                      className="w-full pl-12 pr-4 py-3 rounded-xl bg-[#1c1917] border border-[#a8a29e] text-[#fdfdfc] placeholder:text-[#78716c] focus:border-[#d4af37] focus:outline-none transition-colors"
                       value={formData.password}
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     />
@@ -187,17 +187,17 @@ export default function RegistrierenPage() {
                     type="checkbox"
                     id="terms"
                     required
-                    className="mt-1 w-4 h-4 rounded border-[#a8a29e] bg-[#1c1917] text-[#d97706] focus:ring-[#d97706]"
+                    className="mt-1 w-4 h-4 rounded border-[#a8a29e] bg-[#1c1917] text-[#d4af37] focus:ring-[#d4af37]"
                     checked={formData.acceptTerms}
                     onChange={(e) => setFormData({ ...formData, acceptTerms: e.target.checked })}
                   />
                   <label htmlFor="terms" className="text-sm" style={{ color: "#a8a29e" }}>
                     Ich akzeptiere die{" "}
-                    <Link href="/agb" className="text-[#d97706] hover:underline">
+                    <Link href="/agb" className="text-[#d4af37] hover:underline">
                       AGB
                     </Link>{" "}
                     und die{" "}
-                    <Link href="/datenschutz" className="text-[#d97706] hover:underline">
+                    <Link href="/datenschutz" className="text-[#d4af37] hover:underline">
                       Datenschutzerklärung
                     </Link>
                   </label>
@@ -219,7 +219,7 @@ export default function RegistrierenPage() {
               {/* Login Link */}
               <p className="mt-6 text-center text-sm" style={{ color: "#a8a29e" }}>
                 Bereits registriert?{" "}
-                <Link href="/login" className="text-[#d97706] hover:underline font-medium">
+                <Link href="/login" className="text-[#d4af37] hover:underline font-medium">
                   Hier anmelden
                 </Link>
               </p>
@@ -239,7 +239,7 @@ export default function RegistrierenPage() {
                 "DSGVO-konform",
               ].map((benefit, i) => (
                 <div key={i} className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-[#d97706] flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-[#d4af37] flex-shrink-0" />
                   <span className="text-sm" style={{ color: "#475569" }}>
                     {benefit}
                   </span>

@@ -15,9 +15,9 @@ export default function AGBPage() {
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#78350f]/10 border border-[#78350f]/20 mb-6">
-              <FileText className="h-4 w-4 text-[#78350f]" />
-              <span className="text-sm font-medium text-[#78350f]">Rechtliches</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1e3d32]/10 border border-[#1e3d32]/20 mb-6">
+              <FileText className="h-4 w-4 text-[#1e3d32]" />
+              <span className="text-sm font-medium text-[#1e3d32]">Rechtliches</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-[#1c1917] mb-4">
               Allgemeine Geschäftsbedingungen
@@ -28,7 +28,7 @@ export default function AGBPage() {
           </div>
 
           {/* Hinweis */}
-          <div className="bg-white rounded-xl p-6 mb-8 border-l-4 border-[#78350f] shadow-sm">
+          <div className="bg-white rounded-xl p-6 mb-8 border-l-4 border-[#1e3d32] shadow-sm">
             <p className="text-[#1c1917]/80 text-base leading-relaxed">
               Dies ist eine Übersetzung zur Information. Die deutsche Version ist rechtsverbindlich. 
               Diese AGB gelten für Verträge zwischen der aitema GmbH und Unternehmern im Sinne 
@@ -41,7 +41,7 @@ export default function AGBPage() {
             {/* § 1 */}
             <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#78350f] font-bold">§ 1</span>
+                <span className="text-[#1e3d32] font-bold">§ 1</span>
                 Geltungsbereich
               </h2>
               <div className="text-[#1c1917]/80 space-y-4 leading-relaxed text-base">
@@ -63,7 +63,7 @@ export default function AGBPage() {
             {/* § 2 */}
             <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#78350f] font-bold">§ 2</span>
+                <span className="text-[#1e3d32] font-bold">§ 2</span>
                 Vertragsschluss
               </h2>
               <p className="text-[#1c1917]/80 leading-relaxed text-base">
@@ -77,14 +77,14 @@ export default function AGBPage() {
             {/* § 3 */}
             <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#1c1917] mb-6 flex items-center gap-3">
-                <span className="text-[#78350f] font-bold">§ 3</span>
+                <span className="text-[#1e3d32] font-bold">§ 3</span>
                 Leistungen
               </h2>
 
               <div className="space-y-6">
                 <div className="bg-[#fdfdfc] rounded-xl p-6 border border-[#1c1917]/8">
                   <h3 className="text-lg font-medium text-[#1c1917] mb-3 flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-[#78350f]" />
+                    <CheckCircle className="h-5 w-5 text-[#1e3d32]" />
                     SaaS-Leistungen
                   </h3>
                   <p className="text-[#1c1917]/80 leading-relaxed text-base">
@@ -96,7 +96,7 @@ export default function AGBPage() {
 
                 <div className="bg-[#fdfdfc] rounded-xl p-6 border border-[#1c1917]/8">
                   <h3 className="text-lg font-medium text-[#1c1917] mb-3 flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-[#78350f]" />
+                    <CheckCircle className="h-5 w-5 text-[#1e3d32]" />
                     Beratungsleistungen
                   </h3>
                   <p className="text-[#1c1917]/80 leading-relaxed text-base">
@@ -108,7 +108,7 @@ export default function AGBPage() {
 
                 <div className="bg-[#fdfdfc] rounded-xl p-6 border border-[#1c1917]/8">
                   <h3 className="text-lg font-medium text-[#1c1917] mb-3 flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-[#78350f]" />
+                    <CheckCircle className="h-5 w-5 text-[#1e3d32]" />
                     Support
                   </h3>
                   <p className="text-[#1c1917]/80 leading-relaxed text-base">
@@ -122,7 +122,7 @@ export default function AGBPage() {
             {/* § 4 */}
             <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#78350f] font-bold">§ 4</span>
+                <span className="text-[#1e3d32] font-bold">§ 4</span>
                 Pflichten des Kunden
               </h2>
               <p className="text-[#1c1917]/80 leading-relaxed text-base">
@@ -136,12 +136,12 @@ export default function AGBPage() {
             {/* § 5 */}
             <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#78350f] font-bold">§ 5</span>
+                <span className="text-[#1e3d32] font-bold">§ 5</span>
                 Vergütung und Zahlung
               </h2>
               <div className="text-[#1c1917]/80 space-y-4 text-base">
                 <div className="flex items-center gap-3">
-                  <Euro className="h-5 w-5 text-[#78350f]" />
+                  <Euro className="h-5 w-5 text-[#1e3d32]" />
                   <p>Alle Preise verstehen sich zuzüglich gesetzlicher Umsatzsteuer.</p>
                 </div>
                 <p className="leading-relaxed">
@@ -154,12 +154,12 @@ export default function AGBPage() {
             {/* § 6 */}
             <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#78350f] font-bold">§ 6</span>
+                <span className="text-[#1e3d32] font-bold">§ 6</span>
                 Vertragslaufzeit und Kündigung
               </h2>
               <div className="text-[#1c1917]/80 space-y-4 text-base">
                 <div className="flex items-start gap-3">
-                  <Clock className="h-5 w-5 text-[#78350f] mt-0.5 shrink-0" />
+                  <Clock className="h-5 w-5 text-[#1e3d32] mt-0.5 shrink-0" />
                   <div>
                     <p className="leading-relaxed">
                       SaaS-Verträge haben eine Mindestlaufzeit von <strong className="text-[#1c1917]">12 Monaten</strong>. 
@@ -169,7 +169,7 @@ export default function AGBPage() {
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Percent className="h-5 w-5 text-[#78350f] mt-0.5 shrink-0" />
+                  <Percent className="h-5 w-5 text-[#1e3d32] mt-0.5 shrink-0" />
                   <p className="leading-relaxed">
                     SaaS-Verträge können nach der Mindestlaufzeit mit einer Kündigungsfrist von 
                     <strong className="text-[#1c1917]"> 30 Tagen</strong> zum Ende eines Kalendermonats gekündigt werden.
@@ -181,7 +181,7 @@ export default function AGBPage() {
             {/* § 7 */}
             <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#78350f] font-bold">§ 7</span>
+                <span className="text-[#1e3d32] font-bold">§ 7</span>
                 Nutzungsrechte
               </h2>
               <p className="text-[#1c1917]/80 leading-relaxed text-base">
@@ -195,12 +195,12 @@ export default function AGBPage() {
             {/* § 8 */}
             <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#78350f] font-bold">§ 8</span>
+                <span className="text-[#1e3d32] font-bold">§ 8</span>
                 Datenschutz
               </h2>
               <div className="text-[#1c1917]/80 space-y-4 text-base">
                 <div className="flex items-start gap-3">
-                  <Shield className="h-5 w-5 text-[#78350f] mt-0.5 shrink-0" />
+                  <Shield className="h-5 w-5 text-[#1e3d32] mt-0.5 shrink-0" />
                   <p className="leading-relaxed">
                     Die Parteien verpflichten sich, die geltenden Datenschutzvorschriften, insbesondere 
                     DSGVO und BDSG, einzuhalten. Soweit der Anbieter personenbezogene Daten im Auftrag 
@@ -209,7 +209,7 @@ export default function AGBPage() {
                   </p>
                 </div>
                 <p className="text-base">
-                  → <a href="/datenschutz" className="text-[#78350f] hover:text-[#78350f] transition-colors underline underline-offset-2">Zur Datenschutzerklärung</a>
+                  → <a href="/datenschutz" className="text-[#1e3d32] hover:text-[#1e3d32] transition-colors underline underline-offset-2">Zur Datenschutzerklärung</a>
                 </p>
               </div>
             </section>
@@ -217,7 +217,7 @@ export default function AGBPage() {
             {/* § 9 */}
             <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#78350f] font-bold">§ 9</span>
+                <span className="text-[#1e3d32] font-bold">§ 9</span>
                 Gewährleistung
               </h2>
               <p className="text-[#1c1917]/80 leading-relaxed text-base">
@@ -231,7 +231,7 @@ export default function AGBPage() {
             {/* § 10 */}
             <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#78350f] font-bold">§ 10</span>
+                <span className="text-[#1e3d32] font-bold">§ 10</span>
                 Haftung
               </h2>
               <div className="text-[#1c1917]/80 space-y-4 leading-relaxed text-base">
@@ -251,7 +251,7 @@ export default function AGBPage() {
             {/* § 11-14 */}
             <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#78350f] font-bold">§ 11-14</span>
+                <span className="text-[#1e3d32] font-bold">§ 11-14</span>
                 Weitere Bestimmungen
               </h2>
               <div className="text-[#1c1917]/80 space-y-3 text-base">
@@ -275,7 +275,7 @@ export default function AGBPage() {
                   E-Mail:{" "}
                   <a 
                     href="mailto:office@aitema.de" 
-                    className="text-[#78350f] hover:text-[#78350f] transition-colors underline underline-offset-2"
+                    className="text-[#1e3d32] hover:text-[#1e3d32] transition-colors underline underline-offset-2"
                   >
                     office@aitema.de
                   </a>

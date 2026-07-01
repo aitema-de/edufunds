@@ -35,7 +35,7 @@ export function ClarificationCard({ question, onSubmit, onForceRanking, busy }: 
         value={praezisierung}
         onChange={(e) => setPraezisierung(e.target.value)}
         placeholder="Präzisieren Sie Ihr Anliegen hier..."
-        className="w-full rounded-lg bg-white border border-[#1c1917]/15 px-4 py-3 text-sm text-[#1c1917] placeholder-slate-400 resize-none min-h-[80px] transition focus:border-[#78350f] focus:outline-none focus:ring-2 focus:ring-[#78350f]/15"
+        className="w-full rounded-lg bg-white border border-[#1c1917]/15 px-4 py-3 text-sm text-[#1c1917] placeholder-slate-400 resize-none min-h-[80px] transition focus:border-[#1e3d32] focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/15"
       />
       <div className="flex items-center justify-between flex-wrap gap-3">
         <button

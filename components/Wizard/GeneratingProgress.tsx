@@ -40,9 +40,9 @@ function stageStatus(
 
 export function GeneratingProgress({ stage, currentStage }: Props) {
   return (
-    <div className="rounded-xl border border-[#78350f]/40 bg-white p-10">
+    <div className="rounded-xl border border-[#1e3d32]/40 bg-white p-10">
       <div className="mb-6 flex items-center gap-3">
-        <Loader2 className="h-8 w-8 animate-spin text-[#78350f]" />
+        <Loader2 className="h-8 w-8 animate-spin text-[#1e3d32]" />
         <div>
           <h3 className="text-xl font-semibold text-[#1c1917]">
             Pipeline schreibt Ihren Antrag
@@ -58,7 +58,7 @@ export function GeneratingProgress({ stage, currentStage }: Props) {
           const status = stageStatus(s.key, currentStage);
           const containerClass =
             status === "active"
-              ? "flex items-start gap-3 rounded-lg border border-[#78350f]/40 bg-[#78350f]/5 p-3"
+              ? "flex items-start gap-3 rounded-lg border border-[#1e3d32]/40 bg-[#1e3d32]/5 p-3"
               : status === "done"
                 ? "flex items-start gap-3 rounded-lg border border-[#1c1917]/10 bg-emerald-500/5 p-3"
                 : "flex items-start gap-3 rounded-lg border border-[#1c1917]/10 bg-[#fdfdfc] p-3";
@@ -66,7 +66,7 @@ export function GeneratingProgress({ stage, currentStage }: Props) {
             <li key={s.key} className={containerClass}>
               <div className="mt-0.5">
                 {status === "pending" && <Circle className="h-5 w-5 text-slate-600" />}
-                {status === "active" && <Loader2 className="h-5 w-5 animate-spin text-[#78350f]" />}
+                {status === "active" && <Loader2 className="h-5 w-5 animate-spin text-[#1e3d32]" />}
                 {status === "done" && <CheckCircle className="h-5 w-5 text-emerald-400" />}
               </div>
               <div className="flex-1">
@@ -79,7 +79,7 @@ export function GeneratingProgress({ stage, currentStage }: Props) {
       </ul>
 
       {stage && (
-        <p className="mt-6 text-center text-sm text-[#78350f]">{stage}</p>
+        <p className="mt-6 text-center text-sm text-[#1e3d32]">{stage}</p>
       )}
     </div>
   );

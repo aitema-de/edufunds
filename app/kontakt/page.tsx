@@ -15,7 +15,7 @@ export default function KontaktPage() {
         <section className="relative pt-32 pb-20 overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
-              backgroundImage: `radial-gradient(circle at 20% 80%, rgba(120, 53, 15, 0.15) 0%, transparent 50%)`,
+              backgroundImage: `radial-gradient(circle at 20% 80%, rgba(30, 61, 50, 0.15) 0%, transparent 50%)`,
             }} />
           </div>
           
@@ -27,11 +27,11 @@ export default function KontaktPage() {
               className="text-center max-w-3xl mx-auto"
             >
               <span className="inline-block px-4 py-2 rounded-full text-xs font-medium tracking-wider uppercase mb-6"
-                style={{ backgroundColor: "rgba(120, 53, 15, 0.1)", color: "#78350f" }}>
+                style={{ backgroundColor: "rgba(30, 61, 50, 0.1)", color: "#1e3d32" }}>
                 Kontakt
               </span>
               <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "#1c1917" }}>
-                Wir sind für Sie <span style={{ color: "#78350f" }}>da</span>
+                Wir sind für Sie <span style={{ color: "#1e3d32" }}>da</span>
               </h1>
               <p className="text-lg" style={{ color: "#64748b" }}>
                 Haben Sie Fragen zu Fördermitteln oder unserer Plattform? 
@@ -58,12 +58,12 @@ export default function KontaktPage() {
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center"
-                      style={{ backgroundColor: "rgba(120, 53, 15, 0.1)" }}>
-                      <Mail className="w-5 h-5" style={{ color: "#78350f" }} />
+                      style={{ backgroundColor: "rgba(30, 61, 50, 0.1)" }}>
+                      <Mail className="w-5 h-5" style={{ color: "#1e3d32" }} />
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1" style={{ color: "#1c1917" }}>E-Mail</h3>
-                      <a href="mailto:office@edufunds.org" className="text-[#78350f] hover:text-[#d97706] transition-colors underline underline-offset-2">
+                      <a href="mailto:office@edufunds.org" className="text-[#1e3d32] hover:text-[#2a5244] transition-colors underline underline-offset-2">
                         office@edufunds.org
                       </a>
                     </div>
@@ -71,8 +71,8 @@ export default function KontaktPage() {
 
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center"
-                      style={{ backgroundColor: "rgba(120, 53, 15, 0.1)" }}>
-                      <Clock className="w-5 h-5" style={{ color: "#78350f" }} />
+                      style={{ backgroundColor: "rgba(30, 61, 50, 0.1)" }}>
+                      <Clock className="w-5 h-5" style={{ color: "#1e3d32" }} />
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1" style={{ color: "#1c1917" }}>Erreichbarkeit</h3>
@@ -84,8 +84,8 @@ export default function KontaktPage() {
 
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center"
-                      style={{ backgroundColor: "rgba(120, 53, 15, 0.1)" }}>
-                      <MapPin className="w-5 h-5" style={{ color: "#78350f" }} />
+                      style={{ backgroundColor: "rgba(30, 61, 50, 0.1)" }}>
+                      <MapPin className="w-5 h-5" style={{ color: "#1e3d32" }} />
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1" style={{ color: "#1c1917" }}>Anschrift</h3>
@@ -141,7 +141,7 @@ export default function KontaktPage() {
                       className="w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2"
                       style={{ 
                         backgroundColor: "rgba(28, 25, 23, 0.5)",
-                        borderColor: "rgba(120, 53, 15, 0.3)",
+                        borderColor: "rgba(30, 61, 50, 0.3)",
                         color: "#fdfdfc"
                       }}
                       placeholder="ihre@email.de"
@@ -159,7 +159,7 @@ export default function KontaktPage() {
                       className="w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2"
                       style={{ 
                         backgroundColor: "rgba(28, 25, 23, 0.5)",
-                        borderColor: "rgba(120, 53, 15, 0.3)",
+                        borderColor: "rgba(30, 61, 50, 0.3)",
                         color: "#fdfdfc"
                       }}
                       placeholder="Worum geht es?"
@@ -177,7 +177,7 @@ export default function KontaktPage() {
                       className="w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 resize-none"
                       style={{ 
                         backgroundColor: "rgba(28, 25, 23, 0.5)",
-                        borderColor: "rgba(120, 53, 15, 0.3)",
+                        borderColor: "rgba(30, 61, 50, 0.3)",
                         color: "#fdfdfc"
                       }}
                       placeholder="Ihre Nachricht..."
@@ -192,7 +192,7 @@ export default function KontaktPage() {
                       className="mt-1"
                     />
                     <label className="text-sm" style={{ color: "#475569" }}>
-                      Ich habe die <Link href="/datenschutz" className="text-[#78350f] hover:text-[#d97706] underline underline-offset-2">Datenschutzerklärung</Link> gelesen und stimme zu. *
+                      Ich habe die <Link href="/datenschutz" className="text-[#1e3d32] hover:text-[#2a5244] underline underline-offset-2">Datenschutzerklärung</Link> gelesen und stimme zu. *
                     </label>
                   </div>
 

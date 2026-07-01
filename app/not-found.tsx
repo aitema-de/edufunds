@@ -54,7 +54,7 @@ export default function NotFound() {
                 href="/"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium transition-all hover:shadow-lg"
                 style={{ 
-                  background: 'linear-gradient(135deg, #78350f 0%, #78350f 100%)',
+                  background: 'linear-gradient(135deg, #1e3d32 0%, #1e3d32 100%)',
                   color: '#1c1917'
                 }}
               >
@@ -66,8 +66,8 @@ export default function NotFound() {
                 href="/foerderprogramme"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border font-medium transition-all hover:shadow-md"
                 style={{ 
-                  borderColor: '#78350f',
-                  color: '#78350f',
+                  borderColor: '#1e3d32',
+                  color: '#1e3d32',
                   backgroundColor: 'transparent'
                 }}
               >
@@ -111,7 +111,7 @@ export default function NotFound() {
                   >
                     <span 
                       className="text-xs font-medium mb-2 block"
-                      style={{ color: '#78350f' }}
+                      style={{ color: '#1e3d32' }}
                     >
                       {programm.foerdergeberTyp.toUpperCase()}
                     </span>

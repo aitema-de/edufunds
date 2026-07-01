@@ -119,7 +119,7 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
             onKeyDown={handleKey}
             placeholder="Beschreiben Sie, was Sie an Ihrer Schule umsetzen wollen — konkret, mit Zielgruppe und Wirkung. Beispiel: Wir wollen 120 Fünft- und Sechstklässlern Programmieren mit Calliope näherbringen. 80 % Migrationshintergrund, MINT-Lücke spürbar."
             rows={5}
-            className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 p-3 sm:min-h-[140px] text-[#1c1917] placeholder-slate-400 transition focus:border-[#78350f] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#78350f]/15"
+            className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 p-3 sm:min-h-[140px] text-[#1c1917] placeholder-slate-400 transition focus:border-[#1e3d32] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/15"
           />
           <div className="mt-1 flex items-center justify-between text-xs text-slate-500">
             <span>
@@ -141,7 +141,7 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
         </div>
 
         {prefilledFromProfile && (
-          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg border border-[#78350f]/30 bg-[#78350f]/5 px-3 py-2 text-xs text-slate-600">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg border border-[#1e3d32]/30 bg-[#1e3d32]/5 px-3 py-2 text-xs text-slate-600">
             <span>
               Schulname, Schultyp und Bundesland stammen aus einer früheren Sitzung in
               diesem Browser. Gehören sie nicht zu Ihnen, leeren Sie die Felder.
@@ -149,7 +149,7 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
             <button
               type="button"
               onClick={clearSchoolFields}
-              className="font-medium text-[#78350f] underline transition hover:text-[#92400e]"
+              className="font-medium text-[#1e3d32] underline transition hover:text-[#2a5244]"
             >
               Felder leeren
             </button>
@@ -166,7 +166,7 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
               value={schulname}
               onChange={(e) => setSchulname(e.target.value)}
               placeholder="z. B. Gymnasium Musterstadt"
-              className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 p-2 text-[#1c1917] placeholder-slate-400 transition focus:border-[#78350f] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#78350f]/15"
+              className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 p-2 text-[#1c1917] placeholder-slate-400 transition focus:border-[#1e3d32] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/15"
             />
           </div>
           <div>
@@ -176,7 +176,7 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
             <select
               value={schultyp}
               onChange={(e) => setSchultyp(e.target.value)}
-              className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 p-2 text-[#1c1917] transition focus:border-[#78350f] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#78350f]/15"
+              className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 p-2 text-[#1c1917] transition focus:border-[#1e3d32] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/15"
             >
               {SCHULTYPEN.map((t) => (
                 <option key={t} value={t}>
@@ -192,7 +192,7 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
             <select
               value={bundesland}
               onChange={(e) => setBundesland(e.target.value)}
-              className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 p-2 text-[#1c1917] transition focus:border-[#78350f] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#78350f]/15"
+              className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 p-2 text-[#1c1917] transition focus:border-[#1e3d32] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/15"
             >
               {BUNDESLAENDER.map((b) => (
                 <option key={b} value={b}>
@@ -211,7 +211,7 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
               value={budgetStr}
               onChange={(e) => setBudgetStr(e.target.value)}
               placeholder="z. B. 25000"
-              className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 p-2 text-[#1c1917] placeholder-slate-400 transition focus:border-[#78350f] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#78350f]/15"
+              className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 p-2 text-[#1c1917] placeholder-slate-400 transition focus:border-[#1e3d32] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/15"
             />
           </div>
         </div>
@@ -221,7 +221,7 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
             type="button"
             disabled={!canSubmit}
             onClick={handleSubmit}
-            className="inline-flex items-center gap-2 rounded-lg bg-[#78350f] px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-[#92400e] disabled:cursor-not-allowed disabled:bg-[#78350f]/40"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#1e3d32] px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-[#2a5244] disabled:cursor-not-allowed disabled:bg-[#1e3d32]/40"
           >
             {busy ? (
               <>

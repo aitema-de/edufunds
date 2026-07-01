@@ -90,11 +90,11 @@ export function TextVorschlaegeEditor({ sessionToken, finalText, vorschlaege, be
   };
 
   return (
-    <div className="mt-6 rounded-lg border border-[#78350f]/30 bg-[#78350f]/5 p-4">
+    <div className="mt-6 rounded-lg border border-[#1e3d32]/30 bg-[#1e3d32]/5 p-4">
       <div className="mb-2 flex flex-wrap items-center gap-2 text-sm font-semibold text-[#1c1917]">
-        <Sparkles className="h-4 w-4 text-[#78350f]" />
+        <Sparkles className="h-4 w-4 text-[#1e3d32]" />
         Kurze Rückfrage: Stimmen diese ergänzten Angaben?
-        <span className="rounded-full border border-[#78350f]/30 bg-white px-2 py-0.5 text-[11px] font-medium text-[#78350f]">
+        <span className="rounded-full border border-[#1e3d32]/30 bg-white px-2 py-0.5 text-[11px] font-medium text-[#1e3d32]">
           noch {vorschlaege.length} zu prüfen
         </span>
       </div>
@@ -118,7 +118,7 @@ export function TextVorschlaegeEditor({ sessionToken, finalText, vorschlaege, be
                   value={draft}
                   onChange={(e) => setDraft(e.target.value)}
                   rows={3}
-                  className="w-full rounded border border-[#1c1917]/20 p-2 text-xs text-[#57534e] focus:border-[#78350f] focus:outline-none"
+                  className="w-full rounded border border-[#1c1917]/20 p-2 text-xs text-[#57534e] focus:border-[#1e3d32] focus:outline-none"
                   aria-label="Vorschlag bearbeiten"
                 />
                 <div className="flex gap-2">
@@ -144,11 +144,11 @@ export function TextVorschlaegeEditor({ sessionToken, finalText, vorschlaege, be
             ) : (
               <div>
                 <div className="flex items-start gap-2">
-                  <span className="shrink-0 text-[#78350f]">›</span>
+                  <span className="shrink-0 text-[#1e3d32]">›</span>
                   <div className="flex-1">
                     <span>„{v}"</span>
                     {provenanz(begruendungen, v) && (
-                      <span className="mt-1 block text-[11px] italic text-[#78350f]/80">
+                      <span className="mt-1 block text-[11px] italic text-[#1e3d32]/80">
                         Warum ergänzt: {provenanz(begruendungen, v)}
                       </span>
                     )}
@@ -196,7 +196,7 @@ export function TextVorschlaegeEditor({ sessionToken, finalText, vorschlaege, be
         ))}
       </ul>
       <details className="mt-3 text-xs text-slate-600">
-        <summary className="cursor-pointer font-medium text-[#78350f]">Warum solche Begriffe?</summary>
+        <summary className="cursor-pointer font-medium text-[#1e3d32]">Warum solche Begriffe?</summary>
         <p className="mt-1.5 leading-relaxed">
           Förderanträge nutzen bestimmte Signalwörter — etwa <em>Partizipation</em>, <em>Nachhaltigkeit</em>,{" "}
           <em>Bildungsgerechtigkeit</em> oder <em>Wirkungsorientierung</em> —, weil Fördergeber genau darauf achten.

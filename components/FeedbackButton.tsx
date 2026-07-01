@@ -137,7 +137,7 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="inline-flex items-center gap-2 rounded-lg bg-[#78350f] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#92400e]"
+                  className="inline-flex items-center gap-2 rounded-lg bg-[#1e3d32] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#2a5244]"
                 >
                   Schließen
                 </button>
@@ -169,11 +169,11 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
                         onClick={() => setType(opt.value)}
                         className={`flex flex-col items-center gap-1.5 rounded-lg border-2 px-3 py-3 text-sm transition ${
                           active
-                            ? "border-[#78350f] bg-[#78350f]/8 text-[#1c1917]"
+                            ? "border-[#1e3d32] bg-[#1e3d32]/8 text-[#1c1917]"
                             : "border-[#1c1917]/15 bg-[#fdfdfc]/60 text-slate-600 hover:border-[#1c1917]/30 hover:text-[#1c1917]"
                         }`}
                       >
-                        <Icon className={`h-5 w-5 ${active ? "text-[#78350f]" : "text-slate-500"}`} />
+                        <Icon className={`h-5 w-5 ${active ? "text-[#1e3d32]" : "text-slate-500"}`} />
                         <span className="font-medium">{opt.label}</span>
                       </button>
                     );
@@ -197,7 +197,7 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
                     }
                     rows={4}
                     required
-                    className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 px-3 py-2 text-[#1c1917] placeholder-slate-400 transition focus:border-[#78350f] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#78350f]/15"
+                    className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 px-3 py-2 text-[#1c1917] placeholder-slate-400 transition focus:border-[#1e3d32] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/15"
                   />
                   <div className="mt-1 flex items-center justify-between text-xs text-slate-500">
                     <span>{description.trim().length < 10 ? `Mindestens 10 Zeichen` : `${description.trim().length} Zeichen`}</span>
@@ -215,7 +215,7 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
                       value={context}
                       onChange={(e) => setContext(e.target.value)}
                       placeholder="z. B. „Beim Klick auf Antrag generieren"
-                      className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 px-3 py-2 text-[#1c1917] placeholder-slate-400 transition focus:border-[#78350f] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#78350f]/15"
+                      className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 px-3 py-2 text-[#1c1917] placeholder-slate-400 transition focus:border-[#1e3d32] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/15"
                     />
                   </div>
                 )}
@@ -230,7 +230,7 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="sie@beispiel.de"
-                    className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 px-3 py-2 text-[#1c1917] placeholder-slate-400 transition focus:border-[#78350f] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#78350f]/15"
+                    className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 px-3 py-2 text-[#1c1917] placeholder-slate-400 transition focus:border-[#1e3d32] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/15"
                   />
                   {email.trim() && (
                     <label className="mt-2 inline-flex items-center gap-2 text-xs text-slate-600">
@@ -238,7 +238,7 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
                         type="checkbox"
                         checked={wantsResponse}
                         onChange={(e) => setWantsResponse(e.target.checked)}
-                        className="rounded border-[#1c1917]/15 text-[#78350f] focus:ring-[#78350f]/30"
+                        className="rounded border-[#1c1917]/15 text-[#1e3d32] focus:ring-[#1e3d32]/30"
                       />
                       Bestätigungs-Mail erhalten
                     </label>
@@ -263,7 +263,7 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
                   <button
                     type="submit"
                     disabled={busy || description.trim().length < 10}
-                    className="inline-flex items-center gap-2 rounded-lg bg-[#78350f] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#92400e] disabled:cursor-not-allowed disabled:bg-[#78350f]/40"
+                    className="inline-flex items-center gap-2 rounded-lg bg-[#1e3d32] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#2a5244] disabled:cursor-not-allowed disabled:bg-[#1e3d32]/40"
                   >
                     {busy ? (
                       <>

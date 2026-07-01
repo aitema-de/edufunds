@@ -52,10 +52,10 @@
     --popover-foreground: 24 10% 10%;   /* ink */
 
     /* Primary = Brandy (Cognac) */
-    --primary: 22 78% 26%;              /* brandy #78350f */
+    --primary: 159 34% 18%;             /* evergreen #1e3d32 (Richtung F) */
     --primary-foreground: 60 20% 99%;   /* paper */
-    --primary-light: 28 80% 38%;        /* helleres Cognac */
-    --primary-dark: 22 80% 20%;         /* dunkleres Cognac */
+    --primary-light: 158 32% 24%;       /* helleres Gruen #2a5244 */
+    --primary-dark: 160 36% 13%;        /* dunkleres Gruen #15302a */
 
     /* Secondary = Ink */
     --secondary: 24 10% 10%;            /* ink */
@@ -82,7 +82,7 @@
     --border: 40 14% 88%;
     --input: 40 14% 88%;
     --input-foreground: 24 10% 10%;     /* ink */
-    --ring: 22 78% 26%;                 /* brandy focus ring */
+    --ring: 159 34% 18%;                /* evergreen focus ring */
     --radius: 0.75rem;
     
     /* Legacy aliases for backwards compatibility */
@@ -191,16 +191,16 @@
     line-height: 1.2;
   }
   
-  /* Focus States - Brandy Ring */
+  /* Focus States - Evergreen Ring (Richtung F) */
   :focus-visible {
-    outline: 2px solid rgb(var(--brandy));
+    outline: 2px solid rgb(var(--evergreen));
     outline-offset: 2px;
   }
 
-  /* Selection - Brandy Tint */
+  /* Selection - Evergreen Tint */
   ::selection {
-    background-color: rgb(var(--brandy) / 0.18);
-    color: rgb(var(--brandy));
+    background-color: rgb(var(--evergreen) / 0.16);
+    color: rgb(var(--evergreen));
   }
 }
 
@@ -220,16 +220,16 @@
     font-family: var(--font-sans), system-ui, sans-serif;
   }
   
-  /* Primary Gradient - Brandy→Amber (warmes Cognac, pop auf dunklem Grund) */
+  /* Primary Gradient - Gold (Auszeichnung, pop auf dunklem Grund; Richtung F) */
   .text-gradient {
-    background: linear-gradient(135deg, #d97706 0%, #92400e 100%);
+    background: linear-gradient(135deg, #d4af37 0%, #967814 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .text-gradient-gold {
-    background: linear-gradient(135deg, #d97706 0%, #92400e 100%);
+    background: linear-gradient(135deg, #d4af37 0%, #967814 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -248,9 +248,9 @@
    BUTTON SYSTEM
    ============================================ */
 @layer components {
-  /* Primary Button - Brandy (Cognac) */
+  /* Primary Button - Evergreen (Richtung F) */
   .btn-primary {
-    background: linear-gradient(135deg, #78350f 0%, #92400e 100%);
+    background: linear-gradient(135deg, #1e3d32 0%, #2a5244 100%);
     color: #fdfdfc;
     font-weight: 600;
     padding: 0.75rem 1.5rem;
@@ -268,14 +268,14 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #92400e 0%, #b45309 100%);
+    background: linear-gradient(135deg, #2a5244 0%, #356152 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
   }
 
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 40px -10px rgba(120, 53, 15, 0.45);
+    box-shadow: 0 12px 40px -10px rgba(30, 61, 50, 0.45);
   }
   
   .btn-primary:hover::before {
@@ -322,11 +322,11 @@
     box-shadow: 0 12px 40px -10px rgba(28, 25, 23, 0.35);
   }
 
-  /* Outline Button - Brandy Border */
+  /* Outline Button - Evergreen Border (Richtung F) */
   .btn-outline {
     background: transparent;
-    border: 2px solid #78350f;
-    color: #78350f;
+    border: 2px solid #1e3d32;
+    color: #1e3d32;
     font-weight: 600;
     padding: 0.75rem 1.5rem;
     border-radius: 0.75rem;
@@ -338,7 +338,7 @@
   }
 
   .btn-outline:hover {
-    background: #78350f;
+    background: #1e3d32;
     color: #fdfdfc;
     transform: translateY(-2px);
   }
@@ -411,14 +411,14 @@
   .accent-line {
     width: 60px;
     height: 3px;
-    background: linear-gradient(90deg, #78350f, #d97706);
+    background: linear-gradient(90deg, #1e3d32, #c9a227);
   }
 
   .corner-decoration {
     position: absolute;
     width: 40px;
     height: 40px;
-    border: 2px solid #78350f;
+    border: 2px solid #1e3d32;
     opacity: 0.25;
   }
   
@@ -454,14 +454,14 @@
       45deg,
       transparent,
       transparent 10px,
-      #78350f 10px,
-      #78350f 11px
+      #1e3d32 10px,
+      #1e3d32 11px
     );
     opacity: 0.03;
   }
 
   .dots-pattern {
-    background-image: radial-gradient(#78350f 1.5px, transparent 1.5px);
+    background-image: radial-gradient(#1e3d32 1.5px, transparent 1.5px);
     background-size: 24px 24px;
     opacity: 0.08;
   }
@@ -533,7 +533,7 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(120, 53, 15, 0.1) 50%,
+      rgba(30, 61, 50, 0.1) 50%,
       transparent 100%
     );
     background-size: 200% 100%;

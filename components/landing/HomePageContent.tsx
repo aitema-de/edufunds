@@ -62,7 +62,7 @@ const h1Word = {
 
 /* Editoriale Akzente:
    - HELLE Flaechen → brandy (#78350f, text-brandy / bg-brandy)
-   - DUNKLE Flaechen → amber (#d97706 / amber-200/300/400)
+   - DUNKLE Flaechen → amber (#d4af37 / amber-200/300/400)
    Regel aus dem Design-Refresh (Welle 1–3).
 
    Richtung F „Akademisch/Institut" (Welle 1+2, 2026-07-01): gesamte Home-Seite

@@ -11,7 +11,7 @@ interface Props {
 /**
  * Praesentationskarte „So reichen Sie ein" — heller Hintergrund, dunkler Text
  * (WCAG-AA). Gold ausschliesslich als Icon/Border-Akzent; Gold-Text nur in der
- * dunkleren Variante #78350f auf hellem Grund. Faellt bei fehlenden
+ * dunkleren Variante #1e3d32 auf hellem Grund. Faellt bei fehlenden
  * Dossier-Daten auf generische Hinweise zurueck.
  */
 export function EinreichungInfo({ info, kontaktEmail, kontaktTelefon, bewerbungsfristText }: Props) {
@@ -20,9 +20,9 @@ export function EinreichungInfo({ info, kontaktEmail, kontaktTelefon, bewerbungs
   const bearbeitungsdauer = info?.bearbeitungsdauer ? fixDisplayUmlaut(info.bearbeitungsdauer) : null;
 
   return (
-    <section className="rounded-2xl border border-[#78350f]/30 bg-[#fdfdfc] p-6 text-[#57534e]">
+    <section className="rounded-2xl border border-[#1e3d32]/30 bg-[#fdfdfc] p-6 text-[#57534e]">
       <h3 className="mb-4 flex items-center gap-3 text-xl font-bold text-[#1c1917]">
-        <Send className="h-5 w-5 text-[#78350f]" />
+        <Send className="h-5 w-5 text-[#1e3d32]" />
         So reichen Sie ein
       </h3>
 
@@ -41,7 +41,7 @@ export function EinreichungInfo({ info, kontaktEmail, kontaktTelefon, bewerbungs
 
         <div>
           <div className="mb-1 flex items-center gap-2 font-semibold text-[#1c1917]">
-            <FileCheck2 className="h-4 w-4 text-[#78350f]" />
+            <FileCheck2 className="h-4 w-4 text-[#1e3d32]" />
             Erforderliche Unterlagen
           </div>
           {anlagen ? (
@@ -59,7 +59,7 @@ export function EinreichungInfo({ info, kontaktEmail, kontaktTelefon, bewerbungs
 
         {bearbeitungsdauer && (
           <div className="flex items-center gap-2 text-slate-700">
-            <Clock className="h-4 w-4 text-[#78350f]" />
+            <Clock className="h-4 w-4 text-[#1e3d32]" />
             <span>Bearbeitungszeit: {bearbeitungsdauer}</span>
           </div>
         )}
@@ -68,21 +68,21 @@ export function EinreichungInfo({ info, kontaktEmail, kontaktTelefon, bewerbungs
           <div className="space-y-2 border-t border-[#1c1917]/10 pt-4">
             {kontaktEmail && (
               <div className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-[#78350f]" />
-                <a href={`mailto:${kontaktEmail}`} className="text-[#78350f] hover:underline">
+                <Mail className="h-4 w-4 text-[#1e3d32]" />
+                <a href={`mailto:${kontaktEmail}`} className="text-[#1e3d32] hover:underline">
                   {kontaktEmail}
                 </a>
               </div>
             )}
             {kontaktTelefon && (
               <div className="flex items-center gap-2 text-slate-700">
-                <Phone className="h-4 w-4 text-[#78350f]" />
+                <Phone className="h-4 w-4 text-[#1e3d32]" />
                 <span>{kontaktTelefon}</span>
               </div>
             )}
             {bewerbungsfristText && (
               <div className="flex items-center gap-2 text-slate-700">
-                <CalendarClock className="h-4 w-4 text-[#78350f]" />
+                <CalendarClock className="h-4 w-4 text-[#1e3d32]" />
                 <span>Frist: {bewerbungsfristText}</span>
               </div>
             )}

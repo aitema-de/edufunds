@@ -166,7 +166,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         className="w-full py-5 flex items-center justify-between gap-4 text-left group"
       >
         <span
-          className="font-semibold text-lg group-hover:text-[#d97706] transition-colors"
+          className="font-semibold text-lg group-hover:text-[#d4af37] transition-colors"
           style={{ color: "#fdfdfc" }}
         >
           {question}
@@ -175,7 +175,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
           className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${
             isOpen ? "rotate-180" : ""
           }`}
-          style={{ color: "#d97706" }}
+          style={{ color: "#d4af37" }}
         />
       </button>
       <motion.div
@@ -227,7 +227,7 @@ export default function PricingPage() {
             >
               <span
                 className="inline-block font-mono text-xs tracking-widest uppercase mb-4"
-                style={{ color: "#d97706" }}
+                style={{ color: "#d4af37" }}
               >
                 Preisgestaltung
               </span>
@@ -237,12 +237,12 @@ export default function PricingPage() {
               >
                 Transparente Preise.
                 <br />
-                <span style={{ color: "#d97706" }}>Maximaler Wert.</span>
+                <span style={{ color: "#d4af37" }}>Maximaler Wert.</span>
               </h1>
               <div className="flex justify-center mb-6">
                 <div
                   className="accent-line"
-                  style={{ background: "linear-gradient(90deg, #d97706, #fbbf24)" }}
+                  style={{ background: "linear-gradient(90deg, #d4af37, #e4c55a)" }}
                 />
               </div>
               <p
@@ -274,7 +274,7 @@ export default function PricingPage() {
                     className="w-8 h-8 rounded-lg flex items-center justify-center"
                     style={{ backgroundColor: "rgba(217, 119, 6, 0.1)" }}
                   >
-                    <benefit.icon className="w-4 h-4" style={{ color: "#d97706" }} />
+                    <benefit.icon className="w-4 h-4" style={{ color: "#d4af37" }} />
                   </div>
                   <div>
                     <div
@@ -323,7 +323,7 @@ export default function PricingPage() {
             >
               <span
                 className="inline-block font-mono text-xs tracking-widest uppercase mb-4"
-                style={{ color: "#d97706" }}
+                style={{ color: "#d4af37" }}
               >
                 Für Schulen & Träger
               </span>
@@ -382,7 +382,7 @@ export default function PricingPage() {
             >
               <span
                 className="inline-block font-mono text-xs tracking-widest uppercase mb-4"
-                style={{ color: "#d97706" }}
+                style={{ color: "#d4af37" }}
               >
                 FAQ
               </span>
@@ -395,7 +395,7 @@ export default function PricingPage() {
               <div className="flex justify-center">
                 <div
                   className="accent-line"
-                  style={{ background: "linear-gradient(90deg, #d97706, #fbbf24)" }}
+                  style={{ background: "linear-gradient(90deg, #d4af37, #e4c55a)" }}
                 />
               </div>
             </motion.div>
@@ -422,7 +422,7 @@ export default function PricingPage() {
               </p>
               <Link
                 href="/kontakt"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-[#d97706]/50 text-[#d97706] font-semibold hover:bg-[#d97706] hover:text-[#1c1917] transition-all duration-300"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-[#d4af37]/50 text-[#d4af37] font-semibold hover:bg-[#d4af37] hover:text-[#1c1917] transition-all duration-300"
               >
                 <HelpCircle className="w-4 h-4" />
                 Kontakt aufnehmen
@@ -481,7 +481,7 @@ export default function PricingPage() {
                 </Link>
                 <Link
                   href="/foerderprogramme"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl btn-primary-lg border-2 border-amber-600 text-amber-500 font-semibold hover:bg-amber-600 hover:text-[#1c1917] transition-colors"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl btn-primary-lg border-2 border-gold-500 text-gold-400 font-semibold hover:bg-gold-500 hover:text-[#1c1917] transition-colors"
                 >
                   Programme erkunden
                 </Link>

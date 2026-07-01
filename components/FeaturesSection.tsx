@@ -76,7 +76,7 @@ export function FeaturesSection() {
       <div 
         className="absolute top-20 right-10 w-72 h-72 animate-float-slow hidden lg:block"
         style={{ 
-          background: 'linear-gradient(135deg, rgba(120, 53, 15, 0.08) 0%, transparent 100%)',
+          background: 'linear-gradient(135deg, rgba(30, 61, 50, 0.08) 0%, transparent 100%)',
           borderRadius: '40% 60% 60% 40% / 60% 40% 60% 40%',
         }}
       />
@@ -92,7 +92,7 @@ export function FeaturesSection() {
         >
           <span 
             className="inline-block font-mono text-xs tracking-widest uppercase mb-4"
-            style={{ color: '#78350f' }}
+            style={{ color: '#1e3d32' }}
           >
             Features
           </span>
@@ -102,12 +102,12 @@ export function FeaturesSection() {
           >
             Alles, was Sie für erfolgreiche
             <br />
-            <span style={{ color: '#78350f' }}>Förderanträge</span> brauchen
+            <span style={{ color: '#1e3d32' }}>Förderanträge</span> brauchen
           </h2>
           <div className="flex justify-center">
             <div 
               className="w-16 h-0.5"
-              style={{ background: 'linear-gradient(90deg, #78350f, #d97706)' }}
+              style={{ background: 'linear-gradient(90deg, #1e3d32, #d4af37)' }}
             />
           </div>
         </motion.div>
@@ -139,8 +139,8 @@ export function FeaturesSection() {
                 <div 
                   className="absolute top-6 right-6 w-8 h-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   style={{
-                    borderTop: '2px solid #78350f',
-                    borderRight: '2px solid #78350f',
+                    borderTop: '2px solid #1e3d32',
+                    borderRight: '2px solid #1e3d32',
                   }}
                 />
 
@@ -148,13 +148,13 @@ export function FeaturesSection() {
                 <div 
                   className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110"
                   style={{ 
-                    backgroundColor: 'rgba(120, 53, 15, 0.1)',
-                    border: '1px solid rgba(120, 53, 15, 0.2)',
+                    backgroundColor: 'rgba(30, 61, 50, 0.1)',
+                    border: '1px solid rgba(30, 61, 50, 0.2)',
                   }}
                 >
                   <feature.icon 
                     className="w-7 h-7" 
-                    style={{ color: '#78350f' }}
+                    style={{ color: '#1e3d32' }}
                   />
                 </div>
 
@@ -175,7 +175,7 @@ export function FeaturesSection() {
                 {/* Hover Line */}
                 <div 
                   className="absolute bottom-0 left-8 right-8 h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
-                  style={{ background: 'linear-gradient(90deg, #78350f, #d97706)' }}
+                  style={{ background: 'linear-gradient(90deg, #1e3d32, #d4af37)' }}
                 />
               </div>
             </motion.div>

@@ -198,9 +198,9 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
       {/* Dunkler Verlauf ueber dem Content — erwartet, dass der Eltern-Container `relative` ist. */}
       <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-[#1c1917]/40 via-[#1c1917]/80 to-[#1c1917]" />
       <div className="absolute inset-0 z-20 flex items-center justify-center p-6">
-        <div className="max-w-lg rounded-xl border border-[#78350f]/40 bg-white/95 p-8 text-center shadow-2xl">
-          <div className="mb-4 inline-flex rounded-full bg-[#78350f]/10 p-3">
-            <Lock className="h-6 w-6 text-[#78350f]" />
+        <div className="max-w-lg rounded-xl border border-[#1e3d32]/40 bg-white/95 p-8 text-center shadow-2xl">
+          <div className="mb-4 inline-flex rounded-full bg-[#1e3d32]/10 p-3">
+            <Lock className="h-6 w-6 text-[#1e3d32]" />
           </div>
           <h3 className="mb-2 text-2xl font-semibold text-[#1c1917]">
             Antrag + Finanzplan freischalten
@@ -257,7 +257,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                 <div
                   className={`mb-4 rounded-lg border p-3 text-left text-sm ${
                     isStripeDown
-                      ? "border-[#78350f]/40 bg-[#78350f]/10 text-[#57534e]"
+                      ? "border-[#1e3d32]/40 bg-[#1e3d32]/10 text-[#57534e]"
                       : "border-red-500/40 bg-red-500/10 text-red-200"
                   }`}
                 >
@@ -285,7 +285,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                 type="button"
                 onClick={DEV_MOCK_ENABLED ? devMockPay : startCheckout}
                 disabled={busy || (!DEV_MOCK_ENABLED && isStripeDown)}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#78350f] px-6 py-3 font-semibold text-white transition hover:bg-[#92400e] disabled:opacity-50"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#1e3d32] px-6 py-3 font-semibold text-white transition hover:bg-[#2a5244] disabled:opacity-50"
               >
                 {busy ? (
                   <Loader2 className="h-5 w-5 animate-spin" />
@@ -341,7 +341,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                   placeholder="Organisation (Förderverein / Schule / Träger) *"
                   value={invoiceForm.orgName}
                   onChange={(e) => setInvoiceForm((f) => ({ ...f, orgName: e.target.value }))}
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-[#1c1917] focus:border-[#78350f] focus:outline-none"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-[#1c1917] focus:border-[#1e3d32] focus:outline-none"
                 />
                 <input
                   type="text"
@@ -349,7 +349,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                   placeholder="Ansprechpartner:in *"
                   value={invoiceForm.contactName}
                   onChange={(e) => setInvoiceForm((f) => ({ ...f, contactName: e.target.value }))}
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-[#1c1917] focus:border-[#78350f] focus:outline-none"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-[#1c1917] focus:border-[#1e3d32] focus:outline-none"
                 />
                 <input
                   type="email"
@@ -357,7 +357,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                   placeholder="E-Mail für Rechnung & Antrag-Link *"
                   value={invoiceForm.email}
                   onChange={(e) => setInvoiceForm((f) => ({ ...f, email: e.target.value }))}
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-[#1c1917] focus:border-[#78350f] focus:outline-none"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-[#1c1917] focus:border-[#1e3d32] focus:outline-none"
                 />
                 <textarea
                   required
@@ -365,7 +365,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                   placeholder="Rechnungsadresse (Name, Straße, PLZ Ort) *"
                   value={invoiceForm.billingAddress}
                   onChange={(e) => setInvoiceForm((f) => ({ ...f, billingAddress: e.target.value }))}
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-[#1c1917] focus:border-[#78350f] focus:outline-none"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-[#1c1917] focus:border-[#1e3d32] focus:outline-none"
                 />
                 <div className="grid grid-cols-2 gap-2.5">
                   <input
@@ -373,21 +373,21 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                     placeholder="USt-IdNr. (optional)"
                     value={invoiceForm.vatId}
                     onChange={(e) => setInvoiceForm((f) => ({ ...f, vatId: e.target.value }))}
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-[#1c1917] focus:border-[#78350f] focus:outline-none"
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-[#1c1917] focus:border-[#1e3d32] focus:outline-none"
                   />
                   <input
                     type="text"
                     placeholder="Bestellnr. (optional)"
                     value={invoiceForm.poNumber}
                     onChange={(e) => setInvoiceForm((f) => ({ ...f, poNumber: e.target.value }))}
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-[#1c1917] focus:border-[#78350f] focus:outline-none"
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-[#1c1917] focus:border-[#1e3d32] focus:outline-none"
                   />
                 </div>
               </div>
               <button
                 type="submit"
                 disabled={invoiceBusy}
-                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#78350f] px-6 py-3 font-semibold text-white transition hover:bg-[#92400e] disabled:opacity-50"
+                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#1e3d32] px-6 py-3 font-semibold text-white transition hover:bg-[#2a5244] disabled:opacity-50"
               >
                 {invoiceBusy ? <Loader2 className="h-5 w-5 animate-spin" /> : <FileText className="h-5 w-5" />}
                 {invoiceBusy
@@ -408,7 +408,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                 <button
                   type="button"
                   onClick={() => setShowRedeem(true)}
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-[#57534e] transition-colors hover:text-[#78350f]"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-[#57534e] transition-colors hover:text-[#1e3d32]"
                 >
                   <Ticket className="h-4 w-4" />
                   Kontingent-Code einlösen
@@ -443,7 +443,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
                     placeholder="EDU-XXXX-XXXX"
                     autoComplete="off"
                     disabled={redeemBusy}
-                    className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm uppercase tracking-wider text-[#1c1917] placeholder:normal-case placeholder:tracking-normal focus:border-[#78350f] focus:outline-none disabled:opacity-50"
+                    className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm uppercase tracking-wider text-[#1c1917] placeholder:normal-case placeholder:tracking-normal focus:border-[#1e3d32] focus:outline-none disabled:opacity-50"
                   />
                   <button
                     type="button"

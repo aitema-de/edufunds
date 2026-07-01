@@ -15,9 +15,9 @@ export default function ImpressumPage() {
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#78350f]/10 border border-[#78350f]/20 mb-6">
-              <Scale className="h-4 w-4 text-[#78350f]" />
-              <span className="text-sm font-medium text-[#78350f]">Rechtliche Informationen</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1e3d32]/10 border border-[#1e3d32]/20 mb-6">
+              <Scale className="h-4 w-4 text-[#1e3d32]" />
+              <span className="text-sm font-medium text-[#1e3d32]">Rechtliche Informationen</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-[#1c1917] mb-4">
               Impressum
@@ -32,8 +32,8 @@ export default function ImpressumPage() {
             {/* Anbieter */}
             <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-[#78350f]/20 flex items-center justify-center">
-                  <Building2 className="h-5 w-5 text-[#78350f]" />
+                <div className="w-10 h-10 rounded-xl bg-[#1e3d32]/20 flex items-center justify-center">
+                  <Building2 className="h-5 w-5 text-[#1e3d32]" />
                 </div>
                 <h2 className="text-xl font-semibold text-[#1c1917]">Dienstanbieter</h2>
               </div>
@@ -51,7 +51,7 @@ export default function ImpressumPage() {
                   <Mail className="h-5 w-5 text-[#94a3b8] shrink-0" />
                   <a
                     href="mailto:office@aitema.de"
-                    className="text-[#78350f] hover:text-[#d97706] transition-colors underline underline-offset-2"
+                    className="text-[#1e3d32] hover:text-[#2a5244] transition-colors underline underline-offset-2"
                   >
                     office@aitema.de
                   </a>
@@ -100,7 +100,7 @@ export default function ImpressumPage() {
                   href="https://ec.europa.eu/consumers/odr/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-[#78350f] hover:text-[#d97706] transition-colors inline-flex items-center gap-2 underline underline-offset-2"
+                  className="text-[#1e3d32] hover:text-[#2a5244] transition-colors inline-flex items-center gap-2 underline underline-offset-2"
                 >
                   https://ec.europa.eu/consumers/odr/
                 </a>

@@ -79,7 +79,7 @@ function buildMarkdownComponents(paid: boolean, programmId: string) {
       return (
         <h2
           id={id}
-          className="group mb-3 mt-8 flex items-center gap-2 text-lg font-semibold text-[#78350f] scroll-mt-24"
+          className="group mb-3 mt-8 flex items-center gap-2 text-lg font-semibold text-[#1e3d32] scroll-mt-24"
         >
           <span>{children}</span>
           {paid && (
@@ -309,7 +309,7 @@ export function AntragResult({
   };
 
   return (
-    <div className="rounded-xl border border-[#78350f]/40 bg-white p-6">
+    <div className="rounded-xl border border-[#1e3d32]/40 bg-white p-6">
       <header className="mb-6 flex flex-wrap items-start justify-between gap-4">
         <div>
           <h2 className="text-2xl font-semibold text-[#1c1917]">
@@ -324,7 +324,7 @@ export function AntragResult({
             type="button"
             onClick={downloadRtf}
             disabled={exportBlocked}
-            className="inline-flex items-center gap-2 rounded-lg bg-[#78350f] px-4 py-2 sm:py-3 text-sm font-semibold text-white transition hover:bg-[#92400e] disabled:opacity-50 disabled:pointer-events-none"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#1e3d32] px-4 py-2 sm:py-3 text-sm font-semibold text-white transition hover:bg-[#2a5244] disabled:opacity-50 disabled:pointer-events-none"
           >
             <Download className="h-4 w-4" /> Antrag herunterladen (bearbeitbar)
           </button>
@@ -333,7 +333,7 @@ export function AntragResult({
             onClick={downloadPdf}
             disabled={pdfBusy || exportBlocked}
             title="PDF zum Ansehen und Drucken (nicht bearbeitbar)."
-            className="inline-flex items-center gap-2 rounded-lg border border-[#78350f]/40 bg-[#78350f]/10 px-3 py-2 text-sm text-[#57534e] transition hover:bg-[#78350f]/20 disabled:opacity-50 disabled:pointer-events-none"
+            className="inline-flex items-center gap-2 rounded-lg border border-[#1e3d32]/40 bg-[#1e3d32]/10 px-3 py-2 text-sm text-[#57534e] transition hover:bg-[#1e3d32]/20 disabled:opacity-50 disabled:pointer-events-none"
           >
             {pdfBusy ? (
               <Loader2 className="h-4 w-4 animate-spin" />
@@ -381,7 +381,7 @@ export function AntragResult({
                   }
                 }}
                 title="Einen neuen Förderantrag beginnen"
-                className="inline-flex items-center gap-2 rounded-lg border border-[#78350f]/40 bg-[#78350f]/10 px-4 py-2 sm:py-3 text-sm font-semibold text-[#78350f] transition hover:bg-[#78350f]/20"
+                className="inline-flex items-center gap-2 rounded-lg border border-[#1e3d32]/40 bg-[#1e3d32]/10 px-4 py-2 sm:py-3 text-sm font-semibold text-[#1e3d32] transition hover:bg-[#1e3d32]/20"
               >
                 <RefreshCw className="h-4 w-4" /> Neuer Antrag
               </button>
@@ -431,8 +431,8 @@ export function AntragResult({
         </div>
       )}
       {!hasOpenHigh && hasConsistency && (
-        <div className="mb-5 flex items-start gap-3 rounded-lg border border-[#78350f]/40 bg-[#78350f]/10 p-4 text-sm text-[#1c1917]">
-          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#78350f]" />
+        <div className="mb-5 flex items-start gap-3 rounded-lg border border-[#1e3d32]/40 bg-[#1e3d32]/10 p-4 text-sm text-[#1c1917]">
+          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#1e3d32]" />
           <div>
             <div className="font-semibold text-[#1c1917]">Qualitätshinweise des KI-Prüfers</div>
             <ul className="mt-1 list-disc pl-5 text-xs text-[#57534e]/80 space-y-0.5">
@@ -471,9 +471,9 @@ export function AntragResult({
           </div>
         )}
         {paid && (beantragungsEmpfehlung.hatEmpfehlung || beantragungsEmpfehlung.detail) && (
-          <div className="mt-6 rounded-lg border border-[#78350f]/20 bg-[#78350f]/[0.04] p-4">
+          <div className="mt-6 rounded-lg border border-[#1e3d32]/20 bg-[#1e3d32]/[0.04] p-4">
             <div className="mb-1 flex items-center gap-2 text-sm font-semibold text-[#1c1917]">
-              <Coins className="h-4 w-4 text-[#78350f]" />
+              <Coins className="h-4 w-4 text-[#1e3d32]" />
               Wie viel sollten Sie beantragen?
             </div>
             <p className="text-sm text-[#57534e]">{beantragungsEmpfehlung.headline}</p>
@@ -505,9 +505,9 @@ export function AntragResult({
         />
       )}
       {paid && textVorschlaege.length > 0 && !sessionToken && (
-        <div className="mt-6 rounded-lg border border-[#78350f]/30 bg-[#78350f]/5 p-4">
+        <div className="mt-6 rounded-lg border border-[#1e3d32]/30 bg-[#1e3d32]/5 p-4">
           <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#1c1917]">
-            <Sparkles className="h-4 w-4 text-[#78350f]" />
+            <Sparkles className="h-4 w-4 text-[#1e3d32]" />
             Ergänzte Angaben — vom Assistenten hinzugefügt, bitte prüfen
           </div>
           <ul className="space-y-1.5 text-xs text-[#57534e]">
@@ -515,11 +515,11 @@ export function AntragResult({
               const warum = provenanz(generation.factVerification?.vorschlaegeBegruendung, v);
               return (
                 <li key={i} className="flex gap-2 rounded border border-[#1c1917]/10 bg-white p-2">
-                  <span className="shrink-0 text-[#78350f]">›</span>
+                  <span className="shrink-0 text-[#1e3d32]">›</span>
                   <div>
                     <span>„{v}"</span>
                     {warum && (
-                      <span className="mt-1 block text-[11px] italic text-[#78350f]/80">Warum ergänzt: {warum}</span>
+                      <span className="mt-1 block text-[11px] italic text-[#1e3d32]/80">Warum ergänzt: {warum}</span>
                     )}
                   </div>
                 </li>
@@ -552,7 +552,7 @@ export function AntragResult({
                   f.schwere === "hoch"
                     ? "border-red-500/40 text-red-700"
                     : f.schwere === "mittel"
-                      ? "border-[#78350f]/40 text-[#78350f]"
+                      ? "border-[#1e3d32]/40 text-[#1e3d32]"
                       : "border-[#1c1917]/20 text-slate-700";
                 return (
                   <div key={i} className="rounded border border-[#1c1917]/15 bg-[#fdfdfc] p-2.5">
