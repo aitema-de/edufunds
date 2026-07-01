@@ -124,12 +124,15 @@ function Hero({ stats }: { stats: LandingStats }) {
               transition={{ duration: 0.6, ease: EASE }}
               className="flex items-center gap-3.5"
             >
-              <span
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/edufunds-icon.svg"
+                alt=""
                 aria-hidden
-                className="flex size-12 shrink-0 items-center justify-center rounded-full border-2 border-gold-500 bg-white font-serif text-lg text-evergreen shadow-[0_0_0_4px_rgba(201,162,39,0.15)]"
-              >
-                Ef
-              </span>
+                width={64}
+                height={64}
+                className="size-12 shrink-0"
+              />
               <span className="text-xs uppercase tracking-widest text-evergreen font-semibold leading-snug">
                 Fördermittel für Schulen. Vereinfacht.
                 <span className="mt-0.5 block text-[10px] font-medium normal-case tracking-wider text-ink/45">
