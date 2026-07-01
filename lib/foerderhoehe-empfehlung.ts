@@ -66,3 +66,90 @@ export function buildFoerderhoeheHinweis(input: FoerdersummeInput): Foerderhoehe
 
   return { headline, detail, hatZahl };
 }
+
+/**
+ * P4-B M-Erweiterung: kostenrelative Beantragungshöhe-Empfehlung im Antrags-Ergebnis.
+ *
+ * Anders als {@link buildFoerderhoeheHinweis} (Programm-seitige Orientierung an der
+ * Match-Liste) bezieht diese Variante das tatsächliche Projektvolumen (Finanzplan-
+ * Gesamtsumme) ein: die beantragbare Obergrenze ist der NIEDRIGERE aus
+ *   - absolutem Förderdeckel (foerderhoehe.maxEur bzw. Katalog-foerdersummeMax) und
+ *   - Quoten-Deckel (foerderhoehe.maxProzentGesamtkosten × Projektvolumen).
+ *
+ * Weiterhin rein arithmetisch — nichts wird erfunden. Ohne Projektvolumen fällt die
+ * Aussage auf die reine Programm-Obergrenze zurück; ohne belastbare Zahl bleibt sie
+ * qualitativ und verweist auf den (oft konditionalen) Freitext.
+ */
+export interface Foerderhoehe {
+  minEur?: number | null;
+  maxEur?: number | null;
+  maxProzentGesamtkosten?: number | null;
+  bemerkung?: string | null;
+}
+
+export interface BeantragungsEmpfehlungInput {
+  /** Strukturierte Förderhöhe aus dem Richtlinien-Dossier (falls vorhanden). */
+  foerderhoehe?: Foerderhoehe | null;
+  /** Fallback aus dem Programmkatalog, wenn kein Dossier vorliegt. */
+  katalog?: FoerdersummeInput | null;
+  /** Finanzplan-Gesamtvolumen in EUR (nicht Cent). Undefined, wenn unbeziffert. */
+  gesamtkostenEur?: number | null;
+}
+
+export interface BeantragungsEmpfehlung {
+  /** Hauptsatz mit der Orientierungszahl — oder qualitativ, wenn keine Zahl vorliegt. */
+  headline: string;
+  /** Optionale Begründung, wie die Obergrenze zustande kommt (Deckel/Quote). */
+  basis?: string;
+  /** Maßgebliches Detail/Warnhinweis (Dossier-bemerkung oder Katalog-Freitext). */
+  detail?: string;
+  /** true, wenn eine belastbare Empfehlung mit Zahl abgeleitet werden konnte. */
+  hatEmpfehlung: boolean;
+}
+
+export function buildBeantragungsEmpfehlung(
+  input: BeantragungsEmpfehlungInput
+): BeantragungsEmpfehlung {
+  const fh = input.foerderhoehe ?? undefined;
+  const maxEur = zahl(fh?.maxEur) ?? zahl(input.katalog?.foerdersummeMax);
+  const quote =
+    typeof fh?.maxProzentGesamtkosten === "number" &&
+    fh.maxProzentGesamtkosten > 0 &&
+    fh.maxProzentGesamtkosten <= 100
+      ? fh.maxProzentGesamtkosten
+      : undefined;
+  const gesamt = zahl(input.gesamtkostenEur);
+  const detail = fh?.bemerkung?.trim() || input.katalog?.foerdersummeText?.trim() || undefined;
+
+  // Deckel-Kandidaten sammeln; der Quoten-Deckel greift nur mit bekanntem Volumen.
+  const caps: Array<{ wert: number; grund: string }> = [];
+  if (maxEur) caps.push({ wert: maxEur, grund: `Förderdeckel ${eur(maxEur)}` });
+  if (quote && gesamt) {
+    caps.push({
+      wert: Math.round((gesamt * quote) / 100),
+      grund: `${quote}% von ${eur(gesamt)} Projektkosten`,
+    });
+  }
+
+  if (caps.length === 0) {
+    return {
+      headline:
+        "Wie viel Sie beantragen sollten, richtet sich nach den Programmbedingungen und Ihren Projektkosten.",
+      detail,
+      hatEmpfehlung: false,
+    };
+  }
+
+  const limit = caps.reduce((a, b) => (b.wert < a.wert ? b : a));
+  const headline = gesamt
+    ? `Für Ihr Projektvolumen von ${eur(gesamt)} können Sie bei diesem Programm bis zu ${eur(limit.wert)} beantragen.`
+    : `Dieses Programm fördert bis zu ${eur(limit.wert)}.`;
+  const basis =
+    caps.length > 1
+      ? `Maßgeblich ist der niedrigere Wert (${limit.grund}); begrenzend wirken ${caps
+          .map((c) => c.grund)
+          .join(" und ")}.`
+      : `Grundlage: ${limit.grund}.`;
+
+  return { headline, basis, detail, hatEmpfehlung: true };
+}

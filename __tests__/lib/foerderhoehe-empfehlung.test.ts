@@ -2,7 +2,10 @@
  * Beantragungshöhe-Orientierung (P4-B, Pilot-Feedback 24.06.).
  * Deterministische Ableitung aus Katalog-Feldern — keine erfundenen Zahlen.
  */
-import { buildFoerderhoeheHinweis } from "@/lib/foerderhoehe-empfehlung";
+import {
+  buildFoerderhoeheHinweis,
+  buildBeantragungsEmpfehlung,
+} from "@/lib/foerderhoehe-empfehlung";
 
 describe("buildFoerderhoeheHinweis", () => {
   it("nennt eine Spanne, wenn min und max vorliegen", () => {
@@ -55,5 +58,77 @@ describe("buildFoerderhoeheHinweis", () => {
   it("ignoriert leeren Freitext", () => {
     const h = buildFoerderhoeheHinweis({ foerdersummeMax: 10000, foerdersummeText: "   " });
     expect(h.detail).toBeUndefined();
+  });
+});
+
+describe("buildBeantragungsEmpfehlung", () => {
+  it("nimmt den niedrigeren aus Deckel und Quoten-Deckel (Quote bindet)", () => {
+    // Deckel 20.000 €, aber 50% von 30.000 € = 15.000 € → Quote bindet.
+    const e = buildBeantragungsEmpfehlung({
+      foerderhoehe: { maxEur: 20000, maxProzentGesamtkosten: 50 },
+      gesamtkostenEur: 30000,
+    });
+    expect(e.hatEmpfehlung).toBe(true);
+    expect(e.headline).toBe(
+      "Für Ihr Projektvolumen von 30.000 € können Sie bei diesem Programm bis zu 15.000 € beantragen."
+    );
+    expect(e.basis).toContain("50% von 30.000 € Projektkosten");
+  });
+
+  it("nimmt den niedrigeren aus Deckel und Quoten-Deckel (Deckel bindet)", () => {
+    // 80% von 30.000 € = 24.000 €, aber Deckel 20.000 € → Deckel bindet.
+    const e = buildBeantragungsEmpfehlung({
+      foerderhoehe: { maxEur: 20000, maxProzentGesamtkosten: 80 },
+      gesamtkostenEur: 30000,
+    });
+    expect(e.headline).toContain("bis zu 20.000 €");
+    expect(e.basis).toContain("Förderdeckel 20.000 €");
+  });
+
+  it("fällt ohne Projektvolumen auf die reine Programm-Obergrenze zurück", () => {
+    const e = buildBeantragungsEmpfehlung({
+      foerderhoehe: { maxEur: 20000, maxProzentGesamtkosten: 50 },
+    });
+    expect(e.hatEmpfehlung).toBe(true);
+    expect(e.headline).toBe("Dieses Programm fördert bis zu 20.000 €.");
+    // Ohne Volumen kann der Quoten-Deckel nicht berechnet werden.
+    expect(e.basis).toBe("Grundlage: Förderdeckel 20.000 €.");
+  });
+
+  it("nutzt Katalog-Fallback, wenn kein Dossier-Deckel vorliegt", () => {
+    const e = buildBeantragungsEmpfehlung({
+      foerderhoehe: null,
+      katalog: { foerdersummeMax: 5000, foerdersummeText: "bis 5.000 € pro Schuljahr" },
+      gesamtkostenEur: 12000,
+    });
+    expect(e.headline).toContain("bis zu 5.000 €");
+    expect(e.detail).toBe("bis 5.000 € pro Schuljahr");
+  });
+
+  it("bevorzugt Dossier-bemerkung als Detail vor Katalog-Freitext", () => {
+    const e = buildBeantragungsEmpfehlung({
+      foerderhoehe: { maxEur: 5500, bemerkung: "KEIN bundesweites Programm — Sammeleintrag" },
+      katalog: { foerdersummeText: "bis 5.500 €" },
+    });
+    expect(e.detail).toBe("KEIN bundesweites Programm — Sammeleintrag");
+  });
+
+  it("degradiert qualitativ ohne belastbare Zahl (nur Freitext)", () => {
+    const e = buildBeantragungsEmpfehlung({
+      foerderhoehe: { bemerkung: "Sachleistung, keine Geldförderung" },
+      gesamtkostenEur: 8000,
+    });
+    expect(e.hatEmpfehlung).toBe(false);
+    expect(e.headline).toContain("richtet sich nach den Programmbedingungen");
+    expect(e.detail).toBe("Sachleistung, keine Geldförderung");
+  });
+
+  it("ignoriert unplausible Quote (>100) und 0-Volumen", () => {
+    const e = buildBeantragungsEmpfehlung({
+      foerderhoehe: { maxEur: 10000, maxProzentGesamtkosten: 150 },
+      gesamtkostenEur: 0,
+    });
+    // Quote verworfen, Volumen 0 verworfen → nur Deckel.
+    expect(e.headline).toBe("Dieses Programm fördert bis zu 10.000 €.");
   });
 });

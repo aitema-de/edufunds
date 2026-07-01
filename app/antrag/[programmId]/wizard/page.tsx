@@ -107,7 +107,11 @@ export default async function WizardPage({ params }: Props) {
         style={{ backgroundColor: "#fdfdfc" }}
       >
         <div className="container mx-auto px-4">
-          <WizardShell programm={programm} einreichung={einreichung} />
+          <WizardShell
+            programm={programm}
+            einreichung={einreichung}
+            foerderhoehe={richtlinie?.foerderhoehe ?? null}
+          />
         </div>
       </main>
       <Footer />
