@@ -10,11 +10,14 @@ jest.mock('framer-motion', () => ({
 }));
 
 describe('Footer Komponente', () => {
-  it('sollte das Logo als Bild mit alt-Text rendern', () => {
+  it('sollte die Crest-Wortmarke mit Startseiten-Link rendern', () => {
     render(<Footer />);
-    const logo = screen.getByAltText('EduFunds');
-    expect(logo).toBeInTheDocument();
-    expect(logo).toHaveAttribute('src', '/edufunds-logo.svg');
+    // Logo = Crest "Ef" + Serif-Wortmarke (Richtung F), kein Bild mehr
+    const logoLink = screen.getByLabelText('EduFunds - Zur Startseite');
+    expect(logoLink).toBeInTheDocument();
+    expect(logoLink).toHaveTextContent('Ef');
+    expect(logoLink).toHaveTextContent('Edu');
+    expect(logoLink).toHaveTextContent('Funds');
   });
 
   it('sollte die Statistiken rendern', () => {
