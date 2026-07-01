@@ -154,15 +154,16 @@ export function buildConfirmationEmail(params: {
   ].join("\n");
 
   const html = `
-  <div style="font-family:Arial,Helvetica,sans-serif;color:#0a1628;max-width:560px;margin:0 auto;line-height:1.5">
-    <h2 style="color:#0a1628">Vielen Dank für Ihre Bestellung</h2>
+  <div style="font-family:Arial,Helvetica,sans-serif;color:#1e3b2a;max-width:560px;margin:0 auto;line-height:1.5">
+    <div style="font-family:Georgia,'Times New Roman',serif;font-size:22px;color:#1e3b2a;margin:0 0 18px;padding-bottom:12px;border-bottom:2px solid #d9b44a">Edu<span style="font-style:italic;color:#b08c2e">Funds</span></div>
+    <h2 style="color:#1e3b2a">Vielen Dank für Ihre Bestellung</h2>
     <p>Hiermit bestätigen wir den Eingang Ihrer Bestellung und das Zustandekommen des Vertrags.
        Ihr <strong>Förderantrag ist freigeschaltet</strong> und steht Ihnen zum Export zur Verfügung.</p>
 
     ${downloadUrl ? `
-    <div style="margin:22px 0;padding:18px;border:1px solid #c9a227;border-radius:10px;background:#fbf7ec">
-      <a href="${escapeHtml(downloadUrl)}" style="display:inline-block;background:#c9a227;color:#fff;text-decoration:none;font-weight:bold;padding:12px 22px;border-radius:8px">Antrag öffnen &amp; herunterladen</a>
-      <p style="font-size:13px;color:#64748b;margin:12px 0 0">
+    <div style="margin:22px 0;padding:18px;border:1px solid #b08c2e;border-radius:10px;background:#fbf7ec">
+      <a href="${escapeHtml(downloadUrl)}" style="display:inline-block;background:#1e3b2a;color:#f5efe0;text-decoration:none;font-weight:bold;padding:12px 22px;border-radius:8px">Antrag öffnen &amp; herunterladen</a>
+      <p style="font-size:13px;color:#6b6457;margin:12px 0 0">
         Der Link bleibt <strong>12 Monate</strong> gültig — am besten als Lesezeichen speichern.
         Mit dieser E-Mail-Adresse finden Sie Ihren Antrag jederzeit auch unter
         <strong>„Meine Anträge"</strong> wieder.
@@ -170,17 +171,17 @@ export function buildConfirmationEmail(params: {
     </div>` : ``}
 
     <table style="width:100%;border-collapse:collapse;font-size:14px;margin:18px 0">
-      <tr><td style="padding:4px 0;color:#64748b">Auftraggeber</td><td style="padding:4px 0;text-align:right">${escapeHtml(orgName)}</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">Leistung</td><td style="padding:4px 0;text-align:right">Förderantrag (Einzelantrag)</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">Betrag (inkl. 19 % USt)</td><td style="padding:4px 0;text-align:right"><strong>${amount}</strong></td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">davon USt</td><td style="padding:4px 0;text-align:right">${vatAmount}</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Auftraggeber</td><td style="padding:4px 0;text-align:right">${escapeHtml(orgName)}</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Leistung</td><td style="padding:4px 0;text-align:right">Förderantrag (Einzelantrag)</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Betrag (inkl. 19 % USt)</td><td style="padding:4px 0;text-align:right"><strong>${amount}</strong></td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">davon USt</td><td style="padding:4px 0;text-align:right">${vatAmount}</td></tr>
     </table>
 
     <p style="font-size:14px">${escapeHtml(rechnungHinweis)}</p>
 
-    <p style="font-size:13px;color:#64748b;margin-top:18px">
+    <p style="font-size:13px;color:#6b6457;margin-top:18px">
       Bei Rückfragen erreichen Sie uns unter
-      <a href="mailto:office@aitema.de" style="color:#c9a227">office@aitema.de</a>.
+      <a href="mailto:office@aitema.de" style="color:#b08c2e">office@aitema.de</a>.
     </p>
   </div>`;
 

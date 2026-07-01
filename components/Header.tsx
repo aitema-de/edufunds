@@ -78,24 +78,20 @@ export function Header() {
         role="banner"
       >
         <div className="container mx-auto flex items-center justify-between px-4 h-16">
-          {/* Logo — Crest + Serif-Wortmarke (statt Bild-Logo) */}
+          {/* Logo — offizielle Marke (Logopaket 2026-07-01, helle Variante) */}
           <Link
             href="/"
-            className="group flex items-center gap-2.5"
+            className="group flex items-center"
             aria-label="EduFunds - Zur Startseite"
           >
-            <span
-              aria-hidden
-              className="flex size-9 shrink-0 items-center justify-center rounded-full border-[1.5px] border-gold-500 bg-white font-serif text-sm text-evergreen shadow-[0_0_0_3px_rgba(201,162,39,0.12)] transition-transform group-hover:scale-105"
-            >
-              Ef
-            </span>
-            <span
-              className="font-serif text-[22px] leading-none text-evergreen"
-              style={{ fontWeight: 500 }}
-            >
-              Edu<span className="italic text-gold-700">Funds</span>
-            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/edufunds-logo.svg"
+              alt="EduFunds"
+              width={345}
+              height={88}
+              className="h-11 w-auto transition-transform group-hover:scale-[1.02]"
+            />
           </Link>
 
           {/* Desktop Navigation */}

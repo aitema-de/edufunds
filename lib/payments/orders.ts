@@ -274,40 +274,41 @@ export function buildOrderConfirmationEmail(order: OrderRecord): EmailContent {
   ].join("\n");
 
   const html = `
-  <div style="font-family:Arial,Helvetica,sans-serif;color:#0a1628;max-width:560px;margin:0 auto;line-height:1.5">
-    <h2 style="color:#0a1628">Vielen Dank für Ihre Bestellung</h2>
+  <div style="font-family:Arial,Helvetica,sans-serif;color:#1e3b2a;max-width:560px;margin:0 auto;line-height:1.5">
+    <div style="font-family:Georgia,'Times New Roman',serif;font-size:22px;color:#1e3b2a;margin:0 0 18px;padding-bottom:12px;border-bottom:2px solid #d9b44a">Edu<span style="font-style:italic;color:#b08c2e">Funds</span></div>
+    <h2 style="color:#1e3b2a">Vielen Dank für Ihre Bestellung</h2>
     <p>Ihr Kontingent für <strong>${order.credits} Förderanträge</strong> ist freigeschaltet.</p>
 
-    <div style="background:#f5f3ec;border:1px solid #c9a227;border-radius:10px;padding:16px;margin:18px 0">
-      <p style="margin:0 0 6px;font-size:13px;color:#64748b">Ihr Kontingent-Code</p>
-      <p style="margin:0;font-size:24px;font-weight:bold;letter-spacing:2px;font-family:monospace;color:#0a1628">${escapeHtml(order.creditCode)}</p>
-      <p style="margin:10px 0 0;font-size:13px;color:#64748b">
+    <div style="background:#f5f3ec;border:1px solid #b08c2e;border-radius:10px;padding:16px;margin:18px 0">
+      <p style="margin:0 0 6px;font-size:13px;color:#6b6457">Ihr Kontingent-Code</p>
+      <p style="margin:0;font-size:24px;font-weight:bold;letter-spacing:2px;font-family:monospace;color:#1e3b2a">${escapeHtml(order.creditCode)}</p>
+      <p style="margin:10px 0 0;font-size:13px;color:#6b6457">
         Gültig für ${order.credits} Anträge, 12 Monate ab heute. Geben Sie den Code an Ihre
         Lehrkräfte weiter — sie schalten damit ihre fertigen Anträge frei, ohne selbst zu zahlen.
       </p>
     </div>
 
     <table style="width:100%;border-collapse:collapse;font-size:14px;margin:18px 0">
-      <tr><td style="padding:4px 0;color:#64748b">Bestellnummer</td><td style="padding:4px 0;text-align:right"><strong>${escapeHtml(order.orderNumber)}</strong></td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">Organisation</td><td style="padding:4px 0;text-align:right">${escapeHtml(order.orgName)}</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">Paket</td><td style="padding:4px 0;text-align:right">${escapeHtml(pack.label)}</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">Betrag (inkl. 19 % MwSt)</td><td style="padding:4px 0;text-align:right"><strong>${amount}</strong></td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">davon MwSt</td><td style="padding:4px 0;text-align:right">${vatAmount}</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Bestellnummer</td><td style="padding:4px 0;text-align:right"><strong>${escapeHtml(order.orderNumber)}</strong></td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Organisation</td><td style="padding:4px 0;text-align:right">${escapeHtml(order.orgName)}</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Paket</td><td style="padding:4px 0;text-align:right">${escapeHtml(pack.label)}</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Betrag (inkl. 19 % MwSt)</td><td style="padding:4px 0;text-align:right"><strong>${amount}</strong></td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">davon MwSt</td><td style="padding:4px 0;text-align:right">${vatAmount}</td></tr>
     </table>
 
-    <h3 style="color:#0a1628;margin-bottom:6px">Zahlung per Überweisung</h3>
-    <p style="font-size:13px;color:#64748b;margin:0 0 8px">Zahlungsziel ${PAYMENT_TERM_DAYS} Tage (bis ${dueDateDe}).</p>
+    <h3 style="color:#1e3b2a;margin-bottom:6px">Zahlung per Überweisung</h3>
+    <p style="font-size:13px;color:#6b6457;margin:0 0 8px">Zahlungsziel ${PAYMENT_TERM_DAYS} Tage (bis ${dueDateDe}).</p>
     <table style="width:100%;border-collapse:collapse;font-size:14px">
-      <tr><td style="padding:4px 0;color:#64748b">Empfänger</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.accountHolder)}</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">IBAN</td><td style="padding:4px 0;text-align:right;font-family:monospace">${escapeHtml(bank.iban)}</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">BIC</td><td style="padding:4px 0;text-align:right;font-family:monospace">${escapeHtml(bank.bic)}</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">Bank</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.bankName)}</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">Verwendungszweck</td><td style="padding:4px 0;text-align:right"><strong>${escapeHtml(order.orderNumber)}</strong></td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Empfänger</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.accountHolder)}</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">IBAN</td><td style="padding:4px 0;text-align:right;font-family:monospace">${escapeHtml(bank.iban)}</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">BIC</td><td style="padding:4px 0;text-align:right;font-family:monospace">${escapeHtml(bank.bic)}</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Bank</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.bankName)}</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Verwendungszweck</td><td style="padding:4px 0;text-align:right"><strong>${escapeHtml(order.orderNumber)}</strong></td></tr>
     </table>
 
-    <p style="font-size:13px;color:#64748b;margin-top:18px">
+    <p style="font-size:13px;color:#6b6457;margin-top:18px">
       Die formelle Rechnung erhalten Sie separat. Bei Rückfragen erreichen Sie uns unter
-      <a href="mailto:office@aitema.de" style="color:#c9a227">office@aitema.de</a>.
+      <a href="mailto:office@aitema.de" style="color:#b08c2e">office@aitema.de</a>.
     </p>
   </div>`;
 
@@ -371,28 +372,29 @@ export function buildQuotaCardConfirmationEmail(result: QuotaCardResult): EmailC
   ].join("\n");
 
   const html = `
-  <div style="font-family:Arial,Helvetica,sans-serif;color:#0a1628;max-width:560px;margin:0 auto;line-height:1.5">
-    <h2 style="color:#0a1628">Zahlung eingegangen — vielen Dank</h2>
+  <div style="font-family:Arial,Helvetica,sans-serif;color:#1e3b2a;max-width:560px;margin:0 auto;line-height:1.5">
+    <div style="font-family:Georgia,'Times New Roman',serif;font-size:22px;color:#1e3b2a;margin:0 0 18px;padding-bottom:12px;border-bottom:2px solid #d9b44a">Edu<span style="font-style:italic;color:#b08c2e">Funds</span></div>
+    <h2 style="color:#1e3b2a">Zahlung eingegangen — vielen Dank</h2>
     <p>Ihr Kontingent für <strong>${result.credits} Förderanträge</strong> ist freigeschaltet.</p>
 
-    <div style="background:#f5f3ec;border:1px solid #c9a227;border-radius:10px;padding:16px;margin:18px 0">
-      <p style="margin:0 0 6px;font-size:13px;color:#64748b">Ihr Kontingent-Code</p>
-      <p style="margin:0;font-size:24px;font-weight:bold;letter-spacing:2px;font-family:monospace;color:#0a1628">${escapeHtml(result.creditCode)}</p>
-      <p style="margin:10px 0 0;font-size:13px;color:#64748b">
+    <div style="background:#f5f3ec;border:1px solid #b08c2e;border-radius:10px;padding:16px;margin:18px 0">
+      <p style="margin:0 0 6px;font-size:13px;color:#6b6457">Ihr Kontingent-Code</p>
+      <p style="margin:0;font-size:24px;font-weight:bold;letter-spacing:2px;font-family:monospace;color:#1e3b2a">${escapeHtml(result.creditCode)}</p>
+      <p style="margin:10px 0 0;font-size:13px;color:#6b6457">
         Gültig für ${result.credits} Anträge, 12 Monate ab heute. Geben Sie den Code an Ihre
         Lehrkräfte weiter — sie schalten damit ihre fertigen Anträge frei, ohne selbst zu zahlen.
       </p>
     </div>
 
     <table style="width:100%;border-collapse:collapse;font-size:14px;margin:18px 0">
-      <tr><td style="padding:4px 0;color:#64748b">Paket</td><td style="padding:4px 0;text-align:right">${escapeHtml(result.packLabel)}</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">Bezahlt (inkl. 19 % MwSt)</td><td style="padding:4px 0;text-align:right"><strong>${amount}</strong></td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">davon MwSt</td><td style="padding:4px 0;text-align:right">${vatAmount}</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Paket</td><td style="padding:4px 0;text-align:right">${escapeHtml(result.packLabel)}</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Bezahlt (inkl. 19 % MwSt)</td><td style="padding:4px 0;text-align:right"><strong>${amount}</strong></td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">davon MwSt</td><td style="padding:4px 0;text-align:right">${vatAmount}</td></tr>
     </table>
 
-    <p style="font-size:13px;color:#64748b;margin-top:18px">
+    <p style="font-size:13px;color:#6b6457;margin-top:18px">
       Eine formelle Rechnung erhalten Sie separat. Bei Rückfragen erreichen Sie uns unter
-      <a href="mailto:office@aitema.de" style="color:#c9a227">office@aitema.de</a>.
+      <a href="mailto:office@aitema.de" style="color:#b08c2e">office@aitema.de</a>.
     </p>
   </div>`;
 
@@ -523,8 +525,8 @@ export function buildEinzelInvoiceConfirmationEmail(
   ].filter((l) => l !== "").join("\n");
 
   const downloadBlock = downloadUrl
-    ? `<div style="background:#f5f3ec;border:1px solid #c9a227;border-radius:10px;padding:16px;margin:18px 0">
-         <p style="margin:0 0 6px;font-size:13px;color:#64748b">Ihr Antrag (12 Monate abrufbar)</p>
+    ? `<div style="background:#f5f3ec;border:1px solid #b08c2e;border-radius:10px;padding:16px;margin:18px 0">
+         <p style="margin:0 0 6px;font-size:13px;color:#6b6457">Ihr Antrag (12 Monate abrufbar)</p>
          <a href="${escapeHtml(downloadUrl)}" style="display:inline-block;background:#78350f;color:#fff;text-decoration:none;padding:10px 18px;border-radius:8px;font-weight:bold">Antrag öffnen</a>
        </div>`
     : "";
@@ -536,26 +538,26 @@ export function buildEinzelInvoiceConfirmationEmail(
     ${downloadBlock}
 
     <table style="width:100%;border-collapse:collapse;font-size:14px;margin:18px 0">
-      <tr><td style="padding:4px 0;color:#64748b">Bestellnummer</td><td style="padding:4px 0;text-align:right"><strong>${escapeHtml(order.orderNumber)}</strong></td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">Organisation</td><td style="padding:4px 0;text-align:right">${escapeHtml(order.orgName)}</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">Leistung</td><td style="padding:4px 0;text-align:right">Einzelantrag (1 Förderantrag)</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">Betrag (inkl. 19 % MwSt)</td><td style="padding:4px 0;text-align:right"><strong>${amount}</strong></td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">davon MwSt</td><td style="padding:4px 0;text-align:right">${vatAmount}</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Bestellnummer</td><td style="padding:4px 0;text-align:right"><strong>${escapeHtml(order.orderNumber)}</strong></td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Organisation</td><td style="padding:4px 0;text-align:right">${escapeHtml(order.orgName)}</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Leistung</td><td style="padding:4px 0;text-align:right">Einzelantrag (1 Förderantrag)</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Betrag (inkl. 19 % MwSt)</td><td style="padding:4px 0;text-align:right"><strong>${amount}</strong></td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">davon MwSt</td><td style="padding:4px 0;text-align:right">${vatAmount}</td></tr>
     </table>
 
     <h3 style="color:#1c1917;margin-bottom:6px">Zahlung per Überweisung</h3>
-    <p style="font-size:13px;color:#64748b;margin:0 0 8px">Zahlungsziel ${PAYMENT_TERM_DAYS} Tage (bis ${dueDateDe}).</p>
+    <p style="font-size:13px;color:#6b6457;margin:0 0 8px">Zahlungsziel ${PAYMENT_TERM_DAYS} Tage (bis ${dueDateDe}).</p>
     <table style="width:100%;border-collapse:collapse;font-size:14px">
-      <tr><td style="padding:4px 0;color:#64748b">Empfänger</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.accountHolder)}</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">IBAN</td><td style="padding:4px 0;text-align:right;font-family:monospace">${escapeHtml(bank.iban)}</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">BIC</td><td style="padding:4px 0;text-align:right;font-family:monospace">${escapeHtml(bank.bic)}</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">Bank</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.bankName)}</td></tr>
-      <tr><td style="padding:4px 0;color:#64748b">Verwendungszweck</td><td style="padding:4px 0;text-align:right"><strong>${escapeHtml(order.orderNumber)}</strong></td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Empfänger</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.accountHolder)}</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">IBAN</td><td style="padding:4px 0;text-align:right;font-family:monospace">${escapeHtml(bank.iban)}</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">BIC</td><td style="padding:4px 0;text-align:right;font-family:monospace">${escapeHtml(bank.bic)}</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Bank</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.bankName)}</td></tr>
+      <tr><td style="padding:4px 0;color:#6b6457">Verwendungszweck</td><td style="padding:4px 0;text-align:right"><strong>${escapeHtml(order.orderNumber)}</strong></td></tr>
     </table>
 
-    <p style="font-size:13px;color:#64748b;margin-top:18px">
+    <p style="font-size:13px;color:#6b6457;margin-top:18px">
       Die formelle Rechnung erhalten Sie separat. Bei Rückfragen erreichen Sie uns unter
-      <a href="mailto:office@aitema.de" style="color:#c9a227">office@aitema.de</a>.
+      <a href="mailto:office@aitema.de" style="color:#b08c2e">office@aitema.de</a>.
     </p>
   </div>`;
 

@@ -69,13 +69,13 @@ function getAdminEmailTemplate(data: ContactFormData) {
   <style>
     body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
     .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-    .header { background: linear-gradient(135deg, #c9a227 0%, #d4af37 100%); padding: 30px; border-radius: 10px 10px 0 0; }
+    .header { background: linear-gradient(135deg, #1e3b2a 0%, #2a5244 100%); padding: 30px; border-radius: 10px 10px 0 0; }
     .header h1 { color: white; margin: 0; font-size: 24px; }
     .content { background: #f9fafb; padding: 30px; border-radius: 0 0 10px 10px; }
     .field { margin-bottom: 20px; }
     .field-label { font-weight: bold; color: #6b7280; font-size: 12px; text-transform: uppercase; margin-bottom: 5px; }
     .field-value { font-size: 16px; color: #111827; }
-    .message-box { background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #c9a227; }
+    .message-box { background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #b08c2e; }
     .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #6b7280; }
   </style>
 </head>
