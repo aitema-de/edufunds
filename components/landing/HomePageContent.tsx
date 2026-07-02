@@ -130,19 +130,16 @@ function Hero({ stats }: { stats: LandingStats }) {
               variants={fadeUp}
               transition={{ duration: 0.7, delay: 0.18, ease: EASE }}
             >
-              <div className="flex flex-wrap items-center gap-5 mb-3.5">
+              {/* EIN primärer CTA mit Ergebnis- + Aufwandsversprechen
+                  (Marketing-Analyse Befund 02: zwei gleichrangige CTAs
+                  verwässern den Einstieg; KI-Assistent folgt im Funnel). */}
+              <div className="mb-3.5">
                 <Link
                   href="/foerderprogramme"
                   className="bg-[#D4B160] text-evergreen text-base font-bold rounded-full py-4 px-[30px] inline-flex items-center gap-2.5 hover:bg-[#DDBE74] transition-colors duration-150 active:scale-[0.98]"
                 >
-                  Passende Programme finden
+                  Passende Förderprogramme für Ihre Schule finden
                   <ArrowRight className="size-[18px] shrink-0" />
-                </Link>
-                <Link
-                  href="/foerderprogramme"
-                  className="text-[15px] font-semibold text-[#FBF9F3] underline underline-offset-4 hover:text-[#D4B160] transition-colors duration-150"
-                >
-                  KI-Assistent testen
                 </Link>
               </div>
               <div className="text-[13.5px] text-[#FBF9F3]/55 mb-[30px]">
@@ -921,12 +918,14 @@ function KontaktKarte() {
   return (
     <div className="mt-12 flex justify-center">
       <div className="flex flex-col sm:flex-row items-center gap-5 bg-white border border-[#E4E0D4] rounded-2xl px-7 py-6 max-w-[620px] w-full sm:w-auto">
-        <div
-          aria-hidden
-          className="size-[84px] shrink-0 rounded-full bg-[#F3EDDD] grid place-content-center"
-        >
-          <span className="font-hand text-[34px] text-[#A8842C]">Kolja</span>
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/landing/kontakt-avatar.jpg"
+          alt="Porträt von Kolja Schumann"
+          width={336}
+          height={336}
+          className="size-[84px] shrink-0 rounded-full object-cover"
+        />
         <div className="grid gap-1 text-center sm:text-left">
           <div className="font-serif text-[19px] text-evergreen" style={{ fontWeight: 600 }}>
             Fragen zu Preisen oder Ihrem Antrag?
