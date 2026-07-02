@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Check, Loader2, PenLine, Sparkles, Trash2, X } from "lucide-react";
+import { resolveAnnahme } from "@/lib/wizard/annahme-marker";
 
 interface Props {
   sessionToken: string;
@@ -71,22 +72,37 @@ export function TextVorschlaegeEditor({ sessionToken, finalText, vorschlaege, be
     }
   }
 
-  // Vorschlag annehmen: aus der Liste nehmen, Antragstext bleibt unverändert.
+  // Marker-bewusst (86caht7eq): Annahmen stehen als `[Annahme: …]` IM Text.
+  // Bestätigen löst den Marker auf (Inhalt bleibt als normaler Text), Streichen
+  // entfernt Marker samt Inhalt, Anpassen ersetzt den Marker durch die eigene
+  // Formulierung. Für Alt-Sessions ohne Marker fällt resolveAnnahme auf das
+  // nackte Zitat zurück (= bisheriges Verhalten).
+
+  // Vorschlag annehmen: Marker auflösen, Inhalt bleibt bestätigt im Antrag.
   const confirm = (i: number) =>
-    persist(i, finalText, vorschlaege.filter((_, idx) => idx !== i));
+    persist(
+      i,
+      resolveAnnahme(finalText, vorschlaege[i], "uebernehmen"),
+      vorschlaege.filter((_, idx) => idx !== i)
+    );
 
-  // Vorschlag verwerfen: Satz aus dem Antragstext streichen + aus der Liste.
-  const remove = (i: number) => {
-    const next = stripWhitespace(finalText.replace(vorschlaege[i], ""));
-    persist(i, next, vorschlaege.filter((_, idx) => idx !== i));
-  };
+  // Vorschlag verwerfen: Marker samt Inhalt aus dem Antragstext streichen.
+  const remove = (i: number) =>
+    persist(
+      i,
+      resolveAnnahme(finalText, vorschlaege[i], "streichen"),
+      vorschlaege.filter((_, idx) => idx !== i)
+    );
 
-  // Bearbeiten: Formulierung im Antragstext ersetzen + aus der Liste (= eigener Text).
+  // Bearbeiten: Marker durch die eigene Formulierung ersetzen (= bestätigt).
   const saveEdit = (i: number) => {
     const val = draft.trim();
     if (!val) return;
-    const next = finalText.replace(vorschlaege[i], val);
-    persist(i, next, vorschlaege.filter((_, idx) => idx !== i));
+    persist(
+      i,
+      resolveAnnahme(finalText, vorschlaege[i], "ersetzen", val),
+      vorschlaege.filter((_, idx) => idx !== i)
+    );
   };
 
   return (
@@ -100,9 +116,12 @@ export function TextVorschlaegeEditor({ sessionToken, finalText, vorschlaege, be
       </div>
       <p className="mb-3 text-xs text-slate-600">
         Der Assistent hat diese Formulierungen ergänzt, weil sie den Antrag fachlich stärken —
-        sie stammen aber <strong>nicht direkt aus Ihren Angaben</strong>. Bitte prüfen Sie jede kurz:
-        <strong> Ja, trifft zu</strong> behält sie, <strong>Anpassen</strong> passt die Formulierung an,
-        <strong> Streichen</strong> nimmt sie aus dem Antrag.
+        sie stammen aber <strong>nicht direkt aus Ihren Angaben</strong> und sind im Text als{" "}
+        <mark className="rounded bg-amber-100 px-1 ring-1 ring-amber-300">[Annahme: …]</mark> markiert.
+        Bitte prüfen Sie jede kurz: <strong>Ja, trifft zu</strong> übernimmt sie in den Antrag (Markierung
+        verschwindet), <strong>Anpassen</strong> ersetzt sie durch Ihre Formulierung,
+        <strong> Streichen</strong> nimmt sie aus dem Antrag. Ungeprüfte Annahmen bleiben auch im
+        Export sichtbar markiert.
       </p>
       {error && (
         <div className="mb-3 rounded border border-red-300 bg-red-50 px-3 py-2 text-xs text-red-800">
@@ -206,13 +225,4 @@ export function TextVorschlaegeEditor({ sessionToken, finalText, vorschlaege, be
       </details>
     </div>
   );
-}
-
-/** Aufräumen nach dem Streichen eines Satzes: doppelte Leerzeichen/Leerzeilen glätten. */
-function stripWhitespace(s: string): string {
-  return s
-    .replace(/[ \t]{2,}/g, " ")
-    .replace(/ +\n/g, "\n")
-    .replace(/\n{3,}/g, "\n\n")
-    .trim();
 }

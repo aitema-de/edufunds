@@ -14,6 +14,7 @@ import { type CostLedger } from "@/lib/wizard/pricing";
 import { FinanzplanView } from "./FinanzplanView";
 import { FinanzplanEditor } from "./FinanzplanEditor";
 import { TextVorschlaegeEditor, provenanz } from "./TextVorschlaegeEditor";
+import { highlightMarkers } from "./MarkerHighlight";
 import { renderFinanzplanMarkdown } from "@/lib/wizard/finanzplan-markdown";
 import { PaywallGate } from "./PaywallGate";
 import { AntragSectionNav, slugifyHeading } from "./AntragSectionNav";
@@ -99,7 +100,7 @@ function buildMarkdownComponents(paid: boolean, programmId: string) {
       <h3 className="mb-2 mt-6 text-base font-semibold text-[#1c1917]">{children}</h3>
     ),
     p: ({ children }: { children?: React.ReactNode }) => (
-      <p className="mb-4 leading-relaxed text-[#57534e]">{children}</p>
+      <p className="mb-4 leading-relaxed text-[#57534e]">{highlightMarkers(children)}</p>
     ),
     strong: ({ children }: { children?: React.ReactNode }) => (
       <strong className="font-semibold text-[#1c1917]">{children}</strong>
@@ -114,7 +115,7 @@ function buildMarkdownComponents(paid: boolean, programmId: string) {
       <ol className="mb-4 ml-6 list-decimal space-y-1 text-[#57534e]">{children}</ol>
     ),
     li: ({ children }: { children?: React.ReactNode }) => (
-      <li className="leading-relaxed">{children}</li>
+      <li className="leading-relaxed">{highlightMarkers(children)}</li>
     ),
   };
 }
@@ -136,7 +137,7 @@ const PRINT_MARKDOWN_COMPONENTS = {
     </h3>
   ),
   p: ({ children }: { children?: React.ReactNode }) => (
-    <p style={{ marginBottom: "10pt", lineHeight: 1.5 }}>{children}</p>
+    <p style={{ marginBottom: "10pt", lineHeight: 1.5 }}>{highlightMarkers(children, "print")}</p>
   ),
   ul: ({ children }: { children?: React.ReactNode }) => (
     <ul style={{ marginLeft: "18pt", marginBottom: "10pt" }}>{children}</ul>
@@ -145,7 +146,7 @@ const PRINT_MARKDOWN_COMPONENTS = {
     <ol style={{ marginLeft: "18pt", marginBottom: "10pt" }}>{children}</ol>
   ),
   li: ({ children }: { children?: React.ReactNode }) => (
-    <li style={{ marginBottom: "4pt" }}>{children}</li>
+    <li style={{ marginBottom: "4pt" }}>{highlightMarkers(children, "print")}</li>
   ),
   table: ({ children }: { children?: React.ReactNode }) => (
     <table
@@ -390,6 +391,22 @@ export function AntragResult({
         </div>
       </header>
       <KiHinweis variant="ergebnis" className="mb-5" />
+      {paid && textVorschlaege.length > 0 && (
+        <div className="mb-5 flex items-start gap-3 rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900">
+          <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
+          <div>
+            <div className="font-semibold">
+              {textVorschlaege.length} KI-Annahme{textVorschlaege.length === 1 ? "" : "n"} zu prüfen
+            </div>
+            <p className="mt-0.5 text-xs text-amber-800/90">
+              Der Assistent hat Angaben ergänzt, die nicht aus Ihren Eingaben stammen. Sie sind im
+              Text <mark className="rounded bg-amber-100 px-1 ring-1 ring-amber-300">[Annahme: …]</mark>{" "}
+              markiert und bleiben auch im Export sichtbar gekennzeichnet, bis Sie sie{" "}
+              {sessionToken ? "unten bestätigen, anpassen oder streichen" : "geprüft haben"}.
+            </p>
+          </div>
+        </div>
+      )}
       {hasOpenHigh && (
         <div className="mb-5 rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-900">
           <div className="flex items-start gap-3">
