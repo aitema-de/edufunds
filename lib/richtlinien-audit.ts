@@ -18,7 +18,7 @@ export interface DossierAuditInput {
   veraltet?: boolean;
   antragsstruktur?: { abschnitte?: Array<{ id?: string; leitfragen?: string[] }> };
   kostenpositionen?: Array<{ bedingungen?: string[]; beispielePasst?: string[]; beispielePasstNicht?: string[] }>;
-  foerderhoehe?: { maxEur?: number | null; maxProzentGesamtkosten?: number | null };
+  foerderhoehe?: { minEur?: number | null; maxEur?: number | null; maxProzentGesamtkosten?: number | null; bemerkung?: string | null };
   bestPractices?: unknown[];
   rejectGruende?: unknown[];
   vorbildFormulierungen?: unknown[];
@@ -63,8 +63,15 @@ export function auditDossier(d: DossierAuditInput): DossierAudit {
     (k) => (k.bedingungen?.length ?? 0) > 0 || (k.beispielePasst?.length ?? 0) > 0 || (k.beispielePasstNicht?.length ?? 0) > 0
   ).length;
   const fh = d.foerderhoehe ?? {};
+  // Strukturiert = bezifferte Grenzen ODER eine substanzielle Regel-Bemerkung.
+  // Viele Programme haben nachweislich keine publizierten Betraege (Pauschalen-
+  // Modelle, Einzelfallentscheid) — dort ist die ausformulierte Regel der
+  // vollstaendige Erfassungsstand, kein Datenloch.
   const foerderhoeheStrukturiert =
-    typeof fh.maxEur === "number" || typeof fh.maxProzentGesamtkosten === "number";
+    typeof fh.minEur === "number" ||
+    typeof fh.maxEur === "number" ||
+    typeof fh.maxProzentGesamtkosten === "number" ||
+    (fh.bemerkung ?? "").trim().length >= 80;
   const bestPractices = d.bestPractices?.length ?? 0;
   const rejectGruende = d.rejectGruende?.length ?? 0;
   const vorbildFormulierungen = d.vorbildFormulierungen?.length ?? 0;
