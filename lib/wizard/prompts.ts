@@ -76,6 +76,14 @@ GUT: "Als Mittelverwalter kommt der Foerderverein in Frage; die formale Zusage u
 **Grundregel:** Lieber kuerzer und ehrlich als erfunden. Wo eine konkrete Angabe fehlt, setze einen sichtbaren
 Luecken-Marker \`[TODO: … einholen]\` in den Text — NICHT eine plausibel klingende Erfindung und NICHT eine
 nichtssagende Floskel. Eine echte, vom User genannte Angabe ist mehr wert als zehn erfundene.
+
+**Markierte Annahmen als dritter Weg:** Wo der Abschnitt eine Aussage zum IST-ZUSTAND der Schule/des Umfelds
+braucht (Ausgangslage, vorhandene Ausstattung, bisherige Praxis, Beobachtungen), die der User NICHT gemacht hat,
+darfst du eine plausible Annahme formulieren — aber NUR sichtbar markiert als \`[Annahme: …]\`
+(z. B. \`[Annahme: Ein durchgaengiges medienpaedagogisches Konzept besteht an der Schule bislang nicht]\`).
+Der Nutzer bestaetigt oder verwirft jede Annahme vor dem Export. NIEMALS denselben Inhalt unmarkiert als
+feststehende Tatsache schreiben. Zusagen Dritter mit Rechtsfolge (Gemeinnuetzigkeit, Traeger-Zustimmung,
+Partner-Zusagen) bleiben auch als Annahme TABU — nur als noch einzuholenden Schritt formulieren.
 `;
 
 const RECHECK_AUDIT_BLOCK = `
@@ -442,8 +450,9 @@ Du bist nicht nur Schreibkraft, sondern fachlicher Berater. Ziel: ein Antrag, de
 
 ## Was ist Vorschlag vs. Tatsache (zentrale Unterscheidung)
 - Eine fachliche AUSGESTALTUNG (eine passende Methode, ein Format, ein Verbreitungsweg, theoretische Rahmung, plausibler Standortkontext), die der User nicht genannt hat, ist ein erwünschter VORSCHLAG — formuliere ihn klar als solchen ("Ein bewährter Ansatz hierfür ist …", "Wir schlagen vor, …", "Es bietet sich an, …", "denkbar ist …"). So erkennt der Nutzer, was er bestätigen/anpassen kann.
-- Eine TATSACHE über diese Schule (Zahlen, erteilte Zusagen, benannte reale Partner, Belege/Studien, Aktenzeichen, Termine) bleibt tabu, wenn nicht im User-Input — niemals als feststehend behaupten. Hier gilt weiter das Halluzinations-Verbot oben.
-- Faustregel: fachliche Klugheit als Vorschlag = ja; erfundene Fakten über die Schule = nein.
+- Ein IST-ZUSTAND dieser Schule, den der User nicht genannt hat, der für den Abschnitt aber nötig ist (vorhandene Ausstattung, bisherige Praxis, Beobachtungen aus dem Schulalltag), darf NUR als sichtbar markierte Annahme erscheinen: \`[Annahme: …]\`. Beispiel: statt "An unserer Schule findet derzeit kein medienpädagogischer Unterricht statt" schreibe \`[Annahme: An unserer Schule besteht bislang kein durchgängiges medienpädagogisches Angebot]\`. Der Nutzer bestätigt oder verwirft jede Annahme. Unmarkiert ist so eine Aussage eine Falschangabe.
+- Eine TATSACHE über diese Schule (Zahlen, erteilte Zusagen, benannte reale Partner, Belege/Studien, Aktenzeichen, Termine) bleibt tabu, wenn nicht im User-Input — niemals als feststehend behaupten, auch nicht als \`[Annahme: …]\`. Hier gilt weiter das Halluzinations-Verbot oben; Zusagen Dritter formulierst du als noch einzuholenden Schritt.
+- Faustregel: fachliche Klugheit als Vorschlag = ja; plausibler Ist-Kontext als markierte \`[Annahme: …]\` = ja; erfundene Fakten über die Schule = nein.
 
 ## Adaptive Vorschlags-Dichte
 - Wo der User KONKRET war, ergänze sparsam — nur Vorschläge, die den Antrag substanziell verbessern.
@@ -540,7 +549,9 @@ ${JSON.stringify(facts, null, 2)}${userAnswersBlock}
 
 Schreibe den Abschnitt. Erfinde KEINE Aktenzeichen, Beschluss-Daten, Tarif-Berechnungen, Phasen-Quartale, MDM-Lösungen, Rahmenverträge oder Strategie-Zitate, die nicht im User-Input belegt sind. Lieber kürzer als erfunden.
 
-KONKRETHEIT richtig: Deine Konkretheit speist sich aus den ECHTEN Angaben des Users (genannte Szenen, Namen, Zahlen, Beispiele) — greife genau diese als wiederkehrende, glaubwürdige Anker auf. Wo der User KEINE Angabe gemacht hat, hast du zwei erlaubte Optionen: (a) den Punkt weglassen/knapp halten, oder (b) einen sichtbaren Lücken-Marker \`[TODO: … vor Einreichung ergänzen]\` setzen. NICHT erlaubt: die Lücke mit erfundenen Konkreta füllen ODER mit nichtssagenden Floskeln überdecken. Eine vom User offen gelassene Frage ("weiß ich nicht", "müssten wir klären") darf NIE als feststehende Tatsache oder erteilte Zusage formuliert werden.
+KONKRETHEIT richtig: Deine Konkretheit speist sich aus den ECHTEN Angaben des Users (genannte Szenen, Namen, Zahlen, Beispiele) — greife genau diese als wiederkehrende, glaubwürdige Anker auf. Wo der User KEINE Angabe gemacht hat, hast du drei erlaubte Optionen: (a) den Punkt weglassen/knapp halten, (b) einen sichtbaren Lücken-Marker \`[TODO: … vor Einreichung ergänzen]\` setzen (für Angaben, die nur der User beschaffen kann), oder (c) eine plausible Annahme sichtbar markiert als \`[Annahme: …]\` formulieren (für Ist-Zustände/Rahmenbedingungen, die der User nur bestätigen muss). NICHT erlaubt: die Lücke mit UNMARKIERT erfundenen Konkreta füllen ODER mit nichtssagenden Floskeln überdecken. Eine vom User offen gelassene Frage ("weiß ich nicht", "müssten wir klären") darf NIE als feststehende Tatsache oder erteilte Zusage formuliert werden.
+
+PROGRAMM-KONDITIONEN SIND TABU FÜR SCHÄTZUNG UND ANNAHME: Fördersummen/-grenzen, Fristen, Eigenanteile, Auflagen und der Programmname stammen AUSSCHLIESSLICH aus dem PROGRAMM-Block bzw. den OFFIZIELLEN VORGABEN oben. Steht eine solche Angabe dort nicht, schreibe \`[TODO: … in der Förderrichtlinie prüfen]\` — erfinde sie NIE und markiere sie auch NICHT als \`[Annahme: …]\` (der Nutzer kann Programm-Konditionen nicht aus eigenem Wissen bestätigen).
 
 GELDBETRÄGE UND MENGEN IM TEXT: Jeden Euro-Betrag, jede Stückzahl und jeden Termin, den der User NICHT selbst genannt hat, kennzeichne im Fließtext sichtbar als Schätzung — z. B. "voraussichtlich rund 15.000 € (Schätzung, vor Einreichung durch Angebote zu belegen)" oder "ca. 25 Geräte (Anzahl noch festzulegen)". NIE als feststehende Kalkulation oder beschlossene Summe formulieren. Der Fließtext muss bei Zahlen genauso ehrlich sein wie der Finanzplan — keine Asymmetrie, bei der die Tabelle "Schätzung" sagt und der Text dieselbe Zahl als Fakt behauptet.${buildAusschlussBlock(facts)}`;
 
@@ -606,6 +617,8 @@ Verdächtige Halluzinations-Marker — bei JEDEM solchen Element prüfen, ob es 
 - **Subgruppe→Gesamtzahl-Hochrechnung** ("ca. 150 Nutzer" aus "60 % von 250", feste Stückzahl aus einer Spanne "20-30"): wenn der User eine Spanne/Schätzung gab, ist die feste Zahl ERFUNDEN.
 
 Zusätzlich Schwere "hoch": Stellen, an denen der Entwurf eine vom User offen gelassene Frage ("weiß ich nicht", "müssten wir klären") als feststehende Tatsache oder verbindliche Zusage formuliert (kaschierte Lücke).
+
+NICHT flaggen: bereits ehrlich markierte Stellen — "[TODO: …]"-Lücken-Marker und "[Annahme: …]"-Annahme-Marker sind die ERWÜNSCHTE Form für Ungedecktes (der Nutzer bestätigt/verwirft sie vor dem Export). Flagge stattdessen dieselbe Aussage, wenn sie UNMARKIERT als Tatsache dasteht.
 
 ## ZWEITE Prüfung — Richtlinien & Konsistenz
 1. Richtlinien-Verstöße (fehlender Pflichtabschnitt, Stilverstoß, Zeichenlimit, Eigenanteil nicht adressiert).
@@ -843,7 +856,7 @@ const REVISION_SYSTEM_BASE = `Du bist der Antragsautor. Überarbeite den Entwurf
 
 ## Ehrlichkeit bewahren — niemals verschlimmern (WICHTIG)
 - Die Revision darf NIEMALS neue konkrete Fakten, Partner, Zahlen, Methoden, Termine oder Zusagen einführen, die nicht im Entwurf oder in den Fakten stehen. Ein Halluzinations-Finding behebt man durch STREICHEN oder durch einen ehrlichen Lücken-Marker — nicht durch eine andere Erfindung.
-- Vorhandene ehrliche Lücken-Marker und Vorbehalte ("liegt derzeit nicht vor", "noch einzuholen", "[TODO: …]", "ist noch zu klären") BLEIBEN erhalten. Wandle eine offene Frage NIE in eine feststehende Tatsache oder verbindliche Zusage um (z. B. aus "Schulträger muss noch zustimmen" darf NICHT "Schulträger hat zugestimmt" werden).
+- Vorhandene ehrliche Lücken-Marker, Annahme-Marker und Vorbehalte ("liegt derzeit nicht vor", "noch einzuholen", "[TODO: …]", "[Annahme: …]", "ist noch zu klären") BLEIBEN erhalten — ein "[Annahme: …]"-Marker darf NIE zu einer unmarkierten Tatsache aufgelöst werden (das entscheidet der Nutzer, nicht du). Wandle eine offene Frage NIE in eine feststehende Tatsache oder verbindliche Zusage um (z. B. aus "Schulträger muss noch zustimmen" darf NICHT "Schulträger hat zugestimmt" werden).
 - Wenn der User etwas verneint oder offen gelassen hat, formuliere es als noch zu klärenden Schritt — nicht als erledigt.
 - Geldbeträge, Stückzahlen und Termine, die nicht vom User stammen, müssen auch im Fließtext als Schätzung/Vorbehalt erscheinen ("voraussichtlich ca. …, noch zu belegen") — NIE als feststehende Kalkulation. Wenn der Finanzplan einen Betrag als Schätzung führt, darf der Text dieselbe Zahl nicht als Fakt behaupten (keine Ehrlichkeits-Asymmetrie).
 
@@ -935,6 +948,7 @@ Der FINANZPLAN ist die verbindliche Quelle für alle Beträge, Mengen und Posten
 ## Verbote
 - Erfinde KEINE neuen Zahlen, Tarife, Mengen oder Posten, die nicht im Finanzplan stehen.
 - Ändere nur, was zur Auflösung der gelisteten Inkonsistenzen nötig ist. Stil, Struktur, Überschriften und alle bereits konsistenten Inhalte bleiben unverändert.
+- Vorhandene "[TODO: …]"- und "[Annahme: …]"-Marker bleiben unverändert erhalten — niemals auflösen oder entfernen.
 
 ## Ausgabeformat (Markdown)
 - Antragstitel als erste Zeile als H1: "# Titel"
@@ -1033,7 +1047,7 @@ Faustregel: widerspricht es dem Nutzer? → "widerspruch". Behauptet es eine ung
 ## Was du NIEMALS flaggst
 - Allgemeine fachliche Rahmung, paedagogische Theorie, Foerderzweck-Bezug ("digitale Kompetenzen staerken Bildungsgerechtigkeit") — legitim, keine Behauptung ueber DIESE Schule.
 - Sinngemaesse Wiedergabe der vom Nutzer genannten Projektidee.
-- Bereits EHRLICH MARKIERTE Vorbehalte ("noch zu klaeren", "[TODO: …]", "voraussichtlich", "wird vor Einreichung festgelegt").
+- Bereits EHRLICH MARKIERTE Vorbehalte ("noch zu klaeren", "[TODO: …]", "[Annahme: …]", "voraussichtlich", "wird vor Einreichung festgelegt") — der "[Annahme: …]"-Marker ist die erwuenschte Kennzeichnung; sein Inhalt ist KEINE zu flaggende Behauptung.
 - Angaben aus Ground Truth oder Programm-Kontext.
 - Reine Zahlen/Eigennamen ohne Tatsachen-Charakter (anderer Pruefschritt).
 
@@ -1084,6 +1098,7 @@ export const FACT_VERIFICATION_REPAIR_SYSTEM = `Du ueberarbeitest einen fertigen
 
 ## WICHTIG — was du NICHT anfasst
 - Alles, was NICHT in der Liste steht, bleibt Wort fuer Wort unveraendert — insbesondere sinnvolle fachliche Ausgestaltungen/Vorschlaege (Methoden, Formate, moegliche Verbreitungswege). Die sind erwuenscht und werden dem Nutzer separat als Vorschlag angezeigt.
+- Vorhandene "[TODO: …]"- und "[Annahme: …]"-Marker bleiben Wort fuer Wort erhalten.
 - KEINE Aenderung an Struktur, Titel, Abschnittsreihenfolge oder Stil.
 
 ## Ausgabeformat (Markdown)
