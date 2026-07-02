@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getWizardSession, updateWizardSession } from "@/lib/wizard/session";
+import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
 import type { WizardFacts } from "@/lib/wizard/types";
 
 export async function GET(
@@ -14,10 +15,14 @@ export async function GET(
   if (!session) {
     return NextResponse.json({ error: "Session nicht gefunden" }, { status: 404 });
   }
+  // 86cabdzwk: Dokumentlabel fuer Clients ohne Server-Kontext (CheckoutSuccess).
+  const richtlinie = await loadRichtlinie(session.foerderprogrammId).catch(() => null);
   return NextResponse.json({
     sessionToken: session.sessionToken,
     foerderprogrammId: session.foerderprogrammId,
     foerderprogrammName: session.foerderprogrammName,
+    dokumentLabel: richtlinie?.dokumentLabel ?? null,
+    dokumentLabelGenus: richtlinie?.dokumentLabelGenus ?? null,
     phase: session.data.phase,
     messages: session.data.messages,
     facts: session.data.facts,

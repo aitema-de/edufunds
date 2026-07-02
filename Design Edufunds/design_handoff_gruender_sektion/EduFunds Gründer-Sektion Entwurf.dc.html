@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Public+Sans:wght@400;500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #EDEAE2; }
+    image-slot { display: block; width: 100%; height: 100%; }
+  </style>
+  <script src="image-slot.js"></script>
+</helmet>
+
+<div style="font-family: 'Public Sans', sans-serif; color: #22302B; display: grid; gap: 40px; padding: 40px; justify-items: center;">
+
+  <!-- A · Startseiten-Sektion -->
+  <div style="width: 1280px;">
+    <div style="font-family: monospace; font-size: 12px; color: #7A8580; margin-bottom: 10px;">A · Gründer-Sektion für die Startseite (zwischen Programm-Übersicht und Preisen)</div>
+
+    <section style="background: #FBF9F3; padding: 88px 96px; border-radius: 4px;">
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 56px;">
+        <div style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #A8842C; font-weight: 700; background: #F3EDDD; border-radius: 999px; padding: 7px 16px; margin-bottom: 20px;">Wer dahinter steht</div>
+        <h2 style="font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 44px; line-height: 1.15; color: #1E3A2F; margin: 0 0 16px; max-width: 760px; text-wrap: balance;">Wir sind zwei Gründer — und wir kennen den Antragsfrust aus eigener Erfahrung.</h2>
+        <p style="font-size: 17px; line-height: 1.6; color: #55625C; max-width: 620px; margin: 0; text-wrap: pretty;">EduFunds ist kein anonymes Portal. Hinter jeder Antwort, jedem geprüften Programm und jedem Antrag stehen wir persönlich.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 920px; margin: 0 auto;">
+
+        <div style="background: #FFFFFF; border: 1px solid #E4E0D4; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 18px;">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="gruender-1" shape="rounded" radius="12" placeholder="Foto Gründer 1 — echtes Porträt, natürliches Licht" style="width: 100%; height: 340px;" hint-size="100%,340px"></x-import>
+          <div>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px;">
+              <h3 style="font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 24px; color: #1E3A2F; margin: 0;">[Vorname Nachname]</h3>
+              <span style="font-family: 'Caveat', cursive; font-size: 26px; color: #A8842C;">[Vorname]</span>
+            </div>
+            <div style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #A8842C; font-weight: 700; margin: 4px 0 12px;">Mitgründer · [Rolle]</div>
+            <p style="font-size: 15px; line-height: 1.6; color: #44514B; margin: 0; text-wrap: pretty;">[2–3 Sätze in Ich-Form: persönlicher Bezug zu Schule oder Förderwesen, der Moment, in dem klar wurde, dass es EduFunds braucht. Beispielton: „Als Elternvertreter habe ich drei Abende an einem einzigen Förderantrag gesessen — und er wurde trotzdem abgelehnt."]</p>
+          </div>
+        </div>
+
+        <div style="background: #FFFFFF; border: 1px solid #E4E0D4; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 18px;">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="gruender-2" shape="rounded" radius="12" placeholder="Foto Gründer 2 — echtes Porträt, natürliches Licht" style="width: 100%; height: 340px;" hint-size="100%,340px"></x-import>
+          <div>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px;">
+              <h3 style="font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 24px; color: #1E3A2F; margin: 0;">[Vorname Nachname]</h3>
+              <span style="font-family: 'Caveat', cursive; font-size: 26px; color: #A8842C;">[Vorname]</span>
+            </div>
+            <div style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #A8842C; font-weight: 700; margin: 4px 0 12px;">Mitgründer · [Rolle]</div>
+            <p style="font-size: 15px; line-height: 1.6; color: #44514B; margin: 0; text-wrap: pretty;">[2–3 Sätze in Ich-Form: fachlicher Hintergrund und was er/sie bei EduFunds verantwortet — technisch geerdet, aber am Nutzen erzählt. Beispielton: „Ich baue die KI so, dass sie klingt wie Ihre beste Antragsschreiberin — nicht wie ein Chatbot."]</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="max-width: 720px; margin: 48px auto 0; text-align: center; border-top: 1px solid #E4E0D4; padding-top: 32px;">
+        <p style="font-family: 'Source Serif 4', serif; font-style: italic; font-size: 20px; line-height: 1.5; color: #1E3A2F; margin: 0 0 8px; text-wrap: balance;">„Kein Schulprojekt sollte an einem Formular scheitern. Dafür stehen wir — mit Namen und Gesicht."</p>
+        <div style="font-size: 13px; color: #7A8580;">[Vorname] &amp; [Vorname], Gründer von EduFunds</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- B · Kontaktkarte -->
+  <div style="width: 1280px;">
+    <div style="font-family: monospace; font-size: 12px; color: #7A8580; margin-bottom: 10px;">B · Kontaktkarte am Entscheidungspunkt (neben Preisen / im Footer-Bereich)</div>
+
+    <div style="background: #FBF9F3; padding: 56px; border-radius: 4px; display: flex; justify-content: center;">
+      <div style="background: #FFFFFF; border: 1px solid #E4E0D4; border-radius: 16px; padding: 24px 28px; display: flex; align-items: center; gap: 20px; max-width: 620px;">
+        <div style="flex: 0 0 84px; width: 84px; height: 84px;">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="kontakt-avatar" shape="circle" placeholder="Porträt" style="width: 84px; height: 84px;" hint-size="84px,84px"></x-import>
+        </div>
+        <div style="display: grid; gap: 4px;">
+          <div style="font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 19px; color: #1E3A2F;">Fragen zu Preisen oder Ihrem Antrag?</div>
+          <p style="font-size: 14.5px; line-height: 1.55; color: #55625C; margin: 0;">Schreiben Sie mir direkt — ich antworte persönlich, meist noch am selben Tag.</p>
+          <div style="font-size: 13px; color: #7A8580; margin-top: 2px;">[Vorname], Mitgründer</div>
+        </div>
+        <a href="mailto:kontakt@edufunds.org" style="flex-shrink: 0; background: #1E3A2F; color: #FBF9F3; text-decoration: none; font-weight: 600; font-size: 14.5px; border-radius: 999px; padding: 12px 22px;" style-hover="background: #2C5243;">E-Mail schreiben</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

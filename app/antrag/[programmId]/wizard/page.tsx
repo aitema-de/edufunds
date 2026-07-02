@@ -111,6 +111,8 @@ export default async function WizardPage({ params }: Props) {
             programm={programm}
             einreichung={einreichung}
             foerderhoehe={richtlinie?.foerderhoehe ?? null}
+            dokumentLabel={richtlinie?.dokumentLabel ?? null}
+            dokumentLabelGenus={richtlinie?.dokumentLabelGenus ?? null}
           />
         </div>
       </main>

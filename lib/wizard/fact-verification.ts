@@ -104,7 +104,10 @@ export function buildProgrammKontext(programm: Foerderprogramm): string {
 // ---------------------------------------------------------------------------
 
 const MIN_ZITAT_LEN = 8;
-const MAX_CLAIMS = 8;
+// 86caht7eq Restluecken-Iteration 02.07.: 8 → 16. Der Cap limitierte das
+// Sicherheitsnetz — annahmereiche Antraege (Eval P002) hatten >8 ungedeckte
+// Behauptungen, alles jenseits des Caps blieb unmarkiert im Text.
+const MAX_CLAIMS = 16;
 
 function normalizeWs(s: string): string {
   return s.toLowerCase().replace(/\s+/g, " ").trim();
@@ -139,6 +142,87 @@ export function anchorClaims(raw: unknown, finalText: string): FactClaim[] {
     const warum = typeof c.warum === "string" && c.warum.trim() ? c.warum.trim() : "nicht durch Nutzerangaben gedeckt";
     out.push({ zitat, art, warum });
     if (out.length >= MAX_CLAIMS) break;
+  }
+  return out;
+}
+
+// ---------------------------------------------------------------------------
+// Deterministischer Rechtsfolgen-Detektor (86caht7eq Restluecken-Iteration)
+// ---------------------------------------------------------------------------
+
+/**
+ * Rechtsfolgen-Behauptungen (Gemeinnuetzigkeit anerkannt, Freistellungsbescheid
+ * liegt vor, Zustimmung erteilt, muendliche/schriftliche Zusage) sind gegenueber
+ * dem Foerdergeber Falschangaben, wenn der Nutzer sie nicht bestaetigt hat —
+ * und laut Produktentscheidung auch als [Annahme: …] TABU (der Nutzer kann sie
+ * nicht "einfach bestaetigen", sie muessen als noch einzuholender Schritt
+ * formuliert sein). Der LLM-Detektor uebersah sie wiederholt (Eval P001/P003) —
+ * diese hochpraezisen Muster fangen sie deterministisch und speisen sie als
+ * "tatsache" in den chirurgischen Repair (→ ehrlicher Vorbehalt).
+ */
+const RECHTSFOLGEN_MUSTER: ReadonlyArray<{ re: RegExp; warum: string }> = [
+  {
+    re: /(?:ist|sind|wurde)(?:\s+\w+){0,3}\s+als\s+gemeinn(?:ue|ü)tzig\s+anerkannt/gi,
+    warum: "Gemeinnuetzigkeits-Anerkennung als feststehend behauptet — Rechtsfolge ohne Nutzerbeleg.",
+  },
+  {
+    re: /Gemeinn(?:ue|ü)tzigkeit[^.\n]{0,60}?(?:ist\s+gegeben|liegt\s+vor|ist\s+anerkannt|wird\s+nachgewiesen|ist\s+nachgewiesen)/gi,
+    warum: "Gemeinnuetzigkeit als gegeben/nachgewiesen behauptet — Rechtsfolge ohne Nutzerbeleg.",
+  },
+  {
+    re: /Freistellungsbescheid[^.\n]{0,60}?(?:liegt\s+(?:aktuell\s+)?vor|ist\s+vorhanden|wird\s+nachgewiesen|ist\s+nachgewiesen)/gi,
+    warum: "Freistellungsbescheid als vorliegend behauptet — Dokument ohne Nutzerbeleg.",
+  },
+  {
+    re: /(?:hat|haben)\s+(?:bereits\s+)?(?:zugestimmt|die\s+Zustimmung\s+erteilt|ihre?\s+Zustimmung\s+erteilt)/gi,
+    warum: "Erteilte Zustimmung Dritter als feststehend behauptet — Zusage ohne Nutzerbeleg.",
+  },
+  {
+    re: /Zustimmung[^.\n]{0,50}?liegt\s+(?:bereits\s+)?vor/gi,
+    warum: "Vorliegende Zustimmung behauptet — Zusage ohne Nutzerbeleg.",
+  },
+  {
+    re: /(?:m(?:ue|ü)ndliche|schriftliche)\s+Zusage/gi,
+    warum: "Muendliche/schriftliche Zusage behauptet — Zusage ohne Nutzerbeleg.",
+  },
+];
+
+/** Vorbehalts-Signale: Treffer in einem Satz mit diesen Formulierungen sind schon ehrlich. */
+const VORBEHALT_RE =
+  /noch\s+(?:einzuholen|zu\s+kl(?:ae|ä)ren|aussteht|nachzureichen|zu\s+beantragen)|einzuholen|anzuerkennen|nachzureichen|beantragt\s+werden|vorbehaltlich|\[TODO:|\[Annahme:/i;
+
+/** Satzgrenzen um einen Match herum finden (fuer Vorbehalts-Kontext-Pruefung). */
+function satzUm(text: string, start: number, end: number): string {
+  const from = Math.max(text.lastIndexOf(".", start), text.lastIndexOf("\n", start)) + 1;
+  const toDot = text.indexOf(".", end);
+  const toNl = text.indexOf("\n", end);
+  const candidates = [toDot, toNl].filter((i) => i !== -1);
+  const to = candidates.length ? Math.min(...candidates) : text.length;
+  return text.slice(from, to + 1);
+}
+
+/**
+ * Findet unbelegte Rechtsfolgen-Behauptungen im Text. Uebersprungen werden
+ * Treffer, deren Aussage in der Ground Truth vorkommt (Nutzer hat es belegt)
+ * oder deren Satz bereits einen ehrlichen Vorbehalt/Marker traegt.
+ */
+export function detectRechtsfolgen(finalText: string, groundTruth: string): FactClaim[] {
+  const out: FactClaim[] = [];
+  const gt = normalizeWs(groundTruth);
+  const seen = new Set<string>();
+  for (const { re, warum } of RECHTSFOLGEN_MUSTER) {
+    re.lastIndex = 0;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(finalText)) !== null) {
+      const zitat = m[0].trim();
+      const key = normalizeWs(zitat);
+      if (key.length < MIN_ZITAT_LEN || seen.has(key)) continue;
+      if (gt.includes(key)) continue; // vom Nutzer selbst so gesagt
+      const satz = satzUm(finalText, m.index, m.index + m[0].length);
+      if (VORBEHALT_RE.test(satz)) continue; // schon ehrlich formuliert
+      seen.add(key);
+      out.push({ zitat, art: "tatsache", warum });
+    }
   }
   return out;
 }
@@ -211,7 +295,14 @@ export async function verifyFacts(
   );
   usages.push({ model: deps.models.detect, usage: det.usage });
 
-  const claims = anchorClaims(det.value, finalText);
+  const llmClaims = anchorClaims(det.value, finalText);
+  // Deterministische Rechtsfolgen-Treffer ergaenzen (LLM-Detektor uebersieht sie
+  // wiederholt); Dubletten gegen die LLM-Claims per normalisiertem Zitat vermeiden.
+  const llmKeys = new Set(llmClaims.map((c) => normalizeWs(c.zitat)));
+  const rechtsfolgen = detectRechtsfolgen(finalText, groundTruth).filter(
+    (c) => !llmKeys.has(normalizeWs(c.zitat))
+  );
+  const claims = [...llmClaims, ...rechtsfolgen];
   const zuNeutralisieren = claims.filter((c) => NEUTRALISIEREN.includes(c.art));
   const vorschlagClaims = claims.filter((c) => c.art === "vorschlag");
   const vorschlaege = vorschlagClaims.map((c) => c.zitat);

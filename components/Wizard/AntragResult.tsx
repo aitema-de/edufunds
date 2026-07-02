@@ -15,6 +15,7 @@ import { FinanzplanView } from "./FinanzplanView";
 import { FinanzplanEditor } from "./FinanzplanEditor";
 import { TextVorschlaegeEditor, provenanz } from "./TextVorschlaegeEditor";
 import { highlightMarkers } from "./MarkerHighlight";
+import { dokumentLabels, type DokumentLabels } from "@/lib/wizard/dokument-label";
 import { renderFinanzplanMarkdown } from "@/lib/wizard/finanzplan-markdown";
 import { PaywallGate } from "./PaywallGate";
 import { AntragSectionNav, slugifyHeading } from "./AntragSectionNav";
@@ -51,6 +52,8 @@ interface Props {
   /** Wenn gesetzt, ist der Antrag bereits bezahlt — Paywall wird nicht angezeigt. */
   paidToken?: string | null;
   einreichung?: EinreichungInfoData | null;
+  /** 86cabdzwk: per-Programm-Dokumentlabel (Default "Antrag"/"Antragstext"). */
+  labels?: DokumentLabels;
   onRestart?: () => void;
   onFinanzplanChange?: (plan: Finanzplan) => void;
 }
@@ -196,10 +199,12 @@ export function AntragResult({
   sessionToken,
   paidToken,
   einreichung,
+  labels,
   onRestart,
   onFinanzplanChange,
 }: Props) {
   const paid = !!paidToken;
+  const l = labels ?? dokumentLabels();
   const markdownComponents = buildMarkdownComponents(paid, programm.id);
   const articleRef = useRef<HTMLElement>(null);
   const [copied, setCopied] = useState(false);
@@ -262,7 +267,7 @@ export function AntragResult({
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `Foerderantrag_${programm.id}.${ext}`;
+    a.download = `${l.datei}_${programm.id}.${ext}`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -294,7 +299,7 @@ export function AntragResult({
       };
       const opt = {
         margin: [15, 15, 20, 15] as [number, number, number, number],
-        filename: `Foerderantrag_${programm.id}.pdf`,
+        filename: `${l.datei}_${programm.id}.pdf`,
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: { scale: 2, useCORS: true, logging: false },
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
@@ -314,7 +319,7 @@ export function AntragResult({
       <header className="mb-6 flex flex-wrap items-start justify-between gap-4">
         <div>
           <h2 className="text-2xl font-semibold text-[#1c1917]">
-            Antragsentwurf {paid ? "freigeschaltet" : "fertig"}
+            {l.entwurf} {paid ? "freigeschaltet" : "fertig"}
           </h2>
           <p className="text-sm text-slate-600">für {programm.name}</p>
         </div>
@@ -327,7 +332,7 @@ export function AntragResult({
             disabled={exportBlocked}
             className="inline-flex items-center gap-2 rounded-lg bg-[#1e3d32] px-4 py-2 sm:py-3 text-sm font-semibold text-white transition hover:bg-[#2a5244] disabled:opacity-50 disabled:pointer-events-none"
           >
-            <Download className="h-4 w-4" /> Antrag herunterladen (bearbeitbar)
+            <Download className="h-4 w-4" /> {l.dokument} herunterladen (bearbeitbar)
           </button>
           <button
             type="button"
@@ -506,7 +511,7 @@ export function AntragResult({
           </div>
         )}
         {!paid && sessionToken && (
-          <PaywallGate sessionToken={sessionToken} priceEur={29.9} tierLabel="Einzelantrag" />
+          <PaywallGate sessionToken={sessionToken} priceEur={29.9} tierLabel="Einzelantrag" labels={l} />
         )}
       </div>
       {paid && textVorschlaege.length > 0 && sessionToken && (

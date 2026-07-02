@@ -2,18 +2,21 @@
 
 import { useState } from "react";
 import { Check, CreditCard, FileText, Loader2, Lock, RefreshCw, ShieldCheck, Sparkles, Ticket } from "lucide-react";
+import { dokumentLabels, type DokumentLabels } from "@/lib/wizard/dokument-label";
 
 interface Props {
   sessionToken: string;
   /** Preis in EUR fuer den gewaehlten Tier. */
   priceEur: number;
   tierLabel: string;
+  /** 86cabdzwk: per-Programm-Dokumentlabel (Default "Antrag"/"Antragstext"). */
+  labels?: DokumentLabels;
 }
 
 const DEV_MOCK_ENABLED = process.env.NEXT_PUBLIC_PAYWALL_DEV_MOCK === "1";
 
-const BENEFITS = [
-  "Vollständiger Antragstext + Finanzplan",
+const buildBenefits = (text: string) => [
+  `Vollständiger ${text} + Finanzplan`,
   "Download als bearbeitbare Datei (RTF), PDF und Text",
   "Copy-&-Paste-Ansicht für eigene Vorlagen",
   "12 Monate Zugriff über Download-Link",
@@ -27,7 +30,9 @@ interface ErrorState {
   message: string;
 }
 
-export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
+export function PaywallGate({ sessionToken, priceEur, tierLabel, labels }: Props) {
+  const l = labels ?? dokumentLabels();
+  const BENEFITS = buildBenefits(l.text);
   const [busy, setBusy] = useState(false);
   const [errorState, setErrorState] = useState<ErrorState | null>(null);
   const [showRedeem, setShowRedeem] = useState(false);
@@ -203,10 +208,10 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
             <Lock className="h-6 w-6 text-[#1e3d32]" />
           </div>
           <h3 className="mb-2 text-2xl font-semibold text-[#1c1917]">
-            Antrag + Finanzplan freischalten
+            {l.dokument} + Finanzplan freischalten
           </h3>
           <p className="mb-5 text-sm text-slate-600">
-            Ihr Antragstext und der Finanzplan sind fertig. Mit dem{" "}
+            {l.text === "Antragstext" ? "Ihr Antragstext" : l.ihr} und der Finanzplan sind fertig. Mit dem{" "}
             <strong className="text-[#57534e]">{tierLabel}</strong> bekommen Sie den
             vollständigen Text und alle Downloads.
           </p>
@@ -467,7 +472,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel }: Props) {
           </div>
 
           <p className="mt-4 text-xs text-slate-500">
-            Nach der Zahlung bekommen Sie einen Download-Link. Ihr Antrag bleibt darüber
+            Nach der Zahlung bekommen Sie einen Download-Link. {l.ihr} bleibt darüber
             12 Monate verfügbar und ist auch unter „Meine Anträge" erreichbar.
           </p>
         </div>
