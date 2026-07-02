@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; }
+  </style>
+</helmet>
+<x-import component-from-global-scope="doc-page" from="./doc-page.js" size="a4" margin="0.85in" hint-size="100%,100%">
+
+  <div style="font-family: 'Public Sans', sans-serif; font-size: 14.5px; line-height: 1.62; color: #22302B;">
+
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 3px solid #1E3A2F; padding-bottom: 10px;">
+      <div style="font-family: 'Source Serif 4', serif; font-weight: 700; font-size: 17px; color: #1E3A2F;">Edu<span style="color: #A8842C; font-style: italic;">Funds</span></div>
+      <div style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #7A8580;">Marketing-Analyse · pilot.edufunds.org · Juli 2026</div>
+    </div>
+
+    <h1 style="font-family: 'Source Serif 4', serif; font-weight: 700; font-size: 30px; line-height: 1.2; color: #1E3A2F; margin: 28px 0 8px;">Landingpage-Analyse: Vom Besucher zum zahlenden Antragsteller</h1>
+    <p style="font-size: 15.5px; color: #55625C; margin: 0 0 6px; text-wrap: pretty;">Bewertung der aktuellen Seite unter Vermarktungsgesichtspunkten und priorisierte Empfehlungen für die Weiterentwicklung. Zielgröße: mehr Nutzer, die mit EduFunds Anträge erstellen und kaufen.</p>
+    <p style="font-size: 12px; color: #98A29C; margin: 0 0 28px;">Basis: Startseite (Hero) sowie „Über uns" inkl. Werte-Sektion. Preis-, Programm- und Funnel-Seiten waren nicht einsehbar — Aussagen dazu sind entsprechend gekennzeichnet.</p>
+
+    <h2 style="font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 21px; color: #1E3A2F; margin: 0 0 10px;">1 · Was bereits stark ist</h2>
+    <ul style="margin: 0 0 24px; padding-left: 20px; display: grid; gap: 7px;">
+      <li><strong>Problemgetriebener Hero.</strong> „Jedes Jahr bleiben Millionen an Fördermitteln ungenutzt" arbeitet mit Verlustaversion — der wirksamste Hebel für diese Zielgruppe. Der Claim ist besser als die meisten SaaS-Heros.</li>
+      <li><strong>Produkt im Hero sichtbar.</strong> Die Antragsentwurf-Karte (DigitalPakt 2.0, 278.500 €, „unterschriftsreif in Minuten") macht das Ergebnis greifbar, bevor jemand klickt. Das Nutzenversprechen „Minuten statt Wochen" ist konkret und quantifiziert.</li>
+      <li><strong>Richtige Vertrauensanker für den öffentlichen Sektor.</strong> DSGVO, deutsche Server, EU-KI — exakt die Einwände, die Schulleitungen und Träger als Erstes haben.</li>
+      <li><strong>Seriöse, förderfähige Anmutung.</strong> Serifen-Typo, gedecktes Grün/Gold: wirkt nach Institution, nicht nach Start-up. Passt zur risikoaversen Zielgruppe.</li>
+    </ul>
+
+    <h2 style="font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 21px; color: #1E3A2F; margin: 0 0 10px;">2 · Die sechs größten Conversion-Lücken</h2>
+
+    <div style="display: grid; gap: 14px; margin-bottom: 24px;">
+
+      <div style="border: 1px solid #DCE3DF; border-radius: 8px; padding: 14px 16px; break-inside: avoid;">
+        <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px;">
+          <span style="font-family: 'Source Serif 4', serif; font-weight: 700; font-size: 18px; color: #A8842C;">01</span>
+          <strong style="font-size: 15px;">Kein Social Proof — die kritischste Lücke</strong>
+        </div>
+        <p style="margin: 0; color: #44514B;">Nirgends sichtbar: Wie viele Schulen nutzen EduFunds? Wie viel Fördersumme wurde bereits bewilligt? Kein Testimonial, kein Schullogo, keine Erfolgsgeschichte. Schulleitungen und Fördervereine entscheiden fast ausschließlich über Peer-Beweise („Welche Schule wie unsere hat das schon gemacht — und hat es funktioniert?"). Die stärkste denkbare Kennzahl ist <em>„X € bewilligt für Y Schulen"</em> — sobald es sie gibt, gehört sie in den Hero. Bis dahin: 2–3 Pilotschulen als kurze Fallgeschichten mit Name, Bundesland, Programm und bewilligter Summe.</p>
+      </div>
+
+      <div style="border: 1px solid #DCE3DF; border-radius: 8px; padding: 14px 16px; break-inside: avoid;">
+        <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px;">
+          <span style="font-family: 'Source Serif 4', serif; font-weight: 700; font-size: 18px; color: #A8842C;">02</span>
+          <strong style="font-size: 15px;">Zwei gleichrangige CTAs verwässern den Einstieg</strong>
+        </div>
+        <p style="margin: 0; color: #44514B;">„Förderfinder öffnen" und „KI-Assistent testen" konkurrieren, und beide benennen ein Werkzeug statt ein Ergebnis. Empfehlung: ein primärer CTA mit Ergebnis- und Aufwandsversprechen, z.&nbsp;B. <em>„Passende Förderprogramme für Ihre Schule finden — kostenlos, in 2 Minuten"</em>. Der Förderfinder ist der richtige Einstieg, weil er sofort personalisierten Wert liefert und den KI-Assistenten als natürlichen nächsten Schritt anschließt. Der zweite CTA wird sekundär (Textlink).</p>
+      </div>
+
+      <div style="border: 1px solid #DCE3DF; border-radius: 8px; padding: 14px 16px; break-inside: avoid;">
+        <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px;">
+          <span style="font-family: 'Source Serif 4', serif; font-weight: 700; font-size: 18px; color: #A8842C;">03</span>
+          <strong style="font-size: 15px;">Der Kauf ist unsichtbar</strong>
+        </div>
+        <p style="margin: 0; color: #44514B;">Wenn das Geschäftsmodell der Antragskauf ist, muss die Seite die Frage „Was kostet mich das, und was bekomme ich gratis?" beantworten, bevor sie gestellt wird. „Preise" existiert nur als Navpunkt und kleiner Textlink. Empfehlung: ein Preis-Teaser auf der Startseite mit klarer Freemium-Logik (<em>„Suchen und Entwurf starten: kostenlos. Zahlen Sie erst, wenn Ihr Antrag unterschriftsreif ist."</em>) plus Risikoumkehr — das nimmt der Zielgruppe mit engen Budgets die Kaufangst und ist zugleich ein starkes Verkaufsargument gegenüber Beratern mit Erfolgsprovision.</p>
+      </div>
+
+      <div style="border: 1px solid #DCE3DF; border-radius: 8px; padding: 14px 16px; break-inside: avoid;">
+        <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px;">
+          <span style="font-family: 'Source Serif 4', serif; font-weight: 700; font-size: 18px; color: #A8842C;">04</span>
+          <strong style="font-size: 15px;">Eine Ansprache für drei verschiedene Käufer</strong>
+        </div>
+        <p style="margin: 0; color: #44514B;">Schulleitung, Förderverein und Träger unterscheiden sich in Sprache, Budgethoheit und Entscheidungsweg. Ein ehrenamtlicher Fördervereins-Vorstand („Ich mache das abends, unbezahlt") braucht andere Argumente als eine Schulleitung („Ich brauche etwas Vorzeigbares für den Träger"). Empfehlung: zwei bis drei Einstiegspfade („Für Schulen" / „Für Fördervereine" / „Für Träger") mit je eigener Nutzenargumentation — als Sektion auf der Startseite oder als eigene Landingpages, die sich auch gezielt bewerben lassen.</p>
+      </div>
+
+      <div style="border: 1px solid #DCE3DF; border-radius: 8px; padding: 14px 16px; break-inside: avoid;">
+        <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px;">
+          <span style="font-family: 'Source Serif 4', serif; font-weight: 700; font-size: 18px; color: #A8842C;">05</span>
+          <strong style="font-size: 15px;">Keine Dringlichkeit — dabei liefert das Produkt sie frei Haus</strong>
+        </div>
+        <p style="margin: 0; color: #44514B;">Förderprogramme haben Fristen; das ist ein natürlicher, ehrlicher Dringlichkeitshebel, den kaum ein Wettbewerber nutzt. Empfehlung: ein Modul <em>„Diese Fristen laufen in den nächsten 60 Tagen ab"</em> mit 3–4 echten Programmen und Restlaufzeit auf der Startseite. Das erzeugt Handlungsdruck und beweist zugleich die Aktualität der Datenbank.</p>
+      </div>
+
+      <div style="border: 1px solid #DCE3DF; border-radius: 8px; padding: 14px 16px; break-inside: avoid;">
+        <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px;">
+          <span style="font-family: 'Source Serif 4', serif; font-weight: 700; font-size: 18px; color: #A8842C;">06</span>
+          <strong style="font-size: 15px;">Die Plattform hat kein Gesicht</strong>
+        </div>
+        <p style="margin: 0; color: #44514B;">Befund der Agentur-Analyse, hier bestätigt: Die Seite wirkt seriös, aber anonym — nirgends wird sichtbar, <em>wer</em> hinter EduFunds steht und warum. Im Bildungsbereich kauft man von Menschen; zwei Gründer sind dafür ein Vorteil, keine Schwäche. Wirksam sind drei Maßnahmen: eine Gründer-Sektion auf der Startseite (echtes Foto, Vornamen, 2–3 Sätze Herkunftsgeschichte), ein Gesicht am Entscheidungspunkt (Mini-Kontaktkarte neben Preisen: „Fragen? Schreiben Sie mir direkt.") und der Umbau von „Über uns" von Werte-Prosa zu Team und Geschichte. Vorsicht bei der Bildmenge: Es zählen <em>echte</em> Fotos — Gründer, echte Schulen, später Testimonial-Gesichter. Stockfotos lächelnder Schulkinder oder KI-Bilder zerstören genau die Glaubwürdigkeit, die die seriöse Anmutung aufgebaut hat. Ein Entwurf beider Elemente liegt bei: <a href="EduFunds Gründer-Sektion Entwurf.dc.html" style="color: #A8842C;">Gründer-Sektion ansehen</a>.</p>
+      </div>
+
+    </div>
+
+    <h2 style="font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 21px; color: #1E3A2F; margin: 0 0 10px;">3 · Weitere Beobachtungen</h2>
+    <ul style="margin: 0 0 24px; padding-left: 20px; display: grid; gap: 7px;">
+      <li><strong>„Führende Plattform" streichen.</strong> Unbelegte Superlative auf der „Über uns"-Seite kosten Glaubwürdigkeit bei einer skeptischen Zielgruppe. Konkrete Zahlen (180+ Programme, 16 Bundesländer) leisten dieselbe Arbeit besser.</li>
+      <li><strong>Werte-Sektion ist Innensicht.</strong> „Leidenschaft für Bildung / Innovation / Gemeinschaft" verkauft nichts. Auf „Über uns" vertretbar — aber der Platz wäre mit Team-Gesichtern und Herkunftsgeschichte („Wer steckt dahinter, warum machen die das?") deutlich vertrauensbildender. Menschen kaufen im Bildungsbereich von Menschen.</li>
+      <li><strong>KI-Einwände aktiv behandeln.</strong> „Darf ein KI-generierter Antrag überhaupt eingereicht werden?", „Merkt der Fördergeber das?", „Wer haftet für Fehler?" — eine kurze FAQ-Sektion, die diese Fragen offensiv beantwortet, senkt die Hemmschwelle spürbar.</li>
+      <li><strong>Kein Auffangnetz für Nicht-Käufer.</strong> Der Entscheidungszyklus an Schulen ist lang (Gremien, Schuljahresrhythmus). Wer heute nicht kauft, sollte eine E-Mail dalassen können: <em>„Fördermittel-Alert für Ihr Bundesland"</em> oder eine Checkliste als Download. Das baut den einzigen Kanal auf, über den Sie zurückholen können.</li>
+    </ul>
+
+    <h2 style="font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 21px; color: #1E3A2F; margin: 0 0 10px;">4 · Wachstum jenseits der Seite</h2>
+    <ul style="margin: 0 0 24px; padding-left: 20px; display: grid; gap: 7px;">
+      <li><strong>Programm-Detailseiten als SEO-Kanal.</strong> Wer „DigitalPakt 2.0 beantragen" oder „Förderung Schulhof NRW" googelt, hat maximale Kaufabsicht. 180+ Programme sind 180+ indexierbare Landingpages mit je einem CTA „Antrag mit KI starten" — der wahrscheinlich günstigste Akquisekanal für dieses Produkt.</li>
+      <li><strong>Multiplikatoren statt Einzelakquise.</strong> Schulen sind organisiert: Fördervereins-Landesverbände, Schulträger, Schulleitungsverbände, Landeselternräte. Eine Partnerschaft oder ein Webinar dort erreicht hunderte Antragsteller auf einmal — und liefert den Social Proof aus Punkt 01 gleich mit.</li>
+      <li><strong>Empfehlungsmechanik.</strong> Erfolgreiche Antragsteller erzählen es weiter (Schulleiterrunden, Fördervereinstreffen). Ein einfacher Anreiz — z.&nbsp;B. ein Gratis-Antrag pro geworbener Schule — formalisiert das.</li>
+    </ul>
+
+    <h2 style="font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 21px; color: #1E3A2F; margin: 0 0 10px;">5 · Priorisierung</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 8px;">
+      <div style="background: #F2F5F3; border-radius: 8px; padding: 14px 16px;">
+        <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #A8842C; font-weight: 700; margin-bottom: 8px;">Sofort (Copy &amp; Layout)</div>
+        <ul style="margin: 0; padding-left: 16px; font-size: 13px; display: grid; gap: 5px; color: #44514B;">
+          <li>Ein primärer CTA mit Ergebnisversprechen</li>
+          <li>Preis-Teaser + Freemium-Logik auf der Startseite</li>
+          <li>Fristen-Modul mit echten Programmen</li>
+          <li>„Führende Plattform" ersetzen</li>
+          <li>KI-FAQ ergänzen</li>
+        </ul>
+      </div>
+      <div style="background: #F2F5F3; border-radius: 8px; padding: 14px 16px;">
+        <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #A8842C; font-weight: 700; margin-bottom: 8px;">Kurzfristig (Wochen)</div>
+        <ul style="margin: 0; padding-left: 16px; font-size: 13px; display: grid; gap: 5px; color: #44514B;">
+          <li>2–3 Pilotschulen-Fallgeschichten einwerben</li>
+          <li>Zielgruppen-Einstiege (Schule / Förderverein / Träger)</li>
+          <li>Fördermittel-Alert als Lead-Capture</li>
+          <li>Gründer-Sektion + Kontaktkarte einbauen (<a href="EduFunds Gründer-Sektion Entwurf.dc.html" style="color: #A8842C;">Entwurf</a>)</li>
+        </ul>
+      </div>
+      <div style="background: #F2F5F3; border-radius: 8px; padding: 14px 16px;">
+        <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #A8842C; font-weight: 700; margin-bottom: 8px;">Mittelfristig (Monate)</div>
+        <ul style="margin: 0; padding-left: 16px; font-size: 13px; display: grid; gap: 5px; color: #44514B;">
+          <li>Programm-Detailseiten als SEO-Landingpages</li>
+          <li>Verbands- &amp; Träger-Partnerschaften</li>
+          <li>Empfehlungsprogramm</li>
+          <li>Bewilligungs-Kennzahl in den Hero, sobald belastbar</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="font-size: 12px; color: #98A29C; margin-top: 20px; border-top: 1px solid #DCE3DF; padding-top: 10px;">Nächster sinnvoller Schritt: die Sofort-Maßnahmen als überarbeiteten Landingpage-Entwurf umsetzen. Ein Entwurf der Gründer-Sektion und der Kontaktkarte (Lücke 06) liegt bereits vor — mit Foto-Platzhaltern für Ihre eigenen Bilder.</p>
+
+  </div>
+
+</x-import>
+</x-dc>
+</body>
+</html>
