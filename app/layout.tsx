@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Newsreader, Outfit, Fira_Code } from "next/font/google";
+import { Newsreader, Outfit, Fira_Code, Bricolage_Grotesque, Caveat } from "next/font/google";
 import "./globals.css";
 import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
 
@@ -24,6 +24,20 @@ const fontMono = Fira_Code({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-mono",
+  display: "swap",
+});
+/* Landing-Handoff Variante 1c: Bricolage Grotesque nur fuer die Hero-Headline,
+ * Caveat fuer die Handschrift-Vornamen der Gruender-Sektion. */
+const fontDisplay = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  variable: "--font-display",
+  display: "swap",
+});
+const fontHand = Caveat({
+  subsets: ["latin"],
+  weight: ["600"],
+  variable: "--font-hand",
   display: "swap",
 });
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
@@ -119,7 +133,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="de" className={`${fontSerif.variable} ${fontSans.variable} ${fontMono.variable}`}>
+    <html lang="de" className={`${fontSerif.variable} ${fontSans.variable} ${fontMono.variable} ${fontDisplay.variable} ${fontHand.variable}`}>
       <head>
         <script
           type="application/ld+json"

@@ -129,6 +129,9 @@ module.exports = {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
         serif: ['var(--font-serif)', 'Georgia', 'serif'],
         mono: ['var(--font-mono)', 'Fira Code', 'monospace'],
+        /* Landing Variante 1c (Hero-Headline) bzw. Gruender-Handschrift */
+        display: ['var(--font-display)', 'system-ui', 'sans-serif'],
+        hand: ['var(--font-hand)', 'cursive'],
       },
       
       /* Custom Animations */

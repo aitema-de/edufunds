@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Check, Minus, ChevronDown, Sparkles } from "lucide-react";
 import {
   HourglassIcon,
@@ -39,27 +39,6 @@ const fadeUp = {
   show: { opacity: 1, y: 0 },
 };
 
-/* Hero-Headline Wort fuer Wort (Blur-Reveal). `gold` = kursives Akzentwort,
-   `underline` = gezeichnete Gold-Linie nach dem Reveal. */
-const H1_WORDS: { w: string; gold?: boolean; underline?: boolean }[] = [
-  { w: "Jedes" },
-  { w: "Jahr" },
-  { w: "bleiben" },
-  { w: "Millionen" },
-  { w: "an" },
-  { w: "Fördermitteln", gold: true },
-  { w: "ungenutzt.", underline: true },
-];
-const h1Word = {
-  hidden: { opacity: 0, y: 20, filter: "blur(5px)" },
-  show: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.55, ease: EASE },
-  },
-};
-
 /* Editoriale Akzente:
    - HELLE Flaechen → brandy (#78350f, text-brandy / bg-brandy)
    - DUNKLE Flaechen → amber (#d4af37 / amber-200/300/400)
@@ -86,6 +65,7 @@ export function HomePageContent({
       <LiveShowcase stats={stats} />
       <Datenschutz />
       <ProgrammeShowcase stats={stats} programme={programme} />
+      <GruenderSektion />
       <PreiseTeaser />
       <FAQ />
       <ClosingCta />
@@ -94,80 +74,42 @@ export function HomePageContent({
 }
 
 /* ======================================================================
-   HERO — asymmetrisch: Text links, animiertes Dashboard-Mock rechts
+   HERO — Variante 1c aus dem Landing-Handoff (02.07.2026): dunkelgruener
+   Hero, Headline in Bricolage Grotesque (font-display), Gold-CTA #D4B160,
+   Outline-Chips, Projektfoto mit schwebendem Status-Chip. Bewusster
+   Richtungswechsel weg vom Serif-Hero (Kolja-Entscheid 02.07.).
+   Gruenflaeche = bestehendes evergreen-Token (≈ Handoff #1E3A2F);
+   #D4B160/#FBF9F3 sind 1c-spezifisch und haben kein Token.
    ====================================================================== */
 function Hero({ stats }: { stats: LandingStats }) {
-  const heroStats = [
-    { v: stats.total, l: "Programme" },
-    { v: String(stats.bundeslaender), l: "Bundesländer" },
-    { v: "EU", l: "KI-Modell" },
-    { v: "DE", l: "Server" },
+  const chips = [
+    `${stats.total} Programme`,
+    `${stats.bundeslaender} Bundesländer`,
+    "DSGVO-konform",
   ];
   return (
-    <section id="top" className="relative overflow-hidden pt-20 pb-16 px-6 bg-paper">
-      {/* Feines Akten-Raster + warmer Gold-Schein (Richtung F) — rein dekorativ */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-40 [background-image:linear-gradient(#e9e4d8_1px,transparent_1px),linear-gradient(90deg,#e9e4d8_1px,transparent_1px)] [background-size:44px_44px] [mask-image:radial-gradient(75%_65%_at_62%_18%,#000,transparent_75%)]"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 [background:radial-gradient(55%_45%_at_85%_8%,rgba(201,162,39,0.10),transparent_70%)]"
-      />
+    <section id="top" className="relative overflow-hidden bg-evergreen px-6 pt-16 pb-16 lg:pt-[76px] lg:pb-[84px]">
       <div className="relative max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-center">
-          <div className="space-y-7">
+        <div className="grid lg:grid-cols-[1fr_560px] gap-12 lg:gap-[72px] items-center">
+          <div>
             <motion.div
               initial="hidden"
               animate="show"
               variants={fadeUp}
               transition={{ duration: 0.6, ease: EASE }}
-              className="flex items-center gap-3.5"
+              className="text-[12.5px] uppercase tracking-[0.15em] font-bold text-[#D4B160] mb-[22px]"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/edufunds-icon.svg"
-                alt=""
-                aria-hidden
-                width={64}
-                height={64}
-                className="size-12 shrink-0"
-              />
-              <span className="text-xs uppercase tracking-widest text-evergreen font-semibold leading-snug">
-                Fördermittel für Schulen. Vereinfacht.
-                <span className="mt-0.5 block text-[10px] font-medium normal-case tracking-wider text-ink/45">
-                  Geprüft · Strukturiert · Unterschriftsreif
-                </span>
-              </span>
+              Fördermittel für Schulen. Vereinfacht.
             </motion.div>
 
             <motion.h1
               initial="hidden"
               animate="show"
-              variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } } }}
-              className="font-serif text-5xl md:text-7xl leading-[1.05] text-balance text-evergreen"
-              style={{ fontWeight: 500 }}
+              variants={fadeUp}
+              transition={{ duration: 0.7, delay: 0.05, ease: EASE }}
+              className="font-display font-semibold text-[40px] md:text-[52px] lg:text-[60px] leading-[1.06] text-[#FBF9F3] text-balance mb-6"
             >
-              {H1_WORDS.map(({ w, gold, underline }, i) => (
-                <Fragment key={`${w}-${i}`}>
-                  <motion.span
-                    variants={h1Word}
-                    className={`inline-block ${gold ? "italic text-gold-700" : ""} ${underline ? "relative" : ""}`}
-                  >
-                    {w}
-                    {underline && (
-                      <motion.span
-                        aria-hidden
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: 1 }}
-                        transition={{ duration: 0.8, delay: 1.15, ease: EASE }}
-                        style={{ transformOrigin: "left" }}
-                        className="absolute -bottom-1.5 left-0 h-[5px] w-full rounded-full bg-gradient-to-r from-gold-500 to-gold-300"
-                      />
-                    )}
-                  </motion.span>{" "}
-                </Fragment>
-              ))}
+              Jedes Jahr bleiben <span className="text-[#D4B160]">Millionen an Fördermitteln</span> ungenutzt.
             </motion.h1>
 
             <motion.p
@@ -175,7 +117,7 @@ function Hero({ stats }: { stats: LandingStats }) {
               animate="show"
               variants={fadeUp}
               transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
-              className="text-lg md:text-xl text-ink/70 max-w-[52ch] text-pretty leading-relaxed"
+              className="text-lg leading-[1.6] text-[#FBF9F3]/[0.78] max-w-[520px] text-pretty mb-8"
             >
               {stats.total} geprüfte Programme an einem Ort. Unser KI-Assistent
               erstellt unterschriftsreife Anträge in Minuten statt Wochen —
@@ -186,53 +128,36 @@ function Hero({ stats }: { stats: LandingStats }) {
               initial="hidden"
               animate="show"
               variants={fadeUp}
-              transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
-              className="flex flex-wrap gap-4"
+              transition={{ duration: 0.7, delay: 0.18, ease: EASE }}
             >
-              <Link
-                href="/foerderprogramme"
-                className="bg-evergreen text-paper py-2.5 pr-5 pl-5 flex items-center gap-2 rounded-full font-medium transition-transform hover:-translate-y-0.5 ring-1 ring-evergreen shadow-[0_14px_30px_-14px_rgba(30,61,50,0.5)]"
-              >
-                Förderfinder öffnen
-                <ArrowRight className="size-4 shrink-0" />
-              </Link>
-              <Link
-                href="/foerderprogramme"
-                className="bg-paper text-ink py-2.5 px-5 flex items-center gap-2 rounded-full font-medium ring-1 ring-ink/15 hover:ring-ink/30 transition-all"
-              >
-                KI-Assistent testen
-              </Link>
-            </motion.div>
-
-            <motion.a
-              href="#preise"
-              initial="hidden"
-              animate="show"
-              variants={fadeUp}
-              transition={{ duration: 0.7, delay: 0.28, ease: EASE }}
-              className="inline-flex items-center gap-2 text-sm text-ink/60 hover:text-evergreen transition-colors group"
-            >
-              <span className="underline underline-offset-4 decoration-ink/20 group-hover:decoration-evergreen">
-                Für Schulen &amp; Träger: Preise ansehen
-              </span>
-              <span aria-hidden>→</span>
-            </motion.a>
-
-            <motion.div
-              initial="hidden"
-              animate="show"
-              variants={fadeUp}
-              transition={{ duration: 0.7, delay: 0.35, ease: EASE }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-px bg-ink/5 border border-ink/5 rounded-2xl overflow-hidden mt-10"
-            >
-              {heroStats.map((s) => (
-                <div key={s.l} className="bg-paper p-5 space-y-1">
-                  <span className="block text-2xl font-serif italic text-evergreen">{s.v}</span>
-                  <span className="text-xs uppercase tracking-wider text-ink/50 font-medium">
-                    {s.l}
+              <div className="flex flex-wrap items-center gap-5 mb-3.5">
+                <Link
+                  href="/foerderprogramme"
+                  className="bg-[#D4B160] text-evergreen text-base font-bold rounded-full py-4 px-[30px] inline-flex items-center gap-2.5 hover:bg-[#DDBE74] transition-colors duration-150 active:scale-[0.98]"
+                >
+                  Passende Programme finden
+                  <ArrowRight className="size-[18px] shrink-0" />
+                </Link>
+                <Link
+                  href="/foerderprogramme"
+                  className="text-[15px] font-semibold text-[#FBF9F3] underline underline-offset-4 hover:text-[#D4B160] transition-colors duration-150"
+                >
+                  KI-Assistent testen
+                </Link>
+              </div>
+              <div className="text-[13.5px] text-[#FBF9F3]/55 mb-[30px]">
+                Kostenlos · Ergebnis in 2 Minuten
+              </div>
+              <div className="flex flex-wrap gap-2.5">
+                {chips.map((c) => (
+                  <span
+                    key={c}
+                    className="border border-[#FBF9F3]/25 text-[#FBF9F3]/85 text-[13.5px] font-semibold rounded-full px-4 py-2"
+                  >
+                    {c}
                   </span>
-                </div>
-              ))}
+                ))}
+              </div>
             </motion.div>
           </div>
 
@@ -242,79 +167,30 @@ function Hero({ stats }: { stats: LandingStats }) {
             transition={{ duration: 0.9, delay: 0.15, ease: EASE }}
             className="relative"
           >
-            <HeroCertPanel total={stats.total} />
+            {/* Unsplash-Stand-in (lokal in /public/landing) — vor Launch durch
+                echtes Projektfoto ersetzen, siehe Handoff-README „Assets" */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/landing/hero-projekt.jpg"
+              alt="Schülerinnen und Schüler arbeiten gemeinsam an einem Projekt"
+              width={1120}
+              height={1040}
+              className="w-full h-[420px] lg:h-[520px] object-cover rounded-2xl"
+            />
+            <div className="absolute left-4 right-4 lg:left-[-36px] lg:right-auto bottom-14 lg:bottom-12 flex items-center gap-3.5 bg-[#FBF9F3] rounded-xl px-5 py-4 shadow-[0_18px_40px_rgba(0,0,0,0.35)]">
+              <span aria-hidden className="size-2.5 rounded-full bg-[#2E7D4F] shrink-0" />
+              <span className="text-sm text-[#22302B]">
+                <strong>DigitalPakt Schule 2.0</strong> — Antrag unterschriftsreif ·{" "}
+                <span className="text-[#A8842C] font-bold">278.500 €</span>
+              </span>
+            </div>
+            <p className="mt-3 text-[11px] text-[#FBF9F3]/40">
+              Symbolfoto · Illustratives Beispiel — keine realen Antragsdaten.
+            </p>
           </motion.div>
         </div>
       </div>
     </section>
-  );
-}
-
-/* ---------- HeroCertPanel — Urkunden-Panel (Richtung F: Akademisch/Institut).
-   Ersetzt das Dashboard-Mock: Antragsentwurf als „Urkunde" mit Doppelrahmen,
-   Datenzeilen und gedrehtem Pruefsiegel. Werte sind illustrativ (Disclaimer). */
-function HeroCertPanel({ total }: { total: string }) {
-  const rows = [
-    { k: "Beantragte Summe", v: "278.500 €", accent: "gold" },
-    { k: "Abschnitte", v: "4 von 5 fertig" },
-    { k: "Eignung (KI-geprüft)", v: "hoch", accent: "ok" },
-    { k: "Status", v: "unterschriftsreif in Minuten" },
-  ] as const;
-  return (
-    <div className="w-full max-w-md mx-auto lg:mx-0 p-2">
-      <div className="rounded-md border border-[#d8d2c2] bg-white p-7 md:p-8 shadow-[0_30px_70px_-40px_rgba(30,61,50,0.45)] outline-double outline-[3px] outline-[#d8d2c2] outline-offset-[6px]">
-        <div className="border-b border-[#e7e2d4] pb-5 mb-3 text-center">
-          <span className="text-[10px] uppercase tracking-[0.22em] text-ink/45 font-medium">
-            Antragsentwurf
-          </span>
-          <h4 className="font-serif text-2xl text-evergreen mt-1.5" style={{ fontWeight: 600 }}>
-            DigitalPakt Schule 2.0
-          </h4>
-        </div>
-        <dl>
-          {rows.map((r, i) => (
-            <div
-              key={r.k}
-              className={`flex items-baseline justify-between gap-4 py-2.5 text-sm ${
-                i < rows.length - 1 ? "border-b border-[#f0ece0]" : ""
-              }`}
-            >
-              <dt className="text-ink/55">{r.k}</dt>
-              <dd
-                className={`font-semibold text-right ${
-                  "accent" in r && r.accent === "gold"
-                    ? "text-gold-700"
-                    : "accent" in r && r.accent === "ok"
-                    ? "text-emerald-700"
-                    : "text-ink"
-                }`}
-              >
-                {r.v}
-              </dd>
-            </div>
-          ))}
-        </dl>
-        <div className="flex items-center justify-between gap-4 mt-5">
-          <span className="font-serif italic text-evergreen text-[15px] leading-snug">
-            EduFunds — Ihr Antrag, fertig formuliert.
-          </span>
-          <motion.span
-            aria-hidden
-            initial={{ opacity: 0, scale: 2.4, rotate: -40 }}
-            animate={{ opacity: 1, scale: 1, rotate: -12 }}
-            transition={{ type: "spring", stiffness: 220, damping: 15, delay: 1.5 }}
-            className="grid size-14 shrink-0 place-content-center rounded-full border-2 border-gold-500/60 text-center text-[9px] font-semibold uppercase tracking-wider text-gold-700 leading-tight"
-          >
-            Geprüft
-            <br />
-            {total}
-          </motion.span>
-        </div>
-        <p className="text-[10px] text-ink/40 mt-4">
-          Illustratives Beispiel — keine realen Antragsdaten.
-        </p>
-      </div>
-    </div>
   );
 }
 
@@ -938,6 +814,140 @@ function ProgrammeShowcase({
 }
 
 /* ======================================================================
+   GRUENDER-SEKTION — Vertrauens-Baustein aus dem Landing-Handoff
+   (02.07.2026), platziert zwischen Programm-Uebersicht und Preisen.
+   Portraets sind noch nicht fotografiert → Platzhalter-Kachel mit
+   Handschrift-Vornamen; sobald Fotos da sind: Dateien nach
+   /public/landing/ legen und im FOUNDERS-Array `foto` setzen.
+   ====================================================================== */
+const FOUNDERS: {
+  name: string;
+  vorname: string;
+  rolle: string;
+  bio: string;
+  foto?: string;
+}[] = [
+  {
+    name: "Kolja Schumann",
+    vorname: "Kolja",
+    rolle: "Geschäftsführung & Produkt",
+    bio: "Ich habe selbst jahrelang Förderanträge geschrieben — für Vereine, Projekte und unser eigenes Unternehmen. Dabei wurde mir klar: Nicht die Ideen fehlen, sondern die Zeit für den Papierkram. Genau da setzt EduFunds an.",
+  },
+  {
+    name: "Fedo Hagge-Kubat",
+    vorname: "Fedo",
+    rolle: "Technik & KI",
+    bio: "Ich baue die KI hinter EduFunds so, dass sie klingt wie eine erfahrene Antragsschreiberin — nicht wie ein Chatbot. Jedes Programm im Katalog ist geprüft, jede Formulierung nachvollziehbar. Und was Schulen uns anvertrauen, bleibt auf deutschen Servern.",
+  },
+];
+
+function GruenderSektion() {
+  return (
+    <section id="gruender" className="py-[88px] px-6 bg-paper">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col items-center text-center mb-14">
+          <Reveal>
+            <span className="inline-block text-xs uppercase tracking-[0.16em] font-bold text-[#A8842C] bg-[#F3EDDD] rounded-full px-4 py-[7px] mb-5">
+              Wer dahinter steht
+            </span>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="heading-strong font-serif text-3xl md:text-[44px] leading-[1.15] text-evergreen text-balance max-w-[760px] mx-auto mb-4">
+              Wir sind zwei Gründer — und wir kennen den Antragsfrust aus eigener Erfahrung.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="text-[17px] leading-[1.6] text-[#55625C] max-w-[620px] mx-auto text-pretty">
+              EduFunds ist kein anonymes Portal. Hinter jeder Antwort, jedem geprüften
+              Programm und jedem Antrag stehen wir persönlich.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 max-w-[920px] mx-auto">
+          {FOUNDERS.map((f, i) => (
+            <Reveal key={f.name} delay={i * 0.08}>
+              <div className="bg-white border border-[#E4E0D4] rounded-2xl p-6 flex flex-col gap-[18px] h-full">
+                {f.foto ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={f.foto}
+                    alt={`Porträt von ${f.name}`}
+                    className="w-full h-[340px] object-cover rounded-xl"
+                  />
+                ) : (
+                  <div
+                    aria-hidden
+                    className="w-full h-[340px] rounded-xl bg-[#F3EDDD] grid place-content-center"
+                  >
+                    <span className="font-hand text-[64px] text-[#A8842C]">{f.vorname}</span>
+                  </div>
+                )}
+                <div>
+                  <div className="flex items-baseline justify-between gap-3">
+                    <h3 className="heading-strong font-serif text-2xl text-evergreen">
+                      {f.name}
+                    </h3>
+                    <span aria-hidden className="font-hand text-[26px] text-[#A8842C]">
+                      {f.vorname}
+                    </span>
+                  </div>
+                  <div className="text-xs uppercase tracking-[0.12em] font-bold text-[#A8842C] mt-1 mb-3">
+                    Mitgründer · {f.rolle}
+                  </div>
+                  <p className="text-[15px] leading-[1.6] text-[#44514B] text-pretty">{f.bio}</p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={0.15}>
+          <div className="max-w-[720px] mx-auto mt-12 border-t border-[#E4E0D4] pt-8 text-center">
+            <p className="font-serif italic text-xl leading-normal text-evergreen text-balance mb-2">
+              „Kein Schulprojekt sollte an einem Formular scheitern. Dafür stehen wir —
+              mit Namen und Gesicht."
+            </p>
+            <div className="text-[13px] text-[#7A8580]">Kolja &amp; Fedo, Gründer von EduFunds</div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Kontaktkarte am Entscheidungspunkt (Landing-Handoff B) ---------- */
+function KontaktKarte() {
+  return (
+    <div className="mt-12 flex justify-center">
+      <div className="flex flex-col sm:flex-row items-center gap-5 bg-white border border-[#E4E0D4] rounded-2xl px-7 py-6 max-w-[620px] w-full sm:w-auto">
+        <div
+          aria-hidden
+          className="size-[84px] shrink-0 rounded-full bg-[#F3EDDD] grid place-content-center"
+        >
+          <span className="font-hand text-[34px] text-[#A8842C]">Kolja</span>
+        </div>
+        <div className="grid gap-1 text-center sm:text-left">
+          <div className="font-serif text-[19px] text-evergreen" style={{ fontWeight: 600 }}>
+            Fragen zu Preisen oder Ihrem Antrag?
+          </div>
+          <p className="text-[14.5px] leading-[1.55] text-[#55625C]">
+            Schreiben Sie mir direkt — ich antworte persönlich, meist noch am selben Tag.
+          </p>
+          <div className="text-[13px] text-[#7A8580] mt-0.5">Kolja, Mitgründer</div>
+        </div>
+        <a
+          href="mailto:office@edufunds.org"
+          className="shrink-0 w-full sm:w-auto text-center bg-evergreen text-paper text-[14.5px] font-semibold rounded-full px-[22px] py-3 hover:bg-[#2C5243] transition-colors duration-150"
+        >
+          E-Mail schreiben
+        </a>
+      </div>
+    </div>
+  );
+}
+
+/* ======================================================================
    PREISE-TEASER — echte Preise (Single Source: lib/payments/packs.ts)
    ====================================================================== */
 function PreiseTeaser() {
@@ -1077,6 +1087,11 @@ function PreiseTeaser() {
           Alle Preise inkl. MwSt. Kein Abo, keine versteckten Kosten. Kontingente sind
           12 Monate ab Kauf gültig und nicht an einzelne Personen gebunden.
         </p>
+
+        {/* Kontaktkarte am Entscheidungspunkt (Landing-Handoff Baustein B) */}
+        <Reveal delay={0.1}>
+          <KontaktKarte />
+        </Reveal>
       </div>
     </section>
   );
