@@ -9,7 +9,7 @@ name: Grant-Eval Regression (Staging, alert-only)
 # (Matching ist live + leicht nichtdeterministisch, Lauf kostet LLM-Calls).
 #
 # Benötigte Secrets (Repo-Settings → Secrets and variables → Actions):
-#   EVAL_SUITE_TOKEN    — PAT/Fine-grained-Token mit READ auf aitema-de/grant-eval-suite
+#   EVAL_SUITE_SSH_KEY  — privater Teil des read-only Deploy-Keys auf aitema-de/grant-eval-suite
 #   EDUFUNDS_EVAL_TOKEN — = EVAL_TOKEN/EVAL_SHARED_SECRET der Staging-App (X-Eval-Token)
 # Fehlt eines, überspringt der Job sauber.
 
@@ -31,11 +31,11 @@ jobs:
       - name: Pre-Flight — Secrets vorhanden?
         id: pre
         env:
-          HAS_SUITE: ${{ secrets.EVAL_SUITE_TOKEN != '' }}
+          HAS_SUITE: ${{ secrets.EVAL_SUITE_SSH_KEY != '' }}
           HAS_EVAL: ${{ secrets.EDUFUNDS_EVAL_TOKEN != '' }}
         run: |
           if [ "$HAS_SUITE" != "true" ] || [ "$HAS_EVAL" != "true" ]; then
-            echo "::warning::EVAL_SUITE_TOKEN oder EDUFUNDS_EVAL_TOKEN fehlt — Eval übersprungen."
+            echo "::warning::EVAL_SUITE_SSH_KEY oder EDUFUNDS_EVAL_TOKEN fehlt — Eval übersprungen."
             echo "skip=true" >> "$GITHUB_OUTPUT"
           else
             echo "skip=false" >> "$GITHUB_OUTPUT"
@@ -46,7 +46,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: aitema-de/grant-eval-suite
-          token: ${{ secrets.EVAL_SUITE_TOKEN }}
+          ssh-key: ${{ secrets.EVAL_SUITE_SSH_KEY }}
           path: grant-eval-suite
 
       - name: Setup Python
