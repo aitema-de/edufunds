@@ -180,3 +180,41 @@ describe("verifyFacts — Neutralisierung mit Never-Worse-Gate", () => {
     expect(res.vorschlaege).toEqual(["verbreiten die Ergebnisse ueber den Schul-Newsletter"]);
   });
 });
+
+// ---------------------------------------------------------------------------
+// 86caht7eq Restluecken-Iteration: deterministischer Rechtsfolgen-Detektor
+// ---------------------------------------------------------------------------
+import { detectRechtsfolgen } from "@/lib/wizard/fact-verification";
+
+describe("detectRechtsfolgen — Rechtsfolgen-Behauptungen deterministisch fangen", () => {
+  it("findet Gemeinnuetzigkeits-/Freistellungs-/Zustimmungs-Behauptungen als 'tatsache'", () => {
+    const text =
+      "Der Förderverein ist als gemeinnützig anerkannt. " +
+      "Der Freistellungsbescheid liegt vor. " +
+      "Der Schulträger hat bereits zugestimmt.";
+    const claims = detectRechtsfolgen(text, "");
+    expect(claims.length).toBe(3);
+    expect(claims.every((c) => c.art === "tatsache")).toBe(true);
+    expect(claims[0].zitat).toContain("als gemeinnützig anerkannt");
+  });
+
+  it("ueberspringt Behauptungen, die der Nutzer selbst belegt hat (Ground Truth)", () => {
+    const text = "Unser Verein ist als gemeinnützig anerkannt.";
+    const gt = "Wir sind ein eingetragener Verein und der Verein ist als gemeinnützig anerkannt (Bescheid 2025).";
+    expect(detectRechtsfolgen(text, gt)).toEqual([]);
+  });
+
+  it("ueberspringt Saetze mit ehrlichem Vorbehalt oder Marker", () => {
+    const text =
+      "Die Gemeinnützigkeit ist gegeben, der Nachweis ist noch einzuholen. " +
+      "[Annahme: Der Schulträger hat zugestimmt]";
+    expect(detectRechtsfolgen(text, "")).toEqual([]);
+  });
+
+  it("flaggt 'muendliche Zusage' ohne Vorbehalt", () => {
+    const text = "Es liegt eine mündliche Zusage des Fördervereins zur Mittelverwaltung vor.";
+    const claims = detectRechtsfolgen(text, "");
+    expect(claims.length).toBe(1);
+    expect(claims[0].zitat.toLowerCase()).toContain("mündliche zusage");
+  });
+});

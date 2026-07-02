@@ -206,7 +206,12 @@ function programmBlock(p: Foerderprogramm): string {
   lines.push(`Programm: ${p.name}`);
   if ((p as any).foerdergeber) lines.push(`Fördergeber: ${(p as any).foerdergeber}`);
   if ((p as any).foerdergeberTyp) lines.push(`Typ: ${(p as any).foerdergeberTyp}`);
-  if ((p as any).beschreibung) lines.push(`Beschreibung: ${(p as any).beschreibung}`);
+  // Katalog fuehrt `kurzbeschreibung` (alle Programme), `beschreibung` (Volltext) ist
+  // praktisch nie gesetzt — ohne den Fallback erreichte die Programmbeschreibung
+  // (inkl. Antragsberechtigten-Hinweisen wie "Antragstellerin ist NICHT die Schule
+  // selbst") den Generator NIE (86caht7eq-Restluecken-Befund 02.07.).
+  const beschreibung = (p as any).beschreibung || (p as any).kurzbeschreibung;
+  if (beschreibung) lines.push(`Beschreibung: ${beschreibung}`);
   if ((p as any).foerdersummeText) lines.push(`Förderhöhe: ${(p as any).foerdersummeText}`);
   if ((p as any).zielgruppeText) lines.push(`Zielgruppe: ${(p as any).zielgruppeText}`);
   if ((p as any).bewerbungsfristText) lines.push(`Frist: ${(p as any).bewerbungsfristText}`);
@@ -1039,7 +1044,7 @@ export const FACT_VERIFICATION_DETECT_SYSTEM = `Du bist ein strenger Faktenpruef
 
 ## Drei Arten (klassifiziere jede ungedeckte Behauptung)
 1. "widerspruch" — die Behauptung WIDERSPRICHT einer Nutzeraussage. Beispiel: Nutzer sagte "machen die Lehrkraefte nebenher / keine externe Kraft", Antrag behauptet eine bezahlte externe Honorarstelle. Diese gehoeren NICHT in den Antrag → werden entfernt.
-2. "tatsache" — die Behauptung stellt eine ungesicherte TATSACHE/ZUSAGE/ein vergangenes Ereignis als FESTSTEHEND dar, obwohl der Nutzer sie nicht bestaetigt hat: eine erteilte Zusage/Genehmigung Dritter ("der Schultraeger hat zugestimmt", "die Eltern beteiligen sich"), ein benannter realer Partner samt Rolle als gesichert ("in Kooperation mit der Stadtbuecherei Musterstadt"), ein konkretes Datum/abgeschlossenes Ereignis, eine erfundene Beleg-QUELLE ("laut Sprachstandserhebung", "gemaess Schulstatistik", "7% gemaess Richtlinie"). Solche FALSCHEN TATSACHEN werden zu ehrlichen Vorbehalten entschaerft ("… ist noch einzuholen / noch zu klaeren").
+2. "tatsache" — die Behauptung stellt eine ungesicherte TATSACHE/ZUSAGE/ein vergangenes Ereignis als FESTSTEHEND dar, obwohl der Nutzer sie nicht bestaetigt hat: eine erteilte Zusage/Genehmigung Dritter ("der Schultraeger hat zugestimmt", "die Eltern beteiligen sich"), eine RECHTSFOLGEN-Behauptung ("ist als gemeinnuetzig anerkannt", "die Gemeinnuetzigkeit ist gegeben", "der Freistellungsbescheid liegt vor" — IMMER "tatsache", nie "vorschlag"), ein benannter realer Partner samt Rolle als gesichert ("in Kooperation mit der Stadtbuecherei Musterstadt"), ein konkretes Datum/abgeschlossenes Ereignis, eine erfundene Beleg-QUELLE ("laut Sprachstandserhebung", "gemaess Schulstatistik", "7% gemaess Richtlinie"). Solche FALSCHEN TATSACHEN werden zu ehrlichen Vorbehalten entschaerft ("… ist noch einzuholen / noch zu klaeren").
 3. "vorschlag" — eine plausible, zum Vorhaben passende AUSGESTALTUNG oder OPTION, die der Nutzer nur nicht genannt hat: eine sinnvolle Methode/ein Format ("dialogisches Vorlesen"), ein moeglicher Verbreitungsweg ("Verbreitung ueber den Schul-Newsletter"), eine vorgeschlagene Mengen-/Zeitstruktur ("woechentliche Sessions"), wofuer Mittel verwendet werden koennten. Das ist der MEHRWERT des Assistenten → BLEIBT im Text und wird dem Nutzer als zu bestaetigender Vorschlag aufgelistet. NICHT entfernen.
 
 Faustregel: widerspricht es dem Nutzer? → "widerspruch". Behauptet es eine ungesicherte Tatsache/Zusage/Quelle als feststehend? → "tatsache". Ist es eine sinnvolle, nicht widerspruechliche Ausgestaltung/Option? → "vorschlag".
@@ -1066,7 +1071,7 @@ AUSSCHLIESSLICH valides JSON, keine Markdown-Fences:
 Regeln
 - "claims": [] ist gueltig. Im Zweifel zwischen "tatsache" und "vorschlag" → "vorschlag" (lieber behalten+markieren als loeschen). Nur bei echtem Widerspruch "widerspruch".
 - Das "zitat" MUSS woertlich (Zeichen fuer Zeichen) im Antragstext vorkommen, sonst wird es verworfen.
-- Maximal 10 Eintraege, die gravierendsten (widerspruch/tatsache) zuerst.`;
+- Maximal 16 Eintraege, die gravierendsten (widerspruch/tatsache) zuerst.`;
 
 export function buildFactVerificationDetectPrompt(
   finalText: string,
