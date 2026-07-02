@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type {
   WizardFacts,
@@ -739,6 +740,20 @@ export function WizardShell({ programm, einreichung, foerderhoehe }: Props) {
                 {busy ? "Sende…" : "Ergänzung senden"}
               </button>
             </div>
+            {/* 86ca910kr: gleiche Live-Rückmeldung wie in der QuestionCard. */}
+            {busy && (
+              <div
+                role="status"
+                aria-live="polite"
+                className="mt-4 flex items-center gap-3 rounded-lg border border-[#1e3d32]/25 bg-[#1e3d32]/5 px-4 py-3 text-sm text-[#1e3d32]"
+              >
+                <Loader2 className="h-4 w-4 shrink-0 animate-spin" />
+                <span>
+                  Ihre Ergänzung ist angekommen — die KI arbeitet sie ein. Das dauert einen
+                  Moment …
+                </span>
+              </div>
+            )}
           </div>
         )}
         {canGenerate && (
