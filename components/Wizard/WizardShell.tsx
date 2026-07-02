@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
+import { dokumentLabels } from "@/lib/wizard/dokument-label";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type {
   WizardFacts,
@@ -68,10 +69,14 @@ interface Props {
   einreichung?: EinreichungInfo | null;
   /** P4-B M-Erweiterung: strukturierte Förderhöhe aus dem Dossier für die Beantragungshöhe-Empfehlung. */
   foerderhoehe?: Foerderhoehe | null;
+  /** 86cabdzwk: per-Programm-Dokumentlabel aus dem Richtlinien-Dossier (Default "Antrag"). */
+  dokumentLabel?: string | null;
+  dokumentLabelGenus?: "der" | "die" | "das" | null;
 }
 
-export function WizardShell({ programm, einreichung, foerderhoehe }: Props) {
+export function WizardShell({ programm, einreichung, foerderhoehe, dokumentLabel, dokumentLabelGenus }: Props) {
   const storageKey = STORAGE_KEY_PREFIX + programm.id;
+  const labels = dokumentLabels(dokumentLabel, dokumentLabelGenus);
 
   const [state, setState] = useState<WizardApiState | null>(null);
   const [messages, setMessages] = useState<WizardMessage[]>([]);
@@ -632,6 +637,7 @@ export function WizardShell({ programm, einreichung, foerderhoehe }: Props) {
     return <GeneratingProgress
       stage={generationStage}
       currentStage={state.generation?.stage as PipelineStage | undefined}
+      labels={labels}
     />;
   }
 
@@ -658,6 +664,7 @@ export function WizardShell({ programm, einreichung, foerderhoehe }: Props) {
         sessionToken={state.sessionToken}
         paidToken={state.paidToken ?? null}
         einreichung={einreichung}
+        labels={labels}
         onRestart={resetSession}
         onFinanzplanChange={(plan) => {
           setGeneration((g) => (g ? { ...g, finanzplan: plan } : g));

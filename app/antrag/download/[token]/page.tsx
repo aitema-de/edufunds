@@ -10,6 +10,7 @@ import { PageHero } from "@/components/PageHero";
 import { AntragResult } from "@/components/Wizard/AntragResult";
 import { getSessionByPaidToken } from "@/lib/wizard/session";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
+import { dokumentLabels } from "@/lib/wizard/dokument-label";
 import { getEinreichung } from "@/lib/wizard/einreichung";
 
 const foerderprogramme = foerderprogrammeData as Foerderprogramm[];
@@ -70,6 +71,7 @@ export default async function DownloadPage({ params }: Props) {
             sessionToken={session.sessionToken}
             paidToken={session.paidToken ?? null}
             einreichung={einreichung}
+            labels={dokumentLabels(richtlinie?.dokumentLabel, richtlinie?.dokumentLabelGenus)}
           />
         </div>
       </main>

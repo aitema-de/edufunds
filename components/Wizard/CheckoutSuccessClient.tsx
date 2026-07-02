@@ -1,5 +1,6 @@
 "use client";
 
+import { dokumentLabels } from "@/lib/wizard/dokument-label";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -21,6 +22,8 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
   const [elapsedMs, setElapsedMs] = useState(0);
   const [networkError, setNetworkError] = useState<string | null>(null);
   const [restartKey, setRestartKey] = useState(0);
+  // 86cabdzwk: per-Programm-Dokumentlabel aus dem Status-Response (Default "Antrag").
+  const [labels, setLabels] = useState(() => dokumentLabels());
 
   useEffect(() => {
     if (!sessionToken) {
@@ -43,6 +46,7 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
           consecutiveFailures = 0;
           setNetworkError(null);
           const body = await res.json();
+          if (body.dokumentLabel) setLabels(dokumentLabels(body.dokumentLabel, body.dokumentLabelGenus));
           if (body.paidToken) {
             setPaidToken(body.paidToken);
             setStatus("paid");
@@ -90,7 +94,7 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
       <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-8 text-center">
         <CheckCircle2 className="mx-auto mb-3 h-10 w-10 text-emerald-400" />
         <h1 className="mb-2 text-xl font-semibold text-[#1c1917]">Zahlung bestätigt</h1>
-        <p className="mb-4 text-sm text-slate-700">Ihr Antrag wird gleich geöffnet.</p>
+        <p className="mb-4 text-sm text-slate-700">{labels.ihr} wird gleich geöffnet.</p>
         <Link
           href={`/antrag/download/${paidToken}`}
           className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-600"
@@ -113,7 +117,7 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
           bei uns angekommen. Das passiert normalerweise innerhalb einer Minute.
         </p>
         <p className="mb-5 text-xs text-slate-600">
-          Sie können diese Seite schließen — sobald die Bestätigung kommt, ist der Antrag
+          Sie können diese Seite schließen — sobald die Bestätigung kommt, ist {labels.der}
           unter „Meine Anträge" erreichbar. Oder Sie warten hier weiter:
         </p>
         <div className="flex flex-wrap items-center justify-center gap-2">
@@ -171,7 +175,7 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
           Kein Session-Token übermittelt
         </h1>
         <p className="text-sm text-slate-700">
-          Bitte öffnen Sie den Antrag über „Meine Anträge".
+          Bitte öffnen Sie {labels.den} über „Meine Anträge".
         </p>
         <Link
           href="/antrag/meine"
