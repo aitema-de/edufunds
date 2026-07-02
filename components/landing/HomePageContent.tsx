@@ -134,12 +134,16 @@ function Hero({ stats }: { stats: LandingStats }) {
                   (Marketing-Analyse Befund 02: zwei gleichrangige CTAs
                   verwässern den Einstieg; KI-Assistent folgt im Funnel). */}
               <div className="mb-3.5">
+                {/* Pfeil laeuft im Text mit (kein Flex-Spalt): bricht das Label
+                    um, sitzt er hinter „finden" statt am rechten Pill-Rand. */}
                 <Link
                   href="/foerderprogramme"
-                  className="bg-[#D4B160] text-evergreen text-base font-bold rounded-full py-4 px-[30px] inline-flex items-center gap-2.5 hover:bg-[#DDBE74] transition-colors duration-150 active:scale-[0.98]"
+                  className="bg-[#D4B160] text-evergreen text-base font-bold leading-snug rounded-full py-4 px-[30px] inline-block text-center hover:bg-[#DDBE74] transition-colors duration-150 active:scale-[0.98]"
                 >
-                  Passende Förderprogramme für Ihre Schule finden
-                  <ArrowRight className="size-[18px] shrink-0" />
+                  <span className="text-balance">
+                    Passende Förderprogramme für Ihre Schule finden{" "}
+                    <ArrowRight aria-hidden className="inline size-[18px] align-[-3.5px]" />
+                  </span>
                 </Link>
               </div>
               <div className="text-[13.5px] text-[#FBF9F3]/55 mb-[30px]">
@@ -174,12 +178,23 @@ function Hero({ stats }: { stats: LandingStats }) {
               height={1040}
               className="w-full h-[420px] lg:h-[520px] object-cover rounded-2xl"
             />
-            <div className="absolute left-4 right-4 lg:left-[-36px] lg:right-auto bottom-14 lg:bottom-12 flex items-center gap-3.5 bg-[#FBF9F3] rounded-xl px-5 py-4 shadow-[0_18px_40px_rgba(0,0,0,0.35)]">
-              <span aria-hidden className="size-2.5 rounded-full bg-[#2E7D4F] shrink-0" />
-              <span className="text-sm text-[#22302B]">
-                <strong>DigitalPakt Schule 2.0</strong> — Antrag unterschriftsreif ·{" "}
-                <span className="text-[#A8842C] font-bold">278.500 €</span>
-              </span>
+            {/* Schwebende Antragskarte nach 1a-Spez (300px, Label + Titel +
+                zwei Datenzeilen) — Produktbeweis statt unklarem Status-Chip. */}
+            <div className="absolute left-4 right-4 lg:left-[-40px] lg:right-auto lg:w-[300px] bottom-14 lg:bottom-9 bg-white border border-[#EDE9DE] rounded-[14px] px-6 py-5 shadow-[0_18px_40px_rgba(30,58,47,0.35)]">
+              <div className="text-[10.5px] uppercase tracking-[0.14em] font-bold text-[#98A29C]">
+                Antragsentwurf
+              </div>
+              <div className="font-serif text-[19px] leading-snug text-evergreen mt-0.5" style={{ fontWeight: 600 }}>
+                DigitalPakt Schule 2.0
+              </div>
+              <div className="mt-3 pt-3 border-t border-[#F0EDE4] flex items-baseline justify-between gap-3 text-sm">
+                <span className="text-[#7A8580]">Beantragte Summe</span>
+                <span className="font-bold text-[#A8842C]">278.500 €</span>
+              </div>
+              <div className="mt-2.5 pt-2.5 border-t border-[#F0EDE4] flex items-baseline justify-between gap-3 text-sm">
+                <span className="text-[#7A8580]">Status</span>
+                <span className="font-semibold text-[#22302B]">unterschriftsreif</span>
+              </div>
             </div>
             <p className="mt-3 text-[11px] text-[#FBF9F3]/40">
               Symbolfoto · Illustratives Beispiel — keine realen Antragsdaten.
