@@ -1,0 +1,54 @@
+# Dossier-Anreicherung (02.07.2026)
+
+33 Dossiers lagen unter dem Audit-Voll-Score (8/8). 29 davon wurden per Agenten-Recherche gegen die offiziellen Quellen angereichert (11 parallele Agenten; Regeln: nur dokumentierte Werte, keine erfundenen Zahlen, `vorbildFormulierungen` bewusst ausgelassen — die bräuchten echte Erfolgsanträge). Ausgelassen: `ensam-bmz` (nur Vorbild-Formulierungen offen), `sh-perspektivkita` (Kita-Programm → `review_needed`), `bosch-schulpreis`/`playmobil-hobpreis` (archiviert).
+
+**Audit-Effekt: Voll-Score 72 → 96 von 105.** Restlücken sind fast ausschließlich `vorbildFormulierungen`.
+
+Zusätzlich wurde das Audit-Signal `foerderhoeheStrukturiert` präzisiert (`lib/richtlinien-audit.ts`): bezifferte Grenzen ODER substanzielle Regel-Bemerkung (≥ 80 Zeichen) zählen als erfasst — viele Programme haben nachweislich keine publizierten Beträge (Pauschalen-Modelle, Einzelfallentscheid); dort ist die ausformulierte Regel der vollständige Erfassungsstand.
+
+
+## Wichtige Einzelbefunde
+
+- **Unbelegte Katalog-Spannen konsequent NICHT übernommen** (Quellenwert vor Katalogwert): u. a. `rheinland-pfalz-pad` (1.000–10.000), `stiftung-polytechnische-gesellschaft` (1.000–100.000), `bmbf-digitalpakt-2` (50.000–500.000), `erasmus-schule-2026` (5.000–300.000), `kultur-macht-stark` (max 50.000), `bildung-durch-bewegung` (max 800.000), `baywa-waldschule` (1.000–5.000 — reine Sachleistung!).
+- **`erasmus-schulentwicklung` = KA240-SCH** (fixe 400.000-EUR-Pauschale, 20-%-Deckel Projektmanagement), NICHT KA220 mit den Stufen 120k/250k/400k.
+- **`erasmus-schule-2026` (KA122)**: komplette PAD-Stückkostensätze erfasst (Organisational Support, Entfernungsbänder, Tagessätze, Kursgebühren, Inklusion); Best Practices aus den offiziellen Erasmus-Qualitätsstandards der EU-Kommission.
+- **`kmk-pad-foerderung`**: Sachkorrektur — Fahrtkostenzuschuss deutsche Gruppen max. 250 EUR (nicht 300; 300 gilt nur für ausländische Gruppen/Afrika), Merkblatt PASCH 2026.
+- **`aktion-mensch-schulkooperation`**: 9 Reject-Gründe aus den Förderrichtlinien — zentral: Schulen in öffentlicher Trägerschaft sind NICHT antragsberechtigt (Antrag über freien gemeinnützigen Träger).
+- **`klimalab-2026`**: 13 Reject-Gründe aus der offiziellen Ausschlusskriterien-Liste (BBE-Förderbedingungen-PDF).
+- **`berlin-startchancen`**: offizielle Berliner Zahlen (Säule I 188,4 Mio./10 J.; Säule II+III je 13,39 Mio./Jahr; Chancenbudget 2/3 gebunden, 1/3 frei); Auswahlprogramm-Charakter in allen Feldern berücksichtigt.
+- **`wilo-foundation`**: quellenlose Betragsschätzung aus dem Alt-Dossier ENTFERNT.
+- **Link-/Katalog-Folgebefunde** (nicht in diesem PR): `bremen-swb` und `dietmar-hopp` infoLinks umgezogen (301/404); `innogy-stiftung` firmiert als E.ON Stiftung (Domain tot).
+
+## Alle Ergänzungen mit Quelle
+
+| Dossier | Ergänzt | Beleg | Quelle | Notiz |
+|---|---|---|---|---|
+| `aktion-mensch-schulkooperation` | rejectGruende (9) | ✅ | https://antrag.aktion-mensch.de/dokument/4794dc70-e222-4cbd-9d0c-b023914b7e9f | Grundlage: offizielle Förderrichtlinien Aktion Mensch e.V. (Ziffern 1.1–1.3, 3.1–3.6, 2) + FAQ (typische Ablehnungsgründe). haeufig nur bei den in der FAQ als typisch benannten Gründen. Kein Rechtsanspruch (Ziffer 8). |
+| `baywa-schulgarten` | foerderhoehe (Regel-Bemerkung) | ✅ | https://www.baywastiftung.de/projekte/schulgarten | Sachleistung offiziell bestätigt; 50-EUR-Jahreszuschuss aktuell nicht mehr beziffert. |
+| `baywa-waldschule` | foerderhoehe (Regel-Bemerkung) | ✅ | https://www.baywastiftung.de/projekte/waldschule | Katalog-Angabe 1.000–5.000 EUR widerspricht der offiziellen Quelle — nicht übernommen. |
+| `berdelle-naturwissenschaft` | foerderhoehe (Regel-Bemerkung) | ✅ | https://berdelle-stiftung.de/wp-content/uploads/2024/05/Foerderrichtlinien-Berdelle-Stiftung.pdf | Förderrichtlinien-PDF vollständig geprüft; kein minEur/maxEur ableitbar. |
+| `berlin-startchancen` | foerderhoehe (Regel-Bemerkung), rejectGruende (6), bestPractices (4) | ✅ | https://www.berlin.de/sen/bildung/unterstuetzung/startchancen-programm/ | Alle Angaben aus offiziellen Quellen (Berliner FAQ, Säule-II-Seite, KMK/BLV-Orientierungspapier Chancenbudget). minEur/maxEur bewusst weggelassen: keine dokumentierte feste Fördersumme je Schule; kursierende 255.000 EUR/ |
+| `bildung-durch-bewegung` | foerderhoehe (Regel-Bemerkung) | ✅ | https://dietmar-hopp-stiftung.de/wp-content/uploads/2026/07/260225_Bildung_durch_Bewegung.pdf | Katalog-max 800.000 EUR nicht belegt, nicht übernommen. Alte infoLink-URL (foerderbereiche/bildung.html) liefert 404 — neue Seite: dietmar-hopp-stiftung.de/foerderung/bildung. |
+| `bmbf-digitalpakt-2` | foerderhoehe (Regel-Bemerkung) | ✅ | https://www.digitalpaktschule.de/de/digitalpakt-2-0-1874.html | Katalog-Spanne 50.000–500.000 EUR nicht belegt, nicht übernommen; alter Hinweis „500 EUR pro Schüler (DigitalPakt 1)“ nicht fortgeschrieben. |
+| `brandenburg-foerderung-aus-lottomitteln-mbjs` | foerderhoehe (minEur) | ✅ | https://mbjs-fachportal.brandenburg.de/und-mehr/foerderung-aus-lottomitteln.html | 30.000 EUR ist kein Maximum, sondern Obergrenze des typischen Antragskorridors — kein maxEur gesetzt. Neu belegt: Eigenanteil mind. 20 % (Kommunen 50 %). |
+| `bremen-swb-bildungsinitiative` | foerderhoehe (Regel-Bemerkung) | ✅ | https://www.swb.de/bildungsinitiative | Alte URL swb-bildungsinitiative.de/foerderung.php leitet per 301 auf swb.de/bildungsinitiative um — infoLink/quelle im Katalog aktualisieren. |
+| `deutsch-griechisches-jugendwerk-dgjw-foerderung` | foerderhoehe (Regel-Bemerkung) | ✅ | https://dgjw-egin.org/antrag-stellen/ | Katalog-Spanne 1.000–50.000 EUR nicht als Min/Max belegt; Quelle nennt Pauschalsätze. 1.000 EUR ist nur die Kleinprojekt-Obergrenze. |
+| `erasmus-schule-2026` | foerderhoehe (Regel-Bemerkung), bestPractices (9) | ✅ | https://erasmusplus.schule/fileadmin/Dateien/Dokumente/Erasmus/Informationen/KA1_Uebersicht_Zuschuesse_ab_2024.pdf | Stückkostenmodell ohne Projekt-Min/Max — Katalogwerte 5.000/300.000 EUR nicht belegbar, nicht übernommen. Alle Sätze aus der PAD-Zuschussübersicht (KA1 ab Antragsjahr 2024, Version 1.1); bestPractices ausschließlich aus  |
+| `erasmus-schulentwicklung` | foerderhoehe (minEur,maxEur), kostenpositionen (7) | ✅ | https://erasmus-plus.ec.europa.eu/programme-guide/part-b/key-action-2/school-development | Aktions-Abgrenzung: Dossier beschreibt KA240-SCH (fixe 400.000-EUR-Pauschale, 36 Monate) — NICHT KA220-SCH mit den Stufen 120k/250k/400k; die Stufen wurden bewusst nicht übernommen. Beispiele aus der offiziellen PAD/EU-O |
+| `ewe-stiftung-foerderantrag` | foerderhoehe (Regel-Bemerkung) | ✅ | https://www.ewe-stiftung.de/foerderantrag/ | 10.000 EUR ist nur die Schwelle zwischen Antragswegen, keine Obergrenze — keine EUR-Felder gesetzt. |
+| `ferry-porsche-challenge` | bestPractices (7) | ✅ | https://ferry-porsche-challenge.de/rechtliche-hinweise/ | Bewertungsmaßstäbe wörtlich aus den Teilnahmebedingungen 2026 (Punkt 3, zehn Kriterien); Preisträger-Begründungen aus der offiziellen Stiftungsmeldung 2025 — nur strukturelle, themenunabhängige Muster mit expliziter Jury |
+| `gruen-macht-schule` | foerderhoehe (Regel-Bemerkung) | ✅ | https://www.gruen-macht-schule.de/de/foerderung/foerderantrag | 300 EUR = Erstattungsgrenze (keine Mindestförderung); 10.000 EUR nicht belegt. |
+| `hector-kinderakademie` | foerderhoehe (Regel-Bemerkung) | ✅ | https://hector-kinderakademie.de/ueber-uns/ | Katalog-Spanne 10.000–50.000 EUR nicht belegt; Pressebericht-Zahl (65.000/Jahr) als Nicht-Fördergeber-Quelle nicht übernommen. |
+| `heinz-nixdorf-stiftung-projektfoerderung-mint` | foerderhoehe (Regel-Bemerkung) | ⚠️ | — | heinz-nixdorf-stiftung.de leitet auf stiftung-westfalen.de um; Programm dort nicht auffindbar — Katalogwerte unbestätigt. |
+| `innogy-stiftung-fuer-energie-und` | foerderhoehe (Regel-Bemerkung) | ⚠️ | — | innogy-stiftung.com DNS-tot; Nachfolgerin E.ON Stiftung (eon-foundation.com) blockiert Abruf (403) — nicht verifizierbar. Eintrag ggf. auf E.ON Stiftung umstellen. |
+| `jugendbruecke-beruflicher-austausch-2026-27` | foerderhoehe (Regel-Bemerkung) | ✅ | https://www.jugendbruecke.de/foerderung/austausch_berufsschulen_2026-27/ | Katalog-Maximum 15.000 EUR nicht belegt (reines Pauschalen-Modell) — kein maxEur gesetzt. Pauschalen = Stand 2025/26, können für 2026/27 geringfügig abweichen. |
+| `klimalab-2026` | rejectGruende (13), bestPractices (4) | ✅ | https://engagiert-fuer-klimaschutz.de/klimalab/ | Alle rejectGruende aus der expliziten Ausschlusskriterien-Liste des offiziellen Förderbedingungen-PDF (BBE) + Formular-Infoblatt; haeufigkeit = Einschätzung nach Prominenz in den Quellen, keine dokumentierte Statistik. b |
+| `kmk-pad-foerderung` | foerderhoehe (Regel-Bemerkung) | ✅ | https://www.kmk-pad.org/fileadmin/Dateien/1b_PROGRAMME/F_Schulaustausch/PASCH_Schulpartnerschaften/Dokumente/Merkblatt_PASCH.pdf | Katalogspanne 500–5.000 EUR ist grobe Näherung, nicht belegt. Korrektur zum bisherigen Dossier: Fahrtkostenzuschuss für deutsche Gruppen max. 250 EUR (nicht 300); 300 EUR gilt nur für ausländische Gruppen (Afrika). |
+| `kultur-macht-stark` | foerderhoehe (minEur,maxProzentGesamtkosten) | ✅ | https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/foerderrichtlinie-2023-2027/foerderrichtlinie-2023-2027_node.html | Katalog-Maximum 50.000 EUR/Bündnis/Jahr steht nicht in der Förderrichtlinie — kein maxEur gesetzt. |
+| `mint-school` | foerderhoehe (Regel-Bemerkung) | ✅ | https://vector-stiftung.de/ausschreibungen/mintschool/ | — |
+| `projektfoerderung-dieter-schwarz-stiftung` | foerderhoehe (Regel-Bemerkung) | ✅ | https://www.dieter-schwarz-stiftung.de/antrag.html | — |
+| `reinhold-beitlich` | foerderhoehe (Regel-Bemerkung) | ✅ | https://www.reinhold-beitlich-stiftung.de/foerderrichtlinien/ | Katalog-Angabe „ca. 250 Projekte/Jahr mit 14+ Mio. EUR“ nicht verifizierbar, nicht übernommen. |
+| `rheinland-pfalz-pad` | foerderhoehe (Regel-Bemerkung) | ✅ | https://add.rlp.de/themen/foerderprogramm/foerderungen-im-schulischen-bereich/schuelerbegegnungen | Katalogwerte 1.000–10.000 EUR durch offizielle Quelle NICHT gedeckt — keine EUR-Felder gesetzt (Quellenwert vor Katalogwert). |
+| `stiftung-berliner-sparkasse-projektfoerderung` | foerderhoehe (Regel-Bemerkung) | ✅ | https://www.stiftung-berliner-sparkasse.de/ | Keine Beträge publiziert; Katalogtext bestätigt. |
+| `stiftung-polytechnische-gesellschaft-projektfoerderung` | foerderhoehe (Regel-Bemerkung) | ✅ | https://sptg.de/förderrichtlinie | Katalogwerte 1.000–100.000 EUR nicht belegt — keine EUR-Felder gesetzt. 500-EUR-Grenze betrifft nur den separaten Frankfurter Miteinanderfonds. |
+| `wilo-foundation-bildung-mint-foerderung` | foerderhoehe (Regel-Bemerkung) | ⚠️ | https://www.wilo-foundation.de/foerderengagement | infoLink weiterhin 404; quellenlose Betragsschätzung aus bisherigem Dossier-Stand NICHT übernommen. |

@@ -6,9 +6,91 @@
   "foerderhoehe": {
     "minEur": 400000,
     "maxEur": 400000,
-    "bemerkung": "Das Projekt wird pauschal mit 400.000 EUR bezuschusst (lump sum)."
+    "bemerkung": "Fester Pauschalbetrag (lump sum) von 400.000 EUR pro ausgewähltem Projekt. Die Verteilung des Betrags auf Arbeitspakete und Partnerorganisationen ist Teil des Antrags; für das Projektmanagement-Arbeitspaket gilt eine Obergrenze von 20 % des Gesamtbudgets. Die gestuften Pauschalen 120.000/250.000/400.000 EUR gelten für die klassischen Kooperationspartnerschaften (KA220), nicht für diese Aktion (KA240-SCH)."
   },
-  "kostenpositionen": [],
+  "kostenpositionen": [
+    {
+      "kategorie": "personal",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Keine eigenständige Kostenkategorie: Die Förderung ist eine Pauschale (lump sum) von 400.000 EUR; das Budget wird im Antrag auf Arbeitspakete und beteiligte Organisationen verteilt, nicht nach Kostenarten abgerechnet.",
+        "Förderfähig sind Kosten, die mit den Umsetzungsaktivitäten und Aufgaben der Arbeitspakete verknüpft sind.",
+        "Die volle Auszahlung setzt voraus, dass alle Aktivitäten gemäß den im Antrag beschriebenen Qualitätskriterien abgeschlossen werden; bei mangelhafter Umsetzung sind Kürzungen des Zuschusses möglich."
+      ],
+      "beispielePasst": [
+        "Personaleinsatz für die Erprobung spezifischer Lernprogramme",
+        "Personaleinsatz für Co-Teaching-Methoden",
+        "Fortbildung des Schulpersonals (staff training)"
+      ]
+    },
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Teil der Projektpauschale; keine kostenartspezifische Obergrenze im Pauschalmodell.",
+        "Der Mitteleinsatz muss den Grundsätzen der Sparsamkeit, Wirtschaftlichkeit und Wirksamkeit (economy, efficiency, effectiveness) genügen.",
+        "Kosten müssen sich den Umsetzungsaktivitäten und Aufgaben der Arbeitspakete zuordnen lassen."
+      ],
+      "beispielePasst": [
+        "Materialien zur Erprobung spezifischer Lernprogramme im Rahmen eines Arbeitspakets"
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Der Programmleitfaden nennt für diese Aktion keine gesonderten Regeln oder Obergrenzen für Ausrüstung/Investitionen; es gilt das Pauschalmodell mit Budgetverteilung nach Arbeitspaketen.",
+        "Anschaffungen müssen als Teil der Arbeitspaket-Budgets begründet werden und den Grundsätzen der Sparsamkeit, Wirtschaftlichkeit und Wirksamkeit genügen."
+      ]
+    },
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Unteraufträge für Dienstleistungen sind zulässig, sofern sie keine Kernaktivitäten betreffen, von denen die Erreichung der Ziele der Aktion unmittelbar abhängt.",
+        "Aufgaben und Budget von Unterauftragnehmern müssen im Antrag klar beschrieben sein."
+      ],
+      "beispielePasstNicht": [
+        "Vergabe von Kernaktivitäten des Projekts (z. B. die inhaltliche Umsetzung der zentralen Arbeitspakete) an externe Dienstleister"
+      ]
+    },
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Teil der Projektpauschale; keine Stückkostensätze, die Zuordnung erfolgt über die Arbeitspaket-Budgets.",
+        "Erasmus+-Lernmobilität ist eine bildungsbezogene, strategische, transnationale und strukturierte (dokumentierte) Mobilitätsaktivität und darf nicht mit sonstigen Auslandsreisen im Rahmen des Projekts verwechselt werden."
+      ],
+      "beispielePasst": [
+        "Reisekosten für Treffen zwischen den Projektpartnern"
+      ]
+    },
+    {
+      "kategorie": "overhead",
+      "foerderfaehig": true,
+      "maxProzent": 20,
+      "bedingungen": [
+        "Für das verpflichtende Arbeitspaket „Projektmanagement“ dürfen höchstens 20 % des Gesamtbudgets angesetzt werden.",
+        "Das Projektmanagement-Arbeitspaket deckt Überwachung/Monitoring, Koordinierung, Kommunikation, Evaluation und Risikomanagement ab.",
+        "Die koordinierende Einrichtung übernimmt die Budgetverwaltung für das gesamte Projekt: Sie erhält die Fördergelder und gibt sie an die Partner weiter."
+      ],
+      "beispielePasst": [
+        "Koordinierung und Monitoring des Projekts",
+        "Evaluation und Risikomanagement",
+        "Kommunikation innerhalb der Partnerschaft"
+      ]
+    },
+    {
+      "kategorie": "sonstiges",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Der Antrag muss die Verteilung des Pauschalbetrags auf die beteiligten Organisationen und auf die Arbeitspakete enthalten.",
+        "Projektstruktur: maximal 12 Arbeitspakete — 1 Pflicht-Arbeitspaket „Projektmanagement“, 1 Pflicht-Arbeitspaket „Plan für die langfristige Wirkung“ sowie 3 bis 10 Umsetzungs-Arbeitspakete.",
+        "Auszahlung: erste Rate nach Vertragsunterzeichnung; die Abschlusszahlung erfolgt nach Prüfung des Abschlussberichts, der innerhalb von 60 Tagen nach Projektende über das Beneficiary Module einzureichen ist.",
+        "Bei unvollständiger oder qualitativ mangelhafter Umsetzung einzelner Arbeitspakete kann der Zuschuss anteilig gekürzt werden."
+      ]
+    }
+  ],
   "eigenmittel": {
     "pflicht": false,
     "bemerkung": "Im Text werden keine Angaben zur Notwendigkeit von Eigenmitteln gemacht."
@@ -24,22 +106,42 @@
       {
         "id": "relevanz",
         "name": "Relevanz (bis zu 15 Punkte)",
-        "pflicht": true
+        "pflicht": true,
+        "leitfragen": [
+          "Wie passt das Projekt zu den Zielen und (horizontalen/spezifischen) Prioritäten der Aktion?",
+          "Welchen konkreten Bedarf der beteiligten Einrichtungen adressiert es?",
+          "Welchen europäischen Mehrwert hat die Zusammenarbeit?"
+        ]
       },
       {
         "id": "qualitaet_projekkonzeption",
         "name": "Qualität der Projektkonzeption (bis zu 30 Punkte)",
-        "pflicht": true
+        "pflicht": true,
+        "leitfragen": [
+          "Sind die Ziele klar, realistisch und auf den Bedarf bezogen?",
+          "Ist der Arbeitsplan (Aktivitäten, Zeitplan, Ressourcen, Budget) kohärent und angemessen?",
+          "Wie werden Qualitätssicherung, Monitoring und Risikomanagement sichergestellt?"
+        ]
       },
       {
         "id": "qualität_partnerschaft",
         "name": "Qualität der Partnerschaft und der Kooperationsvereinbarungen (bis zu 20 Punkte)",
-        "pflicht": true
+        "pflicht": true,
+        "leitfragen": [
+          "Wie ergänzen sich die Partnereinrichtungen in Profil und Erfahrung?",
+          "Wie sind Aufgaben, Verantwortlichkeiten und Entscheidungsprozesse verteilt?",
+          "Wie funktionieren Koordination und Kommunikation in der Partnerschaft?"
+        ]
       },
       {
         "id": "wirkung",
         "name": "Wirkung (bis zu 35 Punkte)",
-        "pflicht": true
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Wirkung wird auf Teilnehmende, Einrichtungen und darüber hinaus erwartet?",
+          "Wie werden Ergebnisse bewertet und nachhaltig gesichert?",
+          "Wie werden Ergebnisse verbreitet und frei zugänglich gemacht?"
+        ]
       }
     ],
     "anlagen": [
@@ -73,7 +175,7 @@
   "rejectGruende": [
     {
       "grund": "Erreichen von weniger als 70 Gesamtpunkten in der Bewertung.",
-      "haeufigkeit": "häufig",
+      "haeufigkeit": "haeufig",
       "vermeidung": "Den Antrag in allen vier Bewertungskategorien sorgfältig ausarbeiten, um die Mindestgesamtzahl von 70 Punkten zu überschreiten."
     },
     {

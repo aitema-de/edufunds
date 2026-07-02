@@ -36,7 +36,7 @@ export async function GET() {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
             padding: 20px;
-            background: #0a1628;
+            background: #1e3b2a;
             min-height: 100vh;
         }
         .preview-container {
@@ -54,7 +54,7 @@ export async function GET() {
             border-bottom: 1px solid rgba(201, 162, 39, 0.3);
         }
         .preview-header h1 {
-            color: #f8f5f0;
+            color: #faf7f0;
             margin: 0 0 10px 0;
             font-size: 24px;
         }
@@ -74,10 +74,10 @@ export async function GET() {
             font-size: 14px;
         }
         .preview-meta strong {
-            color: #c9a227;
+            color: #b08c2e;
         }
         .newsletter-frame {
-            background: #0a1628;
+            background: #1e3b2a;
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid rgba(30, 58, 95, 0.5);
@@ -100,7 +100,7 @@ export async function GET() {
         }
         .btn-primary {
             background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
-            color: #0a1628;
+            color: #1e3b2a;
         }
         .btn-primary:hover {
             transform: translateY(-2px);
@@ -113,7 +113,7 @@ export async function GET() {
         }
         .btn-secondary:hover {
             background: rgba(30, 58, 95, 0.8);
-            color: #f8f5f0;
+            color: #faf7f0;
         }
         .tabs {
             display: flex;
@@ -131,11 +131,11 @@ export async function GET() {
         }
         .tab.active {
             background: rgba(201, 162, 39, 0.2);
-            color: #c9a227;
+            color: #b08c2e;
         }
         .tab:hover:not(.active) {
             background: rgba(30, 58, 95, 0.3);
-            color: #f8f5f0;
+            color: #faf7f0;
         }
     </style>
 </head>

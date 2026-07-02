@@ -3,6 +3,7 @@
 import { KeyboardEvent, useEffect, useState } from "react";
 import { Loader2, Sparkles, Lock } from "lucide-react";
 import {
+  clearSchoolProfile,
   loadSchoolProfile,
   saveSchoolProfile,
 } from "@/lib/wizard/school-profile-client";
@@ -47,15 +48,28 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
   const [schultyp, setSchultyp] = useState("");
   const [bundesland, setBundesland] = useState("");
   const [budgetStr, setBudgetStr] = useState("");
+  // FP-GS-1: Wurden Schulfelder aus einem gespeicherten Profil vorausgefüllt,
+  // machen wir das sichtbar — sonst übernimmt eine andere Person am selben
+  // Browser unbemerkt fremde Schuldaten in ihren Antrag.
+  const [prefilledFromProfile, setPrefilledFromProfile] = useState(false);
 
   useEffect(() => {
     const p = loadSchoolProfile();
-    if (p) {
+    if (p && (p.name || p.typ || p.bundesland)) {
       if (p.name) setSchulname(p.name);
       if (p.typ) setSchultyp(p.typ);
       if (p.bundesland) setBundesland(p.bundesland);
+      setPrefilledFromProfile(true);
     }
   }, []);
+
+  const clearSchoolFields = () => {
+    setSchulname("");
+    setSchultyp("");
+    setBundesland("");
+    clearSchoolProfile();
+    setPrefilledFromProfile(false);
+  };
 
   const handleSubmit = async () => {
     const trimmed = anliegen.trim();
@@ -93,10 +107,10 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
   const canSubmit = anliegen.trim().length >= 20 && !busy;
 
   return (
-    <div className="rounded-2xl border border-[#0a1628]/8 bg-white p-6 shadow-[0_4px_20px_-4px_rgba(10,22,40,0.06)]">
+    <div className="rounded-2xl border border-[#1c1917]/8 bg-white p-6 shadow-[0_4px_20px_-4px_rgba(10,22,40,0.06)]">
       <div className="space-y-6">
         <div>
-          <label className="mb-2 block text-sm font-medium text-[#1e3a61]">
+          <label className="mb-2 block text-sm font-medium text-[#57534e]">
             Ihr Anliegen <span className="text-red-500">*</span>
           </label>
           <textarea
@@ -105,7 +119,7 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
             onKeyDown={handleKey}
             placeholder="Beschreiben Sie, was Sie an Ihrer Schule umsetzen wollen — konkret, mit Zielgruppe und Wirkung. Beispiel: Wir wollen 120 Fünft- und Sechstklässlern Programmieren mit Calliope näherbringen. 80 % Migrationshintergrund, MINT-Lücke spürbar."
             rows={5}
-            className="w-full rounded-lg border border-[#0a1628]/15 bg-[#f8f5f0]/60 p-3 sm:min-h-[140px] text-[#0a1628] placeholder-slate-400 transition focus:border-[#c9a227] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#c9a227]/15"
+            className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 p-3 sm:min-h-[140px] text-[#1c1917] placeholder-slate-400 transition focus:border-[#1e3d32] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/15"
           />
           <div className="mt-1 flex items-center justify-between text-xs text-slate-500">
             <span>
@@ -126,9 +140,25 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
           </p>
         </div>
 
+        {prefilledFromProfile && (
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg border border-[#1e3d32]/30 bg-[#1e3d32]/5 px-3 py-2 text-xs text-slate-600">
+            <span>
+              Schulname, Schultyp und Bundesland stammen aus einer früheren Sitzung in
+              diesem Browser. Gehören sie nicht zu Ihnen, leeren Sie die Felder.
+            </span>
+            <button
+              type="button"
+              onClick={clearSchoolFields}
+              className="font-medium text-[#1e3d32] underline transition hover:text-[#2a5244]"
+            >
+              Felder leeren
+            </button>
+          </div>
+        )}
+
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div>
-            <label className="mb-2 block text-sm font-medium text-[#1e3a61]">
+            <label className="mb-2 block text-sm font-medium text-[#57534e]">
               Schulname (optional)
             </label>
             <input
@@ -136,17 +166,17 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
               value={schulname}
               onChange={(e) => setSchulname(e.target.value)}
               placeholder="z. B. Gymnasium Musterstadt"
-              className="w-full rounded-lg border border-[#0a1628]/15 bg-[#f8f5f0]/60 p-2 text-[#0a1628] placeholder-slate-400 transition focus:border-[#c9a227] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#c9a227]/15"
+              className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 p-2 text-[#1c1917] placeholder-slate-400 transition focus:border-[#1e3d32] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/15"
             />
           </div>
           <div>
-            <label className="mb-2 block text-sm font-medium text-[#1e3a61]">
+            <label className="mb-2 block text-sm font-medium text-[#57534e]">
               Schultyp
             </label>
             <select
               value={schultyp}
               onChange={(e) => setSchultyp(e.target.value)}
-              className="w-full rounded-lg border border-[#0a1628]/15 bg-[#f8f5f0]/60 p-2 text-[#0a1628] transition focus:border-[#c9a227] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#c9a227]/15"
+              className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 p-2 text-[#1c1917] transition focus:border-[#1e3d32] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/15"
             >
               {SCHULTYPEN.map((t) => (
                 <option key={t} value={t}>
@@ -156,13 +186,13 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
             </select>
           </div>
           <div>
-            <label className="mb-2 block text-sm font-medium text-[#1e3a61]">
+            <label className="mb-2 block text-sm font-medium text-[#57534e]">
               Bundesland
             </label>
             <select
               value={bundesland}
               onChange={(e) => setBundesland(e.target.value)}
-              className="w-full rounded-lg border border-[#0a1628]/15 bg-[#f8f5f0]/60 p-2 text-[#0a1628] transition focus:border-[#c9a227] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#c9a227]/15"
+              className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 p-2 text-[#1c1917] transition focus:border-[#1e3d32] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/15"
             >
               {BUNDESLAENDER.map((b) => (
                 <option key={b} value={b}>
@@ -172,7 +202,7 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
             </select>
           </div>
           <div>
-            <label className="mb-2 block text-sm font-medium text-[#1e3a61]">
+            <label className="mb-2 block text-sm font-medium text-[#57534e]">
               Geschätztes Budget (EUR, optional)
             </label>
             <input
@@ -181,7 +211,7 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
               value={budgetStr}
               onChange={(e) => setBudgetStr(e.target.value)}
               placeholder="z. B. 25000"
-              className="w-full rounded-lg border border-[#0a1628]/15 bg-[#f8f5f0]/60 p-2 text-[#0a1628] placeholder-slate-400 transition focus:border-[#c9a227] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#c9a227]/15"
+              className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 p-2 text-[#1c1917] placeholder-slate-400 transition focus:border-[#1e3d32] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/15"
             />
           </div>
         </div>
@@ -191,7 +221,7 @@ export function AnliegenForm({ onSubmit, busy }: Props) {
             type="button"
             disabled={!canSubmit}
             onClick={handleSubmit}
-            className="inline-flex items-center gap-2 rounded-lg bg-[#c9a227] px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-[#b8921e] disabled:cursor-not-allowed disabled:bg-[#c9a227]/40"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#1e3d32] px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-[#2a5244] disabled:cursor-not-allowed disabled:bg-[#1e3d32]/40"
           >
             {busy ? (
               <>

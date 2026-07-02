@@ -132,11 +132,11 @@ export default function FoerderprogrammePage() {
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style={{ backgroundColor: 'rgba(201, 162, 39, 0.1)', border: '1px solid rgba(201, 162, 39, 0.2)' }}>
-              <School className="h-4 w-4" style={{ color: '#c9a227' }} />
-              <span className="text-sm font-medium" style={{ color: '#7a5e12' }}>Förderfinder</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style={{ backgroundColor: 'rgba(30, 61, 50, 0.1)', border: '1px solid rgba(30, 61, 50, 0.2)' }}>
+              <School className="h-4 w-4" style={{ color: '#1e3d32' }} />
+              <span className="text-sm font-medium" style={{ color: '#1e3d32' }}>Förderfinder</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-[#1c1917] mb-4">
               Förderprogramme für Schulen
             </h1>
             <p className="text-slate-600 max-w-2xl mx-auto text-lg">
@@ -148,7 +148,7 @@ export default function FoerderprogrammePage() {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
             <div className="glass rounded-xl p-4 text-center">
-              <div className="text-2xl font-bold" style={{ color: '#7a5e12' }}>{PROGRAMM_COUNT_LABEL}</div>
+              <div className="text-2xl font-bold" style={{ color: '#1e3d32' }}>{PROGRAMM_COUNT_LABEL}</div>
               <div className="text-xs text-slate-500">Programme</div>
             </div>
             <div className="glass rounded-xl p-4 text-center">
@@ -173,10 +173,10 @@ export default function FoerderprogrammePage() {
           <div className="glass rounded-2xl p-6 mb-8">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <Filter className="h-5 w-5" style={{ color: '#c9a227' }} />
-                <h2 className="font-semibold text-[#1e3a61]">Filter</h2>
+                <Filter className="h-5 w-5" style={{ color: '#1e3d32' }} />
+                <h2 className="font-semibold text-[#57534e]">Filter</h2>
                 {aktiveFilterCount > 0 && (
-                  <span className="px-2 py-0.5 rounded-full text-xs" style={{ backgroundColor: 'rgba(201, 162, 39, 0.2)', color: '#7a5e12' }}>
+                  <span className="px-2 py-0.5 rounded-full text-xs" style={{ backgroundColor: 'rgba(30, 61, 50, 0.2)', color: '#1e3d32' }}>
                     {aktiveFilterCount} aktiv
                   </span>
                 )}
@@ -204,7 +204,7 @@ export default function FoerderprogrammePage() {
                     placeholder="Name, Beschreibung..."
                     value={suchbegriff}
                     onChange={(e) => setSuchbegriff(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-[#0a1628]/15 text-[#1e3a61] text-sm placeholder:text-slate-500 focus:outline-none focus:border-[#c9a227]/50 focus:ring-1 focus:ring-[#c9a227]/50 transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-[#1c1917]/15 text-[#57534e] text-sm placeholder:text-slate-500 focus:outline-none focus:border-[#1e3d32]/50 focus:ring-1 focus:ring-[#1e3d32]/50 transition-all"
                   />
                   {suchbegriff && (
                     <button
@@ -223,7 +223,7 @@ export default function FoerderprogrammePage() {
                 <select
                   value={bundesland}
                   onChange={(e) => setBundesland(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#0a1628]/15 text-[#1e3a61] text-sm focus:outline-none focus:border-[#c9a227]/50 focus:ring-1 focus:ring-[#c9a227]/50 transition-all cursor-pointer appearance-none"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#1c1917]/15 text-[#57534e] text-sm focus:outline-none focus:border-[#1e3d32]/50 focus:ring-1 focus:ring-[#1e3d32]/50 transition-all cursor-pointer appearance-none"
                   style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}
                 >
                   {BUNDESLAENDER.map((option) => (
@@ -240,7 +240,7 @@ export default function FoerderprogrammePage() {
                 <select
                   value={kategorie}
                   onChange={(e) => setKategorie(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#0a1628]/15 text-[#1e3a61] text-sm focus:outline-none focus:border-[#c9a227]/50 focus:ring-1 focus:ring-[#c9a227]/50 transition-all cursor-pointer appearance-none"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#1c1917]/15 text-[#57534e] text-sm focus:outline-none focus:border-[#1e3d32]/50 focus:ring-1 focus:ring-[#1e3d32]/50 transition-all cursor-pointer appearance-none"
                   style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}
                 >
                   {KATEGORIEN.map((option) => (
@@ -257,7 +257,7 @@ export default function FoerderprogrammePage() {
                 <select
                   value={foerdersumme}
                   onChange={(e) => setFoerdersumme(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#0a1628]/15 text-[#1e3a61] text-sm focus:outline-none focus:border-[#c9a227]/50 focus:ring-1 focus:ring-[#c9a227]/50 transition-all cursor-pointer appearance-none"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#1c1917]/15 text-[#57534e] text-sm focus:outline-none focus:border-[#1e3d32]/50 focus:ring-1 focus:ring-[#1e3d32]/50 transition-all cursor-pointer appearance-none"
                   style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}
                 >
                   <option value="">Alle Beträge</option>
@@ -272,7 +272,7 @@ export default function FoerderprogrammePage() {
 
           {/* Ergebnis-Anzeige */}
           <div className="mb-6">
-            <h2 className="text-2xl font-bold text-[#0a1628]">
+            <h2 className="text-2xl font-bold text-[#1c1917]">
               {gefilterteProgramme.length === stats.total 
                 ? `Alle Programme (${stats.total})`
                 : `${gefilterteProgramme.length} von ${stats.total} Programmen gefunden`
@@ -303,7 +303,7 @@ export default function FoerderprogrammePage() {
               gefilterteProgramme.map((programm) => (
                 <article 
                   key={programm.id}
-                  className="glass rounded-2xl p-6 md:p-8 hover:border-[#c9a227]/30 transition-all group"
+                  className="glass rounded-2xl p-6 md:p-8 hover:border-[#1e3d32]/30 transition-all group"
                 >
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                     <div className="flex-1">
@@ -319,7 +319,7 @@ export default function FoerderprogrammePage() {
                           {programm.foerdergeberTyp.toUpperCase()}
                         </span>
                         {programm.kiAntragGeeignet && (
-                          <span className="px-2 py-1 rounded-full text-xs font-medium bg-[#c9a227]/20 text-[#7a5e12]">
+                          <span className="px-2 py-1 rounded-full text-xs font-medium bg-[#1e3d32]/20 text-[#1e3d32]">
                             KI-geeignet
                           </span>
                         )}
@@ -331,7 +331,7 @@ export default function FoerderprogrammePage() {
                       </div>
 
                       {/* Titel */}
-                      <h3 className="text-xl font-bold text-[#0a1628] mb-2 group-hover:text-[#7a5e12] transition-colors">
+                      <h3 className="text-xl font-bold text-[#1c1917] mb-2 group-hover:text-[#1e3d32] transition-colors">
                         {programm.name}
                       </h3>
 
@@ -408,8 +408,8 @@ export default function FoerderprogrammePage() {
 
           {/* Hinweis */}
           <div className="mt-12 glass rounded-2xl p-8 text-center">
-            <Search className="h-12 w-12 text-[#c9a227] mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-[#0a1628] mb-2">
+            <Search className="h-12 w-12 text-[#1e3d32] mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-[#1c1917] mb-2">
               Mehr Programme werden ergänzt
             </h3>
             <p className="text-slate-600 max-w-xl mx-auto">

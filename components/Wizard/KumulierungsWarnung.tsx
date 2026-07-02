@@ -23,7 +23,7 @@ export function KumulierungsWarnung({ conflicts, onDismiss }: Props) {
   const hasError = conflicts.some((c) => c.level === "error");
   const box = hasError
     ? "border-red-500/40 bg-red-500/10 text-red-200"
-    : "border-[#c9a227]/40 bg-[#c9a227]/10 text-[#1e3a61]";
+    : "border-[#1e3d32]/40 bg-[#1e3d32]/10 text-[#57534e]";
 
   return (
     <div className={`mb-6 rounded-lg border ${box} p-4`}>
@@ -44,7 +44,7 @@ export function KumulierungsWarnung({ conflicts, onDismiss }: Props) {
           <button
             type="button"
             onClick={onDismiss}
-            className="rounded p-1 text-slate-600 hover:bg-[#f8f5f0] hover:text-[#1e3a61]"
+            className="rounded p-1 text-slate-600 hover:bg-[#fdfdfc] hover:text-[#57534e]"
             title="Ausblenden"
           >
             <X className="h-3.5 w-3.5" />
@@ -53,11 +53,11 @@ export function KumulierungsWarnung({ conflicts, onDismiss }: Props) {
       </div>
       <ul className="space-y-2">
         {conflicts.map((c) => (
-          <li key={c.otherSessionToken} className="rounded border border-[#0a1628]/10 bg-[#f8f5f0] p-2.5 text-sm">
+          <li key={c.otherSessionToken} className="rounded border border-[#1c1917]/10 bg-[#fdfdfc] p-2.5 text-sm">
             <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
               <Link
                 href={`/antrag/${c.otherProgrammId}/wizard`}
-                className="font-medium text-[#0a1628] hover:text-[#c9a227]"
+                className="font-medium text-[#1c1917] hover:text-[#1e3d32]"
               >
                 {c.otherProgrammName}
               </Link>
@@ -65,7 +65,7 @@ export function KumulierungsWarnung({ conflicts, onDismiss }: Props) {
                 className={`rounded-full border px-2 py-0.5 text-xs ${
                   c.level === "error"
                     ? "border-red-500/40 text-red-300"
-                    : "border-[#c9a227]/40 text-[#c9a227]"
+                    : "border-[#1e3d32]/40 text-[#1e3d32]"
                 }`}
               >
                 {c.level === "error" ? "unvereinbar" : "bedingt kombinierbar"}

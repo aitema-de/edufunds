@@ -73,3 +73,34 @@ describe("AntragResult — Auslieferungs-Block bei offenen HIGH-Findings", () =>
     expect(screen.getByText(/Inkonsistenzen/i)).toBeInTheDocument();
   });
 });
+
+describe("AntragResult — P4-B Beantragungshöhe-Empfehlung", () => {
+  const finanzplan = {
+    posten: [
+      { id: "a", bezeichnung: "Sachkosten", kategorie: "sachkosten", betragEur: 24000, eigenanteil: false },
+      { id: "b", bezeichnung: "Eigenanteil", kategorie: "sonstiges", betragEur: 6000, eigenanteil: true },
+    ],
+    generiertAm: new Date(0).toISOString(),
+  };
+
+  it("verrechnet das Finanzplan-Volumen mit dem Quoten-Deckel (Quote bindet)", () => {
+    render(
+      <AntragResult
+        programm={programm}
+        generation={gen({ finanzplan } as Partial<GenerationArtefacts>)}
+        paidToken="tok"
+        foerderhoehe={{ maxEur: 50000, maxProzentGesamtkosten: 50 }}
+      />
+    );
+    // Volumen 30.000 € (24k + 6k); 50% = 15.000 € < Deckel 50.000 € → Quote bindet.
+    expect(screen.getByText(/Wie viel sollten Sie beantragen\?/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Für Ihr Projektvolumen von 30\.000 € .* bis zu 15\.000 € beantragen\./)
+    ).toBeInTheDocument();
+  });
+
+  it("blendet den Block aus, wenn keine Förderhöhe-Daten vorliegen", () => {
+    render(<AntragResult programm={programm} generation={gen({})} paidToken="tok" />);
+    expect(screen.queryByText(/Wie viel sollten Sie beantragen\?/)).not.toBeInTheDocument();
+  });
+});

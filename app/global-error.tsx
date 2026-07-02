@@ -38,7 +38,7 @@ export default function GlobalError({
               </div>
 
               {/* Title */}
-              <h1 className="text-3xl font-bold text-[#0a1628] mb-4">
+              <h1 className="text-3xl font-bold text-[#1c1917] mb-4">
                 Ein Fehler ist aufgetreten
               </h1>
 
@@ -85,12 +85,12 @@ export default function GlobalError({
               </div>
 
               {/* Support Info */}
-              <div className="mt-12 p-6 rounded-2xl bg-white/50 border border-[#0a1628]/10">
+              <div className="mt-12 p-6 rounded-2xl bg-white/50 border border-[#1c1917]/10">
                 <p className="text-slate-600 text-sm">
                   Bei wiederkehrenden Problemen erreichen Sie uns unter{" "}
                   <a 
                     href="mailto:office@aitema.de" 
-                    className="text-[#c9a227] hover:text-[#e4c55a]"
+                    className="text-[#d4af37] hover:text-[#e4c55a]"
                   >
                     office@aitema.de
                   </a>

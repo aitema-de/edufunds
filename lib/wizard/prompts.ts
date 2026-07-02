@@ -1,5 +1,5 @@
 import type { Foerderprogramm } from "@/lib/foerderSchema";
-import type { WizardFacts, WizardMessage, ConsistencyIssue } from "./types";
+import type { WizardFacts, WizardMessage, ConsistencyIssue, Texttiefe } from "./types";
 import { getGuidance } from "./geber-guidance";
 import { formatExtraGuidance, getExtraGuidance } from "./programm-kriterien";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
@@ -37,6 +37,23 @@ Erwaehne NIE folgende Dinge, wenn sie nicht aus den User-Antworten explizit herv
   Erhebung") ist ERLAUBT und erwuenscht — das ist fachliche Ausgestaltung, keine erfundene Tatsache ueber die Schule.
 - **Hochgerechnete Teil-/Mengenzahlen** ("ca. 150 Nutzer" aus "60% von 250", "25 Tablets" aus
   "20-30 vielleicht") — eine vom User genannte Spanne darf NIE zu einer festen Zahl werden.
+- **Gesamtschuelerzahl, die der User nicht als GESAMTZAHL nannte.** Die SUMME genannter Teilgruppen
+  (z. B. "Jahrgang 2 mit 60 + Jahrgang 3 mit 42") ist NICHT die Gesamtschuelerzahl der Schule —
+  schreibe NIEMALS "unsere Schule umfasst 102 Schueler", wenn 102 nur die Summe der genannten
+  Projekt-Jahrgaenge ist. Ohne ausdrueckliche Gesamtzahl: keine Gesamtschuelerzahl nennen
+  (oder \`[TODO: Gesamtschuelerzahl ergaenzen]\`).
+- **Vervielfachte/ausgeweitete Anschaffungen oder Massnahmen.** Was der User EINMAL fuer EINE Gruppe
+  nannte (z. B. "eine Lautstation fuer Jahrgang 2"), darf NICHT auf weitere Jahrgaenge/Klassen/Gruppen
+  ausgeweitet werden ("ein zweites System fuer Jahrgang 3", "je Klasse ein Geraet", "auch fuer die
+  Parallelklasse") — es sei denn, der User hat genau das gesagt. Eine zweite/dritte Einheit zu
+  erfinden ist eine Falschangabe gegenueber dem Foerdergeber.
+- **Erfundene datierte Monats-/Quartalsplaene aus einem groben Zeitrahmen.** Sagt der User nur etwas
+  Grobes ("Start nach den Sommerferien, ca. 36 Termine, Abschlusskonzert am Schuljahresende"), erfinde
+  KEINEN datierten Ablauf ("Januar bis Mitte Februar …", "Mai bis Juni", "in den Winterferien",
+  "Phase 1 ab Q3"). Das ist erfunden UND oft in sich widerspruechlich (Sommerferien-Start bedeutet
+  Schuljahr ca. August–Juli, NICHT Januar–Juni). Gib den Zeitrahmen nur so konkret wieder, wie der User
+  ihn nannte ("im Schuljahr nach den Sommerferien, rund 36 woechentliche Termine, Abschluss zum
+  Schuljahresende") — ohne erfundene Monatszuordnung.
 - **Zusagen mit Rechtsfolge** als feststehend ausgeben: Gemeinnuetzigkeit ("ist als gemeinnuetzig
   anerkannt"), eigenes Bankkonto, Mittel-Verwaltungsberechtigung, "muendliche Zusage des Foerdervereins",
   erteilte Schultraeger-/Schulkonferenz-Zustimmung — wenn der User das nicht ausdruecklich bestaetigt hat,
@@ -218,7 +235,8 @@ export const FACTS_EXTRACTOR_SYSTEM = `Du bist ein praeziser Extraktor fuer Foer
 - Erfinde KEINE Zahlen, Namen, Daten, Bezirke, Kompetenz-Frameworks (KMK etc.).
 - Wenn der User vage bleibt ("vielleicht 30 oder 40 Kinder"), trage NICHTS ein — Vagheit ist ein Signal an den Interviewer, nochmal nachzufragen.
 - Wenn der User eine Schaetzung markiert ("gefuehlsmaessig", "glaube ich"): NICHT als Fakt extrahieren.
-- Wenn der User explizit etwas verneint oder nicht weiss ("kenne ich nicht"): den Slot leer lassen.
+- Wenn der User etwas NICHT WEISS oder vage bleibt ("kenne ich nicht", "weiss nicht"): den Slot leer lassen — das ist KEIN Ausschluss.
+- Wenn der User ein konkretes Element AUSDRUECKLICH AUSSCHLIESST oder VERNEINT (z. B. "keine externen Honorarkraefte", "das machen wir selbst, ohne externe Kraefte", "keine neuen Geraete", "kein zusaetzliches Personal"): den betreffenden Slot leer lassen UND eine kurze Bezeichnung des ausgeschlossenen Elements in das Array \`ausgeschlossen\` aufnehmen (z. B. "externe Honorarkraefte", "neue Geraeteanschaffung"). Diese Liste verhindert spaeter, dass die Generierung das Abgewaehlte doch einbringt. WICHTIG: Nicht-Wissen ("weiss nicht") ist KEIN Ausschluss — nur ein klares Nein.
 - Eine Bezirksangabe nur uebernehmen, wenn der User selbst den Bezirk genannt hat. "Berlin" ist KEIN Hinweis auf einen bestimmten Bezirk.
 
 ## Subgruppe ist nicht Gesamtgruppe (haeufiger Fehler!)
@@ -227,6 +245,8 @@ NEGATIVBEISPIEL: User sagt "130 Kinder lernen in den Klassen 5 und 6". Das ist E
 - RICHTIG: schule.schuelerzahl bleibt leer; "130 Kinder in Klassen 5/6" gehoert in projekt.zielgruppe.
 
 Generell: schule.schuelerzahl darf NUR gesetzt werden, wenn der User explizit eine GESAMTZAHL fuer die ganze Schule nennt (z. B. "wir haben 312 Schuelerinnen", "die Schule hat 480 Kinder"). Eine projektbezogene Teilzahl ("30 Kinder im Pilot", "die 60 Drittklaessler") gehoert NIE in schule.schuelerzahl.
+
+WICHTIG — auch die SUMME mehrerer Teilgruppen ist NICHT die Gesamtschuelerzahl: Sagt der User "Jahrgang 2 hat 60, Jahrgang 3 hat 42", dann ist 102 die Zahl der Projekt-Kinder, NICHT die Schulgroesse. Rechne genannte Teilgruppen NICHT zur Gesamtschuelerzahl zusammen — schule.schuelerzahl bleibt leer, die Teilzahlen gehoeren in projekt.zielgruppe.
 
 Analog gilt: lehrer-Gesamtzahl vs. nur-Projekt-Lehrer; Klassenanzahl-Gesamt vs. nur-Klassen-im-Projekt. Im Zweifel: Slot leer lassen.
 
@@ -269,8 +289,17 @@ Analog gilt: lehrer-Gesamtzahl vs. nur-Projekt-Lehrer; Klassenanzahl-Gesamt vs. 
   "programmpassung": {
     "kriterien_adressiert": string[],        // wenn der User Programm-Kriterien explizit aufgegriffen hat
     "offene_luecken": string[]               // wenn der User selbst Luecken benannt hat
-  }
+  },
+  "ausgeschlossen": string[]                 // Elemente, die der User AUSDRUECKLICH ausgeschlossen/verneint
+                                             // hat (z. B. "externe Honorarkraefte", "neue Geraete"). NUR
+                                             // explizite Ausschluesse — KEIN "weiss nicht". Kurze Bezeichnung
+                                             // des abgewaehlten Elements, keine ganzen Saetze.
 }
+
+## Ausschluss-Beispiel (haeufiger Fehler)
+NEGATIVBEISPIEL: User sagt "Externe Honorarkraefte brauchen wir nicht, das machen unsere Lehrkraefte."
+- FALSCH: honorare-Posten oder "externe Fachkraefte" irgendwo ableiten.
+- RICHTIG: ausgeschlossen = ["externe Honorarkraefte"] — und budget/Personal bleibt insoweit leer.
 
 ## Ausgabe
 AUSSCHLIESSLICH valides JSON, keine Markdown-Fences. Nur die Slots, die du gefuellt hast — leere Objekte/Arrays/Strings/null weglassen. Bei NICHTS gefunden: \`{}\`.`;
@@ -424,10 +453,13 @@ Du bist nicht nur Schreibkraft, sondern fachlicher Berater. Ziel: ein Antrag, de
 - Verwende AUSSCHLIESSLICH Fakten aus den mitgelieferten Daten. Halluziniere NICHTS — erfinde keine Zahlen, Namen, Ereignisse.
 - Konkret statt abstrakt. Wo Zahlen/Namen/Orte in den Fakten stehen: nenne sie.
 - Formuliere aus Sicht der Schule ("wir", "an unserer Schule").
-- **Bleib strikt beim FOKUS dieses Abschnitts.** Andere Abschnitte des Antrags decken Bedarf, Zielgruppe, Ziele, Maßnahmen und Wirkung jeweils eigenständig ab. Wiederhole den allgemeinen Bedarf oder die Zielgruppe NICHT breit, wenn das nicht der Fokus dieses Abschnitts ist — nimm sie höchstens in einem knappen Halbsatz als Bezug auf. So vermeidest du Dopplungen über den Gesamtantrag hinweg.
+- **Bleib strikt beim FOKUS dieses Abschnitts.** Andere Abschnitte des Antrags decken Bedarf, Zielgruppe, Ziele, Maßnahmen und Wirkung jeweils eigenständig ab. Wiederhole den allgemeinen Bedarf oder die Zielgruppe NICHT breit, wenn das nicht der Fokus dieses Abschnitts ist — nimm sie höchstens in einem knappen Halbsatz als Bezug auf. So vermeidest du Dopplungen über den Gesamtantrag hinweg. Die Entstehungs-/Motivationsgeschichte des Vorhabens (wie die Idee entstand, warum die Schule das angeht) gehört NUR in den Abschnitt, dessen Fokus das ist (typisch Ausgangslage/Einleitung) — in anderen Abschnitten setzt du sie als bekannt voraus, statt sie erneut zu erzählen.
 
 ## Leerformel-Verbot (nicht: Fachsprache-Verbot)
 Verboten sind LEERE Floskeln OHNE Substanz — als Etikett, das nichts erklärt: "ganzheitlicher Ansatz", "schafft Mehrwert", "in der heutigen Zeit", "es ist unerlässlich", "innovativer Ansatz", "passgenau", "zukunftsweisend", oder ein hingeworfenes "fördert Teilhabe" ohne zu sagen wie. Erlaubt und ERWÜNSCHT ist dieselbe fachliche Sprache MIT Substanz: schreibe nicht "fördert Teilhabe", sondern erkläre, WIE das Vorhaben Teilhabe/Bildungsgerechtigkeit konkret stärkt (für wen, wodurch, mit welcher erwarteten Wirkung). Fachbegriffe ja — aber immer am konkreten Vorhaben verankert und erklärt, nie als Schmuckwort.
+
+## Ziele & Wirkung konkret (wenn dieser Abschnitt Ziele/Wirkung/Nachhaltigkeit behandelt)
+Formuliere Ziele wirkungsorientiert statt vage: benenne, WAS sich für WEN beobachtbar ändert — entlang der Wirkungslogik Maßnahme → unmittelbares Ergebnis (Output) → angestrebte Wirkung (Outcome). Hat der User messbare Indikatoren/Kennzahlen genannt, nimm sie auf. Wo nicht, biete 1–2 realistische, zum Vorhaben passende Indikatoren als klar erkennbaren VORSCHLAG an ("messbar machen ließe sich das z. B. an …", "ein möglicher Indikator wäre …") — OHNE konkrete Baselines/Zielzahlen zu erfinden, die der User nicht nannte. Vermeide richtungslose Ziel-Floskeln ("die Kinder werden gefördert"): jedes Ziel braucht Zielgruppe, Richtung und ein beobachtbares Ergebnis.
 
 ## Form
 - Keine Überschrift, keine Markdown-Formatierung, kein # oder **.
@@ -439,6 +471,40 @@ Ausgabe: NUR der Abschnittstext, nichts anderes.`;
 export const SECTION_SYSTEM = PIPELINE_CONFIG.sharpPrompts
   ? `${SECTION_SYSTEM_BASE}\n\n${SHARP_HALLU_VERBOTS_BLOCK}`
   : SECTION_SYSTEM_BASE;
+
+/**
+ * P1-A (Pilot-Feedback 24.06.): Baut einen harten "DARF NICHT VORKOMMEN"-Block aus den
+ * vom Nutzer ausdruecklich ausgeschlossenen Elementen (`facts.ausgeschlossen`). Leer, wenn
+ * keine Ausschluesse vorliegen — dann aendert sich am Prompt (und damit am Eval-Korpus, der
+ * keine Ausschluesse traegt) nichts. Wird in SECTION- und FINANZPLAN-Prompt injiziert.
+ */
+export function buildAusschlussBlock(facts: WizardFacts): string {
+  const ausg = (facts as WizardFacts)?.ausgeschlossen;
+  if (!Array.isArray(ausg)) return "";
+  const items = ausg
+    .filter((x): x is string => typeof x === "string" && x.trim().length > 0)
+    .map((x) => x.trim());
+  if (items.length === 0) return "";
+  return `\n\nVOM NUTZER AUSGESCHLOSSEN (HART — DARF NICHT VORKOMMEN):
+Der Nutzer hat folgende Elemente AUSDRUECKLICH ausgeschlossen oder verneint. Sie duerfen WEDER im Antragstext NOCH im Finanzplan auftauchen — auch nicht als Vorschlag, Option oder "denkbar waere":
+${items.map((x) => `- ${x}`).join("\n")}
+Wenn ein solches Element fachlich naheliegend waere, ignoriere diesen Impuls — der Nutzer hat es bewusst abgewaehlt.`;
+}
+
+/**
+ * P3-B (Feedback 24.06.): Texttiefe-Direktive, die an den Section-Prompt angehängt wird.
+ * "standard"/undefined → leer (kein Prompt-/Eval-Effekt). Nur "knapp"/"ausfuehrlich" überschreiben
+ * die Standard-Längenvorgabe (150–400 Wörter) des SECTION_SYSTEM.
+ */
+export function texttiefeHint(t?: Texttiefe): string {
+  if (t === "knapp") {
+    return `\n\nTEXTTIEFE (Nutzerwahl: KNAPP): Halte diesen Abschnitt bewusst kurz (ca. 100–200 Wörter). Nur das Wesentliche, keine Ausschmückung, keine Wiederholung — dichte, präzise Sätze. Diese Vorgabe ersetzt die Standard-Längenvorgabe.`;
+  }
+  if (t === "ausfuehrlich") {
+    return `\n\nTEXTTIEFE (Nutzerwahl: AUSFÜHRLICH): Führe diesen Abschnitt gründlicher aus (ca. 300–550 Wörter) — mehr Kontext, Begründungstiefe und fachliche Einordnung, OHNE zu wiederholen oder zu floskeln. Diese Vorgabe ersetzt die Standard-Längenvorgabe.`;
+  }
+  return "";
+}
 
 export function buildSectionPrompt(
   programm: Foerderprogramm,
@@ -476,7 +542,7 @@ Schreibe den Abschnitt. Erfinde KEINE Aktenzeichen, Beschluss-Daten, Tarif-Berec
 
 KONKRETHEIT richtig: Deine Konkretheit speist sich aus den ECHTEN Angaben des Users (genannte Szenen, Namen, Zahlen, Beispiele) — greife genau diese als wiederkehrende, glaubwürdige Anker auf. Wo der User KEINE Angabe gemacht hat, hast du zwei erlaubte Optionen: (a) den Punkt weglassen/knapp halten, oder (b) einen sichtbaren Lücken-Marker \`[TODO: … vor Einreichung ergänzen]\` setzen. NICHT erlaubt: die Lücke mit erfundenen Konkreta füllen ODER mit nichtssagenden Floskeln überdecken. Eine vom User offen gelassene Frage ("weiß ich nicht", "müssten wir klären") darf NIE als feststehende Tatsache oder erteilte Zusage formuliert werden.
 
-GELDBETRÄGE UND MENGEN IM TEXT: Jeden Euro-Betrag, jede Stückzahl und jeden Termin, den der User NICHT selbst genannt hat, kennzeichne im Fließtext sichtbar als Schätzung — z. B. "voraussichtlich rund 15.000 € (Schätzung, vor Einreichung durch Angebote zu belegen)" oder "ca. 25 Geräte (Anzahl noch festzulegen)". NIE als feststehende Kalkulation oder beschlossene Summe formulieren. Der Fließtext muss bei Zahlen genauso ehrlich sein wie der Finanzplan — keine Asymmetrie, bei der die Tabelle "Schätzung" sagt und der Text dieselbe Zahl als Fakt behauptet.`;
+GELDBETRÄGE UND MENGEN IM TEXT: Jeden Euro-Betrag, jede Stückzahl und jeden Termin, den der User NICHT selbst genannt hat, kennzeichne im Fließtext sichtbar als Schätzung — z. B. "voraussichtlich rund 15.000 € (Schätzung, vor Einreichung durch Angebote zu belegen)" oder "ca. 25 Geräte (Anzahl noch festzulegen)". NIE als feststehende Kalkulation oder beschlossene Summe formulieren. Der Fließtext muss bei Zahlen genauso ehrlich sein wie der Finanzplan — keine Asymmetrie, bei der die Tabelle "Schätzung" sagt und der Text dieselbe Zahl als Fakt behauptet.${buildAusschlussBlock(facts)}`;
 
   // Hebel 3: Dossier-Injection (PIPELINE_USE_VORBILD_FORMULIERUNGEN)
   if (!PIPELINE_CONFIG.useVorbildFormulierungen || !richtlinie) {
@@ -549,7 +615,7 @@ Zusätzlich Schwere "hoch": Stellen, an denen der Entwurf eine vom User offen ge
 
 ## DRITTE Prüfung — Schwächen
 5. Floskeln, unbelegte Behauptungen (Kategorie "floskel").
-6. **Redundanzen über Abschnitte hinweg (Kategorie "redundanz")** — wird derselbe Bedarf, dieselbe Zielgruppe, dasselbe Ziel oder dieselbe Maßnahme in mehreren Abschnitten nahezu wortgleich wiederholt? Das ist der häufigste Grund, warum Leser einen Antrag als "müsste neu geschrieben werden" empfinden. Pro betroffener Wiederholung ein Finding: Zitat der späteren Dopplung, Vorschlag = "kürzen und auf die Erstnennung verweisen" oder "auf den abschnittsspezifischen Aspekt zuspitzen". WICHTIG: Niemals einen Pflichtabschnitt ganz streichen — nur Redundanz INNERHALB beibehaltener Abschnitte verdichten.
+6. **Redundanzen über Abschnitte hinweg (Kategorie "redundanz")** — wird derselbe Bedarf, dieselbe Zielgruppe, dasselbe Ziel, dieselbe Maßnahme ODER die Entstehungs-/Motivationsgeschichte (wie die Projektidee entstand, warum die Schule sie angeht) in mehreren Abschnitten nahezu wortgleich wiederholt? Das ist der häufigste Grund, warum Leser einen Antrag als "müsste neu geschrieben werden" empfinden. Pro betroffener Wiederholung ein Finding: Zitat der späteren Dopplung, Vorschlag = "kürzen und auf die Erstnennung verweisen" oder "auf den abschnittsspezifischen Aspekt zuspitzen". WICHTIG: Niemals einen Pflichtabschnitt ganz streichen — nur Redundanz INNERHALB beibehaltener Abschnitte verdichten.
 7. Schwache/generische Abschnitte — austauschbar klingende Passagen.
 8. Fehlende Quantifizierungen, wo welche aus den User-Antworten ableitbar wären.
 9. Typ-spezifische Schwächen (siehe Prüffokus im User-Prompt).
@@ -640,9 +706,11 @@ Ein Finanzplan MUSS Betraege enthalten — aber er darf erfundene Betraege nicht
 - Schaetzbetraege: konservativ und **rund** halten (z. B. 3.000, nicht 3.140). Keine erfundene Splittung ("25 × 540 EUR"), wenn der User die Menge nicht nannte — dann eine ehrliche Pauschale.
 - Hat der User INSGESAMT keine einzige Geldangabe gemacht, setze in \`hinweise\` als ERSTEN Eintrag: "Alle Betraege sind grobe Schaetzungen ohne Angaben der Schule — vor Einreichung durch Angebote belegen."
 - Erfinde keine Posten fuer Leistungen, die der User nicht erwaehnt hat, nur um den Plan "vollstaendig" wirken zu lassen.
+- KEIN erfundener Pauschal-"Puffer"/"Reserve"/"Sonstiges Material und Versand"-Posten (z. B. "Puffer 150 EUR"), den der User nicht genannt hat — solche Fuell-Posten taeuschen eine Kalkulation vor und passen die Summe kuenstlich an. Wenn ein Sicherheitsaufschlag fachlich sinnvoll ist, nur als klar mit "Schaetzung:" markierter Vorschlag und nur, wenn er die beantragte Gesamtsumme nicht ueberschreitet.
 
 ## Konsistenz (HART — der Plan muss sachlich aufgehen)
 - Die Summe aller Posten muss rechnerisch stimmen. Hat der User eine Gesamt-/Globalsumme genannt, MUESSEN die Foerderposten (ohne Eigenanteil) in der Summe dieser Zahl entsprechen (±2 %) — du gestaltest die genannte Globalsumme aus, du erfindest keine hoehere. Hat der User KEINE Summe genannt, waehle plausible, runde Einzelbetraege und nenne die Gesamtsumme stimmig.
+- **Foerderquote / Pflicht-Eigenanteil (HART):** GESAMTKOSTEN = Foerderung + Eigenanteil. Setze die Gesamtkosten NIEMALS gleich der beantragten Foerderung, wenn die Richtlinie einen Eigenanteil verlangt. Schreibt die Richtlinie eine maximale Foerderquote (z. B. max 80 % der Gesamtkosten) oder einen Mindest-Eigenanteil (z. B. 20 %) vor, dann darf die Foerdersumme diesen Anteil NICHT ueberschreiten — lege einen Eigenanteil-Posten (eigenanteil:true) in der noetigen Hoehe an (Beispiel: Gesamtkosten 7.500 EUR, max 80 % → Foerderung 6.000 EUR + Eigenanteil 1.500 EUR). Nannte der User die Gesamtkosten (z. B. "rund 7.500 EUR"), nimm DIESE als Gesamtkosten und teile sie korrekt in Foerderung und Eigenanteil — verwechsle die Gesamtkosten nicht mit der beantragten Foerderung.
 - Erfinde keinen Posten, der einer Nutzeraussage WIDERSPRICHT (sagte der User "machen wir selbst" / "Lehrkraefte nebenher", KEINE bezahlte Personal-/Honorarstelle dafuer). Solche widerspruechlichen Posten gehoeren NICHT in den Plan.
 - Ergaenzende Posten, die der User NICHT genannt hat, aber die fuer ein gutes Vorhaben sinnvoll sind, sind als Vorschlag ERLAUBT (begruendung mit "Schaetzung:" beginnen) — sie werden dem Nutzer als bestaetigbarer Vorschlag angezeigt.
 
@@ -704,7 +772,7 @@ ${programmBlock(programm)}
 ${rlBlock}
 
 PROJEKTFAKTEN:
-${JSON.stringify(facts, null, 2)}${userAnswersBlock}
+${JSON.stringify(facts, null, 2)}${userAnswersBlock}${buildAusschlussBlock(facts)}
 
 Erstelle den Finanzplan. Erfinde keine Tarif-Stufen, Honorarsaetze, Marken-/Modellnamen oder Mengen-Aufschluesselungen, die nicht im User-Input belegt sind. Lieber Pauschalen mit "in hinweise erlaeutert" als erfundene Splittungen.`;
 }
@@ -788,6 +856,7 @@ Tilge LEERE Schmuckfloskeln ohne Substanz ("ganzheitlicher Ansatz", "schafft Meh
 ## Redundanz-Verbot (gegen "müsste neu geschrieben werden")
 Arbeite alle "redundanz"-Findings konsequent ab und tilge auch selbst erkannte Wiederholungen über Abschnitte hinweg:
 - Bedarf/Ausgangslage, Zielgruppe, Ziele und Maßnahmen werden je EINMAL substanziell ausgeführt — an der inhaltlich passendsten Stelle. Spätere Abschnitte wiederholen sie NICHT wortgleich, sondern setzen darauf auf ("auf dieser Grundlage …", "darauf aufbauend …").
+- Die Entstehungs-/Motivationsgeschichte des Vorhabens (wie die Idee entstand, warum die Schule sie angeht) wird GENAU EINMAL erzählt — an der passendsten Stelle (typisch Ausgangslage/Einleitung). Taucht dieselbe Genese-Erzählung in weiteren Abschnitten auf, verdichte sie dort auf einen knappen Rückbezug oder streiche sie; sie wirkt sonst generiert und inflationär.
 - Jeder Abschnitt behält seinen eigenen Fokus (Ausgangslage = Problem + Zahlen; Ziele = was sich messbar ändert; Maßnahmen = konkrete Schritte; Wirkung/Nachhaltigkeit = was nach der Förderung bleibt).
 - WICHTIG: Verdichten heißt umformulieren, nicht ausdünnen. ALLE Pflichtabschnitte bleiben erhalten und inhaltlich tragfähig — kein Abschnitt wird gestrichen oder auf einen bloßen Verweis reduziert. Struktur, Titel und Abschnittsreihenfolge bleiben unverändert.
 

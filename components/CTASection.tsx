@@ -33,7 +33,7 @@ export function CTASection() {
   return (
     <section 
       className="py-24 lg:py-32 relative overflow-hidden"
-      style={{ backgroundColor: '#f8f5f0' }}
+      style={{ backgroundColor: '#fdfdfc' }}
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 dots-pattern" />
@@ -42,14 +42,14 @@ export function CTASection() {
       <div 
         className="absolute -top-20 -right-20 w-96 h-96 hidden lg:block"
         style={{
-          background: 'linear-gradient(135deg, rgba(201, 162, 39, 0.06) 0%, transparent 70%)',
+          background: 'linear-gradient(135deg, rgba(30, 61, 50, 0.06) 0%, transparent 70%)',
           borderRadius: '50%',
         }}
       />
       <div 
         className="absolute -bottom-32 -left-32 w-80 h-80 hidden lg:block"
         style={{
-          background: 'linear-gradient(135deg, rgba(10, 22, 40, 0.04) 0%, transparent 70%)',
+          background: 'linear-gradient(135deg, rgba(28, 25, 23, 0.04) 0%, transparent 70%)',
           borderRadius: '50%',
         }}
       />
@@ -57,7 +57,7 @@ export function CTASection() {
       {/* Floating Elements */}
       <motion.div
         className="absolute top-20 left-[10%] w-4 h-4 hidden lg:block"
-        style={{ backgroundColor: '#c9a227', borderRadius: '2px' }}
+        style={{ backgroundColor: '#1e3d32', borderRadius: '2px' }}
         animate={{ 
           y: [0, -15, 0], 
           rotate: [0, 90, 0],
@@ -75,7 +75,7 @@ export function CTASection() {
       <motion.div
         className="absolute top-1/2 right-[8%] w-6 h-6 hidden lg:block"
         style={{ 
-          border: '2px solid rgba(201, 162, 39, 0.3)',
+          border: '2px solid rgba(30, 61, 50, 0.3)',
           borderRadius: '4px',
         }}
         animate={{ 
@@ -97,14 +97,14 @@ export function CTASection() {
             <span 
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs tracking-wider uppercase"
               style={{ 
-                backgroundColor: 'rgba(10, 22, 40, 0.05)',
-                border: '1px solid rgba(10, 22, 40, 0.1)',
-                color: '#0a1628',
+                backgroundColor: 'rgba(28, 25, 23, 0.05)',
+                border: '1px solid rgba(28, 25, 23, 0.1)',
+                color: '#1c1917',
               }}
             >
               <span 
                 className="w-2 h-2 rounded-full animate-pulse"
-                style={{ backgroundColor: '#c9a227' }}
+                style={{ backgroundColor: '#1e3d32' }}
               />
               Jetzt durchstarten
             </span>
@@ -114,10 +114,10 @@ export function CTASection() {
           <motion.h2
             variants={itemVariants}
             className="font-serif mb-6"
-            style={{ color: '#0a1628' }}
+            style={{ color: '#1c1917' }}
           >
             Bereit, Fördermittel{' '}
-            <span style={{ color: '#7a5e12' }}>erfolgreich</span>
+            <span style={{ color: '#1e3d32' }}>erfolgreich</span>
             <br />
             zu beantragen?
           </motion.h2>
@@ -126,7 +126,7 @@ export function CTASection() {
           <motion.div variants={itemVariants} className="flex justify-center mb-8">
             <div 
               className="w-20 h-0.5"
-              style={{ background: 'linear-gradient(90deg, #c9a227, #e4c55a)' }}
+              style={{ background: 'linear-gradient(90deg, #1e3d32, #d4af37)' }}
             />
           </motion.div>
 
@@ -134,7 +134,7 @@ export function CTASection() {
           <motion.p
             variants={itemVariants}
             className="text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed"
-            style={{ color: '#1e3a61' }}
+            style={{ color: '#57534e' }}
           >
             Nutzen Sie EduFunds, um Förderanträge für Ihre Schule professionell zu erstellen.
           </motion.p>
@@ -164,7 +164,7 @@ export function CTASection() {
                 </div>
                 <span 
                   className="font-medium"
-                  style={{ color: '#0a1628' }}
+                  style={{ color: '#1c1917' }}
                 >
                   {item.text}
                 </span>
@@ -198,7 +198,7 @@ export function CTASection() {
           <motion.div
             variants={itemVariants}
             className="flex flex-wrap items-center justify-center gap-6 pt-8 border-t"
-            style={{ borderColor: 'rgba(10, 22, 40, 0.08)' }}
+            style={{ borderColor: 'rgba(28, 25, 23, 0.08)' }}
           >
             {["Jederzeit kündbar", "DSGVO-konform", "Sichere Zahlung"].map((text) => (
               <span key={text} className="flex items-center gap-2">
@@ -208,7 +208,7 @@ export function CTASection() {
                 />
                 <span 
                   className="text-sm"
-                  style={{ color: '#1e3a61' }}
+                  style={{ color: '#57534e' }}
                 >
                   {text}
                 </span>
@@ -239,14 +239,14 @@ export function CTASection() {
               className="text-center p-6 rounded-2xl"
               style={{ 
                 backgroundColor: '#ffffff',
-                border: '1px solid rgba(10, 22, 40, 0.06)',
-                boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)',
+                border: '1px solid rgba(28, 25, 23, 0.06)',
+                boxShadow: '0 4px 20px -4px rgba(28, 25, 23, 0.05)',
               }}
             >
               <div 
                 className="text-3xl font-serif mb-1"
                 style={{ 
-                  background: 'linear-gradient(135deg, #c9a227 0%, #b08d1f 100%)',
+                  background: 'linear-gradient(135deg, #1e3d32 0%, #1e3d32 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}
@@ -255,7 +255,7 @@ export function CTASection() {
               </div>
               <div 
                 className="text-sm font-medium"
-                style={{ color: '#1e3a61', opacity: 0.7 }}
+                style={{ color: '#57534e', opacity: 0.7 }}
               >
                 {stat.label}
               </div>

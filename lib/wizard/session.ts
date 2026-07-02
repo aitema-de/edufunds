@@ -148,8 +148,8 @@ export interface MarkPaidParams {
   stripeSessionId?: string;
   stripeCustomerEmail?: string;
   tier?: string;
-  /** Freischalt-Quelle: "card" (Stripe) oder "code" (Kontingent). */
-  source?: "card" | "code";
+  /** Freischalt-Quelle: "card" (Stripe), "code" (Kontingent) oder "invoice" (Einzelantrag auf Rechnung). */
+  source?: "card" | "code" | "invoice";
   /** Bei Quelle "code": der eingeloeste Kontingent-Code. */
   creditCode?: string;
 }

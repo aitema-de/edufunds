@@ -23,27 +23,27 @@ export function InfoCard({
   const variants = {
     light: {
       background: "rgba(255, 255, 255, 0.8)",
-      border: "1px solid rgba(10, 22, 40, 0.06)",
-      titleColor: "#0a1628",
-      textColor: "#1e3a61",
-      iconBg: "rgba(201, 162, 39, 0.1)",
-      iconColor: "#c9a227",
+      border: "1px solid rgba(28, 25, 23, 0.06)",
+      titleColor: "#1c1917",
+      textColor: "#57534e",
+      iconBg: "rgba(30, 61, 50, 0.1)",
+      iconColor: "#1e3d32",
     },
     dark: {
-      background: "rgba(15, 31, 56, 0.6)",
-      border: "1px solid rgba(201, 162, 39, 0.1)",
-      titleColor: "#f8f5f0",
-      textColor: "#94a3b8",
-      iconBg: "rgba(201, 162, 39, 0.1)",
-      iconColor: "#c9a227",
+      background: "rgba(28, 25, 23, 0.6)",
+      border: "1px solid rgba(217, 119, 6, 0.12)",
+      titleColor: "#fdfdfc",
+      textColor: "#a8a29e",
+      iconBg: "rgba(217, 119, 6, 0.12)",
+      iconColor: "#d4af37",
     },
     highlight: {
-      background: "linear-gradient(135deg, rgba(201, 162, 39, 0.1) 0%, rgba(201, 162, 39, 0.02) 100%)",
-      border: "1px solid rgba(201, 162, 39, 0.2)",
-      titleColor: "#0a1628",
-      textColor: "#334155",
-      iconBg: "rgba(201, 162, 39, 0.2)",
-      iconColor: "#c9a227",
+      background: "linear-gradient(135deg, rgba(30, 61, 50, 0.08) 0%, rgba(30, 61, 50, 0.02) 100%)",
+      border: "1px solid rgba(30, 61, 50, 0.2)",
+      titleColor: "#1c1917",
+      textColor: "#57534e",
+      iconBg: "rgba(30, 61, 50, 0.15)",
+      iconColor: "#1e3d32",
     },
   };
 
@@ -66,8 +66,8 @@ export function InfoCard({
       <div
         className="absolute top-6 right-6 w-8 h-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style={{
-          borderTop: "2px solid #c9a227",
-          borderRight: "2px solid #c9a227",
+          borderTop: "2px solid #1e3d32",
+          borderRight: "2px solid #1e3d32",
           position: "absolute",
         }}
       />
@@ -78,7 +78,7 @@ export function InfoCard({
           className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110"
           style={{
             backgroundColor: style.iconBg,
-            border: `1px solid ${variant === "highlight" ? "rgba(201, 162, 39, 0.3)" : "transparent"}`,
+            border: `1px solid ${variant === "highlight" ? "rgba(30, 61, 50, 0.3)" : "transparent"}`,
           }}
         >
           <div style={{ color: style.iconColor }}>{icon}</div>
@@ -101,7 +101,7 @@ export function InfoCard({
       {/* Bottom Line */}
       <div
         className="absolute bottom-0 left-8 right-8 h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
-        style={{ backgroundColor: "#c9a227" }}
+        style={{ backgroundColor: "#1e3d32" }}
       />
     </motion.div>
   );

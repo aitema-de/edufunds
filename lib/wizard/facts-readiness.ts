@@ -171,13 +171,33 @@ function richtlinienZusatzIssues(
   return out;
 }
 
+/**
+ * FP-V-2 (Pilot 19.06.): Signale dafür, dass der Nutzer Nachhaltigkeit/Verstetigung
+ * in den Rohantworten bereits adressiert hat — auch wenn die Fakten-Extraktion das
+ * Feld `wirkung.nachhaltigkeit` nicht befüllt hat. Verhindert einen unscharfen
+ * "fehlt"-Hinweis, obwohl die Frage (z. B. in Frage 6) ausführlich beantwortet wurde.
+ */
+const NACHHALTIGKEIT_SIGNAL =
+  /nachhaltig|verstetig|weiterf(?:ü|ue)hr|fortf(?:ü|ue)hr|langfristig|dauerhaft|nach (?:der |dem )?(?:förder|projekt|finanzierung)|auch (?:danach|künftig|weiterhin|in zukunft)|veranker|aus eigenmitteln (?:weiter|fort)/i;
+
 export function evaluateFactsReadiness(
   facts: WizardFacts,
-  richtlinie?: Richtlinie | null
+  richtlinie?: Richtlinie | null,
+  userAnswers?: string[]
 ): ReadinessReport {
+  const answersBlob = (userAnswers ?? []).join("\n");
   const issues: ReadinessIssue[] = [];
   for (const r of REGELN) {
     if (r.isMissing(facts)) {
+      // FP-V-2: Nachhaltigkeit nicht als "fehlt" melden, wenn die Rohantworten sie
+      // klar adressieren (Extraktion verfehlt das Freitext-Feld gelegentlich).
+      if (
+        r.feld === "wirkung.nachhaltigkeit" &&
+        answersBlob &&
+        NACHHALTIGKEIT_SIGNAL.test(answersBlob)
+      ) {
+        continue;
+      }
       issues.push({ feld: r.feld, label: r.label, schwere: r.schwere, hinweis: r.hinweis });
     }
   }

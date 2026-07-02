@@ -19,7 +19,7 @@ describe('Header Komponente', () => {
     });
   });
 
-  it('sollte das Logo als Bild mit alt-Text rendern', () => {
+  it('sollte das offizielle Logo (helle Variante) rendern', () => {
     render(<Header />);
     const logo = screen.getByAltText('EduFunds');
     expect(logo).toBeInTheDocument();

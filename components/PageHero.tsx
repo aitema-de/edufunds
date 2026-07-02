@@ -24,10 +24,10 @@ export function PageHero({
   children,
 }: PageHeroProps) {
   const isLight = variant === "light";
-  const bgColor = isLight ? "#f8f5f0" : "#0a1628";
-  const textColor = isLight ? "#0a1628" : "#f8f5f0";
-  const subtitleColor = isLight ? "#1e3a61" : "#94a3b8";
-  const accentColor = isLight ? "#7a5e12" : "#c9a227";
+  const bgColor = isLight ? "#fdfdfc" : "#1c1917";
+  const textColor = isLight ? "#1c1917" : "#fdfdfc";
+  const subtitleColor = isLight ? "#57534e" : "#a8a29e";
+  const accentColor = isLight ? "#1e3d32" : "#d4af37";
 
   return (
     <section
@@ -49,8 +49,8 @@ export function PageHero({
         className="absolute top-[20%] right-[8%] w-64 h-64 hidden lg:block"
         style={{
           background: isLight
-            ? "linear-gradient(135deg, rgba(201, 162, 39, 0.1) 0%, rgba(201, 162, 39, 0.02) 100%)"
-            : "linear-gradient(135deg, rgba(201, 162, 39, 0.06) 0%, transparent 100%)",
+            ? "linear-gradient(135deg, rgba(217, 119, 6, 0.1) 0%, rgba(217, 119, 6, 0.02) 100%)"
+            : "linear-gradient(135deg, rgba(217, 119, 6, 0.06) 0%, transparent 100%)",
           borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%",
           animation: "float 8s ease-in-out infinite",
         }}
@@ -59,7 +59,7 @@ export function PageHero({
         className="absolute bottom-[25%] left-[5%] w-48 h-48 hidden lg:block"
         style={{
           background: isLight
-            ? "linear-gradient(135deg, rgba(10, 22, 40, 0.05) 0%, rgba(10, 22, 40, 0.01) 100%)"
+            ? "linear-gradient(135deg, rgba(28, 25, 23, 0.05) 0%, rgba(28, 25, 23, 0.01) 100%)"
             : "linear-gradient(135deg, rgba(26, 77, 77, 0.15) 0%, transparent 100%)",
           borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
           animation: "float 10s ease-in-out infinite",
@@ -83,12 +83,12 @@ export function PageHero({
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs tracking-wider uppercase mb-8"
               style={{
                 backgroundColor: isLight
-                  ? "rgba(10, 22, 40, 0.05)"
-                  : "rgba(201, 162, 39, 0.1)",
+                  ? "rgba(28, 25, 23, 0.05)"
+                  : "rgba(217, 119, 6, 0.1)",
                 border: `1px solid ${
-                  isLight ? "rgba(10, 22, 40, 0.1)" : "rgba(201, 162, 39, 0.2)"
+                  isLight ? "rgba(28, 25, 23, 0.1)" : "rgba(217, 119, 6, 0.2)"
                 }`,
-                color: isLight ? "#0a1628" : "#c9a227",
+                color: isLight ? "#1c1917" : "#d4af37",
               }}
             >
               {badge.icon}
@@ -123,7 +123,7 @@ export function PageHero({
             <div
               className="w-16 h-0.5"
               style={{
-                background: "linear-gradient(90deg, #c9a227, #e4c55a)",
+                background: "linear-gradient(90deg, #1e3d32, #d4af37)",
               }}
             />
           </motion.div>

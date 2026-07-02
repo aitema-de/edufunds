@@ -33,12 +33,12 @@ export default function UeberUnsPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen" style={{ backgroundColor: "#f8f5f0" }}>
+      <main className="min-h-screen" style={{ backgroundColor: "#fdfdfc" }}>
         {/* Hero */}
         <section className="relative pt-32 pb-20 overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
-              backgroundImage: `radial-gradient(circle at 80% 20%, rgba(201, 162, 39, 0.15) 0%, transparent 50%)`,
+              backgroundImage: `radial-gradient(circle at 80% 20%, rgba(30, 61, 50, 0.15) 0%, transparent 50%)`,
             }} />
           </div>
           
@@ -50,11 +50,11 @@ export default function UeberUnsPage() {
               className="text-center max-w-3xl mx-auto"
             >
               <span className="inline-block px-4 py-2 rounded-full text-xs font-medium tracking-wider uppercase mb-6"
-                style={{ backgroundColor: "rgba(201, 162, 39, 0.1)", color: "#7a5e12" }}>
+                style={{ backgroundColor: "rgba(30, 61, 50, 0.1)", color: "#1e3d32" }}>
                 Über uns
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "#0a1628" }}>
-                Wir machen <span style={{ color: "#7a5e12" }}>Fördermittel</span> einfach
+              <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "#1c1917" }}>
+                Wir machen <span style={{ color: "#1e3d32" }}>Fördermittel</span> einfach
               </h1>
               <p className="text-lg" style={{ color: "#475569" }}>
                 EduFunds ist die führende Plattform für Fördermittel an Schulen in Deutschland.
@@ -65,7 +65,7 @@ export default function UeberUnsPage() {
         </section>
 
         {/* Mission */}
-        <section className="py-20" style={{ backgroundColor: "#f8f5f0" }}>
+        <section className="py-20" style={{ backgroundColor: "#fdfdfc" }}>
           <div className="container mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
               <motion.div
@@ -74,14 +74,14 @@ export default function UeberUnsPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="text-3xl font-bold mb-6" style={{ color: "#0a1628" }}>
+                <h2 className="text-3xl font-bold mb-6" style={{ color: "#1c1917" }}>
                   Unsere Mission
                 </h2>
-                <p className="text-lg mb-6" style={{ color: "#1e3a61" }}>
+                <p className="text-lg mb-6" style={{ color: "#57534e" }}>
                   Jede Schule verdient Zugang zu Fördermitteln. Doch der Weg bis zum Zuschuss
                   ist oft steinig und kompliziert. Wir verändern das.
                 </p>
-                <p className="text-lg" style={{ color: "#1e3a61" }}>
+                <p className="text-lg" style={{ color: "#57534e" }}>
                   Mit EduFunds machen wir Fördermittel transparent, zugänglich und nutzbar. 
                   Unsere KI-gestützte Plattform unterstützt Schulen bei der Suche nach passenden 
                   Programmen und der Erstellung überzeugender Anträge.
@@ -95,21 +95,21 @@ export default function UeberUnsPage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="grid grid-cols-2 gap-6"
               >
-                <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(201, 162, 39, 0.1)" }}>
-                  <div className="text-4xl font-bold mb-2" style={{ color: "#c9a227" }}>{PROGRAMM_COUNT_LABEL}</div>
-                  <div className="text-sm" style={{ color: "#0a1628" }}>Förderprogramme</div>
+                <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(30, 61, 50, 0.1)" }}>
+                  <div className="text-4xl font-bold mb-2" style={{ color: "#1e3d32" }}>{PROGRAMM_COUNT_LABEL}</div>
+                  <div className="text-sm" style={{ color: "#1c1917" }}>Förderprogramme</div>
                 </div>
-                <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(10, 22, 40, 0.05)" }}>
-                  <div className="text-4xl font-bold mb-2" style={{ color: "#0a1628" }}>16</div>
-                  <div className="text-sm" style={{ color: "#1e3a61" }}>Bundesländer</div>
+                <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(28, 25, 23, 0.05)" }}>
+                  <div className="text-4xl font-bold mb-2" style={{ color: "#1c1917" }}>16</div>
+                  <div className="text-sm" style={{ color: "#57534e" }}>Bundesländer</div>
                 </div>
-                <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(10, 22, 40, 0.05)" }}>
-                  <div className="text-4xl font-bold mb-2" style={{ color: "#0a1628" }}>alle</div>
-                  <div className="text-sm" style={{ color: "#1e3a61" }}>Schularten</div>
+                <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(28, 25, 23, 0.05)" }}>
+                  <div className="text-4xl font-bold mb-2" style={{ color: "#1c1917" }}>alle</div>
+                  <div className="text-sm" style={{ color: "#57534e" }}>Schularten</div>
                 </div>
-                <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(201, 162, 39, 0.1)" }}>
-                  <div className="text-4xl font-bold mb-2" style={{ color: "#c9a227" }}>KI</div>
-                  <div className="text-sm" style={{ color: "#0a1628" }}>Unterstützung</div>
+                <div className="p-6 rounded-2xl text-center" style={{ backgroundColor: "rgba(30, 61, 50, 0.1)" }}>
+                  <div className="text-4xl font-bold mb-2" style={{ color: "#1e3d32" }}>KI</div>
+                  <div className="text-sm" style={{ color: "#1c1917" }}>Unterstützung</div>
                 </div>
               </motion.div>
             </div>
@@ -120,7 +120,7 @@ export default function UeberUnsPage() {
         <section className="py-20">
           <div className="container mx-auto px-6">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl font-bold mb-4" style={{ color: "#0a1628" }}>
+              <h2 className="text-3xl font-bold mb-4" style={{ color: "#1c1917" }}>
                 Unsere Werte
               </h2>
               <p style={{ color: "#475569" }}>
@@ -137,13 +137,13 @@ export default function UeberUnsPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="p-6 rounded-2xl"
-                  style={{ backgroundColor: "rgba(255, 255, 255, 0.85)", border: "1px solid rgba(201, 162, 39, 0.2)" }}
+                  style={{ backgroundColor: "rgba(255, 255, 255, 0.85)", border: "1px solid rgba(30, 61, 50, 0.2)" }}
                 >
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
-                    style={{ backgroundColor: "rgba(201, 162, 39, 0.1)" }}>
-                    <value.icon className="w-6 h-6" style={{ color: "#c9a227" }} />
+                    style={{ backgroundColor: "rgba(30, 61, 50, 0.1)" }}>
+                    <value.icon className="w-6 h-6" style={{ color: "#1e3d32" }} />
                   </div>
-                  <h3 className="text-lg font-semibold mb-2" style={{ color: "#0a1628" }}>
+                  <h3 className="text-lg font-semibold mb-2" style={{ color: "#1c1917" }}>
                     {value.title}
                   </h3>
                   <p className="text-sm" style={{ color: "#334155" }}>
@@ -156,10 +156,10 @@ export default function UeberUnsPage() {
         </section>
 
         {/* Team */}
-        <section className="py-20" style={{ backgroundColor: "rgba(201, 162, 39, 0.05)" }}>
+        <section className="py-20" style={{ backgroundColor: "rgba(30, 61, 50, 0.05)" }}>
           <div className="container mx-auto px-6">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl font-bold mb-4" style={{ color: "#0a1628" }}>
+              <h2 className="text-3xl font-bold mb-4" style={{ color: "#1c1917" }}>
                 Hinter EduFunds
               </h2>
               <p style={{ color: "#475569" }}>
@@ -173,13 +173,13 @@ export default function UeberUnsPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               className="max-w-2xl mx-auto p-8 rounded-2xl text-center"
-              style={{ backgroundColor: "rgba(255, 255, 255, 0.85)", border: "1px solid rgba(201, 162, 39, 0.2)" }}
+              style={{ backgroundColor: "rgba(255, 255, 255, 0.85)", border: "1px solid rgba(30, 61, 50, 0.2)" }}
             >
               <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center"
-                style={{ backgroundColor: "rgba(201, 162, 39, 0.2)" }}>
-                <BookOpen className="w-10 h-10" style={{ color: "#c9a227" }} />
+                style={{ backgroundColor: "rgba(30, 61, 50, 0.2)" }}>
+                <BookOpen className="w-10 h-10" style={{ color: "#1e3d32" }} />
               </div>
-              <h3 className="text-xl font-semibold mb-2" style={{ color: "#0a1628" }}>
+              <h3 className="text-xl font-semibold mb-2" style={{ color: "#1c1917" }}>
                 aitema GmbH
               </h3>
               <p style={{ color: "#334155" }} className="mb-4">
@@ -187,7 +187,7 @@ export default function UeberUnsPage() {
                 Mit technologischer Expertise und pädagogischem Verständnis schaffen
                 wir Werkzeuge, die den Schulalltag erleichtern.
               </p>
-              <p style={{ color: "#7a5e12" }} className="font-medium">
+              <p style={{ color: "#1e3d32" }} className="font-medium">
                 Ein Unternehmen mit Herz für Bildung
               </p>
             </motion.div>

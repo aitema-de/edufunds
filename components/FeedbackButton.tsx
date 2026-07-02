@@ -91,7 +91,7 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full bg-[#0a1628] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-[#0a1628]/20 transition hover:bg-[#1e3a61] hover:shadow-xl"
+        className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full bg-[#1c1917] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-[#1c1917]/20 transition hover:bg-[#57534e] hover:shadow-xl"
         aria-label="Feedback geben"
       >
         <MessageSquare className="h-4 w-4" />
@@ -101,7 +101,7 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
       {/* Modal-Overlay */}
       {open && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#0a1628]/40 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#1c1917]/40 backdrop-blur-sm p-4"
           onClick={closeModal}
         >
           <div
@@ -114,7 +114,7 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
               type="button"
               onClick={closeModal}
               disabled={busy}
-              className="absolute right-4 top-4 rounded-lg p-1 text-slate-500 transition hover:bg-[#f8f5f0] hover:text-[#0a1628] disabled:opacity-50"
+              className="absolute right-4 top-4 rounded-lg p-1 text-slate-500 transition hover:bg-[#fdfdfc] hover:text-[#1c1917] disabled:opacity-50"
               aria-label="Schließen"
             >
               <X className="h-5 w-5" />
@@ -123,7 +123,7 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
             {result?.success ? (
               <div className="text-center py-6">
                 <CheckCircle2 className="mx-auto h-12 w-12 text-emerald-600 mb-3" />
-                <h2 className="font-serif text-2xl text-[#0a1628] mb-2">Danke!</h2>
+                <h2 className="font-serif text-2xl text-[#1c1917] mb-2">Danke!</h2>
                 <p className="text-slate-600 mb-4">
                   {result.ticket
                     ? `Ihr Feedback ist als Ticket ${result.ticket} eingegangen.`
@@ -131,13 +131,13 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
                 </p>
                 {wantsResponse && email.trim() && (
                   <p className="text-sm text-slate-500 mb-4">
-                    Sie bekommen eine Bestätigung an <span className="text-[#1e3a61]">{email}</span>.
+                    Sie bekommen eine Bestätigung an <span className="text-[#57534e]">{email}</span>.
                   </p>
                 )}
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="inline-flex items-center gap-2 rounded-lg bg-[#c9a227] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#b8921e]"
+                  className="inline-flex items-center gap-2 rounded-lg bg-[#1e3d32] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#2a5244]"
                 >
                   Schließen
                 </button>
@@ -145,7 +145,7 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <h2 id="feedback-modal-title" className="font-serif text-2xl text-[#0a1628]">
+                  <h2 id="feedback-modal-title" className="font-serif text-2xl text-[#1c1917]">
                     Feedback geben
                   </h2>
                   <p className="text-sm text-slate-600 mt-1">
@@ -169,11 +169,11 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
                         onClick={() => setType(opt.value)}
                         className={`flex flex-col items-center gap-1.5 rounded-lg border-2 px-3 py-3 text-sm transition ${
                           active
-                            ? "border-[#c9a227] bg-[#c9a227]/8 text-[#0a1628]"
-                            : "border-[#0a1628]/15 bg-[#f8f5f0]/60 text-slate-600 hover:border-[#0a1628]/30 hover:text-[#0a1628]"
+                            ? "border-[#1e3d32] bg-[#1e3d32]/8 text-[#1c1917]"
+                            : "border-[#1c1917]/15 bg-[#fdfdfc]/60 text-slate-600 hover:border-[#1c1917]/30 hover:text-[#1c1917]"
                         }`}
                       >
-                        <Icon className={`h-5 w-5 ${active ? "text-[#c9a227]" : "text-slate-500"}`} />
+                        <Icon className={`h-5 w-5 ${active ? "text-[#1e3d32]" : "text-slate-500"}`} />
                         <span className="font-medium">{opt.label}</span>
                       </button>
                     );
@@ -182,7 +182,7 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
 
                 {/* Description */}
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-[#1e3a61]">
+                  <label className="mb-1.5 block text-sm font-medium text-[#57534e]">
                     Beschreibung <span className="text-red-500">*</span>
                   </label>
                   <textarea
@@ -197,7 +197,7 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
                     }
                     rows={4}
                     required
-                    className="w-full rounded-lg border border-[#0a1628]/15 bg-[#f8f5f0]/60 px-3 py-2 text-[#0a1628] placeholder-slate-400 transition focus:border-[#c9a227] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#c9a227]/15"
+                    className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 px-3 py-2 text-[#1c1917] placeholder-slate-400 transition focus:border-[#1e3d32] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/15"
                   />
                   <div className="mt-1 flex items-center justify-between text-xs text-slate-500">
                     <span>{description.trim().length < 10 ? `Mindestens 10 Zeichen` : `${description.trim().length} Zeichen`}</span>
@@ -207,7 +207,7 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
                 {/* Context (nur Bug) */}
                 {type === "bug" && (
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-[#1e3a61]">
+                    <label className="mb-1.5 block text-sm font-medium text-[#57534e]">
                       Wo ist es passiert? <span className="text-slate-400 font-normal">(optional)</span>
                     </label>
                     <input
@@ -215,14 +215,14 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
                       value={context}
                       onChange={(e) => setContext(e.target.value)}
                       placeholder="z. B. „Beim Klick auf Antrag generieren"
-                      className="w-full rounded-lg border border-[#0a1628]/15 bg-[#f8f5f0]/60 px-3 py-2 text-[#0a1628] placeholder-slate-400 transition focus:border-[#c9a227] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#c9a227]/15"
+                      className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 px-3 py-2 text-[#1c1917] placeholder-slate-400 transition focus:border-[#1e3d32] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/15"
                     />
                   </div>
                 )}
 
                 {/* Email + wantsResponse */}
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-[#1e3a61]">
+                  <label className="mb-1.5 block text-sm font-medium text-[#57534e]">
                     Ihre E-Mail <span className="text-slate-400 font-normal">(optional)</span>
                   </label>
                   <input
@@ -230,7 +230,7 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="sie@beispiel.de"
-                    className="w-full rounded-lg border border-[#0a1628]/15 bg-[#f8f5f0]/60 px-3 py-2 text-[#0a1628] placeholder-slate-400 transition focus:border-[#c9a227] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#c9a227]/15"
+                    className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc]/60 px-3 py-2 text-[#1c1917] placeholder-slate-400 transition focus:border-[#1e3d32] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/15"
                   />
                   {email.trim() && (
                     <label className="mt-2 inline-flex items-center gap-2 text-xs text-slate-600">
@@ -238,7 +238,7 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
                         type="checkbox"
                         checked={wantsResponse}
                         onChange={(e) => setWantsResponse(e.target.checked)}
-                        className="rounded border-[#0a1628]/15 text-[#c9a227] focus:ring-[#c9a227]/30"
+                        className="rounded border-[#1c1917]/15 text-[#1e3d32] focus:ring-[#1e3d32]/30"
                       />
                       Bestätigungs-Mail erhalten
                     </label>
@@ -256,14 +256,14 @@ export function FeedbackButton({ sessionToken, paidToken }: Props) {
                     type="button"
                     onClick={closeModal}
                     disabled={busy}
-                    className="rounded-lg px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#f8f5f0] hover:text-[#0a1628] disabled:opacity-50"
+                    className="rounded-lg px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-[#fdfdfc] hover:text-[#1c1917] disabled:opacity-50"
                   >
                     Abbrechen
                   </button>
                   <button
                     type="submit"
                     disabled={busy || description.trim().length < 10}
-                    className="inline-flex items-center gap-2 rounded-lg bg-[#c9a227] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#b8921e] disabled:cursor-not-allowed disabled:bg-[#c9a227]/40"
+                    className="inline-flex items-center gap-2 rounded-lg bg-[#1e3d32] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#2a5244] disabled:cursor-not-allowed disabled:bg-[#1e3d32]/40"
                   >
                     {busy ? (
                       <>

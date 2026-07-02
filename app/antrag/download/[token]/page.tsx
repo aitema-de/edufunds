@@ -50,7 +50,7 @@ export default async function DownloadPage({ params }: Props) {
         <div className="flex justify-center">
           <Link
             href="/antrag/meine"
-            className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 bg-white/70 px-4 py-2 text-sm font-medium text-[#0a1628] backdrop-blur-sm transition hover:border-[#c9a227]/40 hover:text-[#c9a227]"
+            className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 bg-white/70 px-4 py-2 text-sm font-medium text-[#1c1917] backdrop-blur-sm transition hover:border-[#1e3d32]/40 hover:text-[#1e3d32]"
           >
             <ArrowLeft className="h-4 w-4" />
             Meine Anträge
@@ -60,7 +60,7 @@ export default async function DownloadPage({ params }: Props) {
       <main
         id="main-content"
         className="relative pb-24"
-        style={{ backgroundColor: "#f8f5f0" }}
+        style={{ backgroundColor: "#fdfdfc" }}
       >
         <div className="container mx-auto px-4">
           <AntragResult
