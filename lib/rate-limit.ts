@@ -37,6 +37,14 @@ const RATE_LIMITS: Record<string, RateLimitConfig> = {
     windowMs: 15 * 60 * 1000, // 15 Minuten
     maxRequests: 10,
   },
+  // Passagen-Reformulierung (P4-A): 1 LLM-Call pro Aufruf, deutlich billiger als
+  // die Voll-Pipeline ('ai'), aber teurer als reine Interview-Cycles. Eigener
+  // moderater Bucket, damit On-Demand-Umformulierungen das Interview-Budget
+  // (wizard 200/h) nicht aufzehren und Missbrauch gedeckelt bleibt.
+  reformulieren: {
+    windowMs: 15 * 60 * 1000, // 15 Minuten
+    maxRequests: 40,
+  },
   // KI-Pipeline-Generierung (sehr teuer — 1 Aufruf = ~9 LLM-Calls)
   ai: {
     windowMs: 60 * 60 * 1000, // 1 Stunde
@@ -121,6 +129,11 @@ function getRateLimitType(pathname: string): string {
   // damit der Bezahl-Klick nie am ausgeschoepften Interview-Limit scheitert.
   if (pathname.includes('/api/wizard/checkout')) {
     return 'checkout';
+  }
+  // Reformulierung VOR der generischen /api/wizard/-Klausel: eigener LLM-Bucket,
+  // damit Umformier-Calls nicht das Interview-Limit (wizard) belasten.
+  if (pathname.includes('/api/wizard/reformulieren')) {
+    return 'reformulieren';
   }
   if (pathname.includes('/api/wizard/')) {
     return 'wizard';
