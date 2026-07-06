@@ -56,7 +56,9 @@ const nextConfig = {
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'X-XSS-Protection', value: '1; mode=block' },
           { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
-          { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.google-analytics.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';" },
+          // CSP wird per-Request MIT Nonce in middleware.ts gesetzt (nonce-basiert,
+          // ohne unsafe-inline/-eval für Scripts). Kein statischer CSP-Header hier,
+          // sonst überschriebe er die Nonce-CSP.
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), interest-cohort=(), browsing-topics=()' },
           { key: 'X-DNS-Prefetch-Control', value: 'on' },
