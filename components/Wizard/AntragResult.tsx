@@ -14,6 +14,8 @@ import { type CostLedger } from "@/lib/wizard/pricing";
 import { FinanzplanView } from "./FinanzplanView";
 import { FinanzplanEditor } from "./FinanzplanEditor";
 import { TextVorschlaegeEditor, provenanz } from "./TextVorschlaegeEditor";
+import { AbsatzReformulierer } from "./AbsatzReformulierer";
+import { MIN_PASSAGE_LEN as REFORM_MIN_PASSAGE_LEN } from "@/lib/reformulierung";
 import { highlightMarkers } from "./MarkerHighlight";
 import { dokumentLabels, type DokumentLabels } from "@/lib/wizard/dokument-label";
 import { renderFinanzplanMarkdown } from "@/lib/wizard/finanzplan-markdown";
@@ -63,7 +65,16 @@ interface Props {
  * h2 bekommt Anker-ID (slug) + scroll-mt-24 + on-hover PenLine-Edit-Button (nur paid=true).
  * Duplikat-h2-Texte erhalten -2/-3-Suffix (Pitfall-5-Pattern).
  */
-function buildMarkdownComponents(paid: boolean, programmId: string) {
+interface ReformHook {
+  /** Quelltext, in den node.position-Offsets zeigen (= der an ReactMarkdown übergebene String). */
+  source: string;
+  onPick: (start: number, end: number, passage: string) => void;
+}
+
+/** node.position aus react-markdown (v10) — nur die für den Splice nötigen Offsets. */
+type MdNode = { position?: { start?: { offset?: number }; end?: { offset?: number } } };
+
+function buildMarkdownComponents(paid: boolean, programmId: string, reform?: ReformHook) {
   const usedIds = new Map<string, number>();
   return {
     h1: ({ children }: { children?: React.ReactNode }) => (
@@ -102,9 +113,38 @@ function buildMarkdownComponents(paid: boolean, programmId: string) {
     h3: ({ children }: { children?: React.ReactNode }) => (
       <h3 className="mb-2 mt-6 text-base font-semibold text-[#1c1917]">{children}</h3>
     ),
-    p: ({ children }: { children?: React.ReactNode }) => (
-      <p className="mb-4 leading-relaxed text-[#57534e]">{highlightMarkers(children)}</p>
-    ),
+    p: ({ children, node }: { children?: React.ReactNode; node?: MdNode }) => {
+      const start = node?.position?.start?.offset;
+      const end = node?.position?.end?.offset;
+      const passage =
+        reform && typeof start === "number" && typeof end === "number"
+          ? reform.source.slice(start, end)
+          : "";
+      // Nur echte Prosa anbieten — keine ungeprüften [Annahme:]-Absätze (deren
+      // Marker-Erhalt schützt die Ehrlichkeit; hier gar nicht erst anfassen).
+      const eligible =
+        !!reform &&
+        typeof start === "number" &&
+        typeof end === "number" &&
+        passage.trim().length >= REFORM_MIN_PASSAGE_LEN &&
+        !passage.includes("[Annahme:");
+      return (
+        <p className={"mb-4 leading-relaxed text-[#57534e]" + (eligible ? " group" : "")}>
+          {highlightMarkers(children)}
+          {eligible && (
+            <button
+              type="button"
+              onClick={() => reform!.onPick(start!, end!, passage)}
+              title="Diesen Absatz umformulieren"
+              aria-label="Diesen Absatz umformulieren"
+              className="ml-1.5 inline-flex translate-y-0.5 items-center rounded p-0.5 text-slate-400 opacity-0 transition hover:bg-[#1e3d32]/10 hover:text-[#1e3d32] group-hover:opacity-100 focus:opacity-100"
+            >
+              <RefreshCw className="h-3.5 w-3.5" />
+            </button>
+          )}
+        </p>
+      );
+    },
     strong: ({ children }: { children?: React.ReactNode }) => (
       <strong className="font-semibold text-[#1c1917]">{children}</strong>
     ),
@@ -205,7 +245,6 @@ export function AntragResult({
 }: Props) {
   const paid = !!paidToken;
   const l = labels ?? dokumentLabels();
-  const markdownComponents = buildMarkdownComponents(paid, programm.id);
   const articleRef = useRef<HTMLElement>(null);
   const [copied, setCopied] = useState(false);
   const [showCritique, setShowCritique] = useState(false);
@@ -218,7 +257,41 @@ export function AntragResult({
   const [textVorschlaege, setTextVorschlaege] = useState<string[]>(
     generation.factVerification?.vorschlaege ?? []
   );
+  // P4-A Teil 1: aktiver Absatz für die On-Demand-Umformulierung (Quell-Offsets
+  // aus node.position → deterministischer Splice).
+  const [reformState, setReformState] = useState<{ start: number; end: number; passage: string } | null>(null);
   const printRef = useRef<HTMLDivElement>(null);
+
+  // Umformulierung nur für bezahlte, editierbare Sessions anbieten (wie die
+  // Text-Vorschläge). Quelle = der volle `text`, der bei paid an ReactMarkdown geht.
+  const markdownComponents = buildMarkdownComponents(
+    paid,
+    programm.id,
+    paid && sessionToken
+      ? { source: text, onPick: (start, end, passage) => setReformState({ start, end, passage }) }
+      : undefined
+  );
+
+  // Übernommene Variante deterministisch per Offset in den finalText splicen und
+  // über die bestehende textvorschlag-Route persistieren (kein neuer Speicher-Pfad).
+  const applyReform = async (variante: string) => {
+    if (!reformState || !sessionToken) return;
+    const { start, end } = reformState;
+    const next = text.slice(0, start) + variante + text.slice(end);
+    const res = await fetch("/api/wizard/textvorschlag", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sessionToken, finalText: next, vorschlaege: textVorschlaege }),
+    });
+    if (!res.ok) {
+      const j = (await res.json().catch(() => ({}))) as { error?: string };
+      throw new Error(j.error || `Fehler ${res.status}`);
+    }
+    const j = (await res.json()) as { finalText: string; vorschlaege: string[] };
+    setText(j.finalText);
+    setTextVorschlaege(j.vorschlaege);
+    setReformState(null);
+  };
   // P4-B M-Erweiterung: kostenrelative Beantragungshöhe-Empfehlung. Das Projekt-
   // volumen kommt deterministisch aus dem Finanzplan (Summe der Posten; nur wenn
   // beziffert). Katalog-Zahlen dienen als Fallback, wenn kein Dossier-Deckel vorliegt.
@@ -479,6 +552,14 @@ export function AntragResult({
           </article>
           <AntragSectionNav articleRef={articleRef} />
         </div>
+        {reformState && sessionToken && (
+          <AbsatzReformulierer
+            sessionToken={sessionToken}
+            passage={reformState.passage}
+            onUebernehmen={applyReform}
+            onAbbrechen={() => setReformState(null)}
+          />
+        )}
         {generation.finanzplan && (
           <div className={"mt-6 " + (paid ? "" : "blur-[3px] select-none pointer-events-none")}>
             {sessionToken && !generation.finanzplan.legitimiertAm && paid ? (
