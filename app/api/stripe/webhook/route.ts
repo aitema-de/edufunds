@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import type Stripe from "stripe";
 import { getStripe, stripeConfigured } from "@/lib/stripe/client";
+import { query } from "@/lib/db";
 import { markSessionPaid } from "@/lib/wizard/session";
 import {
   fulfillQuotaCardPurchase,
@@ -78,6 +79,22 @@ export async function POST(req: NextRequest) {
 
   // Audit-Trail: event.id ist von Stripe vergeben, kein Secret — sicher zu loggen (RESEARCH §1.2)
   console.log(`[stripe/webhook] event.id=${event.id} type=${event.type}`);
+
+  // Idempotenz-Riegel (Defense-in-depth): bereits verarbeitete Events überspringen.
+  // Fehlt die Tabelle (Migration 011 noch nicht angewandt), nicht hart scheitern —
+  // die Datenebene ist ohnehin idempotent; wir loggen und verarbeiten normal weiter.
+  try {
+    const seen = await query<{ event_id: string }>(
+      `SELECT event_id FROM stripe_webhook_events WHERE event_id = $1`,
+      [event.id]
+    );
+    if (seen.rowCount && seen.rowCount > 0) {
+      console.log(`[stripe/webhook] event.id=${event.id} bereits verarbeitet — übersprungen (dedup)`);
+      return NextResponse.json({ received: true, deduped: true });
+    }
+  } catch (dedupErr) {
+    console.error("[stripe/webhook] Dedup-Vorabprüfung fehlgeschlagen (verarbeite trotzdem):", dedupErr);
+  }
 
   try {
     switch (event.type) {
@@ -187,6 +204,22 @@ export async function POST(req: NextRequest) {
       default:
         // andere Events ignorieren (payment_intent.*, invoice.* etc.)
         break;
+    }
+
+    // RECORD-ON-SUCCESS: event.id erst NACH fehlerfreier Verarbeitung eintragen,
+    // damit ein Fehler oben in den catch fällt (500 → Stripe-Retry) statt hier
+    // fälschlich als "verarbeitet" markiert zu werden. ON CONFLICT DO NOTHING
+    // deckt die seltene Race (zwei gleichzeitige Zustellungen desselben Events) ab.
+    try {
+      await query(
+        `INSERT INTO stripe_webhook_events (event_id, event_type)
+         VALUES ($1, $2) ON CONFLICT (event_id) DO NOTHING`,
+        [event.id, event.type]
+      );
+    } catch (recErr) {
+      // Tabelle fehlt/DB-Fehler: nicht den 200 gefährden — Verarbeitung war
+      // erfolgreich, die Datenebene ist idempotent gegen eine etwaige Doppelung.
+      console.error("[stripe/webhook] event.id konnte nicht als verarbeitet vermerkt werden:", recErr);
     }
 
     return NextResponse.json({ received: true });
