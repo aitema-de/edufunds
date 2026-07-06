@@ -129,7 +129,7 @@ function buildMarkdownComponents(paid: boolean, programmId: string, reform?: Ref
         passage.trim().length >= REFORM_MIN_PASSAGE_LEN &&
         !passage.includes("[Annahme:");
       return (
-        <p className={"mb-4 leading-relaxed text-[#57534e]" + (eligible ? " group" : "")}>
+        <p className={"mb-4 leading-relaxed text-[#57534e]" + (eligible ? " group relative" : "")}>
           {highlightMarkers(children)}
           {eligible && (
             <button
@@ -137,7 +137,9 @@ function buildMarkdownComponents(paid: boolean, programmId: string, reform?: Ref
               onClick={() => reform!.onPick(start!, end!, passage)}
               title="Diesen Absatz umformulieren"
               aria-label="Diesen Absatz umformulieren"
-              className="ml-1.5 inline-flex translate-y-0.5 items-center rounded p-0.5 text-slate-400 opacity-0 transition hover:bg-[#1e3d32]/10 hover:text-[#1e3d32] group-hover:opacity-100 focus:opacity-100"
+              // In den rechten Rand (article p-8 = 32px Gutter) gesetzt, damit das
+              // Icon rechts am Absatz sitzt statt am Zeilenende — kein Text-Overlap.
+              className="absolute -right-7 top-0.5 inline-flex items-center rounded p-0.5 text-slate-400 opacity-0 transition hover:bg-[#1e3d32]/10 hover:text-[#1e3d32] group-hover:opacity-100 focus:opacity-100 md:-right-8"
             >
               <RefreshCw className="h-3.5 w-3.5" />
             </button>
