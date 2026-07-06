@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { rateLimit, logSuspiciousActivity } from '@/lib/rate-limit';
+import { logSecretStatusOnce } from '@/lib/secret-check';
 
 // Mapping von alten/falschen URLs zu korrekten IDs
 const REDIRECT_MAP: Record<string, string> = {
@@ -28,8 +29,11 @@ const SECURITY_HEADERS = {
 };
 
 export function middleware(request: NextRequest) {
+  // Go-Live-Härtung: fehlende kritische Secrets einmalig laut loggen (nur prod).
+  logSecretStatusOnce();
+
   const pathname = request.nextUrl.pathname;
-  
+
   // 1. Rate-Limiting für API-Routen
   if (pathname.startsWith('/api/')) {
     const rateLimitResult = rateLimit(request);
