@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Newsreader, Outfit, Fira_Code, Bricolage_Grotesque, Caveat } from "next/font/google";
 import "./globals.css";
 import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
@@ -101,11 +102,15 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // CSP-Nonce für das manuelle JSON-LD-Script (von middleware.ts gesetzt).
+  // Nexts eigene Scripts + next/script (GA) werden automatisch genonct.
+  const nonce = (await headers()).get('x-nonce') ?? undefined;
+
   // Schema.org Structured Data
   const schemaOrgData = {
     '@context': 'https://schema.org',
@@ -137,6 +142,7 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
+          nonce={nonce}
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrgData) }}
         />
         <GoogleAnalytics />
