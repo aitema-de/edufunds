@@ -23,7 +23,8 @@ async function main() {
   console.log(`Löschkonzept — Modus: ${dryRun ? "DRY-RUN (nichts wird geändert)" : "APPLY (schreibt!)"}`);
   console.log(
     `Fristen: Newsletter-unbestätigt ${DEFAULT_RETENTION.unconfirmedNewsletterDays}d · ` +
-      `verwaiste Entwürfe ${DEFAULT_RETENTION.abandonedDraftDays}d · ` +
+      `verwaiste anonyme Entwürfe ${DEFAULT_RETENTION.abandonedDraftDays}d · ` +
+      `E-Mail-gebundene Entwürfe ${DEFAULT_RETENTION.abandonedIdentifiedDraftDays}d · ` +
       `IP/User-Agent ${DEFAULT_RETENTION.ipAnonymizeDays}d`
   );
   console.log("Plan:");
