@@ -15,7 +15,16 @@ ausgeführt.
 | Abgelaufene Magic-Links | `magic_links` | löschen | ab Ablaufzeitpunkt | — |
 | Newsletter-Anmeldung ohne Double-Opt-in | `newsletter_entries` (`confirmed=false`) | löschen | 30 Tage | `RETENTION_UNCONFIRMED_NEWSLETTER_DAYS` |
 | Verwaiste anonyme Antrags-Entwürfe | `ki_antraege` (unbezahlt, ohne `author_email`/`paid_token`, Status draft/in_progress/complete) | löschen | 180 Tage | `RETENTION_ABANDONED_DRAFT_DAYS` |
+| Liegen gelassene, E-Mail-gebundene Antrags-Entwürfe | `ki_antraege` (unbezahlt, `author_email` gesetzt, kein `paid_token`/`paid_at`, Status draft/in_progress/complete) | anonymisieren (Inhalt + E-Mail + IP entfernen, Zeile bleibt) | 90 Tage | `RETENTION_ABANDONED_IDENTIFIED_DRAFT_DAYS` |
 | IP-Adresse / User-Agent / Referrer | `ki_antraege`, `contact_requests`, `newsletter_entries` (bestätigt) | anonymisieren (NULL) | 90 Tage | `RETENTION_IP_DAYS` |
+
+> **E-Mail-gebundene Entwürfe:** Nutzer können einen Antrag optional an ihre E-Mail
+> binden (Wiederaufnahme, unverifiziert), ohne je zu bezahlen. Solche Zeilen fielen
+> weder unter die Lösch-Regel für *anonyme* Entwürfe (`author_email IS NULL`) noch
+> unter die Anonymisierung *bezahlter* Anträge (`status='paid'`). Nach 90 Tagen
+> Inaktivität (Wiederaufnahme-Fenster) werden Antragsinhalt, E-Mail und IP entfernt;
+> die (nun personenlose) Zeile bleibt idempotent als anonymisierter Rest erhalten.
+> Bewusst *anonymisieren statt löschen*, um Bestands-/Konversionsstatistik zu wahren.
 
 ### Bewusst NICHT automatisch gelöscht
 - **Bezahlte/eingereichte Anträge** (`status='paid'` u. a., `paid_token` gesetzt) —
