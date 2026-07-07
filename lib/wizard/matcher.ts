@@ -204,6 +204,11 @@ const THEME_ALIASES: ReadonlyArray<{ trigger: RegExp; tags: readonly string[] }>
   // Inklusion / Foerderbedarf
   { trigger: /\b(inklusi|integration|f(oe|ö)rderbedarf|behinder|barriere|sonderp(ae|ä)dagog|benachteilig|migration|chancengleich|heterogen)/i,
     tags: ["inklusion", "integration", "teilhabe", "barrierefreiheit", "barrierenabbau", "chancengleichheit", "vielfalt", "benachteiligung", "bildungsgerechtigkeit", "foerderung"] },
+  // Europa / International / Austausch / Partnerschaft (Korpus ev-007: "Erasmus+
+  // Schulpartnerschaft Polen"/"Schueleraustausch" traf bisher keinen Cluster,
+  // obwohl ~15 Programme europa/international/austausch-Kategorien tragen)
+  { trigger: /\b(europa|europ(ae|ä)isch|erasmus|international|austausch|sch(ue|ü)leraustausch|partnerschule|schulpartnerschaft|etwinning|jugendwerk|v(oe|ö)lkerverst(ae|ä)ndig|interkulturell)/i,
+    tags: ["europa", "international", "austausch", "interkulturell", "mobilitaet", "voelkerverstaendigung", "partnerschaft"] },
 ] as const;
 
 /**

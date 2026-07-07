@@ -66,6 +66,21 @@ describe("extractAnliegenThemes — Alias-Cluster (C3)", () => {
     expect(t.has("musik")).toBe(true);
   });
 
+  it("Erasmus+/Schulpartnerschaft/Schueleraustausch → Europa/International-Cluster (ev-007)", () => {
+    const t = extractAnliegenThemes(
+      "Erasmus+ Schulpartnerschaft mit Polen, drei Schueleraustausche pro Jahr."
+    );
+    expect(t.has("europa")).toBe(true);
+    expect(t.has("international")).toBe(true);
+    expect(t.has("austausch")).toBe(true);
+  });
+
+  it("Europa-Cluster feuert NICHT bei unbezogenem Anliegen (kein Off-Target)", () => {
+    const t = extractAnliegenThemes("Wir wollen einen Bewegungs-Pausenhof bauen.");
+    expect(t.has("europa")).toBe(false);
+    expect(t.has("international")).toBe(false);
+  });
+
   it("Synonym-Split: 'digital' zieht auch 'digitalisierung' (20× vs 4×)", () => {
     const t = extractAnliegenThemes("Wir moechten den digitalen Unterricht staerken.");
     expect(t.has("digital")).toBe(true);
