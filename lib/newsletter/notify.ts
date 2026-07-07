@@ -24,7 +24,7 @@ export async function notifyDraftReady(
   const baseUrl = (
     opts.baseUrl ||
     process.env.NEXT_PUBLIC_APP_URL ||
-    'https://edufunds.org'
+    'https://app.edufunds.org'
   ).replace(/\/$/, '');
   const reviewUrl = `${baseUrl}/admin/newsletter?issue=${issue.id}`;
   const lead = issue.data.leadTitle;

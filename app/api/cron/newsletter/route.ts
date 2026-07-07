@@ -52,7 +52,7 @@ async function handle(request: Request): Promise<NextResponse> {
 
   const dryRun = new URL(request.url).searchParams.get('dryRun') === '1';
   const now = new Date();
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://edufunds.org';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.edufunds.org';
 
   try {
     // Idempotenz: pro Monat nur ein Cron-Entwurf.
