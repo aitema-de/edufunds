@@ -15,7 +15,7 @@ export async function GET() {
     // Static export - always return HTML format
     const format = 'html';
     
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://edufunds.org';
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.edufunds.org';
     const testToken = 'preview-token-12345';
     
     const { html, text, subject } = generateNewsletter(
