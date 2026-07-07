@@ -8,6 +8,7 @@
 
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { sanitizeLlmUrl, stripUnsafeAnchors } from '@/lib/newsletter/content-collector';
 
 // =============================================================================
 // Types
@@ -377,7 +378,28 @@ export function generateNewsletter(
 ): RenderedNewsletter {
   // Generate unsubscribe URL
   const unsubscribeUrl = `${baseUrl}/api/newsletter/unsubscribe?token=${unsubscribeToken}`;
-  
+
+  // Deterministische Footer-/Funktions-URLs immer aus baseUrl (= App-Domain) —
+  // nie hartkodiert, damit keine toten Landing-Links (edufunds.org) im Postfach.
+  const base = baseUrl.replace(/\/+$/, '');
+  const foerderprogrammeUrl = `${base}/foerderprogramme`;
+  const antragUrl = `${base}/antrag`;
+  const impressumUrl = `${base}/impressum`;
+  const datenschutzUrl = `${base}/datenschutz`;
+
+  // LLM-gelieferte Links härten (verhindert tote/halluzinierte CTAs — greift auch
+  // für bereits gespeicherte Entwürfe, da hier beim Rendern gefiltert wird).
+  // insightCtaUrl: bei ungültiger LLM-URL auf die Förderdatenbank ausweichen,
+  // solange ein CTA-Text vorhanden ist (statt den CTA ganz zu verlieren).
+  const safeInsightCtaUrl =
+    sanitizeLlmUrl(data.insightCtaUrl, base) ||
+    (data.insightCtaText ? foerderprogrammeUrl : '');
+  const safeNewsItems: NewsItem[] = data.newsItems.map((n) => ({
+    ...n,
+    text: stripUnsafeAnchors(n.text, base),
+    url: sanitizeLlmUrl(n.url, base) || undefined,
+  }));
+
   // Load templates
   const htmlTemplate = loadTemplate('newsletter.html');
   const textTemplate = loadTemplate('newsletter.txt');
@@ -394,9 +416,9 @@ export function generateNewsletter(
   const programsHtml = data.programs.map((p, i) => renderProgramCard(p, i)).join('\n');
   const programsText = renderProgramsText(data.programs);
   
-  // Render news items
-  const newsHtml = renderNewsItems(data.newsItems);
-  const newsText = renderNewsItemsText(data.newsItems);
+  // Render news items (mit gehärteten Links)
+  const newsHtml = renderNewsItems(safeNewsItems);
+  const newsText = renderNewsItemsText(safeNewsItems);
 
   // Neue Blöcke (rein datengetrieben → robust): Kennzahlen (immer), ausführliche
   // Gründungsgeschichte falls vorhanden (Erstausgabe), sonst die kompakte
@@ -435,10 +457,14 @@ export function generateNewsletter(
     insight_title: escapeHtml(data.insightTitle),
     insight_content: renderInsightContent(data.insightContent),
     insight_cta_text: data.insightCtaText ? escapeHtml(data.insightCtaText) : '',
-    insight_cta_url: data.insightCtaUrl || '',
+    insight_cta_url: safeInsightCtaUrl,
     news_items: newsHtml,
     disclaimer: escapeHtml(DEFAULT_DISCLAIMER),
     unsubscribe_url: unsubscribeUrl,
+    impressum_url: impressumUrl,
+    datenschutz_url: datenschutzUrl,
+    foerderprogramme_url: foerderprogrammeUrl,
+    antrag_url: antragUrl,
     year: String(data.year)
   };
   
@@ -461,24 +487,28 @@ export function generateNewsletter(
     .replace(/\{\{news_items_text\}\}/g, newsText)
     .replace(/\{\{disclaimer\}\}/g, DEFAULT_DISCLAIMER)
     .replace(/\{\{unsubscribe_url\}\}/g, unsubscribeUrl)
+    .replace(/\{\{foerderprogramme_url\}\}/g, foerderprogrammeUrl)
+    .replace(/\{\{antrag_url\}\}/g, antragUrl)
+    .replace(/\{\{impressum_url\}\}/g, impressumUrl)
+    .replace(/\{\{datenschutz_url\}\}/g, datenschutzUrl)
     .replace(/\{\{year\}\}/g, String(data.year));
-  
-  // Handle conditional CTA in plaintext
-  if (data.insightCtaUrl) {
+
+  // Handle conditional CTA in plaintext (gehärtete URL)
+  if (safeInsightCtaUrl) {
     textContent = textContent.replace(
       /\{\{#if insight_cta_url\}\}[\s\S]*?\{\{\/if\}\}/g,
-      `Mehr lesen: ${data.insightCtaUrl}`
+      `Mehr lesen: ${safeInsightCtaUrl}`
     );
   } else {
     textContent = textContent.replace(/\{\{#if insight_cta_url\}\}[\s\S]*?\{\{\/if\}\}/g, '');
   }
-  
+
   // Render HTML
   const htmlContent = renderTemplate(htmlTemplate, templateData);
-  
-  // Handle conditional CTA in HTML
+
+  // Handle conditional CTA in HTML (gehärtete URL)
   let finalHtml = htmlContent;
-  if (!data.insightCtaUrl) {
+  if (!safeInsightCtaUrl) {
     finalHtml = finalHtml.replace(
       /<a href="" class="cta-button">.*?<\/a>/g,
       ''
@@ -524,7 +554,7 @@ export const sampleNewsletterData: NewsletterData = {
       deadline: '30. März 2025',
       targetGroup: 'Gymnasien und Gesamtschulen',
       description: 'Förderung für innovative MINT-Projekte mit Fokus auf digitale Bildung und Nachhaltigkeit. Förderhöhe bis zu 50.000 €.',
-      url: 'https://edufunds.org/foerderprogramme/mint-foerderung-2025'
+      url: 'https://app.edufunds.org/foerderprogramme/mint-foerderung-2025'
     },
     {
       name: 'Kulturelle Bildung Plus',
@@ -532,7 +562,7 @@ export const sampleNewsletterData: NewsletterData = {
       deadline: '15. April 2025',
       targetGroup: 'Alle Schularten',
       description: 'Unterstützung von Projekten, die kulturelle Bildung in den Schulalltag integrieren. Schwerpunkte: Musik, Theater, bildende Kunst.',
-      url: 'https://edufunds.org/foerderprogramme/kulturelle-bildung-plus'
+      url: 'https://app.edufunds.org/foerderprogramme/kulturelle-bildung-plus'
     }
   ],
   tipTitle: 'Die perfekte Projektskizze',
@@ -542,7 +572,7 @@ export const sampleNewsletterData: NewsletterData = {
   insightTitle: 'DigitalPakt 2.0: Was kommt nach der Ausstattung?',
   insightContent: 'Der DigitalPakt hat Schulen in Deutschland mit Hardware und Infrastruktur versorgt. Doch die eigentliche Herausforderung beginnt jetzt: Wie integrieren wir digitale Tools sinnvoll in den Unterricht?\n\nExperten empfehlen einen Fokus auf Lehrerfortbildung und die Entwicklung einer nachhaltigen Digitalstrategie. Denn nur mit gut geschulten Lehrkräften entfaltet Technik ihr volles Potenzial.',
   insightCtaText: 'Fördermöglichkeiten entdecken',
-  insightCtaUrl: 'https://edufunds.org/foerderprogramme?kategorie=digitalisierung',
+  insightCtaUrl: 'https://app.edufunds.org/foerderprogramme?kategorie=digitalisierung',
   newsItems: [
     {
       text: 'Neue <a href="https://www.kmk.org/">KMK-Richtlinien</a> zur Inklusion in der Schule veröffentlicht',
@@ -552,8 +582,8 @@ export const sampleNewsletterData: NewsletterData = {
       text: 'BMBF kündigt zusätzliche 200 Mio. € für Ganztagsschulen an',
     },
     {
-      text: 'Fristverlängerung: <a href="https://edufunds.org/foerderprogramme">EU-Programm Erasmus+</a> nun bis 28.02. bewerbbar',
-      url: 'https://edufunds.org/foerderprogramme'
+      text: 'Fristverlängerung: <a href="https://app.edufunds.org/foerderprogramme">EU-Programm Erasmus+</a> nun bis 28.02. bewerbbar',
+      url: 'https://app.edufunds.org/foerderprogramme'
     }
   ],
   year: new Date().getFullYear()

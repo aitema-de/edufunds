@@ -18,6 +18,59 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import type { Program } from '@/lib/newsletter';
 
+/**
+ * Fallback-Basis-URL, falls NEXT_PUBLIC_APP_URL nicht gesetzt ist. Bewusst die
+ * APP-Domain (app.edufunds.org) — dort liegen die funktionalen Seiten
+ * (/foerderprogramme, /antrag, /impressum, /datenschutz). Die frühere Vorgabe
+ * `edufunds.org` (Marketing-Landing, separates Repo) hostet diese Pfade NICHT
+ * und lieferte tote Links.
+ */
+export const NEWSLETTER_APP_URL_FALLBACK = 'https://app.edufunds.org';
+
+/**
+ * Erlaubte Ziel-Pfade für LLM-generierte Newsletter-Links. Der LLM darf KEINE
+ * Programm-Slugs/Tiefpfade erfinden (Halluzinationsrisiko → 404) — Programm-
+ * Detail-Links kommen ausschließlich deterministisch aus dem Katalog. Query-
+ * Strings (z. B. ?kategorie=…) sind erlaubt.
+ */
+const SAFE_LLM_URL_PATHS = new Set(['/', '/foerderprogramme', '/antrag']);
+
+/**
+ * Härtet eine vom LLM gelieferte URL: akzeptiert nur die App-Domain
+ * (baseUrl-Origin) und einen kleinen Allowlist-Pfad; verwirft alles andere
+ * (fremde Domain, erfundener Pfad) zu ''. Verhindert tote/halluzinierte CTAs.
+ */
+export function sanitizeLlmUrl(url: string | undefined | null, baseUrl: string): string {
+  if (!url) return '';
+  let u: URL;
+  let base: URL;
+  try {
+    u = new URL(url);
+    base = new URL(baseUrl);
+  } catch {
+    return '';
+  }
+  if (u.origin !== base.origin) return '';
+  const path = u.pathname.replace(/\/+$/, '') || '/';
+  if (!SAFE_LLM_URL_PATHS.has(path)) return '';
+  return u.toString();
+}
+
+/**
+ * Entfernt aus Freitext eingebettete <a>-Anker mit nicht-erlaubter URL und
+ * behält nur den Linktext. Schließt den Vektor „LLM schmuggelt unsicheren Link
+ * als HTML-Anker in den Fließtext".
+ */
+export function stripUnsafeAnchors(text: string, baseUrl: string): string {
+  return text.replace(
+    /<a\s+href="([^"]*)"\s*>(.*?)<\/a>/gi,
+    (_m, href: string, inner: string) => {
+      const safe = sanitizeLlmUrl(href, baseUrl);
+      return safe ? `<a href="${safe}">${inner}</a>` : inner;
+    }
+  );
+}
+
 export interface ProgramRecord {
   id: string;
   name: string;
@@ -233,7 +286,7 @@ export interface CollectOptions {
 export function collectNewsletterContent(opts: CollectOptions = {}): CollectedContent {
   const count = opts.count ?? 3;
   const exclude = new Set(opts.excludeIds ?? []);
-  const baseUrl = (opts.baseUrl || 'https://edufunds.org').replace(/\/$/, '');
+  const baseUrl = (opts.baseUrl || NEWSLETTER_APP_URL_FALLBACK).replace(/\/$/, '');
 
   const catalog = loadCatalog();
   const active = catalog.filter((p) => p.status === 'aktiv');

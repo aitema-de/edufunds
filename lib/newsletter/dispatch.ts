@@ -94,7 +94,7 @@ export async function sendNewsletter(
   const baseUrl = (
     opts.baseUrl ||
     process.env.NEXT_PUBLIC_APP_URL ||
-    'https://edufunds.org'
+    'https://app.edufunds.org'
   ).replace(/\/$/, '');
   const from = process.env.FROM_EMAIL || 'EduFunds <noreply@aitema.de>';
   const replyTo = process.env.ADMIN_EMAIL || 'office@aitema.de';
