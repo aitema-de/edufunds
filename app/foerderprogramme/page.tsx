@@ -224,10 +224,19 @@ export default function FoerderprogrammePage() {
   // Debounced Suchbegriff für bessere Performance
   const debouncedSuchbegriff = useDebounce(filterState.suchbegriff, 300);
 
-  // Kategorien aus Daten generieren (memoized)
+  // Aktiver Katalog = alles, was NICHT ins Archiv gehoert (terminaler Status oder
+  // abgelaufene Frist). Eine gemeinsame Basis fuer Statistik, Kategorien UND Filter,
+  // damit die Zahlen ("X von Y", Fördergeber-Kacheln) und Dropdown-Optionen konsistent
+  // nur den sichtbaren Katalog zaehlen — nicht die 23 archivierten Datensaetze im Roh-JSON.
+  const aktiveProgramme = useMemo(() => {
+    if (!foerderprogramme) return [];
+    return foerderprogramme.filter((p) => !isProgrammAbgelaufen(p));
+  }, [foerderprogramme]);
+
+  // Kategorien aus Daten generieren (memoized) — nur aus dem aktiven Katalog, damit
+  // keine Dropdown-Option auftaucht, die ausschliesslich archivierte Programme trifft.
   const kategorien = useMemo(() => {
-    if (!foerderprogramme) return [{ value: "", label: "Alle Kategorien" }];
-    const alleKategorien = Array.from(new Set(foerderprogramme.flatMap(p => p.kategorien))).sort();
+    const alleKategorien = Array.from(new Set(aktiveProgramme.flatMap(p => p.kategorien))).sort();
     return [
       { value: "", label: "Alle Kategorien" },
       ...alleKategorien.map(kat => ({
@@ -235,29 +244,24 @@ export default function FoerderprogrammePage() {
         label: formatKategorie(kat)
       }))
     ];
-  }, [foerderprogramme]);
+  }, [aktiveProgramme]);
 
-  // Statistiken (memoized)
+  // Statistiken (memoized) — auf Basis des aktiven Katalogs
   const stats = useMemo(() => {
-    if (!foerderprogramme) return { total: 0, bund: 0, land: 0, stiftung: 0, eu: 0 };
     return {
-      total: foerderprogramme.length,
-      bund: foerderprogramme.filter(p => p.foerdergeberTyp === 'bund').length,
-      land: foerderprogramme.filter(p => p.foerdergeberTyp === 'land').length,
-      stiftung: foerderprogramme.filter(p => p.foerdergeberTyp === 'stiftung').length,
-      eu: foerderprogramme.filter(p => p.foerdergeberTyp === 'eu').length,
+      total: aktiveProgramme.length,
+      bund: aktiveProgramme.filter(p => p.foerdergeberTyp === 'bund').length,
+      land: aktiveProgramme.filter(p => p.foerdergeberTyp === 'land').length,
+      stiftung: aktiveProgramme.filter(p => p.foerdergeberTyp === 'stiftung').length,
+      eu: aktiveProgramme.filter(p => p.foerdergeberTyp === 'eu').length,
     };
-  }, [foerderprogramme]);
+  }, [aktiveProgramme]);
 
   // Filter-Logik (memoized)
   const gefilterteProgramme = useMemo(() => {
-    if (!foerderprogramme) return [];
-    
     const suche = debouncedSuchbegriff.toLowerCase().trim();
-    
-    return foerderprogramme.filter((programm) => {
-      // Abgelaufene Programme gehoeren ins Archiv, nicht in den aktiven Katalog.
-      if (isProgrammAbgelaufen(programm)) return false;
+
+    return aktiveProgramme.filter((programm) => {
       // Suchbegriff — durchsucht Name, Beschreibung, Foerdergeber UND die
       // Schulform-Tags (z. B. "Gymnasium") + Kategorien, damit eine Suche nach
       // einer Schulart nicht ins Leere laeuft (FP-03).
@@ -305,7 +309,7 @@ export default function FoerderprogrammePage() {
 
       return true;
     });
-  }, [foerderprogramme, debouncedSuchbegriff, filterState]);
+  }, [aktiveProgramme, debouncedSuchbegriff, filterState]);
 
   // Pagination (12 Items pro Seite für bessere Performance)
   const { 
