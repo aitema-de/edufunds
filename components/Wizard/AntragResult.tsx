@@ -753,7 +753,11 @@ export function AntragResult({
             }}
           >
             <span>{programm.name}</span>
-            <span>
+            {/* new Date() weicht zwischen SSR und Client-Hydration ab (Zeitzone/
+                „jetzt") → React #418. Dieser Print-Klon wird ohnehin erst beim
+                PDF-Export client-seitig gerendert; suppressHydrationWarning
+                unterdrückt den Mismatch, der Export zeigt das korrekte Datum. */}
+            <span suppressHydrationWarning>
               Erstellt am {new Date().toLocaleDateString("de-DE", {
                 day: "2-digit",
                 month: "2-digit",
