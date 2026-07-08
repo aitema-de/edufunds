@@ -211,7 +211,31 @@ Diese Punkte sind **nicht** durch den Deploy gelöst und sollten vor dem Enthül
 > Rechts-/Compliance-Gate (Abschnitt 7) grün — denn der Apex-Switch **ist** der
 > öffentliche Go-Live.
 
-### 9.0 Der Drift (Ist-Zustand, geprüft 08.07.2026)
+### ✅ Bereits umgesetzt am 08.07.2026 (Coming-Soon sitzt schon auf dem Apex)
+
+Modell-Entscheidung Kolja: die **finale Adresse `edufunds.org` trägt schon jetzt die
+Coming-Soon-Seite**, damit der Go-Live nur noch ein Umschalten auf *derselben* Domain ist
+(kein Domain-Umzug im kritischen Moment). Umgesetzt + verifiziert:
+
+- `edufunds-maintenance`-Router deckt jetzt `Host(edufunds.org)||Host(www…)||Host(app…)`
+  (Prio 1000) ab; die nginx macht **Host-301** für `www`/`app` → `edufunds.org`, `edufunds.org`
+  selbst zeigt Coming-Soon (`robots: Disallow:/`) + reicht `/admin`, `/api/admin`,
+  `/api/newsletter/*`, `/_next/*` an `edufunds-app` durch.
+- **Alte `edufunds-landing` gestoppt** (nicht entfernt → Rollback-Reserve).
+- **`NEXT_PUBLIC_APP_URL=https://edufunds.org`** in `.env.production` gesetzt (**aktiv erst
+  ab nächstem Container-Recreate/Go-Live-Rebuild**; bis dahin decken die 301 die Links ab).
+- **Admin-Login jetzt unter `https://edufunds.org/admin/login`** (Origin-Check = same-origin, ok).
+
+**Damit bleibt für den Go-Live nur:** Code-Cutover (Phase 1) + `edufunds-app`-Router auf
+`Host(edufunds.org)` + permanenter Redirect-Router + `maintenance off`. Siehe 9.4/9.7.
+⚠️ Wenn `maintenance off` läuft, verschwindet die Coming-Soon-nginx **inkl. ihres Host-301
+für www/app** — der Redirect muss dann von **Traefik-Labels auf `edufunds-app`** getragen
+werden (9.4), sonst laufen `www`/`app` ins Leere.
+
+### 9.0 Der Drift (Ausgangs-Zustand VOR dem 08.07.-Umbau — historisch)
+
+> Beschreibt den Stand, bevor die Coming-Soon auf den Apex gezogen wurde (siehe
+> „Bereits umgesetzt" oben). Bleibt als Referenz/Rollback-Bild stehen.
 
 Alle drei Domains zeigen per DNS auf `49.13.15.44`; die Aufteilung macht **allein Traefik**:
 
