@@ -45,7 +45,10 @@ router_labels() {
   # edufunds-app-Router (dann Host edufunds.org) uebernimmt.
   echo "--label traefik.enable=true"
   echo "--label traefik.docker.network=$NET"
-  echo "--label traefik.http.routers.edufunds-maint.rule=Host(\`edufunds.org\`) || Host(\`www.edufunds.org\`) || Host(\`app.edufunds.org\`)"
+  # WICHTIG: keine Leerzeichen um || — router_labels wird unquotiert per $(...)
+  # expandiert; Leerzeichen im Label-Wert werden word-gesplittet ("docker: invalid
+  # reference format"). Traefik akzeptiert || auch ohne umgebende Leerzeichen.
+  echo "--label traefik.http.routers.edufunds-maint.rule=Host(\`edufunds.org\`)||Host(\`www.edufunds.org\`)||Host(\`app.edufunds.org\`)"
   echo "--label traefik.http.routers.edufunds-maint.priority=1000"
   echo "--label traefik.http.routers.edufunds-maint.entrypoints=websecure"
   echo "--label traefik.http.routers.edufunds-maint.tls=true"
