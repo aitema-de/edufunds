@@ -10,20 +10,22 @@
  * ABGERUNDET und mit "+" kommuniziert (z. B. 161 aktive Programme -> "160+").
  * Bewusst nicht der exakte Wert: rund + "+" bleibt laenger korrekt und wirkt
  * serioeser — und die Zahl darf nicht ueberzeichnen, was der Finder tatsaechlich
- * liefert (07.07.2026: 23 archivierte Datensaetze aus der Zaehlung genommen).
+ * liefert (07.07.2026: 23 archivierte Datensaetze aus der Zaehlung genommen;
+ * 08.07.2026: 9 weitere Programme ohne Antragsmoeglichkeit archiviert ->
+ * Finder-sichtbar 152 -> "150+").
  *
  * WICHTIG: Bewusst KEIN Import von data/foerderprogramme.json hier — diese
  * Konstante wird auch in Client-Komponenten (Header, Footer, Hero) genutzt,
  * und der 297-KB-JSON-Import wuerde das Client-Bundle aufblaehen.
  *
- * PFLEGE: Waechst der aktive Katalog ueber die naechste Zehnerstelle (aktuell 161
- * -> sobald >= 170), hier EINMAL erhoehen. Realen AKTIV-Count zeigt (Logik
+ * PFLEGE: Waechst der aktive Katalog ueber die naechste Zehnerstelle (aktuell 152
+ * -> sobald >= 160), hier EINMAL erhoehen. Realen AKTIV-Count zeigt (Logik
  * deckungsgleich mit lib/programm-status.ts#isProgrammAbgelaufen):
  *   node -e "const d=require('./data/foerderprogramme.json'),n=new Date(),t=p=>['archiviert','review_needed','abgelaufen','beendet'].includes(p.status),x=p=>t(p)||(p.bewerbungsfristEnde&&new Date(p.bewerbungsfristEnde)<n);console.log(d.filter(p=>!x(p)).length)"
  */
 
 /** Auf die naechste Zehnerstelle abgerundete AKTIVE Programm-Anzahl. */
-export const PROGRAMM_COUNT_ROUNDED = 160;
+export const PROGRAMM_COUNT_ROUNDED = 150;
 
 /** Marketing-Label, z. B. "180+" — fuer Stats-Karten/Badges. */
 export const PROGRAMM_COUNT_LABEL = `${PROGRAMM_COUNT_ROUNDED}+`;
