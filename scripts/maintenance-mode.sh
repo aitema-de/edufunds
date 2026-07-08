@@ -38,11 +38,14 @@ router_labels() {
   # Eigener Router-Name 'edufunds-maint' mit HOHER Prioritaet, damit er den
   # (weiterhin existierenden) catch-all 'edufunds-app'-Router ueberlagert.
   # edufunds-app bleibt absichtlich LAUFEND als interner Proxy-Backend fuer
-  # /api/newsletter (siehe ops/maintenance/nginx.conf) — wird aber extern nie
-  # erreicht, weil dieser Router (Prio 1000) alles Eingehende gewinnt.
+  # /api/newsletter + /admin (siehe ops/maintenance/nginx.conf) — wird aber extern
+  # nie direkt erreicht, weil dieser Router (Prio 1000) alles Eingehende gewinnt.
+  # Deckt jetzt die FINALE Plattform-Domain edufunds.org ab (+ www/app, die in der
+  # nginx per Host-301 auf edufunds.org umgeleitet werden). Go-Live = 'off' → der
+  # edufunds-app-Router (dann Host edufunds.org) uebernimmt.
   echo "--label traefik.enable=true"
   echo "--label traefik.docker.network=$NET"
-  echo "--label traefik.http.routers.edufunds-maint.rule=Host(\`app.edufunds.org\`)"
+  echo "--label traefik.http.routers.edufunds-maint.rule=Host(\`edufunds.org\`) || Host(\`www.edufunds.org\`) || Host(\`app.edufunds.org\`)"
   echo "--label traefik.http.routers.edufunds-maint.priority=1000"
   echo "--label traefik.http.routers.edufunds-maint.entrypoints=websecure"
   echo "--label traefik.http.routers.edufunds-maint.tls=true"
