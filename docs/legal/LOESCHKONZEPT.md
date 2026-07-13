@@ -17,6 +17,7 @@ ausgeführt.
 | Verwaiste anonyme Antrags-Entwürfe | `ki_antraege` (unbezahlt, ohne `author_email`/`paid_token`, Status draft/in_progress/complete) | löschen | 180 Tage | `RETENTION_ABANDONED_DRAFT_DAYS` |
 | Liegen gelassene, E-Mail-gebundene Antrags-Entwürfe | `ki_antraege` (unbezahlt, `author_email` gesetzt, kein `paid_token`/`paid_at`, Status draft/in_progress/complete) | anonymisieren (Inhalt + E-Mail + IP entfernen, Zeile bleibt) | 90 Tage | `RETENTION_ABANDONED_IDENTIFIED_DRAFT_DAYS` |
 | IP-Adresse / User-Agent / Referrer | `ki_antraege`, `contact_requests`, `newsletter_entries` (bestätigt) | anonymisieren (NULL) | 90 Tage | `RETENTION_IP_DAYS` |
+| **Bezahlte Anträge nach Ablauf der Zugriffsfrist** | `ki_antraege` (`status='paid'`, `paid_at` gesetzt) | **anonymisieren**: Antragsinhalt, Käufer-/Autor-E-Mail und IP entfernen. **Rechnungs-/Stripe-Referenzen** (`invoice_number`, `stripe_session_id`, `paid_at`) **bleiben** für GoBD/§ 147 AO. | **365 Tage (12 Monate)** | `RETENTION_PAID_ANTRAG_DAYS` |
 
 > **E-Mail-gebundene Entwürfe:** Nutzer können einen Antrag optional an ihre E-Mail
 > binden (Wiederaufnahme, unverifiziert), ohne je zu bezahlen. Solche Zeilen fielen
@@ -26,9 +27,19 @@ ausgeführt.
 > die (nun personenlose) Zeile bleibt idempotent als anonymisierter Rest erhalten.
 > Bewusst *anonymisieren statt löschen*, um Bestands-/Konversionsstatistik zu wahren.
 
+> **Bezahlte Anträge — Zusammenspiel mit der vertraglichen Zusage:** Die Frist von
+> 12 Monaten ist kein technisches Detail, sondern deckt sich mit der Zusage
+> „12 Monate Online-Zugriff" gegenüber dem Kunden (AGB-Neufassung § 7 Abs. 3). Der
+> Datensatz wird **nicht gelöscht**, sondern **anonymisiert**: Der Antragsinhalt und
+> alle Personenbezüge entfallen, die buchhalterisch nötigen Referenzen bleiben. Der
+> Kunde wird in den AGB darauf hingewiesen, seinen Antrag rechtzeitig zu exportieren.
+
 ### Bewusst NICHT automatisch gelöscht
-- **Bezahlte/eingereichte Anträge** (`status='paid'` u. a., `paid_token` gesetzt) —
-  Vertragserfüllung (Art. 6(1)b) + steuerliche Aufbewahrung (GoBD/§ 147 AO, Rechnung).
+- **Rechnungs- und Zahlungsdaten bezahlter Anträge** (`invoice_number`,
+  `stripe_session_id`, `paid_at`, Rechnungsanschrift) — steuerliche Aufbewahrung
+  (GoBD / § 147 AO). Der zugehörige **Antragsinhalt** wird dagegen nach 12 Monaten
+  anonymisiert (siehe Tabelle oben) — die Aufbewahrungspflicht erstreckt sich auf die
+  Buchhaltungsunterlagen, nicht auf den Inhalt des generierten Antragstextes.
 - **Bestätigte Newsletter-Abonnenten** — bleiben bis zum Widerruf (Abmeldung);
   nur IP/User-Agent (Opt-in-Nachweis) werden nach Frist anonymisiert.
 - **Kontaktanfragen-Inhalt** (Name/E-Mail/Nachricht) — eigene Aufbewahrung je nach
