@@ -13,18 +13,11 @@ type WebVitalsMetric = {
   entries: PerformanceEntry[];
 };
 
-// Web Vitals berichten
+// Web Vitals berichten — ausschließlich an den eigenen Endpunkt (/api/vitals).
+// Kein Drittanbieter-Tracking: EduFunds setzt bewusst keine Analyse-Dienste ein
+// (siehe /avv und Datenschutzerklärung), damit ohne Einwilligung auch nichts
+// an Dritte abfließt und kein Consent-Banner nötig wird.
 function reportWebVitals(metric: WebVitalsMetric) {
-  // Zu Google Analytics senden
-  if (typeof window !== "undefined" && (window as any).gtag) {
-    (window as any).gtag("event", metric.name, {
-      event_category: "Web Vitals",
-      value: Math.round(metric.value),
-      event_label: metric.id,
-      non_interaction: true,
-    });
-  }
-
   // Zu Konsole loggen in Development
   if (process.env.NODE_ENV === "development") {
     console.log(`[Web Vitals] ${metric.name}:`, {

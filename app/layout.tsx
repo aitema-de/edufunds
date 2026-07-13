@@ -41,7 +41,6 @@ const fontHand = Caveat({
   variable: "--font-hand",
   display: "swap",
 });
-import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { WebVitals } from "@/components/WebVitals";
 import { FeedbackButton } from "@/components/FeedbackButton";
 
@@ -145,7 +144,6 @@ export default async function RootLayout({
           nonce={nonce}
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrgData) }}
         />
-        <GoogleAnalytics />
       </head>
       <body
         className="antialiased"
