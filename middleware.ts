@@ -40,19 +40,24 @@ function generateNonce(): string {
  * Nonce-basierte CSP (Go-Live-Härtung). KONSERVATIV:
  *  - script-src: 'unsafe-inline'/'unsafe-eval' RAUS, stattdessen 'nonce-…'. 'self'
  *    bleibt (gleicher-Origin-Chunks); KEIN 'strict-dynamic' (weniger Third-Party-
- *    Bruchrisiko). googletagmanager für GA. object-src 'none', worker-src blob:
- *    (html2pdf/html2canvas).
+ *    Bruchrisiko). object-src 'none', worker-src blob: (html2pdf/html2canvas).
+ *  - KEINE Drittanbieter-Hosts mehr: Google Analytics ist ausgebaut, Schriften
+ *    kommen self-hosted über next/font.
  *  - style-src: 'unsafe-inline' BLEIBT (Next/Tailwind injizieren Inline-Styles;
  *    Style-XSS ist deutlich weniger gefährlich) — bewusst konservativ.
  */
 function buildCsp(nonce: string): string {
+  // Keine Google-Hosts: Analytics ist ausgebaut (kein Tracking ohne Einwilligung),
+  // Schriften liefert next/font self-hosted aus. Die CSP haelt die Tuer damit auch
+  // technisch zu — ein versehentlich wieder eingefuegtes Drittanbieter-Skript wuerde
+  // vom Browser blockiert, statt still Daten abfliessen zu lassen.
   return [
     "default-src 'self'",
-    `script-src 'self' 'nonce-${nonce}' https://www.googletagmanager.com`,
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    `script-src 'self' 'nonce-${nonce}'`,
+    "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https:",
-    "font-src 'self' https://fonts.gstatic.com",
-    "connect-src 'self' https://*.googleapis.com https://*.google-analytics.com https://www.googletagmanager.com",
+    "font-src 'self'",
+    "connect-src 'self'",
     "worker-src 'self' blob:",
     "object-src 'none'",
     "frame-ancestors 'none'",

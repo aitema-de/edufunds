@@ -22,8 +22,11 @@ const SUBPROZESSOREN = [
     name: "Mistral AI SAS",
     sitz: "Frankreich",
     zweck: "KI-Textgenerierung (Sprachmodell)",
-    ort: "EU",
-    grundlage: "EU — kein Drittlandtransfer; kein Training mit Ihren Daten",
+    // Mistral betreibt die genutzte API auf Azure (Schweden, Norwegen) und CoreWeave (EWR).
+    // Norwegen ist EWR, nicht EU — deshalb „EU/EWR", nicht „EU". Beleg:
+    // docs/legal/mistral-nachweise/ (Subprozessorliste, Abruf 13.07.2026).
+    ort: "EU/EWR",
+    grundlage: "EU/EWR — kein Drittlandtransfer; kein Training mit Ihren Daten",
   },
   {
     name: "Stripe Payments Europe, Ltd.",
@@ -150,10 +153,11 @@ export default function AvvPage() {
               </div>
 
               <p className="mt-6 text-sm text-[#64748b] leading-relaxed">
-                Die KI-Verarbeitung findet ausschließlich in der EU statt (Mistral AI, Paris).
-                Wir setzen weder ein Content Delivery Network noch Web-Analyse- oder
-                Tracking-Dienste ein. Über Änderungen an dieser Liste informieren wir
-                AVV-Kunden vorab.
+                Die KI-Verarbeitung findet ausschließlich im Europäischen Wirtschaftsraum statt
+                (Mistral AI, Paris; Rechenzentren in Schweden und Norwegen). Wir setzen weder
+                ein Content Delivery Network noch Web-Analyse- oder Tracking-Dienste ein — beim
+                Besuch dieser Seite werden keine Daten an Dritte übertragen. Über Änderungen an
+                dieser Liste informieren wir AVV-Kunden vorab.
               </p>
             </section>
 
