@@ -119,6 +119,10 @@ export default function AGBPage() {
                 bestätigt den Vertragsschluss unverzüglich per E-Mail; die Rechnung wird
                 ebenfalls per E-Mail übermittelt.
               </p>
+              <p>
+                (4) Beim <strong className="text-[#1c1917]">Kauf auf Rechnung</strong> gilt
+                abweichend von Absatz 3 die Regelung des § 4a.
+              </p>
             </Paragraf>
 
             <Paragraf nr="§ 4" titel="Preise und Zahlung">
@@ -141,7 +145,33 @@ export default function AGBPage() {
               </p>
               <p>
                 (4) Die Zahlung erfolgt über den Zahlungsdienstleister Stripe. Es gelten ergänzend
-                dessen Bedingungen für die Zahlungsabwicklung.
+                dessen Bedingungen für die Zahlungsabwicklung. Daneben kann der Anbieter den Kauf
+                auf Rechnung anbieten (§ 4a).
+              </p>
+            </Paragraf>
+
+            <Paragraf nr="§ 4a" titel="Kauf auf Rechnung">
+              <p>
+                (1) Bietet der Anbieter den Kauf auf Rechnung an, kommt der Vertrag{" "}
+                <strong className="text-[#1c1917]">mit der Freischaltung der Leistung</strong>{" "}
+                zustande; auf die Bestätigung der Zahlung (§ 3 Abs. 3) kommt es insoweit nicht an.
+                Der Anbieter bestätigt den Vertragsschluss unverzüglich per E-Mail.
+              </p>
+              <p>
+                (2) Die Vergütung ist innerhalb von{" "}
+                <strong className="text-[#1c1917]">14 Tagen ab Zugang der Rechnung</strong> ohne
+                Abzug zur Zahlung fällig.
+              </p>
+              <p>
+                (3) Gerät der Kunde in Zahlungsverzug, schuldet er Verzugszinsen in Höhe von neun
+                Prozentpunkten über dem Basiszinssatz (§ 288 Abs. 2 BGB) sowie eine Pauschale von
+                40 € (§ 288 Abs. 5 BGB). Die Geltendmachung eines weitergehenden Verzugsschadens
+                bleibt vorbehalten.
+              </p>
+              <p>
+                (4) Bei Zahlungsverzug ist der Anbieter berechtigt, den Zugang zur Leistung bis
+                zum vollständigen Ausgleich der offenen Forderung zu sperren. Bereits exportierte
+                Ergebnisse bleiben davon unberührt.
               </p>
             </Paragraf>
 
@@ -197,8 +227,11 @@ export default function AGBPage() {
               </p>
               <p>
                 (2) Der Kunde bleibt Inhaber der von ihm eingegebenen Daten. Der Anbieter
-                verwendet Kundendaten nicht zum Trainieren von KI-Modellen; dies ist auch mit dem
-                eingesetzten KI-Anbieter vertraglich sichergestellt.
+                verwendet Kundendaten nicht zum Trainieren von KI-Modellen. Beim eingesetzten
+                KI-Anbieter ist die Nutzung der Daten zu Trainingszwecken für das Konto des
+                Anbieters deaktiviert (Training-Opt-out); Rückmeldefunktionen des KI-Anbieters,
+                deren Nutzung eine Verwendung der Daten zu Trainingszwecken auslösen würde,
+                werden nicht eingesetzt.
               </p>
               <p>
                 (3) Der Online-Zugriff auf einen bezahlten Antrag über die Plattform besteht für
@@ -239,15 +272,21 @@ export default function AGBPage() {
               </p>
               <p>
                 (2) Soweit der Anbieter personenbezogene Daten im Auftrag des Kunden verarbeitet,
-                schließen die Parteien einen Auftragsverarbeitungsvertrag nach Art. 28 DSGVO. Die
-                AVV-Fassung sowie die vollständige Liste der Subprozessoren sind unter{" "}
+                wird der unter{" "}
                 <Link
                   href="/avv"
                   className="text-[#1e3d32] hover:text-[#2a5244] transition-colors underline underline-offset-2"
                 >
                   AVV &amp; Subprozessoren
                 </Link>{" "}
-                abrufbar bzw. auf Anfrage erhältlich.
+                in der bei Vertragsschluss geltenden Fassung abrufbare
+                Auftragsverarbeitungsvertrag nach Art. 28 DSGVO{" "}
+                <strong className="text-[#1c1917]">
+                  mit Vertragsschluss Bestandteil des Vertrags
+                </strong>
+                . Eines gesonderten Abschlusses bedarf es nicht; auf Wunsch stellt der Anbieter
+                eine unterzeichnete Fassung bereit. Die vollständige Liste der Subprozessoren ist
+                ebenfalls dort abrufbar.
               </p>
               <p>
                 (3) Die KI-Verarbeitung findet ausschließlich im Europäischen Wirtschaftsraum
@@ -274,15 +313,18 @@ export default function AGBPage() {
               </p>
               <p>
                 (2) Bei leicht fahrlässiger Verletzung wesentlicher Vertragspflichten
-                (Kardinalpflichten) ist die Haftung auf den vertragstypischen, vorhersehbaren
-                Schaden begrenzt, höchstens jedoch auf die Summe der vom Kunden für die betroffene
-                Leistung gezahlten Vergütung.
+                (Kardinalpflichten) haftet der Anbieter auf den vertragstypischen, vorhersehbaren
+                Schaden. Kardinalpflichten sind solche Pflichten, deren Erfüllung die
+                ordnungsgemäße Durchführung des Vertrags überhaupt erst ermöglicht und auf deren
+                Einhaltung der Kunde regelmäßig vertrauen darf.
               </p>
               <p>
-                (3) Im Übrigen ist die Haftung ausgeschlossen. Insbesondere haftet der Anbieter
-                nicht für entgangene Fördermittel, entgangenen Gewinn oder Folgeschäden, die
-                daraus entstehen, dass ein Antrag nicht bewilligt, verspätet oder fehlerhaft
-                eingereicht wurde.
+                (3) Im Übrigen — insbesondere bei leicht fahrlässiger Verletzung nicht
+                wesentlicher Vertragspflichten — ist die Haftung ausgeschlossen; das gilt
+                namentlich für entgangene Fördermittel, entgangenen Gewinn und Folgeschäden.{" "}
+                <strong className="text-[#1c1917]">
+                  Die Absätze 1 und 2 bleiben unberührt.
+                </strong>
               </p>
             </Paragraf>
 

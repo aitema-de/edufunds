@@ -36,14 +36,48 @@ Kundendaten**.
 4. **§ 7 Zugriffsdauer 12 Monate** — bringt die AGB mit dem Löschkonzept in Deckung
    (`anonymize_expired_paid_antraege` anonymisiert bezahlte Anträge nach 12 Monaten). Bisher
    löschte das System nach einer Frist, die vertraglich nirgends vereinbart war.
-5. **§ 9 Datenschutz/AVV:** verweist auf die neue Seite `/avv` (AVV + Subprozessorliste).
+5. **§ 9 Datenschutz/AVV:** Der unter `/avv` abrufbare AVV wird **mit Vertragsschluss
+   automatisch Vertragsbestandteil** (kein gesonderter Abschluss nötig).
+
+## Nachtrag 13.07.2026 — eingearbeitet nach der dritten Rechts-Vorprüfung
+
+Die dritte KI-Vorprüfung (`03`/`05` im Anwaltsordner) hat drei Punkte als **Blocker** benannt.
+Sie sind hier **als Vorschlag** eingearbeitet — der Wortlaut steht ausdrücklich zur
+anwaltlichen Disposition:
+
+1. **§ 4a Kauf auf Rechnung (NEU).** Den Rechnungskauf gibt es im Betrieb tatsächlich — an
+   zwei Stellen (Einzelantrag `app/api/wizard/invoice/route.ts`, Kontingent
+   `app/api/kontingent/order/route.ts`), je 14 Tage Zahlungsziel bei **sofortiger
+   Freischaltung**. Die AGB regelten ihn nicht und widersprachen ihm sogar (§ 3 Abs. 3 knüpft
+   den Vertragsschluss an die Zahlung). ⚠️ **Bemerkenswert:** Die *alte* Fassung enthielt
+   immerhin eine 14-Tage-Zahlungsklausel — die Neufassung hatte sie ersatzlos verloren. An
+   diesem Punkt war der Entwurf **schlechter als das, was er ablöst.**
+2. **§ 11 Abs. 2/3 neu gefasst.** Die Summenkappung auf die gezahlte Vergütung (29,90 €) ist
+   bei Kardinalpflichtverletzung gestrichen; Abs. 3 ist an den Verschuldensgrad zurückgebunden
+   und stellt Abs. 1/2 ausdrücklich unberührt. Grund: Der kategorische Ausschluss entgangener
+   Fördermittel erfasste dem Wortlaut nach auch Vorsatz — wegen des Verbots der
+   geltungserhaltenden Reduktion drohte die **Gesamtunwirksamkeit** der Haftungsklausel und
+   damit unbegrenzte gesetzliche Haftung.
+3. **§ 9 Abs. 2 AVV-Einbeziehung.** Die Klausel *versprach* einen AVV, schloss ihn aber nicht —
+   Art.-28-Lücke. Jetzt automatische Einbeziehung mit Vertragsschluss.
+
+🔴 **§ 7 Abs. 2 (Training) steht unter Vorbehalt.** Der Mistral-DPA (§ 2.3) erlaubt das Training
+**als Default** — „*unless (a) Customer opted-out of training or (b) uses a Mistral AI Product
+that is opted-out by default*". Die bisherige Formulierung („vertraglich sichergestellt") war
+damit **nicht gedeckt**. Der Text sagt jetzt, was zutrifft, **sobald das Opt-out gesetzt ist**.
+→ **Vor Go-Live zwingend:** Opt-out-Status in `admin.mistral.ai` prüfen/setzen und den Nachweis
+in `docs/legal/mistral-nachweise/` ablegen. Ohne diesen Nachweis ist die Klausel unwahr.
 
 ## Offene Punkte für den Anwalt
 
 - **Verfügbarkeit:** Der Entwurf verspricht bewusst **keine** Verfügbarkeitsquote (bei einem
   Einmalkauf unüblich). Falls Kontingent-Kunden eine zugesichert bekommen sollen → ergänzen.
-- **Gewährleistungsfrist** (Entwurf: 12 Monate, § 10) und **Haftungshöchstgrenze** (Entwurf:
-  gezahlte Vergütung, § 11) bestätigen.
+- **Gewährleistungsfrist** (Entwurf: 12 Monate, § 10) bestätigen. **Haftung (§ 11):** Die
+  Summenkappung ist nach der Vorprüfung entfallen — bitte prüfen, ob eine (höhere) Kappung
+  wieder eingezogen werden soll und in welcher Höhe sie trägt.
+- **§ 4a:** Verzugsregelung, Sperrbefugnis und Vertragsschluss durch Freischaltung bestätigen.
+- **AGB-Einbeziehung:** Die akzeptierte Fassung wird **nicht protokolliert** (kein
+  Versionsstempel/Hash). Genügt die Checkbox im B2B, oder ist die Protokollierung nötig?
 - **§ 6:** Reicht die Formulierung als Haftungsausschluss für KI-Fehler gegenüber
   Unternehmern? Grenze zur Rechtsdienstleistung (RDG) mitprüfen.
 - **§ 1 Abs. 2:** Die Verbraucher-Ausschlussklausel wirkt nur, wenn der Checkout die
@@ -106,6 +140,8 @@ kostenpflichtige Leistung auswählt, seine Angaben vervollständigt und den Beza
 (3) Der Vertrag kommt mit der Bestätigung der Zahlung zustande. Der Anbieter bestätigt den
 Vertragsschluss unverzüglich per E-Mail; die Rechnung wird ebenfalls per E-Mail übermittelt.
 
+(4) Beim **Kauf auf Rechnung** gilt abweichend von Absatz 3 die Regelung des § 4a.
+
 ## § 4 Preise und Zahlung
 
 (1) Der Preis für einen Einzelantrag beträgt **29,90 € inklusive der gesetzlichen
@@ -120,7 +156,25 @@ Verlängerung** und keine wiederkehrende Zahlung.
 genutzte Anträge, sofern nichts anderes vereinbart ist.
 
 (4) Die Zahlung erfolgt über den Zahlungsdienstleister Stripe. Es gelten ergänzend dessen
-Bedingungen für die Zahlungsabwicklung.
+Bedingungen für die Zahlungsabwicklung. Daneben kann der Anbieter den **Kauf auf Rechnung**
+anbieten (§ 4a).
+
+## § 4a Kauf auf Rechnung
+
+(1) Bietet der Anbieter den Kauf auf Rechnung an, kommt der Vertrag **mit der Freischaltung
+der Leistung** zustande; auf die Bestätigung der Zahlung (§ 3 Abs. 3) kommt es insoweit nicht
+an. Der Anbieter bestätigt den Vertragsschluss unverzüglich per E-Mail.
+
+(2) Die Vergütung ist **innerhalb von 14 Tagen ab Zugang der Rechnung** ohne Abzug zur Zahlung
+fällig.
+
+(3) Gerät der Kunde in Zahlungsverzug, schuldet er Verzugszinsen in Höhe von neun Prozentpunkten
+über dem Basiszinssatz (§ 288 Abs. 2 BGB) sowie eine Pauschale von 40 € (§ 288 Abs. 5 BGB). Die
+Geltendmachung eines weitergehenden Verzugsschadens bleibt vorbehalten.
+
+(4) Bei Zahlungsverzug ist der Anbieter berechtigt, den Zugang zur Leistung bis zum
+vollständigen Ausgleich der offenen Forderung zu **sperren**. Bereits exportierte Ergebnisse
+bleiben davon unberührt.
 
 ## § 5 Leistungserbringung und Verfügbarkeit
 
@@ -152,8 +206,10 @@ ausdrücklich nicht übernommen.
 zeitlich unbefristete Recht zur Nutzung, insbesondere zur Einreichung bei Fördergebern.
 
 (2) Der Kunde bleibt Inhaber der von ihm eingegebenen Daten. **Der Anbieter verwendet
-Kundendaten nicht zum Trainieren von KI-Modellen**; dies ist auch mit dem eingesetzten
-KI-Anbieter vertraglich sichergestellt.
+Kundendaten nicht zum Trainieren von KI-Modellen.** Beim eingesetzten KI-Anbieter ist die
+Nutzung der Daten zu Trainingszwecken für das Konto des Anbieters **deaktiviert**
+(Training-Opt-out); Rückmeldefunktionen des KI-Anbieters, deren Nutzung eine Verwendung der
+Daten zu Trainingszwecken auslösen würde, werden nicht eingesetzt.
 
 (3) Der **Online-Zugriff** auf einen bezahlten Antrag über die Plattform besteht für
 **12 Monate ab Kauf**. Danach werden die Antragsinhalte im Rahmen des Löschkonzepts
@@ -176,10 +232,12 @@ verantwortlich.
 
 (1) Die Einzelheiten der Verarbeitung ergeben sich aus der Datenschutzerklärung.
 
-(2) Soweit der Anbieter personenbezogene Daten im Auftrag des Kunden verarbeitet, schließen
-die Parteien einen **Auftragsverarbeitungsvertrag nach Art. 28 DSGVO**. Die AVV-Fassung sowie
-die vollständige **Liste der Subprozessoren** sind unter `/avv` abrufbar bzw. auf Anfrage
-erhältlich.
+(2) Soweit der Anbieter personenbezogene Daten im Auftrag des Kunden verarbeitet, wird der
+unter `/avv` in der bei Vertragsschluss geltenden Fassung abrufbare
+**Auftragsverarbeitungsvertrag nach Art. 28 DSGVO mit Vertragsschluss Bestandteil des
+Vertrags**. Eines gesonderten Abschlusses bedarf es nicht; auf Wunsch stellt der Anbieter eine
+unterzeichnete Fassung bereit. Die vollständige **Liste der Subprozessoren** ist ebenfalls
+unter `/avv` abrufbar.
 
 (3) Die KI-Verarbeitung findet ausschließlich im Europäischen Wirtschaftsraum statt.
 
@@ -197,13 +255,14 @@ entspricht. § 6 (KI-generierte Ergebnisse) bleibt unberührt.
 der Verletzung des Lebens, des Körpers oder der Gesundheit sowie nach den Vorschriften des
 Produkthaftungsgesetzes.
 
-(2) Bei leicht fahrlässiger Verletzung wesentlicher Vertragspflichten (Kardinalpflichten) ist
-die Haftung auf den vertragstypischen, vorhersehbaren Schaden begrenzt, höchstens jedoch auf
-die Summe der vom Kunden für die betroffene Leistung gezahlten Vergütung.
+(2) Bei leicht fahrlässiger Verletzung **wesentlicher Vertragspflichten (Kardinalpflichten)**
+haftet der Anbieter auf den vertragstypischen, vorhersehbaren Schaden. Kardinalpflichten sind
+solche Pflichten, deren Erfüllung die ordnungsgemäße Durchführung des Vertrags überhaupt erst
+ermöglicht und auf deren Einhaltung der Kunde regelmäßig vertrauen darf.
 
-(3) Im Übrigen ist die Haftung ausgeschlossen. Insbesondere haftet der Anbieter nicht für
-entgangene Fördermittel, entgangenen Gewinn oder Folgeschäden, die daraus entstehen, dass ein
-Antrag nicht bewilligt, verspätet oder fehlerhaft eingereicht wurde.
+(3) Im Übrigen — insbesondere bei leicht fahrlässiger Verletzung **nicht wesentlicher**
+Vertragspflichten — ist die Haftung ausgeschlossen; das gilt namentlich für entgangene
+Fördermittel, entgangenen Gewinn und Folgeschäden. **Die Absätze 1 und 2 bleiben unberührt.**
 
 ## § 12 Vertragslaufzeit
 
