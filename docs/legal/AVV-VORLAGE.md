@@ -110,18 +110,20 @@ den Datenschutz vor.
 Hetzner-Server auf (49.13.15.44), die Antworten tragen keine Cloudflare-Header, und weder
 Code noch `.env.production` referenzieren den Dienst. Cloudflare wird **nicht eingesetzt** —
 die frühere Nennung (auch in der Datenschutzerklärung) war eine Falschangabe und behauptete
-einen US-Drittlandtransfer, den es nicht gibt. Ebenso: **keine Web-Analyse** (Google Analytics
-ist im Code vorhanden, aber ohne `NEXT_PUBLIC_GA_ID` inaktiv — siehe Warnung unten) und
-**keine CDN-Schriftarten** (`next/font` liefert self-hosted aus).
+einen US-Drittlandtransfer, den es nicht gibt.
+
+**Keine Web-Analyse (Entscheidung Kolja, 13.07.2026):** Google Analytics wurde **vollständig
+aus dem Code entfernt** (`components/GoogleAnalytics.tsx` gelöscht, gtag-Zweig aus WebVitals
+entfernt, `NEXT_PUBLIC_GA_ID` gestrichen). Die **CSP erlaubt keine Google-Hosts mehr** — ein
+versehentlich wieder eingefügtes Tracking-Skript würde vom Browser blockiert, statt still
+Daten abfließen zu lassen. Performance-Messwerte gehen ausschließlich an den eigenen
+Endpunkt `/api/vitals`. **Damit bleibt die Aussage „kein Cookie-Banner erforderlich"
+dauerhaft wahr** und hängt nicht mehr an einer nicht gesetzten Umgebungsvariablen.
+
+**Keine CDN-Schriftarten:** `next/font` liefert alle Schriften self-hosted aus.
 
 > ⚠️ **Vor Finalisierung verifizieren (Kolja/Anwalt):** exakte Vertragspartner-Gesellschaft
 > je Dienst, aktuelle DPF-Zertifizierung (Stripe/Resend), jeweils gültige AVV/DPA-Fundstelle.
->
-> 🔴 **Google Analytics:** `components/GoogleAnalytics.tsx` lädt bei gesetzter
-> `NEXT_PUBLIC_GA_ID` Google-Skripte und Cookies (2 Jahre Laufzeit) **ohne Einwilligung**.
-> `anonymize_ip` ändert daran nichts — § 25 TDDDG verlangt eine Einwilligung. Wird die
-> Variable gesetzt, sind diese Liste, die Datenschutzerklärung und die Aussage „kein
-> Cookie-Banner nötig" **sofort falsch** und ein Consent-Banner wird Pflicht.
 
 ## Anlage 2 — Technische und organisatorische Maßnahmen (Art. 32)
 Kurzfassung — vollständige TOM-Beschreibung separat pflegen:
