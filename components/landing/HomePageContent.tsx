@@ -121,8 +121,8 @@ function Hero({ stats }: { stats: LandingStats }) {
               className="text-lg leading-[1.6] text-[#FBF9F3]/[0.78] max-w-[520px] text-pretty mb-8"
             >
               {stats.total} geprüfte Programme an einem Ort. Unser KI-Assistent
-              erstellt unterschriftsreife Anträge in Minuten statt Wochen —
-              DSGVO-konform, auf deutschen Servern, mit EU-KI.
+              erstellt einen fertigen Antragsentwurf in Minuten statt Wochen —
+              DSGVO-konform, Daten in Deutschland, KI in der EU.
             </motion.p>
 
             <motion.div
@@ -648,8 +648,8 @@ function Datenschutz() {
     },
     {
       kicker: "Hosting",
-      title: "Deutsche Server, Hetzner",
-      body: "Verarbeitung und Speicherung erfolgen in deutschen Rechenzentren — georedundant, DSGVO-konform.",
+      title: "Daten in Deutschland, KI in der EU",
+      body: "Ihre Daten liegen bei Hetzner in Deutschland. Die KI-Verarbeitung läuft bei Mistral AI (Paris) im EU-Raum — kein Transfer in Drittländer.",
     },
     {
       kicker: "Training",
@@ -850,7 +850,7 @@ const FOUNDERS: {
     name: "Fedo Hagge-Kubat",
     vorname: "Fedo",
     rolle: "Technik & KI",
-    bio: "Ich baue die KI hinter EduFunds so, dass sie klingt wie eine erfahrene Antragsschreiberin — nicht wie ein Chatbot. Jedes Programm im Katalog ist geprüft, jede Formulierung nachvollziehbar. Und was Schulen uns anvertrauen, bleibt auf deutschen Servern.",
+    bio: "Ich baue die KI hinter EduFunds so, dass sie klingt wie eine erfahrene Antragsschreiberin — nicht wie ein Chatbot. Jedes Programm im Katalog ist geprüft, jede Formulierung nachvollziehbar. Und was Schulen uns anvertrauen, bleibt in Europa.",
   },
 ];
 
