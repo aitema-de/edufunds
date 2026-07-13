@@ -249,7 +249,10 @@ export default function AGBPage() {
                 </Link>{" "}
                 abrufbar bzw. auf Anfrage erhältlich.
               </p>
-              <p>(3) Die KI-Verarbeitung findet ausschließlich in der Europäischen Union statt.</p>
+              <p>
+                (3) Die KI-Verarbeitung findet ausschließlich im Europäischen Wirtschaftsraum
+                statt.
+              </p>
             </Paragraf>
 
             <Paragraf nr="§ 10" titel="Gewährleistung">

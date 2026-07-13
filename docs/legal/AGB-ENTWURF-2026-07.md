@@ -50,6 +50,9 @@ Kundendaten**.
   Organisationseigenschaft tatsächlich abfragt — das tut er (Pflichtfeld Organisation +
   Bestellart). Bitte als Gesamtbild würdigen.
 - Preisänderungen bei Kontingenten (Bestandsschutz?), Ausschluss der Abtretung, AGB-Änderungen.
+- **§ 9 Abs. 3 (EU/EWR):** Mistral betreibt die genutzte API auf Azure (Schweden, **Norwegen**)
+  und CoreWeave (EWR) — Norwegen ist EWR, nicht EU. Der Entwurf sagt daher „Europäischer
+  Wirtschaftsraum". Belege: `docs/legal/mistral-nachweise/` (Abruf 13.07.2026).
 
 ---
 
@@ -178,7 +181,7 @@ die Parteien einen **Auftragsverarbeitungsvertrag nach Art. 28 DSGVO**. Die AVV-
 die vollständige **Liste der Subprozessoren** sind unter `/avv` abrufbar bzw. auf Anfrage
 erhältlich.
 
-(3) Die KI-Verarbeitung findet ausschließlich in der Europäischen Union statt.
+(3) Die KI-Verarbeitung findet ausschließlich im Europäischen Wirtschaftsraum statt.
 
 ## § 10 Gewährleistung
 
