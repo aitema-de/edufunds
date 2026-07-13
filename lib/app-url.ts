@@ -7,6 +7,9 @@
  */
 export const CANONICAL_APP_URL = "https://edufunds.org";
 
+/** Reiner Host, für die Anzeige in der UI (z. B. Adressleiste im Browser-Mockup). */
+export const CANONICAL_APP_HOST = CANONICAL_APP_URL.replace(/^https?:\/\//, "");
+
 /**
  * Vertrauenswürdige öffentliche Basis-URL aus Server-Konfiguration.
  *

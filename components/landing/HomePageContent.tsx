@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Check, Minus, ChevronDown, Sparkles } from "lucide-react";
+import { CANONICAL_APP_HOST } from "@/lib/app-url";
 import {
   HourglassIcon,
   StampIcon,
@@ -423,7 +424,7 @@ function LiveGenerator() {
           <span className="size-2.5 rounded-full bg-amber-300/60" />
           <span className="size-2.5 rounded-full bg-emerald-400/60" />
         </div>
-        <span className="text-[11px] tracking-widest uppercase text-white/40">app.edufunds.org</span>
+        <span className="text-[11px] tracking-widest uppercase text-white/40">{CANONICAL_APP_HOST}</span>
         <span className="inline-flex items-center gap-1 text-[11px] text-gold-400 font-medium">
           <Sparkles className="size-3" /> generiert
         </span>
