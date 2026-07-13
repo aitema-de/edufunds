@@ -15,7 +15,7 @@ import { generateNewsletterDraft } from '../lib/newsletter/generate-draft';
 import { generateNewsletter } from '../lib/newsletter';
 
 async function main() {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.edufunds.org';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://edufunds.org';
   console.log(`[smoke] Provider=${process.env.LLM_PROVIDER || 'mistral'} — generiere Entwurf …`);
 
   const t0 = Date.now();

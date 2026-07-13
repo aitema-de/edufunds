@@ -19,6 +19,7 @@ import {
   markSent,
 } from '@/lib/newsletter/issues';
 import { sendNewsletter } from '@/lib/newsletter/dispatch';
+import { publicAppUrl } from '@/lib/app-url';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -49,7 +50,7 @@ export async function POST(
     /* leerer Body = Live-Versand */
   }
   const isTest = body.test === true;
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://edufunds.org';
+  const baseUrl = publicAppUrl();
 
   const issue = await getIssueById(id);
   if (!issue) {

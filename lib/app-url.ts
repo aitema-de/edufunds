@@ -1,4 +1,13 @@
 /**
+ * Kanonische öffentliche Adresse der Plattform. Seit der Domain-Zusammenführung
+ * (Cutover Phase 2) bedient die App selbst die Apex-Domain; `app.`/`www.` leiten
+ * per 301 hierher. Einzige Quelle der Wahrheit für alle Fallbacks — früher lagen
+ * über ein Dutzend abweichender Literale im Code (app.edufunds.org, edufunds.de,
+ * localhost), die nach dem Switch tote oder falsche Links erzeugt hätten.
+ */
+export const CANONICAL_APP_URL = "https://edufunds.org";
+
+/**
  * Vertrauenswürdige öffentliche Basis-URL aus Server-Konfiguration.
  *
  * WICHTIG (Sicherheit): NIEMALS aus Request-Headern (Host/Origin) ableiten, wenn
@@ -12,6 +21,17 @@ export function trustedAppUrl(): string | null {
   if (!u) return null;
   const trimmed = u.trim().replace(/\/+$/, "");
   return /^https?:\/\//.test(trimmed) ? trimmed : null;
+}
+
+/**
+ * Öffentliche Basis-URL für nicht-sicherheitskritische Links (Newsletter-Buttons,
+ * robots/sitemap, Admin-Hinweise). Anders als `trustedAppUrl()` fällt sie auf die
+ * kanonische Domain zurück statt null zu liefern — ein Link auf die Live-Domain
+ * ist hier besser als gar keiner. Für tokenführende Links (Magic-Link, Opt-in)
+ * weiterhin `trustedAppUrl()` verwenden.
+ */
+export function publicAppUrl(): string {
+  return trustedAppUrl() ?? CANONICAL_APP_URL;
 }
 
 /**

@@ -12,6 +12,7 @@ import {
   NewsletterData,
   sampleNewsletterData 
 } from '@/lib/newsletter';
+import { publicAppUrl } from '@/lib/app-url';
 
 /**
  * Newsletter Send API
@@ -190,7 +191,7 @@ export async function POST(request: Request) {
     const newsletterData: NewsletterData = customData || sampleNewsletterData;
     
     // Generate base URL
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://edufunds.org';
+    const baseUrl = publicAppUrl();
 
     // Send to each subscriber
     const results: SendResult[] = [];
@@ -299,7 +300,7 @@ export async function GET(request: Request) {
     const subscribers = await getConfirmedNewsletterEntries();
     
     // Generate preview
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://edufunds.org';
+    const baseUrl = publicAppUrl();
     const { html, text, subject } = generateNewsletter(
       sampleNewsletterData,
       baseUrl,

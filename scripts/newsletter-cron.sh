@@ -14,7 +14,7 @@
 #   0 8 1 * * /home/kolja/edufunds-app/scripts/newsletter-cron.sh >> /var/log/edufunds-newsletter.log 2>&1
 #
 # Erwartete Umgebungsvariablen (oder im Skript unten setzen):
-#   EDUFUNDS_BASE_URL   z.B. https://app.edufunds.org   (Default: aus .env.local)
+#   EDUFUNDS_BASE_URL   z.B. https://edufunds.org   (Default: aus .env.local)
 #   CRON_SECRET         Shared Secret für den Endpoint   (Default: aus .env.local)
 
 set -euo pipefail
@@ -33,7 +33,7 @@ for ENVF in "$APP_DIR/.env.production" "$APP_DIR/.env.local"; do
   fi
 done
 
-BASE_URL="${EDUFUNDS_BASE_URL:-${NEXT_PUBLIC_APP_URL:-https://app.edufunds.org}}"
+BASE_URL="${EDUFUNDS_BASE_URL:-${NEXT_PUBLIC_APP_URL:-https://edufunds.org}}"
 SECRET="${CRON_SECRET:-}"
 
 if [[ -z "$SECRET" ]]; then

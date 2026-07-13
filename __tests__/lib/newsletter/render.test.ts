@@ -9,6 +9,8 @@ import {
   type NewsletterData,
 } from '@/lib/newsletter';
 import { sanitizeLlmUrl, stripUnsafeAnchors } from '@/lib/newsletter/content-collector';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 const BASE: NewsletterData = {
   issueNumber: 'Ausgabe #1',
@@ -92,7 +94,11 @@ describe('sanitizeLlmUrl — härtet LLM-Links', () => {
       'https://app.edufunds.org/antrag'
     );
   });
-  it('verwirft fremde Domain (edufunds.org / beliebige)', () => {
+  it('verwirft jede Domain ausser der Basis-Domain', () => {
+    // Die Pruefung ist origin-relativ, nicht auf eine feste Domain verdrahtet:
+    // gegenueber BASE_URL (app.) ist der Apex fremd — nach dem Cutover ist es
+    // genau umgekehrt. Beides ist korrekt, solange Prompt und Sanitizer
+    // dieselbe Basis benutzen (siehe Cutover-Invariante unten).
     expect(sanitizeLlmUrl('https://edufunds.org/foerderprogramme', BASE_URL)).toBe('');
     expect(sanitizeLlmUrl('https://evil.example/foerderprogramme', BASE_URL)).toBe('');
   });
@@ -148,5 +154,32 @@ describe('generateNewsletter — Link-Härtung', () => {
     expect(
       stripUnsafeAnchors('Siehe <a href="https://app.edufunds.org/foerderprogramme">Datenbank</a>', BASE_URL)
     ).toContain('<a href="https://app.edufunds.org/foerderprogramme">Datenbank</a>');
+  });
+});
+
+describe('Cutover-Invariante: Prompt-Domain == Sanitizer-Domain', () => {
+  // Der LLM-Prompt gibt genau EINE erlaubte URL vor (die Förderdatenbank).
+  // Steht dort eine andere Domain als die, gegen die sanitizeLlmUrl() prüft,
+  // verwirft der Sanitizer still exakt die Links, die der Prompt erzeugt hat —
+  // der Newsletter verliert seine CTAs, ohne dass irgendwo ein Fehler auftaucht.
+  it('die im Prompt vorgegebene CTA-URL überlebt den Sanitizer — in jeder Umgebung', () => {
+    for (const base of [
+      'https://edufunds.org',
+      'https://staging.edufunds.org',
+      'https://app.edufunds.org',
+    ]) {
+      const promptCta = `${base}/foerderprogramme`;
+      expect(sanitizeLlmUrl(promptCta, base)).toBe(promptCta);
+    }
+  });
+
+  it('generate-draft.ts verdrahtet keine Domain hart', () => {
+    const src = readFileSync(
+      join(process.cwd(), 'lib/newsletter/generate-draft.ts'),
+      'utf-8'
+    );
+    // Vor dem Cutover stand hier dreimal https://app.edufunds.org/foerderprogramme
+    // im Prompt — beim Domain-Wechsel hätte das alle Newsletter-Links gefressen.
+    expect(src).not.toMatch(/https:\/\/(app\.|www\.|staging\.)?edufunds\.(org|de)/);
   });
 });

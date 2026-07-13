@@ -1,9 +1,15 @@
 /**
  * @jest-environment node
  *
- * trustedAppUrl (kein Header-Fallback) + sanitizeNext (Open-Redirect-Schutz).
+ * trustedAppUrl (kein Header-Fallback) + sanitizeNext (Open-Redirect-Schutz)
+ * + publicAppUrl (kanonischer Fallback).
  */
-import { trustedAppUrl, sanitizeNext } from "@/lib/app-url";
+import {
+  trustedAppUrl,
+  sanitizeNext,
+  publicAppUrl,
+  CANONICAL_APP_URL,
+} from "@/lib/app-url";
 
 const ORIG = process.env;
 beforeEach(() => {
@@ -25,6 +31,22 @@ describe("trustedAppUrl", () => {
   it("null bei fehlendem Schema", () => {
     process.env.NEXT_PUBLIC_APP_URL = "pilot.edufunds.org";
     expect(trustedAppUrl()).toBeNull();
+  });
+});
+
+describe("publicAppUrl", () => {
+  it("nutzt die konfigurierte URL, getrimmt", () => {
+    process.env.NEXT_PUBLIC_APP_URL = "https://staging.edufunds.org/";
+    expect(publicAppUrl()).toBe("https://staging.edufunds.org");
+  });
+  it("faellt auf die kanonische Apex-Domain zurueck, nie auf null", () => {
+    delete process.env.NEXT_PUBLIC_APP_URL;
+    expect(publicAppUrl()).toBe(CANONICAL_APP_URL);
+    expect(CANONICAL_APP_URL).toBe("https://edufunds.org");
+  });
+  it("faellt auch bei unbrauchbarem Wert auf die kanonische Domain zurueck", () => {
+    process.env.NEXT_PUBLIC_APP_URL = "edufunds.org"; // Schema fehlt
+    expect(publicAppUrl()).toBe(CANONICAL_APP_URL);
   });
 });
 
