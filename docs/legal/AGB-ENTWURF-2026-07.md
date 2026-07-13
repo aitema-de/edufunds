@@ -61,12 +61,35 @@ anwaltlichen Disposition:
 3. **§ 9 Abs. 2 AVV-Einbeziehung.** Die Klausel *versprach* einen AVV, schloss ihn aber nicht —
    Art.-28-Lücke. Jetzt automatische Einbeziehung mit Vertragsschluss.
 
-🔴 **§ 7 Abs. 2 (Training) steht unter Vorbehalt.** Der Mistral-DPA (§ 2.3) erlaubt das Training
-**als Default** — „*unless (a) Customer opted-out of training or (b) uses a Mistral AI Product
-that is opted-out by default*". Die bisherige Formulierung („vertraglich sichergestellt") war
-damit **nicht gedeckt**. Der Text sagt jetzt, was zutrifft, **sobald das Opt-out gesetzt ist**.
-→ **Vor Go-Live zwingend:** Opt-out-Status in `admin.mistral.ai` prüfen/setzen und den Nachweis
-in `docs/legal/mistral-nachweise/` ablegen. Ohne diesen Nachweis ist die Klausel unwahr.
+**§ 7 Abs. 2 (Training) — präzisiert, Aussage hält.** Die dritte Vorprüfung meldete, „kein
+Training" sei nicht gedeckt: Der DPA (§ 2.3) nenne das Training als Zweck, „*unless (a) Customer
+opted-out … or (b) uses a … Product that is opted-out by default*". Der **Befund war berechtigt,
+die Schlussfolgerung falsch** — und beides ist lehrreich:
+
+- Berechtigt war er, weil unsere **Nachweisakte den Beleg nicht enthielt**: Das dort archivierte
+  „Terms"-PDF war in Wahrheit nur die **Linkliste** des Legal Centers (die Verträge liegen auf
+  `legal.mistral.ai`, nicht auf `mistral.ai/terms`). Die Prüferin hatte also nur den DPA — und
+  aus dem allein *muss* man diesen Schluss ziehen.
+- Falsch war die Schlussfolgerung, weil die **Commercial ToS § 4.2** die speziellere Regel sind
+  und sie umdrehen: „*Mistral AI **will not use** Customer Data or Outputs to train … **except**
+  (a) … under a **free subscription**, Vibe Pro or Vibe Teams …, (b) when Customer … provides
+  **Feedback**, (c) … **flagged as part of … automated moderation**, (d) … an **Order Form** or
+  (e) when Customer uses **Labs Models**.*" Ebenso die Privacy Policy: „*we **do not** use your
+  Input and Output to train our … models when you use … **the paid version of our APIs**.*"
+
+**Keine der fünf Ausnahmen trifft zu:** (a) wir sind auf **bezahlter** API (Rechnungen
+`MSTRL-API-850529-001/002`), nicht auf einem Free-Abo · (b) wir senden **kein Feedback** — die
+einzigen API-Aufrufe im Code sind `chat.completions.create` (`lib/wizard/llm.ts`); der
+`/api/feedback`-Endpunkt der Plattform geht an ClickUp, nie an Mistral · (d) kein Order Form ·
+(e) `mistral-small-latest` trägt **kein `labs`-Präfix**.
+
+⚠️ **Was bleibt:** Ausnahme **(c)**, das Trainieren mit Inhalten, die die automatische
+Missbrauchserkennung flaggt. Das ist der Rest, den erst **Zero Data Retention** beseitigt (der
+DPA nimmt Abuse-Monitoring ausdrücklich zurück, „*except … when zero data retention has been
+activated*"). ZDR ist beantragt (13.07.), Antwort steht aus.
+
+Belege: `docs/legal/mistral-nachweise/` — jetzt mit **Commercial ToS** und **Privacy Policy** als
+Volltext-Archivkopien (vorher fehlten beide).
 
 ## Offene Punkte für den Anwalt
 
@@ -206,10 +229,10 @@ ausdrücklich nicht übernommen.
 zeitlich unbefristete Recht zur Nutzung, insbesondere zur Einreichung bei Fördergebern.
 
 (2) Der Kunde bleibt Inhaber der von ihm eingegebenen Daten. **Der Anbieter verwendet
-Kundendaten nicht zum Trainieren von KI-Modellen.** Beim eingesetzten KI-Anbieter ist die
-Nutzung der Daten zu Trainingszwecken für das Konto des Anbieters **deaktiviert**
-(Training-Opt-out); Rückmeldefunktionen des KI-Anbieters, deren Nutzung eine Verwendung der
-Daten zu Trainingszwecken auslösen würde, werden nicht eingesetzt.
+Kundendaten nicht zum Trainieren von KI-Modellen.** Der eingesetzte KI-Anbieter verwendet
+Ein- und Ausgaben bei der vom Anbieter genutzten **kostenpflichtigen API vertragsgemäß nicht
+zu Trainingszwecken**; Rückmeldefunktionen („Feedback") sowie experimentelle Modelle, deren
+Nutzung eine Verwendung zu Trainingszwecken auslösen würde, werden nicht eingesetzt.
 
 (3) Der **Online-Zugriff** auf einen bezahlten Antrag über die Plattform besteht für
 **12 Monate ab Kauf**. Danach werden die Antragsinhalte im Rahmen des Löschkonzepts

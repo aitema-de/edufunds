@@ -227,11 +227,11 @@ export default function AGBPage() {
               </p>
               <p>
                 (2) Der Kunde bleibt Inhaber der von ihm eingegebenen Daten. Der Anbieter
-                verwendet Kundendaten nicht zum Trainieren von KI-Modellen. Beim eingesetzten
-                KI-Anbieter ist die Nutzung der Daten zu Trainingszwecken für das Konto des
-                Anbieters deaktiviert (Training-Opt-out); Rückmeldefunktionen des KI-Anbieters,
-                deren Nutzung eine Verwendung der Daten zu Trainingszwecken auslösen würde,
-                werden nicht eingesetzt.
+                verwendet Kundendaten nicht zum Trainieren von KI-Modellen. Der eingesetzte
+                KI-Anbieter verwendet Ein- und Ausgaben bei der vom Anbieter genutzten
+                kostenpflichtigen API vertragsgemäß nicht zu Trainingszwecken;
+                Rückmeldefunktionen („Feedback") sowie experimentelle Modelle, deren Nutzung eine
+                Verwendung zu Trainingszwecken auslösen würde, werden nicht eingesetzt.
               </p>
               <p>
                 (3) Der Online-Zugriff auf einen bezahlten Antrag über die Plattform besteht für
