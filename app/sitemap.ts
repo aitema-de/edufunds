@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/ueber-uns', priority: 0.6, changeFrequency: 'monthly' as const },
     { path: '/kontakt', priority: 0.6, changeFrequency: 'monthly' as const },
     { path: '/agb', priority: 0.3, changeFrequency: 'yearly' as const },
+    { path: '/avv', priority: 0.3, changeFrequency: 'yearly' as const },
     { path: '/datenschutz', priority: 0.3, changeFrequency: 'yearly' as const },
     { path: '/impressum', priority: 0.3, changeFrequency: 'yearly' as const },
   ];

@@ -210,6 +210,8 @@ export default function AGBPage() {
                 </div>
                 <p className="text-base">
                   → <a href="/datenschutz" className="text-[#1e3d32] hover:text-[#1e3d32] transition-colors underline underline-offset-2">Zur Datenschutzerklärung</a>
+                  {" · "}
+                  <a href="/avv" className="text-[#1e3d32] hover:text-[#1e3d32] transition-colors underline underline-offset-2">AVV &amp; Subprozessoren</a>
                 </p>
               </div>
             </section>

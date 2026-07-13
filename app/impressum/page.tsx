@@ -69,6 +69,15 @@ export default function ImpressumPage() {
               </div>
             </section>
 
+            {/* Umsatzsteuer-ID — Pflichtangabe nach § 5 Abs. 1 Nr. 6 DDG */}
+            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
+              <h2 className="text-xl font-semibold text-[#1c1917] mb-4">Umsatzsteuer</h2>
+              <div className="text-[#1c1917]/80 space-y-1 text-base">
+                <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG</p>
+                <p className="font-medium text-[#1c1917]">DE461054353</p>
+              </div>
+            </section>
+
             {/* Vertretung */}
             <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#1c1917] mb-4">Vertreten durch</h2>

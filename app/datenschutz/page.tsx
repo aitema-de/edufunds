@@ -109,11 +109,12 @@ export default function DatenschutzPage() {
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-medium text-[#1c1917] mb-3">Cloudflare</h3>
+                  <h3 className="text-lg font-medium text-[#1c1917] mb-3">Kein CDN, keine Web-Analyse</h3>
                   <p className="text-[#1c1917]/80 leading-relaxed text-base">
-                    Wir nutzen das Content Delivery Network (CDN) von Cloudflare, Inc., 
-                    101 Townsend St., San Francisco, CA 94107, USA. Cloudflare ist unter dem 
-                    EU-US Data Privacy Framework zertifiziert.
+                    Wir setzen kein Content Delivery Network und keine Web-Analyse- oder
+                    Tracking-Dienste ein. Ihre Anfragen erreichen unseren Server in Deutschland
+                    direkt. Schriftarten liefern wir von unserem eigenen Server aus — es werden
+                    also auch dafür keine Daten an Dritte übertragen.
                   </p>
                 </div>
               </div>
