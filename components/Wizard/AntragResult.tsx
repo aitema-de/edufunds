@@ -367,11 +367,8 @@ export function AntragResult({
     if (exportBlocked || !printRef.current || pdfBusy) return;
     setPdfBusy(true);
     try {
-      const html2pdf = (await loadHtml2pdf()) as {
-        (): {
-          set: (opt: unknown) => { from: (el: HTMLElement) => { save: () => Promise<void> } };
-        };
-      };
+      /* eslint-disable @typescript-eslint/no-explicit-any */
+      const html2pdf = (await loadHtml2pdf()) as any;
       const opt = {
         margin: [15, 15, 20, 15] as [number, number, number, number],
         filename: `${l.datei}_${programm.id}.pdf`,
@@ -380,7 +377,38 @@ export function AntragResult({
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
         pagebreak: { mode: ["avoid-all", "css", "legacy"] },
       };
-      await html2pdf().set(opt).from(printRef.current).save();
+
+      // AI-Act Art. 50(2) verlangt eine MASCHINENLESBARE Kennzeichnung synthetischer Inhalte —
+      // der sichtbare Hinweis im Text (KI_EXPORT_HINWEIS) allein genuegt dafuer nicht. Wir
+      // schreiben sie daher zusaetzlich in die PDF-Metadaten, wo sie maschinell auslesbar ist
+      // und beim Weiterreichen des Dokuments erhalten bleibt.
+      //
+      // Bewusst defensiv: schlaegt das Setzen der Metadaten fehl (andere html2pdf-Version,
+      // geaenderte Worker-API), faellt der Export auf den einfachen Pfad zurueck. Ein bezahlter
+      // Antrag muss sich in jedem Fall herunterladen lassen — die sichtbare Kennzeichnung im
+      // Text ist dann immer noch vorhanden.
+      try {
+        await html2pdf()
+          .set(opt)
+          .from(printRef.current)
+          .toPdf()
+          .get("pdf")
+          .then((pdf: { setProperties: (p: Record<string, string>) => void }) => {
+            pdf.setProperties({
+              title: `${l.datei} — ${programm.name}`,
+              subject: "KI-generierter Antragsentwurf (AI-generated content)",
+              author: "aitema GmbH — EduFunds",
+              creator: "EduFunds (aitema GmbH) — KI-generiert / AI-generated",
+              keywords:
+                "KI-generiert, AI-generated, synthetic-content, Entwurf, EU-AI-Act-Art-50",
+            });
+          })
+          .save();
+      } catch (metaErr) {
+        console.warn("PDF-Metadaten konnten nicht gesetzt werden — Export ohne sie:", metaErr);
+        await html2pdf().set(opt).from(printRef.current).save();
+      }
+      /* eslint-enable @typescript-eslint/no-explicit-any */
     } catch (e) {
       console.error("PDF-Export fehlgeschlagen:", e);
       alert("PDF konnte nicht erstellt werden. Bitte erneut versuchen.");
