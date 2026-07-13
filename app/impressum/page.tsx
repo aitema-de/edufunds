@@ -1,5 +1,6 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import Link from "next/link";
 import { Mail, MapPin, Building2, Scale } from "lucide-react";
 
 export const metadata = {
@@ -78,6 +79,27 @@ export default function ImpressumPage() {
               </div>
             </section>
 
+            {/* Zweiter Kontaktweg — § 5 Abs. 1 Nr. 2 DDG verlangt Angaben, die eine schnelle
+                elektronische Kontaktaufnahme und unmittelbare Kommunikation ermöglichen. Eine
+                E-Mail-Adresse allein genügt dafür nach der EuGH-Linie nicht zuverlässig. */}
+            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
+              <h2 className="text-xl font-semibold text-[#1c1917] mb-4">Schnelle Kontaktaufnahme</h2>
+              <div className="text-[#1c1917]/80 space-y-3 text-base">
+                <p>
+                  Neben der E-Mail-Adresse erreichen Sie uns über unser Kontaktformular. Anfragen, die
+                  dort eingehen, beantworten wir in der Regel innerhalb eines Werktages.
+                </p>
+                <p>
+                  <Link
+                    href="/kontakt"
+                    className="text-[#1e3d32] hover:text-[#2a5244] transition-colors underline underline-offset-2 font-medium"
+                  >
+                    Zum Kontaktformular
+                  </Link>
+                </p>
+              </div>
+            </section>
+
             {/* Vertretung */}
             <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#1c1917] mb-4">Vertreten durch</h2>
@@ -98,24 +120,15 @@ export default function ImpressumPage() {
               </div>
             </section>
 
-            {/* Streitschlichtung */}
+            {/* Streitschlichtung — die EU-Plattform zur Online-Streitbeilegung (OS/ODR) wurde
+                zum 20.07.2025 eingestellt (Verordnung (EU) 2024/3228). Ein Link darauf ginge ins
+                Leere und ist abmahnfähig. Die Hinweispflicht nach § 36 VSBG bleibt bestehen. */}
             <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#1c1917] mb-4">Streitschlichtung</h2>
               <div className="text-[#1c1917]/80 space-y-4 text-base">
                 <p>
-                  Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
-                </p>
-                <a 
-                  href="https://ec.europa.eu/consumers/odr/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-[#1e3d32] hover:text-[#2a5244] transition-colors inline-flex items-center gap-2 underline underline-offset-2"
-                >
-                  https://ec.europa.eu/consumers/odr/
-                </a>
-                <p className="text-[#475569] text-sm">
                   Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
-                  Verbraucherschlichtungsstelle teilzunehmen.
+                  Verbraucherschlichtungsstelle teilzunehmen (§ 36 VSBG).
                 </p>
               </div>
             </section>
