@@ -79,13 +79,39 @@ export default function DatenschutzPage() {
                   </div>
                   <div className="pt-2">
                     <p className="text-[#475569]">E-Mail:</p>
-                    <a 
+                    <a
                       href="mailto:office@aitema.de"
                       className="text-[#1e3d32] hover:text-[#2a5244] transition-colors underline underline-offset-2"
                     >
                       office@aitema.de
                     </a>
                   </div>
+                </div>
+
+                <div className="rounded-xl bg-[#fdfdfc] border border-[#1c1917]/8 p-6">
+                  <h3 className="text-lg font-medium text-[#1c1917] mb-3">
+                    In welcher Rolle wir verarbeiten
+                  </h3>
+                  <p className="leading-relaxed">
+                    Für den Betrieb der Website, Ihr Konto, Zahlung und Rechnung, den Newsletter und
+                    Kontaktanfragen sind wir <strong className="text-[#1c1917]">Verantwortliche</strong> im
+                    Sinne der DSGVO — diese Erklärung beschreibt diese Verarbeitungen.
+                  </p>
+                  <p className="leading-relaxed mt-3">
+                    Nutzt eine Einrichtung (Förderverein, Schule oder Schulträger) EduFunds und gibt dabei
+                    personenbezogene Daten in einen Antrag ein, verarbeiten wir diese Inhalte{" "}
+                    <strong className="text-[#1c1917]">in ihrem Auftrag</strong> — insoweit sind wir
+                    Auftragsverarbeiter nach Art. 28 DSGVO, und es gilt die Datenschutzerklärung der
+                    jeweiligen Einrichtung. Den Auftragsverarbeitungsvertrag und die vollständige Liste
+                    unserer Subprozessoren finden Sie unter{" "}
+                    <a
+                      href="/avv"
+                      className="text-[#1e3d32] hover:text-[#2a5244] transition-colors underline underline-offset-2"
+                    >
+                      AVV &amp; Subprozessoren
+                    </a>
+                    .
+                  </p>
                 </div>
               </div>
             </section>
@@ -96,7 +122,7 @@ export default function DatenschutzPage() {
                 <div className="w-10 h-10 rounded-xl bg-[#1e3d32]/20 flex items-center justify-center">
                   <Server className="h-5 w-5 text-[#1e3d32]" />
                 </div>
-                <h2 className="text-xl font-semibold text-[#1c1917]">3. Hosting und Content Delivery Network</h2>
+                <h2 className="text-xl font-semibold text-[#1c1917]">3. Hosting</h2>
               </div>
 
               <div className="space-y-6">
@@ -207,6 +233,222 @@ export default function DatenschutzPage() {
                     der Nutzung nicht verbunden.
                   </p>
                 </div>
+
+                <div>
+                  <h3 className="text-lg font-medium text-[#1c1917] mb-3">
+                    Speicherung beim KI-Anbieter
+                  </h3>
+                  <p>
+                    Mistral speichert die an die Schnittstelle übermittelten Ein- und Ausgaben derzeit
+                    für <strong className="text-[#1c1917]">30 Tage</strong>, um Missbrauch zu erkennen,
+                    und löscht sie anschließend. Wir haben beantragt, diese Speicherung für unser Konto
+                    vollständig abzuschalten (Zero Data Retention); sobald das umgesetzt ist,
+                    aktualisieren wir diesen Hinweis.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* Zahlung und Rechnung */}
+            <section className="bg-white border border-[#1c1917]/8 shadow-sm rounded-2xl p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-[#1e3d32]/20 flex items-center justify-center">
+                  <FileText className="h-5 w-5 text-[#1e3d32]" />
+                </div>
+                <h2 className="text-xl font-semibold text-[#1c1917]">6. Zahlung und Rechnung</h2>
+              </div>
+
+              <div className="space-y-6 text-[#1c1917]/80 leading-relaxed text-base">
+                <div>
+                  <h3 className="text-lg font-medium text-[#1c1917] mb-3">Zahlungsabwicklung (Stripe)</h3>
+                  <p>
+                    Für die Bezahlung nutzen wir die Stripe Payments Europe, Ltd., 1 Grand Canal Street
+                    Lower, Dublin, Irland. Beim Kauf werden die dafür erforderlichen Daten (Name der
+                    Einrichtung, Rechnungsanschrift, E-Mail-Adresse, ggf. USt-IdNr. und Zahlungsdaten)
+                    an Stripe übermittelt. Ihre Kartendaten geben Sie ausschließlich bei Stripe ein; wir
+                    erhalten sie nicht. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung).
+                    Stripe kann Daten auch in den USA verarbeiten; die Übermittlung ist durch das
+                    EU-US Data Privacy Framework bzw. Standardvertragsklauseln abgesichert. Eine Kopie
+                    der Garantien erhalten Sie auf Anfrage unter office@aitema.de.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-medium text-[#1c1917] mb-3">Rechnungsstellung (Lexware Office)</h3>
+                  <p>
+                    Für die Erstellung der Rechnung setzen wir die Haufe-Lexware GmbH &amp; Co. KG
+                    (Lexware Office), Munzinger Straße 9, 79111 Freiburg, ein. Verarbeitet werden die
+                    Rechnungsdaten (Einrichtung, Anschrift, Leistung, Betrag). Rechtsgrundlage sind
+                    Art. 6 Abs. 1 lit. b DSGVO sowie Art. 6 Abs. 1 lit. c DSGVO in Verbindung mit den
+                    handels- und steuerrechtlichen Aufbewahrungspflichten (§ 147 AO, § 257 HGB).
+                    Rechnungsunterlagen bewahren wir für die Dauer dieser gesetzlichen Fristen auf.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* Newsletter */}
+            <section className="bg-white border border-[#1c1917]/8 shadow-sm rounded-2xl p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-[#1e3d32]/20 flex items-center justify-center">
+                  <Mail className="h-5 w-5 text-[#1e3d32]" />
+                </div>
+                <h2 className="text-xl font-semibold text-[#1c1917]">7. Newsletter</h2>
+              </div>
+
+              <div className="space-y-4 text-[#1c1917]/80 leading-relaxed text-base">
+                <p>
+                  Wenn Sie unseren Newsletter abonnieren, verwenden wir Ihre E-Mail-Adresse, um Ihnen
+                  Informationen zu Förderprogrammen und Fristen zu senden. Die Anmeldung erfolgt im
+                  Double-Opt-in-Verfahren: Sie erhalten zunächst eine E-Mail mit einem Bestätigungslink;
+                  erst nach dessen Aufruf nehmen wir Sie in den Verteiler auf.
+                </p>
+                <p>
+                  Zum Nachweis der Einwilligung speichern wir zusätzlich den Zeitpunkt der Anmeldung
+                  sowie IP-Adresse und Browserkennung (User-Agent). Rechtsgrundlage ist Ihre Einwilligung
+                  (Art. 6 Abs. 1 lit. a DSGVO); der Nachweis stützt sich auf Art. 7 Abs. 1 DSGVO.
+                </p>
+                <p>
+                  Sie können den Newsletter{" "}
+                  <strong className="text-[#1c1917]">jederzeit abbestellen</strong> — über den Abmeldelink
+                  in jeder E-Mail oder formlos an office@aitema.de. Der Widerruf berührt die
+                  Rechtmäßigkeit der bis dahin erfolgten Verarbeitung nicht. Anmeldungen, die nicht
+                  binnen 30 Tagen bestätigt werden, löschen wir automatisch. Für den Versand nutzen wir
+                  Resend (siehe Abschnitt 4).
+                </p>
+              </div>
+            </section>
+
+            {/* Endgeräte-Speicherung */}
+            <section className="bg-white border border-[#1c1917]/8 shadow-sm rounded-2xl p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-[#1e3d32]/20 flex items-center justify-center">
+                  <Lock className="h-5 w-5 text-[#1e3d32]" />
+                </div>
+                <h2 className="text-xl font-semibold text-[#1c1917]">
+                  8. Speicherung auf Ihrem Endgerät
+                </h2>
+              </div>
+
+              <div className="space-y-4 text-[#1c1917]/80 leading-relaxed text-base">
+                <p>
+                  Wir setzen <strong className="text-[#1c1917]">keine Tracking-Cookies und keine
+                  Analysedienste</strong> ein. Gespeichert wird ausschließlich, was für den von Ihnen
+                  gewünschten Dienst erforderlich ist — dafür ist nach § 25 Abs. 2 Nr. 2 TDDDG keine
+                  Einwilligung nötig, ein Cookie-Banner entfällt daher.
+                </p>
+
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-[#1c1917]/10">
+                        <th className="py-3 pr-4 font-semibold text-[#1c1917]">Was</th>
+                        <th className="py-3 pr-4 font-semibold text-[#1c1917]">Zweck</th>
+                        <th className="py-3 font-semibold text-[#1c1917]">Dauer</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-[#1c1917]/6 align-top">
+                        <td className="py-3 pr-4">Identitäts-Cookie (<code>edufunds_identity</code>)</td>
+                        <td className="py-3 pr-4">
+                          Wiederaufnahme Ihrer Anträge ohne erneute Anmeldung
+                        </td>
+                        <td className="py-3">30 Tage</td>
+                      </tr>
+                      <tr className="border-b border-[#1c1917]/6 align-top">
+                        <td className="py-3 pr-4">Anmelde-Cookie (Verwaltungsbereich)</td>
+                        <td className="py-3 pr-4">Sitzung im Administrationsbereich</td>
+                        <td className="py-3">bis zur Abmeldung</td>
+                      </tr>
+                      <tr className="border-b border-[#1c1917]/6 align-top">
+                        <td className="py-3 pr-4">Lokaler Speicher (localStorage)</td>
+                        <td className="py-3 pr-4">
+                          Zwischenstand im Antrags-Assistenten, Angaben zu Ihrer Einrichtung,
+                          Zwischenspeicher der Programmsuche
+                        </td>
+                        <td className="py-3">bis Sie ihn löschen</td>
+                      </tr>
+                      <tr className="align-top">
+                        <td className="py-3 pr-4">Stripe (nur im Bezahlvorgang)</td>
+                        <td className="py-3 pr-4">Betrugsprävention und Zahlungsabwicklung</td>
+                        <td className="py-3">siehe Stripe</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+
+            {/* Speicherdauer */}
+            <section className="bg-white border border-[#1c1917]/8 shadow-sm rounded-2xl p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-[#1e3d32]/20 flex items-center justify-center">
+                  <Server className="h-5 w-5 text-[#1e3d32]" />
+                </div>
+                <h2 className="text-xl font-semibold text-[#1c1917]">
+                  9. Speicherdauer und Löschung
+                </h2>
+              </div>
+
+              <div className="space-y-4 text-[#1c1917]/80 leading-relaxed text-base">
+                <p>
+                  Wir löschen oder anonymisieren personenbezogene Daten automatisiert, sobald der Zweck
+                  entfällt (Art. 5 Abs. 1 lit. e DSGVO). Ein täglich laufender Prozess setzt die
+                  folgenden Fristen durch:
+                </p>
+
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-[#1c1917]/10">
+                        <th className="py-3 pr-4 font-semibold text-[#1c1917]">Daten</th>
+                        <th className="py-3 pr-4 font-semibold text-[#1c1917]">Was geschieht</th>
+                        <th className="py-3 font-semibold text-[#1c1917]">Frist</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-[#1c1917]/6 align-top">
+                        <td className="py-3 pr-4">Bezahlte Anträge</td>
+                        <td className="py-3 pr-4">
+                          Inhalt und Personenbezug werden anonymisiert (Export vorher jederzeit möglich);
+                          Rechnungsdaten bleiben wegen der steuerlichen Aufbewahrungspflicht erhalten
+                        </td>
+                        <td className="py-3">12 Monate ab Kauf</td>
+                      </tr>
+                      <tr className="border-b border-[#1c1917]/6 align-top">
+                        <td className="py-3 pr-4">Unbezahlte Entwürfe mit E-Mail-Adresse</td>
+                        <td className="py-3 pr-4">Inhalt, E-Mail und IP-Adresse werden entfernt</td>
+                        <td className="py-3">90 Tage ohne Aktivität</td>
+                      </tr>
+                      <tr className="border-b border-[#1c1917]/6 align-top">
+                        <td className="py-3 pr-4">Unbezahlte Entwürfe ohne E-Mail-Adresse</td>
+                        <td className="py-3 pr-4">werden gelöscht</td>
+                        <td className="py-3">180 Tage</td>
+                      </tr>
+                      <tr className="border-b border-[#1c1917]/6 align-top">
+                        <td className="py-3 pr-4">IP-Adresse, Browserkennung</td>
+                        <td className="py-3 pr-4">werden entfernt</td>
+                        <td className="py-3">90 Tage</td>
+                      </tr>
+                      <tr className="border-b border-[#1c1917]/6 align-top">
+                        <td className="py-3 pr-4">Unbestätigte Newsletter-Anmeldungen</td>
+                        <td className="py-3 pr-4">werden gelöscht</td>
+                        <td className="py-3">30 Tage</td>
+                      </tr>
+                      <tr className="align-top">
+                        <td className="py-3 pr-4">Rechnungs- und Buchhaltungsunterlagen</td>
+                        <td className="py-3 pr-4">bleiben aufbewahrt (gesetzliche Pflicht)</td>
+                        <td className="py-3">§ 147 AO, § 257 HGB</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <p>
+                  Bestätigte Newsletter-Abonnenten bleiben gespeichert, bis Sie sich abmelden.
+                  Kontaktanfragen bewahren wir so lange auf, wie es zur Bearbeitung und zur Beantwortung
+                  von Rückfragen erforderlich ist.
+                </p>
               </div>
             </section>
 
@@ -216,11 +458,11 @@ export default function DatenschutzPage() {
                 <div className="w-10 h-10 rounded-xl bg-[#1e3d32]/20 flex items-center justify-center">
                   <FileText className="h-5 w-5 text-[#1e3d32]" />
                 </div>
-                <h2 className="text-xl font-semibold text-[#1c1917]">6. Ihre Rechte</h2>
+                <h2 className="text-xl font-semibold text-[#1c1917]">10. Ihre Rechte</h2>
               </div>
 
               <p className="text-[#1c1917]/80 mb-4 text-base">Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:</p>
-              
+
               <ul className="space-y-3 text-[#1c1917]/80 text-base">
                 <li className="flex items-start gap-3">
                   <span className="text-[#1e3d32] mt-1">•</span>
@@ -242,17 +484,57 @@ export default function DatenschutzPage() {
                   <span className="text-[#1e3d32] mt-1">•</span>
                   <span>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</span>
                 </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-[#1e3d32] mt-1">•</span>
+                  <span>
+                    <strong className="text-[#1c1917]">Recht auf Widerspruch (Art. 21 DSGVO)</strong> gegen
+                    Verarbeitungen, die wir auf ein berechtigtes Interesse stützen
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-[#1e3d32] mt-1">•</span>
+                  <span>
+                    <strong className="text-[#1c1917]">Recht auf Widerruf einer Einwilligung (Art. 7 Abs. 3 DSGVO)</strong> —
+                    etwa für den Newsletter, jederzeit und mit Wirkung für die Zukunft
+                  </span>
+                </li>
               </ul>
 
               <p className="text-[#1c1917]/80 mt-4 text-base">
                 Zur Ausübung Ihrer Rechte kontaktieren Sie bitte:{" "}
-                <a 
+                <a
                   href="mailto:office@aitema.de"
                   className="text-[#1e3d32] hover:text-[#2a5244] transition-colors underline underline-offset-2"
                 >
                   office@aitema.de
                 </a>
               </p>
+
+              <div className="mt-6 rounded-xl bg-[#fdfdfc] border border-[#1c1917]/8 p-6">
+                <h3 className="text-lg font-medium text-[#1c1917] mb-3">
+                  Beschwerderecht bei der Aufsichtsbehörde (Art. 77 DSGVO)
+                </h3>
+                <p className="text-[#1c1917]/80 leading-relaxed text-base">
+                  Unabhängig davon können Sie sich jederzeit bei einer Datenschutz-Aufsichtsbehörde
+                  beschweren. Für uns zuständig ist:
+                </p>
+                <div className="text-[#1c1917]/80 mt-3 space-y-1 text-base">
+                  <p className="font-medium text-[#1c1917]">
+                    Berliner Beauftragte für Datenschutz und Informationsfreiheit
+                  </p>
+                  <p>Alt-Moabit 59–61, 10555 Berlin</p>
+                  <p>
+                    <a
+                      href="https://www.datenschutz-berlin.de"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#1e3d32] hover:text-[#2a5244] transition-colors underline underline-offset-2"
+                    >
+                      www.datenschutz-berlin.de
+                    </a>
+                  </p>
+                </div>
+              </div>
             </section>
 
             {/* SSL */}
@@ -261,7 +543,7 @@ export default function DatenschutzPage() {
                 <div className="w-10 h-10 rounded-xl bg-[#1e3d32]/20 flex items-center justify-center">
                   <Lock className="h-5 w-5 text-[#1e3d32]" />
                 </div>
-                <h2 className="text-xl font-semibold text-[#1c1917]">7. SSL-/TLS-Verschlüsselung</h2>
+                <h2 className="text-xl font-semibold text-[#1c1917]">11. SSL-/TLS-Verschlüsselung</h2>
               </div>
 
               <p className="text-[#1c1917]/80 leading-relaxed text-base">
@@ -275,7 +557,7 @@ export default function DatenschutzPage() {
 
           {/* Stand */}
           <p className="text-center text-[#64748b] text-sm mt-12">
-            Stand: Juni 2026
+            Stand: Juli 2026
           </p>
         </div>
       </main>

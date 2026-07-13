@@ -97,12 +97,12 @@ const faqs = [
   {
     question: "Was ist ein Antrag?",
     answer:
-      "Ein Antrag in EduFunds ist ein vollständig ausgefüllter Förderantrag, den unsere KI basierend auf Ihren Angaben und den Anforderungen des Förderprogramms generiert. Jeder Antrag ist individuell angepasst, professionell formuliert und bereit zur Einreichung. Sie können den Antrag als PDF exportieren oder online bearbeiten.",
+      "Ein Antrag in EduFunds ist ein vollständig ausgearbeiteter Antragsentwurf, den unsere KI aus Ihren Angaben und den Anforderungen des Förderprogramms erstellt — individuell angepasst und professionell formuliert. Sie prüfen den Entwurf, passen ihn an und reichen ihn selbst ein; exportieren lässt er sich als PDF, Word oder Text.",
   },
   {
     question: "Wie funktioniert die KI-Generierung?",
     answer:
-      "Unsere KI analysiert die spezifischen Anforderungen des gewählten Förderprogramms und kombiniert diese mit Ihren Projektinformationen. Sie erstellt professionelle Antragstexte, die auf erfolgreichen Vorlagen basieren und von Pädagogen optimiert wurden. Die KI berücksichtigt Fristen, Förderkriterien und formale Anforderungen.",
+      "Unsere KI wertet die Anforderungen des gewählten Förderprogramms aus und verbindet sie mit Ihren Projektangaben. Daraus entsteht ein Antragsentwurf, der die uns bekannten Förderkriterien und Formvorgaben aufgreift. Weil KI Fehler machen kann, prüfen Sie den Entwurf vor der Einreichung — Fristen und formale Anforderungen bestätigen Sie bitte immer beim Fördergeber selbst.",
   },
   {
     question: "Brauche ich ein Abonnement?",
@@ -117,7 +117,7 @@ const faqs = [
   {
     question: "Was passiert mit meinen Anträgen?",
     answer:
-      "Alle generierten Anträge bleiben in Ihrem Account gespeichert und einsehbar und lassen sich jederzeit als PDF exportieren. Für einen neuen Antrag wird ein freier Credit aus Ihrem Kontingent verbraucht oder ein Einzelantrag gekauft.",
+      "Freigeschaltete Anträge sind 12 Monate ab Kauf in Ihrem Account abrufbar und lassen sich jederzeit exportieren (PDF, Word, Text) — danach werden die Inhalte anonymisiert, exportieren Sie sie also rechtzeitig. Unbezahlte Entwürfe, an denen 90 Tage nicht gearbeitet wurde, werden ebenfalls anonymisiert. Für einen neuen Antrag wird ein freier Credit aus Ihrem Kontingent verbraucht oder ein Einzelantrag gekauft.",
   },
   {
     question: "Gibt es eine Mindestlaufzeit oder Kündigungsfrist?",
@@ -127,7 +127,7 @@ const faqs = [
   {
     question: "Sind meine Daten sicher?",
     answer:
-      "Ja, Datenschutz hat für uns höchste Priorität. Alle Daten werden ausschließlich in deutschen Rechenzentren gespeichert, sind DSGVO-konform und verschlüsselt. Wir geben keine Daten an Dritte weiter und verwenden Ihre Informationen nur für die Antragserstellung.",
+      "Ihre Daten werden bei Hetzner in Deutschland gespeichert und verschlüsselt übertragen. Die KI-Verarbeitung läuft bei Mistral AI (Paris) im europäischen Wirtschaftsraum — es findet kein Transfer in Drittländer statt, und Ihre Eingaben werden nicht zum Training von KI-Modellen verwendet. Vor der Übermittlung an die KI entfernen wir automatisch Identifikatoren wie E-Mail-Adressen, Telefonnummern und IBANs aus Freitexten. Wir setzen keine Tracking- oder Analysedienste ein. Einzelheiten in der Datenschutzerklärung und unter „AVV & Subprozessoren“.",
   },
 ];
 
