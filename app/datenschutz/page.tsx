@@ -166,13 +166,23 @@ export default function DatenschutzPage() {
                 </p>
 
                 <div>
-                  <h3 className="text-lg font-medium text-[#1c1917] mb-3">KI-Anbieter (Mistral AI, EU)</h3>
+                  <h3 className="text-lg font-medium text-[#1c1917] mb-3">
+                    KI-Anbieter (Mistral AI, EU/EWR)
+                  </h3>
                   <p>
                     Als KI-Dienstleister setzen wir die Mistral AI SAS, 15 rue des Halles, 75001 Paris,
-                    Frankreich, ein. Die Verarbeitung erfolgt innerhalb der Europäischen Union; eine
-                    Übermittlung in ein Drittland findet nicht statt. Mistral ist unser
-                    Auftragsverarbeiter im Sinne von Art. 28 DSGVO; ein Vertrag zur Auftragsverarbeitung
-                    liegt vor. Ihre Eingaben und die erzeugten Ausgaben werden vom Anbieter
+                    Frankreich, ein. Die Verarbeitung erfolgt innerhalb des Europäischen
+                    Wirtschaftsraums (Rechenzentren in Schweden und Norwegen); eine Übermittlung in
+                    ein Drittland findet nicht statt. Mistral ist unser Auftragsverarbeiter im Sinne
+                    von Art. 28 DSGVO; ein Vertrag zur Auftragsverarbeitung liegt vor. Die
+                    eingesetzten Subprozessoren führen wir unter{" "}
+                    <a
+                      href="/avv"
+                      className="text-[#1e3d32] hover:text-[#2a5244] transition-colors underline underline-offset-2"
+                    >
+                      AVV &amp; Subprozessoren
+                    </a>{" "}
+                    auf. Ihre Eingaben und die erzeugten Ausgaben werden vom Anbieter
                     <strong className="text-[#1c1917]"> nicht zum Training von KI-Modellen</strong> verwendet.
                   </p>
                 </div>
