@@ -1,19 +1,45 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { FileText, Clock, Percent, Shield, CheckCircle, Euro } from "lucide-react";
+import Link from "next/link";
+import { FileText, Sparkles } from "lucide-react";
+import { EINZELPREIS_CENTS, formatEur } from "@/lib/payments/packs";
 
 export const metadata = {
   title: "AGB | EduFunds",
   description: "Allgemeine Geschäftsbedingungen der EduFunds Plattform.",
 };
 
+/**
+ * Paragraph-Baustein — hält die 14 Abschnitte optisch identisch.
+ */
+function Paragraf({
+  nr,
+  titel,
+  children,
+}: {
+  nr: string;
+  titel: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
+      <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
+        <span className="text-[#1e3d32] font-bold">{nr}</span>
+        {titel}
+      </h2>
+      <div className="text-[#1c1917]/80 space-y-4 leading-relaxed text-base">{children}</div>
+    </section>
+  );
+}
+
 export default function AGBPage() {
+  const einzelpreis = formatEur(EINZELPREIS_CENTS);
+
   return (
     <>
       <Header />
       <main id="main-content" className="min-h-screen pt-24 pb-20 bg-[#fdfdfc]">
         <div className="container mx-auto px-4 max-w-4xl">
-          {/* Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1e3d32]/10 border border-[#1e3d32]/20 mb-6">
               <FileText className="h-4 w-4 text-[#1e3d32]" />
@@ -27,269 +53,290 @@ export default function AGBPage() {
             </p>
           </div>
 
-          {/* Hinweis */}
           <div className="bg-white rounded-xl p-6 mb-8 border-l-4 border-[#1e3d32] shadow-sm">
             <p className="text-[#1c1917]/80 text-base leading-relaxed">
-              Dies ist eine Übersetzung zur Information. Die deutsche Version ist rechtsverbindlich. 
-              Diese AGB gelten für Verträge zwischen der aitema GmbH und Unternehmern im Sinne 
-              des § 14 BGB.
+              Diese AGB gelten für Verträge zwischen der aitema GmbH und Unternehmern im Sinne
+              des § 14 BGB — insbesondere Fördervereinen, Schulen und Schulträgern. Ein
+              Vertragsschluss mit Verbrauchern findet nicht statt.
             </p>
           </div>
 
-          {/* Content */}
           <div className="space-y-8">
-            {/* § 1 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#1e3d32] font-bold">§ 1</span>
-                Geltungsbereich
-              </h2>
-              <div className="text-[#1c1917]/80 space-y-4 leading-relaxed text-base">
-                <p>
-                  (1) Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge zwischen der 
-                  aitema GmbH, Prenzlauer Allee 229, 10405 Berlin (nachfolgend „Anbieter") 
-                  und dem Kunden (nachfolgend „Kunde") über die Erbringung von Software-as-a-Service 
-                  (SaaS) und Beratungsleistungen.
-                </p>
-                <p>
-                  (2) Diese AGB gelten ausschließlich für Unternehmer im Sinne des § 14 BGB, 
-                  juristische Personen des öffentlichen Rechts und öffentlich-rechtliche 
-                  Sondervermögen. Als Unternehmer gelten auch eingetragene Vereine, Verbände, 
-                  Stiftungen und sonstige Organisationen, unabhängig von ihrer Gemeinnützigkeit.
-                </p>
-              </div>
-            </section>
-
-            {/* § 2 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#1e3d32] font-bold">§ 2</span>
-                Vertragsschluss
-              </h2>
-              <p className="text-[#1c1917]/80 leading-relaxed text-base">
-                Der Vertrag kommt zustande durch: (a) Unterzeichnung eines individuellen Vertrags 
-                oder Angebots durch beide Parteien, (b) schriftliche Auftragsbestätigung durch den 
-                Anbieter aufgrund einer Bestellung durch den Kunden, oder (c) Aktivierung des 
-                Kundenkontos nach Registrierung und Bestätigung durch den Anbieter.
+            <Paragraf nr="§ 1" titel="Geltungsbereich">
+              <p>
+                (1) Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge zwischen der
+                aitema GmbH, Prenzlauer Allee 229, 10405 Berlin (nachfolgend „Anbieter") und dem
+                Kunden über die Nutzung der Plattform EduFunds.
               </p>
-            </section>
-
-            {/* § 3 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#1c1917] mb-6 flex items-center gap-3">
-                <span className="text-[#1e3d32] font-bold">§ 3</span>
-                Leistungen
-              </h2>
-
-              <div className="space-y-6">
-                <div className="bg-[#fdfdfc] rounded-xl p-6 border border-[#1c1917]/8">
-                  <h3 className="text-lg font-medium text-[#1c1917] mb-3 flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-[#1e3d32]" />
-                    SaaS-Leistungen
-                  </h3>
-                  <p className="text-[#1c1917]/80 leading-relaxed text-base">
-                    Der Anbieter stellt dem Kunden die vertraglich vereinbarte Software zur Nutzung 
-                    über das Internet zur Verfügung. Der Anbieter garantiert eine Verfügbarkeit der 
-                    Software von <strong className="text-[#1c1917]">98,5%</strong> im Jahresmittel.
-                  </p>
-                </div>
-
-                <div className="bg-[#fdfdfc] rounded-xl p-6 border border-[#1c1917]/8">
-                  <h3 className="text-lg font-medium text-[#1c1917] mb-3 flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-[#1e3d32]" />
-                    Beratungsleistungen
-                  </h3>
-                  <p className="text-[#1c1917]/80 leading-relaxed text-base">
-                    Beratungsleistungen werden auf Basis eines separaten Angebots oder einer 
-                    Leistungsbeschreibung erbracht. Sofern nicht anders vereinbart, werden 
-                    Beratungsleistungen nach Aufwand abgerechnet.
-                  </p>
-                </div>
-
-                <div className="bg-[#fdfdfc] rounded-xl p-6 border border-[#1c1917]/8">
-                  <h3 className="text-lg font-medium text-[#1c1917] mb-3 flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-[#1e3d32]" />
-                    Support
-                  </h3>
-                  <p className="text-[#1c1917]/80 leading-relaxed text-base">
-                    Der Anbieter bietet Support per E-Mail an: Montag bis Freitag, 09:00 – 17:00 
-                    (MEZ/MESZ), ausgenommen gesetzliche Feiertage in Berlin.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            {/* § 4 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#1e3d32] font-bold">§ 4</span>
-                Pflichten des Kunden
-              </h2>
-              <p className="text-[#1c1917]/80 leading-relaxed text-base">
-                Der Kunde stellt sicher, dass die bereitgestellten Daten vollständig und richtig sind. 
-                Der Kunde ist verantwortlich für die sichere Aufbewahrung von Zugangsdaten, die 
-                Einhaltung geltender Gesetze, die Rechtmäßigkeit der eingegebenen Daten sowie die 
-                Einholung erforderlicher Einwilligungen Dritter.
+              <p>
+                (2) Diese AGB gelten ausschließlich für Unternehmer im Sinne des § 14 BGB,
+                juristische Personen des öffentlichen Rechts und öffentlich-rechtliche
+                Sondervermögen. Als Unternehmer gelten auch eingetragene Vereine (insbesondere
+                Fördervereine), Verbände, Stiftungen und sonstige Organisationen, unabhängig von
+                ihrer Gemeinnützigkeit. Ein Vertragsschluss mit Verbrauchern im Sinne des § 13
+                BGB findet nicht statt; der Kunde bestätigt beim Kauf, dass er im Namen einer
+                Einrichtung handelt.
               </p>
-            </section>
+              <p>
+                (3) Abweichende Bedingungen des Kunden werden nicht Vertragsbestandteil, es sei
+                denn, der Anbieter stimmt ihrer Geltung ausdrücklich in Textform zu.
+              </p>
+            </Paragraf>
 
-            {/* § 5 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#1e3d32] font-bold">§ 5</span>
-                Vergütung und Zahlung
-              </h2>
-              <div className="text-[#1c1917]/80 space-y-4 text-base">
-                <div className="flex items-center gap-3">
-                  <Euro className="h-5 w-5 text-[#1e3d32]" />
-                  <p>Alle Preise verstehen sich zuzüglich gesetzlicher Umsatzsteuer.</p>
-                </div>
-                <p className="leading-relaxed">
-                  Sofern nicht anders vereinbart, sind Rechnungen innerhalb von 14 Tagen nach 
-                  Rechnungsdatum ohne Abzug zur Zahlung fällig.
-                </p>
-              </div>
-            </section>
+            <Paragraf nr="§ 2" titel="Leistungsgegenstand">
+              <p>
+                (1) Der Anbieter stellt über EduFunds eine Software zur Verfügung, mit der Kunden
+                Förderprogramme recherchieren und Entwürfe von Förderanträgen mit Unterstützung
+                künstlicher Intelligenz erstellen können.
+              </p>
+              <p>
+                (2) Die Recherche in der Förderdatenbank ist kostenfrei nutzbar. Kostenpflichtig
+                ist die Erstellung und Freischaltung eines KI-generierten Antragsentwurfs.
+              </p>
+              <p>
+                (3) Der Anbieter reicht keine Anträge ein und tritt nicht gegenüber Fördergebern
+                auf. Die Einreichung, die Kommunikation mit dem Fördergeber und die Einhaltung
+                von Fristen liegen allein beim Kunden.
+              </p>
+              <p>
+                (4) Der Anbieter schuldet keine Rechts-, Steuer- oder Förderberatung im Sinne des
+                Rechtsdienstleistungsgesetzes.
+              </p>
+            </Paragraf>
 
-            {/* § 6 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
+            <Paragraf nr="§ 3" titel="Vertragsschluss">
+              <p>
+                (1) Die Darstellung der Leistungen auf der Plattform ist kein bindendes Angebot,
+                sondern eine Aufforderung zur Bestellung.
+              </p>
+              <p>
+                (2) Der Kunde gibt ein verbindliches Angebot ab, indem er im Bestellvorgang die
+                kostenpflichtige Leistung auswählt, seine Angaben vervollständigt und den
+                Bezahlvorgang über den Zahlungsdienstleister abschließt.
+              </p>
+              <p>
+                (3) Der Vertrag kommt mit der Bestätigung der Zahlung zustande. Der Anbieter
+                bestätigt den Vertragsschluss unverzüglich per E-Mail; die Rechnung wird
+                ebenfalls per E-Mail übermittelt.
+              </p>
+            </Paragraf>
+
+            <Paragraf nr="§ 4" titel="Preise und Zahlung">
+              <p>
+                (1) Der Preis für einen Einzelantrag beträgt {einzelpreis}{" "}
+                <strong className="text-[#1c1917]">
+                  inklusive der gesetzlichen Umsatzsteuer von derzeit 19 %
+                </strong>
+                . Die auf der Plattform ausgewiesenen Preise sind Bruttopreise; ein Preis
+                versteht sich stets einschließlich Umsatzsteuer.
+              </p>
+              <p>
+                (2) Kontingente sind Vorkasse-Pakete: Der Kunde erwirbt eine bestimmte Anzahl von
+                Anträgen im Voraus. Es besteht kein Abonnement; es erfolgt keine automatische
+                Verlängerung und keine wiederkehrende Zahlung.
+              </p>
+              <p>
+                (3) Erworbene Kontingente sind ab Kauf 12 Monate gültig. Nach Ablauf verfallen
+                nicht genutzte Anträge, sofern nichts anderes vereinbart ist.
+              </p>
+              <p>
+                (4) Die Zahlung erfolgt über den Zahlungsdienstleister Stripe. Es gelten ergänzend
+                dessen Bedingungen für die Zahlungsabwicklung.
+              </p>
+            </Paragraf>
+
+            <Paragraf nr="§ 5" titel="Leistungserbringung und Verfügbarkeit">
+              <p>
+                (1) Der Anbieter erbringt die Leistung mit der Sorgfalt eines ordentlichen
+                Kaufmanns und ist um eine hohe Verfügbarkeit der Plattform bemüht.
+              </p>
+              <p>
+                (2) Eine bestimmte Verfügbarkeitsquote wird nicht zugesichert. Wartungsfenster,
+                Störungen bei Vorleistern und Ereignisse höherer Gewalt können zu vorübergehenden
+                Einschränkungen führen.
+              </p>
+            </Paragraf>
+
+            {/* Kernklausel — optisch hervorgehoben, weil sie die Erwartung des Kunden steuert. */}
+            <section className="bg-white rounded-2xl p-8 border-l-4 border-[#1e3d32] border-y border-r border-[#1c1917]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
                 <span className="text-[#1e3d32] font-bold">§ 6</span>
-                Vertragslaufzeit und Kündigung
-              </h2>
-              <div className="text-[#1c1917]/80 space-y-4 text-base">
-                <div className="flex items-start gap-3">
-                  <Clock className="h-5 w-5 text-[#1e3d32] mt-0.5 shrink-0" />
-                  <div>
-                    <p className="leading-relaxed">
-                      SaaS-Verträge haben eine Mindestlaufzeit von <strong className="text-[#1c1917]">12 Monaten</strong>. 
-                      Nach Ablauf verlängert sich der Vertrag automatisch um weitere 12 Monate, 
-                      sofern nicht gekündigt wird.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Percent className="h-5 w-5 text-[#1e3d32] mt-0.5 shrink-0" />
-                  <p className="leading-relaxed">
-                    SaaS-Verträge können nach der Mindestlaufzeit mit einer Kündigungsfrist von 
-                    <strong className="text-[#1c1917]"> 30 Tagen</strong> zum Ende eines Kalendermonats gekündigt werden.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            {/* § 7 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#1e3d32] font-bold">§ 7</span>
-                Nutzungsrechte
-              </h2>
-              <p className="text-[#1c1917]/80 leading-relaxed text-base">
-                Der Anbieter räumt dem Kunden ein einfaches, nicht übertragbares, nicht 
-                unterlizenzierbares Recht ein, die bereitgestellte Software für die Dauer des 
-                Vertrags zu nutzen. Der Kunde bleibt alleiniger Eigentümer aller Rechte an den 
-                Kundendaten. Der Anbieter verwendet Kundendaten nicht zum Trainieren von KI-Modellen.
-              </p>
-            </section>
-
-            {/* § 8 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#1e3d32] font-bold">§ 8</span>
-                Datenschutz
-              </h2>
-              <div className="text-[#1c1917]/80 space-y-4 text-base">
-                <div className="flex items-start gap-3">
-                  <Shield className="h-5 w-5 text-[#1e3d32] mt-0.5 shrink-0" />
-                  <p className="leading-relaxed">
-                    Die Parteien verpflichten sich, die geltenden Datenschutzvorschriften, insbesondere 
-                    DSGVO und BDSG, einzuhalten. Soweit der Anbieter personenbezogene Daten im Auftrag 
-                    des Kunden verarbeitet, schließen die Parteien einen Auftragsverarbeitungsvertrag 
-                    gemäß Art. 28 DSGVO ab.
-                  </p>
-                </div>
-                <p className="text-base">
-                  → <a href="/datenschutz" className="text-[#1e3d32] hover:text-[#1e3d32] transition-colors underline underline-offset-2">Zur Datenschutzerklärung</a>
-                  {" · "}
-                  <a href="/avv" className="text-[#1e3d32] hover:text-[#1e3d32] transition-colors underline underline-offset-2">AVV &amp; Subprozessoren</a>
-                </p>
-              </div>
-            </section>
-
-            {/* § 9 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#1e3d32] font-bold">§ 9</span>
-                Gewährleistung
-              </h2>
-              <p className="text-[#1c1917]/80 leading-relaxed text-base">
-                Der Anbieter gewährleistet, dass die Software im Wesentlichen der vereinbarten 
-                Leistungsbeschreibung entspricht. Mängel werden innerhalb angemessener Frist 
-                beseitigt. Gewährleistungsansprüche verjähren 12 Monate nach Lieferung oder 
-                Bereitstellung der mangelhaften Leistung.
-              </p>
-            </section>
-
-            {/* § 10 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#1e3d32] font-bold">§ 10</span>
-                Haftung
+                <Sparkles className="h-5 w-5 text-[#1e3d32]" />
+                KI-generierte Ergebnisse — keine Erfolgsgarantie
               </h2>
               <div className="text-[#1c1917]/80 space-y-4 leading-relaxed text-base">
                 <p>
-                  Der Anbieter haftet unbeschränkt bei Vorsatz und grober Fahrlässigkeit, für 
-                  Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit sowie 
-                  nach den Vorschriften des Produkthaftungsgesetzes.
+                  (1) Die Antragstexte werden maschinell durch ein KI-System erzeugt. Sie sind ein{" "}
+                  <strong className="text-[#1c1917]">Entwurf</strong> und keine fertige, geprüfte
+                  Einreichung.
                 </p>
                 <p>
-                  Bei leicht fahrlässiger Verletzung wesentlicher Vertragspflichten ist die 
-                  Haftung auf die Summe der Vergütung begrenzt, die der Kunde in den letzten 
-                  12 Monaten gezahlt hat.
+                  (2) KI-Systeme können inhaltlich falsche, unvollständige oder erfundene Angaben
+                  erzeugen. Der Kunde ist verpflichtet, jeden Entwurf vor der Einreichung
+                  inhaltlich zu prüfen, insbesondere Zahlen, Fristen, Förderkriterien und Angaben
+                  zur eigenen Einrichtung.
                 </p>
+                <p>
+                  (3) Der Anbieter gewährleistet nicht, dass ein mit EduFunds erstellter Antrag
+                  den formalen Anforderungen eines konkreten Förderprogramms genügt, fristgerecht
+                  ist oder zu einer{" "}
+                  <strong className="text-[#1c1917]">
+                    Bewilligung oder Auszahlung von Fördermitteln
+                  </strong>{" "}
+                  führt. Eine Erfolgsgarantie wird ausdrücklich nicht übernommen.
+                </p>
+                <p>(4) Die Verantwortung für den eingereichten Antrag trägt allein der Kunde.</p>
               </div>
             </section>
 
-            {/* § 11-14 */}
-            <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
-              <h2 className="text-xl font-semibold text-[#1c1917] mb-4 flex items-center gap-3">
-                <span className="text-[#1e3d32] font-bold">§ 11-14</span>
-                Weitere Bestimmungen
-              </h2>
-              <div className="text-[#1c1917]/80 space-y-3 text-base">
-                <p><strong className="text-[#1c1917]">Verschwiegenheit:</strong> 3 Jahre nach Vertragsende</p>
-                <p><strong className="text-[#1c1917]">Höhere Gewalt:</strong> Umfasst Pandemien, Cyberangriffe</p>
-                <p><strong className="text-[#1c1917]">Änderungen:</strong> 6 Wochen Vorankündigung</p>
-                <p><strong className="text-[#1c1917]">Anwendbares Recht:</strong> Deutsches Recht, unter Ausschluss des UN-Kaufrechts</p>
-                <p><strong className="text-[#1c1917]">Gerichtsstand:</strong> Berlin</p>
-              </div>
-            </section>
+            <Paragraf nr="§ 7" titel="Nutzungsrechte, Zugriffsdauer und KI-Training">
+              <p>
+                (1) Der Kunde erhält an den für ihn erstellten Antragstexten das
+                uneingeschränkte, zeitlich unbefristete Recht zur Nutzung, insbesondere zur
+                Einreichung bei Fördergebern.
+              </p>
+              <p>
+                (2) Der Kunde bleibt Inhaber der von ihm eingegebenen Daten. Der Anbieter
+                verwendet Kundendaten nicht zum Trainieren von KI-Modellen; dies ist auch mit dem
+                eingesetzten KI-Anbieter vertraglich sichergestellt.
+              </p>
+              <p>
+                (3) Der Online-Zugriff auf einen bezahlten Antrag über die Plattform besteht für
+                12 Monate ab Kauf. Danach werden die Antragsinhalte im Rahmen des Löschkonzepts
+                anonymisiert. Der Kunde ist gehalten, seinen Antrag rechtzeitig zu exportieren
+                (PDF, Word oder Text); der Export steht ihm jederzeit zur Verfügung.
+              </p>
+            </Paragraf>
 
-            {/* Anbieter */}
+            <Paragraf nr="§ 8" titel="Pflichten des Kunden">
+              <p>
+                (1) Der Kunde stellt sicher, dass die von ihm eingegebenen Angaben richtig und
+                vollständig sind und dass er zur Verwendung etwaiger Inhalte Dritter berechtigt
+                ist.
+              </p>
+              <p>
+                (2) Der Kunde gibt in die Freitextfelder keine personenbezogenen Daten ein, soweit
+                dies nicht erforderlich ist. Der Anbieter weist hierauf in der Anwendung hin und
+                bereinigt Freitexte vor der Übermittlung an das KI-System automatisiert um
+                Identifikatoren.
+              </p>
+              <p>
+                (3) Der Kunde ist für die sichere Aufbewahrung seiner Zugangsdaten und
+                Freischaltcodes verantwortlich.
+              </p>
+            </Paragraf>
+
+            <Paragraf nr="§ 9" titel="Datenschutz und Auftragsverarbeitung">
+              <p>
+                (1) Die Einzelheiten der Verarbeitung ergeben sich aus der{" "}
+                <Link
+                  href="/datenschutz"
+                  className="text-[#1e3d32] hover:text-[#2a5244] transition-colors underline underline-offset-2"
+                >
+                  Datenschutzerklärung
+                </Link>
+                .
+              </p>
+              <p>
+                (2) Soweit der Anbieter personenbezogene Daten im Auftrag des Kunden verarbeitet,
+                schließen die Parteien einen Auftragsverarbeitungsvertrag nach Art. 28 DSGVO. Die
+                AVV-Fassung sowie die vollständige Liste der Subprozessoren sind unter{" "}
+                <Link
+                  href="/avv"
+                  className="text-[#1e3d32] hover:text-[#2a5244] transition-colors underline underline-offset-2"
+                >
+                  AVV &amp; Subprozessoren
+                </Link>{" "}
+                abrufbar bzw. auf Anfrage erhältlich.
+              </p>
+              <p>(3) Die KI-Verarbeitung findet ausschließlich in der Europäischen Union statt.</p>
+            </Paragraf>
+
+            <Paragraf nr="§ 10" titel="Gewährleistung">
+              <p>
+                (1) Der Anbieter gewährleistet, dass die Plattform im Wesentlichen der
+                Leistungsbeschreibung entspricht. § 6 (KI-generierte Ergebnisse) bleibt unberührt.
+              </p>
+              <p>
+                (2) Mängel werden innerhalb angemessener Frist beseitigt.
+                Gewährleistungsansprüche verjähren 12 Monate ab Bereitstellung der Leistung.
+              </p>
+            </Paragraf>
+
+            <Paragraf nr="§ 11" titel="Haftung">
+              <p>
+                (1) Der Anbieter haftet unbeschränkt bei Vorsatz und grober Fahrlässigkeit, für
+                Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit sowie nach
+                den Vorschriften des Produkthaftungsgesetzes.
+              </p>
+              <p>
+                (2) Bei leicht fahrlässiger Verletzung wesentlicher Vertragspflichten
+                (Kardinalpflichten) ist die Haftung auf den vertragstypischen, vorhersehbaren
+                Schaden begrenzt, höchstens jedoch auf die Summe der vom Kunden für die betroffene
+                Leistung gezahlten Vergütung.
+              </p>
+              <p>
+                (3) Im Übrigen ist die Haftung ausgeschlossen. Insbesondere haftet der Anbieter
+                nicht für entgangene Fördermittel, entgangenen Gewinn oder Folgeschäden, die
+                daraus entstehen, dass ein Antrag nicht bewilligt, verspätet oder fehlerhaft
+                eingereicht wurde.
+              </p>
+            </Paragraf>
+
+            <Paragraf nr="§ 12" titel="Vertragslaufzeit">
+              <p>
+                Der Vertrag über einen Einzelantrag oder ein Kontingent ist ein einmaliger
+                Kaufvertrag über digitale Leistungen. Es besteht kein Dauerschuldverhältnis, keine
+                Mindestlaufzeit und keine Kündigungsnotwendigkeit. Für die Gültigkeitsdauer von
+                Kontingenten gilt § 4 Abs. 3, für die Zugriffsdauer § 7 Abs. 3.
+              </p>
+            </Paragraf>
+
+            <Paragraf nr="§ 13" titel="Änderungen dieser AGB">
+              <p>
+                Der Anbieter kann diese AGB mit Wirkung für künftige Bestellungen ändern. Für
+                bereits abgeschlossene Verträge gilt die bei Vertragsschluss geltende Fassung.
+              </p>
+            </Paragraf>
+
+            <Paragraf nr="§ 14" titel="Schlussbestimmungen">
+              <p>(1) Es gilt deutsches Recht unter Ausschluss des UN-Kaufrechts.</p>
+              <p>
+                (2) Ausschließlicher Gerichtsstand für alle Streitigkeiten ist Berlin, sofern der
+                Kunde Kaufmann, juristische Person des öffentlichen Rechts oder
+                öffentlich-rechtliches Sondervermögen ist.
+              </p>
+              <p>
+                (3) Sollte eine Bestimmung unwirksam sein, bleibt die Wirksamkeit der übrigen
+                Bestimmungen unberührt.
+              </p>
+            </Paragraf>
+
             <section className="bg-white rounded-2xl p-8 border border-[#1c1917]/8 shadow-sm">
               <h2 className="text-xl font-semibold text-[#1c1917] mb-4">Anbieter</h2>
-              <div className="text-[#1c1917]/80 space-y-2 text-base">
+              <div className="text-[#1c1917]/80 space-y-1 text-base">
                 <p className="font-medium text-[#1c1917]">aitema GmbH</p>
                 <p>Prenzlauer Allee 229</p>
                 <p>10405 Berlin</p>
-                <p className="text-[#1c1917]/50">Deutschland</p>
+                <p>Deutschland</p>
                 <p className="pt-2">
                   E-Mail:{" "}
-                  <a 
-                    href="mailto:office@aitema.de" 
-                    className="text-[#1e3d32] hover:text-[#1e3d32] transition-colors underline underline-offset-2"
+                  <a
+                    href="mailto:office@aitema.de"
+                    className="text-[#1e3d32] hover:text-[#2a5244] transition-colors underline underline-offset-2"
                   >
                     office@aitema.de
                   </a>
                 </p>
+                <p className="pt-2 text-sm text-[#64748b]">
+                  Handelsregister: Amtsgericht Charlottenburg, HRB 283978 B · USt-IdNr.:
+                  DE461054353
+                </p>
               </div>
             </section>
           </div>
 
-          {/* Stand */}
-          <p className="text-center text-[#64748b] text-sm mt-12">
-            Stand: Februar 2026
-          </p>
+          <p className="mt-10 text-center text-sm text-[#64748b]">Stand: Juli 2026</p>
         </div>
       </main>
       <Footer />
