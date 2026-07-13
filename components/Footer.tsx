@@ -28,7 +28,8 @@ const footerLinks = {
     links: [
       { label: "Impressum", href: "/impressum" },
       { label: "Datenschutz", href: "/datenschutz" },
-      { label: "AGB", href: "/agb" }
+      { label: "AGB", href: "/agb" },
+      { label: "AVV & Subprozessoren", href: "/avv" }
     ]
   }
 };

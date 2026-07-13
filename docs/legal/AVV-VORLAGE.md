@@ -94,7 +94,9 @@ den Datenschutz vor.
 
 ---
 
-## Anlage 1 — Subprozessoren (Stand: Juni 2026)
+## Anlage 1 — Subprozessoren (Stand: Juli 2026)
+
+Öffentlich gespiegelt unter `/avv` — beide Listen müssen identisch bleiben.
 
 | Subprozessor | Sitz | Zweck | Datenstandort | Transfergrundlage |
 |---|---|---|---|---|
@@ -103,12 +105,23 @@ den Datenschutz vor.
 | **Stripe Payments Europe, Ltd.** | Irland (EU) / Stripe, Inc. (USA) | Zahlungsabwicklung | EU/USA | Angemessenheit/DPF bzw. SCC |
 | **Haufe-Lexware GmbH & Co. KG (lexoffice)** | Deutschland | Rechnungserstellung | DE | — (EU) |
 | **Resend (Plus Five Five, Inc.)** | USA | E-Mail-Versand (transaktional) | USA | DPF bzw. SCC |
-| **Cloudflare, Inc.** | USA | CDN / Proxy / Sicherheit | USA/EU | DPF bzw. SCC |
 
-> ⚠️ **Vor Finalisierung verifizieren (Kolja/Anwalt):** exakte Vertragspartner-
-> Gesellschaft je Dienst, aktuelle DPF-Zertifizierung (Stripe/Cloudflare/Resend),
-> jeweils gültige AVV/DPA-Fundstelle, und ob Cloudflare tatsächlich
-> personenbezogene Daten verarbeitet (Proxy-Konfiguration).
+**Cloudflare gestrichen (verifiziert 13.07.2026):** `edufunds.org` löst direkt auf den
+Hetzner-Server auf (49.13.15.44), die Antworten tragen keine Cloudflare-Header, und weder
+Code noch `.env.production` referenzieren den Dienst. Cloudflare wird **nicht eingesetzt** —
+die frühere Nennung (auch in der Datenschutzerklärung) war eine Falschangabe und behauptete
+einen US-Drittlandtransfer, den es nicht gibt. Ebenso: **keine Web-Analyse** (Google Analytics
+ist im Code vorhanden, aber ohne `NEXT_PUBLIC_GA_ID` inaktiv — siehe Warnung unten) und
+**keine CDN-Schriftarten** (`next/font` liefert self-hosted aus).
+
+> ⚠️ **Vor Finalisierung verifizieren (Kolja/Anwalt):** exakte Vertragspartner-Gesellschaft
+> je Dienst, aktuelle DPF-Zertifizierung (Stripe/Resend), jeweils gültige AVV/DPA-Fundstelle.
+>
+> 🔴 **Google Analytics:** `components/GoogleAnalytics.tsx` lädt bei gesetzter
+> `NEXT_PUBLIC_GA_ID` Google-Skripte und Cookies (2 Jahre Laufzeit) **ohne Einwilligung**.
+> `anonymize_ip` ändert daran nichts — § 25 TDDDG verlangt eine Einwilligung. Wird die
+> Variable gesetzt, sind diese Liste, die Datenschutzerklärung und die Aussage „kein
+> Cookie-Banner nötig" **sofort falsch** und ein Consent-Banner wird Pflicht.
 
 ## Anlage 2 — Technische und organisatorische Maßnahmen (Art. 32)
 Kurzfassung — vollständige TOM-Beschreibung separat pflegen:
