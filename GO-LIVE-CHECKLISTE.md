@@ -35,7 +35,7 @@ Definierter Umfang bis zum ersten **zahlenden** Kunden. „Fertig" = alle 🔴 e
 - 🟡 **C** **AI-Act Art. 50 Transparenz** (Deadline **02.08.2026**): (1) Wizard/Chatbot offenlegen „du interagierst mit KI"; (2) generierten Antrag/Export als KI-erzeugt kennzeichnen. Billig umzusetzen.
 - 🟡 **C** **Löschkonzept + Cron** (IP-Adressen in 3 Tabellen, abgelaufene Sessions/Magic-Links/Credit-Codes) — Art. 5(1)e. Vorhandene Cleanups betreffen nur Queue/Kandidaten.
 - 🟡 **C/A** **AVV-Vorlage für Org-Kunden** inkl. Subprozessor-Liste (Mistral/Stripe/Resend/Hetzner/Cloudflare) — Schulen/Fördervereine brauchen das zum Kauf.
-- 👤 **A** Rechtstexte final durch Fachanwalt IT-Recht/Datenschutz (AGB / AVV / Datenschutz / DSFA-Entwurf `docs/legal/DSFA-Wizard-LLM-ENTWURF.md`).
+- 👤 **A** Rechtstexte final durch Fachanwalt IT-Recht/Datenschutz (AGB / AVV / Datenschutz / DSFA-Entwurf `docs/legal/DSFA-SCHWELLWERTANALYSE.md`).
 
 ## 4 · LLM-Provider & Betrieb 🤖
 

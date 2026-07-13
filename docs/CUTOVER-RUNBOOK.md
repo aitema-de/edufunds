@@ -44,6 +44,25 @@ Cutover-Deploy. Stripe-Live und Provider-Flip sind bereits vorbereitet.
 > hinter Wartungsseite → intern verifizieren → Wartungsseite entfernen → öffentlich smoke-testen.**
 > So ist zu keinem Zeitpunkt die alte App exponiert und der neue Code wird geprüft, bevor er sichtbar wird.
 
+### 3.0 🔴 STOPP — Prüfen, welche AGB live gehen würde
+
+> **Die AGB-Neufassung liegt auf `feature/agb-neufassung`, NICHT auf `staging`.** Ein Cutover
+> vom heutigen Stand würde die **alte** Fassung veröffentlichen — mit „Preise zzgl. USt"
+> (während brutto abgerechnet wird), 12 Monaten Mindestlaufzeit und automatischer Verlängerung
+> (obwohl „kein Abo" verkauft wird) und **ohne** die KI-Klausel. Das ist genau der Zustand, den
+> die Neufassung beseitigen soll.
+>
+> Der Branch ist bewusst nicht gemergt, weil der Text zur anwaltlichen Freigabe steht.
+> **Reihenfolge daher zwingend:** Freigabe → `feature/agb-neufassung` → `staging` → erst dann
+> Cutover.
+
+```bash
+# Pflicht-Check vor dem Merge nach main — muss "NEUFASSUNG" ausgeben:
+git show staging:app/agb/page.tsx | grep -q "KI-generierte Ergebnisse" \
+  && echo "OK: AGB-Neufassung ist auf staging" \
+  || echo "STOPP: staging traegt noch die ALTE AGB — Cutover wuerde sie veroeffentlichen!"
+```
+
 ### 3.1 🔴 Kolja-Go: `staging → main` mergen (Content-Freeze)
 
 Der Probemerge ist konfliktfrei. Über PR (Trail) oder direkt:

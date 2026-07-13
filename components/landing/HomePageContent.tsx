@@ -121,8 +121,8 @@ function Hero({ stats }: { stats: LandingStats }) {
               className="text-lg leading-[1.6] text-[#FBF9F3]/[0.78] max-w-[520px] text-pretty mb-8"
             >
               {stats.total} geprüfte Programme an einem Ort. Unser KI-Assistent
-              erstellt unterschriftsreife Anträge in Minuten statt Wochen —
-              DSGVO-konform, auf deutschen Servern, mit EU-KI.
+              erstellt einen fertigen Antragsentwurf in Minuten statt Wochen —
+              DSGVO-konform, Daten in Deutschland, KI in der EU.
             </motion.p>
 
             <motion.div
@@ -194,7 +194,7 @@ function Hero({ stats }: { stats: LandingStats }) {
               </div>
               <div className="mt-2.5 pt-2.5 border-t border-[#F0EDE4] flex items-baseline justify-between gap-3 text-sm">
                 <span className="text-[#7A8580]">Status</span>
-                <span className="font-semibold text-[#22302B]">unterschriftsreif</span>
+                <span className="font-semibold text-[#22302B]">Entwurf fertig</span>
               </div>
             </div>
             <p className="mt-3 text-[11px] text-[#FBF9F3]/40">
@@ -648,8 +648,8 @@ function Datenschutz() {
     },
     {
       kicker: "Hosting",
-      title: "Deutsche Server, Hetzner",
-      body: "Verarbeitung und Speicherung erfolgen in deutschen Rechenzentren — georedundant, DSGVO-konform.",
+      title: "Daten in Deutschland, KI in der EU",
+      body: "Ihre Daten liegen bei Hetzner in Deutschland. Die KI-Verarbeitung läuft bei Mistral AI (Paris) im EU-Raum — kein Transfer in Drittländer.",
     },
     {
       kicker: "Training",
@@ -850,7 +850,7 @@ const FOUNDERS: {
     name: "Fedo Hagge-Kubat",
     vorname: "Fedo",
     rolle: "Technik & KI",
-    bio: "Ich baue die KI hinter EduFunds so, dass sie klingt wie eine erfahrene Antragsschreiberin — nicht wie ein Chatbot. Jedes Programm im Katalog ist geprüft, jede Formulierung nachvollziehbar. Und was Schulen uns anvertrauen, bleibt auf deutschen Servern.",
+    bio: "Ich baue die KI hinter EduFunds so, dass sie klingt wie eine erfahrene Antragsschreiberin — nicht wie ein Chatbot. Jedes Programm im Katalog ist geprüft, jede Formulierung nachvollziehbar. Und was Schulen uns anvertrauen, bleibt in Europa.",
   },
 ];
 
@@ -978,7 +978,7 @@ function PreiseTeaser() {
         { t: `Zugriff auf alle ${"189"} Programme`, on: true },
         { t: "Filter nach Bundesland & Schulform", on: true },
         { t: "KI-Antragsgenerierung", on: false },
-        { t: "PDF-Export, unterschriftsreif", on: false },
+        { t: "PDF-Export des Antragsentwurfs", on: false },
       ],
     },
     {
@@ -989,7 +989,7 @@ function PreiseTeaser() {
       href: "/foerderprogramme",
       features: [
         { t: "Ein vollständiger KI-Antrag inkl. Finanzplan", on: true },
-        { t: "Export als RTF / PDF, unterschriftsreif", on: true },
+        { t: "Export als RTF / PDF", on: true },
         { t: "Geräteübergreifender Zugriff per Magic-Link", on: true },
         { t: "Wiederverwendung für Folgejahr", on: false },
       ],
@@ -1119,7 +1119,7 @@ function FAQ() {
   const items = [
     {
       q: "Wo werden unsere Daten verarbeitet?",
-      a: "Ausschließlich in deutschen Rechenzentren (Hetzner). Die KI-Modelle stammen von Mistral aus Frankreich — keine Datenflüsse in die USA, kein Cloud Act.",
+      a: "Ihre Daten liegen bei Hetzner in Deutschland. Die KI-Verarbeitung läuft bei Mistral AI (Paris) auf Rechenzentren im Europäischen Wirtschaftsraum — keine Datenflüsse in die USA, kein Cloud Act.",
     },
     {
       q: "Werden unsere Anträge zum Training verwendet?",
@@ -1131,7 +1131,7 @@ function FAQ() {
     },
     {
       q: "Ersetzt die KI die Unterschrift?",
-      a: "Nein. EduFunds liefert die fachlichen und administrativen Inhalte unterschriftsreif. Prüfung und Verantwortung bleiben bei Schulleitung bzw. Träger.",
+      a: "Nein. EduFunds liefert einen vollständig ausgearbeiteten Entwurf der fachlichen und administrativen Inhalte. Prüfung, Freigabe und Verantwortung bleiben bei Schulleitung bzw. Träger — KI kann Fehler machen, prüfen Sie den Entwurf vor der Einreichung.",
     },
     {
       q: "Wir sind ein Träger mit mehreren Schulen — geht das?",

@@ -86,6 +86,13 @@ export async function POST(req: NextRequest) {
         org_name: orgName,
         purchaser_email: email,
       },
+      // AGB-Einbeziehung: Stripe zeigt eine Pflicht-Checkbox „Ich stimme den AGB zu".
+      // Ohne sie kaeme der Vertrag ueber ein Kontingent (bis 459,90 EUR) zustande, ohne dass
+      // die AGB je einbezogen waeren — dann gelten weder die KI-Klausel noch die
+      // Haftungsbegrenzung. Identisch zum Einzelantrag-Checkout gesteuert.
+      ...(process.env.STRIPE_TOS_CONSENT !== "off"
+        ? { consent_collection: { terms_of_service: "required" as const } }
+        : {}),
       locale: "de",
     });
 
