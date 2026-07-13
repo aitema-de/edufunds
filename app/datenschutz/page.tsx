@@ -208,8 +208,12 @@ export default function DatenschutzPage() {
                     >
                       AVV &amp; Subprozessoren
                     </a>{" "}
-                    auf. Ihre Eingaben und die erzeugten Ausgaben werden vom Anbieter
-                    <strong className="text-[#1c1917]"> nicht zum Training von KI-Modellen</strong> verwendet.
+                    auf. Ihre Eingaben und die erzeugten Ausgaben werden bei der von uns genutzten
+                    kostenpflichtigen Schnittstelle
+                    <strong className="text-[#1c1917]"> nicht zum Training von KI-Modellen</strong>{" "}
+                    verwendet; dies ist in den Nutzungsbedingungen des Anbieters ausdrücklich so
+                    geregelt. Rückmeldefunktionen des Anbieters, deren Nutzung eine Verwendung zu
+                    Trainingszwecken auslösen würde, setzen wir nicht ein.
                   </p>
                 </div>
 
@@ -241,9 +245,11 @@ export default function DatenschutzPage() {
                   <p>
                     Mistral speichert die an die Schnittstelle übermittelten Ein- und Ausgaben derzeit
                     für <strong className="text-[#1c1917]">30 Tage</strong>, um Missbrauch zu erkennen,
-                    und löscht sie anschließend. Wir haben beantragt, diese Speicherung für unser Konto
-                    vollständig abzuschalten (Zero Data Retention); sobald das umgesetzt ist,
-                    aktualisieren wir diesen Hinweis.
+                    und löscht sie anschließend. Inhalte, die die automatische Missbrauchserkennung
+                    dabei als auffällig markiert, kann der Anbieter nach seinen Bedingungen auch zur
+                    Verbesserung seiner Modelle verwenden. Wir haben beantragt, diese Speicherung für
+                    unser Konto vollständig abzuschalten (Zero Data Retention) — damit entfiele auch
+                    diese Ausnahme; sobald das umgesetzt ist, aktualisieren wir diesen Hinweis.
                   </p>
                 </div>
               </div>
