@@ -3,6 +3,7 @@ export const dynamic = 'force-static';
 import { NextResponse } from 'next/server';
 import { generateNewsletter } from '@/lib/newsletter';
 import { testNewsletterData } from '@/lib/newsletter-test-content';
+import { publicAppUrl } from '@/lib/app-url';
 
 /**
  * GET /api/newsletter/preview
@@ -15,7 +16,7 @@ export async function GET() {
     // Static export - always return HTML format
     const format = 'html';
     
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.edufunds.org';
+    const baseUrl = publicAppUrl();
     const testToken = 'preview-token-12345';
     
     const { html, text, subject } = generateNewsletter(

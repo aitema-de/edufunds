@@ -13,6 +13,19 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   serverExternalPackages: ['pg'],
+  // Alt-URLs der abgeschalteten statischen Landing (separates Repo). Nur die
+  // Startseite war indexiert, die Unterseiten liefern seit dem Abschalten 502 —
+  // die 301 sind Absicherung fuer etwaige Backlinks.
+  async redirects() {
+    return [
+      { source: '/programme.html', destination: '/foerderprogramme', permanent: true },
+      { source: '/ueber-uns.html', destination: '/ueber-uns', permanent: true },
+      { source: '/kontakt.html', destination: '/kontakt', permanent: true },
+      { source: '/impressum.html', destination: '/impressum', permanent: true },
+      { source: '/datenschutz.html', destination: '/datenschutz', permanent: true },
+      { source: '/agb.html', destination: '/agb', permanent: true },
+    ];
+  },
   async headers() {
     return [
       // Statische Assets mit langem Cache

@@ -9,6 +9,7 @@
  */
 
 import { sendMail } from '@/lib/mail';
+import { publicAppUrl } from '@/lib/app-url';
 import type { NewsletterIssue } from './issues';
 
 export interface DraftNotification {
@@ -21,11 +22,7 @@ export async function notifyDraftReady(
   issue: NewsletterIssue,
   opts: { baseUrl?: string } = {}
 ): Promise<DraftNotification> {
-  const baseUrl = (
-    opts.baseUrl ||
-    process.env.NEXT_PUBLIC_APP_URL ||
-    'https://app.edufunds.org'
-  ).replace(/\/$/, '');
+  const baseUrl = (opts.baseUrl || publicAppUrl()).replace(/\/$/, '');
   const reviewUrl = `${baseUrl}/admin/newsletter?issue=${issue.id}`;
   const lead = issue.data.leadTitle;
   const programCount = issue.data.programs.length;

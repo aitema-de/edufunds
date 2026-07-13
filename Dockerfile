@@ -58,6 +58,13 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ARG NEXT_PUBLIC_PAYWALL_DEV_MOCK=0
 ENV NEXT_PUBLIC_PAYWALL_DEV_MOCK=${NEXT_PUBLIC_PAYWALL_DEV_MOCK}
 
+# Öffentliche Basis-URL: ebenfalls NEXT_PUBLIC_* und damit zur BUILD-Zeit ins
+# Client-Bundle eingebacken. Ohne diesen Build-Arg kennt der Client-Code nur den
+# Fallback aus lib/app-url.ts — der Laufzeit-Wert aus --env-file erreicht ihn nicht.
+# Die Deploy-Skripte reichen die Domain der jeweiligen Umgebung durch.
+ARG NEXT_PUBLIC_APP_URL=https://edufunds.org
+ENV NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL}
+
 # Build
 RUN npm run build
 

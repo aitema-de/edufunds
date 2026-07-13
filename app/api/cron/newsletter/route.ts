@@ -26,6 +26,7 @@ import {
   hasSentIssue,
 } from '@/lib/newsletter/issues';
 import { notifyDraftReady } from '@/lib/newsletter/notify';
+import { publicAppUrl } from '@/lib/app-url';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -52,7 +53,7 @@ async function handle(request: Request): Promise<NextResponse> {
 
   const dryRun = new URL(request.url).searchParams.get('dryRun') === '1';
   const now = new Date();
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.edufunds.org';
+  const baseUrl = publicAppUrl();
 
   try {
     // Idempotenz: pro Monat nur ein Cron-Entwurf.

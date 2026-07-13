@@ -9,6 +9,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { sanitizeLlmUrl, stripUnsafeAnchors } from '@/lib/newsletter/content-collector';
+import { publicAppUrl } from '@/lib/app-url';
 
 // =============================================================================
 // Types
@@ -542,6 +543,11 @@ export function generateUnsubscribeToken(): string {
 // Sample Data for Testing
 // =============================================================================
 
+// Basis der Beispiel-Links aus der Konfiguration — sie durchlaufen beim Rendern
+// dieselbe Origin-Pruefung (sanitizeLlmUrl) wie LLM-Links und wuerden bei einer
+// abweichenden Domain still verworfen.
+const SAMPLE_BASE = publicAppUrl();
+
 export const sampleNewsletterData: NewsletterData = {
   issueNumber: 'Ausgabe #1',
   issueDate: new Date().toISOString().split('T')[0],
@@ -554,7 +560,7 @@ export const sampleNewsletterData: NewsletterData = {
       deadline: '30. März 2025',
       targetGroup: 'Gymnasien und Gesamtschulen',
       description: 'Förderung für innovative MINT-Projekte mit Fokus auf digitale Bildung und Nachhaltigkeit. Förderhöhe bis zu 50.000 €.',
-      url: 'https://app.edufunds.org/foerderprogramme/mint-foerderung-2025'
+      url: `${SAMPLE_BASE}/foerderprogramme/mint-foerderung-2025`
     },
     {
       name: 'Kulturelle Bildung Plus',
@@ -562,7 +568,7 @@ export const sampleNewsletterData: NewsletterData = {
       deadline: '15. April 2025',
       targetGroup: 'Alle Schularten',
       description: 'Unterstützung von Projekten, die kulturelle Bildung in den Schulalltag integrieren. Schwerpunkte: Musik, Theater, bildende Kunst.',
-      url: 'https://app.edufunds.org/foerderprogramme/kulturelle-bildung-plus'
+      url: `${SAMPLE_BASE}/foerderprogramme/kulturelle-bildung-plus`
     }
   ],
   tipTitle: 'Die perfekte Projektskizze',
@@ -572,7 +578,7 @@ export const sampleNewsletterData: NewsletterData = {
   insightTitle: 'DigitalPakt 2.0: Was kommt nach der Ausstattung?',
   insightContent: 'Der DigitalPakt hat Schulen in Deutschland mit Hardware und Infrastruktur versorgt. Doch die eigentliche Herausforderung beginnt jetzt: Wie integrieren wir digitale Tools sinnvoll in den Unterricht?\n\nExperten empfehlen einen Fokus auf Lehrerfortbildung und die Entwicklung einer nachhaltigen Digitalstrategie. Denn nur mit gut geschulten Lehrkräften entfaltet Technik ihr volles Potenzial.',
   insightCtaText: 'Fördermöglichkeiten entdecken',
-  insightCtaUrl: 'https://app.edufunds.org/foerderprogramme?kategorie=digitalisierung',
+  insightCtaUrl: `${SAMPLE_BASE}/foerderprogramme?kategorie=digitalisierung`,
   newsItems: [
     {
       text: 'Neue <a href="https://www.kmk.org/">KMK-Richtlinien</a> zur Inklusion in der Schule veröffentlicht',
@@ -582,8 +588,8 @@ export const sampleNewsletterData: NewsletterData = {
       text: 'BMBF kündigt zusätzliche 200 Mio. € für Ganztagsschulen an',
     },
     {
-      text: 'Fristverlängerung: <a href="https://app.edufunds.org/foerderprogramme">EU-Programm Erasmus+</a> nun bis 28.02. bewerbbar',
-      url: 'https://app.edufunds.org/foerderprogramme'
+      text: `Fristverlängerung: <a href="${SAMPLE_BASE}/foerderprogramme">EU-Programm Erasmus+</a> nun bis 28.02. bewerbbar`,
+      url: `${SAMPLE_BASE}/foerderprogramme`
     }
   ],
   year: new Date().getFullYear()

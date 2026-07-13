@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic';
 import { z } from 'zod';
 import { NextResponse } from 'next/server';
 import { getConfirmationEmailTemplate } from '@/lib/newsletter-templates';
+import { publicAppUrl } from '@/lib/app-url';
 import {
   createNewsletterEntry,
   getNewsletterEntryByEmail,
@@ -84,7 +85,7 @@ function getClientIP(request: Request): string {
 
 // Mock email sender (replace with Resend when API key is available)
 async function sendConfirmationEmail(email: string, token: string): Promise<boolean> {
-  const confirmationUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3101'}/api/newsletter?token=${token}`;
+  const confirmationUrl = `${publicAppUrl()}/api/newsletter?token=${token}`;
   
   // Check if Resend API key is configured
   const resendApiKey = process.env.RESEND_API_KEY;

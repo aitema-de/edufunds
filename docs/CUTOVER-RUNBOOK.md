@@ -284,18 +284,32 @@ async redirects() {
 }
 ```
 
-### 9.2 🔴 Code-Vorarbeit auf `staging` (vor dem Switch, normaler Dev-Flow)
+### 9.2 ✅ Code-Vorarbeit auf `staging` (erledigt 13.07.2026, PR `feature/apex-domain-vorarbeit`)
 
-1. **`NEXT_PUBLIC_APP_URL` als Build-Arg** durchreichen, damit auch das **Client-Bundle**
-   die Apex-Domain nutzt (nicht nur der serverseitige Laufzeit-Wert). Aktuell setzt das
-   Dockerfile nur `NEXT_PUBLIC_PAYWALL_DEV_MOCK`. Ergänzen:
-   - `Dockerfile` (builder-Stage): `ARG NEXT_PUBLIC_APP_URL` + `ENV NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL}`.
-   - `deploy-production.sh` / `deploy-staging.sh`: `--build-arg NEXT_PUBLIC_APP_URL=<domain>` an `docker build`.
-2. **Inkonsistente Fallbacks vereinheitlichen** (falls Var mal fehlt): `app/robots.ts`
-   (`app.edufunds.org`), `lib/newsletter-templates.ts` (**`edufunds.de`** — falsch!),
-   `api/newsletter/route.ts` (`localhost:3101`) → alle auf `https://edufunds.org`.
-3. `redirects()` aus 9.1 in `next.config.ts`.
-4. Über `feature/*` → `staging` → mit dem Cutover nach `main`.
+Alles umgesetzt, 661 Tests grün, `tsc` sauber, Production-Build ok:
+
+1. ✅ **`NEXT_PUBLIC_APP_URL` als Build-Arg**: `Dockerfile` (`ARG`/`ENV`, Default `https://edufunds.org`);
+   `deploy-production.sh` + `deploy-staging.sh` lesen die Domain **aus der jeweiligen `.env`-Datei**
+   (eine Quelle der Wahrheit) und reichen sie an `docker build` durch.
+2. ✅ **Fallbacks vereinheitlicht**: neuer Helper `publicAppUrl()` / `CANONICAL_APP_URL` in
+   `lib/app-url.ts`. Die vorher ~12 verstreuten Literale (`app.edufunds.org`, **`edufunds.de`**,
+   `localhost:3101`) sind ersetzt — inkl. `sampleNewsletterData` (wird in `send/route.ts`
+   tatsächlich als Versand-Fallback benutzt, war kein reines Demo-Objekt).
+3. ✅ `redirects()` aus 9.1 in `next.config.js`.
+4. ✅ **Zusätzlich gefunden und behoben — hätte sonst still Schaden gemacht:**
+   - **Newsletter-CTAs**: Der LLM-Prompt in `generate-draft.ts` schrieb dem Modell
+     `https://app.edufunds.org/foerderprogramme` vor, während `sanitizeLlmUrl()` gegen die
+     **konfigurierte** Basis-Domain prüft. Nach dem Apex-Switch hätte der Sanitizer genau die
+     Links verworfen, die der Prompt erzeugt — `newsItems`-Links wären **ersatzlos** und ohne
+     Fehlermeldung verschwunden. Prompt-Domain ist jetzt Parameter (= Sanitizer-Basis);
+     Regressionstest „Cutover-Invariante" in `__tests__/lib/newsletter/render.test.ts`.
+   - **`deploy-production.sh` ist die authoritative Quelle der Traefik-Labels.** Ein Umhängen
+     nur am Container (9.4) hätte der **nächste Prod-Deploy stillschweigend zurückgedreht**.
+     Der Apex-Router ist daher als Flag **`--apex`** im Skript umgesetzt (siehe 9.4).
+   - `collectNewsletterContent()` las `NEXT_PUBLIC_APP_URL` gar nicht, sondern immer den
+     Fallback — behoben.
+5. **CORS** (`lib/cors.ts`) enthält `https://edufunds.org` bereits → nach dem Switch kein Bruch.
+6. Über `feature/*` → `staging` → mit dem Cutover nach `main`.
 
 ### 9.3 🔴 Kolja-Go: `.env.production` + Rebuild
 
@@ -309,27 +323,21 @@ cd /home/kolja/edufunds-app && ./scripts/deploy-production.sh
 
 ### 9.4 🔴 Kolja-Go: Traefik umhängen (Apex → App, alte Landing raus)
 
-Der `edufunds-app`-Router zeigt in `deploy-production.sh` auf `Host(app.edufunds.org)`.
-Für Phase 2 dort die Labels ändern (authoritative Quelle der Container-Labels) auf:
+**Seit 13.07. im Deploy-Skript umgesetzt** — nicht mehr von Hand am Container:
 
-```
-# Haupt-Router: App bedient jetzt die Apex-Domain
---label 'traefik.http.routers.edufunds-app.rule=Host(`edufunds.org`)'
-# Redirect-Router: www + app.edufunds.org  →  301  edufunds.org
---label 'traefik.http.routers.edufunds-redir.rule=Host(`www.edufunds.org`) || Host(`app.edufunds.org`)'
---label 'traefik.http.routers.edufunds-redir.entrypoints=websecure'
---label 'traefik.http.routers.edufunds-redir.tls=true'
---label 'traefik.http.routers.edufunds-redir.tls.certresolver=letsencrypt'
---label 'traefik.http.routers.edufunds-redir.middlewares=edufunds-apex'
---label 'traefik.http.middlewares.edufunds-apex.redirectregex.regex=^https?://(www\.|app\.)edufunds\.org/(.*)'
---label 'traefik.http.middlewares.edufunds-apex.redirectregex.replacement=https://edufunds.org/${2}'
---label 'traefik.http.middlewares.edufunds-apex.redirectregex.permanent=true'
-```
-
-Dann die alte Landing abschalten (Router verschwindet, Apex ist frei für die App):
 ```bash
-ssh root@49.13.15.44 'docker stop edufunds-landing'   # nicht rm — als Rollback aufheben
+./scripts/deploy-production.sh --apex
 ```
+
+Das Flag setzt den `edufunds-app`-Router auf `Host(`edufunds.org`)` und legt den
+301-Redirect-Router (`www.`/`app.` → Apex) an. Die Rule steht bewusst **ohne
+Leerzeichen** um `||` (Word-Splitting-Falle bei der Label-Expansion).
+
+> ⚠️ **`--apex` gehört ab dem Switch in JEDEN weiteren Prod-Deploy.** Das Skript ist die
+> authoritative Quelle der Container-Labels: ein Deploy ohne das Flag setzt den Router
+> wieder auf `app.edufunds.org` — die Apex-Domain fiele still aus.
+
+Die alte Landing ist bereits gestoppt (08.07., Container als Rollback-Reserve erhalten).
 
 > **`app.edufunds.org` bleibt als 301 bestehen — NICHT wegwerfen.** Bereits versendete
 > Double-Opt-in-/Unsubscribe-Mails und ggf. Stripe-Return-URLs zeigen dorthin.
