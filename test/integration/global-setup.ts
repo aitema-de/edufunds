@@ -76,6 +76,15 @@ export default async function globalSetup(): Promise<void> {
   process.env.DATABASE_URL = url;
   process.env.EDUFUNDS_TEST_DB_URL = url;
 
+  // Bankverbindung: getBankDetails() ist seit dem IBAN-Fund fail-closed (kein Fallback
+  // mehr, s. lib/payments/bank.ts). Der Mahnlauf baut Mails mit Zahlungsblock — ohne
+  // gueltige Angaben wuerde er werfen. Bewusst eine ECHTE Test-IBAN mit korrekter
+  // Pruefsumme, damit der Guard mitgetestet wird und nicht nur umgangen.
+  process.env.BANK_IBAN ??= "DE89 3704 0044 0532 0130 00";
+  process.env.BANK_ACCOUNT_HOLDER ??= "aitema GmbH (Test)";
+  process.env.BANK_BIC ??= "GENODEM1GLS";
+  process.env.BANK_NAME ??= "GLS Bank (Test)";
+
   const g = globalThis as Record<string, unknown>;
   g.__EDUFUNDS_PG__ = pg;
 

@@ -8,6 +8,8 @@
  * sich; Admin-Login gesperrt; Zahlungen/Webhook tot; LLM-Generierung 401/402).
  */
 
+import { bankConfigProblems } from "@/lib/payments/bank";
+
 interface RequiredSecret {
   key: string;
   hint: string;
@@ -39,6 +41,16 @@ export function missingProductionSecrets(): string[] {
   return required.filter((k) => !isSet(k));
 }
 
+/**
+ * Bankverbindung fuer den Rechnungskauf. Kein "Secret", aber genauso still
+ * gefaehrlich: Die IBAN steht als Zahlungsziel in JEDER Rechnungs- und Mahnmail.
+ * Der frueher im Code hinterlegte Fallback war ein DUMMY mit ungueltiger
+ * Pruefsumme — damit haette niemand ueberweisen koennen (siehe lib/payments/bank.ts).
+ */
+export function bankProblems(): string[] {
+  return bankConfigProblems();
+}
+
 let alreadyLogged = false;
 
 /**
@@ -60,5 +72,15 @@ export function logSecretStatusOnce(): void {
     );
   } else {
     console.log("[secret-check] alle kritischen Produktions-Secrets vorhanden.");
+  }
+
+  const bank = bankProblems();
+  if (bank.length > 0) {
+    console.error(
+      `[secret-check] 🔴 BANKVERBINDUNG: ${bank.join(", ")} — der Kauf auf Rechnung ` +
+        `nennt die IBAN als Zahlungsziel in Rechnungs- UND Mahnmails. Solange sie fehlt ` +
+        `oder ungueltig ist, schlaegt der Rechnungskauf fehl (fail-closed), statt eine ` +
+        `nicht ueberweisbare Kontoverbindung zu versenden.`
+    );
   }
 }
