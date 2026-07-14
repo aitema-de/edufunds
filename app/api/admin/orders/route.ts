@@ -12,6 +12,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/admin-auth";
 import { listOrders, markOrderPaid, cancelOrder, type OrderStatus } from "@/lib/payments/order-status";
+import { settleProRata } from "@/lib/payments/settlement";
 
 // MUSS dynamic sein: 'force-static' wuerde die Antwort zur Build-Zeit einfrieren
 // und den Auth-Check wirkungslos machen (kein Request-Kontext).
@@ -45,9 +46,9 @@ export async function POST(req: NextRequest) {
   const obj = (body ?? {}) as Record<string, unknown>;
   const orderNumber = typeof obj.orderNumber === "string" ? obj.orderNumber : null;
   const action = obj.action;
-  if (!orderNumber || (action !== "paid" && action !== "cancel")) {
+  if (!orderNumber || (action !== "paid" && action !== "cancel" && action !== "settle")) {
     return NextResponse.json(
-      { error: "orderNumber und action ('paid' | 'cancel') erforderlich" },
+      { error: "orderNumber und action ('paid' | 'cancel' | 'settle') erforderlich" },
       { status: 400 }
     );
   }
@@ -60,6 +61,25 @@ export async function POST(req: NextRequest) {
         `(changed=${res.changed})`
     );
     return NextResponse.json({ ok: true, changed: res.changed, order: res.order });
+  }
+
+  if (action === "settle") {
+    // Anteilige Abrechnung: offene Credits verfallen, gefordert werden nur die
+    // genutzten Antraege zum Einzelpreis (ohne Mengenrabatt).
+    const res = await settleProRata(orderNumber);
+    if (!res.order) return NextResponse.json({ error: "Bestellung unbekannt" }, { status: 404 });
+    console.log(
+      `[admin/orders] ${auth.admin.email ?? "admin"} rechnet ${orderNumber} anteilig ab ` +
+        `(changed=${res.changed}, genutzt=${res.proRata?.genutzt ?? "?"}, ` +
+        `Forderung=${res.proRata?.forderungCents ?? "?"} Cent)`
+    );
+    return NextResponse.json({
+      ok: true,
+      changed: res.changed,
+      order: res.order,
+      proRata: res.proRata,
+      storniertWeilNichtsGenutzt: res.storniertWeilNichtsGenutzt ?? false,
+    });
   }
 
   const reason = typeof obj.reason === "string" && obj.reason.trim() ? obj.reason.trim() : "Storno durch Admin";

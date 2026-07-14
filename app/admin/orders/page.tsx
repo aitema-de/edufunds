@@ -12,7 +12,7 @@
  */
 
 import { useCallback, useEffect, useState } from 'react';
-import { Receipt, RefreshCw, CheckCircle, XCircle, AlertTriangle, Loader2, Lock } from 'lucide-react';
+import { Receipt, RefreshCw, CheckCircle, XCircle, AlertTriangle, Loader2, Lock, Scissors } from 'lucide-react';
 
 type OrderStatus = 'payment_pending' | 'paid' | 'cancelled';
 
@@ -30,8 +30,22 @@ interface Order {
   status: OrderStatus;
   dueDate: string | null;
   creditsGesperrt: boolean;
+  institutionell: boolean;
+  genutzteCredits: number | null;
+  settledAmountCents: number | null;
   createdAt: string;
   tageUeberfaellig: number | null;
+}
+
+/** Einzelpreis in Cent — Basis der anteiligen Abrechnung (vgl. lib/payments/packs.ts). */
+const EINZELPREIS_CENTS = 2990;
+
+/** Was waere bei anteiliger Abrechnung zu fordern? Reine Vorschau, ohne Seiteneffekt. */
+function proRataVorschau(o: Order): { genutzt: number; forderung: number; gutschrift: number } | null {
+  if (o.genutzteCredits === null || o.credits <= 1) return null; // Einzelantrag: nichts aufzuteilen
+  const genutzt = o.genutzteCredits;
+  const forderung = Math.min(genutzt * EINZELPREIS_CENTS, o.amountCents);
+  return { genutzt, forderung, gutschrift: o.amountCents - forderung };
 }
 
 const eur = (cents: number) =>
@@ -70,8 +84,9 @@ export default function AdminOrdersPage() {
     load();
   }, [load]);
 
-  async function act(orderNumber: string, action: 'paid' | 'cancel') {
+  async function act(orderNumber: string, action: 'paid' | 'cancel' | 'settle', hinweis?: string) {
     if (action === 'cancel' && !confirm(`Bestellung ${orderNumber} wirklich stornieren?`)) return;
+    if (action === 'settle' && !confirm(hinweis ?? `Bestellung ${orderNumber} anteilig abrechnen?`)) return;
     const reason =
       action === 'cancel' ? prompt('Grund für das Storno?', 'Nicht bezahlt') ?? 'Storno durch Admin' : undefined;
 
@@ -180,6 +195,7 @@ export default function AdminOrdersPage() {
               <tbody>
                 {orders.map((o) => {
                   const overdue = o.status === 'payment_pending' && (o.tageUeberfaellig ?? -1) > 0;
+                  const pr = proRataVorschau(o);
                   return (
                     <tr key={o.id} className="border-b border-gray-100 last:border-0">
                       <td className="p-3">
@@ -191,8 +207,23 @@ export default function AdminOrdersPage() {
                       <td className="p-3">
                         <div className="text-gray-900">{o.orgName}</div>
                         <div className="text-xs text-gray-500">{o.email}</div>
+                        {!o.institutionell && (
+                          <div className="mt-0.5 text-xs text-gray-500">
+                            Domain ohne Schul-/Trägermerkmal — lohnt einen Blick
+                          </div>
+                        )}
                       </td>
-                      <td className="p-3 whitespace-nowrap text-gray-900">{eur(o.amountCents)}</td>
+                      <td className="p-3 whitespace-nowrap text-gray-900">
+                        {o.settledAmountCents !== null ? (
+                          <>
+                            <div className="font-medium">{eur(o.settledAmountCents)}</div>
+                            <div className="text-xs text-gray-500 line-through">{eur(o.amountCents)}</div>
+                            <div className="text-xs text-gray-500">anteilig abgerechnet</div>
+                          </>
+                        ) : (
+                          eur(o.amountCents)
+                        )}
+                      </td>
                       <td className="p-3 whitespace-nowrap">
                         <span className={overdue ? 'font-medium text-amber-700' : 'text-gray-600'}>
                           {o.dueDate ?? '—'}
@@ -233,6 +264,25 @@ export default function AdminOrdersPage() {
                               <CheckCircle className="w-3.5 h-3.5" />
                               Bezahlt
                             </button>
+                            {pr && o.settledAmountCents === null && (
+                              <button
+                                disabled={busy === o.orderNumber}
+                                onClick={() =>
+                                  act(
+                                    o.orderNumber,
+                                    'settle',
+                                    `Anteilig abrechnen?\n\n${pr.genutzt} von ${o.credits} Anträgen genutzt.\n` +
+                                      `Forderung: ${eur(pr.forderung)} statt ${eur(o.amountCents)}.\n` +
+                                      `Die ${o.credits - pr.genutzt} offenen Credits verfallen.`
+                                  )
+                                }
+                                title={`${pr.genutzt} genutzt → ${eur(pr.forderung)} statt ${eur(o.amountCents)}`}
+                                className="inline-flex items-center gap-1 rounded-md border border-amber-300 bg-amber-50 px-2.5 py-1.5 text-xs font-medium text-amber-800 hover:bg-amber-100 disabled:opacity-50"
+                              >
+                                <Scissors className="w-3.5 h-3.5" />
+                                Anteilig ({eur(pr.forderung)})
+                              </button>
+                            )}
                             <button
                               disabled={busy === o.orderNumber}
                               onClick={() => act(o.orderNumber, 'cancel')}

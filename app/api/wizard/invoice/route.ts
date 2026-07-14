@@ -14,6 +14,7 @@ import {
 } from "@/lib/payments/orders";
 import { trustedAppUrl } from "@/lib/app-url";
 import { sendMail } from "@/lib/mail";
+import { pruefeRechnungsAdresse, ablehnungsText } from "@/lib/payments/invoice-eligibility";
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? "office@aitema.de";
 
@@ -70,6 +71,14 @@ export async function POST(req: NextRequest) {
     // Idempotent: bereits freigeschaltet -> bestehenden Token liefern.
     if (session.paidToken) {
       return NextResponse.json({ ok: true, alreadyPaid: true, paidToken: session.paidToken });
+    }
+
+    // Tuersteher: Kauf auf Rechnung nur mit dienstlicher Adresse (Schule/Traeger).
+    // Steht — wie die Bremse — BEWUSST vor tryMarkSessionPaid: danach waere der
+    // Antrag schon freigeschaltet.
+    const adresse = pruefeRechnungsAdresse(data.email);
+    if (!adresse.ok) {
+      return NextResponse.json({ error: ablehnungsText(adresse.grund) }, { status: 422 });
     }
 
     // Missbrauchsbremse: Wir schalten gleich SOFORT frei, bevor Geld geflossen ist.

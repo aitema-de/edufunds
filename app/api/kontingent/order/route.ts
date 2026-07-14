@@ -12,6 +12,7 @@ import {
   type OrderRecord,
 } from "@/lib/payments/orders";
 import { sendMail } from "@/lib/mail";
+import { pruefeRechnungsAdresse, ablehnungsText } from "@/lib/payments/invoice-eligibility";
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? "office@aitema.de";
 
@@ -59,6 +60,15 @@ export async function POST(req: NextRequest) {
     const pack = getPack(data.packId);
     if (!pack || !pack.isQuota) {
       return NextResponse.json({ error: "Unbekanntes oder nicht bestellbares Paket." }, { status: 400 });
+    }
+
+    // Tuersteher: Der Rechnungskauf ist der dienstlichen Adresse einer Schule oder
+    // eines Traegers vorbehalten — er existiert, WEIL die nicht mit Karte zahlen
+    // koennen, nicht damit sich jeder anonym bedienen kann. Steht vor der
+    // Bremse: billiger (keine DB) und praeziser.
+    const adresse = pruefeRechnungsAdresse(data.email);
+    if (!adresse.ok) {
+      return NextResponse.json({ error: ablehnungsText(adresse.grund) }, { status: 422 });
     }
 
     // Missbrauchsbremse: Der Rechnungskauf schaltet SOFORT frei, bevor Geld

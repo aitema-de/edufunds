@@ -12,6 +12,7 @@
  */
 import { query } from "@/lib/db";
 import { revokeSessionAccess } from "@/lib/payments/refund";
+import { istInstitutionell } from "@/lib/payments/invoice-eligibility";
 
 export type OrderStatus = "payment_pending" | "paid" | "cancelled";
 
@@ -30,6 +31,17 @@ export interface OrderSummary {
   dueDate: string | null;
   /** true, wenn der Kontingent-Code gesperrt ist (Mahnstufe oder Storno). */
   creditsGesperrt: boolean;
+  /**
+   * Sieht die Bestell-Adresse nach Schule/Traeger/Behoerde aus? Nur ein SIGNAL —
+   * Freemail ist bereits an der Route abgewiesen, aber viele echte Traeger haben
+   * unauffaellige Domains. "false" heisst also nicht "verdaechtig", sondern
+   * "unauffaellig, lohnt einen Blick".
+   */
+  institutionell: boolean;
+  /** Bereits eingelöste Anträge des Kontingents (null beim Einzelantrag). */
+  genutzteCredits: number | null;
+  /** Reduzierte Forderung nach anteiliger Abrechnung (null = noch nicht abgerechnet). */
+  settledAmountCents: number | null;
   createdAt: string;
   paidAt?: string;
   cancelledAt?: string;
@@ -56,6 +68,9 @@ interface OrderRow {
   cancelled_at: Date | null;
   cancel_reason: string | null;
   code_revoked_at: Date | null;
+  code_credits_used: number | null;
+  settled_at: Date | null;
+  settled_amount_cents: number | null;
 }
 
 function ymd(d: Date): string {
@@ -82,6 +97,9 @@ function rowToSummary(r: OrderRow, now: Date): OrderSummary {
     status: r.status,
     dueDate: r.due_date ? ymd(r.due_date) : null,
     creditsGesperrt: r.code_revoked_at !== null,
+    institutionell: istInstitutionell(r.email),
+    genutzteCredits: r.code_credits_used,
+    settledAmountCents: r.settled_amount_cents,
     createdAt: r.created_at.toISOString(),
     paidAt: r.paid_at?.toISOString(),
     cancelledAt: r.cancelled_at?.toISOString(),
@@ -91,7 +109,9 @@ function rowToSummary(r: OrderRow, now: Date): OrderSummary {
 }
 
 const SELECT_ORDERS = `
-  SELECT o.*, c.revoked_at AS code_revoked_at
+  SELECT o.*,
+         c.revoked_at   AS code_revoked_at,
+         c.credits_used AS code_credits_used
     FROM org_orders o
     LEFT JOIN credit_codes c ON c.code = o.credit_code
 `;
@@ -125,25 +145,32 @@ export interface OrderActionResult {
  * Leistung einbehalten.
  */
 export async function markOrderPaid(orderNumber: string): Promise<OrderActionResult> {
-  const res = await query<{ credit_code: string | null }>(
+  const res = await query<{ credit_code: string | null; settled_at: Date | null }>(
     `UPDATE org_orders
         SET status     = 'paid',
             paid_at    = CURRENT_TIMESTAMP,
             updated_at = CURRENT_TIMESTAMP
       WHERE order_number = $1
         AND status = 'payment_pending'
-      RETURNING credit_code`,
+      RETURNING credit_code, settled_at`,
     [orderNumber]
   );
 
   if (res.rowCount === 1) {
-    const code = res.rows[0].credit_code;
-    if (code) {
+    const { credit_code, settled_at } = res.rows[0];
+    // Sperre nur aufheben, wenn NICHT anteilig abgerechnet wurde.
+    //
+    // Nach der Mahnung sind die Credits nur GESPERRT — wer zahlt, bekommt sie
+    // zurueck. Nach anteiliger Abrechnung sind sie ABGESCHRIEBEN: der Kunde zahlt
+    // nur noch die genutzten Antraege (Rest als Gutschrift). Wuerden wir hier
+    // trotzdem entsperren, bekaeme er die verfallenen Credits fuer die reduzierte
+    // Forderung zurueck — also 17 Antraege fuer 29,90 EUR.
+    if (credit_code && settled_at === null) {
       await query(
         `UPDATE credit_codes
             SET revoked_at = NULL, updated_at = CURRENT_TIMESTAMP
           WHERE code = $1 AND revoked_at IS NOT NULL`,
-        [code]
+        [credit_code]
       );
     }
     return { changed: true, order: await getOrder(orderNumber) };
