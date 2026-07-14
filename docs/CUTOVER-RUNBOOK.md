@@ -489,15 +489,27 @@ Die alte Landing ist bereits gestoppt (08.07., Container als Rollback-Reserve er
 > einen Bezahlvorgang, der sauber durchläuft. Deshalb steht hier ein Stopp und keine
 > Checkbox.
 
-Der im Stripe-Dashboard registrierte Webhook zeigt auf `app.edufunds.org/api/stripe/webhook`.
-Nach 9.4 bekäme ein POST dorthin **301** auf den Apex — **Stripe folgt Redirects bei Webhooks
-nicht zuverlässig**. Die Freischaltung hängt aber allein an diesem Webhook
-(`checkout.session.completed` → `markSessionPaid`).
+**Verifizierter Ist-Zustand (14.07.2026, read-only gegen das Live-Konto abgefragt):**
 
-1. Im Stripe-Dashboard den Endpoint auf `https://edufunds.org/api/stripe/webhook` umstellen.
-2. Das **neue `whsec_…`** in `.env.production` eintragen → **Container-Recreate** (ein
-   `docker restart` genügt nicht, siehe Abschnitt 8).
-3. **Verifizieren, nicht vertrauen** — im Dashboard ein Test-Event senden und auf **200**
+| | |
+|---|---|
+| URL | `https://app.edufunds.org/api/stripe/webhook` ⬅️ **zeigt auf die ALTE Domain** |
+| Status | `enabled` |
+| Events | `checkout.session.completed`, `checkout.session.expired`, `charge.refunded`, `checkout.session.async_payment_failed` |
+
+`charge.refunded` ist aktiviert ✅ — der seit 14.07. implementierte Refund-Handler (entwertet
+`paid_token` + Kontingent) bekommt also tatsächlich Events. Aber: Nach 9.4 bekäme ein POST auf
+`app.edufunds.org` **301** auf den Apex — **Stripe folgt Redirects bei Webhooks nicht**. Die
+Freischaltung hängt allein an diesem Webhook (`checkout.session.completed` → `markSessionPaid`).
+
+1. Im Stripe-Dashboard den **bestehenden** Endpoint bearbeiten und die URL auf
+   `https://edufunds.org/api/stripe/webhook` ändern.
+   → **Beim Bearbeiten bleibt das Signing-Secret dasselbe** — dann sind weder eine
+   `.env.production`-Änderung noch ein Container-Recreate nötig. Im Dashboard gegenprüfen.
+   ⚠️ Legst du stattdessen einen **neuen** Endpoint an, gibt es ein **neues `whsec_…`**: Das
+   muss in `.env.production` und der Container **neu erzeugt** werden (ein `docker restart`
+   genügt nicht, siehe Abschnitt 8) — sonst schlägt die Signaturprüfung bei jeder Zahlung fehl.
+2. **Verifizieren, nicht vertrauen** — im Dashboard ein Test-Event senden und auf **200**
    prüfen. Ein 301 oder 404 hier bedeutet: Jede echte Zahlung würde ins Leere laufen.
 
 ```bash
