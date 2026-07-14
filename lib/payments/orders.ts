@@ -485,8 +485,9 @@ export async function createEinzelInvoiceOrder(
   await query(
     `INSERT INTO org_orders
        (order_number, pack_id, credits, amount_cents, org_name, contact_name,
-        email, billing_address, vat_id, po_number, note, credit_code, status, due_date)
-     VALUES ($1,'einzel',1,$2,$3,$4,$5,$6,$7,$8,$9,NULL,'payment_pending',$10)`,
+        email, billing_address, vat_id, po_number, note, credit_code, status, due_date,
+        session_token)
+     VALUES ($1,'einzel',1,$2,$3,$4,$5,$6,$7,$8,$9,NULL,'payment_pending',$10,$11)`,
     [
       orderNumber,
       EINZELPREIS_CENTS,
@@ -498,6 +499,9 @@ export async function createEinzelInvoiceOrder(
       input.poNumber ?? null,
       note,
       dueDate,
+      // Echte Spalte statt Freitext in `note`: nur so kann ein Storno den
+      // freigeschalteten Antrag ueberhaupt wieder entwerten.
+      input.sessionToken,
     ]
   );
 
