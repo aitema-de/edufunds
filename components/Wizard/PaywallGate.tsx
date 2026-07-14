@@ -230,7 +230,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel, labels }: Props
             <span className="text-sm text-slate-600">einmalig</span>
           </div>
 
-          {/* Zahlungsart-Umschalter: Karte (sofort) oder Rechnung (Förderverein/Schule/Träger) */}
+          {/* Zahlungsart-Umschalter: Karte (sofort) oder Rechnung (nur Schule/Schultraeger, AGB § 4a) */}
           <div className="mb-5 grid grid-cols-2 gap-2 rounded-xl bg-slate-100 p-1">
             <button
               type="button"
@@ -320,9 +320,11 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel, labels }: Props
           {payMethod === "invoice" && (
             <form onSubmit={submitInvoice} className="text-left">
               <p className="mb-3 text-xs text-slate-500">
-                Rechnungskauf für <strong>Förderverein, Schule oder Schulträger</strong>: Der Antrag
+                Rechnungskauf für <strong>Schulen und Schulträger</strong> (AGB § 4a): Der Antrag
                 wird sofort freigeschaltet, die Zahlung erfolgt per Überweisung mit{" "}
-                <strong>14 Tagen Zahlungsziel</strong>. Die Rechnung kommt per E-Mail.
+                <strong>14 Tagen Zahlungsziel</strong>. Die Rechnung kommt per E-Mail. Bitte die{" "}
+                <strong>dienstliche E-Mail-Adresse</strong> verwenden. Fördervereine und alle
+                übrigen Kunden zahlen bitte per Karte.
               </p>
               {invoiceError && (
                 <div className="mb-3 rounded-lg border border-red-500/40 bg-red-500/10 p-3 text-sm text-red-700">
@@ -343,7 +345,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel, labels }: Props
                 <input
                   type="text"
                   required
-                  placeholder="Organisation (Förderverein / Schule / Träger) *"
+                  placeholder="Organisation (Schule / Schulträger) *"
                   value={invoiceForm.orgName}
                   onChange={(e) => setInvoiceForm((f) => ({ ...f, orgName: e.target.value }))}
                   className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-[#1c1917] focus:border-[#1e3d32] focus:outline-none"
@@ -359,7 +361,7 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel, labels }: Props
                 <input
                   type="email"
                   required
-                  placeholder="E-Mail für Rechnung & Antrag-Link *"
+                  placeholder="Dienstliche E-Mail (Schule / Träger) *"
                   value={invoiceForm.email}
                   onChange={(e) => setInvoiceForm((f) => ({ ...f, email: e.target.value }))}
                   className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-[#1c1917] focus:border-[#1e3d32] focus:outline-none"

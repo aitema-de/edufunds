@@ -22,7 +22,8 @@
     "test:watch": "jest --watch",
     "test:integration": "jest --config jest.integration.config.js",
     "typecheck": "tsc --noEmit",
-    "eval:matcher": "tsx --env-file=.env.local scripts/eval-matcher.ts"
+    "eval:matcher": "tsx --env-file=.env.local scripts/eval-matcher.ts",
+    "test:e2e:kaufpfad": "node scripts/e2e-kaufpfad.mjs"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
