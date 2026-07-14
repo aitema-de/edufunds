@@ -36,7 +36,7 @@ const validBody = {
   sessionToken: "sess-token-12345678",
   orgName: "Förderverein Musterschule e. V.",
   contactName: "Frau Beispiel",
-  email: "vorstand@foerderverein-muster.de",
+  email: "sekretariat@gymnasium-musterstadt.de",
   billingAddress: "Förderverein Musterschule e. V.\nSchulstraße 1\n12345 Musterhausen",
 };
 
@@ -66,6 +66,21 @@ describe("POST /api/wizard/invoice", () => {
   it("400 bei ungueltiger E-Mail", async () => {
     const res = await POST(req({ ...validBody, email: "keine-mail" }));
     expect(res.status).toBe(400);
+  });
+
+  it("422 fuer einen Foerderverein — Rechnungskauf ist Schulen/Traegern vorbehalten (AGB § 4a)", async () => {
+    mGetSession.mockResolvedValue({ paidToken: undefined });
+    const res = await POST(req({ ...validBody, email: "vorstand@foerderverein-muster.de" }));
+    expect(res.status).toBe(422);
+    // Entscheidend: die Pruefung steht VOR der Freischaltung.
+    expect(mMarkPaid).not.toHaveBeenCalled();
+  });
+
+  it("422 fuer eine private Freemail-Adresse — und schaltet NICHT frei", async () => {
+    mGetSession.mockResolvedValue({ paidToken: undefined });
+    const res = await POST(req({ ...validBody, email: "lehrerin@gmail.com" }));
+    expect(res.status).toBe(422);
+    expect(mMarkPaid).not.toHaveBeenCalled();
   });
 
   it("Honeypot gefuellt -> stiller Erfolg ohne Freischaltung", async () => {
