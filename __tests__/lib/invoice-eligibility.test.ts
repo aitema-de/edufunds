@@ -13,6 +13,7 @@
 import {
   pruefeRechnungsAdresse,
   istInstitutionell,
+  istVerein,
   domainOf,
   ablehnungsText,
 } from "@/lib/payments/invoice-eligibility";
@@ -70,13 +71,48 @@ describe("Echte Schulen und Traeger kommen durch", () => {
     "buero@grundschule-am-see.de",
     "amt@stadt-musterstadt.de",
     "verwaltung@landkreis-harz.de",
-    "kontakt@foerderverein-schule-x.de",
     "office@bildungswerk-nord.de",
     // Unauffaellige Traeger-Domain ohne jedes Schul-Merkmal: MUSS trotzdem durch.
     "kontakt@traegerwerk-mueller-gbr.de",
     "info@zweckverband-nord.de",
   ])("%s", (email) => {
     expect(pruefeRechnungsAdresse(email).ok).toBe(true);
+  });
+});
+
+describe("Vereine werden abgewiesen — Rechnungskauf ist Schulen und Traegern vorbehalten", () => {
+  // Entscheidung Kolja 14.07.2026: Foerdervereine gehen ueber den Stripe-Checkout.
+  it.each([
+    "kasse@foerderverein-schule-x.de",
+    "vorstand@förderverein-gymnasium.de",
+    "info@schulverein-nord.de",
+    "kontakt@freundeskreis-gymnasium.de",
+    "kasse@musterschule-ev.de",
+    "info@elternverein-koeln.de",
+  ])("%s", (email) => {
+    const r = pruefeRechnungsAdresse(email);
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.grund).toBe("verein");
+  });
+
+  it("weist den Verein auf den Kartenweg hin, statt ihn nur abzulehnen", () => {
+    const text = ablehnungsText("verein");
+    expect(text).toMatch(/Karte/);
+    expect(text).toMatch(/§ 4a/);
+  });
+
+  it("sperrt eine SCHULE mit aehnlicher Domain nicht versehentlich aus", () => {
+    // Der teuerste Fehler waere ein Fehlalarm gegen einen echten Kunden.
+    expect(istVerein("sekretariat@gesamtschule-bochum.de")).toBe(false);
+    expect(istVerein("verwaltung@schulen.koeln.de")).toBe(false);
+    expect(istVerein("amt@landkreis-harz.de")).toBe(false);
+    expect(pruefeRechnungsAdresse("sekretariat@gesamtschule-bochum.de").ok).toBe(true);
+  });
+
+  it("⚠️ erkennt einen Verein mit NEUTRALER Domain NICHT — das traegt die AGB-Klausel", () => {
+    // Grenze der Technik, bewusst festgehalten: kontakt@musterverein-nord.de faellt
+    // auf, kontakt@bildungswerk-nord.de nicht. § 4a erlaubt dann das Storno.
+    expect(pruefeRechnungsAdresse("kontakt@bildungswerk-nord.de").ok).toBe(true);
   });
 });
 

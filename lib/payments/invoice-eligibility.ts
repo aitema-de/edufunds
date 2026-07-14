@@ -12,16 +12,18 @@
  * Traeger, Kommunen, Landkreise, Bezirksregierungen. Eine strikte Allowlist wuerde
  * mehr echte Kunden abweisen als Betrueger. Also andersherum:
  *
- *   HART GESPERRT:  Freemail + Wegwerfadressen. Eine Schule bestellt praktisch nie
- *                   dienstlich per Rechnung von einer gmail-Adresse; ein Betrueger
- *                   fast immer.
+ *   HART GESPERRT:  Freemail + Wegwerfadressen (eine Schule bestellt dienstlich
+ *                   praktisch nie von gmail; ein Betrueger fast immer) sowie
+ *                   VEREINE — der Rechnungskauf ist Schulen und Schultraegern
+ *                   vorbehalten, Foerdervereine zahlen per Karte (AGB § 4a).
  *   ERKANNT:        Institutionelle Muster (.schule, Schul-/Behoerden-Keywords, …)
  *                   — nur ein SIGNAL fuer die Admin-Ansicht, kein Tor. Wer kein
  *                   Muster trifft, darf trotzdem bestellen (viele Traeger haben
- *                   voellig unauffaellige Domains), taucht aber als "ungeprueft" auf.
+ *                   voellig unauffaellige Domains), taucht aber als "lohnt einen
+ *                   Blick" auf.
  *
- * Ueber INVOICE_DOMAIN_ALLOWLIST lassen sich Einzelfaelle freischalten (z. B. ein
- * Foerderverein mit web.de-Adresse, der telefonisch bekannt ist).
+ * Ueber INVOICE_DOMAIN_ALLOWLIST lassen sich Einzelfaelle freischalten (z. B. eine
+ * Schule, deren Traeger eine unpassende Domain nutzt).
  */
 
 /** Freemail-Anbieter: keine dienstliche Adresse einer Institution. */
@@ -48,6 +50,26 @@ const DISPOSABLE = new Set([
 ]);
 
 /**
+ * Vereine — insbesondere Foerdervereine — sind vom Rechnungskauf AUSGESCHLOSSEN
+ * (Entscheidung Kolja, 14.07.2026): Der Rechnungskauf existiert fuer Schulen und
+ * Schultraeger, also oeffentliche Stellen mit belastbarer Zahlungsmoral und ohne
+ * Kartenzahlung. Ein Foerderverein ist ein privatrechtlicher Verein — er zahlt per
+ * Karte ueber Stripe.
+ *
+ * ⚠️ Grenze der Technik: Ein Verein mit NEUTRALER Domain (kontakt@musterverein.de)
+ * ist von einem Schultraeger nicht zu unterscheiden. Dieses Muster faengt die
+ * offensichtlichen Faelle. Tragen muss die Beschraenkung die AGB-Klausel (§ 4a) —
+ * sie erlaubt das Storno, wenn sich nachtraeglich herausstellt, dass kein
+ * Berechtigter bestellt hat.
+ */
+const VEREIN: RegExp[] = [
+  /foerderverein|förderverein|fv-/,
+  /(^|[.-])verein([.-]|$)/,
+  /(^|[.-])e-?v([.-]|$)/, // musterschule-ev.de, foerderkreis.e-v.de
+  /foerderkreis|förderkreis|freundeskreis|elternverein|schulverein/,
+];
+
+/**
  * Muster, die auf Schule, Traeger oder Behoerde hindeuten. NUR ein Signal fuer die
  * Admin-Ansicht — kein Tor. Absichtlich grosszuegig: ein Fehltreffer kostet nichts,
  * ein Fehlalarm wuerde einen echten Kunden aussperren.
@@ -62,12 +84,14 @@ const INSTITUTIONELL: RegExp[] = [
   /\bkita\b|kindergarten|hort/,
   /(^|\.)(stadt|gemeinde|kreis|landkreis|bezirk|kommune)[.-]/,
   /\.(gv|ac)\.at$/, /\.edu$/, /\.ac\.uk$/,       // AT/int. Bildung & Verwaltung
-  /bildung|paedagog|pädagog|foerderverein|förderverein/,
+  /bildung|paedagog|pädagog/,
 ];
+
+export type Ablehnungsgrund = "freemail" | "wegwerfadresse" | "verein" | "ungueltig";
 
 export type InvoiceEligibility =
   | { ok: true; institutionell: boolean; domain: string }
-  | { ok: false; grund: "freemail" | "wegwerfadresse" | "ungueltig"; domain: string };
+  | { ok: false; grund: Ablehnungsgrund; domain: string };
 
 /** Kommagetrennte Domains aus der Env (Einzelfall-Freigaben bzw. Zusatz-Sperren). */
 function envDomains(name: string): Set<string> {
@@ -81,6 +105,13 @@ function envDomains(name: string): Set<string> {
 export function domainOf(email: string): string {
   const at = email.lastIndexOf("@");
   return at < 0 ? "" : email.slice(at + 1).trim().toLowerCase();
+}
+
+/** Erkennt Vereins-Muster — HARTES Tor: Vereine zahlen per Karte. */
+export function istVerein(email: string): boolean {
+  const domain = domainOf(email);
+  if (!domain) return false;
+  return VEREIN.some((re) => re.test(domain));
 }
 
 /** Erkennt institutionelle Muster — reines Signal, kein Tor. */
@@ -107,6 +138,11 @@ export function pruefeRechnungsAdresse(email: string): InvoiceEligibility {
   if (DISPOSABLE.has(domain)) {
     return { ok: false, grund: "wegwerfadresse", domain };
   }
+  // Vereine (v. a. Foerdervereine) zahlen per Karte — der Rechnungskauf ist
+  // Schulen und Schultraegern vorbehalten (AGB § 4a).
+  if (istVerein(email)) {
+    return { ok: false, grund: "verein", domain };
+  }
   if (FREEMAIL.has(domain) || envDomains("INVOICE_DOMAIN_BLOCKLIST").has(domain)) {
     return { ok: false, grund: "freemail", domain };
   }
@@ -115,19 +151,28 @@ export function pruefeRechnungsAdresse(email: string): InvoiceEligibility {
 }
 
 /** Nutzertext zur Ablehnung — muss den Weg zeigen, nicht nur die Tuer zuschlagen. */
-export function ablehnungsText(grund: "freemail" | "wegwerfadresse" | "ungueltig"): string {
+export function ablehnungsText(grund: Ablehnungsgrund): string {
   if (grund === "ungueltig") {
     return "Bitte geben Sie eine gültige E-Mail-Adresse an.";
   }
   if (grund === "wegwerfadresse") {
-    return "Mit einer Wegwerf-Adresse ist der Kauf auf Rechnung nicht möglich. " +
-      "Bitte verwenden Sie die dienstliche Adresse Ihrer Schule oder Ihres Trägers.";
+    return (
+      "Mit einer Wegwerf-Adresse ist der Kauf auf Rechnung nicht möglich. " +
+      "Bitte verwenden Sie die dienstliche Adresse Ihrer Schule oder Ihres Trägers."
+    );
+  }
+  if (grund === "verein") {
+    return (
+      "Der Kauf auf Rechnung ist Schulen und Schulträgern vorbehalten (AGB § 4a). " +
+      "Als Förderverein können Sie direkt per Karte bezahlen — die Freischaltung " +
+      "erfolgt sofort nach der Zahlung."
+    );
   }
   return (
     "Der Kauf auf Rechnung ist der dienstlichen Adresse Ihrer Schule oder Ihres Trägers " +
     "vorbehalten (z. B. name@schule-musterstadt.de) — die Leistung wird dabei sofort " +
     "freigeschaltet, bevor die Zahlung eingeht. Mit einer privaten E-Mail-Adresse können " +
-    "Sie stattdessen direkt per Karte bezahlen. Wenn Ihre Einrichtung keine eigene Domain " +
-    "hat, schreiben Sie uns kurz — wir schalten Sie frei."
+    "Sie stattdessen direkt per Karte bezahlen. Nutzt Ihre Schule keine eigene Domain, " +
+    "schreiben Sie uns kurz — wir schalten Sie frei."
   );
 }
