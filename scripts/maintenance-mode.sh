@@ -25,10 +25,15 @@ case "$MODE" in
 esac
 
 if [ "$MODE" = "on" ]; then
-  echo "==> Wartungsseite + nginx-Config auf Server kopieren"
+  echo "==> Wartungsseite (html/ inkl. Schriften) + nginx-Config auf Server kopieren"
   ssh "$REMOTE" "mkdir -p $REMOTE_PATH/ops/maintenance"
-  scp -q ops/maintenance/index.html "$REMOTE:$REMOTE_PATH/ops/maintenance/index.html"
-  scp -q ops/maintenance/nginx.conf "$REMOTE:$REMOTE_PATH/ops/maintenance/nginx.conf"
+  # VERZEICHNISSE kopieren, nicht Einzeldateien: Die Mounts unten sind Verzeichnis-
+  # Mounts. Das ist Absicht — ein Einzeldatei-Bind-Mount haengt am INODE, und ein
+  # 'scp' ersetzt die Datei (neuer Inode). Der Container haelt dann den alten und
+  # liefert stur die ALTE Seite aus, mit HTTP 200 und ohne Fehlermeldung.
+  # Verzeichnis-Mounts folgen dem Pfad — Dateien darin lassen sich frei ersetzen.
+  scp -qr ops/maintenance/html "$REMOTE:$REMOTE_PATH/ops/maintenance/"
+  scp -qr ops/maintenance/conf "$REMOTE:$REMOTE_PATH/ops/maintenance/"
 fi
 
 ssh "$REMOTE" "MODE=$MODE REMOTE_PATH=$REMOTE_PATH NET=$NET bash -se" <<'EOF'
@@ -82,8 +87,8 @@ case "$MODE" in
     docker run -d --name edufunds-maintenance \
       --network "$NET" \
       --restart unless-stopped \
-      -v "$REMOTE_PATH/ops/maintenance/index.html:/usr/share/nginx/html/index.html:ro" \
-      -v "$REMOTE_PATH/ops/maintenance/nginx.conf:/etc/nginx/conf.d/default.conf:ro" \
+      -v "$REMOTE_PATH/ops/maintenance/html:/usr/share/nginx/html:ro" \
+      -v "$REMOTE_PATH/ops/maintenance/conf:/etc/nginx/conf.d:ro" \
       $(router_labels) \
       nginx:alpine >/dev/null
     sleep 2
@@ -113,7 +118,7 @@ if [ "$MODE" = "on" ]; then
   # HTTP 200 allein beweist NICHTS: Bei einem Inode-verwaisten Bind-Mount liefert der
   # Container die ALTE Seite mit 200 aus. Deshalb gegen den Inhalt pruefen — die
   # lokale Datei muss das sein, was auch ankommt.
-  marker=$(grep -oE '<h1>[^<]*' ops/maintenance/index.html | head -1 | sed 's/<h1>//' | cut -c1-18)
+  marker=$(grep -oE '<h1>[^<]*' ops/maintenance/html/index.html | head -1 | sed 's/<h1>//' | cut -c1-18)
   live=$(curl -s --max-time 15 https://edufunds.org/ || true)
   code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 15 https://edufunds.org/ || true)
   echo "    https://edufunds.org/ -> $code"
@@ -131,6 +136,28 @@ if [ "$MODE" = "on" ]; then
     exit 1
   fi
   echo "    App ist verborgen (Coming-Soon liefert alle Pfade)"
+
+  # DATENSCHUTZ: Die Seite darf KEINE externen Hosts laden. Am 14.07.2026 hing hier
+  # eine Google-Fonts-Einbindung — sie uebertrug die IP jedes Besuchers ohne
+  # Einwilligung an Google (USA) und widersprach der Datenschutzerklaerung, die
+  # Schriften "vom eigenen Server" zusagt (abmahnfaehig, vgl. LG Muenchen I 3 O 17493/20).
+  # w3.org ist nur der SVG-Namespace im Markup, kein Request.
+  extern=$(printf '%s' "$live" | grep -oE 'https?://[a-z0-9.-]+' | grep -viE 'w3\.org|edufunds\.org' | sort -u || true)
+  if [ -n "$extern" ]; then
+    echo "    ALARM: Die Seite laedt von EXTERNEN Hosts — Datenschutzverstoss!" >&2
+    printf '            %s\n' $extern >&2
+    exit 1
+  fi
+  echo "    Keine externen Hosts (Schriften self-hosted)"
+
+  # Schriften muessen auch wirklich ausgeliefert werden (sonst faellt die Seite still
+  # auf eine Systemschrift zurueck und niemand merkt es).
+  for f in ops/maintenance/html/fonts/*.woff2; do
+    [ -e "$f" ] || continue
+    fc=$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 "https://edufunds.org/fonts/$(basename "$f")" || true)
+    [ "$fc" = "200" ] || { echo "    FEHLER: /fonts/$(basename "$f") -> $fc" >&2; exit 1; }
+  done
+  echo "    Schriften werden ausgeliefert"
 else
   code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 15 https://edufunds.org/ || true)
   echo "    https://edufunds.org/ -> $code"

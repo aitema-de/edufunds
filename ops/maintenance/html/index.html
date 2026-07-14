@@ -5,13 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
   <title>EduFunds — Bald verfügbar</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Outfit:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  />
+  <!-- Schriften werden vom EIGENEN Server geliefert (self-hosted, auf die benutzten
+       Glyphen subgesetzt). KEINE Google-Fonts-Einbindung: die würde bei jedem Aufruf
+       die IP des Besuchers ohne Einwilligung an Google in die USA übertragen — und
+       unserer Datenschutzerklärung widersprechen, die ausdrücklich zusagt, dass
+       Schriftarten vom eigenen Server kommen. Ersetzen nur mit lokalen Dateien. -->
   <style>
+    @font-face {
+      font-family: 'Newsreader';
+      font-style: italic;
+      font-weight: 400 500;
+      font-display: swap;
+      src: url('/fonts/newsreader-italic.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Newsreader';
+      font-style: normal;
+      font-weight: 400 500;
+      font-display: swap;
+      src: url('/fonts/newsreader-normal.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Outfit';
+      font-style: normal;
+      font-weight: 400 600;
+      font-display: swap;
+      src: url('/fonts/outfit-normal.woff2') format('woff2');
+    }
     :root {
       /* Akademisch/Institut (Richtung F) — Paper / Ink / Evergreen / Gold */
       --paper: #fdfdfc;
