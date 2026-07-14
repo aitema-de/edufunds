@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { AlertTriangle, Check, Coins, Copy, Download, FileDown, Loader2, PenLine, RefreshCw, Sparkles } from "lucide-react";
+import { AlertTriangle, Check, Coins, Copy, Download, FileDown, Loader2, RefreshCw, Sparkles } from "lucide-react";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import {
   buildBeantragungsEmpfehlung,
@@ -61,9 +61,9 @@ interface Props {
 }
 
 /**
- * Baut MARKDOWN_COMPONENTS als Closure ueber paid + programmId.
- * h2 bekommt Anker-ID (slug) + scroll-mt-24 + on-hover PenLine-Edit-Button (nur paid=true).
- * Duplikat-h2-Texte erhalten -2/-3-Suffix (Pitfall-5-Pattern).
+ * Baut MARKDOWN_COMPONENTS als Closure ueber den Reform-Hook.
+ * h2 bekommt Anker-ID (slug) + scroll-mt-24; Duplikat-h2-Texte erhalten
+ * -2/-3-Suffix (Pitfall-5-Pattern).
  */
 interface ReformHook {
   /** Quelltext, in den node.position-Offsets zeigen (= der an ReactMarkdown übergebene String). */
@@ -74,7 +74,7 @@ interface ReformHook {
 /** node.position aus react-markdown (v10) — nur die für den Splice nötigen Offsets. */
 type MdNode = { position?: { start?: { offset?: number }; end?: { offset?: number } } };
 
-function buildMarkdownComponents(paid: boolean, programmId: string, reform?: ReformHook) {
+function buildMarkdownComponents(reform?: ReformHook) {
   const usedIds = new Map<string, number>();
   return {
     h1: ({ children }: { children?: React.ReactNode }) => (
@@ -92,21 +92,21 @@ function buildMarkdownComponents(paid: boolean, programmId: string, reform?: Ref
       usedIds.set(baseSlug, count);
       const id = count === 1 ? baseSlug : `${baseSlug}-${count}`;
       return (
+        // Hier sass ein Stift-Icon "Sektion bearbeiten", das auf
+        // /antrag/<id>/wizard?editAnswer=true verlinkte. Diesen Query-Parameter
+        // hat NIE jemand gelesen (WizardShell nutzt kein useSearchParams) — der
+        // Klick warf den zahlenden Kunden also lediglich aus seinem fertigen
+        // Antrag zurueck in den Wizard, ohne dort irgendetwas zu oeffnen.
+        // Entfernt: eine kaputte Bedienmoeglichkeit ist schlechter als keine.
+        // Das echte Bearbeiten laeuft ueber die Chronologie-Seitenleiste im
+        // Wizard (braucht messageId + neuen Text). Soll es hier wieder auftauchen,
+        // fehlt die Zuordnung Ergebnis-Sektion -> Antwort-Message; die gibt es
+        // bislang nicht.
         <h2
           id={id}
-          className="group mb-3 mt-8 flex items-center gap-2 text-lg font-semibold text-[#1e3d32] scroll-mt-24"
+          className="mb-3 mt-8 text-lg font-semibold text-[#1e3d32] scroll-mt-24"
         >
-          <span>{children}</span>
-          {paid && (
-            <a
-              href={`/antrag/${programmId}/wizard?editAnswer=true`}
-              className="opacity-0 group-hover:opacity-100 text-slate-500 hover:text-[#57534e] transition"
-              title="Antwort zurück und neu beantworten"
-              aria-label="Sektion bearbeiten"
-            >
-              <PenLine className="h-3.5 w-3.5" />
-            </a>
-          )}
+          {children}
         </h2>
       );
     },
@@ -267,8 +267,6 @@ export function AntragResult({
   // Umformulierung nur für bezahlte, editierbare Sessions anbieten (wie die
   // Text-Vorschläge). Quelle = der volle `text`, der bei paid an ReactMarkdown geht.
   const markdownComponents = buildMarkdownComponents(
-    paid,
-    programm.id,
     paid && sessionToken
       ? { source: text, onPick: (start, end, passage) => setReformState({ start, end, passage }) }
       : undefined

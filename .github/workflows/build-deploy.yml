@@ -66,9 +66,12 @@ jobs:
       with:
         context: .
         push: true
-        # MOCK=1 bis Stripe-Live fertig ist (s. Kopf-Kommentar). Vor Go-Live entfernen.
-        build-args: |
-          NEXT_PUBLIC_PAYWALL_DEV_MOCK=1
+        # KEIN --build-arg NEXT_PUBLIC_PAYWALL_DEV_MOCK: es gilt der Dockerfile-Default 0,
+        # d. h. die Zahlungs-Paywall ist SCHARF. Bis 14.07.2026 stand hier fest MOCK=1 —
+        # ein manueller Dispatch haette ein Image gebaut, in dem sich die Paywall ueber
+        # /api/wizard/checkout/dev-mock kostenlos umgehen laesst.
+        # Fuer Pilot-/UAT-Builds gibt es den bewussten Weg:
+        #   ./scripts/deploy-production.sh --with-paywall-bypass
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         cache-from: type=gha
