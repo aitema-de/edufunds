@@ -55,12 +55,28 @@ Cutover-Deploy. Stripe-Live und Provider-Flip sind bereits vorbereitet.
 > Der Branch ist bewusst nicht gemergt, weil der Text zur anwaltlichen Freigabe steht.
 > **Reihenfolge daher zwingend:** Freigabe → `feature/agb-neufassung` → `staging` → erst dann
 > Cutover.
+>
+> ⚠️ **Seit 14.07.2026 ist das nicht mehr nur „besser", sondern zwingend:** Der Code
+> **zitiert die Neufassung**. Der Rechnungskauf ist auf Schulen und Schulträger beschränkt und
+> weist Fördervereine mit der Meldung *„Der Kauf auf Rechnung ist Schulen und Schulträgern
+> vorbehalten (**AGB § 4a**)"* ab. Einen § 4a gibt es in der **alten** AGB **nicht** — ein
+> Cutover ohne die Neufassung würde also eine Klausel zitieren, die nicht existiert, und die
+> Beschränkung stünde ohne vertragliche Grundlage da. Dasselbe gilt für die Sperre bei
+> Zahlungsverzug (§ 4a Abs. 5), die anteilige Abrechnung (§ 4a Abs. 6), die Entwertung nach
+> Rückerstattung (§ 4b/§ 7 Abs. 1) — alles **implementiert**, aber nur in der Neufassung
+> geregelt.
 
 ```bash
-# Pflicht-Check vor dem Merge nach main — muss "NEUFASSUNG" ausgeben:
+# Pflicht-Check vor dem Merge nach main — beide Zeilen muessen "OK" ausgeben:
 git show staging:app/agb/page.tsx | grep -q "KI-generierte Ergebnisse" \
   && echo "OK: AGB-Neufassung ist auf staging" \
   || echo "STOPP: staging traegt noch die ALTE AGB — Cutover wuerde sie veroeffentlichen!"
+
+# Der Code zitiert § 4a und § 4b — sie muessen in der ausgelieferten AGB stehen:
+git show staging:app/agb/page.tsx | grep -q 'nr="§ 4a"' \
+  && git show staging:app/agb/page.tsx | grep -q 'nr="§ 4b"' \
+  && echo "OK: § 4a + § 4b sind auf staging" \
+  || echo "STOPP: Der Code zitiert AGB-Paragrafen, die die ausgelieferte AGB nicht hat!"
 ```
 
 ### 3.1 🔴 Kolja-Go: `staging → main` mergen (Content-Freeze)
