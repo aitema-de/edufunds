@@ -64,6 +64,18 @@ describe("POST /api/kontingent/order", () => {
     expect(mCreate).not.toHaveBeenCalled();
   });
 
+  it("422 fuer einen Foerderverein — Rechnungskauf ist Schulen/Traegern vorbehalten (AGB § 4a)", async () => {
+    const res = await POST(req({ ...validBody, email: "kasse@foerderverein-muster.de" }));
+    expect(res.status).toBe(422);
+    expect(mCreate).not.toHaveBeenCalled();
+  });
+
+  it("422 fuer eine private Freemail-Adresse — es wird keine Bestellung angelegt", async () => {
+    const res = await POST(req({ ...validBody, email: "privat@gmx.de" }));
+    expect(res.status).toBe(422);
+    expect(mCreate).not.toHaveBeenCalled();
+  });
+
   it("400 bei unbekanntem Paket", async () => {
     const res = await POST(req({ ...validBody, packId: "pack999" }));
     expect(res.status).toBe(400);
