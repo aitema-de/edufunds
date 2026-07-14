@@ -7,6 +7,8 @@ import {
   createOrder,
   buildOrderConfirmationEmail,
   buildOrderAdminEmail,
+  countOpenInvoiceOrders,
+  MAX_OPEN_INVOICE_ORDERS,
   type OrderRecord,
 } from "@/lib/payments/orders";
 import { sendMail } from "@/lib/mail";
@@ -57,6 +59,22 @@ export async function POST(req: NextRequest) {
     const pack = getPack(data.packId);
     if (!pack || !pack.isQuota) {
       return NextResponse.json({ error: "Unbekanntes oder nicht bestellbares Paket." }, { status: 400 });
+    }
+
+    // Missbrauchsbremse: Der Rechnungskauf schaltet SOFORT frei, bevor Geld
+    // geflossen ist (bis 459,90 EUR). Wer bereits offene Rechnungen hat, bekommt
+    // keine weitere Sofort-Freischaltung. Das IP-Limit ('invoice', 3/24h) bremst
+    // Massen-Skripte; diese Grenze denselben Besteller mit wechselnder IP.
+    const offen = await countOpenInvoiceOrders(data.email);
+    if (offen >= MAX_OPEN_INVOICE_ORDERS) {
+      return NextResponse.json(
+        {
+          error:
+            "Für diese E-Mail-Adresse sind bereits Rechnungen offen. " +
+            "Bitte begleichen Sie diese zuerst oder wenden Sie sich an office@edufunds.org.",
+        },
+        { status: 409 },
+      );
     }
 
     const order: OrderRecord = await createOrder({

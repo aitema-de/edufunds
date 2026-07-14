@@ -59,6 +59,37 @@ function expiresAtISO(from: Date = new Date()): string {
 }
 
 /**
+ * Wie viele unbezahlte Rechnungsbestellungen eine E-Mail-Adresse gleichzeitig
+ * offen haben darf, bevor weitere Sofort-Freischaltungen verweigert werden.
+ *
+ * Hintergrund: Der Kauf auf Rechnung schaltet die Leistung SOFORT frei, bevor Geld
+ * geflossen ist (beim Kontingent bis 459,90 EUR). Ohne Grenze koennte jemand
+ * beliebig viele Bestellungen aufgeben und nie zahlen. Das IP-Rate-Limit
+ * ('invoice', 3/24h) bremst Massen-Skripte; diese Grenze bremst denselben Besteller
+ * mit wechselnder IP. Zusammen decken sie beide Missbrauchswege ab.
+ *
+ * 2 offene Rechnungen sind fuer einen echten Kunden reichlich (Schulen bestellen
+ * selten parallel) und blockieren niemanden, der seine Rechnungen bezahlt.
+ */
+export const MAX_OPEN_INVOICE_ORDERS = 2;
+
+/**
+ * Zaehlt die noch unbezahlten Rechnungsbestellungen einer E-Mail-Adresse.
+ * Beide Rechnungswege schreiben in `org_orders` (Kontingent UND Einzelantrag),
+ * daher deckt eine Abfrage beide ab.
+ */
+export async function countOpenInvoiceOrders(email: string): Promise<number> {
+  const res = await query<{ count: string }>(
+    `SELECT COUNT(*)::text AS count
+       FROM org_orders
+      WHERE lower(email) = lower($1)
+        AND status = 'payment_pending'`,
+    [email],
+  );
+  return Number(res.rows[0]?.count ?? 0);
+}
+
+/**
  * Legt eine Kontingent-Bestellung an: erzeugt den Sammel-Code und persistiert
  * die Bestellung. Wirft bei unbekanntem/nicht-bestellbarem Paket.
  */

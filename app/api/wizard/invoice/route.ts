@@ -7,7 +7,9 @@ import {
   createEinzelInvoiceOrder,
   buildEinzelInvoiceConfirmationEmail,
   buildEinzelInvoiceAdminEmail,
+  countOpenInvoiceOrders,
   escapeHtml,
+  MAX_OPEN_INVOICE_ORDERS,
   type EinzelInvoiceOrder,
 } from "@/lib/payments/orders";
 import { trustedAppUrl } from "@/lib/app-url";
@@ -68,6 +70,23 @@ export async function POST(req: NextRequest) {
     // Idempotent: bereits freigeschaltet -> bestehenden Token liefern.
     if (session.paidToken) {
       return NextResponse.json({ ok: true, alreadyPaid: true, paidToken: session.paidToken });
+    }
+
+    // Missbrauchsbremse: Wir schalten gleich SOFORT frei, bevor Geld geflossen ist.
+    // Wer bereits offene Rechnungen hat, bekommt keine weitere Sofort-Freischaltung.
+    // (Das IP-Limit 'invoice' 3/24h bremst Skripte, das hier denselben Besteller
+    // mit wechselnder IP.) Steht BEWUSST vor tryMarkSessionPaid — danach waere der
+    // Antrag schon frei.
+    const offen = await countOpenInvoiceOrders(data.email);
+    if (offen >= MAX_OPEN_INVOICE_ORDERS) {
+      return NextResponse.json(
+        {
+          error:
+            "Für diese E-Mail-Adresse sind bereits Rechnungen offen. " +
+            "Bitte begleichen Sie diese zuerst oder wenden Sie sich an office@edufunds.org.",
+        },
+        { status: 409 },
+      );
     }
 
     // 1) Session freischalten (race-sicher). Käufer-Mail bindet den Antrag.
