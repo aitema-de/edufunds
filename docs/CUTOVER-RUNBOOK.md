@@ -77,22 +77,39 @@ gh pr merge <NR> --repo aitema-de/edufunds --merge
 
 Danach steht `origin/main` auf dem staging-Stand (inkl. Migration-011-Datei, Mistral-Default im Code, alle Härtungen).
 
-### 3.2 🔴 Kolja-Go: Migration 011 auf Prod-DB `edufunds` anwenden
+### 3.2 🔴 Kolja-Go: Migrationen 011–014 auf Prod-DB `edufunds` anwenden
 
-Additiv (`CREATE TABLE IF NOT EXISTS`) und idempotent — gefahrlos, mehrfach anwendbar.
-Muss **vor** dem Deploy laufen (der neue Webhook-Handler erwartet die Tabelle).
+Alle additiv (`ADD COLUMN IF NOT EXISTS` / `CREATE TABLE IF NOT EXISTS`) und idempotent —
+gefahrlos, mehrfach anwendbar. Müssen **vor** dem Deploy laufen: der Webhook-Handler
+erwartet die Tabelle (011) **und** den Status `refunded` (012). Fehlt 012, wirft
+`charge.refunded` an der CHECK-Constraint, Stripe retried, und der Download-Token
+bleibt trotzdem gültig — der Bug, den 012 gerade schließt.
+
+| Migration | Inhalt |
+|---|---|
+| 011 | `stripe_webhook_events` (Idempotenz-Riegel) |
+| 012 | Rückerstattung: `ki_antraege.status += 'refunded'`, `refunded_at/_token`, `credit_codes.revoked_at` |
+| 013 | Bestellstatus-Lebenszyklus: `org_orders.paid_at/cancelled_at/cancel_reason/session_token` + CHECK |
+| 014 | Mahnlauf: `org_orders.reminder_sent_at/dunning_sent_at` |
 
 ```bash
 ssh root@49.13.15.44
 cd /home/edufunds/edufunds-app
 git fetch origin
-# Migration aus dem gemergten main-Stand direkt in die Prod-DB pipen:
-git show origin/main:db/migrations/011_stripe_webhook_events.sql \
-  | docker exec -i edufunds-postgres psql -U edufunds -d edufunds
+for m in 011_stripe_webhook_events 012_refund 013_order_status 014_dunning; do
+  echo "--- $m ---"
+  git show origin/main:db/migrations/${m}.sql \
+    | docker exec -i edufunds-postgres psql -U edufunds -d edufunds -v ON_ERROR_STOP=1
+done
 
-# Verifikation (Tabelle muss existieren):
-docker exec edufunds-postgres psql -U edufunds -d edufunds -c "\d stripe_webhook_events"
+# Verifikation — beide Constraints und die neuen Spalten müssen stehen:
+docker exec edufunds-postgres psql -U edufunds -d edufunds -c \
+  "SELECT conname, pg_get_constraintdef(oid) FROM pg_constraint
+    WHERE conname IN ('ki_antraege_status_check','org_orders_status_check');"
+# ki_antraege_status_check MUSS 'refunded' enthalten.
 ```
+
+> Auf `edufunds_staging` sind 012–014 am 14.07.2026 angewandt und verifiziert.
 
 ### 3.3 🔴 Kolja-Go: Cutover-Deploy (baut `main`, recreated Container)
 
@@ -164,21 +181,47 @@ curl -fsS -H "x-cron-key: $S" "https://app.edufunds.org/api/cron/retention?dryRu
 
 ---
 
-## 5. Retention-Cron produktiv schalten (nach Cutover)
+## 5. Crons
 
-`CRON_SECRET` ist auf Prod gesetzt; es fehlt nur der Crontab-Eintrag. Täglich 03:30:
+### 5.1 Retention-Cron — ✅ läuft bereits (seit 13.07.2026)
+
+```
+30 3 * * * /opt/ops/edufunds-retention-cron.sh
+```
+
+> ⚠️ **Nicht per `curl` gegen `app.edufunds.org` einrichten** (so stand es hier bis 14.07.).
+> Die Coming-Soon-nginx läuft mit Traefik-Prio 1000 vor der App und reicht `/api/cron/*`
+> **nicht** durch — ein externer curl liefe in ein stilles **405**, ohne dass es jemand
+> merkt. Das Skript ruft deshalb **container-intern** auf (`docker exec` → localhost:3000)
+> und bleibt auch nach `maintenance off` korrekt.
+
+### 5.2 🔴 Mahnlauf-Cron produktiv schalten (NACH dem Cutover-Deploy)
+
+Skript ist installiert (`/opt/ops/edufunds-dunning-cron.sh`, 14.07.2026) und gegen den
+Staging-Container verifiziert. Der **Crontab-Eintrag fehlt bewusst noch**: Der Prod-Container
+läuft bis zum Cutover auf altem Code **ohne** den Endpoint `/api/cron/dunning` — der Lauf
+würde täglich mit exit 1 fehlschlagen und ein falsches Sicherheitsgefühl erzeugen.
+
+**Erst nach dem Cutover-Deploy (3.3) eintragen:**
 
 ```bash
 ssh root@49.13.15.44
-cd /home/edufunds/edufunds-app
-S=$(grep '^CRON_SECRET=' .env.production | cut -d= -f2-)   # ggf. Anführungszeichen entfernen
-( crontab -l 2>/dev/null; \
-  echo "30 3 * * * curl -fsS -X POST -H \"x-cron-key: $S\" https://app.edufunds.org/api/cron/retention >/dev/null 2>&1" ) | crontab -
-crontab -l | grep retention   # kontrollieren
+# 1. Vorher prüfen, dass der Endpoint auf PROD existiert (muss JSON liefern, nicht leer):
+CONTAINER=edufunds-app LOG=/tmp/dunning-check.log /opt/ops/edufunds-dunning-cron.sh --dry-run
+cat /tmp/dunning-check.log     # "OK {"dryRun":true,...}" erwartet
+
+# 2. Dann scharf schalten (täglich 04:00, nach der Retention um 03:30):
+( crontab -l 2>/dev/null; echo "0 4 * * * /opt/ops/edufunds-dunning-cron.sh" ) | crontab -
+crontab -l | grep dunning
 ```
-> Optional: Erst einmal **manuell mit `?dryRun=1`** laufen lassen (Schritt 4d) und die
-> Zahlen plausibilisieren, bevor der scharfe Cron greift.
-> Newsletter-Cron (`/api/cron/newsletter`) analog, falls der Newsletter live gehen soll.
+
+Der Lauf ist zweistufig: Zahlungserinnerung bei Fälligkeit (folgenlos), Mahnung + Sperre der
+noch offenen Credits nach 7 Tagen Kulanz. Die Mail geht **zuerst** raus, der Zustand ändert
+sich erst danach — scheitert der Versand, bleibt alles unverändert und der nächste Lauf
+versucht es erneut (niemand wird still gesperrt). Das Skript beendet sich mit **exit 1**,
+wenn Mails fehlschlugen, damit es nicht untergeht.
+
+> Newsletter-Cron (`/api/cron/newsletter`) läuft bereits monatlich.
 
 ---
 
