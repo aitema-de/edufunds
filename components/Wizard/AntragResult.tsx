@@ -3,13 +3,21 @@
 import { useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { AlertTriangle, Check, Copy, Download, FileDown, Loader2, PenLine, RefreshCw, Sparkles } from "lucide-react";
+import { AlertTriangle, Check, Coins, Copy, Download, FileDown, Loader2, RefreshCw, Sparkles } from "lucide-react";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
+import {
+  buildBeantragungsEmpfehlung,
+  type Foerderhoehe,
+} from "@/lib/foerderhoehe-empfehlung";
 import type { Finanzplan, GenerationArtefacts } from "@/lib/wizard/types";
 import { type CostLedger } from "@/lib/wizard/pricing";
 import { FinanzplanView } from "./FinanzplanView";
 import { FinanzplanEditor } from "./FinanzplanEditor";
-import { TextVorschlaegeEditor } from "./TextVorschlaegeEditor";
+import { TextVorschlaegeEditor, provenanz } from "./TextVorschlaegeEditor";
+import { AbsatzReformulierer } from "./AbsatzReformulierer";
+import { MIN_PASSAGE_LEN as REFORM_MIN_PASSAGE_LEN } from "@/lib/reformulierung";
+import { highlightMarkers } from "./MarkerHighlight";
+import { dokumentLabels, type DokumentLabels } from "@/lib/wizard/dokument-label";
 import { renderFinanzplanMarkdown } from "@/lib/wizard/finanzplan-markdown";
 import { PaywallGate } from "./PaywallGate";
 import { AntragSectionNav, slugifyHeading } from "./AntragSectionNav";
@@ -39,25 +47,38 @@ const CONSISTENCY_ART_LABELS: Record<string, string> = {
 interface Props {
   programm: Foerderprogramm;
   generation: GenerationArtefacts;
+  /** P4-B M-Erweiterung: strukturierte Förderhöhe aus dem Dossier (für die Beantragungshöhe-Empfehlung). */
+  foerderhoehe?: Foerderhoehe | null;
   costs?: CostLedger | null;
   sessionToken?: string;
   /** Wenn gesetzt, ist der Antrag bereits bezahlt — Paywall wird nicht angezeigt. */
   paidToken?: string | null;
   einreichung?: EinreichungInfoData | null;
+  /** 86cabdzwk: per-Programm-Dokumentlabel (Default "Antrag"/"Antragstext"). */
+  labels?: DokumentLabels;
   onRestart?: () => void;
   onFinanzplanChange?: (plan: Finanzplan) => void;
 }
 
 /**
- * Baut MARKDOWN_COMPONENTS als Closure ueber paid + programmId.
- * h2 bekommt Anker-ID (slug) + scroll-mt-24 + on-hover PenLine-Edit-Button (nur paid=true).
- * Duplikat-h2-Texte erhalten -2/-3-Suffix (Pitfall-5-Pattern).
+ * Baut MARKDOWN_COMPONENTS als Closure ueber den Reform-Hook.
+ * h2 bekommt Anker-ID (slug) + scroll-mt-24; Duplikat-h2-Texte erhalten
+ * -2/-3-Suffix (Pitfall-5-Pattern).
  */
-function buildMarkdownComponents(paid: boolean, programmId: string) {
+interface ReformHook {
+  /** Quelltext, in den node.position-Offsets zeigen (= der an ReactMarkdown übergebene String). */
+  source: string;
+  onPick: (start: number, end: number, passage: string) => void;
+}
+
+/** node.position aus react-markdown (v10) — nur die für den Splice nötigen Offsets. */
+type MdNode = { position?: { start?: { offset?: number }; end?: { offset?: number } } };
+
+function buildMarkdownComponents(reform?: ReformHook) {
   const usedIds = new Map<string, number>();
   return {
     h1: ({ children }: { children?: React.ReactNode }) => (
-      <h1 className="mb-6 text-2xl font-semibold text-[#0a1628]">{children}</h1>
+      <h1 className="mb-6 text-2xl font-semibold text-[#1c1917]">{children}</h1>
     ),
     h2: ({ children }: { children?: React.ReactNode }) => {
       const text =
@@ -71,44 +92,75 @@ function buildMarkdownComponents(paid: boolean, programmId: string) {
       usedIds.set(baseSlug, count);
       const id = count === 1 ? baseSlug : `${baseSlug}-${count}`;
       return (
+        // Hier sass ein Stift-Icon "Sektion bearbeiten", das auf
+        // /antrag/<id>/wizard?editAnswer=true verlinkte. Diesen Query-Parameter
+        // hat NIE jemand gelesen (WizardShell nutzt kein useSearchParams) — der
+        // Klick warf den zahlenden Kunden also lediglich aus seinem fertigen
+        // Antrag zurueck in den Wizard, ohne dort irgendetwas zu oeffnen.
+        // Entfernt: eine kaputte Bedienmoeglichkeit ist schlechter als keine.
+        // Das echte Bearbeiten laeuft ueber die Chronologie-Seitenleiste im
+        // Wizard (braucht messageId + neuen Text). Soll es hier wieder auftauchen,
+        // fehlt die Zuordnung Ergebnis-Sektion -> Antwort-Message; die gibt es
+        // bislang nicht.
         <h2
           id={id}
-          className="group mb-3 mt-8 flex items-center gap-2 text-lg font-semibold text-[#7a5e12] scroll-mt-24"
+          className="mb-3 mt-8 text-lg font-semibold text-[#1e3d32] scroll-mt-24"
         >
-          <span>{children}</span>
-          {paid && (
-            <a
-              href={`/antrag/${programmId}/wizard?editAnswer=true`}
-              className="opacity-0 group-hover:opacity-100 text-slate-500 hover:text-[#1e3a61] transition"
-              title="Antwort zurück und neu beantworten"
-              aria-label="Sektion bearbeiten"
-            >
-              <PenLine className="h-3.5 w-3.5" />
-            </a>
-          )}
+          {children}
         </h2>
       );
     },
     h3: ({ children }: { children?: React.ReactNode }) => (
-      <h3 className="mb-2 mt-6 text-base font-semibold text-[#0a1628]">{children}</h3>
+      <h3 className="mb-2 mt-6 text-base font-semibold text-[#1c1917]">{children}</h3>
     ),
-    p: ({ children }: { children?: React.ReactNode }) => (
-      <p className="mb-4 leading-relaxed text-[#1e3a61]">{children}</p>
-    ),
+    p: ({ children, node }: { children?: React.ReactNode; node?: MdNode }) => {
+      const start = node?.position?.start?.offset;
+      const end = node?.position?.end?.offset;
+      const passage =
+        reform && typeof start === "number" && typeof end === "number"
+          ? reform.source.slice(start, end)
+          : "";
+      // Nur echte Prosa anbieten — keine ungeprüften [Annahme:]-Absätze (deren
+      // Marker-Erhalt schützt die Ehrlichkeit; hier gar nicht erst anfassen).
+      const eligible =
+        !!reform &&
+        typeof start === "number" &&
+        typeof end === "number" &&
+        passage.trim().length >= REFORM_MIN_PASSAGE_LEN &&
+        !passage.includes("[Annahme:");
+      return (
+        <p className={"mb-4 leading-relaxed text-[#57534e]" + (eligible ? " group relative" : "")}>
+          {highlightMarkers(children)}
+          {eligible && (
+            <button
+              type="button"
+              onClick={() => reform!.onPick(start!, end!, passage)}
+              title="Diesen Absatz umformulieren"
+              aria-label="Diesen Absatz umformulieren"
+              // In den rechten Rand (article p-8 = 32px Gutter) gesetzt, damit das
+              // Icon rechts am Absatz sitzt statt am Zeilenende — kein Text-Overlap.
+              className="absolute -right-7 top-0.5 inline-flex items-center rounded p-0.5 text-slate-400 opacity-0 transition hover:bg-[#1e3d32]/10 hover:text-[#1e3d32] group-hover:opacity-100 focus:opacity-100 md:-right-8"
+            >
+              <RefreshCw className="h-3.5 w-3.5" />
+            </button>
+          )}
+        </p>
+      );
+    },
     strong: ({ children }: { children?: React.ReactNode }) => (
-      <strong className="font-semibold text-[#0a1628]">{children}</strong>
+      <strong className="font-semibold text-[#1c1917]">{children}</strong>
     ),
     em: ({ children }: { children?: React.ReactNode }) => (
-      <em className="italic text-[#1e3a61]">{children}</em>
+      <em className="italic text-[#57534e]">{children}</em>
     ),
     ul: ({ children }: { children?: React.ReactNode }) => (
-      <ul className="mb-4 ml-6 list-disc space-y-1 text-[#1e3a61]">{children}</ul>
+      <ul className="mb-4 ml-6 list-disc space-y-1 text-[#57534e]">{children}</ul>
     ),
     ol: ({ children }: { children?: React.ReactNode }) => (
-      <ol className="mb-4 ml-6 list-decimal space-y-1 text-[#1e3a61]">{children}</ol>
+      <ol className="mb-4 ml-6 list-decimal space-y-1 text-[#57534e]">{children}</ol>
     ),
     li: ({ children }: { children?: React.ReactNode }) => (
-      <li className="leading-relaxed">{children}</li>
+      <li className="leading-relaxed">{highlightMarkers(children)}</li>
     ),
   };
 }
@@ -130,7 +182,7 @@ const PRINT_MARKDOWN_COMPONENTS = {
     </h3>
   ),
   p: ({ children }: { children?: React.ReactNode }) => (
-    <p style={{ marginBottom: "10pt", lineHeight: 1.5 }}>{children}</p>
+    <p style={{ marginBottom: "10pt", lineHeight: 1.5 }}>{highlightMarkers(children, "print")}</p>
   ),
   ul: ({ children }: { children?: React.ReactNode }) => (
     <ul style={{ marginLeft: "18pt", marginBottom: "10pt" }}>{children}</ul>
@@ -139,7 +191,7 @@ const PRINT_MARKDOWN_COMPONENTS = {
     <ol style={{ marginLeft: "18pt", marginBottom: "10pt" }}>{children}</ol>
   ),
   li: ({ children }: { children?: React.ReactNode }) => (
-    <li style={{ marginBottom: "4pt" }}>{children}</li>
+    <li style={{ marginBottom: "4pt" }}>{highlightMarkers(children, "print")}</li>
   ),
   table: ({ children }: { children?: React.ReactNode }) => (
     <table
@@ -184,15 +236,17 @@ async function loadHtml2pdf() {
 export function AntragResult({
   programm,
   generation,
+  foerderhoehe,
   costs,
   sessionToken,
   paidToken,
   einreichung,
+  labels,
   onRestart,
   onFinanzplanChange,
 }: Props) {
   const paid = !!paidToken;
-  const markdownComponents = buildMarkdownComponents(paid, programm.id);
+  const l = labels ?? dokumentLabels();
   const articleRef = useRef<HTMLElement>(null);
   const [copied, setCopied] = useState(false);
   const [showCritique, setShowCritique] = useState(false);
@@ -205,7 +259,55 @@ export function AntragResult({
   const [textVorschlaege, setTextVorschlaege] = useState<string[]>(
     generation.factVerification?.vorschlaege ?? []
   );
+  // P4-A Teil 1: aktiver Absatz für die On-Demand-Umformulierung (Quell-Offsets
+  // aus node.position → deterministischer Splice).
+  const [reformState, setReformState] = useState<{ start: number; end: number; passage: string } | null>(null);
   const printRef = useRef<HTMLDivElement>(null);
+
+  // Umformulierung nur für bezahlte, editierbare Sessions anbieten (wie die
+  // Text-Vorschläge). Quelle = der volle `text`, der bei paid an ReactMarkdown geht.
+  const markdownComponents = buildMarkdownComponents(
+    paid && sessionToken
+      ? { source: text, onPick: (start, end, passage) => setReformState({ start, end, passage }) }
+      : undefined
+  );
+
+  // Übernommene Variante deterministisch per Offset in den finalText splicen und
+  // über die bestehende textvorschlag-Route persistieren (kein neuer Speicher-Pfad).
+  const applyReform = async (variante: string) => {
+    if (!reformState || !sessionToken) return;
+    const { start, end } = reformState;
+    const next = text.slice(0, start) + variante + text.slice(end);
+    const res = await fetch("/api/wizard/textvorschlag", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sessionToken, finalText: next, vorschlaege: textVorschlaege }),
+    });
+    if (!res.ok) {
+      const j = (await res.json().catch(() => ({}))) as { error?: string };
+      throw new Error(j.error || `Fehler ${res.status}`);
+    }
+    const j = (await res.json()) as { finalText: string; vorschlaege: string[] };
+    setText(j.finalText);
+    setTextVorschlaege(j.vorschlaege);
+    setReformState(null);
+  };
+  // P4-B M-Erweiterung: kostenrelative Beantragungshöhe-Empfehlung. Das Projekt-
+  // volumen kommt deterministisch aus dem Finanzplan (Summe der Posten; nur wenn
+  // beziffert). Katalog-Zahlen dienen als Fallback, wenn kein Dossier-Deckel vorliegt.
+  const finanzplanGesamtEur =
+    generation.finanzplan && !generation.finanzplan.unbeziffert && generation.finanzplan.posten.length > 0
+      ? generation.finanzplan.posten.reduce((s, p) => s + p.betragEur, 0)
+      : undefined;
+  const beantragungsEmpfehlung = buildBeantragungsEmpfehlung({
+    foerderhoehe,
+    katalog: {
+      foerdersummeMin: programm.foerdersummeMin,
+      foerdersummeMax: programm.foerdersummeMax,
+      foerdersummeText: programm.foerdersummeText,
+    },
+    gesamtkostenEur: finanzplanGesamtEur,
+  });
   const finanzplanMarkdown = generation.finanzplan
     ? renderFinanzplanMarkdown(generation.finanzplan)
     : "";
@@ -238,7 +340,7 @@ export function AntragResult({
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `Foerderantrag_${programm.id}.${ext}`;
+    a.download = `${l.datei}_${programm.id}.${ext}`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -263,20 +365,48 @@ export function AntragResult({
     if (exportBlocked || !printRef.current || pdfBusy) return;
     setPdfBusy(true);
     try {
-      const html2pdf = (await loadHtml2pdf()) as {
-        (): {
-          set: (opt: unknown) => { from: (el: HTMLElement) => { save: () => Promise<void> } };
-        };
-      };
+      /* eslint-disable @typescript-eslint/no-explicit-any */
+      const html2pdf = (await loadHtml2pdf()) as any;
       const opt = {
         margin: [15, 15, 20, 15] as [number, number, number, number],
-        filename: `Foerderantrag_${programm.id}.pdf`,
+        filename: `${l.datei}_${programm.id}.pdf`,
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: { scale: 2, useCORS: true, logging: false },
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
         pagebreak: { mode: ["avoid-all", "css", "legacy"] },
       };
-      await html2pdf().set(opt).from(printRef.current).save();
+
+      // AI-Act Art. 50(2) verlangt eine MASCHINENLESBARE Kennzeichnung synthetischer Inhalte —
+      // der sichtbare Hinweis im Text (KI_EXPORT_HINWEIS) allein genuegt dafuer nicht. Wir
+      // schreiben sie daher zusaetzlich in die PDF-Metadaten, wo sie maschinell auslesbar ist
+      // und beim Weiterreichen des Dokuments erhalten bleibt.
+      //
+      // Bewusst defensiv: schlaegt das Setzen der Metadaten fehl (andere html2pdf-Version,
+      // geaenderte Worker-API), faellt der Export auf den einfachen Pfad zurueck. Ein bezahlter
+      // Antrag muss sich in jedem Fall herunterladen lassen — die sichtbare Kennzeichnung im
+      // Text ist dann immer noch vorhanden.
+      try {
+        await html2pdf()
+          .set(opt)
+          .from(printRef.current)
+          .toPdf()
+          .get("pdf")
+          .then((pdf: { setProperties: (p: Record<string, string>) => void }) => {
+            pdf.setProperties({
+              title: `${l.datei} — ${programm.name}`,
+              subject: "KI-generierter Antragsentwurf (AI-generated content)",
+              author: "aitema GmbH — EduFunds",
+              creator: "EduFunds (aitema GmbH) — KI-generiert / AI-generated",
+              keywords:
+                "KI-generiert, AI-generated, synthetic-content, Entwurf, EU-AI-Act-Art-50",
+            });
+          })
+          .save();
+      } catch (metaErr) {
+        console.warn("PDF-Metadaten konnten nicht gesetzt werden — Export ohne sie:", metaErr);
+        await html2pdf().set(opt).from(printRef.current).save();
+      }
+      /* eslint-enable @typescript-eslint/no-explicit-any */
     } catch (e) {
       console.error("PDF-Export fehlgeschlagen:", e);
       alert("PDF konnte nicht erstellt werden. Bitte erneut versuchen.");
@@ -286,11 +416,11 @@ export function AntragResult({
   };
 
   return (
-    <div className="rounded-xl border border-[#c9a227]/40 bg-white p-6">
+    <div className="rounded-xl border border-[#1e3d32]/40 bg-white p-6">
       <header className="mb-6 flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-semibold text-[#0a1628]">
-            Antragsentwurf {paid ? "freigeschaltet" : "fertig"}
+          <h2 className="text-2xl font-semibold text-[#1c1917]">
+            {l.entwurf} {paid ? "freigeschaltet" : "fertig"}
           </h2>
           <p className="text-sm text-slate-600">für {programm.name}</p>
         </div>
@@ -301,16 +431,16 @@ export function AntragResult({
             type="button"
             onClick={downloadRtf}
             disabled={exportBlocked}
-            className="inline-flex items-center gap-2 rounded-lg bg-[#c9a227] px-4 py-2 sm:py-3 text-sm font-semibold text-white transition hover:bg-[#b8921e] disabled:opacity-50 disabled:pointer-events-none"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#1e3d32] px-4 py-2 sm:py-3 text-sm font-semibold text-white transition hover:bg-[#2a5244] disabled:opacity-50 disabled:pointer-events-none"
           >
-            <Download className="h-4 w-4" /> Antrag herunterladen (bearbeitbar)
+            <Download className="h-4 w-4" /> {l.dokument} herunterladen (bearbeitbar)
           </button>
           <button
             type="button"
             onClick={downloadPdf}
             disabled={pdfBusy || exportBlocked}
             title="PDF zum Ansehen und Drucken (nicht bearbeitbar)."
-            className="inline-flex items-center gap-2 rounded-lg border border-[#c9a227]/40 bg-[#c9a227]/10 px-3 py-2 text-sm text-[#1e3a61] transition hover:bg-[#c9a227]/20 disabled:opacity-50 disabled:pointer-events-none"
+            className="inline-flex items-center gap-2 rounded-lg border border-[#1e3d32]/40 bg-[#1e3d32]/10 px-3 py-2 text-sm text-[#57534e] transition hover:bg-[#1e3d32]/20 disabled:opacity-50 disabled:pointer-events-none"
           >
             {pdfBusy ? (
               <Loader2 className="h-4 w-4 animate-spin" />
@@ -323,7 +453,7 @@ export function AntragResult({
             type="button"
             onClick={copy}
             disabled={exportBlocked}
-            className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-3 py-2 text-sm text-[#1e3a61] hover:bg-slate-100 disabled:opacity-40 disabled:pointer-events-none"
+            className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 px-3 py-2 text-sm text-[#57534e] hover:bg-slate-100 disabled:opacity-40 disabled:pointer-events-none"
           >
             {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
             {copied ? "Kopiert" : "Kopieren"}
@@ -332,22 +462,57 @@ export function AntragResult({
             type="button"
             onClick={() => download("text/plain;charset=utf-8", "txt")}
             disabled={exportBlocked}
-            className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-3 py-2 text-sm text-[#1e3a61] hover:bg-slate-100 disabled:opacity-40 disabled:pointer-events-none"
+            className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 px-3 py-2 text-sm text-[#57534e] hover:bg-slate-100 disabled:opacity-40 disabled:pointer-events-none"
           >
             <Download className="h-4 w-4" /> .txt
           </button>
           {onRestart && (
-            <button
-              type="button"
-              onClick={onRestart}
-              className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 px-3 py-2 text-sm text-[#1e3a61] hover:bg-slate-100"
-            >
-              <RefreshCw className="h-4 w-4" /> Neu
-            </button>
+            <>
+              {/* Optischer Trenner: „Neuer Antrag" ist eine andere Art Aktion als
+                  die Export-Buttons und soll fuer Wiederkehrer auffindbar sein (NEU-1). */}
+              <span
+                className="mx-1 hidden h-6 w-px self-center bg-slate-200 sm:block"
+                aria-hidden="true"
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  // Restart verwirft den lokalen Zeiger auf diesen fertigen Antrag —
+                  // vor dem Verlust kurz rueckfragen (er bleibt unter „Meine Anträge").
+                  if (
+                    window.confirm(
+                      "Diesen fertigen Antrag schließen und einen neuen starten? Sie finden ihn weiterhin unter „Meine Anträge“."
+                    )
+                  ) {
+                    onRestart();
+                  }
+                }}
+                title="Einen neuen Förderantrag beginnen"
+                className="inline-flex items-center gap-2 rounded-lg border border-[#1e3d32]/40 bg-[#1e3d32]/10 px-4 py-2 sm:py-3 text-sm font-semibold text-[#1e3d32] transition hover:bg-[#1e3d32]/20"
+              >
+                <RefreshCw className="h-4 w-4" /> Neuer Antrag
+              </button>
+            </>
           )}
         </div>
       </header>
       <KiHinweis variant="ergebnis" className="mb-5" />
+      {paid && textVorschlaege.length > 0 && (
+        <div className="mb-5 flex items-start gap-3 rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900">
+          <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
+          <div>
+            <div className="font-semibold">
+              {textVorschlaege.length} KI-Annahme{textVorschlaege.length === 1 ? "" : "n"} zu prüfen
+            </div>
+            <p className="mt-0.5 text-xs text-amber-800/90">
+              Der Assistent hat Angaben ergänzt, die nicht aus Ihren Eingaben stammen. Sie sind im
+              Text <mark className="rounded bg-amber-100 px-1 ring-1 ring-amber-300">[Annahme: …]</mark>{" "}
+              markiert und bleiben auch im Export sichtbar gekennzeichnet, bis Sie sie{" "}
+              {sessionToken ? "unten bestätigen, anpassen oder streichen" : "geprüft haben"}.
+            </p>
+          </div>
+        </div>
+      )}
       {hasOpenHigh && (
         <div className="mb-5 rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-900">
           <div className="flex items-start gap-3">
@@ -389,11 +554,11 @@ export function AntragResult({
         </div>
       )}
       {!hasOpenHigh && hasConsistency && (
-        <div className="mb-5 flex items-start gap-3 rounded-lg border border-[#c9a227]/40 bg-[#c9a227]/10 p-4 text-sm text-[#0a1628]">
-          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#c9a227]" />
+        <div className="mb-5 flex items-start gap-3 rounded-lg border border-[#1e3d32]/40 bg-[#1e3d32]/10 p-4 text-sm text-[#1c1917]">
+          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#1e3d32]" />
           <div>
-            <div className="font-semibold text-[#0a1628]">Qualitätshinweise des KI-Prüfers</div>
-            <ul className="mt-1 list-disc pl-5 text-xs text-[#1e3a61]/80 space-y-0.5">
+            <div className="font-semibold text-[#1c1917]">Qualitätshinweise des KI-Prüfers</div>
+            <ul className="mt-1 list-disc pl-5 text-xs text-[#57534e]/80 space-y-0.5">
               <li>Antragstext und Finanzplan haben Inkonsistenzen ({generation.consistencyIssues?.length ?? 0}).</li>
               <li>Details unten unter „KI-Gutachten" — vor Einreichung selbst prüfen.</li>
             </ul>
@@ -405,7 +570,7 @@ export function AntragResult({
           <article
             ref={articleRef}
             className={
-              "rounded-lg border border-[#0a1628]/15 bg-white p-8 text-[#1e3a61] antrag-prose " +
+              "rounded-lg border border-[#1c1917]/15 bg-white p-8 text-[#57534e] antrag-prose " +
               (paid ? "" : "max-h-[420px] overflow-hidden blur-[3px] select-none")
             }
           >
@@ -415,6 +580,14 @@ export function AntragResult({
           </article>
           <AntragSectionNav articleRef={articleRef} />
         </div>
+        {reformState && sessionToken && (
+          <AbsatzReformulierer
+            sessionToken={sessionToken}
+            passage={reformState.passage}
+            onUebernehmen={applyReform}
+            onAbbrechen={() => setReformState(null)}
+          />
+        )}
         {generation.finanzplan && (
           <div className={"mt-6 " + (paid ? "" : "blur-[3px] select-none pointer-events-none")}>
             {sessionToken && !generation.finanzplan.legitimiertAm && paid ? (
@@ -428,8 +601,26 @@ export function AntragResult({
             )}
           </div>
         )}
+        {paid && (beantragungsEmpfehlung.hatEmpfehlung || beantragungsEmpfehlung.detail) && (
+          <div className="mt-6 rounded-lg border border-[#1e3d32]/20 bg-[#1e3d32]/[0.04] p-4">
+            <div className="mb-1 flex items-center gap-2 text-sm font-semibold text-[#1c1917]">
+              <Coins className="h-4 w-4 text-[#1e3d32]" />
+              Wie viel sollten Sie beantragen?
+            </div>
+            <p className="text-sm text-[#57534e]">{beantragungsEmpfehlung.headline}</p>
+            {beantragungsEmpfehlung.basis && (
+              <p className="mt-1 text-xs text-slate-600">{beantragungsEmpfehlung.basis}</p>
+            )}
+            {beantragungsEmpfehlung.detail && (
+              <p className="mt-1 text-xs italic text-slate-600">{beantragungsEmpfehlung.detail}</p>
+            )}
+            <p className="mt-2 text-[11px] text-slate-500">
+              Grobe Orientierung — die tatsächliche Bewilligung entscheidet der Fördergeber.
+            </p>
+          </div>
+        )}
         {!paid && sessionToken && (
-          <PaywallGate sessionToken={sessionToken} priceEur={29.9} tierLabel="Einzelantrag" />
+          <PaywallGate sessionToken={sessionToken} priceEur={29.9} tierLabel="Einzelantrag" labels={l} />
         )}
       </div>
       {paid && textVorschlaege.length > 0 && sessionToken && (
@@ -437,6 +628,7 @@ export function AntragResult({
           sessionToken={sessionToken}
           finalText={text}
           vorschlaege={textVorschlaege}
+          begruendungen={generation.factVerification?.vorschlaegeBegruendung}
           onChange={({ finalText, vorschlaege }) => {
             setText(finalText);
             setTextVorschlaege(vorschlaege);
@@ -444,24 +636,32 @@ export function AntragResult({
         />
       )}
       {paid && textVorschlaege.length > 0 && !sessionToken && (
-        <div className="mt-6 rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 p-4">
-          <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#0a1628]">
-            <Sparkles className="h-4 w-4 text-[#c9a227]" />
-            Vorschläge des Assistenten im Antragstext — bitte prüfen
+        <div className="mt-6 rounded-lg border border-[#1e3d32]/30 bg-[#1e3d32]/5 p-4">
+          <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-[#1c1917]">
+            <Sparkles className="h-4 w-4 text-[#1e3d32]" />
+            Ergänzte Angaben — vom Assistenten hinzugefügt, bitte prüfen
           </div>
-          <ul className="space-y-1.5 text-xs text-[#1e3a61]">
-            {textVorschlaege.map((v, i) => (
-              <li key={i} className="flex gap-2 rounded border border-[#0a1628]/10 bg-white p-2">
-                <span className="shrink-0 text-[#c9a227]">›</span>
-                <span>„{v}"</span>
-              </li>
-            ))}
+          <ul className="space-y-1.5 text-xs text-[#57534e]">
+            {textVorschlaege.map((v, i) => {
+              const warum = provenanz(generation.factVerification?.vorschlaegeBegruendung, v);
+              return (
+                <li key={i} className="flex gap-2 rounded border border-[#1c1917]/10 bg-white p-2">
+                  <span className="shrink-0 text-[#1e3d32]">›</span>
+                  <div>
+                    <span>„{v}"</span>
+                    {warum && (
+                      <span className="mt-1 block text-[11px] italic text-[#1e3d32]/80">Warum ergänzt: {warum}</span>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}
       {paid && generation.critique && (
         <details
-          className="mt-6 rounded-lg border border-[#0a1628]/15 bg-white p-4"
+          className="mt-6 rounded-lg border border-[#1c1917]/15 bg-white p-4"
           open={showCritique}
           onToggle={(e) => setShowCritique((e.target as HTMLDetailsElement).open)}
         >
@@ -483,22 +683,22 @@ export function AntragResult({
                   f.schwere === "hoch"
                     ? "border-red-500/40 text-red-700"
                     : f.schwere === "mittel"
-                      ? "border-[#c9a227]/40 text-[#7a5e12]"
-                      : "border-[#0a1628]/20 text-slate-700";
+                      ? "border-[#1e3d32]/40 text-[#1e3d32]"
+                      : "border-[#1c1917]/20 text-slate-700";
                 return (
-                  <div key={i} className="rounded border border-[#0a1628]/15 bg-[#f8f5f0] p-2.5">
+                  <div key={i} className="rounded border border-[#1c1917]/15 bg-[#fdfdfc] p-2.5">
                     <div className="mb-1 flex flex-wrap items-center gap-1.5">
                       <span className={`rounded-full border px-2 py-0.5 text-[10px] uppercase ${schwereBadge}`}>
                         {f.schwere}
                       </span>
-                      <span className="rounded-full border border-[#0a1628]/15 px-2 py-0.5 text-[10px] text-slate-600">
+                      <span className="rounded-full border border-[#1c1917]/15 px-2 py-0.5 text-[10px] text-slate-600">
                         {CRITIQUE_KATEGORIE_LABELS[f.kategorie] ?? f.kategorie} · {f.abschnitt}
                       </span>
                       <span className={`rounded-full border px-2 py-0.5 text-[10px] uppercase ${badge}`}>
                         {status}
                       </span>
                     </div>
-                    <div className="mb-1 text-[#1e3a61]">„{f.zitat}"</div>
+                    <div className="mb-1 text-[#57534e]">„{f.zitat}"</div>
                     <div className="text-slate-600">→ {f.vorschlag}</div>
                     {res?.kommentar && (
                       <div className="mt-1 text-slate-500 italic">Re-Check: {res.kommentar}</div>
@@ -512,19 +712,19 @@ export function AntragResult({
             <pre className="mt-3 whitespace-pre-wrap text-xs text-slate-600">{generation.critique}</pre>
           )}
           {generation.consistencyIssues && generation.consistencyIssues.length > 0 && (
-            <div className="mt-4 border-t border-[#0a1628]/15 pt-3">
+            <div className="mt-4 border-t border-[#1c1917]/15 pt-3">
               <div className="mb-2 text-xs font-medium text-slate-700">
                 Konsistenz-Check Antrag × Finanzplan
               </div>
               <div className="space-y-2 text-xs text-slate-700">
                 {generation.consistencyIssues.map((i, idx) => (
-                  <div key={idx} className="rounded border border-[#0a1628]/15 bg-[#f8f5f0] p-2.5">
+                  <div key={idx} className="rounded border border-[#1c1917]/15 bg-[#fdfdfc] p-2.5">
                     <div className="mb-1">
                       <span className="rounded-full border border-amber-500/40 px-2 py-0.5 text-[10px] uppercase text-amber-700">
                         {CONSISTENCY_ART_LABELS[i.art] ?? i.art}
                       </span>
                     </div>
-                    <div className="text-[#1e3a61]">{i.beschreibung}</div>
+                    <div className="text-[#57534e]">{i.beschreibung}</div>
                     {i.posten && (
                       <div className="mt-0.5 text-slate-500">Posten: {i.posten}</div>
                     )}
@@ -579,7 +779,11 @@ export function AntragResult({
             }}
           >
             <span>{programm.name}</span>
-            <span>
+            {/* new Date() weicht zwischen SSR und Client-Hydration ab (Zeitzone/
+                „jetzt") → React #418. Dieser Print-Klon wird ohnehin erst beim
+                PDF-Export client-seitig gerendert; suppressHydrationWarning
+                unterdrückt den Mismatch, der Export zeigt das korrekte Datum. */}
+            <span suppressHydrationWarning>
               Erstellt am {new Date().toLocaleDateString("de-DE", {
                 day: "2-digit",
                 month: "2-digit",

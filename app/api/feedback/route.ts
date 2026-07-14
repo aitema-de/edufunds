@@ -277,13 +277,13 @@ async function sendNotifyEmail(payload: FeedbackPayload, ticket: string): Promis
   const typeTitle = TYPE_TITLES[payload.type];
   const shortDesc = escapeHtml(payload.description.substring(0, 80).replace(/\n/g, " "));
   const prefix = ticket ? `${ticket} ` : "";
-  const accent = payload.type === "bug" ? "#dc2626" : payload.type === "feature" ? "#c9a227" : "#1e3a61";
+  const accent = payload.type === "bug" ? "#dc2626" : payload.type === "feature" ? "#b08c2e" : "#2a5244";
 
   const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><style>
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:#0a1628}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:#1e3b2a}
 .container{max-width:600px;margin:0 auto;padding:20px}
 .header{background:${accent};color:white;padding:20px;border-radius:8px 8px 0 0}
-.content{background:#f8f5f0;padding:20px;border:1px solid #e2dfd9;border-top:none;border-radius:0 0 8px 8px}
+.content{background:#faf7f0;padding:20px;border:1px solid #e2dfd9;border-top:none;border-radius:0 0 8px 8px}
 .description{background:white;padding:15px;border-radius:4px;border-left:4px solid ${accent};margin:15px 0;white-space:pre-wrap}
 .meta{font-size:13px;color:#475569}
 .meta td{padding:4px 12px 4px 0}
@@ -326,11 +326,11 @@ async function sendConfirmEmail(payload: FeedbackPayload, ticket: string): Promi
   const prefix = ticket || "";
 
   const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><style>
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:#0a1628}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:#1e3b2a}
 .container{max-width:600px;margin:0 auto;padding:20px}
-.header{background:linear-gradient(135deg,#c9a227,#b8921e);color:white;padding:20px;border-radius:8px 8px 0 0}
-.content{background:#f8f5f0;padding:20px;border:1px solid #e2dfd9;border-top:none;border-radius:0 0 8px 8px}
-.description{background:white;padding:15px;border-radius:4px;border-left:4px solid #c9a227;margin:15px 0}
+.header{background:linear-gradient(135deg,#1e3b2a,#2a5244);color:white;padding:20px;border-radius:8px 8px 0 0}
+.content{background:#faf7f0;padding:20px;border:1px solid #e2dfd9;border-top:none;border-radius:0 0 8px 8px}
+.description{background:white;padding:15px;border-radius:4px;border-left:4px solid #b08c2e;margin:15px 0}
 .footer{margin-top:20px;font-size:12px;color:#475569}
 </style></head><body><div class="container">
 <div class="header"><h2 style="margin:0">Danke für Ihr Feedback!</h2><p style="margin:5px 0 0;opacity:0.9">EduFunds${prefix ? ` &mdash; Ticket ${prefix}` : ""}</p></div>

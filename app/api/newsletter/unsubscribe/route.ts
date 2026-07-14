@@ -70,7 +70,7 @@ export async function POST(request: Request) {
  * Generates the unsubscribe confirmation/error page HTML
  */
 function getUnsubscribePageHtml(message: string, isSuccess: boolean): string {
-  const accentColor = isSuccess ? '#c9a227' : '#ef4444';
+  const accentColor = isSuccess ? '#b08c2e' : '#ef4444';
   const icon = isSuccess ? '✓' : '✕';
   const title = isSuccess ? 'Abmeldung erfolgreich' : 'Ein Fehler ist aufgetreten';
 
@@ -94,7 +94,7 @@ function getUnsubscribePageHtml(message: string, isSuccess: boolean): string {
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
+            background: linear-gradient(135deg, #1e3b2a 0%, #2a5244 100%);
             padding: 20px;
         }
         
@@ -119,14 +119,14 @@ function getUnsubscribePageHtml(message: string, isSuccess: boolean): string {
         .logo-icon {
             width: 44px;
             height: 44px;
-            background: linear-gradient(135deg, #c9a227 0%, #d4af37 100%);
+            background: linear-gradient(135deg, #1e3b2a 0%, #2a5244 100%);
             border-radius: 10px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
             font-weight: bold;
-            color: #0a1628;
+            color: #1e3b2a;
         }
         
         .logo-text {
@@ -136,7 +136,7 @@ function getUnsubscribePageHtml(message: string, isSuccess: boolean): string {
         .logo-title {
             font-size: 22px;
             font-weight: 700;
-            color: #f8f5f0;
+            color: #faf7f0;
         }
         
         .logo-subtitle {
@@ -160,7 +160,7 @@ function getUnsubscribePageHtml(message: string, isSuccess: boolean): string {
         }
         
         h1 {
-            color: #f8f5f0;
+            color: #faf7f0;
             margin: 0 0 16px;
             font-size: 24px;
             font-weight: 700;
@@ -177,8 +177,8 @@ function getUnsubscribePageHtml(message: string, isSuccess: boolean): string {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: linear-gradient(135deg, #c9a227 0%, #b08d1f 100%);
-            color: #0a1628;
+            background: linear-gradient(135deg, #b08c2e 0%, #b08d1f 100%);
+            color: #1e3b2a;
             text-decoration: none;
             padding: 14px 28px;
             border-radius: 10px;
@@ -199,11 +199,11 @@ function getUnsubscribePageHtml(message: string, isSuccess: boolean): string {
             padding-top: 24px;
             border-top: 1px solid rgba(201, 162, 39, 0.2);
             font-size: 13px;
-            color: #64748b;
+            color: #6b6457;
         }
         
         .footer a {
-            color: #c9a227;
+            color: #b08c2e;
             text-decoration: none;
         }
         

@@ -12,6 +12,7 @@ import type {
   PipelineStage,
   WizardFacts,
   WizardMessage,
+  Texttiefe,
 } from "./types";
 export type { PipelineStage } from "./types";
 import {
@@ -23,6 +24,7 @@ import {
   CONSISTENCY_SYSTEM,
   buildOutlinePrompt,
   buildSectionPrompt,
+  texttiefeHint,
   buildCritiquePrompt,
   buildRevisionPrompt,
   buildRecheckPrompt,
@@ -40,6 +42,7 @@ import {
   buildProgrammKontext,
   verifyFacts,
 } from "./fact-verification";
+import { extractAnnahmen, wrapAnnahmen } from "./annahme-marker";
 import type { Usage } from "./pricing";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
 import { generateFinanzplan } from "./finanzplan-generator";
@@ -275,7 +278,7 @@ ${currentText}
 AUFGABE: Ueberarbeite den Antragstext so, dass alle genannten Verstösse behoben sind:
 - Fehlende Abschnitte mit einem inhaltlich passenden Text ergänzen (basierend auf dem vorhandenen Kontext).
 - Zu lange Abschnitte kürzen ohne inhaltlichen Verlust.
-- Platzhalter durch konkrete Inhalte ersetzen.
+- Zu duenne Abschnitte aus dem vorhandenen Kontext inhaltlich fuellen, ohne neue Fakten zu erfinden. Vorhandene "[TODO: …]"- und "[Annahme: …]"-Marker bleiben erhalten.
 
 Gib NUR den vollständigen, korrigierten Antragstext zurueck (kein JSON, keine Erklaerung).`;
 }
@@ -301,7 +304,8 @@ export async function runPipeline(
   facts: WizardFacts,
   richtlinie?: Richtlinie | null,
   onEvent?: (e: PipelineEvent) => void | Promise<void>,
-  messages?: WizardMessage[]
+  messages?: WizardMessage[],
+  options?: { texttiefe?: Texttiefe }
 ): Promise<PipelineResult> {
   const emit = async (e: PipelineEvent) => {
     // Heartbeat MUSS abgewartet werden, sonst landet der Stage-Schreibvorgang
@@ -366,7 +370,8 @@ export async function runPipeline(
     const res = await generateText(
       MODEL_PRO,
       SECTION_SYSTEM,
-      buildSectionPrompt(programm, facts, abschnitt, outline.titel, rl, userAnswers)
+      buildSectionPrompt(programm, facts, abschnitt, outline.titel, rl, userAnswers) +
+        texttiefeHint(options?.texttiefe)
     );
     usages.push({ model: MODEL_PRO, usage: res.usage });
     sections.push({ name: abschnitt.name, text: res.value });
@@ -495,6 +500,7 @@ export async function runPipeline(
           factVerification = {
             neutralisiert: fv.neutralisiert,
             vorschlaege: fv.vorschlaege,
+            vorschlaegeBegruendung: fv.vorschlaegeBegruendung,
             remaining: fv.remaining,
             repaired: fv.repaired,
           };
@@ -593,6 +599,49 @@ export async function runPipeline(
   // Finanzplan-Generator erstellt jetzt immer einen bezifferten Plan mit als
   // Vorschlag markierten Beträgen; der Text behält seine (als Schätzung
   // gekennzeichneten) Beträge und wird per Konsistenz-Revision daran angeglichen.
+
+  // =========================================================================
+  // Annahmen-Markierung (Produktentscheidung 02.07.2026, ClickUp 86caht7eq)
+  // "Kennzeichnen statt verbieten": FV-"vorschlag"-Zitate (+ nicht neutralisierte
+  // remaining-Tatsachen) werden deterministisch als [Annahme: …] im Text markiert
+  // — Sicherheitsnetz zu den generierungszeitigen Markern aus den Prompts.
+  // Danach wird die interaktive Bestaetigungsliste aus ALLEN Markern im Text
+  // gebaut (Prompt-Marker + FV-Marker), damit Uebernehmen/Anpassen/Streichen
+  // jede Annahme erreicht und keine unmarkiert in den Export gelangt.
+  // Laeuft NACH allen LLM-Revisionen (Compliance/Konsistenz), damit spaetere
+  // Umformulierungen die deterministische Verankerung nicht zerreissen.
+  // =========================================================================
+  {
+    const fvZitate = [
+      ...(factVerification?.vorschlaege ?? []),
+      ...(factVerification?.remaining ?? []),
+    ];
+    const wrapped = wrapAnnahmen(finalRes.value ?? "", fvZitate);
+    if (wrapped.marked.length > 0) {
+      finalRes = { value: wrapped.text, usage: finalRes.usage };
+    }
+    const annahmen = extractAnnahmen(finalRes.value ?? "");
+    if (annahmen.length > 0 || factVerification) {
+      const beg = new Map(
+        (factVerification?.vorschlaegeBegruendung ?? []).map((b) => [b.zitat, b.warum])
+      );
+      factVerification = {
+        neutralisiert: factVerification?.neutralisiert ?? [],
+        vorschlaege: annahmen,
+        vorschlaegeBegruendung: annahmen.map((z) => ({
+          zitat: z,
+          warum: beg.get(z) ?? "nicht durch Nutzerangaben gedeckt",
+        })),
+        remaining: factVerification?.remaining ?? [],
+        repaired: factVerification?.repaired ?? false,
+      };
+      if (annahmen.length > 0) {
+        console.log(
+          `[pipeline] Annahmen-Markierung: ${annahmen.length} [Annahme: …]-Marker im Text (${wrapped.marked.length} deterministisch nachmarkiert)`
+        );
+      }
+    }
+  }
 
   // Final-Guard (Probe 09.06., Fall 3): Nach allen Stufen darf der Antragstext
   // niemals leer sein. Ein leerer finalText entsteht aus einer transienten,

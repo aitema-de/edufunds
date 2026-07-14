@@ -12,7 +12,7 @@ const footerLinks = {
     links: [
       { label: "Förderprogramme", href: "/foerderprogramme" },
       { label: "Preise", href: "/preise" },
-      { label: "KI-Antragsassistent", href: "/#ki-assistent" },
+      { label: "KI-Antragsassistent", href: "/antrag/start" },
       { label: "Archiv", href: "/archiv" }
     ]
   },
@@ -28,33 +28,34 @@ const footerLinks = {
     links: [
       { label: "Impressum", href: "/impressum" },
       { label: "Datenschutz", href: "/datenschutz" },
-      { label: "AGB", href: "/agb" }
+      { label: "AGB", href: "/agb" },
+      { label: "AVV & Subprozessoren", href: "/avv" }
     ]
   }
 };
 
 const stats = [
   { value: PROGRAMM_COUNT_LABEL, label: "Förderprogramme" },
-  { value: "90%", label: "Erfolgsquote" },
-  { value: "24h", label: "Support" }
+  { value: "DSGVO", label: "EU-Datenschutz" },
+  { value: "Kein", label: "Abo" }
 ];
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden" style={{ backgroundColor: '#050d18' }}>
+    <footer className="relative overflow-hidden" style={{ backgroundColor: '#1c1917' }}>
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#c9a227]/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#d4af37]/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#1a4d4d]/5 rounded-full blur-3xl" />
       </div>
 
       {/* Top gradient line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c9a227]/50 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4af37]/50 to-transparent" />
 
       {/* Stats Bar */}
-      <div className="relative border-b border-[#0f1f38]">
+      <div className="relative border-b border-[#292524]">
         <div className="container mx-auto px-4 py-8">
           <div className="grid grid-cols-3 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
             {stats.map((stat, index) => (
@@ -69,7 +70,7 @@ export function Footer() {
                 <div className="text-3xl md:text-4xl font-bold text-gradient-gold group-hover:scale-105 transition-transform">
                   {stat.value}
                 </div>
-                <div className="text-sm text-[#94a3b8] mt-1">{stat.label}</div>
+                <div className="text-sm text-[#a8a29e] mt-1">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -86,29 +87,34 @@ export function Footer() {
             transition={{ duration: 0.5 }}
             className="col-span-2"
           >
-            <Link href="/" className="inline-block mb-6 group" aria-label="EduFunds - Zur Startseite">
+            <Link
+              href="/"
+              className="inline-block mb-6 group"
+              aria-label="EduFunds - Zur Startseite"
+            >
               {/* eslint-disable-next-line @next/next/no-img-element */}
+              {/* Offizielle Marke (Logopaket 2026-07-01, dunkle Variante) */}
               <img
-                src="/edufunds-logo.svg"
+                src="/edufunds-logo-dunkel.svg"
                 alt="EduFunds"
-                width={344}
-                height={120}
+                width={345}
+                height={88}
                 className="h-11 w-auto transition-transform group-hover:scale-[1.02]"
               />
             </Link>
-            <p className="text-[#94a3b8] text-sm leading-relaxed mb-6 max-w-xs">
+            <p className="text-[#a8a29e] text-sm leading-relaxed mb-6 max-w-xs">
               Die intelligente Plattform für Schulförderung. Finden Sie passende Programme und erstellen Sie erfolgreiche Anträge mit KI-Unterstützung.
             </p>
             <div className="space-y-3 mb-6">
-              <a href="mailto:office@aitema.de" className="flex items-center gap-3 text-sm text-[#94a3b8] hover:text-[#c9a227] transition-colors group">
-                <div className="w-8 h-8 rounded-lg bg-[#0f1f38] flex items-center justify-center group-hover:bg-[#c9a227]/20 transition-colors">
-                  <Mail className="h-4 w-4 text-[#c9a227]" />
+              <a href="mailto:office@edufunds.org" className="flex items-center gap-3 text-sm text-[#a8a29e] hover:text-[#d4af37] transition-colors group">
+                <div className="w-8 h-8 rounded-lg bg-[#292524] flex items-center justify-center group-hover:bg-[#d4af37]/20 transition-colors">
+                  <Mail className="h-4 w-4 text-[#d4af37]" />
                 </div>
-                office@aitema.de
+                office@edufunds.org
               </a>
-              <div className="flex items-center gap-3 text-sm text-[#94a3b8]">
-                <div className="w-8 h-8 rounded-lg bg-[#0f1f38] flex items-center justify-center">
-                  <MapPin className="h-4 w-4 text-[#c9a227]" />
+              <div className="flex items-center gap-3 text-sm text-[#a8a29e]">
+                <div className="w-8 h-8 rounded-lg bg-[#292524] flex items-center justify-center">
+                  <MapPin className="h-4 w-4 text-[#d4af37]" />
                 </div>
                 Berlin, Deutschland
               </div>
@@ -119,18 +125,18 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter"
-                className="w-10 h-10 rounded-xl glass hover:bg-[#c9a227]/20 hover:border-[#c9a227]/30 border border-[#1e3a5f]/50 flex items-center justify-center transition-all duration-300"
+                className="w-10 h-10 rounded-xl glass hover:bg-[#d4af37]/20 hover:border-[#d4af37]/30 border border-[#44403c]/50 flex items-center justify-center transition-all duration-300"
               >
-                <span className="text-[#94a3b8] hover:text-[#c9a227] text-xs font-bold uppercase">T</span>
+                <span className="text-[#a8a29e] hover:text-[#d4af37] text-xs font-bold uppercase">T</span>
               </a>
               <a
                 href="https://linkedin.com/company/aitema"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="w-10 h-10 rounded-xl glass hover:bg-[#c9a227]/20 hover:border-[#c9a227]/30 border border-[#1e3a5f]/50 flex items-center justify-center transition-all duration-300"
+                className="w-10 h-10 rounded-xl glass hover:bg-[#d4af37]/20 hover:border-[#d4af37]/30 border border-[#44403c]/50 flex items-center justify-center transition-all duration-300"
               >
-                <span className="text-[#94a3b8] hover:text-[#c9a227] text-xs font-bold uppercase">L</span>
+                <span className="text-[#a8a29e] hover:text-[#d4af37] text-xs font-bold uppercase">L</span>
               </a>
             </div>
           </motion.div>
@@ -146,7 +152,7 @@ export function Footer() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.1 + sectionIndex * 0.1 }}
                 >
-                  <h3 className="font-semibold text-[#f8f5f0] mb-4 flex items-center gap-2 text-sm md:text-base">
+                  <h3 className="font-semibold text-[#fdfdfc] mb-4 flex items-center gap-2 text-sm md:text-base">
                     {section.title}
                   </h3>
                   <ul className="space-y-3">
@@ -154,7 +160,7 @@ export function Footer() {
                       <li key={link.href}>
                         <Link
                           href={link.href}
-                          className="text-sm text-[#94a3b8] hover:text-[#c9a227] transition-colors flex items-center gap-1 group"
+                          className="text-sm text-[#a8a29e] hover:text-[#d4af37] transition-colors flex items-center gap-1 group"
                         >
                           <ArrowRight className="h-3 w-3 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                           {link.label}
@@ -176,22 +182,22 @@ export function Footer() {
           transition={{ duration: 0.6 }}
           className="relative py-10 px-8 rounded-3xl glass-strong mb-10 overflow-hidden"
         >
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#c9a227]/10 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#d4af37]/10 rounded-full blur-3xl" />
           <div className="relative max-w-3xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#c9a227]/10 border border-[#c9a227]/20 mb-4"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/20 mb-4"
             >
-              <Sparkles className="h-4 w-4 text-[#c9a227]" />
-              <span className="text-sm font-medium text-[#c9a227]">Bleiben Sie informiert</span>
+              <Sparkles className="h-4 w-4 text-[#d4af37]" />
+              <span className="text-sm font-medium text-[#d4af37]">Bleiben Sie informiert</span>
             </motion.div>
-            <h3 className="text-2xl font-bold text-[#f8f5f0] mb-3">Newsletter abonnieren</h3>
-            <p className="text-[#94a3b8] mb-6">Erhalten Sie wöchentlich Updates zu neuen Förderprogrammen, Tipps für erfolgreiche Anträge und exklusive Einblicke.</p>
+            <h3 className="text-2xl font-bold text-[#fdfdfc] mb-3">Newsletter abonnieren</h3>
+            <p className="text-[#a8a29e] mb-6">Erhalten Sie wöchentlich Updates zu neuen Förderprogrammen, Tipps für erfolgreiche Anträge und exklusive Einblicke.</p>
             <NewsletterForm />
-            <p className="text-xs text-[#94a3b8] mt-4">Kein Spam, jederzeit abmeldbar. Wir respektieren Ihre Privatsphäre.</p>
+            <p className="text-xs text-[#a8a29e] mt-4">Kein Spam, jederzeit abmeldbar. Wir respektieren Ihre Privatsphäre.</p>
           </div>
         </motion.div>
 
@@ -201,12 +207,12 @@ export function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-[#0f1f38] text-sm text-[#64748b]"
+          className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-[#292524] text-sm text-[#78716c]"
         >
           <div className="flex flex-wrap items-center justify-center gap-2">
             <span>© {currentYear} EduFunds.</span>
             <span>Ein Projekt der</span>
-            <a href="https://aitema.de" target="_blank" rel="noopener noreferrer" className="text-[#c9a227] hover:underline">aitema GmbH</a>
+            <a href="https://aitema.de" target="_blank" rel="noopener noreferrer" className="text-[#d4af37] hover:underline">aitema GmbH</a>
           </div>
           <div className="flex items-center gap-1">
             <span>Made with</span>

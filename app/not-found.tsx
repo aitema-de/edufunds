@@ -18,14 +18,14 @@ export default function NotFound() {
   return (
     <>
       <Header />
-      <main className="min-h-screen pt-24 pb-20" style={{ backgroundColor: '#f8f5f0' }}>
+      <main className="min-h-screen pt-24 pb-20" style={{ backgroundColor: '#fdfdfc' }}>
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             {/* 404 */}
             <div 
               className="text-9xl font-bold mb-4"
               style={{ 
-                color: '#0a1628',
+                color: '#1c1917',
                 opacity: 0.15
               }}
             >
@@ -35,7 +35,7 @@ export default function NotFound() {
             {/* Title */}
             <h1 
               className="text-3xl font-bold mb-4"
-              style={{ color: '#0a1628' }}
+              style={{ color: '#1c1917' }}
             >
               Seite nicht gefunden
             </h1>
@@ -54,8 +54,8 @@ export default function NotFound() {
                 href="/"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium transition-all hover:shadow-lg"
                 style={{ 
-                  background: 'linear-gradient(135deg, #c9a227 0%, #b08d1f 100%)',
-                  color: '#0a1628'
+                  background: 'linear-gradient(135deg, #1e3d32 0%, #1e3d32 100%)',
+                  color: '#1c1917'
                 }}
               >
                 <Home className="w-5 h-5" />
@@ -66,8 +66,8 @@ export default function NotFound() {
                 href="/foerderprogramme"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border font-medium transition-all hover:shadow-md"
                 style={{ 
-                  borderColor: '#c9a227',
-                  color: '#c9a227',
+                  borderColor: '#1e3d32',
+                  color: '#1e3d32',
                   backgroundColor: 'transparent'
                 }}
               >
@@ -79,8 +79,8 @@ export default function NotFound() {
                 href="/kontakt"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border font-medium transition-all hover:shadow-md"
                 style={{ 
-                  borderColor: '#0a1628',
-                  color: '#0a1628',
+                  borderColor: '#1c1917',
+                  color: '#1c1917',
                   backgroundColor: 'transparent'
                 }}
               >
@@ -93,7 +93,7 @@ export default function NotFound() {
             <div className="text-left">
               <h2 
                 className="text-xl font-semibold mb-6 text-center"
-                style={{ color: '#0a1628' }}
+                style={{ color: '#1c1917' }}
               >
                 Vielleicht interessiert Sie das:
               </h2>
@@ -106,18 +106,18 @@ export default function NotFound() {
                     className="p-4 rounded-xl border transition-all group hover:shadow-md"
                     style={{ 
                       backgroundColor: 'white',
-                      borderColor: 'rgba(10, 22, 40, 0.08)'
+                      borderColor: 'rgba(28, 25, 23, 0.08)'
                     }}
                   >
                     <span 
                       className="text-xs font-medium mb-2 block"
-                      style={{ color: '#c9a227' }}
+                      style={{ color: '#1e3d32' }}
                     >
                       {programm.foerdergeberTyp.toUpperCase()}
                     </span>
                     <h3 
                       className="font-medium line-clamp-2 transition-colors"
-                      style={{ color: '#0a1628' }}
+                      style={{ color: '#1c1917' }}
                     >
                       {programm.name}
                     </h3>

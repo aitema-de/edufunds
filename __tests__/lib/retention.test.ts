@@ -39,6 +39,40 @@ describe("buildRetentionPlan", () => {
     expect(o.sql).toMatch(/status IN \('draft', 'in_progress', 'complete'\)/);
   });
 
+  it("anonymisiert identitätsgebundene, nie bezahlte Entwürfe nach 90 Tagen (nicht löschen)", () => {
+    const o = op("anonymize_abandoned_identified_drafts");
+    expect(o.kind).toBe("anonymize");
+    expect(o.sql).not.toMatch(/DELETE/);
+    // Nur unbezahlte, aber E-Mail-gebundene Entwürfe
+    expect(o.sql).toMatch(/author_email IS NOT NULL/);
+    expect(o.sql).toMatch(/paid_token IS NULL/);
+    expect(o.sql).toMatch(/paid_at IS NULL/);
+    expect(o.sql).toMatch(/status IN \('draft', 'in_progress', 'complete'\)/);
+    // PII wird entfernt
+    expect(o.sql).toMatch(/antrag_data = '\{"_anonymized": true\}'::jsonb/);
+    expect(o.sql).toMatch(/author_email = NULL/);
+    expect(o.sql).toMatch(/stripe_customer_email = NULL/);
+    expect(o.sql).toMatch(/ip_address = NULL/);
+    // Idempotenz: bereits anonymisierte Zeilen ausgeschlossen
+    expect(o.sql).toMatch(/NOT jsonb_exists\(antrag_data, '_anonymized'\)/);
+    // Frist = abandonedIdentifiedDraftDays (Default 90)
+    const expected = new Date(
+      NOW.getTime() - DEFAULT_RETENTION.abandonedIdentifiedDraftDays * 86400000
+    ).toISOString();
+    expect(o.params[0]).toBe(expected);
+  });
+
+  it("Default-Frist für identitätsgebundene, unbezahlte Entwürfe = 90 Tage", () => {
+    expect(DEFAULT_RETENTION.abandonedIdentifiedDraftDays).toBe(90);
+  });
+
+  it("die Lösch-Regel für anonyme Entwürfe fasst KEINE E-Mail-gebundenen Zeilen an (kein Overlap)", () => {
+    // Sicherstellen, dass Delete (author_email IS NULL) und Anonymize
+    // (author_email IS NOT NULL) sich gegenseitig ausschließen.
+    expect(op("abandoned_anonymous_drafts").sql).toMatch(/author_email IS NULL/);
+    expect(op("anonymize_abandoned_identified_drafts").sql).toMatch(/author_email IS NOT NULL/);
+  });
+
   it("anonymisiert IP/User-Agent in allen drei betroffenen Tabellen", () => {
     expect(op("anonymize_ip_ki_antraege").sql).toMatch(/UPDATE ki_antraege SET ip_address = NULL/);
     expect(op("anonymize_ip_contact_requests").sql).toMatch(

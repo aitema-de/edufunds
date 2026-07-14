@@ -12,6 +12,7 @@ import { requireAdmin } from '@/lib/admin-auth';
 import { getIssueById, updateIssueData } from '@/lib/newsletter/issues';
 import { newsletterDataSchema } from '@/lib/newsletter/schema';
 import { generateNewsletter } from '@/lib/newsletter';
+import { publicAppUrl } from '@/lib/app-url';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -38,7 +39,7 @@ export async function GET(
     return NextResponse.json({ success: false, message: 'Nicht gefunden' }, { status: 404 });
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://edufunds.org';
+  const baseUrl = publicAppUrl();
   let preview: { html: string; subject: string } | null = null;
   try {
     const rendered = generateNewsletter(issue.data, baseUrl, 'preview-token');

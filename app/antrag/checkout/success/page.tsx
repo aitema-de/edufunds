@@ -13,14 +13,17 @@ interface Props {
 }
 
 export default async function CheckoutSuccessPage({ searchParams }: Props) {
-  const { session_token } = await searchParams;
+  // `cs` = Stripe-Checkout-Session-ID (aus success_url, {CHECKOUT_SESSION_ID}).
+  // Wird gebraucht, um bei ausbleibendem Webhook direkt bei Stripe nachzufragen,
+  // statt den zahlenden Kunden mit "braucht noch einen Moment" stehenzulassen.
+  const { session_token, cs } = await searchParams;
 
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-[#f8f5f0] pt-24 pb-20">
+      <main className="min-h-screen bg-[#fdfdfc] pt-24 pb-20">
         <div className="container mx-auto max-w-xl px-4">
-          <CheckoutSuccessClient sessionToken={session_token ?? ""} />
+          <CheckoutSuccessClient sessionToken={session_token ?? ""} checkoutSessionId={cs ?? ""} />
         </div>
       </main>
       <Footer />

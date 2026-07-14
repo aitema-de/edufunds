@@ -141,6 +141,22 @@ export async function getSessionByPaidToken(
 }
 
 /**
+ * Prueft, ob dieser Token durch eine Rueckerstattung entwertet wurde.
+ *
+ * Nach einem Refund ist der paid_token NULL, `getSessionByPaidToken` findet also
+ * nichts mehr. Ohne diese Abfrage saehe der Kunde eine nackte 404 und wuesste
+ * nicht, warum sein Link tot ist — der alte Token bleibt darum in refunded_token
+ * stehen (Migration 012).
+ */
+export async function isRefundedToken(token: string): Promise<boolean> {
+  const res = await query(
+    `SELECT 1 FROM ki_antraege WHERE refunded_token = $1 LIMIT 1`,
+    [token]
+  );
+  return (res.rowCount ?? 0) > 0;
+}
+
+/**
  * Markiert eine Session als bezahlt und erzeugt einen paid_token.
  * Idempotent: wenn bereits bezahlt, wird der bestehende Token zurueckgegeben.
  */
@@ -148,8 +164,8 @@ export interface MarkPaidParams {
   stripeSessionId?: string;
   stripeCustomerEmail?: string;
   tier?: string;
-  /** Freischalt-Quelle: "card" (Stripe) oder "code" (Kontingent). */
-  source?: "card" | "code";
+  /** Freischalt-Quelle: "card" (Stripe), "code" (Kontingent) oder "invoice" (Einzelantrag auf Rechnung). */
+  source?: "card" | "code" | "invoice";
   /** Bei Quelle "code": der eingeloeste Kontingent-Code. */
   creditCode?: string;
 }

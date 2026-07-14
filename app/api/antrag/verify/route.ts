@@ -51,13 +51,13 @@ function confirmPage(token: string, next: string): string {
 <meta name="robots" content="noindex">
 <title>Anmeldung bestätigen — EduFunds</title>
 <style>
-  body{font-family:Arial,Helvetica,sans-serif;background:#f8f5f0;color:#0a1628;margin:0;
+  body{font-family:Arial,Helvetica,sans-serif;background:#faf7f0;color:#1e3b2a;margin:0;
        display:flex;min-height:100vh;align-items:center;justify-content:center}
   .card{background:#fff;border:1px solid rgba(10,22,40,.1);border-radius:16px;padding:32px;
         max-width:420px;text-align:center;box-shadow:0 8px 24px rgba(10,22,40,.06)}
   h1{font-size:22px;margin:0 0 8px}
-  p{color:#64748b;font-size:15px;line-height:1.5;margin:0 0 24px}
-  button{background:#c9a227;color:#0a1628;font-weight:bold;font-size:16px;border:0;
+  p{color:#6b6457;font-size:15px;line-height:1.5;margin:0 0 24px}
+  button{background:#1e3b2a;color:#f5efe0;font-weight:bold;font-size:16px;border:0;
          border-radius:10px;padding:14px 28px;cursor:pointer}
 </style></head>
 <body>

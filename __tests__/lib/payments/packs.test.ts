@@ -95,9 +95,13 @@ describe("bank — Bestellnummer + Zahlungsziel", () => {
     expect(diffDays).toBe(PAYMENT_TERM_DAYS);
   });
 
-  it("getBankDetails liefert die GLS-Fallback-Daten ohne Env", () => {
-    const b = getBankDetails();
-    expect(b.iban).toContain("DE91");
-    expect(b.bic).toBe("GENODEM1GLS");
+  it("getBankDetails WIRFT ohne Env — kein Fallback mehr", () => {
+    // Dieser Test hat frueher das Gegenteil verlangt ("liefert die GLS-Fallback-Daten")
+    // und damit einen Bug zementiert: Die Fallback-IBAN "DE91 4306 0967 1250 4734 00"
+    // hat eine UNGUELTIGE Pruefsumme, und BANK_IBAN war auf Produktion nicht gesetzt.
+    // Jede Rechnungs- und Mahnmail haette ein nicht ueberweisbares Konto genannt.
+    // Jetzt fail-closed: lieber ein sichtbarer Fehler als eine Rechnung ins Leere.
+    // Details: lib/payments/bank.ts + __tests__/lib/bank.test.ts
+    expect(() => getBankDetails()).toThrow(/Bankverbindung nicht konfiguriert/);
   });
 });

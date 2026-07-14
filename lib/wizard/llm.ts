@@ -26,6 +26,19 @@ export type LlmProvider = "deepseek" | "gemini" | "mistral";
 
 function resolveProvider(): LlmProvider {
   const p = process.env.LLM_PROVIDER;
+
+  // Produktion ist auf EU/EWR festgenagelt. Datenschutzerklaerung, AGB (Paragraph 9)
+  // und die oeffentliche Subprozessorliste sagen zu, dass die KI-Verarbeitung den
+  // EWR nicht verlaesst. Eine falsch gesetzte Env-Variable wuerde diese Zusage still
+  // unwahr machen — deepseek liegt in China, gemini in den USA. Deshalb hier ein
+  // harter Riegel statt eines Kommentars: lieber Startfehler als Drittlandtransfer.
+  if (process.env.NODE_ENV === "production" && p && p !== "mistral") {
+    throw new Error(
+      `LLM_PROVIDER="${p}" ist in Produktion unzulaessig: nur "mistral" (EU/EWR) ist erlaubt. ` +
+        `Andere Provider wuerden die Zusage aus Datenschutzerklaerung und AGB verletzen.`
+    );
+  }
+
   if (p === "deepseek" || p === "gemini") return p;
   // Default: Mistral (EU-gehostet, DSGVO-konform — kein Drittland-Transfer).
   // Live-Eval 2026-06-12 bestaetigte Paritaet mit DeepSeek (WIZ-01 100, WIZ-02 96,4).

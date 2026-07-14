@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Deploy aktueller main-Branch nach app.edufunds.org (Production).
+# Deploy aktueller main-Branch nach Production.
 #
 # ACHTUNG: Diese Instanz ist live fuer externe Nutzer. NIE ohne
 # erfolgreichen Staging-Smoke-Test deployen.
@@ -7,6 +7,13 @@
 # Nutzung:
 #   ./scripts/deploy-production.sh              # interaktiv, zweifache Bestaetigung
 #   ./scripts/deploy-production.sh --yes        # ohne Frage (CI-Use)
+#   ./scripts/deploy-production.sh --apex       # Cutover Phase 2: App bedient edufunds.org
+#
+# --apex (Runbook Abschnitt 9.4): haengt den Traefik-Router von app.edufunds.org
+# auf die Apex-Domain um und legt einen 301-Redirect-Router (www./app. -> Apex) an.
+# Dieses Skript ist die authoritative Quelle der Container-Labels — ein Umhaengen
+# nur am Container haelt nicht, der naechste Deploy wuerde es zuruecksetzen.
+# NACH dem Apex-Switch gehoert --apex daher in JEDEN weiteren Prod-Deploy.
 
 set -euo pipefail
 
@@ -15,23 +22,31 @@ REMOTE_PATH=/home/edufunds/edufunds-app
 BRANCH=main
 YES=0
 PAYWALL_BYPASS=0   # 0 = echte Zahlung (Go-Live). 1 = Pilot-Bypass (kostenlos freischalten).
+APEX=0             # 1 = App bedient edufunds.org (Cutover Phase 2)
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --yes|-y) YES=1; shift ;;
     --with-paywall-bypass) PAYWALL_BYPASS=1; shift ;;  # nur fuer Pilot-/UAT-Builds
+    --apex) APEX=1; shift ;;                           # Cutover Phase 2
     -h|--help)
-      sed -n '2,11p' "$0" | sed 's/^# \?//'
+      sed -n '2,17p' "$0" | sed 's/^# \?//'
       exit 0
       ;;
     *) echo "Unbekanntes Argument: $1" >&2; exit 2 ;;
   esac
 done
 
+if [ "$APEX" -eq 1 ]; then
+  ZIEL="https://edufunds.org (Apex; www./app. -> 301)"
+else
+  ZIEL="https://app.edufunds.org"
+fi
+
 echo "==> PRODUCTION-Deploy"
 echo "    Remote:  $REMOTE"
 echo "    Branch:  $BRANCH"
-echo "    Ziel:    https://app.edufunds.org"
+echo "    Ziel:    $ZIEL"
 echo "    WARNUNG: Live-Instanz fuer Endnutzer."
 if [ "$PAYWALL_BYPASS" -eq 1 ]; then
   echo "    PAYWALL:  BYPASS AKTIV (--with-paywall-bypass) — Antrag kostenlos freischaltbar, KEINE echte Zahlung."
@@ -63,12 +78,40 @@ if [ "$PAYWALL_BYPASS" -eq 0 ] && grep -q '^STRIPE_SECRET_KEY=sk_test' .env.prod
   exit 1
 fi
 
-echo "==> docker build (Paywall-Bypass=$PAYWALL_BYPASS)"
+# Oeffentliche Basis-URL aus der Env-Datei ziehen (eine Quelle der Wahrheit) und
+# als Build-Arg durchreichen: NEXT_PUBLIC_* wird zur Build-Zeit ins Client-Bundle
+# inlined — der Laufzeit-Wert aus --env-file erreicht den Client sonst NICHT.
+set -a; source <(grep -E '^NEXT_PUBLIC_APP_URL=' .env.production || true); set +a
+APP_URL="\${NEXT_PUBLIC_APP_URL:-https://edufunds.org}"
+
+echo "==> docker build (Paywall-Bypass=$PAYWALL_BYPASS, APP_URL=\$APP_URL)"
 # NEXT_PUBLIC_* wird zur Build-Zeit ins Bundle inlined — Client UND Server-Route
 # lesen denselben Wert. =0 (Default) => echte Zahlung. =1 => Pilot-Bypass.
-docker build --build-arg NEXT_PUBLIC_PAYWALL_DEV_MOCK=$PAYWALL_BYPASS -t edufunds:latest .
+docker build \
+  --build-arg NEXT_PUBLIC_PAYWALL_DEV_MOCK=$PAYWALL_BYPASS \
+  --build-arg NEXT_PUBLIC_APP_URL="\$APP_URL" \
+  -t edufunds:latest .
 
-echo "==> Container swap"
+# Traefik-Router: Default app.edufunds.org, mit --apex die Apex-Domain + 301-Router.
+# Rule bewusst OHNE Leerzeichen um '||' (Word-Splitting-Falle bei Label-Expansion).
+if [ "$APEX" -eq 1 ]; then
+  ROUTER_RULE='Host(\`edufunds.org\`)'
+  EXTRA_LABELS=(
+    --label "traefik.http.routers.edufunds-redir.rule=Host(\`www.edufunds.org\`)||Host(\`app.edufunds.org\`)"
+    --label 'traefik.http.routers.edufunds-redir.entrypoints=websecure'
+    --label 'traefik.http.routers.edufunds-redir.tls=true'
+    --label 'traefik.http.routers.edufunds-redir.tls.certresolver=letsencrypt'
+    --label 'traefik.http.routers.edufunds-redir.middlewares=edufunds-apex'
+    --label 'traefik.http.middlewares.edufunds-apex.redirectregex.regex=^https?://(www\.|app\.)edufunds\.org/(.*)'
+    --label 'traefik.http.middlewares.edufunds-apex.redirectregex.replacement=https://edufunds.org/\${2}'
+    --label 'traefik.http.middlewares.edufunds-apex.redirectregex.permanent=true'
+  )
+else
+  ROUTER_RULE='Host(\`app.edufunds.org\`)'
+  EXTRA_LABELS=()
+fi
+
+echo "==> Container swap (Router: \$ROUTER_RULE)"
 docker stop edufunds-app 2>/dev/null || true
 docker rm   edufunds-app 2>/dev/null || true
 docker run -d --name edufunds-app \
@@ -78,11 +121,12 @@ docker run -d --name edufunds-app \
   -v $REMOTE_PATH/data:/app/data:ro \
   --label 'traefik.enable=true' \
   --label 'traefik.docker.network=hetzner-stack_web' \
-  --label 'traefik.http.routers.edufunds-app.rule=Host(\`app.edufunds.org\`)' \
+  --label "traefik.http.routers.edufunds-app.rule=\$ROUTER_RULE" \
   --label 'traefik.http.routers.edufunds-app.entrypoints=websecure' \
   --label 'traefik.http.routers.edufunds-app.tls=true' \
   --label 'traefik.http.routers.edufunds-app.tls.certresolver=letsencrypt' \
   --label 'traefik.http.services.edufunds-app.loadbalancer.server.port=3000' \
+  "\${EXTRA_LABELS[@]}" \
   edufunds:latest >/dev/null
 
 echo "==> Healthcheck abwarten"
@@ -97,9 +141,12 @@ EOF
 
 echo
 echo "==> Smoke-Test"
+if [ "$APEX" -eq 1 ]; then SMOKE_BASE="https://edufunds.org"; else SMOKE_BASE="https://app.edufunds.org"; fi
 for path in / /foerderprogramme /api/health; do
-  code=$(curl -s -o /dev/null -w '%{http_code}' "https://app.edufunds.org$path" || true)
-  echo "    https://app.edufunds.org$path -> $code"
+  code=$(curl -s -o /dev/null -w '%{http_code}' "$SMOKE_BASE$path" || true)
+  echo "    $SMOKE_BASE$path -> $code"
 done
+# Solange die Wartungsseite (Traefik-Prio 1000) laeuft, antwortet hier die
+# Coming-Soon-Seite mit 200 — nicht die App. Echte App-Verifikation: Runbook 3.4.
 echo
 echo "==> Fertig. Bitte manuell in den Browser schauen."

@@ -37,6 +37,14 @@ const RATE_LIMITS: Record<string, RateLimitConfig> = {
     windowMs: 15 * 60 * 1000, // 15 Minuten
     maxRequests: 10,
   },
+  // Passagen-Reformulierung (P4-A): 1 LLM-Call pro Aufruf, deutlich billiger als
+  // die Voll-Pipeline ('ai'), aber teurer als reine Interview-Cycles. Eigener
+  // moderater Bucket, damit On-Demand-Umformulierungen das Interview-Budget
+  // (wizard 200/h) nicht aufzehren und Missbrauch gedeckelt bleibt.
+  reformulieren: {
+    windowMs: 15 * 60 * 1000, // 15 Minuten
+    maxRequests: 40,
+  },
   // KI-Pipeline-Generierung (sehr teuer — 1 Aufruf = ~9 LLM-Calls)
   ai: {
     windowMs: 60 * 60 * 1000, // 1 Stunde
@@ -64,6 +72,17 @@ const RATE_LIMITS: Record<string, RateLimitConfig> = {
     windowMs: 60 * 60 * 1000, // 1 Stunde
     maxRequests: 5,
   },
+  // Kauf auf Rechnung (/api/wizard/invoice, /api/kontingent/order): schaltet die
+  // Leistung SOFORT frei, bevor Geld geflossen ist — beim Kontingent bis 459,90 EUR.
+  // Der einzige Schutz war bisher ein Honeypot + 3-Sekunden-Timer und der
+  // 'default'-Bucket (100/15min): damit haette ein Skript am Tag hunderte
+  // Gratis-Kontingente ziehen koennen. Bewusst streng — ein echter Kunde bestellt
+  // nicht dreimal pro Tag auf Rechnung. Greift zusaetzlich zur Begrenzung offener
+  // unbezahlter Bestellungen pro E-Mail (siehe countOpenInvoiceOrders).
+  invoice: {
+    windowMs: 24 * 60 * 60 * 1000, // 24 Stunden
+    maxRequests: 3,
+  },
 };
 
 // Speicher für Rate-Limit-Daten (in Production: Redis)
@@ -88,20 +107,55 @@ setInterval(() => {
 /**
  * Extrahiert die Client-IP aus dem Request
  */
-function getClientIP(request: NextRequest): string {
-  // Versuche zuerst X-Forwarded-For (hinter Proxy)
+/** Private/lokale Adressbereiche — das sind unsere eigenen Proxys, nie ein Client. */
+function isPrivateIP(ip: string): boolean {
+  return (
+    /^10\./.test(ip) ||
+    /^192\.168\./.test(ip) ||
+    /^172\.(1[6-9]|2\d|3[01])\./.test(ip) || // 172.16.0.0/12 — Docker-Netze
+    /^127\./.test(ip) ||
+    ip === '::1' ||
+    /^f[cd]/i.test(ip) || // fc00::/7 (ULA)
+    /^fe80:/i.test(ip)
+  );
+}
+
+/**
+ * Extrahiert die Client-IP aus dem Request.
+ *
+ * ⚠️ NIE den ERSTEN X-Forwarded-For-Eintrag nehmen. Der stammt vom Client und ist
+ * frei erfindbar — unser Traefik laeuft mit `forwardedHeaders.insecure=true`,
+ * uebernimmt also einen mitgeschickten Header und haengt die echte Peer-IP nur an.
+ * Wer `X-Forwarded-For: 1.2.3.4` schickt, bekommt sonst fuer jede erfundene IP ein
+ * frisches Rate-Limit-Budget — und damit waeren Login-Bruteforce-Schutz, das
+ * KI-Kostenlimit und die Missbrauchsbremse beim Rechnungskauf allesamt wirkungslos.
+ *
+ * Richtig ist der Eintrag, den die aeusserste vertrauenswuerdige Instanz angehaengt
+ * hat: also von RECHTS lesen und private Adressen ueberspringen. Das deckt beide
+ * Konstellationen ab — direkt hinter Traefik (nach Go-Live) und mit der
+ * Wartungs-nginx davor (Coming-Soon-Phase), die eine weitere interne IP anhaengt.
+ */
+// Nimmt bewusst nur das, was gebraucht wird (Header-Lesezugriff), statt NextRequest.
+// NextRequest erfuellt das strukturell — aber so ist die Funktion ohne Next-Runtime
+// testbar, und genau diese Funktion MUSS Tests haben (siehe Kommentar oben).
+export function getClientIP(request: { headers: { get(name: string): string | null } }): string {
   const forwarded = request.headers.get('x-forwarded-for');
   if (forwarded) {
-    return forwarded.split(',')[0].trim();
+    const chain = forwarded.split(',').map((s) => s.trim()).filter(Boolean);
+    // Von rechts nach links: die erste oeffentliche Adresse ist der echte Client.
+    for (let i = chain.length - 1; i >= 0; i--) {
+      if (!isPrivateIP(chain[i])) return chain[i];
+    }
+    // Nur private Adressen (lokale Entwicklung, Health-Checks aus dem Docker-Netz):
+    // den letzten Eintrag nehmen — nie den ersten, der bleibt client-kontrolliert.
+    if (chain.length > 0) return chain[chain.length - 1];
   }
-  
-  // Dann X-Real-IP
-  const realIP = request.headers.get('x-real-ip');
-  if (realIP) {
-    return realIP;
-  }
-  
-  // Fallback
+
+  // X-Real-IP setzt unsere nginx selbst ($remote_addr) — vertrauenswuerdiger als
+  // ein durchgereichter XFF, aber ebenfalls nur, wenn er von uns stammt.
+  const realIP = request.headers.get('x-real-ip')?.trim();
+  if (realIP) return realIP;
+
   return 'unknown';
 }
 
@@ -112,15 +166,28 @@ function getRateLimitType(pathname: string): string {
   if (pathname.includes('/api/admin/login') || pathname.includes('/api/auth')) {
     return 'auth';
   }
+  // Rechnungskauf VOR allen /api/wizard/-Klauseln: schaltet ohne Zahlung frei und
+  // braucht deshalb das strengste Limit (3/24h), nicht das grosszuegige 'wizard'.
+  if (
+    pathname.includes('/api/wizard/invoice') ||
+    pathname.includes('/api/kontingent/order')
+  ) {
+    return 'invoice';
+  }
   // Pipeline-Generierung VOR der allgemeinen /api/wizard/-Klausel pruefen,
   // damit /api/wizard/generate als 'ai' (5/h, teuer) gilt, nicht als 'wizard'.
-  if (pathname.includes('/api/assistant/generate') || pathname.includes('/api/wizard/generate')) {
+  if (pathname.includes('/api/wizard/generate')) {
     return 'ai';
   }
   // Checkout VOR der allgemeinen /api/wizard/-Klausel: eigener großzügiger Bucket,
   // damit der Bezahl-Klick nie am ausgeschoepften Interview-Limit scheitert.
   if (pathname.includes('/api/wizard/checkout')) {
     return 'checkout';
+  }
+  // Reformulierung VOR der generischen /api/wizard/-Klausel: eigener LLM-Bucket,
+  // damit Umformier-Calls nicht das Interview-Limit (wizard) belasten.
+  if (pathname.includes('/api/wizard/reformulieren')) {
+    return 'reformulieren';
   }
   if (pathname.includes('/api/wizard/')) {
     return 'wizard';

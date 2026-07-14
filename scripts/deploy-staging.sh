@@ -52,7 +52,15 @@ git pull --ff-only origin $BRANCH
 echo "==> docker build"
 # Paywall-Dev-Mock fuer Staging/UAT einbacken (kein Stripe-Account aktiv).
 # NEXT_PUBLIC_* muss zur Build-Zeit gesetzt sein — Client-Bundle-Inlining.
-docker build --build-arg NEXT_PUBLIC_PAYWALL_DEV_MOCK=1 -t edufunds:staging .
+# Basis-URL aus .env.staging ziehen, damit Client- und Server-Seite dieselbe
+# Domain sehen (sonst faellt der Client auf die Prod-Domain aus lib/app-url.ts).
+set -a; source <(grep -E '^NEXT_PUBLIC_APP_URL=' .env.staging || true); set +a
+APP_URL="\${NEXT_PUBLIC_APP_URL:-https://staging.edufunds.org}"
+echo "    APP_URL=\$APP_URL"
+docker build \
+  --build-arg NEXT_PUBLIC_PAYWALL_DEV_MOCK=1 \
+  --build-arg NEXT_PUBLIC_APP_URL="\$APP_URL" \
+  -t edufunds:staging .
 
 echo "==> Container swap"
 docker stop edufunds-staging 2>/dev/null || true

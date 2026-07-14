@@ -10,24 +10,24 @@ jest.mock('framer-motion', () => ({
 }));
 
 describe('Footer Komponente', () => {
-  it('sollte das Logo als Bild mit alt-Text rendern', () => {
+  it('sollte das offizielle Logo (dunkle Variante) rendern', () => {
     render(<Footer />);
     const logo = screen.getByAltText('EduFunds');
     expect(logo).toBeInTheDocument();
-    expect(logo).toHaveAttribute('src', '/edufunds-logo.svg');
+    expect(logo).toHaveAttribute('src', '/edufunds-logo-dunkel.svg');
   });
 
   it('sollte die Statistiken rendern', () => {
     render(<Footer />);
 
     expect(screen.getByText(PROGRAMM_COUNT_LABEL)).toBeInTheDocument();
-    expect(screen.getByText('90%')).toBeInTheDocument();
-    expect(screen.getByText('24h')).toBeInTheDocument();
+    expect(screen.getByText('DSGVO')).toBeInTheDocument();
+    expect(screen.getByText('Kein')).toBeInTheDocument();
 
     // "Förderprogramme" kommt mehrfach vor (Stats + Produkt-Spalte)
     expect(screen.getAllByText('Förderprogramme').length).toBeGreaterThan(0);
-    expect(screen.getByText('Erfolgsquote')).toBeInTheDocument();
-    expect(screen.getByText('Support')).toBeInTheDocument();
+    expect(screen.getByText('EU-Datenschutz')).toBeInTheDocument();
+    expect(screen.getByText('Abo')).toBeInTheDocument();
   });
 
   it('sollte die Produkt-Links rendern', () => {
@@ -67,9 +67,9 @@ describe('Footer Komponente', () => {
   it('sollte die Kontakt-E-Mail rendern', () => {
     render(<Footer />);
 
-    const emailLink = screen.getByText('office@aitema.de');
+    const emailLink = screen.getByText('office@edufunds.org');
     expect(emailLink).toBeInTheDocument();
-    expect(emailLink.closest('a')).toHaveAttribute('href', 'mailto:office@aitema.de');
+    expect(emailLink.closest('a')).toHaveAttribute('href', 'mailto:office@edufunds.org');
   });
 
   it('sollte den Standort rendern', () => {
@@ -165,7 +165,7 @@ describe('Footer Komponente', () => {
       .filter((a): a is HTMLAnchorElement => a !== null);
     expect(foerderLinks.some((a) => a.getAttribute('href') === '/foerderprogramme')).toBe(true);
 
-    expect(screen.getByText('KI-Antragsassistent').closest('a')).toHaveAttribute('href', '/#ki-assistent');
+    expect(screen.getByText('KI-Antragsassistent').closest('a')).toHaveAttribute('href', '/antrag/start');
     expect(screen.getByText('Archiv').closest('a')).toHaveAttribute('href', '/archiv');
 
     const preiseLinks = screen

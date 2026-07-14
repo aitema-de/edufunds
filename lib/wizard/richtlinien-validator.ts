@@ -125,6 +125,9 @@ const BaseRichtlinieShape = {
   antragsstruktur: AntragsstrukturSchema,
   notizen: z.array(z.string()).optional(),
   veraltet: z.boolean().optional(),
+  // 86cabdzwk: optionales Per-Programm-Dokumentlabel (rueckwaertskompatibel).
+  dokumentLabel: z.string().min(1).optional(),
+  dokumentLabelGenus: z.enum(["der", "die", "das"]).optional(),
 };
 
 // ---------------------------------------------------------------------------

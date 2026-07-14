@@ -12,37 +12,37 @@ import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
   // Base styles - shared across all variants
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl font-medium transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c9a227] focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl font-medium transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-evergreen focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        // Primary - Gold gradient (main CTA)
+        // Primary - Brandy (Cognac) gradient (main CTA)
         primary:
-          "bg-gradient-to-r from-[#c9a227] to-[#b08d1f] text-[#0a1628] hover:from-[#d4af37] hover:to-[#c9a227] hover:shadow-lg hover:shadow-[#c9a227]/25 active:scale-[0.98]",
-        
-        // Secondary - Navy
+          "bg-gradient-to-r from-[#1e3d32] to-[#2a5244] text-paper hover:from-[#2a5244] hover:to-[#356152] hover:shadow-lg hover:shadow-evergreen/25 active:scale-[0.98]",
+
+        // Secondary - Ink
         secondary:
-          "bg-[#0f1f38] text-[#f8f5f0] hover:bg-[#162a4a] hover:shadow-lg hover:shadow-[#0f1f38]/25 active:scale-[0.98]",
-        
-        // Outline - Gold border
+          "bg-ink text-paper hover:bg-[#292524] hover:shadow-lg hover:shadow-ink/25 active:scale-[0.98]",
+
+        // Outline - Brandy border
         outline:
-          "border-2 border-[#c9a227] bg-transparent text-[#c9a227] hover:bg-[#c9a227] hover:text-[#0a1628] active:scale-[0.98]",
-        
-        // Outline Navy - Navy border (for light backgrounds)
+          "border-2 border-evergreen bg-transparent text-evergreen hover:bg-evergreen hover:text-paper active:scale-[0.98]",
+
+        // Outline Ink - Ink border (for light backgrounds)
         "outline-navy":
-          "border-2 border-[#0a1628] bg-transparent text-[#0a1628] hover:bg-[#0a1628] hover:text-[#f8f5f0] active:scale-[0.98]",
-        
+          "border-2 border-ink bg-transparent text-ink hover:bg-ink hover:text-paper active:scale-[0.98]",
+
         // Ghost - subtle hover effect
         ghost:
-          "hover:bg-[#0a1628]/5 text-[#0a1628] dark:text-[#f8f5f0] dark:hover:bg-[#f8f5f0]/10",
-        
+          "hover:bg-ink/5 text-ink dark:text-paper dark:hover:bg-paper/10",
+
         // Danger - Red for destructive actions
         danger:
           "bg-red-600 text-white hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/25 active:scale-[0.98]",
-        
+
         // Link - looks like a link
         link:
-          "text-[#c9a227] underline-offset-4 hover:underline p-0 h-auto",
+          "text-evergreen underline-offset-4 hover:underline p-0 h-auto",
       },
       size: {
         sm: "h-9 px-4 py-2 text-sm rounded-lg",

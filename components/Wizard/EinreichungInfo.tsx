@@ -11,7 +11,7 @@ interface Props {
 /**
  * Praesentationskarte „So reichen Sie ein" — heller Hintergrund, dunkler Text
  * (WCAG-AA). Gold ausschliesslich als Icon/Border-Akzent; Gold-Text nur in der
- * dunkleren Variante #7a5e12 auf hellem Grund. Faellt bei fehlenden
+ * dunkleren Variante #1e3d32 auf hellem Grund. Faellt bei fehlenden
  * Dossier-Daten auf generische Hinweise zurueck.
  */
 export function EinreichungInfo({ info, kontaktEmail, kontaktTelefon, bewerbungsfristText }: Props) {
@@ -20,17 +20,17 @@ export function EinreichungInfo({ info, kontaktEmail, kontaktTelefon, bewerbungs
   const bearbeitungsdauer = info?.bearbeitungsdauer ? fixDisplayUmlaut(info.bearbeitungsdauer) : null;
 
   return (
-    <section className="rounded-2xl border border-[#c9a227]/30 bg-[#f8f5f0] p-6 text-[#1e3a61]">
-      <h3 className="mb-4 flex items-center gap-3 text-xl font-bold text-[#0a1628]">
-        <Send className="h-5 w-5 text-[#c9a227]" />
+    <section className="rounded-2xl border border-[#1e3d32]/30 bg-[#fdfdfc] p-6 text-[#57534e]">
+      <h3 className="mb-4 flex items-center gap-3 text-xl font-bold text-[#1c1917]">
+        <Send className="h-5 w-5 text-[#1e3d32]" />
         So reichen Sie ein
       </h3>
 
       <div className="space-y-5 text-sm">
         <div>
-          <div className="mb-1 font-semibold text-[#0a1628]">Einreichungsweg</div>
+          <div className="mb-1 font-semibold text-[#1c1917]">Einreichungsweg</div>
           {einreichungsweg ? (
-            <p className="text-[#1e3a61]">{einreichungsweg}</p>
+            <p className="text-[#57534e]">{einreichungsweg}</p>
           ) : (
             <p className="text-slate-600">
               Diesen Antrag reichen Sie direkt beim Fördergeber ein. Den genauen Weg und die Frist
@@ -40,12 +40,12 @@ export function EinreichungInfo({ info, kontaktEmail, kontaktTelefon, bewerbungs
         </div>
 
         <div>
-          <div className="mb-1 flex items-center gap-2 font-semibold text-[#0a1628]">
-            <FileCheck2 className="h-4 w-4 text-[#c9a227]" />
+          <div className="mb-1 flex items-center gap-2 font-semibold text-[#1c1917]">
+            <FileCheck2 className="h-4 w-4 text-[#1e3d32]" />
             Erforderliche Unterlagen
           </div>
           {anlagen ? (
-            <ul className="ml-1 list-disc space-y-1 pl-4 text-[#1e3a61]">
+            <ul className="ml-1 list-disc space-y-1 pl-4 text-[#57534e]">
               {anlagen.map((anlage, i) => (
                 <li key={i}>{anlage}</li>
               ))}
@@ -59,30 +59,30 @@ export function EinreichungInfo({ info, kontaktEmail, kontaktTelefon, bewerbungs
 
         {bearbeitungsdauer && (
           <div className="flex items-center gap-2 text-slate-700">
-            <Clock className="h-4 w-4 text-[#c9a227]" />
+            <Clock className="h-4 w-4 text-[#1e3d32]" />
             <span>Bearbeitungszeit: {bearbeitungsdauer}</span>
           </div>
         )}
 
         {(kontaktEmail || kontaktTelefon || bewerbungsfristText) && (
-          <div className="space-y-2 border-t border-[#0a1628]/10 pt-4">
+          <div className="space-y-2 border-t border-[#1c1917]/10 pt-4">
             {kontaktEmail && (
               <div className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-[#c9a227]" />
-                <a href={`mailto:${kontaktEmail}`} className="text-[#7a5e12] hover:underline">
+                <Mail className="h-4 w-4 text-[#1e3d32]" />
+                <a href={`mailto:${kontaktEmail}`} className="text-[#1e3d32] hover:underline">
                   {kontaktEmail}
                 </a>
               </div>
             )}
             {kontaktTelefon && (
               <div className="flex items-center gap-2 text-slate-700">
-                <Phone className="h-4 w-4 text-[#c9a227]" />
+                <Phone className="h-4 w-4 text-[#1e3d32]" />
                 <span>{kontaktTelefon}</span>
               </div>
             )}
             {bewerbungsfristText && (
               <div className="flex items-center gap-2 text-slate-700">
-                <CalendarClock className="h-4 w-4 text-[#c9a227]" />
+                <CalendarClock className="h-4 w-4 text-[#1e3d32]" />
                 <span>Frist: {bewerbungsfristText}</span>
               </div>
             )}

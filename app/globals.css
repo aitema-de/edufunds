@@ -3,8 +3,8 @@
    Primary: Gold (#c9a227) - Premium & Trust
    ============================================ */
 
-/* FONTS */
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+/* FONTS — self-hosted via next/font (layout.tsx): Newsreader (serif),
+   Outfit (sans), Fira Code (mono). CSS-Variablen --font-serif/-sans/-mono. */
 
 @tailwind base;
 @tailwind components;
@@ -41,30 +41,32 @@
     --teal-600: #266666;
     --teal-500: #338080;
     
-    /* SEMANTIC COLORS */
-    --background: 40 20% 96%;           /* parchment */
-    --foreground: 217 60% 6%;           /* navy-950 */
+    /* SEMANTIC COLORS — Editorial Archival (Welle 1):
+       Brand-Rollen auf Paper/Ink/Brandy umgestellt. Status-Farben
+       (success/warning/destructive) + Teal-accent bleiben semantisch. */
+    --background: 60 20% 99%;           /* paper #fdfdfc */
+    --foreground: 24 10% 10%;           /* ink #1c1917 (warmes Fast-Schwarz) */
     --card: 0 0% 100%;
-    --card-foreground: 217 60% 6%;
+    --card-foreground: 24 10% 10%;      /* ink */
     --popover: 0 0% 100%;
-    --popover-foreground: 217 60% 6%;
-    
-    /* Primary = Gold */
-    --primary: 45 75% 47%;              /* gold-500 #c9a227 */
-    --primary-foreground: 217 60% 6%;   /* navy-950 */
-    --primary-light: 45 70% 53%;        /* gold-400 */
-    --primary-dark: 45 75% 41%;         /* gold-600 */
-    
-    /* Secondary = Navy */
-    --secondary: 217 55% 14%;           /* navy-800 */
-    --secondary-foreground: 40 20% 96%; /* parchment */
-    
-    --muted: 40 15% 91%;
-    --muted-foreground: 217 30% 35%;
-    
-    /* Accent = Teal */
+    --popover-foreground: 24 10% 10%;   /* ink */
+
+    /* Primary = Brandy (Cognac) */
+    --primary: 159 34% 18%;             /* evergreen #1e3d32 (Richtung F) */
+    --primary-foreground: 60 20% 99%;   /* paper */
+    --primary-light: 158 32% 24%;       /* helleres Gruen #2a5244 */
+    --primary-dark: 160 36% 13%;        /* dunkleres Gruen #15302a */
+
+    /* Secondary = Ink */
+    --secondary: 24 10% 10%;            /* ink */
+    --secondary-foreground: 60 20% 99%; /* paper */
+
+    --muted: 40 12% 94%;
+    --muted-foreground: 30 8% 38%;      /* warmes Stein-Grau */
+
+    /* Accent = Teal (Tertiaer, unveraendert) */
     --accent: 180 50% 20%;              /* teal-700 */
-    --accent-foreground: 40 20% 96%;    /* parchment */
+    --accent-foreground: 60 20% 99%;    /* paper */
     
     /* Status Colors */
     --success: 160 84% 39%;             /* emerald-600 #059669 */
@@ -77,17 +79,69 @@
     --error-foreground: 0 0% 100%;
     
     /* UI Elements */
-    --border: 40 15% 85%;
-    --input: 40 15% 85%;
-    --input-foreground: 217 60% 6%;
-    --ring: 45 75% 47%;                 /* gold-500 focus ring */
+    --border: 40 14% 88%;
+    --input: 40 14% 88%;
+    --input-foreground: 24 10% 10%;     /* ink */
+    --ring: 159 34% 18%;                /* evergreen focus ring */
     --radius: 0.75rem;
     
     /* Legacy aliases for backwards compatibility */
     --orange-primary: #c9a227;          /* mapped to gold */
     --orange-light: #d4af37;
     --orange-dark: #b08d1f;
+
+    /* ==========================================================
+       EDITORIAL ARCHIVAL — Refresh-Tokens (Welle 0, 2026-06-17)
+       Neue Markenpalette der Lovable-Landing. ADDITIV: bestehende
+       gold/navy/parchment/teal bleiben unberuehrt, damit Welle 0
+       keine sichtbare Farbaenderung ausloest. Komponenten werden in
+       Welle 1+ schrittweise auf bg-paper/text-ink/text-brandy migriert.
+       Format = RGB-Kanaele (Space-separated) → Tailwind kann Opacity-
+       Modifier anwenden (z. B. border-ink/5, text-brandy/70).
+       ========================================================== */
+    --paper: 253 253 252;   /* #fdfdfc — Hintergrund, heller/kuehler als Parchment */
+    --ink: 28 25 23;        /* #1c1917 — warmes Fast-Schwarz (ersetzt Navy) */
+    --brandy: 120 53 15;    /* #78350f — Cognac-Akzent (ersetzt Gold; bessere WCAG) */
+
+    /* ==========================================================
+       AKADEMISCH / INSTITUT — Richtung F (Welle 1, 2026-07-01)
+       Flaschengruen als Struktur-Farbe, Gold (bestehende gold-Skala)
+       als Auszeichnung. ADDITIV: paper/ink/brandy bleiben unberuehrt;
+       Migration Flaeche fuer Flaeche (Start: Home-Hero + Kennzahlband).
+       ========================================================== */
+    --evergreen: 30 61 50;        /* #1e3d32 — Flaschengruen */
+    --evergreen-light: 42 82 68;  /* #2a5244 — helleres Gruen (Verlaeufe/Hover) */
   }
+
+  /* Dark-Mode (class-basiert). Noch kein Toggle verdrahtet — Fundament fuer
+     spaetere Wellen. Paper↔Ink flippen, Akzent wird Amber (#d97706). */
+  .dark {
+    --paper: 28 25 23;      /* #1c1917 */
+    --ink: 253 253 252;     /* #fdfdfc */
+    --brandy: 217 119 6;    /* #d97706 — Amber */
+    --evergreen: 158 199 179;       /* #9ec7b3 — helles Gruen, lesbar auf Ink */
+    --evergreen-light: 127 182 158; /* #7fb69e */
+  }
+}
+
+/* ============================================
+   PROGRAMM-TICKER (Richtung F, Home) — Endlos-Laufband.
+   Zwei identische Haelften im Track → -50% ergibt nahtlose Schleife.
+   Hover pausiert; prefers-reduced-motion stoppt die Animation komplett
+   (Inhalt bleibt als statische Zeile lesbar).
+   ============================================ */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ticker-track {
+  animation: ticker-scroll 48s linear infinite;
+}
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
 }
 
 /* ============================================
@@ -104,27 +158,37 @@
   
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    background-color: var(--parchment);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    background-color: rgb(var(--paper));   /* Editorial-Archival Paper-Canvas */
   }
-  
-  /* DM Serif Display ist nur in Weight 400 verfuegbar (Google Fonts). Wenn
-   * eine Komponente Tailwind `font-bold` (700) oder `font-semibold` (600) auf
-   * eine Headline anwendet, faked der Browser "fauxbold" durch Glyph-Verdickung —
-   * Display-Serifs verschwimmen dann an den Raendern. Deshalb erzwingen wir
-   * Weight 400 mit !important fuer alle Headings global; einzelne Komponenten
-   * koennen ihre `font-bold`-Tailwind-Klassen behalten (sind dann No-Op fuer
-   * Headings, wirken weiter bei <div>/<span>/<p>). Letter-Spacing leicht
-   * weniger straff (war -0.02em) fuer bessere Lesbarkeit bei groesseren
-   * Schriftgraden. (Befund 2026-05-27, BEFUND-UI-1 Pre-Pilot-Audit.)
+
+  /* Headings: Newsreader (Editorial-Serif). Anders als DM Serif Display bringt
+   * Newsreader echte Schriftschnitte (400/500/600) mit — kein Faux-Bold-Risiko.
+   * Wir halten Headings global auf Weight 400 (helle, editoriale Anmutung wie in
+   * der neuen Landing); component-seitige `font-semibold/bold` bleiben No-Op fuer
+   * Headings (wirken weiter bei <div>/<span>/<p>). Letter-Spacing wie gehabt.
+   * (Welle 0 Design-Refresh 2026-06-17; Ausgangsbefund BEFUND-UI-1 2026-05-27.)
    */
   h1, h2, h3, h4 {
-    font-family: 'DM Serif Display', Georgia, serif !important;
+    font-family: var(--font-serif), Georgia, serif !important;
     font-weight: 400 !important;
     letter-spacing: -0.015em;
     color: hsl(var(--foreground));
   }
   
+  /* Landing-Handoff Variante 1c (02.07.2026): gezielte Ausnahmen vom
+   * globalen Heading-Reset oben. Der 1c-Hero setzt bewusst auf Bricolage
+   * Grotesque 600 statt Serif 400; die Gruender-Sektion auf Serif 600.
+   * Nur ueber diese Klassen — alle uebrigen Headings bleiben unangetastet. */
+  h1.font-display {
+    font-family: var(--font-display), system-ui, sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em;
+  }
+  h2.heading-strong, h3.heading-strong {
+    font-weight: 600 !important;
+  }
+
   h1 {
     font-size: clamp(2.5rem, 6vw, 4.5rem);
     line-height: 1.1;
@@ -140,16 +204,16 @@
     line-height: 1.2;
   }
   
-  /* Focus States - Gold Ring */
+  /* Focus States - Evergreen Ring (Richtung F) */
   :focus-visible {
-    outline: 2px solid var(--gold-500);
+    outline: 2px solid rgb(var(--evergreen));
     outline-offset: 2px;
   }
-  
-  /* Selection - Gold Tint */
+
+  /* Selection - Evergreen Tint */
   ::selection {
-    background-color: rgba(201, 162, 39, 0.25);
-    color: var(--navy-950);
+    background-color: rgb(var(--evergreen) / 0.16);
+    color: rgb(var(--evergreen));
   }
 }
 
@@ -158,35 +222,35 @@
    ============================================ */
 @layer utilities {
   .font-mono {
-    font-family: 'Fira Code', monospace;
+    font-family: var(--font-mono), 'Fira Code', monospace;
   }
-  
+
   .font-serif {
-    font-family: 'DM Serif Display', Georgia, serif;
+    font-family: var(--font-serif), Georgia, serif;
   }
-  
+
   .font-sans {
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family: var(--font-sans), system-ui, sans-serif;
   }
   
-  /* Primary Gradient - Gold */
+  /* Primary Gradient - Gold (Auszeichnung, pop auf dunklem Grund; Richtung F) */
   .text-gradient {
-    background: linear-gradient(135deg, var(--gold-400) 0%, var(--gold-600) 100%);
+    background: linear-gradient(135deg, #d4af37 0%, #967814 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  
+
   .text-gradient-gold {
-    background: linear-gradient(135deg, var(--gold-400) 0%, var(--gold-600) 100%);
+    background: linear-gradient(135deg, #d4af37 0%, #967814 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  
-  /* Navy Gradient */
+
+  /* Ink Gradient */
   .text-gradient-navy {
-    background: linear-gradient(135deg, var(--navy-700) 0%, var(--navy-950) 100%);
+    background: linear-gradient(135deg, #44403c 0%, #1c1917 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -197,10 +261,10 @@
    BUTTON SYSTEM
    ============================================ */
 @layer components {
-  /* Primary Button - Gold */
+  /* Primary Button - Evergreen (Richtung F) */
   .btn-primary {
-    background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-600) 100%);
-    color: var(--navy-950);
+    background: linear-gradient(135deg, #1e3d32 0%, #2a5244 100%);
+    color: #fdfdfc;
     font-weight: 600;
     padding: 0.75rem 1.5rem;
     border-radius: 0.75rem;
@@ -217,14 +281,14 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, var(--gold-400) 0%, var(--gold-500) 100%);
+    background: linear-gradient(135deg, #2a5244 0%, #356152 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
   }
-  
+
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 40px -10px rgba(201, 162, 39, 0.45);
+    box-shadow: 0 12px 40px -10px rgba(30, 61, 50, 0.45);
   }
   
   .btn-primary:hover::before {
@@ -251,10 +315,10 @@
     font-size: 0.875rem;
   }
   
-  /* Secondary Button - Navy */
+  /* Secondary Button - Ink */
   .btn-secondary {
-    background: var(--navy-800);
-    color: var(--parchment);
+    background: #1c1917;
+    color: #fdfdfc;
     font-weight: 600;
     padding: 0.75rem 1.5rem;
     border-radius: 0.75rem;
@@ -264,18 +328,18 @@
     justify-content: center;
     gap: 0.5rem;
   }
-  
+
   .btn-secondary:hover {
-    background: var(--navy-700);
+    background: #292524;
     transform: translateY(-2px);
-    box-shadow: 0 12px 40px -10px rgba(10, 22, 40, 0.35);
+    box-shadow: 0 12px 40px -10px rgba(28, 25, 23, 0.35);
   }
-  
-  /* Outline Button - Gold Border */
+
+  /* Outline Button - Evergreen Border (Richtung F) */
   .btn-outline {
     background: transparent;
-    border: 2px solid var(--gold-500);
-    color: var(--gold-500);
+    border: 2px solid #1e3d32;
+    color: #1e3d32;
     font-weight: 600;
     padding: 0.75rem 1.5rem;
     border-radius: 0.75rem;
@@ -285,10 +349,10 @@
     justify-content: center;
     gap: 0.5rem;
   }
-  
+
   .btn-outline:hover {
-    background: var(--gold-500);
-    color: var(--navy-950);
+    background: #1e3d32;
+    color: #fdfdfc;
     transform: translateY(-2px);
   }
   
@@ -303,26 +367,26 @@
    ============================================ */
 @layer components {
   .glass {
-    background: rgba(10, 22, 40, 0.6);
+    background: rgba(28, 25, 23, 0.6);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(217, 119, 6, 0.12);
     border-radius: 1rem;
   }
-  
+
   .glass-strong {
-    background: rgba(15, 31, 56, 0.8);
+    background: rgba(41, 37, 36, 0.8);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    border: 1px solid rgba(217, 119, 6, 0.2);
     border-radius: 1rem;
   }
-  
+
   .glass-light {
-    background: rgba(248, 245, 240, 0.85);
+    background: rgba(253, 253, 252, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(10, 22, 40, 0.06);
+    border: 1px solid rgba(28, 25, 23, 0.06);
     border-radius: 1rem;
   }
 }
@@ -335,7 +399,7 @@
     padding: 1.5rem;
     border-radius: 1rem;
     background: white;
-    border: 1px solid rgba(10, 22, 40, 0.08);
+    border: 1px solid rgba(28, 25, 23, 0.08);
   }
   
   .card-lg {
@@ -349,7 +413,7 @@
   
   .card-lift:hover {
     transform: translateY(-8px);
-    box-shadow: 0 25px 50px -12px rgba(10, 22, 40, 0.12);
+    box-shadow: 0 25px 50px -12px rgba(28, 25, 23, 0.12);
   }
 }
 
@@ -360,14 +424,14 @@
   .accent-line {
     width: 60px;
     height: 3px;
-    background: linear-gradient(90deg, var(--gold-500), var(--gold-300));
+    background: linear-gradient(90deg, #1e3d32, #c9a227);
   }
-  
+
   .corner-decoration {
     position: absolute;
     width: 40px;
     height: 40px;
-    border: 2px solid var(--gold-500);
+    border: 2px solid #1e3d32;
     opacity: 0.25;
   }
   
@@ -391,26 +455,26 @@
    ============================================ */
 @layer utilities {
   .geometric-grid {
-    background-image: 
-      linear-gradient(var(--navy-800) 1px, transparent 1px),
-      linear-gradient(90deg, var(--navy-800) 1px, transparent 1px);
+    background-image:
+      linear-gradient(#1c1917 1px, transparent 1px),
+      linear-gradient(90deg, #1c1917 1px, transparent 1px);
     background-size: 60px 60px;
     opacity: 0.12;
   }
-  
+
   .diagonal-stripes {
     background: repeating-linear-gradient(
       45deg,
       transparent,
       transparent 10px,
-      var(--gold-500) 10px,
-      var(--gold-500) 11px
+      #1e3d32 10px,
+      #1e3d32 11px
     );
     opacity: 0.03;
   }
-  
+
   .dots-pattern {
-    background-image: radial-gradient(var(--gold-500) 1.5px, transparent 1.5px);
+    background-image: radial-gradient(#1e3d32 1.5px, transparent 1.5px);
     background-size: 24px 24px;
     opacity: 0.08;
   }
@@ -482,7 +546,7 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(201, 162, 39, 0.1) 50%,
+      rgba(30, 61, 50, 0.1) 50%,
       transparent 100%
     );
     background-size: 200% 100%;
@@ -532,16 +596,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--parchment);
+  background: rgb(var(--paper));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--navy-700);
+  background: #44403c;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--navy-600);
+  background: #57534e;
 }
 
 /* ============================================

@@ -17,15 +17,17 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import type { Program } from '@/lib/newsletter';
+import { CANONICAL_APP_URL, publicAppUrl } from '@/lib/app-url';
 
 /**
- * Fallback-Basis-URL, falls NEXT_PUBLIC_APP_URL nicht gesetzt ist. Bewusst die
- * APP-Domain (app.edufunds.org) — dort liegen die funktionalen Seiten
- * (/foerderprogramme, /antrag, /impressum, /datenschutz). Die frühere Vorgabe
- * `edufunds.org` (Marketing-Landing, separates Repo) hostet diese Pfade NICHT
- * und lieferte tote Links.
+ * Fallback-Basis-URL, falls NEXT_PUBLIC_APP_URL nicht gesetzt ist.
+ *
+ * Seit der Domain-Zusammenführung bedient die App selbst die Apex-Domain — die
+ * funktionalen Seiten (/foerderprogramme, /antrag, /impressum, /datenschutz)
+ * liegen dort. Die alte statische Marketing-Landing, die diese Pfade NICHT
+ * hostete und deretwegen hier früher `app.edufunds.org` stand, ist abgeschaltet.
  */
-export const NEWSLETTER_APP_URL_FALLBACK = 'https://app.edufunds.org';
+export const NEWSLETTER_APP_URL_FALLBACK = CANONICAL_APP_URL;
 
 /**
  * Erlaubte Ziel-Pfade für LLM-generierte Newsletter-Links. Der LLM darf KEINE
@@ -286,7 +288,7 @@ export interface CollectOptions {
 export function collectNewsletterContent(opts: CollectOptions = {}): CollectedContent {
   const count = opts.count ?? 3;
   const exclude = new Set(opts.excludeIds ?? []);
-  const baseUrl = (opts.baseUrl || NEWSLETTER_APP_URL_FALLBACK).replace(/\/$/, '');
+  const baseUrl = (opts.baseUrl || publicAppUrl()).replace(/\/$/, '');
 
   const catalog = loadCatalog();
   const active = catalog.filter((p) => p.status === 'aktiv');

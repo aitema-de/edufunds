@@ -13,6 +13,19 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   serverExternalPackages: ['pg'],
+  // Alt-URLs der abgeschalteten statischen Landing (separates Repo). Nur die
+  // Startseite war indexiert, die Unterseiten liefern seit dem Abschalten 502 —
+  // die 301 sind Absicherung fuer etwaige Backlinks.
+  async redirects() {
+    return [
+      { source: '/programme.html', destination: '/foerderprogramme', permanent: true },
+      { source: '/ueber-uns.html', destination: '/ueber-uns', permanent: true },
+      { source: '/kontakt.html', destination: '/kontakt', permanent: true },
+      { source: '/impressum.html', destination: '/impressum', permanent: true },
+      { source: '/datenschutz.html', destination: '/datenschutz', permanent: true },
+      { source: '/agb.html', destination: '/agb', permanent: true },
+    ];
+  },
   async headers() {
     return [
       // Statische Assets mit langem Cache
@@ -56,7 +69,9 @@ const nextConfig = {
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'X-XSS-Protection', value: '1; mode=block' },
           { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
-          { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.google-analytics.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';" },
+          // CSP wird per-Request MIT Nonce in middleware.ts gesetzt (nonce-basiert,
+          // ohne unsafe-inline/-eval für Scripts). Kein statischer CSP-Header hier,
+          // sonst überschriebe er die Nonce-CSP.
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), interest-cohort=(), browsing-topics=()' },
           { key: 'X-DNS-Prefetch-Control', value: 'on' },

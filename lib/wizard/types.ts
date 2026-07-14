@@ -1,3 +1,9 @@
+/**
+ * P3-B (Feedback 24.06.): vom Nutzer wählbare Schreibtiefe für die Generierung.
+ * "standard" = bisheriges Verhalten (Default → eval-neutral).
+ */
+export type Texttiefe = "knapp" | "standard" | "ausfuehrlich";
+
 export type WizardPhase =
   | "interviewing"
   | "ready_to_generate"
@@ -44,6 +50,15 @@ export interface WizardFacts {
     kriterien_adressiert?: string[];
     offene_luecken?: string[];
   };
+  /**
+   * Vom Nutzer AUSDRUECKLICH ausgeschlossene/verneinte Elemente (z. B.
+   * "externe Honorarkraefte", "neue Geraeteanschaffung"). Anders als ein leerer
+   * Slot (= unbekannt) ist dies ein POSITIVES Signal: diese Elemente duerfen
+   * weder im Antragstext noch im Finanzplan auftauchen — auch nicht als Vorschlag.
+   * Hintergrund: Pilot-Feedback 24.06. (KI brachte "externe Fachkraefte" trotz
+   * expliziter Verneinung). NUR explizite Ausschluesse, kein "weiss nicht".
+   */
+  ausgeschlossen?: string[];
   [k: string]: unknown;
 }
 
@@ -187,6 +202,11 @@ export interface GenerationArtefacts {
   factVerification?: {
     neutralisiert: string[];
     vorschlaege: string[];
+    /**
+     * P2 (Feedback 24.06.): pro ergaenzter Formulierung die Begruendung des Detektors,
+     * damit die UI das "Warum" zeigen kann. Parallel zu `vorschlaege` (Lookup per zitat).
+     */
+    vorschlaegeBegruendung?: Array<{ zitat: string; warum: string }>;
     remaining: string[];
     repaired: boolean;
   };

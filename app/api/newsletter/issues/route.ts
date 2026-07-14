@@ -18,6 +18,7 @@ import {
   hasSentIssue,
   listIssues,
 } from '@/lib/newsletter/issues';
+import { publicAppUrl } from '@/lib/app-url';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -46,7 +47,7 @@ export async function POST(request: NextRequest) {
   if (!auth.success) return auth.response;
 
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://edufunds.org';
+    const baseUrl = publicAppUrl();
     const now = new Date();
     const [excludeProgramIds, issueNumber, alreadySent] = await Promise.all([
       getRecentProgramIds(3),
