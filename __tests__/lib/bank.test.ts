@@ -46,7 +46,22 @@ describe("bankConfigProblems", () => {
     const p = bankConfigProblems();
     expect(p).toContain("BANK_IBAN fehlt");
     expect(p).toContain("BANK_ACCOUNT_HOLDER fehlt");
-    expect(p).toContain("BANK_BIC fehlt");
+  });
+
+  it("verlangt KEINE BIC — in SEPA genuegt die IBAN (IBAN-only seit 2016)", () => {
+    // Eine BIC zu erzwingen wuerde den Rechnungskauf blockieren, ohne dass jemandem
+    // geholfen waere. Und eine GERATENE BIC waere so schaedlich wie eine falsche IBAN.
+    process.env.BANK_IBAN = "DE87 1001 8000 0113 7349 60";
+    process.env.BANK_ACCOUNT_HOLDER = "aitema GmbH";
+
+    expect(bankConfigProblems()).toEqual([]);
+    const b = getBankDetails();
+    expect(b.iban).toBe("DE87 1001 8000 0113 7349 60");
+    expect(b.bic).toBeUndefined(); // -> Zeile faellt in der Mail weg, kein "undefined"
+  });
+
+  it("akzeptiert die ECHTE aitema-IBAN (Pruefsumme geprueft, 14.07.2026)", () => {
+    expect(isValidIban("DE87 1001 8000 0113 7349 60")).toBe(true);
   });
 
   it("meldet eine gesetzte, aber ungueltige IBAN", () => {

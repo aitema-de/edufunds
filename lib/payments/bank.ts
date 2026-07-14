@@ -18,8 +18,10 @@
 export interface BankDetails {
   accountHolder: string;
   iban: string;
-  bic: string;
-  bankName: string;
+  /** Optional: In SEPA genuegt seit 2016 die IBAN ("IBAN-only"). Leer = nicht anzeigen. */
+  bic?: string;
+  /** Optional, nur zur Orientierung des Zahlenden. */
+  bankName?: string;
 }
 
 /** IBAN-Pruefsumme nach ISO 13616: Land+Pruefziffer ans Ende, Buchstaben→Zahlen, mod 97 == 1. */
@@ -34,14 +36,21 @@ export function isValidIban(raw: string): boolean {
   return rest === 1;
 }
 
-/** Fehlt eine Bankangabe oder ist die IBAN ungueltig? Namen der Probleme (leer = ok). */
+/**
+ * Fehlt eine Bankangabe oder ist die IBAN ungueltig? Namen der Probleme (leer = ok).
+ *
+ * BANK_BIC ist BEWUSST nicht erforderlich: Fuer SEPA-Ueberweisungen innerhalb der EU
+ * genuegt seit 2016 die IBAN ("IBAN-only"-Regel, VO (EU) 260/2012). Eine BIC zu
+ * erzwingen wuerde den Rechnungskauf blockieren, ohne dass jemandem geholfen waere —
+ * und eine geratene BIC auf einer Rechnung ist genauso schaedlich wie eine falsche
+ * IBAN. Ist sie gesetzt, wird sie angezeigt; sonst bleibt die Zeile weg.
+ */
 export function bankConfigProblems(): string[] {
   const probleme: string[] = [];
   const iban = (process.env.BANK_IBAN ?? "").trim();
   if (!iban) probleme.push("BANK_IBAN fehlt");
   else if (!isValidIban(iban)) probleme.push("BANK_IBAN hat eine ungueltige Pruefsumme");
   if (!(process.env.BANK_ACCOUNT_HOLDER ?? "").trim()) probleme.push("BANK_ACCOUNT_HOLDER fehlt");
-  if (!(process.env.BANK_BIC ?? "").trim()) probleme.push("BANK_BIC fehlt");
   return probleme;
 }
 
@@ -54,11 +63,13 @@ export function getBankDetails(): BankDetails {
         `keine Rechnung versendet.`
     );
   }
+  const bic = (process.env.BANK_BIC ?? "").trim();
+  const bankName = (process.env.BANK_NAME ?? "").trim();
   return {
     accountHolder: process.env.BANK_ACCOUNT_HOLDER!.trim(),
     iban: process.env.BANK_IBAN!.trim(),
-    bic: process.env.BANK_BIC!.trim(),
-    bankName: (process.env.BANK_NAME ?? "").trim() || "—",
+    ...(bic ? { bic } : {}),
+    ...(bankName ? { bankName } : {}),
   };
 }
 

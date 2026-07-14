@@ -296,8 +296,9 @@ export function buildOrderConfirmationEmail(order: OrderRecord): EmailContent {
     `Zahlung per Überweisung (Zahlungsziel ${PAYMENT_TERM_DAYS} Tage, bis ${dueDateDe}):`,
     `  Empfänger:       ${bank.accountHolder}`,
     `  IBAN:             ${bank.iban}`,
-    `  BIC:              ${bank.bic}`,
-    `  Bank:             ${bank.bankName}`,
+    // BIC/Bank nur, wenn konfiguriert — in SEPA genuegt die IBAN (IBAN-only).
+    ...(bank.bic ? [`  BIC:              ${bank.bic}`] : []),
+    ...(bank.bankName ? [`  Bank:             ${bank.bankName}`] : []),
     `  Betrag:           ${amount}`,
     `  Verwendungszweck: ${order.orderNumber}`,
     ``,
@@ -332,8 +333,8 @@ export function buildOrderConfirmationEmail(order: OrderRecord): EmailContent {
     <table style="width:100%;border-collapse:collapse;font-size:14px">
       <tr><td style="padding:4px 0;color:#6b6457">Empfänger</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.accountHolder)}</td></tr>
       <tr><td style="padding:4px 0;color:#6b6457">IBAN</td><td style="padding:4px 0;text-align:right;font-family:monospace">${escapeHtml(bank.iban)}</td></tr>
-      <tr><td style="padding:4px 0;color:#6b6457">BIC</td><td style="padding:4px 0;text-align:right;font-family:monospace">${escapeHtml(bank.bic)}</td></tr>
-      <tr><td style="padding:4px 0;color:#6b6457">Bank</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.bankName)}</td></tr>
+      ${bank.bic ? `<tr><td style="padding:4px 0;color:#6b6457">BIC</td><td style="padding:4px 0;text-align:right;font-family:monospace">${escapeHtml(bank.bic)}</td></tr>` : ""}
+      ${bank.bankName ? `<tr><td style="padding:4px 0;color:#6b6457">Bank</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.bankName)}</td></tr>` : ""}
       <tr><td style="padding:4px 0;color:#6b6457">Verwendungszweck</td><td style="padding:4px 0;text-align:right"><strong>${escapeHtml(order.orderNumber)}</strong></td></tr>
     </table>
 
@@ -551,8 +552,9 @@ export function buildEinzelInvoiceConfirmationEmail(
     `Zahlung per Überweisung (Zahlungsziel ${PAYMENT_TERM_DAYS} Tage, bis ${dueDateDe}):`,
     `  Empfänger:        ${bank.accountHolder}`,
     `  IBAN:             ${bank.iban}`,
-    `  BIC:              ${bank.bic}`,
-    `  Bank:             ${bank.bankName}`,
+    // BIC/Bank nur, wenn konfiguriert — in SEPA genuegt die IBAN (IBAN-only).
+    ...(bank.bic ? [`  BIC:              ${bank.bic}`] : []),
+    ...(bank.bankName ? [`  Bank:             ${bank.bankName}`] : []),
     `  Betrag:           ${amount}`,
     `  Verwendungszweck: ${order.orderNumber}`,
     ``,
@@ -585,8 +587,8 @@ export function buildEinzelInvoiceConfirmationEmail(
     <table style="width:100%;border-collapse:collapse;font-size:14px">
       <tr><td style="padding:4px 0;color:#6b6457">Empfänger</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.accountHolder)}</td></tr>
       <tr><td style="padding:4px 0;color:#6b6457">IBAN</td><td style="padding:4px 0;text-align:right;font-family:monospace">${escapeHtml(bank.iban)}</td></tr>
-      <tr><td style="padding:4px 0;color:#6b6457">BIC</td><td style="padding:4px 0;text-align:right;font-family:monospace">${escapeHtml(bank.bic)}</td></tr>
-      <tr><td style="padding:4px 0;color:#6b6457">Bank</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.bankName)}</td></tr>
+      ${bank.bic ? `<tr><td style="padding:4px 0;color:#6b6457">BIC</td><td style="padding:4px 0;text-align:right;font-family:monospace">${escapeHtml(bank.bic)}</td></tr>` : ""}
+      ${bank.bankName ? `<tr><td style="padding:4px 0;color:#6b6457">Bank</td><td style="padding:4px 0;text-align:right">${escapeHtml(bank.bankName)}</td></tr>` : ""}
       <tr><td style="padding:4px 0;color:#6b6457">Verwendungszweck</td><td style="padding:4px 0;text-align:right"><strong>${escapeHtml(order.orderNumber)}</strong></td></tr>
     </table>
 

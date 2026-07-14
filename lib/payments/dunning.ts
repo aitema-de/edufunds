@@ -141,7 +141,8 @@ function zahlungsblock(o: DunningOrder): string[] {
     `Verwendungszweck:  ${o.orderNumber}`,
     `Empfänger:         ${b.accountHolder}`,
     `IBAN:              ${b.iban}`,
-    `BIC:               ${b.bic} (${b.bankName})`,
+    // BIC/Bank nur, wenn konfiguriert — in SEPA genuegt die IBAN (IBAN-only).
+    ...(b.bic ? [`BIC:               ${b.bic}${b.bankName ? ` (${b.bankName})` : ""}`] : []),
   ];
 }
 
