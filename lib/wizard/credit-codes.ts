@@ -25,7 +25,7 @@ export interface CreditCode {
 
 export type ConsumeResult =
   | { ok: true; creditsRemaining: number }
-  | { ok: false; reason: "unknown" | "exhausted" | "expired" };
+  | { ok: false; reason: "unknown" | "exhausted" | "expired" | "revoked" };
 
 /** Normalisiert Nutzereingaben: trimmt, Grossbuchstaben, entfernt Whitespace. */
 export function normalizeCode(raw: string): string {
@@ -34,7 +34,8 @@ export function normalizeCode(raw: string): string {
 
 /**
  * Verbraucht atomar einen Credit. Das WHERE garantiert, dass weder ueberzogen
- * (credits_used < credits_total) noch ein abgelaufener Code genutzt wird.
+ * (credits_used < credits_total) noch ein abgelaufener oder nach Rueckerstattung
+ * entwerteter Code genutzt wird.
  * Bei Misserfolg wird per Folge-SELECT der Grund bestimmt (fuer gute Fehlermeldung).
  */
 export async function consumeCredit(code: string): Promise<ConsumeResult> {
@@ -45,6 +46,7 @@ export async function consumeCredit(code: string): Promise<ConsumeResult> {
      WHERE code = $1
        AND credits_used < credits_total
        AND (expires_at IS NULL OR expires_at > CURRENT_TIMESTAMP)
+       AND revoked_at IS NULL
      RETURNING credits_total, credits_used`,
     [code]
   );
@@ -57,12 +59,15 @@ export async function consumeCredit(code: string): Promise<ConsumeResult> {
     credits_total: number;
     credits_used: number;
     expires_at: Date | null;
+    revoked_at: Date | null;
   }>(
-    `SELECT credits_total, credits_used, expires_at FROM credit_codes WHERE code = $1`,
+    `SELECT credits_total, credits_used, expires_at, revoked_at FROM credit_codes WHERE code = $1`,
     [code]
   );
   if (info.rowCount === 0) return { ok: false, reason: "unknown" };
   const r = info.rows[0];
+  // Reihenfolge: Rueckerstattung schlaegt Ablauf — sie ist der praezisere Grund.
+  if (r.revoked_at) return { ok: false, reason: "revoked" };
   if (r.expires_at && r.expires_at.getTime() <= Date.now()) {
     return { ok: false, reason: "expired" };
   }
