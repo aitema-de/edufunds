@@ -26,7 +26,8 @@ const SUBPROZESSOREN = [
     // Norwegen ist EWR, nicht EU — deshalb „EU/EWR", nicht „EU". Beleg:
     // docs/legal/mistral-nachweise/ (Subprozessorliste, Abruf 13.07.2026).
     ort: "EU/EWR",
-    grundlage: "EU/EWR — kein Drittlandtransfer; kein Training mit Ihren Daten",
+    grundlage:
+      "EU/EWR — kein Drittlandtransfer; kein Training mit Ihren Daten (kostenpflichtige API)",
   },
   {
     name: "Stripe Payments Europe, Ltd.",
