@@ -8,14 +8,24 @@ import { AlertCircle, CheckCircle2, Loader2, RefreshCw } from "lucide-react";
 
 interface Props {
   sessionToken: string;
+  /** Stripe-Checkout-Session-ID aus der Redirect-URL (`cs`). Optional. */
+  checkoutSessionId?: string;
 }
 
 const POLL_INTERVAL_MS = 2000;
 const MAX_WAIT_MS = 60000;
+/**
+ * Nach dieser Zeit ohne Freischaltung fragen wir Stripe selbst, ob bezahlt wurde.
+ * Der Webhook kommt normalerweise in ein bis zwei Sekunden — 12 s sind also bereits
+ * ein Hinweis darauf, dass er gar nicht kommt (z. B. weil der Endpoint im
+ * Stripe-Dashboard noch auf die alte Domain zeigt, Runbook 9.5). Ohne diesen
+ * Rueckfall haette der Kunde gezahlt und bekaeme nichts.
+ */
+const RECONCILE_AFTER_MS = 12000;
 
 type Status = "waiting" | "paid" | "timeout" | "no-token" | "network-error";
 
-export function CheckoutSuccessClient({ sessionToken }: Props) {
+export function CheckoutSuccessClient({ sessionToken, checkoutSessionId }: Props) {
   const router = useRouter();
   const [status, setStatus] = useState<Status>("waiting");
   const [paidToken, setPaidToken] = useState<string | null>(null);
@@ -33,10 +43,43 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
     const started = Date.now();
     let cancelled = false;
     let consecutiveFailures = 0;
+    let reconcileTried = false;
 
     const interval = setInterval(() => {
       if (!cancelled) setElapsedMs(Date.now() - started);
     }, 250);
+
+    const succeed = (token: string) => {
+      setPaidToken(token);
+      setStatus("paid");
+      router.replace(`/antrag/download/${token}`);
+    };
+
+    /**
+     * Sicherheitsnetz: Stripe direkt fragen, ob bezahlt wurde. Nur sinnvoll, wenn
+     * die Checkout-Session-ID vorliegt. Bei Erfolg wird serverseitig freigeschaltet
+     * — dieselbe Wirkung wie der Webhook.
+     */
+    const tryReconcile = async (): Promise<boolean> => {
+      if (reconcileTried || !checkoutSessionId) return false;
+      reconcileTried = true;
+      try {
+        const res = await fetch("/api/wizard/checkout/reconcile", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ sessionToken, cs: checkoutSessionId }),
+        });
+        if (!res.ok) return false;
+        const body = await res.json();
+        if (body.ok && body.paidToken) {
+          if (!cancelled) succeed(body.paidToken);
+          return true;
+        }
+      } catch {
+        // Still: Der normale Poll laeuft weiter, der Timeout-Text bleibt der Fallback.
+      }
+      return false;
+    };
 
     const tick = async () => {
       if (cancelled) return;
@@ -48,9 +91,7 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
           const body = await res.json();
           if (body.dokumentLabel) setLabels(dokumentLabels(body.dokumentLabel, body.dokumentLabelGenus));
           if (body.paidToken) {
-            setPaidToken(body.paidToken);
-            setStatus("paid");
-            router.replace(`/antrag/download/${body.paidToken}`);
+            succeed(body.paidToken);
             return;
           }
         } else {
@@ -67,8 +108,15 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
         return;
       }
 
+      // Webhook bleibt aus? Dann selbst bei Stripe nachfragen, statt weiter zu warten.
+      if (Date.now() - started > RECONCILE_AFTER_MS && !reconcileTried) {
+        if (await tryReconcile()) return;
+      }
+
       if (Date.now() - started > MAX_WAIT_MS) {
-        setStatus("timeout");
+        // Letzter Versuch, bevor wir den Kunden vertroesten.
+        if (await tryReconcile()) return;
+        if (!cancelled) setStatus("timeout");
         return;
       }
       if (!cancelled) setTimeout(tick, POLL_INTERVAL_MS);
@@ -80,7 +128,7 @@ export function CheckoutSuccessClient({ sessionToken }: Props) {
       clearInterval(interval);
     };
     // restartKey bewusst dabei — Retry-Button setzt ihn hoch, was den Effekt neu startet.
-  }, [sessionToken, router, restartKey]);
+  }, [sessionToken, checkoutSessionId, router, restartKey]);
 
   const restart = () => {
     setStatus("waiting");

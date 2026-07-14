@@ -230,6 +230,43 @@ Diese Punkte sind **nicht** durch den Deploy gelöst und sollten vor dem Enthül
 - [ ] **Löschkonzept** (`docs/legal/LOESCHKONZEPT.md`) durch Fachanwalt bestätigen; Retention-Cron produktiv (Schritt 5).
 - [ ] **Finale anwaltliche Abnahme** (IT-Recht/Datenschutz) vor erstem zahlenden Kunden.
 
+### 7.1 Stand 14.07.2026 — was seither erledigt ist
+
+- ✅ **Mistral-Nachweisakte vollständig** (`docs/legal/mistral-nachweise/`): Commercial ToS,
+  Privacy Policy, DPA, Subprozessoren — alle von `legal.mistral.ai` mit Abrufvermerk.
+  ⚠️ Das frühere „Terms"-PDF war nur die **Linkliste** und als Nachweis wertlos.
+  „Kein Training" ist jetzt **belegt** (ToS § 4.2: kostenpflichtige API). ZDR beantragt.
+- ✅ **AGB-Neufassung** um § 4a (Rechnungskauf), § 11 (Haftung), § 9 (AVV-Einbeziehung)
+  ergänzt — liegt auf `feature/agb-neufassung`, **nicht** auf `staging` (siehe Schritt 3.0).
+- ✅ **Google Fonts von der Wartungsseite entfernt.** Sie luden bei jedem Aufruf von
+  `edufunds.org` und übertrugen die Besucher-IP ohne Einwilligung an Google — im
+  Widerspruch zur eigenen Datenschutzerklärung. Schriften jetzt self-hosted.
+- 🔴 **Offen:** anwaltliche Freigabe (Adressat noch nicht benannt), Newsletter-Testversand,
+  Plan-Screenshot aus `admin.mistral.ai` für die Nachweisakte.
+
+### 7.2 🔴 Sicherheits-Blocker vor `maintenance-mode.sh off`
+
+Diese Punkte sind **behoben** (14.07.2026), stehen hier aber als Merkposten, weil sie
+**erst mit dem Öffnen** wirksam geworden wären — die Wartungs-nginx hat sie bisher verdeckt:
+
+- ✅ `/api/health/dashboard` war **völlig ungeschützt** (kein Auth, `CORS: *`) und lieferte
+  Systemmetriken, Fehlerlogs und Client-IPs an jeden. Jetzt `requireAdmin`.
+- ✅ **Rate-Limits waren wirkungslos:** `getClientIP` nahm den ersten `X-Forwarded-For`-Eintrag,
+  Traefik läuft mit `forwardedHeaders.insecure=true` → jede IP frei fälschbar. Betraf
+  Login-Bruteforce, KI-Kostenlimit und den Rechnungskauf. Jetzt wird von rechts gelesen.
+- ✅ **Rechnungskauf** schaltete ohne jede Prüfung sofort frei (bis 459,90 €). Jetzt
+  Bucket `invoice` (3/24h) + max. 2 offene unbezahlte Rechnungen pro E-Mail.
+
+**Noch offen (nicht blockierend, aber vor dem ersten echten Kunden zu klären):**
+- [ ] `charge.refunded` entwertet den `paid_token` **nicht** — nach einer Rückerstattung
+      bleibt der Download unbegrenzt gültig (TODO PAY-03 im Webhook-Handler).
+- [ ] `NEXT_PUBLIC_PAYWALL_DEV_MOCK=1` steht noch fest in `.github/workflows/*.yml`
+      (nur `workflow_dispatch`, aber laut Datei selbst „vor Go-Live entfernen").
+- [ ] Toter Button „Sektion bearbeiten" (`AntragResult.tsx` → `?editAnswer=true` wird
+      nirgends gelesen).
+- [ ] Kein E2E-Test über den Kaufpfad; `markSessionPaid`/`createOrder` laufen in keinem
+      Test real (überall gemockt).
+
 ---
 
 ## 8. Bekannte Reibungspunkte
@@ -382,13 +419,40 @@ Die alte Landing ist bereits gestoppt (08.07., Container als Rollback-Reserve er
 > **`app.edufunds.org` bleibt als 301 bestehen — NICHT wegwerfen.** Bereits versendete
 > Double-Opt-in-/Unsubscribe-Mails und ggf. Stripe-Return-URLs zeigen dorthin.
 
-### 9.5 🔴 Kolja: Stripe-Webhook-Endpoint nachziehen
+### 9.5 ⛔ STOPP — Stripe-Webhook-Endpoint nachziehen (Kolja)
+
+> **Der teuerste Fehler im ganzen Cutover.** Wird dieser Schritt vergessen, nimmt die
+> Plattform Geld an und liefert nichts — und **niemand merkt es**, denn der Kunde sieht
+> einen Bezahlvorgang, der sauber durchläuft. Deshalb steht hier ein Stopp und keine
+> Checkbox.
 
 Der im Stripe-Dashboard registrierte Webhook zeigt auf `app.edufunds.org/api/stripe/webhook`.
-Nach 9.4 würde ein POST dorthin **301** auf den Apex bekommen — **Stripe folgt Redirects
-bei Webhooks nicht zuverlässig**. Daher im Dashboard den Endpoint auf
-`https://edufunds.org/api/stripe/webhook` umstellen (neues `whsec_…` → in `.env.production`
-+ Container-Recreate). Danach ein Test-Event auf 200 prüfen (Abschnitt 4).
+Nach 9.4 bekäme ein POST dorthin **301** auf den Apex — **Stripe folgt Redirects bei Webhooks
+nicht zuverlässig**. Die Freischaltung hängt aber allein an diesem Webhook
+(`checkout.session.completed` → `markSessionPaid`).
+
+1. Im Stripe-Dashboard den Endpoint auf `https://edufunds.org/api/stripe/webhook` umstellen.
+2. Das **neue `whsec_…`** in `.env.production` eintragen → **Container-Recreate** (ein
+   `docker restart` genügt nicht, siehe Abschnitt 8).
+3. **Verifizieren, nicht vertrauen** — im Dashboard ein Test-Event senden und auf **200**
+   prüfen. Ein 301 oder 404 hier bedeutet: Jede echte Zahlung würde ins Leere laufen.
+
+```bash
+# Gegenprobe von außen: Der Endpoint muss DIREKT antworten (kein 301!).
+curl -s -o /dev/null -w '%{http_code} %{redirect_url}\n' -X POST \
+  https://edufunds.org/api/stripe/webhook
+# Erwartet: 400 (fehlende Signatur) — NICHT 301, NICHT 404.
+# 400 heißt: Die Route lebt und prüft die Signatur. Genau richtig.
+```
+
+**Sicherheitsnetz (seit 14.07.2026):** Falls der Webhook doch einmal ausbleibt, ist der Kunde
+nicht mehr verloren. Der Erfolgs-Screen fragt nach 12 Sekunden ohne Freischaltung selbst bei
+Stripe nach (`POST /api/wizard/checkout/reconcile`) und schaltet frei, wenn Stripe die Session
+als `paid` meldet — mit Abgleich der Stripe-Metadaten, damit eine fremde Checkout-Session-ID
+nichts nützt. Im Server-Log erscheint dann eine **Warnung** („der Webhook ist ausgeblieben").
+→ **Diese Warnung ist ein Alarm, kein Rauschen.** Taucht sie auf, stimmt etwas mit dem Endpoint
+nicht. Das Netz ersetzt Schritt 9.5 **nicht** — es verhindert nur, dass ein Fehler hier direkt
+Kundengeld kostet.
 
 ### 9.6 Robots / Indexierung freigeben
 
