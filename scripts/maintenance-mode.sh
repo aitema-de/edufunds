@@ -59,8 +59,24 @@ router_labels() {
 
 case "$MODE" in
   on)
-    # WICHTIG: Wartungs-Container (Prio 1000) ZUERST, damit kein Fenster entsteht,
-    # in dem der catch-all edufunds-app-Router die volle App (Live-Stripe!) exponiert.
+    # ┌─ SICHERHEIT: Reihenfolge ist NICHT beliebig ──────────────────────────────┐
+    # │ 'docker rm -f edufunds-maintenance' nimmt den Router mit Prio 1000 weg.   │
+    # │ Laeuft edufunds-app zu diesem Zeitpunkt (z.B. weil 'on' ein ZWEITES Mal   │
+    # │ aufgerufen wird, um nur den Seitentext zu aktualisieren), gewinnt in dem  │
+    # │ Fenster sein catch-all-Router — und Traefik liefert fuer ein paar Sekunden│
+    # │ die VOLLE App unter edufunds.org aus (Live-Stripe, ungeprueft Rechtstexte)│
+    # │ Deshalb: App ZUERST stoppen. Ohne sie gibt es keinen konkurrierenden      │
+    # │ Router; im schlimmsten Fall ist die Seite kurz nicht erreichbar (503) —   │
+    # │ das ist harmlos, ein Leck waere es nicht.                                 │
+    # └───────────────────────────────────────────────────────────────────────────┘
+    echo "==> edufunds-app stoppen (nimmt den konkurrierenden catch-all-Router aus Traefik)"
+    docker stop edufunds-app >/dev/null 2>&1 && echo "    gestoppt" || echo "    laeuft nicht — ok"
+
+    # Der Neuaufbau des Containers ist auch aus einem zweiten Grund noetig:
+    # index.html/nginx.conf sind EINZELDATEI-Bind-Mounts. Docker bindet die an den
+    # INODE. Ein 'scp' ersetzt die Datei (neuer Inode) -> der laufende Container
+    # haelt den alten und liefert stur die ALTE Seite aus, bei identischem Pfad und
+    # ohne jede Fehlermeldung. Nur ein neu erstellter Container loest den Mount neu auf.
     echo "==> Wartungs-Container starten (nginx:alpine, eigener Router Prio 1000)"
     docker rm -f edufunds-maintenance 2>/dev/null || true
     docker run -d --name edufunds-maintenance \
@@ -92,5 +108,30 @@ EOF
 echo
 echo "==> Smoke"
 sleep 3
-code=$(curl -s -o /dev/null -w '%{http_code}' https://app.edufunds.org/ || true)
-echo "    https://app.edufunds.org/ -> $code"
+
+if [ "$MODE" = "on" ]; then
+  # HTTP 200 allein beweist NICHTS: Bei einem Inode-verwaisten Bind-Mount liefert der
+  # Container die ALTE Seite mit 200 aus. Deshalb gegen den Inhalt pruefen — die
+  # lokale Datei muss das sein, was auch ankommt.
+  marker=$(grep -oE '<h1>[^<]*' ops/maintenance/index.html | head -1 | sed 's/<h1>//' | cut -c1-18)
+  live=$(curl -s --max-time 15 https://edufunds.org/ || true)
+  code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 15 https://edufunds.org/ || true)
+  echo "    https://edufunds.org/ -> $code"
+  if [ -n "$marker" ] && printf '%s' "$live" | grep -qF "$marker"; then
+    echo "    Inhalt: aktuelle Fassung wird ausgeliefert (\"$marker...\")"
+  else
+    echo "    FEHLER: Die ausgelieferte Seite ist NICHT die lokale Fassung!" >&2
+    echo "            Erwartet: \"$marker...\" — vermutlich haelt der Container einen" >&2
+    echo "            verwaisten Inode (Einzeldatei-Bind-Mount). Container neu erstellen." >&2
+    exit 1
+  fi
+  # Gegenprobe: Die App darf NICHT durchscheinen.
+  if printf '%s' "$live" | grep -qiE 'Jetzt starten|29,90|Wizard'; then
+    echo "    ALARM: Unter edufunds.org scheint die APP durch — sofort pruefen!" >&2
+    exit 1
+  fi
+  echo "    App ist verborgen (Coming-Soon liefert alle Pfade)"
+else
+  code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 15 https://edufunds.org/ || true)
+  echo "    https://edufunds.org/ -> $code"
+fi

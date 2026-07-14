@@ -194,6 +194,27 @@ Wenn nach dem Enthüllen etwas klemmt — **sofort zurück auf die Wartungsseite
 - Für einen Code-Rollback: `git checkout` des vorherigen `main`-Commits (`888dbdc`)
   auf dem Server + erneuter `deploy-production.sh`. (Vorher-Stand notieren!)
 
+### 6.1 ⚠️ Zwei Fallen beim Wartungs-Container (14.07.2026 in Prod erlebt)
+
+**(a) `on` ein zweites Mal aufzurufen war ein Leck.** `maintenance-mode.sh on` löscht den
+Wartungs-Container (`docker rm -f`) und baut ihn neu. Beim **ersten** Aktivieren ist das sicher,
+weil `edufunds-app` erst danach startet. Ist die App aber schon oben — und das ist sie im
+Coming-Soon-Betrieb, als interner Newsletter-Proxy —, dann fehlt für zwei bis drei Sekunden der
+Router mit Priorität 1000, und **Traefik liefert in diesem Fenster die volle App unter
+`edufunds.org` aus** (Live-Stripe, ungeprüfte Rechtstexte).
+→ **Behoben:** Das Skript stoppt `edufunds-app` jetzt **vor** dem Container-Tausch und startet sie
+danach wieder. Ohne die App gibt es keinen konkurrierenden Router; schlimmstenfalls ist die Seite
+kurz nicht erreichbar (503) — das ist harmlos, ein Leck wäre es nicht.
+
+**(b) Die Seite per `scp` zu aktualisieren wirkt NICHT.** `index.html` und `nginx.conf` sind
+**Einzeldatei-Bind-Mounts**, und Docker bindet die an den **Inode**. `scp` ersetzt die Datei
+(neuer Inode) → der laufende Container hält den alten und liefert **stur die alte Seite** aus:
+gleicher Pfad, gleicher Mount, HTTP 200, **keine Fehlermeldung**. Auch ein In-place-`cat >` hilft
+nicht mehr, sobald der Inode einmal getauscht wurde.
+→ **Nur ein neu erstellter Container löst den Mount neu auf.** Der Smoke im Skript prüft deshalb
+jetzt nicht mehr bloß HTTP 200, sondern ob die **ausgelieferte Seite die lokale Fassung ist** —
+und bricht sonst ab.
+
 ---
 
 ## 7. 🔴 Rechts-/Compliance-Gate (Kolja + Fachanwalt — Go-Live-Blocker außerhalb Technik)
