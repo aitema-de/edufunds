@@ -152,26 +152,107 @@ export default function AGBPage() {
 
             <Paragraf nr="§ 4a" titel="Kauf auf Rechnung">
               <p>
-                (1) Bietet der Anbieter den Kauf auf Rechnung an, kommt der Vertrag{" "}
+                (1) <strong className="text-[#1c1917]">Berechtigter Personenkreis.</strong> Der
+                Kauf auf Rechnung steht{" "}
+                <strong className="text-[#1c1917]">
+                  ausschließlich Schulen und Schulträgern
+                </strong>{" "}
+                offen (öffentliche und staatlich anerkannte Schulen sowie deren Träger). Er ist
+                diesem Kreis vorbehalten, weil die Leistung dabei bereits vor Zahlungseingang
+                freigeschaltet wird. Andere Kunden — insbesondere Fördervereine, sonstige
+                Vereine, Unternehmen und Privatpersonen — zahlen über den Zahlungsdienstleister
+                (§ 4 Abs. 4). Der Kunde sichert bei der Bestellung zu, zum berechtigten
+                Personenkreis zu gehören. Der Anbieter kann Bestellungen auf Rechnung
+                zurückweisen und einen bereits geschlossenen Vertrag stornieren (Absatz 8), wenn
+                die Voraussetzungen nicht vorliegen.
+              </p>
+              <p>
+                (2) Bietet der Anbieter den Kauf auf Rechnung an, kommt der Vertrag{" "}
                 <strong className="text-[#1c1917]">mit der Freischaltung der Leistung</strong>{" "}
                 zustande; auf die Bestätigung der Zahlung (§ 3 Abs. 3) kommt es insoweit nicht an.
                 Der Anbieter bestätigt den Vertragsschluss unverzüglich per E-Mail.
               </p>
               <p>
-                (2) Die Vergütung ist innerhalb von{" "}
+                (3) Die Vergütung ist innerhalb von{" "}
                 <strong className="text-[#1c1917]">14 Tagen ab Zugang der Rechnung</strong> ohne
                 Abzug zur Zahlung fällig.
               </p>
               <p>
-                (3) Gerät der Kunde in Zahlungsverzug, schuldet er Verzugszinsen in Höhe von neun
+                (4) Gerät der Kunde in Zahlungsverzug, schuldet er Verzugszinsen in Höhe von neun
                 Prozentpunkten über dem Basiszinssatz (§ 288 Abs. 2 BGB) sowie eine Pauschale von
                 40 € (§ 288 Abs. 5 BGB). Die Geltendmachung eines weitergehenden Verzugsschadens
                 bleibt vorbehalten.
               </p>
               <p>
-                (4) Bei Zahlungsverzug ist der Anbieter berechtigt, den Zugang zur Leistung bis
-                zum vollständigen Ausgleich der offenen Forderung zu sperren. Bereits exportierte
-                Ergebnisse bleiben davon unberührt.
+                (5) <strong className="text-[#1c1917]">Zahlungserinnerung und Sperre.</strong>{" "}
+                Nach Ablauf des Zahlungsziels erinnert der Anbieter zunächst an die Zahlung.
+                Bleibt diese aus, mahnt er und ist frühestens sieben Tage nach der
+                Zahlungserinnerung berechtigt, die noch nicht eingelösten Anträge eines
+                Kontingents zu sperren. Die Sperre wird zuvor angekündigt.{" "}
+                <strong className="text-[#1c1917]">
+                  Bereits erstellte Anträge bleiben abrufbar
+                </strong>{" "}
+                — sie sind erbrachte Leistung. Die Zahlungspflicht besteht unabhängig von der
+                Sperre fort. Zahlt der Kunde, hebt der Anbieter die Sperre unverzüglich auf.
+              </p>
+              <p>
+                (6) <strong className="text-[#1c1917]">Anteilige Abrechnung.</strong> Statt die
+                volle Vergütung eines Kontingents zu verlangen, kann der Anbieter das Kontingent
+                anteilig abrechnen: Die noch nicht eingelösten Anträge verfallen; zu zahlen sind
+                dann nur die tatsächlich eingelösten Anträge zum jeweils gültigen Einzelpreis
+                (ohne Mengenrabatt), höchstens jedoch die ursprünglich vereinbarte Vergütung.
+                Über den verfallenen Teil erteilt der Anbieter eine Gutschrift. Wurde kein Antrag
+                eingelöst, entfällt die Forderung vollständig (Storno nach Absatz 8). Nach
+                anteiliger Abrechnung leben die verfallenen Anträge auch bei späterer Zahlung
+                nicht wieder auf.
+              </p>
+              <p>
+                (7) <strong className="text-[#1c1917]">Zugriff beim Einzelantrag.</strong> Der auf
+                Rechnung erworbene Einzelantrag ist zugleich die gesamte Leistung; er wird bei
+                Zahlungsverzug nicht gesperrt, sondern bleibt abrufbar. Wird die Bestellung nach
+                Absatz 8 storniert, erlischt das Zugriffsrecht (§ 7 Abs. 1).
+              </p>
+              <p>
+                (8) <strong className="text-[#1c1917]">Storno.</strong> Bleibt die Zahlung trotz
+                Mahnung aus oder gehört der Kunde nicht zum berechtigten Personenkreis (Absatz 1),
+                kann der Anbieter vom Vertrag zurücktreten. Mit dem Storno verfallen nicht
+                eingelöste Anträge; beim Einzelantrag erlischt zusätzlich das Zugriffsrecht.
+                Bereits eingelöste Anträge eines Kontingents bleiben davon unberührt; die
+                Vergütung hierfür richtet sich nach Absatz 6.
+              </p>
+            </Paragraf>
+
+            <Paragraf nr="§ 4b" titel="Rückerstattung und Nacherfüllung">
+              <p>
+                (1) Der Kunde ist Unternehmer bzw. öffentliche Stelle (§ 1). Ein{" "}
+                <strong className="text-[#1c1917]">
+                  gesetzliches Widerrufsrecht besteht nicht
+                </strong>
+                ; die §§ 355 ff. BGB gelten nur für Verbraucher.
+              </p>
+              <p>
+                (2) Ist ein Ergebnis mangelhaft, hat der Kunde zunächst Anspruch auf{" "}
+                <strong className="text-[#1c1917]">Nacherfüllung</strong> — der Anbieter erzeugt
+                den Antrag auf Wunsch neu. Erst wenn die Nacherfüllung fehlschlägt, kommt eine
+                Rückerstattung in Betracht.
+              </p>
+              <p>
+                (3) Unabhängig davon kann der Anbieter freiwillig erstatten, insbesondere bei
+                technischen Fehlern, Doppelkäufen oder wenn eine bezahlte Leistung nicht abgerufen
+                wurde. Ein Anspruch hierauf besteht nicht.
+              </p>
+              <p>
+                (4) <strong className="text-[#1c1917]">Kein Erstattungsgrund</strong> ist die
+                Ablehnung eines Förderantrags durch den Fördergeber oder eine inhaltliche
+                Unzufriedenheit mit einem ordnungsgemäß erzeugten Entwurf; hierzu gilt § 6.
+              </p>
+              <p>
+                (5) <strong className="text-[#1c1917]">Wirkung der Erstattung.</strong> Wird der
+                Kaufpreis vollständig erstattet, wird der Vertrag rückabgewickelt: Der Zugriff auf
+                den betreffenden Antrag bzw. das Kontingent erlischt und der Download-Link wird
+                ungültig (§ 7 Abs. 1). Bereits eingelöste Anträge eines erstatteten Kontingents
+                bleiben in der Abrechnung berücksichtigt. Eine Teilerstattung (etwa aus Kulanz)
+                lässt den Zugriff unberührt.
               </p>
             </Paragraf>
 
@@ -223,7 +304,11 @@ export default function AGBPage() {
               <p>
                 (1) Der Kunde erhält an den für ihn erstellten Antragstexten das
                 uneingeschränkte, zeitlich unbefristete Recht zur Nutzung, insbesondere zur
-                Einreichung bei Fördergebern.
+                Einreichung bei Fördergebern. Die Einräumung dieses Rechts steht unter dem{" "}
+                <strong className="text-[#1c1917]">Vorbehalt der vollständigen Zahlung</strong>{" "}
+                der Vergütung. Wird der Kaufpreis vollständig erstattet (§ 4b Abs. 5) oder die
+                Bestellung storniert (§ 4a Abs. 8), entfällt das Nutzungsrecht und der Anbieter
+                kann den Zugriff entziehen.
               </p>
               <p>
                 (2) Der Kunde bleibt Inhaber der von ihm eingegebenen Daten. Der Anbieter

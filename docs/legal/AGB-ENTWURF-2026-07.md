@@ -39,6 +39,36 @@ Kundendaten**.
 5. **§ 9 Datenschutz/AVV:** Der unter `/avv` abrufbare AVV wird **mit Vertragsschluss
    automatisch Vertragsbestandteil** (kein gesonderter Abschluss nötig).
 
+## Nachtrag 14.07.2026 — der Vertrag holt die Produktwirklichkeit ein
+
+Das Produkt kann seit dem 14.07.2026 Dinge, die der Vertrag nicht regelte. Genau in dieser
+Lücke entstehen die teuren Fehler — deshalb nachgezogen:
+
+6. **§ 4a Abs. 1 — Rechnungskauf nur für Schulen und Schulträger** (Entscheidung Kolja).
+   Fördervereine und alle übrigen Kunden zahlen per Karte. Der Rechnungskauf schaltet **vor**
+   Zahlungseingang frei (bis 459,90 €) — das ist gegenüber öffentlichen Stellen vertretbar,
+   gegenüber einem privatrechtlichen Verein nicht. Die Software weist offensichtliche
+   Vereinsdomains ab; ein Verein mit **neutraler** Domain ist technisch **nicht** erkennbar —
+   deshalb trägt die Klausel (Zusicherung + Stornorecht), nicht der Code.
+7. **§ 4a Abs. 5–8 — Folgen der Nichtzahlung.** Bisher stand dort nur „sperren". Der Betrieb
+   mahnt jetzt gestuft (Erinnerung → Mahnung → Sperre frühestens 7 Tage später) und sperrt
+   **nur die noch nicht eingelösten** Anträge; bereits erstellte bleiben (erbrachte Leistung).
+   Zahlung hebt die Sperre auf. Ohne diese Absätze täte der Cron etwas, wofür es keine
+   vertragliche Grundlage gäbe.
+8. **§ 4a Abs. 6 — anteilige Abrechnung** (Entscheidung Kolja): 20er-Paket, 3 Anträge genutzt,
+   nicht gezahlt → gefordert werden 3 × Einzelpreis (ohne Mengenrabatt), gedeckelt auf den
+   Paketpreis; der Rest verfällt gegen Gutschrift. Fair, durchsetzbar, und der verlorene Rabatt
+   ist der Anreiz, doch zu zahlen.
+9. **§ 4b NEU — Rückerstattung und Nacherfüllung.** Es gab dazu **keine einzige Klausel**,
+   obwohl der Stripe-Webhook seit dem 14.07. bei voller Erstattung den Zugriff entwertet.
+   Jetzt: kein Widerrufsrecht (B2B), **Nacherfüllung vor Erstattung**, Erstattung freiwillig,
+   **kein** Erstattungsgrund bei Ablehnung durch den Fördergeber (sonst höhlt Kulanz § 6 aus),
+   Teilerstattung lässt den Zugriff bestehen.
+10. **§ 7 Abs. 1 — Zahlungsvorbehalt.** Der Entwurf räumte ein „uneingeschränktes, zeitlich
+    unbefristetes" Nutzungsrecht ein — das **widersprach** Sperre und Refund-Entwertung: Wer
+    ein unbedingtes Dauerrecht hat, dem darf man den Zugriff nicht entziehen. Die
+    Rechteeinräumung steht jetzt unter dem Vorbehalt der vollständigen Zahlung.
+
 ## Nachtrag 13.07.2026 — eingearbeitet nach der dritten Rechts-Vorprüfung
 
 Die dritte KI-Vorprüfung (`03`/`05` im Anwaltsordner) hat drei Punkte als **Blocker** benannt.
@@ -99,6 +129,20 @@ Volltext-Archivkopien (vorher fehlten beide).
   Summenkappung ist nach der Vorprüfung entfallen — bitte prüfen, ob eine (höhere) Kappung
   wieder eingezogen werden soll und in welcher Höhe sie trägt.
 - **§ 4a:** Verzugsregelung, Sperrbefugnis und Vertragsschluss durch Freischaltung bestätigen.
+- **§ 4a Abs. 1 (NEU):** Trägt die Beschränkung auf Schulen/Schulträger als AGB-Klausel — und
+  genügt die **Zusicherung des Kunden** als Grundlage für ein späteres Storno, wenn sich
+  herausstellt, dass ein Verein bestellt hat? (Technisch ist ein Verein mit neutraler Domain
+  nicht erkennbar.) Sollte die Bestellmaske eine **ausdrückliche Erklärung** verlangen?
+- **§ 4a Abs. 5 (NEU):** Ist die Sperre der noch nicht eingelösten Anträge bei Verzug — nach
+  Ankündigung, unter Fortbestand der Forderung — ein zulässiges Zurückbehaltungsrecht?
+- **§ 4a Abs. 6 (NEU):** Trägt die **anteilige Abrechnung** zum Einzelpreis (also unter Wegfall
+  des Mengenrabatts) im B2B, oder ist das eine unangemessene Benachteiligung? Alternative wäre
+  die anteilige Abrechnung zum Paket-Stückpreis.
+- **§ 4b (NEU):** Erstattungsrichtlinie insgesamt — insbesondere Abs. 4 (**keine** Erstattung
+  bei Ablehnung durch den Fördergeber) im Zusammenspiel mit § 6, und Abs. 5 (Erlöschen des
+  Zugriffs bei voller Erstattung).
+- **§ 7 Abs. 1 (NEU):** Hält der **Zahlungsvorbehalt** bei der Rechteeinräumung? Er ist die
+  Grundlage dafür, dass Sperre und Refund-Entwertung überhaupt zulässig sind.
 - **AGB-Einbeziehung:** Die akzeptierte Fassung wird **nicht protokolliert** (kein
   Versionsstempel/Hash). Genügt die Checkbox im B2B, oder ist die Protokollierung nötig?
 - **§ 6:** Reicht die Formulierung als Haftungsausschluss für KI-Fehler gegenüber
@@ -184,20 +228,73 @@ anbieten (§ 4a).
 
 ## § 4a Kauf auf Rechnung
 
-(1) Bietet der Anbieter den Kauf auf Rechnung an, kommt der Vertrag **mit der Freischaltung
+**(1) Berechtigter Personenkreis.** Der Kauf auf Rechnung steht **ausschließlich Schulen und
+Schulträgern** offen (öffentliche und staatlich anerkannte Schulen sowie deren Träger). Er ist
+diesem Kreis vorbehalten, weil die Leistung dabei **bereits vor Zahlungseingang freigeschaltet**
+wird. Andere Kunden — insbesondere **Fördervereine**, sonstige Vereine, Unternehmen und
+Privatpersonen — zahlen über den Zahlungsdienstleister (§ 4 Abs. 4). Der Kunde sichert bei der
+Bestellung zu, zum berechtigten Personenkreis zu gehören. Der Anbieter kann Bestellungen auf
+Rechnung ohne Angabe von Gründen zurückweisen und einen bereits geschlossenen Vertrag
+stornieren (Abs. 8), wenn die Voraussetzungen nicht vorliegen.
+
+(2) Bietet der Anbieter den Kauf auf Rechnung an, kommt der Vertrag **mit der Freischaltung
 der Leistung** zustande; auf die Bestätigung der Zahlung (§ 3 Abs. 3) kommt es insoweit nicht
 an. Der Anbieter bestätigt den Vertragsschluss unverzüglich per E-Mail.
 
-(2) Die Vergütung ist **innerhalb von 14 Tagen ab Zugang der Rechnung** ohne Abzug zur Zahlung
+(3) Die Vergütung ist **innerhalb von 14 Tagen ab Zugang der Rechnung** ohne Abzug zur Zahlung
 fällig.
 
-(3) Gerät der Kunde in Zahlungsverzug, schuldet er Verzugszinsen in Höhe von neun Prozentpunkten
+(4) Gerät der Kunde in Zahlungsverzug, schuldet er Verzugszinsen in Höhe von neun Prozentpunkten
 über dem Basiszinssatz (§ 288 Abs. 2 BGB) sowie eine Pauschale von 40 € (§ 288 Abs. 5 BGB). Die
 Geltendmachung eines weitergehenden Verzugsschadens bleibt vorbehalten.
 
-(4) Bei Zahlungsverzug ist der Anbieter berechtigt, den Zugang zur Leistung bis zum
-vollständigen Ausgleich der offenen Forderung zu **sperren**. Bereits exportierte Ergebnisse
-bleiben davon unberührt.
+**(5) Zahlungserinnerung und Sperre.** Nach Ablauf des Zahlungsziels erinnert der Anbieter
+zunächst an die Zahlung. Bleibt diese aus, mahnt er und ist **frühestens sieben Tage nach der
+Zahlungserinnerung** berechtigt, die **noch nicht eingelösten Anträge eines Kontingents zu
+sperren**. Die Sperre wird dem Kunden zuvor angekündigt.
+**Bereits erstellte Anträge bleiben abrufbar** — sie sind erbrachte Leistung. Die
+Zahlungspflicht besteht unabhängig von der Sperre fort. Zahlt der Kunde, hebt der Anbieter die
+Sperre unverzüglich auf.
+
+**(6) Anteilige Abrechnung.** Statt die volle Vergütung eines Kontingents zu verlangen, kann der
+Anbieter das Kontingent **anteilig abrechnen**: Die noch nicht eingelösten Anträge verfallen; zu
+zahlen sind dann nur die **tatsächlich eingelösten Anträge zum jeweils gültigen Einzelpreis**
+(ohne Mengenrabatt), höchstens jedoch die ursprünglich vereinbarte Vergütung. Über den
+verfallenen Teil erteilt der Anbieter eine Gutschrift. Wurde **kein Antrag** eingelöst, entfällt
+die Forderung vollständig (Storno nach Abs. 8). Nach anteiliger Abrechnung leben die verfallenen
+Anträge **auch bei späterer Zahlung nicht wieder auf**.
+
+**(7) Zugriff beim Einzelantrag.** Der auf Rechnung erworbene **Einzelantrag** ist zugleich die
+gesamte Leistung; er wird bei Zahlungsverzug nicht gesperrt, sondern bleibt abrufbar. Wird die
+Bestellung nach Abs. 8 storniert, erlischt das Zugriffsrecht (§ 7 Abs. 1).
+
+**(8) Storno.** Bleibt die Zahlung trotz Mahnung aus oder gehört der Kunde nicht zum
+berechtigten Personenkreis (Abs. 1), kann der Anbieter vom Vertrag zurücktreten. Mit dem Storno
+verfallen nicht eingelöste Anträge; beim Einzelantrag erlischt zusätzlich das Zugriffsrecht.
+Bereits eingelöste Anträge eines Kontingents bleiben davon unberührt; die Vergütung hierfür
+richtet sich nach Abs. 6.
+
+## § 4b Rückerstattung und Nacherfüllung
+
+(1) Der Kunde ist **Unternehmer bzw. öffentliche Stelle** (§ 1). Ein **gesetzliches
+Widerrufsrecht besteht nicht**; die §§ 355 ff. BGB gelten nur für Verbraucher.
+
+(2) Ist ein Ergebnis mangelhaft, hat der Kunde zunächst Anspruch auf **Nacherfüllung** — der
+Anbieter erzeugt den Antrag auf Wunsch neu. Erst wenn die Nacherfüllung fehlschlägt, kommt eine
+Rückerstattung in Betracht.
+
+(3) Unabhängig davon kann der Anbieter **freiwillig** erstatten, insbesondere bei technischen
+Fehlern, Doppelkäufen oder wenn eine bezahlte Leistung nicht abgerufen wurde. Ein Anspruch
+hierauf besteht nicht.
+
+(4) **Kein Erstattungsgrund** ist die Ablehnung eines Förderantrags durch den Fördergeber oder
+eine inhaltliche Unzufriedenheit mit einem ordnungsgemäß erzeugten Entwurf; hierzu gilt § 6.
+
+(5) **Wirkung der Erstattung.** Wird der Kaufpreis **vollständig** erstattet, wird der Vertrag
+rückabgewickelt: Der Zugriff auf den betreffenden Antrag bzw. das Kontingent **erlischt** und der
+Download-Link wird ungültig (§ 7 Abs. 1). Bereits eingelöste Anträge eines erstatteten
+Kontingents bleiben in der Abrechnung berücksichtigt. Eine **Teil**erstattung (etwa aus Kulanz)
+lässt den Zugriff **unberührt**.
 
 ## § 5 Leistungserbringung und Verfügbarkeit
 
@@ -227,6 +324,9 @@ ausdrücklich nicht übernommen.
 
 (1) Der Kunde erhält an den für ihn erstellten Antragstexten das uneingeschränkte,
 zeitlich unbefristete Recht zur Nutzung, insbesondere zur Einreichung bei Fördergebern.
+Die Einräumung dieses Rechts steht unter dem **Vorbehalt der vollständigen Zahlung** der
+Vergütung. Wird der Kaufpreis vollständig erstattet (§ 4b Abs. 5) oder die Bestellung storniert
+(§ 4a Abs. 8), entfällt das Nutzungsrecht und der Anbieter kann den Zugriff entziehen.
 
 (2) Der Kunde bleibt Inhaber der von ihm eingegebenen Daten. **Der Anbieter verwendet
 Kundendaten nicht zum Trainieren von KI-Modellen.** Der eingesetzte KI-Anbieter verwendet
