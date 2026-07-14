@@ -15,16 +15,20 @@ jest.mock("@/lib/payments/orders", () => ({
   buildEinzelInvoiceConfirmationEmail: jest.fn(() => ({ subject: "s", html: "h", text: "t" })),
   buildEinzelInvoiceAdminEmail: jest.fn(() => ({ subject: "s", html: "h", text: "t" })),
   escapeHtml: (s: string) => s,
+  // Missbrauchsbremse: Standardmaessig keine offene Rechnung -> Freischaltung erlaubt.
+  countOpenInvoiceOrders: jest.fn(async () => 0),
+  MAX_OPEN_INVOICE_ORDERS: 2,
 }));
 jest.mock("@/lib/app-url", () => ({ trustedAppUrl: jest.fn(() => "https://app.edufunds.org") }));
 jest.mock("@/lib/mail", () => ({ sendMail: jest.fn(async () => true) }));
 
 import { getWizardSession, tryMarkSessionPaid } from "@/lib/wizard/session";
-import { createEinzelInvoiceOrder } from "@/lib/payments/orders";
+import { createEinzelInvoiceOrder, countOpenInvoiceOrders } from "@/lib/payments/orders";
 
 const mGetSession = getWizardSession as jest.Mock;
 const mMarkPaid = tryMarkSessionPaid as jest.Mock;
 const mCreateOrder = createEinzelInvoiceOrder as jest.Mock;
+const mOffen = countOpenInvoiceOrders as jest.Mock;
 
 const req = (body: unknown) => ({ json: async () => body }) as never;
 
@@ -89,6 +93,17 @@ describe("POST /api/wizard/invoice", () => {
     expect(res.status).toBe(200);
     expect(await res.json()).toMatchObject({ alreadyPaid: true, paidToken: "existing-token" });
     expect(mMarkPaid).not.toHaveBeenCalled();
+  });
+
+  // Missbrauchsbremse (14.07.2026): Die Pruefung MUSS vor tryMarkSessionPaid
+  // greifen — danach waere der Antrag bereits freigeschaltet.
+  it("409 bei zu vielen offenen Rechnungen — und schaltet NICHT frei", async () => {
+    mGetSession.mockResolvedValue({ paidToken: undefined });
+    mOffen.mockResolvedValueOnce(2); // = MAX_OPEN_INVOICE_ORDERS
+    const res = await POST(req(validBody));
+    expect(res.status).toBe(409);
+    expect(mMarkPaid).not.toHaveBeenCalled(); // entscheidend: keine Freischaltung
+    expect(mCreateOrder).not.toHaveBeenCalled();
   });
 
   it("Erfolg: schaltet Session per 'invoice' frei und legt Bestellung an", async () => {

@@ -50,6 +50,12 @@ export async function POST(req: NextRequest) {
           status: 409,
           message: "Das Kontingent ist aufgebraucht. Bitte beim Träger nachfragen.",
         },
+        revoked: {
+          status: 410,
+          message:
+            "Dieses Kontingent wurde zurückerstattet und ist nicht mehr gültig. " +
+            "Bitte beim Träger nachfragen.",
+        },
       };
       const r = map[consumed.reason];
       return NextResponse.json({ error: r.message, reason: consumed.reason }, { status: r.status });

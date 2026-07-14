@@ -77,22 +77,39 @@ gh pr merge <NR> --repo aitema-de/edufunds --merge
 
 Danach steht `origin/main` auf dem staging-Stand (inkl. Migration-011-Datei, Mistral-Default im Code, alle Härtungen).
 
-### 3.2 🔴 Kolja-Go: Migration 011 auf Prod-DB `edufunds` anwenden
+### 3.2 🔴 Kolja-Go: Migrationen 011–014 auf Prod-DB `edufunds` anwenden
 
-Additiv (`CREATE TABLE IF NOT EXISTS`) und idempotent — gefahrlos, mehrfach anwendbar.
-Muss **vor** dem Deploy laufen (der neue Webhook-Handler erwartet die Tabelle).
+Alle additiv (`ADD COLUMN IF NOT EXISTS` / `CREATE TABLE IF NOT EXISTS`) und idempotent —
+gefahrlos, mehrfach anwendbar. Müssen **vor** dem Deploy laufen: der Webhook-Handler
+erwartet die Tabelle (011) **und** den Status `refunded` (012). Fehlt 012, wirft
+`charge.refunded` an der CHECK-Constraint, Stripe retried, und der Download-Token
+bleibt trotzdem gültig — der Bug, den 012 gerade schließt.
+
+| Migration | Inhalt |
+|---|---|
+| 011 | `stripe_webhook_events` (Idempotenz-Riegel) |
+| 012 | Rückerstattung: `ki_antraege.status += 'refunded'`, `refunded_at/_token`, `credit_codes.revoked_at` |
+| 013 | Bestellstatus-Lebenszyklus: `org_orders.paid_at/cancelled_at/cancel_reason/session_token` + CHECK |
+| 014 | Mahnlauf: `org_orders.reminder_sent_at/dunning_sent_at` |
 
 ```bash
 ssh root@49.13.15.44
 cd /home/edufunds/edufunds-app
 git fetch origin
-# Migration aus dem gemergten main-Stand direkt in die Prod-DB pipen:
-git show origin/main:db/migrations/011_stripe_webhook_events.sql \
-  | docker exec -i edufunds-postgres psql -U edufunds -d edufunds
+for m in 011_stripe_webhook_events 012_refund 013_order_status 014_dunning; do
+  echo "--- $m ---"
+  git show origin/main:db/migrations/${m}.sql \
+    | docker exec -i edufunds-postgres psql -U edufunds -d edufunds -v ON_ERROR_STOP=1
+done
 
-# Verifikation (Tabelle muss existieren):
-docker exec edufunds-postgres psql -U edufunds -d edufunds -c "\d stripe_webhook_events"
+# Verifikation — beide Constraints und die neuen Spalten müssen stehen:
+docker exec edufunds-postgres psql -U edufunds -d edufunds -c \
+  "SELECT conname, pg_get_constraintdef(oid) FROM pg_constraint
+    WHERE conname IN ('ki_antraege_status_check','org_orders_status_check');"
+# ki_antraege_status_check MUSS 'refunded' enthalten.
 ```
+
+> Auf `edufunds_staging` sind 012–014 am 14.07.2026 angewandt und verifiziert.
 
 ### 3.3 🔴 Kolja-Go: Cutover-Deploy (baut `main`, recreated Container)
 
@@ -164,21 +181,47 @@ curl -fsS -H "x-cron-key: $S" "https://app.edufunds.org/api/cron/retention?dryRu
 
 ---
 
-## 5. Retention-Cron produktiv schalten (nach Cutover)
+## 5. Crons
 
-`CRON_SECRET` ist auf Prod gesetzt; es fehlt nur der Crontab-Eintrag. Täglich 03:30:
+### 5.1 Retention-Cron — ✅ läuft bereits (seit 13.07.2026)
+
+```
+30 3 * * * /opt/ops/edufunds-retention-cron.sh
+```
+
+> ⚠️ **Nicht per `curl` gegen `app.edufunds.org` einrichten** (so stand es hier bis 14.07.).
+> Die Coming-Soon-nginx läuft mit Traefik-Prio 1000 vor der App und reicht `/api/cron/*`
+> **nicht** durch — ein externer curl liefe in ein stilles **405**, ohne dass es jemand
+> merkt. Das Skript ruft deshalb **container-intern** auf (`docker exec` → localhost:3000)
+> und bleibt auch nach `maintenance off` korrekt.
+
+### 5.2 🔴 Mahnlauf-Cron produktiv schalten (NACH dem Cutover-Deploy)
+
+Skript ist installiert (`/opt/ops/edufunds-dunning-cron.sh`, 14.07.2026) und gegen den
+Staging-Container verifiziert. Der **Crontab-Eintrag fehlt bewusst noch**: Der Prod-Container
+läuft bis zum Cutover auf altem Code **ohne** den Endpoint `/api/cron/dunning` — der Lauf
+würde täglich mit exit 1 fehlschlagen und ein falsches Sicherheitsgefühl erzeugen.
+
+**Erst nach dem Cutover-Deploy (3.3) eintragen:**
 
 ```bash
 ssh root@49.13.15.44
-cd /home/edufunds/edufunds-app
-S=$(grep '^CRON_SECRET=' .env.production | cut -d= -f2-)   # ggf. Anführungszeichen entfernen
-( crontab -l 2>/dev/null; \
-  echo "30 3 * * * curl -fsS -X POST -H \"x-cron-key: $S\" https://app.edufunds.org/api/cron/retention >/dev/null 2>&1" ) | crontab -
-crontab -l | grep retention   # kontrollieren
+# 1. Vorher prüfen, dass der Endpoint auf PROD existiert (muss JSON liefern, nicht leer):
+CONTAINER=edufunds-app LOG=/tmp/dunning-check.log /opt/ops/edufunds-dunning-cron.sh --dry-run
+cat /tmp/dunning-check.log     # "OK {"dryRun":true,...}" erwartet
+
+# 2. Dann scharf schalten (täglich 04:00, nach der Retention um 03:30):
+( crontab -l 2>/dev/null; echo "0 4 * * * /opt/ops/edufunds-dunning-cron.sh" ) | crontab -
+crontab -l | grep dunning
 ```
-> Optional: Erst einmal **manuell mit `?dryRun=1`** laufen lassen (Schritt 4d) und die
-> Zahlen plausibilisieren, bevor der scharfe Cron greift.
-> Newsletter-Cron (`/api/cron/newsletter`) analog, falls der Newsletter live gehen soll.
+
+Der Lauf ist zweistufig: Zahlungserinnerung bei Fälligkeit (folgenlos), Mahnung + Sperre der
+noch offenen Credits nach 7 Tagen Kulanz. Die Mail geht **zuerst** raus, der Zustand ändert
+sich erst danach — scheitert der Versand, bleibt alles unverändert und der nächste Lauf
+versucht es erneut (niemand wird still gesperrt). Das Skript beendet sich mit **exit 1**,
+wenn Mails fehlschlugen, damit es nicht untergeht.
+
+> Newsletter-Cron (`/api/cron/newsletter`) läuft bereits monatlich.
 
 ---
 
@@ -194,6 +237,27 @@ Wenn nach dem Enthüllen etwas klemmt — **sofort zurück auf die Wartungsseite
 - Für einen Code-Rollback: `git checkout` des vorherigen `main`-Commits (`888dbdc`)
   auf dem Server + erneuter `deploy-production.sh`. (Vorher-Stand notieren!)
 
+### 6.1 ⚠️ Zwei Fallen beim Wartungs-Container (14.07.2026 in Prod erlebt)
+
+**(a) `on` ein zweites Mal aufzurufen war ein Leck.** `maintenance-mode.sh on` löscht den
+Wartungs-Container (`docker rm -f`) und baut ihn neu. Beim **ersten** Aktivieren ist das sicher,
+weil `edufunds-app` erst danach startet. Ist die App aber schon oben — und das ist sie im
+Coming-Soon-Betrieb, als interner Newsletter-Proxy —, dann fehlt für zwei bis drei Sekunden der
+Router mit Priorität 1000, und **Traefik liefert in diesem Fenster die volle App unter
+`edufunds.org` aus** (Live-Stripe, ungeprüfte Rechtstexte).
+→ **Behoben:** Das Skript stoppt `edufunds-app` jetzt **vor** dem Container-Tausch und startet sie
+danach wieder. Ohne die App gibt es keinen konkurrierenden Router; schlimmstenfalls ist die Seite
+kurz nicht erreichbar (503) — das ist harmlos, ein Leck wäre es nicht.
+
+**(b) Die Seite per `scp` zu aktualisieren wirkt NICHT.** `index.html` und `nginx.conf` sind
+**Einzeldatei-Bind-Mounts**, und Docker bindet die an den **Inode**. `scp` ersetzt die Datei
+(neuer Inode) → der laufende Container hält den alten und liefert **stur die alte Seite** aus:
+gleicher Pfad, gleicher Mount, HTTP 200, **keine Fehlermeldung**. Auch ein In-place-`cat >` hilft
+nicht mehr, sobald der Inode einmal getauscht wurde.
+→ **Nur ein neu erstellter Container löst den Mount neu auf.** Der Smoke im Skript prüft deshalb
+jetzt nicht mehr bloß HTTP 200, sondern ob die **ausgelieferte Seite die lokale Fassung ist** —
+und bricht sonst ab.
+
 ---
 
 ## 7. 🔴 Rechts-/Compliance-Gate (Kolja + Fachanwalt — Go-Live-Blocker außerhalb Technik)
@@ -208,6 +272,43 @@ Diese Punkte sind **nicht** durch den Deploy gelöst und sollten vor dem Enthül
 - [ ] **Cookie-Consent**: nach Analyse **nicht erforderlich** (nur funktionales localStorage + Stripe) — dokumentiert lassen.
 - [ ] **Löschkonzept** (`docs/legal/LOESCHKONZEPT.md`) durch Fachanwalt bestätigen; Retention-Cron produktiv (Schritt 5).
 - [ ] **Finale anwaltliche Abnahme** (IT-Recht/Datenschutz) vor erstem zahlenden Kunden.
+
+### 7.1 Stand 14.07.2026 — was seither erledigt ist
+
+- ✅ **Mistral-Nachweisakte vollständig** (`docs/legal/mistral-nachweise/`): Commercial ToS,
+  Privacy Policy, DPA, Subprozessoren — alle von `legal.mistral.ai` mit Abrufvermerk.
+  ⚠️ Das frühere „Terms"-PDF war nur die **Linkliste** und als Nachweis wertlos.
+  „Kein Training" ist jetzt **belegt** (ToS § 4.2: kostenpflichtige API). ZDR beantragt.
+- ✅ **AGB-Neufassung** um § 4a (Rechnungskauf), § 11 (Haftung), § 9 (AVV-Einbeziehung)
+  ergänzt — liegt auf `feature/agb-neufassung`, **nicht** auf `staging` (siehe Schritt 3.0).
+- ✅ **Google Fonts von der Wartungsseite entfernt.** Sie luden bei jedem Aufruf von
+  `edufunds.org` und übertrugen die Besucher-IP ohne Einwilligung an Google — im
+  Widerspruch zur eigenen Datenschutzerklärung. Schriften jetzt self-hosted.
+- 🔴 **Offen:** anwaltliche Freigabe (Adressat noch nicht benannt), Newsletter-Testversand,
+  Plan-Screenshot aus `admin.mistral.ai` für die Nachweisakte.
+
+### 7.2 🔴 Sicherheits-Blocker vor `maintenance-mode.sh off`
+
+Diese Punkte sind **behoben** (14.07.2026), stehen hier aber als Merkposten, weil sie
+**erst mit dem Öffnen** wirksam geworden wären — die Wartungs-nginx hat sie bisher verdeckt:
+
+- ✅ `/api/health/dashboard` war **völlig ungeschützt** (kein Auth, `CORS: *`) und lieferte
+  Systemmetriken, Fehlerlogs und Client-IPs an jeden. Jetzt `requireAdmin`.
+- ✅ **Rate-Limits waren wirkungslos:** `getClientIP` nahm den ersten `X-Forwarded-For`-Eintrag,
+  Traefik läuft mit `forwardedHeaders.insecure=true` → jede IP frei fälschbar. Betraf
+  Login-Bruteforce, KI-Kostenlimit und den Rechnungskauf. Jetzt wird von rechts gelesen.
+- ✅ **Rechnungskauf** schaltete ohne jede Prüfung sofort frei (bis 459,90 €). Jetzt
+  Bucket `invoice` (3/24h) + max. 2 offene unbezahlte Rechnungen pro E-Mail.
+
+**Noch offen (nicht blockierend, aber vor dem ersten echten Kunden zu klären):**
+- [ ] `charge.refunded` entwertet den `paid_token` **nicht** — nach einer Rückerstattung
+      bleibt der Download unbegrenzt gültig (TODO PAY-03 im Webhook-Handler).
+- [ ] `NEXT_PUBLIC_PAYWALL_DEV_MOCK=1` steht noch fest in `.github/workflows/*.yml`
+      (nur `workflow_dispatch`, aber laut Datei selbst „vor Go-Live entfernen").
+- [ ] Toter Button „Sektion bearbeiten" (`AntragResult.tsx` → `?editAnswer=true` wird
+      nirgends gelesen).
+- [ ] Kein E2E-Test über den Kaufpfad; `markSessionPaid`/`createOrder` laufen in keinem
+      Test real (überall gemockt).
 
 ---
 
@@ -361,13 +462,40 @@ Die alte Landing ist bereits gestoppt (08.07., Container als Rollback-Reserve er
 > **`app.edufunds.org` bleibt als 301 bestehen — NICHT wegwerfen.** Bereits versendete
 > Double-Opt-in-/Unsubscribe-Mails und ggf. Stripe-Return-URLs zeigen dorthin.
 
-### 9.5 🔴 Kolja: Stripe-Webhook-Endpoint nachziehen
+### 9.5 ⛔ STOPP — Stripe-Webhook-Endpoint nachziehen (Kolja)
+
+> **Der teuerste Fehler im ganzen Cutover.** Wird dieser Schritt vergessen, nimmt die
+> Plattform Geld an und liefert nichts — und **niemand merkt es**, denn der Kunde sieht
+> einen Bezahlvorgang, der sauber durchläuft. Deshalb steht hier ein Stopp und keine
+> Checkbox.
 
 Der im Stripe-Dashboard registrierte Webhook zeigt auf `app.edufunds.org/api/stripe/webhook`.
-Nach 9.4 würde ein POST dorthin **301** auf den Apex bekommen — **Stripe folgt Redirects
-bei Webhooks nicht zuverlässig**. Daher im Dashboard den Endpoint auf
-`https://edufunds.org/api/stripe/webhook` umstellen (neues `whsec_…` → in `.env.production`
-+ Container-Recreate). Danach ein Test-Event auf 200 prüfen (Abschnitt 4).
+Nach 9.4 bekäme ein POST dorthin **301** auf den Apex — **Stripe folgt Redirects bei Webhooks
+nicht zuverlässig**. Die Freischaltung hängt aber allein an diesem Webhook
+(`checkout.session.completed` → `markSessionPaid`).
+
+1. Im Stripe-Dashboard den Endpoint auf `https://edufunds.org/api/stripe/webhook` umstellen.
+2. Das **neue `whsec_…`** in `.env.production` eintragen → **Container-Recreate** (ein
+   `docker restart` genügt nicht, siehe Abschnitt 8).
+3. **Verifizieren, nicht vertrauen** — im Dashboard ein Test-Event senden und auf **200**
+   prüfen. Ein 301 oder 404 hier bedeutet: Jede echte Zahlung würde ins Leere laufen.
+
+```bash
+# Gegenprobe von außen: Der Endpoint muss DIREKT antworten (kein 301!).
+curl -s -o /dev/null -w '%{http_code} %{redirect_url}\n' -X POST \
+  https://edufunds.org/api/stripe/webhook
+# Erwartet: 400 (fehlende Signatur) — NICHT 301, NICHT 404.
+# 400 heißt: Die Route lebt und prüft die Signatur. Genau richtig.
+```
+
+**Sicherheitsnetz (seit 14.07.2026):** Falls der Webhook doch einmal ausbleibt, ist der Kunde
+nicht mehr verloren. Der Erfolgs-Screen fragt nach 12 Sekunden ohne Freischaltung selbst bei
+Stripe nach (`POST /api/wizard/checkout/reconcile`) und schaltet frei, wenn Stripe die Session
+als `paid` meldet — mit Abgleich der Stripe-Metadaten, damit eine fremde Checkout-Session-ID
+nichts nützt. Im Server-Log erscheint dann eine **Warnung** („der Webhook ist ausgeblieben").
+→ **Diese Warnung ist ein Alarm, kein Rauschen.** Taucht sie auf, stimmt etwas mit dem Endpoint
+nicht. Das Netz ersetzt Schritt 9.5 **nicht** — es verhindert nur, dass ein Fehler hier direkt
+Kundengeld kostet.
 
 ### 9.6 Robots / Indexierung freigeben
 

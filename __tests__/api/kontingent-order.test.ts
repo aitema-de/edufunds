@@ -10,11 +10,15 @@ jest.mock("@/lib/payments/orders", () => ({
   createOrder: jest.fn(),
   buildOrderConfirmationEmail: jest.fn(() => ({ subject: "s", html: "h", text: "t" })),
   buildOrderAdminEmail: jest.fn(() => ({ subject: "s", html: "h", text: "t" })),
+  // Missbrauchsbremse: Standardmaessig keine offene Rechnung -> Bestellung erlaubt.
+  countOpenInvoiceOrders: jest.fn(async () => 0),
+  MAX_OPEN_INVOICE_ORDERS: 2,
 }));
 
-import { createOrder } from "@/lib/payments/orders";
+import { createOrder, countOpenInvoiceOrders } from "@/lib/payments/orders";
 
 const mCreate = createOrder as jest.Mock;
+const mOffen = countOpenInvoiceOrders as jest.Mock;
 
 const req = (body: unknown) => ({ json: async () => body }) as never;
 
@@ -70,6 +74,26 @@ describe("POST /api/kontingent/order", () => {
     const res = await POST(req({ ...validBody, packId: "einzel" }));
     expect(res.status).toBe(400);
     expect(mCreate).not.toHaveBeenCalled();
+  });
+
+  // Missbrauchsbremse (14.07.2026): Der Rechnungskauf schaltet SOFORT frei, bevor
+  // Geld geflossen ist — beim 20er-Paket sind das 459,90 EUR. Ohne Grenze koennte
+  // jemand beliebig viele Kontingente ziehen und nie zahlen.
+  it("409, wenn fuer die E-Mail bereits zu viele Rechnungen offen sind", async () => {
+    mOffen.mockResolvedValueOnce(2); // = MAX_OPEN_INVOICE_ORDERS
+    const res = await POST(req(validBody));
+    expect(res.status).toBe(409);
+    expect(mCreate).not.toHaveBeenCalled(); // KEIN Code ausgegeben
+    const body = await res.json();
+    expect(body.error).toMatch(/bereits Rechnungen offen/i);
+  });
+
+  it("laesst bestellen, solange die Grenze nicht erreicht ist", async () => {
+    mCreate.mockResolvedValue(fakeOrder);
+    mOffen.mockResolvedValueOnce(1); // unter der Grenze
+    const res = await POST(req(validBody));
+    expect(res.status).toBe(200);
+    expect(mCreate).toHaveBeenCalled();
   });
 
   it("Honeypot gefuellt -> stiller Erfolg ohne Bestellung", async () => {

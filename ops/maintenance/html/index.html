@@ -5,13 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
   <title>EduFunds — Bald verfügbar</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Outfit:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  />
+  <!-- Schriften werden vom EIGENEN Server geliefert (self-hosted, auf die benutzten
+       Glyphen subgesetzt). KEINE Google-Fonts-Einbindung: die würde bei jedem Aufruf
+       die IP des Besuchers ohne Einwilligung an Google in die USA übertragen — und
+       unserer Datenschutzerklärung widersprechen, die ausdrücklich zusagt, dass
+       Schriftarten vom eigenen Server kommen. Ersetzen nur mit lokalen Dateien. -->
   <style>
+    @font-face {
+      font-family: 'Newsreader';
+      font-style: italic;
+      font-weight: 400 500;
+      font-display: swap;
+      src: url('/fonts/newsreader-italic.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Newsreader';
+      font-style: normal;
+      font-weight: 400 500;
+      font-display: swap;
+      src: url('/fonts/newsreader-normal.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Outfit';
+      font-style: normal;
+      font-weight: 400 600;
+      font-display: swap;
+      src: url('/fonts/outfit-normal.woff2') format('woff2');
+    }
     :root {
       /* Akademisch/Institut (Richtung F) — Paper / Ink / Evergreen / Gold */
       --paper: #fdfdfc;
@@ -189,12 +209,15 @@
   </g>
   <text x="92" y="58" font-family="&#39;Source Serif 4&#39;, Georgia, serif" font-size="40" font-weight="600" letter-spacing="-0.5"><tspan fill="#1E3B2A">Edu</tspan><tspan font-style="italic" fill="#B08C2E">Funds</tspan></text>
 </svg></div>
-    <h1>Wir legen gerade die <em>letzte Hand</em> an.</h1>
+    <h1>Die Plattform <em>steht</em>.</h1>
     <p>
       EduFunds hilft Schulen, Fördervereinen und Trägern, passende Fördermittel
       zu finden und Anträge in Minuten zu erstellen.
     </p>
-    <p>Die Plattform geht in Kürze für alle online. Schauen Sie bald wieder vorbei.</p>
+    <p>
+      Bevor wir für alle öffnen, prüfen wir jede Zeile: Förderdaten, Verträge,
+      Datenschutz.
+    </p>
 
     <div class="news">
       <h2>Zum Start benachrichtigt werden</h2>
