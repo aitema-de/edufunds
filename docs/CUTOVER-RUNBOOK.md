@@ -93,7 +93,7 @@ gh pr merge <NR> --repo aitema-de/edufunds --merge
 
 Danach steht `origin/main` auf dem staging-Stand (inkl. Migration-011-Datei, Mistral-Default im Code, alle Härtungen).
 
-### 3.2 🔴 Kolja-Go: Migrationen 011–014 auf Prod-DB `edufunds` anwenden
+### 3.2 🔴 Kolja-Go: Migrationen 011–015 auf Prod-DB `edufunds` anwenden
 
 Alle additiv (`ADD COLUMN IF NOT EXISTS` / `CREATE TABLE IF NOT EXISTS`) und idempotent —
 gefahrlos, mehrfach anwendbar. Müssen **vor** dem Deploy laufen: der Webhook-Handler
@@ -107,12 +107,13 @@ bleibt trotzdem gültig — der Bug, den 012 gerade schließt.
 | 012 | Rückerstattung: `ki_antraege.status += 'refunded'`, `refunded_at/_token`, `credit_codes.revoked_at` |
 | 013 | Bestellstatus-Lebenszyklus: `org_orders.paid_at/cancelled_at/cancel_reason/session_token` + CHECK |
 | 014 | Mahnlauf: `org_orders.reminder_sent_at/dunning_sent_at` |
+| 015 | Anteilige Abrechnung: `org_orders.settled_at/settled_amount_cents` |
 
 ```bash
 ssh root@49.13.15.44
 cd /home/edufunds/edufunds-app
 git fetch origin
-for m in 011_stripe_webhook_events 012_refund 013_order_status 014_dunning; do
+for m in 011_stripe_webhook_events 012_refund 013_order_status 014_dunning 015_settlement; do
   echo "--- $m ---"
   git show origin/main:db/migrations/${m}.sql \
     | docker exec -i edufunds-postgres psql -U edufunds -d edufunds -v ON_ERROR_STOP=1
@@ -125,7 +126,10 @@ docker exec edufunds-postgres psql -U edufunds -d edufunds -c \
 # ki_antraege_status_check MUSS 'refunded' enthalten.
 ```
 
-> Auf `edufunds_staging` sind 012–014 am 14.07.2026 angewandt und verifiziert.
+> Auf `edufunds_staging` sind 012–015 am 14.07.2026 angewandt und verifiziert.
+> **Prod-DB am 14.07. read-only geprüft:** `org_orders` ist leer (die CHECK-Constraint aus 013
+> kann also an keinen Altdaten scheitern), `ki_antraege` hat nur `paid`/`complete`/`in_progress`
+> — alle innerhalb der neuen Constraint. **Keine** der Migrationen 011–015 ist bislang drin.
 
 ### 3.3 🔴 Kolja-Go: Cutover-Deploy (baut `main`, recreated Container)
 

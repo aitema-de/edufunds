@@ -198,6 +198,13 @@ next = spawn("npx", ["next", "dev", "-p", String(appPort)], {
     NODE_ENV: "development",
     // Kein LLM-Call in diesem Lauf; der Key darf leer sein.
     LLM_PROVIDER: "mistral",
+    // Bankverbindung: getBankDetails() ist fail-closed (kein Fallback mehr — die alte
+    // Default-IBAN war ein Dummy mit ungueltiger Pruefsumme). Der Rechnungskauf baut
+    // die Bestaetigungsmail mit Zahlungsblock; ohne gueltige Angaben wuerde er 500en.
+    BANK_IBAN: "DE89 3704 0044 0532 0130 00",
+    BANK_ACCOUNT_HOLDER: "aitema GmbH (Test)",
+    BANK_BIC: "GENODEM1GLS",
+    BANK_NAME: "GLS Bank (Test)",
     // Zum IP-Rate-Limit ('invoice', 3/24h): Es greift hier nicht, weil
     // lib/rate-limit.ts fuer NODE_ENV=development + Localhost-IP einen Bypass hat
     // (dort dokumentiert). Damit misst der Test die FACHLICHE Grenze
