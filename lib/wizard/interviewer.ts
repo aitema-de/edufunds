@@ -33,6 +33,15 @@ export interface NextStepWithUsage {
  */
 const QUESTION_SIMILARITY_THRESHOLD = 0.72;
 
+/**
+ * #005 (Pilot 15.07.): Ab welcher Aehnlichkeit die "Warum?"-Begruendung als
+ * Wiederholung der vorigen gilt. Der Tester sah die Q3-Begruendung "fast woertlich"
+ * wie die von Q2 — solche Dopplungen werden unterdrueckt (Begruendung dann weggelassen).
+ * Etwas niedriger als der Fragen-Schwellwert, weil Begruendungen kuerzer und
+ * formelhafter sind (hoehere Grund-Ueberlappung).
+ */
+const RATIONALE_SIMILARITY_THRESHOLD = 0.6;
+
 function normalizeQuestion(s: string): string {
   return s
     .toLowerCase()
@@ -127,16 +136,35 @@ export async function nextStep(
     }
   }
 
-  const step: NextStep =
-    raw.kind === "ready"
-      ? ({ kind: "ready", summary: raw.content, updatedFacts: merged } satisfies NextStepReady)
-      : ({
-          kind: "question",
-          question: raw.content,
-          rationale: raw.rationale,
-          updatedFacts: merged,
-        } satisfies NextStepQuestion);
+  if (raw.kind === "ready") {
+    const step: NextStepReady = { kind: "ready", summary: raw.content, updatedFacts: merged };
+    return { step, usage: { model: MODEL_FLASH, usage } };
+  }
 
+  // #005: "Warum?"-Dopplung unterdruecken — ist die neue Begruendung nahezu identisch
+  // zur Begruendung der vorigen Frage (in message.meta.rationale persistiert), lieber
+  // keine Begruendung anzeigen als eine (fast) woertliche Wiederholung.
+  let rationale = raw.rationale;
+  if (rationale) {
+    const prevRationale = [...messages]
+      .reverse()
+      .map((m) =>
+        m.role === "ai" && m.kind === "question" && typeof m.meta?.rationale === "string"
+          ? (m.meta.rationale as string)
+          : undefined
+      )
+      .find((r): r is string => typeof r === "string" && r.trim().length > 0);
+    if (prevRationale && questionSimilarity(prevRationale, rationale) >= RATIONALE_SIMILARITY_THRESHOLD) {
+      rationale = undefined;
+    }
+  }
+
+  const step: NextStepQuestion = {
+    kind: "question",
+    question: raw.content,
+    rationale,
+    updatedFacts: merged,
+  };
   return { step, usage: { model: MODEL_FLASH, usage } };
 }
 

@@ -45,7 +45,8 @@ import {
 import { extractAnnahmen, wrapAnnahmen } from "./annahme-marker";
 import type { Usage } from "./pricing";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
-import { generateFinanzplan } from "./finanzplan-generator";
+import { generateFinanzplan, buildBeantragtConsistencyIssue } from "./finanzplan-generator";
+import { ensureSectionsPresent } from "./struktur-guard";
 import { buildFallbackTitle } from "./title-fallback";
 import { buildFallbackOutline } from "./outline-fallback";
 import { PIPELINE_CONFIG } from "./config";
@@ -136,6 +137,21 @@ function normalizeConsistency(raw: unknown): ConsistencyIssue[] {
   }
   if (out.length > 8) out.length = 8;
   return out;
+}
+
+/**
+ * Bug #004 (Pilot 15.07.): Erkennt LLM-Konsistenz-Issues, die sich auf die
+ * GESAMT-/BEANTRAGTE SUMME beziehen. Solche Befunde rechnet das Flash-Modell
+ * unzuverlaessig (es schrieb "12.600 EUR entsprechen 15.000 EUR"). Sie werden aus
+ * der LLM-Liste entfernt und durch einen deterministischen Befund
+ * (buildBeantragtConsistencyIssue) ersetzt. Heuristik ueber die Beschreibung —
+ * die Art kann "betrag-unstimmig" ODER "sonstiges" sein.
+ */
+const TOTAL_SUM_ISSUE_RE =
+  /gesamtsumme|gesamtkost|gesamtbetrag|gesamt-?\s?summe|beantragt|f[oö]rdersumme|projektsumme/i;
+
+function isTotalSumConsistencyIssue(i: ConsistencyIssue): boolean {
+  return TOTAL_SUM_ISSUE_RE.test(i.beschreibung);
 }
 
 const STATUS_VALID: readonly FindingStatus[] = ["geschlossen", "teilweise", "offen"];
@@ -400,6 +416,29 @@ export async function runPipeline(
   );
   usages.push({ model: MODEL_PRO, usage: finalRes.usage });
 
+  // =========================================================================
+  // Struktur-Guard (Pilot-Befund "Textumfang", 15.07.2026)
+  // Die Revision (produktiv erzwungenes EU-Modell mistral-small) kann bei duennem
+  // Input Pflichtabschnitte verschmelzen/streichen, sodass der sichtbare finalText
+  // auf wenige Abschnitte kollabiert, obwohl sections[] alle enthaelt. Deterministisch
+  // (kein LLM) fehlende Abschnitte aus sections[] wieder einsetzen. HIER platziert —
+  // direkt nach der Revision, VOR Halluzinations-/Fakt-Gate/Recheck — damit
+  // re-injizierter Text dieselben Ehrlichkeitspruefungen durchlaeuft wie regulaerer.
+  // =========================================================================
+  {
+    const guard = ensureSectionsPresent(finalRes.value ?? "", outline, sections);
+    if (guard.reinjected.length > 0) {
+      finalRes = { value: guard.text, usage: finalRes.usage };
+      await emit({
+        stage: "revision",
+        message: `Struktur-Guard: ${guard.reinjected.length} fehlende(r) Abschnitt(e) ergaenzt`,
+      });
+      console.log(
+        `[pipeline] Struktur-Guard: ${guard.reinjected.length} Abschnitt(e) re-injiziert (${guard.reinjected.join(", ")})`
+      );
+    }
+  }
+
   let resolutions: FindingResolution[] = [];
   let hasOpenHigh = false;
   if (critique.findings.length > 0) {
@@ -566,6 +605,12 @@ export async function runPipeline(
     usages.push({ model: MODEL_FLASH, usage: consistencyRes.usage });
     consistencyIssues = normalizeConsistency(consistencyRes.value);
 
+    // Bug #004 (Pilot 15.07.): Gesamtsummen-Befunde des LLM verwerfen — es rechnet
+    // sie falsch und widerspruechlich. Vor der Konsistenz-Revision entfernen, damit
+    // diese nicht faelschlich die (legitime) beantragte Summe im Text "wegkorrigiert";
+    // der Gesamtsummen-Abgleich kommt weiter unten deterministisch dazu.
+    consistencyIssues = consistencyIssues.filter((i) => !isTotalSumConsistencyIssue(i));
+
     // QA-01/03: Inkonsistenzen nicht nur flaggen, sondern einmalig beheben —
     // den Antragstext an den (verbindlichen) Finanzplan angleichen und erneut
     // pruefen. Fehlschlag der Revision behaelt Originaltext + geflaggte Issues.
@@ -587,11 +632,26 @@ export async function runPipeline(
           `[pipeline] Konsistenz-Revision: ${consistencyIssues.length} → ${reconciled.issues.length} Issue(s)`
         );
         finalRes = { value: reconciled.finalText, usage: finalRes.usage };
-        consistencyIssues = reconciled.issues;
+        // Auch nach dem Recheck kann das LLM einen Gesamtsummen-Befund
+        // (falsch gerechnet) zurueckgeben — erneut verwerfen.
+        consistencyIssues = reconciled.issues.filter((i) => !isTotalSumConsistencyIssue(i));
         usages.push(...reconciled.usages);
       } catch (revErr) {
         console.error("[pipeline] Konsistenz-Revision fehlgeschlagen:", revErr);
       }
+    }
+
+    // Bug #004: Deterministischer Gesamtsummen-Abgleich (Foerderposten-Summe ×
+    // beantragte Summe) — genau EIN korrekt gerechneter Befund, deckungsgleich mit
+    // dem Hinweis in der FinanzplanView (checkBeantragtDeckung). Ersetzt die vom
+    // LLM entfernten, unzuverlaessigen Gesamtsummen-Befunde.
+    const deckungIssue = buildBeantragtConsistencyIssue(
+      finanzRes.plan.posten.filter((p) => !p.eigenanteil),
+      facts
+    );
+    if (deckungIssue) {
+      consistencyIssues = [deckungIssue, ...consistencyIssues];
+      if (consistencyIssues.length > 8) consistencyIssues.length = 8;
     }
   }
   // Hinweis (Produktvision 2026-06-10): Der frühere unbeziffert-Zweig

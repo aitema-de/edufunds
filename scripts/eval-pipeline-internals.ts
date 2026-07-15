@@ -706,6 +706,99 @@ export function scoreWiz01(
 }
 
 /**
+ * WIZ-01b (Pilot-Befund "Textumfang", 15.07.2026): misst Pflichtabschnitt-Praesenz +
+ * Mindestlaenge im **finalText** — dem einzigen Artefakt, das der Nutzer sieht.
+ *
+ * Hintergrund: scoreWiz01 misst `artefacts.sections` (Zwischenprodukt), das immer alle
+ * Abschnitte enthaelt. Der ausgelieferte `finalText` ist eine freie LLM-Neufassung, die
+ * Abschnitte verschmelzen/streichen kann — genau das war der Pilot-Bug (nur ~2 sichtbare
+ * Abschnitte). Diese Funktion schliesst die Luecke: sie prueft die H2-Struktur des
+ * finalText gegen die Pflichtabschnitte der Richtlinie (tolerante Ueberschriften-Zuordnung)
+ * und flaggt vorhandene, aber zu kurze Abschnitte (< minZeichen). Pure Function.
+ */
+export const WIZ01B_MIN_ZEICHEN = 200;
+
+export interface Wiz01FinalTextResult {
+  pflichtAbschnitteTotal: number;
+  pflichtAbschnitteCovered: number;
+  coveragePercent: number;
+  missingAbschnitte: string[];
+  /** Vorhanden, aber inhaltlich zu duenn (< minZeichen). */
+  shortAbschnitte: Array<{ name: string; zeichen: number }>;
+}
+
+/** Zerlegt Markdown in H2-Bloecke (Ueberschrift + Inhaltslaenge). Lokal, self-contained. */
+function splitFinalTextH2(text: string): Array<{ heading: string; contentLen: number }> {
+  const lines = (text ?? "").split("\n");
+  const out: Array<{ heading: string; content: string[] }> = [];
+  let cur: { heading: string; content: string[] } | null = null;
+  for (const line of lines) {
+    const h2 = line.match(/^##\s+(.+?)\s*$/);
+    if (h2) {
+      if (cur) out.push(cur);
+      cur = { heading: h2[1].trim(), content: [] };
+    } else if (cur) {
+      cur.content.push(line);
+    }
+  }
+  if (cur) out.push(cur);
+  return out.map((b) => ({ heading: b.heading, contentLen: b.content.join("\n").trim().length }));
+}
+
+export function scoreWiz01FinalText(
+  artefacts: GenerationArtefacts,
+  richtlinie: Richtlinie | null,
+  minZeichen: number = WIZ01B_MIN_ZEICHEN
+): Wiz01FinalTextResult {
+  if (!richtlinie?.antragsstruktur?.abschnitte) {
+    return {
+      pflichtAbschnitteTotal: 0,
+      pflichtAbschnitteCovered: 0,
+      coveragePercent: 100,
+      missingAbschnitte: [],
+      shortAbschnitte: [],
+    };
+  }
+  const pflicht = richtlinie.antragsstruktur.abschnitte.filter((a) => a.pflicht !== false);
+  const blocks = splitFinalTextH2(artefacts.finalText ?? "");
+  // Tolerante Normalisierung (analog struktur-guard): "&" ~ "und", Satzzeichen weg,
+  // damit z. B. "Ziele & Wirkung" auf "Ziele und Wirkung" matcht.
+  const norm = (s: string) =>
+    s
+      .toLowerCase()
+      .replace(/&/g, " und ")
+      .replace(/[^a-z0-9äöüß]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  const match = (heading: string, name: string): boolean => {
+    const h = norm(heading);
+    const n = norm(name);
+    return !!h && !!n && (h === n || h.includes(n) || n.includes(h));
+  };
+
+  const missing: string[] = [];
+  const short: Array<{ name: string; zeichen: number }> = [];
+  let covered = 0;
+  for (const a of pflicht) {
+    const block = blocks.find((b) => match(b.heading, a.name));
+    if (!block) {
+      missing.push(a.name);
+      continue;
+    }
+    covered++;
+    if (block.contentLen < minZeichen) short.push({ name: a.name, zeichen: block.contentLen });
+  }
+
+  return {
+    pflichtAbschnitteTotal: pflicht.length,
+    pflichtAbschnitteCovered: covered,
+    coveragePercent: pflicht.length === 0 ? 100 : (covered / pflicht.length) * 100,
+    missingAbschnitte: missing,
+    shortAbschnitte: short,
+  };
+}
+
+/**
  * WIZ-02: 2-Layer-Hybrid-Detection (Marker + Regex mit False-Positive-Check).
  * RESEARCH Code-Beispiel Z.923-988 (1-zu-1).
  */

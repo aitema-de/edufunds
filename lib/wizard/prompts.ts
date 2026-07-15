@@ -341,6 +341,7 @@ export const INTERVIEWER_SYSTEM = `Du bist ein erfahrener Berater für Förderan
 - Stelle GENAU EINE Frage pro Runde. Kurz, konkret, auf den Punkt.
 - Frage NIE nach Dingen, die die Fakten-Tabelle bereits enthält oder die aus früheren Antworten klar hervorgehen.
 - **Wiederhole KEINE bereits gestellte Frage — auch nicht umformuliert.** Prüfe die Liste BISHERIGE FRAGEN/ANTWORTEN: Wenn ein Punkt schon einmal gefragt wurde (egal mit welchen Worten), frage etwas inhaltlich NEUES oder schließe ab (kind="ready"). Eine zweite Variante derselben Frage wirkt für den Nutzer wie ein Schleifen-Bug.
+- **Verteile die Fragen über verschiedene Themencluster, häufe nicht.** Die relevanten Cluster sind: Schule/Kontext, Projektinhalt/Maßnahmen, Zielgruppe, Ziele & Wirkung, Budget/Kosten, Nachhaltigkeit/Verankerung. Ist ein Cluster bereits mit 1–2 Fragen abgedeckt (siehe BISHERIGE FRAGEN/ANTWORTEN und die Fakten-Tabelle), wende dich einem noch NICHT oder schwach behandelten Cluster zu, statt denselben Aspekt aus einem weiteren Blickwinkel zu beleuchten. Priorisiere die unter OFFENE BEREICHE genannten, noch leeren Cluster. Mehrere aufeinanderfolgende Fragen zum selben Cluster (z. B. dreimal Nachhaltigkeit) wirken redundant.
 - Wenn eine Antwort vage ist ("fördert Teilhabe", "wir werden viel erreichen"), hake EINMAL gezielt nach — mit Bitte um konkrete Zahlen, Zeiträume, Namen oder Szenen. Bleibt die Antwort vage, akzeptiere das und geh weiter; bohre nicht ein drittes Mal beim selben Punkt.
 - Formuliere die Frage menschlich, nicht wie ein Behördenformular. EIN Satz Kontext (warum ist das wichtig?) ist erlaubt, aber nicht Pflicht.
 - **Respektvoll und explorativ, nie bevormundend.** Der Nutzer ist Fachperson (oft Schulleitung/Lehrkraft). Frage offen nach Gegebenheiten, statt eine Vorgabe abzufragen oder zu bewerten. Bei strukturellen Punkten (z. B. ob ein Angebot verpflichtend oder freiwillig läuft) frage neutral nach der Ausgestaltung ("Wie ist die Teilnahme organisiert — eher als freiwilliges Angebot oder fest im Stundenplan?") — NICHT als Wissens-Test oder mit unterstelltem "richtig/falsch".
@@ -362,8 +363,43 @@ AUSSCHLIESSLICH valides JSON (keine Markdown-Fences):
 {
   "kind": "question" | "ready",
   "content": "Nächste Frage ODER 2-Satz-Zusammenfassung, wenn ready",
-  "rationale": "Warum diese Frage jetzt (nur bei kind=question, max 1 Satz)"
+  "rationale": "Warum diese Frage jetzt (nur bei kind=question, max 1 Satz) — formuliere sie konkret auf DIESE Frage bezogen, wiederhole nicht die Begründung der vorigen Frage"
 }`;
+
+/**
+ * #005 (Pilot 15.07.): Coverage-Map der Themencluster gegen die Fakten-Tabelle.
+ * Der Interviewer haeufte mehrere aufeinanderfolgende Fragen auf denselben Cluster
+ * (Nachhaltigkeit), weil ihm die Cluster-Abdeckung nicht bewusst gemacht wurde.
+ * Diese Funktion listet leere ("OFFENE") vs. befuellte Cluster, damit das Modell die
+ * verbleibenden Fragen auf noch offene Bereiche lenkt. Rein aus den Facts abgeleitet
+ * (kein LLM). Exportiert fuer Tests.
+ */
+export function factsCoverageBlock(facts: WizardFacts): string {
+  const has = (v: unknown): boolean => {
+    if (v == null) return false;
+    if (typeof v === "string") return v.trim().length > 0;
+    if (typeof v === "number") return Number.isFinite(v) && v > 0;
+    if (Array.isArray(v)) return v.some((x) => has(x));
+    if (typeof v === "object") return Object.values(v as Record<string, unknown>).some(has);
+    return false;
+  };
+  const s = facts?.schule ?? {};
+  const p = facts?.projekt ?? {};
+  const w = facts?.wirkung ?? {};
+  const b = facts?.budget ?? {};
+  const cluster: Array<{ label: string; filled: boolean }> = [
+    { label: "Schule/Kontext", filled: has(s) },
+    { label: "Projektinhalt/Maßnahmen", filled: has(p.kurzbeschreibung) || has(p.aktivitaeten) || has(p.zeitraum) },
+    { label: "Zielgruppe", filled: has(p.zielgruppe) },
+    { label: "Ziele & Wirkung", filled: has(p.ziele) || has(w.erwartete_ergebnisse) || has(w.messbare_indikatoren) },
+    { label: "Budget/Kosten", filled: has(b.beantragt_eur) || has(b.eigenmittel_eur) || has(b.hauptposten) },
+    { label: "Nachhaltigkeit/Verankerung", filled: has(w.nachhaltigkeit) },
+  ];
+  const offen = cluster.filter((c) => !c.filled).map((c) => c.label);
+  const abgedeckt = cluster.filter((c) => c.filled).map((c) => c.label);
+  return `OFFENE BEREICHE (bevorzugt fragen): ${offen.length ? offen.join(", ") : "— alle Cluster grundlegend abgedeckt; nur noch gezielt vertiefen oder abschließen"}
+BEREITS ABGEDECKT (nicht erneut breit abfragen): ${abgedeckt.length ? abgedeckt.join(", ") : "—"}`;
+}
 
 export function buildInterviewerUserPrompt(
   programm: Foerderprogramm,
@@ -385,6 +421,9 @@ ${historyBlock(messages)}
 
 BEREITS STRUKTURIERT ERFASSTE FAKTEN:
 ${JSON.stringify(facts, null, 2)}
+
+THEMENCLUSTER-ABDECKUNG:
+${factsCoverageBlock(facts)}
 
 STATUS: ${totalQuestions} von maximal ${maxQuestions} Fragen gestellt.
 
@@ -899,7 +938,7 @@ export const CONSISTENCY_SYSTEM = `Du prüfst, ob der Antragstext und der Finanz
 ## Was ein Issue ist
 - "posten-ohne-textbezug": Ein Finanzposten taucht im Antrag nicht auf — weder direkt benannt noch sinngemäß in der passenden Sektion beschrieben.
 - "textbezug-ohne-posten": Der Antragstext nennt eine konkrete Kostenart (Geräte, Honorare, Fortbildungen, Fahrten), ohne dass es im Finanzplan einen entsprechenden Posten gibt.
-- "betrag-unstimmig": Im Antrag genannte Zahlen/Größen widersprechen den Beträgen im Finanzplan (z. B. "15 Tablets à 500 €" im Text, aber Finanzplan hat 20 × 400 €). DAZU GEHÖRT AUSDRÜCKLICH die Gesamtsumme: Nennt der Antragstext eine Gesamt-/Projektsumme oder beantragte Fördersumme, die deutlich (>20 %) von der Summe der Finanzplan-Posten abweicht, ist das ein "betrag-unstimmig"-Issue mit Schwere-Bezug auf beide Zahlen. Rechne die Posten-Summe und vergleiche sie mit jeder im Text genannten Gesamtsumme.
+- "betrag-unstimmig": Im Antrag genannte EINZEL-Zahlen/Größen widersprechen den Beträgen im Finanzplan (z. B. "15 Tablets à 500 €" im Text, aber Finanzplan hat 20 × 400 €). WICHTIG: Den Abgleich der GESAMT-/PROJEKT-/BEANTRAGTEN SUMME gegen die Posten-Summe machst du NICHT — der wird separat deterministisch berechnet. Rechne KEINE Gesamtsummen selbst und melde KEIN Issue über die Gesamtsumme (das führt sonst zu widersprüchlichen, falsch gerechneten Befunden). Beschränke dich hier auf einzelne, klar bezifferte Positionen, die sich zwischen Text und Plan widersprechen.
 - "sonstiges": Andere klare Widersprüche.
 
 ## Was KEIN Issue ist

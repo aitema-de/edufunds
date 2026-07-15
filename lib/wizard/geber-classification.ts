@@ -53,6 +53,7 @@ const MAPPING: Readonly<Record<string, GeberGruppe>> = Object.freeze({
   "ensam-bmz": "oeffentlich",
   "aktion-mensch-schulkooperation": "stiftung",
   "klimalab-2026": "stiftung",
+  "heinz-nixdorf-stiftung-projektfoerderung-mint": "stiftung",
   "erasmus-schule-2026": "eu",
   "erasmus-schulentwicklung": "eu",
   "bosch-schulpreis": "wirtschaftspreis",

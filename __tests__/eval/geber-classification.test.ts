@@ -75,6 +75,7 @@ describe("Geber-Klassifikation 11-Dossier-Mapping (D-28)", () => {
     "bosch-schulpreis",
     "ferry-porsche-challenge",
     "kultur-macht-stark",
+    "heinz-nixdorf-stiftung-projektfoerderung-mint",
   ];
 
   it("die gemappten Stamm-Dossier-IDs resolven zu einer bekannten Geber-Gruppe", () => {
