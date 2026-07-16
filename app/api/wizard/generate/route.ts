@@ -18,10 +18,16 @@ export const maxDuration = 300; // bis zu 5 Minuten für die gesamte Pipeline
 
 export async function POST(req: NextRequest) {
   try {
-    const { sessionToken } = (await req.json()) as { sessionToken?: string };
+    const body = (await req.json()) as { sessionToken?: string; texttiefe?: string };
+    const { sessionToken } = body;
     if (!sessionToken) {
       return NextResponse.json({ error: "sessionToken fehlt" }, { status: 400 });
     }
+    // P3-B: Texttiefe-Wahl validieren (sonst Default "standard" = unverändertes Verhalten).
+    const texttiefe =
+      body.texttiefe === "knapp" || body.texttiefe === "ausfuehrlich"
+        ? body.texttiefe
+        : "standard";
 
     const session = await getWizardSession(sessionToken);
     if (!session) {
@@ -91,7 +97,8 @@ export async function POST(req: NextRequest) {
         session.data.facts,
         richtlinie,
         onEvent,
-        session.data.messages
+        session.data.messages,
+        { texttiefe }
       );
       let costs = generatingData.costs ?? emptyLedger();
       for (const u of usages) costs = addUsage(costs, u.model, u.usage);

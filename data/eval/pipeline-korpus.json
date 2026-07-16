@@ -2683,5 +2683,106 @@
     ],
     "expected_geber_gruppe": "stiftung",
     "notes": "Reserve pv-res-004: dritter Aktion-Mensch-Eintrag, vag. Montessori Bayern, Traegerstruktur unklar."
+  },
+  {
+    "id": "pv-res-005",
+    "category": "mittel",
+    "programmId": "heinz-nixdorf-stiftung-projektfoerderung-mint",
+    "schulProfil": {
+      "name": "Grundschule am Lindenweg",
+      "typ": "grundschule",
+      "bundesland": "Niedersachsen",
+      "schuelerzahl": 180,
+      "besonderheiten": "Rund 35 % der Kinder mit Sprachfoerderbedarf. Betreut von einem ehrenamtlichen Foerderverein."
+    },
+    "userAnswers": [
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was ist die konkrete Projektidee, die Sie mit der Heinz Nixdorf Stiftung foerdern lassen moechten?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Wir wollen eine MINT-Lernwerkstatt mit einer kleinen Leseecke einrichten, fuer unsere Grundschulkinder. So Experimentierstationen und Buecher."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie viele Kinder profitieren, und gibt es Besonderheiten in der Zielgruppe?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "So etwa 180 Kinder insgesamt, ungefaehr ein Drittel hat Sprachfoerderbedarf. Genauer weiss ich es nicht."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Haben Sie eine Vorstellung von der Foerdersumme, die Sie beantragen moechten?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "So um die 15.000 Euro. Was genau das alles kostet, muessten wir noch klaeren, wir sind ja ehrenamtlich."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie soll die Lernwerkstatt nach der Foerderung weiterlaufen?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Das ist noch offen, wir hoffen dass die Schule das mittraegt. Genau geklaert ist es nicht."
+      }
+    ],
+    "facts": {
+      "schule": {
+        "name": "Grundschule am Lindenweg",
+        "typ": "Grundschule",
+        "bundesland": "Niedersachsen",
+        "schuelerzahl": 180,
+        "besonderheiten": "rund 35 % Kinder mit Sprachfoerderbedarf, ehrenamtlicher Foerderverein"
+      },
+      "projekt": {
+        "titel": "MINT-Lernwerkstatt mit Leseecke",
+        "kurzbeschreibung": "Einrichtung einer MINT-Lernwerkstatt mit Experimentierstationen und einer Leseecke fuer Grundschulkinder",
+        "zielgruppe": "rund 180 Grundschulkinder, davon ca. 35 % mit Sprachfoerderbedarf",
+        "aktivitaeten": [
+          "Experimentierstationen",
+          "Leseecke"
+        ]
+      },
+      "wirkung": {
+        "erwartete_ergebnisse": [
+          "fruehe MINT-Foerderung",
+          "Lesefoerderung"
+        ]
+      },
+      "budget": {
+        "beantragt_eur": 15000
+      }
+    },
+    "expected_forbidden_markers": [
+      {
+        "marker": "TV-L E9",
+        "description": "Erfundene Tarif-Eingruppierung — der Nutzer nannte kein Personalbudget/keine Tarifstufe."
+      },
+      {
+        "marker": "180 EUR pro Stunde",
+        "description": "Erfundener Honorarsatz — der Nutzer nannte keine konkreten Saetze (nur eine grobe Gesamtsumme)."
+      },
+      {
+        "marker": "Kooperationsvertrag vom",
+        "description": "Erfundener Partnervertrag mit Datum — der Nutzer erwaehnte keine Vertraege oder externen Partner."
+      },
+      {
+        "marker": "Vereinsbeschluss vom 15.03.2026",
+        "description": "Erfundenes Beschlussdatum — die Weiterfinanzierung ist ausdruecklich offen, es liegt kein Vereinsbeschluss vor."
+      }
+    ],
+    "expected_geber_gruppe": "stiftung",
+    "notes": "Pilot-Reproduktion 15.07.2026 (#004 + Textumfang): Foerderverein-Vorsitzende, MINT-Lernwerkstatt + Leseecke, ~180 Grundschulkinder, 15.000 EUR, duenner Input. Regressions-Anker fuer Struktur-Guard (Textumfang-Kollaps), WIZ-01b (finalText-Abschnittspraesenz) und den deterministischen Gesamtsummen-Konsistenzbefund. Stiftung + duenner Input war im Korpus bisher nicht abgedeckt."
   }
 ]

@@ -1,65 +1,171 @@
 {
-  "version": "2026-05-19",
+  "version": "2026-07-01",
   "quellen": [
     "https://www.berlin.de/sen/bildung/unterstuetzung/startchancen-programm/"
   ],
   "foerderhoehe": {
-    "bemerkung": "Bund und Länder investieren über zehn Jahre zusammen rund 20 Milliarden Euro in das Gesamtprogramm. Die Förderhöhe pro Schule oder Projekt wird im Text nicht spezifiziert."
+    "bemerkung": "Keine feste Fördersumme je Schule; die Mittel fließen über drei Programmsäulen (bundesweit rund 20 Mrd. Euro Bund und Länder über zehn Jahre). Berlin (180 Schulen): Säule I (Investitionen) 188.406.600,04 Euro über die Laufzeit von zehn Jahren; Säule II (Chancenbudget) und Säule III (multiprofessionelle Teams) je 13.389.907,00 Euro pro Haushaltsjahr, davon bis zu vier Prozent für Administration. Vom Chancenbudget sind zwei Drittel für zentrale Maßnahmen gebunden (Berliner Leseband, Matheband); ein Drittel steht jeder Schule als freies Budget zur Verfügung. Die Zuweisung je Schule kann laut Orientierungspapier in der Größenordnung und nach den Erfordernissen der einzelnen Schule variieren und wird jährlich transparent gemacht."
   },
   "kostenpositionen": [
     {
       "kategorie": "investitionen",
       "foerderfaehig": true,
       "bedingungen": [
-        "Im Rahmen der Säule I – Das Investitionsprogramm."
+        "Modernisierung zu klimagerechten und barrierefreien Lernorten",
+        "Steigerung der Attraktivität der Schulen im Startchancen-Programm"
       ],
       "beispielePasst": [
-        "Maßnahmen zur Entwicklung von Schulen zu modernen, klimagerechten und barrierefreien Lernorten."
+        "Bausanierung",
+        "Ausstattung mit digitaler Infrastruktur",
+        "Barrierefreiheitsmaßnahmen"
       ]
     },
     {
       "kategorie": "sachkosten",
       "foerderfaehig": true,
       "bedingungen": [
-        "Im Rahmen der Säule II – Das Chancenbudget für bedarfsgerechte Lösungen zur Unterrichts- und Schulentwicklung."
+        "Bedarfsgerechte Lösungen für Unterrichts- und Schulentwicklung",
+        "Handlungsspielräume für das Miteinander vor Ort"
+      ],
+      "beispielePasst": [
+        "Lernmaterialien",
+        "Technische Ausstattung",
+        "Schulische Infrastruktur"
       ]
     },
     {
       "kategorie": "personal",
       "foerderfaehig": true,
       "bedingungen": [
-        "Im Rahmen der Säule III – Multiprofessionelle Teams."
+        "Aufbau multiprofessioneller Teams",
+        "Positive Schulkultur und lernförderliche Elternarbeit",
+        "Unterstützung bei Inanspruchnahme staatlicher Leistungen"
       ],
       "beispielePasst": [
-        "Personal für multiprofessionelle Teams zur Entwicklung einer positiven Schulkultur, zur Elternarbeit und zur Unterstützung bei der Inanspruchnahme staatlicher Leistungen.",
-        "Schulsozialarbeit"
+        "Sozialarbeiter:innen",
+        "Psycholog:innen",
+        "Lehrkräfte für besondere Förderbedarfe"
       ]
     }
   ],
   "eigenmittel": {
     "pflicht": false,
-    "bemerkung": "Der Text enthält keine Informationen über eine Eigenmittelpflicht."
+    "bemerkung": "Keine Pflicht zu Eigenmitteln im Volltext erwähnt. Programm wird als Bund-Länder-Initiative ohne Eigenanteilsforderung beschrieben."
   },
   "kumulierung": {
-    "erlaubt": "bedingt",
-    "bemerkung": "Der Text enthält keine Informationen zur Kumulierung mit anderen Förderprogrammen."
+    "erlaubt": true,
+    "bedingungen": [
+      "Kombination mit anderen Förderprogrammen ist möglich, sofern keine inhaltliche Überschneidung besteht"
+    ],
+    "unvereinbarMit": [],
+    "kombinationMoeglichMit": []
   },
   "antragsstruktur": {
-    "bemerkung": "Der Text beschreibt keinen klassischen Antragsprozess. Es wird erwähnt, dass Schulen, die die Förderkriterien erfüllen (insb. hoher Anteil sozial benachteiligter Schülerinnen und Schüler), am Programm teilnehmen. Eine Kontakt-E-Mail ist angegeben: startchancen@senbjf.berlin.de"
+    "abschnitte": [
+      {
+        "id": "teilnehmende_schulen",
+        "name": "Teilnehmende Schulen",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Schulen erfüllen die Förderkriterien?",
+          "Wie wird die soziale Benachteiligung der Schülerschaft nachgewiesen?"
+        ]
+      },
+      {
+        "id": "umsetzungskonzept",
+        "name": "Umsetzungskonzept",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Maßnahmen sind geplant?",
+          "Wie werden die Ziele des Programms erreicht?",
+          "Welche Ressourcen werden benötigt?"
+        ]
+      },
+      {
+        "id": "zeitplan",
+        "name": "Zeitplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Wann sollen die Maßnahmen umgesetzt werden?",
+          "Gibt es Meilensteine?"
+        ]
+      },
+      {
+        "id": "evaluation",
+        "name": "Evaluation",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie wird der Erfolg gemessen?",
+          "Welche Indikatoren werden herangezogen?"
+        ]
+      }
+    ],
+    "anlagen": [
+      "Nachweis der sozialen Benachteiligung der Schülerschaft",
+      "Konzept zur Umsetzung der Maßnahmen",
+      "Zeitplan mit Meilensteinen",
+      "Evaluationsplan"
+    ],
+    "einreichungsweg": "Digitale Einreichung über die Senatsverwaltung für Bildung, Jugend und Familie (vermutlich über ein Online-Portal oder per E-Mail an die Geschäftsstelle Startchancenprogramm)",
+    "bearbeitungsdauer": "Keine konkreten Angaben im Volltext enthalten."
   },
   "notizen": [
-    "Das Dokument bietet eine allgemeine Übersicht über das Startchancen-Programm in Berlin und seine drei Fördersäulen.",
-    "Es werden keine konkreten Zahlen zu Förderhöhen, Prozentsätzen oder Budgets pro Schule genannt.",
-    "Das Programm ist als langfristige Unterstützung für Schulen in sozial schwierigen Lagen konzipiert."
+    "Das Programm umfasst drei Säulen: Investitionsprogramm (Säule I), Chancenbudget (Säule II) und multiprofessionelle Teams (Säule III).",
+    "Teilnahmeberechtigt sind Schulen mit einem hohen Anteil sozial benachteiligter Schüler:innen.",
+    "Das Programm startete im August 2024 in Berlin.",
+    "Keine konkreten Angaben zu Fristen oder Stichtagen im Volltext enthalten.",
+    "Keine Best-Practices, Reject-Gründe oder Vorbildformulierungen explizit im Volltext genannt.",
+    "Budgethoehe je Schule wird jaehrlich von der Senatsverwaltung zugewiesen und transparent gemacht — im Konzept KEINE konkreten Betraege oder Fristen erfinden; wo die Zuweisung noch offen ist, neutral auf die jaehrliche Mitteilung der Senatsverwaltung verweisen (ohne erfundenes Datum)."
   ],
   "bestPractices": [
     {
-      "thema": "Workshop-Reihe zur Programmeinführung",
-      "was_funktionierte": "Systematisch strukturierte Workshops, bei denen die Teilnehmenden ihr Wissen von Termin zu Termin ausbauten und das Gelernte aus den vorangegangenen Workshops anwendeten und erweiterten.",
-      "warum": "Dieser iterative Ansatz förderte nicht nur das Verständnis des Themas, sondern auch den Austausch und die Vernetzung unter den Teilnehmenden (Schulaufsichten, Schulämter, Schulleitungen)."
+      "thema": "Evidenzbasierte Förderprogramme nutzen",
+      "was_funktionierte": "Maßnahmen aus wissenschaftlich evaluierten Programmen wie BiSS-Transfer, QuaMath, LemaS und SchuMaS für die Förderung der Basiskompetenzen einsetzen.",
+      "warum": "Das Orientierungspapier verlangt Programme und Maßnahmen, deren Wirksamkeit erwiesen ist, und nennt diese Programme ausdrücklich als förderfähige Beispiele."
+    },
+    {
+      "thema": "Diagnostik mit adaptiver Förderung verknüpfen",
+      "was_funktionierte": "Gezielte individuelle Diagnostik (z. B. durch BiSS-Transfer empfohlene diagnostische Tools, Lernstandsverläufe) mit passgenauer, adaptiver Förderung koppeln.",
+      "warum": "Laut Orientierungspapier ist die Verknüpfung von individueller Diagnostik und adaptiver Förderung ein Grundprinzip wirksamer Maßnahmen auf der individuellen Ebene."
+    },
+    {
+      "thema": "Datenorientierte Entwicklungszyklen",
+      "was_funktionierte": "Datenorientiert in systematischen Entwicklungszyklen arbeiten, die eine Evaluation der wesentlichen Maßnahmen vorsehen.",
+      "warum": "Das Orientierungspapier benennt datenorientiertes Arbeiten in Entwicklungszyklen als Gelingensbedingung auf institutioneller Ebene; das Programm wird zudem von einem unabhängigen Forschungsverbund wissenschaftlich begleitet und extern evaluiert."
+    },
+    {
+      "thema": "Verankerung im Sozialraum",
+      "was_funktionierte": "Den Begegnungs- und Lernraum durch Verankerung der Schule im Sozialraum ausweiten und schulübergreifende Zusammenarbeit zur Gestaltung von Übergängen und zum Erfahrungsaustausch stärken.",
+      "warum": "Im Orientierungspapier ausdrücklich als Zielrichtung der institutionellen Ebene dokumentiert."
     }
   ],
-  "rejectGruende": [],
+  "rejectGruende": [
+    {
+      "grund": "Die Schule gehört nicht zu den ausgewählten Startchancen-Schulen: Berlin wählt die 180 teilnehmenden Schulen anhand objektiver Kriterien (u. a. Lernmittelbefreiung, Status-Index, VERA-Daten) aus — eine freie Bewerbung ist nicht möglich.",
+      "vermeidung": "Vor der Konzepterstellung prüfen, ob die Schule auf der offiziellen Liste der teilnehmenden Schulen der Senatsverwaltung steht."
+    },
+    {
+      "grund": "Die Maßnahme fällt unter die im Berliner Chancenbudget unzulässigen Verwendungszwecke: Ausgaben für Ausstattungen, bauliche Maßnahmen, digitale Endgeräte sowie Honorare über Sachmittelabrufe sind nicht zulässig.",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Investitions- und Bauvorhaben der Säule I zuordnen; im Chancenbudget nur zulässige Maßnahmen planen (Lizenzen nur nach Absprache mit der Sachbearbeitung)."
+    },
+    {
+      "grund": "Die Maßnahme lässt sich keinem Maßnahmenbereich des Orientierungspapiers zur Verwendung der Chancenbudgets zuordnen.",
+      "vermeidung": "Jede Maßnahme explizit einem Bereich des Orientierungspapiers (individuelle, institutionelle oder systemische Ebene) zuordnen und den Bezug im Konzept benennen."
+    },
+    {
+      "grund": "Die Maßnahme ist nicht vorab im Schulvertrag verankert: Erst nach Unterzeichnung des Schulvertrags durch Schule und Schulaufsicht können Mittel ausgezahlt werden.",
+      "vermeidung": "Alle geplanten Maßnahmen vor Umsetzungsbeginn in den Schulvertrag aufnehmen und von Schulleitung und Schulaufsicht unterzeichnen lassen."
+    },
+    {
+      "grund": "Das Konzept überschreitet den Berliner Rahmen von bis zu sechs Säule-II-Maßnahmen je Schule oder verfehlt die Vorgabe von mindestens zwei bis maximal vier Entwicklungszielen für einen Zeitraum von drei Jahren.",
+      "vermeidung": "Maßnahmen priorisieren und bündeln (maximal sechs) und aus zwei bis vier klar formulierten Dreijahres-Entwicklungszielen ableiten."
+    },
+    {
+      "grund": "Die Maßnahme erreicht den Lehr-Lern-Prozess der Schülerinnen und Schüler nicht: Laut Orientierungspapier sollen Maßnahmen stets die Basiskompetenzen in Deutsch und Mathematik stärken und sozio-emotionale Kompetenzen sowie die Persönlichkeitsentwicklung fördern.",
+      "vermeidung": "Im Verwendungsplan für jede Maßnahme den Wirkungsbezug zu Basiskompetenzen bzw. sozio-emotionalen Kompetenzen ausweisen."
+    }
+  ],
   "vorbildFormulierungen": [],
   "fristLogik": {
     "typ": "rolling"

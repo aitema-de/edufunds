@@ -1,24 +1,75 @@
 /**
- * Bankverbindung + Rechnungs-Konstanten fuer den Kontingent-Rechnungskauf (B2).
+ * Bankverbindung + Rechnungs-Konstanten fuer den Rechnungskauf.
  *
- * Werte stammen aus Env (Produktion), mit den dokumentierten aitema-GLS-Daten als
- * Fallback fuer Dev/Staging. Quelle der Stammdaten:
- * .planning/payments/LEGACY-CHECKOUT-REFERENCE.md (waren frueher hartkodiert).
+ * 🔴 Die frueher hier hinterlegte Fallback-IBAN "DE91 4306 0967 1250 4734 00" ist
+ * ein DUMMY — ihre Pruefsumme (ISO 13616, mod 97) ist ungueltig. Sie stand als
+ * Default im Code, waehrend BANK_IBAN auf Produktion NICHT gesetzt war. Damit haette
+ * jede Rechnungs- und Mahnmail eine nicht ueberweisbare IBAN als Zahlungsziel
+ * genannt: Die Schule kann nicht zahlen, die Zahlung bleibt aus — und der Mahnlauf
+ * schickt eine Mahnung mit derselben kaputten IBAN hinterher.
+ *
+ * Deshalb: KEIN Fallback mehr. Fehlt oder stimmt die IBAN nicht, wirft
+ * getBankDetails() — der Rechnungskauf schlaegt fehl (500), statt eine falsche
+ * Kontoverbindung zu versenden. Lieber ein sichtbarer Fehler als eine Rechnung,
+ * die ins Leere zeigt. (Gleiche Logik wie beim LLM-Provider-Guard: lieber
+ * Startfehler als stiller Schaden.)
  */
 
 export interface BankDetails {
   accountHolder: string;
   iban: string;
-  bic: string;
-  bankName: string;
+  /** Optional: In SEPA genuegt seit 2016 die IBAN ("IBAN-only"). Leer = nicht anzeigen. */
+  bic?: string;
+  /** Optional, nur zur Orientierung des Zahlenden. */
+  bankName?: string;
+}
+
+/** IBAN-Pruefsumme nach ISO 13616: Land+Pruefziffer ans Ende, Buchstaben→Zahlen, mod 97 == 1. */
+export function isValidIban(raw: string): boolean {
+  const iban = raw.replace(/\s+/g, "").toUpperCase();
+  if (!/^[A-Z]{2}\d{2}[A-Z0-9]{10,30}$/.test(iban)) return false;
+  const umgestellt = iban.slice(4) + iban.slice(0, 4);
+  const ziffern = umgestellt.replace(/[A-Z]/g, (c) => String(c.charCodeAt(0) - 55));
+  // Stueckweise mod 97 — die Zahl ist zu gross fuer Number.
+  let rest = 0;
+  for (const c of ziffern) rest = (rest * 10 + Number(c)) % 97;
+  return rest === 1;
+}
+
+/**
+ * Fehlt eine Bankangabe oder ist die IBAN ungueltig? Namen der Probleme (leer = ok).
+ *
+ * BANK_BIC ist BEWUSST nicht erforderlich: Fuer SEPA-Ueberweisungen innerhalb der EU
+ * genuegt seit 2016 die IBAN ("IBAN-only"-Regel, VO (EU) 260/2012). Eine BIC zu
+ * erzwingen wuerde den Rechnungskauf blockieren, ohne dass jemandem geholfen waere —
+ * und eine geratene BIC auf einer Rechnung ist genauso schaedlich wie eine falsche
+ * IBAN. Ist sie gesetzt, wird sie angezeigt; sonst bleibt die Zeile weg.
+ */
+export function bankConfigProblems(): string[] {
+  const probleme: string[] = [];
+  const iban = (process.env.BANK_IBAN ?? "").trim();
+  if (!iban) probleme.push("BANK_IBAN fehlt");
+  else if (!isValidIban(iban)) probleme.push("BANK_IBAN hat eine ungueltige Pruefsumme");
+  if (!(process.env.BANK_ACCOUNT_HOLDER ?? "").trim()) probleme.push("BANK_ACCOUNT_HOLDER fehlt");
+  return probleme;
 }
 
 export function getBankDetails(): BankDetails {
+  const probleme = bankConfigProblems();
+  if (probleme.length > 0) {
+    throw new Error(
+      `Bankverbindung nicht konfiguriert (${probleme.join(", ")}). ` +
+        `Der Rechnungskauf nennt die IBAN als Zahlungsziel — ohne gueltige Angabe wird ` +
+        `keine Rechnung versendet.`
+    );
+  }
+  const bic = (process.env.BANK_BIC ?? "").trim();
+  const bankName = (process.env.BANK_NAME ?? "").trim();
   return {
-    accountHolder: process.env.BANK_ACCOUNT_HOLDER ?? "aitema GmbH",
-    iban: process.env.BANK_IBAN ?? "DE91 4306 0967 1250 4734 00",
-    bic: process.env.BANK_BIC ?? "GENODEM1GLS",
-    bankName: process.env.BANK_NAME ?? "GLS Bank",
+    accountHolder: process.env.BANK_ACCOUNT_HOLDER!.trim(),
+    iban: process.env.BANK_IBAN!.trim(),
+    ...(bic ? { bic } : {}),
+    ...(bankName ? { bankName } : {}),
   };
 }
 

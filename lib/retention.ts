@@ -22,6 +22,16 @@ export interface RetentionOptions {
   unconfirmedNewsletterDays: number;
   /** Verwaiste anonyme Antrags-Entwürfe (nicht bezahlt, keine E-Mail) löschen nach … Tagen. */
   abandonedDraftDays: number;
+  /**
+   * Identitätsgebundene, nie bezahlte Antrags-Entwürfe (`author_email` gesetzt,
+   * kein `paid_token`/`paid_at`) nach … Tagen Inaktivität anonymisieren. Deckt die
+   * Lücke zwischen `abandonedDraftDays` (verlangt `author_email IS NULL`) und
+   * `paidAntragDays` (verlangt `status='paid'`): ohne diese Regel blieben liegen
+   * gelassene, personenbezogene Entwürfe unbegrenzt liegen (Art. 5(1)e).
+   * Default 90 (= Wiederaufnahme-Fenster; danach PII entfernt, Zeile bleibt als
+   * anonymisierter Rest für Statistik).
+   */
+  abandonedIdentifiedDraftDays: number;
   /** IP-Adresse/User-Agent anonymisieren (NULL setzen) nach … Tagen. */
   ipAnonymizeDays: number;
   /**
@@ -36,6 +46,7 @@ export interface RetentionOptions {
 export const DEFAULT_RETENTION: RetentionOptions = {
   unconfirmedNewsletterDays: numFromEnv("RETENTION_UNCONFIRMED_NEWSLETTER_DAYS", 30),
   abandonedDraftDays: numFromEnv("RETENTION_ABANDONED_DRAFT_DAYS", 180),
+  abandonedIdentifiedDraftDays: numFromEnv("RETENTION_ABANDONED_IDENTIFIED_DRAFT_DAYS", 90),
   ipAnonymizeDays: numFromEnv("RETENTION_IP_DAYS", 90),
   paidAntragDays: numFromEnv("RETENTION_PAID_ANTRAG_DAYS", 365),
 };
@@ -96,6 +107,29 @@ export function buildRetentionPlan(
               AND author_email IS NULL
               AND updated_at < $1`,
       params: [cutoff(opts.abandonedDraftDays)],
+    },
+    {
+      name: "anonymize_abandoned_identified_drafts",
+      description:
+        "Identitätsgebundene, nie bezahlte Antrags-Entwürfe (author_email gesetzt, " +
+        "kein paid_token/paid_at) nach Inaktivitäts-Frist (Default 90 Tage) anonymisieren: " +
+        "Antragsinhalt + Autor-/Käufer-E-Mail + IP entfernen. Schließt die Lücke zwischen " +
+        "der Lösch-Regel für anonyme Entwürfe (author_email IS NULL) und der Anonymisierung " +
+        "bezahlter Anträge (status='paid'). Idempotent über den _anonymized-Tombstone.",
+      kind: "anonymize",
+      sql: `UPDATE ki_antraege
+               SET antrag_data = '{"_anonymized": true}'::jsonb,
+                   stripe_customer_email = NULL,
+                   author_email = NULL,
+                   ip_address = NULL
+             WHERE status IN ('draft', 'in_progress', 'complete')
+               AND paid_token IS NULL
+               AND paid_at IS NULL
+               AND author_email IS NOT NULL
+               AND updated_at < $1
+               AND antrag_data IS NOT NULL
+               AND NOT jsonb_exists(antrag_data, '_anonymized')`,
+      params: [cutoff(opts.abandonedIdentifiedDraftDays)],
     },
     {
       name: "anonymize_expired_paid_antraege",

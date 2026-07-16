@@ -16,6 +16,7 @@ import {
   type CollectedContent,
 } from './content-collector';
 import { llmDraftSchema, newsletterDataSchema, type LlmDraft } from './schema';
+import { publicAppUrl } from '@/lib/app-url';
 
 const MONTHS_DE = [
   'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
@@ -37,7 +38,7 @@ const LETTER_IMPULSE = [
   'Beschreibe, was sich seit der letzten Ausgabe getan hat und worauf ihr euch im kommenden Monat freut.',
 ];
 
-function buildSystemPrompt(isKickoff: boolean): string {
+function buildSystemPrompt(isKickoff: boolean, ctaUrl: string): string {
   return [
     'Du schreibst den monatlichen EduFunds-Newsletter — und zwar als die Menschen,',
     'die hinter EduFunds stehen: ein kleines Team aus Berlin (aitema GmbH), das',
@@ -58,7 +59,7 @@ function buildSystemPrompt(isKickoff: boolean): string {
     '- Erfinde KEINE Förderprogramme, Fördergeber, Geldbeträge, Fristen oder',
     '  Statistiken. Beziehe dich nur auf die unten gelieferten Fakten.',
     '- Erfinde KEINE Links/Pfade. Als einzige URL ist die öffentliche',
-    '  Förderdatenbank https://app.edufunds.org/foerderprogramme erlaubt',
+    `  Förderdatenbank ${ctaUrl} erlaubt`,
     '  (oder gar keine). NIEMALS Programm-Slugs oder andere Pfade erfinden —',
     '  Programm-Links werden separat automatisch gesetzt.',
     '- Keine leeren Floskeln ("spannende Neuigkeiten", "in der heutigen Zeit").',
@@ -93,7 +94,8 @@ function buildUserPrompt(
   monthLabel: string,
   content: CollectedContent,
   impulse: string,
-  isKickoff: boolean
+  isKickoff: boolean,
+  ctaUrl: string
 ): string {
   const ctx = content.catalogContext;
   const lines = [
@@ -166,8 +168,8 @@ function buildUserPrompt(
     '  "insightTitle": string,     // Titel eines längeren Ratgeber-Abschnitts',
     '  "insightContent": string,   // 2-3 Absätze (mit \\n\\n getrennt) fundierter Hintergrund zu Bildungsförderung',
     '  "insightCtaText": string,   // Button-Text, z.B. "Passende Förderungen finden" (oder "")',
-    '  "insightCtaUrl": string,    // nur https://app.edufunds.org/foerderprogramme oder ""',
-    '  "newsItems": [ { "text": string, "url"?: string } ]  // 3-4 kurze, plausible Kurzmeldungen aus der Bildungsförderung; url NUR https://app.edufunds.org/foerderprogramme oder weglassen (keine erfundenen Pfade, kein <a>-Tag im text)',
+    `  "insightCtaUrl": string,    // nur ${ctaUrl} oder ""`,
+    `  "newsItems": [ { "text": string, "url"?: string } ]  // 3-4 kurze, plausible Kurzmeldungen aus der Bildungsförderung; url NUR ${ctaUrl} oder weglassen (keine erfundenen Pfade, kein <a>-Tag im text)`,
     '}',
     '',
     'Gib NUR das JSON aus, ohne Markdown-Codeblock.'
@@ -280,6 +282,10 @@ export async function generateNewsletterDraft(
     baseUrl: opts.baseUrl,
   });
 
+  // Muss dieselbe Domain sein, gegen die sanitizeLlmUrl() später prüft — sonst
+  // verwirft der Sanitizer genau die Links, die der Prompt vorgegeben hat.
+  const ctaUrl = `${(opts.baseUrl || publicAppUrl()).replace(/\/+$/, '')}/foerderprogramme`;
+
   // Rotierender Impuls → jeder Brief anders gefärbt, gleiche Stimme.
   const impulse =
     LETTER_IMPULSE[(opts.issueNumber + now.getMonth()) % LETTER_IMPULSE.length];
@@ -287,8 +293,8 @@ export async function generateNewsletterDraft(
   // Kickoff braucht mehr Spielraum (zusätzliche Gründungsgeschichte).
   const { value } = await generateJson<unknown>(
     MODEL_PIPELINE,
-    buildSystemPrompt(isKickoff),
-    buildUserPrompt(monthLabel, content, impulse, isKickoff),
+    buildSystemPrompt(isKickoff, ctaUrl),
+    buildUserPrompt(monthLabel, content, impulse, isKickoff, ctaUrl),
     { maxTokens: isKickoff ? 3000 : 2000 }
   );
 

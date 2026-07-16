@@ -262,7 +262,18 @@ export async function verifyAdminCredentials(
     await bcrypt.compare(password, '$2a$12$dummy.hash.for.timing.protection');
     return null;
   }
-  
+
+  // Fail-fast + sichtbar: ist ADMIN_PASSWORD_HASH nicht gesetzt, ist Login
+  // korrekt fail-closed (leerer Hash ⇒ compare=false), aber das sieht aus wie ein
+  // falsches Passwort. Expliziter Log macht die Fehlkonfiguration erkennbar.
+  if (!admin.passwordHash) {
+    console.error(
+      '[admin-auth] ADMIN_PASSWORD_HASH ist nicht gesetzt — Admin-Login ist deaktiviert (fail-closed).'
+    );
+    await bcrypt.compare(password, '$2a$12$dummy.hash.for.timing.protection');
+    return null;
+  }
+
   // Prüfe gegen gehashtes Passwort
   const isValid = await verifyPassword(password, admin.passwordHash);
   

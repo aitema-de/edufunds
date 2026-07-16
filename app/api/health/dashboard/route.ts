@@ -12,21 +12,23 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { 
-  getDashboardData, 
+import {
+  getDashboardData,
   collectSystemMetrics,
   metricsStore,
   getRecentLogs,
   logger,
 } from '@/lib/monitoring';
+import { requireAdmin } from '@/lib/admin-auth';
 
-export const dynamic = 'force-static';
+// MUSS dynamic sein: 'force-static' haette die Antwort zur Build-Zeit eingefroren
+// und den Auth-Check unten wirkungslos gemacht (kein Request-Kontext).
+export const dynamic = 'force-dynamic';
 
-// CORS Headers für Dashboard
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+// Kein 'Access-Control-Allow-Origin: *' mehr. Diese Route liefert Systemmetriken,
+// Fehlerlogs und die IPs anfragender Clients — das ist nichts, was eine fremde
+// Domain per XHR auslesen darf. Sie ist ab sofort admin-only (wie /api/newsletter/*).
+const securityHeaders = {
   'Cache-Control': 'no-store, no-cache, must-revalidate',
 };
 
@@ -39,7 +41,12 @@ const corsHeaders = {
  */
 export async function GET(request: NextRequest) {
   const startTime = Date.now();
-  
+
+  // Admin-only. Vorher war diese Route voellig ungeschuetzt und gab System-
+  // metriken, Fehlerlogs und die IPs anfragender Clients an jeden heraus.
+  const auth = await requireAdmin(request);
+  if (!auth.success) return auth.response;
+
   try {
     // Query Parameter parsen
     const { searchParams } = new URL(request.url);
@@ -94,7 +101,7 @@ export async function GET(request: NextRequest) {
     
     return NextResponse.json(response, {
       status: response.statusCode,
-      headers: corsHeaders,
+      headers: securityHeaders,
     });
     
   } catch (error) {
@@ -113,7 +120,7 @@ export async function GET(request: NextRequest) {
       },
       { 
         status: 500,
-        headers: corsHeaders,
+        headers: securityHeaders,
       }
     );
   }
@@ -125,6 +132,6 @@ export async function GET(request: NextRequest) {
 export async function OPTIONS() {
   return new NextResponse(null, {
     status: 204,
-    headers: corsHeaders,
+    headers: securityHeaders,
   });
 }

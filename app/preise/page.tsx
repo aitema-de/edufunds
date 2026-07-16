@@ -97,12 +97,12 @@ const faqs = [
   {
     question: "Was ist ein Antrag?",
     answer:
-      "Ein Antrag in EduFunds ist ein vollständig ausgefüllter Förderantrag, den unsere KI basierend auf Ihren Angaben und den Anforderungen des Förderprogramms generiert. Jeder Antrag ist individuell angepasst, professionell formuliert und bereit zur Einreichung. Sie können den Antrag als PDF exportieren oder online bearbeiten.",
+      "Ein Antrag in EduFunds ist ein vollständig ausgearbeiteter Antragsentwurf, den unsere KI aus Ihren Angaben und den Anforderungen des Förderprogramms erstellt — individuell angepasst und professionell formuliert. Sie prüfen den Entwurf, passen ihn an und reichen ihn selbst ein; exportieren lässt er sich als PDF, Word oder Text.",
   },
   {
     question: "Wie funktioniert die KI-Generierung?",
     answer:
-      "Unsere KI analysiert die spezifischen Anforderungen des gewählten Förderprogramms und kombiniert diese mit Ihren Projektinformationen. Sie erstellt professionelle Antragstexte, die auf erfolgreichen Vorlagen basieren und von Pädagogen optimiert wurden. Die KI berücksichtigt Fristen, Förderkriterien und formale Anforderungen.",
+      "Unsere KI wertet die Anforderungen des gewählten Förderprogramms aus und verbindet sie mit Ihren Projektangaben. Daraus entsteht ein Antragsentwurf, der die uns bekannten Förderkriterien und Formvorgaben aufgreift. Weil KI Fehler machen kann, prüfen Sie den Entwurf vor der Einreichung — Fristen und formale Anforderungen bestätigen Sie bitte immer beim Fördergeber selbst.",
   },
   {
     question: "Brauche ich ein Abonnement?",
@@ -117,7 +117,7 @@ const faqs = [
   {
     question: "Was passiert mit meinen Anträgen?",
     answer:
-      "Alle generierten Anträge bleiben in Ihrem Account gespeichert und einsehbar und lassen sich jederzeit als PDF exportieren. Für einen neuen Antrag wird ein freier Credit aus Ihrem Kontingent verbraucht oder ein Einzelantrag gekauft.",
+      "Freigeschaltete Anträge sind 12 Monate ab Kauf in Ihrem Account abrufbar und lassen sich jederzeit exportieren (PDF, Word, Text) — danach werden die Inhalte anonymisiert, exportieren Sie sie also rechtzeitig. Unbezahlte Entwürfe, an denen 90 Tage nicht gearbeitet wurde, werden ebenfalls anonymisiert. Für einen neuen Antrag wird ein freier Credit aus Ihrem Kontingent verbraucht oder ein Einzelantrag gekauft.",
   },
   {
     question: "Gibt es eine Mindestlaufzeit oder Kündigungsfrist?",
@@ -127,7 +127,7 @@ const faqs = [
   {
     question: "Sind meine Daten sicher?",
     answer:
-      "Ja, Datenschutz hat für uns höchste Priorität. Alle Daten werden ausschließlich in deutschen Rechenzentren gespeichert, sind DSGVO-konform und verschlüsselt. Wir geben keine Daten an Dritte weiter und verwenden Ihre Informationen nur für die Antragserstellung.",
+      "Ihre Daten werden bei Hetzner in Deutschland gespeichert und verschlüsselt übertragen. Die KI-Verarbeitung läuft bei Mistral AI (Paris) im europäischen Wirtschaftsraum — es findet kein Transfer in Drittländer statt, und Ihre Eingaben werden nicht zum Training von KI-Modellen verwendet. Vor der Übermittlung an die KI entfernen wir automatisch Identifikatoren wie E-Mail-Adressen, Telefonnummern und IBANs aus Freitexten. Wir setzen keine Tracking- oder Analysedienste ein. Einzelheiten in der Datenschutzerklärung und unter „AVV & Subprozessoren“.",
   },
 ];
 
@@ -159,15 +159,15 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       className="border-b last:border-b-0"
-      style={{ borderColor: "rgba(201, 162, 39, 0.15)" }}
+      style={{ borderColor: "rgba(217, 119, 6, 0.15)" }}
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full py-5 flex items-center justify-between gap-4 text-left group"
       >
         <span
-          className="font-semibold text-lg group-hover:text-[#c9a227] transition-colors"
-          style={{ color: "#f8f5f0" }}
+          className="font-semibold text-lg group-hover:text-[#d4af37] transition-colors"
+          style={{ color: "#fdfdfc" }}
         >
           {question}
         </span>
@@ -175,7 +175,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
           className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${
             isOpen ? "rotate-180" : ""
           }`}
-          style={{ color: "#c9a227" }}
+          style={{ color: "#d4af37" }}
         />
       </button>
       <motion.div
@@ -186,7 +186,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
       >
         <p
           className="pb-5 leading-relaxed"
-          style={{ color: "#94a3b8" }}
+          style={{ color: "#a8a29e" }}
         >
           {answer}
         </p>
@@ -203,7 +203,7 @@ export default function PricingPage() {
         {/* Hero Section */}
         <section
           className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden"
-          style={{ backgroundColor: "#0a1628" }}
+          style={{ backgroundColor: "#1c1917" }}
         >
           {/* Background Elements */}
           <div className="absolute inset-0 geometric-grid opacity-30" />
@@ -213,7 +213,7 @@ export default function PricingPage() {
           <div
             className="absolute top-20 right-10 w-72 h-72 animate-float-slow hidden lg:block"
             style={{
-              background: "linear-gradient(135deg, rgba(201, 162, 39, 0.05) 0%, transparent 100%)",
+              background: "linear-gradient(135deg, rgba(217, 119, 6, 0.05) 0%, transparent 100%)",
               borderRadius: "40% 60% 60% 40% / 60% 40% 60% 40%",
             }}
           />
@@ -227,27 +227,27 @@ export default function PricingPage() {
             >
               <span
                 className="inline-block font-mono text-xs tracking-widest uppercase mb-4"
-                style={{ color: "#c9a227" }}
+                style={{ color: "#d4af37" }}
               >
                 Preisgestaltung
               </span>
               <h1
                 className="font-serif mb-6"
-                style={{ color: "#f8f5f0" }}
+                style={{ color: "#fdfdfc" }}
               >
                 Transparente Preise.
                 <br />
-                <span style={{ color: "#c9a227" }}>Maximaler Wert.</span>
+                <span style={{ color: "#d4af37" }}>Maximaler Wert.</span>
               </h1>
               <div className="flex justify-center mb-6">
                 <div
                   className="accent-line"
-                  style={{ background: "linear-gradient(90deg, #c9a227, #e4c55a)" }}
+                  style={{ background: "linear-gradient(90deg, #d4af37, #e4c55a)" }}
                 />
               </div>
               <p
                 className="text-lg leading-relaxed"
-                style={{ color: "#94a3b8" }}
+                style={{ color: "#a8a29e" }}
               >
                 Wählen Sie das passende Modell für Ihre Schule oder Ihren Träger.
                 Starten Sie kostenlos. Keine versteckten Kosten, kein Abo.
@@ -266,26 +266,26 @@ export default function PricingPage() {
                   key={benefit.title}
                   className="flex items-center gap-3 px-5 py-3 rounded-xl"
                   style={{
-                    backgroundColor: "rgba(15, 31, 56, 0.6)",
-                    border: "1px solid rgba(201, 162, 39, 0.1)",
+                    backgroundColor: "rgba(41, 37, 36, 0.6)",
+                    border: "1px solid rgba(217, 119, 6, 0.1)",
                   }}
                 >
                   <div
                     className="w-8 h-8 rounded-lg flex items-center justify-center"
-                    style={{ backgroundColor: "rgba(201, 162, 39, 0.1)" }}
+                    style={{ backgroundColor: "rgba(217, 119, 6, 0.1)" }}
                   >
-                    <benefit.icon className="w-4 h-4" style={{ color: "#c9a227" }} />
+                    <benefit.icon className="w-4 h-4" style={{ color: "#d4af37" }} />
                   </div>
                   <div>
                     <div
                       className="text-sm font-semibold"
-                      style={{ color: "#f8f5f0" }}
+                      style={{ color: "#fdfdfc" }}
                     >
                       {benefit.title}
                     </div>
                     <div
                       className="text-xs"
-                      style={{ color: "#64748b" }}
+                      style={{ color: "#78716c" }}
                     >
                       {benefit.description}
                     </div>
@@ -299,7 +299,7 @@ export default function PricingPage() {
         {/* Pricing Cards Section */}
         <section
           className="relative py-20 lg:py-28"
-          style={{ backgroundColor: "#0a1628" }}
+          style={{ backgroundColor: "#1c1917" }}
         >
           <div className="container mx-auto px-6">
             {/* Einzel-Optionen: Verein / einzelnes Projekt */}
@@ -323,14 +323,14 @@ export default function PricingPage() {
             >
               <span
                 className="inline-block font-mono text-xs tracking-widest uppercase mb-4"
-                style={{ color: "#c9a227" }}
+                style={{ color: "#d4af37" }}
               >
                 Für Schulen & Träger
               </span>
-              <h2 className="font-serif mb-4" style={{ color: "#f8f5f0" }}>
+              <h2 className="font-serif mb-4" style={{ color: "#fdfdfc" }}>
                 Kontingent vorab freischalten
               </h2>
-              <p className="text-base leading-relaxed" style={{ color: "#94a3b8" }}>
+              <p className="text-base leading-relaxed" style={{ color: "#a8a29e" }}>
                 Ein Sammel-Code für mehrere Anträge – Ihre Lehrkräfte schalten frei,
                 ohne selbst zu zahlen. Vorkasse statt Abo, 12 Monate gültig.
               </p>
@@ -354,7 +354,7 @@ export default function PricingPage() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="mt-16 text-center"
             >
-              <p className="text-sm" style={{ color: "#64748b" }}>
+              <p className="text-sm" style={{ color: "#78716c" }}>
                 Alle Preise verstehen sich inkl. MwSt. Kein Abo, keine versteckten Kosten.
               </p>
             </motion.div>
@@ -364,12 +364,12 @@ export default function PricingPage() {
         {/* FAQ Section */}
         <section
           className="relative py-20 lg:py-28"
-          style={{ backgroundColor: "#0a1628" }}
+          style={{ backgroundColor: "#1c1917" }}
         >
           {/* Border Top */}
           <div
             className="absolute top-0 left-0 right-0 h-px"
-            style={{ backgroundColor: "rgba(201, 162, 39, 0.15)" }}
+            style={{ backgroundColor: "rgba(217, 119, 6, 0.15)" }}
           />
 
           <div className="container mx-auto px-6">
@@ -382,20 +382,20 @@ export default function PricingPage() {
             >
               <span
                 className="inline-block font-mono text-xs tracking-widest uppercase mb-4"
-                style={{ color: "#c9a227" }}
+                style={{ color: "#d4af37" }}
               >
                 FAQ
               </span>
               <h2
                 className="font-serif mb-6"
-                style={{ color: "#f8f5f0" }}
+                style={{ color: "#fdfdfc" }}
               >
                 Häufig gestellte Fragen
               </h2>
               <div className="flex justify-center">
                 <div
                   className="accent-line"
-                  style={{ background: "linear-gradient(90deg, #c9a227, #e4c55a)" }}
+                  style={{ background: "linear-gradient(90deg, #d4af37, #e4c55a)" }}
                 />
               </div>
             </motion.div>
@@ -416,13 +416,13 @@ export default function PricingPage() {
             >
               <p
                 className="mb-4"
-                style={{ color: "#94a3b8" }}
+                style={{ color: "#a8a29e" }}
               >
                 Noch Fragen? Wir helfen gerne weiter.
               </p>
               <Link
                 href="/kontakt"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-[#c9a227]/50 text-[#c9a227] font-semibold hover:bg-[#c9a227] hover:text-[#050d18] transition-all duration-300"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-[#d4af37]/50 text-[#d4af37] font-semibold hover:bg-[#d4af37] hover:text-[#1c1917] transition-all duration-300"
               >
                 <HelpCircle className="w-4 h-4" />
                 Kontakt aufnehmen
@@ -434,19 +434,19 @@ export default function PricingPage() {
         {/* CTA Section */}
         <section
           className="relative py-20 lg:py-28 overflow-hidden"
-          style={{ backgroundColor: "#0a1628" }}
+          style={{ backgroundColor: "#1c1917" }}
         >
           {/* Border Top */}
           <div
             className="absolute top-0 left-0 right-0 h-px"
-            style={{ backgroundColor: "rgba(201, 162, 39, 0.15)" }}
+            style={{ backgroundColor: "rgba(217, 119, 6, 0.15)" }}
           />
 
           {/* Background Decoration */}
           <div
             className="absolute inset-0"
             style={{
-              background: "radial-gradient(ellipse at center, rgba(201, 162, 39, 0.05) 0%, transparent 70%)",
+              background: "radial-gradient(ellipse at center, rgba(217, 119, 6, 0.05) 0%, transparent 70%)",
             }}
           />
 
@@ -460,13 +460,13 @@ export default function PricingPage() {
             >
               <h2
                 className="font-serif mb-6"
-                style={{ color: "#f8f5f0" }}
+                style={{ color: "#fdfdfc" }}
               >
                 Bereit, Fördermittel zu erschließen?
               </h2>
               <p
                 className="text-lg mb-8"
-                style={{ color: "#94a3b8" }}
+                style={{ color: "#a8a29e" }}
               >
                 Starten Sie kostenlos und entdecken Sie, wie einfach Förderanträge
                 mit EduFunds sein können.
@@ -481,7 +481,7 @@ export default function PricingPage() {
                 </Link>
                 <Link
                   href="/foerderprogramme"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl btn-outline btn-primary-lg"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl btn-primary-lg border-2 border-gold-500 text-gold-400 font-semibold hover:bg-gold-500 hover:text-[#1c1917] transition-colors"
                 >
                   Programme erkunden
                 </Link>

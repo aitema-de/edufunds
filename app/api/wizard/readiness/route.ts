@@ -14,7 +14,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Session nicht gefunden" }, { status: 404 });
     }
     const richtlinie = await loadRichtlinie(session.foerderprogrammId);
-    const report = evaluateFactsReadiness(session.data.facts, richtlinie);
+    // FP-V-2: Rohantworten mitgeben, damit der Readiness-Check trennschärfer wird
+    // (z. B. Nachhaltigkeit nicht als "fehlt" melden, wenn sie beantwortet wurde).
+    const userAnswers = (session.data.messages ?? [])
+      .filter((m) => m.role === "user" && m.kind === "answer")
+      .map((m) => m.content);
+    const report = evaluateFactsReadiness(session.data.facts, richtlinie, userAnswers);
     return NextResponse.json(report);
   } catch (err) {
     console.error("[wizard/readiness] Fehler:", err);

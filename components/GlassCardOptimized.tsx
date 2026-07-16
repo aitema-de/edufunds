@@ -14,29 +14,29 @@ interface GlassCardProps {
 const TYPE_CONFIG = {
   bund: {
     label: "Bundesmittel",
-    color: "bg-cyan-500/20 text-cyan-400",
+    color: "bg-sky-100 text-sky-700",
     iconPath: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
   },
   land: {
     label: "Landesmittel",
-    color: "bg-purple-500/20 text-purple-400",
+    color: "bg-violet-100 text-violet-700",
     iconPath: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"
   },
   stiftung: {
     label: "Stiftung",
-    color: "bg-green-500/20 text-green-400",
+    color: "bg-emerald-100 text-emerald-700",
     iconPath: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
   },
   eu: {
     label: "EU-Programm",
-    color: "bg-blue-500/20 text-blue-400",
+    color: "bg-blue-100 text-blue-700",
     iconPath: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
   }
 } as const;
 
 const DEFAULT_TYPE = {
   label: "Unbekannt",
-  color: "bg-slate-500/20 text-slate-400",
+  color: "bg-stone-200 text-stone-600",
   iconPath: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
 };
 
@@ -53,11 +53,12 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
       .trim() || "";
   }, [programm.kurzbeschreibung]);
 
-  // Bundesland-Text (memoized)
+  // Bundesland-Text (memoized). Leeres Array (Datenluecke) als "Bundesweit"
+  // statt irrefuehrendem "0 Bundeslaender" (FP-06).
   const bundeslandText = useMemo(() => {
-    return programm.bundeslaender.includes("alle")
-      ? "Alle Bundesländer"
-      : `${programm.bundeslaender.length} Bundesländer`;
+    const bl = programm.bundeslaender;
+    if (!bl || bl.length === 0 || bl.includes("alle")) return "Alle Bundesländer";
+    return bl.length === 1 ? "1 Bundesland" : `${bl.length} Bundesländer`;
   }, [programm.bundeslaender]);
 
   return (
@@ -65,8 +66,8 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
       className="rounded-2xl p-6 md:p-8 transition-all group card-lift"
       style={{ 
         backgroundColor: '#ffffff', 
-        border: '1px solid rgba(10, 22, 40, 0.08)',
-        boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)'
+        border: '1px solid rgba(28, 25, 23, 0.08)',
+        boxShadow: '0 4px 20px -4px rgba(28, 25, 23, 0.05)'
       }}
     >
       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
@@ -84,7 +85,7 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
                   {typeConfig.label}
                 </span>
                 {programm.kiAntragGeeignet && (
-                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-[#c9a227]/15 text-[#7a5e12]">
+                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-[#1e3d32]/15 text-[#1e3d32]">
                     KI-geeignet
                   </span>
                 )}
@@ -96,39 +97,39 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
               </div>
               
               {/* Titel */}
-              <h3 className="text-xl font-bold text-[#0a1628] group-hover:text-[#c9a227] transition-colors line-clamp-2">
+              <h3 className="text-xl font-bold text-[#1c1917] group-hover:text-[#1e3d32] transition-colors line-clamp-2">
                 {programm.name}
               </h3>
             </div>
           </div>
 
           {/* Fördergeber */}
-          <p className="text-[#1e3a61] text-sm mb-3 flex items-center gap-2">
-            <Building2 className="h-4 w-4 flex-shrink-0 text-[#1e3a61]/60" />
+          <p className="text-[#57534e] text-sm mb-3 flex items-center gap-2">
+            <Building2 className="h-4 w-4 flex-shrink-0 text-[#57534e]/60" />
             <span className="truncate">{programm.foerdergeber}</span>
           </p>
 
           {/* Beschreibung */}
-          <p className="text-[#1e3a61]/80 text-sm leading-relaxed mb-4 line-clamp-3">
+          <p className="text-[#57534e]/80 text-sm leading-relaxed mb-4 line-clamp-3">
             {cleanedDescription}
           </p>
 
           {/* Details */}
-          <div className="flex flex-wrap gap-4 text-sm text-[#1e3a61] mb-4">
+          <div className="flex flex-wrap gap-4 text-sm text-[#57534e] mb-4">
             {programm.foerdersummeText && (
               <span className="flex items-center gap-1">
-                <Euro className="h-4 w-4 text-[#c9a227] flex-shrink-0" />
-                <span className="truncate font-medium text-[#7a5e12]">{programm.foerdersummeText}</span>
+                <Euro className="h-4 w-4 text-[#1e3d32] flex-shrink-0" />
+                <span className="truncate font-medium text-[#1e3d32]">{programm.foerdersummeText}</span>
               </span>
             )}
             {programm.bewerbungsfristText && (
               <span className="flex items-center gap-1">
-                <Calendar className="h-4 w-4 text-[#1e3a61]/50 flex-shrink-0" />
+                <Calendar className="h-4 w-4 text-[#57534e]/50 flex-shrink-0" />
                 <span className="truncate">{programm.bewerbungsfristText}</span>
               </span>
             )}
             <span className="flex items-center gap-1">
-              <MapPin className="h-4 w-4 text-[#1e3a61]/50 flex-shrink-0" />
+              <MapPin className="h-4 w-4 text-[#57534e]/50 flex-shrink-0" />
               {bundeslandText}
             </span>
           </div>
@@ -138,7 +139,7 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
             {programm.kategorien.slice(0, 5).map((kat) => (
               <span
                 key={kat}
-                className="px-2 py-1 rounded-md text-xs bg-[#f8f5f0] text-[#1e3a61] border border-[#ebe5dc]"
+                className="px-2 py-1 rounded-md text-xs bg-[#fdfdfc] text-[#57534e] border border-[#ebe5dc]"
               >
                 {formatKategorie(kat)}
               </span>
@@ -155,12 +156,14 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
             Details ansehen
             <ArrowRight className="h-4 w-4" />
           </Link>
-          {programm.antragsLink && (
+          {/* Direkt in den adaptiven Wizard (nur bei KI-geeigneten Programmen);
+              Legacy-Route /antrag/[id] leitet ohnehin dorthin um. */}
+          {programm.kiAntragGeeignet && (
             <Link
-              href={`/antrag/${programm.id}`}
+              href={`/antrag/${programm.id}/wizard`}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl btn-outline text-sm whitespace-nowrap"
             >
-              Antrag starten
+              KI-Antrag erstellen
             </Link>
           )}
         </div>

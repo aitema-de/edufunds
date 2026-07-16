@@ -22,7 +22,10 @@ const customJestConfig = {
   // veralteten Daten-Snapshots erzeugt.
   // app/api/contact/test.ts ist ein manuelles ts-node-Skript (Funktionen statt
   // it/describe), kein Jest-Test — sonst "must contain at least one test".
-  testPathIgnorePatterns: ['/node_modules/', '/.next/', '/e2e/', '/\\.claude/', '/app/api/contact/test\\.ts$'],
+  // __tests__/integration/ laeuft gegen ein echtes PostgreSQL und hat eine eigene
+  // Config (jest.integration.config.js, `npm run test:integration`). Hier ausschliessen,
+  // damit `npm test` ohne Datenbank auskommt und schnell bleibt.
+  testPathIgnorePatterns: ['/node_modules/', '/.next/', '/e2e/', '/\\.claude/', '/app/api/contact/test\\.ts$', '/__tests__/integration/'],
   // Verhindert zusaetzlich die Haste-Modul-Kollision (doppelte package.json) durch
   // die Agent-Worktrees unter /.claude/.
   modulePathIgnorePatterns: ['/\\.claude/'],

@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { publicAppUrl } from '@/lib/app-url';
 
 // Laufzeit-dynamisch, damit die Entscheidung indexierbar/nicht-indexierbar aus der
 // Container-Env (ROBOTS_NOINDEX) kommt — ein Build, korrektes robots.txt je Umgebung.
@@ -24,10 +25,7 @@ export default function robots(): MetadataRoute.Robots {
     };
   }
 
-  const base = (process.env.NEXT_PUBLIC_APP_URL || 'https://app.edufunds.org').replace(
-    /\/+$/,
-    ''
-  );
+  const base = publicAppUrl();
 
   return {
     rules: {

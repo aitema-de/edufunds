@@ -18,6 +18,9 @@
 ## Bankverbindung aitema GmbH (war hardcoded in `/api/checkout`)
 - Empfänger: **Aitema GmbH**
 - IBAN: **DE91 4306 0967 1250 4734 00**
+
+> 🔴 **ACHTUNG (14.07.2026): Die hier genannte IBAN `DE91 4306 0967 1250 4734 00` ist ein DUMMY — ihre Prüfsumme ist ungültig.** Nicht kopieren! `BANK_IBAN` muss mit der ECHTEN aitema-Kontoverbindung gesetzt werden; `getBankDetails()` (lib/payments/bank.ts) prüft die Prüfsumme und verweigert sonst den Rechnungskauf.
+
 - BIC: **GENODEM1GLS**
 - Bank: **GLS Bank**
 - → Gehört in Produktion in Env/Config, NICHT in den Code.

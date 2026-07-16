@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import type Stripe from "stripe";
 import { getStripe, stripeConfigured } from "@/lib/stripe/client";
+import { query } from "@/lib/db";
 import { markSessionPaid } from "@/lib/wizard/session";
 import {
   fulfillQuotaCardPurchase,
@@ -8,6 +9,7 @@ import {
   buildQuotaCardAdminEmail,
   type QuotaCardResult,
 } from "@/lib/payments/orders";
+import { revokeSessionAccess, revokeQuotaCodeByStripeSession } from "@/lib/payments/refund";
 import { sendMail } from "@/lib/mail";
 import { runInvoiceJob } from "@/lib/payments/invoice";
 import { trustedAppUrl } from "@/lib/app-url";
@@ -40,6 +42,72 @@ async function sendQuotaCardMails(result: QuotaCardResult): Promise<void> {
   await sendMail(
     { to: ADMIN_EMAIL, subject: admin.subject, html: admin.html, text: admin.text, replyTo: result.email },
     "stripe/webhook"
+  );
+}
+
+/**
+ * Rueckerstattung → Zugriff entwerten (PAY-03).
+ *
+ * Vorher lief hier nur ein console.log: der Kunde bekam sein Geld zurueck und
+ * behielt Antrag bzw. Kontingent unbegrenzt.
+ */
+async function handleChargeRefunded(ch: Stripe.Charge): Promise<void> {
+  // TEILerstattung entwertet NICHT. Wer 5 von 29,90 EUR zurueckbekommt (Kulanz),
+  // hat die Leistung bezahlt und behaelt sie. Nur die volle Rueckzahlung dreht
+  // den Kauf zurueck.
+  const voll = (ch.amount_refunded ?? 0) >= (ch.amount ?? 0);
+  if (!voll) {
+    console.log(
+      `[stripe/webhook] charge.refunded ${ch.id}: Teilerstattung ` +
+        `(${ch.amount_refunded}/${ch.amount}) — Zugriff bleibt bestehen`
+    );
+    return;
+  }
+
+  const pi = typeof ch.payment_intent === "string" ? ch.payment_intent : ch.payment_intent?.id;
+
+  // 1) Einzelantrag: der Wizard-Checkout legt wizard_session_token in die
+  //    PaymentIntent-Metadaten. Der Charge erbt sie in der Regel — aber darauf
+  //    verlassen wir uns nicht: notfalls den PaymentIntent nachladen.
+  let token = (ch.metadata?.wizard_session_token as string | undefined) ?? null;
+  if (!token && pi) {
+    const intent = await getStripe().paymentIntents.retrieve(pi);
+    token = (intent.metadata?.wizard_session_token as string | undefined) ?? null;
+  }
+  if (token) {
+    const r = await revokeSessionAccess(token);
+    console.log(
+      `[stripe/webhook] charge.refunded ${ch.id}: Session ${token} ` +
+        (r.revoked
+          ? `entwertet (paid_token ${r.revokedToken} ungueltig)`
+          : `war bereits entwertet oder nie bezahlt`)
+    );
+    return;
+  }
+
+  // 2) Kontingent-Kartenkauf: dieser Checkout setzt KEINE PaymentIntent-Metadaten.
+  //    Ueber den PaymentIntent die Checkout-Session finden — daran haengt der Code
+  //    (credit_codes.stripe_session_id).
+  if (pi) {
+    const sessions = await getStripe().checkout.sessions.list({ payment_intent: pi, limit: 1 });
+    const cs = sessions.data[0];
+    if (cs) {
+      const r = await revokeQuotaCodeByStripeSession(cs.id);
+      if (r.revoked) {
+        console.log(
+          `[stripe/webhook] charge.refunded ${ch.id}: Kontingent-Code ${r.code} entwertet ` +
+            `(${r.creditsVerfallen} offene Credits verfallen)`
+        );
+        return;
+      }
+    }
+  }
+
+  // Nichts zugeordnet: darf nicht still bleiben — hier ist Geld zurueckgeflossen,
+  // ohne dass ein Zugriff entzogen wurde.
+  console.warn(
+    `[stripe/webhook] charge.refunded ${ch.id}: WEDER Antrag NOCH Kontingent zugeordnet — ` +
+      `nichts entwertet. Bitte manuell pruefen (payment_intent=${pi ?? "unbekannt"}).`
   );
 }
 
@@ -78,6 +146,22 @@ export async function POST(req: NextRequest) {
 
   // Audit-Trail: event.id ist von Stripe vergeben, kein Secret — sicher zu loggen (RESEARCH §1.2)
   console.log(`[stripe/webhook] event.id=${event.id} type=${event.type}`);
+
+  // Idempotenz-Riegel (Defense-in-depth): bereits verarbeitete Events überspringen.
+  // Fehlt die Tabelle (Migration 011 noch nicht angewandt), nicht hart scheitern —
+  // die Datenebene ist ohnehin idempotent; wir loggen und verarbeiten normal weiter.
+  try {
+    const seen = await query<{ event_id: string }>(
+      `SELECT event_id FROM stripe_webhook_events WHERE event_id = $1`,
+      [event.id]
+    );
+    if (seen.rowCount && seen.rowCount > 0) {
+      console.log(`[stripe/webhook] event.id=${event.id} bereits verarbeitet — übersprungen (dedup)`);
+      return NextResponse.json({ received: true, deduped: true });
+    }
+  } catch (dedupErr) {
+    console.error("[stripe/webhook] Dedup-Vorabprüfung fehlgeschlagen (verarbeite trotzdem):", dedupErr);
+  }
 
   try {
     switch (event.type) {
@@ -173,8 +257,7 @@ export async function POST(req: NextRequest) {
       }
       case "charge.refunded": {
         const ch = event.data.object as Stripe.Charge;
-        console.log(`[stripe/webhook] charge.refunded ${ch.id}`);
-        // TODO PAY-03 (DB-Schema-Hook): paid_token invalidieren — Migration 004 erweitert ki_antraege.status um "refunded".
+        await handleChargeRefunded(ch);
         break;
       }
       case "checkout.session.async_payment_failed": {
@@ -187,6 +270,22 @@ export async function POST(req: NextRequest) {
       default:
         // andere Events ignorieren (payment_intent.*, invoice.* etc.)
         break;
+    }
+
+    // RECORD-ON-SUCCESS: event.id erst NACH fehlerfreier Verarbeitung eintragen,
+    // damit ein Fehler oben in den catch fällt (500 → Stripe-Retry) statt hier
+    // fälschlich als "verarbeitet" markiert zu werden. ON CONFLICT DO NOTHING
+    // deckt die seltene Race (zwei gleichzeitige Zustellungen desselben Events) ab.
+    try {
+      await query(
+        `INSERT INTO stripe_webhook_events (event_id, event_type)
+         VALUES ($1, $2) ON CONFLICT (event_id) DO NOTHING`,
+        [event.id, event.type]
+      );
+    } catch (recErr) {
+      // Tabelle fehlt/DB-Fehler: nicht den 200 gefährden — Verarbeitung war
+      // erfolgreich, die Datenebene ist idempotent gegen eine etwaige Doppelung.
+      console.error("[stripe/webhook] event.id konnte nicht als verarbeitet vermerkt werden:", recErr);
     }
 
     return NextResponse.json({ received: true });

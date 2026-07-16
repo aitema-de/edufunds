@@ -1,51 +1,188 @@
 {
-  "version": "2026-05-19",
+  "version": "2026-07-01",
   "quellen": [
-    "https://ferry-porsche-challenge.de"
+    "https://ferry-porsche-challenge.de",
+    "https://ferry-porsche-stiftung.de/news/start-ferry-porsche-challenge-2026-copy"
   ],
   "foerderhoehe": {
     "minEur": 5000,
     "maxEur": 50000,
-    "bemerkung": "Es handelt sich um einen Wettbewerb mit gestaffelten Preisgeldern. Insgesamt werden 500.000 EUR vergeben. Die Preisgelder sind wie folgt aufgeteilt: 3 x 50.000 € (1. Plätze), 6 x 25.000 € (2. Plätze), 9 x 10.000 € (3. Plätze), 2 x 30.000 € (Sonderpreise) und 10 x 5.000 € für die weiteren Nominierten."
+    "bemerkung": "Fördersumme insgesamt: 500000 EUR. Verteilung: 3x50000 EUR (1. Plätze), 6x25000 EUR (2. Plätze), 9x10000 EUR (3. Plätze), 2x30000 EUR (Sonderpreise), 10x5000 EUR (Nominierte)."
   },
-  "kostenpositionen": [],
+  "kostenpositionen": [
+    {
+      "kategorie": "sonstiges",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Projekt muss gemeinnützig sein.",
+        "Projekt muss auf eines der genannten Themenfelder einzahlen (z.B. Schutz vor Vereinsamung im Alter, digitale Handlungskompetenzen, Brücken in den Ruhestand bauen).",
+        "Projekt muss ältere Menschen oder Personen im Übergang vom Berufsleben in den Ruhestand adressieren.",
+        "Projekt muss in Baden-Württemberg oder Sachsen umgesetzt werden."
+      ],
+      "beispielePasst": [
+        "Angebote zur sozialen Teilhabe und Vernetzung älterer Menschen",
+        "Digitale Schulungen für ältere Menschen",
+        "Projekte zur Aktivierung und Stärkung der Lebensqualität im Alter",
+        "Initiativen zur Überwindung von Einsamkeit im Alter",
+        "Bildungsangebote für den Übergang in den Ruhestand"
+      ],
+      "beispielePasstNicht": [
+        "Projekte mit rein kommerziellem Fokus",
+        "Projekte ohne Bezug zu älteren Menschen oder Ruhestandsübergang",
+        "Projekte außerhalb von Baden-Württemberg oder Sachsen"
+      ]
+    }
+  ],
   "eigenmittel": {
     "pflicht": false,
-    "bemerkung": "Im Text werden keine Angaben zur Notwendigkeit von Eigenmitteln gemacht."
+    "bemerkung": "Keine Pflicht zu Eigenmitteln erwähnt. Eigenmittel sind nicht erforderlich."
   },
   "kumulierung": {
-    "erlaubt": "bedingt",
-    "bedingungen": [
-      "Keine spezifischen Angaben im Text, aber bei Preisgeldern ist eine Kumulierung in der Regel unproblematisch, solange keine Doppelfinanzierung derselben Kostenpositionen erfolgt."
-    ]
+    "erlaubt": false,
+    "bedingungen": [],
+    "unvereinbarMit": [
+      "andere Förderungen der Ferry-Porsche-Stiftung"
+    ],
+    "kombinationMoeglichMit": []
   },
   "antragsstruktur": {
-    "abschnitte": [],
-    "einreichungsweg": "Online-Bewerbung über die Webseite der Challenge. Bewerbungsfrist ist vom 09. Februar bis zum 10. April 2026.",
-    "bearbeitungsdauer": "Verkündung der Nominierten im Mai 2026, Preisverleihung am 10. September 2026."
+    "abschnitte": [
+      {
+        "id": "projektbeschreibung",
+        "name": "Projektbeschreibung",
+        "pflicht": true,
+        "maxZeichen": 2000,
+        "leitfragen": [
+          "Welches konkrete Problem wird adressiert?",
+          "Wie wird das Projekt ältere Menschen oder Personen im Übergang in den Ruhestand erreichen?",
+          "Welche Maßnahmen sind geplant, um die Lebensqualität zu verbessern?",
+          "Wie wird die Nachhaltigkeit des Projekts sichergestellt?"
+        ]
+      },
+      {
+        "id": "zielgruppe",
+        "name": "Zielgruppe",
+        "pflicht": true,
+        "maxZeichen": 1000,
+        "leitfragen": [
+          "Welche Zielgruppe wird konkret angesprochen?",
+          "Wie wird die Zielgruppe in das Projekt einbezogen?",
+          "Welche Bedürfnisse hat die Zielgruppe und wie werden diese berücksichtigt?"
+        ]
+      },
+      {
+        "id": "umsetzung",
+        "name": "Umsetzung und Zeitplan",
+        "pflicht": true,
+        "maxZeichen": 1500,
+        "leitfragen": [
+          "Wie wird das Projekt umgesetzt?",
+          "Welche Meilensteine sind geplant?",
+          "Wie sieht der Zeitplan aus?"
+        ]
+      },
+      {
+        "id": "kostenplan",
+        "name": "Kostenplan",
+        "pflicht": true,
+        "maxZeichen": 1000,
+        "leitfragen": [
+          "Welche Kosten entstehen im Rahmen des Projekts?",
+          "Wie werden die Mittel der Ferry-Porsche-Challenge eingesetzt?",
+          "Welche weiteren Finanzierungsquellen sind geplant?"
+        ]
+      },
+      {
+        "id": "organisation",
+        "name": "Organisation",
+        "pflicht": true,
+        "maxZeichen": 1000,
+        "leitfragen": [
+          "Welche Organisation reicht den Antrag ein?",
+          "Welche Erfahrung hat die Organisation im Bereich der Zielgruppe?",
+          "Wie ist die Organisation strukturiert?"
+        ]
+      }
+    ],
+    "anlagen": [
+      "Satzung der Organisation",
+      "Nachweis der Gemeinnützigkeit",
+      "Konzeptpapier des Projekts (max. 5 Seiten)",
+      "Zeitplan und Meilensteine",
+      "Kostenaufstellung",
+      "Nachweise zur Zielgruppeneinbindung"
+    ],
+    "einreichungsweg": "Online über das Bewerbungsportal auf ferry-porsche-challenge.de. Die Bewerbung muss bis zum 10.04.2026 (24:00 Uhr) vollständig eingereicht sein.",
+    "bearbeitungsdauer": "Die Entscheidung über die Finalisten wird im Mai 2026 bekannt gegeben. Die digitale Projektvorstellung findet vom 10. bis 12.06.2026 statt. Die Preisverleihung ist am 10.09.2026."
   },
   "notizen": [
-    "Das Programm ist ein Wettbewerb für gemeinnützige Organisationen und Vereine aus Baden-Württemberg und Sachsen.",
-    "Motto der Ausschreibung 2026: 'Gemeinsam älter – gemeinsam stärker'.",
-    "Projekte sollen älteren Menschen ein aktives, selbstbestimmtes und würdevolles Leben ermöglichen.",
-    "Themenfelder: Schutz vor Vereinsamung, Engagement für würdevolles Altern, Digitale Handlungskompetenzen, Brücken in den Ruhestand, altersgerechte Bildungsangebote, Generationendialog.",
-    "Jede Organisation kann nur eine Bewerbung einreichen.",
-    "Es werden ausschließlich die ersten 200 vollständig eingegangenen Bewerbungen berücksichtigt."
+    "Die Anzahl der Bewerbungen ist auf 200 begrenzt. Es werden ausschließlich die ersten 200 vollständig eingegangenen Bewerbungen berücksichtigt.",
+    "Die Förderung ist projektbezogen und muss gemeinnützig sein.",
+    "Die Projekte müssen in Baden-Württemberg oder Sachsen umgesetzt werden.",
+    "Die Themenfelder sind: Schutz vor Vereinsamung im Alter, soziale Teilhabe und Vernetzung, Engagement für würdevolles Altern, digitale Handlungskompetenzen, Brücken in den Ruhestand bauen, aktiv lernen, Generationen im Dialog."
   ],
-  "bestPractices": [],
+  "bestPractices": [
+    {
+      "thema": "Mitgestaltung und Erreichen der Zielgruppe",
+      "was_funktionierte": "Projekte, die die Zielgruppe nicht nur adressieren, sondern aktiv in die Gestaltung einbeziehen. Beim Erstplatzierten 2025 (JuClu16 e.V.) gestalteten Jugendliche selbst einen Gelenkbus und eine alte Turnhalle um — es entstand ein Ort für Partizipation.",
+      "warum": "„Erreichen der Zielgruppe“ und „Mitgestaltung der Zielgruppe“ sind zwei der zehn dokumentierten Bewertungsmaßstäbe in den Teilnahmebedingungen 2026 (Punkt 3)."
+    },
+    {
+      "thema": "Übertragbarkeit des Projekts herausstellen",
+      "was_funktionierte": "Das Konzept so beschreiben, dass andere Organisationen oder Standorte es übernehmen können. Die Stiftung unterstützt nach der Preisverleihung ausdrücklich die Vernetzung zwischen Organisationen zur Projektübertragung (Schritt 4 des Wettbewerbs).",
+      "warum": "„Übertragbarkeit des Projektes“ ist explizites Bewertungskriterium; die nachhaltige Verbreitung ist als eigener Wettbewerbsschritt dokumentiert."
+    },
+    {
+      "thema": "Nachvollziehbarer Mitteleinsatz und belegter Förderbedarf",
+      "was_funktionierte": "Ein Kostenplan, aus dem klar hervorgeht, wofür die Fördermittel eingesetzt werden, plus eine Begründung, warum die Förderung tatsächlich benötigt wird.",
+      "warum": "„Nachvollziehbarkeit des Mitteleinsatzes“ und „Validierung des Förderbedarfs“ sind dokumentierte Bewertungsmaßstäbe der Teilnahmebedingungen 2026."
+    },
+    {
+      "thema": "Klarer Bezug zum Jahresthema und den Themenfeldern",
+      "was_funktionierte": "Das Projekt explizit auf mindestens ein ausgeschriebenes Themenfeld ausrichten (2026: Schutz vor Vereinsamung, würdevolles Altern, digitale Handlungskompetenzen, Übergang in den Ruhestand, aktives Lernen, Generationendialog) und die Relevanz dafür belegen.",
+      "warum": "„Relevanz des Projektes für das würdevolle Altern“ und „Übereinstimmung mit Teilnahme- und Förderkriterien“ stehen an erster Stelle der Bewertungsmaßstäbe; die Vorauswahl prüft genau diese Passung."
+    },
+    {
+      "thema": "Innovation mit realistischer Umsetzbarkeit verbinden",
+      "was_funktionierte": "Kreative, neuartige Ansätze mit einem glaubwürdigen Umsetzungsplan und erreichbaren Projektzielen kombinieren — beides wird getrennt bewertet.",
+      "warum": "„Innovation und Kreativität“ sowie „Umsetzbarkeit von Projekt und Projektzielen“ sind zwei eigenständige Bewertungsmaßstäbe der Teilnahmebedingungen 2026."
+    },
+    {
+      "thema": "Prägnante 5-Minuten-Projektvorstellung vorbereiten",
+      "was_funktionierte": "Die 30 Nominierten präsentieren ihr Projekt digital in 5 Minuten vor einem Expertenkreis, gefolgt von 5 Minuten Fragen. Auf dieser Basis empfiehlt der Expertenkreis 20 Projekte für Platzierungen und Sonderpreise — die Präsentation entscheidet also mit über die Rangfolge.",
+      "warum": "Dokumentierter Wettbewerbsablauf (Schritt 2); die Jury entscheidet laut Teilnahmebedingungen auf Basis der Expertenempfehlungen."
+    },
+    {
+      "thema": "Langfristige Beziehungen statt punktueller Aktionen",
+      "was_funktionierte": "Der Erstplatzierte 2025 Sprungbrett Bildung e.V. überzeugte die Jury laut Stiftung ausdrücklich durch langfristige Mentoringbeziehungen und Gemeinschaftsaktivitäten, die Entwicklung über einen längeren Zeitraum fördern — nicht durch Einmal-Events.",
+      "warum": "Offizielle Preisträger-Begründung der Stiftung (Runde 2025, damaliges Jahresthema Jugend); das Muster dauerhafter Wirkung deckt sich mit dem Kriterium „Umsetzbarkeit von Projekt und Projektzielen“."
+    }
+  ],
   "rejectGruende": [
     {
-      "grund": "Die Bewerbung ging erst nach den ersten 200 vollständigen Bewerbungen ein.",
-      "haeufigkeit": "häufig",
-      "vermeidung": "Eine frühzeitige Einreichung der vollständigen Unterlagen ist entscheidend, da das Limit erfahrungsgemäß vor dem offiziellen Fristende erreicht wird."
+      "grund": "Bewerbung wurde nach dem 10.04.2026 eingereicht.",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Bewerbung frühzeitig und vollständig einreichen."
     },
     {
-      "grund": "Die Organisation hat mehr als eine Bewerbung eingereicht.",
-      "vermeidung": "Sicherstellen, dass pro Organisation nur ein einziger, intern abgestimmter Antrag gestellt wird."
+      "grund": "Projekt adressiert nicht die Zielgruppe älterer Menschen oder Personen im Übergang in den Ruhestand.",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Sicherstellen, dass das Projekt explizit ältere Menschen oder Ruhestandsübergang adressiert."
     },
     {
-      "grund": "Antragsteller ist keine gemeinnützige Organisation oder Verein aus Baden-Württemberg oder Sachsen.",
-      "vermeidung": "Vor der Antragstellung die formalen Kriterien der Gemeinnützigkeit und des Fördergebiets prüfen."
+      "grund": "Projekt ist nicht gemeinnützig.",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Nachweis der Gemeinnützigkeit vorlegen."
+    },
+    {
+      "grund": "Projekt wird außerhalb von Baden-Württemberg oder Sachsen umgesetzt.",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Projekt muss in Baden-Württemberg oder Sachsen durchgeführt werden."
+    },
+    {
+      "grund": "Bewerbung ist unvollständig oder enthält keine geforderten Anlagen.",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Alle geforderten Unterlagen vollständig und korrekt einreichen."
     }
   ],
   "vorbildFormulierungen": [],
@@ -54,6 +191,6 @@
     "stichtage": [
       "2026-04-10"
     ],
-    "jaehrlich_wiederkehrend": true
+    "jaehrlich_wiederkehrend": false
   }
 }

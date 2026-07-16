@@ -66,6 +66,21 @@ describe("extractAnliegenThemes — Alias-Cluster (C3)", () => {
     expect(t.has("musik")).toBe(true);
   });
 
+  it("Erasmus+/Schulpartnerschaft/Schueleraustausch → Europa/International-Cluster (ev-007)", () => {
+    const t = extractAnliegenThemes(
+      "Erasmus+ Schulpartnerschaft mit Polen, drei Schueleraustausche pro Jahr."
+    );
+    expect(t.has("europa")).toBe(true);
+    expect(t.has("international")).toBe(true);
+    expect(t.has("austausch")).toBe(true);
+  });
+
+  it("Europa-Cluster feuert NICHT bei unbezogenem Anliegen (kein Off-Target)", () => {
+    const t = extractAnliegenThemes("Wir wollen einen Bewegungs-Pausenhof bauen.");
+    expect(t.has("europa")).toBe(false);
+    expect(t.has("international")).toBe(false);
+  });
+
   it("Synonym-Split: 'digital' zieht auch 'digitalisierung' (20× vs 4×)", () => {
     const t = extractAnliegenThemes("Wir moechten den digitalen Unterricht staerken.");
     expect(t.has("digital")).toBe(true);
@@ -105,6 +120,7 @@ describe("prefilter — Status-Filter (C1)", () => {
       (p) =>
         p.status !== "archiviert" &&
         p.status !== "review_needed" &&
+        (p as { kiAntragGeeignet?: boolean }).kiAntragGeeignet !== false && // FP-GS-3
         !isProgrammAbgelaufen(p as never)
     );
     const erwartet = survivors.length;
@@ -114,7 +130,10 @@ describe("prefilter — Status-Filter (C1)", () => {
     // Sanity: Status-Filter UND Ablauf-Filter greifen beide (sonst testet der
     // Test versehentlich nur eine der beiden Bedingungen).
     const nurStatus = programme.filter(
-      (p) => p.status !== "archiviert" && p.status !== "review_needed"
+      (p) =>
+        p.status !== "archiviert" &&
+        p.status !== "review_needed" &&
+        (p as { kiAntragGeeignet?: boolean }).kiAntragGeeignet !== false
     ).length;
     expect(erwartet).toBeLessThan(nurStatus); // d. h. mind. ein Programm ist abgelaufen
 

@@ -150,6 +150,15 @@ export interface Richtlinie {
   /** Liegt formal abgelaufen vor? */
   veraltet?: boolean;
   /**
+   * 86cabdzwk: Per-Programm-Label fuer das erzeugte Dokument. Default "Antrag" —
+   * bei Programmen, deren Deliverable kein Antrag ist (DigitalPakt: die Schule
+   * erstellt ein "Medienkonzept", den Antrag stellt der Schultraeger), steuert
+   * das Feld die UI-Beschriftung (Generierung, Paywall, Ergebnis, Checkout).
+   */
+  dokumentLabel?: string;
+  /** Grammatikalisches Geschlecht des dokumentLabel (Default: "der" fuer Antrag, sonst "das"). */
+  dokumentLabelGenus?: "der" | "die" | "das";
+  /**
    * Best Practices erfolgreicher Antraege fuer dieses Programm.
    * Optional, weil Phase 4 die 11 Legacy-Dossiers nicht type-blocking migrieren muss (D-06).
    * Strict-Validator (lib/wizard/richtlinien-validator.ts) erzwingt das Feld fuer neu extrahierte Dossiers.

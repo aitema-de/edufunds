@@ -6,6 +6,7 @@
 
 import { promises as fs } from 'fs';
 import path from 'path';
+import { publicAppUrl } from '@/lib/app-url';
 
 // =============================================================================
 // Konfiguration
@@ -467,7 +468,7 @@ export function generateAlertEmail(alert: Alert): string {
     
     <div class="footer">
       <p>Dies ist eine automatisierte Benachrichtigung vom EduFunds Monitoring-System.</p>
-      <p>Dashboard: <a href="${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3101'}/admin/dashboard">Zum Dashboard</a></p>
+      <p>Dashboard: <a href="${publicAppUrl()}/admin/dashboard">Zum Dashboard</a></p>
     </div>
   </div>
 </body>

@@ -43,7 +43,7 @@ export default async function WizardPage({ params }: Props) {
       <PageHero
         variant="light"
         badge={{
-          icon: <Sparkles className="w-3.5 h-3.5" style={{ color: "#c9a227" }} />,
+          icon: <Sparkles className="w-3.5 h-3.5" style={{ color: "#1e3d32" }} />,
           text: "KI-Antragswizard · Beta",
         }}
         title="Adaptive Befragung +"
@@ -54,35 +54,49 @@ export default async function WizardPage({ params }: Props) {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href={`/foerderprogramme/${programm.id}`}
-              className="inline-flex items-center gap-2 text-sm text-[#1e3a61] transition hover:text-[#c9a227]"
+              className="inline-flex items-center gap-2 text-sm text-[#57534e] transition hover:text-[#1e3d32]"
             >
               <ArrowLeft className="h-4 w-4" />
               Zurück zum Programm
             </Link>
             <Link
               href="/antrag/meine"
-              className="inline-flex items-center gap-2 rounded-lg border border-[#0a1628]/15 bg-white/70 px-3 py-1.5 text-sm font-medium text-[#0a1628] backdrop-blur-sm transition hover:border-[#c9a227]/40 hover:text-[#c9a227]"
+              className="inline-flex items-center gap-2 rounded-lg border border-[#1c1917]/15 bg-white/70 px-3 py-1.5 text-sm font-medium text-[#1c1917] backdrop-blur-sm transition hover:border-[#1e3d32]/40 hover:text-[#1e3d32]"
             >
               <FolderOpen className="h-4 w-4" />
               Meine Anträge
             </Link>
           </div>
           {richtlinie && !richtlinieStub && (
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-3 py-1 text-xs text-emerald-700">
+            <div
+              className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-3 py-1 text-xs text-emerald-700"
+              title="Die offizielle Förderrichtlinie liegt strukturiert vor — der Antrag folgt ihren Pflichtabschnitten und wird gegen die Förderregeln geprüft."
+            >
               <ShieldCheck className="h-3.5 w-3.5" />
               Richtlinie erfasst — Antrag folgt offizieller Struktur
             </div>
           )}
           {richtlinie && richtlinieStub && (
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#c9a227]/40 bg-[#c9a227]/10 px-3 py-1 text-xs text-[#b08d1f]">
+            <div
+              className="inline-flex items-center gap-2 rounded-full border border-[#1e3d32]/40 bg-[#1e3d32]/10 px-3 py-1 text-xs text-[#1e3d32]"
+              title="Nur ein Teil der offiziellen Richtlinie ist erfasst — einige Abschnitte folgen einer Standardstruktur. Gleichen Sie den Antrag vor dem Einreichen mit der offiziellen Ausschreibung ab."
+            >
               <AlertCircle className="h-3.5 w-3.5" />
               Richtlinie teilweise erfasst — einige Felder generisch
             </div>
           )}
           {!richtlinie && (
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#0a1628]/15 bg-white/70 px-3 py-1 text-xs text-slate-600 backdrop-blur-sm">
-              <AlertCircle className="h-3.5 w-3.5" />
-              Keine Richtlinie erfasst — generische Struktur, offizielle Richtlinie parallel prüfen
+            <div className="flex flex-col items-center gap-1.5">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#1c1917]/15 bg-white/70 px-3 py-1 text-xs text-slate-600 backdrop-blur-sm">
+                <AlertCircle className="h-3.5 w-3.5" />
+                Keine offizielle Richtlinie hinterlegt — Antrag nutzt eine bewährte Standardstruktur
+              </div>
+              <p className="max-w-md text-center text-xs text-slate-500">
+                Inhaltlich vollwertig — Sie müssen nichts weiter tun. Weil uns die
+                Pflichtabschnitte dieses Programms aber nicht im Detail vorliegen, gleichen
+                Sie den fertigen Antrag vor dem Einreichen kurz mit der offiziellen
+                Ausschreibung ab.
+              </p>
             </div>
           )}
         </div>
@@ -90,10 +104,16 @@ export default async function WizardPage({ params }: Props) {
       <main
         id="main-content"
         className="relative pb-24"
-        style={{ backgroundColor: "#f8f5f0" }}
+        style={{ backgroundColor: "#fdfdfc" }}
       >
         <div className="container mx-auto px-4">
-          <WizardShell programm={programm} einreichung={einreichung} />
+          <WizardShell
+            programm={programm}
+            einreichung={einreichung}
+            foerderhoehe={richtlinie?.foerderhoehe ?? null}
+            dokumentLabel={richtlinie?.dokumentLabel ?? null}
+            dokumentLabelGenus={richtlinie?.dokumentLabelGenus ?? null}
+          />
         </div>
       </main>
       <Footer />

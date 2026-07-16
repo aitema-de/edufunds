@@ -1,7 +1,46 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
+import { Newsreader, Outfit, Fira_Code, Bricolage_Grotesque, Caveat } from "next/font/google";
 import "./globals.css";
 import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
-import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+
+/* Editorial Archival — Refresh-Fonts (Welle 0).
+ * Newsreader (Serif, inkl. italic fuer Akzentwoerter) ersetzt DM Serif Display,
+ * Outfit (Sans) ersetzt Plus Jakarta Sans, Fira Code (Mono) bleibt.
+ * Self-hosted via next/font → kein Render-Blocking, kein externer Request. */
+const fontSerif = Newsreader({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
+});
+const fontSans = Outfit({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-sans",
+  display: "swap",
+});
+const fontMono = Fira_Code({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono",
+  display: "swap",
+});
+/* Landing-Handoff Variante 1c: Bricolage Grotesque nur fuer die Hero-Headline,
+ * Caveat fuer die Handschrift-Vornamen der Gruender-Sektion. */
+const fontDisplay = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  variable: "--font-display",
+  display: "swap",
+});
+const fontHand = Caveat({
+  subsets: ["latin"],
+  weight: ["600"],
+  variable: "--font-hand",
+  display: "swap",
+});
 import { WebVitals } from "@/components/WebVitals";
 import { FeedbackButton } from "@/components/FeedbackButton";
 
@@ -62,11 +101,15 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // CSP-Nonce für das manuelle JSON-LD-Script (von middleware.ts gesetzt).
+  // Nexts eigene Scripts + next/script (GA) werden automatisch genonct.
+  const nonce = (await headers()).get('x-nonce') ?? undefined;
+
   // Schema.org Structured Data
   const schemaOrgData = {
     '@context': 'https://schema.org',
@@ -94,39 +137,35 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="de">
+    <html lang="de" className={`${fontSerif.variable} ${fontSans.variable} ${fontMono.variable} ${fontDisplay.variable} ${fontHand.variable}`}>
       <head>
-        {/* Fonts: DM Serif Display + Plus Jakarta Sans */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
         <script
           type="application/ld+json"
+          nonce={nonce}
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrgData) }}
         />
-        <GoogleAnalytics />
       </head>
       <body
         className="antialiased"
-        style={{ backgroundColor: '#f8f5f0' }}
+        style={{ backgroundColor: '#fdfdfc' }}
       >
-        {/* Global Background Patterns */}
+        {/* Global Background Patterns — Editorial-Archival Paper-Canvas */}
         <div className="fixed inset-0 pointer-events-none z-0">
-          <div 
+          <div
             className="absolute inset-0"
             style={{
               backgroundImage: `
-                linear-gradient(var(--navy-800) 1px, transparent 1px),
-                linear-gradient(90deg, var(--navy-800) 1px, transparent 1px)
+                linear-gradient(#1c1917 1px, transparent 1px),
+                linear-gradient(90deg, #1c1917 1px, transparent 1px)
               `,
               backgroundSize: '60px 60px',
               opacity: 0.12
             }}
           />
-          <div 
+          <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `radial-gradient(var(--gold-500) 1.5px, transparent 1.5px)`,
+              backgroundImage: `radial-gradient(#1e3d32 1.5px, transparent 1.5px)`,
               backgroundSize: '24px 24px',
               opacity: 0.08
             }}

@@ -14,6 +14,7 @@
 import { Resend } from 'resend';
 import { getConfirmedNewsletterEntries, generateToken } from '@/lib/db';
 import { generateNewsletter, type NewsletterData } from '@/lib/newsletter';
+import { publicAppUrl } from '@/lib/app-url';
 
 export interface DispatchSubscriber {
   email: string;
@@ -91,11 +92,7 @@ export async function sendNewsletter(
   opts: DispatchOptions = {},
   deps: DispatchDeps = defaultDeps()
 ): Promise<DispatchOutcome> {
-  const baseUrl = (
-    opts.baseUrl ||
-    process.env.NEXT_PUBLIC_APP_URL ||
-    'https://app.edufunds.org'
-  ).replace(/\/$/, '');
+  const baseUrl = (opts.baseUrl || publicAppUrl()).replace(/\/$/, '');
   const from = process.env.FROM_EMAIL || 'EduFunds <noreply@aitema.de>';
   const replyTo = process.env.ADMIN_EMAIL || 'office@aitema.de';
   const batchSize = opts.batchSize ?? 10;

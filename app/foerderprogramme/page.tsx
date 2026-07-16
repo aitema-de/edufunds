@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { Suspense, memo, useMemo, useCallback, useRef } from "react";
 import useSWR from "swr";
 import { Header } from "@/components/Header";
@@ -52,44 +53,69 @@ const FOERDERGEBER_TYPEN = [
   { value: "eu", label: "EU" },
 ];
 
+// Schulformen fuer Filter + Freitextsuche (Code -> Anzeigename)
+const SCHULFORM_LABEL: Record<string, string> = {
+  grundschule: "Grundschule",
+  hauptschule: "Hauptschule",
+  realschule: "Realschule",
+  gymnasium: "Gymnasium",
+  gesamtschule: "Gesamtschule",
+  iss: "Integrierte Sekundarschule (ISS)",
+  "iss-mit-go": "Integrierte Sekundarschule mit Oberstufe (ISS+GO)",
+  foerderschule: "Förderschule",
+  berufsschule: "Berufsschule",
+};
+
+const SCHULFORMEN = [
+  { value: "", label: "Alle Schulformen" },
+  { value: "grundschule", label: "Grundschule" },
+  { value: "hauptschule", label: "Hauptschule" },
+  { value: "realschule", label: "Realschule" },
+  { value: "gymnasium", label: "Gymnasium" },
+  { value: "gesamtschule", label: "Gesamtschule" },
+  { value: "iss", label: "Integrierte Sekundarschule (ISS)" },
+  { value: "foerderschule", label: "Förderschule" },
+  { value: "berufsschule", label: "Berufsschule" },
+];
+
 // Memoized Statistik-Komponente
 const StatsSection = memo(function StatsSection({ stats }: { stats: { total: number; bund: number; land: number; stiftung: number; eu: number } }) {
   return (
     <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
-      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)', boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)' }}>
-        <div className="w-10 h-10 rounded-lg bg-[#c9a227]/15 flex items-center justify-center mx-auto mb-2">
-          <School className="w-5 h-5 text-[#c9a227]" />
+      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(28, 25, 23, 0.08)', boxShadow: '0 4px 20px -4px rgba(28, 25, 23, 0.05)' }}>
+        <div className="w-10 h-10 rounded-lg bg-[#1e3d32]/15 flex items-center justify-center mx-auto mb-2">
+          <School className="w-5 h-5 text-[#1e3d32]" />
         </div>
-        <div className="text-2xl font-bold text-[#7a5e12]">{PROGRAMM_COUNT_LABEL}</div>
-        <div className="text-xs text-[#1e3a61]">Schul-Programme</div>
+        <div className="text-2xl font-bold text-[#1e3d32]">{PROGRAMM_COUNT_LABEL}</div>
+        <div className="text-xs text-[#57534e]">Schul-Programme</div>
       </div>
-      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)', boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)' }}>
+      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(28, 25, 23, 0.08)', boxShadow: '0 4px 20px -4px rgba(28, 25, 23, 0.05)' }}>
         <div className="w-10 h-10 rounded-lg bg-[#1a4d4d]/15 flex items-center justify-center mx-auto mb-2">
           <Landmark className="w-5 h-5 text-[#1a4d4d]" />
         </div>
         <div className="text-2xl font-bold text-[#1a4d4d]">{stats.bund}</div>
-        <div className="text-xs text-[#1e3a61]">Bundesmittel</div>
+        <div className="text-xs text-[#57534e]">Bundesmittel</div>
       </div>
-      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)', boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)' }}>
-        <div className="w-10 h-10 rounded-lg bg-[#1e3a61]/15 flex items-center justify-center mx-auto mb-2">
-          <MapPinned className="w-5 h-5 text-[#1e3a61]" />
+      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(28, 25, 23, 0.08)', boxShadow: '0 4px 20px -4px rgba(28, 25, 23, 0.05)' }}>
+        <div className="w-10 h-10 rounded-lg bg-[#57534e]/15 flex items-center justify-center mx-auto mb-2">
+          <MapPinned className="w-5 h-5 text-[#57534e]" />
         </div>
-        <div className="text-2xl font-bold text-[#1e3a61]">{stats.land}</div>
-        <div className="text-xs text-[#1e3a61]">Landesmittel</div>
+        <div className="text-2xl font-bold text-[#57534e]">{stats.land}</div>
+        <div className="text-xs text-[#57534e]">Landesmittel</div>
       </div>
-      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)', boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)' }}>
-        <div className="w-10 h-10 rounded-lg bg-[#b08d1f]/15 flex items-center justify-center mx-auto mb-2">
-          <HeartHandshake className="w-5 h-5 text-[#b08d1f]" />
+      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(28, 25, 23, 0.08)', boxShadow: '0 4px 20px -4px rgba(28, 25, 23, 0.05)' }}>
+        <div className="w-10 h-10 rounded-lg bg-[#1e3d32]/15 flex items-center justify-center mx-auto mb-2">
+          <HeartHandshake className="w-5 h-5 text-[#1e3d32]" />
         </div>
-        <div className="text-2xl font-bold text-[#b08d1f]">{stats.stiftung}</div>
-        <div className="text-xs text-[#1e3a61]">Stiftungen</div>
+        <div className="text-2xl font-bold text-[#1e3d32]">{stats.stiftung}</div>
+        <div className="text-xs text-[#57534e]">Stiftungen</div>
       </div>
-      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)', boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)' }}>
+      <div className="rounded-xl p-4 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(28, 25, 23, 0.08)', boxShadow: '0 4px 20px -4px rgba(28, 25, 23, 0.05)' }}>
         <div className="w-10 h-10 rounded-lg bg-[#266666]/15 flex items-center justify-center mx-auto mb-2">
           <Globe className="w-5 h-5 text-[#266666]" />
         </div>
         <div className="text-2xl font-bold text-[#266666]">{stats.eu}</div>
-        <div className="text-xs text-[#1e3a61]">EU-Programme</div>
+        <div className="text-xs text-[#57534e]">EU-Programme</div>
       </div>
     </div>
   );
@@ -191,16 +217,26 @@ export default function FoerderprogrammePage() {
     suchbegriff: "",
     bundesland: "",
     foerdergeberTyp: "",
-    kategorie: ""
+    kategorie: "",
+    schulform: ""
   });
 
   // Debounced Suchbegriff für bessere Performance
   const debouncedSuchbegriff = useDebounce(filterState.suchbegriff, 300);
 
-  // Kategorien aus Daten generieren (memoized)
+  // Aktiver Katalog = alles, was NICHT ins Archiv gehoert (terminaler Status oder
+  // abgelaufene Frist). Eine gemeinsame Basis fuer Statistik, Kategorien UND Filter,
+  // damit die Zahlen ("X von Y", Fördergeber-Kacheln) und Dropdown-Optionen konsistent
+  // nur den sichtbaren Katalog zaehlen — nicht die 23 archivierten Datensaetze im Roh-JSON.
+  const aktiveProgramme = useMemo(() => {
+    if (!foerderprogramme) return [];
+    return foerderprogramme.filter((p) => !isProgrammAbgelaufen(p));
+  }, [foerderprogramme]);
+
+  // Kategorien aus Daten generieren (memoized) — nur aus dem aktiven Katalog, damit
+  // keine Dropdown-Option auftaucht, die ausschliesslich archivierte Programme trifft.
   const kategorien = useMemo(() => {
-    if (!foerderprogramme) return [{ value: "", label: "Alle Kategorien" }];
-    const alleKategorien = Array.from(new Set(foerderprogramme.flatMap(p => p.kategorien))).sort();
+    const alleKategorien = Array.from(new Set(aktiveProgramme.flatMap(p => p.kategorien))).sort();
     return [
       { value: "", label: "Alle Kategorien" },
       ...alleKategorien.map(kat => ({
@@ -208,39 +244,44 @@ export default function FoerderprogrammePage() {
         label: formatKategorie(kat)
       }))
     ];
-  }, [foerderprogramme]);
+  }, [aktiveProgramme]);
 
-  // Statistiken (memoized)
+  // Statistiken (memoized) — auf Basis des aktiven Katalogs
   const stats = useMemo(() => {
-    if (!foerderprogramme) return { total: 0, bund: 0, land: 0, stiftung: 0, eu: 0 };
     return {
-      total: foerderprogramme.length,
-      bund: foerderprogramme.filter(p => p.foerdergeberTyp === 'bund').length,
-      land: foerderprogramme.filter(p => p.foerdergeberTyp === 'land').length,
-      stiftung: foerderprogramme.filter(p => p.foerdergeberTyp === 'stiftung').length,
-      eu: foerderprogramme.filter(p => p.foerdergeberTyp === 'eu').length,
+      total: aktiveProgramme.length,
+      bund: aktiveProgramme.filter(p => p.foerdergeberTyp === 'bund').length,
+      land: aktiveProgramme.filter(p => p.foerdergeberTyp === 'land').length,
+      stiftung: aktiveProgramme.filter(p => p.foerdergeberTyp === 'stiftung').length,
+      eu: aktiveProgramme.filter(p => p.foerdergeberTyp === 'eu').length,
     };
-  }, [foerderprogramme]);
+  }, [aktiveProgramme]);
 
   // Filter-Logik (memoized)
   const gefilterteProgramme = useMemo(() => {
-    if (!foerderprogramme) return [];
-    
     const suche = debouncedSuchbegriff.toLowerCase().trim();
-    
-    return foerderprogramme.filter((programm) => {
-      // Abgelaufene Programme gehoeren ins Archiv, nicht in den aktiven Katalog.
-      if (isProgrammAbgelaufen(programm)) return false;
-      // Suchbegriff
+
+    return aktiveProgramme.filter((programm) => {
+      // Suchbegriff — durchsucht Name, Beschreibung, Foerdergeber UND die
+      // Schulform-Tags (z. B. "Gymnasium") + Kategorien, damit eine Suche nach
+      // einer Schulart nicht ins Leere laeuft (FP-03).
       if (suche) {
         const nameMatch = programm.name.toLowerCase().includes(suche);
         if (nameMatch) return true;
-        
+
         const beschreibungMatch = programm.kurzbeschreibung?.toLowerCase().includes(suche);
         if (beschreibungMatch) return true;
-        
+
         const foerdergeberMatch = programm.foerdergeber.toLowerCase().includes(suche);
-        if (!foerdergeberMatch) return false;
+        if (foerdergeberMatch) return true;
+
+        const schulformMatch = programm.schulformen?.some(
+          (s) => s.toLowerCase().includes(suche) || (SCHULFORM_LABEL[s]?.toLowerCase().includes(suche) ?? false)
+        );
+        if (schulformMatch) return true;
+
+        const kategorieMatch = programm.kategorien?.some((k) => k.toLowerCase().includes(suche));
+        if (!kategorieMatch) return false;
       }
 
       // Bundesland
@@ -261,9 +302,14 @@ export default function FoerderprogrammePage() {
         return false;
       }
 
+      // Schulform (FP-09)
+      if (filterState.schulform && !programm.schulformen?.some((s) => s === filterState.schulform)) {
+        return false;
+      }
+
       return true;
     });
-  }, [foerderprogramme, debouncedSuchbegriff, filterState]);
+  }, [aktiveProgramme, debouncedSuchbegriff, filterState]);
 
   // Pagination (12 Items pro Seite für bessere Performance)
   const { 
@@ -283,7 +329,8 @@ export default function FoerderprogrammePage() {
       suchbegriff: "",
       bundesland: "",
       foerdergeberTyp: "",
-      kategorie: ""
+      kategorie: "",
+      schulform: ""
     });
     resetPage();
   }, [setFilterState, resetPage]);
@@ -310,10 +357,10 @@ export default function FoerderprogrammePage() {
     return (
       <>
         <Header />
-        <main id="main-content" className="min-h-screen pt-24 pb-20" style={{ backgroundColor: '#f8f5f0' }}>
+        <main id="main-content" className="min-h-screen pt-24 pb-20" style={{ backgroundColor: '#fdfdfc' }}>
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-2xl font-bold text-red-600 mb-4">Fehler beim Laden</h1>
-            <p className="text-[#1e3a61]">Die Programme konnten nicht geladen werden. Bitte versuchen Sie es später erneut.</p>
+            <p className="text-[#57534e]">Die Programme konnten nicht geladen werden. Bitte versuchen Sie es später erneut.</p>
           </div>
         </main>
         <Footer />
@@ -324,28 +371,29 @@ export default function FoerderprogrammePage() {
   return (
     <>
       <Header />
-      <main id="main-content" className="min-h-screen pt-24 pb-20" style={{ backgroundColor: '#f8f5f0' }}>
+      <main id="main-content" className="min-h-screen pt-24 pb-20" style={{ backgroundColor: '#fdfdfc' }}>
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#c9a227]/10 border border-[#c9a227]/20 mb-6">
-              <School className="h-4 w-4 text-[#c9a227]" />
-              <span className="text-sm font-medium text-[#7a5e12]">Förderfinder</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1e3d32]/10 border border-[#1e3d32]/20 mb-6">
+              <School className="h-4 w-4 text-[#1e3d32]" />
+              <span className="text-sm font-medium text-[#1e3d32]">Förderfinder</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-[#0a1628] mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-[#1c1917] mb-4">
               Förderprogramme für Schulen
             </h1>
-            <p className="text-[#1e3a61] max-w-2xl mx-auto text-lg">
+            <p className="text-[#57534e] max-w-2xl mx-auto text-lg">
               Finden Sie passende Förderungen für Ihre Schule.
               Aktuell {isLoading ? '...' : `${PROGRAMM_COUNT_LABEL} Programme`} im Überblick.
             </p>
             <div className="mt-6">
-              <a
+              <Link
                 href="/antrag/start"
-                className="inline-flex items-center gap-2 rounded-lg bg-[#c9a227] px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-[#b8921e]"
+                prefetch
+                className="inline-flex items-center gap-2 rounded-lg bg-[#1e3d32] px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-[#2a5244]"
               >
                 Beschreiben Sie Ihr Anliegen → KI findet passende Programme
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -353,7 +401,7 @@ export default function FoerderprogrammePage() {
           {isLoading ? (
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
               {Array.from({ length: 5 }).map((_, i) => (
-                <div key={i} className="rounded-xl p-4 animate-pulse" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)' }}>
+                <div key={i} className="rounded-xl p-4 animate-pulse" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(28, 25, 23, 0.08)' }}>
                   <div className="w-10 h-10 rounded-lg bg-[#ebe5dc] mx-auto mb-2" />
                   <div className="h-8 w-12 bg-[#ebe5dc] mx-auto mb-1 rounded" />
                   <div className="h-3 w-20 bg-[#ebe5dc] mx-auto rounded" />
@@ -365,13 +413,13 @@ export default function FoerderprogrammePage() {
           )}
 
           {/* Filter-Bereich */}
-          <div className="rounded-2xl p-6 mb-8" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)', boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)' }}>
+          <div className="rounded-2xl p-6 mb-8" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(28, 25, 23, 0.08)', boxShadow: '0 4px 20px -4px rgba(28, 25, 23, 0.05)' }}>
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <Filter className="h-5 w-5 text-[#c9a227]" />
-                <h2 className="font-semibold text-[#0a1628]">Filter</h2>
+                <Filter className="h-5 w-5 text-[#1e3d32]" />
+                <h2 className="font-semibold text-[#1c1917]">Filter</h2>
                 {aktiveFilterCount > 0 && (
-                  <span className="px-2 py-0.5 rounded-full text-xs bg-[#c9a227]/15 text-[#7a5e12]">
+                  <span className="px-2 py-0.5 rounded-full text-xs bg-[#1e3d32]/15 text-[#1e3d32]">
                     {aktiveFilterCount} aktiv
                   </span>
                 )}
@@ -381,7 +429,7 @@ export default function FoerderprogrammePage() {
                   variant="ghost"
                   size="sm"
                   onClick={resetFilter}
-                  className="text-[#1e3a61] hover:text-[#7a5e12]"
+                  className="text-[#57534e] hover:text-[#1e3d32]"
                 >
                   <X className="h-4 w-4" />
                   Filter zurücksetzen
@@ -390,25 +438,25 @@ export default function FoerderprogrammePage() {
             </div>
 
             {/* Filter-Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
               {/* Suchfeld */}
               <div className="relative">
-                <label className="block text-xs text-[#1e3a61] mb-1.5">Suche</label>
+                <label className="block text-xs text-[#57534e] mb-1.5">Suche</label>
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#1e3a61]/50" />
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#57534e]/50" />
                   <input
                     type="text"
                     placeholder="Name, Beschreibung..."
                     value={filterState.suchbegriff}
                     onChange={(e) => handleFilterChange('suchbegriff', e.target.value)}
-                    className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-[#f8f5f0] border border-[#ebe5dc] text-[#0a1628] text-sm placeholder:text-[#1e3a61]/50 focus:outline-none focus:border-[#c9a227]/50 focus:ring-1 focus:ring-[#c9a227]/50 transition-all"
+                    className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-[#fdfdfc] border border-[#ebe5dc] text-[#1c1917] text-sm placeholder:text-[#57534e]/50 focus:outline-none focus:border-[#1e3d32]/50 focus:ring-1 focus:ring-[#1e3d32]/50 transition-all"
                   />
                   {filterState.suchbegriff && (
                     <Button
                       variant="ghost"
                       size="icon-sm"
                       onClick={() => handleFilterChange('suchbegriff', '')}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#1e3a61]/50 hover:text-[#0a1628]"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#57534e]/50 hover:text-[#1c1917]"
                       aria-label="Suche löschen"
                     >
                       <X className="h-4 w-4" />
@@ -419,13 +467,13 @@ export default function FoerderprogrammePage() {
 
               {/* Bundesland-Dropdown */}
               <div>
-                <label className="block text-xs text-[#1e3a61] mb-1.5">Bundesland</label>
+                <label className="block text-xs text-[#57534e] mb-1.5">Bundesland</label>
                 <select
                   value={filterState.bundesland}
                   onChange={(e) => handleFilterChange('bundesland', e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#f8f5f0] border border-[#ebe5dc] text-[#0a1628] text-sm focus:outline-none focus:border-[#c9a227]/50 focus:ring-1 focus:ring-[#c9a227]/50 transition-all cursor-pointer appearance-none"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#fdfdfc] border border-[#ebe5dc] text-[#1c1917] text-sm focus:outline-none focus:border-[#1e3d32]/50 focus:ring-1 focus:ring-[#1e3d32]/50 transition-all cursor-pointer appearance-none"
                   style={{ 
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231e3a61' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, 
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2357534e' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, 
                     backgroundRepeat: 'no-repeat', 
                     backgroundPosition: 'right 12px center' 
                   }}
@@ -440,13 +488,13 @@ export default function FoerderprogrammePage() {
 
               {/* Fördergeber-Typ-Dropdown */}
               <div>
-                <label className="block text-xs text-[#1e3a61] mb-1.5">Fördergeber</label>
+                <label className="block text-xs text-[#57534e] mb-1.5">Fördergeber</label>
                 <select
                   value={filterState.foerdergeberTyp}
                   onChange={(e) => handleFilterChange('foerdergeberTyp', e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#f8f5f0] border border-[#ebe5dc] text-[#0a1628] text-sm focus:outline-none focus:border-[#c9a227]/50 focus:ring-1 focus:ring-[#c9a227]/50 transition-all cursor-pointer appearance-none"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#fdfdfc] border border-[#ebe5dc] text-[#1c1917] text-sm focus:outline-none focus:border-[#1e3d32]/50 focus:ring-1 focus:ring-[#1e3d32]/50 transition-all cursor-pointer appearance-none"
                   style={{ 
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231e3a61' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, 
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2357534e' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, 
                     backgroundRepeat: 'no-repeat', 
                     backgroundPosition: 'right 12px center' 
                   }}
@@ -461,13 +509,13 @@ export default function FoerderprogrammePage() {
 
               {/* Kategorie-Dropdown */}
               <div>
-                <label className="block text-xs text-[#1e3a61] mb-1.5">Kategorie</label>
+                <label className="block text-xs text-[#57534e] mb-1.5">Kategorie</label>
                 <select
                   value={filterState.kategorie}
                   onChange={(e) => handleFilterChange('kategorie', e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#f8f5f0] border border-[#ebe5dc] text-[#0a1628] text-sm focus:outline-none focus:border-[#c9a227]/50 focus:ring-1 focus:ring-[#c9a227]/50 transition-all cursor-pointer appearance-none"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#fdfdfc] border border-[#ebe5dc] text-[#1c1917] text-sm focus:outline-none focus:border-[#1e3d32]/50 focus:ring-1 focus:ring-[#1e3d32]/50 transition-all cursor-pointer appearance-none"
                   style={{ 
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231e3a61' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, 
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2357534e' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`, 
                     backgroundRepeat: 'no-repeat', 
                     backgroundPosition: 'right 12px center' 
                   }}
@@ -479,12 +527,33 @@ export default function FoerderprogrammePage() {
                   ))}
                 </select>
               </div>
+
+              {/* Schulform-Dropdown (FP-09) */}
+              <div>
+                <label className="block text-xs text-[#57534e] mb-1.5">Schulform</label>
+                <select
+                  value={filterState.schulform || ""}
+                  onChange={(e) => handleFilterChange('schulform', e.target.value)}
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#fdfdfc] border border-[#ebe5dc] text-[#1c1917] text-sm focus:outline-none focus:border-[#1e3d32]/50 focus:ring-1 focus:ring-[#1e3d32]/50 transition-all cursor-pointer appearance-none"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2357534e' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'right 12px center'
+                  }}
+                >
+                  {SCHULFORMEN.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
 
           {/* Ergebnis-Anzeige */}
           <div ref={listRef} className="mb-6 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-[#0a1628]">
+            <h2 className="text-2xl font-bold text-[#1c1917]">
               {isLoading ? (
                 <span className="inline-block w-48 h-8 bg-[#ebe5dc] rounded animate-pulse" />
               ) : gefilterteProgramme.length === stats.total ? (
@@ -499,12 +568,12 @@ export default function FoerderprogrammePage() {
           {isLoading ? (
             <ProgramCardSkeletonGrid count={6} />
           ) : gefilterteProgramme.length === 0 ? (
-            <div className="rounded-2xl p-12 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)', boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)' }}>
+            <div className="rounded-2xl p-12 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(28, 25, 23, 0.08)', boxShadow: '0 4px 20px -4px rgba(28, 25, 23, 0.05)' }}>
               <Search className="h-16 w-16 text-[#ebe5dc] mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-[#0a1628] mb-2">
+              <h3 className="text-xl font-bold text-[#1c1917] mb-2">
                 Keine Programme gefunden
               </h3>
-              <p className="text-[#1e3a61] max-w-md mx-auto mb-6">
+              <p className="text-[#57534e] max-w-md mx-auto mb-6">
                 Versuchen Sie es mit anderen Filterkriterien oder setzen Sie die Filter zurück.
               </p>
               <Button
@@ -534,12 +603,12 @@ export default function FoerderprogrammePage() {
           )}
 
           {/* Hinweis */}
-          <div className="mt-12 rounded-2xl p-8 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(10, 22, 40, 0.08)', boxShadow: '0 4px 20px -4px rgba(10, 22, 40, 0.05)' }}>
-            <Search className="h-12 w-12 text-[#c9a227] mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-[#0a1628] mb-2">
+          <div className="mt-12 rounded-2xl p-8 text-center" style={{ backgroundColor: '#ffffff', border: '1px solid rgba(28, 25, 23, 0.08)', boxShadow: '0 4px 20px -4px rgba(28, 25, 23, 0.05)' }}>
+            <Search className="h-12 w-12 text-[#1e3d32] mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-[#1c1917] mb-2">
               Mehr Programme werden ergänzt
             </h3>
-            <p className="text-[#1e3a61] max-w-xl mx-auto">
+            <p className="text-[#57534e] max-w-xl mx-auto">
               Unsere Datenbank wächst stetig. Wir erfassen aktuell Programme 
               von Bund, Ländern, Stiftungen und der EU. Haben Sie ein Programm gefunden, 
               das hier fehlt? Melden Sie sich bei uns.

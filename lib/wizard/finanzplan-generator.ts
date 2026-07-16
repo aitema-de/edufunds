@@ -1,6 +1,6 @@
 import { randomUUID } from "crypto";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
-import type { Finanzplan, Finanzposten, WizardFacts } from "./types";
+import type { ConsistencyIssue, Finanzplan, Finanzposten, WizardFacts } from "./types";
 import type { Richtlinie } from "./richtlinien-schema";
 import { MODEL_PRO, generateJson } from "./llm";
 import { FINANZPLAN_SYSTEM, buildFinanzplanPrompt } from "./prompts";
@@ -128,6 +128,55 @@ export function applyStatedEigenanteil(
 }
 
 /**
+ * H-V-2 (Pilot 19.06., SCHWER): Deterministischer Förderquoten-Check. Schreibt die
+ * Richtlinie eine maximale Förderquote bzw. einen Pflicht-Eigenanteil vor (z. B. DKHW:
+ * max 80 % Förderung / mind. 20 % Eigenanteil), darf die Förderung diesen Anteil an den
+ * GESAMTKOSTEN (= Förderung + Eigenanteil) nicht überschreiten. Im Pilot setzte die KI
+ * eine 100-%-Förderung (6.000 € Förderung bei 6.000 € Gesamtkosten) trotz 20-%-Pflicht-
+ * Eigenanteil → der Antrag hätte die Förderquote der Stiftung formal verletzt.
+ * Rein arithmetisch (kein LLM). Legt bei Verstoß einen konkreten, bezifferten Hinweis ab
+ * (inkl. fehlendem Mindest-Eigenanteil). Exportiert für Tests.
+ */
+export function checkFoerderquote(
+  foerderposten: Finanzposten[],
+  eigenposten: Finanzposten[],
+  richtlinie: Richtlinie | null | undefined,
+  hinweise: string[]
+): void {
+  if (!richtlinie) return;
+  const maxProzent = richtlinie.foerderhoehe?.maxProzentGesamtkosten;
+  const minEigen = richtlinie.eigenmittel?.mindestProzent;
+  // Zulässige Förder-Höchstquote bestimmen: explizite maxProzent ODER aus dem
+  // Pflicht-Eigenanteil abgeleitet (100 - mindestProzent).
+  let allowedMax: number | undefined;
+  if (typeof maxProzent === "number" && maxProzent > 0) {
+    allowedMax = maxProzent;
+  } else if (richtlinie.eigenmittel?.pflicht && typeof minEigen === "number" && minEigen > 0) {
+    allowedMax = 100 - minEigen;
+  }
+  if (allowedMax == null || allowedMax >= 100) return;
+
+  const foerderung = Math.round(foerderposten.reduce((s, p) => s + p.betragEur, 0));
+  const eigen = Math.round(eigenposten.reduce((s, p) => s + p.betragEur, 0));
+  const gesamt = foerderung + eigen;
+  if (gesamt <= 0 || foerderung <= 0) return;
+
+  const quote = (foerderung / gesamt) * 100;
+  if (quote <= allowedMax + 1) return; // 1 Prozentpunkt Toleranz gegen Rundung
+
+  // Erforderlicher Mindest-Eigenanteil, damit foerderung = allowedMax % der Gesamtkosten:
+  // eigen' = foerderung * (100 - allowedMax) / allowedMax.
+  const requiredEigen = Math.round((foerderung * (100 - allowedMax)) / allowedMax);
+  const fehlend = Math.max(0, requiredEigen - eigen);
+  const f = (n: number) => n.toLocaleString("de-DE");
+  hinweise.push(
+    `Die Förderung (${f(foerderung)} EUR) entspricht ${Math.round(quote)} % der Gesamtkosten — dieses Programm fördert höchstens ${allowedMax} %. ` +
+      `Es fehlt ein Eigenanteil von mind. ${f(fehlend)} EUR (Gesamtkosten dann ${f(foerderung + requiredEigen)} EUR). ` +
+      `Ergänzen Sie einen Eigenanteil-Posten oder senken Sie die beantragte Förderung, sonst verletzt der Antrag die Förderquote.`
+  );
+}
+
+/**
  * Begründungs-Sprache, die eingesteht, dass ein Betrag geschätzt/angenommen ist
  * (statt aus Nutzerangaben belegt). QA-02: solche Posten enthalten erfundene
  * Beträge, die der Nutzer leicht ungeprüft übernimmt.
@@ -152,6 +201,232 @@ export function flagEstimatedAmounts(posten: Finanzposten[], hinweise: string[])
 
 function isAdmittedEstimate(p: Finanzposten): boolean {
   return p.begruendung != null && ESTIMATION_HEDGE.test(p.begruendung);
+}
+
+/**
+ * H-GS-2b (Pilot 19.06.): Deterministischer Deckungs-Check. Der Pilot-Antrag
+ * beantragte 4.000 EUR, der KI-Finanzplan summierte aber nur 1.166 EUR an
+ * Förderposten — eine Lücke, die der KI-Prüfer zwar erkannte, aber nur vage als
+ * „Inkonsistenz" meldete. Hier vergleichen wir die SUMME der Förderposten
+ * (ohne Eigenanteil) mit der vom Nutzer beantragten Summe (facts.budget.beantragt_eur)
+ * und legen bei relevanter Abweichung einen konkreten, bezifferten Hinweis ab.
+ * Rein arithmetisch (kein LLM) → keine Halluzination, kein Eval-Risiko.
+ * Schwellen: relative Abweichung > 10 % UND absolute Lücke >= 100 EUR (gegen Rausch).
+ * Exportiert für Tests.
+ */
+export function checkBeantragtDeckung(
+  foerderposten: Finanzposten[],
+  facts: WizardFacts,
+  hinweise: string[]
+): void {
+  const beantragt = facts?.budget?.beantragt_eur;
+  if (typeof beantragt !== "number" || !Number.isFinite(beantragt) || beantragt <= 0) return;
+  if (foerderposten.length === 0) return;
+
+  const summe = Math.round(foerderposten.reduce((s, p) => s + p.betragEur, 0));
+  const diff = summe - beantragt;
+  const absLuecke = Math.abs(diff);
+  if (absLuecke < 100 || absLuecke / beantragt <= 0.1) return;
+
+  const sumStr = summe.toLocaleString("de-DE");
+  const beantragtStr = beantragt.toLocaleString("de-DE");
+  const lueckeStr = absLuecke.toLocaleString("de-DE");
+  if (diff < 0) {
+    hinweise.push(
+      `Der Finanzplan summiert die Förderposten auf ${sumStr} EUR, beantragt wurden aber ${beantragtStr} EUR. ` +
+        `Es fehlen ${lueckeStr} EUR an hinterlegten Posten — ergänzen Sie die fehlenden Kosten oder passen Sie die beantragte Summe an, damit Antrag und Finanzplan übereinstimmen.`
+    );
+  } else {
+    hinweise.push(
+      `Der Finanzplan summiert die Förderposten auf ${sumStr} EUR und übersteigt damit die beantragten ${beantragtStr} EUR um ${lueckeStr} EUR. ` +
+        `Bitte die beantragte Summe oder die Posten angleichen.`
+    );
+  }
+}
+
+/**
+ * Bug #004 (Pilot 15.07.): Das KI-Gutachten ("Konsistenz-Check Antrag × Finanzplan")
+ * liess das Flash-Modell die Gesamtsummen-Arithmetik selbst rechnen (CONSISTENCY_SYSTEM)
+ * und produzierte einen faktisch falschen, sich selbst widersprechenden Befund
+ * ("Gesamtkosten (12.600 EUR) entsprechen der beantragten Summe (15.000 EUR)"). Diese
+ * Funktion liefert den Gesamtsummen-Abgleich DETERMINISTISCH als strukturiertes
+ * ConsistencyIssue — dieselbe Arithmetik/Schwellen wie `checkBeantragtDeckung` (das den
+ * Hinweis in der FinanzplanView setzt), damit Gutachten und Finanzplan-Hinweise NIE
+ * auseinanderlaufen und die Luecke genau EINMAL, korrekt gemeldet wird. Gibt null zurueck,
+ * wenn kein strukturiertes `beantragt_eur` vorliegt oder die Abweichung unter der Schwelle
+ * bleibt (rel. > 10 % UND abs. >= 100 EUR). Exportiert fuer Tests.
+ */
+export function buildBeantragtConsistencyIssue(
+  foerderposten: Finanzposten[],
+  facts: WizardFacts
+): ConsistencyIssue | null {
+  const beantragt = facts?.budget?.beantragt_eur;
+  if (typeof beantragt !== "number" || !Number.isFinite(beantragt) || beantragt <= 0) return null;
+  if (foerderposten.length === 0) return null;
+
+  const summe = Math.round(foerderposten.reduce((s, p) => s + p.betragEur, 0));
+  const diff = summe - beantragt;
+  const absLuecke = Math.abs(diff);
+  if (absLuecke < 100 || absLuecke / beantragt <= 0.1) return null;
+
+  const sumStr = summe.toLocaleString("de-DE");
+  const beantragtStr = beantragt.toLocaleString("de-DE");
+  const lueckeStr = absLuecke.toLocaleString("de-DE");
+  const beschreibung =
+    diff < 0
+      ? `Die Förderposten summieren sich auf ${sumStr} EUR, beantragt wurden aber ${beantragtStr} EUR — es fehlen ${lueckeStr} EUR. Ergänze die fehlenden Kosten oder passe die beantragte Summe an, damit Antrag und Finanzplan übereinstimmen.`
+      : `Die Förderposten summieren sich auf ${sumStr} EUR und übersteigen die beantragten ${beantragtStr} EUR um ${lueckeStr} EUR. Bitte die beantragte Summe oder die Posten angleichen.`;
+  return { art: "betrag-unstimmig", beschreibung };
+}
+
+/**
+ * Parst einen vom Nutzer in Freitext genannten Euro-Betrag (deutsche Schreibweise:
+ * "10.000" = 10000, "1.234,50" = 1234.5). Punkte/Leerzeichen sind Tausender-Trenner,
+ * Komma ist Dezimaltrenner. Gibt null bei nicht-parsebarem/nicht-positivem Wert.
+ * Exportiert für Tests.
+ */
+export function parseGermanAmount(raw: string): number | null {
+  let s = raw.trim();
+  let decimal = "";
+  const commaIdx = s.lastIndexOf(",");
+  if (commaIdx !== -1) {
+    decimal = s.slice(commaIdx + 1).replace(/\D/g, "");
+    s = s.slice(0, commaIdx);
+  }
+  const intPart = s.replace(/\D/g, "");
+  if (!intPart) return null;
+  const n = Number(intPart) + (decimal ? Number("0." + decimal) : 0);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+/** Global-Variante von MONEY_RE: erfasst die Zahl mit Euro-Markierung in beide Richtungen. */
+const MONEY_AMOUNT_RE = /(?:€|eur|euro)\s*(\d[\d.\s]*\d|\d)|(\d[\d.\s]*\d|\d)\s*(?:€|eur\b|euro)/gi;
+
+/**
+ * Extrahiert alle vom Nutzer in den Roh-Antworten genannten Euro-Beträge. Reine
+ * Mengen ("200 Kinder", "20 Tablets") ohne Euro-Markierung zählen NICHT (wie MONEY_RE).
+ * Exportiert für Tests.
+ */
+export function extractStatedAmounts(userAnswers?: string[]): number[] {
+  const out: number[] = [];
+  if (!userAnswers) return out;
+  for (const a of userAnswers) {
+    if (typeof a !== "string") continue;
+    for (const m of a.matchAll(MONEY_AMOUNT_RE)) {
+      const raw = m[1] ?? m[2];
+      if (!raw) continue;
+      const v = parseGermanAmount(raw);
+      if (v != null) out.push(Math.round(v));
+    }
+  }
+  return out;
+}
+
+/**
+ * P1-B (Pilot-Feedback 24.06.): Kostenplan-Transparenz. Die Testerin nannte einen
+ * Betrag, den der Generator "offenbar halbiert" hat — ohne Erklärung. Die bestehenden
+ * Checks greifen nur bei strukturiertem `facts.budget.beantragt_eur` (checkBeantragtDeckung)
+ * bzw. vorhandener Richtlinie (checkFoerderquote). Ein frei im Text genannter Betrag, den
+ * das LLM in Förderung + Eigenanteil aufteilt oder anpasst, blieb still. Dieser Check
+ * vergleicht den größten genannten Betrag mit der Plan-Summe und legt bei materieller
+ * Abweichung einen erklärenden Hinweis ab. Rein arithmetisch (kein LLM, kein Eval-Risiko).
+ * Komplementär zu checkBeantragtDeckung (deferiert, wenn ein strukturiertes Budget existiert).
+ * Exportiert für Tests.
+ */
+export function checkStatedAmountAdjusted(
+  foerderposten: Finanzposten[],
+  eigenposten: Finanzposten[],
+  facts: WizardFacts,
+  userAnswers: string[] | undefined,
+  hinweise: string[]
+): void {
+  const stated = extractStatedAmounts(userAnswers);
+  if (stated.length === 0) return;
+  const statedMax = Math.max(...stated);
+  if (statedMax < 100) return;
+
+  const foerderung = Math.round(foerderposten.reduce((s, p) => s + p.betragEur, 0));
+  const eigen = Math.round(eigenposten.reduce((s, p) => s + p.betragEur, 0));
+  const gesamt = foerderung + eigen;
+  if (foerderung <= 0) return;
+
+  const f = (n: number) => n.toLocaleString("de-DE");
+  const rel = (a: number, b: number) => Math.abs(a - b) / Math.max(1, b);
+
+  const statedEigenSet =
+    typeof facts?.budget?.eigenmittel_eur === "number" && facts.budget.eigenmittel_eur > 0;
+
+  // Fall A — Aufteilung: genannter Betrag ≈ Gesamtkosten, aber als Förderung + Eigenanteil
+  // gesplittet (= die "Halbierung", die die Testerin sah). Nur wenn der Eigenanteil NICHT
+  // schon vom Nutzer selbst genannt wurde (sonst war die Aufteilung gewollt).
+  if (
+    !statedEigenSet &&
+    eigen > 0 &&
+    rel(gesamt, statedMax) <= 0.1 &&
+    statedMax - foerderung >= 100 &&
+    rel(foerderung, statedMax) > 0.1
+  ) {
+    hinweise.push(
+      `Deinen genannten Betrag von ${f(statedMax)} EUR hat der Assistent als Gesamtkosten verstanden und in ${f(foerderung)} EUR Förderung + ${f(eigen)} EUR Eigenanteil aufgeteilt. ` +
+        `Falls du ${f(statedMax)} EUR als reine Fördersumme gemeint hast, passe den Finanzplan an.`
+    );
+    return;
+  }
+
+  // Fall B — Abweichung ohne strukturiertes Budget: dann ist checkBeantragtDeckung NICHT
+  // zuständig (es liest facts.budget.beantragt_eur). Erklärt eine still angepasste Summe.
+  const hasStructuredBeantragt =
+    typeof facts?.budget?.beantragt_eur === "number" &&
+    Number.isFinite(facts.budget.beantragt_eur) &&
+    (facts.budget.beantragt_eur as number) > 0;
+  if (hasStructuredBeantragt) return;
+
+  const diff = gesamt - statedMax;
+  if (Math.abs(diff) >= 100 && rel(gesamt, statedMax) > 0.1) {
+    hinweise.push(
+      diff < 0
+        ? `Du hast ${f(statedMax)} EUR genannt — der Finanzplan kommt aktuell auf ${f(gesamt)} EUR (also ${f(Math.abs(diff))} EUR weniger). ` +
+            `Falls die Anpassung nicht beabsichtigt ist, ergänze die fehlenden Posten oder passe die Beträge an.`
+        : `Du hast ${f(statedMax)} EUR genannt — der Finanzplan kommt aktuell auf ${f(gesamt)} EUR (also ${f(diff)} EUR mehr). ` +
+            `Bitte prüfe, ob die höhere Summe beabsichtigt ist.`
+    );
+  }
+}
+
+/**
+ * P1-A Backstop (Pilot-Feedback 24.06.): Deterministischer Ausschluss-Leck-Check. Hat der
+ * Nutzer ein Element ausdrücklich ausgeschlossen (`facts.ausgeschlossen`, befüllt vom
+ * Facts-Extractor) und taucht es trotzdem als Finanzposten auf, wird ein Hinweis gesetzt.
+ * Die Prompt-Prävention (FINANZPLAN_SYSTEM/SECTION) verhindert es vorab; dieser Check ist
+ * das sichtbare Sicherheitsnetz, falls das LLM doch durchrutscht. Konservativ: Treffer nur
+ * bei Voll-Phrase ODER signifikantem Leitwort (≥6 Zeichen) → keine Single-Common-Word-FPs.
+ * Rein deterministisch, nicht-destruktiv (nur Hinweis). Exportiert für Tests.
+ */
+export function checkAusschlussLeak(
+  posten: Finanzposten[],
+  facts: WizardFacts,
+  hinweise: string[]
+): void {
+  const ausg = facts?.ausgeschlossen;
+  if (!Array.isArray(ausg) || ausg.length === 0) return;
+  for (const raw of ausg) {
+    if (typeof raw !== "string" || !raw.trim()) continue;
+    const phrase = raw.trim();
+    const norm = phrase.toLowerCase();
+    const longest = norm
+      .split(/[^a-zäöüß]+/i)
+      .filter((w) => w.length >= 6)
+      .sort((a, b) => b.length - a.length)[0];
+    const hit = posten.find((p) => {
+      const hay = `${p.bezeichnung} ${p.begruendung ?? ""}`.toLowerCase();
+      return hay.includes(norm) || (longest ? hay.includes(longest) : false);
+    });
+    if (hit) {
+      hinweise.push(
+        `Der Posten „${hit.bezeichnung}" betrifft „${phrase}" — das hast du ausgeschlossen. Bitte entfernen oder prüfen, ob es doch gewollt ist.`
+      );
+    }
+  }
 }
 
 /**
@@ -299,6 +574,15 @@ export async function generateFinanzplan(
   // Prominenter Sammelhinweis, sobald Vorschläge enthalten sind — macht
   // transparent, welche Beträge der Nutzer noch bestätigen sollte.
   const foerderposten = postenMarkiert.filter((p) => !p.eigenanteil);
+  const eigenposten = postenMarkiert.filter((p) => p.eigenanteil);
+  // H-GS-2b: Deckungs-Check Förderposten-Summe × beantragte Summe (deterministisch).
+  checkBeantragtDeckung(foerderposten, facts, hinweise);
+  // H-V-2: Förderquoten-Check gegen die Richtlinie (max Förderquote / Pflicht-Eigenanteil).
+  checkFoerderquote(foerderposten, eigenposten, richtlinie, hinweise);
+  // P1-B (Feedback 24.06.): Transparenz, wenn ein frei genannter Betrag aufgeteilt/angepasst wurde.
+  checkStatedAmountAdjusted(foerderposten, eigenposten, facts, userAnswers, hinweise);
+  // P1-A Backstop (Feedback 24.06.): warnt, falls ein ausgeschlossenes Element als Posten durchrutscht.
+  checkAusschlussLeak(postenMarkiert, facts, hinweise);
   const vorschlaege = foerderposten.filter((p) => p.istVorschlag);
   if (vorschlaege.length > 0 && !hinweise.some((h) => h.includes("Vorschläge des Assistenten") || h.includes("Vorschlag des Assistenten"))) {
     const alle = vorschlaege.length === foerderposten.length && foerderposten.length > 0;

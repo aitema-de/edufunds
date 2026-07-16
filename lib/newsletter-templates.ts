@@ -1,8 +1,10 @@
 /**
  * Newsletter Email Templates
- * 
+ *
  * HTML-Templates für Double-Opt-In und Willkommens-E-Mails
  */
+
+import { publicAppUrl } from '@/lib/app-url';
 
 export interface EmailTemplateData {
   confirmationUrl: string;
@@ -244,7 +246,7 @@ export function getWelcomeEmailTemplate(data: EmailTemplateData): string {
             </div>
             
             <div class="button-wrapper">
-                <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://edufunds.de'}" class="button">Zu EduFunds</a>
+                <a href="${publicAppUrl()}" class="button">Zu EduFunds</a>
             </div>
         </div>
         

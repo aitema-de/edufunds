@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
+import { dokumentLabels } from "@/lib/wizard/dokument-label";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type {
   WizardFacts,
@@ -8,6 +10,7 @@ import type {
   WizardPhase,
   GenerationArtefacts,
   PipelineStage,
+  Texttiefe,
 } from "@/lib/wizard/types";
 import { STAGE_LABELS } from "@/lib/wizard/stage-labels";
 import type { CostLedger } from "@/lib/wizard/pricing";
@@ -29,6 +32,7 @@ import { QuestionCard } from "./QuestionCard";
 import { ChronologySidebar } from "./ChronologySidebar";
 import { GeneratingProgress } from "./GeneratingProgress";
 import { AntragResult } from "./AntragResult";
+import type { Foerderhoehe } from "@/lib/foerderhoehe-empfehlung";
 import { FactsPanel } from "./FactsPanel";
 import { KumulierungsWarnung, type Conflict } from "./KumulierungsWarnung";
 import { ReadinessAmpel } from "./ReadinessAmpel";
@@ -52,13 +56,27 @@ interface WizardApiState {
 
 const STORAGE_KEY_PREFIX = "edufunds.wizard.session.";
 
+/** Formatiert den ISO-Zeitstempel des Schulprofils als lesbares Datum (de-DE). */
+function formatProfileDate(iso?: string): string | null {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return null;
+  return d.toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" });
+}
+
 interface Props {
   programm: Foerderprogramm;
   einreichung?: EinreichungInfo | null;
+  /** P4-B M-Erweiterung: strukturierte Förderhöhe aus dem Dossier für die Beantragungshöhe-Empfehlung. */
+  foerderhoehe?: Foerderhoehe | null;
+  /** 86cabdzwk: per-Programm-Dokumentlabel aus dem Richtlinien-Dossier (Default "Antrag"). */
+  dokumentLabel?: string | null;
+  dokumentLabelGenus?: "der" | "die" | "das" | null;
 }
 
-export function WizardShell({ programm, einreichung }: Props) {
+export function WizardShell({ programm, einreichung, foerderhoehe, dokumentLabel, dokumentLabelGenus }: Props) {
   const storageKey = STORAGE_KEY_PREFIX + programm.id;
+  const labels = dokumentLabels(dokumentLabel, dokumentLabelGenus);
 
   const [state, setState] = useState<WizardApiState | null>(null);
   const [messages, setMessages] = useState<WizardMessage[]>([]);
@@ -66,6 +84,8 @@ export function WizardShell({ programm, einreichung }: Props) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [generation, setGeneration] = useState<GenerationArtefacts | null>(null);
+  // P3-B (Feedback 24.06.): vom Nutzer wählbare Schreibtiefe für die Generierung.
+  const [texttiefe, setTexttiefe] = useState<Texttiefe>("standard");
   const [generationStage, setGenerationStage] = useState<string>("");
   const [schoolProfile, setSchoolProfile] = useState<SchoolProfile | null>(null);
   const [handoff, setHandoff] = useState<MatchHandoff | null>(null);
@@ -398,7 +418,7 @@ export function WizardShell({ programm, einreichung }: Props) {
       const res = await fetch("/api/wizard/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sessionToken: state.sessionToken }),
+        body: JSON.stringify({ sessionToken: state.sessionToken, texttiefe }),
       });
       if (!res.ok) {
         // 409 = Pipeline lief schon durch (Idempotenz / Reload-Race). D-12-Polling
@@ -428,7 +448,7 @@ export function WizardShell({ programm, einreichung }: Props) {
     } finally {
       setBusy(false);
     }
-  }, [state]);
+  }, [state, texttiefe]);
 
   const editAnswer = useCallback(
     async (messageId: string, newContent: string): Promise<boolean> => {
@@ -493,7 +513,7 @@ export function WizardShell({ programm, einreichung }: Props) {
   if (!state && resumeToken && error) {
     return (
       <div className="rounded-xl border border-amber-300 bg-amber-50 p-8 text-center">
-        <h2 className="mb-2 text-2xl font-semibold text-[#0a1628]">
+        <h2 className="mb-2 text-2xl font-semibold text-[#1c1917]">
           Ihr Antrag ist gespeichert
         </h2>
         <p className="mx-auto mb-2 max-w-xl text-slate-700">
@@ -507,13 +527,13 @@ export function WizardShell({ programm, einreichung }: Props) {
             type="button"
             disabled={busy}
             onClick={() => loadSession(resumeToken)}
-            className="rounded-lg bg-[#c9a227] px-6 py-3 font-semibold text-white transition hover:bg-[#b8921e] disabled:opacity-50"
+            className="rounded-lg bg-[#1e3d32] px-6 py-3 font-semibold text-white transition hover:bg-[#2a5244] disabled:opacity-50"
           >
             {busy ? "Lade…" : "Antrag erneut laden"}
           </button>
           <a
             href="/antrag/meine"
-            className="rounded-lg border border-[#0a1628]/15 px-6 py-3 font-medium text-[#1e3a61] transition hover:bg-white"
+            className="rounded-lg border border-[#1c1917]/15 px-6 py-3 font-medium text-[#57534e] transition hover:bg-white"
           >
             Meine Anträge
           </a>
@@ -533,8 +553,8 @@ export function WizardShell({ programm, einreichung }: Props) {
     return (
       <>
         <KumulierungsWarnung conflicts={conflicts} onDismiss={() => setConflicts([])} />
-        <div className="rounded-xl border border-[#0a1628]/10 bg-white/80 p-8 text-center">
-        <h2 className="mb-2 text-2xl font-semibold text-[#0a1628]">
+        <div className="rounded-xl border border-[#1c1917]/10 bg-white/80 p-8 text-center">
+        <h2 className="mb-2 text-2xl font-semibold text-[#1c1917]">
           KI-Antragswizard
         </h2>
         <p className="mx-auto mb-6 max-w-xl text-slate-600">
@@ -542,8 +562,8 @@ export function WizardShell({ programm, einreichung }: Props) {
           „{programm.name}". Anschließend schreibt eine Pipeline mit Selbstkritik den Antragsentwurf.
         </p>
         {handoff && (
-          <div className="mx-auto mb-4 max-w-xl rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 px-4 py-3 text-left text-sm text-slate-700">
-            <div className="mb-1 font-medium text-[#7a5e12]">
+          <div className="mx-auto mb-4 max-w-xl rounded-lg border border-[#1e3d32]/30 bg-[#1e3d32]/5 px-4 py-3 text-left text-sm text-slate-700">
+            <div className="mb-1 font-medium text-[#1e3d32]">
               Ihr Anliegen wird übernommen
             </div>
             <div className="text-slate-600 italic">
@@ -551,7 +571,7 @@ export function WizardShell({ programm, einreichung }: Props) {
                 ? handoff.anliegen.slice(0, 200) + "…"
                 : handoff.anliegen}"
               {handoff.fromMatchScore && (
-                <span className="ml-2 text-xs text-[#7a5e12]">
+                <span className="ml-2 text-xs text-[#1e3d32]">
                   · Passung {handoff.fromMatchScore} %
                 </span>
               )}
@@ -559,28 +579,38 @@ export function WizardShell({ programm, einreichung }: Props) {
           </div>
         )}
         {schoolProfile && (
-          <div className="mx-auto mb-6 max-w-xl rounded-lg border border-[#c9a227]/30 bg-[#c9a227]/5 px-4 py-3 text-left text-sm text-slate-700">
-            <div className="mb-1 font-medium text-[#7a5e12]">
-              Bekanntes Schulprofil wird übernommen
+          <div className="mx-auto mb-6 max-w-xl rounded-lg border border-[#1e3d32]/30 bg-[#1e3d32]/5 px-4 py-3 text-left text-sm text-slate-700">
+            <div className="mb-1 font-medium text-[#1e3d32]">
+              Schulprofil aus einer früheren Sitzung
             </div>
-            <div className="text-slate-600">
-              {[
-                schoolProfile.name,
-                schoolProfile.typ,
-                schoolProfile.bundesland,
-                schoolProfile.schuelerzahl ? `${schoolProfile.schuelerzahl} Schüler` : null,
-              ]
-                .filter(Boolean)
-                .join(" · ") || "Grunddaten vorhanden"}
+            <p className="mb-2 text-xs text-slate-500">
+              Diese Angaben stammen aus einem früheren Antrag in diesem Browser
+              {formatProfileDate(schoolProfile.updatedAt)
+                ? ` (zuletzt ergänzt am ${formatProfileDate(schoolProfile.updatedAt)})`
+                : ""}{" "}
+              und werden als Ausgangspunkt übernommen. Passen sie nicht zu diesem
+              Antrag, verwerfen Sie sie hier.
+            </p>
+            <div className="flex flex-wrap items-baseline gap-x-2 text-slate-700">
+              <span className="font-medium">
+                {[
+                  schoolProfile.name,
+                  schoolProfile.typ,
+                  schoolProfile.bundesland,
+                  schoolProfile.schuelerzahl ? `${schoolProfile.schuelerzahl} Schüler` : null,
+                ]
+                  .filter(Boolean)
+                  .join(" · ") || "Grunddaten vorhanden"}
+              </span>
               <button
                 type="button"
                 onClick={() => {
                   clearSchoolProfile();
                   setSchoolProfile(null);
                 }}
-                className="ml-2 text-xs text-slate-500 underline hover:text-slate-700"
+                className="text-xs text-slate-500 underline hover:text-slate-700"
               >
-                löschen
+                verwerfen
               </button>
             </div>
           </div>
@@ -594,7 +624,7 @@ export function WizardShell({ programm, einreichung }: Props) {
           type="button"
           disabled={busy}
           onClick={startSession}
-          className="rounded-lg bg-[#c9a227] px-6 py-3 font-semibold text-white transition hover:bg-[#b8921e] disabled:opacity-50"
+          className="rounded-lg bg-[#1e3d32] px-6 py-3 font-semibold text-white transition hover:bg-[#2a5244] disabled:opacity-50"
         >
           {busy ? "Starte…" : "Wizard starten"}
         </button>
@@ -607,6 +637,7 @@ export function WizardShell({ programm, einreichung }: Props) {
     return <GeneratingProgress
       stage={generationStage}
       currentStage={state.generation?.stage as PipelineStage | undefined}
+      labels={labels}
     />;
   }
 
@@ -628,10 +659,12 @@ export function WizardShell({ programm, einreichung }: Props) {
       <AntragResult
         programm={programm}
         generation={generation}
+        foerderhoehe={foerderhoehe}
         costs={state.costs ?? null}
         sessionToken={state.sessionToken}
         paidToken={state.paidToken ?? null}
         einreichung={einreichung}
+        labels={labels}
         onRestart={resetSession}
         onFinanzplanChange={(plan) => {
           setGeneration((g) => (g ? { ...g, finanzplan: plan } : g));
@@ -641,6 +674,15 @@ export function WizardShell({ programm, einreichung }: Props) {
   }
 
   const canGenerate = state.phase === "ready_to_generate";
+
+  // FP-NEU-B: Die angezeigte Fragenzahl aus den tatsaechlich gezeigten KI-Fragen
+  // ableiten statt aus dem server-internen Zaehler. Letzterer kann bei einem
+  // Resend (Netzwerk-Retry) doppelt hochzaehlen, sodass die Anzeige springt
+  // (z. B. „Frage 3" → „Frage 6"). Die Zahl der gezeigten Fragen waechst dagegen
+  // monoton um genau 1 pro Runde und entspricht dem, was der Nutzer wahrnimmt.
+  const gezeigteFragen = messages.filter(
+    (m) => m.role === "ai" && m.kind === "question"
+  ).length;
 
   return (
     <div className="grid gap-6 md:grid-cols-[1fr_320px]">
@@ -664,7 +706,7 @@ export function WizardShell({ programm, einreichung }: Props) {
           <QuestionCard
             question={state.question.content}
             rationale={state.question.rationale}
-            totalQuestions={state.totalQuestions}
+            totalQuestions={gezeigteFragen || state.totalQuestions}
             maxQuestions={state.maxQuestions}
             answer={answer}
             setAnswer={setAnswer}
@@ -673,8 +715,8 @@ export function WizardShell({ programm, einreichung }: Props) {
           />
         )}
         {state.phase === "interviewing" && !state.question && (
-          <div className="rounded-xl border border-[#c9a227]/40 bg-white p-6">
-            <h3 className="mb-1 text-lg font-semibold text-[#0a1628]">
+          <div className="rounded-xl border border-[#1e3d32]/40 bg-white p-6">
+            <h3 className="mb-1 text-lg font-semibold text-[#1c1917]">
               Noch etwas ergänzen?
             </h3>
             <p className="mb-3 text-sm text-slate-600">
@@ -686,13 +728,13 @@ export function WizardShell({ programm, einreichung }: Props) {
               onChange={(e) => setAnswer(e.target.value)}
               rows={4}
               placeholder="Weitere Angaben zu Ihrem Vorhaben …"
-              className="w-full rounded-lg border border-[#0a1628]/15 bg-[#f8f5f0] p-3 text-sm text-[#0a1628] placeholder-slate-500 focus:border-[#c9a227] focus:outline-none focus:ring-2 focus:ring-[#c9a227]/20"
+              className="w-full rounded-lg border border-[#1c1917]/15 bg-[#fdfdfc] p-3 text-sm text-[#1c1917] placeholder-slate-500 focus:border-[#1e3d32] focus:outline-none focus:ring-2 focus:ring-[#1e3d32]/20"
             />
             <div className="mt-3 flex flex-wrap items-center justify-end gap-3">
               <button
                 type="button"
                 onClick={() => setState((s) => (s ? { ...s, phase: "ready_to_generate" } : s))}
-                className="rounded-lg border border-[#0a1628]/15 px-5 py-2 text-[#1e3a61] transition hover:bg-slate-100"
+                className="rounded-lg border border-[#1c1917]/15 px-5 py-2 text-[#57534e] transition hover:bg-slate-100"
               >
                 Fertig — zum Antrag
               </button>
@@ -700,16 +742,30 @@ export function WizardShell({ programm, einreichung }: Props) {
                 type="button"
                 disabled={busy || !answer.trim()}
                 onClick={submitAnswer}
-                className="rounded-lg bg-[#c9a227] px-6 py-2 font-semibold text-white transition hover:bg-[#b8921e] disabled:opacity-50"
+                className="rounded-lg bg-[#1e3d32] px-6 py-2 font-semibold text-white transition hover:bg-[#2a5244] disabled:opacity-50"
               >
                 {busy ? "Sende…" : "Ergänzung senden"}
               </button>
             </div>
+            {/* 86ca910kr: gleiche Live-Rückmeldung wie in der QuestionCard. */}
+            {busy && (
+              <div
+                role="status"
+                aria-live="polite"
+                className="mt-4 flex items-center gap-3 rounded-lg border border-[#1e3d32]/25 bg-[#1e3d32]/5 px-4 py-3 text-sm text-[#1e3d32]"
+              >
+                <Loader2 className="h-4 w-4 shrink-0 animate-spin" />
+                <span>
+                  Ihre Ergänzung ist angekommen — die KI arbeitet sie ein. Das dauert einen
+                  Moment …
+                </span>
+              </div>
+            )}
           </div>
         )}
         {canGenerate && (
-          <div className="rounded-xl border border-[#c9a227]/40 bg-[#c9a227]/10 p-8">
-            <h3 className="mb-2 text-xl font-semibold text-[#0a1628]">
+          <div className="rounded-xl border border-[#1e3d32]/40 bg-[#1e3d32]/10 p-8">
+            <h3 className="mb-2 text-xl font-semibold text-[#1c1917]">
               Genug Informationen gesammelt
             </h3>
             <p className="mb-4 max-w-xl text-slate-700">
@@ -720,7 +776,7 @@ export function WizardShell({ programm, einreichung }: Props) {
               Passt alles, schreibt die KI den Antrag — sechs Schritte: Gliederung → Abschnitte →
               Gutachten → Revision → Re-Check → Finanzplan + Konsistenzprüfung. Typisch 1–3 Minuten.
             </p>
-            <div className="mb-4 rounded-lg border border-[#0a1628]/10 bg-[#f8f5f0] p-4">
+            <div className="mb-4 rounded-lg border border-[#1c1917]/10 bg-[#fdfdfc] p-4">
               <FactsPanel
                 facts={state.facts}
                 compact
@@ -734,13 +790,41 @@ export function WizardShell({ programm, einreichung }: Props) {
                 <ReadinessAmpel report={readiness} />
               </div>
             )}
+            <div className="mb-6">
+              <p className="mb-2 text-sm font-medium text-[#1c1917]">Schreibstil des Antrags</p>
+              <div className="flex flex-wrap gap-2" role="group" aria-label="Texttiefe wählen">
+                {([
+                  { key: "knapp", label: "Knapp", hint: "kurz & prägnant" },
+                  { key: "standard", label: "Standard", hint: "ausgewogen" },
+                  { key: "ausfuehrlich", label: "Ausführlich", hint: "mehr Tiefe" },
+                ] as { key: Texttiefe; label: string; hint: string }[]).map((opt) => {
+                  const active = texttiefe === opt.key;
+                  return (
+                    <button
+                      key={opt.key}
+                      type="button"
+                      aria-pressed={active}
+                      onClick={() => setTexttiefe(opt.key)}
+                      className={
+                        "rounded-lg border px-3 py-1.5 text-sm transition " +
+                        (active
+                          ? "border-[#1e3d32] bg-[#1e3d32] text-white"
+                          : "border-[#1c1917]/15 bg-[#fdfdfc] text-[#57534e] hover:bg-slate-100")
+                      }
+                    >
+                      {opt.label} <span className={active ? "text-white/70" : "text-slate-400"}>· {opt.hint}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
             <div className="flex flex-wrap items-center justify-end gap-3">
               <button
                 type="button"
                 onClick={() => {
                   setState((s) => (s ? { ...s, phase: "interviewing" } : s));
                 }}
-                className="rounded-lg border border-[#0a1628]/15 px-5 py-2 text-[#1e3a61] transition hover:bg-slate-100"
+                className="rounded-lg border border-[#1c1917]/15 px-5 py-2 text-[#57534e] transition hover:bg-slate-100"
               >
                 Noch mehr ergänzen
               </button>
@@ -752,16 +836,16 @@ export function WizardShell({ programm, einreichung }: Props) {
                   "rounded-lg px-6 py-2 font-semibold text-white transition disabled:opacity-50 " +
                   (readiness?.status === "kritisch"
                     ? "bg-amber-600 hover:bg-amber-700"
-                    : "bg-[#c9a227] hover:bg-[#b8921e]")
+                    : "bg-[#1e3d32] hover:bg-[#2a5244]")
                 }
                 title={
                   readiness?.status === "kritisch"
-                    ? "Es fehlen Kernfakten — der Antrag wird wahrscheinlich generisch. Besser erst ergänzen."
+                    ? "Sie können die oben markierten Felder noch ergänzen — oder den Antrag direkt schreiben lassen."
                     : undefined
                 }
               >
                 {readiness?.status === "kritisch"
-                  ? "Trotzdem generieren"
+                  ? "Antrag jetzt schreiben"
                   : "Antrag schreiben lassen"}
               </button>
             </div>

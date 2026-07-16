@@ -51,7 +51,7 @@ export function PricingCard({
         <div
           className="absolute -inset-0.5 rounded-2xl opacity-60 blur-sm group-hover:opacity-100 transition-opacity duration-500"
           style={{
-            background: "linear-gradient(135deg, #c9a227 0%, #e4c55a 50%, #c9a227 100%)",
+            background: "linear-gradient(135deg, #d4af37 0%, #e4c55a 50%, #d4af37 100%)",
           }}
         />
       )}
@@ -60,8 +60,8 @@ export function PricingCard({
       <div
         className={`relative h-full flex flex-col rounded-2xl transition-all duration-500 ${
           highlighted
-            ? "bg-[#0f1f38] border-2 border-[#c9a227]/50"
-            : "bg-[#0f1f38]/60 border border-[#c9a227]/10 hover:border-[#c9a227]/30"
+            ? "bg-[#1c1917] border-2 border-[#d4af37]/50"
+            : "bg-[#1c1917]/60 border border-[#d4af37]/10 hover:border-[#d4af37]/30"
         }`}
       >
         {/* Badge */}
@@ -70,8 +70,8 @@ export function PricingCard({
             <div
               className="px-4 py-1.5 rounded-full text-sm font-semibold whitespace-nowrap"
               style={{
-                background: "linear-gradient(135deg, #c9a227 0%, #b08d1f 100%)",
-                color: "#050d18",
+                background: "linear-gradient(135deg, #d4af37 0%, #356152 100%)",
+                color: "#1c1917",
               }}
             >
               {badge}
@@ -85,25 +85,25 @@ export function PricingCard({
             <div
               className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
               style={{
-                backgroundColor: highlighted ? "rgba(201, 162, 39, 0.2)" : "rgba(201, 162, 39, 0.1)",
-                border: `1px solid ${highlighted ? "rgba(201, 162, 39, 0.4)" : "rgba(201, 162, 39, 0.2)"}`,
+                backgroundColor: highlighted ? "rgba(217, 119, 6, 0.2)" : "rgba(217, 119, 6, 0.1)",
+                border: `1px solid ${highlighted ? "rgba(217, 119, 6, 0.4)" : "rgba(217, 119, 6, 0.2)"}`,
               }}
             >
               <Icon
                 className="w-6 h-6"
-                style={{ color: highlighted ? "#e4c55a" : "#c9a227" }}
+                style={{ color: highlighted ? "#e4c55a" : "#d4af37" }}
               />
             </div>
             <div>
               <h3
                 className="font-serif text-xl mb-1"
-                style={{ color: "#f8f5f0" }}
+                style={{ color: "#fdfdfc" }}
               >
                 {name}
               </h3>
               <p
                 className="text-sm"
-                style={{ color: "#94a3b8" }}
+                style={{ color: "#a8a29e" }}
               >
                 {description}
               </p>
@@ -115,14 +115,14 @@ export function PricingCard({
             <div className="flex items-baseline gap-1">
               <span
                 className="text-4xl font-serif"
-                style={{ color: "#f8f5f0" }}
+                style={{ color: "#fdfdfc" }}
               >
                 {price}
               </span>
               {period && (
                 <span
                   className="text-sm"
-                  style={{ color: "#94a3b8" }}
+                  style={{ color: "#a8a29e" }}
                 >
                   {period}
                 </span>
@@ -131,7 +131,7 @@ export function PricingCard({
             {priceSubtext && (
               <p
                 className="text-sm mt-1"
-                style={{ color: "#94a3b8" }}
+                style={{ color: "#a8a29e" }}
               >
                 {priceSubtext}
               </p>
@@ -141,7 +141,7 @@ export function PricingCard({
           {/* Divider */}
           <div
             className="h-px w-full mb-6"
-            style={{ backgroundColor: "rgba(201, 162, 39, 0.15)" }}
+            style={{ backgroundColor: "rgba(217, 119, 6, 0.15)" }}
           />
 
           {/* Features */}
@@ -163,14 +163,14 @@ export function PricingCard({
                     className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
                     style={{ backgroundColor: "rgba(148, 163, 184, 0.1)" }}
                   >
-                    <X className="w-3 h-3" style={{ color: "#64748b" }} />
+                    <X className="w-3 h-3" style={{ color: "#78716c" }} />
                   </div>
                 )}
                 <span
                   className={`text-sm ${
                     feature.included ? "" : "line-through opacity-50"
                   }`}
-                  style={{ color: feature.included ? "#f8f5f0" : "#64748b" }}
+                  style={{ color: feature.included ? "#fdfdfc" : "#78716c" }}
                 >
                   {feature.text}
                 </span>
@@ -181,10 +181,10 @@ export function PricingCard({
           {/* CTA Button */}
           <Link
             href={ctaLink}
-            className={`w-full py-3.5 rounded-xl font-semibold text-center flex items-center justify-center gap-2 ${
+            className={`w-full py-3.5 rounded-xl font-semibold text-center flex items-center justify-center gap-2 transition-colors ${
               highlighted
-                ? "btn-primary"
-                : "btn-outline"
+                ? "bg-gold-500 text-[#1c1917] hover:bg-gold-400"
+                : "border-2 border-gold-500 text-gold-400 hover:bg-gold-500 hover:text-[#1c1917]"
             }`}
           >
             {ctaText}

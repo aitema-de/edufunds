@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { AlertTriangle, ArrowRight, CheckCircle, ExternalLink, SearchX, Star } from "lucide-react";
+import { AlertTriangle, ArrowRight, CheckCircle, Coins, ExternalLink, SearchX, Star } from "lucide-react";
+import { buildFoerderhoeheHinweis } from "@/lib/foerderhoehe-empfehlung";
 
 export interface MatchEntry {
   id: string;
@@ -14,6 +15,7 @@ export interface MatchEntry {
     foerdergeber?: string;
     foerdergeberTyp?: string;
     foerdersummeText?: string;
+    foerdersummeMin?: number;
     foerdersummeMax?: number;
     bewerbungsfristText?: string;
     bewerbungsfristEnde?: string;
@@ -47,16 +49,16 @@ interface Props {
 
 function scoreColor(score: number): string {
   if (score >= 85) return "text-emerald-700 bg-emerald-50 border-emerald-200";
-  if (score >= 70) return "text-[#7a5e12] bg-[#c9a227]/10 border-[#c9a227]/30";
+  if (score >= 70) return "text-[#1e3d32] bg-[#1e3d32]/10 border-[#1e3d32]/30";
   return "text-slate-600 bg-slate-100 border-slate-200";
 }
 
 export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
   if (matches.length === 0) {
     return (
-      <div className="rounded-2xl border border-[#0a1628]/8 bg-white p-8 text-center shadow-[0_4px_20px_-4px_rgba(10,22,40,0.06)]">
+      <div className="rounded-2xl border border-[#1c1917]/8 bg-white p-8 text-center shadow-[0_4px_20px_-4px_rgba(10,22,40,0.06)]">
         <SearchX className="mx-auto mb-3 h-8 w-8 text-slate-400" />
-        <h3 className="mb-2 text-lg font-semibold text-[#0a1628]">
+        <h3 className="mb-2 text-lg font-semibold text-[#1c1917]">
           Kein Programm passt zu diesem Anliegen
         </h3>
         <p className="mx-auto mb-4 max-w-md text-sm text-slate-600">
@@ -71,7 +73,7 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
           <button
             type="button"
             onClick={onReset}
-            className="inline-flex items-center gap-2 rounded-lg bg-[#c9a227] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#b8921e]"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#1e3d32] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#2a5244]"
           >
             Anliegen neu formulieren
             <ArrowRight className="h-4 w-4" />
@@ -95,16 +97,17 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
       </div>
       {sorted.map((m) => {
         const expired = isFristAbgelaufen(m.programm.bewerbungsfristEnde);
+        const foerderhoehe = buildFoerderhoeheHinweis(m.programm);
         return (
         <article
           key={m.id}
           className={`rounded-2xl border bg-white p-5 shadow-[0_4px_20px_-4px_rgba(10,22,40,0.06)] transition hover:shadow-[0_8px_28px_-6px_rgba(10,22,40,0.1)] ${
-            expired ? "border-[#0a1628]/8 opacity-75" : "border-[#0a1628]/8 hover:border-[#c9a227]/30"
+            expired ? "border-[#1c1917]/8 opacity-75" : "border-[#1c1917]/8 hover:border-[#1e3d32]/30"
           }`}
         >
           <div className="mb-3 flex flex-wrap items-start justify-between gap-3">
             <div className="min-w-0 flex-1">
-              <h3 className="mb-1 text-lg font-semibold text-[#0a1628]">
+              <h3 className="mb-1 text-lg font-semibold text-[#1c1917]">
                 {m.programm.name}
               </h3>
               <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600">
@@ -112,12 +115,9 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
                   <span>{m.programm.foerdergeber}</span>
                 )}
                 {m.programm.foerdergeberTyp && (
-                  <span className="rounded-full border border-[#0a1628]/15 px-2 py-0.5 capitalize text-[#1e3a61]">
+                  <span className="rounded-full border border-[#1c1917]/15 px-2 py-0.5 capitalize text-[#57534e]">
                     {m.programm.foerdergeberTyp}
                   </span>
-                )}
-                {m.programm.foerdersummeText && (
-                  <span>· bis {m.programm.foerdersummeText}</span>
                 )}
                 {m.programm.bewerbungsfristText && (
                   <span>· Frist: {m.programm.bewerbungsfristText}</span>
@@ -149,19 +149,32 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
               </div>
             </div>
             {m.achtung_bei && (
-              <div className="flex items-start gap-2 rounded-lg bg-[#c9a227]/10 border border-[#c9a227]/30 px-3 py-2">
-                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#c9a227]" aria-hidden="true" />
+              <div className="flex items-start gap-2 rounded-lg bg-[#1e3d32]/10 border border-[#1e3d32]/30 px-3 py-2">
+                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#1e3d32]" aria-hidden="true" />
                 <div>
-                  <span className="text-xs font-semibold text-[#b08d1f]">Achtung: </span>
-                  <span className="text-sm text-[#1e3a61]">{m.achtung_bei}</span>
+                  <span className="text-xs font-semibold text-[#1e3d32]">Achtung: </span>
+                  <span className="text-sm text-[#57534e]">{m.achtung_bei}</span>
                 </div>
               </div>
             )}
           </div>
+          {/* P4-B: Beantragungshöhe-Orientierung — deterministisch aus Katalog-Fördersummen. */}
+          <div className="mb-4 flex items-start gap-2 rounded-lg border border-[#1c1917]/10 bg-[#1e3d32]/[0.04] px-3 py-2">
+            <Coins className="mt-0.5 h-4 w-4 shrink-0 text-[#1e3d32]" aria-hidden="true" />
+            <div className="min-w-0">
+              <p className="text-sm font-medium text-[#1c1917]">{foerderhoehe.headline}</p>
+              {foerderhoehe.detail && (
+                <p className="mt-0.5 text-xs text-slate-600">{foerderhoehe.detail}</p>
+              )}
+              <p className="mt-1 text-[11px] text-slate-500">
+                Grobe Orientierung — wie viel Sie konkret beantragen, hängt von Ihren Projektkosten ab.
+              </p>
+            </div>
+          </div>
           <div className="flex flex-wrap items-center justify-between gap-3">
             <Link
               href={`/foerderprogramme/${m.programm.id}`}
-              className="inline-flex items-center gap-1.5 text-xs text-slate-600 transition hover:text-[#c9a227]"
+              className="inline-flex items-center gap-1.5 text-xs text-slate-600 transition hover:text-[#1e3d32]"
             >
               <ExternalLink className="h-3.5 w-3.5" />
               Programm-Details ansehen
@@ -169,7 +182,7 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
             <button
               type="button"
               onClick={() => onStartAntrag(m)}
-              className="inline-flex items-center gap-2 rounded-lg bg-[#c9a227] px-4 py-2 sm:py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#b8921e]"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#1e3d32] px-4 py-2 sm:py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#2a5244]"
             >
               Antrag starten
               <ArrowRight className="h-4 w-4" />

@@ -12,6 +12,7 @@ import type {
   PipelineStage,
   WizardFacts,
   WizardMessage,
+  Texttiefe,
 } from "./types";
 export type { PipelineStage } from "./types";
 import {
@@ -23,6 +24,7 @@ import {
   CONSISTENCY_SYSTEM,
   buildOutlinePrompt,
   buildSectionPrompt,
+  texttiefeHint,
   buildCritiquePrompt,
   buildRevisionPrompt,
   buildRecheckPrompt,
@@ -40,9 +42,11 @@ import {
   buildProgrammKontext,
   verifyFacts,
 } from "./fact-verification";
+import { extractAnnahmen, wrapAnnahmen } from "./annahme-marker";
 import type { Usage } from "./pricing";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
-import { generateFinanzplan } from "./finanzplan-generator";
+import { generateFinanzplan, buildBeantragtConsistencyIssue } from "./finanzplan-generator";
+import { ensureSectionsPresent } from "./struktur-guard";
 import { buildFallbackTitle } from "./title-fallback";
 import { buildFallbackOutline } from "./outline-fallback";
 import { PIPELINE_CONFIG } from "./config";
@@ -133,6 +137,21 @@ function normalizeConsistency(raw: unknown): ConsistencyIssue[] {
   }
   if (out.length > 8) out.length = 8;
   return out;
+}
+
+/**
+ * Bug #004 (Pilot 15.07.): Erkennt LLM-Konsistenz-Issues, die sich auf die
+ * GESAMT-/BEANTRAGTE SUMME beziehen. Solche Befunde rechnet das Flash-Modell
+ * unzuverlaessig (es schrieb "12.600 EUR entsprechen 15.000 EUR"). Sie werden aus
+ * der LLM-Liste entfernt und durch einen deterministischen Befund
+ * (buildBeantragtConsistencyIssue) ersetzt. Heuristik ueber die Beschreibung —
+ * die Art kann "betrag-unstimmig" ODER "sonstiges" sein.
+ */
+const TOTAL_SUM_ISSUE_RE =
+  /gesamtsumme|gesamtkost|gesamtbetrag|gesamt-?\s?summe|beantragt|f[oö]rdersumme|projektsumme/i;
+
+function isTotalSumConsistencyIssue(i: ConsistencyIssue): boolean {
+  return TOTAL_SUM_ISSUE_RE.test(i.beschreibung);
 }
 
 const STATUS_VALID: readonly FindingStatus[] = ["geschlossen", "teilweise", "offen"];
@@ -275,7 +294,7 @@ ${currentText}
 AUFGABE: Ueberarbeite den Antragstext so, dass alle genannten Verstösse behoben sind:
 - Fehlende Abschnitte mit einem inhaltlich passenden Text ergänzen (basierend auf dem vorhandenen Kontext).
 - Zu lange Abschnitte kürzen ohne inhaltlichen Verlust.
-- Platzhalter durch konkrete Inhalte ersetzen.
+- Zu duenne Abschnitte aus dem vorhandenen Kontext inhaltlich fuellen, ohne neue Fakten zu erfinden. Vorhandene "[TODO: …]"- und "[Annahme: …]"-Marker bleiben erhalten.
 
 Gib NUR den vollständigen, korrigierten Antragstext zurueck (kein JSON, keine Erklaerung).`;
 }
@@ -301,7 +320,8 @@ export async function runPipeline(
   facts: WizardFacts,
   richtlinie?: Richtlinie | null,
   onEvent?: (e: PipelineEvent) => void | Promise<void>,
-  messages?: WizardMessage[]
+  messages?: WizardMessage[],
+  options?: { texttiefe?: Texttiefe }
 ): Promise<PipelineResult> {
   const emit = async (e: PipelineEvent) => {
     // Heartbeat MUSS abgewartet werden, sonst landet der Stage-Schreibvorgang
@@ -366,7 +386,8 @@ export async function runPipeline(
     const res = await generateText(
       MODEL_PRO,
       SECTION_SYSTEM,
-      buildSectionPrompt(programm, facts, abschnitt, outline.titel, rl, userAnswers)
+      buildSectionPrompt(programm, facts, abschnitt, outline.titel, rl, userAnswers) +
+        texttiefeHint(options?.texttiefe)
     );
     usages.push({ model: MODEL_PRO, usage: res.usage });
     sections.push({ name: abschnitt.name, text: res.value });
@@ -394,6 +415,29 @@ export async function runPipeline(
     buildRevisionPrompt(programm, facts, draft, critiqueRendered, richtlinie)
   );
   usages.push({ model: MODEL_PRO, usage: finalRes.usage });
+
+  // =========================================================================
+  // Struktur-Guard (Pilot-Befund "Textumfang", 15.07.2026)
+  // Die Revision (produktiv erzwungenes EU-Modell mistral-small) kann bei duennem
+  // Input Pflichtabschnitte verschmelzen/streichen, sodass der sichtbare finalText
+  // auf wenige Abschnitte kollabiert, obwohl sections[] alle enthaelt. Deterministisch
+  // (kein LLM) fehlende Abschnitte aus sections[] wieder einsetzen. HIER platziert —
+  // direkt nach der Revision, VOR Halluzinations-/Fakt-Gate/Recheck — damit
+  // re-injizierter Text dieselben Ehrlichkeitspruefungen durchlaeuft wie regulaerer.
+  // =========================================================================
+  {
+    const guard = ensureSectionsPresent(finalRes.value ?? "", outline, sections);
+    if (guard.reinjected.length > 0) {
+      finalRes = { value: guard.text, usage: finalRes.usage };
+      await emit({
+        stage: "revision",
+        message: `Struktur-Guard: ${guard.reinjected.length} fehlende(r) Abschnitt(e) ergaenzt`,
+      });
+      console.log(
+        `[pipeline] Struktur-Guard: ${guard.reinjected.length} Abschnitt(e) re-injiziert (${guard.reinjected.join(", ")})`
+      );
+    }
+  }
 
   let resolutions: FindingResolution[] = [];
   let hasOpenHigh = false;
@@ -495,6 +539,7 @@ export async function runPipeline(
           factVerification = {
             neutralisiert: fv.neutralisiert,
             vorschlaege: fv.vorschlaege,
+            vorschlaegeBegruendung: fv.vorschlaegeBegruendung,
             remaining: fv.remaining,
             repaired: fv.repaired,
           };
@@ -560,6 +605,12 @@ export async function runPipeline(
     usages.push({ model: MODEL_FLASH, usage: consistencyRes.usage });
     consistencyIssues = normalizeConsistency(consistencyRes.value);
 
+    // Bug #004 (Pilot 15.07.): Gesamtsummen-Befunde des LLM verwerfen — es rechnet
+    // sie falsch und widerspruechlich. Vor der Konsistenz-Revision entfernen, damit
+    // diese nicht faelschlich die (legitime) beantragte Summe im Text "wegkorrigiert";
+    // der Gesamtsummen-Abgleich kommt weiter unten deterministisch dazu.
+    consistencyIssues = consistencyIssues.filter((i) => !isTotalSumConsistencyIssue(i));
+
     // QA-01/03: Inkonsistenzen nicht nur flaggen, sondern einmalig beheben —
     // den Antragstext an den (verbindlichen) Finanzplan angleichen und erneut
     // pruefen. Fehlschlag der Revision behaelt Originaltext + geflaggte Issues.
@@ -581,11 +632,26 @@ export async function runPipeline(
           `[pipeline] Konsistenz-Revision: ${consistencyIssues.length} → ${reconciled.issues.length} Issue(s)`
         );
         finalRes = { value: reconciled.finalText, usage: finalRes.usage };
-        consistencyIssues = reconciled.issues;
+        // Auch nach dem Recheck kann das LLM einen Gesamtsummen-Befund
+        // (falsch gerechnet) zurueckgeben — erneut verwerfen.
+        consistencyIssues = reconciled.issues.filter((i) => !isTotalSumConsistencyIssue(i));
         usages.push(...reconciled.usages);
       } catch (revErr) {
         console.error("[pipeline] Konsistenz-Revision fehlgeschlagen:", revErr);
       }
+    }
+
+    // Bug #004: Deterministischer Gesamtsummen-Abgleich (Foerderposten-Summe ×
+    // beantragte Summe) — genau EIN korrekt gerechneter Befund, deckungsgleich mit
+    // dem Hinweis in der FinanzplanView (checkBeantragtDeckung). Ersetzt die vom
+    // LLM entfernten, unzuverlaessigen Gesamtsummen-Befunde.
+    const deckungIssue = buildBeantragtConsistencyIssue(
+      finanzRes.plan.posten.filter((p) => !p.eigenanteil),
+      facts
+    );
+    if (deckungIssue) {
+      consistencyIssues = [deckungIssue, ...consistencyIssues];
+      if (consistencyIssues.length > 8) consistencyIssues.length = 8;
     }
   }
   // Hinweis (Produktvision 2026-06-10): Der frühere unbeziffert-Zweig
@@ -593,6 +659,49 @@ export async function runPipeline(
   // Finanzplan-Generator erstellt jetzt immer einen bezifferten Plan mit als
   // Vorschlag markierten Beträgen; der Text behält seine (als Schätzung
   // gekennzeichneten) Beträge und wird per Konsistenz-Revision daran angeglichen.
+
+  // =========================================================================
+  // Annahmen-Markierung (Produktentscheidung 02.07.2026, ClickUp 86caht7eq)
+  // "Kennzeichnen statt verbieten": FV-"vorschlag"-Zitate (+ nicht neutralisierte
+  // remaining-Tatsachen) werden deterministisch als [Annahme: …] im Text markiert
+  // — Sicherheitsnetz zu den generierungszeitigen Markern aus den Prompts.
+  // Danach wird die interaktive Bestaetigungsliste aus ALLEN Markern im Text
+  // gebaut (Prompt-Marker + FV-Marker), damit Uebernehmen/Anpassen/Streichen
+  // jede Annahme erreicht und keine unmarkiert in den Export gelangt.
+  // Laeuft NACH allen LLM-Revisionen (Compliance/Konsistenz), damit spaetere
+  // Umformulierungen die deterministische Verankerung nicht zerreissen.
+  // =========================================================================
+  {
+    const fvZitate = [
+      ...(factVerification?.vorschlaege ?? []),
+      ...(factVerification?.remaining ?? []),
+    ];
+    const wrapped = wrapAnnahmen(finalRes.value ?? "", fvZitate);
+    if (wrapped.marked.length > 0) {
+      finalRes = { value: wrapped.text, usage: finalRes.usage };
+    }
+    const annahmen = extractAnnahmen(finalRes.value ?? "");
+    if (annahmen.length > 0 || factVerification) {
+      const beg = new Map(
+        (factVerification?.vorschlaegeBegruendung ?? []).map((b) => [b.zitat, b.warum])
+      );
+      factVerification = {
+        neutralisiert: factVerification?.neutralisiert ?? [],
+        vorschlaege: annahmen,
+        vorschlaegeBegruendung: annahmen.map((z) => ({
+          zitat: z,
+          warum: beg.get(z) ?? "nicht durch Nutzerangaben gedeckt",
+        })),
+        remaining: factVerification?.remaining ?? [],
+        repaired: factVerification?.repaired ?? false,
+      };
+      if (annahmen.length > 0) {
+        console.log(
+          `[pipeline] Annahmen-Markierung: ${annahmen.length} [Annahme: …]-Marker im Text (${wrapped.marked.length} deterministisch nachmarkiert)`
+        );
+      }
+    }
+  }
 
   // Final-Guard (Probe 09.06., Fall 3): Nach allen Stufen darf der Antragstext
   // niemals leer sein. Ein leerer finalText entsteht aus einer transienten,
