@@ -20,7 +20,7 @@ Traefik-Router Prio 1000 überlagert die App). Die App-Container laufen dahinter
 | **Stripe** | `STRIPE_SECRET_KEY=sk_live_…`, `STRIPE_WEBHOOK_SECRET=whsec_…` gesetzt. | **Prod ist bereits LIVE** — die ältere Notiz „noch Sandbox" war veraltet. Nur Live-Webhook-Erreichbarkeit gegenprüfen (Schritt 4). |
 | **LLM-Provider** | `.env.production` → `LLM_PROVIDER=mistral`, `MISTRAL_API_KEY` (len 32) gesetzt. | Greift automatisch beim Container-Recreate (Deploy). Verifizieren (Schritt 4). |
 | **Kritische Secrets** | `DATABASE_URL`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `CRON_SECRET` (44), `ADMIN_PASSWORD_HASH` (60), `RESEND_API_KEY`, `LEXOFFICE_API_KEY` — **alle gesetzt**. | Secret-Check besteht (Prod). |
-| **Code-Branch** | `main` (= Prod-Branch) ist **119 Commits hinter `staging`**; 10 main-only Commits (Newsletter/Feedback) sind in staging bereits enthalten. **Probemerge `staging→main` sauber, 0 Konflikte.** | **Zentraler Schritt: `staging → main` mergen = Content-Freeze** → Schritt 3.1 |
+| **Code-Branch** | `main` ist **191 Commits hinter `staging`** und hat **15 eigene** (Hotfixes direkt auf main: Newsletter-Härtung 07.07., Coming-Soon-Apex + Admin-Proxy 08.07., Feedback-Ticketzähler). ⚠️ **Der Probemerge ist NICHT mehr konfliktfrei** (9 Dateien) — die frühere Aussage „0 Konflikte" ist überholt. Konflikte sind in **PR #89** bereits aufgelöst und verifiziert. | **Zentraler Schritt: PR #89 mergen = Content-Freeze** → Schritt 3.1 |
 | **Container** | `edufunds-app` (healthy), `edufunds-maintenance` (up), `edufunds-postgres`, `edufunds-staging`, `edufunds-landing` — alle up. | ok |
 
 **Fazit:** Technisch fehlen nur drei Schritte — `staging→main`, Migration 011,
@@ -79,19 +79,30 @@ git show staging:app/agb/page.tsx | grep -q 'nr="§ 4a"' \
   || echo "STOPP: Der Code zitiert AGB-Paragrafen, die die ausgelieferte AGB nicht hat!"
 ```
 
-### 3.1 🔴 Kolja-Go: `staging → main` mergen (Content-Freeze)
+### 3.1 🔴 Kolja-Go: PR #89 mergen (Content-Freeze)
 
-Der Probemerge ist konfliktfrei. Über PR (Trail) oder direkt:
+⚠️ **Der Merge ist NICHT konfliktfrei** — die alte Runbook-Aussage („Probemerge sauber, 0 Konflikte",
+Stand 07.07.) stimmt nicht mehr. `main` hat **15 eigene Commits**: Hotfixes, die direkt auf `main`
+gemacht wurden (Newsletter-Härtung 07.07., Coming-Soon-Apex-Switch + Admin-Proxy 08.07.,
+Feedback-Ticketzähler). **9 Dateien kollidieren.**
+
+Deshalb **nicht** `staging` direkt nach `main` mergen, sondern den vorbereiteten Branch nehmen:
+`cutover/staging-to-main` — dort sind die Konflikte aufgelöst und die Auflösung ist **verifiziert**:
+
+- Der aufgelöste Merge-Baum ist **byte-identisch mit `origin/staging`** → `main` enthält keinerlei
+  Inhalt, den `staging` nicht schon hat.
+- Jeder inhaltliche main-Commit einzeln gegengeprüft (Apex-301, Admin-Proxy, Router-Rule,
+  Ticketzähler → alle vorhanden; die wenigen „fehlenden" Newsletter-Zeilen sind **abgelöst**:
+  `publicAppUrl()` statt hartkodiertem Fallback, `buildSystemPrompt(isKickoff, ctaUrl)` statt
+  `(isKickoff)` — genau die CTA-Härtung aus `f67eeaf`, konsequenter zu Ende geführt).
+- Gate auf dem **Merge-Ergebnis**: 745 Unit + 96 Integration + 7 E2E grün, tsc sauber, Build ok.
 
 ```bash
-# Variante PR (empfohlen, GitHub):
-gh pr create --repo aitema-de/edufunds --base main --head staging \
-  --title "Go-Live: staging → main (Cutover 07.2026)" \
-  --body "Content-Freeze für Production-Cutover. Siehe docs/CUTOVER-RUNBOOK.md"
-gh pr merge <NR> --repo aitema-de/edufunds --merge
+gh pr merge 89 --repo aitema-de/edufunds --merge
 ```
 
-Danach steht `origin/main` auf dem staging-Stand (inkl. Migration-011-Datei, Mistral-Default im Code, alle Härtungen).
+Danach steht `origin/main` auf dem staging-Stand (AGB-Neufassung, Geldpfad-Absicherung,
+Refund-Entwertung, Mahnwesen, IBAN-Guard, Migrationen 011–015).
 
 ### 3.2 🔴 Kolja-Go: Migrationen 011–015 auf Prod-DB `edufunds` anwenden
 
@@ -126,7 +137,12 @@ docker exec edufunds-postgres psql -U edufunds -d edufunds -c \
 # ki_antraege_status_check MUSS 'refunded' enthalten.
 ```
 
-> Auf `edufunds_staging` sind 012–015 am 14.07.2026 angewandt und verifiziert.
+> **Trockenlauf gegen einen KLON der echten Prod-DB (14.07.2026):** Alle fünf Migrationen laufen
+> sauber durch, sind **idempotent** (zweiter Lauf fehlerfrei), die **Altdaten bleiben unbeschadet**
+> (6 Anträge, 3 bezahlt/mit Token, 2 Codes, 1 Newsletter-Eintrag), und der neue Refund-Pfad
+> (`status='refunded'`) funktioniert auf genau diesen Daten — vorher wäre er an der CHECK-Constraint
+> gescheitert. Klon danach gedroppt, Prod unberührt (011/012/015 dort weiterhin nicht angewandt).
+> Auf `edufunds_staging` sind 012–015 zusätzlich seit dem 14.07. produktiv.
 > **Prod-DB am 14.07. read-only geprüft:** `org_orders` ist leer (die CHECK-Constraint aus 013
 > kann also an keinen Altdaten scheitern), `ki_antraege` hat nur `paid`/`complete`/`in_progress`
 > — alle innerhalb der neuen Constraint. **Keine** der Migrationen 011–015 ist bislang drin.

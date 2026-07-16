@@ -1,6 +1,6 @@
 import { randomUUID } from "crypto";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
-import type { Finanzplan, Finanzposten, WizardFacts } from "./types";
+import type { ConsistencyIssue, Finanzplan, Finanzposten, WizardFacts } from "./types";
 import type { Richtlinie } from "./richtlinien-schema";
 import { MODEL_PRO, generateJson } from "./llm";
 import { FINANZPLAN_SYSTEM, buildFinanzplanPrompt } from "./prompts";
@@ -242,6 +242,41 @@ export function checkBeantragtDeckung(
         `Bitte die beantragte Summe oder die Posten angleichen.`
     );
   }
+}
+
+/**
+ * Bug #004 (Pilot 15.07.): Das KI-Gutachten ("Konsistenz-Check Antrag × Finanzplan")
+ * liess das Flash-Modell die Gesamtsummen-Arithmetik selbst rechnen (CONSISTENCY_SYSTEM)
+ * und produzierte einen faktisch falschen, sich selbst widersprechenden Befund
+ * ("Gesamtkosten (12.600 EUR) entsprechen der beantragten Summe (15.000 EUR)"). Diese
+ * Funktion liefert den Gesamtsummen-Abgleich DETERMINISTISCH als strukturiertes
+ * ConsistencyIssue — dieselbe Arithmetik/Schwellen wie `checkBeantragtDeckung` (das den
+ * Hinweis in der FinanzplanView setzt), damit Gutachten und Finanzplan-Hinweise NIE
+ * auseinanderlaufen und die Luecke genau EINMAL, korrekt gemeldet wird. Gibt null zurueck,
+ * wenn kein strukturiertes `beantragt_eur` vorliegt oder die Abweichung unter der Schwelle
+ * bleibt (rel. > 10 % UND abs. >= 100 EUR). Exportiert fuer Tests.
+ */
+export function buildBeantragtConsistencyIssue(
+  foerderposten: Finanzposten[],
+  facts: WizardFacts
+): ConsistencyIssue | null {
+  const beantragt = facts?.budget?.beantragt_eur;
+  if (typeof beantragt !== "number" || !Number.isFinite(beantragt) || beantragt <= 0) return null;
+  if (foerderposten.length === 0) return null;
+
+  const summe = Math.round(foerderposten.reduce((s, p) => s + p.betragEur, 0));
+  const diff = summe - beantragt;
+  const absLuecke = Math.abs(diff);
+  if (absLuecke < 100 || absLuecke / beantragt <= 0.1) return null;
+
+  const sumStr = summe.toLocaleString("de-DE");
+  const beantragtStr = beantragt.toLocaleString("de-DE");
+  const lueckeStr = absLuecke.toLocaleString("de-DE");
+  const beschreibung =
+    diff < 0
+      ? `Die Förderposten summieren sich auf ${sumStr} EUR, beantragt wurden aber ${beantragtStr} EUR — es fehlen ${lueckeStr} EUR. Ergänze die fehlenden Kosten oder passe die beantragte Summe an, damit Antrag und Finanzplan übereinstimmen.`
+      : `Die Förderposten summieren sich auf ${sumStr} EUR und übersteigen die beantragten ${beantragtStr} EUR um ${lueckeStr} EUR. Bitte die beantragte Summe oder die Posten angleichen.`;
+  return { art: "betrag-unstimmig", beschreibung };
 }
 
 /**
