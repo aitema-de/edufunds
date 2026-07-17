@@ -1,45 +1,59 @@
-import type { Foerderprogramm } from "@/lib/foerderSchema";
+import type { Foerderprogramm, ProgrammStatus } from "@/lib/foerderSchema";
 
 /**
- * TERMINALE Status: Programme, die redaktionell aus dem aktiven Katalog genommen
- * wurden und dort nie wieder auftauchen sollen — alte Wettbewerbsrunden, Dubletten,
- * eingestellte Programme ("archiviert") oder noch nicht freigegebene Rohdaten
- * ("review_needed"). Anders als eine abgelaufene Frist ist das kein Zeit-, sondern
- * ein Zustandsurteil.
- *
- * Reale Katalog-Werte: "aktiv" / "archiviert" / "review_needed". Die alten Werte
- * "abgelaufen"/"beendet" setzt der Katalog nie, werden aber defensiv mitgefuehrt.
+ * Der EINZIGE Status, unter dem ein Programm im Finder/Matcher erscheinen und
+ * damit verkauft werden darf. Die Liste aller Werte steht in `PROGRAMM_STATUS`
+ * (lib/foerderSchema.ts) — hier faellt nur die Entscheidung, welcher davon
+ * anbietbar ist.
  */
-export function isProgrammTerminalerStatus(p: Foerderprogramm): boolean {
-  const status = (p as { status?: string }).status;
-  return (
-    status === "archiviert" ||
-    status === "review_needed" ||
-    status === "abgelaufen" ||
-    status === "beendet"
-  );
+export const STATUS_ANBIETBAR: ProgrammStatus = "aktiv";
+
+/**
+ * Gehoert dieses Programm NICHT in den aktiven Katalog (unabhaengig von Fristen)?
+ *
+ * Bewusst eine ALLOWLIST (fail-closed): Nur exakt `aktiv` ist anbietbar, alles
+ * andere nicht — archiviert, review_needed, ein spaeter ergaenzter Status, ein
+ * Tippfehler, ein fehlendes Feld.
+ *
+ * Vorher war das eine SPERRLISTE ("archiviert"/"review_needed"/"abgelaufen"/
+ * "beendet" → terminal, sonst anbietbar). Eine Sperrliste muss jeden schlechten
+ * Fall im Voraus kennen und schweigt bei allem, was sie nicht kennt — der
+ * unbekannte Wert wird dann still VERKAUFT. Das war am 17.07.2026 real: Das
+ * Schema erlaubte `pausiert` und `auslaufend`, beide standen auf keiner
+ * Sperrliste. Ein pausiertes Programm waere also weiter angeboten worden.
+ *
+ * Fuer die heutigen Daten ist die Umstellung verhaltensgleich (aktiv → anbietbar,
+ * archiviert → nicht); sie schliesst nur die Luecke fuer alles Unbekannte.
+ */
+export function isStatusNichtAnbietbar(p: Foerderprogramm): boolean {
+  return (p as { status?: string }).status !== STATUS_ANBIETBAR;
 }
 
 /**
  * Ein Programm gehoert NICHT in den aktiven Finder (und damit ins Archiv), wenn
- *  - es einen terminalen Status hat (archiviert/review_needed/beendet), ODER
+ *  - sein Status nicht `aktiv` ist (s. o.), ODER
  *  - sein Bewerbungsfrist-Ende nachweislich in der Vergangenheit liegt
  *    (bewerbungsfristEnde < heute).
  *
- * Programme OHNE Enddatum ("laufend"/rolling) und mit Status "aktiv" sind NICHT
- * abgelaufen.
+ * Programme OHNE `bewerbungsfristEnde` und mit Status `aktiv` gelten hier als
+ * laufend.
  *
- * Hintergrund: Das Archiv filterte frueher auf `status === "abgelaufen"` — diesen
- * Wert setzt der Katalog nie, also war das Archiv immer leer, obwohl Programme mit
- * vergangener Frist im aktiven Katalog auftauchten. Zusaetzlich fielen archivierte
- * Programme OHNE Enddatum (z. B. eingestellte Stiftungsfoerderungen, "keine
- * Ausschreibungen mehr") durch den Rost und blieben im oeffentlichen Finder sichtbar.
- * Diese Funktion ist die eine gemeinsame Quelle fuer die Trennlinie Katalog/Archiv
- * (Archiv einschliessen, Finder/Matcher ausschliessen) — deckungsgleich mit dem
- * Ausschluss in lib/wizard/matcher.ts.
+ * ⚠️ BEKANNTE LUECKE (17.07.2026, dokumentiert statt stillschweigend):
+ * `bewerbungsfristEnde` ist bei 173 von 189 Programmen NICHT gesetzt. Fuer diese
+ * ist "laeuft rollend" von "Frist nicht erfasst" nicht unterscheidbar — beides
+ * ist ein fehlendes Feld, und diese Funktion liest es als "laeuft". So wurde ein
+ * Antrag fuer den Foerderfonds Demokratie verkauft, dessen einziger Stichtag am
+ * 30.09.2019 lag ("Momentan sind keine Antraege moeglich", Website Stand 01/2026).
+ * Die Wahrheit stand dabei im Katalog — nur im Freitextfeld
+ * `bewerbungsfristText`, das kein Code liest.
+ *
+ * Diese Funktion kann das nicht heilen: Sie kann ein Feld, das es nicht gibt,
+ * nicht pruefen. Die Loesung ist ein expliziter Zustand "Frist unbekannt" im
+ * Datenmodell (statt undefined) plus Quellenbeleg — bis dahin werden betroffene
+ * Programme redaktionell auf `archiviert` gesetzt.
  */
 export function isProgrammAbgelaufen(p: Foerderprogramm, now: Date = new Date()): boolean {
-  if (isProgrammTerminalerStatus(p)) return true;
+  if (isStatusNichtAnbietbar(p)) return true;
   const ende = p.bewerbungsfristEnde;
   if (ende) {
     const d = new Date(ende);

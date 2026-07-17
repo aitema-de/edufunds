@@ -1,4 +1,4 @@
-import { Foerderprogramm } from '../lib/foerderSchema';
+import { Foerderprogramm, PROGRAMM_STATUS } from '../lib/foerderSchema';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -7,7 +7,11 @@ const data = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/foerderpro
 const validFoerdergeberTyp = ['bund', 'land', 'eu', 'stiftung', 'sonstige'];
 const validSchulformen = ['grundschule', 'hauptschule', 'realschule', 'gymnasium', 'gesamtschule', 'foerderschule', 'berufsschule'];
 const validBewerbungsart = ['online', 'schriftlich', 'beides'];
-const validStatus = ['aktiv', 'auslaufend', 'pausiert', 'beendet'];
+// Aus dem Schema abgeleitet statt hier dupliziert: Diese Liste stand bis
+// 17.07.2026 auf ['aktiv','auslaufend','pausiert','beendet'] und haette damit
+// 32 gueltige Programme (status="archiviert") als ungueltig gemeldet — waere sie
+// je gelaufen. Sie steht in keinem npm-Script und in keiner CI.
+const validStatus: readonly string[] = PROGRAMM_STATUS;
 
 const issues: { index: number; id: string; problems: string[] }[] = [];
 
