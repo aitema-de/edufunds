@@ -11,20 +11,9 @@ import {
 } from "@/lib/payments/orders";
 import { revokeSessionAccess, revokeQuotaCodeByStripeSession } from "@/lib/payments/refund";
 import { sendMail } from "@/lib/mail";
-import { runInvoiceJob } from "@/lib/payments/invoice";
-import { trustedAppUrl } from "@/lib/app-url";
+import { runInvoiceJob, buildInvoiceJobParams } from "@/lib/payments/invoice";
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? "office@aitema.de";
-
-/**
- * Org-/Vereinsname aus dem Stripe-Checkout-Custom-Field `organisation` (B2B —
- * Pflichtfeld). Fallback auf den customer_details.name, falls (Alt-Sessions) leer.
- */
-function orgNameFromSession(cs: Stripe.Checkout.Session): string {
-  const field = cs.custom_fields?.find((f) => f.key === "organisation");
-  const fromField = field?.text?.value?.trim();
-  return fromField || cs.customer_details?.name?.trim() || "Unbekannt";
-}
 
 /**
  * Verschickt die Bestaetigungs-/Admin-Mail fuer einen Kontingent-Kartenkauf (B3).
@@ -220,32 +209,16 @@ export async function POST(req: NextRequest) {
           `[stripe/webhook] Session ${token} -> paid (paidToken=${updated.paidToken})`
         );
         // PAY-03: lexoffice-Rechnung + §312i-Bestelleingangsbestätigung.
-        // Best-effort + idempotent (runInvoiceJob wirft nicht, Marker via DB) —
-        // ein lexoffice-/Mailfehler darf den bereits bezahlten Kauf nicht 500en.
-        const addr = cs.customer_details?.address;
-        // Download-Link für die Bestätigungsmail aus VERTRAUENSWÜRDIGER Server-URL
-        // (nie aus Request-Headern — Host-Header-Injection-Schutz). Fehlt die Konfig,
-        // bleibt downloadUrl undefined und die Mail geht fail-safe ohne Link raus.
-        const appBase = trustedAppUrl();
-        const downloadUrl =
-          appBase && updated.paidToken
-            ? `${appBase}/antrag/download/${updated.paidToken}`
-            : undefined;
-        await runInvoiceJob({
-          stripeSessionId: cs.id,
-          email: cs.customer_details?.email ?? undefined,
-          orgName: orgNameFromSession(cs),
-          address: {
-            supplement: cs.customer_details?.name ?? undefined,
-            street: [addr?.line1, addr?.line2].filter(Boolean).join(", ") || undefined,
-            zip: addr?.postal_code ?? undefined,
-            city: addr?.city ?? undefined,
-            countryCode: addr?.country ?? undefined,
-          },
-          vatId: cs.customer_details?.tax_ids?.[0]?.value ?? undefined,
-          grossCents: cs.amount_total ?? 2990,
-          downloadUrl,
-        });
+        // Best-effort — ein lexoffice-/Mailfehler darf den bereits bezahlten Kauf
+        // nicht 500en. Doppelzustellung faengt die Event-Dedup oben ab
+        // (stripe_webhook_events, Migration 011); scheitert die Rechnung, bleibt
+        // der Marker leer und scripts/rechnung-nachholen.ts kann sie nachholen.
+        //
+        // Die Zuordnung Session -> Rechnungsdaten liegt bewusst in
+        // buildInvoiceJobParams (lib/payments/invoice.ts): Der Nachlauf muss
+        // exakt dieselbe Rechnung erzeugen wie dieser Pfad, sonst repariert er
+        // etwas anderes als das Kaputte.
+        await runInvoiceJob(buildInvoiceJobParams(cs, updated.paidToken));
         break;
       }
       case "checkout.session.expired": {
