@@ -975,7 +975,7 @@ function PreiseTeaser() {
       href: "/foerderprogramme",
       ghost: true,
       features: [
-        { t: `Zugriff auf alle ${"189"} Programme`, on: true },
+        { t: `Zugriff auf alle ${PROGRAMM_COUNT_ROUNDED}+ Programme`, on: true },
         { t: "Filter nach Bundesland & Schulform", on: true },
         { t: "KI-Antragsgenerierung", on: false },
         { t: "PDF-Export des Antragsentwurfs", on: false },
