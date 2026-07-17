@@ -1,5 +1,24 @@
 // EduFunds Förderdatenbank - Schema
 
+/**
+ * Die Status-Werte, die der Katalog tatsächlich führt.
+ * Stand 17.07.2026: aktiv=157, archiviert=32, review_needed=0.
+ *
+ * EINE Quelle der Wahrheit — `lib/programm-status.ts` (Verkaufs-Gate) und
+ * `scripts/validate-data.ts` leiten von hier ab. Vorher stand die Liste dreimal
+ * im Code, in drei widersprüchlichen Fassungen: Dieser Typ und der Validator
+ * kannten `archiviert` NICHT (obwohl 32 Programme ihn tragen), führten dafür
+ * `auslaufend`/`pausiert`/`beendet`, die der Katalog nie setzt — und das Gate
+ * behandelte `pausiert` nicht als Ausschluss. Ein pausiertes Programm wäre also
+ * weiter verkauft worden.
+ *
+ * Wer hier einen Wert ergänzt, muss in `lib/programm-status.ts` entscheiden, ob
+ * er anbietbar ist. Default dort ist fail-closed: nicht anbietbar.
+ */
+export const PROGRAMM_STATUS = ["aktiv", "archiviert", "review_needed"] as const;
+
+export type ProgrammStatus = (typeof PROGRAMM_STATUS)[number];
+
 export type Foerderprogramm = {
   id: string;                    // UUID
   name: string;                  // Programmname
@@ -35,8 +54,8 @@ export type Foerderprogramm = {
   kurzbeschreibung: string;      // 1-2 Sätze (max 300 Zeichen)
   beschreibung?: string;         // Volltext
   
-  // Status
-  status: 'aktiv' | 'auslaufend' | 'pausiert' | 'beendet' | 'abgelaufen';
+  // Status — Werte s. PROGRAMM_STATUS oben.
+  status: ProgrammStatus;
   createdAt: string;
   updatedAt: string;
   lastVerifiedAt?: string;       // Wann wurde das Programm zuletzt geprüft?
