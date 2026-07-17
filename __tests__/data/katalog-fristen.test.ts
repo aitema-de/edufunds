@@ -99,17 +99,21 @@ describe("Katalog: dokumentierte Luecke, die dieser Test NICHT schliesst", () =>
 
   /**
    * Der Test oben kann nur urteilen, wo ein Dossier einen Stichtag kennt. Die
-   * eigentliche Luecke ist groesser: `bewerbungsfristEnde` fehlt bei den meisten
-   * Programmen, und dann ist "laeuft rollend" von "Frist nicht erfasst" nicht
-   * unterscheidbar. Die Wahrheit steht im Freitext `bewerbungsfristText` (bei
-   * allen 189 gesetzt), den kein Code liest.
+   * eigentliche Luecke ist groesser: bei den meisten Programmen fehlt jede
+   * maschinenlesbare Frist, und dann ist "laeuft rollend" von "Frist nicht
+   * erfasst" nicht unterscheidbar. Die Wahrheit steht im Freitext
+   * `bewerbungsfristText` (bei allen 189 gesetzt), den kein Verkaufs-Code liest.
    *
-   * Dieser Test behauptet nicht, dass das in Ordnung ist — er haelt die Groesse
-   * der Luecke fest, damit sie sichtbar bleibt und beim Schliessen auffaellt.
+   * Seit 17.07.2026 gibt es dafuer den expliziten `fristZustand`
+   * (lib/foerder-zustaende.ts). Ein Programm gilt hier als abgedeckt, sobald es
+   * ENTWEDER `bewerbungsfristEnde` (Legacy) ODER `fristZustand` (neu) traegt.
+   * Diese Zahl ist die noch offene Migrations-Luecke; sie DARF nur sinken.
    */
-  it("haelt fest, wie viele verkaeufliche Programme kein maschinenlesbares Fristende haben", () => {
+  it("haelt fest, wie viele verkaeufliche Programme keine maschinenlesbare Frist haben", () => {
     const verkaeuflich = KATALOG.filter((p) => istVerkaeuflich(p, JETZT));
-    const ohneFristEnde = verkaeuflich.filter((p) => !p.bewerbungsfristEnde);
+    const ohneFrist = verkaeuflich.filter(
+      (p) => !p.bewerbungsfristEnde && !(p as { fristZustand?: unknown }).fristZustand
+    );
 
     // Alle Programme haben einen menschenlesbaren Fristtext — nur liest ihn niemand.
     const ohneFristText = KATALOG.filter(
@@ -117,9 +121,78 @@ describe("Katalog: dokumentierte Luecke, die dieser Test NICHT schliesst", () =>
     );
     expect(ohneFristText).toEqual([]);
 
-    // Momentaufnahme 17.07.2026: 97 verkaeuflich, davon 95 ohne Fristende.
+    // Momentaufnahme 17.07.2026: 97 verkaeuflich, davon 95 ohne Frist.
     // Diese Zahl DARF sinken (Luecke wird geschlossen). Steigt sie, waechst das
     // ungepruefte Risiko — dann ist die Erwartung bewusst anzupassen.
-    expect(ohneFristEnde.length).toBeLessThanOrEqual(95);
+    expect(ohneFrist.length).toBeLessThanOrEqual(95);
+  });
+});
+
+describe("Fail-closed: expliziter fristZustand entscheidet ueber Verkauf", () => {
+  const JETZT = new Date("2026-07-17T00:00:00Z");
+
+  // Minimales Programm; das Gate liest nur status, kiAntragGeeignet, fristZustand,
+  // bewerbungsfristEnde. Der Rest ist fuer die Frist-Entscheidung irrelevant.
+  function prog(overrides: Partial<Foerderprogramm>): Foerderprogramm {
+    return {
+      id: "test",
+      status: "aktiv",
+      kiAntragGeeignet: true,
+      ...overrides,
+    } as Foerderprogramm;
+  }
+
+  it("Frist unbekannt => NICHT verkaeuflich (auch bei aktiv + kiAntragGeeignet)", () => {
+    const p = prog({ fristZustand: { art: "unbekannt" } } as Partial<Foerderprogramm>);
+    expect(istVerkaeuflich(p, JETZT)).toBe(false);
+  });
+
+  it("Frist keine (belegt rollend) => verkaeuflich", () => {
+    const p = prog({
+      fristZustand: { art: "keine", quelle: "Website: laufende Antragstellung" },
+    } as Partial<Foerderprogramm>);
+    expect(istVerkaeuflich(p, JETZT)).toBe(true);
+  });
+
+  it("Stichtag in der Vergangenheit, nicht wiederkehrend => NICHT verkaeuflich", () => {
+    const p = prog({
+      fristZustand: {
+        art: "stichtag",
+        stichtage: ["2019-09-30"],
+        jaehrlichWiederkehrend: false,
+        quelle: "PDF Runde 1",
+      },
+    } as Partial<Foerderprogramm>);
+    expect(istVerkaeuflich(p, JETZT)).toBe(false);
+  });
+
+  it("Stichtag in der Zukunft => verkaeuflich; wiederkehrend => verkaeuflich", () => {
+    const zukunft = prog({
+      fristZustand: {
+        art: "stichtag",
+        stichtage: ["2026-12-01"],
+        quelle: "Website",
+      },
+    } as Partial<Foerderprogramm>);
+    const wiederkehrend = prog({
+      fristZustand: {
+        art: "stichtag",
+        stichtage: ["2020-06-30"],
+        jaehrlichWiederkehrend: true,
+        quelle: "Website: jaehrlich bis 30.06.",
+      },
+    } as Partial<Foerderprogramm>);
+    expect(istVerkaeuflich(zukunft, JETZT)).toBe(true);
+    expect(istVerkaeuflich(wiederkehrend, JETZT)).toBe(true);
+  });
+
+  it("foerderfonds-demokratie ist ueber den fristZustand-Pfad tot (Stichtag 2019, nicht wiederkehrend)", () => {
+    const p = KATALOG.find((x) => x.id === "foerderfonds-demokratie");
+    expect(p).toBeDefined();
+    // Daten belegen es (unabhaengig vom redaktionellen status="archiviert"):
+    expect((p as { fristZustand?: { art?: string } }).fristZustand?.art).toBe("stichtag");
+    // Selbst wenn der Status auf aktiv stuende, bliebe es nicht verkaeuflich:
+    const alsAktiv = { ...(p as Foerderprogramm), status: "aktiv" as const, kiAntragGeeignet: true };
+    expect(istVerkaeuflich(alsAktiv, JETZT)).toBe(false);
   });
 });

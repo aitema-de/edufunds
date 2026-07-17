@@ -1,5 +1,11 @@
 // EduFunds Förderdatenbank - Schema
 
+import type {
+  FristZustand,
+  UmfangZustand,
+  EinreichungsForm,
+} from "@/lib/foerder-zustaende";
+
 /**
  * Die Status-Werte, die der Katalog tatsächlich führt.
  * Stand 17.07.2026: aktiv=157, archiviert=32, review_needed=0.
@@ -41,8 +47,22 @@ export type Foerderprogramm = {
   // Bewerbung
   bewerbungsfristStart?: string; // ISO Date
   bewerbungsfristEnde?: string;  // ISO Date
-  bewerbungsfristText?: string;  // z.B. "laufend", "quartalsweise"
+  bewerbungsfristText?: string;  // z.B. "laufend", "quartalsweise" (Freitext, kein Code liest ihn)
   bewerbungsart: 'online' | 'schriftlich' | 'beides';
+
+  /**
+   * Maschinenlesbarer Frist-Zustand (loest bewerbungsfristEnde/-Text als
+   * Verkaufs-Wahrheit ab). Trennt "belegt rollend" von "nicht erfasst".
+   * Fehlt das Feld, faellt das Gate auf bewerbungsfristEnde zurueck — diese
+   * Programme sind noch nicht migriert (getrackt in
+   * __tests__/data/katalog-fristen.test.ts). Fail-closed: art="unbekannt" =>
+   * nicht verkaeuflich. Entscheidung in lib/programm-status.ts.
+   */
+  fristZustand?: FristZustand;
+  /** Maschinenlesbarer Umfang (Laengenbegrenzung des Antrags). Nicht verkaufs-kritisch. */
+  umfangZustand?: UmfangZustand;
+  /** Strukturierte Einreichungsform (loest Freitext ab). Nicht verkaufs-kritisch. */
+  einreichungsForm?: EinreichungsForm;
   
   // Kontakt & Links
   antragsLink?: string;          // URL zum Antrag
