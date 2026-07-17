@@ -7,13 +7,28 @@
  *   3. §312i-Bestelleingangsbestaetigung IMMER an den Kaeufer senden
  *      (mit PDF-Anhang, falls die Rechnung erzeugt werden konnte).
  *   4. Bei lexoffice-Fehler: Admin-Alert, damit die Rechnung manuell folgt.
- *   5. Verarbeitungs-Marker setzen (auch bei Teil-Fehlschlag -> kein Re-Run).
+ *   5. Verarbeitungs-Marker setzen — NUR bei tatsaechlich erzeugter Rechnung.
  *
  * Bewusst best-effort: Die Zahlung ist bereits erfolgt und der Antrag
  * freigeschaltet — ein lexoffice-/Mailfehler darf den Webhook nicht 500en.
+ *
+ * ZU PUNKT 5, geaendert am 17.07.2026: Hier stand "auch bei Teil-Fehlschlag ->
+ * kein Re-Run". Das war kein Versehen, sondern noetig, solange `invoice_created_at`
+ * der EINZIGE Schutz gegen Stripes Webhook-Wiederholungen war — ohne den Marker
+ * haette eine zweite Zustellung eine zweite Rechnung erzeugt.
+ *
+ * Diese Begruendung ist entfallen: Migration 011 (`stripe_webhook_events`) ist
+ * seit 17.07.2026 auf Prod und dedupliziert auf EVENT-Ebene. Der Marker muss die
+ * Doppelrolle nicht mehr tragen — und durfte sie nicht behalten: Er verbuchte
+ * jeden Fehlschlag als Erfolg. Am 17.07.2026 real geworden (abgelaufener
+ * lexoffice-Key -> 401): Antrag 35 trug invoice_created_at, aber weder Nummer
+ * noch PDF, und kein Nachlauf war mehr moeglich — die Rechnung waere still und
+ * dauerhaft verloren gewesen. Reparaturweg: scripts/rechnung-nachholen.ts
  */
+import type Stripe from "stripe";
 import { query } from "@/lib/db";
 import { sendMail, type MailAttachment } from "@/lib/mail";
+import { trustedAppUrl } from "@/lib/app-url";
 import {
   createInvoice,
   getInvoiceNumber,
@@ -34,6 +49,51 @@ const LINE_ITEM_NAME = "EduFunds — Förderantrag (Einzelantrag)";
  */
 export function invoiceFinalizeEnabled(): boolean {
   return process.env.LEXOFFICE_FINALIZE !== "false";
+}
+
+/**
+ * Org-/Vereinsname aus dem Stripe-Custom-Field, sonst der Name aus den
+ * Kundendaten. Lag bis 17.07.2026 lokal im Webhook.
+ */
+export function orgNameFromSession(cs: Stripe.Checkout.Session): string {
+  const field = cs.custom_fields?.find((f) => f.key === "organisation");
+  const fromField = field?.text?.value?.trim();
+  return fromField || cs.customer_details?.name?.trim() || "Unbekannt";
+}
+
+/**
+ * Baut die Rechnungs-Parameter aus einer Stripe-Checkout-Session.
+ *
+ * EINE Quelle fuer beide Aufrufer — den Webhook und scripts/rechnung-nachholen.ts.
+ * Bewusst hier und nicht im Skript nachgebaut: Eine zweite Fassung wuerde
+ * driften, und der Nachlauf muesste dann exakt die Rechnung erzeugen, die der
+ * Webhook erzeugt haette — sonst repariert er etwas anderes als das Kaputte.
+ *
+ * `paidToken` kommt aus der DB (markSessionPaid bzw. ki_antraege.paid_token) und
+ * bildet den Download-Link. Die Basis-URL stammt aus trustedAppUrl(), nie aus
+ * Request-Headern (Host-Header-Injection).
+ */
+export function buildInvoiceJobParams(
+  cs: Stripe.Checkout.Session,
+  paidToken?: string | null
+): InvoiceJobParams {
+  const addr = cs.customer_details?.address;
+  const appBase = trustedAppUrl();
+  return {
+    stripeSessionId: cs.id,
+    email: cs.customer_details?.email ?? undefined,
+    orgName: orgNameFromSession(cs),
+    address: {
+      supplement: cs.customer_details?.name ?? undefined,
+      street: [addr?.line1, addr?.line2].filter(Boolean).join(", ") || undefined,
+      zip: addr?.postal_code ?? undefined,
+      city: addr?.city ?? undefined,
+      countryCode: addr?.country ?? undefined,
+    },
+    vatId: cs.customer_details?.tax_ids?.[0]?.value ?? undefined,
+    grossCents: cs.amount_total ?? 2990,
+    downloadUrl: appBase && paidToken ? `${appBase}/antrag/download/${paidToken}` : undefined,
+  };
 }
 
 export interface InvoiceJobParams {
@@ -261,6 +321,7 @@ export async function runInvoiceJob(p: InvoiceJobParams): Promise<void> {
     console.error(`[invoice] lexoffice fehlgeschlagen für ${p.stripeSessionId}:`, err);
     await alertAdmin(p, err);
   }
+  const rechnungErzeugt = Boolean(invoiceId);
 
   // §312i: Bestelleingangsbestätigung IMMER senden (PDF anhängen falls vorhanden).
   if (p.email) {
@@ -282,5 +343,25 @@ export async function runInvoiceJob(p: InvoiceJobParams): Promise<void> {
     console.warn(`[invoice] keine Käufer-E-Mail für ${p.stripeSessionId} — keine Bestätigung versendet.`);
   }
 
-  await markProcessed(p.stripeSessionId, invoiceId, invoiceNumber);
+  // NUR als erledigt markieren, wenn tatsaechlich eine Rechnung entstanden ist.
+  //
+  // Vorher lief markProcessed() bedingungslos — auch nach einem Fehlschlag im
+  // catch oben. Da isProcessed() an `invoice_created_at IS NOT NULL` haengt, hat
+  // sich damit JEDER gescheiterte Lauf selbst als erledigt verbucht: kein
+  // Nachlauf, keine Reparatur, die Rechnung dauerhaft und still verloren.
+  // Real geworden am 17.07.2026: Der lexoffice-Key war abgelaufen (401), Antrag
+  // 35 blieb mit invoice_created_at=<Zeitpunkt>, aber ohne Nummer und ohne PDF.
+  //
+  // Jetzt bleibt der Marker bei Misserfolg leer -> scripts/rechnung-nachholen.ts
+  // (und jeder kuenftige Retry) kann den Lauf wiederholen. Der Preis ist eine
+  // moegliche zweite Bestaetigungsmail beim Nachlauf — akzeptiert: Die erste ging
+  // ohne Rechnung raus, die zweite traegt sie im Anhang.
+  if (rechnungErzeugt) {
+    await markProcessed(p.stripeSessionId, invoiceId, invoiceNumber);
+  } else {
+    console.warn(
+      `[invoice] ${p.stripeSessionId}: NICHT als erledigt markiert (keine Rechnung entstanden) — ` +
+        `nachholbar via scripts/rechnung-nachholen.ts`
+    );
+  }
 }

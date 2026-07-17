@@ -40,7 +40,31 @@ export interface CreateInvoiceInput {
   taxRatePercentage: number;
   currency?: string; // default EUR
   remark?: string;
+  /**
+   * Text der Zahlungsbedingung auf der Rechnung.
+   *
+   * MUSS gesetzt sein, sonst zieht lexoffice die Standard-Bedingung der
+   * Organisation ("zahlbar innerhalb X Tagen") — und die ist hier IMMER falsch:
+   * Jede Rechnung, die dieser Client erzeugt, gehoert zu einem bereits per
+   * Stripe-Checkout bezahlten Kauf. Ein Zahlungsziel darauf fordert Geld ein,
+   * das schon geflossen ist (Kunde zahlt womoeglich doppelt).
+   *
+   * Deshalb hier ein Default statt eines optionalen Felds: Wer diesen Client
+   * spaeter fuer den Kauf auf Rechnung nutzt (org_orders — laeuft heute NICHT
+   * ueber lexoffice), muss die Bedingung bewusst ueberschreiben.
+   */
+  paymentTermLabel?: string;
+  /** Zahlungsziel in Tagen. Default 0 = sofort faellig//bereits beglichen. */
+  paymentTermDurationDays?: number;
 }
+
+/**
+ * Default-Zahlungsbedingung: Die Rechnung ist zum Zeitpunkt ihrer Entstehung
+ * bereits bezahlt (Stripe-Checkout lief vor dem Webhook, der sie ausloest).
+ */
+export const ZAHLUNGSBEDINGUNG_BEREITS_BEZAHLT =
+  "Bereits bezahlt — der Betrag wurde per Stripe-Checkout beglichen. " +
+  "Diese Rechnung dient Ihrer Information und ist nicht zu überweisen.";
 
 export interface CreatedInvoice {
   id: string;
@@ -125,6 +149,14 @@ export function buildInvoiceBody(input: CreateInvoiceInput, isoDate: string) {
     totalPrice: { currency },
     taxConditions: { taxType: "gross" },
     shippingConditions: { shippingType: "service", shippingDate: isoDate },
+    // Ohne paymentConditions setzt lexoffice die Organisations-Standardbedingung
+    // ("zahlbar in X Tagen"). Bei einer bereits per Stripe bezahlten Rechnung ist
+    // das eine Zahlungsaufforderung fuer Geld, das schon da ist.
+    // (Gefunden 17.07.2026 am ersten echten Rechnungsentwurf.)
+    paymentConditions: {
+      paymentTermLabel: input.paymentTermLabel ?? ZAHLUNGSBEDINGUNG_BEREITS_BEZAHLT,
+      paymentTermDuration: input.paymentTermDurationDays ?? 0,
+    },
     ...(input.remark ? { remark: input.remark } : {}),
   };
 }

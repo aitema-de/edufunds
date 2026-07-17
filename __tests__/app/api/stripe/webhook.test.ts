@@ -67,8 +67,15 @@ jest.mock("resend", () => ({
   Resend: jest.fn().mockImplementation(() => ({ emails: { send: jest.fn() } })),
 }));
 // PAY-03: einzelantrag-Pfad ruft runInvoiceJob (lexoffice + pg). Best-effort,
-// hier gemockt — die Rechnungslogik wird separat getestet (smoke-lexoffice).
+// hier gemockt — die Rechnungslogik wird separat getestet
+// (__tests__/lib/invoice-marker-und-zahlungsziel.test.ts).
+//
+// buildInvoiceJobParams bewusst NICHT mitmocken: Es ist eine reine Funktion und
+// baut die Rechnungsdaten aus der Stripe-Session. Laesst man sie echt laufen,
+// prueft dieser Test mit, dass der Webhook korrekt gebaute Daten uebergibt.
+// (Ein Vollmock des Moduls liess buildInvoiceJobParams undefined -> 500.)
 jest.mock("@/lib/payments/invoice", () => ({
+  ...jest.requireActual("@/lib/payments/invoice"),
   runInvoiceJob: jest.fn(),
 }));
 
