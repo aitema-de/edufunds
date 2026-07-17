@@ -6,6 +6,22 @@
 > ausdrückliche Freigabe. Alles darunter ist copy-paste-fertig und gegen den
 > echten Server-Zustand geprüft.
 
+> ## Nachtrag 17.07.2026 — vor dem Cutover lesen
+>
+> Erneut read-only gegen Server, Prod-DB, Stripe-Live-Konto und die laufenden Container geprüft.
+> Drei Dinge haben sich gegenüber dem 07.07. verschoben:
+>
+> 1. **Schritt 3.1 ist erledigt** — PR #89 ist gemergt, `origin/main` = `622760d` und enthält
+>    `staging` vollständig (`main..staging` = 0). Das AGB-Gate aus 3.0 **besteht auf `main`**
+>    (Neufassung + § 4a + § 4b vorhanden). Migrationen 011–015 liegen auf `main`.
+> 2. **⛔ `--apex` ist im Cutover-Deploy Pflicht** (Schritt 3.3) — ohne das Flag geht
+>    `edufunds.org` nach `maintenance off` auf **404**. Begründung + Beleg stehen bei 3.3.
+> 3. **Die Domain in Abschnitt 4 war veraltet** (`app.` statt Apex) — korrigiert.
+>
+> Unverändert offen und **weiterhin der teuerste Einzelschritt**: der Stripe-Webhook (9.5) zeigt
+> am 17.07. immer noch auf `https://app.edufunds.org/api/stripe/webhook` (`we_1ThSrNRbKUcSBRFKpP8xbTiK`,
+> `enabled`) — read-only gegen das Live-Konto bestätigt.
+
 `app.edufunds.org` läuft aktuell auf der **Wartungsseite** (`edufunds-maintenance`,
 Traefik-Router Prio 1000 überlagert die App). Die App-Container laufen dahinter.
 
@@ -15,7 +31,7 @@ Traefik-Router Prio 1000 überlagert die App). Die App-Container laufen dahinter
 
 | Bereich | Befund | Cutover-Relevanz |
 |---|---|---|
-| **Prod-DB Migrationen** | 002–**010** angewandt (`ki_antraege`, `credit_codes`, `org_orders`, `magic_links`, `feedback_tickets`, `newsletter_entries`, `newsletter_issues`, Spalten `author_email`/`paid_token`/`tier`/`invoice_lexoffice_id`). | **Nur Migration 011 (`stripe_webhook_events`) FEHLT** → Schritt 3.2 |
+| **Prod-DB Migrationen** | 002–**010** angewandt (`ki_antraege`, `credit_codes`, `org_orders`, `magic_links`, `feedback_tickets`, `newsletter_entries`, `newsletter_issues`, Spalten `author_email`/`paid_token`/`tier`/`invoice_lexoffice_id`). | ⚠️ **Überholt:** Es fehlen **011–015**, nicht nur 011 (012–015 gab es am 07.07. noch nicht). Am 17.07. read-only nachgeprüft — **alle fünf fehlen**, Prod unberührt → Schritt 3.2 |
 | **Prod-Daten** | `ki_antraege`: 6 Zeilen, 3 bezahlt (Alt-Testkäufe). | unkritisch |
 | **Stripe** | `STRIPE_SECRET_KEY=sk_live_…`, `STRIPE_WEBHOOK_SECRET=whsec_…` gesetzt. | **Prod ist bereits LIVE** — die ältere Notiz „noch Sandbox" war veraltet. Nur Live-Webhook-Erreichbarkeit gegenprüfen (Schritt 4). |
 | **LLM-Provider** | `.env.production` → `LLM_PROVIDER=mistral`, `MISTRAL_API_KEY` (len 32) gesetzt. | Greift automatisch beim Container-Recreate (Deploy). Verifizieren (Schritt 4). |
@@ -79,7 +95,11 @@ git show staging:app/agb/page.tsx | grep -q 'nr="§ 4a"' \
   || echo "STOPP: Der Code zitiert AGB-Paragrafen, die die ausgelieferte AGB nicht hat!"
 ```
 
-### 3.1 🔴 Kolja-Go: PR #89 mergen (Content-Freeze)
+### 3.1 ✅ ERLEDIGT (16.07.): PR #89 mergen (Content-Freeze)
+
+> **Nicht mehr auszuführen.** `origin/main` = `622760d`, enthält `staging` vollständig
+> (`git rev-list --count origin/main..origin/staging` = 0). Am 17.07. nachgeprüft.
+> Der folgende Abschnitt bleibt als Beleg der Konfliktauflösung stehen.
 
 ⚠️ **Der Merge ist NICHT konfliktfrei** — die alte Runbook-Aussage („Probemerge sauber, 0 Konflikte",
 Stand 07.07.) stimmt nicht mehr. `main` hat **15 eigene Commits**: Hotfixes, die direkt auf `main`
@@ -149,6 +169,32 @@ docker exec edufunds-postgres psql -U edufunds -d edufunds -c \
 
 ### 3.3 🔴 Kolja-Go: Cutover-Deploy (baut `main`, recreated Container)
 
+> ### ⛔ `--apex` ist PFLICHT — ohne das Flag geht `edufunds.org` nach Schritt 3.5 auf 404
+>
+> **Korrigiert 17.07.2026, gegen die laufenden Container geprüft.** Bis dahin stand hier
+> `./scripts/deploy-production.sh` **ohne** `--apex` — das widerspricht der eigenen Warnung in
+> Abschnitt 9.4 und der Kopfzeile des Deploy-Skripts („NACH dem Apex-Switch gehoert `--apex` in
+> JEDEN weiteren Prod-Deploy").
+>
+> Ist-Zustand der Traefik-Router (17.07., `docker inspect`):
+>
+> | Container | Router-Rule | |
+> |---|---|---|
+> | `edufunds-app` | ``Host(`app.edufunds.org`)`` | **nicht** auf dem Apex — letzter Deploy lief ohne `--apex` |
+> | `edufunds-maintenance` | ``Host(`edufunds.org`)││Host(`www.…`)││Host(`app.…`)``, Prio 1000 | bedient **als einziger** `edufunds.org` und macht selbst den 301 |
+>
+> **Daraus folgt:** Der Apex-„Switch" von 08.07. hängt derzeit **allein an der Wartungs-nginx**.
+> `maintenance-mode.sh off` (3.5) entfernt diesen Container — deployst du vorher ohne `--apex`,
+> matcht danach **kein Router mehr auf `edufunds.org`** → **Traefik-404**, und die App taucht
+> stattdessen unter `app.edufunds.org` auf. Zusammen mit 9.5 (Webhook auf
+> `https://edufunds.org/api/stripe/webhook`) heißt das: **Stripe liefert in ein 404, Geld kommt
+> an, nichts wird freigeschaltet** — genau der Schaden, vor dem 9.5 warnt, nur über einen anderen
+> Weg.
+>
+> Passend dazu: `.env.production` hat `NEXT_PUBLIC_APP_URL=https://edufunds.org` (der laufende
+> Container trägt noch das alte `app.edufunds.org` eingebacken). Der Deploy baut die App also
+> ohnehin **für den Apex** — der Router muss mitziehen.
+
 Der Deploy hat eine **eingebaute Schutzbremse** (bricht ab, falls `sk_test`) —
 greift hier nicht, da Prod `sk_live` hat. Er fragt interaktiv zweimal nach
 („Staging smoke-getestet?" → `y`, dann Tippbestätigung `deploy`).
@@ -161,11 +207,21 @@ ssh root@49.13.15.44 'cd /home/edufunds/edufunds-app && git checkout -- ops/main
 Deploy (baut App-Container mit neuem `main` **hinter** der noch aktiven Wartungsseite):
 ```bash
 cd /home/kolja/edufunds-app
-./scripts/deploy-production.sh          # PAYWALL_BYPASS=0 (Default = echte Zahlung)
+./scripts/deploy-production.sh --apex   # --apex = PFLICHT (s. o.); PAYWALL_BYPASS=0 (Default = echte Zahlung)
 ```
-> Hinweis: Der Smoke-Test am Ende des Skripts trifft `app.edufunds.org` — solange die
+> ⚠️ **Niemals `--with-paywall-bypass` auf Prod.** Der Default ist korrekt (echte Zahlung).
+> Das Pilot-Image trägt den Bypass und darf nie nach Prod.
+
+> Hinweis: Der Smoke-Test am Ende des Skripts trifft mit `--apex` die Apex-Domain — solange die
 > Wartungsseite (Prio 1000) läuft, liefert das die Coming-Soon-Seite (200), **nicht**
 > die App. Das ist ok; die echte App-Verifikation kommt in Schritt 4 vor dem Enthüllen.
+
+**Direkt nach dem Deploy prüfen, dass der Router wirklich auf dem Apex steht** (sonst ist 3.5
+eine Falle):
+```bash
+ssh root@49.13.15.44 'docker inspect edufunds-app --format "{{index .Config.Labels \"traefik.http.routers.edufunds-app.rule\"}}"'
+# ERWARTET: Host(`edufunds.org`)   —   steht dort Host(`app.edufunds.org`), fehlte --apex: neu deployen.
+```
 
 ### 3.4 Intern verifizieren (App läuft, noch verborgen)
 
@@ -184,16 +240,26 @@ ssh root@49.13.15.44 'docker exec edufunds-app printenv LLM_PROVIDER'           
 
 ## 4. Post-Cutover-Verifikation (öffentlich)
 
+> **Domain korrigiert 17.07.2026:** Hier stand durchgängig `app.edufunds.org` — das ist seit dem
+> Apex-Switch (08.07.) nur noch ein **301**. Gegen `app.` geprüft, misst man die Weiterleitung
+> statt der App: `curl -w '%{http_code}'` **ohne** `-L` liefert `301`, und der robots-Check
+> gäbe eine **leere** Ausgabe zurück, die wie „kein Disallow" aussieht. Kanonisch ist
+> `edufunds.org`.
+
 ```bash
-# a) Grund-Erreichbarkeit
+# a) Grund-Erreichbarkeit (kanonische Domain)
 for p in / /foerderprogramme /api/health; do
-  printf "%s -> " "$p"; curl -s -o /dev/null -w '%{http_code}\n' "https://app.edufunds.org$p"; done
+  printf "%s -> " "$p"; curl -s -o /dev/null -w '%{http_code}\n' "https://edufunds.org$p"; done
 
 # e) robots.txt = Allow (Prod ohne ROBOTS_NOINDEX → indexierbar)
-curl -s https://app.edufunds.org/robots.txt | head -3
+curl -s https://edufunds.org/robots.txt | head -3
 
 # f) Admin-Login erreichbar (ADMIN_PASSWORD_HASH ist auf Prod gesetzt)
-curl -s -o /dev/null -w '%{http_code}\n' https://app.edufunds.org/admin
+curl -s -o /dev/null -w '%{http_code}\n' https://edufunds.org/admin
+
+# g) app./www. leiten weiter, statt tot zu sein (301 auf den Apex)
+curl -s -o /dev/null -w 'app -> %{http_code} %{redirect_url}\n' https://app.edufunds.org/
+curl -s -o /dev/null -w 'www -> %{http_code} %{redirect_url}\n' https://www.edufunds.org/
 ```
 
 Auf dem Server (erst `ssh root@49.13.15.44`, dann Klartext):
@@ -207,8 +273,10 @@ docker exec edufunds-app printenv LLM_PROVIDER
 docker exec edufunds-postgres psql -U edufunds -d edufunds -tAc "SELECT to_regclass('public.stripe_webhook_events') IS NOT NULL"
 
 # d) Retention-Cron Dry-Run (zählt, ändert nichts — enthält den neuen 90-Tage-PII-Op)
+#    Container-intern aufrufen (wie der echte Cron, s. 5.1) — ein externer curl gegen die
+#    Apex-Domain läuft vor "maintenance off" in ein stilles 405 der Wartungs-nginx.
 S=$(grep '^CRON_SECRET=' .env.production | cut -d= -f2-)   # falls in Anführungszeichen: diese entfernen
-curl -fsS -H "x-cron-key: $S" "https://app.edufunds.org/api/cron/retention?dryRun=1" | jq '{dryRun, totalAffected}'
+docker exec edufunds-app sh -lc "curl -fsS -H 'x-cron-key: $S' 'http://localhost:3000/api/cron/retention?dryRun=1'" | jq '{dryRun, totalAffected}'
 ```
 
 **Manuell / Stripe-Dashboard (Kolja):**

@@ -94,10 +94,18 @@ docker build \
 
 # Traefik-Router: Default app.edufunds.org, mit --apex die Apex-Domain + 301-Router.
 # Rule bewusst OHNE Leerzeichen um '||' (Word-Splitting-Falle bei Label-Expansion).
+#
+# ⚠️ Alle Label-Werte mit Backticks MUESSEN einfach gequotet sein ('...'), nie doppelt.
+# Dieser Block laeuft via unquoted Heredoc auf dem Remote: \` kommt dort als echter
+# Backtick an. In "..." macht die Remote-Shell daraus eine Kommandosubstitution
+# ("www.edufunds.org: command not found"), der Rueckgabewert 127 loest `set -e` aus und
+# der Deploy stirbt NACH dem Build, aber VOR dem Container-Tausch — sichtbar nur an zwei
+# Fehlerzeilen. In '...' bleibt der Backtick literal, was Traefik braucht.
+# (Bug gefunden+behoben 17.07.2026 beim ersten echten --apex-Deploy.)
 if [ "$APEX" -eq 1 ]; then
   ROUTER_RULE='Host(\`edufunds.org\`)'
   EXTRA_LABELS=(
-    --label "traefik.http.routers.edufunds-redir.rule=Host(\`www.edufunds.org\`)||Host(\`app.edufunds.org\`)"
+    --label 'traefik.http.routers.edufunds-redir.rule=Host(\`www.edufunds.org\`)||Host(\`app.edufunds.org\`)'
     --label 'traefik.http.routers.edufunds-redir.entrypoints=websecure'
     --label 'traefik.http.routers.edufunds-redir.tls=true'
     --label 'traefik.http.routers.edufunds-redir.tls.certresolver=letsencrypt'
