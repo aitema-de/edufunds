@@ -89,7 +89,13 @@ export function middleware(request: NextRequest) {
     const rateLimitResult = rateLimit(request);
 
     if (!rateLimitResult.allowed) {
-      logSuspiciousActivity(request, 'Rate-Limit überschritten');
+      // Geblockte Vitals-Beacons NICHT als Verdachtsfall loggen: Beim
+      // Vitals-Sturm 22.07.2026 bestand das Prod-Log zu 99,98 % aus diesen
+      // Eintraegen (2.517 Bloecke in 29 Min.) und hat echte Signale begraben.
+      // Telemetrie-Verlust ist kein Sicherheitssignal — stilles 429 reicht.
+      if (pathname !== '/api/vitals') {
+        logSuspiciousActivity(request, 'Rate-Limit überschritten');
+      }
       if (rateLimitResult.response) {
         return rateLimitResult.response;
       }
