@@ -1,5 +1,5 @@
 {
-  "version": "2026-06-01",
+  "version": "2026-07-22",
   "quellen": [
     "https://www.kulturformen.berlin/foerdern/berliner-projektfonds-kulturelle-bildung/",
     "https://www.kulturformen.berlin/foerdern/berliner-projektfonds-kulturelle-bildung/foerderrichtlinien/",
@@ -109,7 +109,8 @@
           "Was ist das innovative oder neuartige am gewählten Ansatz?",
           "Welche künstlerische Sparte (Theater, Musik, Bildende Kunst, Tanz, Literatur, Medien) wird bearbeitet?"
         ],
-        "stilhinweis": "Konkret und anschaulich, künstlerische Qualität und pädagogischen Mehrwert gleichermaßen herausstellen."
+        "stilhinweis": "Konkret und anschaulich, künstlerische Qualität und pädagogischen Mehrwert gleichermaßen herausstellen. Umfangsbeleg (Portal/Formularabzug beispiel_antrag_07_2024.pdf, 22.07.2026): Feld 'Projektidee' (Anlass + besondere Leistung des Projekts) max. 3000 Zeichen; dazu in Step 1 die Kurzdarstellung 'Projektbeschreibung' fuer die Jury max. 2000 Zeichen — beide Texte muessen eigenstaendig funktionieren.",
+        "maxZeichen": 3000
       },
       {
         "id": "tandem-kooperation",
@@ -120,7 +121,8 @@
           "Wie ist die Zusammenarbeit organisiert und wer übernimmt welche Rolle?",
           "Antragsteller ist bei öffentlichen Schulen der Förderverein - ist das geklärt?"
         ],
-        "stilhinweis": "Echte gemeinsame Entwicklung des Projekts belegen, keine reine Auftragsbeziehung."
+        "stilhinweis": "Echte gemeinsame Entwicklung des Projekts belegen, keine reine Auftragsbeziehung. Umfangsbeleg (22.07.2026): Kurzbeschreibung je Partner (Kunst/Kultur, Bildung/Jugend, weitere Kooperationspartner) jeweils max. 500 Zeichen.",
+        "maxZeichen": 500
       },
       {
         "id": "zielgruppe-teilhabe",
@@ -131,7 +133,8 @@
           "Wie werden die Teilnehmenden aktiv und gestaltend einbezogen statt nur als Publikum?",
           "Werden unterrepräsentierte Gruppen erreicht?"
         ],
-        "stilhinweis": "Aktive Teilhabe und Partizipation der jungen Menschen klar belegen."
+        "stilhinweis": "Aktive Teilhabe und Partizipation der jungen Menschen klar belegen. Umfangsbeleg (22.07.2026): Feld 'Projektteilnehmer*innen' max. 300 Zeichen (ebenso 'Orte' 300) — extreme Dichte noetig.",
+        "maxZeichen": 300
       },
       {
         "id": "durchführung-zeitplan",
@@ -142,7 +145,8 @@
           "Wann findet das Projekt im förderfähigen Zeitraum statt (z.B. Säule 3: 01.04.-15.12.2026)?",
           "Wie wird das Ergebnis öffentlich präsentiert?"
         ],
-        "stilhinweis": "Realistischer, terminierter Ablaufplan mit Meilensteinen."
+        "stilhinweis": "Realistischer, terminierter Ablaufplan mit Meilensteinen. Umfangsbeleg (22.07.2026): Feld 'Arbeitsschritte' (Meilensteine) max. 1000 Zeichen.",
+        "maxZeichen": 1000
       },
       {
         "id": "finanzierungsplan",
@@ -153,7 +157,7 @@
           "Welche Eigenleistungen und Drittmittel werden eingebracht?",
           "Ist der Plan in sich schlüssig und ausgeglichen?"
         ],
-        "stilhinweis": "Nachvollziehbar, kostenbewusst, jede Position mit Projektbezug begründen."
+        "stilhinweis": "Nachvollziehbar, kostenbewusst, jede Position mit Projektbezug begründen. Umfangsbeleg (22.07.2026): Detaillierter Kosten- und Finanzierungsplan als Excel-Upload (Vorlage im Download-Bereich); Freitext nur 'Eigenleistungen' (nicht bare Leistungen) max. 500 Zeichen."
       },
       {
         "id": "wirkung-nachhaltigkeit",
@@ -164,7 +168,8 @@
           "Wie wird der Erfolg überprüft (Pflicht-Formular Erfolgskontrolle)?",
           "Wie wirkt das Projekt über die Förderdauer hinaus?"
         ],
-        "stilhinweis": "Messbare bzw. beobachtbare Wirkungsziele formulieren."
+        "stilhinweis": "Messbare bzw. beobachtbare Wirkungsziele formulieren. Umfangsbeleg (22.07.2026): Feld 'Nachhaltigkeit' max. 500 Zeichen; optionales Feld 'Projektzusammenhang' max. 500 Zeichen.",
+        "maxZeichen": 500
       }
     ],
     "anlagen": [
@@ -180,7 +185,9 @@
   "notizen": [
     "Für öffentliche Schulen muss der Förderverein als Antragsteller auftreten - öffentliche Schulen können NICHT direkt beantragen. Private Schulen können direkt beantragen.",
     "Säule 3 ist der niedrigschwellige Einstieg (bis 5.000 EUR) und wird je Bezirk mit eigenen Fristen ausgeschrieben.",
-    "Antrag nur auf Deutsch möglich."
+    "Antrag nur auf Deutsch möglich.",
+    "Antragsportal antrag.projektfonds-kulturelle-bildung.de (empirisch geprueft 22.07.2026, Login mit echtem Konto): Django-Anwendung, Self-Service-Registrierung (Vor-/Nachname, E-Mail, Passwort; E-Mail-Bestaetigungslink; reCAPTCHA) — kein Traeger-Gate, damit OFFEN im Sinne der Portal-Taxonomie. ABER: neue Antraege lassen sich nur bei offener Ausschreibung starten; am 22.07.2026 war eingeloggt kein 'Neuer Antrag'-Weg sichtbar (nur Bekanntmachung zur abgelaufenen FS2-Frist 12.02.2026).",
+    "Formularstruktur Foerdersaeule 1 (offizieller Abzug beispiel_antrag_07_2024.pdf): 8 Steps — 1. Kurzdarstellung (Projekttitel; Projektbeschreibung 2000 Z.; Sparten max. 3; Teilnehmer; Projektdauer/-orte), 2. Partner Kunst/Kultur (Kurzbeschreibung 500 Z.), 3. Partner Bildung/Jugend (Kurzbeschreibung 500 Z.), 4. Kooperationsvereinbarung (Zuwendungsempfaenger, Nachweis Rechtsform), 5. Weitere Kooperationspartner (je 500 Z. + Letter of Intent), 6. Projektbeschreibung (Projektidee 3000, Arbeitsschritte 1000, Orte 300, Teilnehmer 300, Projektzusammenhang 500, Nachhaltigkeit 500), 7. Kosten-/Finanzierungsplan (Excel-Upload, Eigenleistungen 500 Z.), 8. Fertigstellen. WICHTIG: Antrag gilt nur AUSGEDRUCKT mit rechtsverbindlichen Unterschriften beider Tandem-Partner, per Post/Abgabe an die Geschaeftsstelle (Poststempel zaehlt) — Online-Abschluss allein reicht nicht."
   ],
   "bestPractices": [
     {
@@ -268,7 +275,8 @@
     "quelle": "Primaerquelle kulturformen.berlin/foerdern/berliner-projektfonds-kulturelle-bildung, geprueft 22.07.2026: mehrere Saeulen mit eigenen Fristen - 'Antragsfrist 2. Oktober fuer Projekte von 5.001 bis 23.000 Euro' (Foerdersaeule 1), 'Ausschreibung Foerdersaeule 2 ab 23001 EUR bis 12. Februar 2026', 'Durchstarten 2026: Bewirb dich bis zum 8. Januar'. Jaehrliche Wiederholung der Runden belegt."
   },
   "umfangZustand": {
-    "art": "unbekannt",
-    "quelle": "Geprueft 22.07.2026 (kulturformen.berlin/.../foerderrichtlinien): Richtlinien nennen Anforderungen (Kooperationsbeschreibung, Finanzierungsplan, Letters of intent), aber keine Feldlimits — Formulare liegen auf projektfonds-kulturelle-bildung.de; dort zu erheben."
+    "art": "zeichen",
+    "wert": 2000,
+    "quelle": "Empirisch erhoben 22.07.2026: Login ins Antragsportal antrag.projektfonds-kulturelle-bildung.de (Self-Service-Registrierung mit E-Mail-Bestaetigung + reCAPTCHA; echtes Konto Kolja/aitema, Loeschanfrage vorbereitet) + offizieller Formularabzug beispiel_antrag_07_2024.pdf aus dem Download-Bereich (kulturformen.berlin/.../downloads). Limits je Feld (Foerdersaeule 1, 8 Steps): Projektbeschreibung/Kurzdarstellung 2000, Projektidee 3000, Arbeitsschritte 1000, Orte 300, Projektteilnehmer 300, Projektzusammenhang 500, Nachhaltigkeit 500, Partner-Kurzbeschreibungen je 500, Eigenleistungen 500. wert=2000 bezeichnet das Feld 'Projektbeschreibung' (Kurzdarstellung fuer die Jury, Step 1). Portal OFFEN (kein Traeger-Gate), aber neue Antraege lassen sich nur bei offener Ausschreibung starten (22.07.2026: eingeloggt kein 'Neuer Antrag'-Weg sichtbar, nur Bekanntmachung)."
   }
 }

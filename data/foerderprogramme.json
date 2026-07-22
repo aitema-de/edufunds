@@ -3238,11 +3238,12 @@
     "bemerkung": "Programmphase 2023-2027: 250 Mio. € Gesamtvolumen (50 Mio. €/Jahr). Fördert außerschulische kulturelle Bildung: Musik, Theater, Literatur, digitale Spielekultur, Alltagskultur. Zielgruppe: benachteiligte Kinder/Jugendliche 3-18 J.",
     "fristZustand": {
       "art": "unbekannt",
-      "quelle": "Primaerquelle buendnisse-fuer-bildung.de, geprueft 22.07.2026: Die Uebersichtsseite nennt keine Fristen, sondern verweist auf einen Terminkalender und das Antragsportal Kumasta. Fristen variieren je Programmpartner (so auch der Katalog-Fristtext: 'variabel je nach Programmpartner'). Eine pauschale Frist fuer 'Kultur macht stark' existiert nicht - der Zustand ist je Partner zu erheben."
+      "quelle": "Primaerquelle buendnisse-fuer-bildung.de, geprueft 22.07.2026: Die Uebersichtsseite nennt keine Fristen, sondern verweist auf einen Terminkalender und das Antragsportal Kumasta. Fristen variieren je Programmpartner (so auch der Katalog-Fristtext: 'variabel je nach Programmpartner'). Eine pauschale Frist fuer 'Kultur macht stark' existiert nicht - der Zustand ist je Partner zu erheben. | Kumasta3-API geprueft 22.07.2026: alle 27 Programmpartner-Angebote stehen auf allowApplicationSubmission=true, obwohl einzelne Angebotstexte eigene kuenftige Fristen nennen (z.B. POP TO GO: regulaere Ausschreibung fuers Foerderjahr 2027) — das Flag belegt nur technische Einreichbarkeit, keine laufende Foerderrunde je Partner; Zustand bleibt unbekannt."
     },
     "umfangZustand": {
-      "art": "unbekannt",
-      "quelle": "Geprueft 22.07.2026: Antragstellung laeuft je Programmpartner ueber das Kumasta-Portal; die Uebersichtsseiten nennen keine Feldlimits. Wie beim fristZustand gilt: je Programmpartner zu erheben."
+      "art": "zeichen",
+      "wert": 8000,
+      "quelle": "Empirisch am zentralen Antragsportal Kumasta erhoben (kumasta3.buendnisse-fuer-bildung.de, 22.07.2026, OHNE Konto — die Limits stehen im oeffentlich ausgelieferten App-Bundle main.09761a46.js, Build 3.1.7): Beschreibung des Gesamtprojekts 8000 Zeichen, Ablaufbeschreibung je Einzelprojekt 8000, Buendnistreffen-/Workshop-Erlaeuterungen 8000, Methoden-/Zielgruppen-Frage 3000, Finanzplan-Erlaeuterung je Position 1300, Organisations-Kurzbeschreibung 850. wert=8000 bezeichnet die Beschreibung des Gesamtprojekts (zentrales Pflicht-Freitextfeld). Portal OFFEN: Self-Service-Registrierung (Strapi /api/auth/local/register; Schritte Personendaten -> Organisation -> Zugangsdaten), kein Traeger-Gate, KEINE Engagement-Global-Software (kein kommdaten_-Feldschema). Alte Portaladresse kumasta.buendnisse-fuer-bildung.de ist tot (Connect-Timeout)."
     }
   },
   {
@@ -5472,8 +5473,9 @@
       "quelle": "Primaerquelle dpjw.org/foerderkriterien-2026, geprueft 22.07.2026: Laufende Antragstellung ueber das OASE-Portal, keine festen Jahresstichtage; Antrag mind. 3 Monate vor Projektbeginn einzureichen."
     },
     "umfangZustand": {
-      "art": "unbekannt",
-      "quelle": "Geprueft 22.07.2026 (dpjw.org/foerderkriterien-2026): Bestandteile benannt (Antragszusammenfassung, Kontaktdaten, Finanzplaene beider Partner, Unterschriftsseite), keine Feldlimits — Einreichung ausschliesslich ueber das OASE-Portal; Limits dort zu erheben."
+      "art": "zeichen",
+      "wert": 500,
+      "quelle": "Katalog dem Dossier nachgezogen 22.07.2026 (Drift: Erhebung stand nur im Dossier). Empirisch im OASE-Portal erhoben per Speichern-Roundtrip (22.07.2026, autorisiertes Wegwerf-Konto, danach geloescht): Projektbeschreibung serverseitig bei 500 Zeichen gekappt OHNE Warnung, Titel 128, die drei 'Ziele und Methoden'-Fragen praktisch unbegrenzt. Details je Abschnitt im Dossier."
     }
   },
   {
@@ -6522,8 +6524,9 @@
       "quelle": "Primaerquelle kulturformen.berlin/foerdern/berliner-projektfonds-kulturelle-bildung, geprueft 22.07.2026: mehrere Saeulen mit eigenen Fristen - 'Antragsfrist 2. Oktober fuer Projekte von 5.001 bis 23.000 Euro' (Foerdersaeule 1), 'Ausschreibung Foerdersaeule 2 ab 23001 EUR bis 12. Februar 2026', 'Durchstarten 2026: Bewirb dich bis zum 8. Januar'. Jaehrliche Wiederholung der Runden belegt."
     },
     "umfangZustand": {
-      "art": "unbekannt",
-      "quelle": "Geprueft 22.07.2026 (kulturformen.berlin/.../foerderrichtlinien): Richtlinien nennen Anforderungen (Kooperationsbeschreibung, Finanzierungsplan, Letters of intent), aber keine Feldlimits — Formulare liegen auf projektfonds-kulturelle-bildung.de; dort zu erheben."
+      "art": "zeichen",
+      "wert": 2000,
+      "quelle": "Empirisch erhoben 22.07.2026: Login ins Antragsportal antrag.projektfonds-kulturelle-bildung.de (Self-Service-Registrierung mit E-Mail-Bestaetigung + reCAPTCHA; echtes Konto Kolja/aitema, Loeschanfrage vorbereitet) + offizieller Formularabzug beispiel_antrag_07_2024.pdf aus dem Download-Bereich (kulturformen.berlin/.../downloads). Limits je Feld (Foerdersaeule 1, 8 Steps): Projektbeschreibung/Kurzdarstellung 2000, Projektidee 3000, Arbeitsschritte 1000, Orte 300, Projektteilnehmer 300, Projektzusammenhang 500, Nachhaltigkeit 500, Partner-Kurzbeschreibungen je 500, Eigenleistungen 500. wert=2000 bezeichnet das Feld 'Projektbeschreibung' (Kurzdarstellung fuer die Jury, Step 1). Portal OFFEN (kein Traeger-Gate), aber neue Antraege lassen sich nur bei offener Ausschreibung starten (22.07.2026: eingeloggt kein 'Neuer Antrag'-Weg sichtbar, nur Bekanntmachung)."
     }
   },
   {

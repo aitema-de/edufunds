@@ -1,5 +1,5 @@
 {
-  "version": "2026-05-19",
+  "version": "2026-07-22",
   "quellen": [
     "https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/foerderrichtlinie-2023-2027/foerderrichtlinie-2023-2027_node.html",
     "https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/Kultur-macht-stark-2023-2027/Programmpartner-2023-2027/Programmpartner-2023-2027_node.html"
@@ -123,7 +123,9 @@
           "Welches Format (Workshop, Kurs, Ferienwoche, langfristige Begleitung)?",
           "Welche pädagogischen Ansätze werden verwendet?",
           "Wie verknüpft das Projekt Kultur + Bildung + Sozialarbeit?"
-        ]
+        ],
+        "maxZeichen": 8000,
+        "stilhinweis": " Umfangsbeleg (Kumasta-Portal, 22.07.2026): Feld 'Beschreibung des Gesamtprojekts' max. 8000 Zeichen; die separate Methoden-Frage ('Welche Methoden werden eingesetzt? Warum fuer die Zielgruppe geeignet? Finden inklusive, gender- und diversitaetssensible, partizipative, medienpaedagogische Ansaetze Beruecksichtigung?') max. 3000 Zeichen."
       },
       {
         "id": "außerschulisch",
@@ -144,7 +146,9 @@
           "Welche Einzelaktivitäten in welcher Reihenfolge?",
           "Wie viele Stunden Kinder-/Jugendkontakt pro Teilnehmende*r?",
           "Welche Meilensteine?"
-        ]
+        ],
+        "maxZeichen": 8000,
+        "stilhinweis": " Umfangsbeleg (Kumasta-Portal, 22.07.2026): Ablaufbeschreibung je Einzelprojekt ('schedule', konkrete Termine + Uhrzeiten; Portal-Hinweis: 'Nutzen Sie die zur Verfuegung stehenden Zeichen fuer eine ausfuehrliche Ablaufbeschreibung') max. 8000 Zeichen."
       },
       {
         "id": "Qualitätssicherung",
@@ -164,7 +168,8 @@
           "Welche Kostenposten (Honorare, Sachkosten, Aufwandsentschädigungen) mit Beträgen?",
           "Welche Eigenleistungen bringen die Bündnispartner ein (Räume, Arbeitszeit, Sachleistungen)?",
           "Ist die 7 %-Verwaltungspauschale kalkuliert?"
-        ]
+        ],
+        "stilhinweis": " Umfangsbeleg (Kumasta-Portal, 22.07.2026): Erlaeuterungsfeld je Finanzplan-Position max. 1300 Zeichen."
       }
     ],
     "anlagen": [
@@ -183,7 +188,9 @@
     "Antragsportal für förmlichen Antrag (nach Skizzen-Bewilligung): https://foerderportal.bund.de/easyonline/",
     "Programmpartner-Liste (20+ Verbände): https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/Kultur-macht-stark-2023-2027/Programmpartner-2023-2027/",
     "Abgrenzung zum Regel-Unterricht ist das häufigste Ablehnungsthema — Infoblatt 'Außerschulischkeit' des BMBF lesen, bevor das Konzept geschrieben wird.",
-    "Die Förderrichtlinie läuft 2023-2027. Nach 2027 ist eine Anschlussphase geplant aber nicht bestätigt."
+    "Die Förderrichtlinie läuft 2023-2027. Nach 2027 ist eine Anschlussphase geplant aber nicht bestätigt.",
+    "Kumasta-Portal (empirisch geprueft 22.07.2026): Aktuelles Antragsportal ist kumasta3.buendnisse-fuer-bildung.de (React-SPA + Strapi-API; die alte Adresse kumasta.buendnisse-fuer-bildung.de ist tot). Registrierung self-service in drei Schritten (Personendaten, Organisation, Zugangsdaten) — kein Traeger-Gate, damit OFFEN im Sinne der Portal-Taxonomie. Feldlimits stehen im oeffentlichen App-Bundle: Gesamtprojekt-Beschreibung 8000, Ablaufbeschreibung je Einzelprojekt 8000, Buendnistreffen-/Workshop-Erlaeuterungen 8000, Methoden-Frage 3000, Finanzplan-Erlaeuterung 1300, Organisations-Kurzbeschreibung 850 Zeichen.",
+    "Kumasta-API 22.07.2026: alle 27 Programmpartner-Angebote nehmen technisch Antraege an (allowApplicationSubmission=true) — dieses Flag NICHT als Beleg fuer offene Foerderrunden verwenden; die realen Fristen setzt jeder Programmpartner selbst (teils in den Angebotstexten dokumentiert, z.B. POP TO GO fuers Foerderjahr 2027)."
   ],
   "bestPractices": [
     {
@@ -254,10 +261,11 @@
   },
   "fristZustand": {
     "art": "unbekannt",
-    "quelle": "Primaerquelle buendnisse-fuer-bildung.de, geprueft 22.07.2026: Die Uebersichtsseite nennt keine Fristen, sondern verweist auf einen Terminkalender und das Antragsportal Kumasta. Fristen variieren je Programmpartner (so auch der Katalog-Fristtext: 'variabel je nach Programmpartner'). Eine pauschale Frist fuer 'Kultur macht stark' existiert nicht - der Zustand ist je Partner zu erheben."
+    "quelle": "Primaerquelle buendnisse-fuer-bildung.de, geprueft 22.07.2026: Die Uebersichtsseite nennt keine Fristen, sondern verweist auf einen Terminkalender und das Antragsportal Kumasta. Fristen variieren je Programmpartner (so auch der Katalog-Fristtext: 'variabel je nach Programmpartner'). Eine pauschale Frist fuer 'Kultur macht stark' existiert nicht - der Zustand ist je Partner zu erheben. | Kumasta3-API geprueft 22.07.2026: alle 27 Programmpartner-Angebote stehen auf allowApplicationSubmission=true, obwohl einzelne Angebotstexte eigene kuenftige Fristen nennen (z.B. POP TO GO: regulaere Ausschreibung fuers Foerderjahr 2027) — das Flag belegt nur technische Einreichbarkeit, keine laufende Foerderrunde je Partner; Zustand bleibt unbekannt."
   },
   "umfangZustand": {
-    "art": "unbekannt",
-    "quelle": "Geprueft 22.07.2026: Antragstellung laeuft je Programmpartner ueber das Kumasta-Portal; die Uebersichtsseiten nennen keine Feldlimits. Wie beim fristZustand gilt: je Programmpartner zu erheben."
+    "art": "zeichen",
+    "wert": 8000,
+    "quelle": "Empirisch am zentralen Antragsportal Kumasta erhoben (kumasta3.buendnisse-fuer-bildung.de, 22.07.2026, OHNE Konto — die Limits stehen im oeffentlich ausgelieferten App-Bundle main.09761a46.js, Build 3.1.7): Beschreibung des Gesamtprojekts 8000 Zeichen, Ablaufbeschreibung je Einzelprojekt 8000, Buendnistreffen-/Workshop-Erlaeuterungen 8000, Methoden-/Zielgruppen-Frage 3000, Finanzplan-Erlaeuterung je Position 1300, Organisations-Kurzbeschreibung 850. wert=8000 bezeichnet die Beschreibung des Gesamtprojekts (zentrales Pflicht-Freitextfeld). Portal OFFEN: Self-Service-Registrierung (Strapi /api/auth/local/register; Schritte Personendaten -> Organisation -> Zugangsdaten), kein Traeger-Gate, KEINE Engagement-Global-Software (kein kommdaten_-Feldschema). Alte Portaladresse kumasta.buendnisse-fuer-bildung.de ist tot (Connect-Timeout)."
   }
 }
