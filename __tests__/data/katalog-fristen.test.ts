@@ -132,20 +132,24 @@ describe("Katalog: dokumentierte Luecke, die dieser Test NICHT schliesst", () =>
 
     // Momentaufnahme 17.07.2026: 97 verkaeuflich, davon 95 ohne Frist.
     // Stand 22.07.2026 (frueh): 88 verkaeuflich, 46 ohne VERIFIZIERTE Frist.
-    // Stand 22.07.2026 (spaet): 87 verkaeuflich, 39 ohne VERIFIZIERTE Frist —
-    // die 8 Programme ganz ohne fristZustand-Feld wurden gegen ihre Primaerquelle
-    // geprueft: 6 tragen jetzt belegte, jaehrlich wiederkehrende Stichtage (GATE,
-    // HAUPTSACHE:MUSIK NDS, Bayern Alltagskompetenzen, GEWOBA Bremen, Stiftung
-    // Berliner Sparkasse, Brandenburg Kulturelle Bildung), 1 ist geschlossen (EVZ
-    // Bildungsagenda: 2025er-Runde abgelaufen, Wiedereroeffnung ~Sept 2026 laut
-    // stiftung-evz.de -> faellt aus verkaeuflich), 1 bleibt unbekannt (BayWa
-    // Schulgarten: aktuell offen fuer Saison 2027, aber kein exakter Stichtag
-    // veroeffentlicht). Die alte, LLM-behauptete fristLogik hat sich dabei mehrfach
-    // NICHT bestaetigt (EVZ-Stichtag 30.11. war spekulativ) — genau darum misst
-    // dieser Zaehler Verifikation, nicht Befuellung.
+    // Stand 22.07.2026 (spaet): 87 verkaeuflich, 39 (8 Restprogramme ohne
+    // fristZustand-Feld primaerquellen-geprueft).
+    // Stand 22.07.2026 (nachts): 80 verkaeuflich, 10 ohne VERIFIZIERTE Frist —
+    // die 39 verbliebenen 'unbekannt' gegen ihre Primaerquelle geprueft (6 parallele
+    // Rechercheure, Belege einzeln verifiziert): 14 belegt LAUFEND (art=keine, u.a.
+    // DPJW, DSEE-Mikrofoerderung, DBU, EWE, Stiftung Bildung, Ruetgers, chemie-fonds),
+    // 8 belegt STICHTAG-gebunden (ENSA 30.09., Aktion Mensch, PAD RLP, MIXED UP,
+    // dkjs/DKHW-Spielraum, u.a. — mehrere waren faelschlich als 'laufend' gefuehrt),
+    // 7 GESCHLOSSEN/kein offener Antragsweg (Berlin Startchancen = Landesauswahl ohne
+    // Bewerbung, KI-Schulpreis, Town&Country, SH Schule trifft Kultur, Berliner
+    // Jugendbudget, deine-idee, innogy=Domain tot) -> fallen aus verkaeuflich.
+    // Es bleiben 10 ehrlich unbekannte (nominierungsbasiert/regional-fragmentiert/
+    // Quelle schweigt): hector, telekom-mint, jugendbruecke, heinz-nixdorf,
+    // sozialgenial, ideeninitiative-musik, hopp-foundation, dieter-schwarz,
+    // saechsischer-schulgartenwettbewerb, kultur-macht-stark.
     // Diese Zahl DARF sinken (Luecke wird geschlossen). Steigt sie, waechst das
     // ungepruefte Risiko — dann ist die Erwartung bewusst anzupassen.
-    expect(ohneFrist.length).toBeLessThanOrEqual(39);
+    expect(ohneFrist.length).toBeLessThanOrEqual(10);
   });
 });
 
