@@ -131,13 +131,21 @@ describe("Katalog: dokumentierte Luecke, die dieser Test NICHT schliesst", () =>
     expect(ohneFristText).toEqual([]);
 
     // Momentaufnahme 17.07.2026: 97 verkaeuflich, davon 95 ohne Frist.
-    // Stand 22.07.2026: 88 verkaeuflich, davon 46 ohne VERIFIZIERTE Frist —
-    // nach Primaerquellen-Pruefung aller 36 "rolling"-Programme UND der 24,
-    // deren letzter Stichtag verstrichen war. Rest: 29 mit Stichtag in der
-    // Zukunft. Noch nie geprueft: 12.
+    // Stand 22.07.2026 (frueh): 88 verkaeuflich, 46 ohne VERIFIZIERTE Frist.
+    // Stand 22.07.2026 (spaet): 87 verkaeuflich, 39 ohne VERIFIZIERTE Frist —
+    // die 8 Programme ganz ohne fristZustand-Feld wurden gegen ihre Primaerquelle
+    // geprueft: 6 tragen jetzt belegte, jaehrlich wiederkehrende Stichtage (GATE,
+    // HAUPTSACHE:MUSIK NDS, Bayern Alltagskompetenzen, GEWOBA Bremen, Stiftung
+    // Berliner Sparkasse, Brandenburg Kulturelle Bildung), 1 ist geschlossen (EVZ
+    // Bildungsagenda: 2025er-Runde abgelaufen, Wiedereroeffnung ~Sept 2026 laut
+    // stiftung-evz.de -> faellt aus verkaeuflich), 1 bleibt unbekannt (BayWa
+    // Schulgarten: aktuell offen fuer Saison 2027, aber kein exakter Stichtag
+    // veroeffentlicht). Die alte, LLM-behauptete fristLogik hat sich dabei mehrfach
+    // NICHT bestaetigt (EVZ-Stichtag 30.11. war spekulativ) — genau darum misst
+    // dieser Zaehler Verifikation, nicht Befuellung.
     // Diese Zahl DARF sinken (Luecke wird geschlossen). Steigt sie, waechst das
     // ungepruefte Risiko — dann ist die Erwartung bewusst anzupassen.
-    expect(ohneFrist.length).toBeLessThanOrEqual(46);
+    expect(ohneFrist.length).toBeLessThanOrEqual(39);
   });
 });
 
