@@ -30,6 +30,8 @@ import foerderprogrammeData from '@/data/foerderprogramme.json';
 import { EinreichungInfo } from "@/components/Wizard/EinreichungInfo";
 import type { EinreichungInfo as EinreichungInfoData } from "@/lib/wizard/einreichung";
 import { formatKategorie } from "@/lib/kategorie-labels";
+import { brauchtFristHinweis } from "@/lib/foerder-zustaende";
+import { FristHinweis } from "@/components/FristHinweis";
 
 const foerderprogramme = foerderprogrammeData as Foerderprogramm[];
 
@@ -412,12 +414,25 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
                         Ende: {formatDate(programm.bewerbungsfristEnde)}
                       </div>
                     )}
-                    {!programm.bewerbungsfristStart && !programm.bewerbungsfristEnde && (
-                      <div className="text-sm text-ink/60">
-                        Laufende Bewerbungsphase
-                      </div>
-                    )}
+                    {/*
+                      Frueher stand hier pauschal "Laufende Bewerbungsphase",
+                      sobald beide Datumsfelder fehlten — also bei der grossen
+                      Mehrheit der Programme, einschliesslich der toten. Das war
+                      der Fehler "ein fehlendes Feld ist keine Tatsache",
+                      direkt an den Kunden ausgeliefert. Die Zusage gibt es
+                      jetzt nur noch, wenn sie BELEGT ist (fristZustand
+                      "keine"); sonst der Hinweis darunter.
+                    */}
+                    {!programm.bewerbungsfristStart &&
+                      !programm.bewerbungsfristEnde &&
+                      programm.fristZustand?.art === "keine" && (
+                        <div className="text-sm text-ink/60">Laufende Bewerbungsphase</div>
+                      )}
                   </div>
+
+                  {brauchtFristHinweis(programm.fristZustand) && (
+                    <FristHinweis className="mt-4" />
+                  )}
 
                   {/* Die grobe Bewerbungsart-Angabe ("Online-Antrag" etc.) nur zeigen,
                       wenn KEIN ausfuehrlicher Einreichungsweg aus dem Dossier vorliegt.

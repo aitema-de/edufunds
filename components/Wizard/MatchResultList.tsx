@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { AlertTriangle, ArrowRight, CheckCircle, Coins, ExternalLink, SearchX, Star } from "lucide-react";
 import { buildFoerderhoeheHinweis } from "@/lib/foerderhoehe-empfehlung";
+import { FristHinweisBadge } from "@/components/FristHinweis";
 
 export interface MatchEntry {
   id: string;
@@ -19,6 +20,12 @@ export interface MatchEntry {
     foerdersummeMax?: number;
     bewerbungsfristText?: string;
     bewerbungsfristEnde?: string;
+    /**
+     * Frist ist NICHT verifiziert (Quelle schweigt oder noch nicht migriert).
+     * Serverseitig aus `fristZustand` berechnet (app/api/match/route.ts).
+     * Muss vor dem Kauf sichtbar sein — s. components/FristHinweis.tsx.
+     */
+    fristUnverifiziert?: boolean;
     kategorien?: string[];
     kurzbeschreibung?: string;
   };
@@ -127,6 +134,7 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
                     Frist abgelaufen
                   </span>
                 )}
+                {m.programm.fristUnverifiziert && <FristHinweisBadge />}
               </div>
             </div>
             <div
