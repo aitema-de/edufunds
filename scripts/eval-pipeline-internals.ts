@@ -175,10 +175,19 @@ export interface ScoreStat {
   runs: number[];
 }
 
+/** WIZ-04 Begruendungs-Substanz (deterministisch, lib/wizard/substanz.ts). */
+export interface Wiz04Result {
+  /** 0-100: Anteil relevanter Abschnitte mit Substanz-Signalen. null = kein relevanter Abschnitt. */
+  score: number | null;
+  relevante: number;
+  mitSubstanz: number;
+}
+
 export interface EntryScores {
   wiz01: Wiz01Result;
   wiz02: Wiz02Result;
   wiz03: Wiz03Result;
+  wiz04: Wiz04Result;
   finanzplan: FinanzplanSubResult;
   latencyMs: number;
   error?: string;
@@ -205,6 +214,8 @@ export interface AggregateMetrics {
   wiz01: ScoreStat;
   wiz02: ScoreStat;
   wiz03: ScoreStat;
+  /** Nur Eintraege mit messbarer Quote (score != null) fliessen ein. */
+  wiz04: ScoreStat;
   finanzplan: ScoreStat;
   perGeberGruppe: PerGeberGruppeStats[];
   perDossier: PerDossierStats[];
@@ -996,7 +1007,7 @@ export function aggregateNRuns(runs: number[]): ScoreStat {
 export function passesThreshold(
   current: ScoreStat,
   baseline: ScoreStat,
-  axis: "WIZ-01" | "WIZ-02" | "WIZ-03"
+  axis: "WIZ-01" | "WIZ-02" | "WIZ-03" | "WIZ-04"
 ): { passed: boolean; reason: string } {
   const twoSigma = baseline.stddev * 2;
   const drop = baseline.mean - current.mean;
@@ -1017,6 +1028,16 @@ export function passesThreshold(
       return {
         passed: true,
         reason: `drop=${drop.toFixed(2)} (warning-only)`,
+      };
+    case "WIZ-04":
+      // hart wie WIZ-01: deterministische Metrik ohne Judge-Rauschen — ein
+      // Drop unter Baseline-2σ heisst, jemand hat die Begruendungs-Substanz
+      // wieder wegoptimiert (Kolja-Anforderung 22.07.2026). Mindest-Slack
+      // 5 Punkte, damit ein Baseline-stddev nahe 0 das Gate nicht auf
+      // Zehntelpunkte scharfstellt.
+      return {
+        passed: drop <= Math.max(twoSigma, 5),
+        reason: `drop=${drop.toFixed(2)}, threshold=${Math.max(twoSigma, 5).toFixed(2)}`,
       };
   }
 }

@@ -542,6 +542,7 @@ Du bist nicht nur Schreibkraft, sondern fachlicher Berater. Ziel: ein Antrag, de
 ## Inhaltliche Regeln
 - Verwende AUSSCHLIESSLICH Fakten aus den mitgelieferten Daten. Halluziniere NICHTS — erfinde keine Zahlen, Namen, Ereignisse.
 - Konkret statt abstrakt. Wo Zahlen/Namen/Orte in den Fakten stehen: nenne sie.
+- **Beschreiben UND begründen.** Ein Abschnitt, der nur aufzählt, WAS geschieht, ist unvollständig: Jeder inhaltliche Abschnitt (nicht Finanzplan/Zeitplan/Formalia) braucht mindestens eine ausformulierte BEGRÜNDUNG, die das Vorhaben kausal (weil / daher / auf dieser Grundlage / dem Ansatz X folgend) mit dem pädagogischen Konzept verbindet, das seine Notwendigkeit trägt — s. Abschnitt "Fachliche Qualität & Theorie". Diese Begründung hat Vorrang vor Kürze: eher 2–3 Sätze WARUM als ein weiterer Satz WAS.
 - Formuliere aus Sicht der Schule ("wir", "an unserer Schule").
 - **Bleib strikt beim FOKUS dieses Abschnitts.** Andere Abschnitte des Antrags decken Bedarf, Zielgruppe, Ziele, Maßnahmen und Wirkung jeweils eigenständig ab. Wiederhole den allgemeinen Bedarf oder die Zielgruppe NICHT breit, wenn das nicht der Fokus dieses Abschnitts ist — nimm sie höchstens in einem knappen Halbsatz als Bezug auf. So vermeidest du Dopplungen über den Gesamtantrag hinweg. Die Entstehungs-/Motivationsgeschichte des Vorhabens (wie die Idee entstand, warum die Schule das angeht) gehört NUR in den Abschnitt, dessen Fokus das ist (typisch Ausgangslage/Einleitung) — in anderen Abschnitten setzt du sie als bekannt voraus, statt sie erneut zu erzählen.
 
@@ -943,6 +944,7 @@ const REVISION_SYSTEM_BASE = `Du bist der Antragsautor. Überarbeite den Entwurf
 
 ## Umgang mit dem Gutachten
 Das Gutachten liefert nummerierte Findings mit Abschnitt, wörtlichem Zitat, Schwere und konkretem Vorschlag. Arbeite sie in dieser Reihenfolge ab: erst alle "hoch"-Findings (Richtlinien-Verstöße dürfen nicht stehenbleiben), dann "mittel", dann "niedrig". Bei "FEHLT" ergänze den fehlenden Inhalt aus den Fakten, ohne zu halluzinieren.
+- **"substanz"-Findings werden durch ERWEITERN behoben, nie durch Umformulieren des Bestands:** Ergänze im genannten Abschnitt 2–4 Sätze Begründung nach dem Muster im Vorschlag (Kausalsatz + pädagogisches Konzept, am Vorhaben erklärt). Der Abschnitt wird dadurch LÄNGER — das ist gewollt und kein Verstoß gegen das Verdichtungs-Gebot. Theorie als Begründung des belegten Vorhabens ist KEINE neue Behauptung über die Schule.
 
 ## Leerformel-Verbot (nicht: Fachsprache-Verbot)
 Tilge LEERE Schmuckfloskeln ohne Substanz ("ganzheitlicher Ansatz", "schafft Mehrwert", "in der heutigen Zeit", "es ist unerlässlich", "innovativer Ansatz", "passgenau", "zukunftsweisend", hingeworfenes "fördert Teilhabe"). ERSETZE sie durch fachlich SUBSTANZIELLE Formulierungen — nicht durch Weglassen von Fachlichkeit. Professionelle Förder-Fachsprache und theoretische Rahmung (Wirkungslogik, Bildungsgerechtigkeit, Selbstwirksamkeit, Partizipation, BNE …) BLEIBEN erhalten bzw. werden gestärkt, solange sie konkret am Vorhaben verankert sind. Fachlich begründete VORSCHLÄGE (Methoden, Formate), erkennbar als solche formuliert, NICHT entfernen.
@@ -953,6 +955,7 @@ Arbeite alle "redundanz"-Findings konsequent ab und tilge auch selbst erkannte W
 - Die Entstehungs-/Motivationsgeschichte des Vorhabens (wie die Idee entstand, warum die Schule sie angeht) wird GENAU EINMAL erzählt — an der passendsten Stelle (typisch Ausgangslage/Einleitung). Taucht dieselbe Genese-Erzählung in weiteren Abschnitten auf, verdichte sie dort auf einen knappen Rückbezug oder streiche sie; sie wirkt sonst generiert und inflationär.
 - Jeder Abschnitt behält seinen eigenen Fokus (Ausgangslage = Problem + Zahlen; Ziele = was sich messbar ändert; Maßnahmen = konkrete Schritte; Wirkung/Nachhaltigkeit = was nach der Förderung bleibt).
 - WICHTIG: Verdichten heißt umformulieren, nicht ausdünnen. ALLE Pflichtabschnitte bleiben erhalten und inhaltlich tragfähig — kein Abschnitt wird gestrichen oder auf einen bloßen Verweis reduziert. Struktur, Titel und Abschnittsreihenfolge bleiben unverändert.
+- **Kausale Begründungen sind tragende Substanz, NIE Streichkandidaten:** Sätze, die das Vorhaben mit einem pädagogischen Konzept oder einer Wirkannahme verbinden (erkennbar an weil / daher / auf dieser Grundlage / dem Ansatz X folgend), bleiben beim Verdichten VOLLSTÄNDIG erhalten. Wenn ein Abschnitt kürzer werden muss, streiche beschreibende Wiederholung — niemals das WARUM. Ein Antrag, der nur noch beschreibt, WAS geschieht, ist durch die Revision schlechter geworden.
 
 ## Ausgabeformat (Markdown)
 - Antragstitel als erste Zeile als H1: "# Titel"
