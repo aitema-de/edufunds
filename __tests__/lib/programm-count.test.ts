@@ -28,11 +28,24 @@ function aktivImFinder(): number {
 }
 
 describe("PROGRAMM_COUNT gegen den echten Katalog", () => {
+  /** Was in lib/programm-count.ts stehen muesste — fuer die Fehlermeldung. */
+  const sollWert = () => Math.floor(aktivImFinder() / 10) * 10;
+  const hinweis = () =>
+    `Finder zeigt ${aktivImFinder()} Programme => PROGRAMM_COUNT_ROUNDED muss ${sollWert()} sein ` +
+    `(steht auf ${PROGRAMM_COUNT_ROUNDED}). In lib/programm-count.ts EINMAL anpassen; ` +
+    `alle Anzeigen haengen daran.`;
+
+  // Jest kennt kein Message-Argument an expect() — deshalb wird der Hinweis
+  // selbst zum Assertion-Wert. So steht im Fehlerbericht der Soll-Wert drin
+  // und niemand muss ihn nachrechnen.
+
   it("ueberzeichnet nicht, was der Finder liefert", () => {
     // Kernregel der Doku: "die Zahl darf nicht ueberzeichnen, was der Finder
     // tatsaechlich liefert". "150+" bei 153 sichtbaren Programmen ist ehrlich,
-    // "189" waere es nicht.
-    expect(PROGRAMM_COUNT_ROUNDED).toBeLessThanOrEqual(aktivImFinder());
+    // "189" waere es nicht. Diese Richtung ist die gefaehrliche: Sie verspricht
+    // dem zahlenden Kunden mehr, als er bekommt.
+    const problem = PROGRAMM_COUNT_ROUNDED > aktivImFinder() ? hinweis() : null;
+    expect(problem).toBeNull();
   });
 
   it("ist auf die naechste Zehnerstelle abgerundet", () => {
@@ -42,7 +55,8 @@ describe("PROGRAMM_COUNT gegen den echten Katalog", () => {
   it("ist nicht unnoetig bescheiden (Pflege-Erinnerung bei Wachstum)", () => {
     // Schlaegt an, sobald der aktive Katalog die naechste Zehnerstelle reisst —
     // dann gehoert die Konstante EINMAL erhoeht (so steht es im PFLEGE-Hinweis).
-    expect(aktivImFinder()).toBeLessThan(PROGRAMM_COUNT_ROUNDED + 10);
+    const problem = aktivImFinder() >= PROGRAMM_COUNT_ROUNDED + 10 ? hinweis() : null;
+    expect(problem).toBeNull();
   });
 
   it("das Label haengt an der Konstante", () => {
@@ -50,9 +64,31 @@ describe("PROGRAMM_COUNT gegen den echten Katalog", () => {
   });
 });
 
-describe("Keine hartkodierte Programm-Anzahl im UI", () => {
-  const WURZELN = ["app", "components"];
-  const AUSNAHMEN = [/node_modules/, /\.next/, /__tests__/];
+describe("Keine hartkodierte Programm-Anzahl auf nutzerseitigen Flaechen", () => {
+  /**
+   * WARUM DIESE WURZELN: Der Waechter deckte bis 22.07.2026 nur `app` und
+   * `components` ab. Damit sah er die statischen Alt-Seiten unter
+   * `public/foerderprogramme/*.html` NICHT — 128 Dateien, die jede in ihrer
+   * Meta-Description "128 Foerderprogramme" versprachen, waehrend der Finder
+   * 141 zeigte. Sie sind seitdem entfernt (301 in next.config.js), und die
+   * Wurzeln decken jetzt alles ab, was den Nutzer erreicht: gerenderte Seiten,
+   * Komponenten, serverseitige Texte (E-Mails, Newsletter, Prompts) und
+   * statische Auslieferung.
+   */
+  const WURZELN = ["app", "components", "lib", "public"];
+
+  const AUSNAHMEN = [
+    /node_modules/,
+    /\.next/,
+    /__tests__/,
+    // Definiert die Zahl selbst.
+    /lib[/\\]programm-count\.ts$/,
+    // Archiv einer bereits versandten Newsletter-Ausgabe (Feb 2025, von
+    // niemandem importiert). Der Text dokumentiert, was Abonnenten damals
+    // gelesen haben — er darf NICHT nachtraeglich auf die heutige Zahl
+    // umgeschrieben werden, sonst faelscht man einen Versandbeleg.
+    /lib[/\\]newsletter-ausgabe-02\.ts$/,
+  ];
 
   function quelldateien(dir: string): string[] {
     const out: string[] = [];
@@ -61,21 +97,29 @@ describe("Keine hartkodierte Programm-Anzahl im UI", () => {
       const p = path.join(dir, e.name);
       if (AUSNAHMEN.some((r) => r.test(p))) continue;
       if (e.isDirectory()) out.push(...quelldateien(p));
-      else if (/\.(ts|tsx)$/.test(e.name)) out.push(p);
+      else if (/\.(ts|tsx|html)$/.test(e.name)) out.push(p);
     }
     return out;
   }
 
+  /** Reine Kommentarzeile? Doku darf Zahlen nennen, ausgelieferter Text nicht. */
+  function istKommentar(zeile: string): boolean {
+    const t = zeile.trim();
+    return t.startsWith("*") || t.startsWith("//") || t.startsWith("/*");
+  }
+
   it("nennt nirgends eine Programm-Anzahl als Literal", () => {
-    // Faengt "189 Programme", "alle 130 Foerderprogramme", `${"189"} Programme`.
-    const muster = /\b\d{2,4}\s*(?:\}|"|`|\))*\s*\+?\s*(?:Programme|Förderprogramme|Foerderprogramme)\b/;
+    // Faengt "189 Programme", "alle 130 Foerderprogramme", `${"189"} Programme`,
+    // "ueber 129 Foerderprogrammen", "140+ Programme".
+    const muster =
+      /\b\d{2,4}\s*(?:\}|"|`|\))*\s*\+?\s*(?:Programme|Programmen|Förderprogramme|Förderprogrammen|Foerderprogramme|Foerderprogrammen|Förderungen)\b/;
     const treffer: string[] = [];
 
     for (const wurzel of WURZELN) {
       for (const datei of quelldateien(path.join(process.cwd(), wurzel))) {
         const inhalt = fs.readFileSync(datei, "utf-8");
         inhalt.split("\n").forEach((zeile, i) => {
-          if (muster.test(zeile)) {
+          if (!istKommentar(zeile) && muster.test(zeile)) {
             treffer.push(`${path.relative(process.cwd(), datei)}:${i + 1}: ${zeile.trim().slice(0, 90)}`);
           }
         });
