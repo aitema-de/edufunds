@@ -30,9 +30,16 @@ const THEORIE_MARKER =
  *  "weil/daher": Ein hochwertiger Antrag (pv-004, Schulpreis-Register)
  *  begruendet empirisch ("fusst auf", "speist sich aus", "durch externe
  *  Evaluationen belegt") statt ueber benannte Theorie — auch das ist
- *  Begruendung, keine Beschreibung. */
+ *  Begruendung, keine Beschreibung.
+ *
+ *  Erweitert 22.07.2026 (pv-011-Analyse): Die Revision begruendet real ueber
+ *  "indem / sodass / da <Pronomen> / zielt darauf ab / was ... ermoeglicht" —
+ *  alles Wirkmechanismus-Sprache, die das Lexikon nicht sah. pv-011-run3 war
+ *  vom Resolutions-Judge zu Recht "geschlossen", WIZ-04 mass trotzdem 0.
+ *  Trennschaerfe gegengeprueft: alter (banaler) Anker 0,5 %→7,3 %, neuer
+ *  Anker 35,8 %→54,0 % — der Abstand WAECHST von 35 auf 47 Punkte. */
 const BEGRUENDUNGS_KONNEKTIVE =
-  /\b(weil|denn|deshalb|daher|darum|somit|folglich|dadurch|hierdurch|damit\s+(?:die|der|das|sie|er|es|Kinder|Sch(ue|ü)ler)|vor diesem Hintergrund|auf dieser Grundlage|aus diesem Grund|zugrunde\s?lieg\w*|liegt\s+zugrunde|basiert auf|beruht auf|gest(ue|ü)tzt auf|st(ue|ü)tzt sich auf|fu(ss|ß)t auf|speis\w+ sich aus|resultier\w+ aus|ergibt sich aus|erw(ae|ä)chst aus|f(ue|ü)hrt dazu|tr(ae|ä)gt dazu bei|setzt (?:genau |gezielt )?(?:hier|dort|daran) an|kn(ue|ü)pft an|ankn(ue|ü)pfend|greift .{0,30}auf|orientiert sich an|folgt dem (?:Ansatz|Prinzip|Konzept|Modell)|im Sinne (?:des|der|von)|nach dem (?:Ansatz|Prinzip|Konzept|Modell)|im Einklang mit|Forschung zeigt|Studien (?:zeigen|belegen)|Evaluation\w* (?:zeig|beleg)\w*|durch .{0,40}(?:Evaluation|Erhebung|Befragung)\w* belegt|erwiesen\w*|belegt\w* ist|bew(ae|ä)hrte\w*)\b/gi;
+  /\b(weil|denn|deshalb|daher|darum|somit|folglich|dadurch|hierdurch|indem|sodass|so dass|wodurch|aufgrund|auf Grund|infolge|da\s+(?:sie|er|es|die|der|das|dies\w*)\b|ziel(?:t|en)\s+darauf\s+ab|was\s+.{0,50}\s(?:erm(oe|ö)glicht|st(ae|ä)rkt|sichert|f(oe|ö)rdert)|damit\s+(?:die|der|das|sie|er|es|Kinder|Sch(ue|ü)ler)|vor diesem Hintergrund|auf dieser Grundlage|aus diesem Grund|zugrunde\s?lieg\w*|liegt\s+zugrunde|basiert auf|beruht auf|gest(ue|ü)tzt auf|st(ue|ü)tzt sich auf|fu(ss|ß)t auf|speis\w+ sich aus|resultier\w+ aus|ergibt sich aus|erw(ae|ä)chst aus|f(ue|ü)hrt dazu|tr(ae|ä)gt dazu bei|setzt (?:genau |gezielt )?(?:hier|dort|daran) an|kn(ue|ü)pft an|ankn(ue|ü)pfend|greift .{0,30}auf|orientiert sich an|folgt dem (?:Ansatz|Prinzip|Konzept|Modell)|im Sinne (?:des|der|von)|nach dem (?:Ansatz|Prinzip|Konzept|Modell)|im Einklang mit|Forschung zeigt|Studien (?:zeigen|belegen)|Evaluation\w* (?:zeig|beleg)\w*|durch .{0,40}(?:Evaluation|Erhebung|Befragung)\w* belegt|erwiesen\w*|belegt\w* ist|bew(ae|ä)hrte\w*)\b/gi;
 
 /**
  * Abschnitte, in die KEINE Begruendung gehoert — erkannt am Namen. Alles

@@ -12,6 +12,45 @@
 > WIZ-03 (Tonalitaets-Passung via LLM-as-Judge), WIZ-04 (Begruendungs-Substanz, deterministisch),
 > Finanzplan-Validity (Sub). Format analog Phase-1 (append-only, neueste Eintraege oben).
 
+## 2026-07-22 (abends) — WIZ-04-Metrik-Update: Konnektiv-Lexikon erweitert (pv-011-Analyse)
+
+- **Anlass:** Einzelfall-Analyse pv-011 (3× 0 % WIZ-04 trotz hochwertiger Inputs). Befund
+  zweigeteilt: (a) run1+run2 = **Revisions-Nichtbefolgung** — die 3 substanz-Findings blieben
+  laut Resolutions ausdruecklich "offen — nicht erweitert" (mistral-small triagiert bei 15
+  Findings zugunsten der Halluzinations-Fixes; Hebel "Revisions-Konsistenz" bleibt offen).
+  (b) run3 = **Detektor-Blindstelle**: Die Revision begruendete real ("indem", "sodass",
+  "da sie", "zielen darauf ab"), der Resolutions-Judge schloss die Findings zu Recht —
+  das Konnektiv-Lexikon kannte diese Wirkmechanismus-Sprache nicht, WIZ-04 mass 0.
+- **Aenderung:** NUR Metrik (`BEGRUENDUNGS_KONNEKTIVE` in `lib/wizard/substanz.ts` um
+  indem / sodass / wodurch / aufgrund / infolge / kausales "da <Pronomen>" /
+  "ziel(t|en) darauf ab" / "was ... ermoeglicht|staerkt|sichert|foerdert" erweitert).
+  Pipeline und Snapshots UNVERAENDERT — Anker weiterhin die 69 Snapshots vom 22.07.
+  (`2026-07-22T10-59-54`), neu gescored per `--replay <baseline> --N=3` (deterministisch,
+  kein LLM-Lauf noetig).
+- **Trennschaerfe-Beweis:** Alter (banaler) Gemini-Anker vom 20.05. mit demselben erweiterten
+  Lexikon: 0,5 % → 7,3 %. Neuer Anker: 35,8 % → 55,9 %. Der Abstand banal↔begruendet
+  WAECHST von ~35 auf ~49 Punkte — die Erweiterung entfernt False Negatives, sie
+  verwaessert das Gate nicht.
+
+### Haupt-Scores (nur WIZ-04 geaendert; uebrige Achsen identisch zum Eintrag darunter)
+
+| Achse | Mean | Stddev | 2σ-Band | Schwellwert (D-19) | Status |
+|-------|------|--------|---------|--------------------|--------|
+| WIZ-01 (Pflichtabschnitte) | 100.0 | 0.0 | 100.0 – 100.0 | ≥ 80 % | ✓ PASS |
+| WIZ-02 (Halluzinations-Detection) | 99.0 | 2.5 | 94.0 – 104.0 | kein Drop > 2σ+10 % | ✓ unveraendert |
+| WIZ-03 (Tonalitaets-Passung) | 63.7 | 16.1 | 31.5 – 95.9 | warning-only | unveraendert (LLM-Judge, kein Replay-Rescore) |
+| WIZ-04 (Begruendungs-Substanz) | 55.9 | 19.2 | 17.5 – 94.3 | kein Drop > max(2σ, 5) | Anker NEU (Metrik-Update; 2σ=38.4) |
+| Finanzplan-Validity (Sub) | 89.0 | 11.6 | 65.8 – 112.2 | — | ✓ unveraendert |
+
+**Replay-Eigenheit (unveraendert):** `--replay` ohne `--N=3` scored nur run1 → WIZ-04 52.1
+statt 55.9 (drop 3.8, vom 2σ-Spielraum gedeckt). Exakt-Reproduktion: `--replay <dir> --N=3`.
+**Offen (pv-011-Folge):** run1/run2-Muster "Revision ignoriert substanz-Findings bei vollem
+Findings-Stapel" ist ein Pipeline-Hebel (Revisions-Konsistenz), kein Metrik-Thema — naechste
+Hebel unveraendert: Revisions-Konsistenz, mehr maxZeichen-Programme, ggf. staerkeres
+Revisionsmodell.
+
+---
+
 ## 2026-07-22 — Re-Baseline: Korpus v2 (Produkt-Realitaet) + Textqualitaets-Pipeline (n=23)
 
 - **Anlass:** Drei Aenderungen zugleich verankert — (1) Korpus v2: alle 23 Eintraege auf

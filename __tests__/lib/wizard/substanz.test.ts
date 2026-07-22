@@ -48,6 +48,32 @@ describe("pruefeSubstanz", () => {
     }
   });
 
+  it("Wirkmechanismus-Sprache zaehlt als Begruendung (pv-011-Lektion)", () => {
+    // pv-011-run3: Die Revision begruendete ueber "indem/sodass/da", der
+    // Resolutions-Judge schloss die Findings zu Recht — WIZ-04 mass trotzdem 0,
+    // weil das Lexikon diese Konnektive nicht kannte. Repraesentativer Auszug
+    // aus dem echten Final-Text (Startchancen Berlin):
+    const wirkmechanismus = `Die Massnahmen zielen darauf ab, die
+    Selbstwirksamkeit der Kinder zu staerken, indem sie gezielt an den
+    individuellen Lernstaenden ansetzen. Die Kleingruppen-Struktur ist
+    besonders wirksam, da sie eine individuelle Foerderung ermoeglicht und
+    die soziale Teilhabe staerkt, sodass die Lesekompetenz messbar steigt.`;
+    const b = pruefeSubstanz("Umsetzungskonzept", wirkmechanismus);
+    expect(b.konnektive).toBeGreaterThanOrEqual(3); // zielen darauf ab + indem + da sie + sodass
+    expect(b.hatSubstanz).toBe(true);
+  });
+
+  it("neue Konnektive machen banale Beschreibung NICHT substanzhaltig", () => {
+    // Trennschaerfe-Anker: Der alte (banale) Baseline-Korpus stieg durch die
+    // Lexikon-Erweiterung nur von 0,5 % auf 7,3 % — ein einzelnes
+    // konsekutives "sodass" ohne Theorie bleibt unter jeder Schwelle.
+    const banal = `Wir kaufen 20 Tablets, sodass jede Klasse ein Geraet hat.
+    Die AG findet dienstags statt. Die Geraete werden im Medienraum gelagert.`;
+    const b = pruefeSubstanz("Unsere Robotik-AG", banal);
+    expect(b.konnektive).toBe(1);
+    expect(b.hatSubstanz).toBe(false);
+  });
+
   it("kreative Ueberschriften gelten als inhaltlich (Ausschluss- statt Einschlussliste)", () => {
     // Die Pipeline erzeugt solche Titel; eine Schluesselwort-Einschlussliste
     // verlor im Kalibrierlauf 240/413 Abschnitte aus der Messung.
