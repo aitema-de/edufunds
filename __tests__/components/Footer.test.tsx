@@ -77,11 +77,11 @@ describe('Footer Komponente', () => {
     expect(screen.getByText('Berlin, Deutschland')).toBeInTheDocument();
   });
 
-  it('sollte Social-Media-Links rendern', () => {
+  it('sollte Social-Media-Links rendern (nur LinkedIn — Twitter entfernt 22.07.2026)', () => {
     render(<Footer />);
 
-    expect(screen.getByLabelText('Twitter')).toBeInTheDocument();
     expect(screen.getByLabelText('LinkedIn')).toBeInTheDocument();
+    expect(screen.queryByLabelText('Twitter')).not.toBeInTheDocument();
   });
 
   it('sollte den Newsletter-Bereich rendern', () => {

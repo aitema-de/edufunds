@@ -7,6 +7,8 @@ import {
 } from "@/components/landing/HomePageContent";
 import { PROGRAMM_COUNT_LABEL } from "@/lib/programm-count";
 import { formatKategorie } from "@/lib/kategorie-labels";
+import { isProgrammAbgelaufen } from "@/lib/programm-status";
+import type { Foerderprogramm } from "@/lib/foerderSchema";
 import foerderprogramme from "@/data/foerderprogramme.json";
 
 /* Homepage = redesignte Marketing-Landing im Editorial-Archival-Layout
@@ -17,17 +19,32 @@ import foerderprogramme from "@/data/foerderprogramme.json";
 type Programm = (typeof foerderprogramme)[number];
 
 function buildStats(): LandingStats {
-  const by = (typ: string) => foerderprogramme.filter((p) => p.foerdergeberTyp === typ).length;
+  // Nur die Finder-sichtbaren Programme zaehlen — dieselbe Basis wie
+  // PROGRAMM_COUNT_LABEL (lib/programm-status.ts#isProgrammAbgelaufen).
+  // Vorher zaehlte hier der GESAMTKATALOG inkl. archivierter/geschlossener
+  // Eintraege: Donut + Quellen-Kacheln summierten auf 178 Programme direkt
+  // neben der „130+"-Angabe.
+  const sichtbar = (foerderprogramme as unknown as Foerderprogramm[]).filter(
+    (p) => !isProgrammAbgelaufen(p)
+  );
+  const by = (typ: string) => sichtbar.filter((p) => p.foerdergeberTyp === typ).length;
   const bundeslaender = new Set<string>();
-  foerderprogramme.forEach((p) => (p.bundeslaender || []).forEach((b) => bundeslaender.add(b)));
+  sichtbar.forEach((p) => (p.bundeslaender || []).forEach((b) => bundeslaender.add(b)));
   // "bundesweit" zaehlt nicht als einzelnes Land
   bundeslaender.delete("bundesweit");
+  const bund = by("bund");
+  const land = by("land");
+  const stiftung = by("stiftung");
+  const eu = by("eu");
   return {
     total: PROGRAMM_COUNT_LABEL,
-    bund: by("bund"),
-    land: by("land"),
-    stiftung: by("stiftung"),
-    eu: by("eu"),
+    bund,
+    land,
+    stiftung,
+    eu,
+    // Rest (sonstige/verband/uni/…), damit die Donut-Summe exakt dem
+    // sichtbaren Katalog entspricht statt nur einem Ausschnitt.
+    weitere: Math.max(0, sichtbar.length - bund - land - stiftung - eu),
     bundeslaender: Math.min(16, bundeslaender.size || 16),
   };
 }

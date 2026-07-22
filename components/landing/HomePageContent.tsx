@@ -21,6 +21,9 @@ export type LandingStats = {
   land: number;
   stiftung: number;
   eu: number;
+  /** Sichtbare Programme jenseits der vier Haupt-Typen (sonstige/verband/uni …) —
+   *  haelt die Donut-Summe deckungsgleich mit dem sichtbaren Katalog. */
+  weitere: number;
   bundeslaender: number;
 };
 
@@ -218,13 +221,17 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
     { n: "04", t: "Finalfassung", b: "Unterschriftsreifes Dokument." },
   ];
 
-  // Donut-Segmente aus echten Förderquellen-Typen
+  // Donut-Segmente aus echten Förderquellen-Typen — Basis sind die
+  // Finder-sichtbaren Programme (buildStats in app/page.tsx), inklusive
+  // „Weitere", damit die Segment-Summe dem sichtbaren Katalog entspricht
+  // und nie mehr Programme zeigt als die Gesamtzahl daneben.
   const segs = [
     { label: "Bund", n: stats.bund, color: "#1e3d32" },
     { label: "Länder", n: stats.land, color: "#c9a227" },
     { label: "Stiftungen", n: stats.stiftung, color: "#a8a29e" },
     { label: "EU", n: stats.eu, color: "#44403c" },
-  ];
+    { label: "Weitere", n: stats.weitere, color: "#d6d3d1" },
+  ].filter((s) => s.n > 0);
   const segSum = segs.reduce((a, s) => a + s.n, 0) || 1;
   let acc = 0;
   const conic = segs
@@ -235,14 +242,6 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
       return `${s.color} ${start}% ${end}%`;
     })
     .join(", ");
-
-  const bars = [
-    { h: 32, l: "5 T€" },
-    { h: 52, l: "25 T€" },
-    { h: 78, l: "150 T€" },
-    { h: 100, l: "500 T€" },
-    { h: 60, l: "div." },
-  ];
 
   return (
     <section id="prozess" className="py-24 px-6 bg-paper">
@@ -323,7 +322,7 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
         </div>
 
         {/* Dynamische Infografiken */}
-        <div className="grid md:grid-cols-3 gap-5 mt-12">
+        <div className="grid md:grid-cols-2 gap-5 mt-12">
           {/* In Zahlen */}
           <div className="rounded-2xl border border-ink/10 bg-paper p-6">
             <div className="text-[11px] uppercase tracking-widest text-evergreen font-semibold mb-5">In Zahlen</div>
@@ -371,28 +370,6 @@ function LiveShowcase({ stats }: { stats: LandingStats }) {
             </div>
           </div>
 
-          {/* Balken Fördersummen */}
-          <div className="rounded-2xl border border-ink/10 bg-paper p-6">
-            <div className="text-[11px] uppercase tracking-widest text-evergreen font-semibold mb-4">Typische Fördersummen</div>
-            <div className="flex items-end gap-3 h-[120px]">
-              {bars.map((b, i) => (
-                <motion.div
-                  key={b.l}
-                  initial={{ scaleY: 0 }}
-                  whileInView={{ scaleY: 1 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.8, delay: i * 0.1, ease: EASE }}
-                  style={{ height: `${b.h}%`, transformOrigin: "bottom" }}
-                  className="flex-1 rounded-t-lg bg-gradient-to-t from-evergreen to-evergreen-light"
-                />
-              ))}
-            </div>
-            <div className="flex gap-3 mt-2 text-[11px] text-ink/45">
-              {bars.map((b) => (
-                <span key={b.l} className="flex-1 text-center">{b.l}</span>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </section>

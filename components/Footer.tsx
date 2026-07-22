@@ -121,15 +121,6 @@ export function Footer() {
             </div>
             <div className="flex gap-3">
               <a
-                href="https://twitter.com/aitema_de"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Twitter"
-                className="w-10 h-10 rounded-xl glass hover:bg-[#d4af37]/20 hover:border-[#d4af37]/30 border border-[#44403c]/50 flex items-center justify-center transition-all duration-300"
-              >
-                <span className="text-[#a8a29e] hover:text-[#d4af37] text-xs font-bold uppercase">T</span>
-              </a>
-              <a
                 href="https://linkedin.com/company/aitema"
                 target="_blank"
                 rel="noopener noreferrer"
