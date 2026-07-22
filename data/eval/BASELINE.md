@@ -31,11 +31,24 @@
 | WIZ-01 (Pflichtabschnitte) | 100.0 | 0.0 | 100.0 – 100.0 | ≥ 80 % | ✓ PASS (trivial — maxZeichen=0 Dossiers) |
 | WIZ-02 (Halluzinations-Detection) | 98.3 | 4.5 | 89.3 – 107.3 | ≥ 50 % Reduktion vs. Baseline | Baseline = Anker |
 | WIZ-03 (Tonalitaets-Passung) | 46.3 | 15.8 | 14.7 – 77.9 | Score-Delta > 0 | n/a (Baseline) |
+| WIZ-04 (Begruendungs-Substanz) | 0.0 | 0.0 | 0.0 – 0.0 | kein Drop > max(2σ, 5) | Baseline = Anker (22.07.2026, finalText-Messung, Replay ueber 64 Snapshots) |
 | Finanzplan-Validity (Sub) | 92.0 | 10.8 | 70.4 – 113.6 | — | — |
 
 **Befund WIZ-01:** 100% Coverage mit 0 Stddev bedeutet, dass die Pipeline IMMER alle Pflicht-Abschnitte erzeugt. WIZ-01 ist als Differenz-Metrik in Wave 3 nur sinnvoll, wenn `maxZeichen`-Constraints in Dossiers eingetragen werden (dann koennen Ueberschreitungen gemessen werden).
 
 **Befund WIZ-02:** 98.3% Score = Halluzinations-Reduktion wirkt gut, aber baseline kennt noch keine echten Forbidden-Marker in den Eintraegen (die meisten Eintraege haben `expected_forbidden_markers=[]`). Echtes Signal kommt erst wenn Dossier-spezifische Forbidden-Marker in Korpus-Eintraegen gesetzt sind.
+
+**Befund WIZ-04 (22.07.2026):** 0.0% ist kein Messfehler, sondern der Ist-Zustand, den Kolja
+als "zu banal" beurteilt hat: 374 von 413 Korpus-Abschnitten enthalten NULL kausale
+Konnektive — die Texte behaupten, sie begruenden nicht. Gemessen wird die FINALE Fassung
+(das Kunden-Artefakt); der Entwurf laege bei 0.7% — die Revision hat Begruendung bisher
+sogar noch GESTRICHEN. Deterministisch (lib/wizard/substanz.ts: je Inhaltsabschnitt
+>= 1 Theorie-Marker UND >= 2 Begruendungs-Konnektive, ODER >= 3 Konnektive als dichte
+Kausal-Argumentation), deshalb hart gate-faehig (kein Judge-Rauschen wie bei WIZ-03).
+Live-Einzellaeufe nach Substanz-Findings + Prompt-Schutz: pv-005 80%, pv-001 17%,
+pv-004 0-17% (mistral-small folgt inkonsistent — Aggregat kommt mit dem naechsten
+Live-Snapshot-Lauf). Danach diese Baseline-Zeile NEU setzen, damit das Gate auf dem
+verbesserten Niveau verankert ist.
 
 **Befund WIZ-03:** Mean=46.3 mit Stddev=15.8 zeigt hohe Streuung. Wave-3-Hebel (Tonalitaets-Tuning per Geber-Cluster) zielt auf Steigerung des Cluster-spezifischen Means. Stiftungen (55.0) und EU (58.1) schneiden besser ab als oeffentlich (43.1) und verband-uni (39.1).
 

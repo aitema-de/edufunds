@@ -114,6 +114,9 @@ export type CritiqueKategorie =
   | "belegluecke"
   | "richtlinie"
   | "inkonsistenz"
+  /** Abschnitt beschreibt nur, begruendet nicht (deterministisch erkannt,
+   *  lib/wizard/substanz.ts — Kolja-Anforderung 22.07.2026). */
+  | "substanz"
   | "sonstiges";
 
 export interface CritiqueFinding {
