@@ -42,13 +42,23 @@ export function isStatusNichtAnbietbar(p: Foerderprogramm): boolean {
  *
  * 1. Maschinenlesbarer `fristZustand` vorhanden (der Nachfolger, s.
  *    lib/foerder-zustaende.ts) — FAIL-CLOSED:
- *      - "keine"     (belegt rollend)                  => verkaufsfaehig
- *      - "stichtag"  wiederkehrend                     => verkaufsfaehig
- *      - "stichtag"  letzter Termin heute/spaeter      => verkaufsfaehig
- *      - "stichtag"  alle Termine vergangen            => NICHT
- *      - "unbekannt" (nicht erfasst)                   => NICHT
+ *      - "keine"       (belegt rollend)                => verkaufsfaehig
+ *      - "stichtag"    wiederkehrend                   => verkaufsfaehig
+ *      - "stichtag"    letzter Termin heute/spaeter    => verkaufsfaehig
+ *      - "stichtag"    alle Termine vergangen          => NICHT
+ *      - "geschlossen" (belegt keine offene Runde)     => NICHT
+ *      - "unbekannt"   (nicht verifiziert)             => verkaufsfaehig MIT HINWEIS
  *      - alles andere (Tippfehler, kaputte Struktur,
  *        spaeter ergaenzte Variante)                   => NICHT
+ *
+ * ⚠️ Warum "unbekannt" verkaufsfaehig ist und trotzdem nichts aufweicht:
+ * "unbekannt" heisst NICHT "vermutlich tot", sondern "die Quelle schweigt".
+ * Nachweislich tote Programme tragen "geschlossen" oder einen vergangenen
+ * Stichtag und sind gesperrt. Fuer das Schweigen hat Kolja am 22.07.2026
+ * entschieden: verkaufen, aber der Kunde sieht vorher den Hinweis, die Frist
+ * selbst zu pruefen (brauchtFristHinweis in lib/foerder-zustaende.ts). Wer
+ * dieses Verhalten aendert, muss den Hinweis in der UI mitaendern — sonst
+ * verkauft EduFunds wieder stillschweigend Ungeprueftes.
  *
  * 2. Kein `fristZustand` — LEGACY-Fallback auf `bewerbungsfristEnde`:
  *    verkaufsfaehig, solange kein Ende in der Vergangenheit belegt ist.
@@ -79,6 +89,13 @@ export function istFristVerkaufsfaehig(
 
     if (art === "keine") return true;
 
+    // Nicht verifiziert (Quelle schweigt): bleibt im Verkauf, aber die UI muss
+    // den Hinweis zeigen — s. brauchtFristHinweis.
+    if (art === "unbekannt") return true;
+
+    // Belegt keine offene Runde.
+    if (art === "geschlossen") return false;
+
     if (art === "stichtag") {
       if ((fz as { jaehrlichWiederkehrend?: unknown }).jaehrlichWiederkehrend === true) return true;
       const stichtage = (fz as { stichtage?: unknown }).stichtage;
@@ -95,7 +112,8 @@ export function istFristVerkaufsfaehig(
       return letzter >= isoDatum(now);
     }
 
-    // "unbekannt" und alles Unerwartete: nicht verkaufsfaehig.
+    // Alles Unerwartete (Tippfehler, kaputte Struktur, spaeter ergaenzte
+    // Variante): nicht verkaufsfaehig.
     return false;
   }
 

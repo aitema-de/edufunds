@@ -33,11 +33,27 @@ export function istIsoDatum(s: string): boolean {
 /**
  * Bewerbungsfrist als expliziter Zustand.
  *
- * - `keine`: belegt rollend / laufend einreichbar, keine Stichtage.
+ * - `keine`: BELEGT rollend / laufend einreichbar, keine Stichtage.
  * - `stichtag`: harte Termine (ISO YYYY-MM-DD). `jaehrlichWiederkehrend` deckt
  *   den haeufigen Fall "immer bis 30.06." ab; ohne das Flag verstreicht der
  *   Stichtag kalendarisch und das Programm gilt als abgelaufen.
- * - `unbekannt`: nicht erfasst. Fail-closed => nicht verkaeuflich.
+ * - `geschlossen`: BELEGT keine offene Runde. Kein Datum noetig — genau der
+ *   Fall "Die Ausschreibung ist beendet" / "Wenn ein neuer Wettbewerb
+ *   ausgeschrieben wird, geben wir das bekannt". Nicht verkaeuflich.
+ * - `unbekannt`: NICHT VERIFIZIERT. Die Quelle schweigt zu Fristen — das ist
+ *   etwas anderes als "belegt geschlossen".
+ *
+ * ⚠️ Der Unterschied `geschlossen` vs. `unbekannt` ist die ganze Pointe:
+ *
+ *   geschlossen = wir WISSEN, dass gerade nichts geht      -> nicht verkaeuflich
+ *   unbekannt   = wir wissen es NICHT                       -> verkaeuflich MIT
+ *                                                              sichtbarem Hinweis
+ *
+ * Beides in einen Topf zu werfen hiesse, entweder nachweislich tote Programme
+ * zu verkaufen oder den halben Katalog wegen Schweigens der Quelle zu
+ * verschrotten. Entscheidung Kolja, 22.07.2026: unverifiziert bleibt
+ * verkaeuflich, aber der Kunde MUSS es vor dem Kauf sehen
+ * (s. braucht FristHinweis + lib/programm-status.ts).
  *
  * Loest das Katalog-Feld `bewerbungsfristEnde?: string` ab (bleibt fuer die
  * noch nicht migrierten Programme als Fallback bestehen, s. programm-status.ts).
@@ -50,7 +66,18 @@ export type FristZustand =
       jaehrlichWiederkehrend?: boolean;
       quelle: string;
     }
-  | { art: "unbekannt" };
+  | {
+      art: "geschlossen";
+      /** Was die Quelle woertlich sagt, plus Pruefdatum. */
+      quelle: string;
+      /** Freitext, falls eine Wiedereroeffnung angekuendigt aber undatiert ist. */
+      wiedereroeffnungErwartet?: string;
+    }
+  | {
+      art: "unbekannt";
+      /** Optional: was geprueft wurde und warum es nichts hergab. */
+      quelle?: string;
+    };
 
 /**
  * Umfang des Antrags (Laengenbegrenzung durch den Foerdergeber).
@@ -95,4 +122,20 @@ export interface EinreichungsForm {
 /** Ist die Frist belegt-unbekannt bzw. gar nicht erfasst? */
 export function istFristUnbekannt(fz: FristZustand | undefined): boolean {
   return !fz || fz.art === "unbekannt";
+}
+
+/**
+ * Muss dem Kunden VOR dem Kauf ein Frist-Hinweis angezeigt werden?
+ *
+ * Wahr, solange die Frist nicht positiv belegt ist — also bei `unbekannt`
+ * (Quelle schweigt) UND bei fehlendem Feld (noch nicht migriert, Legacy-Weg).
+ * Falsch nur bei `keine` und `stichtag`, wo eine belegte Aussage samt Quelle
+ * vorliegt. (`geschlossen` ist gar nicht erst verkaeuflich.)
+ *
+ * Das ist die Gegenleistung dafuer, dass unverifizierte Programme im Verkauf
+ * bleiben duerfen: Der Kunde erfaehrt, dass er die Frist selbst pruefen muss.
+ */
+export function brauchtFristHinweis(fz: FristZustand | undefined): boolean {
+  if (!fz) return true; // noch nicht migriert -> ebenfalls unverifiziert
+  return fz.art === "unbekannt";
 }

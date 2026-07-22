@@ -2,6 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import { isProgrammAbgelaufen } from "@/lib/programm-status";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
+import { brauchtFristHinweis } from "@/lib/foerder-zustaende";
 
 /**
  * Verbindet zwei Datenquellen, die bis 17.07.2026 nichts voneinander wussten:
@@ -106,14 +107,22 @@ describe("Katalog: dokumentierte Luecke, die dieser Test NICHT schliesst", () =>
    *
    * Seit 17.07.2026 gibt es dafuer den expliziten `fristZustand`
    * (lib/foerder-zustaende.ts). Ein Programm gilt hier als abgedeckt, sobald es
-   * ENTWEDER `bewerbungsfristEnde` (Legacy) ODER `fristZustand` (neu) traegt.
-   * Diese Zahl ist die noch offene Migrations-Luecke; sie DARF nur sinken.
+   * ENTWEDER `bewerbungsfristEnde` (Legacy) ODER einen BELEGTEN `fristZustand`
+   * traegt. Diese Zahl ist die noch offene Migrations-Luecke; sie DARF nur sinken.
+   *
+   * ⚠️ `art: "unbekannt"` zaehlt AUSDRUECKLICH NICHT als Abdeckung. Seit dem
+   * 22.07.2026 ist "unbekannt" verkaufsfaehig (mit Hinweis) — wuerde es als
+   * abgedeckt zaehlen, koennte man diesen Zaehler auf 0 bringen, indem man alle
+   * 89 offenen Programme pauschal auf "unbekannt" setzt, ohne eine einzige
+   * Quelle gelesen zu haben. Der Zaehler misst VERIFIKATION, nicht Befuellung.
    */
-  it("haelt fest, wie viele verkaeufliche Programme keine maschinenlesbare Frist haben", () => {
+  it("haelt fest, wie viele verkaeufliche Programme keine VERIFIZIERTE Frist haben", () => {
     const verkaeuflich = KATALOG.filter((p) => istVerkaeuflich(p, JETZT));
-    const ohneFrist = verkaeuflich.filter(
-      (p) => !p.bewerbungsfristEnde && !(p as { fristZustand?: unknown }).fristZustand
-    );
+    const belegt = (p: Foerderprogramm) => {
+      const fz = (p as { fristZustand?: { art?: string } }).fristZustand;
+      return Boolean(fz && fz.art !== "unbekannt");
+    };
+    const ohneFrist = verkaeuflich.filter((p) => !p.bewerbungsfristEnde && !belegt(p));
 
     // Alle Programme haben einen menschenlesbaren Fristtext — nur liest ihn niemand.
     const ohneFristText = KATALOG.filter(
@@ -122,9 +131,12 @@ describe("Katalog: dokumentierte Luecke, die dieser Test NICHT schliesst", () =>
     expect(ohneFristText).toEqual([]);
 
     // Momentaufnahme 17.07.2026: 97 verkaeuflich, davon 95 ohne Frist.
+    // Stand 22.07.2026: 91 verkaeuflich, davon 75 ohne VERIFIZIERTE Frist —
+    // nach Primaerquellen-Pruefung aller 36 Programme, deren Dossier
+    // "rolling" behauptete. Rest: die 53 mit Stichtagen im Dossier.
     // Diese Zahl DARF sinken (Luecke wird geschlossen). Steigt sie, waechst das
     // ungepruefte Risiko — dann ist die Erwartung bewusst anzupassen.
-    expect(ohneFrist.length).toBeLessThanOrEqual(95);
+    expect(ohneFrist.length).toBeLessThanOrEqual(75);
   });
 });
 
@@ -142,8 +154,24 @@ describe("Fail-closed: expliziter fristZustand entscheidet ueber Verkauf", () =>
     } as Foerderprogramm;
   }
 
-  it("Frist unbekannt => NICHT verkaeuflich (auch bei aktiv + kiAntragGeeignet)", () => {
+  it("Frist unbekannt => verkaeuflich MIT Hinweis (Entscheidung 22.07.2026)", () => {
+    // Bis 22.07.2026 sperrte "unbekannt". Das warf "Quelle schweigt" mit
+    // "belegt geschlossen" zusammen und haette bei der Migration von 89
+    // Programmen einen grossen Teil des Katalogs verschrottet. Seitdem:
+    // schweigende Quelle => verkaeuflich, aber Hinweis-Pflicht in der UI.
+    // Nachweislich tot heisst jetzt "geschlossen" (s. u.).
     const p = prog({ fristZustand: { art: "unbekannt" } } as Partial<Foerderprogramm>);
+    expect(istVerkaeuflich(p, JETZT)).toBe(true);
+    expect(brauchtFristHinweis(p.fristZustand)).toBe(true);
+  });
+
+  it("Frist geschlossen (belegt keine offene Runde) => NICHT verkaeuflich", () => {
+    const p = prog({
+      fristZustand: {
+        art: "geschlossen",
+        quelle: "Website 22.07.2026: 'Die Ausschreibung ist beendet.'",
+      },
+    } as Partial<Foerderprogramm>);
     expect(istVerkaeuflich(p, JETZT)).toBe(false);
   });
 

@@ -43,7 +43,16 @@ export const FristZustandSchema = z.discriminatedUnion("art", [
       quelle: QuellePflicht,
     })
     .strict(),
-  z.object({ art: z.literal("unbekannt") }).strict(),
+  z
+    .object({
+      art: z.literal("geschlossen"),
+      quelle: QuellePflicht,
+      wiedereroeffnungErwartet: z.string().optional(),
+    })
+    .strict(),
+  // Einziger Zustand ohne Quellen-Pflicht: Es gibt nichts zu belegen. Eine
+  // Notiz, WAS geprueft wurde, ist trotzdem erwuenscht.
+  z.object({ art: z.literal("unbekannt"), quelle: z.string().optional() }).strict(),
 ]);
 
 export const UmfangZustandSchema = z.discriminatedUnion("art", [

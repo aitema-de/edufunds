@@ -1,4 +1,5 @@
 import { isProgrammAbgelaufen, isStatusNichtAnbietbar, STATUS_ANBIETBAR } from "@/lib/programm-status";
+import { brauchtFristHinweis } from "@/lib/foerder-zustaende";
 import { PROGRAMM_STATUS } from "@/lib/foerderSchema";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 
@@ -145,5 +146,39 @@ describe("fristZustand: fail-closed auch bei kaputten Daten", () => {
       quelle: "q",
     });
     expect(isProgrammAbgelaufen(p, HEUTE)).toBe(false);
+  });
+});
+
+describe("geschlossen vs. unbekannt — die Entscheidung vom 22.07.2026", () => {
+  // "Belegt keine offene Runde" und "Quelle schweigt" sind NICHT dasselbe.
+  // Wer sie zusammenwirft, verkauft entweder nachweislich tote Programme oder
+  // verschrottet den halben Katalog. Diese Tests halten die Trennung fest.
+  function mitZustand(fz: unknown): Foerderprogramm {
+    return programm({ fristZustand: fz } as unknown as Partial<Foerderprogramm>);
+  }
+
+  it("geschlossen sperrt, auch ohne Datum", () => {
+    const p = mitZustand({
+      art: "geschlossen",
+      quelle: "Website 22.07.2026: 'Die Ausschreibung ist beendet.'",
+      wiedereroeffnungErwartet: "Herbst 2026",
+    });
+    expect(isProgrammAbgelaufen(p, HEUTE)).toBe(true);
+  });
+
+  it("unbekannt bleibt verkaeuflich — aber nur mit Hinweis-Pflicht", () => {
+    const p = mitZustand({ art: "unbekannt", quelle: "Seite nennt keine Fristen (22.07.2026)" });
+    expect(isProgrammAbgelaufen(p, HEUTE)).toBe(false);
+    expect(brauchtFristHinweis(p.fristZustand)).toBe(true);
+  });
+
+  it("belegte Zustaende brauchen keinen Hinweis", () => {
+    expect(brauchtFristHinweis({ art: "keine", quelle: "q" })).toBe(false);
+    expect(brauchtFristHinweis({ art: "stichtag", stichtage: ["2026-12-01"], quelle: "q" })).toBe(false);
+  });
+
+  it("ein noch nicht migriertes Programm braucht ebenfalls den Hinweis", () => {
+    // Legacy-Weg: verkaeuflich, aber nichts daran ist verifiziert.
+    expect(brauchtFristHinweis(undefined)).toBe(true);
   });
 });
