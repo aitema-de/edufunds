@@ -1,5 +1,10 @@
 import type { Foerderprogramm, ProgrammStatus } from "@/lib/foerderSchema";
-import type { FristZustand } from "@/lib/foerder-zustaende";
+import { istIsoDatum, type FristZustand } from "@/lib/foerder-zustaende";
+
+/** Kalendertag von `d` als ISO YYYY-MM-DD (UTC — wie `new Date("YYYY-MM-DD")`). */
+function isoDatum(d: Date): string {
+  return d.toISOString().slice(0, 10);
+}
 
 /**
  * Der EINZIGE Status, unter dem ein Programm im Finder/Matcher erscheinen und
@@ -42,6 +47,8 @@ export function isStatusNichtAnbietbar(p: Foerderprogramm): boolean {
  *      - "stichtag"  letzter Termin heute/spaeter      => verkaufsfaehig
  *      - "stichtag"  alle Termine vergangen            => NICHT
  *      - "unbekannt" (nicht erfasst)                   => NICHT
+ *      - alles andere (Tippfehler, kaputte Struktur,
+ *        spaeter ergaenzte Variante)                   => NICHT
  *
  * 2. Kein `fristZustand` — LEGACY-Fallback auf `bewerbungsfristEnde`:
  *    verkaufsfaehig, solange kein Ende in der Vergangenheit belegt ist.
@@ -61,23 +68,35 @@ export function istFristVerkaufsfaehig(
 ): boolean {
   const fz: FristZustand | undefined = p.fristZustand;
 
-  if (fz) {
-    switch (fz.art) {
-      case "keine":
-        return true;
-      case "stichtag": {
-        if (fz.jaehrlichWiederkehrend) return true;
-        // Der spaeteste belegte Termin entscheidet.
-        const gueltige = fz.stichtage
-          .map((s) => new Date(s))
-          .filter((d) => !Number.isNaN(d.getTime()));
-        if (gueltige.length === 0) return false; // belegter, aber unlesbarer Termin -> fail-closed
-        const letzter = gueltige.reduce((a, b) => (a > b ? a : b));
-        return letzter >= now;
-      }
-      case "unbekannt":
-        return false;
+  if (fz !== undefined && fz !== null) {
+    // ACHTUNG: `fz` ist zwar als FristZustand typisiert, kommt aber ungeprueft
+    // aus JSON (`JSON.parse` behauptet den Typ nur). Jeder Zweig prueft daher
+    // die Struktur selbst, und alles Unbekannte faellt unten auf `false` —
+    // nicht auf den Legacy-Weg. Sonst haette ein Tippfehler in `art` das Gate
+    // still uebersprungen und das Programm waere verkauft worden (dieselbe
+    // Sperrliste-statt-Allowlist-Falle wie bei isStatusNichtAnbietbar).
+    const art = (fz as { art?: unknown }).art;
+
+    if (art === "keine") return true;
+
+    if (art === "stichtag") {
+      if ((fz as { jaehrlichWiederkehrend?: unknown }).jaehrlichWiederkehrend === true) return true;
+      const stichtage = (fz as { stichtage?: unknown }).stichtage;
+      if (!Array.isArray(stichtage)) return false; // kaputte Struktur -> fail-closed
+      // Vergleich als ISO-String: lexikografisch == chronologisch, keine
+      // Zeitzonen-Falle. Der Stichtag SELBST zaehlt noch als offen (bis 23:59
+      // des Tages kann eingereicht werden) — mit Date-Vergleich waere
+      // "Frist heute" faelschlich schon abgelaufen gewesen.
+      const gueltige = stichtage.filter(
+        (s): s is string => typeof s === "string" && istIsoDatum(s)
+      );
+      if (gueltige.length === 0) return false; // belegter, aber unlesbarer Termin -> fail-closed
+      const letzter = gueltige.reduce((a, b) => (a > b ? a : b));
+      return letzter >= isoDatum(now);
     }
+
+    // "unbekannt" und alles Unerwartete: nicht verkaufsfaehig.
+    return false;
   }
 
   // Legacy-Fallback: nur ein belegtes Ende in der Vergangenheit sperrt.

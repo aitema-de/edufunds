@@ -14,6 +14,11 @@
  */
 
 import { z } from "zod";
+import {
+  FristZustandSchema,
+  UmfangZustandSchema,
+  EinreichungsFormSchema,
+} from "@/lib/foerder-zustaende-schema";
 
 // ---------------------------------------------------------------------------
 // Sub-Schemas fuer die 4 neuen Felder (D-01..D-04)
@@ -61,46 +66,10 @@ const FristLogikSchema = z.discriminatedUnion("typ", [
   }),
 ]);
 
-// ---------------------------------------------------------------------------
-// Explizite Zustaende (lib/foerder-zustaende.ts): Frist / Umfang / Einreichung.
-// Optional, weil die Migration pro Programm laeuft (Katalog-Wahrheit, 17.07.).
-// Bei belegten Zustaenden (art != "unbekannt") ist `quelle` Pflicht.
-// ---------------------------------------------------------------------------
-
-const QuellePflicht = z.string().min(1, "quelle darf nicht leer sein");
-
-const FristZustandSchema = z.discriminatedUnion("art", [
-  z.object({ art: z.literal("keine"), quelle: QuellePflicht }),
-  z.object({
-    art: z.literal("stichtag"),
-    stichtage: z
-      .array(
-        z
-          .string()
-          .regex(ISO_DATE_REGEX, "stichtag muss ISO-Format YYYY-MM-DD haben")
-      )
-      .min(1, "stichtag benoetigt mindestens einen Termin"),
-    jaehrlichWiederkehrend: z.boolean().optional(),
-    quelle: QuellePflicht,
-  }),
-  z.object({ art: z.literal("unbekannt") }),
-]);
-
-const UmfangZustandSchema = z.discriminatedUnion("art", [
-  z.object({ art: z.literal("keine"), quelle: QuellePflicht }),
-  z.object({ art: z.literal("zeichen"), wert: z.number().positive(), quelle: QuellePflicht }),
-  z.object({ art: z.literal("seiten"), wert: z.number().positive(), quelle: QuellePflicht }),
-  z.object({ art: z.literal("unbekannt") }),
-]);
-
-const EinreichungsFormSchema = z.object({
-  kanaele: z
-    .array(z.enum(["online-formular", "online-portal", "email", "post", "unbekannt"]))
-    .min(1, "mindestens ein Kanal noetig"),
-  adresse: z.string().optional(),
-  hinweis: z.string().optional(),
-  quelle: z.string().optional(),
-});
+// Explizite Zustaende (Frist / Umfang / Einreichung): Definition liegt in
+// lib/foerder-zustaende-schema.ts, weil Katalog UND Dossier sie tragen und
+// beide dieselbe Pruefung brauchen. Optional, weil die Migration pro Programm
+// laeuft (Katalog-Wahrheit, 17.07.).
 
 // ---------------------------------------------------------------------------
 // Bestehende Pflichtfelder — minimaler Mirror der Compile-Time-Interfaces.
