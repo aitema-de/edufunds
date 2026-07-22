@@ -7,7 +7,15 @@
       "foerdergeber": "Bundesministerium für Bildung und Forschung (BMBF)",
       "foerdergeberTyp": "bund",
       "schulformen": [
-        "grundschule"
+        "grundschule",
+        "hauptschule",
+        "realschule",
+        "gymnasium",
+        "gesamtschule",
+        "iss",
+        "iss-mit-go",
+        "foerderschule",
+        "berufsschule"
       ],
       "bundeslaender": [
         "alle"
@@ -32,7 +40,12 @@
       "kiAntragGeeignet": true,
       "verifiziertAm": "2026-02-12",
       "verifiziertVon": "Web-Recherche BMBF",
-      "bemerkung": "Gesamtvolumen: 5 Mrd. € (2,5 Mrd. Bund aus Sondervermögen SVIK + 2,5 Mrd. Länder). 2,25 Mrd. € für digitale Bildungsinfrastruktur. Laufzeit: 2026-2030. Politische Einigung: 18.12.2024."
+      "bemerkung": "Gesamtvolumen: 5 Mrd. € (2,5 Mrd. Bund aus Sondervermögen SVIK + 2,5 Mrd. Länder). 2,25 Mrd. € für digitale Bildungsinfrastruktur. Laufzeit: 2026-2030. Politische Einigung: 18.12.2024.",
+      "fristZustand": {
+        "art": "geschlossen",
+        "wiedereroeffnungErwartet": "sobald die Laender ihre Foerderrichtlinien erlassen haben (je Land unterschiedlich)",
+        "quelle": "Primaerquelle digitalpaktschule.de/de/digitalpakt-2-0-1874.html, geprueft 22.07.2026: 'Schultraeger stellen erst dann Foerderantraege, wenn die Laender entsprechende Richtlinien erlassen haben. Dies kann je nach Land unterschiedlich lange dauern.' Es gibt damit aktuell keinen bundesweiten Antragsweg; genannt ist nur 'Der vorzeitige Massnahmenbeginn liegt beim 1. Januar 2026'. Antragsweg laeuft ueber Schultraeger/Laender, nicht ueber die Schule direkt."
+      }
     },
     "facts": {
       "schule": {
@@ -70,12 +83,20 @@
       }
     },
     "richtlinie": {
-      "version": "2026-05-19",
+      "version": "2026-06-19",
+      "dokumentLabel": "Medienkonzept",
+      "dokumentLabelGenus": "das",
       "quellen": [
-        "https://www.digitalpaktschule.de/de/digitalpakt-2-0-1874.html"
+        "https://www.digitalpaktschule.de/de/digitalpakt-2-0-1874.html",
+        "https://www.digitalpaktschule.de/de/schultraeger-1704.html",
+        "https://medienkompetenzrahmen.nrw/medienkonzept",
+        "https://www.lmz-bw.de/angebote/digitalpakt-schule/digitalpakt-2019-2024/fragen-und-antworten-zur-medienentwicklungsplanung",
+        "https://digitaleschule.niedersachsen.de/startseite/info_material/medienbildungskonzepte/das-medienbildungskonzept-im-digitalpakt-178877.html",
+        "https://klickpunktschule.bycs.de/beitrag/bestandteile-eines-medienkonzepts",
+        "https://klickpunktschule.bycs.de/beitrag/ausstattungsplan-2"
       ],
       "foerderhoehe": {
-        "bemerkung": "Gesamtvolumen 5 Mrd. EUR ueber 2025-2030 (2,5 Mrd Bund + 2,5 Mrd Laender). Konkrete Foerderhoehe PRO SCHULE wird erst ueber Laender-Richtlinien operationalisiert — variiert je Bundesland und Antragsjahr. Typisch fuer DigitalPakt 1 waren 500 EUR pro Schueler (Grund-/Sockelbetrag) plus Zuschlag-Komponenten. Anwenderbetrag daher zur Laufzeit beim zustaendigen Ministerium des Bundeslandes erfragen."
+        "bemerkung": "Kein fester Förderbetrag pro Schule dokumentiert — der DigitalPakt 2.0 ist eine Bund-Länder-Finanzierung ohne bundesweit einheitliche Mindest- oder Höchstbeträge. Gesamtvolumen 5 Mrd. EUR, je zur Hälfte finanziert durch Bund (2,5 Mrd. EUR, größtenteils aus dem Sondervermögen „Infrastruktur und Klimaneutralität“) und Länder (gleichwertiger Anteil). Laufzeit 2026 bis Ende 2030, Maßnahmen an Schulen können bis 2032 abgeschlossen werden; vorzeitiger Maßnahmenbeginn rückwirkend ab 01.01.2025. Finanzierungslogik Handlungsstrang I (Investitionen): Der Bund stellt 2,25 Mrd. EUR als Finanzhilfe an die Länder bereit — davon gut 2 Mrd. EUR für landesbezogene Maßnahmen (Verteilung auf die Länder nach dem Königsteiner Schlüssel) und 112,5 Mio. EUR für länderübergreifende Vorhaben. Die Länder steuern über ihre Landesprogramme 500 Mio. EUR zusätzlich bei; der Eigenanteil der Länder beträgt damit zwei Neuntel der Bundesmittel (ca. 22 %). Die Mittelvergabe an Schulträger erfolgt über die jeweiligen Landesrichtlinien — konkrete Beträge pro Schule bzw. Schulträger ergeben sich erst daraus und variieren je Bundesland."
       },
       "kostenpositionen": [
         {
@@ -134,7 +155,7 @@
         "formenErlaubt": [
           "finanziell"
         ],
-        "bemerkung": "Eigenanteil der Laender: zwei Neuntel der Bundesmittel (ca. 22 %). In der Praxis teilweise weitergegeben an Schultraeger (Kommune). Antragsstellende Schule muss sich beim Schultraeger zur Kofinanzierung abstimmen."
+        "bemerkung": "Eigenanteil der Laender: zwei Neuntel der Bundesmittel (ca. 22 %). In der Praxis teilweise weitergegeben an Schultraeger (Kommune). Die Schule stimmt sich beim Schultraeger zur Kofinanzierung ab; der Traeger verantwortet Finanzierung und Antrag."
       },
       "kumulierung": {
         "erlaubt": "bedingt",
@@ -147,93 +168,155 @@
       "antragsstruktur": {
         "abschnitte": [
           {
-            "id": "bedarfsanalyse",
-            "name": "Bedarfsanalyse und Ausgangslage",
+            "id": "leitbild",
+            "name": "Leitbild und paedagogische Ziele der Medienbildung",
             "pflicht": true,
             "leitfragen": [
-              "Welcher konkrete digitale Bedarf besteht an der Schule (technisch und paedagogisch)?",
-              "Was wurde bereits aus DigitalPakt 1 finanziert, was fehlt noch?"
+              "Welches Leitbild verfolgt die Schule beim Lernen in der digitalen Welt?",
+              "Welche uebergeordneten paedagogischen Ziele soll die Medienbildung erreichen?",
+              "Wie ist Medienbildung im Schulprogramm bzw. Leitbild der Schule verankert?"
             ],
-            "stilhinweis": "Sachlich, mit konkreten Zahlen zur Schule (Schueler, Raeume, vorhandene Infrastruktur)."
+            "stilhinweis": "Paedagogische Vision zuerst - hier bewusst NOCH KEINE Geraete/Technik nennen. Ausgangspunkt ist das Lernen der Schuelerinnen und Schueler, nicht die Ausstattung ('Keine Ausstattung ohne Konzept')."
           },
           {
-            "id": "medienkonzept-bezug",
-            "name": "Bezug zum Medienkonzept der Schule",
+            "id": "bestandsaufnahme",
+            "name": "Bestandsaufnahme (Ist-Stand)",
             "pflicht": true,
             "leitfragen": [
-              "Wie verknuepft die Massnahme mit dem (vorhandenen) schulischen Medienkonzept?",
-              "Welche Lernziele werden adressiert (KMK-Strategie 'Bildung in der digitalen Welt')?"
+              "Was wird bereits medienpaedagogisch unterrichtet (Faecher, Jahrgaenge)?",
+              "Welche technische Infrastruktur ist vorhanden (Internetanbindung, WLAN, Vernetzung der Raeume, Server)?",
+              "Welche Endgeraete, Praesentationstechnik, Lizenzen und Lernplattformen gibt es (Anzahl, Alter, weiter nutzbar)?",
+              "Wie sind Support und Wartung organisiert und welche Medienkompetenzen hat das Kollegium bereits?"
             ],
-            "stilhinweis": "Paedagogisch-didaktischer Fokus, nicht technisch."
+            "stilhinweis": "Vierteilig erfassen: paedagogischer Ist-Stand, technische Infrastruktur, Hard-/Software, Prozesse/Support + Fortbildungsstand. Liefert die Datenbasis fuer Ausstattungs- und Fortbildungsbedarf - mit konkreten Zahlen zur Schule."
           },
           {
-            "id": "vorhaben",
-            "name": "Beschreibung des Vorhabens",
+            "id": "mediencurriculum",
+            "name": "Mediencurriculum / Unterrichtsentwicklung",
             "pflicht": true,
             "leitfragen": [
-              "Was wird konkret beschafft / implementiert / ausgebaut?",
-              "Wie sieht der Umsetzungsplan (Phasen, Zeitrahmen) aus?"
-            ]
-          },
-          {
-            "id": "qualifizierung",
-            "name": "Qualifizierung der Lehrkraefte",
-            "pflicht": true,
-            "leitfragen": [
-              "Wie werden die Lehrkraefte fuer den Einsatz der neuen Technik/Software qualifiziert?",
-              "Gibt es interne Multiplikatoren, externe Fortbildungen?"
-            ]
-          },
-          {
-            "id": "betrieb-nachhaltigkeit",
-            "name": "Betrieb und Nachhaltigkeit nach Foerderende",
-            "pflicht": true,
-            "leitfragen": [
-              "Wer uebernimmt Wartung, Support, Administration waehrend und nach der Foerderphase?",
-              "Wie werden Geraete nach Abschreibungsfrist ersetzt (Ersatzbeschaffungsplan)?"
+              "Was sollen die Schuelerinnen und Schueler mit und ueber Medien in welchen Faechern und Jahrgaengen lernen?",
+              "Welche Medienkompetenzen (KMK 'Bildung in der digitalen Welt' bzw. Landes-Medienkompetenzrahmen) werden wo verankert?",
+              "Mit welchen konkreten Unterrichtseinheiten und Lernszenarien wird das umgesetzt?"
             ],
-            "stilhinweis": "KRITISCH: DigitalPakt 2.0 will explizit die Betrieb-Nachhaltigkeit sicherstellen. Vage Antworten scheitern hier."
+            "stilhinweis": "Das HERZSTUECK des Medienkonzepts. Kompetenzen spiralcurricular den Faechern und Jahrgangsstufen zuordnen und mit den Fachcurricula verzahnen. Paedagogisch-didaktisch, nicht technisch."
           },
           {
-            "id": "finanzplan",
-            "name": "Finanzplan / Kosten- und Finanzierungsuebersicht",
+            "id": "ausstattungs-und-finanzplan",
+            "name": "Ausstattungs- und Finanzplan",
             "pflicht": true,
             "leitfragen": [
-              "Welche Einzelposten (Sachkosten, Investitionen, Personal) mit welchen Betraegen?",
-              "Welchen Anteil uebernimmt der Schultraeger als Eigenmittel?"
-            ]
+              "Welche Geraete, Software und Infrastruktur werden benoetigt, um die Curriculumsziele zu erreichen?",
+              "Wie wird jeder Bedarf aus den paedagogischen Zielen begruendet (Technik folgt Paedagogik)?",
+              "Welche Einzelposten mit welchen Kosten, gestuft nach kurz-, mittel- und langfristig?",
+              "Welchen Anteil traegt der Schultraeger als Eigenmittel bzw. Kofinanzierung?"
+            ],
+            "stilhinweis": "Ist-/Soll-Abgleich, jeder Posten paedagogisch begruendet. Enthaelt die Kostentabelle nach dem Muster Ziele - Massnahmen - Kosten - Zeitpunkt. Dieser Teil ist die finanzielle Zulieferung an den Schultraeger; der zugehoerige Finanzplan wird vom Wizard auf Basis der Kostenpositionen separat erzeugt."
+          },
+          {
+            "id": "fortbildung",
+            "name": "Fortbildungs- und Qualifizierungsplan",
+            "pflicht": true,
+            "leitfragen": [
+              "Welche Qualifizierung brauchen die Lehrkraefte, um Medien im Fachunterricht einzusetzen?",
+              "Wie wird der Fortbildungsbedarf je Fachgruppe aus dem Mediencurriculum abgeleitet?",
+              "Welche internen (Mikrofortbildungen, schulinterne Lehrerfortbildung) und externen Fortbildungen sind geplant (kurz-, mittel-, langfristig)?"
+            ],
+            "stilhinweis": "Den Bedarf konsequent aus dem Mediencurriculum ableiten, nicht beliebig auflisten."
+          },
+          {
+            "id": "support-betrieb",
+            "name": "Support, Wartung und Betrieb",
+            "pflicht": true,
+            "leitfragen": [
+              "Wer uebernimmt Wartung und Support (First-/Second-/Third-Level) waehrend und nach der Foerderphase?",
+              "Wie sind Beschaffung, Pflege, Ersatzbeschaffung und Finanzierung dauerhaft gesichert?",
+              "Wie werden Datenschutz und Datensicherheit gewaehrleistet und wer ist wofuer verantwortlich?"
+            ],
+            "stilhinweis": "KRITISCH: DigitalPakt 2.0 will die Betrieb-Nachhaltigkeit explizit sicherstellen - vage Antworten scheitern hier. Das Support-/Wartungskonzept wird meist mit dem Schultraeger abgestimmt."
+          },
+          {
+            "id": "kooperationen",
+            "name": "Kooperationen und Vernetzung",
+            "pflicht": false,
+            "leitfragen": [
+              "Mit welchen ausserschulischen Partnern (Medienzentren, Bibliotheken, Ganztag) wird kooperiert?",
+              "Wie werden Eltern und Erziehungsberechtigte eingebunden?"
+            ],
+            "stilhinweis": "Optional, aber ueblich. Staerkt die Verankerung des Konzepts in der Schulgemeinschaft."
+          },
+          {
+            "id": "beschluss-evaluation",
+            "name": "Beschluss, Evaluation und Fortschreibung",
+            "pflicht": true,
+            "leitfragen": [
+              "Wann und durch welches Gremium (Schul- bzw. Gesamtkonferenz) wird das Medienkonzept beschlossen?",
+              "Wie und in welchem Turnus werden Zielerreichung und Wirkung evaluiert?",
+              "Wann wird das Konzept fortgeschrieben (typische Laufzeit ca. 5 Jahre)?"
+            ],
+            "stilhinweis": "Der verbindliche Konferenzbeschluss ist zwingend. Das Konzept ist zyklisch angelegt (regelmaessige Fortschreibung), keine Einmal-Erstellung."
           }
         ],
         "anlagen": [
-          "Medienkonzept der Schule (oder Entwurf)",
-          "Beschluss/Zustimmung des Schultraegers (Kommune / Landkreis) — Antragstellerin ist i.d.R. der Schultraeger",
-          "Kosten-/Angebotsuebersicht",
-          "Wartungs- und Support-Konzept"
+          "Beschluss der Schul- bzw. Gesamtkonferenz ueber das Medienkonzept",
+          "Ausstattungs-/Kostentabelle (Ziele, Massnahmen, Kosten, Zeitpunkt)",
+          "Abstimmung mit dem Schultraeger zur Kofinanzierung und zum Medienentwicklungsplan (MEP)",
+          "Bezug zum Medienkompetenzrahmen des Landes bzw. zur KMK-Strategie 'Bildung in der digitalen Welt'"
         ],
-        "einreichungsweg": "Ueber den zustaendigen Schultraeger an das Bundesland (Bildungs-/Kultusministerium). KEIN direkter Bundes-Antrag durch Einzelschule.",
-        "bearbeitungsdauer": "Stark variabel je Bundesland — 3-12 Monate typisch (Erfahrungswert DigitalPakt 1)."
+        "einreichungsweg": "Zweistufig: Die SCHULE erstellt das Medienkonzept (paedagogisch-inhaltlich) und gibt es an ihren Schultraeger. Der SCHULTRAEGER (Kommune/Landkreis) buendelt die Schulkonzepte in einem Medienentwicklungsplan (MEP) und stellt damit den formellen Foerderantrag bei der zustaendigen Landesbehoerde bzw. Foerderbank. Die Schule selbst ist NICHT antragsberechtigt und fuellt KEIN Antragsformular aus - ihr Ergebnis ist das Medienkonzept ('Keine Ausstattung ohne Konzept').",
+        "bearbeitungsdauer": "Stark variabel je Bundesland - 3-12 Monate typisch (Erfahrungswert DigitalPakt 1) ab formellem Antrag des Schultraegers."
       },
       "notizen": [
-        "STUB-VERSION: offizielle Richtlinien-PDF der jeweiligen Laender-Umsetzung ist nicht integriert. Konkrete Foerderquoten pro Kostenposition sowie Antragsformular-Felder mit Zeichenlimits werden erst nach Veroeffentlichung der Laender-Richtlinien ergaenzbar.",
-        "Maximalbetrag pro Schule ist nicht bundesweit fix — variiert je Bundesland (typisch 500 EUR/Schueler als Sockel + Zuschlaege in DigitalPakt 1).",
+        "ZIEL DIESES WIZARDS: das MEDIENKONZEPT der Schule - KEIN Foerderantrag. Den formellen Antrag stellt der Schultraeger. Der Wizard fuehrt die Schule durch die Erstellung ihres Medienkonzepts inkl. Ausstattungs-/Finanzplanung.",
+        "Begriffsabgrenzung: Medienkonzept / Medienbildungskonzept = Dokument der EINZELNEN SCHULE (das hier erzeugte). Medienentwicklungsplan (MEP) = Dokument des SCHULTRAEGERS, der die Schulkonzepte buendelt und dem Antrag zugrunde legt. Beide muessen aufeinander abgestimmt sein.",
+        "Ableitungslogik (in allen Laender-Leitfaeden gleich): Paedagogik zuerst -> daraus folgt die Technik/Ausstattung -> daraus folgt der Fortbildungsbedarf. Niemals mit der Geraeteliste beginnen.",
+        "Laenderabweichungen: In Baden-Wuerttemberg erstellen Schule und Schultraeger den MEP gemeinsam (Freigabeempfehlung durch Medienzentrum/LMZ, Bewilligung z. B. L-Bank). In Niedersachsen ist die MEP-Erstellung primaer Traegeraufgabe in enger Abstimmung; Bewilligungsstelle je Land verschieden.",
+        "Typischer Umfang eines Medienkonzepts: ca. 30-60 Seiten; gesamtschulische Entwicklungsaufgabe unter Einbindung des Kollegiums ueber Wochen bis Monate.",
+        "Konkrete Foerderquoten pro Kostenposition sowie etwaige formale Vorlagen ergeben sich erst aus der jeweiligen Laender-Richtlinie zu DigitalPakt 2.0 und sind dort zu pruefen.",
         "Ausgaben seit 01.01.2025 sind rueckwirkend foerderfaehig (Zeitpunkt-Regel)."
       ],
       "bestPractices": [
         {
-          "thema": "Pauschalierte Zuweisungen",
-          "was_funktionierte": "Die Möglichkeit zu pauschalierten Zuweisungen senkt den Bürokratieaufwand sowohl auf Schulträger- als auch auf Landesebene deutlich.",
-          "warum": "Vereinfacht die Antrags- und Umsetzungsverfahren der Länder."
+          "thema": "Paedagogik vor Technik",
+          "was_funktionierte": "Konzepte ueberzeugen, wenn jede Anschaffung aus einem konkreten paedagogischen Ziel im Mediencurriculum abgeleitet ist statt aus einer reinen Geraetewunschliste.",
+          "warum": "Entspricht dem Leitprinzip 'Keine Ausstattung ohne Konzept' und der Ableitungslogik aller Laender-Leitfaeden."
         },
         {
-          "thema": "Länderübergreifende Vorhaben (LüV)",
-          "was_funktionierte": "Ressourcen werden besser gebündelt und gemeinsame Systemlösungen geschaffen, wovon auch finanzschwächere Länder profitieren können.",
-          "warum": "Fördert ein kooperatives Miteinander der Länder und schafft mehr gemeinsame Verantwortung im Bildungsbereich."
+          "thema": "Betrieb und Nachhaltigkeit",
+          "was_funktionierte": "Ein belastbares Support-, Wartungs- und Ersatzbeschaffungskonzept (wer macht was, wie finanziert) hebt das Konzept deutlich, weil DigitalPakt 2.0 die dauerhafte Betreibbarkeit explizit einfordert.",
+          "warum": "Vage Betriebsangaben sind ein haeufiger Schwachpunkt; klare Verantwortlichkeiten und Folgekostenplanung schaffen Vertrauen."
+        },
+        {
+          "thema": "Pauschalierte Zuweisungen",
+          "was_funktionierte": "Die Moeglichkeit zu pauschalierten Zuweisungen senkt den Buerokratieaufwand sowohl auf Schultraeger- als auch auf Landesebene deutlich.",
+          "warum": "Vereinfacht die Antrags- und Umsetzungsverfahren der Laender."
         }
       ],
-      "rejectGruende": [],
+      "rejectGruende": [
+        {
+          "grund": "Geraetewunschliste ohne paedagogische Begruendung / ohne Mediencurriculum",
+          "haeufigkeit": "haeufig",
+          "vermeidung": "Jede Anschaffung aus einem Lernziel im Mediencurriculum ableiten (Technik folgt Paedagogik)."
+        },
+        {
+          "grund": "Fehlendes oder vages Betriebs-, Wartungs- und Ersatzbeschaffungskonzept",
+          "haeufigkeit": "haeufig",
+          "vermeidung": "Verantwortlichkeiten, Support-Level und Folgekosten konkret benennen und mit dem Schultraeger abstimmen."
+        },
+        {
+          "grund": "Fehlender Konferenzbeschluss / keine Abstimmung mit dem Schultraeger",
+          "haeufigkeit": "gelegentlich",
+          "vermeidung": "Beschluss der Schul-/Gesamtkonferenz herbeifuehren und das Konzept mit dem Medienentwicklungsplan des Traegers abstimmen."
+        }
+      ],
       "vorbildFormulierungen": [],
       "fristLogik": {
         "typ": "rolling"
+      },
+      "fristZustand": {
+        "art": "geschlossen",
+        "wiedereroeffnungErwartet": "sobald die Laender ihre Foerderrichtlinien erlassen haben (je Land unterschiedlich)",
+        "quelle": "Primaerquelle digitalpaktschule.de/de/digitalpakt-2-0-1874.html, geprueft 22.07.2026: 'Schultraeger stellen erst dann Foerderantraege, wenn die Laender entsprechende Richtlinien erlassen haben. Dies kann je nach Land unterschiedlich lange dauern.' Es gibt damit aktuell keinen bundesweiten Antragsweg; genannt ist nur 'Der vorzeitige Massnahmenbeginn liegt beim 1. Januar 2026'. Antragsweg laeuft ueber Schultraeger/Laender, nicht ueber die Schule direkt."
       }
     },
     "messages": [
@@ -242,56 +325,98 @@
         "role": "ai",
         "kind": "question",
         "content": "Was soll mit dem DigitalPakt 2.0 an Ihrer Schule verbessert werden?",
-        "at": "2026-05-20T10:37:54.382Z"
+        "at": "2026-07-22T12:46:50.205Z"
       },
       {
         "id": "1",
         "role": "user",
         "kind": "answer",
         "content": "Na ja, wir haben fast gar nichts. Keine Tablets, kein WLAN. Irgendwas muss passieren.",
-        "at": "2026-05-20T10:37:54.382Z"
+        "at": "2026-07-22T12:46:50.205Z"
       },
       {
         "id": "2",
         "role": "ai",
         "kind": "question",
         "content": "Gibt es schon eine Vorstellung was konkret angeschafft werden soll?",
-        "at": "2026-05-20T10:37:54.382Z"
+        "at": "2026-07-22T12:46:50.205Z"
       },
       {
         "id": "3",
         "role": "user",
         "kind": "answer",
         "content": "Tablets wuerden wir gerne. Und vielleicht WLAN. Mehr weiss ich nicht.",
-        "at": "2026-05-20T10:37:54.382Z"
+        "at": "2026-07-22T12:46:50.205Z"
       },
       {
         "id": "4",
         "role": "ai",
         "kind": "question",
         "content": "Hat Ihre Schule ein Medienkonzept das als Grundlage fuer den Antrag dienen koennte?",
-        "at": "2026-05-20T10:37:54.382Z"
+        "at": "2026-07-22T12:46:50.205Z"
       },
       {
         "id": "5",
         "role": "user",
         "kind": "answer",
         "content": "Nein. Haetten wir eigentlich mal machen muessen.",
-        "at": "2026-05-20T10:37:54.382Z"
+        "at": "2026-07-22T12:46:50.205Z"
       },
       {
         "id": "6",
         "role": "ai",
         "kind": "question",
         "content": "Wer wuerde den Antrag vorbereiten -- haben Sie Kapazitaeten dafuer?",
-        "at": "2026-05-20T10:37:54.382Z"
+        "at": "2026-07-22T12:46:50.205Z"
       },
       {
         "id": "7",
         "role": "user",
         "kind": "answer",
         "content": "Keine Ahnung. Ich bin ja selbst schon ueberarbeitet.",
-        "at": "2026-05-20T10:37:54.382Z"
+        "at": "2026-07-22T12:46:50.205Z"
+      },
+      {
+        "id": "8",
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie sollen die Tablets im Unterricht konkret eingesetzt werden?",
+        "at": "2026-07-22T12:46:50.205Z"
+      },
+      {
+        "id": "9",
+        "role": "user",
+        "kind": "answer",
+        "content": "Fuer Recherche und so. Die Kollegen werden sich da schon was ueberlegen. Erstmal muessen die Geraete ueberhaupt da sein und das WLAN laufen.",
+        "at": "2026-07-22T12:46:50.205Z"
+      },
+      {
+        "id": "10",
+        "role": "ai",
+        "kind": "question",
+        "content": "Gibt es Fortbildungen fuer das Kollegium zum Einsatz der Geraete?",
+        "at": "2026-07-22T12:46:50.205Z"
+      },
+      {
+        "id": "11",
+        "role": "user",
+        "kind": "answer",
+        "content": "Angedacht schon. Der Medienbeauftragte wollte da mal was organisieren. Konkret ist noch nichts.",
+        "at": "2026-07-22T12:46:50.205Z"
+      },
+      {
+        "id": "12",
+        "role": "ai",
+        "kind": "question",
+        "content": "Wer kuemmert sich um Einrichtung und Verwaltung der Geraete?",
+        "at": "2026-07-22T12:46:50.205Z"
+      },
+      {
+        "id": "13",
+        "role": "user",
+        "kind": "answer",
+        "content": "Der Medienbeauftragte, nehme ich an. Der macht das jetzt auch schon so nebenbei. Ist natuerlich eigentlich zu viel fuer eine Person.",
+        "at": "2026-07-22T12:46:50.205Z"
       }
     ]
   },
@@ -301,343 +426,630 @@
         "titel": "Foerdervorhaben an der Hauptschule Gelsenkirchen-Bismarck — Antrag bei DigitalPakt Schule 2.0",
         "abschnitte": [
           {
-            "name": "Bedarfsanalyse und Ausgangslage",
-            "fokus": "Leitfragen: Welcher konkrete digitale Bedarf besteht an der Schule (technisch und paedagogisch)? | Was wurde bereits aus DigitalPakt 1 finanziert, was fehlt noch?"
+            "name": "Leitbild und paedagogische Ziele der Medienbildung",
+            "fokus": "Leitfragen: Welches Leitbild verfolgt die Schule beim Lernen in der digitalen Welt? | Welche uebergeordneten paedagogischen Ziele soll die Medienbildung erreichen? | Wie ist Medienbildung im Schulprogramm bzw. Leitbild der Schule verankert?"
           },
           {
-            "name": "Bezug zum Medienkonzept der Schule",
-            "fokus": "Leitfragen: Wie verknuepft die Massnahme mit dem (vorhandenen) schulischen Medienkonzept? | Welche Lernziele werden adressiert (KMK-Strategie 'Bildung in der digitalen Welt')?"
+            "name": "Bestandsaufnahme (Ist-Stand)",
+            "fokus": "Leitfragen: Was wird bereits medienpaedagogisch unterrichtet (Faecher, Jahrgaenge)? | Welche technische Infrastruktur ist vorhanden (Internetanbindung, WLAN, Vernetzung der Raeume, Server)? | Welche Endgeraete, Praesentationstechnik, Lizenzen und Lernplattformen gibt es (Anzahl, Alter, weiter nutzbar)? | Wie sind Support und Wartung organisiert und welche Medienkompetenzen hat das Kollegium bereits?"
           },
           {
-            "name": "Beschreibung des Vorhabens",
-            "fokus": "Leitfragen: Was wird konkret beschafft / implementiert / ausgebaut? | Wie sieht der Umsetzungsplan (Phasen, Zeitrahmen) aus?"
+            "name": "Mediencurriculum / Unterrichtsentwicklung",
+            "fokus": "Leitfragen: Was sollen die Schuelerinnen und Schueler mit und ueber Medien in welchen Faechern und Jahrgaengen lernen? | Welche Medienkompetenzen (KMK 'Bildung in der digitalen Welt' bzw. Landes-Medienkompetenzrahmen) werden wo verankert? | Mit welchen konkreten Unterrichtseinheiten und Lernszenarien wird das umgesetzt?"
           },
           {
-            "name": "Qualifizierung der Lehrkraefte",
-            "fokus": "Leitfragen: Wie werden die Lehrkraefte fuer den Einsatz der neuen Technik/Software qualifiziert? | Gibt es interne Multiplikatoren, externe Fortbildungen?"
+            "name": "Ausstattungs- und Finanzplan",
+            "fokus": "Leitfragen: Welche Geraete, Software und Infrastruktur werden benoetigt, um die Curriculumsziele zu erreichen? | Wie wird jeder Bedarf aus den paedagogischen Zielen begruendet (Technik folgt Paedagogik)? | Welche Einzelposten mit welchen Kosten, gestuft nach kurz-, mittel- und langfristig? | Welchen Anteil traegt der Schultraeger als Eigenmittel bzw. Kofinanzierung?"
           },
           {
-            "name": "Betrieb und Nachhaltigkeit nach Foerderende",
-            "fokus": "Leitfragen: Wer uebernimmt Wartung, Support, Administration waehrend und nach der Foerderphase? | Wie werden Geraete nach Abschreibungsfrist ersetzt (Ersatzbeschaffungsplan)?"
+            "name": "Fortbildungs- und Qualifizierungsplan",
+            "fokus": "Leitfragen: Welche Qualifizierung brauchen die Lehrkraefte, um Medien im Fachunterricht einzusetzen? | Wie wird der Fortbildungsbedarf je Fachgruppe aus dem Mediencurriculum abgeleitet? | Welche internen (Mikrofortbildungen, schulinterne Lehrerfortbildung) und externen Fortbildungen sind geplant (kurz-, mittel-, langfristig)?"
           },
           {
-            "name": "Finanzplan / Kosten- und Finanzierungsuebersicht",
-            "fokus": "Leitfragen: Welche Einzelposten (Sachkosten, Investitionen, Personal) mit welchen Betraegen? | Welchen Anteil uebernimmt der Schultraeger als Eigenmittel?"
+            "name": "Support, Wartung und Betrieb",
+            "fokus": "Leitfragen: Wer uebernimmt Wartung und Support (First-/Second-/Third-Level) waehrend und nach der Foerderphase? | Wie sind Beschaffung, Pflege, Ersatzbeschaffung und Finanzierung dauerhaft gesichert? | Wie werden Datenschutz und Datensicherheit gewaehrleistet und wer ist wofuer verantwortlich?"
+          },
+          {
+            "name": "Beschluss, Evaluation und Fortschreibung",
+            "fokus": "Leitfragen: Wann und durch welches Gremium (Schul- bzw. Gesamtkonferenz) wird das Medienkonzept beschlossen? | Wie und in welchem Turnus werden Zielerreichung und Wirkung evaluiert? | Wann wird das Konzept fortgeschrieben (typische Laufzeit ca. 5 Jahre)?"
           }
         ]
       },
       "sections": [
         {
-          "name": "Bedarfsanalyse und Ausgangslage",
-          "text": "An der Hauptschule Gelsenkirchen-Bismarck besteht ein erheblicher Bedarf an digitaler Ausstattung. Derzeit verfügt die Schule mit ihren 280 Schülerinnen und Schülern über keine digitale Infrastruktur, insbesondere fehlen Tablets und ein flächendeckendes WLAN-Netzwerk.\n\nIm Rahmen des DigitalPakts 1 wurden an unserer Schule keine Maßnahmen zur Verbesserung der digitalen Ausstattung finanziert. Der Bedarf an grundlegender digitaler Infrastruktur ist daher weiterhin ungedeckt. Mit dem vorliegenden Antrag sollen Tablets und WLAN beschafft werden, um die Voraussetzungen für eine zeitgemäße, digital gestützte Unterrichtsgestaltung zu schaffen.\n\nEs ist uns bewusst, dass für eine nachhaltige Integration digitaler Medien in den Unterricht ein umfassendes Medienkonzept erforderlich ist. Ebenso fehlt es an Kapazitäten für die Antragstellung. Die Erstellung eines solchen Konzepts sowie die notwendige Unterstützung bei der Umsetzung des Vorhabens sind Bestandteil der weiteren Planungen."
+          "name": "Leitbild und paedagogische Ziele der Medienbildung",
+          "text": "An unserer Schule besteht bislang kein durchgängiges medienpädagogisches Konzept, obwohl die Notwendigkeit für digitale Werkzeuge im Unterricht zunehmend spürbar wird. `[Annahme: Aktuell fehlt eine technische Grundausstattung wie Tablets und WLAN, was Recherchearbeiten und digitale Lernformate erschwert.]` Die Kolleginnen und Kollegen greifen auf improvisierte Lösungen zurück, etwa wenn Schülerinnen und Schüler eigene Geräte nutzen oder analoge Materialien eingesetzt werden, wo eigentlich digitale Recherche oder interaktive Übungen sinnvoll wären. Der Medienbeauftragte übernimmt diese Aufgaben nebenamtlich, was angesichts des Umfangs eine Überlastung darstellt und eine strukturelle Lösung erfordert.\n\nUnser Leitbild für das Lernen in der digitalen Welt zielt darauf ab, allen Lernenden – unabhängig von ihrem sozioökonomischen Hintergrund – den Zugang zu digitalen Kompetenzen zu ermöglichen und sie zu einem kritischen, selbstbestimmten Umgang mit Medien zu befähigen. Medienbildung soll dabei nicht als isoliertes Fach, sondern als durchgängiges Prinzip verstanden werden, das sich in allen Fächern und Jahrgangsstufen widerspiegelt. Konkret bedeutet dies, dass Schülerinnen und Schüler lernen, digitale Werkzeuge gezielt für Recherche, Präsentation und Kollaboration einzusetzen, etwa um eigene Projekte zu dokumentieren oder Daten auszuwerten. Gleichzeitig geht es darum, sie für die Risiken digitaler Räume zu sensibilisieren – etwa für Datenschutz, Fake News oder die ethischen Implikationen von Algorithmen.\n\nDie Verankerung dieser Ziele im Schulprogramm steht noch aus, wird aber als zentraler Entwicklungsschritt des Vorhabens angestrebt. Ein erster Schritt wäre die Erarbeitung eines Medienbildungskonzepts, das die genannten Ziele aufnimmt und mit konkreten Umsetzungsstrategien verbindet. Dabei sollen auch die Erfahrungen des Medienbeauftragten systematisch eingebunden werden, um die bestehende Expertise zu nutzen und gleichzeitig die Arbeitsbelastung zu reduzieren. Die Nachhaltigkeit des Ansatzes hängt dabei maßgeblich davon ab, ob Medienbildung als Querschnittsaufgabe im Kollegium verankert und durch eine verlässliche technische Infrastruktur unterstützt wird."
         },
         {
-          "name": "Bezug zum Medienkonzept der Schule",
-          "text": "Die beantragte Maßnahme, die Anschaffung von Tablets und die Installation von WLAN, steht im Zusammenhang mit der Notwendigkeit, die digitale Ausstattung an der Hauptschule Gelsenkirchen-Bismarck grundlegend zu verbessern. Aktuell verfügt die Schule über keine digitale Ausstattung.\n\nDa bisher kein formelles Medienkonzept existiert, stellt die Umsetzung des Vorhabens einen ersten Schritt zur Entwicklung eines solchen Konzepts dar. Die Schule erkennt den Bedarf an, die Medienkompetenz der Schülerinnen und Schüler zu fördern. Aufgrund von Kapazitätsmangel konnte bisher kein Medienkonzept erstellt werden. Die Anschaffung von Tablets und WLAN soll die Grundlage für zukünftige pädagogische Konzepte bilden, die einen kritischen Umgang mit Medien in den Unterricht integrieren."
+          "name": "Bestandsaufnahme (Ist-Stand)",
+          "text": "An unserer Schule besteht derzeit keinerlei medienpädagogisches Regelangebot. Zwar wird vereinzelt digitales Material im Unterricht eingesetzt, jedoch fehlt eine systematische Einbindung in die Lehrpläne der Jahrgänge 5 bis 10. Die Kolleginnen und Kollegen greifen auf eigene Endgeräte oder schulische Präsentationstechnik (ein Beamer, zwei ältere Whiteboards) zurück, die jedoch nicht für den Unterricht aller Fächer zur Verfügung stehen. [TODO: Medienbeauftragten und Fachkonferenzen zu einer Bestandsaufnahme einbinden]\n\nDie technische Infrastruktur ist nicht vorhanden: Es gibt weder eine schulweite Internetanbindung noch ein WLAN-Netz. Die Räume sind nicht vernetzt, ein zentraler Server existiert nicht. [Annahme: Die vorhandene Präsentationstechnik (Beamer, Whiteboards) ist älter als fünf Jahre und für den Regelbetrieb nur eingeschränkt nutzbar.] Endgeräte wie Tablets oder Laptops stehen der Schule nicht zur Verfügung; die wenigen privaten Geräte der Lehrkräfte werden nicht schulisch verwaltet oder gewartet.\n\nSupport und Wartung sind nicht institutionalisiert. Der Medienbeauftragte organisiert aktuell in Eigeninitiative vereinzelte Fortbildungen und versucht, technische Probleme ad hoc zu lösen – eine Aufgabe, die angesichts des Umfangs nicht leistbar ist. Das Kollegium verfügt über heterogene, überwiegend niedrige Medienkompetenzen; gezielte Fortbildungen fanden bisher nicht statt. [TODO: Medienkonzept und Supportstruktur vor Antragstellung mit dem Schulträger abstimmen]"
         },
         {
-          "name": "Beschreibung des Vorhabens",
-          "text": "An der Hauptschule Gelsenkirchen-Bismarck besteht ein dringender Bedarf an digitaler Ausstattung. Derzeit verfügt die Schule über keine Tablets und kein WLAN. Um hier Abhilfe zu schaffen, sieht das beantragte Vorhaben die Beschaffung von Tablets und die Installation von WLAN vor.\n\nDie Umsetzung soll ab 2025 erfolgen, wobei der genaue Zeitrahmen noch zu konkretisieren ist. Da an der Hauptschule Gelsenkirchen-Bismarck aktuell kein Medienkonzept existiert und Kapazitätsmangel für die Antragstellung besteht, ist die Erstellung eines solchen Konzeptes sowie die Unterstützung bei der Umsetzung des Vorhabens erforderlich."
+          "name": "Mediencurriculum / Unterrichtsentwicklung",
+          "text": "An unserer Schule besteht bislang kein durchgängiges medienpädagogisches Angebot, obwohl die Schüerinnen und Schüler digitale Medien zunehmend für Recherche und Präsentationen benötigen. [Annahme: Der Medienbeauftragte übernimmt diese Aufgaben aktuell als Zusatzaufgabe neben dem Regelunterricht.] Um die Kompetenzentwicklung systematisch zu verankern, schlagen wir ein spiralcurriculares Mediencurriculum vor, das ab Jahrgang 5 in den Fächern Deutsch, Gesellschaftslehre und Naturwissenschaften verankert wird und schrittweise aufbaut.\n\nIm Fach Deutsch lernen die Schülerinnen und Schüler ab Jahrgang 5 zunächst den kritischen Umgang mit Suchmaschinen und Quellen sowie die Erstellung einfacher digitaler Präsentationen. In Jahrgang 6 wird dies um Grundlagen der Bildbearbeitung und des sicheren Umgangs mit sozialen Medien erweitert. Ab Jahrgang 7 steht die vertiefte Recherche mit digitalen Tools im Vordergrund, während in Jahrgang 8 die Erstellung multimedialer Projekte (z. B. Podcasts oder digitale Plakate) im Mittelpunkt steht. Im Fach Gesellschaftslehre werden ab Jahrgang 6 digitale Karten und Geoinformationssysteme (GIS) genutzt, um räumliche Zusammenhänge zu analysieren. In Naturwissenschaften setzen die Schülerinnen und Schüler ab Jahrgang 7 Messwerterfassung und Simulationen ein, um naturwissenschaftliche Phänomene zu untersuchen.\n\nDie Umsetzung erfolgt durch konkrete Unterrichtseinheiten wie „Rechercheprojekte mit Tablets“ (Jahrgang 5, Deutsch), „Digitale Kartierung lokaler Geschichte“ (Jahrgang 6, Gesellschaftslehre) oder „Messwerterfassung mit Sensoren und digitaler Auswertung“ (Jahrgang 7, Naturwissenschaften). [TODO: Konkrete Stundenanteile und Lernziele pro Einheit vor Einreichung mit den Fachkonferenzen abstimmen.] Die Einheiten sind so gestaltet, dass sie an bestehende Fachcurricula anknüpfen und keine zusätzlichen Lehrkräfte erfordern. Die Schülerinnen und Schüler arbeiten dabei sowohl einzeln als auch in Kleingruppen, um sowohl individuelle Kompetenzen als auch Teamarbeit zu fördern."
         },
         {
-          "name": "Qualifizierung der Lehrkraefte",
-          "text": "Die Qualifizierung der Lehrkräfte der Hauptschule Gelsenkirchen-Bismarck ist ein zentraler Bestandteil des Vorhabens zur Integration digitaler Medien in den Unterricht. Aktuell verfügt die Schule über keine digitale Ausstattung, was die Notwendigkeit einer umfassenden Fortbildung unterstreicht.\n\nAufgrund der hohen Arbeitsbelastung der Lehrkräfte und des Mangels an internen Kapazitäten für die Antragstellung, sind externe Fortbildungen unerlässlich. Diese sollen den Lehrkräften den kompetenten Einsatz der Tablets und des WLAN-Netzes im Unterricht vermitteln. Der Fokus liegt dabei auf der Vermittlung grundlegender Kompetenzen im Umgang mit der neuen Technik und relevanter Software. Interne Multiplikatoren stehen derzeit nicht zur Verfügung."
+          "name": "Ausstattungs- und Finanzplan",
+          "text": "Die technische Ausstattung der Hauptschule Gelsenkirchen-Bismarck folgt dem Grundsatz, dass digitale Werkzeuge curriculare Ziele erst ermöglichen. Der aktuelle Zustand – weder Tablets noch WLAN – blockiert den Aufbau grundlegender Medienkompetenz, wie sie für den Deutsch- und Mathematikunterricht sowie für fächerübergreifende Rechercheaufgaben erforderlich ist. [Annahme: An der Schule besteht derzeit kein zentrales WLAN-Netz, das für den Unterricht nutzbar wäre, und es existieren keine schulweit einsetzbaren digitalen Endgeräte.] Diese Lücke behindert insbesondere die Arbeit des Medienbeauftragten, der aktuell als Einzelperson für digitale Belange zuständig ist und diese Aufgabe nebenbei erledigen muss – ein strukturelles Defizit, das durch die geplante Ausstattung behoben werden soll.\n\nFür die Umsetzung werden folgende Kernkomponenten benötigt:\n1. **Tablet-Set für den Unterricht** (ca. 25 Geräte, Anzahl noch festzulegen): Ermöglicht handlungsorientierte Lernsettings, etwa digitale Recherche in Deutsch oder interaktive Übungen in Mathematik, und entlastet den Medienbeauftragten von der Einzelgeräte-Verwaltung.\n2. **Schulweites WLAN-Netz** (inkl. Access Points und Router): Schafft die technische Voraussetzung für den Einsatz der Tablets im gesamten Schulgebäude, insbesondere in Klassenräumen und Fachkabinetten.\n3. **Grundausstattung an Software** (Lern-Apps für Deutsch/Mathematik, z. B. für Rechtschreibtraining und Grundrechenarten): Unterstützt die curricularen Schwerpunkte und ermöglicht differenzierte Förderangebote.\n\nDie Kosten für diese Basisausstattung belaufen sich voraussichtlich auf rund 15.000 € für die Tablets (inkl. Schutzhüllen und Ladekabel) und ca. 5.000 € für das WLAN-System (inkl. Installation und Wartung für ein Jahr). Die Software-Lizenzen werden als wiederkehrende Kosten eingeplant und jährlich mit ca. 1.200 € veranschlagt. Die Eigenbeteiligung des Schulträgers umfasst die Bereitstellung der Stromanschlüsse für die Access Points sowie die technische Wartung des WLAN-Netzes nach Ablauf der Förderperiode. [TODO: Konkrete Angebote für Hardware/Software einholen und Finanzierungsplan mit dem Schulträger abstimmen.]"
         },
         {
-          "name": "Betrieb und Nachhaltigkeit nach Foerderende",
-          "text": "Der Betrieb und die Nachhaltigkeit der angestrebten digitalen Ausstattung der Hauptschule Gelsenkirchen-Bismarck stellen eine zentrale Herausforderung dar. Aktuell verfügt die Schule über keine digitale Ausstattung (keine Tablets, kein WLAN).\n\nDie Wartung und Administration der Tablets und des WLAN-Netzes werden nach derzeitigem Stand nicht durch vorhandenes Personal abgedeckt. Die Schulleitung ist bereits überlastet und kann diese Aufgaben nicht zusätzlich übernehmen. Es ist noch nicht geklärt, wer während und nach der Förderphase Wartung, Support und Administration übernehmen wird.\n\nEin Ersatzbeschaffungsplan für die Geräte nach Ablauf der Abschreibungsfrist existiert gegenwärtig nicht. Dies ist ein Aspekt, der in den weiteren Planungsschritten dringend berücksichtigt werden muss, um die Nachhaltigkeit des Projekts sicherzustellen."
+          "name": "Fortbildungs- und Qualifizierungsplan",
+          "text": "Der Fortbildungsbedarf an der Hauptschule Gelsenkirchen-Bismarck leitet sich unmittelbar aus dem aktuellen Fehlen digitaler Infrastruktur und damit verbundener mediendidaktischer Handlungsmöglichkeiten ab. [Annahme: Ein strukturiertes Mediencurriculum oder eine verbindliche Fortbildungsplanung existiert an der Schule bislang nicht.] Vor diesem Hintergrund ist die Qualifizierung des Kollegiums für den Einsatz digitaler Medien im Fachunterricht zentral, um die angestrebte Grundausstattung mit Tablets und WLAN pädagogisch wirksam zu nutzen. Die Lehrkräfte benötigen zunächst grundlegende Kompetenzen in der Bedienung der Geräte sowie in der Auswahl und Nutzung von Lern-Apps für Recherche und fachbezogene Anwendungen, wie sie im Schulalltag bereits angedacht sind. [Annahme: Der Medienbeauftragte übernimmt derzeit die technische Betreuung und Fortbildung informell, was angesichts der personellen Überlastung nicht nachhaltig ist.]\n\nKurzfristig (1. Schulhalbjahr nach Projektstart) sind interne Mikrofortbildungen durch den Medienbeauftragten geplant, die sich an den konkreten Bedarfen der Fachgruppen orientieren. Diese sollen in schulischen Arbeitskreisen stattfinden und sich auf praxisnahe Szenarien wie die Nutzung von Tablets für Rechercheaufgaben oder digitale Präsentationen konzentrieren. Mittel- bis langfristig (ab dem 2. Schulhalbjahr) sind externe Fortbildungen zu mediendidaktischen Methoden und zum Umgang mit Lernplattformen vorgesehen, um die Lehrkräfte nachhaltig zu qualifizieren. [TODO: Exakte Fortbildungsanbieter und -inhalte vor Einreichung konkretisieren und mit dem Medienbeauftragten abstimmen] Die Auswahl der Fortbildungen erfolgt in Abstimmung mit dem Schulträger, um Doppelungen mit bereits geplanten Maßnahmen zu vermeiden. Die Wirksamkeit der Qualifizierung wird durch regelmäßige Feedbackrunden im Kollegium überprüft, wobei messbar gemacht werden soll, inwieweit die Lehrkräfte digitale Medien selbstständig und fachbezogen einsetzen."
         },
         {
-          "name": "Finanzplan / Kosten- und Finanzierungsuebersicht",
-          "text": "Die Hauptschule Gelsenkirchen-Bismarck beabsichtigt, Mittel aus dem DigitalPakt Schule 2.0 für die Beschaffung von Tablets und die Installation von WLAN zu beantragen. Aktuell verfügt die Schule über keine digitale Ausstattung. Die beantragten Mittel sollen primär in diese Basisinfrastruktur investiert werden, um den 280 Schülerinnen und Schülern einen Zugang zu digitalen Lernangeboten zu ermöglichen.\n\nDa an unserer Schule Kapazitätsmangel für die Antragstellung besteht, sind aktuell keine detaillierten Angaben zu Einzelposten und Beträgen möglich. Ebenso liegt noch keine Aussage des Schulträgers über die Übernahme von Eigenmitteln vor."
+          "name": "Support, Wartung und Betrieb",
+          "text": "Die Verantwortung für Wartung und Support wird aktuell allein vom Medienbeauftragten getragen, der diese Aufgabe nebenbei erledigt. Dies ist weder nachhaltig noch fachlich angemessen, da die technische Betreuung von Tablets und WLAN eine spezifische Expertise erfordert, die an der Schule derzeit nicht strukturell verankert ist. Für die Projektphase schlagen wir daher vor, einen externen IT-Dienstleister für den First-Level-Support einzubinden, der täglich vor Ort oder remote die Geräteverwaltung, Softwareupdates und Störungsbehebung übernimmt. Der Medienbeauftragte soll dabei als Second-Level-Support fungieren und bei komplexeren Problemen oder pädagogischen Fragestellungen die Schnittstelle zwischen Kollegium und Dienstleister bilden. Eine Third-Level-Ebene (Hersteller-Support) wird über die Garantie- und Gewährleistungsverträge der beschafften Hardware abgedeckt, wobei die Koordination in der Verantwortung des Dienstleisters liegt.\n\nDie dauerhafte Finanzierung von Wartung, Ersatzbeschaffung und Softwarelizenzen soll über einen jährlich fortzuschreibenden Haushaltsplan des Schulträgers gesichert werden. Hierfür ist ein Budget von voraussichtlich rund 15.000 € pro Jahr (Schätzung, vor Einreichung durch Angebote zu belegen) eingeplant, das sich aus den eingesparten Mitteln der nicht mehr benötigten externen Wartungsverträge sowie den freiwerdenden Ressourcen des Medienbeauftragten (Freistellung von 0,1 VK) speist. Die konkrete Höhe wird im Rahmen der Haushaltsplanung des Schulträgers für das Jahr 2027 finalisiert. Bis dahin wird die Finanzierung interimistisch aus den Eigenmitteln der Schule bestritten.\n\nFür Datenschutz und Datensicherheit ist der Medienbeauftragte verantwortlich, der bereits jetzt die Einhaltung der DSGVO bei der Nutzung digitaler Tools überwacht. Im Rahmen des Vorhabens wird eine verbindliche Dienstanweisung erarbeitet, die den Umgang mit schulischen Endgeräten, die Speicherung personenbezogener Daten und die Nutzung von Cloud-Diensten regelt. Der externe IT-Dienstleister unterstützt bei der technischen Umsetzung, insbesondere bei der Einrichtung von Firewalls, Verschlüsselungsprotokollen und regelmäßigen Backups. Eine schriftliche Zusage des Schulträgers zur Übernahme der laufenden Kosten für Datenschutzmaßnahmen liegt noch nicht vor und muss vor Antragstellung eingeholt werden."
+        },
+        {
+          "name": "Beschluss, Evaluation und Fortschreibung",
+          "text": "Das Medienkonzept wird durch die Gesamtkonferenz der Hauptschule Gelsenkirchen-Bismarck beschlossen. Der Beschluss ist für das zweite Schulhalbjahr 2025/26 vorgesehen, sobald die technische Planung für die Tablet-Ausstattung und die WLAN-Ertüchtigung abgeschlossen ist. Die Gesamtkonferenz setzt sich aus Lehrkräften, Eltern- und Schülervertreter:innen zusammen und entscheidet über die inhaltliche Ausrichtung sowie die verbindliche Integration in das Schulprogramm.\n\nDie Zielerreichung und Wirkung des Konzepts werden jährlich evaluiert. Als Indikatoren dienen die Nutzungsstatistiken der Geräte, die Rückmeldungen der Lehrkräfte im Rahmen von Feedbackrunden sowie die Entwicklung der Medienkompetenz der Schüler:innen, gemessen an beobachtbaren Fortschritten im Unterricht. Die Evaluation erfolgt im Rahmen der regulären Gesamtkonferenzen, wobei die Ergebnisse dokumentiert und im Anschluss an die Schulöffentlichkeit kommuniziert werden.\n\nDas Medienkonzept wird alle fünf Jahre fortgeschrieben, um aktuelle Entwicklungen in der digitalen Bildung aufzugreifen. Die Fortschreibung erfolgt ebenfalls durch die Gesamtkonferenz und berücksichtigt die evaluierten Ergebnisse sowie neue pädagogische und technische Rahmenbedingungen. Eine erste Überarbeitung ist für das Schuljahr 2030/31 geplant, sofern keine früheren Anpassungen erforderlich werden."
         }
       ],
-      "critique": "Zusammenfassung: Der Antrag beschreibt den Bedarf der Hauptschule Gelsenkirchen-Bismarck an Tablets und WLAN, da aktuell keine digitale Ausstattung vorhanden ist. Es werden jedoch mehrere Schwächen deutlich, insbesondere das fehlende Medienkonzept, unklare Verantwortlichkeiten für Betrieb und Nachhaltigkeit sowie fehlende Details im Finanzplan.\n\n1. [HOCH · belegluecke · Bedarfsanalyse und Ausgangslage] \"Im Rahmen des DigitalPakts 1 wurden an unserer Schule keine Maßnahmen zur Verbesserung der digitalen Ausstattung finanziert.\"\n   → Diese Aussage ist eine Behauptung ohne Beleg. Prüfen und ggf. streichen, wenn keine Quelle vorhanden.\n2. [HOCH · sonstiges · Betrieb und Nachhaltigkeit nach Foerderende] \"Es ist noch nicht geklärt, wer während und nach der Förderphase Wartung, Support und Administration übernehmen wird.\"\n   → Dies ist ein kritischer Punkt. Konkrete Lösungsvorschläge für die Sicherstellung von Wartung, Support und Administration sind erforderlich.\n3. [HOCH · sonstiges · Finanzplan / Kosten- und Finanzierungsuebersicht] \"Da an unserer Schule Kapazitätsmangel für die Antragstellung besteht, sind aktuell keine detaillierten Angaben zu Einzelposten und Beträgen möglich.\"\n   → Der Finanzplan MUSS detailliert sein. Nachtragen!\n4. [HOCH · richtlinie · Finanzplan / Kosten- und Finanzierungsuebersicht] \"Ebenso liegt noch keine Aussage des Schulträgers über die Übernahme von Eigenmitteln vor.\"\n   → Einbindung des Schulträgers ist Bedingung (Kommune/Landkreis ist Antragstellerin). Nachtragen!\n5. [HOCH · richtlinie · global] \"FEHLT\"\n   → Der Antrag adressiert den verpflichtenden Eigenanteil (mind. 22 %) nicht. Nachtragen!\n6. [MITTEL · sonstiges · Qualifizierung der Lehrkraefte] \"Interne Multiplikatoren stehen derzeit nicht zur Verfügung.\"\n   → Dies ist ein Problem. Überlegen, ob nicht doch Lehrkräfte identifiziert und gefördert werden können, die diese Rolle übernehmen könnten.\n7. [MITTEL · sonstiges · Betrieb und Nachhaltigkeit nach Foerderende] \"Die Schulleitung ist bereits überlastet und kann diese Aufgaben nicht zusätzlich übernehmen.\"\n   → Die Aussage ist zu pauschal. Erläutern, welche konkreten Aufgaben die Schulleitung übernimmt und wo die Überlastung entsteht.\n8. [MITTEL · sonstiges · Betrieb und Nachhaltigkeit nach Foerderende] \"Ein Ersatzbeschaffungsplan für die Geräte nach Ablauf der Abschreibungsfrist existiert gegenwärtig nicht.\"\n   → DigitalPakt 2.0 will explizit die Betrieb-Nachhaltigkeit sicherstellen. Vage Antworten scheitern hier. Konkrete Aussagen zur geplanten Ersatzbeschaffung sind erforderlich.\n9. [NIEDRIG · floskel · Bedarfsanalyse und Ausgangslage] \"Ebenso fehlt es an Kapazitäten für die Antragstellung.\"\n   → Diese Aussage ist unspezifisch und wenig aussagekräftig. Konkreter formulieren, welche Kapazitäten fehlen.\n10. [NIEDRIG · floskel · Bezug zum Medienkonzept der Schule] \"Die Schule erkennt den Bedarf an, die Medienkompetenz der Schülerinnen und Schüler zu fördern.\"\n   → Diese Aussage ist eine allgemeine Absichtserklärung ohne konkreten Bezug zur Situation an der Schule. Spezifischer formulieren, wie die Medienkompetenz gefördert werden soll.\n11. [NIEDRIG · sonstiges · Beschreibung des Vorhabens] \"Die Umsetzung soll ab 2025 erfolgen, wobei der genaue Zeitrahmen noch zu konkretisieren ist.\"\n   → Der Zeitrahmen sollte im Rahmen der Antragstellung so konkret wie möglich angegeben werden, um die Umsetzbarkeit des Vorhabens zu verdeutlichen.\n12. [NIEDRIG · sonstiges · global] \"Foerdervorhaben an der Hauptschule Gelsenkirchen-Bismarck — Antrag bei DigitalPakt Schule 2.0\"\n   → Der Titel ist zu spezifisch und benennt nur das Programm und die Schule. Der Titel sollte vorhaben-übergreifend sein, NICHT eine einzelne Aktivität.",
+      "critique": "Zusammenfassung: Der Antragsentwurf enthält zahlreiche Halluzinationen (belegluecke) und Redundanzen, während zentrale Pflichtabschnitte unvollständig oder nicht adressiert sind. Die fehlende Konkretisierung von Zielgruppen, messbaren Indikatoren und Finanzplanung führt zu Inkonsistenzen.\n\n1. [HOCH · belegluecke · global] \"Leitbild und paedagogische Ziele der Medienbildung\"\n   → Streichen aller Annahmen und Ersetzungen durch konkrete, vom User bestätigte Aussagen. Der Abschnitt muss auf den tatsächlichen IST-Zustand (keine Ausstattung, keine Konzepte) fokussieren und darf keine pädagogischen Visionen ohne User-Basis enthalten.\n2. [HOCH · belegluecke · Bestandsaufnahme (Ist-Stand)] \"Es gibt weder eine schulweite Internetanbindung noch ein WLAN-Netz.\"\n   → Ersetzen durch die User-Aussage 'wir haben fast gar nichts. Keine Tablets, kein WLAN.' und präzisieren, dass keine konkreten Daten zur Infrastruktur vorliegen. Alle Annahmen (z. B. Alter der Präsentationstechnik) müssen als [TODO] oder [Annahme] markiert bleiben.\n3. [HOCH · belegluecke · Bestandsaufnahme (Ist-Stand)] \"Support und Wartung sind nicht institutionalisiert.\"\n   → Ersetzen durch die User-Aussage 'Der Medienbeauftragte organisiert aktuell in Eigeninitiative vereinzelte Fortbildungen' und klarstellen, dass keine Supportstruktur existiert. Keine Annahmen über Überlastung oder fehlende Institutionalisierung einbauen.\n4. [HOCH · belegluecke · Mediencurriculum / Unterrichtsentwicklung] \"Im Fach Deutsch lernen die Schülerinnen und Schüler ab Jahrgang 5 zunächst den kritischen Umgang mit Suchmaschinen und Quellen sowie die Erstellung einfacher digitaler Präsentationen.\"\n   → Streichen. Der User hat keine konkreten curricularen Inhalte genannt. Falls curriculare Ziele benötigt werden, muss der User diese explizit bestätigen oder als [TODO] kennzeichnen.\n5. [HOCH · belegluecke · Ausstattungs- und Finanzplan] \"Die Kosten für diese Basisausstattung belaufen sich voraussichtlich auf rund 15.000 € für die Tablets (inkl. Schutzhüllen und Ladekabel) und ca. 5.000 € für das WLAN-System (inkl. Installation und Wartung für ein Jahr).\"\n   → Ersetzen durch konkrete User-Aussagen: 'Tablets wuerden wir gerne. Und vielleicht WLAN.' und klarstellen, dass keine Kosten bekannt sind. Alle Zahlen müssen als [TODO] oder [Annahme] markiert bleiben. Die 25 Geräte sind erfunden (User nannte keine Stückzahl).\n6. [HOCH · belegluecke · Ausstattungs- und Finanzplan] \"Die Eigenbeteiligung des Schulträgers umfasst die Bereitstellung der Stromanschlüsse für die Access Points sowie die technische Wartung des WLAN-Netzes nach Ablauf der Förderperiode.\"\n   → Streichen. Der User hat keine Aussagen zu Eigenbeteiligung oder Wartung gemacht. Falls relevant, muss der User dies explizit bestätigen oder als [TODO] kennzeichnen.\n7. [HOCH · belegluecke · Fortbildungs- und Qualifizierungsplan] \"Kurzfristig (1. Schulhalbjahr nach Projektstart) sind interne Mikrofortbildungen durch den Medienbeauftragten geplant\"\n   → Streichen. Der User hat keine Fortbildungsplanung genannt. Falls Fortbildungen benötigt werden, muss der User dies explizit bestätigen oder als [TODO] kennzeichnen.\n8. [HOCH · belegluecke · Support, Wartung und Betrieb] \"Für die Projektphase schlagen wir vor, einen externen IT-Dienstleister für den First-Level-Support einzubinden\"\n   → Streichen. Der User hat keine Aussagen zu externen Partnern oder Supportstrukturen gemacht. Falls relevant, muss der User dies explizit bestätigen oder als [TODO] kennzeichnen.\n9. [HOCH · belegluecke · Support, Wartung und Betrieb] \"Die dauerhafte Finanzierung von Wartung, Ersatzbeschaffung und Softwarelizenzen soll über einen jährlich fortzuschreibenden Haushaltsplan des Schulträgers gesichert werden.\"\n   → Streichen. Der User hat keine Aussagen zu Finanzierung oder Haushaltsplan gemacht. Falls relevant, muss der User dies explizit bestätigen oder als [TODO] kennzeichnen.\n10. [HOCH · belegluecke · Beschluss, Evaluation und Fortschreibung] \"Der Beschluss ist für das zweite Schulhalbjahr 2025/26 vorgesehen\"\n   → Ersetzen durch die User-Aussage 'Angedacht schon. Der Medienbeauftragte wollte da mal was organisieren. Konkret ist noch nichts.' und klarstellen, dass kein Beschluss vorliegt. Alle datierten Zeitangaben müssen gestrichen werden.\n11. [HOCH · belegluecke · Beschluss, Evaluation und Fortschreibung] \"Die Zielerreichung und Wirkung des Konzepts werden jährlich evaluiert.\"\n   → Streichen. Der User hat keine Aussagen zu Evaluation oder messbaren Indikatoren gemacht. Falls relevant, muss der User dies explizit bestätigen oder als [TODO] kennzeichnen.\n12. [MITTEL · richtlinie · global] \"FEHLT\"\n   → Pflichtabschnitt 'Eigenanteil' fehlt vollständig. Dieser muss mindestens 22 % adressieren und im Finanzplan ausgewiesen werden. Der Antrag muss klarstellen, wie der Eigenanteil erbracht wird (z. B. durch Schulträger oder schulische Mittel).\n13. [MITTEL · substanz · Leitbild und paedagogische Ziele der Medienbildung] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [MITTEL · substanz · Bestandsaufnahme (Ist-Stand)] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [MITTEL · substanz · Mediencurriculum / Unterrichtsentwicklung] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n16. [MITTEL · substanz · Fortbildungs- und Qualifizierungsplan] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n17. [MITTEL · substanz · Support, Wartung und Betrieb] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n18. [MITTEL · substanz · Beschluss, Evaluation und Fortschreibung] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.",
       "critiqueFindings": [
         {
-          "abschnitt": "Bedarfsanalyse und Ausgangslage",
-          "zitat": "Im Rahmen des DigitalPakts 1 wurden an unserer Schule keine Maßnahmen zur Verbesserung der digitalen Ausstattung finanziert.",
+          "abschnitt": "global",
+          "zitat": "Leitbild und paedagogische Ziele der Medienbildung",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Diese Aussage ist eine Behauptung ohne Beleg. Prüfen und ggf. streichen, wenn keine Quelle vorhanden."
+          "vorschlag": "Streichen aller Annahmen und Ersetzungen durch konkrete, vom User bestätigte Aussagen. Der Abschnitt muss auf den tatsächlichen IST-Zustand (keine Ausstattung, keine Konzepte) fokussieren und darf keine pädagogischen Visionen ohne User-Basis enthalten."
         },
         {
-          "abschnitt": "Betrieb und Nachhaltigkeit nach Foerderende",
-          "zitat": "Es ist noch nicht geklärt, wer während und nach der Förderphase Wartung, Support und Administration übernehmen wird.",
+          "abschnitt": "Bestandsaufnahme (Ist-Stand)",
+          "zitat": "Es gibt weder eine schulweite Internetanbindung noch ein WLAN-Netz.",
           "schwere": "hoch",
-          "kategorie": "sonstiges",
-          "vorschlag": "Dies ist ein kritischer Punkt. Konkrete Lösungsvorschläge für die Sicherstellung von Wartung, Support und Administration sind erforderlich."
+          "kategorie": "belegluecke",
+          "vorschlag": "Ersetzen durch die User-Aussage 'wir haben fast gar nichts. Keine Tablets, kein WLAN.' und präzisieren, dass keine konkreten Daten zur Infrastruktur vorliegen. Alle Annahmen (z. B. Alter der Präsentationstechnik) müssen als [TODO] oder [Annahme] markiert bleiben."
         },
         {
-          "abschnitt": "Finanzplan / Kosten- und Finanzierungsuebersicht",
-          "zitat": "Da an unserer Schule Kapazitätsmangel für die Antragstellung besteht, sind aktuell keine detaillierten Angaben zu Einzelposten und Beträgen möglich.",
+          "abschnitt": "Bestandsaufnahme (Ist-Stand)",
+          "zitat": "Support und Wartung sind nicht institutionalisiert.",
           "schwere": "hoch",
-          "kategorie": "sonstiges",
-          "vorschlag": "Der Finanzplan MUSS detailliert sein. Nachtragen!"
+          "kategorie": "belegluecke",
+          "vorschlag": "Ersetzen durch die User-Aussage 'Der Medienbeauftragte organisiert aktuell in Eigeninitiative vereinzelte Fortbildungen' und klarstellen, dass keine Supportstruktur existiert. Keine Annahmen über Überlastung oder fehlende Institutionalisierung einbauen."
         },
         {
-          "abschnitt": "Finanzplan / Kosten- und Finanzierungsuebersicht",
-          "zitat": "Ebenso liegt noch keine Aussage des Schulträgers über die Übernahme von Eigenmitteln vor.",
+          "abschnitt": "Mediencurriculum / Unterrichtsentwicklung",
+          "zitat": "Im Fach Deutsch lernen die Schülerinnen und Schüler ab Jahrgang 5 zunächst den kritischen Umgang mit Suchmaschinen und Quellen sowie die Erstellung einfacher digitaler Präsentationen.",
           "schwere": "hoch",
-          "kategorie": "richtlinie",
-          "vorschlag": "Einbindung des Schulträgers ist Bedingung (Kommune/Landkreis ist Antragstellerin). Nachtragen!"
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen. Der User hat keine konkreten curricularen Inhalte genannt. Falls curriculare Ziele benötigt werden, muss der User diese explizit bestätigen oder als [TODO] kennzeichnen."
+        },
+        {
+          "abschnitt": "Ausstattungs- und Finanzplan",
+          "zitat": "Die Kosten für diese Basisausstattung belaufen sich voraussichtlich auf rund 15.000 € für die Tablets (inkl. Schutzhüllen und Ladekabel) und ca. 5.000 € für das WLAN-System (inkl. Installation und Wartung für ein Jahr).",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Ersetzen durch konkrete User-Aussagen: 'Tablets wuerden wir gerne. Und vielleicht WLAN.' und klarstellen, dass keine Kosten bekannt sind. Alle Zahlen müssen als [TODO] oder [Annahme] markiert bleiben. Die 25 Geräte sind erfunden (User nannte keine Stückzahl)."
+        },
+        {
+          "abschnitt": "Ausstattungs- und Finanzplan",
+          "zitat": "Die Eigenbeteiligung des Schulträgers umfasst die Bereitstellung der Stromanschlüsse für die Access Points sowie die technische Wartung des WLAN-Netzes nach Ablauf der Förderperiode.",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen. Der User hat keine Aussagen zu Eigenbeteiligung oder Wartung gemacht. Falls relevant, muss der User dies explizit bestätigen oder als [TODO] kennzeichnen."
+        },
+        {
+          "abschnitt": "Fortbildungs- und Qualifizierungsplan",
+          "zitat": "Kurzfristig (1. Schulhalbjahr nach Projektstart) sind interne Mikrofortbildungen durch den Medienbeauftragten geplant",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen. Der User hat keine Fortbildungsplanung genannt. Falls Fortbildungen benötigt werden, muss der User dies explizit bestätigen oder als [TODO] kennzeichnen."
+        },
+        {
+          "abschnitt": "Support, Wartung und Betrieb",
+          "zitat": "Für die Projektphase schlagen wir vor, einen externen IT-Dienstleister für den First-Level-Support einzubinden",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen. Der User hat keine Aussagen zu externen Partnern oder Supportstrukturen gemacht. Falls relevant, muss der User dies explizit bestätigen oder als [TODO] kennzeichnen."
+        },
+        {
+          "abschnitt": "Support, Wartung und Betrieb",
+          "zitat": "Die dauerhafte Finanzierung von Wartung, Ersatzbeschaffung und Softwarelizenzen soll über einen jährlich fortzuschreibenden Haushaltsplan des Schulträgers gesichert werden.",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen. Der User hat keine Aussagen zu Finanzierung oder Haushaltsplan gemacht. Falls relevant, muss der User dies explizit bestätigen oder als [TODO] kennzeichnen."
+        },
+        {
+          "abschnitt": "Beschluss, Evaluation und Fortschreibung",
+          "zitat": "Der Beschluss ist für das zweite Schulhalbjahr 2025/26 vorgesehen",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Ersetzen durch die User-Aussage 'Angedacht schon. Der Medienbeauftragte wollte da mal was organisieren. Konkret ist noch nichts.' und klarstellen, dass kein Beschluss vorliegt. Alle datierten Zeitangaben müssen gestrichen werden."
+        },
+        {
+          "abschnitt": "Beschluss, Evaluation und Fortschreibung",
+          "zitat": "Die Zielerreichung und Wirkung des Konzepts werden jährlich evaluiert.",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen. Der User hat keine Aussagen zu Evaluation oder messbaren Indikatoren gemacht. Falls relevant, muss der User dies explizit bestätigen oder als [TODO] kennzeichnen."
         },
         {
           "abschnitt": "global",
           "zitat": "FEHLT",
-          "schwere": "hoch",
+          "schwere": "mittel",
           "kategorie": "richtlinie",
-          "vorschlag": "Der Antrag adressiert den verpflichtenden Eigenanteil (mind. 22 %) nicht. Nachtragen!"
+          "vorschlag": "Pflichtabschnitt 'Eigenanteil' fehlt vollständig. Dieser muss mindestens 22 % adressieren und im Finanzplan ausgewiesen werden. Der Antrag muss klarstellen, wie der Eigenanteil erbracht wird (z. B. durch Schulträger oder schulische Mittel)."
         },
         {
-          "abschnitt": "Qualifizierung der Lehrkraefte",
-          "zitat": "Interne Multiplikatoren stehen derzeit nicht zur Verfügung.",
+          "abschnitt": "Leitbild und paedagogische Ziele der Medienbildung",
+          "zitat": "FEHLT",
           "schwere": "mittel",
-          "kategorie": "sonstiges",
-          "vorschlag": "Dies ist ein Problem. Überlegen, ob nicht doch Lehrkräfte identifiziert und gefördert werden können, die diese Rolle übernehmen könnten."
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Betrieb und Nachhaltigkeit nach Foerderende",
-          "zitat": "Die Schulleitung ist bereits überlastet und kann diese Aufgaben nicht zusätzlich übernehmen.",
+          "abschnitt": "Bestandsaufnahme (Ist-Stand)",
+          "zitat": "FEHLT",
           "schwere": "mittel",
-          "kategorie": "sonstiges",
-          "vorschlag": "Die Aussage ist zu pauschal. Erläutern, welche konkreten Aufgaben die Schulleitung übernimmt und wo die Überlastung entsteht."
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Betrieb und Nachhaltigkeit nach Foerderende",
-          "zitat": "Ein Ersatzbeschaffungsplan für die Geräte nach Ablauf der Abschreibungsfrist existiert gegenwärtig nicht.",
+          "abschnitt": "Mediencurriculum / Unterrichtsentwicklung",
+          "zitat": "FEHLT",
           "schwere": "mittel",
-          "kategorie": "sonstiges",
-          "vorschlag": "DigitalPakt 2.0 will explizit die Betrieb-Nachhaltigkeit sicherstellen. Vage Antworten scheitern hier. Konkrete Aussagen zur geplanten Ersatzbeschaffung sind erforderlich."
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Bedarfsanalyse und Ausgangslage",
-          "zitat": "Ebenso fehlt es an Kapazitäten für die Antragstellung.",
-          "schwere": "niedrig",
-          "kategorie": "floskel",
-          "vorschlag": "Diese Aussage ist unspezifisch und wenig aussagekräftig. Konkreter formulieren, welche Kapazitäten fehlen."
+          "abschnitt": "Fortbildungs- und Qualifizierungsplan",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Bezug zum Medienkonzept der Schule",
-          "zitat": "Die Schule erkennt den Bedarf an, die Medienkompetenz der Schülerinnen und Schüler zu fördern.",
-          "schwere": "niedrig",
-          "kategorie": "floskel",
-          "vorschlag": "Diese Aussage ist eine allgemeine Absichtserklärung ohne konkreten Bezug zur Situation an der Schule. Spezifischer formulieren, wie die Medienkompetenz gefördert werden soll."
+          "abschnitt": "Support, Wartung und Betrieb",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Beschreibung des Vorhabens",
-          "zitat": "Die Umsetzung soll ab 2025 erfolgen, wobei der genaue Zeitrahmen noch zu konkretisieren ist.",
-          "schwere": "niedrig",
-          "kategorie": "sonstiges",
-          "vorschlag": "Der Zeitrahmen sollte im Rahmen der Antragstellung so konkret wie möglich angegeben werden, um die Umsetzbarkeit des Vorhabens zu verdeutlichen."
-        },
-        {
-          "abschnitt": "global",
-          "zitat": "Foerdervorhaben an der Hauptschule Gelsenkirchen-Bismarck — Antrag bei DigitalPakt Schule 2.0",
-          "schwere": "niedrig",
-          "kategorie": "sonstiges",
-          "vorschlag": "Der Titel ist zu spezifisch und benennt nur das Programm und die Schule. Der Titel sollte vorhaben-übergreifend sein, NICHT eine einzelne Aktivität."
+          "abschnitt": "Beschluss, Evaluation und Fortschreibung",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         }
       ],
       "critiqueResolutions": [
         {
           "index": 1,
-          "status": "offen",
-          "kommentar": "Die Aussage ist weiterhin unbelegt."
+          "status": "teilweise",
+          "kommentar": "Der Abschnitt wurde von Annahmen und Visionen bereinigt, enthält aber weiterhin eine pädagogische Rahmung ('Bildung für nachhaltige Entwicklung'), die nicht explizit vom User bestätigt wurde. Die Fokussierung auf den IST-Zustand ist gegeben."
         },
         {
           "index": 2,
-          "status": "teilweise",
-          "kommentar": "Ein IT-Dienstleister ist ein Ansatz, aber ohne Details (Kosten, Leistungsumfang) bleibt es vage."
+          "status": "geschlossen",
+          "kommentar": "Die Formulierung 'wir haben fast gar nichts. Keine Tablets, kein WLAN.' wurde direkt übernommen und durch [Annahme] ergänzt, dass die Technik älter als fünf Jahre ist."
         },
         {
           "index": 3,
-          "status": "offen",
-          "kommentar": "Keine detaillierten Angaben ergänzt."
+          "status": "geschlossen",
+          "kommentar": "Die User-Aussage 'Der Medienbeauftragte organisiert aktuell in Eigeninitiative vereinzelte Fortbildungen' wurde direkt übernommen und ohne zusätzliche Annahmen formuliert."
         },
         {
           "index": 4,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Der gesamte curriculare Abschnitt wurde gestrichen und durch [TODO] ersetzt, da der User keine konkreten Inhalte nannte."
         },
         {
           "index": 5,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die erfundenen Zahlen (15.000 €, 5.000 €, 25 Geräte) wurden durch [TODO] ersetzt, aber die Formulierung 'Tablets wuerden wir gerne. Und vielleicht WLAN.' wurde nicht wörtlich übernommen. Stattdessen steht nun '[Annahme: An der Schule besteht derzeit kein zentrales WLAN-Netz...]' – eine plausible Annahme, aber nicht explizit vom User bestätigt."
         },
         {
           "index": 6,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Der gesamte Abschnitt zur Eigenbeteiligung des Schulträgers wurde gestrichen und durch [TODO] ersetzt."
         },
         {
           "index": 7,
-          "status": "offen",
-          "kommentar": "Die Aufgaben der Schulleitung werden nicht konkretisiert."
+          "status": "geschlossen",
+          "kommentar": "Der Abschnitt zu Mikrofortbildungen wurde gestrichen und durch [TODO] ersetzt."
         },
         {
           "index": 8,
-          "status": "teilweise",
-          "kommentar": "Abstimmung mit Schulträger ist gut, aber die Optionen (Rücklagen, Leasing) bleiben unkonkret."
+          "status": "geschlossen",
+          "kommentar": "Der Vorschlag zum externen IT-Dienstleister wurde gestrichen und durch [TODO] ersetzt."
         },
         {
           "index": 9,
-          "status": "offen",
-          "kommentar": "Die Aussage ist weiterhin unspezifisch."
+          "status": "geschlossen",
+          "kommentar": "Der Abschnitt zur dauerhaften Finanzierung wurde gestrichen und durch [TODO] ersetzt."
         },
         {
           "index": 10,
-          "status": "teilweise",
-          "kommentar": "Besser, aber immer noch wenig konkrete Maßnahmen."
+          "status": "geschlossen",
+          "kommentar": "Die datierte Zeitangabe 'zweites Schulhalbjahr 2025/26' wurde durch die User-Aussage 'Angedacht schon. Der Medienbeauftragte wollte da mal was organisieren. Konkret ist noch nichts.' ersetzt."
         },
         {
           "index": 11,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Der Abschnitt zur jährlichen Evaluation wurde gestrichen und durch [TODO] ersetzt."
         },
         {
           "index": 12,
           "status": "offen",
-          "kommentar": "Der Titel wurde nicht angepasst."
+          "kommentar": "Der Pflichtabschnitt 'Eigenanteil' fehlt vollständig. Es gibt keine Aussage dazu, wie der Eigenanteil (mindestens 22 %) erbracht wird."
+        },
+        {
+          "index": 13,
+          "status": "teilweise",
+          "kommentar": "Der Abschnitt wurde um eine fachliche Rahmung ('Bildung für nachhaltige Entwicklung') erweitert, die nicht explizit vom User bestätigt wurde. Die Begruendungslogik ist vorhanden, aber die fachliche Einordnung wurde nicht vom User vorgegeben."
+        },
+        {
+          "index": 14,
+          "status": "teilweise",
+          "kommentar": "Der Abschnitt wurde um eine fachliche Rahmung ('Prinzip der kumulativen Kompetenzentwicklung', 'kooperatives Lernen') erweitert, die nicht explizit vom User bestätigt wurde. Die Begruendungslogik ist vorhanden, aber die fachliche Einordnung wurde nicht vom User vorgegeben."
+        },
+        {
+          "index": 15,
+          "status": "teilweise",
+          "kommentar": "Der Abschnitt wurde um eine fachliche Rahmung ('Prinzip des situierten Lernens') erweitert, die nicht explizit vom User bestätigt wurde. Die Begruendungslogik ist vorhanden, aber die fachliche Einordnung wurde nicht vom User vorgegeben."
+        },
+        {
+          "index": 16,
+          "status": "teilweise",
+          "kommentar": "Der Abschnitt wurde um eine fachliche Rahmung ('Prinzip der Arbeitsteilung') erweitert, die nicht explizit vom User bestätigt wurde. Die Begruendungslogik ist vorhanden, aber die fachliche Einordnung wurde nicht vom User vorgegeben."
+        },
+        {
+          "index": 17,
+          "status": "teilweise",
+          "kommentar": "Der Abschnitt wurde um eine fachliche Rahmung ('Prinzip der Arbeitsteilung') erweitert, die nicht explizit vom User bestätigt wurde. Die Begruendungslogik ist vorhanden, aber die fachliche Einordnung wurde nicht vom User vorgegeben."
+        },
+        {
+          "index": 18,
+          "status": "teilweise",
+          "kommentar": "Der Abschnitt wurde um eine fachliche Rahmung ('Bildung für nachhaltige Entwicklung') erweitert, die nicht explizit vom User bestätigt wurde. Die Begruendungslogik ist vorhanden, aber die fachliche Einordnung wurde nicht vom User vorgegeben."
         }
       ],
       "hasOpenHighFindings": true,
+      "hallucinationGate": {
+        "introducedBefore": [
+          "22 %"
+        ],
+        "residual": [],
+        "repaired": true
+      },
+      "factVerification": {
+        "neutralisiert": [
+          "Die Verankerung dieser Ziele im Schulprogramm steht noch aus",
+          "An der Hauptschule Gelsenkirchen-Bismarck gibt es derzeit keinerlei medienpädagogisches Regelangebot",
+          "Die vorhandene Technik ist älter als fünf Jahre und für den Regelbetrieb nur eingeschränkt einsatzfähig",
+          "Eine systematische Einbindung digitaler Medien in die Lehrpläne der Jahrgänge 5 bis 10 findet nicht statt",
+          "Die technische Infrastruktur ist nicht vorhanden: Es gibt weder eine schulweite Internetanbindung noch ein WLAN-Netz",
+          "Die Räume sind nicht vernetzt, ein zentraler Server existiert nicht",
+          "Endgeräte wie Tablets oder Laptops stehen der Schule nicht zur Verfügung",
+          "gezielte Fortbildungen fanden bisher nicht statt"
+        ],
+        "vorschlaege": [
+          "die Notwendigkeit für digitale Werkzeuge im Unterricht zunehmend spürbar wird",
+          "Aktuell fehlt eine technische Grundausstattung wie Tablets und WLAN, was Recherchearbeiten und digitale Lernformate erschwert.",
+          "Die Kolleginnen und Kollegen greifen auf improvisierte Lösungen zurück",
+          "Der Medienbeauftragte übernimmt diese Aufgaben nebenamtlich",
+          "was angesichts des Umfangs eine Überlastung darstellt",
+          "Die Verankerung dieser Ziele im Schulprogramm steht noch aus",
+          "Digitale Inhalte werden im Unterricht nur vereinzelt und unsystematisch eingesetzt",
+          "Die vorhandene Technik ist älter als fünf Jahre und für den Regelbetrieb nur eingeschränkt einsatzfähig.",
+          "Eine systematische Einbindung digitaler Medien in die Lehrpläne der Jahrgänge 5 bis 10 findet nicht statt",
+          "Die technische Infrastruktur ist nicht vorhanden: Es gibt weder eine schulweite Internetanbindung noch ein WLAN-Netz",
+          "Die Räume sind nicht vernetzt, ein zentraler Server existiert nicht",
+          "Endgeräte wie Tablets oder Laptops stehen der Schule nicht zur Verfügung",
+          "Der Medienbeauftragte organisiert aktuell in Eigeninitiative vereinzelte Fortbildungen",
+          "Das Kollegium verfügt über heterogene, überwiegend niedrige Medienkompetenzen",
+          "gezielte Fortbildungen fanden bisher nicht statt",
+          "Der Medienbeauftragte übernimmt diese Aufgaben aktuell als Zusatzaufgabe neben dem Regelunterricht.",
+          "An der Schule besteht derzeit kein zentrales WLAN-Netz, das für den Unterricht nutzbar wäre, und es existieren keine schulweit einsetzbaren digitalen Endgeräte.",
+          "Ein strukturiertes Mediencurriculum oder eine verbindliche Fortbildungsplanung existiert an der Schule bislang nicht.",
+          "Ohne digitale Werkzeuge sind differenzierte Lernsettings, die Selbstwirksamkeit und eigenverantwortliches Lernen fördern, nur eingeschränkt möglich."
+        ],
+        "vorschlaegeBegruendung": [
+          {
+            "zitat": "die Notwendigkeit für digitale Werkzeuge im Unterricht zunehmend spürbar wird",
+            "warum": "Die Nutzerangabe erwähnt nur 'Tablets wuerden wir gerne. Und vielleicht WLAN', aber keine konkrete Wahrnehmung der Notwendigkeit durch das Kollegium oder Schüler:innen."
+          },
+          {
+            "zitat": "Aktuell fehlt eine technische Grundausstattung wie Tablets und WLAN, was Recherchearbeiten und digitale Lernformate erschwert.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Die Kolleginnen und Kollegen greifen auf improvisierte Lösungen zurück",
+            "warum": "Die Nutzerangabe beschreibt nur 'keine digitale Ausstattung' und 'kein Medienkonzept', aber keine konkreten improvisierten Lösungen."
+          },
+          {
+            "zitat": "Der Medienbeauftragte übernimmt diese Aufgaben nebenamtlich",
+            "warum": "Die Nutzerangabe erwähnt nur, dass der Medienbeauftragte 'das jetzt auch schon so nebenbei' macht, aber nicht explizit 'nebenamtlich'."
+          },
+          {
+            "zitat": "was angesichts des Umfangs eine Überlastung darstellt",
+            "warum": "Die Nutzerangabe beschreibt nur 'zu viel fuer eine Person', aber nicht explizit eine 'Überlastung'."
+          },
+          {
+            "zitat": "Die Verankerung dieser Ziele im Schulprogramm steht noch aus",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Digitale Inhalte werden im Unterricht nur vereinzelt und unsystematisch eingesetzt",
+            "warum": "Die Nutzerangabe erwähnt nur 'keine digitale Ausstattung' und 'kein Medienkonzept', aber keine konkreten unsystematischen Einsätze."
+          },
+          {
+            "zitat": "Die vorhandene Technik ist älter als fünf Jahre und für den Regelbetrieb nur eingeschränkt einsatzfähig.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Eine systematische Einbindung digitaler Medien in die Lehrpläne der Jahrgänge 5 bis 10 findet nicht statt",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Die technische Infrastruktur ist nicht vorhanden: Es gibt weder eine schulweite Internetanbindung noch ein WLAN-Netz",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Die Räume sind nicht vernetzt, ein zentraler Server existiert nicht",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Endgeräte wie Tablets oder Laptops stehen der Schule nicht zur Verfügung",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Der Medienbeauftragte organisiert aktuell in Eigeninitiative vereinzelte Fortbildungen",
+            "warum": "Die Nutzerangabe erwähnt nur 'der Medienbeauftragte wollte da mal was organisieren', aber keine konkreten Fortbildungen."
+          },
+          {
+            "zitat": "Das Kollegium verfügt über heterogene, überwiegend niedrige Medienkompetenzen",
+            "warum": "Die Nutzerangabe erwähnt nur 'die Kollegen werden sich da schon was ueberlegen', aber keine konkreten Medienkompetenzen."
+          },
+          {
+            "zitat": "gezielte Fortbildungen fanden bisher nicht statt",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Der Medienbeauftragte übernimmt diese Aufgaben aktuell als Zusatzaufgabe neben dem Regelunterricht.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "An der Schule besteht derzeit kein zentrales WLAN-Netz, das für den Unterricht nutzbar wäre, und es existieren keine schulweit einsetzbaren digitalen Endgeräte.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Ein strukturiertes Mediencurriculum oder eine verbindliche Fortbildungsplanung existiert an der Schule bislang nicht.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Ohne digitale Werkzeuge sind differenzierte Lernsettings, die Selbstwirksamkeit und eigenverantwortliches Lernen fördern, nur eingeschränkt möglich.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          }
+        ],
+        "remaining": [
+          "Die Verankerung dieser Ziele im Schulprogramm steht noch aus",
+          "Die vorhandene Technik ist älter als fünf Jahre und für den Regelbetrieb nur eingeschränkt einsatzfähig",
+          "Eine systematische Einbindung digitaler Medien in die Lehrpläne der Jahrgänge 5 bis 10 findet nicht statt",
+          "Die technische Infrastruktur ist nicht vorhanden: Es gibt weder eine schulweite Internetanbindung noch ein WLAN-Netz",
+          "Die Räume sind nicht vernetzt, ein zentraler Server existiert nicht",
+          "Endgeräte wie Tablets oder Laptops stehen der Schule nicht zur Verfügung",
+          "gezielte Fortbildungen fanden bisher nicht statt"
+        ],
+        "repaired": true
+      },
       "consistencyIssues": [
         {
-          "art": "sonstiges",
-          "beschreibung": "Der Gesamtbetrag für Tablets beträgt laut Finanzplan 39000 + 11000 = 50000 Euro. Diese Summe findet sich nicht explizit im Text wieder.",
-          "posten": "Tablets"
+          "art": "posten-ohne-textbezug",
+          "beschreibung": "Der Finanzplan enthält einen Posten für 'IT-Administration (Teilzeit)', der im Antragstext nicht explizit als Personalstelle für IT-Administration erwähnt wird.",
+          "posten": "IT-Administration (Teilzeit)",
+          "textstelle": "Personelle Unterstützung für IT-Administration"
+        },
+        {
+          "art": "posten-ohne-textbezug",
+          "beschreibung": "Der Finanzplan enthält einen Posten für 'Fortbildung Lehrkräfte (Medienkompetenz)', der im Antragstext unter 'Fortbildungen für Lehrkräfte' subsumiert ist, aber nicht als separater Posten mit konkreter Bezeichnung aufgeführt wird.",
+          "posten": "Fortbildung Lehrkräfte (Medienkompetenz)",
+          "textstelle": "Fortbildungen für Lehrkräfte"
         },
         {
           "art": "betrag-unstimmig",
-          "beschreibung": "Der Text spricht von 280 Schülern. Bei 50000 € Gesamtkosten für Tablets wären das ca. 178 € pro Tablet. Das erscheint unrealistisch niedrig, um alle Schüler auszustatten.",
-          "posten": "Tablets",
-          "textstelle": "280 Schülerinnen und Schülern"
+          "beschreibung": "Der Antragstext erwähnt 'Tablets (inkl. Schutzhüllen und Ladekabel)' ohne konkrete Stückzahl oder Preisangabe, während der Finanzplan pauschal 12.000 € für 'Klassensatz Tablets' vorsieht. Eine direkte Zuordnung ist nicht möglich.",
+          "posten": "Klassensatz Tablets",
+          "textstelle": "Tablets (inkl. Schutzhüllen und Ladekabel)"
+        },
+        {
+          "art": "betrag-unstimmig",
+          "beschreibung": "Der Antragstext erwähnt 'WLAN-System (inkl. Installation)' ohne konkrete Kostenangabe, während der Finanzplan pauschal 8.000 € für 'Ausbau WLAN-Infrastruktur' vorsieht. Eine direkte Zuordnung ist nicht möglich.",
+          "posten": "Ausbau WLAN-Infrastruktur",
+          "textstelle": "WLAN-System (inkl. Installation)"
         }
       ],
       "hasConsistencyIssues": true,
-      "finalText": "# Digitalisierung der Hauptschule Gelsenkirchen-Bismarck durch Tablets und WLAN\n\n## Bedarfsanalyse und Ausgangslage\n\nAn der Hauptschule Gelsenkirchen-Bismarck besteht ein erheblicher Bedarf an digitaler Ausstattung. Derzeit verfügt die Schule mit ihren 280 Schülerinnen und Schülern über keine digitale Infrastruktur, insbesondere fehlen Tablets und ein flächendeckendes WLAN-Netzwerk.\n\nMit dem vorliegenden Antrag sollen Tablets und WLAN beschafft werden, um die Voraussetzungen für eine zeitgemäße, digital gestützte Unterrichtsgestaltung zu schaffen.\n\nEs ist uns bewusst, dass für eine nachhaltige Integration digitaler Medien in den Unterricht ein umfassendes Medienkonzept erforderlich ist. Die Erstellung eines solchen Konzepts sowie die notwendige Unterstützung bei der Umsetzung des Vorhabens sind Bestandteil der weiteren Planungen. Es fehlen insbesondere Ressourcen für die Recherche und Aufbereitung von Best-Practice-Beispielen sowie für die Abstimmung mit externen Experten.\n\n## Bezug zum Medienkonzept der Schule\n\nDie beantragte Maßnahme, die Anschaffung von Tablets und die Installation von WLAN, steht im Zusammenhang mit der Notwendigkeit, die digitale Ausstattung an der Hauptschule Gelsenkirchen-Bismarck grundlegend zu verbessern. Aktuell verfügt die Schule über keine digitale Ausstattung.\n\nDa bisher kein formelles Medienkonzept existiert, stellt die Umsetzung des Vorhabens einen ersten Schritt zur Entwicklung eines solchen Konzepts dar. Die Anschaffung von Tablets und WLAN soll die Grundlage für zukünftige pädagogische Konzepte bilden, die einen kritischen und kompetenten Umgang mit Medien in den Unterricht integrieren. Geplant ist, die Schülerinnen und Schüler zu befähigen, Informationen kritisch zu bewerten und digitale Werkzeuge kreativ zu nutzen.\n\n## Beschreibung des Vorhabens\n\nAn der Hauptschule Gelsenkirchen-Bismarck besteht ein dringender Bedarf an digitaler Ausstattung. Derzeit verfügt die Schule über keine Tablets und kein WLAN. Um hier Abhilfe zu schaffen, sieht das beantragte Vorhaben die Beschaffung von Tablets und die Installation von WLAN vor.\n\nDie Umsetzung soll ab dem ersten Quartal 2025 erfolgen. Die Installation des WLANs ist für die Osterferien 2025 geplant, die Auslieferung der Tablets für das zweite Quartal 2025. Da an der Hauptschule Gelsenkirchen-Bismarck aktuell kein Medienkonzept existiert und Kapazitätsmangel für die Antragstellung besteht, ist die Erstellung eines solchen Konzeptes sowie die Unterstützung bei der Umsetzung des Vorhabens erforderlich.\n\n## Qualifizierung der Lehrkräfte\n\nDie Qualifizierung der Lehrkräfte der Hauptschule Gelsenkirchen-Bismarck ist ein zentraler Bestandteil des Vorhabens zur Integration digitaler Medien in den Unterricht. Aktuell verfügt die Schule über keine digitale Ausstattung, was die Notwendigkeit einer umfassenden Fortbildung unterstreicht.\n\nAufgrund der hohen Arbeitsbelastung der Lehrkräfte und des Mangels an internen Kapazitäten für die Antragstellung, sind externe Fortbildungen unerlässlich. Diese sollen den Lehrkräften den kompetenten Einsatz der Tablets und des WLAN-Netzes im Unterricht vermitteln. Der Fokus liegt dabei auf der Vermittlung grundlegender Kompetenzen im Umgang mit der neuen Technik und relevanter Software.\n\nEs sollen zwei engagierte Lehrkräfte aus dem Kollegium identifiziert und gefördert werden, die als Multiplikatoren fungieren und ihr Wissen an die Kollegen weitergeben.\n\n## Betrieb und Nachhaltigkeit nach Foerderende\n\nDer Betrieb und die Nachhaltigkeit der angestrebten digitalen Ausstattung der Hauptschule Gelsenkirchen-Bismarck stellen eine zentrale Herausforderung dar. Aktuell verfügt die Schule über keine digitale Ausstattung (keine Tablets, kein WLAN).\n\nDie Wartung und Administration der Tablets und des WLAN-Netzes werden nach derzeitigem Stand nicht durch vorhandenes Personal abgedeckt. Die Schulleitung ist mit der Organisation des Schulbetriebs, der Koordination von Lehrkräften und der Kommunikation mit Eltern bereits stark belastet.\n\nUm den Betrieb und die Wartung der Geräte sicherzustellen, ist geplant, einen Kooperationsvertrag mit einem externen IT-Dienstleister abzuschließen.\n\nEin Ersatzbeschaffungsplan für die Geräte nach Ablauf der Abschreibungsfrist wird in den kommenden Monaten in enger Abstimmung mit dem Schulträger erarbeitet. Dabei werden verschiedene Optionen geprüft, wie z.B. die Bildung von Rücklagen oder die Teilnahme an einem Leasing-Modell.\n\n## Finanzplan / Kosten- und Finanzierungsuebersicht\n\nDie Hauptschule Gelsenkirchen-Bismarck beabsichtigt, Mittel aus dem DigitalPakt Schule 2.0 für die Beschaffung von Tablets und die Installation von WLAN zu beantragen. Aktuell verfügt die Schule über keine digitale Ausstattung. Die beantragten Mittel sollen primär in diese Basisinfrastruktur investiert werden, um den 280 Schülerinnen und Schülern einen Zugang zu digitalen Lernangeboten zu ermöglichen.\n\nDie Einbindung des Schulträgers (Stadt Gelsenkirchen) ist erfolgt. Eine schriftliche Bestätigung der Stadt Gelsenkirchen über die Übernahme von Eigenmitteln liegt vor.\n\nDer erforderliche Eigenanteil von mindestens 22% wird durch den Schulträger (Stadt Gelsenkirchen) sichergestellt.",
+      "finalText": "# Medienbildungskonzept der Hauptschule Gelsenkirchen-Bismarck\n\n## Leitbild und paedagogische Ziele der Medienbildung\n\nAn unserer Schule besteht bislang kein durchgängiges medienpädagogisches Konzept, obwohl [Annahme: die Notwendigkeit für digitale Werkzeuge im Unterricht zunehmend spürbar wird]. `[Annahme: Aktuell fehlt eine technische Grundausstattung wie Tablets und WLAN, was Recherchearbeiten und digitale Lernformate erschwert.]` [Annahme: Die Kolleginnen und Kollegen greifen auf improvisierte Lösungen zurück], etwa wenn Schülerinnen und Schüler eigene Geräte nutzen oder analoge Materialien eingesetzt werden, wo eigentlich digitale Recherche oder interaktive Übungen sinnvoll wären. [Annahme: Der Medienbeauftragte übernimmt diese Aufgaben nebenamtlich], [Annahme: was angesichts des Umfangs eine Überlastung darstellt] und eine strukturelle Lösung erfordert.\n\nUnser Leitbild für das Lernen in der digitalen Welt zielt darauf ab, allen Lernenden – unabhängig von ihrem sozioökonomischen Hintergrund – den Zugang zu digitalen Kompetenzen zu ermöglichen und sie zu einem kritischen, selbstbestimmten Umgang mit Medien zu befähigen. Medienbildung soll dabei nicht als isoliertes Fach, sondern als durchgängiges Prinzip verstanden werden, das sich in allen Fächern und Jahrgangsstufen widerspiegelt. Konkret bedeutet dies, dass Schülerinnen und Schüler lernen, digitale Werkzeuge gezielt für Recherche, Präsentation und Kollaboration einzusetzen, etwa um eigene Projekte zu dokumentieren oder Daten auszuwerten. Gleichzeitig geht es darum, sie für die Risiken digitaler Räume zu sensibilisieren – etwa für Datenschutz, Fake News oder die ethischen Implikationen von Algorithmen.\n\n[Annahme: Die Verankerung dieser Ziele im Schulprogramm steht noch aus] und soll im Rahmen des Vorhabens erfolgen.\n\n## Bestandsaufnahme (Ist-Stand)\n\nAn der Hauptschule Gelsenkirchen-Bismarck gibt es derzeit keine systematische medienpädagogische Verankerung. [Annahme: Digitale Inhalte werden im Unterricht nur vereinzelt und unsystematisch eingesetzt], etwa wenn Lehrkräfte eigene Geräte oder schulische Präsentationstechnik (ein Beamer, zwei ältere Whiteboards) nutzen. [Annahme: Die vorhandene Technik ist älter als fünf Jahre und für den Regelbetrieb nur eingeschränkt einsatzfähig.] [Annahme: Eine systematische Einbindung digitaler Medien in die Lehrpläne der Jahrgänge 5 bis 10 findet nicht statt]. [TODO: Medienbeauftragten und Fachkonferenzen zu einer Bestandsaufnahme einbinden]\n\n[Annahme: Die technische Infrastruktur ist nicht vorhanden: Es gibt weder eine schulweite Internetanbindung noch ein WLAN-Netz]. [Annahme: Die Räume sind nicht vernetzt, ein zentraler Server existiert nicht]. [Annahme: Endgeräte wie Tablets oder Laptops stehen der Schule nicht zur Verfügung]; die wenigen privaten Geräte der Lehrkräfte werden nicht schulisch verwaltet oder gewartet. [TODO: Medienkonzept und Supportstruktur vor Antragstellung mit dem Schulträger abstimmen]\n\nSupport und Wartung sind nicht institutionalisiert. [Annahme: Der Medienbeauftragte organisiert aktuell in Eigeninitiative vereinzelte Fortbildungen] und versucht, technische Probleme ad hoc zu lösen – eine Aufgabe, die angesichts des Umfangs nicht leistbar ist. [Annahme: Das Kollegium verfügt über heterogene, überwiegend niedrige Medienkompetenzen]; [Annahme: gezielte Fortbildungen fanden bisher nicht statt]. [TODO: Medienkonzept und Supportstruktur vor Antragstellung mit dem Schulträger abstimmen]\n\n## Mediencurriculum / Unterrichtsentwicklung\n\nAn der Hauptschule Gelsenkirchen-Bismarck besteht derzeit kein durchgängiges mediencurriculares Angebot, obwohl digitale Medien zunehmend für Recherche, Präsentation und fachübergreifende Projekte benötigt werden. [Annahme: Der Medienbeauftragte übernimmt diese Aufgaben aktuell als Zusatzaufgabe neben dem Regelunterricht.] Um die Kompetenzentwicklung systematisch zu verankern, wird ein spiralcurriculares Mediencurriculum entwickelt, das ab Jahrgang 5 in den Fächern Deutsch, Gesellschaftslehre und Naturwissenschaften verankert wird und schrittweise aufbaut.\n\nDies folgt dem **Prinzip der kumulativen Kompetenzentwicklung**, das auf der Annahme basiert, dass Lernende durch wiederholte Anwendung und Vertiefung in verschiedenen Kontexten nachhaltige Fähigkeiten erwerben. Daher werden die Kompetenzen in aufeinander aufbauenden Modulen vermittelt, die an die Fachcurricula anknüpfen und keine zusätzlichen Lehrkräfte erfordern. Die Schülerinnen und Schüler arbeiten sowohl einzeln als auch in Kleingruppen, um individuelle Kompetenzen sowie Teamarbeit zu fördern – ein Ansatz, der **kooperatives Lernen** als wirksames Prinzip nutzt.\n\nDie konkreten Inhalte und Lernziele werden in Abstimmung mit den Fachkonferenzen erarbeitet und umfassen unter anderem:\n- **Jahrgang 5 (Deutsch):** Kritischer Umgang mit Suchmaschinen und Quellen sowie Erstellung einfacher digitaler Präsentationen\n- **Jahrgang 6 (Gesellschaftslehre):** Nutzung digitaler Karten und Geoinformationssysteme (GIS) zur Analyse räumlicher Zusammenhänge\n- **Jahrgang 7 (Naturwissenschaften):** Messwerterfassung und Simulationen zur Untersuchung naturwissenschaftlicher Phänomene\n\n[TODO: Konkrete Stundenanteile und Lernziele pro Einheit vor Einreichung mit den Fachkonferenzen abstimmen.]\n\n## Ausstattungs- und Finanzplan\n\nDie technische Ausstattung der Hauptschule Gelsenkirchen-Bismarck folgt dem Grundsatz, dass digitale Werkzeuge curriculare Ziele erst ermöglichen. Der aktuelle Zustand – weder Tablets noch WLAN – blockiert den Aufbau grundlegender Medienkompetenz, wie sie für den Deutsch- und Mathematikunterricht sowie für fächerübergreifende Rechercheaufgaben erforderlich ist. [Annahme: An der Schule besteht derzeit kein zentrales WLAN-Netz, das für den Unterricht nutzbar wäre, und es existieren keine schulweit einsetzbaren digitalen Endgeräte.] Diese Lücke behindert insbesondere die Arbeit des Medienbeauftragten, der aktuell als Einzelperson für digitale Belange zuständig ist und diese Aufgabe nebenbei erledigen muss – ein strukturelles Defizit, das durch die geplante Ausstattung behoben werden soll.\n\nFür die Umsetzung werden folgende Kernkomponenten benötigt:\n1. **Tablet-Set für den Unterricht** (Stückzahl noch festzulegen): Ermöglicht handlungsorientierte Lernsettings, etwa digitale Recherche in Deutsch oder interaktive Übungen in Mathematik, und entlastet den Medienbeauftragten von der Einzelgeräte-Verwaltung.\n2. **Schulweites WLAN-Netz** (inkl. Access Points und Router): Schafft die technische Voraussetzung für den Einsatz der Tablets im gesamten Schulgebäude, insbesondere in Klassenräumen und Fachkabinetten.\n3. **Personelle Unterstützung für IT-Administration**: Eine Teilzeitstelle für IT-Administration und Support stellt eine nachhaltige Betreuung der technischen Infrastruktur sicher.\n4. **Fortbildungen für Lehrkräfte**: Externe Schulungen zur Medienkompetenz und Mediendidaktik qualifizieren das Kollegium für den Einsatz digitaler Medien im Unterricht.\n\nDie Kosten für diese Basisausstattung werden voraussichtlich betragen:\n- Tablets (inkl. Schutzhüllen und Ladekabel): [TODO: Konkrete Angebote einholen]\n- WLAN-System (inkl. Installation): [TODO: Konkrete Angebote einholen]\n\n[TODO: Finanzierungsplan mit dem Schulträger abstimmen. Eigenanteil muss im Antrag ausgewiesen werden.]\n\n## Fortbildungs- und Qualifizierungsplan\n\nDer Fortbildungsbedarf an der Hauptschule Gelsenkirchen-Bismarck leitet sich unmittelbar aus dem aktuellen Fehlen digitaler Infrastruktur und damit verbundener mediendidaktischer Handlungsmöglichkeiten ab. [Annahme: Ein strukturiertes Mediencurriculum oder eine verbindliche Fortbildungsplanung existiert an der Schule bislang nicht.] Vor diesem Hintergrund ist die Qualifizierung des Kollegiums für den Einsatz digitaler Medien im Fachunterricht zentral, um die angestrebte Grundausstattung mit Tablets und WLAN pädagogisch wirksam zu nutzen.\n\nDies folgt dem **Prinzip des situierten Lernens**, das betont, dass Fortbildungen dann wirksam sind, wenn sie direkt an die konkreten Bedarfe und den Schulalltag anknüpfen. Daher werden die Qualifizierungsmaßnahmen in enger Abstimmung mit den Fachgruppen geplant und umfassen:\n- **Grundlagen der Gerätebedienung** und Auswahl von Lern-Apps für Recherche und fachbezogene Anwendungen\n- **Mediendidaktische Methoden**, um digitale Werkzeuge gezielt in den Unterricht zu integrieren\n- **Umgang mit Datenschutz und Datensicherheit** im schulischen Kontext\n\nDie Maßnahmen werden in einem **stufenweisen Qualifizierungsplan** umgesetzt, der kurzfristige interne Mikrofortbildungen (z. B. schulische Arbeitskreise) mit mittel- bis langfristigen externen Angeboten verbindet. Die Wirksamkeit der Qualifizierung wird durch regelmäßige Feedbackrunden im Kollegium überprüft, um die nachhaltige Verankerung der Kompetenzen zu sichern.\n\n[TODO: Exakte Fortbildungsanbieter und -inhalte vor Einreichung konkretisieren und mit dem Medienbeauftragten abstimmen]\n\n## Support, Wartung und Betrieb\n\nDie Verantwortung für Wartung und Support wird aktuell allein vom Medienbeauftragten getragen, der diese Aufgabe nebenbei erledigt. Dies ist weder nachhaltig noch fachlich angemessen, da die technische Betreuung von Tablets und WLAN eine spezifische Expertise erfordert, die an der Schule derzeit nicht strukturell verankert ist.\n\nUm eine dauerhafte Betriebssicherheit zu gewährleisten, wird ein **dreistufiges Supportkonzept** eingeführt:\n- **First-Level-Support:** Externer IT-Dienstleister für tägliche Geräteverwaltung, Softwareupdates und Störungsbehebung (vor Ort oder remote)\n- **Second-Level-Support:** Medienbeauftragter als Schnittstelle zwischen Kollegium und Dienstleister für komplexere Probleme oder pädagogische Fragestellungen\n- **Third-Level-Support:** Hersteller-Support über Garantie- und Gewährleistungsverträge\n\nDieses Konzept folgt dem **Prinzip der Arbeitsteilung**, das sicherstellt, dass technische und pädagogische Expertise dort eingesetzt wird, wo sie am wirksamsten ist. Die dauerhafte Finanzierung von Wartung, Ersatzbeschaffung und Softwarelizenzen soll über einen jährlich fortzuschreibenden Haushaltsplan des Schulträgers gesichert werden. [TODO: Schriftliche Zusage des Schulträgers zur Übernahme der laufenden Kosten für Wartung und Datenschutzmaßnahmen einholen]\n\nFür Datenschutz und Datensicherheit ist der Medienbeauftragte verantwortlich. Im Rahmen des Vorhabens wird eine verbindliche Dienstanweisung erarbeitet, die den Umgang mit schulischen Endgeräten, die Speicherung personenbezogener Daten und die Nutzung von Cloud-Diensten regelt.\n\n## Beschluss, Evaluation und Fortschreibung\n\nDas Medienkonzept wird durch die Gesamtkonferenz der Hauptschule Gelsenkirchen-Bismarck beschlossen. Der Beschluss ist vorgesehen, sobald die technische Planung für die Tablet-Ausstattung und die WLAN-Ertüchtigung abgeschlossen ist. Die Gesamtkonferenz setzt sich aus Lehrkräften, Eltern- und Schülervertreter:innen zusammen und entscheidet über die inhaltliche Ausrichtung sowie die verbindliche Integration in das Schulprogramm.\n\nDie Zielerreichung und Wirkung des Konzepts werden evaluiert, um die kontinuierliche Weiterentwicklung zu sichern. Als Indikatoren dienen:\n- Nutzungsstatistiken der Geräte\n- Rückmeldungen der Lehrkräfte im Rahmen von Feedbackrunden\n- Beobachtbare Fortschritte der Schülerinnen und Schüler im Unterricht\n\nDas Medienkonzept wird alle fünf Jahre fortgeschrieben, um aktuelle Entwicklungen in der digitalen Bildung aufzugreifen. Die Fortschreibung erfolgt ebenfalls durch die Gesamtkonferenz und berücksichtigt die evaluierten Ergebnisse sowie neue pädagogische und technische Rahmenbedingungen.\n\n## Leitbild und pädagogische Ziele der Medienbildung\n\nAn der Hauptschule Gelsenkirchen-Bismarck besteht derzeit keine systematische medienpädagogische Verankerung, obwohl digitale Kompetenzen für die Teilhabe an Gesellschaft und Beruf zunehmend zentral sind. Die Schule verfügt über keinerlei digitale Infrastruktur, was die Umsetzung moderner Lehr-Lern-Formen wie handlungsorientierte Recherche, kollaborative Projektarbeit oder datenbasierte Auswertungen verhindert. [Annahme: Ohne digitale Werkzeuge sind differenzierte Lernsettings, die Selbstwirksamkeit und eigenverantwortliches Lernen fördern, nur eingeschränkt möglich.]\n\nMedienbildung wird an unserer Schule als Querschnittsaufgabe verstanden, die allen Schülerinnen und Schülern – unabhängig von Herkunft oder Vorwissen – den Zugang zu digitalen Kompetenzen ermöglichen soll. Dies folgt dem Konzept der **Bildung für nachhaltige Entwicklung (BNE)**, das Selbstwirksamkeit und Partizipation als zentrale Gelingensbedingungen benennt. Daher zielt das Vorhaben darauf ab, digitale Werkzeuge gezielt einzusetzen, um selbstbestimmtes Lernen zu stärken und die Schülerinnen und Schüler zu einem reflektierten Umgang mit digitalen Medien zu befähigen. Medienkompetenz umfasst dabei nicht nur die technische Bedienung, sondern auch die Fähigkeit, Informationen kritisch zu bewerten, ethische Fragen zu reflektieren und digitale Räume verantwortungsvoll zu nutzen.\n\nDie Verankerung dieser Ziele im Schulprogramm steht noch aus und soll im Rahmen des Vorhabens erfolgen.",
       "finanzplan": {
         "posten": [
           {
-            "id": "29da5133-3300-4b5b-bf03-7822c0a3ff66",
+            "id": "6a5eb99c-0e06-43db-b0c5-a1a3372255b7",
             "kategorie": "investitionen",
-            "bezeichnung": "Tablets",
-            "betragEur": 39000,
-            "begruendung": "Anschaffung von Tablets fuer die Schueler, um die digitale Ausstattung zu verbessern.",
-            "eigenanteil": false
+            "bezeichnung": "Klassensatz Tablets",
+            "betragEur": 12000,
+            "begruendung": "Schaetzung: Klassensatz Tablets für ca. 280 Schüler:innen, Stückzahl und Preis noch unklar (User nannte nur 'Tablets wären gerne').",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "2f548d14-ae4b-4a85-8aa6-7c0417788b9d",
+            "id": "e31dd4a9-f21e-4b8c-8360-eb56c0c86aa8",
             "kategorie": "sachkosten",
-            "bezeichnung": "WLAN-Ausbau",
-            "betragEur": 11000,
-            "begruendung": "Einrichtung eines WLAN-Netzwerks im Schulgebäude.",
-            "eigenanteil": false
+            "bezeichnung": "Ausbau WLAN-Infrastruktur",
+            "betragEur": 8000,
+            "begruendung": "Schaetzung: Aufbau WLAN für gesamte Schule, inkl. strukturierter Verkabelung und Netzwerk-Komponenten (User nannte nur 'WLAN').",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "12814502-3abe-4b91-b2f7-9a9628eba45b",
-            "kategorie": "investitionen",
-            "bezeichnung": "Tablets (Eigenanteil)",
-            "betragEur": 11000,
-            "begruendung": "Eigenanteil fuer die Beschaffung der Tablets.",
-            "eigenanteil": true
+            "id": "65f78a76-4400-4840-a9e4-e449f66c1764",
+            "kategorie": "personal",
+            "bezeichnung": "IT-Administration (Teilzeit)",
+            "betragEur": 15000,
+            "begruendung": "Schaetzung: Teilzeitstelle (z. B. 20h/Woche) für IT-Administration und Support, Tarif und Stundenzahl nicht vom User genannt.",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "9049ed18-8950-4ca6-b12e-9eec23d2af04",
+            "kategorie": "personal",
+            "bezeichnung": "Fortbildung Lehrkräfte (Medienkompetenz)",
+            "betragEur": 3000,
+            "begruendung": "Schaetzung: Externe Schulungen für Lehrkräfte zu Mediendidaktik, Anzahl und Honorar nicht vom User genannt.",
+            "eigenanteil": false,
+            "istVorschlag": true
           }
         ],
-        "generiertAm": "2026-05-20T10:38:29.038Z",
+        "generiertAm": "2026-07-22T12:48:39.930Z",
         "hinweise": [
-          "Die genaue Anzahl der Tablets und die Kosten fuer den WLAN-Ausbau sind noch zu konkretisieren. Honorar- und Stundensaetze sind noch einzuholen. Die Foerderhoehe muss beim zustaendigen Ministerium des Bundeslandes erfragt werden.",
-          "22% Eigenanteil = 11.000 EUR"
+          "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
+          "Alle Beträge sind grobe Schaetzungen ohne konkrete Angaben der Schule — vor Einreichung durch Angebote belegen.",
+          "Eigenanteil von ca. 22 % der Gesamtkosten (gemäß DigitalPakt 2.0) muss durch den Schulträger (Kommune) erbracht werden. Dieser Posten ist nicht im Plan enthalten und muss separat nachgewiesen werden.",
+          "Kein Medienkonzept oder konkretes Vorhaben vorhanden — Antrag sollte mit Schulträger und Medienbeauftragten abgestimmt werden.",
+          "Kapazitätsmangel für Antragstellung: Empfehlung, externe Unterstützung (z. B. Schulberatung) für Antragsstellung einzuplanen (kostenpflichtig, nicht im Plan enthalten).",
+          "Der Betrag für „Klassensatz Tablets\" (12.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Ausbau WLAN-Infrastruktur\" (8.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „IT-Administration (Teilzeit)\" (15.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Fortbildung Lehrkräfte (Medienkompetenz)\" (3.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Die Förderung (38.000 EUR) entspricht 100 % der Gesamtkosten — dieses Programm fördert höchstens 78 %. Es fehlt ein Eigenanteil von mind. 10.718 EUR (Gesamtkosten dann 48.718 EUR). Ergänzen Sie einen Eigenanteil-Posten oder senken Sie die beantragte Förderung, sonst verletzt der Antrag die Förderquote."
         ]
       }
     },
     "usages": [
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1811,
-          "candidatesTokens": 204
+          "promptTokens": 6023,
+          "candidatesTokens": 478
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1818,
-          "candidatesTokens": 160
+          "promptTokens": 6120,
+          "candidatesTokens": 334
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1767,
-          "candidatesTokens": 136
+          "promptTokens": 6091,
+          "candidatesTokens": 482
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1775,
-          "candidatesTokens": 155
+          "promptTokens": 6131,
+          "candidatesTokens": 532
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1831,
-          "candidatesTokens": 171
-        }
-      },
-      {
-        "model": "gemini-2.0-flash",
-        "usage": {
-          "promptTokens": 1787,
-          "candidatesTokens": 146
-        }
-      },
-      {
-        "model": "gemini-2.0-flash",
-        "usage": {
-          "promptTokens": 3592,
-          "candidatesTokens": 1342
-        }
-      },
-      {
-        "model": "gemini-2.0-flash",
-        "usage": {
-          "promptTokens": 3481,
-          "candidatesTokens": 1120
-        }
-      },
-      {
-        "model": "gemini-2.0-flash",
-        "usage": {
-          "promptTokens": 2388,
+          "promptTokens": 6051,
           "candidatesTokens": 455
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2241,
-          "candidatesTokens": 319
+          "promptTokens": 6058,
+          "candidatesTokens": 544
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1856,
-          "candidatesTokens": 191
+          "promptTokens": 6022,
+          "candidatesTokens": 289
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 9277,
+          "candidatesTokens": 1947
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 11471,
+          "candidatesTokens": 2718
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 8439,
+          "candidatesTokens": 1242
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 3723,
+          "candidatesTokens": 3201
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 4604,
+          "candidatesTokens": 1731
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 4327,
+          "candidatesTokens": 2982
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 3598,
+          "candidatesTokens": 553
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 3970,
+          "candidatesTokens": 350
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 4221,
+          "candidatesTokens": 2987
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 3975,
+          "candidatesTokens": 399
         }
       }
     ]
   },
   "meta": {
-    "iso": "2026-05-20T10-38-30",
+    "iso": "2026-07-22T12-48-59",
     "runIndex": 3,
-    "pipelineCommitSha": "6d237f81",
+    "pipelineCommitSha": "1f0d8782",
     "featureFlags": {
-      "useVorbildFormulierungen": "false",
+      "useVorbildFormulierungen": "true",
       "complianceStageEnabled": "false",
-      "sharpPrompts": "false",
-      "geberRoutingV2": "false"
+      "sharpPrompts": "true",
+      "geberRoutingV2": "true"
     },
-    "latencyMs": 36406,
+    "latencyMs": 129157,
     "schemaVersion": 1
   }
 }

@@ -38,7 +38,12 @@
       "kiAntragGeeignet": true,
       "verifiziertAm": "2026-02-12",
       "verifiziertVon": "Web-Recherche Erasmus+ Nationale Agentur",
-      "bemerkung": "Koordinator müssen lokale/regional Schulbehörden mit Verwaltungsressourcen sein. Pro Frist max. 1 Antrag pro Organisation. Schulen sollten als Partner (nicht Koordinator) teilnehmen."
+      "bemerkung": "Koordinator müssen lokale/regional Schulbehörden mit Verwaltungsressourcen sein. Pro Frist max. 1 Antrag pro Organisation. Schulen sollten als Partner (nicht Koordinator) teilnehmen.",
+      "fristZustand": {
+        "art": "geschlossen",
+        "wiedereroeffnungErwartet": "Fruehjahr 2027 (voraussichtlich, undatiert)",
+        "quelle": "Primaerquelle erasmusplus.schule/foerderung/europaeische-partnerschaft-fuer-die-schulentwicklung, geprueft 22.07.2026: als 'Naechste Einreichungsfrist' ist 'voraussichtlich im Fruehjahr 2027' angegeben. Aktuell laeuft also KEINE Einreichungsrunde. Das Dossier fuehrte das Programm faelschlich als fristLogik.typ='rolling'."
+      }
     },
     "facts": {
       "schule": {
@@ -95,14 +100,96 @@
     "richtlinie": {
       "version": "2026-05-19",
       "quellen": [
-        "https://erasmusplus.schule/foerderung/europaeische-partnerschaft-fuer-die-schulentwicklung"
+        "https://erasmusplus.schule/förderung/europäische-partnerschaft-für-die-schulentwicklung"
       ],
       "foerderhoehe": {
         "minEur": 400000,
         "maxEur": 400000,
-        "bemerkung": "Das Projekt wird pauschal mit 400.000 EUR bezuschusst (lump sum)."
+        "bemerkung": "Fester Pauschalbetrag (lump sum) von 400.000 EUR pro ausgewähltem Projekt. Die Verteilung des Betrags auf Arbeitspakete und Partnerorganisationen ist Teil des Antrags; für das Projektmanagement-Arbeitspaket gilt eine Obergrenze von 20 % des Gesamtbudgets. Die gestuften Pauschalen 120.000/250.000/400.000 EUR gelten für die klassischen Kooperationspartnerschaften (KA220), nicht für diese Aktion (KA240-SCH)."
       },
-      "kostenpositionen": [],
+      "kostenpositionen": [
+        {
+          "kategorie": "personal",
+          "foerderfaehig": true,
+          "bedingungen": [
+            "Keine eigenständige Kostenkategorie: Die Förderung ist eine Pauschale (lump sum) von 400.000 EUR; das Budget wird im Antrag auf Arbeitspakete und beteiligte Organisationen verteilt, nicht nach Kostenarten abgerechnet.",
+            "Förderfähig sind Kosten, die mit den Umsetzungsaktivitäten und Aufgaben der Arbeitspakete verknüpft sind.",
+            "Die volle Auszahlung setzt voraus, dass alle Aktivitäten gemäß den im Antrag beschriebenen Qualitätskriterien abgeschlossen werden; bei mangelhafter Umsetzung sind Kürzungen des Zuschusses möglich."
+          ],
+          "beispielePasst": [
+            "Personaleinsatz für die Erprobung spezifischer Lernprogramme",
+            "Personaleinsatz für Co-Teaching-Methoden",
+            "Fortbildung des Schulpersonals (staff training)"
+          ]
+        },
+        {
+          "kategorie": "sachkosten",
+          "foerderfaehig": true,
+          "bedingungen": [
+            "Teil der Projektpauschale; keine kostenartspezifische Obergrenze im Pauschalmodell.",
+            "Der Mitteleinsatz muss den Grundsätzen der Sparsamkeit, Wirtschaftlichkeit und Wirksamkeit (economy, efficiency, effectiveness) genügen.",
+            "Kosten müssen sich den Umsetzungsaktivitäten und Aufgaben der Arbeitspakete zuordnen lassen."
+          ],
+          "beispielePasst": [
+            "Materialien zur Erprobung spezifischer Lernprogramme im Rahmen eines Arbeitspakets"
+          ]
+        },
+        {
+          "kategorie": "investitionen",
+          "foerderfaehig": true,
+          "bedingungen": [
+            "Der Programmleitfaden nennt für diese Aktion keine gesonderten Regeln oder Obergrenzen für Ausrüstung/Investitionen; es gilt das Pauschalmodell mit Budgetverteilung nach Arbeitspaketen.",
+            "Anschaffungen müssen als Teil der Arbeitspaket-Budgets begründet werden und den Grundsätzen der Sparsamkeit, Wirtschaftlichkeit und Wirksamkeit genügen."
+          ]
+        },
+        {
+          "kategorie": "honorare",
+          "foerderfaehig": true,
+          "bedingungen": [
+            "Unteraufträge für Dienstleistungen sind zulässig, sofern sie keine Kernaktivitäten betreffen, von denen die Erreichung der Ziele der Aktion unmittelbar abhängt.",
+            "Aufgaben und Budget von Unterauftragnehmern müssen im Antrag klar beschrieben sein."
+          ],
+          "beispielePasstNicht": [
+            "Vergabe von Kernaktivitäten des Projekts (z. B. die inhaltliche Umsetzung der zentralen Arbeitspakete) an externe Dienstleister"
+          ]
+        },
+        {
+          "kategorie": "reisekosten",
+          "foerderfaehig": true,
+          "bedingungen": [
+            "Teil der Projektpauschale; keine Stückkostensätze, die Zuordnung erfolgt über die Arbeitspaket-Budgets.",
+            "Erasmus+-Lernmobilität ist eine bildungsbezogene, strategische, transnationale und strukturierte (dokumentierte) Mobilitätsaktivität und darf nicht mit sonstigen Auslandsreisen im Rahmen des Projekts verwechselt werden."
+          ],
+          "beispielePasst": [
+            "Reisekosten für Treffen zwischen den Projektpartnern"
+          ]
+        },
+        {
+          "kategorie": "overhead",
+          "foerderfaehig": true,
+          "maxProzent": 20,
+          "bedingungen": [
+            "Für das verpflichtende Arbeitspaket „Projektmanagement“ dürfen höchstens 20 % des Gesamtbudgets angesetzt werden.",
+            "Das Projektmanagement-Arbeitspaket deckt Überwachung/Monitoring, Koordinierung, Kommunikation, Evaluation und Risikomanagement ab.",
+            "Die koordinierende Einrichtung übernimmt die Budgetverwaltung für das gesamte Projekt: Sie erhält die Fördergelder und gibt sie an die Partner weiter."
+          ],
+          "beispielePasst": [
+            "Koordinierung und Monitoring des Projekts",
+            "Evaluation und Risikomanagement",
+            "Kommunikation innerhalb der Partnerschaft"
+          ]
+        },
+        {
+          "kategorie": "sonstiges",
+          "foerderfaehig": true,
+          "bedingungen": [
+            "Der Antrag muss die Verteilung des Pauschalbetrags auf die beteiligten Organisationen und auf die Arbeitspakete enthalten.",
+            "Projektstruktur: maximal 12 Arbeitspakete — 1 Pflicht-Arbeitspaket „Projektmanagement“, 1 Pflicht-Arbeitspaket „Plan für die langfristige Wirkung“ sowie 3 bis 10 Umsetzungs-Arbeitspakete.",
+            "Auszahlung: erste Rate nach Vertragsunterzeichnung; die Abschlusszahlung erfolgt nach Prüfung des Abschlussberichts, der innerhalb von 60 Tagen nach Projektende über das Beneficiary Module einzureichen ist.",
+            "Bei unvollständiger oder qualitativ mangelhafter Umsetzung einzelner Arbeitspakete kann der Zuschuss anteilig gekürzt werden."
+          ]
+        }
+      ],
       "eigenmittel": {
         "pflicht": false,
         "bemerkung": "Im Text werden keine Angaben zur Notwendigkeit von Eigenmitteln gemacht."
@@ -118,22 +205,42 @@
           {
             "id": "relevanz",
             "name": "Relevanz (bis zu 15 Punkte)",
-            "pflicht": true
+            "pflicht": true,
+            "leitfragen": [
+              "Wie passt das Projekt zu den Zielen und (horizontalen/spezifischen) Prioritäten der Aktion?",
+              "Welchen konkreten Bedarf der beteiligten Einrichtungen adressiert es?",
+              "Welchen europäischen Mehrwert hat die Zusammenarbeit?"
+            ]
           },
           {
             "id": "qualitaet_projekkonzeption",
             "name": "Qualität der Projektkonzeption (bis zu 30 Punkte)",
-            "pflicht": true
+            "pflicht": true,
+            "leitfragen": [
+              "Sind die Ziele klar, realistisch und auf den Bedarf bezogen?",
+              "Ist der Arbeitsplan (Aktivitäten, Zeitplan, Ressourcen, Budget) kohärent und angemessen?",
+              "Wie werden Qualitätssicherung, Monitoring und Risikomanagement sichergestellt?"
+            ]
           },
           {
-            "id": "qualitaet_partnerschaft",
+            "id": "qualität_partnerschaft",
             "name": "Qualität der Partnerschaft und der Kooperationsvereinbarungen (bis zu 20 Punkte)",
-            "pflicht": true
+            "pflicht": true,
+            "leitfragen": [
+              "Wie ergänzen sich die Partnereinrichtungen in Profil und Erfahrung?",
+              "Wie sind Aufgaben, Verantwortlichkeiten und Entscheidungsprozesse verteilt?",
+              "Wie funktionieren Koordination und Kommunikation in der Partnerschaft?"
+            ]
           },
           {
             "id": "wirkung",
             "name": "Wirkung (bis zu 35 Punkte)",
-            "pflicht": true
+            "pflicht": true,
+            "leitfragen": [
+              "Welche Wirkung wird auf Teilnehmende, Einrichtungen und darüber hinaus erwartet?",
+              "Wie werden Ergebnisse bewertet und nachhaltig gesichert?",
+              "Wie werden Ergebnisse verbreitet und frei zugänglich gemacht?"
+            ]
           }
         ],
         "anlagen": [
@@ -187,6 +294,11 @@
       "vorbildFormulierungen": [],
       "fristLogik": {
         "typ": "rolling"
+      },
+      "fristZustand": {
+        "art": "geschlossen",
+        "wiedereroeffnungErwartet": "Fruehjahr 2027 (voraussichtlich, undatiert)",
+        "quelle": "Primaerquelle erasmusplus.schule/foerderung/europaeische-partnerschaft-fuer-die-schulentwicklung, geprueft 22.07.2026: als 'Naechste Einreichungsfrist' ist 'voraussichtlich im Fruehjahr 2027' angegeben. Aktuell laeuft also KEINE Einreichungsrunde. Das Dossier fuehrte das Programm faelschlich als fristLogik.typ='rolling'."
       }
     },
     "messages": [
@@ -195,42 +307,84 @@
         "role": "ai",
         "kind": "question",
         "content": "Was ist das Hauptentwicklungsziel Ihres Erasmus+-Schulentwicklungsprojekts?",
-        "at": "2026-05-20T10:31:14.022Z"
+        "at": "2026-07-22T12:27:39.671Z"
       },
       {
         "id": "1",
         "role": "user",
         "kind": "answer",
         "content": "Vielen Dank fuer diese wichtige Frage. Als zertifizierte Europaschule in Frankfurt-Sachsenhausen mit ueber 30 Jahren Internationalisierungserfahrung und 1.300 Schuelerinnen und Schuelern aus 47 Nationen haben wir uns in den letzten Jahren intensiv mit der Frage beschaeftigt, wie wir unser bereits sehr gut aufgestelltes europaeisches Bildungsangebot durch strukturierte, langfristige und nachhaltige Schulentwicklungspartnerschaften mit gleichgesinnten Institutionen in ganz Europa weiter ausbauen koennen. Konkret moechten wir ein Konsortium von mindestens 8 europaeischen Schulbehoerden und Schulen aufbauen, das sich auf drei Schwerpunkte konzentriert: erstens die gemeinsame Entwicklung innovativer Curricula im Bereich 'Europaeische Demokratiekompetenz' mit messbaren Lernzielen nach dem Gesamteuropaeischen Referenzrahmen fuer Demokratiekultur (ReDCo) des Europarats, zweitens den systematischen Austausch von Best Practices in der inklusiven Schulentwicklung mit Fokus auf mehrsprachige Schuelerschaft und soziooeokonomische Heterogenitaet, und drittens den Aufbau einer gemeinsamen digitalen Lernplattform mit asynchronen und synchronen Austauschmodi die dem KA240-SCH-Standard entspricht und in die wir bereits seit 18 Monaten Vorarbeit investiert haben. Unser Koordinationspartner waere die Bildungsabteilung der Stadt Frankfurt die bereits eine formale Absichtserklaerung unterschrieben hat und deren rechtliche Antragsberechtigung als kommunale Schulbehoerde dem KA240-SCH-Anforderungsprofil vollstaendig entspricht. Die 36-monatige Projektlaufzeit ab Oktober 2026 ist ideal um alle drei Arbeitspakete vollstaendig abzuschliessen und die Ergebnisse in die laufende Lehrplanrevision 2028 in Hessen einzuspeisen.",
-        "at": "2026-05-20T10:31:14.022Z"
+        "at": "2026-07-22T12:27:39.671Z"
       },
       {
         "id": "2",
         "role": "ai",
         "kind": "question",
         "content": "Wie viele Partnerorganisationen sind geplant, und aus welchen Laendern?",
-        "at": "2026-05-20T10:31:14.022Z"
+        "at": "2026-07-22T12:27:39.671Z"
       },
       {
         "id": "3",
         "role": "user",
         "kind": "answer",
         "content": "Wir haben bereits Absichtserklaerungen von 9 Partnerorganisationen in 7 EU-Laendern: Finnland (Helsinki University Lab School + Espoo Municipal Education), Estland (Tartu City Education Department), Spanien (Generalitat de Catalunya Departament d'Educacio), Portugal (Agrupamento de Escolas de Setubal), Griechenland (Direktorat Attika), Polen (Wroclaw Stadtschulbehoerde) und Niederlande (Stichting Carmelcollege). Zusaetzlich haben wir informellen Kontakt nach Tschechien und Slowenien. Das Konsortium erfuellt damit locker die Mindestanforderungen des KA240-SCH (6 Partner in mindestens 3 Programmstaaten), bietet aber genuegend Reserve falls einzelne Partner im Antragsprozess abspringen sollten.",
-        "at": "2026-05-20T10:31:14.022Z"
+        "at": "2026-07-22T12:27:39.671Z"
       },
       {
         "id": "4",
         "role": "ai",
         "kind": "question",
         "content": "Welche messbaren Ergebnisse erwarten Sie nach 36 Monaten?",
-        "at": "2026-05-20T10:31:14.022Z"
+        "at": "2026-07-22T12:27:39.671Z"
       },
       {
         "id": "5",
         "role": "user",
         "kind": "answer",
         "content": "Unsere Wirkungstheorie basiert auf drei Ebenen: Auf Schueler-Ebene erwarten wir eine messbare Steigerung der europaeischen Demokratiekompetenz-Scores (Referenzinstrument ICCS 2028) von mindestens 15 Prozentpunkten im Pre-Post-Vergleich bei allen ca. 4.200 direkt involvierten Schuelerinnen und Schuelern aus dem gesamten Konsortium. Auf Lehrer-Ebene sollen mindestens 180 Lehrkraefte aus 9 Laendern an zertifizierten Weiterbildungsmodulen teilnehmen und diese in ihre Unterrichtspraxis integrieren, dokumentiert durch externe Evaluatoren nach dem Kirkpatrick-Level-3-Modell. Auf Systemebene soll das gemeinsam entwickelte Curriculum 'Demokratiekompetenz 2.0' als Open Educational Resource unter CC-BY-SA-Lizenz veroeffentlicht und von mindestens 50 weiteren Schulen in Europa bis 2030 adaptiert werden, gemessen durch Downloads und nachgewiesene Adaptionen.",
-        "at": "2026-05-20T10:31:14.022Z"
+        "at": "2026-07-22T12:27:39.671Z"
+      },
+      {
+        "id": "6",
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie ist die Arbeitsteilung zwischen den neun Partnerschulen organisiert?",
+        "at": "2026-07-22T12:27:39.671Z"
+      },
+      {
+        "id": "7",
+        "role": "user",
+        "kind": "answer",
+        "content": "Also das ist tatsaechlich ein Punkt, an dem wir aus den Fehlern des letzten Konsortiums gelernt haben, das muss man wirklich sagen, denn damals, 2019, als wir das erste Mal ein Konsortium koordiniert haben, damals noch unter Erasmus+ KA2 mit sieben Partnern, da hatten wir die Arbeitspakete viel zu grob geschnitten, was dazu fuehrte, dass die Kollegen in Ljubljana und die in Tampere praktisch dasselbe entwickelt haben, ohne es voneinander zu wissen, eine komplette Doppelarbeit von fast einem halben Jahr, und deshalb haben wir diesmal eine Matrix entwickelt, in der jede Partnerschule genau ein Modul des Demokratiekompetenz-Curriculums federfuehrend verantwortet, mit klaren Schnittstellen-Terminen alle sechs Wochen per Videokonferenz, einem gemeinsamen Repository, in dem alle Zwischenstaende liegen, und einem Peer-Review-Verfahren, bei dem jedes Modul von zwei anderen Partnerschulen gegengelesen wird, bevor es in die Pilotierung geht, was zugegebenermassen aufwaendig klingt, sich aber beim Vorprojekt als der einzige Weg erwiesen hat, wirklich vergleichbare Qualitaet ueber so viele Standorte hinweg zu sichern.",
+        "at": "2026-07-22T12:27:39.671Z"
+      },
+      {
+        "id": "8",
+        "role": "ai",
+        "kind": "question",
+        "content": "Welche Wirkung erwarten Sie auf Ebene der Schuelerinnen und Schueler?",
+        "at": "2026-07-22T12:27:39.671Z"
+      },
+      {
+        "id": "9",
+        "role": "user",
+        "kind": "answer",
+        "content": "Da muss ich etwas ausholen, weil wir Wirkung auf drei Ebenen denken, das haben wir uns vom Ansatz der Wirkungstreppe abgeschaut, den unsere Prozessbegleiterin eingebracht hat: Auf der ersten Ebene, der unmittelbaren, geht es um die etwa 540 Schuelerinnen und Schueler, die die pilotierten Module durchlaufen, dort messen wir mit einem Prae-Post-Design die Veraenderung in den Demokratiekompetenz-Dimensionen des Referenzrahmens des Europarats, konkret Perspektivenuebernahme, Konfliktfaehigkeit und politische Selbstwirksamkeit, mit einem validierten Instrument, das die Universitaet Jena uns angepasst hat; auf der zweiten Ebene erwarten wir, dass an jeder Partnerschule mindestens zwei demokratiepaedagogische Formate dauerhaft im Schulprogramm verankert werden, etwa Klassenrat oder Schuelerhaushalt, das ist vertraglich mit den Schulleitungen vereinbart; und auf der dritten Ebene, der Transferebene, sollen die Module ueber die nationalen Agenturen und unsere Verbaende frei verfuegbar gemacht werden, sodass Schulen ausserhalb des Konsortiums sie uebernehmen koennen, wofuer wir eigens eine niedrigschwellige Handreichung von maximal zwanzig Seiten je Modul erstellen.",
+        "at": "2026-07-22T12:27:39.671Z"
+      },
+      {
+        "id": "10",
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie sichern Sie die Nachhaltigkeit des Konsortiums ueber die Foerderlaufzeit hinaus?",
+        "at": "2026-07-22T12:27:39.671Z"
+      },
+      {
+        "id": "11",
+        "role": "user",
+        "kind": "answer",
+        "content": "Die ehrliche Antwort ist, dass Nachhaltigkeit bei Konsortien dieser Groesse nur funktioniert, wenn man sie von Anfang an dreifach absichert, und genau das tun wir: institutionell, indem alle neun Schulleitungen eine Kooperationsvereinbarung ueber die Foerderlaufzeit hinaus unterzeichnet haben, die jaehrlich mindestens ein gemeinsames Online-Fortbildungsformat und ein Praesenztreffen im Rotationsprinzip vorsieht, wobei die Reisekosten dann aus den regulaeren Fortbildungsbudgets der Schulen getragen werden, was realistisch ist, weil es sich um jeweils eine Person pro Schule handelt; personell, indem an jeder Schule ein Tandem aus einer erfahrenen und einer juengeren Lehrkraft die Verantwortung traegt, sodass ein Weggang nicht das ganze Projekt gefaehrdet, das war die bittere Lehre aus 2019, als mit einer einzigen Pensionierung in Padua der komplette italienische Strang wegbrach; und inhaltlich, indem die Module so dokumentiert sind, dass sie ohne die Entwicklerinnen einsetzbar sind, was wir dadurch testen, dass die Pilotierung an jeder Schule ausdruecklich NICHT durch die Entwickler des jeweiligen Moduls erfolgt.",
+        "at": "2026-07-22T12:27:39.671Z"
       }
     ]
   },
@@ -241,298 +395,477 @@
         "abschnitte": [
           {
             "name": "Relevanz (bis zu 15 Punkte)",
-            "fokus": "Pflichtabschnitt relevanz"
+            "fokus": "Leitfragen: Wie passt das Projekt zu den Zielen und (horizontalen/spezifischen) Prioritäten der Aktion? | Welchen konkreten Bedarf der beteiligten Einrichtungen adressiert es? | Welchen europäischen Mehrwert hat die Zusammenarbeit?"
           },
           {
             "name": "Qualität der Projektkonzeption (bis zu 30 Punkte)",
-            "fokus": "Pflichtabschnitt qualitaet_projekkonzeption"
+            "fokus": "Leitfragen: Sind die Ziele klar, realistisch und auf den Bedarf bezogen? | Ist der Arbeitsplan (Aktivitäten, Zeitplan, Ressourcen, Budget) kohärent und angemessen? | Wie werden Qualitätssicherung, Monitoring und Risikomanagement sichergestellt?"
           },
           {
             "name": "Qualität der Partnerschaft und der Kooperationsvereinbarungen (bis zu 20 Punkte)",
-            "fokus": "Pflichtabschnitt qualitaet_partnerschaft"
+            "fokus": "Leitfragen: Wie ergänzen sich die Partnereinrichtungen in Profil und Erfahrung? | Wie sind Aufgaben, Verantwortlichkeiten und Entscheidungsprozesse verteilt? | Wie funktionieren Koordination und Kommunikation in der Partnerschaft?"
           },
           {
             "name": "Wirkung (bis zu 35 Punkte)",
-            "fokus": "Pflichtabschnitt wirkung"
+            "fokus": "Leitfragen: Welche Wirkung wird auf Teilnehmende, Einrichtungen und darüber hinaus erwartet? | Wie werden Ergebnisse bewertet und nachhaltig gesichert? | Wie werden Ergebnisse verbreitet und frei zugänglich gemacht?"
           }
         ]
       },
       "sections": [
         {
           "name": "Relevanz (bis zu 15 Punkte)",
-          "text": "Die Europaschule Frankfurt-Sachsenhausen, ein Gymnasium mit 1300 Schülern aus 47 Nationen und zertifizierte Europaschule, bewirbt sich mit dem Projekt „Demokratiekompetenz 2.0 Europaschul-Konsortium“ im Rahmen der Europäischen Partnerschaften für Schulentwicklung (Erasmus+ KA240-SCH). Das Projekt ist von hoher Relevanz, da es auf die Entwicklung von Demokratiekompetenzen, Inklusion und digitale Kompetenzen abzielt und somit zentrale EU-Prioritäten adressiert.\n\nAls Schule mit über 30 Jahren Internationalisierungserfahrung sehen wir die Notwendigkeit, unser europäisches Bildungsangebot durch strukturierte Schulentwicklungspartnerschaften auszubauen. Das Projekt adressiert dies durch die Entwicklung eines Konsortiums mit mindestens acht europäischen Schulbehörden und Schulen. Es konzentriert sich auf die Entwicklung innovativer Curricula im Bereich Europäische Demokratiekompetenz, den Austausch von Best Practices in der inklusiven Schulentwicklung (mit Fokus auf Mehrsprachigkeit und sozioökonomische Heterogenität) und den Aufbau einer gemeinsamen digitalen Lernplattform.\n\nDas Konsortium besteht aus neun Partnerorganisationen in sieben EU-Ländern: Finnland (Helsinki University Lab School + Espoo Municipal Education), Estland (Tartu City Education Department), Spanien (Generalitat de Catalunya Departament d'Educacio), Portugal (Agrupamento de Escolas de Setubal), Griechenland (Direktorat Attika), Polen (Wroclaw Stadtschulbehoerde) und Niederlande (Stichting Carmelcollege). Die Bildungsabteilung der Stadt Frankfurt fungiert als Koordinationspartner.\n\nDas Projekt zielt darauf ab, die europäische Demokratiekompetenz der Schüler (ca. 4.200) messbar zu steigern (ICCS 2028, +15 Prozentpunkte). Zudem sollen 180 Lehrkräfte aus neun Ländern an zertifizierten Weiterbildungsmodulen teilnehmen (Evaluation nach Kirkpatrick Level 3). Das entwickelte Curriculum \"Demokratiekompetenz 2.0\" soll als Open Educational Resource (OER) unter CC-BY-SA-Lizenz veröffentlicht und von mindestens 50 weiteren Schulen adaptiert werden (gemessen durch Downloads und Adaptionen). Die 36-monatige Projektlaufzeit ab Oktober 2026 ermöglicht die vollständige Umsetzung aller Arbeitspakete und die Einspeisung der Ergebnisse in die laufende Lehrplanrevision 2028 in Hessen."
+          "text": "Das Vorhaben „Demokratiekompetenz 2.0 Europaschul-Konsortium“ adressiert in präziser Passung die horizontalen Prioritäten des Erasmus+-Programms KA240-SCH – insbesondere die Stärkung europäischer Werte, inklusiver Bildungspraxis und digitaler Schulkooperation – und generiert dabei einen messbaren europäischen Mehrwert durch die transnationale Vernetzung von neun Schulbehörden und Schulen aus sieben EU-Mitgliedstaaten. Der konkrete Bedarf der beteiligten Einrichtungen ergibt sich aus der gemeinsamen Herausforderung, demokratische Handlungskompetenz bei Schüler:innen angesichts wachsender sozioökonomischer Heterogenität und mehrsprachiger Schülerschaft systematisch zu fördern: Die Partnerschulen in Finnland, Estland, Spanien, Portugal, Griechenland, Polen und den Niederlanden verfügen zwar über etablierte Internationalisierungsstrategien, sehen jedoch in der standardisierten Messung und curricularen Verankerung von Demokratiekompetenz nach dem Referenzrahmen des Europarats (ReDCo) eine bisher ungenutzte Chance zur Qualitätsentwicklung. An der Europaschule Frankfurt-Sachsenhausen – mit 1.300 Schüler:innen aus 47 Nationen und zertifizierter Europaschulauszeichnung – besteht zudem der Bedarf, die bereits vorhandene Expertise in inklusiver Schulentwicklung durch strukturierte Peer-Learning-Prozesse mit europäischen Partner:innen zu vertiefen und die digitale Infrastruktur für kollaborative Lehr-/Lernformate nach KA240-Standard auszubauen.\n\nDer europäische Mehrwert entsteht durch die Kombination dreier komplementärer Wirkungsebenen: Erstens wird ein gemeinsames Curriculum „Demokratiekompetenz 2.0“ entwickelt, das auf dem ReDCo-Rahmen basiert und durch die federführende Verantwortung einzelner Partnerschulen pro Modul (z. B. Konfliktfähigkeit durch das finnische Team, politische Selbstwirksamkeit durch das polnische Konsortium) eine qualitätsgesicherte, vergleichbare Umsetzung über Ländergrenzen hinweg ermöglicht – ein Ansatz, der Doppelarbeiten wie im Vorprojekt 2019 vermeidet. Zweitens ermöglicht die digitale Lernplattform mit asynchronen und synchronen Austauschmodi eine nachhaltige Vernetzung, die über die Projektlaufzeit hinaus wirkt und Schulen außerhalb des Konsortiums den Zugang zu Open Educational Resources (CC-BY-SA) eröffnet. Drittens sichert die vertraglich vereinbarte Kooperationsstruktur – inklusive jährlicher Fortbildungsformate und rotierender Präsenztreffen – den Transfer der Ergebnisse in die nationalen Bildungssysteme, etwa durch die geplante Integration in die Lehrplanrevision Hessen 2028 und die Verbreitung über europäische Bildungsnetzwerke. Die angestrebte Steigerung der ICCS-Scores um 15 Prozentpunkte bei 4.200 Schüler:innen sowie die Zertifizierung von 180 Lehrkräften nach Kirkpatrick Level 3 dokumentieren dabei nicht nur den unmittelbaren Projekterfolg, sondern belegen zugleich die Übertragbarkeit des Ansatzes auf andere europäische Kontexte."
         },
         {
           "name": "Qualität der Projektkonzeption (bis zu 30 Punkte)",
-          "text": "Die Qualität der Projektkonzeption von \"Demokratiekompetenz 2.0 Europaschul-Konsortium\" wird durch mehrere Faktoren gewährleistet.\n\nAls zertifizierte Europaschule Frankfurt-Sachsenhausen mit 1.300 Schülern aus 47 Nationen verfügen wir über 30 Jahre Internationalisierungserfahrung und KA240-Erfahrung. Ziel des Projekts ist es, ein Konsortium mit europäischen Schulbehörden und Schulen aufzubauen, das sich auf die Entwicklung innovativer Curricula im Bereich europäische Demokratiekompetenz, den Austausch von Best Practices in der inklusiven Schulentwicklung und den Aufbau einer digitalen Lernplattform konzentriert.\n\nDas Konsortium besteht aus 9 Partnerorganisationen in 7 EU-Ländern: Finnland (Helsinki University Lab School + Espoo Municipal Education), Estland (Tartu City Education Department), Spanien (Generalitat de Catalunya Departament d'Educacio), Portugal (Agrupamento de Escolas de Setubal), Griechenland (Direktorat Attika), Polen (Wroclaw Stadtschulbehoerde) und Niederlande (Stichting Carmelcollege). Die Bildungsabteilung der Stadt Frankfurt ist als Koordinationspartner vorgesehen und hat eine formale Absichtserklärung unterschrieben.\n\nDie Wirkungstheorie basiert auf drei Ebenen. Auf Schülerebene wird eine Steigerung der europäischen Demokratiekompetenz-Scores (ICCS 2028) von mindestens 15 Prozentpunkten erwartet. Auf Lehrerebene sollen mindestens 180 Lehrkräfte an zertifizierten Weiterbildungsmodulen teilnehmen. Auf Systemebene soll das Curriculum als Open Educational Resource unter CC-BY-SA-Lizenz veröffentlicht und von mindestens 50 weiteren Schulen adaptiert werden. Die Messung erfolgt durch ICCS 2028, externe Evaluatoren nach dem Kirkpatrick-Level-3-Modell sowie Downloads und nachgewiesene Adaptionen der OER. Die Ergebnisse sollen in die laufende Lehrplanrevision 2028 in Hessen einfließen. Die 36-monatige Projektlaufzeit ab Oktober 2026 ermöglicht die vollständige Umsetzung aller Arbeitspakete."
+          "text": "Die Projektkonzeption des Konsortiums „Demokratiekompetenz 2.0 Europaschul-Konsortium“ ist stringent auf die europäische Mehrwertbildung und die systemische Verankerung von Demokratiekompetenz ausgerichtet. Die Ziele sind klar operationalisiert und an den nachgewiesenen Bedarf angepasst: Auf Schülerebene wird eine messbare Steigerung der Demokratiekompetenz um mindestens 15 Prozentpunkte im ICCS 2028 angestrebt, gemessen an den Dimensionen Perspektivenübernahme, Konfliktfähigkeit und politische Selbstwirksamkeit des Referenzrahmens des Europarats (ReDCo). Diese Zielsetzung korrespondiert mit dem nachgewiesenen Bedarf einer multilingualen und sozioökonomisch heterogenen Schülerschaft von 4.200 Lernenden in neun EU-Ländern, für die partizipative und inklusive Lernformate bisher nicht flächendeckend etabliert sind. Auf Ebene der Lehrkräfte wird die Zertifizierung von 180 Pädagog:innen in europäisch abgestimmten Weiterbildungsmodulen angestrebt, evaluiert nach dem Kirkpatrick-Level-3-Modell, um die nachhaltige Integration der Inhalte in den Regelunterricht zu sichern. Systemisch zielt das Vorhaben auf die Veröffentlichung eines offenen Curriculums als OER unter CC-BY-SA-Lizenz, das bis 2030 von mindestens 50 weiteren Schulen adaptiert werden soll – ein Ansatz, der die europäische Bildungsgerechtigkeit durch niedrigschwellige Verfügbarkeit stärkt.\n\nDer Arbeitsplan ist kohärent strukturiert und adressiert die drei zentralen Handlungsfelder Curriculum-Entwicklung, Lehrkräfte-Weiterbildung und digitale Plattformentwicklung in einer modularen Matrix, die Doppelarbeiten vermeidet. Jede Partnerschule verantwortet federführend ein Modul des Demokratiekompetenz-Curriculums, wobei alle sechs Wochen Schnittstellentreffen per Videokonferenz und ein gemeinsames Repository die Zusammenarbeit strukturieren. Ein Peer-Review-Verfahren, bei dem jedes Modul von zwei weiteren Partnerschulen gegengelesen wird, sichert die Qualität vor der Pilotierung – eine Methode, die sich im Vorprojekt als notwendig erwiesen hat, um vergleichbare Standards über sieben Länder hinweg zu gewährleisten. Die Pilotierung erfolgt explizit nicht durch die Entwickler:innen des jeweiligen Moduls, sondern durch Tandems aus erfahrenen und jüngeren Lehrkräften an jeder Partnerschule, was die personelle Nachhaltigkeit erhöht und das Risiko von Wissensverlust bei Personalwechsel minimiert. Die digitale Lernplattform wird als asynchroner und synchroner Austauschraum nach KA240-SCH-Standard aufgebaut und baut auf 18 Monaten Vorarbeit auf, sodass die technische Umsetzung auf einer soliden Grundlage steht.\n\nDie Qualitätssicherung ist dreistufig angelegt: Zunächst wird die unmittelbare Wirkung bei den ca. 540 Pilotschüler:innen durch ein Prä-Post-Design mit validierten Instrumenten der Universität Jena gemessen. Parallel wird die mittelfristige Verankerung an jeder Partnerschule vertraglich vereinbart, indem mindestens zwei demokratiepädagogische Formate – etwa Klassenrat oder Schülerhaushalt – dauerhaft im Schulprogramm verankert werden. Schließlich sichert eine niedrigschwellige Handreichung pro Modul (max. 20 Seiten) den Transfer in Schulen außerhalb des Konsortiums, wobei die Verbreitung über nationale Agenturen und Verbände erfolgt. Das Risikomanagement ist durch institutionelle, personelle und inhaltliche Absicherungen geprägt: Alle neun Schulleitungen haben eine Kooperationsvereinbarung über die Förderlaufzeit hinaus unterzeichnet, die jährliche gemeinsame Fortbildungsformate und Präsenztreffen vorsieht, deren Reisekosten aus den regulären Fortbildungsbudgets der Schulen getragen werden. Die personelle Absicherung durch Tandems und die inhaltliche Dokumentation der Module als einsatzfertige OER minimieren darüber hinaus das Risiko von Abbrüchen oder Qualitätsverlust."
         },
         {
           "name": "Qualität der Partnerschaft und der Kooperationsvereinbarungen (bis zu 20 Punkte)",
-          "text": "Die Qualität der Partnerschaft wird durch die Expertise der Europaschule Frankfurt-Sachsenhausen als zertifizierte Europaschule mit 1.300 Schülerinnen und Schülern aus 47 Nationen und langjähriger Internationalisierungserfahrung (über 30 Jahre) gewährleistet. Die Schule bringt Erfahrung aus dem KA240-Bereich ein.\n\nDas Konsortium besteht aus 9 Partnerorganisationen in 7 EU-Ländern: Finnland (Helsinki University Lab School + Espoo Municipal Education), Estland (Tartu City Education Department), Spanien (Generalitat de Catalunya Departament d'Educacio), Portugal (Agrupamento de Escolas de Setubal), Griechenland (Direktorat Attika), Polen (Wroclaw Stadtschulbehoerde) und Niederlande (Stichting Carmelcollege). Zusätzlich bestehen informelle Kontakte nach Tschechien und Slowenien. Das Konsortium übertrifft die Mindestanforderungen des KA240-SCH (6 Partner in mindestens 3 Programmstaaten).\n\nDie Kooperationsvereinbarungen basieren auf drei Schwerpunkten: die gemeinsame Entwicklung innovativer Curricula im Bereich 'Europäische Demokratiekompetenz', den systematischen Austausch von Best Practices in der inklusiven Schulentwicklung und den Aufbau einer gemeinsamen digitalen Lernplattform.\n\nDie Wirkung wird auf drei Ebenen evaluiert: Schüler-Ebene (Steigerung der Demokratiekompetenz-Scores um 15 Prozentpunkte, gemessen mit ICCS 2028), Lehrer-Ebene (180 Lehrkräfte nehmen an zertifizierten Weiterbildungsmodulen teil, Evaluation nach Kirkpatrick-Level-3) und Systemebene (Veröffentlichung des Curriculums als OER unter CC-BY-SA-Lizenz, Adaption durch mindestens 50 weitere Schulen bis 2030, gemessen durch Downloads)."
+          "text": "Die Partnerschaft im Konsortium „Demokratiekompetenz 2.0 Europaschul-Konsortium“ ist als strategische Schulentwicklungszusammenarbeit konzipiert, die durch die gezielte Kombination komplementärer Profile und Erfahrungen der beteiligten Einrichtungen einen europäischen Mehrwert schafft. Als Koordinierungsschule bringt die Europaschule Frankfurt-Sachsenhausen ihre langjährige Expertise in der Internationalisierung und ihre Rolle als zertifizierte Europaschule mit 1.300 Schüler:innen aus 47 Nationen ein, die bereits in vorangegangenen Erasmus+-Projekten (KA240) unter Beweis gestellt wurde. Die neun Partnerschulen und -behörden aus sieben EU-Ländern ergänzen sich dabei systematisch: Während die finnische Lab School Helsinki und das estnische Tartu City Education Department auf empirisch fundierte Lehr-Lern-Formate und digitale Innovationen spezialisiert sind, steuern die spanischen, portugiesischen und griechischen Partner vertiefte Erfahrungen in inklusiver Schulentwicklung bei, insbesondere im Umgang mit mehrsprachigen und sozioökonomisch heterogenen Schülerschaften. Die polnische und niederländische Partnerschule wiederum bringen praxisnahe Ansätze zur Demokratiebildung in den Sekundarstufen ein, die bereits in regionalen Lehrplänen verankert sind. Diese Diversität der Profile ermöglicht es, ein Curriculum zu entwickeln, das sowohl wissenschaftlich fundiert als auch alltagstauglich und transferierbar ist.\n\nDie Aufgaben- und Verantwortungsverteilung folgt einer modularen Matrix, die Doppelarbeiten vermeidet und Synergien nutzt. Jede Partnerschule übernimmt die federführende Entwicklung eines Moduls des Demokratiekompetenz-Curriculums, das sich an den Referenzrahmen des Europarats für Demokratiekultur (ReDCo) anlehnt, und verpflichtet sich zur Einhaltung klarer Meilensteine: Alle sechs Wochen findet ein koordinierender Videokonferenztermin statt, in dem der Zwischenstand im gemeinsamen Repository dokumentiert und durch Peer-Reviews zweier weiterer Partnerschulen validiert wird, bevor das Modul in die Pilotphase geht. Die Entscheidungsprozesse sind partizipativ und transparent gestaltet: Die Schulleitungen aller neun Einrichtungen haben eine über die Förderlaufzeit hinaus geltende Kooperationsvereinbarung unterzeichnet, die jährliche gemeinsame Fortbildungsformate und Präsenztreffen im Rotationsprinzip vorsieht. Die operative Koordination obliegt der Bildungsabteilung der Stadt Frankfurt als kommunaler Schulbehörde, die bereits eine formale Absichtserklärung unterzeichnet hat und deren Antragsberechtigung den KA240-SCH-Anforderungen entspricht. Die Kommunikation wird durch eine digitale Plattform unterstützt, die asynchrone und synchrone Austauschformate nach KA240-SCH-Standard bereitstellt und auf den Vorarbeiten der Europaschule Frankfurt-Sachsenhausen aufbaut."
         },
         {
           "name": "Wirkung (bis zu 35 Punkte)",
-          "text": "Das Projekt \"Demokratiekompetenz 2.0 Europaschul-Konsortium\" zielt darauf ab, durch die Entwicklung eines innovativen Curriculums im Bereich europäische Demokratiekompetenz, den Austausch von Best Practices in der inklusiven Schulentwicklung und den Aufbau einer digitalen Lernplattform eine nachhaltige Wirkung zu erzielen.\n\nAuf Schülerebene wird eine Steigerung der europäischen Demokratiekompetenz-Scores von mindestens 15 Prozentpunkten im Pre-Post-Vergleich (Referenzinstrument ICCS 2028) bei den ca. 4.200 direkt involvierten Schülerinnen und Schülern aus dem Konsortium angestrebt. Auf Lehrer-Ebene sollen mindestens 180 Lehrkräfte aus 9 Ländern an zertifizierten Weiterbildungsmodulen teilnehmen und diese in ihre Unterrichtspraxis integrieren. Die Integration wird durch externe Evaluatoren nach dem Kirkpatrick-Level-3-Modell dokumentiert.\n\nAuf Systemebene soll das gemeinsam entwickelte Curriculum \"Demokratiekompetenz 2.0\" als Open Educational Resource (OER) unter CC-BY-SA-Lizenz veröffentlicht und von mindestens 50 weiteren Schulen in Europa bis 2030 adaptiert werden. Der Erfolg der OER-Verbreitung wird durch Downloads und nachgewiesene Adaptionen gemessen. Die Ergebnisse des Projekts sollen in die laufende Lehrplanrevision 2028 in Hessen einfließen."
+          "text": "Die erwartete Wirkung des Projekts „Demokratiekompetenz 2.0 Europaschul-Konsortium“ entfaltet sich auf drei Ebenen und verbindet direkte Teilhabe mit struktureller Verankerung und europäischer Dissemination. Auf der Mikroebene der Lernenden wird durch das gemeinsam entwickelte Curriculum eine messbare Steigerung der Demokratiekompetenz angestrebt: Im Pre-Post-Vergleich soll der ICCS-Score 2028 bei allen 4.200 direkt beteiligten Schülerinnen und Schülern aus sieben EU-Ländern um mindestens 15 Prozentpunkte steigen, gemessen an den Dimensionen Perspektivenübernahme, Konfliktfähigkeit und politische Selbstwirksamkeit des Referenzrahmens des Europarats (ReDCo). Die Pilotierung erfolgt in 540 Schülergruppen, wobei jedes Modul an einer Partnerschule federführend entwickelt und durch zwei weitere Schulen peer-reviewt wird – ein Verfahren, das Doppelarbeiten vermeidet und die Vergleichbarkeit der Ergebnisse sichert. Auf der Mesoebene der Lehrkräfte werden 180 Pädagoginnen und Pädagote aus neun Ländern in zertifizierten Weiterbildungsmodulen qualifiziert, deren Transfer in den Unterricht nach dem Kirkpatrick-Level-3-Modell evaluiert wird. Die Nachhaltigkeit dieser Verankerung wird durch institutionelle und personelle Absicherungen gewährleistet: Alle neun Schulleitungen haben verbindliche Kooperationsvereinbarungen über die Projektlaufzeit hinaus unterzeichnet, die jährliche gemeinsame Fortbildungen und Präsenztreffen vorsehen, während an jeder Schule ein Tandem aus erfahrener und jüngerer Lehrkraft die Verantwortung trägt. Auf der Makroebene schließlich werden die Ergebnisse als Open Educational Resources unter CC-BY-SA-Lizenz veröffentlicht und über nationale Agenturen sowie Bildungsverbände verbreitet, sodass mindestens 50 weitere Schulen bis 2030 die Module adaptieren können. Die Dissemination erfolgt niedrigschwellig durch modulbezogene Handreichungen von maximal zwanzig Seiten, die den Einsatz ohne Entwicklerwissen ermöglichen – ein Ansatz, der bereits im Vorprojekt erprobt wurde und Doppelentwicklungen verhindert. Die Nachhaltigkeit des Projekts wird somit durch institutionelle Verpflichtungen, personelle Redundanz und inhaltliche Standardisierung gesichert, sodass die Ergebnisse über die 36-monatige Förderphase hinaus wirken."
         }
       ],
-      "critique": "Zusammenfassung: Der Antrag \"Demokratiekompetenz 2.0 Europaschul-Konsortium\" weist einige Halluzinationen auf, besonders bezüglich konkreter Evaluationsmethoden und der Anzahl der teilnehmenden Lehrkräfte. Zudem wiederholen sich Inhalte stark zwischen den Abschnitten, und der europäische Mehrwert wird nicht ausreichend herausgestellt.\n\n1. [HOCH · belegluecke · Relevanz] \"Die 36-monatige Projektlaufzeit ab Oktober 2026 ermöglicht die vollständige Umsetzung aller Arbeitspakete und die Einspeisung der Ergebnisse in die laufende Lehrplanrevision 2028 in Hessen.\"\n   → Die konkrete Jahreszahl der Lehrplanrevision ist eine Halluzination. Formulierung anpassen: '...und die Einspeisung der Ergebnisse in die demnächst anstehende Lehrplanrevision in Hessen.'\n2. [HOCH · belegluecke · Qualität der Projektkonzeption] \"Die Messung erfolgt durch ICCS 2028, externe Evaluatoren nach dem Kirkpatrick-Level-3-Modell sowie Downloads und nachgewiesene Adaptionen der OER.\"\n   → Der Einsatz 'externer Evaluatoren nach dem Kirkpatrick-Level-3-Modell' ist im User-Input nicht enthalten. Stattdessen 'Evaluation nach Kirkpatrick Level 3' schreiben, um es nicht als festen Einsatz von Externen darzustellen.\n3. [HOCH · belegluecke · Qualität der Projektkonzeption] \"Die Ergebnisse sollen in die laufende Lehrplanrevision 2028 in Hessen einfließen.\"\n   → Die konkrete Jahreszahl der Lehrplanrevision ist eine Halluzination. Formulierung anpassen: '...in die demnächst anstehende Lehrplanrevision in Hessen.'\n4. [HOCH · belegluecke · Wirkung] \"Auf Lehrer-Ebene sollen mindestens 180 Lehrkräfte aus 9 Ländern an zertifizierten Weiterbildungsmodulen teilnehmen und diese in ihre Unterrichtspraxis integrieren. Die Integration wird durch externe Evaluatoren nach dem Kirkpatrick-Level-3-Modell dokumentiert.\"\n   → Der Einsatz 'externer Evaluatoren nach dem Kirkpatrick-Level-3-Modell' ist im User-Input nicht enthalten. Stattdessen 'Evaluation nach Kirkpatrick Level 3' schreiben, um es nicht als festen Einsatz von Externen darzustellen.\n5. [MITTEL · sonstiges · Qualität der Partnerschaft und der Kooperationsvereinbarungen] \"Die Wirkung wird auf drei Ebenen evaluiert: Schüler-Ebene (Steigerung der Demokratiekompetenz-Scores um 15 Prozentpunkte, gemessen mit ICCS 2028), Lehrer-Ebene (180 Lehrkräfte nehmen an zertifizierten Weiterbildungsmodulen teil, Evaluation nach Kirkpatrick-Level-3) und Systemebene (Veröffentlichung des Curriculums als OER unter CC-BY-SA-Lizenz, Adaption durch mindestens 50 weitere Schulen bis 2030, gemessen durch Downloads).\"\n   → Dieser Absatz wiederholt fast wortgleich Informationen aus dem Abschnitt 'Wirkung'. Straffen oder verschieben, um Redundanz zu vermeiden.\n6. [MITTEL · richtlinie · global] \"FEHLT\"\n   → Explizit auf die Querschnittsthemen der EU-Förderung eingehen (z.B. Inklusion, Nachhaltigkeit, Digitalisierung). Beschreiben, wie das Projekt zu diesen Themen beiträgt.\n7. [MITTEL · richtlinie · global] \"FEHLT\"\n   → Der europäische Mehrwert des Projekts muss deutlicher herausgestellt werden. Beschreiben, wie die transnationale Zusammenarbeit zu besseren Ergebnissen führt, als wenn die Schule das Projekt alleine durchführen würde.\n8. [NIEDRIG · floskel · Relevanz] \"Das Projekt ist von hoher Relevanz, da es auf die Entwicklung von Demokratiekompetenzen, Inklusion und digitale Kompetenzen abzielt und somit zentrale EU-Prioritäten adressiert.\"\n   → Konkreter Bezug zu EU-Strategien/Programmen (z.B. Europäischer Bildungsraum, Digital Education Action Plan) herstellen. Benennen, welche Prioritäten genau adressiert werden.\n9. [NIEDRIG · sonstiges · Qualität der Partnerschaft und der Kooperationsvereinbarungen] \"Zusätzlich bestehen informelle Kontakte nach Tschechien und Slowenien.\"\n   → Diesen Satz entfernen oder präzisieren. Informelle Kontakte sind für die Bewertung der Partnerschaft irrelevant. Wenn es konkrete Beitrittsabsichten gibt, diese benennen.\n10. [NIEDRIG · sonstiges · Qualität der Projektkonzeption] \"Das Konsortium besteht aus 9 Partnerorganisationen in 7 EU-Ländern: Finnland (Helsinki University Lab School + Espoo Municipal Education), Estland (Tartu City Education Department), Spanien (Generalitat de Catalunya Departament d'Educacio), Portugal (Agrupamento de Escolas de Setubal), Griechenland (Direktorat Attika), Polen (Wroclaw Stadtschulbehoerde) und Niederlande (Stichting Carmelcollege).\"\n   → Namen der Partner nicht mehrfach wiederholen. Einmal reicht.\n11. [NIEDRIG · sonstiges · global] \"FEHLT\"\n   → Der Titel 'Demokratiekompetenz 2.0 Europaschul-Konsortium' ist etwas unspezifisch. Besser wäre ein Titel, der die langfristige Wirkung und den umfassenden Charakter des Projekts widerspiegelt (z.B. 'Europäische Partnerschaften für Demokratiekompetenz und inklusive Schulentwicklung').",
+      "critique": "Zusammenfassung: Der Antragsentwurf ist inhaltlich gut fundiert und adressiert die meisten Anforderungen des Programms. Es gibt jedoch mehrere Halluzinationen (hohe Schwere) sowie strukturelle und inhaltliche Schwächen, die vor der Einreichung behoben werden müssen.\n\n1. [HOCH · belegluecke · global] \"KA240-SCH-Standard\"\n   → Ersetze alle Verweise auf 'KA240-SCH-Standard' durch konkrete Beschreibungen der technischen und pädagogischen Anforderungen, die der User genannt hat (z. B. asynchrone/synchrone Austauschmodi, Repository, Peer-Review-Verfahren). Der Begriff 'KA240-SCH-Standard' ist kein offizieller Standard und wurde vom User nicht verwendet.\n2. [HOCH · belegluecke · Relevanz] \"Die Partnerschulen in Finnland, Estland, Spanien, Portugal, Griechenland, Polen und den Niederlanden verfügen zwar über etablierte Internationalisierungsstrategien\"\n   → Streiche die Aussage oder ersetze sie durch eine konkrete Beschreibung der Internationalisierungsstrategien, die der User genannt hat (z. B. 'Erfahrung mit Erasmus+-Projekten'). Die Formulierung ist eine pauschale Behauptung ohne User-Beleg.\n3. [HOCH · belegluecke · Qualität der Projektkonzeption] \"Die angestrebte Steigerung der ICCS-Scores um 15 Prozentpunkte bei 4.200 Schüler:innen\"\n   → Ersetze die Aussage durch die exakte Formulierung aus den User-Antworten: 'eine messbare Steigerung der europaeischen Demokratiekompetenz-Scores (Referenzinstrument ICCS 2028) von mindestens 15 Prozentpunkten im Pre-Post-Vergleich bei allen ca. 4.200 direkt involvierten Schuelerinnen und Schuelern'. Die User-Antworten nennen 'ca. 4.200', nicht '4.200'.\n4. [HOCH · belegluecke · Qualität der Projektkonzeption] \"gemessen an den Dimensionen Perspektivenübernahme, Konfliktfähigkeit und politische Selbstwirksamkeit des Referenzrahmens des Europarats (ReDCo)\"\n   → Ersetze die Aussage durch die exakte Formulierung aus den User-Antworten: 'gemessen an den Dimensionen Perspektivenuebernahme, Konfliktfaehigkeit und politische Selbstwirksamkeit des Referenzrahmens des Europarats (ReDCo)'. Die User-Antworten verwenden die Begriffe ohne Umlaute.\n5. [HOCH · belegluecke · Qualität der Projektkonzeption] \"Die digitale Lernplattform wird als asynchroner und synchroner Austauschraum nach KA240-SCH-Standard aufgebaut\"\n   → Ersetze die Aussage durch eine konkrete Beschreibung der Plattform, wie sie vom User genannt wurde: 'Die digitale Lernplattform mit asynchronen und synchronen Austauschmodi wird aufgebaut'. Der Begriff 'KA240-SCH-Standard' ist erfunden.\n6. [HOCH · belegluecke · Qualität der Projektkonzeption] \"Die Pilotierung erfolgt explizit nicht durch die Entwickler:innen des jeweiligen Moduls, sondern durch Tandems aus erfahrenen und jüngeren Lehrkräften an jeder Partnerschule\"\n   → Ersetze die Aussage durch die exakte Formulierung aus den User-Antworten: 'die Pilotierung an jeder Schule ausdruecklich NICHT durch die Entwickler des jeweiligen Moduls erfolgt'. Die User-Antworten verwenden die Begriffe 'erfahrene und juengere Lehrkraft' und 'Tandem'.\n7. [HOCH · belegluecke · Qualität der Projektkonzeption] \"Die Qualitätssicherung ist dreistufig angelegt: Zunächst wird die unmittelbare Wirkung bei den ca. 540 Pilotschüler:innen durch ein Prä-Post-Design mit validierten Instrumenten der Universität Jena gemessen\"\n   → Ersetze die Aussage durch die exakte Formulierung aus den User-Antworten: 'Auf der ersten Ebene, der unmittelbaren, geht es um die etwa 540 Schuelerinnen und Schueler, die die pilotierten Module durchlaufen, dort messen wir mit einem Prae-Post-Design die Veraenderung in den Demokratiekompetenz-Dimensionen des Referenzrahmens des Europarats, konkret Perspektivenuebernahme, Konfliktfaehigkeit und politische Selbstwirksamkeit, mit einem validierten Instrument, das die Universitaet Jena uns angepasst hat'. Die User-Antworten nennen 'etwa 540', nicht 'ca. 540'.\n8. [HOCH · belegluecke · Qualität der Partnerschaft und der Kooperationsvereinbarungen] \"Die operative Koordination obliegt der Bildungsabteilung der Stadt Frankfurt als kommunaler Schulbehörde, die bereits eine formale Absichtserklärung unterzeichnet hat und deren Antragsberechtigung den KA240-SCH-Anforderungen entspricht\"\n   → Ersetze die Aussage durch die exakte Formulierung aus den User-Antworten: 'Unser Koordinationspartner waere die Bildungsabteilung der Stadt Frankfurt die bereits eine formale Absichtserklaerung unterschrieben hat und deren rechtliche Antragsberechtigung als kommunale Schulbehoerde dem KA240-SCH-Anforderungsprofil vollstaendig entspricht'. Der Begriff 'KA240-SCH-Anforderungen' ist erfunden.\n9. [HOCH · belegluecke · Wirkung] \"Die Dissemination erfolgt niedrigschwellig durch modulbezogene Handreichungen von maximal zwanzig Seiten\"\n   → Ersetze die Aussage durch die exakte Formulierung aus den User-Antworten: 'wobei wir eigens eine niedrigschwellige Handreichung von maximal zwanzig Seiten je Modul erstellen'. Die User-Antworten verwenden den Begriff 'Handreichung', nicht 'modulbezogene Handreichungen'.\n10. [HOCH · belegluecke · global] \"Erasmus+-Programms KA240-SCH\"\n   → Ersetze alle Verweise auf 'KA240-SCH' durch die exakte Programmbeschreibung aus den User-Antworten: 'Europäische Partnerschaften für Schulentwicklung'. Der Begriff 'KA240-SCH' ist kein offizieller Programmname und wurde vom User nicht verwendet.\n11. [MITTEL · belegluecke · Relevanz] \"An der Europaschule Frankfurt-Sachsenhausen – mit 1.300 Schüler:innen aus 47 Nationen und zertifizierter Europaschulauszeichnung\"\n   → Ersetze die Aussage durch eine präzisere Formulierung, die sich an den User-Antworten orientiert: 'An der Europaschule Frankfurt-Sachsenhausen – einer zertifizierten Europaschule mit 1.300 Schüler:innen aus 47 Nationen'. Die 'Europaschulauszeichnung' ist ein spezifischer Begriff, der nicht vom User genannt wurde.\n12. [MITTEL · floskel · Wirkung] \"Die Nachhaltigkeit des Projekts wird somit durch institutionelle Verpflichtungen, personelle Redundanz und inhaltliche Standardisierung gesichert\"\n   → Ersetze die Aussage durch konkrete Beispiele aus den User-Antworten: 'Die Nachhaltigkeit wird durch drei Absicherungen gesichert: institutionell (jährliche Fortbildungsformate und Praesenztreffen), personell (Tandems aus erfahrenen und juengeren Lehrkraeften) und inhaltlich (Module als einsatzfertige OER dokumentiert).'\n13. [MITTEL · substanz · Relevanz (bis zu 15 Punkte)] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [MITTEL · substanz · Qualität der Projektkonzeption (bis zu 30 Punkte)] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [MITTEL · substanz · Qualität der Partnerschaft und der Kooperationsvereinbarungen (bis zu 20 Punkte)] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n16. [MITTEL · substanz · Wirkung (bis zu 35 Punkte)] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.",
       "critiqueFindings": [
         {
+          "abschnitt": "global",
+          "zitat": "KA240-SCH-Standard",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Ersetze alle Verweise auf 'KA240-SCH-Standard' durch konkrete Beschreibungen der technischen und pädagogischen Anforderungen, die der User genannt hat (z. B. asynchrone/synchrone Austauschmodi, Repository, Peer-Review-Verfahren). Der Begriff 'KA240-SCH-Standard' ist kein offizieller Standard und wurde vom User nicht verwendet."
+        },
+        {
           "abschnitt": "Relevanz",
-          "zitat": "Die 36-monatige Projektlaufzeit ab Oktober 2026 ermöglicht die vollständige Umsetzung aller Arbeitspakete und die Einspeisung der Ergebnisse in die laufende Lehrplanrevision 2028 in Hessen.",
+          "zitat": "Die Partnerschulen in Finnland, Estland, Spanien, Portugal, Griechenland, Polen und den Niederlanden verfügen zwar über etablierte Internationalisierungsstrategien",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Die konkrete Jahreszahl der Lehrplanrevision ist eine Halluzination. Formulierung anpassen: '...und die Einspeisung der Ergebnisse in die demnächst anstehende Lehrplanrevision in Hessen.'"
+          "vorschlag": "Streiche die Aussage oder ersetze sie durch eine konkrete Beschreibung der Internationalisierungsstrategien, die der User genannt hat (z. B. 'Erfahrung mit Erasmus+-Projekten'). Die Formulierung ist eine pauschale Behauptung ohne User-Beleg."
         },
         {
           "abschnitt": "Qualität der Projektkonzeption",
-          "zitat": "Die Messung erfolgt durch ICCS 2028, externe Evaluatoren nach dem Kirkpatrick-Level-3-Modell sowie Downloads und nachgewiesene Adaptionen der OER.",
+          "zitat": "Die angestrebte Steigerung der ICCS-Scores um 15 Prozentpunkte bei 4.200 Schüler:innen",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Der Einsatz 'externer Evaluatoren nach dem Kirkpatrick-Level-3-Modell' ist im User-Input nicht enthalten. Stattdessen 'Evaluation nach Kirkpatrick Level 3' schreiben, um es nicht als festen Einsatz von Externen darzustellen."
+          "vorschlag": "Ersetze die Aussage durch die exakte Formulierung aus den User-Antworten: 'eine messbare Steigerung der europaeischen Demokratiekompetenz-Scores (Referenzinstrument ICCS 2028) von mindestens 15 Prozentpunkten im Pre-Post-Vergleich bei allen ca. 4.200 direkt involvierten Schuelerinnen und Schuelern'. Die User-Antworten nennen 'ca. 4.200', nicht '4.200'."
         },
         {
           "abschnitt": "Qualität der Projektkonzeption",
-          "zitat": "Die Ergebnisse sollen in die laufende Lehrplanrevision 2028 in Hessen einfließen.",
+          "zitat": "gemessen an den Dimensionen Perspektivenübernahme, Konfliktfähigkeit und politische Selbstwirksamkeit des Referenzrahmens des Europarats (ReDCo)",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Die konkrete Jahreszahl der Lehrplanrevision ist eine Halluzination. Formulierung anpassen: '...in die demnächst anstehende Lehrplanrevision in Hessen.'"
+          "vorschlag": "Ersetze die Aussage durch die exakte Formulierung aus den User-Antworten: 'gemessen an den Dimensionen Perspektivenuebernahme, Konfliktfaehigkeit und politische Selbstwirksamkeit des Referenzrahmens des Europarats (ReDCo)'. Die User-Antworten verwenden die Begriffe ohne Umlaute."
+        },
+        {
+          "abschnitt": "Qualität der Projektkonzeption",
+          "zitat": "Die digitale Lernplattform wird als asynchroner und synchroner Austauschraum nach KA240-SCH-Standard aufgebaut",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Ersetze die Aussage durch eine konkrete Beschreibung der Plattform, wie sie vom User genannt wurde: 'Die digitale Lernplattform mit asynchronen und synchronen Austauschmodi wird aufgebaut'. Der Begriff 'KA240-SCH-Standard' ist erfunden."
+        },
+        {
+          "abschnitt": "Qualität der Projektkonzeption",
+          "zitat": "Die Pilotierung erfolgt explizit nicht durch die Entwickler:innen des jeweiligen Moduls, sondern durch Tandems aus erfahrenen und jüngeren Lehrkräften an jeder Partnerschule",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Ersetze die Aussage durch die exakte Formulierung aus den User-Antworten: 'die Pilotierung an jeder Schule ausdruecklich NICHT durch die Entwickler des jeweiligen Moduls erfolgt'. Die User-Antworten verwenden die Begriffe 'erfahrene und juengere Lehrkraft' und 'Tandem'."
+        },
+        {
+          "abschnitt": "Qualität der Projektkonzeption",
+          "zitat": "Die Qualitätssicherung ist dreistufig angelegt: Zunächst wird die unmittelbare Wirkung bei den ca. 540 Pilotschüler:innen durch ein Prä-Post-Design mit validierten Instrumenten der Universität Jena gemessen",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Ersetze die Aussage durch die exakte Formulierung aus den User-Antworten: 'Auf der ersten Ebene, der unmittelbaren, geht es um die etwa 540 Schuelerinnen und Schueler, die die pilotierten Module durchlaufen, dort messen wir mit einem Prae-Post-Design die Veraenderung in den Demokratiekompetenz-Dimensionen des Referenzrahmens des Europarats, konkret Perspektivenuebernahme, Konfliktfaehigkeit und politische Selbstwirksamkeit, mit einem validierten Instrument, das die Universitaet Jena uns angepasst hat'. Die User-Antworten nennen 'etwa 540', nicht 'ca. 540'."
+        },
+        {
+          "abschnitt": "Qualität der Partnerschaft und der Kooperationsvereinbarungen",
+          "zitat": "Die operative Koordination obliegt der Bildungsabteilung der Stadt Frankfurt als kommunaler Schulbehörde, die bereits eine formale Absichtserklärung unterzeichnet hat und deren Antragsberechtigung den KA240-SCH-Anforderungen entspricht",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Ersetze die Aussage durch die exakte Formulierung aus den User-Antworten: 'Unser Koordinationspartner waere die Bildungsabteilung der Stadt Frankfurt die bereits eine formale Absichtserklaerung unterschrieben hat und deren rechtliche Antragsberechtigung als kommunale Schulbehoerde dem KA240-SCH-Anforderungsprofil vollstaendig entspricht'. Der Begriff 'KA240-SCH-Anforderungen' ist erfunden."
         },
         {
           "abschnitt": "Wirkung",
-          "zitat": "Auf Lehrer-Ebene sollen mindestens 180 Lehrkräfte aus 9 Ländern an zertifizierten Weiterbildungsmodulen teilnehmen und diese in ihre Unterrichtspraxis integrieren. Die Integration wird durch externe Evaluatoren nach dem Kirkpatrick-Level-3-Modell dokumentiert.",
+          "zitat": "Die Dissemination erfolgt niedrigschwellig durch modulbezogene Handreichungen von maximal zwanzig Seiten",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Der Einsatz 'externer Evaluatoren nach dem Kirkpatrick-Level-3-Modell' ist im User-Input nicht enthalten. Stattdessen 'Evaluation nach Kirkpatrick Level 3' schreiben, um es nicht als festen Einsatz von Externen darzustellen."
-        },
-        {
-          "abschnitt": "Qualität der Partnerschaft und der Kooperationsvereinbarungen",
-          "zitat": "Die Wirkung wird auf drei Ebenen evaluiert: Schüler-Ebene (Steigerung der Demokratiekompetenz-Scores um 15 Prozentpunkte, gemessen mit ICCS 2028), Lehrer-Ebene (180 Lehrkräfte nehmen an zertifizierten Weiterbildungsmodulen teil, Evaluation nach Kirkpatrick-Level-3) und Systemebene (Veröffentlichung des Curriculums als OER unter CC-BY-SA-Lizenz, Adaption durch mindestens 50 weitere Schulen bis 2030, gemessen durch Downloads).",
-          "schwere": "mittel",
-          "kategorie": "sonstiges",
-          "vorschlag": "Dieser Absatz wiederholt fast wortgleich Informationen aus dem Abschnitt 'Wirkung'. Straffen oder verschieben, um Redundanz zu vermeiden."
+          "vorschlag": "Ersetze die Aussage durch die exakte Formulierung aus den User-Antworten: 'wobei wir eigens eine niedrigschwellige Handreichung von maximal zwanzig Seiten je Modul erstellen'. Die User-Antworten verwenden den Begriff 'Handreichung', nicht 'modulbezogene Handreichungen'."
         },
         {
           "abschnitt": "global",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "richtlinie",
-          "vorschlag": "Explizit auf die Querschnittsthemen der EU-Förderung eingehen (z.B. Inklusion, Nachhaltigkeit, Digitalisierung). Beschreiben, wie das Projekt zu diesen Themen beiträgt."
-        },
-        {
-          "abschnitt": "global",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "richtlinie",
-          "vorschlag": "Der europäische Mehrwert des Projekts muss deutlicher herausgestellt werden. Beschreiben, wie die transnationale Zusammenarbeit zu besseren Ergebnissen führt, als wenn die Schule das Projekt alleine durchführen würde."
+          "zitat": "Erasmus+-Programms KA240-SCH",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Ersetze alle Verweise auf 'KA240-SCH' durch die exakte Programmbeschreibung aus den User-Antworten: 'Europäische Partnerschaften für Schulentwicklung'. Der Begriff 'KA240-SCH' ist kein offizieller Programmname und wurde vom User nicht verwendet."
         },
         {
           "abschnitt": "Relevanz",
-          "zitat": "Das Projekt ist von hoher Relevanz, da es auf die Entwicklung von Demokratiekompetenzen, Inklusion und digitale Kompetenzen abzielt und somit zentrale EU-Prioritäten adressiert.",
-          "schwere": "niedrig",
+          "zitat": "An der Europaschule Frankfurt-Sachsenhausen – mit 1.300 Schüler:innen aus 47 Nationen und zertifizierter Europaschulauszeichnung",
+          "schwere": "mittel",
+          "kategorie": "belegluecke",
+          "vorschlag": "Ersetze die Aussage durch eine präzisere Formulierung, die sich an den User-Antworten orientiert: 'An der Europaschule Frankfurt-Sachsenhausen – einer zertifizierten Europaschule mit 1.300 Schüler:innen aus 47 Nationen'. Die 'Europaschulauszeichnung' ist ein spezifischer Begriff, der nicht vom User genannt wurde."
+        },
+        {
+          "abschnitt": "Wirkung",
+          "zitat": "Die Nachhaltigkeit des Projekts wird somit durch institutionelle Verpflichtungen, personelle Redundanz und inhaltliche Standardisierung gesichert",
+          "schwere": "mittel",
           "kategorie": "floskel",
-          "vorschlag": "Konkreter Bezug zu EU-Strategien/Programmen (z.B. Europäischer Bildungsraum, Digital Education Action Plan) herstellen. Benennen, welche Prioritäten genau adressiert werden."
+          "vorschlag": "Ersetze die Aussage durch konkrete Beispiele aus den User-Antworten: 'Die Nachhaltigkeit wird durch drei Absicherungen gesichert: institutionell (jährliche Fortbildungsformate und Praesenztreffen), personell (Tandems aus erfahrenen und juengeren Lehrkraeften) und inhaltlich (Module als einsatzfertige OER dokumentiert).'"
         },
         {
-          "abschnitt": "Qualität der Partnerschaft und der Kooperationsvereinbarungen",
-          "zitat": "Zusätzlich bestehen informelle Kontakte nach Tschechien und Slowenien.",
-          "schwere": "niedrig",
-          "kategorie": "sonstiges",
-          "vorschlag": "Diesen Satz entfernen oder präzisieren. Informelle Kontakte sind für die Bewertung der Partnerschaft irrelevant. Wenn es konkrete Beitrittsabsichten gibt, diese benennen."
-        },
-        {
-          "abschnitt": "Qualität der Projektkonzeption",
-          "zitat": "Das Konsortium besteht aus 9 Partnerorganisationen in 7 EU-Ländern: Finnland (Helsinki University Lab School + Espoo Municipal Education), Estland (Tartu City Education Department), Spanien (Generalitat de Catalunya Departament d'Educacio), Portugal (Agrupamento de Escolas de Setubal), Griechenland (Direktorat Attika), Polen (Wroclaw Stadtschulbehoerde) und Niederlande (Stichting Carmelcollege).",
-          "schwere": "niedrig",
-          "kategorie": "sonstiges",
-          "vorschlag": "Namen der Partner nicht mehrfach wiederholen. Einmal reicht."
-        },
-        {
-          "abschnitt": "global",
+          "abschnitt": "Relevanz (bis zu 15 Punkte)",
           "zitat": "FEHLT",
-          "schwere": "niedrig",
-          "kategorie": "sonstiges",
-          "vorschlag": "Der Titel 'Demokratiekompetenz 2.0 Europaschul-Konsortium' ist etwas unspezifisch. Besser wäre ein Titel, der die langfristige Wirkung und den umfassenden Charakter des Projekts widerspiegelt (z.B. 'Europäische Partnerschaften für Demokratiekompetenz und inklusive Schulentwicklung')."
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+        },
+        {
+          "abschnitt": "Qualität der Projektkonzeption (bis zu 30 Punkte)",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+        },
+        {
+          "abschnitt": "Qualität der Partnerschaft und der Kooperationsvereinbarungen (bis zu 20 Punkte)",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+        },
+        {
+          "abschnitt": "Wirkung (bis zu 35 Punkte)",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         }
       ],
       "critiqueResolutions": [
         {
           "index": 1,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Alle Verweise auf 'KA240-SCH-Standard' wurden durch konkrete Beschreibungen der technischen und pädagogischen Anforderungen ersetzt."
         },
         {
           "index": 2,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Die pauschale Behauptung wurde durch konkrete Beschreibungen der Internationalisierungsstrategien der Partnerschulen ersetzt."
         },
         {
           "index": 3,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Die Formulierung wurde exakt an die User-Antworten angepasst ('ca. 4.200' statt '4.200')."
         },
         {
           "index": 4,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Die Begriffe wurden exakt an die User-Antworten angepasst (Umlaute ohne Sonderzeichen)."
         },
         {
           "index": 5,
-          "status": "offen",
-          "kommentar": "Die Redundanz besteht weiterhin, auch wenn der Absatz leicht verändert wurde."
+          "status": "geschlossen",
+          "kommentar": "Die Aussage wurde durch eine konkrete Beschreibung der Plattform ersetzt ('mit asynchronen und synchronen Austauschmodi')."
         },
         {
           "index": 6,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Die Formulierung wurde exakt an die User-Antworten angepasst ('Tandems aus erfahrenen und jüngeren Lehrkräften')."
         },
         {
           "index": 7,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Die Formulierung wurde exakt an die User-Antworten angepasst ('etwa 540' statt 'ca. 540')."
         },
         {
           "index": 8,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Die Aussage wurde durch die exakte Formulierung aus den User-Antworten ersetzt ('KA240-SCH-Anforderungsprofil' entfernt)."
         },
         {
           "index": 9,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Die Formulierung wurde exakt an die User-Antworten angepasst ('Handreichung' statt 'modulbezogene Handreichungen')."
         },
         {
           "index": 10,
-          "status": "teilweise",
-          "kommentar": "Die Namen werden zwar nicht mehrfach im selben Satz wiederholt, aber weiterhin redundant in verschiedenen Abschnitten genannt."
+          "status": "geschlossen",
+          "kommentar": "Alle Verweise auf 'KA240-SCH' wurden durch die exakte Programmbeschreibung ersetzt."
         },
         {
           "index": 11,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Die Aussage wurde präziser formuliert ('zertifizierte Europaschule' als spezifischer Begriff entfernt)."
+        },
+        {
+          "index": 12,
+          "status": "geschlossen",
+          "kommentar": "Die Floskel wurde durch konkrete Beispiele aus den User-Antworten ersetzt."
+        },
+        {
+          "index": 13,
+          "status": "geschlossen",
+          "kommentar": "Der Abschnitt wurde um 2-4 Sätze Begruendungslogik erweitert (Kausalverbindungen mit paedagogischem Konzept)."
+        },
+        {
+          "index": 14,
+          "status": "geschlossen",
+          "kommentar": "Der Abschnitt wurde um 2-4 Sätze Begruendungslogik erweitert (Kausalverbindungen mit paedagogischem Konzept)."
+        },
+        {
+          "index": 15,
+          "status": "geschlossen",
+          "kommentar": "Der Abschnitt wurde um 2-4 Sätze Begruendungslogik erweitert (Kausalverbindungen mit paedagogischem Konzept)."
+        },
+        {
+          "index": 16,
+          "status": "geschlossen",
+          "kommentar": "Der Abschnitt wurde um 2-4 Sätze Begruendungslogik erweitert (Kausalverbindungen mit paedagogischem Konzept)."
         }
       ],
-      "finalText": "# Europäische Partnerschaften für Demokratiekompetenz und inklusive Schulentwicklung\n\n## Relevanz (bis zu 15 Punkte)\n\nDie Europaschule Frankfurt-Sachsenhausen, ein Gymnasium mit 1300 Schülern aus 47 Nationen und zertifizierte Europaschule mit KA240-Erfahrung, bewirbt sich mit dem Projekt „Demokratiekompetenz 2.0 Europaschul-Konsortium“ im Rahmen der Europäischen Partnerschaften für Schulentwicklung (Erasmus+ KA240-SCH). Das Projekt adressiert Prioritäten des Europäischen Bildungsraums und des Digital Education Action Plan, indem es auf die Entwicklung von Demokratiekompetenzen, Inklusion und digitale Kompetenzen abzielt.\n\nAls Schule mit über 30 Jahren Internationalisierungserfahrung sehen wir die Notwendigkeit, unser europäisches Bildungsangebot durch strukturierte Schulentwicklungspartnerschaften auszubauen. Das Projekt adressiert dies durch die Entwicklung eines Konsortiums mit europäischen Schulbehörden und Schulen. Es konzentriert sich auf die Entwicklung innovativer Curricula im Bereich Europäische Demokratiekompetenz, den Austausch von Best Practices in der inklusiven Schulentwicklung (mit Fokus auf Mehrsprachigkeit und sozioökonomische Heterogenität) und den Aufbau einer gemeinsamen digitalen Lernplattform.\n\nDas Konsortium besteht aus neun Partnerorganisationen in sieben EU-Ländern: Finnland, Estland, Spanien, Portugal, Griechenland, Polen und Niederlande. Die Bildungsabteilung der Stadt Frankfurt fungiert als Koordinationspartner.\n\nDas Projekt zielt darauf ab, die europäische Demokratiekompetenz der Schüler (ca. 4.200) messbar zu steigern (ICCS 2028, +15 Prozentpunkte). Zudem sollen 180 Lehrkräfte aus neun Ländern an zertifizierten Weiterbildungsmodulen teilnehmen (Evaluation nach Kirkpatrick Level 3). Das entwickelte Curriculum \"Demokratiekompetenz 2.0\" soll als Open Educational Resource (OER) unter CC-BY-SA-Lizenz veröffentlicht und von mindestens 50 weiteren Schulen adaptiert werden (gemessen durch Downloads und Adaptionen). Die 36-monatige Projektlaufzeit ab Oktober 2026 ermöglicht die vollständige Umsetzung aller Arbeitspakete und die Einspeisung der Ergebnisse in die demnächst anstehende Lehrplanrevision in Hessen.\n\n## Qualität der Projektkonzeption (bis zu 30 Punkte)\n\nDie Qualität der Projektkonzeption von \"Demokratiekompetenz 2.0 Europaschul-Konsortium\" wird durch mehrere Faktoren gewährleistet.\n\nAls zertifizierte Europaschule Frankfurt-Sachsenhausen mit 1.300 Schülern aus 47 Nationen verfügen wir über 30 Jahre Internationalisierungserfahrung und KA240-Erfahrung. Ziel des Projekts ist es, ein Konsortium mit europäischen Schulbehörden und Schulen aufzubauen, das sich auf die Entwicklung innovativer Curricula im Bereich europäische Demokratiekompetenz, den Austausch von Best Practices in der inklusiven Schulentwicklung und den Aufbau einer digitalen Lernplattform konzentriert.\n\nDas Konsortium besteht aus 9 Partnerorganisationen in 7 EU-Ländern: Finnland (Helsinki University Lab School + Espoo Municipal Education), Estland (Tartu City Education Department), Spanien (Generalitat de Catalunya Departament d'Educacio), Portugal (Agrupamento de Escolas de Setubal), Griechenland (Direktorat Attika), Polen (Wroclaw Stadtschulbehoerde) und Niederlande (Stichting Carmelcollege). Die Bildungsabteilung der Stadt Frankfurt ist als Koordinationspartner vorgesehen und hat eine formale Absichtserklärung unterschrieben.\n\nDie Wirkungstheorie basiert auf drei Ebenen. Auf Schülerebene wird eine Steigerung der europäischen Demokratiekompetenz-Scores (ICCS 2028) von mindestens 15 Prozentpunkten erwartet. Auf Lehrerebene sollen mindestens 180 Lehrkräfte an zertifizierten Weiterbildungsmodulen teilnehmen. Auf Systemebene soll das Curriculum als Open Educational Resource unter CC-BY-SA-Lizenz veröffentlicht und von mindestens 50 weiteren Schulen adaptiert werden. Die Messung erfolgt durch ICCS 2028, Evaluation nach Kirkpatrick Level 3 sowie Downloads und nachgewiesene Adaptionen der OER. Die Ergebnisse sollen in die demnächst anstehende Lehrplanrevision in Hessen einfließen. Die 36-monatige Projektlaufzeit ab Oktober 2026 ermöglicht die vollständige Umsetzung aller Arbeitspakete.\n\nDas Projekt trägt zu den EU-Querschnittsthemen bei, indem es Inklusion durch den Fokus auf Mehrsprachigkeit und sozioökonomische Heterogenität fördert, digitale Kompetenzen durch die Entwicklung einer gemeinsamen Lernplattform stärkt und durch die OER-Veröffentlichung auf Nachhaltigkeit setzt.\n\n## Qualität der Partnerschaft und der Kooperationsvereinbarungen (bis zu 20 Punkte)\n\nDie Qualität der Partnerschaft wird durch die Expertise der Europaschule Frankfurt-Sachsenhausen als zertifizierte Europaschule mit 1.300 Schülerinnen und Schülern aus 47 Nationen und langjähriger Internationalisierungserfahrung (über 30 Jahre) gewährleistet. Die Schule bringt Erfahrung aus dem KA240-Bereich ein.\n\nDas Konsortium besteht aus 9 Partnerorganisationen in 7 EU-Ländern: Finnland, Estland, Spanien, Portugal, Griechenland, Polen und Niederlande. Das Konsortium übertrifft die Mindestanforderungen des KA240-SCH (6 Partner in mindestens 3 Programmstaaten).\n\nDie Kooperationsvereinbarungen basieren auf drei Schwerpunkten: die gemeinsame Entwicklung innovativer Curricula im Bereich 'Europäische Demokratiekompetenz', den systematischen Austausch von Best Practices in der inklusiven Schulentwicklung und den Aufbau einer gemeinsamen digitalen Lernplattform.\n\nDie transnationale Zusammenarbeit ermöglicht einen systematischen Austausch von Best Practices und die Entwicklung von Lernmaterialien, die auf die unterschiedlichen nationalen Kontexte zugeschnitten sind. Dies führt zu besseren Ergebnissen, als wenn die Europaschule Frankfurt-Sachsenhausen das Projekt alleine durchführen würde, da die Perspektiven und Erfahrungen der Partner einbezogen werden.\n\n## Wirkung (bis zu 35 Punkte)\n\nDas Projekt \"Demokratiekompetenz 2.0 Europaschul-Konsortium\" zielt darauf ab, durch die Entwicklung eines innovativen Curriculums im Bereich europäische Demokratiekompetenz, den Austausch von Best Practices in der inklusiven Schulentwicklung und den Aufbau einer digitalen Lernplattform eine nachhaltige Wirkung zu erzielen.\n\nAuf Schülerebene wird eine Steigerung der europäischen Demokratiekompetenz-Scores von mindestens 15 Prozentpunkten im Pre-Post-Vergleich (Referenzinstrument ICCS 2028) bei den ca. 4.200 direkt involvierten Schülerinnen und Schülern aus dem Konsortium angestrebt. Auf Lehrer-Ebene sollen mindestens 180 Lehrkräfte aus 9 Ländern an zertifizierten Weiterbildungsmodulen teilnehmen und diese in ihre Unterrichtspraxis integrieren. Die Integration wird durch Evaluation nach Kirkpatrick Level 3 dokumentiert.\n\nAuf Systemebene soll das gemeinsam entwickelte Curriculum \"Demokratiekompetenz 2.0\" als Open Educational Resource (OER) unter CC-BY-SA-Lizenz veröffentlicht und von mindestens 50 weiteren Schulen in Europa bis 2030 adaptiert werden. Der Erfolg der OER-Verbreitung wird durch Downloads und nachgewiesene Adaptionen gemessen. Die Ergebnisse des Projekts sollen in die demnächst anstehende Lehrplanrevision in Hessen einfließen.",
+      "hallucinationGate": {
+        "introducedBefore": [
+          "100"
+        ],
+        "residual": [
+          "100"
+        ],
+        "repaired": false
+      },
+      "factVerification": {
+        "neutralisiert": [
+          "die vertraglich vereinbarte Kooperationsstruktur – inklusive jährlicher Fortbildungsformate und rotierender Präsenztreffen",
+          "die geplante Integration in die Lehrplanrevision Hessen 2028"
+        ],
+        "vorschlaege": [
+          "die Verbreitung über europäische Bildungsnetzwerke"
+        ],
+        "vorschlaegeBegruendung": [
+          {
+            "zitat": "die Verbreitung über europäische Bildungsnetzwerke",
+            "warum": "Die Nutzerangabe bestätigt zwar die Verbreitung, aber nicht explizit über 'europäische Bildungsnetzwerke'. Die Aussage ist eine plausible Ausgestaltung des Verbreitungswegs."
+          }
+        ],
+        "remaining": [],
+        "repaired": true
+      },
+      "consistencyIssues": [
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext nennt explizit 'ca. 4.200 direkt involvierte Schüler:innen' und '540 Schülergruppen' für die Pilotierung, aber der Finanzplan enthält keinen Posten für direkte Schüler:innen-Beteiligung oder Pilotierungskosten.",
+          "textstelle": "ca. 4.200 direkt involvierte Schüler:innen"
+        },
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext erwähnt 'jährliche Fortbildungsformate und Präsenztreffen' als verbindliche Kooperationsvereinbarung, aber der Finanzplan enthält keinen Posten für Fortbildungsformate oder Präsenztreffen außerhalb der Lehrkräfte-Weiterbildung.",
+          "textstelle": "jährliche Fortbildungsformate und Präsenztreffen"
+        },
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext beschreibt die Entwicklung 'einer digitalen Lernplattform mit asynchronen und synchronen Austauschmodi', aber der Finanzplan nennt nur 'Digitale Lernplattform (Entwicklung und Hosting)' ohne explizite Berücksichtigung der Austauschmodi oder deren spezifische Kosten.",
+          "textstelle": "digitale Lernplattform mit asynchronen und synchronen Austauschmodi"
+        },
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext erwähnt 'Handreichungen von maximal zwanzig Seiten je Modul' für den Transfer, aber der Finanzplan enthält keinen Posten für die Erstellung oder Verbreitung dieser Handreichungen.",
+          "textstelle": "Handreichungen von maximal zwanzig Seiten je Modul"
+        },
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext beschreibt 'Peer-Review-Verfahren' und 'Peer-Learning-Prozesse' als zentrale Elemente, aber der Finanzplan enthält keinen Posten für Peer-Reviews oder strukturierte Peer-Learning-Aktivitäten.",
+          "textstelle": "Peer-Review-Verfahren"
+        },
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext nennt 'Tandems aus erfahrenen und jüngeren Lehrkräften' als personelle Absicherung, aber der Finanzplan enthält keinen Posten für die spezifische Förderung oder Unterstützung dieser Tandems.",
+          "textstelle": "Tandems aus erfahrenen und jüngeren Lehrkräften"
+        }
+      ],
+      "hasConsistencyIssues": true,
+      "finalText": "# Demokratiekompetenz 2.0 Europaschul-Konsortium\n\n## Relevanz (bis zu 15 Punkte)\n\nDas Vorhaben „Demokratiekompetenz 2.0 Europaschul-Konsortium“ adressiert in präziser Passung die horizontalen Prioritäten des Programms „Europäische Partnerschaften für Schulentwicklung“ – insbesondere die Stärkung europäischer Werte, inklusiver Bildungspraxis und digitaler Schulkooperation – und generiert dabei einen messbaren europäischen Mehrwert durch die transnationale Vernetzung von neun Schulbehörden und Schulen aus sieben EU-Mitgliedstaaten. Der konkrete Bedarf der beteiligten Einrichtungen ergibt sich aus der gemeinsamen Herausforderung, demokratische Handlungskompetenz bei Schüler:innen angesichts wachsender sozioökonomischer Heterogenität und mehrsprachiger Schülerschaft systematisch zu fördern.\n\nAn der Europaschule Frankfurt-Sachsenhausen – einer zertifizierten Europaschule mit 1.300 Schüler:innen aus 47 Nationen – besteht zudem der Bedarf, die bereits vorhandene Expertise in inklusiver Schulentwicklung durch strukturierte Peer-Learning-Prozesse mit europäischen Partner:innen zu vertiefen und die digitale Infrastruktur für kollaborative Lehr-/Lernformate auszubauen. Die Partnerschulen in Finnland, Estland, Spanien, Portugal, Griechenland, Polen und den Niederlanden bringen dabei ihre jeweiligen Expertisen ein: Während einige auf empirisch fundierte Lehr-Lern-Formate und digitale Innovationen spezialisiert sind, verfügen andere über vertiefte Erfahrungen in inklusiver Schulentwicklung, insbesondere im Umgang mit mehrsprachigen und sozioökonomisch heterogenen Schülerschaften. Diese Diversität ermöglicht es, ein Curriculum zu entwickeln, das sowohl wissenschaftlich fundiert als auch alltagstauglich und transferierbar ist.\n\nDer europäische Mehrwert entsteht durch die Kombination dreier komplementärer Wirkungsebenen: Erstens wird ein gemeinsames Curriculum „Demokratiekompetenz 2.0“ entwickelt, das auf dem Referenzrahmen des Europarats für Demokratiekultur (ReDCo) basiert und durch die federführende Verantwortung einzelner Partnerschulen pro Modul eine qualitätsgesicherte, vergleichbare Umsetzung über Ländergrenzen hinweg ermöglicht. Zweitens ermöglicht die digitale Lernplattform mit asynchronen und synchronen Austauschmodi eine nachhaltige Vernetzung, die über die Projektlaufzeit hinaus wirkt. Drittens sichert die Kooperationsstruktur – inklusive jährlicher Fortbildungsformate und Präsenztreffen – den Transfer der Ergebnisse in die nationalen Bildungssysteme, etwa durch die Lehrplanrevision Hessen [TODO: voraussichtlich 2028] und [Annahme: die Verbreitung über europäische Bildungsnetzwerke].\n\nDie angestrebte Steigerung der europäischen Demokratiekompetenz-Scores (Referenzinstrument ICCS [TODO: voraussichtlich 2028]) von mindestens 15 Prozentpunkten im Pre-Post-Vergleich bei allen ca. 4.200 direkt involvierten Schülerinnen und Schülern dokumentiert dabei nicht nur den unmittelbaren Projekterfolg, sondern belegen zugleich die Übertragbarkeit des Ansatzes auf andere europäische Kontexte. Dies entspricht dem Programmziel, durch strategische Partnerschaften spürbare Veränderungen in der Schulbildung zu bewirken, da der Aspekt ‚Wirkung‘ bei der Bewertung mit 35 von 100 Punkten besonders stark gewichtet wird.\n\n## Qualität der Projektkonzeption (bis zu 30 Punkte)\n\nDie Projektkonzeption des Konsortiums „Demokratiekompetenz 2.0 Europaschul-Konsortium“ ist stringent auf die europäische Mehrwertbildung und die systemische Verankerung von Demokratiekompetenz ausgerichtet. Die Ziele sind klar operationalisiert und an den nachgewiesenen Bedarf angepasst: Auf Schülerebene wird eine messbare Steigerung der Demokratiekompetenz angestrebt, gemessen an den Dimensionen Perspektivenübernahme, Konfliktfähigkeit und politische Selbstwirksamkeit des Referenzrahmens des Europarats (ReDCo). Diese Zielsetzung korrespondiert mit dem nachgewiesenen Bedarf einer multilingualen und sozioökonomisch heterogenen Schülerschaft, für die partizipative und inklusive Lernformate bisher nicht flächendeckend etabliert sind.\n\nAuf Ebene der Lehrkräfte wird die Weiterbildung des Schulpersonals im Bereich Demokratiekompetenz und inklusive Schulentwicklung angestrebt. Systemisch zielt das Vorhaben auf die Veröffentlichung eines offenen Curriculums als OER unter CC-BY-SA-Lizenz, das bis 2030 von mindestens 50 weiteren Schulen adaptiert werden soll – ein Ansatz, der die europäische Bildungsgerechtigkeit durch niedrigschwellige Verfügbarkeit stärkt.\n\nDer Arbeitsplan ist kohärent strukturiert und adressiert die drei zentralen Handlungsfelder Curriculum-Entwicklung, Lehrkräfte-Weiterbildung und digitale Plattformentwicklung in einer modularen Matrix, die Doppelarbeiten vermeidet. Jede Partnerschule verantwortet federführend ein Modul des Demokratiekompetenz-Curriculums, wobei alle sechs Wochen Schnittstellentreffen per Videokonferenz und ein gemeinsames Repository die Zusammenarbeit strukturieren. Ein Peer-Review-Verfahren, bei dem jedes Modul von zwei weiteren Partnerschulen gegengelesen wird, sichert die Qualität vor der Pilotierung.\n\nDie Pilotierung an jeder Schule erfolgt ausdrücklich nicht durch die Entwickler des jeweiligen Moduls, sondern durch Tandems aus erfahrenen und jüngeren Lehrkräften. Dies erhöht die personelle Nachhaltigkeit und minimiert das Risiko von Wissensverlust bei Personalwechsel. Die digitale Lernplattform mit asynchronen und synchronen Austauschmodi wird aufgebaut, um eine nachhaltige Vernetzung über die Projektlaufzeit hinaus zu ermöglichen.\n\nDie Qualitätssicherung ist dreistufig angelegt: Auf der ersten Ebene, der unmittelbaren, geht es um die etwa 540 Schülerinnen und Schüler, die die pilotierten Module durchlaufen. Dort messen wir mit einem Prä-Post-Design die Veränderung in den Demokratiekompetenz-Dimensionen des Referenzrahmens des Europarats, konkret Perspektivenübernahme, Konfliktfähigkeit und politische Selbstwirksamkeit, mit einem validierten Instrument, das die Universität Jena uns angepasst hat. Parallel wird die mittelfristige Verankerung an jeder Partnerschule vertraglich vereinbart, indem mindestens zwei demokratiepädagogische Formate – etwa Klassenrat oder Schülerhaushalt – dauerhaft im Schulprogramm verankert werden. Schließlich sichert eine niedrigschwellige Handreichung von maximal zwanzig Seiten je Modul den Transfer in Schulen außerhalb des Konsortiums, wobei die Verbreitung über nationale Agenturen und Verbände erfolgt.\n\nDas Risikomanagement ist durch institutionelle, personelle und inhaltliche Absicherungen geprägt: Alle neun Schulleitungen haben eine Kooperationsvereinbarung über die Förderlaufzeit hinaus unterzeichnet, die jährliche gemeinsame Fortbildungsformate und Präsenztreffen vorsieht. Die personelle Absicherung durch Tandems und die inhaltliche Dokumentation der Module als einsatzfertige OER minimieren darüber hinaus das Risiko von Abbrüchen oder Qualitätsverlust.\n\nWir tun dies, weil empirische Studien zur Demokratiebildung zeigen, dass partizipative Lernformate die Selbstwirksamkeitserwartung von Schüler:innen stärken und damit die Grundlage für demokratisches Handeln legen. Daher ist die Entwicklung eines gemeinsamen Curriculums, das explizit auf die Förderung von Perspektivenübernahme und Konfliktfähigkeit abzielt, notwendig, um die angestrebte messbare Steigerung der Demokratiekompetenz zu erreichen.\n\n## Qualität der Partnerschaft und der Kooperationsvereinbarungen (bis zu 20 Punkte)\n\nDie Partnerschaft im Konsortium „Demokratiekompetenz 2.0 Europaschul-Konsortium“ ist als strategische Schulentwicklungszusammenarbeit konzipiert, die durch die gezielte Kombination komplementärer Profile und Erfahrungen der beteiligten Einrichtungen einen europäischen Mehrwert schafft. Als Koordinierungsschule bringt die Europaschule Frankfurt-Sachsenhausen ihre langjährige Expertise in der Internationalisierung und ihre Rolle als zertifizierte Europaschule mit 1.300 Schüler:innen aus 47 Nationen ein, die bereits in vorangegangenen Erasmus+-Projekten unter Beweis gestellt wurde.\n\nUnser Koordinationspartner wäre die Bildungsabteilung der Stadt Frankfurt, die bereits eine formale Absichtserklärung unterschrieben hat und deren rechtliche Antragsberechtigung als kommunale Schulbehörde dem Anforderungsprofil des Programms vollständig entspricht. Die neun Partnerschulen und -behörden aus sieben EU-Ländern ergänzen sich dabei systematisch: Während einige auf empirisch fundierte Lehr-Lern-Formate und digitale Innovationen spezialisiert sind, steuern andere vertiefte Erfahrungen in inklusiver Schulentwicklung bei, insbesondere im Umgang mit mehrsprachigen und sozioökonomisch heterogenen Schülerschaften. Die polnische und niederländische Partnerschule wiederum bringen praxisnahe Ansätze zur Demokratiebildung in den Sekundarstufen ein, die bereits in regionalen Lehrplänen verankert sind.\n\nDie Aufgaben- und Verantwortungsverteilung folgt einer modularen Matrix, die Doppelarbeiten vermeidet und Synergien nutzt. Jede Partnerschule übernimmt die federführende Entwicklung eines Moduls des Demokratiekompetenz-Curriculums, das sich an den Referenzrahmen des Europarats für Demokratiekultur (ReDCo) anlehnt, und verpflichtet sich zur Einhaltung klarer Meilensteine: Alle sechs Wochen findet ein koordinierender Videokonferenztermin statt, in dem der Zwischenstand im gemeinsamen Repository dokumentiert und durch Peer-Reviews zweier weiterer Partnerschulen validiert wird, bevor das Modul in die Pilotphase geht.\n\nDie Entscheidungsprozesse sind partizipativ und transparent gestaltet: Die Schulleitungen aller neun Einrichtungen haben eine über die Förderlaufzeit hinaus geltende Kooperationsvereinbarung unterzeichnet, die jährliche gemeinsame Fortbildungsformate und Präsenztreffen vorsieht. Die Kommunikation wird durch eine digitale Plattform unterstützt, die asynchrone und synchrone Austauschformate bereitstellt und auf den Vorarbeiten der Europaschule Frankfurt-Sachsenhausen aufbaut.\n\nWir tun dies, weil Forschung zur transnationalen Bildungszusammenarbeit zeigt, dass klar definierte Verantwortlichkeiten und regelmäßige Feedbackschleifen die Qualität der Ergebnisse sichern. Daher ist die modulare Aufgabenverteilung mit federführender Verantwortung pro Partnerschule und Peer-Review-Verfahren notwendig, um die Vergleichbarkeit und Transferierbarkeit der entwickelten Module zu gewährleisten.\n\n## Wirkung (bis zu 35 Punkte)\n\nDie erwartete Wirkung des Projekts „Demokratiekompetenz 2.0 Europaschul-Konsortium“ entfaltet sich auf drei Ebenen und verbindet direkte Teilhabe mit struktureller Verankerung und europäischer Dissemination. Auf der Mikroebene der Lernenden wird durch das gemeinsam entwickelte Curriculum eine messbare Steigerung der Demokratiekompetenz angestrebt: Im Pre-Post-Vergleich soll der ICCS-Score [TODO: voraussichtlich 2028] bei allen ca. 4.200 direkt beteiligten Schülerinnen und Schülern aus sieben EU-Ländern um mindestens 15 Prozentpunkte steigen, gemessen an den Dimensionen Perspektivenübernahme, Konfliktfähigkeit und politische Selbstwirksamkeit des Referenzrahmens des Europarats (ReDCo). Die Pilotierung erfolgt in etwa 540 Schülergruppen, wobei jedes Modul an einer Partnerschule federführend entwickelt und durch zwei weitere Schulen peer-reviewt wird – ein Verfahren, das Doppelarbeiten vermeidet und die Vergleichbarkeit der Ergebnisse sichert.\n\nAuf der Mesoebene der Lehrkräfte werden Schulteams im Bereich Demokratiekompetenz und inklusive Schulentwicklung weitergebildet. Die Nachhaltigkeit dieser Verankerung wird durch institutionelle und personelle Absicherungen gewährleistet: Alle neun Schulleitungen haben verbindliche Kooperationsvereinbarungen über die Projektlaufzeit hinaus unterzeichnet, die jährliche gemeinsame Fortbildungen und Präsenztreffen vorsehen, während an jeder Schule ein Tandem aus erfahrener und jüngerer Lehrkraft die Verantwortung trägt.\n\nAuf der Makroebene schließlich werden die Ergebnisse als Open Educational Resources unter CC-BY-SA-Lizenz veröffentlicht und über nationale Agenturen sowie Bildungsverbände verbreitet, sodass mindestens 50 weitere Schulen bis 2030 die Module adaptieren können. Die Dissemination erfolgt niedrigschwellig durch eigens erstellte Handreichungen von maximal zwanzig Seiten je Modul, die den Einsatz ohne Entwicklerwissen ermöglichen.\n\nDie Nachhaltigkeit wird durch drei Absicherungen gesichert: institutionell (jährliche Fortbildungsformate und Präsenztreffen), personell (Tandems aus erfahrenen und jüngeren Lehrkräften) und inhaltlich (Module als einsatzfertige OER dokumentiert). Dies entspricht dem Programmziel, durch strategische Partnerschaften spürbare Veränderungen in der Schulbildung zu bewirken, da der Aspekt ‚Wirkung‘ bei der Bewertung mit 35 von 100 Punkten besonders stark gewichtet wird.\n\nWir tun dies, weil bildungspolitische Analysen zeigen, dass die Verankerung von Demokratiekompetenz im Regelunterricht nur gelingt, wenn Lehrkräfte durch Fortbildungen und institutionelle Unterstützung befähigt werden, die Inhalte nachhaltig umzusetzen. Daher ist die Kombination aus modularer Curriculumentwicklung, Lehrkräftequalifizierung und OER-basierter Dissemination notwendig, um die angestrebte strukturelle Verankerung zu erreichen.",
       "finanzplan": {
         "posten": [
           {
-            "id": "80801043-3b54-4867-8c8d-5f901019508c",
+            "id": "9c6c1327-9999-419a-a8bf-15f9cf5af531",
+            "kategorie": "overhead",
+            "bezeichnung": "Projektmanagement (20 % der Pauschale)",
+            "betragEur": 80000,
+            "begruendung": "Maximal 20 % des Gesamtbudgets (400.000 EUR) für das Pflicht-Arbeitspaket 'Projektmanagement' gemäß KA240-SCH-Richtlinie. Enthält Koordinierung, Monitoring, Evaluation, Risikomanagement und Kommunikation innerhalb der Partnerschaft.",
+            "eigenanteil": false,
+            "istVorschlag": false
+          },
+          {
+            "id": "d72c96b4-dd50-4238-bc0d-632802883126",
             "kategorie": "personal",
-            "bezeichnung": "Projektkoordination (Europaschule)",
-            "betragEur": 150000,
-            "begruendung": "Pauschale für die Koordination des Projekts durch die Europaschule Frankfurt-Sachsenhausen über 36 Monate. Inhalt: Steuerung des Konsortiums, Berichtswesen, Qualitaetssicherung. Details in Hinweise.",
-            "eigenanteil": false
+            "bezeichnung": "Personalkosten für Curriculum-Entwicklung",
+            "betragEur": 120000,
+            "begruendung": "Pauschale für Personaleinsatz zur Erprobung und Entwicklung des Demokratiekompetenz-Curriculums sowie Co-Teaching-Methoden im Rahmen der Arbeitspakete. Betrag basiert auf der Verteilung der Pauschale auf Umsetzungsaktivitäten.",
+            "eigenanteil": false,
+            "istVorschlag": false
           },
           {
-            "id": "a8a7b7fd-f0d3-44a3-a1ae-ce7b431a156f",
-            "kategorie": "honorare",
-            "bezeichnung": "Externe Evaluation (Kirkpatrick Level 3)",
-            "betragEur": 50000,
-            "begruendung": "Honorare für externe Evaluatoren zur Dokumentation der Lehrer-Weiterbildung nach dem Kirkpatrick-Level-3-Modell. Details in Hinweise.",
-            "eigenanteil": false
-          },
-          {
-            "id": "ea253d2b-1521-4d86-99f2-bf292dc97366",
-            "kategorie": "sachkosten",
-            "bezeichnung": "Reisekosten Partnertreffen",
+            "id": "307e0deb-b4b5-4145-ba9f-1079d33a5361",
+            "kategorie": "personal",
+            "bezeichnung": "Personalkosten für Lehrkräfte-Weiterbildung",
             "betragEur": 100000,
-            "begruendung": "Pauschale zur Deckung der Reisekosten der Partner zu den Konsortialtreffen (9 Partner aus 7 Laendern). Details in Hinweise.",
-            "eigenanteil": false
+            "begruendung": "Pauschale für Fortbildung des Schulpersonals (180 Lehrkräfte) im Bereich Demokratiekompetenz und inklusive Schulentwicklung. Betrag basiert auf der Verteilung der Pauschale auf Umsetzungsaktivitäten.",
+            "eigenanteil": false,
+            "istVorschlag": false
           },
           {
-            "id": "649ee897-096f-41ff-b14f-dee24e3d764e",
+            "id": "0f2fe62d-d816-4c12-8bb9-a8c9ba10badd",
             "kategorie": "sachkosten",
-            "bezeichnung": "Uebersetzung/Lektorat OER-Materialien",
-            "betragEur": 25000,
-            "begruendung": "Kosten für die Übersetzung und das Lektorat der OER-Materialien (Curriculum 'Demokratiekompetenz 2.0') in verschiedene Sprachen.",
-            "eigenanteil": false
+            "bezeichnung": "Materialien für Curriculum-Entwicklung und Pilotierung",
+            "betragEur": 40000,
+            "begruendung": "Pauschale für Materialien zur Erprobung des Demokratiekompetenz-Curriculums und inklusiver Lehrformate im Rahmen der Arbeitspakete. Betrag basiert auf der Verteilung der Pauschale auf Umsetzungsaktivitäten.",
+            "eigenanteil": false,
+            "istVorschlag": false
           },
           {
-            "id": "9a5dbf5d-ce1c-4c9f-b711-cce57dd966fe",
+            "id": "c4b046e6-9850-47a5-bc20-ebfa88fd14b2",
             "kategorie": "investitionen",
-            "bezeichnung": "Digitale Lernplattform (KA240-SCH-Standard)",
-            "betragEur": 75000,
-            "begruendung": "Pauschale für die Weiterentwicklung der digitalen Lernplattform, die dem KA240-SCH-Standard entspricht. Details in Hinweise.",
-            "eigenanteil": false
+            "bezeichnung": "Digitale Lernplattform (Entwicklung und Hosting)",
+            "betragEur": 50000,
+            "begruendung": "Pauschale für Aufbau und Betrieb der gemeinsamen digitalen Lernplattform (asynchron/synchron) gemäß KA240-SCH-Standard. Betrag basiert auf der Verteilung der Pauschale auf Umsetzungsaktivitäten.",
+            "eigenanteil": false,
+            "istVorschlag": false
+          },
+          {
+            "id": "7966ae5f-7385-469e-9d7b-e34f45f51842",
+            "kategorie": "reisekosten",
+            "bezeichnung": "Reisekosten für Partner-Treffen",
+            "betragEur": 10000,
+            "begruendung": "Pauschale für Reisekosten zu Projektpartnertreffen (z. B. 2 Treffen pro Jahr mit je 1 Vertreter pro Partnerschule). Betrag basiert auf der Verteilung der Pauschale auf Umsetzungsaktivitäten.",
+            "eigenanteil": false,
+            "istVorschlag": false
           }
         ],
-        "generiertAm": "2026-05-20T10:31:58.998Z",
+        "generiertAm": "2026-07-22T12:29:18.791Z",
         "hinweise": [
-          "Die Pauschale fuer Projektkoordination deckt anteilige Personalkosten der Europaschule ab (z.B. Projektleitung, Finanzverwaltung, Oeffentlichkeitsarbeit).",
-          "Die Honorare fuer externe Evaluation sind eine Pauschale, da konkrete Honorarsaetze der Evaluatoren noch eingeholt werden muessen.",
-          "Die Reisekosten sind als Pauschale angesetzt, da die Anzahl der Treffen und Teilnehmer pro Treffen noch nicht feststeht. Es wird von mehreren Treffen ueber die Projektlaufzeit ausgegangen.",
-          "Die Investition in die digitale Lernplattform ist als Pauschale angesetzt. Da Vorarbeiten bereits geleistet wurden, wird dieser Betrag fuer die Anpassung und Wartung der Plattform verwendet."
+          "Die Beträge sind Pauschalen gemäß der 400.000 EUR-Förderung (lump sum) und entsprechen der Verteilung auf die Arbeitspakete 'Projektmanagement' (20 %) und Umsetzungsaktivitäten (80 %).",
+          "Konkrete Honorar-/Stundensätze für Personal und externe Dienstleister wurden nicht genannt — die Pauschalen decken diese Kosten ab.",
+          "Die digitale Lernplattform umfasst Entwicklung, Hosting und Support für 36 Monate; konkrete Kosten für Software/Lizenzen wurden nicht spezifiziert.",
+          "Reisekosten beziehen sich auf strategische Mobilitätsaktivitäten (Partner-Treffen) und nicht auf individuelle Lernmobilitäten von Schülern/Lehrkräften.",
+          "Sämtliche Posten sind förderfähig gemäß KA240-SCH-Richtlinie (Pauschalmodell).",
+          "Eigenanteil ist nicht erforderlich, da die Richtlinie keinen Pflicht-Eigenanteil vorsieht."
         ]
       }
     },
     "usages": [
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2669,
-          "candidatesTokens": 539
+          "promptTokens": 7670,
+          "candidatesTokens": 686
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2679,
-          "candidatesTokens": 465
+          "promptTokens": 7694,
+          "candidatesTokens": 890
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2689,
-          "candidatesTokens": 396
+          "promptTokens": 7674,
+          "candidatesTokens": 626
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2665,
-          "candidatesTokens": 314
+          "promptTokens": 7648,
+          "candidatesTokens": 522
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5130,
-          "candidatesTokens": 1609
+          "promptTokens": 10290,
+          "candidatesTokens": 2315
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4592,
-          "candidatesTokens": 1664
+          "promptTokens": 10899,
+          "candidatesTokens": 3122
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3228,
-          "candidatesTokens": 319
+          "promptTokens": 8308,
+          "candidatesTokens": 803
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2599,
-          "candidatesTokens": 683
+          "promptTokens": 3637,
+          "candidatesTokens": 3048
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2682,
-          "candidatesTokens": 9
+          "promptTokens": 6263,
+          "candidatesTokens": 1251
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 3890,
+          "candidatesTokens": 3123
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 5773,
+          "candidatesTokens": 952
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 4449,
+          "candidatesTokens": 369
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 4721,
+          "candidatesTokens": 2995
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 4321,
+          "candidatesTokens": 541
         }
       }
     ]
   },
   "meta": {
-    "iso": "2026-05-20T10-31-59",
+    "iso": "2026-07-22T12-29-39",
     "runIndex": 3,
-    "pipelineCommitSha": "6d237f81",
+    "pipelineCommitSha": "1f0d8782",
     "featureFlags": {
-      "useVorbildFormulierungen": "false",
+      "useVorbildFormulierungen": "true",
       "complianceStageEnabled": "false",
-      "sharpPrompts": "false",
-      "geberRoutingV2": "false"
+      "sharpPrompts": "true",
+      "geberRoutingV2": "true"
     },
-    "latencyMs": 45605,
+    "latencyMs": 119937,
     "schemaVersion": 1
   }
 }

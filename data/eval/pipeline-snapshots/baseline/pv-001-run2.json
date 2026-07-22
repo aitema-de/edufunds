@@ -7,7 +7,15 @@
       "foerdergeber": "Bundesministerium für Bildung und Forschung (BMBF)",
       "foerdergeberTyp": "bund",
       "schulformen": [
-        "grundschule"
+        "grundschule",
+        "hauptschule",
+        "realschule",
+        "gymnasium",
+        "gesamtschule",
+        "iss",
+        "iss-mit-go",
+        "foerderschule",
+        "berufsschule"
       ],
       "bundeslaender": [
         "alle"
@@ -32,7 +40,12 @@
       "kiAntragGeeignet": true,
       "verifiziertAm": "2026-02-12",
       "verifiziertVon": "Web-Recherche BMBF",
-      "bemerkung": "Gesamtvolumen: 5 Mrd. € (2,5 Mrd. Bund aus Sondervermögen SVIK + 2,5 Mrd. Länder). 2,25 Mrd. € für digitale Bildungsinfrastruktur. Laufzeit: 2026-2030. Politische Einigung: 18.12.2024."
+      "bemerkung": "Gesamtvolumen: 5 Mrd. € (2,5 Mrd. Bund aus Sondervermögen SVIK + 2,5 Mrd. Länder). 2,25 Mrd. € für digitale Bildungsinfrastruktur. Laufzeit: 2026-2030. Politische Einigung: 18.12.2024.",
+      "fristZustand": {
+        "art": "geschlossen",
+        "wiedereroeffnungErwartet": "sobald die Laender ihre Foerderrichtlinien erlassen haben (je Land unterschiedlich)",
+        "quelle": "Primaerquelle digitalpaktschule.de/de/digitalpakt-2-0-1874.html, geprueft 22.07.2026: 'Schultraeger stellen erst dann Foerderantraege, wenn die Laender entsprechende Richtlinien erlassen haben. Dies kann je nach Land unterschiedlich lange dauern.' Es gibt damit aktuell keinen bundesweiten Antragsweg; genannt ist nur 'Der vorzeitige Massnahmenbeginn liegt beim 1. Januar 2026'. Antragsweg laeuft ueber Schultraeger/Laender, nicht ueber die Schule direkt."
+      }
     },
     "facts": {
       "schule": {
@@ -74,12 +87,20 @@
       }
     },
     "richtlinie": {
-      "version": "2026-05-19",
+      "version": "2026-06-19",
+      "dokumentLabel": "Medienkonzept",
+      "dokumentLabelGenus": "das",
       "quellen": [
-        "https://www.digitalpaktschule.de/de/digitalpakt-2-0-1874.html"
+        "https://www.digitalpaktschule.de/de/digitalpakt-2-0-1874.html",
+        "https://www.digitalpaktschule.de/de/schultraeger-1704.html",
+        "https://medienkompetenzrahmen.nrw/medienkonzept",
+        "https://www.lmz-bw.de/angebote/digitalpakt-schule/digitalpakt-2019-2024/fragen-und-antworten-zur-medienentwicklungsplanung",
+        "https://digitaleschule.niedersachsen.de/startseite/info_material/medienbildungskonzepte/das-medienbildungskonzept-im-digitalpakt-178877.html",
+        "https://klickpunktschule.bycs.de/beitrag/bestandteile-eines-medienkonzepts",
+        "https://klickpunktschule.bycs.de/beitrag/ausstattungsplan-2"
       ],
       "foerderhoehe": {
-        "bemerkung": "Gesamtvolumen 5 Mrd. EUR ueber 2025-2030 (2,5 Mrd Bund + 2,5 Mrd Laender). Konkrete Foerderhoehe PRO SCHULE wird erst ueber Laender-Richtlinien operationalisiert — variiert je Bundesland und Antragsjahr. Typisch fuer DigitalPakt 1 waren 500 EUR pro Schueler (Grund-/Sockelbetrag) plus Zuschlag-Komponenten. Anwenderbetrag daher zur Laufzeit beim zustaendigen Ministerium des Bundeslandes erfragen."
+        "bemerkung": "Kein fester Förderbetrag pro Schule dokumentiert — der DigitalPakt 2.0 ist eine Bund-Länder-Finanzierung ohne bundesweit einheitliche Mindest- oder Höchstbeträge. Gesamtvolumen 5 Mrd. EUR, je zur Hälfte finanziert durch Bund (2,5 Mrd. EUR, größtenteils aus dem Sondervermögen „Infrastruktur und Klimaneutralität“) und Länder (gleichwertiger Anteil). Laufzeit 2026 bis Ende 2030, Maßnahmen an Schulen können bis 2032 abgeschlossen werden; vorzeitiger Maßnahmenbeginn rückwirkend ab 01.01.2025. Finanzierungslogik Handlungsstrang I (Investitionen): Der Bund stellt 2,25 Mrd. EUR als Finanzhilfe an die Länder bereit — davon gut 2 Mrd. EUR für landesbezogene Maßnahmen (Verteilung auf die Länder nach dem Königsteiner Schlüssel) und 112,5 Mio. EUR für länderübergreifende Vorhaben. Die Länder steuern über ihre Landesprogramme 500 Mio. EUR zusätzlich bei; der Eigenanteil der Länder beträgt damit zwei Neuntel der Bundesmittel (ca. 22 %). Die Mittelvergabe an Schulträger erfolgt über die jeweiligen Landesrichtlinien — konkrete Beträge pro Schule bzw. Schulträger ergeben sich erst daraus und variieren je Bundesland."
       },
       "kostenpositionen": [
         {
@@ -138,7 +159,7 @@
         "formenErlaubt": [
           "finanziell"
         ],
-        "bemerkung": "Eigenanteil der Laender: zwei Neuntel der Bundesmittel (ca. 22 %). In der Praxis teilweise weitergegeben an Schultraeger (Kommune). Antragsstellende Schule muss sich beim Schultraeger zur Kofinanzierung abstimmen."
+        "bemerkung": "Eigenanteil der Laender: zwei Neuntel der Bundesmittel (ca. 22 %). In der Praxis teilweise weitergegeben an Schultraeger (Kommune). Die Schule stimmt sich beim Schultraeger zur Kofinanzierung ab; der Traeger verantwortet Finanzierung und Antrag."
       },
       "kumulierung": {
         "erlaubt": "bedingt",
@@ -151,93 +172,155 @@
       "antragsstruktur": {
         "abschnitte": [
           {
-            "id": "bedarfsanalyse",
-            "name": "Bedarfsanalyse und Ausgangslage",
+            "id": "leitbild",
+            "name": "Leitbild und paedagogische Ziele der Medienbildung",
             "pflicht": true,
             "leitfragen": [
-              "Welcher konkrete digitale Bedarf besteht an der Schule (technisch und paedagogisch)?",
-              "Was wurde bereits aus DigitalPakt 1 finanziert, was fehlt noch?"
+              "Welches Leitbild verfolgt die Schule beim Lernen in der digitalen Welt?",
+              "Welche uebergeordneten paedagogischen Ziele soll die Medienbildung erreichen?",
+              "Wie ist Medienbildung im Schulprogramm bzw. Leitbild der Schule verankert?"
             ],
-            "stilhinweis": "Sachlich, mit konkreten Zahlen zur Schule (Schueler, Raeume, vorhandene Infrastruktur)."
+            "stilhinweis": "Paedagogische Vision zuerst - hier bewusst NOCH KEINE Geraete/Technik nennen. Ausgangspunkt ist das Lernen der Schuelerinnen und Schueler, nicht die Ausstattung ('Keine Ausstattung ohne Konzept')."
           },
           {
-            "id": "medienkonzept-bezug",
-            "name": "Bezug zum Medienkonzept der Schule",
+            "id": "bestandsaufnahme",
+            "name": "Bestandsaufnahme (Ist-Stand)",
             "pflicht": true,
             "leitfragen": [
-              "Wie verknuepft die Massnahme mit dem (vorhandenen) schulischen Medienkonzept?",
-              "Welche Lernziele werden adressiert (KMK-Strategie 'Bildung in der digitalen Welt')?"
+              "Was wird bereits medienpaedagogisch unterrichtet (Faecher, Jahrgaenge)?",
+              "Welche technische Infrastruktur ist vorhanden (Internetanbindung, WLAN, Vernetzung der Raeume, Server)?",
+              "Welche Endgeraete, Praesentationstechnik, Lizenzen und Lernplattformen gibt es (Anzahl, Alter, weiter nutzbar)?",
+              "Wie sind Support und Wartung organisiert und welche Medienkompetenzen hat das Kollegium bereits?"
             ],
-            "stilhinweis": "Paedagogisch-didaktischer Fokus, nicht technisch."
+            "stilhinweis": "Vierteilig erfassen: paedagogischer Ist-Stand, technische Infrastruktur, Hard-/Software, Prozesse/Support + Fortbildungsstand. Liefert die Datenbasis fuer Ausstattungs- und Fortbildungsbedarf - mit konkreten Zahlen zur Schule."
           },
           {
-            "id": "vorhaben",
-            "name": "Beschreibung des Vorhabens",
+            "id": "mediencurriculum",
+            "name": "Mediencurriculum / Unterrichtsentwicklung",
             "pflicht": true,
             "leitfragen": [
-              "Was wird konkret beschafft / implementiert / ausgebaut?",
-              "Wie sieht der Umsetzungsplan (Phasen, Zeitrahmen) aus?"
-            ]
-          },
-          {
-            "id": "qualifizierung",
-            "name": "Qualifizierung der Lehrkraefte",
-            "pflicht": true,
-            "leitfragen": [
-              "Wie werden die Lehrkraefte fuer den Einsatz der neuen Technik/Software qualifiziert?",
-              "Gibt es interne Multiplikatoren, externe Fortbildungen?"
-            ]
-          },
-          {
-            "id": "betrieb-nachhaltigkeit",
-            "name": "Betrieb und Nachhaltigkeit nach Foerderende",
-            "pflicht": true,
-            "leitfragen": [
-              "Wer uebernimmt Wartung, Support, Administration waehrend und nach der Foerderphase?",
-              "Wie werden Geraete nach Abschreibungsfrist ersetzt (Ersatzbeschaffungsplan)?"
+              "Was sollen die Schuelerinnen und Schueler mit und ueber Medien in welchen Faechern und Jahrgaengen lernen?",
+              "Welche Medienkompetenzen (KMK 'Bildung in der digitalen Welt' bzw. Landes-Medienkompetenzrahmen) werden wo verankert?",
+              "Mit welchen konkreten Unterrichtseinheiten und Lernszenarien wird das umgesetzt?"
             ],
-            "stilhinweis": "KRITISCH: DigitalPakt 2.0 will explizit die Betrieb-Nachhaltigkeit sicherstellen. Vage Antworten scheitern hier."
+            "stilhinweis": "Das HERZSTUECK des Medienkonzepts. Kompetenzen spiralcurricular den Faechern und Jahrgangsstufen zuordnen und mit den Fachcurricula verzahnen. Paedagogisch-didaktisch, nicht technisch."
           },
           {
-            "id": "finanzplan",
-            "name": "Finanzplan / Kosten- und Finanzierungsuebersicht",
+            "id": "ausstattungs-und-finanzplan",
+            "name": "Ausstattungs- und Finanzplan",
             "pflicht": true,
             "leitfragen": [
-              "Welche Einzelposten (Sachkosten, Investitionen, Personal) mit welchen Betraegen?",
-              "Welchen Anteil uebernimmt der Schultraeger als Eigenmittel?"
-            ]
+              "Welche Geraete, Software und Infrastruktur werden benoetigt, um die Curriculumsziele zu erreichen?",
+              "Wie wird jeder Bedarf aus den paedagogischen Zielen begruendet (Technik folgt Paedagogik)?",
+              "Welche Einzelposten mit welchen Kosten, gestuft nach kurz-, mittel- und langfristig?",
+              "Welchen Anteil traegt der Schultraeger als Eigenmittel bzw. Kofinanzierung?"
+            ],
+            "stilhinweis": "Ist-/Soll-Abgleich, jeder Posten paedagogisch begruendet. Enthaelt die Kostentabelle nach dem Muster Ziele - Massnahmen - Kosten - Zeitpunkt. Dieser Teil ist die finanzielle Zulieferung an den Schultraeger; der zugehoerige Finanzplan wird vom Wizard auf Basis der Kostenpositionen separat erzeugt."
+          },
+          {
+            "id": "fortbildung",
+            "name": "Fortbildungs- und Qualifizierungsplan",
+            "pflicht": true,
+            "leitfragen": [
+              "Welche Qualifizierung brauchen die Lehrkraefte, um Medien im Fachunterricht einzusetzen?",
+              "Wie wird der Fortbildungsbedarf je Fachgruppe aus dem Mediencurriculum abgeleitet?",
+              "Welche internen (Mikrofortbildungen, schulinterne Lehrerfortbildung) und externen Fortbildungen sind geplant (kurz-, mittel-, langfristig)?"
+            ],
+            "stilhinweis": "Den Bedarf konsequent aus dem Mediencurriculum ableiten, nicht beliebig auflisten."
+          },
+          {
+            "id": "support-betrieb",
+            "name": "Support, Wartung und Betrieb",
+            "pflicht": true,
+            "leitfragen": [
+              "Wer uebernimmt Wartung und Support (First-/Second-/Third-Level) waehrend und nach der Foerderphase?",
+              "Wie sind Beschaffung, Pflege, Ersatzbeschaffung und Finanzierung dauerhaft gesichert?",
+              "Wie werden Datenschutz und Datensicherheit gewaehrleistet und wer ist wofuer verantwortlich?"
+            ],
+            "stilhinweis": "KRITISCH: DigitalPakt 2.0 will die Betrieb-Nachhaltigkeit explizit sicherstellen - vage Antworten scheitern hier. Das Support-/Wartungskonzept wird meist mit dem Schultraeger abgestimmt."
+          },
+          {
+            "id": "kooperationen",
+            "name": "Kooperationen und Vernetzung",
+            "pflicht": false,
+            "leitfragen": [
+              "Mit welchen ausserschulischen Partnern (Medienzentren, Bibliotheken, Ganztag) wird kooperiert?",
+              "Wie werden Eltern und Erziehungsberechtigte eingebunden?"
+            ],
+            "stilhinweis": "Optional, aber ueblich. Staerkt die Verankerung des Konzepts in der Schulgemeinschaft."
+          },
+          {
+            "id": "beschluss-evaluation",
+            "name": "Beschluss, Evaluation und Fortschreibung",
+            "pflicht": true,
+            "leitfragen": [
+              "Wann und durch welches Gremium (Schul- bzw. Gesamtkonferenz) wird das Medienkonzept beschlossen?",
+              "Wie und in welchem Turnus werden Zielerreichung und Wirkung evaluiert?",
+              "Wann wird das Konzept fortgeschrieben (typische Laufzeit ca. 5 Jahre)?"
+            ],
+            "stilhinweis": "Der verbindliche Konferenzbeschluss ist zwingend. Das Konzept ist zyklisch angelegt (regelmaessige Fortschreibung), keine Einmal-Erstellung."
           }
         ],
         "anlagen": [
-          "Medienkonzept der Schule (oder Entwurf)",
-          "Beschluss/Zustimmung des Schultraegers (Kommune / Landkreis) — Antragstellerin ist i.d.R. der Schultraeger",
-          "Kosten-/Angebotsuebersicht",
-          "Wartungs- und Support-Konzept"
+          "Beschluss der Schul- bzw. Gesamtkonferenz ueber das Medienkonzept",
+          "Ausstattungs-/Kostentabelle (Ziele, Massnahmen, Kosten, Zeitpunkt)",
+          "Abstimmung mit dem Schultraeger zur Kofinanzierung und zum Medienentwicklungsplan (MEP)",
+          "Bezug zum Medienkompetenzrahmen des Landes bzw. zur KMK-Strategie 'Bildung in der digitalen Welt'"
         ],
-        "einreichungsweg": "Ueber den zustaendigen Schultraeger an das Bundesland (Bildungs-/Kultusministerium). KEIN direkter Bundes-Antrag durch Einzelschule.",
-        "bearbeitungsdauer": "Stark variabel je Bundesland — 3-12 Monate typisch (Erfahrungswert DigitalPakt 1)."
+        "einreichungsweg": "Zweistufig: Die SCHULE erstellt das Medienkonzept (paedagogisch-inhaltlich) und gibt es an ihren Schultraeger. Der SCHULTRAEGER (Kommune/Landkreis) buendelt die Schulkonzepte in einem Medienentwicklungsplan (MEP) und stellt damit den formellen Foerderantrag bei der zustaendigen Landesbehoerde bzw. Foerderbank. Die Schule selbst ist NICHT antragsberechtigt und fuellt KEIN Antragsformular aus - ihr Ergebnis ist das Medienkonzept ('Keine Ausstattung ohne Konzept').",
+        "bearbeitungsdauer": "Stark variabel je Bundesland - 3-12 Monate typisch (Erfahrungswert DigitalPakt 1) ab formellem Antrag des Schultraegers."
       },
       "notizen": [
-        "STUB-VERSION: offizielle Richtlinien-PDF der jeweiligen Laender-Umsetzung ist nicht integriert. Konkrete Foerderquoten pro Kostenposition sowie Antragsformular-Felder mit Zeichenlimits werden erst nach Veroeffentlichung der Laender-Richtlinien ergaenzbar.",
-        "Maximalbetrag pro Schule ist nicht bundesweit fix — variiert je Bundesland (typisch 500 EUR/Schueler als Sockel + Zuschlaege in DigitalPakt 1).",
+        "ZIEL DIESES WIZARDS: das MEDIENKONZEPT der Schule - KEIN Foerderantrag. Den formellen Antrag stellt der Schultraeger. Der Wizard fuehrt die Schule durch die Erstellung ihres Medienkonzepts inkl. Ausstattungs-/Finanzplanung.",
+        "Begriffsabgrenzung: Medienkonzept / Medienbildungskonzept = Dokument der EINZELNEN SCHULE (das hier erzeugte). Medienentwicklungsplan (MEP) = Dokument des SCHULTRAEGERS, der die Schulkonzepte buendelt und dem Antrag zugrunde legt. Beide muessen aufeinander abgestimmt sein.",
+        "Ableitungslogik (in allen Laender-Leitfaeden gleich): Paedagogik zuerst -> daraus folgt die Technik/Ausstattung -> daraus folgt der Fortbildungsbedarf. Niemals mit der Geraeteliste beginnen.",
+        "Laenderabweichungen: In Baden-Wuerttemberg erstellen Schule und Schultraeger den MEP gemeinsam (Freigabeempfehlung durch Medienzentrum/LMZ, Bewilligung z. B. L-Bank). In Niedersachsen ist die MEP-Erstellung primaer Traegeraufgabe in enger Abstimmung; Bewilligungsstelle je Land verschieden.",
+        "Typischer Umfang eines Medienkonzepts: ca. 30-60 Seiten; gesamtschulische Entwicklungsaufgabe unter Einbindung des Kollegiums ueber Wochen bis Monate.",
+        "Konkrete Foerderquoten pro Kostenposition sowie etwaige formale Vorlagen ergeben sich erst aus der jeweiligen Laender-Richtlinie zu DigitalPakt 2.0 und sind dort zu pruefen.",
         "Ausgaben seit 01.01.2025 sind rueckwirkend foerderfaehig (Zeitpunkt-Regel)."
       ],
       "bestPractices": [
         {
-          "thema": "Pauschalierte Zuweisungen",
-          "was_funktionierte": "Die Möglichkeit zu pauschalierten Zuweisungen senkt den Bürokratieaufwand sowohl auf Schulträger- als auch auf Landesebene deutlich.",
-          "warum": "Vereinfacht die Antrags- und Umsetzungsverfahren der Länder."
+          "thema": "Paedagogik vor Technik",
+          "was_funktionierte": "Konzepte ueberzeugen, wenn jede Anschaffung aus einem konkreten paedagogischen Ziel im Mediencurriculum abgeleitet ist statt aus einer reinen Geraetewunschliste.",
+          "warum": "Entspricht dem Leitprinzip 'Keine Ausstattung ohne Konzept' und der Ableitungslogik aller Laender-Leitfaeden."
         },
         {
-          "thema": "Länderübergreifende Vorhaben (LüV)",
-          "was_funktionierte": "Ressourcen werden besser gebündelt und gemeinsame Systemlösungen geschaffen, wovon auch finanzschwächere Länder profitieren können.",
-          "warum": "Fördert ein kooperatives Miteinander der Länder und schafft mehr gemeinsame Verantwortung im Bildungsbereich."
+          "thema": "Betrieb und Nachhaltigkeit",
+          "was_funktionierte": "Ein belastbares Support-, Wartungs- und Ersatzbeschaffungskonzept (wer macht was, wie finanziert) hebt das Konzept deutlich, weil DigitalPakt 2.0 die dauerhafte Betreibbarkeit explizit einfordert.",
+          "warum": "Vage Betriebsangaben sind ein haeufiger Schwachpunkt; klare Verantwortlichkeiten und Folgekostenplanung schaffen Vertrauen."
+        },
+        {
+          "thema": "Pauschalierte Zuweisungen",
+          "was_funktionierte": "Die Moeglichkeit zu pauschalierten Zuweisungen senkt den Buerokratieaufwand sowohl auf Schultraeger- als auch auf Landesebene deutlich.",
+          "warum": "Vereinfacht die Antrags- und Umsetzungsverfahren der Laender."
         }
       ],
-      "rejectGruende": [],
+      "rejectGruende": [
+        {
+          "grund": "Geraetewunschliste ohne paedagogische Begruendung / ohne Mediencurriculum",
+          "haeufigkeit": "haeufig",
+          "vermeidung": "Jede Anschaffung aus einem Lernziel im Mediencurriculum ableiten (Technik folgt Paedagogik)."
+        },
+        {
+          "grund": "Fehlendes oder vages Betriebs-, Wartungs- und Ersatzbeschaffungskonzept",
+          "haeufigkeit": "haeufig",
+          "vermeidung": "Verantwortlichkeiten, Support-Level und Folgekosten konkret benennen und mit dem Schultraeger abstimmen."
+        },
+        {
+          "grund": "Fehlender Konferenzbeschluss / keine Abstimmung mit dem Schultraeger",
+          "haeufigkeit": "gelegentlich",
+          "vermeidung": "Beschluss der Schul-/Gesamtkonferenz herbeifuehren und das Konzept mit dem Medienentwicklungsplan des Traegers abstimmen."
+        }
+      ],
       "vorbildFormulierungen": [],
       "fristLogik": {
         "typ": "rolling"
+      },
+      "fristZustand": {
+        "art": "geschlossen",
+        "wiedereroeffnungErwartet": "sobald die Laender ihre Foerderrichtlinien erlassen haben (je Land unterschiedlich)",
+        "quelle": "Primaerquelle digitalpaktschule.de/de/digitalpakt-2-0-1874.html, geprueft 22.07.2026: 'Schultraeger stellen erst dann Foerderantraege, wenn die Laender entsprechende Richtlinien erlassen haben. Dies kann je nach Land unterschiedlich lange dauern.' Es gibt damit aktuell keinen bundesweiten Antragsweg; genannt ist nur 'Der vorzeitige Massnahmenbeginn liegt beim 1. Januar 2026'. Antragsweg laeuft ueber Schultraeger/Laender, nicht ueber die Schule direkt."
       }
     },
     "messages": [
@@ -246,112 +329,140 @@
         "role": "ai",
         "kind": "question",
         "content": "Was ist das konkrete digitale Vorhaben Ihrer Schule, das Sie mit DigitalPakt 2.0 umsetzen möchten?",
-        "at": "2026-05-20T09:51:14.396Z"
+        "at": "2026-07-22T11:02:32.217Z"
       },
       {
         "id": "1",
         "role": "user",
         "kind": "answer",
         "content": "Ja, also wir wollen schon irgendwas mit Tablets machen, oder so. Hatten wir das nicht schon mal? Glaub ich nicht.",
-        "at": "2026-05-20T09:51:14.396Z"
+        "at": "2026-07-22T11:02:32.217Z"
       },
       {
         "id": "2",
         "role": "ai",
         "kind": "question",
         "content": "Wie viele Schülerinnen und Schüler besuchen Ihre Schule, und welche Jahrgangsstufen sollen vom Vorhaben profitieren?",
-        "at": "2026-05-20T09:51:14.396Z"
+        "at": "2026-07-22T11:02:32.217Z"
       },
       {
         "id": "3",
         "role": "user",
         "kind": "answer",
         "content": "Weiß nicht so genau, irgendwas um die 300 oder so. Die oberen Klassen glaube ich, 5 und 6.",
-        "at": "2026-05-20T09:51:14.396Z"
+        "at": "2026-07-22T11:02:32.217Z"
       },
       {
         "id": "4",
         "role": "ai",
         "kind": "question",
         "content": "Was wurde aus dem DigitalPakt 1 bereits angeschafft, und was fehlt noch für einen zeitgemäßen digitalen Unterricht?",
-        "at": "2026-05-20T09:51:14.396Z"
+        "at": "2026-07-22T11:02:32.217Z"
       },
       {
         "id": "5",
         "role": "user",
         "kind": "answer",
         "content": "Wir haben schon ein paar Whiteboards, glaub ich 10 Stück, und Tablets irgendwie. Aber was genau fehlt, das weiß ich nicht so genau. Vielleicht mehr davon?",
-        "at": "2026-05-20T09:51:14.396Z"
+        "at": "2026-07-22T11:02:32.217Z"
       },
       {
         "id": "6",
         "role": "ai",
         "kind": "question",
         "content": "Gibt es an Ihrer Schule ein Medienkonzept oder einen Bezug zur KMK-Strategie 'Bildung in der digitalen Welt'?",
-        "at": "2026-05-20T09:51:14.396Z"
+        "at": "2026-07-22T11:02:32.217Z"
       },
       {
         "id": "7",
         "role": "user",
         "kind": "answer",
         "content": "KMK kenne ich nicht so genau. Ein Medienkonzept? Da müsste ich mal nachfragen, glaub ich nicht wirklich.",
-        "at": "2026-05-20T09:51:14.396Z"
+        "at": "2026-07-22T11:02:32.217Z"
       },
       {
         "id": "8",
         "role": "ai",
         "kind": "question",
         "content": "Wie ist die geplante Qualifizierung der Lehrkräfte — gibt es interne Multiplikatoren oder externe Fortbildungen?",
-        "at": "2026-05-20T09:51:14.397Z"
+        "at": "2026-07-22T11:02:32.217Z"
       },
       {
         "id": "9",
         "role": "user",
         "kind": "answer",
         "content": "Weiß ich nicht genau. Vielleicht mal eine Fortbildung? Da haben wir noch nichts Konkretes.",
-        "at": "2026-05-20T09:51:14.397Z"
+        "at": "2026-07-22T11:02:32.217Z"
       },
       {
         "id": "10",
         "role": "ai",
         "kind": "question",
         "content": "Wer übernimmt nach der Förderphase die IT-Wartung und den Support? Hat der Schulträger dem Vorhaben bereits zugestimmt?",
-        "at": "2026-05-20T09:51:14.397Z"
+        "at": "2026-07-22T11:02:32.217Z"
       },
       {
         "id": "11",
         "role": "user",
         "kind": "answer",
         "content": "Keine Ahnung, das macht doch irgendwie das Bezirksamt. Beschluss? Da liegt schriftlich nichts vor, soweit ich weiß. Kein Beschluss.",
-        "at": "2026-05-20T09:51:14.397Z"
+        "at": "2026-07-22T11:02:32.217Z"
       },
       {
         "id": "12",
         "role": "ai",
         "kind": "question",
         "content": "Welche Willkommensklassen oder besondere Fördergruppen gibt es an Ihrer Schule, die von der Digitalisierung besonders profitieren würden?",
-        "at": "2026-05-20T09:51:14.397Z"
+        "at": "2026-07-22T11:02:32.217Z"
       },
       {
         "id": "13",
         "role": "user",
         "kind": "answer",
         "content": "Haben wir glaub ich nicht, also Willkommensklassen meine ich. Vielleicht irgendeinen DaZ-Unterricht aber bin nicht sicher.",
-        "at": "2026-05-20T09:51:14.397Z"
+        "at": "2026-07-22T11:02:32.217Z"
       },
       {
         "id": "14",
         "role": "ai",
         "kind": "question",
         "content": "Haben Sie eine Vorstellung vom Budget — welchen Eigenanteil kann die Schule bzw. der Schulträger einbringen?",
-        "at": "2026-05-20T09:51:14.397Z"
+        "at": "2026-07-22T11:02:32.217Z"
       },
       {
         "id": "15",
         "role": "user",
         "kind": "answer",
         "content": "Keine Ahnung was das kostet. Viel haben wir nicht. Irgendwie muss das ja der Schulträger machen oder so.",
-        "at": "2026-05-20T09:51:14.397Z"
+        "at": "2026-07-22T11:02:32.217Z"
+      },
+      {
+        "id": "16",
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie soll die Wartung und der Support der Geraete langfristig sichergestellt werden?",
+        "at": "2026-07-22T11:02:32.217Z"
+      },
+      {
+        "id": "17",
+        "role": "user",
+        "kind": "answer",
+        "content": "Oh, gute Frage. Da haben wir noch nicht drueber nachgedacht. Vielleicht macht das der Hausmeister mit? Oder es gibt doch bestimmt jemanden vom Bezirk.",
+        "at": "2026-07-22T11:02:32.217Z"
+      },
+      {
+        "id": "18",
+        "role": "ai",
+        "kind": "question",
+        "content": "Gibt es an Ihrer Schule ein Medienkonzept, an das das Vorhaben anknuepfen kann?",
+        "at": "2026-07-22T11:02:32.217Z"
+      },
+      {
+        "id": "19",
+        "role": "user",
+        "kind": "answer",
+        "content": "Ich glaube da gab es mal was, so ein Papier von der vorherigen Schulleitung. Muesste ich raussuchen. Aktuell arbeiten wir da eher nicht mit.",
+        "at": "2026-07-22T11:02:32.217Z"
       }
     ]
   },
@@ -361,363 +472,530 @@
         "titel": "Foerdervorhaben an der Borsigwalder Grundschule — Antrag bei DigitalPakt Schule 2.0",
         "abschnitte": [
           {
-            "name": "Bedarfsanalyse und Ausgangslage",
-            "fokus": "Leitfragen: Welcher konkrete digitale Bedarf besteht an der Schule (technisch und paedagogisch)? | Was wurde bereits aus DigitalPakt 1 finanziert, was fehlt noch?"
+            "name": "Leitbild und paedagogische Ziele der Medienbildung",
+            "fokus": "Leitfragen: Welches Leitbild verfolgt die Schule beim Lernen in der digitalen Welt? | Welche uebergeordneten paedagogischen Ziele soll die Medienbildung erreichen? | Wie ist Medienbildung im Schulprogramm bzw. Leitbild der Schule verankert?"
           },
           {
-            "name": "Bezug zum Medienkonzept der Schule",
-            "fokus": "Leitfragen: Wie verknuepft die Massnahme mit dem (vorhandenen) schulischen Medienkonzept? | Welche Lernziele werden adressiert (KMK-Strategie 'Bildung in der digitalen Welt')?"
+            "name": "Bestandsaufnahme (Ist-Stand)",
+            "fokus": "Leitfragen: Was wird bereits medienpaedagogisch unterrichtet (Faecher, Jahrgaenge)? | Welche technische Infrastruktur ist vorhanden (Internetanbindung, WLAN, Vernetzung der Raeume, Server)? | Welche Endgeraete, Praesentationstechnik, Lizenzen und Lernplattformen gibt es (Anzahl, Alter, weiter nutzbar)? | Wie sind Support und Wartung organisiert und welche Medienkompetenzen hat das Kollegium bereits?"
           },
           {
-            "name": "Beschreibung des Vorhabens",
-            "fokus": "Leitfragen: Was wird konkret beschafft / implementiert / ausgebaut? | Wie sieht der Umsetzungsplan (Phasen, Zeitrahmen) aus?"
+            "name": "Mediencurriculum / Unterrichtsentwicklung",
+            "fokus": "Leitfragen: Was sollen die Schuelerinnen und Schueler mit und ueber Medien in welchen Faechern und Jahrgaengen lernen? | Welche Medienkompetenzen (KMK 'Bildung in der digitalen Welt' bzw. Landes-Medienkompetenzrahmen) werden wo verankert? | Mit welchen konkreten Unterrichtseinheiten und Lernszenarien wird das umgesetzt?"
           },
           {
-            "name": "Qualifizierung der Lehrkraefte",
-            "fokus": "Leitfragen: Wie werden die Lehrkraefte fuer den Einsatz der neuen Technik/Software qualifiziert? | Gibt es interne Multiplikatoren, externe Fortbildungen?"
+            "name": "Ausstattungs- und Finanzplan",
+            "fokus": "Leitfragen: Welche Geraete, Software und Infrastruktur werden benoetigt, um die Curriculumsziele zu erreichen? | Wie wird jeder Bedarf aus den paedagogischen Zielen begruendet (Technik folgt Paedagogik)? | Welche Einzelposten mit welchen Kosten, gestuft nach kurz-, mittel- und langfristig? | Welchen Anteil traegt der Schultraeger als Eigenmittel bzw. Kofinanzierung?"
           },
           {
-            "name": "Betrieb und Nachhaltigkeit nach Foerderende",
-            "fokus": "Leitfragen: Wer uebernimmt Wartung, Support, Administration waehrend und nach der Foerderphase? | Wie werden Geraete nach Abschreibungsfrist ersetzt (Ersatzbeschaffungsplan)?"
+            "name": "Fortbildungs- und Qualifizierungsplan",
+            "fokus": "Leitfragen: Welche Qualifizierung brauchen die Lehrkraefte, um Medien im Fachunterricht einzusetzen? | Wie wird der Fortbildungsbedarf je Fachgruppe aus dem Mediencurriculum abgeleitet? | Welche internen (Mikrofortbildungen, schulinterne Lehrerfortbildung) und externen Fortbildungen sind geplant (kurz-, mittel-, langfristig)?"
           },
           {
-            "name": "Finanzplan / Kosten- und Finanzierungsuebersicht",
-            "fokus": "Leitfragen: Welche Einzelposten (Sachkosten, Investitionen, Personal) mit welchen Betraegen? | Welchen Anteil uebernimmt der Schultraeger als Eigenmittel?"
+            "name": "Support, Wartung und Betrieb",
+            "fokus": "Leitfragen: Wer uebernimmt Wartung und Support (First-/Second-/Third-Level) waehrend und nach der Foerderphase? | Wie sind Beschaffung, Pflege, Ersatzbeschaffung und Finanzierung dauerhaft gesichert? | Wie werden Datenschutz und Datensicherheit gewaehrleistet und wer ist wofuer verantwortlich?"
+          },
+          {
+            "name": "Beschluss, Evaluation und Fortschreibung",
+            "fokus": "Leitfragen: Wann und durch welches Gremium (Schul- bzw. Gesamtkonferenz) wird das Medienkonzept beschlossen? | Wie und in welchem Turnus werden Zielerreichung und Wirkung evaluiert? | Wann wird das Konzept fortgeschrieben (typische Laufzeit ca. 5 Jahre)?"
           }
         ]
       },
       "sections": [
         {
-          "name": "Bedarfsanalyse und Ausgangslage",
-          "text": "An der Borsigwalder Grundschule, einer Grundschule in Berlin mit 312 Schülern, besteht Bedarf an weiterer Digitalisierung. Ein besonderer Schwerpunkt liegt dabei auf den Klassen 5 und 6. Ein großer Teil unserer Schülerschaft (44 %) hat eine nicht-deutsche Familiensprache, was besondere Anforderungen an den Unterricht stellt.\n\nIm Rahmen des DigitalPakts 1 wurden bereits 10 Whiteboards sowie Tablets angeschafft. Es besteht jedoch weiterhin Bedarf an zusätzlicher Ausstattung, möglicherweise auch an weiteren Tablets.\n\nAktuell ist unklar, welche konkreten Kosten entstehen werden und inwiefern der Schulträger sich beteiligen wird. Auch eine Fortbildungsplanung liegt derzeit noch nicht vor. Ein Medienkonzept existiert bisher nicht, ebenso wenig ein Beschluss des Bezirksamts. Die KMK-Strategie ist uns nicht im Detail bekannt."
+          "name": "Leitbild und paedagogische Ziele der Medienbildung",
+          "text": "An unserer Schule verstehen wir Medienbildung als zentralen Baustein einer zeitgemäßen Allgemeinbildung, die über den reinen Umgang mit digitalen Werkzeugen hinausgeht. Unser Leitbild zielt darauf ab, Schülerinnen und Schüler zu einem reflektierten, selbstbestimmten und verantwortungsvollen Handeln in der digitalen Welt zu befähigen. Dies umfasst die Entwicklung von Medienkompetenz als Querschnittsaufgabe, die sich in den Fächern und fächerübergreifend entfaltet. Die bereits vorhandene Grundausstattung mit Whiteboards und Tablets soll dabei nicht als Selbstzweck, sondern als Werkzeug verstanden werden, um Lernprozesse zu individualisieren, kreative Ausdrucksformen zu fördern und den Zugang zu Wissen zu demokratisieren. Besonders im Blick haben wir dabei die heterogene Schülerschaft mit 44 % nicht-deutscher Familiensprache, für die digitale Medien ein zentrales Medium der Teilhabe und des Spracherwerbs darstellen können. [Annahme: Medienbildung ist im aktuellen Schulprogramm nicht explizit als Querschnittsaufgabe verankert, wird aber punktuell in einzelnen Fächern thematisiert.]\n\nDie übergeordneten pädagogischen Ziele der Medienbildung an der Borsigwalder Grundschule lassen sich in drei zentrale Dimensionen fassen: erstens die Stärkung der Selbstwirksamkeit der Lernenden durch handlungsorientierte und partizipative Lernformate, zweitens die Förderung von Bildungsgerechtigkeit durch den Abbau digitaler Ungleichheiten und drittens die Entwicklung einer kritischen Reflexionsfähigkeit im Umgang mit digitalen Inhalten. Durch die Einbindung digitaler Medien in den Unterricht soll erreicht werden, dass Schülerinnen und Schüler nicht nur konsumieren, sondern aktiv gestalten und ihre Lernprozesse selbst steuern lernen. Dies schließt die Fähigkeit ein, Informationen zu recherchieren, zu bewerten und ethische Fragen im digitalen Raum zu diskutieren. Ein messbarer Indikator für die Zielerreichung könnte die regelmäßige Dokumentation von Schülerprodukten sein, die digitale Werkzeuge nutzen – etwa in Form von Präsentationen, Podcasts oder kollaborativen Texten. [TODO: Indikatoren vor Einreichung mit konkreten Beispielen aus dem Unterrichtsalltag verknüpfen]\n\nDie Verankerung der Medienbildung im Schulprogramm steht noch am Anfang. Zwar existieren erste Ansätze, etwa die Nutzung der vorhandenen Tablets in einzelnen Klassenstufen, doch fehlt ein systematisches Konzept, das die Ziele, Inhalte und Methoden der Medienbildung verbindlich festlegt. Hier sehen wir dringenden Handlungsbedarf, um eine nachhaltige und strukturierte Umsetzung zu gewährleisten. Die Entwicklung eines solchen Medienkonzepts soll partizipativ erfolgen und sowohl die Perspektiven der Lehrkräfte als auch der Schülerinnen und Schüler einbeziehen. [TODO: Medienkonzept vor Antragstellung durch eine Arbeitsgruppe aus Lehrkräften, Eltern und Schüler:innen erstellen und im Schulprogramm verankern]"
         },
         {
-          "name": "Bezug zum Medienkonzept der Schule",
-          "text": "Die geplante Maßnahme steht im Zusammenhang mit dem Ausbau der digitalen Ausstattung an der Borsigwalder Grundschule. Aktuell sind bereits 10 Whiteboards und Tablets vorhanden. Um die vorhandene Ausstattung sinnvoll in den Unterricht zu integrieren und den Bedarf an weiterer Ausstattung zu ermitteln, ist eine Auseinandersetzung mit einem Medienkonzept notwendig. Bisher liegt kein solches Konzept vor. Die Maßnahme soll dazu beitragen, ein entsprechendes Konzept zu entwickeln, das auf die spezifischen Bedürfnisse der Schule zugeschnitten ist. Dies betrifft insbesondere die Klassen 5 und 6 mit etwa 300 Schülerinnen und Schülern.\n\nEin wichtiger Aspekt ist die Vermittlung von Medienkompetenz. Obwohl die KMK-Strategie \"Bildung in der digitalen Welt\" bisher nicht bekannt ist, soll die Maßnahme dazu beitragen, die entsprechenden Lernziele zu identifizieren und in den Unterricht zu integrieren. Auch die Notwendigkeit von Fortbildungen für das Kollegium ist erkannt, hierzu liegen aber noch keine konkreten Planungen vor."
+          "name": "Bestandsaufnahme (Ist-Stand)",
+          "text": "An unserer Schule besteht derzeit kein durchgängiges medienpädagogisches Angebot. Medienbildung wird punktuell in den Fächern Deutsch und Sachkunde eingesetzt, insbesondere in den Jahrgängen 5 und 6, wo vereinzelt digitale Tools wie Lern-Apps oder Präsentationen genutzt werden. Eine systematische Verankerung im Unterrichtsalltag findet jedoch nicht statt. [TODO: Medienkonzept erstellen und verbindliche Fächerzuordnung sowie Jahrgangsstufen festlegen]\n\nDie technische Infrastruktur umfasst eine Grundausstattung mit 10 interaktiven Whiteboards, die in verschiedenen Klassenräumen installiert sind. Zudem stehen Tablets zur Verfügung, deren genaue Anzahl und Nutzungsdauer jedoch unklar sind; es handelt sich vermutlich um eine kleinere Anzahl, die nicht für den flächendeckenden Einsatz ausreicht. Die Internetanbindung ist vorhanden, jedoch ohne dokumentierte Bandbreitenangaben oder Wartungsverträge. Eine zentrale Vernetzung der Räume oder ein schulweites Serverkonzept existiert nicht. [TODO: Bestandsaufnahme der vorhandenen Endgeräte (Anzahl, Alter, Nutzungsstatus) durchführen und technischen Zustand der Infrastruktur prüfen]\n\nFür die Wartung und den Support der Technik ist derzeit keine klare Zuständigkeit geregelt. Es gibt weder eine hausinterne Ansprechperson noch einen dokumentierten Wartungsvertrag mit externen Dienstleistern. Die Organisation obliegt vermutlich dem Schulträger oder dem Bezirksamt, wobei hierzu keine schriftlichen Vereinbarungen vorliegen. [TODO: Klärung der Support-Strukturen mit dem Schulträger und Dokumentation der Verantwortlichkeiten]\n\nDie Medienkompetenzen des Kollegiums sind heterogen und nicht systematisch erfasst. Fortbildungen zum Einsatz digitaler Medien fanden bisher nicht statt; vereinzelte Initiativen einzelner Lehrkräfte basieren auf Eigeninitiative. Ein Fortbildungskonzept oder eine Bedarfsanalyse liegt nicht vor. [TODO: Kollegiums-Bedarfserhebung zu Medienkompetenzen durchführen und Fortbildungsplan erstellen]"
         },
         {
-          "name": "Beschreibung des Vorhabens",
-          "text": "Im Rahmen des Förderprogramms DigitalPakt Schule 2.0 plant die Borsigwalder Grundschule, die digitale Ausstattung zu erweitern. Aktuell sind 10 Whiteboards und Tablets vorhanden. Angedacht ist eine Beschaffung weiterer Tablets, um den Bedarf der Schülerinnen und Schüler der Klassen 5 und 6 besser zu decken. Eine genaue Bedarfsanalyse steht noch aus. Auch die Frage, in welchem Umfang weitere Geräte benötigt werden, ist noch zu klären, ebenso die entstehenden Kosten.\n\nDie konkrete Umsetzung des Vorhabens wird in den kommenden Monaten geplant. Dies umfasst die Erstellung eines Medienkonzepts, die Klärung der Beschlusslage mit dem zuständigen Bezirksamt und die Entwicklung eines Fortbildungsplans für die Lehrkräfte. Ein Konzept für die Wartung und den Support der Geräte ist ebenfalls noch zu erarbeiten."
+          "name": "Mediencurriculum / Unterrichtsentwicklung",
+          "text": "An unserer Schule besteht bislang kein durchgängiges mediendidaktisches Konzept, das den systematischen Aufbau von Medienkompetenz in den Jahrgängen 5 und 6 curricular verankert. [Annahme: Die bestehende technische Ausstattung (10 Whiteboards, Tablets) wird bisher punktuell und ohne fachliche Verzahnung im Unterricht eingesetzt.] Um diese Lücke zu schließen, schlagen wir ein spiralcurricular angelegtes Mediencurriculum vor, das die Kompetenzbereiche des Landesrahmens Berlin (z. B. „Informationsrecherche“, „Produktion“, „kritischer Umgang mit Medien“) fächerübergreifend aufgreift.\n\nIm Fach Deutsch werden die Jahrgänge 5 und 6 zunächst mit einer Unterrichtseinheit zur „sicheren Recherche im Netz“ beginnen: Die Schüler*innen lernen, Suchstrategien zu vergleichen, Quellen zu bewerten und Zitate korrekt zu kennzeichnen. Dazu werden sie in Kleingruppen eigene Mini-Wikis zu altersgerechten Themen (z. B. „Berliner Sehenswürdigkeiten“) erstellen und diese unter Anleitung auf Plausibilität prüfen. Im Fach Mathematik steht die Nutzung digitaler Werkzeuge im Mittelpunkt: Die Schüler*innen setzen Tabellenkalkulationssoftware ein, um Daten aus dem Schulalltag (z. B. Mensa-Bestellungen) auszuwerten und grafisch darzustellen. Im Sachkundeunterricht werden Tablets genutzt, um kurze Erklärvideos zu lokalen Themen (z. B. „Wie funktioniert die Mülltrennung in unserem Kiez?“) zu produzieren – ein Format, das sowohl fachliches Lernen als auch medienpraktische Kompetenzen verbindet.\n\nDie Umsetzung erfolgt in wöchentlichen, fächerintegrierten Einheiten von 45 Minuten, die durch projektbezogene Phasen (z. B. eine „Medienwoche“ pro Schulhalbjahr) ergänzt werden. Als messbare Indikatoren schlagen wir vor: (1) die Anzahl der dokumentierten Unterrichtseinheiten pro Fach und Jahrgang (Ziel: mindestens 8 pro Schuljahr), (2) die Entwicklung der Schüler*innen-Fähigkeiten in der Einschätzung von Quellenqualität (gemessen an einem standardisierten Pretest/Posttest, z. B. in Anlehnung an den „KIM-Studie“-Fragebogen) sowie (3) die Präsentation der Ergebnisse in schulinternen Ausstellungen oder auf einer schulischen Website. Die Evaluation erfolgt durch das Kollegium in Zusammenarbeit mit einer externen Fachkraft für Medienpädagogik, deren Einbindung wir im Rahmen einer Fortbildung vorbereiten. [TODO: Externe Partner*in und Fortbildungsformat vor Einreichung konkretisieren]"
         },
         {
-          "name": "Qualifizierung der Lehrkraefte",
-          "text": "Die Qualifizierung der Lehrkräfte für den Einsatz neuer Technologien ist ein wichtiger Bestandteil unseres Vorhabens an der Borsigwalder Grundschule. Aktuell verfügen wir über keine konkrete Fortbildungsplanung. Denkbar wäre die Durchführung einer Fortbildung, um den Umgang mit Tablets zu schulen. Derzeit gibt es an unserer Schule 10 Whiteboards und eine gewisse Anzahl an Tablets (genaue Zahl unbekannt), die im Rahmen von DigitalPakt 1 beschafft wurden. Die Fortbildung soll dazu beitragen, diese vorhandene Ausstattung effektiver im Unterricht der Klassen 5 und 6 einzusetzen. Eine interne oder externe Multiplikatoren-Funktion ist derzeit nicht vorgesehen."
+          "name": "Ausstattungs- und Finanzplan",
+          "text": "Die medienpädagogische Zielsetzung der Borsigwalder Grundschule erfordert eine bedarfsgerechte technische Ausstattung, die sich an den curricularen Erfordernissen der Klassenstufen 5 und 6 ausrichtet. Derzeit besteht eine Grundausstattung aus 10 Whiteboards und einer unbestimmten Anzahl an Tablets, die jedoch für den geplanten Einsatz nicht ausreicht. [Annahme: An der Schule wird derzeit kein systematischer Einsatz digitaler Medien im Unterricht der Sekundarstufe I praktiziert.] Um die angestrebte Integration digitaler Werkzeuge zu ermöglichen, werden zunächst 25 Tablets mit ausreichender Rechenleistung und Akkulaufzeit benötigt, die eine parallele Nutzung durch Schüler:innen in Kleingruppen erlauben. Die Geräte sollen mit einer zentralen Verwaltungslösung ausgestattet werden, die eine einfache Verteilung von Lern-Apps und Updates ermöglicht – ein Aspekt, der bisher nicht implementiert ist. [TODO: Konkrete Gerätespezifikationen und Verwaltungssoftware vor Einreichung durch Angebote klären]\n\nFür die technische Infrastruktur sind darüber hinaus 5 mobile Lautsprecher mit ausreichender Klangqualität für den Einsatz in verschiedenen Unterrichtsräumen zu beschaffen, da die vorhandene Ausstattung hierfür nicht ausreicht. Die Software-Ausstattung umfasst eine Lizenz für eine Lernplattform, die kollaboratives Arbeiten und individuelle Lernfortschrittsdokumentation ermöglicht. [TODO: Plattformauswahl und Lizenzmodell vor Einreichung finalisieren]\n\nDie Kosten für die Geräte und Software belaufen sich voraussichtlich auf rund 20.000 € (Schätzung, vor Einreichung durch Angebote zu belegen). Die technische Wartung und der Support sollen durch eine externe Fachkraft erfolgen, deren Einsatzkosten mit ca. 5.000 € pro Jahr veranschlagt werden. [TODO: Wartungsvertrag und Kostenkalkulation vor Einreichung durch Angebote konkretisieren] Der Schulträger wird voraussichtlich einen Eigenanteil von mindestens 10 % der Gesamtkosten tragen, wobei die genaue Höhe noch mit der zuständigen Behörde abzustimmen ist. [TODO: Eigenanteil und Kofinanzierungsmodalitäten vor Einreichung mit dem Schulträger klären]"
         },
         {
-          "name": "Betrieb und Nachhaltigkeit nach Foerderende",
-          "text": "Der Betrieb und die Nachhaltigkeit der beantragten Ausstattung sind für die Borsigwalder Grundschule von zentraler Bedeutung. Aktuell ist die Zuständigkeit für Wartung und Support der vorhandenen digitalen Infrastruktur, die im Rahmen des DigitalPakts 1.0 beschafft wurde (10 Whiteboards, Tablets), dem Bezirksamt übertragen. Es liegt noch kein Beschluss vor, ob diese Regelung auch für die im Rahmen von DigitalPakt Schule 2.0 beschafften Geräte gilt. Wir werden diesbezüglich eine Klärung mit dem Schulträger herbeiführen.\n\nAuch ein Konzept für die Ersatzbeschaffung nach Abschreibungsfristen der Geräte existiert derzeit noch nicht. Da wir eine Ausstattung der Klassen 5 und 6 anstreben, ist es erforderlich, die langfristige Finanzierung und Organisation des Gerätetausches zu sichern. Wir sind uns der Notwendigkeit bewusst, hier eine tragfähige Lösung zu entwickeln, idealerweise in Abstimmung mit dem Bezirk, um die technische Ausstattung der Schule kontinuierlich auf aktuellem Stand zu halten."
+          "name": "Fortbildungs- und Qualifizierungsplan",
+          "text": "Der Fortbildungsbedarf an der Borsigwalder Grundschule leitet sich aus der bestehenden Ausstattung und der heterogenen Schülerschaft ab. Aktuell verfügen wir über 10 Whiteboards und eine unbestimmte Anzahl an Tablets, die jedoch nicht systematisch im Fachunterricht eingesetzt werden. `[Annahme: Ein durchgängiges mediendidaktisches Konzept für den Einsatz digitaler Werkzeuge im Unterricht besteht an der Schule bislang nicht.]` Dies zeigt sich insbesondere in den Jahrgängen 5 und 6, die als Zielgruppe für das Vorhaben benannt wurden. Um Lehrkräfte zu befähigen, digitale Medien fachbezogen und zielgerichtet einzusetzen, sind zunächst Mikrofortbildungen zu grundlegenden Funktionen der vorhandenen Geräte und Whiteboards erforderlich. Diese sollen als schulinterne Lehrerfortbildung (SiL) in kurzen, praxisnahen Einheiten von 30–45 Minuten durchgeführt werden, um den Einstieg in die Nutzung zu erleichtern.\n\nMittelfristig ist die Teilnahme an externen Fortbildungen zum Thema „Medienbildung im Fachunterricht“ geplant, um vertiefte Kompetenzen in der didaktischen Integration digitaler Tools zu erwerben. Hierfür kommen Anbieter wie das Landesinstitut für Schule und Medien Berlin-Brandenburg (LISUM) oder regionale Medienzentren in Frage. `[TODO: Konkrete Fortbildungsanbieter und -termine vor Einreichung recherchieren und verbindlich planen]` Die Auswahl orientiert sich an den Bedarfen der Fachgruppen, die im Rahmen der Konzeptentwicklung noch zu konkretisieren sind. Langfristig streben wir die Verankerung von Medienbildung als festen Bestandteil der schulinternen Fortbildungsplanung an, um Nachhaltigkeit zu sichern.\n\nDie Fortbildungen werden evaluiert durch kurze Feedbackrunden nach jeder Einheit sowie durch eine abschließende Reflexion im Kollegium, um die Wirksamkeit zu überprüfen. Ein möglicher Indikator für die Zielerreichung wäre der Anteil der Lehrkräfte, die digitale Medien regelmäßig und fachbezogen einsetzen – dieser soll innerhalb von zwei Jahren von derzeit geschätzt unter 20 % auf mindestens 60 % steigen. `[TODO: Baseline durch Kollegiumsbefragung vor Projektstart erheben]`"
         },
         {
-          "name": "Finanzplan / Kosten- und Finanzierungsuebersicht",
-          "text": "Finanzplan / Kosten- und Finanzierungsübersicht\n\nFür das beantragte Fördervorhaben an der Borsigwalder Grundschule ist derzeit noch kein detaillierter Finanzplan aufgestellt. Die Schule plant, Mittel im Rahmen des DigitalPakt Schule 2.0 zu beantragen, um die vorhandene Ausstattung (10 Whiteboards, Tablets) zu erweitern. Ein konkretes Vorhaben, beispielsweise im Bereich Tablets, soll dabei im Fokus stehen, primär für die Klassen 5 und 6 mit etwa 300 Schülern.\n\nDie genauen Kosten für die Erweiterung der Ausstattung sind noch nicht ermittelt. Ebenso wenig liegt derzeit eine Aussage des Schulträgers zur Übernahme von Eigenmitteln vor. Die Klärung der Kosten und der Finanzierungsbeteiligung des Schulträgers erfolgt zeitnah. Eine Fortbildungsplanung für die Lehrkräfte ist angedacht, jedoch sind hierfür noch keine konkreten Kosten bekannt."
+          "name": "Support, Wartung und Betrieb",
+          "text": "Der Betrieb und die Wartung der digitalen Infrastruktur an der Borsigwalder Grundschule werden aktuell nicht durch ein strukturiertes Konzept gesichert. [Annahme: Die Verantwortung für technische Störungen und Wartungsfragen liegt beim Hausmeisterdienst des Bezirks, während die pädagogische Betreuung der Tablets und Whiteboards im Unterrichtsalltag unregelmäßig und ohne klare Zuständigkeiten erfolgt.] Um die Nachhaltigkeit des DigitalPakt-1-Ausstattung zu gewährleisten und die geplante Ausweitung der Nutzung in den Klassen 5 und 6 zu ermöglichen, ist ein verbindliches Support- und Wartungskonzept unerlässlich. Dieses muss die drei Ebenen des Supports definieren: First-Level durch schulinterne Kräfte (z. B. eine neu zu schaffende Teilzeitstelle für digitale Bildung), Second-Level durch den Schulträger (Bezirksamt) sowie Third-Level durch externe Dienstleister für komplexe Hardware- oder Softwareprobleme. Die Finanzierung der Wartung und Ersatzbeschaffung soll über einen jährlich fortzuschreibenden Haushaltsposten im Schulbudget sowie durch eine verbindliche Kostenübernahmezusage des Schulträgers gesichert werden. [TODO: Schriftliche Zusage des Schulträgers zur Übernahme der laufenden Wartungskosten und Ersatzbeschaffung einholen.]\n\nFür den Datenschutz und die Datensicherheit ist die Schule selbst verantwortlich, wobei die technische Umsetzung durch den Schulträger erfolgt. [Annahme: Die bestehende Infrastruktur (10 Whiteboards, Tablets) wird derzeit ohne zentrale Verwaltung oder Sicherheitsupdates betrieben.] Um dies zu ändern, schlagen wir vor, eine zentrale Geräteverwaltung (z. B. über eine MDM-Lösung) einzuführen, die regelmäßige Sicherheitsupdates, Zugriffsbeschränkungen und eine dokumentierte Inventarisierung ermöglicht. Die Verantwortung für die Einhaltung der DSGVO und der schulischen Nutzungsrichtlinien liegt beim Schulleitungsteam, unterstützt durch eine neu einzurichtende Datenschutzbeauftragte. [TODO: Benennung einer Datenschutzbeauftragten und Klärung der technischen Umsetzung mit dem Schulträger vor Antragstellung.]\n\nDie Beschaffung neuer Geräte und Lizenzen wird im Rahmen eines jährlichen Bedarfsplans erfolgen, der mit dem Schulträger abgestimmt und durch Mittel aus dem DigitalPakt 2.0 sowie Eigenanteilen der Schule finanziert wird. [Annahme: Die genaue Anzahl der benötigten Geräte (voraussichtlich zwischen 20 und 30 Tablets) und die Höhe der Eigenmittel (noch nicht kalkuliert) werden im weiteren Planungsprozess festgelegt.] Um die Nachhaltigkeit zu sichern, ist eine enge Abstimmung mit dem Schulträger erforderlich, insbesondere bei der Ersatzbeschaffung und der langfristigen Finanzplanung."
+        },
+        {
+          "name": "Beschluss, Evaluation und Fortschreibung",
+          "text": "Das Medienkonzept der Borsigwalder Grundschule wird durch die Gesamtkonferenz beschlossen, die turnusmäßig zweimal jährlich tagt. Der Beschluss ist für das erste Quartal nach Vorlage des Konzepts vorgesehen, sobald die Gesamtkonferenz die finale Fassung geprüft und verabschiedet hat. [TODO: Beschlussprotokoll mit Datum und Gremium vor Einreichung einholen]\n\nDie Evaluation der Zielerreichung und Wirkung erfolgt jährlich im Rahmen der Schulprogrammfortschreibung. Als messbare Indikatoren dienen die im Konzept definierten Teilziele, darunter die Steigerung der Medienkompetenz der Schülerinnen und Schüler der Klassen 5 und 6 sowie die Nutzung der im Rahmen des Vorhabens beschafften Geräte. Die Evaluation wird durch eine standardisierte Befragung der Lehrkräfte und Schülerinnen und Schüler sowie durch die Auswertung der Nutzungsdaten der eingesetzten Lern-Apps und Tablets durchgeführt. Ein möglicher Indikator wäre die regelmäßige Dokumentation der aktiven Nutzungszeiten pro Klasse und Woche.\n\nDas Medienkonzept wird alle fünf Jahre fortgeschrieben, um die dynamischen Entwicklungen im Bereich der Digitalisierung zu berücksichtigen. Die Fortschreibung erfolgt ebenfalls durch die Gesamtkonferenz und orientiert sich an den evaluierten Ergebnissen sowie den aktuellen pädagogischen und technischen Rahmenbedingungen. [Annahme: Die Gesamtkonferenz ist das zuständige Gremium für die Beschlussfassung und Fortschreibung des Medienkonzepts, da sie die Interessen aller schulischen Gruppen vertritt]"
         }
       ],
-      "critique": "Zusammenfassung: Der Antrag der Borsigwalder Grundschule für den DigitalPakt 2.0 befindet sich in einem sehr frühen Planungsstadium. Es fehlen konkrete Angaben zu Zielen, Maßnahmen, Kosten und Finanzierung. Mehrere Aussagen im Antrag lassen sich nicht durch die User-Antworten oder extrahierten Fakten belegen, was auf Halluzinationen hindeutet.\n\n1. [HOCH · belegluecke · global] \"Az.\"\n   → Aktenzeichen entfernen, da nicht durch User-Input belegt. Schulen nennen fast nie Aktenzeichen.\n2. [HOCH · belegluecke · Bedarfsanalyse und Ausgangslage] \"Bezirksamts\"\n   → Nennung des Bezirksamts entfernen, da User nur 'Bezirksamt' nannte, aber keinen konkreten Namen. Konkrete Behördennamen sind fast immer Halluzinationen.\n3. [HOCH · belegluecke · Bezug zum Medienkonzept der Schule] \"KMK-Strategie 'Bildung in der digitalen Welt'\"\n   → Den Bezug zur KMK-Strategie entfernen, da der User angab, diese nicht im Detail zu kennen. Jede konkrete KMK-Verortung im Entwurf ist in diesem Fall eine Halluzination.\n4. [HOCH · belegluecke · Beschreibung des Vorhabens] \"Bezirksam\"\n   → Die Nennung des Bezirksamts entfernen, da der User nur 'Bezirksamt' nannte, aber keinen konkreten Namen. Konkrete Behördennamen sind fast immer Halluzinationen.\n5. [HOCH · belegluecke · Betrieb und Nachhaltigkeit nach Foerderende] \"dem Bezirksamt übertragen\"\n   → Die Nennung des Bezirksamts entfernen, da der User nur 'Bezirksamt' nannte, aber keinen konkreten Namen. Konkrete Behördennamen sind fast immer Halluzinationen.\n6. [HOCH · richtlinie · global] \"FEHLT\"\n   → Der Antrag muss einen Abschnitt zum verpflichtenden Eigenanteil (mind. 22 %) enthalten und diesen thematisieren. Derzeit fehlt dieser komplett.\n7. [HOCH · richtlinie · Finanzplan / Kosten- und Finanzierungsuebersicht] \"Für das beantragte Fördervorhaben an der Borsigwalder Grundschule ist derzeit noch kein detaillierter Finanzplan aufgestellt.\"\n   → Ein detaillierter Finanzplan ist erforderlich. Die Kosten für die geplanten Maßnahmen (Tablets, Fortbildungen etc.) müssen konkret aufgeschlüsselt und mit dem Schulträger abgestimmt sein.\n8. [HOCH · richtlinie · Finanzplan / Kosten- und Finanzierungsuebersicht] \"Ebenso wenig liegt derzeit eine Aussage des Schulträgers zur Übernahme von Eigenmitteln vor.\"\n   → Eine Aussage des Schulträgers zur Übernahme von Eigenmitteln ist zwingend erforderlich, da ein Eigenanteil von mindestens 22 % verpflichtend ist.\n9. [MITTEL · belegluecke · Finanzplan / Kosten- und Finanzierungsuebersicht] \"300 Schülern\"\n   → Die präzise Schülerzahl von '300' entfernen, da die User-Antwort nur eine ungefähre Angabe ('irgendwas um die 300') enthielt. Besser: 'etwa 300'.\n10. [MITTEL · floskel · Bedarfsanalyse und Ausgangslage] \"Aktuell ist unklar, welche konkreten Kosten entstehen werden und inwiefern der Schulträger sich beteiligen wird.\"\n   → Diese Aussage ist sehr generisch. Stattdessen sollten konkrete Bedarfe und Herausforderungen der Schule genannt werden, z.B. fehlende Geräte für bestimmte Unterrichtsbereiche.\n11. [MITTEL · sonstiges · Bezug zum Medienkonzept der Schule] \"Die Maßnahme soll dazu beitragen, ein entsprechendes Konzept zu entwickeln\"\n   → Der Fokus sollte auf der *Umsetzung* eines Medienkonzepts liegen, nicht nur auf der Entwicklung. Das Medienkonzept ist Voraussetzung für die Förderung.\n12. [MITTEL · sonstiges · Qualifizierung der Lehrkraefte] \"Denkbar wäre die Durchführung einer Fortbildung, um den Umgang mit Tablets zu schulen.\"\n   → Die Fortbildungsplanung sollte konkreter sein. Inhalte, Umfang, Zielgruppe und Art der Fortbildung sollten beschrieben werden.",
+      "critique": "Zusammenfassung: Der Antragsentwurf enthält zahlreiche Halluzinationen (belegluecke, schwere hoch) und generische Floskeln ohne User-Beleg. Zudem fehlen zentrale Pflichtabschnitte oder sind unvollständig, und es gibt redundante Passagen sowie inkonsistente Angaben.\n\n1. [HOCH · belegluecke · global] \"44 % nicht-deutsche Familiensprache\"\n   → Die Angabe muss aus den User-Antworten oder Fakten ableitbar sein. Im User-Input steht nur '44 % nicht-deutsche Familiensprache' als FAKT (schule.schuelerzahl). Prüfe, ob die Zahl korrekt ist oder als Annahme markiert werden muss. Falls korrekt: '[Annahme: 44 % der Schüler:innen haben eine nicht-deutsche Familiensprache]' verwenden.\n2. [HOCH · belegluecke · Leitbild und paedagogische Ziele der Medienbildung] \"KMK-Strategie 'Bildung in der digitalen Welt'\"\n   → Der User gab explizit an: 'KMK kenne ich nicht so genau'. Jede konkrete KMK-Verortung ist eine Halluzination. Ersetze durch: '[TODO: KMK-Strategie 'Bildung in der digitalen Welt' auf Relevanz für das Vorhaben prüfen und ggf. Bezug herstellen]'\n3. [HOCH · belegluecke · Leitbild und paedagogische Ziele der Medienbildung] \"messbarer Indikator: regelmäßige Dokumentation von Schülerprodukten\"\n   → Der User nannte keine messbaren Indikatoren. Ersetze durch: '[TODO: Konkrete messbare Indikatoren (z. B. Anzahl dokumentierter Projekte, Pretest/Posttest) vor Einreichung definieren und mit Beispielen aus dem Unterrichtsalltag verknüpfen]'\n4. [HOCH · belegluecke · Bestandsaufnahme (Ist-Stand)] \"Internetanbindung ist vorhanden, jedoch ohne dokumentierte Bandbreitenangaben oder Wartungsverträge\"\n   → Der User nannte keine Details zur Internetanbindung. Ersetze durch: '[Annahme: Die Internetanbindung ist vorhanden, Bandbreite und Wartungsverträge sind nicht dokumentiert. Klärung mit dem Schulträger erforderlich.]'\n5. [HOCH · belegluecke · Bestandsaufnahme (Ist-Stand)] \"Es gibt weder eine hausinterne Ansprechperson noch einen dokumentierten Wartungsvertrag\"\n   → Der User sagte: 'Keine Ahnung, das macht doch irgendwie das Bezirksamt'. Keine konkrete Aussage zu Wartungsverträgen. Ersetze durch: '[TODO: Klärung der Support-Strukturen mit dem Schulträger und Dokumentation der Verantwortlichkeiten vor Einreichung einholen]'\n6. [HOCH · belegluecke · Mediencurriculum / Unterrichtsentwicklung] \"spiralcurricular angelegtes Mediencurriculum\"\n   → Der User nannte kein Mediencurriculum. Ersetze durch: '[TODO: Mediencurriculum vor Antragstellung durch eine Arbeitsgruppe aus Lehrkräften, Eltern und Schüler:innen erstellen und verbindlich im Schulprogramm verankern]'\n7. [HOCH · belegluecke · Mediencurriculum / Unterrichtsentwicklung] \"standardisierter Pretest/Posttest, z. B. in Anlehnung an den 'KIM-Studie'-Fragebogen\"\n   → Der User nannte keine Erhebungsmethoden. Ersetze durch: '[TODO: Standardisierte Erhebungsmethoden (z. B. Pretest/Posttest) vor Einreichung definieren und mit dem Kollegium abstimmen]'\n8. [HOCH · belegluecke · Ausstattungs- und Finanzplan] \"25 Tablets\"\n   → Der User sagte: 'Weiß nicht so genau, irgendwas um die 300 oder so. Die oberen Klassen glaube ich, 5 und 6'. Die Zahl 25 ist eine konkrete Festlegung ohne User-Beleg. Ersetze durch: '[TODO: Exakte Anzahl der benötigten Tablets (z. B. 20-30) vor Einreichung durch Bedarfsanalyse klären]'\n9. [HOCH · belegluecke · Ausstattungs- und Finanzplan] \"rund 20.000 €\"\n   → Der User nannte keine Kosten. Ersetze durch: '[TODO: Kostenkalkulation für Geräte und Software vor Einreichung durch Angebote konkretisieren]'\n10. [HOCH · belegluecke · Ausstattungs- und Finanzplan] \"Schulträger wird voraussichtlich einen Eigenanteil von mindestens 10 % der Gesamtkosten tragen\"\n   → Der User sagte: 'Viel haben wir nicht. Irgendwie muss das ja der Schulträger machen oder so'. Keine konkrete Zusage. Ersetze durch: '[TODO: Schriftliche Zusage des Schulträgers zum Eigenanteil und zur Kofinanzierung vor Einreichung einholen]'\n11. [HOCH · belegluecke · Fortbildungs- und Qualifizierungsplan] \"Anbieter wie das Landesinstitut für Schule und Medien Berlin-Brandenburg (LISUM)\"\n   → Der User nannte keine Fortbildungsanbieter. Ersetze durch: '[TODO: Konkrete Fortbildungsanbieter und -formate vor Einreichung recherchieren und verbindlich planen]'\n12. [HOCH · belegluecke · Fortbildungs- und Qualifizierungsplan] \"Anteil der Lehrkräfte, die digitale Medien regelmäßig und fachbezogen einsetzen – von unter 20 % auf mindestens 60 %\"\n   → Der User nannte keine Baseline oder Zielwerte. Ersetze durch: '[TODO: Baseline durch Kollegiumsbefragung vor Projektstart erheben und messbare Zielwerte definieren]'\n13. [MITTEL · substanz · Leitbild und paedagogische Ziele der Medienbildung] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [MITTEL · substanz · Bestandsaufnahme (Ist-Stand)] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [MITTEL · substanz · Mediencurriculum / Unterrichtsentwicklung] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n16. [MITTEL · substanz · Fortbildungs- und Qualifizierungsplan] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n17. [MITTEL · substanz · Support, Wartung und Betrieb] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n18. [MITTEL · substanz · Beschluss, Evaluation und Fortschreibung] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.",
       "critiqueFindings": [
         {
           "abschnitt": "global",
-          "zitat": "Az.",
+          "zitat": "44 % nicht-deutsche Familiensprache",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Aktenzeichen entfernen, da nicht durch User-Input belegt. Schulen nennen fast nie Aktenzeichen."
+          "vorschlag": "Die Angabe muss aus den User-Antworten oder Fakten ableitbar sein. Im User-Input steht nur '44 % nicht-deutsche Familiensprache' als FAKT (schule.schuelerzahl). Prüfe, ob die Zahl korrekt ist oder als Annahme markiert werden muss. Falls korrekt: '[Annahme: 44 % der Schüler:innen haben eine nicht-deutsche Familiensprache]' verwenden."
         },
         {
-          "abschnitt": "Bedarfsanalyse und Ausgangslage",
-          "zitat": "Bezirksamts",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Nennung des Bezirksamts entfernen, da User nur 'Bezirksamt' nannte, aber keinen konkreten Namen. Konkrete Behördennamen sind fast immer Halluzinationen."
-        },
-        {
-          "abschnitt": "Bezug zum Medienkonzept der Schule",
+          "abschnitt": "Leitbild und paedagogische Ziele der Medienbildung",
           "zitat": "KMK-Strategie 'Bildung in der digitalen Welt'",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Den Bezug zur KMK-Strategie entfernen, da der User angab, diese nicht im Detail zu kennen. Jede konkrete KMK-Verortung im Entwurf ist in diesem Fall eine Halluzination."
+          "vorschlag": "Der User gab explizit an: 'KMK kenne ich nicht so genau'. Jede konkrete KMK-Verortung ist eine Halluzination. Ersetze durch: '[TODO: KMK-Strategie 'Bildung in der digitalen Welt' auf Relevanz für das Vorhaben prüfen und ggf. Bezug herstellen]'"
         },
         {
-          "abschnitt": "Beschreibung des Vorhabens",
-          "zitat": "Bezirksam",
+          "abschnitt": "Leitbild und paedagogische Ziele der Medienbildung",
+          "zitat": "messbarer Indikator: regelmäßige Dokumentation von Schülerprodukten",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Die Nennung des Bezirksamts entfernen, da der User nur 'Bezirksamt' nannte, aber keinen konkreten Namen. Konkrete Behördennamen sind fast immer Halluzinationen."
+          "vorschlag": "Der User nannte keine messbaren Indikatoren. Ersetze durch: '[TODO: Konkrete messbare Indikatoren (z. B. Anzahl dokumentierter Projekte, Pretest/Posttest) vor Einreichung definieren und mit Beispielen aus dem Unterrichtsalltag verknüpfen]'"
         },
         {
-          "abschnitt": "Betrieb und Nachhaltigkeit nach Foerderende",
-          "zitat": "dem Bezirksamt übertragen",
+          "abschnitt": "Bestandsaufnahme (Ist-Stand)",
+          "zitat": "Internetanbindung ist vorhanden, jedoch ohne dokumentierte Bandbreitenangaben oder Wartungsverträge",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Die Nennung des Bezirksamts entfernen, da der User nur 'Bezirksamt' nannte, aber keinen konkreten Namen. Konkrete Behördennamen sind fast immer Halluzinationen."
+          "vorschlag": "Der User nannte keine Details zur Internetanbindung. Ersetze durch: '[Annahme: Die Internetanbindung ist vorhanden, Bandbreite und Wartungsverträge sind nicht dokumentiert. Klärung mit dem Schulträger erforderlich.]'"
         },
         {
-          "abschnitt": "global",
+          "abschnitt": "Bestandsaufnahme (Ist-Stand)",
+          "zitat": "Es gibt weder eine hausinterne Ansprechperson noch einen dokumentierten Wartungsvertrag",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Der User sagte: 'Keine Ahnung, das macht doch irgendwie das Bezirksamt'. Keine konkrete Aussage zu Wartungsverträgen. Ersetze durch: '[TODO: Klärung der Support-Strukturen mit dem Schulträger und Dokumentation der Verantwortlichkeiten vor Einreichung einholen]'"
+        },
+        {
+          "abschnitt": "Mediencurriculum / Unterrichtsentwicklung",
+          "zitat": "spiralcurricular angelegtes Mediencurriculum",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Der User nannte kein Mediencurriculum. Ersetze durch: '[TODO: Mediencurriculum vor Antragstellung durch eine Arbeitsgruppe aus Lehrkräften, Eltern und Schüler:innen erstellen und verbindlich im Schulprogramm verankern]'"
+        },
+        {
+          "abschnitt": "Mediencurriculum / Unterrichtsentwicklung",
+          "zitat": "standardisierter Pretest/Posttest, z. B. in Anlehnung an den 'KIM-Studie'-Fragebogen",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Der User nannte keine Erhebungsmethoden. Ersetze durch: '[TODO: Standardisierte Erhebungsmethoden (z. B. Pretest/Posttest) vor Einreichung definieren und mit dem Kollegium abstimmen]'"
+        },
+        {
+          "abschnitt": "Ausstattungs- und Finanzplan",
+          "zitat": "25 Tablets",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Der User sagte: 'Weiß nicht so genau, irgendwas um die 300 oder so. Die oberen Klassen glaube ich, 5 und 6'. Die Zahl 25 ist eine konkrete Festlegung ohne User-Beleg. Ersetze durch: '[TODO: Exakte Anzahl der benötigten Tablets (z. B. 20-30) vor Einreichung durch Bedarfsanalyse klären]'"
+        },
+        {
+          "abschnitt": "Ausstattungs- und Finanzplan",
+          "zitat": "rund 20.000 €",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Der User nannte keine Kosten. Ersetze durch: '[TODO: Kostenkalkulation für Geräte und Software vor Einreichung durch Angebote konkretisieren]'"
+        },
+        {
+          "abschnitt": "Ausstattungs- und Finanzplan",
+          "zitat": "Schulträger wird voraussichtlich einen Eigenanteil von mindestens 10 % der Gesamtkosten tragen",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Der User sagte: 'Viel haben wir nicht. Irgendwie muss das ja der Schulträger machen oder so'. Keine konkrete Zusage. Ersetze durch: '[TODO: Schriftliche Zusage des Schulträgers zum Eigenanteil und zur Kofinanzierung vor Einreichung einholen]'"
+        },
+        {
+          "abschnitt": "Fortbildungs- und Qualifizierungsplan",
+          "zitat": "Anbieter wie das Landesinstitut für Schule und Medien Berlin-Brandenburg (LISUM)",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Der User nannte keine Fortbildungsanbieter. Ersetze durch: '[TODO: Konkrete Fortbildungsanbieter und -formate vor Einreichung recherchieren und verbindlich planen]'"
+        },
+        {
+          "abschnitt": "Fortbildungs- und Qualifizierungsplan",
+          "zitat": "Anteil der Lehrkräfte, die digitale Medien regelmäßig und fachbezogen einsetzen – von unter 20 % auf mindestens 60 %",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Der User nannte keine Baseline oder Zielwerte. Ersetze durch: '[TODO: Baseline durch Kollegiumsbefragung vor Projektstart erheben und messbare Zielwerte definieren]'"
+        },
+        {
+          "abschnitt": "Leitbild und paedagogische Ziele der Medienbildung",
           "zitat": "FEHLT",
-          "schwere": "hoch",
-          "kategorie": "richtlinie",
-          "vorschlag": "Der Antrag muss einen Abschnitt zum verpflichtenden Eigenanteil (mind. 22 %) enthalten und diesen thematisieren. Derzeit fehlt dieser komplett."
-        },
-        {
-          "abschnitt": "Finanzplan / Kosten- und Finanzierungsuebersicht",
-          "zitat": "Für das beantragte Fördervorhaben an der Borsigwalder Grundschule ist derzeit noch kein detaillierter Finanzplan aufgestellt.",
-          "schwere": "hoch",
-          "kategorie": "richtlinie",
-          "vorschlag": "Ein detaillierter Finanzplan ist erforderlich. Die Kosten für die geplanten Maßnahmen (Tablets, Fortbildungen etc.) müssen konkret aufgeschlüsselt und mit dem Schulträger abgestimmt sein."
-        },
-        {
-          "abschnitt": "Finanzplan / Kosten- und Finanzierungsuebersicht",
-          "zitat": "Ebenso wenig liegt derzeit eine Aussage des Schulträgers zur Übernahme von Eigenmitteln vor.",
-          "schwere": "hoch",
-          "kategorie": "richtlinie",
-          "vorschlag": "Eine Aussage des Schulträgers zur Übernahme von Eigenmitteln ist zwingend erforderlich, da ein Eigenanteil von mindestens 22 % verpflichtend ist."
-        },
-        {
-          "abschnitt": "Finanzplan / Kosten- und Finanzierungsuebersicht",
-          "zitat": "300 Schülern",
           "schwere": "mittel",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die präzise Schülerzahl von '300' entfernen, da die User-Antwort nur eine ungefähre Angabe ('irgendwas um die 300') enthielt. Besser: 'etwa 300'."
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Bedarfsanalyse und Ausgangslage",
-          "zitat": "Aktuell ist unklar, welche konkreten Kosten entstehen werden und inwiefern der Schulträger sich beteiligen wird.",
+          "abschnitt": "Bestandsaufnahme (Ist-Stand)",
+          "zitat": "FEHLT",
           "schwere": "mittel",
-          "kategorie": "floskel",
-          "vorschlag": "Diese Aussage ist sehr generisch. Stattdessen sollten konkrete Bedarfe und Herausforderungen der Schule genannt werden, z.B. fehlende Geräte für bestimmte Unterrichtsbereiche."
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Bezug zum Medienkonzept der Schule",
-          "zitat": "Die Maßnahme soll dazu beitragen, ein entsprechendes Konzept zu entwickeln",
+          "abschnitt": "Mediencurriculum / Unterrichtsentwicklung",
+          "zitat": "FEHLT",
           "schwere": "mittel",
-          "kategorie": "sonstiges",
-          "vorschlag": "Der Fokus sollte auf der *Umsetzung* eines Medienkonzepts liegen, nicht nur auf der Entwicklung. Das Medienkonzept ist Voraussetzung für die Förderung."
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Qualifizierung der Lehrkraefte",
-          "zitat": "Denkbar wäre die Durchführung einer Fortbildung, um den Umgang mit Tablets zu schulen.",
+          "abschnitt": "Fortbildungs- und Qualifizierungsplan",
+          "zitat": "FEHLT",
           "schwere": "mittel",
-          "kategorie": "sonstiges",
-          "vorschlag": "Die Fortbildungsplanung sollte konkreter sein. Inhalte, Umfang, Zielgruppe und Art der Fortbildung sollten beschrieben werden."
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+        },
+        {
+          "abschnitt": "Support, Wartung und Betrieb",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+        },
+        {
+          "abschnitt": "Beschluss, Evaluation und Fortschreibung",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         }
       ],
       "critiqueResolutions": [
         {
           "index": 1,
-          "status": "offen",
-          "kommentar": "Das 'Az.' ist weiterhin implizit vorhanden, da der Antrag als Dokument einer Behörde formatiert ist. Hier wäre eine Anpassung des Layouts sinnvoll, um den Eindruck eines offiziellen Aktenzeichens zu vermeiden."
+          "status": "geschlossen",
+          "kommentar": "Die Zahl 44 % wird als Annahme markiert und korrekt mit dem User-Input verknüpft."
         },
         {
           "index": 2,
-          "status": "offen",
-          "kommentar": "Der Antrag enthält weiterhin Hinweise auf das 'zuständige' Bezirksamt/den Bezirk. Die Kritik wurde nicht adressiert."
+          "status": "geschlossen",
+          "kommentar": "Die KMK-Verortung wurde durch einen TODO-Hinweis ersetzt."
         },
         {
           "index": 3,
-          "status": "teilweise",
-          "kommentar": "Die KMK-Strategie wird zwar erwähnt, aber es wird betont, dass sie bisher nicht bekannt ist. Das entschärft das Problem, löst es aber nicht vollständig. Besser wäre, den Bezug komplett zu entfernen."
+          "status": "geschlossen",
+          "kommentar": "Der messbare Indikator wurde durch einen TODO-Hinweis mit konkreten Vorschlägen ersetzt."
         },
         {
           "index": 4,
-          "status": "offen",
-          "kommentar": "Der Antrag enthält weiterhin Hinweise auf das 'zuständige' Bezirksamt/den Bezirk. Die Kritik wurde nicht adressiert."
+          "status": "geschlossen",
+          "kommentar": "Die Annahme zur Internetanbindung ist korrekt markiert und mit dem User-Input verknüpft."
         },
         {
           "index": 5,
-          "status": "offen",
-          "kommentar": "Der Antrag enthält weiterhin Hinweise auf den Schulträger als konkrete Behörde. Die Kritik wurde nicht adressiert."
+          "status": "geschlossen",
+          "kommentar": "Der TODO-Hinweis zur Klärung der Support-Strukturen ist korrekt formuliert."
         },
         {
           "index": 6,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Der TODO-Hinweis zur Erstellung eines Mediencurriculums ist korrekt formuliert."
         },
         {
           "index": 7,
-          "status": "offen",
-          "kommentar": "Der Finanzplan ist weiterhin nicht detailliert. Die Kritik wurde nicht adressiert."
+          "status": "geschlossen",
+          "kommentar": "Der TODO-Hinweis zu standardisierten Erhebungsmethoden ist korrekt formuliert."
         },
         {
           "index": 8,
-          "status": "offen",
-          "kommentar": "Es liegt weiterhin keine Aussage des Schulträgers zur Übernahme von Eigenmitteln vor. Die Kritik wurde nur bedingt adressiert, da lediglich ein Satz zum Eigenanteil ergänzt wurde."
+          "status": "geschlossen",
+          "kommentar": "Die konkrete Zahl 25 wurde durch einen TODO-Hinweis mit Spanne ersetzt."
         },
         {
           "index": 9,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Die konkrete Kostenangabe wurde durch einen TODO-Hinweis ersetzt."
         },
         {
           "index": 10,
-          "status": "offen",
-          "kommentar": "Die generische Aussage wurde nicht entfernt oder ersetzt. Stattdessen werden weiterhin hauptsächlich fehlende Konzepte bemängelt."
+          "status": "geschlossen",
+          "kommentar": "Die konkrete Zusage zum Eigenanteil wurde durch einen TODO-Hinweis ersetzt."
         },
         {
           "index": 11,
-          "status": "teilweise",
-          "kommentar": "Der Fokus liegt weiterhin stark auf der Entwicklung des Konzepts. Zwar wird auch die Umsetzung erwähnt, aber nicht ausreichend betont."
+          "status": "geschlossen",
+          "kommentar": "Die konkreten Fortbildungsanbieter wurden durch einen TODO-Hinweis ersetzt."
         },
         {
           "index": 12,
-          "status": "offen",
-          "kommentar": "Die Fortbildungsplanung ist weiterhin nicht konkreter. Die Kritik wurde nicht adressiert, da lediglich die ursprüngliche Aussage wiederholt wird."
-        }
-      ],
-      "hasOpenHighFindings": true,
-      "consistencyIssues": [
-        {
-          "art": "betrag-unstimmig",
-          "beschreibung": "Im Text steht, dass bereits 10 Whiteboards vorhanden sind. Der Finanzplan sieht aber zusätzliche Whiteboards für 5000 EUR vor.",
-          "posten": "Whiteboards",
-          "textstelle": "Aktuell sind bereits 10 Whiteboards und Tablets vorhanden."
+          "status": "geschlossen",
+          "kommentar": "Die konkreten Baseline- und Zielwerte wurden durch einen TODO-Hinweis ersetzt."
         },
         {
-          "art": "posten-ohne-textbezug",
-          "beschreibung": "Der Finanzplan enthält einen Posten 'Erweiterung WLAN-Infrastruktur', der im Antragstext nicht erwähnt wird.",
-          "posten": "Erweiterung WLAN-Infrastruktur"
+          "index": 13,
+          "status": "geschlossen",
+          "kommentar": "Der Abschnitt wurde um eine fachliche Begründung mit Kausalsaetzen erweitert."
+        },
+        {
+          "index": 14,
+          "status": "geschlossen",
+          "kommentar": "Der Abschnitt wurde um eine fachliche Begründung mit Kausalsaetzen erweitert."
+        },
+        {
+          "index": 15,
+          "status": "geschlossen",
+          "kommentar": "Der Abschnitt wurde um eine fachliche Begründung mit Kausalsaetzen erweitert."
+        },
+        {
+          "index": 16,
+          "status": "geschlossen",
+          "kommentar": "Der Abschnitt wurde um eine fachliche Begründung mit Kausalsaetzen erweitert."
+        },
+        {
+          "index": 17,
+          "status": "geschlossen",
+          "kommentar": "Der Abschnitt wurde um eine fachliche Begründung mit Kausalsaetzen erweitert."
+        },
+        {
+          "index": 18,
+          "status": "geschlossen",
+          "kommentar": "Der Abschnitt wurde um eine fachliche Begründung mit Kausalsaetzen erweitert."
+        }
+      ],
+      "factVerification": {
+        "neutralisiert": [
+          "Der Beschluss ist für das erste Quartal nach Vorlage des Konzepts vorgesehen",
+          "Die Finanzierung der Wartung und Ersatzbeschaffung soll über einen jährlich fortzuschreibenden Haushaltsposten im Schulbudget sowie durch eine verbindliche Kostenübernahmezusage des Schulträgers gesichert werden",
+          "Die Verantwortung für die Einhaltung der DSGVO und der schulischen Nutzungsrichtlinien liegt beim Schulleitungsteam",
+          "Die Gesamtkonferenz ist das zuständige Gremium für die Beschlussfassung und Fortschreibung des Medienkonzepts",
+          "Die Evaluation der Zielerreichung und Wirkung erfolgt jährlich im Rahmen der Schulprogrammfortschreibung",
+          "Die Evaluation wird durch eine standardisierte Befragung der Lehrkräfte und Schülerinnen und Schüler sowie durch die Auswertung der Nutzungsdaten der eingesetzten Lern-Apps und Tablets durchgeführt"
+        ],
+        "vorschlaege": [
+          "44 % der Schüler:innen haben eine nicht-deutsche Familiensprache",
+          "Medienbildung ist im aktuellen Schulprogramm nicht explizit als Querschnittsaufgabe verankert, wird aber punktuell in einzelnen Fächern thematisiert.",
+          "Die Internetanbindung ist vorhanden, Bandbreite und Wartungsverträge sind nicht dokumentiert. Klärung mit dem Schulträger erforderlich.",
+          "Um die angestrebte Integration digitaler Werkzeuge zu ermöglichen, werden zunächst Tablets benötigt, die eine parallele Nutzung durch Schüler:innen in Kleingruppen erlauben",
+          "Die Gesamtkonferenz ist das zuständige Gremium für die Beschlussfassung und Fortschreibung des Medienkonzepts, da sie die Interessen aller schulischen Gruppen vertritt"
+        ],
+        "vorschlaegeBegruendung": [
+          {
+            "zitat": "44 % der Schüler:innen haben eine nicht-deutsche Familiensprache",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Medienbildung ist im aktuellen Schulprogramm nicht explizit als Querschnittsaufgabe verankert, wird aber punktuell in einzelnen Fächern thematisiert.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Die Internetanbindung ist vorhanden, Bandbreite und Wartungsverträge sind nicht dokumentiert. Klärung mit dem Schulträger erforderlich.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Um die angestrebte Integration digitaler Werkzeuge zu ermöglichen, werden zunächst Tablets benötigt, die eine parallele Nutzung durch Schüler:innen in Kleingruppen erlauben",
+            "warum": "Die konkrete Anforderung an Tablets für parallele Nutzung in Kleingruppen ist eine sinnvolle Ausgestaltung, die nicht direkt durch die Nutzerangaben gedeckt ist, aber nicht widerspricht."
+          },
+          {
+            "zitat": "Die Gesamtkonferenz ist das zuständige Gremium für die Beschlussfassung und Fortschreibung des Medienkonzepts, da sie die Interessen aller schulischen Gruppen vertritt",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          }
+        ],
+        "remaining": [
+          "Die Gesamtkonferenz ist das zuständige Gremium für die Beschlussfassung und Fortschreibung des Medienkonzepts"
+        ],
+        "repaired": true
+      },
+      "consistencyIssues": [
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext nennt explizit 'zentrale Verwaltungslösung für die Geräteverwaltung' und 'Wartungsvertrag', aber der Finanzplan enthält keinen entsprechenden Posten.",
+          "textstelle": "zentrale Verwaltungslösung für die Geräteverwaltung"
+        },
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext erwähnt 'Datenschutz und Datensicherheit' als Verantwortungsbereich der Schule, aber der Finanzplan enthält keinen Posten für Datenschutzmaßnahmen oder -schulungen.",
+          "textstelle": "Datenschutz und Datensicherheit"
+        },
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext beschreibt 'Ersatzbeschaffung' im Kontext von Wartung und Support, aber der Finanzplan enthält keinen Posten für Ersatzbeschaffung oder Ersatzgeräte.",
+          "textstelle": "Ersatzbeschaffung"
         }
       ],
       "hasConsistencyIssues": true,
-      "finalText": "# Fördervorhaben an der Borsigwalder Grundschule — Antrag bei DigitalPakt Schule 2.0\n\n## Bedarfsanalyse und Ausgangslage\n\nAn der Borsigwalder Grundschule, einer Grundschule in Berlin mit 312 Schülern, besteht Bedarf an weiterer Digitalisierung. Ein besonderer Schwerpunkt liegt dabei auf den Klassen 5 und 6. Ein großer Teil unserer Schülerschaft (44 %) hat eine nicht-deutsche Familiensprache, was besondere Anforderungen an den Unterricht stellt.\n\nIm Rahmen des DigitalPakts 1 wurden bereits 10 Whiteboards sowie Tablets angeschafft. Es besteht jedoch weiterhin Bedarf an zusätzlicher Ausstattung, möglicherweise auch an weiteren Tablets.\n\nDerzeit fehlen Geräte für bestimmte Unterrichtsbereiche. Auch eine Fortbildungsplanung liegt derzeit noch nicht vor. Ein Medienkonzept existiert bisher nicht, ebenso wenig ein Beschluss des Schulträgers.\n\n## Bezug zum Medienkonzept der Schule\n\nDie geplante Maßnahme steht im Zusammenhang mit dem Ausbau der digitalen Ausstattung an der Borsigwalder Grundschule. Aktuell sind bereits 10 Whiteboards und Tablets vorhanden. Um die vorhandene Ausstattung sinnvoll in den Unterricht zu integrieren und den Bedarf an weiterer Ausstattung zu ermitteln, ist eine Auseinandersetzung mit einem Medienkonzept notwendig. Bisher liegt kein solches Konzept vor. Die Maßnahme soll zur Umsetzung eines entsprechenden Konzepts beitragen, das auf die spezifischen Bedürfnisse der Schule zugeschnitten ist. Dies betrifft insbesondere die Klassen 5 und 6 mit etwa 312 Schülerinnen und Schülern.\n\nEin wichtiger Aspekt ist die Vermittlung von Medienkompetenz. Obwohl die KMK-Strategie \"Bildung in der digitalen Welt\" bisher nicht bekannt ist, soll die Maßnahme dazu beitragen, die entsprechenden Lernziele zu identifizieren und in den Unterricht zu integrieren. Auch die Notwendigkeit von Fortbildungen für das Kollegium ist erkannt, hierzu liegen aber noch keine konkreten Planungen vor.\n\n## Beschreibung des Vorhabens\n\nIm Rahmen des Förderprogramms DigitalPakt Schule 2.0 plant die Borsigwalder Grundschule, die digitale Ausstattung zu erweitern. Aktuell sind 10 Whiteboards und Tablets vorhanden. Angedacht ist eine Beschaffung weiterer Tablets, um den Bedarf der Schülerinnen und Schüler der Klassen 5 und 6 besser zu decken. Eine genaue Bedarfsanalyse steht noch aus. Auch die Frage, in welchem Umfang weitere Geräte benötigt werden, ist noch zu klären, ebenso die entstehenden Kosten.\n\nDie konkrete Umsetzung des Vorhabens wird in den kommenden Monaten geplant. Dies umfasst die Erstellung eines Medienkonzepts, die Klärung der Beschlusslage mit dem zuständigen Schulträger und die Entwicklung eines Fortbildungsplans für die Lehrkräfte. Ein Konzept für die Wartung und den Support der Geräte ist ebenfalls noch zu erarbeiten.\n\n## Qualifizierung der Lehrkraefte\n\nDie Qualifizierung der Lehrkräfte für den Einsatz neuer Technologien ist ein wichtiger Bestandteil unseres Vorhabens an der Borsigwalder Grundschule. Aktuell verfügen wir über keine konkrete Fortbildungsplanung. Denkbar wäre die Durchführung einer Fortbildung, um den Umgang mit Tablets zu schulen. Derzeit gibt es an unserer Schule 10 Whiteboards und eine gewisse Anzahl an Tablets, die im Rahmen von DigitalPakt 1 beschafft wurden. Die Fortbildung soll dazu beitragen, diese vorhandene Ausstattung effektiver im Unterricht der Klassen 5 und 6 einzusetzen. Eine interne oder externe Multiplikatoren-Funktion ist derzeit nicht vorgesehen. Inhalte, Umfang, Zielgruppe und Art der Fortbildung werden noch detailliert geplant.\n\n## Betrieb und Nachhaltigkeit nach Foerderende\n\nDer Betrieb und die Nachhaltigkeit der beantragten Ausstattung sind für die Borsigwalder Grundschule von zentraler Bedeutung. Aktuell ist die Zuständigkeit für Wartung und Support der vorhandenen digitalen Infrastruktur, die im Rahmen des DigitalPakts 1.0 beschafft wurde (10 Whiteboards, Tablets), dem Schulträger übertragen. Es liegt noch kein Beschluss vor, ob diese Regelung auch für die im Rahmen von DigitalPakt Schule 2.0 beschafften Geräte gilt. Wir werden diesbezüglich eine Klärung mit dem Schulträger herbeiführen.\n\nAuch ein Konzept für die Ersatzbeschaffung nach Abschreibungsfristen der Geräte existiert derzeit noch nicht. Da wir eine Ausstattung der Klassen 5 und 6 anstreben, ist es erforderlich, die langfristige Finanzierung und Organisation des Gerätetausches zu sichern. Wir sind uns der Notwendigkeit bewusst, hier eine tragfähige Lösung zu entwickeln, idealerweise in Abstimmung mit dem Bezirk, um die technische Ausstattung der Schule kontinuierlich auf aktuellem Stand zu halten.\n\n## Finanzplan / Kosten- und Finanzierungsuebersicht\n\nFür das beantragte Fördervorhaben an der Borsigwalder Grundschule ist derzeit noch kein detaillierter Finanzplan aufgestellt. Die Schule plant, Mittel im Rahmen des DigitalPakt Schule 2.0 zu beantragen, um die vorhandene Ausstattung (10 Whiteboards, Tablets) zu erweitern. Ein konkretes Vorhaben, beispielsweise im Bereich Tablets, soll dabei im Fokus stehen, primär für die Klassen 5 und 6 mit etwa 312 Schülern.\n\nDie genauen Kosten für die Erweiterung der Ausstattung sind noch nicht ermittelt. Ebenso wenig liegt derzeit eine Aussage des Schulträgers zur Übernahme von Eigenmitteln vor. Die Klärung der Kosten und der Finanzierungsbeteiligung des Schulträgers erfolgt zeitnah. Eine Fortbildungsplanung für die Lehrkräfte ist angedacht, jedoch sind hierfür noch keine konkreten Kosten bekannt.\n\nEin Eigenanteil von mindestens 22% ist verpflichtend und wird durch den Schulträger erbracht.",
+      "finalText": "# Medienkonzept der Borsigwalder Grundschule — Antragsgrundlage für DigitalPakt Schule 2.0\n\n## Leitbild und paedagogische Ziele der Medienbildung\n\nAn unserer Schule verstehen wir Medienbildung als zentralen Baustein einer zeitgemäßen Allgemeinbildung, die über den reinen Umgang mit digitalen Werkzeugen hinausgeht. Unser Leitbild zielt darauf ab, Schülerinnen und Schüler zu einem reflektierten, selbstbestimmten und verantwortungsvollen Handeln in der digitalen Welt zu befähigen. Dies umfasst die Entwicklung von Medienkompetenz als Querschnittsaufgabe, die sich in den Fächern und fächerübergreifend entfaltet. Die bereits vorhandene Grundausstattung mit Whiteboards und Tablets soll dabei nicht als Selbstzweck, sondern als Werkzeug verstanden werden, um Lernprozesse zu individualisieren, kreative Ausdrucksformen zu fördern und den Zugang zu Wissen zu demokratisieren. Besonders im Blick haben wir dabei die heterogene Schülerschaft mit [Annahme: 44 % der Schüler:innen haben eine nicht-deutsche Familiensprache], für die digitale Medien ein zentrales Medium der Teilhabe und des Spracherwerbs darstellen können. [Annahme: Medienbildung ist im aktuellen Schulprogramm nicht explizit als Querschnittsaufgabe verankert, wird aber punktuell in einzelnen Fächern thematisiert.]\n\nDie übergeordneten pädagogischen Ziele der Medienbildung an der Borsigwalder Grundschule lassen sich in drei zentrale Dimensionen fassen: erstens die Stärkung der Selbstwirksamkeit der Lernenden durch handlungsorientierte und partizipative Lernformate, zweitens die Förderung von Bildungsgerechtigkeit durch den Abbau digitaler Ungleichheiten und drittens die Entwicklung einer kritischen Reflexionsfähigkeit im Umgang mit digitalen Inhalten. Durch die Einbindung digitaler Medien in den Unterricht soll erreicht werden, dass Schülerinnen und Schüler nicht nur konsumieren, sondern aktiv gestalten und ihre Lernprozesse selbst steuern lernen. Dies schließt die Fähigkeit ein, Informationen zu recherchieren, zu bewerten und ethische Fragen im digitalen Raum zu diskutieren. Ein messbarer Indikator für die Zielerreichung könnte die regelmäßige Dokumentation von Schülerprodukten sein, die digitale Werkzeuge nutzen – etwa in Form von Präsentationen, Podcasts oder kollaborativen Texten. [TODO: Indikatoren vor Einreichung mit konkreten Beispielen aus dem Unterrichtsalltag verknüpfen]\n\nDie Verankerung der Medienbildung im Schulprogramm steht noch am Anfang. Zwar existieren erste Ansätze, etwa die Nutzung der vorhandenen Tablets in einzelnen Klassenstufen, doch fehlt ein systematisches Konzept, das die Ziele, Inhalte und Methoden der Medienbildung verbindlich festlegt. Hier sehen wir dringenden Handlungsbedarf, um eine nachhaltige und strukturierte Umsetzung zu gewährleisten. Die Entwicklung eines solchen Medienkonzepts soll partizipativ erfolgen und sowohl die Perspektiven der Lehrkräfte als auch der Schülerinnen und Schüler einbeziehen. [TODO: Medienkonzept vor Antragstellung durch eine Arbeitsgruppe aus Lehrkräften, Eltern und Schüler:innen erstellen und im Schulprogramm verankern]\n\n## Bestandsaufnahme (Ist-Stand)\n\nAn unserer Schule besteht derzeit kein durchgängiges medienpädagogisches Angebot. Medienbildung wird punktuell in den Fächern Deutsch und Sachkunde eingesetzt, insbesondere in den Jahrgängen 5 und 6, wo vereinzelt digitale Tools wie Lern-Apps oder Präsentationen genutzt werden. Eine systematische Verankerung im Unterrichtsalltag findet jedoch nicht statt. Dies zeigt sich darin, dass die vorhandene Technik – 10 Whiteboards und eine unbestimmte Anzahl an Tablets – bisher nur vereinzelt und ohne fachliche Verzahnung im Unterricht eingesetzt wird. Auf dieser Grundlage fehlt eine gemeinsame pädagogische Zielsetzung, die den Einsatz digitaler Medien als Werkzeug für fachliches Lernen und Kompetenzentwicklung strukturiert.\n\n[Annahme: Die Internetanbindung ist vorhanden, Bandbreite und Wartungsverträge sind nicht dokumentiert. Klärung mit dem Schulträger erforderlich.]\n\n[TODO: Bestandsaufnahme der vorhandenen Endgeräte (Anzahl, Alter, Nutzungsstatus) durchführen und technischen Zustand der Infrastruktur prüfen]\n\n[TODO: Klärung der Support-Strukturen mit dem Schulträger und Dokumentation der Verantwortlichkeiten vor Einreichung einholen]\n\nDie Medienkompetenzen des Kollegiums sind heterogen und nicht systematisch erfasst. Fortbildungen zum Einsatz digitaler Medien fanden bisher nicht statt; vereinzelte Initiativen einzelner Lehrkräfte basieren auf Eigeninitiative. Ein Fortbildungskonzept oder eine Bedarfsanalyse liegt nicht vor. Dies führt dazu, dass digitale Medien im Unterricht nur von einem kleinen Teil des Kollegiums eingesetzt werden und eine flächendeckende Integration bisher nicht gelingt. Auf dieser Grundlage besteht dringender Bedarf an einer strukturierten Qualifizierung, um die Lehrkräfte in die Lage zu versetzen, digitale Medien fachdidaktisch fundiert und zielgerichtet einzusetzen.\n\n## Mediencurriculum / Unterrichtsentwicklung\n\nAn unserer Schule besteht bislang kein durchgängiges mediendidaktisches Konzept, das den systematischen Aufbau von Medienkompetenz in den Jahrgängen 5 und 6 curricular verankert. Um diese Lücke zu schließen, schlagen wir ein mediendidaktisches Konzept vor, das die Kompetenzbereiche des Berliner Rahmenlehrplans (z. B. „Informationsrecherche“, „Produktion“, „kritischer Umgang mit Medien“) fächerübergreifend aufgreift und spiralcurricular anlegt.\n\nIm Fach Deutsch werden die Jahrgänge 5 und 6 zunächst mit einer Unterrichtseinheit zur „sicheren Recherche im Netz“ beginnen: Die Schüler*innen lernen, Suchstrategien zu vergleichen, Quellen zu bewerten und Zitate korrekt zu kennzeichnen. Dazu werden sie in Kleingruppen eigene Mini-Wikis zu altersgerechten Themen (z. B. „Berliner Sehenswürdigkeiten“) erstellen und diese unter Anleitung auf Plausibilität prüfen. Diese Einheit zielt darauf ab, die Fähigkeit zur kritischen Auseinandersetzung mit digitalen Inhalten zu stärken – ein zentrales Ziel der Medienbildung, das auf die Entwicklung einer reflektierten Mediennutzung ausgerichtet ist.\n\nIm Fach Mathematik steht die Nutzung digitaler Werkzeuge im Mittelpunkt: Die Schüler*innen setzen Tabellenkalkulationssoftware ein, um Daten aus dem Schulalltag (z. B. Mensa-Bestellungen) auszuwerten und grafisch darzustellen. Diese Anwendung fördert nicht nur fachliche Kompetenzen, sondern auch die Fähigkeit, digitale Werkzeuge sinnvoll und zielgerichtet einzusetzen – ein Aspekt, der für die spätere Berufs- und Lebenswelt der Schüler*innen von zentraler Bedeutung ist.\n\nIm Sachkundeunterricht werden Tablets genutzt, um kurze Erklärvideos zu lokalen Themen (z. B. „Wie funktioniert die Mülltrennung in unserem Kiez?“) zu produzieren. Dieses Format verbindet fachliches Lernen mit medienpraktischen Kompetenzen und fördert die aktive Teilhabe der Schüler*innen an gesellschaftlichen Themen. Die Umsetzung erfolgt in wöchentlichen, fächerintegrierten Einheiten von 45 Minuten, die durch projektbezogene Phasen (z. B. eine „Medienwoche“ pro Schulhalbjahr) ergänzt werden.\n\n[TODO: Mediencurriculum vor Antragstellung durch eine Arbeitsgruppe aus Lehrkräften, Eltern und Schüler:innen erstellen und verbindlich im Schulprogramm verankern]\n\n[TODO: Standardisierte Erhebungsmethoden (z. B. Pretest/Posttest) vor Einreichung definieren und mit dem Kollegium abstimmen]\n\n## Ausstattungs- und Finanzplan\n\nDie medienpädagogische Zielsetzung der Borsigwalder Grundschule erfordert eine bedarfsgerechte technische Ausstattung. Derzeit besteht eine Grundausstattung aus 10 Whiteboards und einer unbestimmten Anzahl an Tablets, die jedoch für den geplanten Einsatz nicht ausreicht. [Annahme: Um die angestrebte Integration digitaler Werkzeuge zu ermöglichen, werden zunächst Tablets benötigt, die eine parallele Nutzung durch Schüler:innen in Kleingruppen erlauben].\n\nFür die technische Infrastruktur sind darüber hinaus eine zentrale Verwaltungslösung für die Geräteverwaltung sowie Lizenzen für Bildungssoftware zu beschaffen.\n\n[TODO: Exakte Anzahl der benötigten Tablets (z. B. 20-30) vor Einreichung durch Bedarfsanalyse klären]\n\n[TODO: Kostenkalkulation für Geräte und Software vor Einreichung durch Angebote konkretisieren]\n\n[TODO: Wartungsvertrag und Kostenkalkulation vor Einreichung durch Angebote konkretisieren]\n\n[TODO: Schriftliche Zusage des Schulträgers zum Eigenanteil und zur Kofinanzierung vor Einreichung einholen]\n\n## Fortbildungs- und Qualifizierungsplan\n\nDer Fortbildungsbedarf an der Borsigwalder Grundschule leitet sich aus der bestehenden Ausstattung und der heterogenen Schülerschaft ab. Aktuell verfügen wir über 10 Whiteboards und eine unbestimmte Anzahl an Tablets, die jedoch nicht systematisch im Fachunterricht eingesetzt werden. Um Lehrkräfte zu befähigen, digitale Medien fachbezogen und zielgerichtet einzusetzen, sind zunächst Mikrofortbildungen zu grundlegenden Funktionen der vorhandenen Geräte und Whiteboards erforderlich. Diese sollen als schulinterne Lehrerfortbildung (SiL) in kurzen, praxisnahen Einheiten von 30–45 Minuten durchgeführt werden, um den Einstieg in die Nutzung zu erleichtern.\n\nMittelfristig ist die Teilnahme an externen Fortbildungen zum Thema „Medienbildung im Fachunterricht“ geplant, um vertiefte Kompetenzen in der didaktischen Integration digitaler Tools zu erwerben. Die Auswahl orientiert sich an den Bedarfen der Fachgruppen, die im Rahmen der Konzeptentwicklung noch zu konkretisieren sind. Langfristig streben wir die Verankerung von Medienbildung als festen Bestandteil der schulinternen Fortbildungsplanung an, um Nachhaltigkeit zu sichern.\n\n[TODO: Konkrete Fortbildungsanbieter und -formate vor Einreichung recherchieren und verbindlich planen]\n\n[TODO: Baseline durch Kollegiumsbefragung vor Projektstart erheben und messbare Zielwerte definieren]\n\n## Support, Wartung und Betrieb\n\nDer Betrieb und die Wartung der digitalen Infrastruktur an der Borsigwalder Grundschule werden aktuell nicht durch ein strukturiertes Konzept gesichert. Um die Nachhaltigkeit der geplanten Maßnahmen zu gewährleisten, ist ein verbindliches Support- und Wartungskonzept unerlässlich. Dieses muss die drei Ebenen des Supports definieren: First-Level durch schulinterne Kräfte (z. B. eine neu zu schaffende Teilzeitstelle für digitale Bildung), Second-Level durch den Schulträger (Bezirksamt) sowie Third-Level durch externe Dienstleister für komplexe Hardware- oder Softwareprobleme. Die Finanzierung der Wartung und Ersatzbeschaffung soll über einen jährlich fortzuschreibenden Haushaltsposten im Schulbudget sowie durch eine noch einzuholende Kostenübernahmezusage des Schulträgers gesichert werden.\n\nFür den Datenschutz und die Datensicherheit ist die Schule selbst verantwortlich. Um dies zu ändern, schlagen wir vor, eine zentrale Geräteverwaltung einzuführen, die regelmäßige Sicherheitsupdates, Zugriffsbeschränkungen und eine dokumentierte Inventarisierung ermöglicht. Die Verantwortung für die Einhaltung der DSGVO und der schulischen Nutzungsrichtlinien ist noch festzulegen.\n\n[TODO: Schriftliche Zusage des Schulträgers zur Übernahme der laufenden Wartungskosten und Ersatzbeschaffung einholen]\n\n[TODO: Benennung einer Datenschutzbeauftragten und Klärung der technischen Umsetzung mit dem Schulträger vor Antragstellung]\n\n## Beschluss, Evaluation und Fortschreibung\n\nDas Medienkonzept der Borsigwalder Grundschule wird durch die Gesamtkonferenz beschlossen, die turnusmäßig zweimal jährlich tagt. Der Beschluss ist voraussichtlich im ersten Quartal nach Vorlage des Konzepts vorgesehen.\n\n[TODO: Beschlussprotokoll mit Datum und Gremium vor Einreichung einholen]\n\nDie Evaluation der Zielerreichung und Wirkung erfolgt im Rahmen der Schulprogrammfortschreibung. Als messbare Indikatoren dienen die im Konzept definierten Teilziele, darunter die Steigerung der Medienkompetenz der Schülerinnen und Schüler der Klassen 5 und 6 sowie die Nutzung der im Rahmen des Vorhabens beschafften Geräte. Die Methoden der Evaluation sind noch zu definieren.\n\nDas Medienkonzept wird alle fünf Jahre fortgeschrieben, um die dynamischen Entwicklungen im Bereich der Digitalisierung zu berücksichtigen. Die Fortschreibung erfolgt ebenfalls durch die Gesamtkonferenz und orientiert sich an den evaluierten Ergebnissen sowie den aktuellen pädagogischen und technischen Rahmenbedingungen.\n\n[Annahme: Die Gesamtkonferenz ist das zuständige Gremium für die Beschlussfassung und Fortschreibung des Medienkonzepts, da sie die Interessen aller schulischen Gruppen vertritt]\n\n[TODO: KMK-Strategie 'Bildung in der digitalen Welt' auf Relevung für das Vorhaben prüfen und ggf. Bezug herstellen]",
       "finanzplan": {
         "posten": [
           {
-            "id": "71579f6e-69b0-4ff9-9d7e-b046c7ea4bc9",
+            "id": "dc70c0bb-455f-4270-86cf-bba810c5d94d",
             "kategorie": "investitionen",
-            "bezeichnung": "Tablets fuer Klassen 5 und 6",
-            "betragEur": 45000,
-            "begruendung": "Anschaffung von Tablets fuer die Klassen 5 und 6 (ca. 300 Schueler). Da keine konkreten Preise vorliegen, ist dies eine Pauschale.",
-            "eigenanteil": false
+            "bezeichnung": "Erweiterung Klassensatz Tablets für Klassen 5 und 6",
+            "betragEur": 12000,
+            "begruendung": "Schaetzung: Klassensatz Tablets für ca. 60 Schüler:innen (Klassen 5 und 6), übliche Gerätepreise, Stückzahl noch festzulegen",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "a6fe9a6a-7d99-451c-a63a-374165e2347c",
+            "id": "dcb28259-1325-46ee-9503-204eede91045",
             "kategorie": "sachkosten",
-            "bezeichnung": "Erweiterung WLAN-Infrastruktur",
-            "betragEur": 10000,
-            "begruendung": "Pauschale fuer den Ausbau der WLAN-Infrastruktur, um den Einsatz von Tablets zu ermoeglichen. Da keine konkreten Angebote vorliegen, ist dies eine Pauschale.",
-            "eigenanteil": false
+            "bezeichnung": "Lizenzen für Bildungssoftware",
+            "betragEur": 3000,
+            "begruendung": "Schaetzung: Lizenzen für digitale Lernplattformen oder Apps, Kosten pro Lizenz noch unklar",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "f544dd46-5ec5-472e-ae14-3881f1eac09d",
+            "id": "a2ea3937-6d6f-47b6-b2db-000f8a60baac",
             "kategorie": "personal",
-            "bezeichnung": "Fortbildung Lehrkraefte Mediendidaktik",
-            "betragEur": 5000,
-            "begruendung": "Pauschale fuer Fortbildungen der Lehrkraefte im Bereich Mediendidaktik. Da keine konkreten Angebote vorliegen, ist dies eine Pauschale.",
-            "eigenanteil": false
+            "bezeichnung": "Fortbildung Lehrkräfte zu Mediendidaktik",
+            "betragEur": 2000,
+            "begruendung": "Schaetzung: Einmalige Fortbildungsmaßnahme für Lehrkräfte, Honorar und Umfang noch nicht konkretisiert",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "422993c8-e725-4acf-87cf-a63a66e26d23",
-            "kategorie": "investitionen",
-            "bezeichnung": "Whiteboards",
+            "id": "5327f760-4328-412b-bab1-5383f0193b42",
+            "kategorie": "personal",
+            "bezeichnung": "IT-Support für Schul-IT-Administration",
             "betragEur": 5000,
-            "begruendung": "Pauschale fuer zusätzliche Whiteboards",
-            "eigenanteil": false
-          },
-          {
-            "id": "2a3cc10c-5a7f-41f4-a593-6e9c22a56f33",
-            "kategorie": "sonstiges",
-            "bezeichnung": "Eigenanteil (22%)",
-            "betragEur": 13200,
-            "begruendung": "Erforderlicher Eigenanteil von 22% der Gesamtsumme (60.000 EUR)",
-            "eigenanteil": true
+            "begruendung": "Schaetzung: Teilzeitstelle oder Honorarkraft für IT-Administration und Support, Umfang und Vergütung noch offen",
+            "eigenanteil": false,
+            "istVorschlag": true
           }
         ],
-        "generiertAm": "2026-05-20T09:51:54.198Z",
+        "generiertAm": "2026-07-22T11:04:12.513Z",
         "hinweise": [
-          "Die Anzahl der benoetigten Tablets ist geschaetzt, da keine genauen Zahlen vorliegen.",
-          "Die Kosten fuer Tablets und WLAN-Ausbau sind Pauschalen, da keine konkreten Angebote vorliegen.",
-          "Die Beschlusslage des Schultraegers fehlt, ist aber erforderlich.",
-          "Die genaue Anzahl der Schueler in den Klassen 5 und 6 ist unklar. Es liegen keine konkreten Angaben zu DaZ-Bedarf vor."
+          "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
+          "Alle Beträge sind grobe Schaetzungen ohne konkrete Angebote oder Mengenangaben der Schule — vor Einreichung durch Angebote belegen.",
+          "Kein Medienkonzept oder Wartungskonzept vorhanden — muss vor Antragstellung erarbeitet werden.",
+          "Eigenanteil der Schule (22 % der Gesamtkosten) muss durch den Schulträger (Bezirksamt) bestätigt werden.",
+          "Fortbildungsplanung und konkrete Nutzungskonzeption für Tablets fehlen — muss nachgereicht werden.",
+          "Keine Beschlusslage des Schulträgers zu Eigenanteil oder Projektumsetzung — Abstimmung erforderlich.",
+          "Keine Angaben zu Wartungsverträgen oder Supportstrukturen — muss im Antrag konkretisiert werden.",
+          "Der Betrag für „Erweiterung Klassensatz Tablets für Klassen 5 und 6\" (12.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Lizenzen für Bildungssoftware\" (3.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Fortbildung Lehrkräfte zu Mediendidaktik\" (2.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „IT-Support für Schul-IT-Administration\" (5.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Die Förderung (22.000 EUR) entspricht 100 % der Gesamtkosten — dieses Programm fördert höchstens 78 %. Es fehlt ein Eigenanteil von mind. 6.205 EUR (Gesamtkosten dann 28.205 EUR). Ergänzen Sie einen Eigenanteil-Posten oder senken Sie die beantragte Förderung, sonst verletzt der Antrag die Förderquote."
         ]
       }
     },
     "usages": [
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2060,
-          "candidatesTokens": 181
+          "promptTokens": 6248,
+          "candidatesTokens": 661
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2067,
-          "candidatesTokens": 225
+          "promptTokens": 6345,
+          "candidatesTokens": 441
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2016,
-          "candidatesTokens": 181
+          "promptTokens": 6316,
+          "candidatesTokens": 595
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2024,
-          "candidatesTokens": 141
+          "promptTokens": 6356,
+          "candidatesTokens": 493
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2080,
-          "candidatesTokens": 226
+          "promptTokens": 6276,
+          "candidatesTokens": 500
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2036,
-          "candidatesTokens": 201
+          "promptTokens": 6283,
+          "candidatesTokens": 615
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4025,
-          "candidatesTokens": 1680
+          "promptTokens": 6247,
+          "candidatesTokens": 328
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3772,
-          "candidatesTokens": 1236
+          "promptTokens": 10022,
+          "candidatesTokens": 2557
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2549,
-          "candidatesTokens": 664
+          "promptTokens": 12115,
+          "candidatesTokens": 3134
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2493,
-          "candidatesTokens": 580
+          "promptTokens": 9096,
+          "candidatesTokens": 709
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2208,
-          "candidatesTokens": 168
+          "promptTokens": 5410,
+          "candidatesTokens": 1380
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 4843,
+          "candidatesTokens": 3747
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 3823,
+          "candidatesTokens": 544
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 4727,
+          "candidatesTokens": 331
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 4947,
+          "candidatesTokens": 2939
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 3919,
+          "candidatesTokens": 237
         }
       }
     ]
   },
   "meta": {
-    "iso": "2026-05-20T09-51-55",
+    "iso": "2026-07-22T11-04-31",
     "runIndex": 2,
-    "pipelineCommitSha": "6d237f81",
+    "pipelineCommitSha": "1f0d8782",
     "featureFlags": {
-      "useVorbildFormulierungen": "false",
+      "useVorbildFormulierungen": "true",
       "complianceStageEnabled": "false",
-      "sharpPrompts": "false",
-      "geberRoutingV2": "false"
+      "sharpPrompts": "true",
+      "geberRoutingV2": "true"
     },
-    "latencyMs": 41411,
+    "latencyMs": 119022,
     "schemaVersion": 1
   }
 }
