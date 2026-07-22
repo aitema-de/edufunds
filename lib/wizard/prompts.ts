@@ -191,11 +191,48 @@ function richtlinieBlock(
   return out.join("\n");
 }
 
+/**
+ * Umfangs-Direktive aus einem belegten Zeichenlimit des Antragsformulars.
+ *
+ * Bis 22.07.2026 wirkte `maxZeichen` NUR als Deckel ("Maximal X Zeichen").
+ * Gemessen an 64 Eval-Laeufen schrieb die Pipeline im Median ~800 Zeichen je
+ * Abschnitt — auch dort, wo der Foerdergeber 5.000+ einraeumt. Der Deckel wurde
+ * nie erreicht; die wirksame Vorgabe war die erfundene Standard-Konstante
+ * "150–400 Woerter" (80 % der Abschnitte lagen sogar UNTER deren Untergrenze).
+ * Ergebnis: Der vom Foerderer selbst vorgesehene Platz fuer die fachliche
+ * Begruendung blieb ungenutzt — genau der Teil, den Kolja als fehlend
+ * bemaengelt (sozialpaedagogische / bildungswissenschaftliche Begruendung).
+ *
+ * Deshalb wird ein belegtes Limit jetzt zusaetzlich zum ZIEL-Korridor
+ * (70–90 % des Platzes). Warum nicht 100 %: Antragsformulare zaehlen teils
+ * anders (Leerzeichen, Umbrueche), und die Revision darf nicht ueber den
+ * Deckel rutschen — 90 % laesst Puffer, bleibt aber weit ueber dem heutigen
+ * Ist. Der Begruendungs-Auftrag haengt am Korridor NUR bei grosszuegigem
+ * Platz (>= 2000 Zeichen): Bei einem 500-Zeichen-Feld ist Dichte richtig,
+ * nicht Theorie.
+ */
+const ZEICHEN_PRO_WORT = 7; // deutsche Antragsprosa inkl. Leerzeichen, konservativ
+
+export function umfangsDirektive(maxZeichen: number): string {
+  const von = Math.round((maxZeichen * 0.7) / 50) * 50;
+  const bis = Math.round((maxZeichen * 0.9) / 50) * 50;
+  const parts = [
+    `Maximal ${maxZeichen} Zeichen — hartes Limit des Antragsformulars, strikt einhalten. Es gilt auch dann, wenn eine TEXTTIEFE-Vorgabe einen groesseren Umfang nahelegt.`,
+    `ZIEL-UMFANG: Nutze den erlaubten Platz — schreibe ca. ${von}–${bis} Zeichen (≈ ${Math.round(von / ZEICHEN_PRO_WORT)}–${Math.round(bis / ZEICHEN_PRO_WORT)} Woerter). Diese programmspezifische Vorgabe ERSETZT die Standard-Laengenvorgabe (150–400 Woerter).`,
+  ];
+  if (maxZeichen >= 2000) {
+    parts.push(
+      `Der zusaetzliche Raum ist fuer die fachliche BEGRUENDUNG da, nicht fuer Fuellprosa: Verbinde das Beschriebene (WAS wir tun) mit dem WARUM — sozialpaedagogisch und bildungswissenschaftlich begruendet, welche Notwendigkeit das Vorhaben beantwortet und an welche Konzepte es anknuepft (Regeln dazu im Abschnitt "Fachliche Qualitaet & Theorie" oben). Diese Verbindung von belegtem Vorhaben und begruendender Theorie ist KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.`
+    );
+  }
+  return parts.join("\n");
+}
+
 export function abschnittPrompt(a: AntragsAbschnitt): string {
   const parts: string[] = [];
   parts.push(`Abschnitt: ${a.name}`);
   if (a.pflicht) parts.push("(Pflichtabschnitt)");
-  if (a.maxZeichen) parts.push(`Maximal ${a.maxZeichen} Zeichen — strikt einhalten.`);
+  if (a.maxZeichen) parts.push(umfangsDirektive(a.maxZeichen));
   if (a.leitfragen?.length) parts.push(`Leitfragen, die der Abschnitt beantworten muss:\n- ${a.leitfragen.join("\n- ")}`);
   if (a.stilhinweis) parts.push(`Stilhinweis: ${a.stilhinweis}`);
   return parts.join("\n");
@@ -517,7 +554,7 @@ Formuliere Ziele wirkungsorientiert statt vage: benenne, WAS sich für WEN beoba
 ## Form
 - Keine Überschrift, keine Markdown-Formatierung, kein # oder **.
 - Fließtext, keine Listen (außer wenn die Fakten eindeutig auflistbar sind, z. B. Hauptposten im Budget).
-- 150–400 Wörter je nach Thema — eher dicht als breit.
+- 150–400 Wörter je nach Thema — eher dicht als breit. AUSNAHME: Nennen die OFFIZIELLEN VORGABEN dieses Abschnitts einen ZIEL-UMFANG, gilt ausschließlich dieser (das Antragsformular des Fördergebers schlägt jede Standard-Vorgabe).
 
 Ausgabe: NUR der Abschnittstext, nichts anderes.`;
 

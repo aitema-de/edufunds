@@ -63,7 +63,10 @@ export const UmfangZustandSchema = z.discriminatedUnion("art", [
   z
     .object({ art: z.literal("seiten"), wert: z.number().positive(), quelle: QuellePflicht })
     .strict(),
-  z.object({ art: z.literal("unbekannt") }).strict(),
+  // Wie beim FristZustand: `unbekannt` darf eine Notiz tragen, was geprueft
+  // wurde und wo die Limits liegen (z. B. "im OASE-Portal") — das ist die
+  // Vorarbeit fuer die naechste Extraktionsrunde, kein Beleg.
+  z.object({ art: z.literal("unbekannt"), quelle: z.string().optional() }).strict(),
 ]);
 
 export const EinreichungsFormSchema = z

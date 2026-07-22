@@ -83,7 +83,11 @@ const AntragsAbschnittSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
   pflicht: z.boolean(),
-  maxZeichen: z.number().optional(),
+  // Positiv erzwungen seit 22.07.2026: bw-sommerschulen-2026 trug maxZeichen:0.
+  // Die 0 ist kein Limit, sondern ein nicht erfasstes Feld — und weil
+  // `if (a.maxZeichen)` sie als falsy verschluckt, fiel der Datenfehler nie
+  // auf. Ein fehlendes Limit heisst: Feld weglassen, nicht 0 schreiben.
+  maxZeichen: z.number().positive("maxZeichen 0/negativ ist kein Limit — Feld weglassen").optional(),
   leitfragen: z.array(z.string()).optional(),
   stilhinweis: z.string().optional(),
 });
