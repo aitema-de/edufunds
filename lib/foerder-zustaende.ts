@@ -94,7 +94,9 @@ export type UmfangZustand =
   | { art: "keine"; quelle: string }
   | { art: "zeichen"; wert: number; quelle: string }
   | { art: "seiten"; wert: number; quelle: string }
-  | { art: "unbekannt" };
+  /** Wie bei FristZustand: optionale Notiz, WAS geprueft wurde und wo die
+   *  Limits liegen (typisch: im Antragsportal, Portal-Name notieren). */
+  | { art: "unbekannt"; quelle?: string };
 
 /** Kanaele, ueber die eingereicht werden kann. `unbekannt` allein = nicht erfasst. */
 export type EinreichungsKanal =
