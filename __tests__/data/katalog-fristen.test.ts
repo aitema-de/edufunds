@@ -131,13 +131,13 @@ describe("Katalog: dokumentierte Luecke, die dieser Test NICHT schliesst", () =>
     expect(ohneFristText).toEqual([]);
 
     // Momentaufnahme 17.07.2026: 97 verkaeuflich, davon 95 ohne Frist.
-    // Stand 22.07.2026: 89 verkaeuflich, davon 60 ohne VERIFIZIERTE Frist —
+    // Stand 22.07.2026: 89 verkaeuflich, davon 50 ohne VERIFIZIERTE Frist —
     // nach Primaerquellen-Pruefung aller 36 "rolling"-Programme UND der 24,
     // deren letzter Stichtag verstrichen war. Rest: 29 mit Stichtag in der
     // Zukunft (dort ist das Risiko am kleinsten) + 5 Nachzuegler.
     // Diese Zahl DARF sinken (Luecke wird geschlossen). Steigt sie, waechst das
     // ungepruefte Risiko — dann ist die Erwartung bewusst anzupassen.
-    expect(ohneFrist.length).toBeLessThanOrEqual(60);
+    expect(ohneFrist.length).toBeLessThanOrEqual(50);
   });
 });
 
