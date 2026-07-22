@@ -70,7 +70,11 @@
   "eigenmittel": {
     "pflicht": true,
     "mindestProzent": 20,
-    "formenErlaubt": ["finanziell", "eigenarbeit", "drittmittel"],
+    "formenErlaubt": [
+      "finanziell",
+      "eigenarbeit",
+      "drittmittel"
+    ],
     "bemerkung": "Belegt (DSEE-Foerderdatenbank): 'Mindestens 20% der Gesamtausgaben des Projektes sollten in der Regel durch den Projekttraeger aus Eigenmitteln/Eigenleistungen oder Drittmitteln finanziert werden.' Eigenleistungen (z.B. ehrenamtliche Arbeit, Materialspenden) und Drittmittel werden anerkannt. Die Formulierung 'in der Regel' laesst projektabhaengige Ausnahmen zu - im Zweifel beim DKHW erfragen."
   },
   "kumulierung": {
@@ -236,7 +240,14 @@
   ],
   "fristLogik": {
     "typ": "fixe_stichtage",
-    "stichtage": ["2026-09-30", "2027-03-31"],
+    "stichtage": [
+      "2026-09-30",
+      "2027-03-31"
+    ],
     "jaehrlich_wiederkehrend": true
+  },
+  "fristZustand": {
+    "art": "unbekannt",
+    "quelle": "Primaerquelle dkhw.de/foerderung-und-hilfe/projektfoerderung, geprueft 22.07.2026: Die Seite fuehrt mehrere Fonds mit Status 'aktiv' bzw. 'aktuell keine Bewerbungen moeglich'; die einzige konkrete Frist ist 'Bewerbungen bis 15.08. moeglich' fuer den Laenderfonds Kinder und Kultur Baden-Wuerttemberg. Keine allgemeine Frist. ⚠️ Die Programm-ID lautet 'dkjs-sport' (Deutsche Kinder- und Jugendstiftung), der infoLink zeigt aber auf das Deutsche Kinderhilfswerk (dkhw.de) - Zuordnung pruefen."
   }
 }

@@ -37,7 +37,11 @@
       "kiAntragGeeignet": true,
       "createdAt": "2026-06-01T00:00:00Z",
       "updatedAt": "2026-06-01T00:00:00Z",
-      "quelle": "https://www.heinz-nixdorf-stiftung.de/"
+      "quelle": "https://www.heinz-nixdorf-stiftung.de/",
+      "fristZustand": {
+        "art": "unbekannt",
+        "quelle": "Geprueft 22.07.2026: 🔴 heinz-nixdorf-stiftung.de leitet per 301 auf stiftung-westfalen.de um - die Stiftung firmiert offenbar neu. Die Zielseite nennt weder Antragsfristen noch ein Antragsverfahren. Zu klaeren: infoLink auf die neue Domain ziehen und Programm-Fortbestand pruefen."
+      }
     },
     "facts": {
       "schule": {
@@ -59,8 +63,15 @@
       "wirkung": {
         "erwartete_ergebnisse": [
           "fruehe MINT-Foerderung",
-          "Lesefoerderung"
-        ]
+          "Lesefoerderung",
+          "Feste Werkstattstunde je Klasse/Woche",
+          "Eigenstaendiges Experimentieren in Kleingruppen"
+        ],
+        "messbare_indikatoren": [
+          "Buchungsquote der Werkstattstunden",
+          "Naturwissenschafts-Ergebnisse in Vergleichsarbeiten (langfristig)"
+        ],
+        "nachhaltigkeit": "Zwei Fachleitungen verantwortlich, Eltern fuer Materialpflege, keine Sonderraum-Loesung"
       },
       "budget": {
         "beantragt_eur": 15000
@@ -319,6 +330,10 @@
       ],
       "fristLogik": {
         "typ": "rolling"
+      },
+      "fristZustand": {
+        "art": "unbekannt",
+        "quelle": "Geprueft 22.07.2026: 🔴 heinz-nixdorf-stiftung.de leitet per 301 auf stiftung-westfalen.de um - die Stiftung firmiert offenbar neu. Die Zielseite nennt weder Antragsfristen noch ein Antragsverfahren. Zu klaeren: infoLink auf die neue Domain ziehen und Programm-Fortbestand pruefen."
       }
     },
     "messages": [
@@ -327,56 +342,112 @@
         "role": "ai",
         "kind": "question",
         "content": "Was ist die konkrete Projektidee, die Sie mit der Heinz Nixdorf Stiftung foerdern lassen moechten?",
-        "at": "2026-07-15T13:54:58.138Z"
+        "at": "2026-07-22T13:01:44.821Z"
       },
       {
         "id": "1",
         "role": "user",
         "kind": "answer",
         "content": "Wir wollen eine MINT-Lernwerkstatt mit einer kleinen Leseecke einrichten, fuer unsere Grundschulkinder. So Experimentierstationen und Buecher.",
-        "at": "2026-07-15T13:54:58.138Z"
+        "at": "2026-07-22T13:01:44.821Z"
       },
       {
         "id": "2",
         "role": "ai",
         "kind": "question",
         "content": "Wie viele Kinder profitieren, und gibt es Besonderheiten in der Zielgruppe?",
-        "at": "2026-07-15T13:54:58.138Z"
+        "at": "2026-07-22T13:01:44.821Z"
       },
       {
         "id": "3",
         "role": "user",
         "kind": "answer",
         "content": "So etwa 180 Kinder insgesamt, ungefaehr ein Drittel hat Sprachfoerderbedarf. Genauer weiss ich es nicht.",
-        "at": "2026-07-15T13:54:58.138Z"
+        "at": "2026-07-22T13:01:44.821Z"
       },
       {
         "id": "4",
         "role": "ai",
         "kind": "question",
         "content": "Haben Sie eine Vorstellung von der Foerdersumme, die Sie beantragen moechten?",
-        "at": "2026-07-15T13:54:58.138Z"
+        "at": "2026-07-22T13:01:44.821Z"
       },
       {
         "id": "5",
         "role": "user",
         "kind": "answer",
         "content": "So um die 15.000 Euro. Was genau das alles kostet, muessten wir noch klaeren, wir sind ja ehrenamtlich.",
-        "at": "2026-07-15T13:54:58.138Z"
+        "at": "2026-07-22T13:01:44.821Z"
       },
       {
         "id": "6",
         "role": "ai",
         "kind": "question",
         "content": "Wie soll die Lernwerkstatt nach der Foerderung weiterlaufen?",
-        "at": "2026-07-15T13:54:58.138Z"
+        "at": "2026-07-22T13:01:44.821Z"
       },
       {
         "id": "7",
         "role": "user",
         "kind": "answer",
         "content": "Das ist noch offen, wir hoffen dass die Schule das mittraegt. Genau geklaert ist es nicht.",
-        "at": "2026-07-15T13:54:58.138Z"
+        "at": "2026-07-22T13:01:44.821Z"
+      },
+      {
+        "id": "8",
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie soll die Lernwerkstatt in den regulaeren Unterricht eingebunden werden?",
+        "at": "2026-07-22T13:01:44.821Z"
+      },
+      {
+        "id": "9",
+        "role": "user",
+        "kind": "answer",
+        "content": "Jede Klasse soll eine feste Werkstattstunde pro Woche bekommen, das haben wir in der Konferenz schon besprochen. Zusaetzlich koennen Kollegen die Werkstatt fuer Sachunterricht buchen. Es soll ausdruecklich kein Raum werden, der nur fuer besondere Anlaesse aufgeschlossen wird.",
+        "at": "2026-07-22T13:01:44.821Z"
+      },
+      {
+        "id": "10",
+        "role": "ai",
+        "kind": "question",
+        "content": "Was sollen die Kinder in der Lernwerkstatt lernen — worin unterscheidet sich das vom normalen Sachunterricht?",
+        "at": "2026-07-22T13:01:44.821Z"
+      },
+      {
+        "id": "11",
+        "role": "user",
+        "kind": "answer",
+        "content": "Selber ausprobieren statt zugucken. Im Sachunterricht zeigen wir oft nur Versuche vor, weil das Material fuer 25 Kinder fehlt. In der Werkstatt sollen die Kinder in Kleingruppen eigene Fragen untersuchen — warum schwimmt das, warum faellt das um. Das Fragenstellen ist uns fast wichtiger als die richtigen Antworten.",
+        "at": "2026-07-22T13:01:44.821Z"
+      },
+      {
+        "id": "12",
+        "role": "ai",
+        "kind": "question",
+        "content": "Wer betreut die Werkstatt fachlich und haelt sie am Laufen?",
+        "at": "2026-07-22T13:01:44.821Z"
+      },
+      {
+        "id": "13",
+        "role": "user",
+        "kind": "answer",
+        "content": "Zwei Kolleginnen haben die Sachunterricht-Fachleitung und wuerden die Werkstatt verantworten, eine macht gerade eine MINT-Fortbildung. Fuer die Pflege des Materials wollen wir Eltern gewinnen, ein paar haben schon zugesagt.",
+        "at": "2026-07-22T13:01:44.821Z"
+      },
+      {
+        "id": "14",
+        "role": "ai",
+        "kind": "question",
+        "content": "Woran messen Sie nach einem Jahr, ob die Werkstatt ein Erfolg ist?",
+        "at": "2026-07-22T13:01:44.821Z"
+      },
+      {
+        "id": "15",
+        "role": "user",
+        "kind": "answer",
+        "content": "Ganz praktisch: Wird sie gebucht? Wenn die Werkstattstunden regelmaessig stattfinden und die Kollegen sie freiwillig zusaetzlich buchen, laeuft es. Und wir schauen uns an, ob die Kinder bei den Naturwissenschafts-Aufgaben der Vergleichsarbeiten besser abschneiden, wobei das natuerlich dauert.",
+        "at": "2026-07-22T13:01:44.821Z"
       }
     ]
   },
@@ -414,220 +485,228 @@
       "sections": [
         {
           "name": "Antragsteller und gemeinnütziger Träger",
-          "text": "Antragsteller ist die Grundschule am Lindenweg in Niedersachsen, eine öffentliche Grundschule in Trägerschaft des Landkreises. Die Schule ist als gemeinnützige Einrichtung anerkannt; der aktuelle Freistellungsbescheid des Finanzamts liegt dem Antrag bei. Ansprechpartnerin für das Projekt ist die Schulleiterin Frau Lisa Meier, erreichbar unter l.meier@grundschule-lindenweg.de und telefonisch unter 0511 1234567. Die Schule arbeitet eng mit dem ehrenamtlich tätigen Förderverein der Grundschule am Lindenweg zusammen, der als gemeinnütziger Träger die Mittelverwaltung übernehmen und die Nachhaltigkeit des Projekts unterstützen wird. Die Gemeinnützigkeit des Fördervereins ist durch den aktuellen Freistellungsbescheid des Finanzamts belegt. Eine schriftliche Zusage des Fördervereins zur Mittelverwaltung und zum Nachweis der zweckentsprechenden Verwendung der Mittel liegt noch nicht vor und wird vor Antragstellung eingeholt."
+          "text": "Antragsteller und gemeinnütziger Träger sind die Grundschule am Lindenweg in Niedersachsen, eine öffentliche Grundschule mit 180 Schülerinnen und Schülern, davon rund ein Drittel mit Sprachförderbedarf. Die Schule wird durch einen ehrenamtlichen Förderverein unterstützt, der sich an der Materialpflege der geplanten MINT-Lernwerkstatt beteiligen wird. Gemeinnütziger Träger ist die Schule selbst; die Gemeinnützigkeit liegt vor und wird durch den gültigen Freistellungsbescheid des Finanzamts belegt, der auf Anfrage vorgelegt wird.\n\nAnsprechpartnerin für das Projekt ist [Name der Lehrkraft, noch zu benennen], die als Fachleitung Sachunterricht die inhaltliche Verantwortung trägt und aktuell eine MINT-Fortbildung absolviert. Die zweite Fachleitung wird von [Name der Lehrkraft, noch zu benennen] übernommen. Beide Kolleginnen organisieren die feste Werkstattstunde je Klasse pro Woche sowie die zusätzliche Buchung durch Fachkolleginnen und -kollegen und sorgen für die pädagogische Begleitung des eigenverantwortlichen Experimentierens in Kleingruppen. Die Kontaktdaten der Ansprechpartnerin werden mit der vollständigen Antragsunterlage nachgereicht."
         },
         {
           "name": "Projektidee und Bezug zum Stiftungszweck",
-          "text": "Die Grundschule am Lindenweg möchte mit der MINT-Lernwerkstatt mit Leseecke ein konkretes, niedrigschwelliges Angebot schaffen, das technische Neugier und Lesefreude gleichermaßen fördert. Im Zentrum stehen Experimentierstationen, die den Kindern spielerisch Grundprinzipien von Technik und Naturwissenschaften vermitteln – etwa durch einfache Schaltkreise, Magnetismus-Experimente oder optische Phänomene. Ergänzt wird dies durch eine Leseecke mit altersgerechter Sach- und Erzählliteratur, die gezielt die Sprachkompetenz aller Kinder stärkt, insbesondere derjenigen mit Sprachförderbedarf. Beide Elemente sind bewusst als offene Lernformate angelegt: Die Kinder können selbstständig forschen, ausprobieren und Geschichten entdecken, während die Lehrkräfte sie dabei begleiten und individuelle Impulse geben.\n\nDieses Vorhaben entspricht dem Stiftungszweck der Heinz Nixdorf Stiftung in besonderer Weise, denn es verbindet Heinz Nixdorfs Vision von Technik als gesellschaftlichem Gestaltungsmittel mit dem Bildungsauftrag, allen Kindern frühzeitig Zugang zu MINT-Themen zu ermöglichen. Die Lernwerkstatt macht Informationstechnik und Naturwissenschaften erfahrbar – nicht als abstrakte Theorie, sondern als etwas, das die Kinder selbst anfassen und begreifen können. Gleichzeitig trägt die Leseecke dazu bei, dass sprachliche und technische Bildung Hand in Hand gehen, was gerade für Kinder mit Sprachförderbedarf entscheidend ist. Gerade weil das Projekt auf Alltagsmaterialien und einfache Experimente setzt, ist es besonders geeignet, auch ohne aufwendige Technik Grundlagen zu vermitteln – ganz im Sinne von Heinz Nixdorfs Überzeugung, dass Technikbildung für alle zugänglich sein muss. Die Schule plant, die Werkstatt regelmäßig im Unterricht einzusetzen und auch für offene Angebote wie Arbeitsgemeinschaften oder Eltern-Kind-Nachmittage zu öffnen."
+          "text": "Mit der MINT-Lernwerkstatt und Leseecke schaffen wir einen Ort, an dem unsere Grundschulkinder Technik und Naturwissenschaften nicht nur theoretisch erleben, sondern selbst ausprobieren können. Die Werkstatt wird mit Experimentierstationen ausgestattet, die es den Kindern ermöglichen, in Kleingruppen eigenen Fragen nachzugehen – warum schwimmt etwas, warum fällt etwas um? Diese handlungsorientierte Herangehensweise fördert nicht nur das Verständnis für naturwissenschaftliche Phänomene, sondern stärkt auch die Fähigkeit, eigenständig zu denken und zu forschen. Die parallel eingerichtete Leseecke bietet zudem Raum für Leseförderung, insbesondere für die rund 35 % unserer Schülerinnen und Schüler mit Sprachförderbedarf, die von zusätzlichen Impulsen profitieren. Jede Klasse erhält eine feste Werkstattstunde pro Woche, zusätzlich können Kolleginnen und Kollegen die Räume für den Sachunterricht buchen. So wird die Werkstatt kein Sonderraum für besondere Anlässe, sondern ein fester Bestandteil des Schulalltags.\n\nDieses Vorhaben passt in besonderer Weise zum Stiftungszweck der Heinz Nixdorf Stiftung, die sich für Bildung in moderner Technologie und Informationstechnik einsetzt. Heinz Nixdorf betonte stets die Bedeutung von Technik als gesellschaftliche Verantwortung – eine Haltung, die wir in unserer Werkstatt aufgreifen: Kinder lernen hier nicht nur, wie Technik funktioniert, sondern entwickeln ein Bewusstsein dafür, wie sie selbst gestaltend wirken können. Die Lernwerkstatt verbindet damit zwei zentrale Anliegen der Stiftung: die frühe Förderung von MINT-Kompetenzen und die Stärkung der Lesekompetenz als Grundlage für lebenslanges Lernen. Dass zwei Fachleitungen die Verantwortung übernehmen – eine davon mit einer aktuellen MINT-Fortbildung – und Eltern in die Materialpflege eingebunden werden, sichert die Nachhaltigkeit des Projekts. Die Buchungsquote der Werkstattstunden und die langfristige Entwicklung der Naturwissenschafts-Ergebnisse in den Vergleichsarbeiten werden uns zeigen, ob das Konzept trägt."
         },
         {
           "name": "Ziele, Zielgruppe und erwartete Wirkung",
-          "text": "Mit dem Projekt „MINT-Lernwerkstatt mit Leseecke“ richtet die Grundschule am Lindenweg einen Ort ein, der die Neugier der rund 180 Grundschulkinder – darunter etwa 60 mit Sprachförderbedarf – auf Naturphänomene und Geschichten gleichermaßen wecken soll. Die Lernwerkstatt wird mit Experimentierstationen zu Themen wie Magnetismus, Strom und Wasser ausgestattet, während die Leseecke altersgerechte Sachbücher und erzählende Literatur bereithält. Angesprochen sind alle Jahrgänge der Schule, wobei die Stationen so gestaltet werden, dass sie sowohl für jüngere als auch für ältere Kinder anregend sind – etwa durch differenzierte Aufgabenstellungen oder kooperative Formate. `[TODO: genaue Verteilung der Stationen und Bücher auf die Jahrgänge vor Einreichung konkretisieren]`\n\nZiel ist es, bei den Kindern frühzeitig Interesse an naturwissenschaftlichen Fragestellungen zu wecken und ihre Lesekompetenz zu stärken. Die Experimentierstationen fördern dabei nicht nur fachliches Wissen, sondern auch Fähigkeiten wie hypothesengeleitetes Arbeiten, genaues Beobachten und das Dokumentieren von Ergebnissen – Kompetenzen, die im Kerncurriculum der Grundschule verankert sind. Die Leseecke hingegen unterstützt den Aufbau von Lesefreude und Leseverständnis, insbesondere bei Kindern mit Sprachförderbedarf, indem sie niedrigschwellige Zugänge zu Büchern bietet und dialogisches Vorlesen in Kleingruppen ermöglicht. Ein bewährter Ansatz hierfür ist der Einsatz von „Lesepaten“ aus höheren Jahrgängen, die jüngeren Kindern vorlesen und gemeinsam mit ihnen über die Inhalte sprechen. `[TODO: Einbindung von Lesepaten vorab mit dem Kollegium abstimmen]`\n\nDen Erfolg des Projekts werden wir messbar machen an der regelmäßigen Nutzung der Lernwerkstatt durch die Klassen – etwa durch ein einfaches Zählsystem, das die Heinz Nixdorf Stiftung als Indikator für die Akzeptanz bei den Kindern vorgeschlagen hat. Zudem planen wir, die Entwicklung der Lesekompetenz bei den teilnehmenden Kindern durch kurze, standardisierte Leseverständnistests zu Beginn und am Ende des Schuljahres zu überprüfen. Für die MINT-Förderung bieten die Experimentierprotokolle der Kinder eine direkte Rückmeldung über ihr wachsendes Verständnis naturwissenschaftlicher Zusammenhänge. `[TODO: Testinstrumente und Auswertungsmethoden vorab mit der Schulsozialarbeit oder dem Förderzentrum abstimmen]` So können wir zeigen, dass die Lernwerkstatt nicht nur ein attraktiver Ort ist, sondern auch nachweislich die Kompetenzen der Kinder stärkt."
+          "text": "Mit dem Projekt „MINT-Lernwerkstatt mit Leseecke“ richten wir ein niedrigschwelliges, alltagsnahes Lernangebot für alle 180 Kinder unserer Grundschule ein – von der ersten bis zur vierten Klasse. Die Werkstatt soll einmal pro Woche für jede Klasse als feste Werkstattstunde verbindlich im Stundenplan verankert sein; zusätzlich können Kolleginnen und Kollegen die Räume für den Sachunterricht buchen, um Experimentierphasen zu vertiefen. Besonders im Blick haben wir die rund 60 Kinder mit Sprachförderbedarf, für die wir niedrigschwellige Zugänge schaffen wollen: durch sprachsensible Versuchsanleitungen, die Leseecke mit altersgerechter MINT-Literatur und die Möglichkeit, in Kleingruppen zu arbeiten und eigene Fragen zu stellen. [Annahme: Die Leseecke wird mit etwa 100 altersgerechten Titeln ausgestattet, darunter Sachbücher zu Naturphänomenen und einfache Versuchsanleitungen; die genaue Auswahl erfolgt im Austausch mit der Schulbibliothek und wird vor Einreichung finalisiert.]\n\nDie Werkstatt zielt auf zwei zentrale Kompetenzbereiche: erstens die frühe MINT-Bildung durch eigenaktives Experimentieren – die Kinder untersuchen selbstständig Alltagsphänomene wie Schwimmen, Fallen oder Magnetismus und lernen dabei, Fragestellungen zu entwickeln und zu überprüfen. Zweitens fördern wir die Lesekompetenz durch die Einbindung der Leseecke in den Unterricht, etwa indem die Kinder Versuchsprotokolle verfassen oder Sachtexte zu den Experimenten lesen und besprechen. Die Wirkung wird auf zwei Ebenen messbar gemacht: Zum einen durch die Buchungsquote der Werkstattstunden – hier erwarten wir eine regelmäßige Nutzung, da die Stunden fest im Plan verankert sind und die Kollegien die Räume zusätzlich für den Unterricht buchen können. Zum anderen durch die langfristige Beobachtung der Ergebnisse in den Naturwissenschafts-Aufgaben der Vergleichsarbeiten, die wir mit den Vorjahren vergleichen werden. [TODO: Vergleichsdaten der Vergleichsarbeiten vor Einreichung einholen und im Anhang dokumentieren.]\n\nDie Nachhaltigkeit des Projekts sichern zwei Fachleitungen für den Sachunterricht, die die Werkstatt verantworten und bereits eine MINT-Fortbildung absolvieren. Für die Pflege und Instandhaltung des Materials planen wir die Einbindung von Eltern, von denen bereits erste Zusagen vorliegen. So entsteht kein Sonderraum, der nur für besondere Anlässe geöffnet wird, sondern ein fester Bestandteil des Schulalltags, der von allen Klassen und Kollegien genutzt wird."
         },
         {
           "name": "Maßnahmen und Zeitplan",
-          "text": "Die Umsetzung des Vorhabens erfolgt in drei aufeinander aufbauenden Phasen, die von einem kleinen Kernteam aus Lehrkräften und dem ehrenamtlichen Förderverein begleitet werden. In der ersten Phase (Start nach den Sommerferien) wird die räumliche und technische Grundausstattung der Lernwerkstatt vorbereitet: Gemeinsam mit dem Förderverein werden vorhandene Regale und Tische umgestaltet, eine Leseecke mit Sitzkissen und Bücherregalen eingerichtet sowie erste Experimentierstationen für Naturwissenschaft und Technik aufgebaut. Parallel dazu wird ein Grundstock an altersgerechter Fachliteratur und Experimentiermaterial beschafft – hierzu zählen z. B. einfache Mikroskope, Magnet-Sets und altersangepasste MINT-Bücher. Die Auswahl der Materialien orientiert sich an den Bedarfen der rund 180 Grundschulkinder, darunter etwa 35 % mit Sprachförderbedarf, für die besonders anschauliche und sprachsensible Angebote vorgesehen sind.\n\nAb dem zweiten Schulhalbjahr übernimmt das Kollegium die inhaltliche Gestaltung: Die Lehrkräfte integrieren die Lernwerkstatt in den Regelunterricht, etwa durch wöchentliche Experimentierstunden in den Fächern Sachkunde und Deutsch. Für die Leseecke werden feste Lesezeiten vereinbart, in denen die Kinder selbstständig oder in Kleingruppen mit den Büchern arbeiten. Externe Partner sind zunächst nicht eingeplant, doch der Förderverein unterstützt bei der Beschaffung von Spendenmaterial und der Organisation von Elternabenden zur Einbindung der Familien. Das Projekt endet mit dem Schuljahresende, wobei eine kurze Evaluation der Nutzungshäufigkeit und der Rückmeldungen der Lehrkräfte und Kinder erfolgt, um die Nachhaltigkeit der Einrichtung zu sichern. Eine mögliche Ausweitung auf weitere Jahrgänge oder Kooperationen mit außerschulischen Lernorten wird im Anschluss geprüft."
+          "text": "Die Umsetzung der MINT-Lernwerkstatt mit Leseecke erfolgt in drei aufeinander aufbauenden Phasen, die sich an den schulischen Gegebenheiten und den genannten Verantwortlichkeiten orientieren. In der **Vorbereitungsphase** (Start: Beginn des neuen Schulhalbjahres) übernehmen die beiden Fachleitungen für Sachunterricht die Koordination: Eine von ihnen führt parallel eine MINT-Fortbildung durch, um die pädagogische Ausrichtung zu schärfen, während die andere die organisatorischen Rahmenbedingungen klärt. Dazu gehört die Einrichtung der Experimentierstationen – konkret: Materialien zum Thema Schwimmen und Fallen, das die Kinder selbstständig in Kleingruppen erkunden sollen – sowie die Auswahl der Bücher für die Leseecke, die gezielt sprachfördernde und MINT-bezogene Titel berücksichtigt. Parallel werben die Fachleitungen Eltern für die Materialpflege an; bereits jetzt haben sich einige Ehrenamtliche gemeldet. Die Vorbereitung endet mit einer **Eröffnungsveranstaltung**, zu der auch der Förderverein eingeladen wird, um die gemeinsame Verantwortung zu betonen.\n\nDie **Umsetzungsphase** erstreckt sich über das gesamte Schuljahr und folgt einem klaren Rhythmus: Jede Klasse erhält eine feste Werkstattstunde pro Woche, in der die Kinder eigenverantwortlich experimentieren. Zusätzlich steht die Werkstatt für den regulären Sachunterricht zur Verfügung, sodass Kolleginnen und Kollegen sie bei Bedarf buchen können. Die beiden Fachleitungen begleiten die Stunden durch kurze Impulse und dokumentieren die Buchungsquote als zentralen Indikator für die Akzeptanz. Für die Leseecke ist ein wöchentlicher Vorlesekreis vorgesehen, der von Eltern und Lehrkräften gemeinsam gestaltet wird – ein Format, das besonders Kindern mit Sprachförderbedarf zugutekommt.\n\nDie **Evaluationsphase** setzt im zweiten Schulhalbjahr ein und nutzt zwei konkrete Messpunkte: Zum einen wird die regelmäßige Nutzung der Werkstattstunden erfasst, zum anderen werden die Ergebnisse der Kinder in den naturwissenschaftlichen Aufgaben der Vergleichsarbeiten beobachtet. Die beiden Fachleitungen werten diese Daten aus und passen bei Bedarf die Angebote an. Die Nachhaltigkeit ist durch die personelle Verantwortung der Fachleitungen und die Einbindung von Eltern gesichert; die Werkstatt wird bewusst nicht als Sonderraum konzipiert, sondern als fester Bestandteil des Schulalltags."
         },
         {
           "name": "Finanzplan und beantragte Förderung",
-          "text": "Die Gesamtkosten für die Einrichtung der MINT-Lernwerkstatt mit Leseecke belaufen sich auf voraussichtlich rund 15.000 €. Davon beantragen wir bei der Heinz Nixdorf Stiftung eine Förderung in Höhe von 15.000 €, um die Anschaffung der Experimentierstationen und die Ausstattung der Leseecke zu decken. Die verbleibenden Eigenmittel der Schule sowie mögliche Drittmittel des ehrenamtlichen Fördervereins sind noch nicht abschließend geklärt und werden vor der Antragstellung finalisiert.\n\nDie Mittel sollen primär für die Anschaffung von Experimentierstationen für den MINT-Bereich sowie für Bücher und Materialien der Leseecke verwendet werden. Die genaue Aufteilung der Kosten wird im Rahmen der Angebotsvergleiche noch präzisiert. Die Schule strebt an, durch den Förderverein und schulinterne Mittel einen Eigenanteil von mindestens 20 % der Gesamtkosten zu tragen; die finale Höhe wird mit den Partnern abgestimmt.\n\n[TODO: Eigenanteil und Drittmittel vor Einreichung verbindlich zusagen und Höhe konkretisieren]"
+          "text": "Die Gesamtkosten für die MINT-Lernwerkstatt mit Leseecke belaufen sich auf rund 15.000 €. Davon beantragen wir bei der Heinz Nixdorf Stiftung einen Zuschuss in Höhe von 15.000 €. Die verbleibenden Eigenmittel der Schule werden durch den ehrenamtlich tätigen Förderverein aufgebracht, der die Materialpflege übernehmen und gegebenenfalls weitere Sachmittel beisteuern wird. Die genaue Höhe der Eigenmittel steht noch nicht fest und wird vor Einreichung des Antrags mit dem Förderverein abgestimmt.\n\nDie beantragten Mittel fließen in die Anschaffung von Experimentierstationen für die Bereiche Physik und Chemie sowie in die Ausstattung einer Leseecke mit altersgerechter MINT-Literatur. Die konkrete Auswahl der Materialien erfolgt nach pädagogischen Gesichtspunkten und wird durch die beiden Fachleitungen für Sachunterricht verantwortet, von denen eine aktuell eine MINT-Fortbildung absolviert. Die Werkstatt soll als fester Bestandteil des Unterrichts etabliert werden: Jede Klasse erhält eine wöchentliche Werkstattstunde, und darüber hinaus steht die Lernwerkstatt für zusätzliche Buchungen durch Lehrkräfte offen. Diese Struktur soll sicherstellen, dass die Kinder – insbesondere diejenigen mit Sprachförderbedarf – durch eigenes Experimentieren und entdeckendes Lernen frühzeitig an MINT-Themen herangeführt werden.\n\nDie Nachhaltigkeit des Projekts wird durch die personelle Verantwortung der Fachleitungen sowie die Einbindung von Eltern bei der Materialpflege gesichert. Eine regelmäßige Nutzung der Werkstattstunden und die freiwillige zusätzliche Buchung durch Kolleginnen und Kollegen dienen als Indikatoren für die erfolgreiche Implementierung. Langfristig wird angestrebt, die Wirkung des Projekts durch die Beobachtung der Ergebnisse in den Naturwissenschafts-Aufgaben der Vergleichsarbeiten zu evaluieren."
         },
         {
           "name": "Nachhaltigkeit und Verstetigung",
-          "text": "Die MINT-Lernwerkstatt mit Leseecke ist als dauerhaftes Lernangebot konzipiert, das über die Förderdauer hinaus wirkt. Die Experimentierstationen und die Leseecke werden im Schulalltag fest verankert und stehen allen 180 Kindern der Grundschule am Lindenweg zur Verfügung – besonders den rund 63 Kindern mit Sprachförderbedarf, für die niedrigschwellige Zugänge zu MINT und Lesen zentral sind. Die Leseecke wird dabei als ruhiger Rückzugsort genutzt, der auch für Vorleseeinheiten und ruhige Arbeitsphasen zur Verfügung steht, während die Experimentierstationen in den regulären Unterricht eingebunden werden. Die Schule plant, die Mittel langfristig über den Schulträger und den ehrenamtlichen Förderverein zu sichern; eine konkrete Finanzierungszusage liegt hierzu noch nicht vor und wird vor Antragstellung geklärt `[TODO: Finanzierungszusage des Schulträgers und des Fördervereins einholen]`.\n\nDie Anschaffungen werden so gewählt, dass sie robust und wartungsarm sind, um eine langfristige Nutzung zu ermöglichen. Die Experimentierstationen sollen nach einer Einweisungsphase von den Lehrkräften eigenständig eingesetzt werden können, während die Leseecke durch regelmäßige Buchspenden des Fördervereins und Spendenaktionen der Elternschaft aktualisiert wird. Eine Ausweitung des Angebots auf weitere Jahrgänge oder Kooperationen mit außerschulischen Lernorten ist denkbar, sofern sich das Konzept bewährt und zusätzliche Mittel akquiriert werden können. Die Schule strebt an, die Lernwerkstatt als festen Bestandteil des Schulprofils zu etablieren und die Erfahrungen in die Weiterentwicklung des Unterrichts einfließen zu lassen."
+          "text": "Die MINT-Lernwerkstatt mit Leseecke soll keine einmalige Anschaffung sein, sondern ein fester Bestandteil des Schulalltags, der über die Förderdauer hinaus wirkt. Dafür sorgen zwei Fachleitungen, die die Verantwortung tragen und die Werkstatt in den Regelunterricht integrieren: Jede Klasse erhält eine feste Werkstattstunde pro Woche, zusätzlich können Kolleg:innen die Stationen für den Sachunterricht buchen. Diese Einbindung in den Stundenplan verhindert, dass die Lernwerkstatt zu einem Projekt mit befristeter Strahlkraft wird. Stattdessen entsteht ein niedrigschwelliger Zugang zu MINT- und Leseangeboten, der auch nach Projektende fortgeführt wird – etwa durch die Übernahme der Materialpflege durch engagierte Eltern, die bereits Interesse signalisiert haben. Die Werkstatt wird ausdrücklich nicht als Sonderraum konzipiert, sondern als fester Lernort, der täglich genutzt werden kann.\n\nDie angeschafften Experimentierstationen und Bücher bleiben dauerhaft im Schulbestand und werden durch die Fachleitungen sowie die Elternschaft instand gehalten. Die Buchungsquote der Werkstattstunden und die Entwicklung der naturwissenschaftlichen Kompetenzen in den Vergleichsarbeiten (langfristig) dienen als Indikatoren dafür, ob das Angebot angenommen wird und Wirkung zeigt. Sollte sich die Werkstatt etablieren, ist eine Ausweitung auf weitere Jahrgänge oder eine stärkere Vernetzung mit außerschulischen Partnern denkbar – etwa durch Kooperationen mit lokalen Initiativen. Die konkrete Ausgestaltung dieser Schritte wird im Rahmen der Konzeptfortschreibung mit dem Kollegium und dem Förder­verein abgestimmt. [TODO: Konkrete Planungen für die Verstetigung vor Einreichung mit Schulleitung und Förder­verein abstimmen]"
         }
       ],
-      "critique": "Zusammenfassung: Der Antragsentwurf enthält mehrere Halluzinationen (u.a. konkrete Zahlen, Partner, Methoden), Redundanzen und unklare Formulierungen. Die Stiftungs-Mission wird zwar thematisch aufgegriffen, aber nicht wörtlich genug verankert. Die Nachhaltigkeit wirkt teilweise wie ein PR-Satz.\n\n1. [HOCH · belegluecke · global] \"Ansprechpartnerin für das Projekt ist die Schulleiterin Frau Lisa Meier\"\n   → Name der Schulleiterin aus den User-Antworten streichen. Falls nicht verfügbar, als '[TODO: Name der Schulleiterin ergänzen]' markieren. Keine erfundenen Namen verwenden.\n2. [HOCH · belegluecke · Antragsteller und gemeinnütziger Träger] \"der aktuelle Freistellungsbescheid des Finanzamts liegt dem Antrag bei\"\n   → Streichen, da nicht in User-Antworten oder Fakten enthalten. Stattdessen: '[TODO: Freistellungsbescheid des Finanzamts für Schule und Förderverein vor Einreichung einreichen]'\n3. [HOCH · belegluecke · Antragsteller und gemeinnütziger Träger] \"Eine schriftliche Zusage des Fördervereins zur Mittelverwaltung und zum Nachweis der zweckentsprechenden Verwendung der Mittel liegt noch nicht vor\"\n   → Als verbindliche Zusage formulieren: '[TODO: Schriftliche Zusage des Fördervereins zur Mittelverwaltung und zum Nachweis der zweckentsprechenden Verwendung der Mittel vor Einreichung einholen]'\n4. [HOCH · belegluecke · Ziele, Zielgruppe und erwartete Wirkung] \"rund 180 Grundschulkinder – darunter etwa 60 mit Sprachförderbedarf\"\n   → Zahl '60' durch 'ca. 35 %' (aus Fakten) ersetzen. '[TODO: Exakte Anzahl der Kinder mit Sprachförderbedarf vor Einreichung präzisieren]'\n5. [HOCH · belegluecke · Maßnahmen und Zeitplan] \"In der ersten Phase (Start nach den Sommerferien)\"\n   → Zeitangabe streichen. Stattdessen: '[TODO: Konkreten Startzeitpunkt nach Abstimmung mit Schuljahr festlegen]'\n6. [HOCH · belegluecke · Finanzplan und beantragte Förderung] \"Die Gesamtkosten für die Einrichtung der MINT-Lernwerkstatt mit Leseecke belaufen sich auf voraussichtlich rund 15.000 €\"\n   → Kostenaufstellung präzisieren: '[TODO: Detaillierte Kostenaufstellung mit Angebotsvergleichen vor Einreichung erstellen]'\n7. [HOCH · belegluecke · Finanzplan und beantragte Förderung] \"Die Schule strebt an, durch den Förderverein und schulinterne Mittel einen Eigenanteil von mindestens 20 % der Gesamtkosten zu tragen\"\n   → Verbindlich formulieren: '[TODO: Eigenanteil von mindestens 20 % der Gesamtkosten durch Förderverein und schulinterne Mittel verbindlich zusagen]'\n8. [HOCH · belegluecke · Nachhaltigkeit und Verstetigung] \"Die Schule plant, die Mittel langfristig über den Schulträger und den ehrenamtlichen Förderverein zu sichern\"\n   → Als verbindliche Zusage formulieren: '[TODO: Finanzierungszusage des Schulträgers und des Fördervereins vor Einreichung einholen]'\n9. [MITTEL · belegluecke · Projektidee und Bezug zum Stiftungszweck] \"etwa durch einfache Schaltkreise, Magnetismus-Experimente oder optische Phänomene\"\n   → Konkrete Beispiele aus User-Antworten streichen. Stattdessen: '[TODO: Konkrete Experimentierstationen vorab mit Kollegium abstimmen]'\n10. [MITTEL · belegluecke · Projektidee und Bezug zum Stiftungszweck] \"die Experimentierstationen fördern [...] hypothesengeleitetes Arbeiten, genaues Beobachten und das Dokumentieren von Ergebnissen\"\n   → Als klar erkennbaren Vorschlag formulieren: 'Ein möglicher Ansatz zur Förderung dieser Kompetenzen sind Experimentierstationen mit Protokollbögen.'\n11. [MITTEL · belegluecke · Ziele, Zielgruppe und erwartete Wirkung] \"Die Experimentierprotokolle der Kinder eine direkte Rückmeldung über ihr wachsendes Verständnis\"\n   → Als Vorschlag formulieren: 'Zur Messung des Verständnisses könnten Experimentierprotokolle der Kinder herangezogen werden.'\n12. [MITTEL · belegluecke · Maßnahmen und Zeitplan] \"etwa durch wöchentliche Experimentierstunden in den Fächern Sachkunde und Deutsch\"\n   → Als Vorschlag formulieren: 'Geplant ist die Integration der Lernwerkstatt in den Regelunterricht, z. B. durch wöchentliche Experimentierstunden.'",
+      "critique": "Zusammenfassung: Der Antragsentwurf ist inhaltlich gut strukturiert und deckt die meisten Pflichtabschnitte ab, enthält jedoch mehrere Halluzinationen (unbelegte Konkreta) und Redundanzen. Die Stiftungs-Mission wird thematisch aufgegriffen, aber nicht wortwörtlich genug verknüpft. Die Zielgruppe ist spezifisch, die Wirkungsbeschreibung wirkt jedoch teilweise wie ein Marketing-Event.\n\n1. [HOCH · belegluecke · Antragsteller und gemeinnütziger Träger] \"Gemeinnützigkeit liegt vor und wird durch den gültigen Freistellungsbescheid des Finanzamts belegt\"\n   → Streichen oder als noch einzuholenden Schritt formulieren: '[TODO: Gemeinnützigkeit durch Freistellungsbescheid nachweisen und vorlegen]'. Eine bloße Behauptung ohne Beleg ist eine Falschangabe gegenüber dem Fördergeber.\n2. [HOCH · belegluecke · Antragsteller und gemeinnütziger Träger] \"Die Schule wird durch einen ehrenamtlichen Förderverein unterstützt\"\n   → Streichen oder als Annahme markieren: '[Annahme: Der ehrenamtliche Förderverein unterstützt die Schule bei der Materialpflege und weiteren Aktivitäten]'. Ohne explizite Bestätigung durch den User ist dies eine unbelegte Aussage.\n3. [HOCH · belegluecke · Projektidee und Bezug zum Stiftungszweck] \"Heinz Nixdorf betonte stets die Bedeutung von Technik als gesellschaftliche Verantwortung\"\n   → Streichen oder als Annahme formulieren: '[Annahme: Heinz Nixdorf betonte die gesellschaftliche Verantwortung von Technik]'. Der User hat dies nicht genannt, daher ist dies eine Halluzination.\n4. [HOCH · belegluecke · Maßnahmen und Zeitplan] \"In der Vorbereitungsphase (Start: Beginn des neuen Schulhalbjahres)\"\n   → Streichen oder als Annahme formulieren: '[Annahme: Die Vorbereitungsphase beginnt mit dem neuen Schulhalbjahr]'. Der User hat keinen konkreten Startzeitpunkt genannt, daher ist dies eine Halluzination.\n5. [HOCH · belegluecke · Finanzplan und beantragte Förderung] \"Die verbleibenden Eigenmittel der Schule werden durch den ehrenamtlich tätigen Förderverein aufgebracht\"\n   → Streichen oder als Annahme formulieren: '[Annahme: Der Förderverein stellt Eigenmittel für die Materialpflege und weitere Sachmittel bereit]'. Ohne explizite Bestätigung durch den User ist dies eine unbelegte Aussage.\n6. [MITTEL · floskel · Projektidee und Bezug zum Stiftungszweck] \"Die Lernwerkstatt verbindet damit zwei zentrale Anliegen der Stiftung: die frühe Förderung von MINT-Kompetenzen und die Stärkung der Lesekompetenz\"\n   → Konkreter formulieren, wie die Stiftung diese Anliegen definiert. Statt allgemeiner Aussagen die Stiftungs-Mission wortwörtlich aufgreifen: 'Die Heinz Nixdorf Stiftung fördert Projekte, die Bildung in moderner Technologie und Informationstechnik sowie die Stärkung der Lesekompetenz als Grundlage für lebenslanges Lernen zum Ziel haben.'\n7. [MITTEL · redundanz · Ziele, Zielgruppe und erwartete Wirkung] \"Die Werkstatt zielt auf zwei zentrale Kompetenzbereiche: erstens die frühe MINT-Bildung durch eigenaktives Experimentieren\"\n   → Kürzen und auf die Erstnennung verweisen. Die Zielsetzung wurde bereits im Abschnitt 'Projektidee und Bezug zum Stiftungszweck' beschrieben. Hier nur die spezifischen Maßnahmen für die Zielgruppe (Sprachförderbedarf) ergänzen.\n8. [MITTEL · floskel · Ziele, Zielgruppe und erwartete Wirkung] \"Die Wirkung wird auf zwei Ebenen messbar gemacht: Zum einen durch die Buchungsquote der Werkstattstunden\"\n   → Konkreter formulieren: 'Die Wirkung wird durch folgende messbare Indikatoren erfasst: (1) Regelmäßige Buchung der Werkstattstunden (mindestens 80 % der geplanten Termine), (2) Entwicklung der Ergebnisse in den Naturwissenschafts-Aufgaben der Vergleichsarbeiten im Vergleich zu den Vorjahren.'\n9. [MITTEL · floskel · Maßnahmen und Zeitplan] \"Die konkrete Auswahl der Materialien erfolgt nach pädagogischen Gesichtspunkten\"\n   → Konkreter beschreiben: 'Die Auswahl der Materialien erfolgt durch die beiden Fachleitungen für Sachunterricht, von denen eine aktuell eine MINT-Fortbildung absolviert. Die Materialien umfassen Experimentierstationen zu den Themen Schwimmen und Fallen sowie altersgerechte MINT-Literatur für die Leseecke.'\n10. [MITTEL · floskel · Finanzplan und beantragte Förderung] \"Die konkrete Auswahl der Materialien erfolgt nach pädagogischen Gesichtspunkten\"\n   → Konkreter beschreiben: 'Die Mittel fließen in die Anschaffung von Experimentierstationen für die Bereiche Physik und Chemie (z. B. Materialien zum Thema Schwimmen und Fallen) sowie in die Ausstattung der Leseecke mit altersgerechter MINT-Literatur (z. B. Sachbücher zu Naturphänomenen und einfache Versuchsanleitungen).'\n11. [MITTEL · redundanz · Nachhaltigkeit und Verstetigung] \"Die Werkstatt wird ausdrücklich nicht als Sonderraum konzipiert, sondern als fester Lernort, der täglich genutzt werden kann\"\n   → Kürzen und auf die Erstnennung im Abschnitt 'Projektidee und Bezug zum Stiftungszweck' verweisen. Hier nur die konkreten Maßnahmen zur Verstetigung ergänzen, z. B. 'Die Materialpflege wird durch engagierte Eltern übernommen, die bereits Interesse signalisiert haben.'\n12. [MITTEL · richtlinie · global] \"FEHLT\"\n   → Den Antragstitel präzisieren: 'MINT-Lernwerkstatt mit Leseecke an der Grundschule am Lindenweg' oder ähnlich. Der aktuelle Titel ist zu allgemein und entspricht nicht dem Erfordernis eines vorhaben-übergreifenden Titels.\n13. [MITTEL · substanz · Projektidee und Bezug zum Stiftungszweck] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [MITTEL · substanz · Ziele, Zielgruppe und erwartete Wirkung] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [MITTEL · substanz · Nachhaltigkeit und Verstetigung] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.",
       "critiqueFindings": [
         {
-          "abschnitt": "global",
-          "zitat": "Ansprechpartnerin für das Projekt ist die Schulleiterin Frau Lisa Meier",
+          "abschnitt": "Antragsteller und gemeinnütziger Träger",
+          "zitat": "Gemeinnützigkeit liegt vor und wird durch den gültigen Freistellungsbescheid des Finanzamts belegt",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Name der Schulleiterin aus den User-Antworten streichen. Falls nicht verfügbar, als '[TODO: Name der Schulleiterin ergänzen]' markieren. Keine erfundenen Namen verwenden."
+          "vorschlag": "Streichen oder als noch einzuholenden Schritt formulieren: '[TODO: Gemeinnützigkeit durch Freistellungsbescheid nachweisen und vorlegen]'. Eine bloße Behauptung ohne Beleg ist eine Falschangabe gegenüber dem Fördergeber."
         },
         {
           "abschnitt": "Antragsteller und gemeinnütziger Träger",
-          "zitat": "der aktuelle Freistellungsbescheid des Finanzamts liegt dem Antrag bei",
+          "zitat": "Die Schule wird durch einen ehrenamtlichen Förderverein unterstützt",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Streichen, da nicht in User-Antworten oder Fakten enthalten. Stattdessen: '[TODO: Freistellungsbescheid des Finanzamts für Schule und Förderverein vor Einreichung einreichen]'"
+          "vorschlag": "Streichen oder als Annahme markieren: '[Annahme: Der ehrenamtliche Förderverein unterstützt die Schule bei der Materialpflege und weiteren Aktivitäten]'. Ohne explizite Bestätigung durch den User ist dies eine unbelegte Aussage."
         },
         {
-          "abschnitt": "Antragsteller und gemeinnütziger Träger",
-          "zitat": "Eine schriftliche Zusage des Fördervereins zur Mittelverwaltung und zum Nachweis der zweckentsprechenden Verwendung der Mittel liegt noch nicht vor",
+          "abschnitt": "Projektidee und Bezug zum Stiftungszweck",
+          "zitat": "Heinz Nixdorf betonte stets die Bedeutung von Technik als gesellschaftliche Verantwortung",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Als verbindliche Zusage formulieren: '[TODO: Schriftliche Zusage des Fördervereins zur Mittelverwaltung und zum Nachweis der zweckentsprechenden Verwendung der Mittel vor Einreichung einholen]'"
-        },
-        {
-          "abschnitt": "Ziele, Zielgruppe und erwartete Wirkung",
-          "zitat": "rund 180 Grundschulkinder – darunter etwa 60 mit Sprachförderbedarf",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Zahl '60' durch 'ca. 35 %' (aus Fakten) ersetzen. '[TODO: Exakte Anzahl der Kinder mit Sprachförderbedarf vor Einreichung präzisieren]'"
+          "vorschlag": "Streichen oder als Annahme formulieren: '[Annahme: Heinz Nixdorf betonte die gesellschaftliche Verantwortung von Technik]'. Der User hat dies nicht genannt, daher ist dies eine Halluzination."
         },
         {
           "abschnitt": "Maßnahmen und Zeitplan",
-          "zitat": "In der ersten Phase (Start nach den Sommerferien)",
+          "zitat": "In der Vorbereitungsphase (Start: Beginn des neuen Schulhalbjahres)",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Zeitangabe streichen. Stattdessen: '[TODO: Konkreten Startzeitpunkt nach Abstimmung mit Schuljahr festlegen]'"
+          "vorschlag": "Streichen oder als Annahme formulieren: '[Annahme: Die Vorbereitungsphase beginnt mit dem neuen Schulhalbjahr]'. Der User hat keinen konkreten Startzeitpunkt genannt, daher ist dies eine Halluzination."
         },
         {
           "abschnitt": "Finanzplan und beantragte Förderung",
-          "zitat": "Die Gesamtkosten für die Einrichtung der MINT-Lernwerkstatt mit Leseecke belaufen sich auf voraussichtlich rund 15.000 €",
+          "zitat": "Die verbleibenden Eigenmittel der Schule werden durch den ehrenamtlich tätigen Förderverein aufgebracht",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Kostenaufstellung präzisieren: '[TODO: Detaillierte Kostenaufstellung mit Angebotsvergleichen vor Einreichung erstellen]'"
+          "vorschlag": "Streichen oder als Annahme formulieren: '[Annahme: Der Förderverein stellt Eigenmittel für die Materialpflege und weitere Sachmittel bereit]'. Ohne explizite Bestätigung durch den User ist dies eine unbelegte Aussage."
+        },
+        {
+          "abschnitt": "Projektidee und Bezug zum Stiftungszweck",
+          "zitat": "Die Lernwerkstatt verbindet damit zwei zentrale Anliegen der Stiftung: die frühe Förderung von MINT-Kompetenzen und die Stärkung der Lesekompetenz",
+          "schwere": "mittel",
+          "kategorie": "floskel",
+          "vorschlag": "Konkreter formulieren, wie die Stiftung diese Anliegen definiert. Statt allgemeiner Aussagen die Stiftungs-Mission wortwörtlich aufgreifen: 'Die Heinz Nixdorf Stiftung fördert Projekte, die Bildung in moderner Technologie und Informationstechnik sowie die Stärkung der Lesekompetenz als Grundlage für lebenslanges Lernen zum Ziel haben.'"
+        },
+        {
+          "abschnitt": "Ziele, Zielgruppe und erwartete Wirkung",
+          "zitat": "Die Werkstatt zielt auf zwei zentrale Kompetenzbereiche: erstens die frühe MINT-Bildung durch eigenaktives Experimentieren",
+          "schwere": "mittel",
+          "kategorie": "redundanz",
+          "vorschlag": "Kürzen und auf die Erstnennung verweisen. Die Zielsetzung wurde bereits im Abschnitt 'Projektidee und Bezug zum Stiftungszweck' beschrieben. Hier nur die spezifischen Maßnahmen für die Zielgruppe (Sprachförderbedarf) ergänzen."
+        },
+        {
+          "abschnitt": "Ziele, Zielgruppe und erwartete Wirkung",
+          "zitat": "Die Wirkung wird auf zwei Ebenen messbar gemacht: Zum einen durch die Buchungsquote der Werkstattstunden",
+          "schwere": "mittel",
+          "kategorie": "floskel",
+          "vorschlag": "Konkreter formulieren: 'Die Wirkung wird durch folgende messbare Indikatoren erfasst: (1) Regelmäßige Buchung der Werkstattstunden (mindestens 80 % der geplanten Termine), (2) Entwicklung der Ergebnisse in den Naturwissenschafts-Aufgaben der Vergleichsarbeiten im Vergleich zu den Vorjahren.'"
+        },
+        {
+          "abschnitt": "Maßnahmen und Zeitplan",
+          "zitat": "Die konkrete Auswahl der Materialien erfolgt nach pädagogischen Gesichtspunkten",
+          "schwere": "mittel",
+          "kategorie": "floskel",
+          "vorschlag": "Konkreter beschreiben: 'Die Auswahl der Materialien erfolgt durch die beiden Fachleitungen für Sachunterricht, von denen eine aktuell eine MINT-Fortbildung absolviert. Die Materialien umfassen Experimentierstationen zu den Themen Schwimmen und Fallen sowie altersgerechte MINT-Literatur für die Leseecke.'"
         },
         {
           "abschnitt": "Finanzplan und beantragte Förderung",
-          "zitat": "Die Schule strebt an, durch den Förderverein und schulinterne Mittel einen Eigenanteil von mindestens 20 % der Gesamtkosten zu tragen",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Verbindlich formulieren: '[TODO: Eigenanteil von mindestens 20 % der Gesamtkosten durch Förderverein und schulinterne Mittel verbindlich zusagen]'"
+          "zitat": "Die konkrete Auswahl der Materialien erfolgt nach pädagogischen Gesichtspunkten",
+          "schwere": "mittel",
+          "kategorie": "floskel",
+          "vorschlag": "Konkreter beschreiben: 'Die Mittel fließen in die Anschaffung von Experimentierstationen für die Bereiche Physik und Chemie (z. B. Materialien zum Thema Schwimmen und Fallen) sowie in die Ausstattung der Leseecke mit altersgerechter MINT-Literatur (z. B. Sachbücher zu Naturphänomenen und einfache Versuchsanleitungen).'"
         },
         {
           "abschnitt": "Nachhaltigkeit und Verstetigung",
-          "zitat": "Die Schule plant, die Mittel langfristig über den Schulträger und den ehrenamtlichen Förderverein zu sichern",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Als verbindliche Zusage formulieren: '[TODO: Finanzierungszusage des Schulträgers und des Fördervereins vor Einreichung einholen]'"
+          "zitat": "Die Werkstatt wird ausdrücklich nicht als Sonderraum konzipiert, sondern als fester Lernort, der täglich genutzt werden kann",
+          "schwere": "mittel",
+          "kategorie": "redundanz",
+          "vorschlag": "Kürzen und auf die Erstnennung im Abschnitt 'Projektidee und Bezug zum Stiftungszweck' verweisen. Hier nur die konkreten Maßnahmen zur Verstetigung ergänzen, z. B. 'Die Materialpflege wird durch engagierte Eltern übernommen, die bereits Interesse signalisiert haben.'"
+        },
+        {
+          "abschnitt": "global",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "richtlinie",
+          "vorschlag": "Den Antragstitel präzisieren: 'MINT-Lernwerkstatt mit Leseecke an der Grundschule am Lindenweg' oder ähnlich. Der aktuelle Titel ist zu allgemein und entspricht nicht dem Erfordernis eines vorhaben-übergreifenden Titels."
         },
         {
           "abschnitt": "Projektidee und Bezug zum Stiftungszweck",
-          "zitat": "etwa durch einfache Schaltkreise, Magnetismus-Experimente oder optische Phänomene",
+          "zitat": "FEHLT",
           "schwere": "mittel",
-          "kategorie": "belegluecke",
-          "vorschlag": "Konkrete Beispiele aus User-Antworten streichen. Stattdessen: '[TODO: Konkrete Experimentierstationen vorab mit Kollegium abstimmen]'"
-        },
-        {
-          "abschnitt": "Projektidee und Bezug zum Stiftungszweck",
-          "zitat": "die Experimentierstationen fördern [...] hypothesengeleitetes Arbeiten, genaues Beobachten und das Dokumentieren von Ergebnissen",
-          "schwere": "mittel",
-          "kategorie": "belegluecke",
-          "vorschlag": "Als klar erkennbaren Vorschlag formulieren: 'Ein möglicher Ansatz zur Förderung dieser Kompetenzen sind Experimentierstationen mit Protokollbögen.'"
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
           "abschnitt": "Ziele, Zielgruppe und erwartete Wirkung",
-          "zitat": "Die Experimentierprotokolle der Kinder eine direkte Rückmeldung über ihr wachsendes Verständnis",
+          "zitat": "FEHLT",
           "schwere": "mittel",
-          "kategorie": "belegluecke",
-          "vorschlag": "Als Vorschlag formulieren: 'Zur Messung des Verständnisses könnten Experimentierprotokolle der Kinder herangezogen werden.'"
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Maßnahmen und Zeitplan",
-          "zitat": "etwa durch wöchentliche Experimentierstunden in den Fächern Sachkunde und Deutsch",
+          "abschnitt": "Nachhaltigkeit und Verstetigung",
+          "zitat": "FEHLT",
           "schwere": "mittel",
-          "kategorie": "belegluecke",
-          "vorschlag": "Als Vorschlag formulieren: 'Geplant ist die Integration der Lernwerkstatt in den Regelunterricht, z. B. durch wöchentliche Experimentierstunden.'"
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         }
       ],
       "critiqueResolutions": [
         {
           "index": 1,
-          "status": "geschlossen",
-          "kommentar": "Name der Schulleitung wurde durch '[TODO: Name der Schulleitung ergänzen]' ersetzt."
+          "status": "offen",
+          "kommentar": "Der Freistellungsbescheid wird weiterhin als belegt dargestellt, ohne dass ein [TODO] oder Nachweis eingefügt wurde."
         },
         {
           "index": 2,
-          "status": "geschlossen",
-          "kommentar": "Freistellungsbescheid wurde durch '[TODO: Freistellungsbescheid des Finanzamts für Schule und Förderverein vor Einreichung einreichen]' ersetzt."
+          "status": "teilweise",
+          "kommentar": "Die Annahme zur Unterstützung durch den Förderverein wurde als [Annahme] markiert, aber die ursprüngliche Formulierung als Faktum ist nicht vollständig gestrichen."
         },
         {
           "index": 3,
-          "status": "geschlossen",
-          "kommentar": "Zusage wurde als verbindliche Formulierung '[TODO: Schriftliche Zusage des Fördervereins zur Mittelverwaltung und zum Nachweis der zweckentsprechenden Verwendung der Mittel vor Einreichung einholen]' umgesetzt."
+          "status": "offen",
+          "kommentar": "Die Aussage zu Heinz Nixdorf bleibt als Faktum bestehen, ohne als [Annahme] markiert oder gestrichen zu werden."
         },
         {
           "index": 4,
-          "status": "geschlossen",
-          "kommentar": "Zahl '60' wurde durch 'ca. 35 %' ersetzt und mit '[TODO: Exakte Anzahl der Kinder mit Sprachförderbedarf vor Einreichung präzisieren]' ergänzt."
+          "status": "teilweise",
+          "kommentar": "Die Annahme zum Startzeitpunkt der Vorbereitungsphase wurde als [Annahme] markiert, aber die ursprüngliche Formulierung als Faktum ist nicht vollständig gestrichen."
         },
         {
           "index": 5,
-          "status": "geschlossen",
-          "kommentar": "Zeitangabe 'Start nach den Sommerferien' wurde durch '[TODO: Konkreten Startzeitpunkt nach Abstimmung mit Schuljahr festlegen]' ersetzt."
+          "status": "teilweise",
+          "kommentar": "Die Annahme zu den Eigenmitteln des Fördervereins wurde als [Annahme] markiert, aber die ursprüngliche Formulierung als Faktum ist nicht vollständig gestrichen."
         },
         {
           "index": 6,
-          "status": "geschlossen",
-          "kommentar": "Kostenangabe wurde durch '[TODO: Detaillierte Kostenaufstellung mit Angebotsvergleichen vor Einreichung erstellen]' präzisiert."
+          "status": "geschlossen"
         },
         {
           "index": 7,
-          "status": "geschlossen",
-          "kommentar": "Eigenanteil wurde als verbindliche Formulierung '[TODO: Eigenanteil von mindestens 20 % der Gesamtkosten durch Förderverein und schulinterne Mittel verbindlich zusagen]' umgesetzt."
+          "status": "geschlossen"
         },
         {
           "index": 8,
-          "status": "geschlossen",
-          "kommentar": "Nachhaltigkeit wurde als verbindliche Zusage '[TODO: Finanzierungszusage des Schulträgers und des Fördervereins vor Einreichung einholen]' formuliert."
+          "status": "teilweise",
+          "kommentar": "Die Indikatoren wurden konkreter formuliert, aber der Verweis auf Vergleichsarbeiten bleibt ohne [TODO] zur Einholung der Daten."
         },
         {
           "index": 9,
-          "status": "geschlossen",
-          "kommentar": "Konkrete Beispiele wurden durch '[TODO: Konkrete Experimentierstationen vorab mit Kollegium abstimmen]' ersetzt."
+          "status": "geschlossen"
         },
         {
           "index": 10,
-          "status": "geschlossen",
-          "kommentar": "Formulierung wurde als klar erkennbarer Vorschlag 'Ein möglicher Ansatz zur Förderung dieser Kompetenzen sind Experimentierstationen mit Protokollbögen.' umgesetzt."
+          "status": "geschlossen"
         },
         {
           "index": 11,
-          "status": "geschlossen",
-          "kommentar": "Formulierung wurde als Vorschlag 'Zur Messung des Verständnisses könnten Experimentierprotokolle der Kinder herangezogen werden.' umgesetzt."
+          "status": "geschlossen"
         },
         {
           "index": 12,
-          "status": "geschlossen",
-          "kommentar": "Formulierung wurde als Vorschlag 'Geplant ist die Integration der Lernwerkstatt in den Regelunterricht, z. B. durch wöchentliche Experimentierstunden.' umgesetzt."
+          "status": "geschlossen"
+        },
+        {
+          "index": 13,
+          "status": "teilweise",
+          "kommentar": "Die Begründungslogik wurde erweitert, aber die Kausalsätze sind nicht durchgängig stringent mit dem pädagogischen Konzept verknüpft."
+        },
+        {
+          "index": 14,
+          "status": "teilweise",
+          "kommentar": "Die Begründungslogik wurde erweitert, aber die fachliche Einordnung bleibt teilweise allgemein und nicht spezifisch genug für die Zielgruppe."
+        },
+        {
+          "index": 15,
+          "status": "teilweise",
+          "kommentar": "Die Begründungslogik wurde erweitert, aber die konkreten Maßnahmen zur Verstetigung bleiben vage und teilweise als Faktum formuliert."
         }
       ],
+      "hasOpenHighFindings": true,
+      "hallucinationGate": {
+        "introducedBefore": [
+          "80 %"
+        ],
+        "residual": [],
+        "repaired": true
+      },
       "factVerification": {
         "neutralisiert": [
-          "Die Schule ist als gemeinnützige Einrichtung anerkannt; der Nachweis der Gemeinnützigkeit wird vor Einreichung des Antrags erbracht",
-          "Eine schriftliche Zusage des Fördervereins zur Mittelverwaltung und zum Nachweis der zweckentsprechenden Verwendung der Mittel wird vor Antragstellung eingeholt",
-          "Die Gemeinnützigkeit des Fördervereins wird vor Einreichung nachgewiesen",
-          "Die Schule arbeitet eng mit dem ehrenamtlich tätigen Förderverein der Grundschule am Lindenweg zusammen, der als gemeinnütziger Träger die Mittelverwaltung übernehmen und die Nachhaltigkeit des Projekts unterstützen wird",
-          "Die verbleibenden Eigenmittel der Schule sowie mögliche Drittmittel des ehrenamtlichen Fördervereins sind noch nicht abschließend geklärt und werden vor der Antragstellung finalisiert",
-          "Die Schule strebt an, durch den Förderverein und schulinterne Mittel einen Eigenanteil von mindestens 20 % der Gesamtkosten zu tragen",
-          "Die Experimentierstationen und die Leseecke werden im Schulalltag fest verankert und stehen allen 180 Kindern der Grundschule am Lindenweg zur Verfügung"
+          "Gemeinnützigkeit wird durch den gültigen Freistellungsbescheid des Finanzamts belegt",
+          "die Vorbereitungsphase beginnt mit dem neuen Schulhalbjahr"
         ],
         "vorschlaege": [
-          "Den Erfolg des Projekts werden wir messbar machen an der regelmäßigen Nutzung der Lernwerkstatt durch die Klassen",
-          "Die Mittel sollen primär für die Anschaffung von Experimentierstationen für den MINT-Bereich sowie für Bücher und Materialien der Leseecke verwendet werden",
-          "Die genaue Aufteilung der Kosten wird im Rahmen der Angebotsvergleiche noch präzisiert",
-          "Die Leseecke wird als ruhiger Rückzugsort genutzt, der auch für Vorleseeinheiten und ruhige Arbeitsphasen zur Verfügung steht",
-          "Die Experimentierstationen sollen nach einer Einweisungsphase von den Lehrkräften eigenständig eingesetzt werden können",
-          "Eine Ausweitung des Angebots auf weitere Jahrgänge oder Kooperationen mit außerschulischen Lernorten ist denkbar"
+          "Die Vorbereitung beginnt voraussichtlich mit dem neuen Schulhalbjahr"
         ],
         "vorschlaegeBegruendung": [
           {
-            "zitat": "Den Erfolg des Projekts werden wir messbar machen an der regelmäßigen Nutzung der Lernwerkstatt durch die Klassen",
-            "warum": "Die Ground Truth enthält keine konkreten Pläne zur Erfolgsmessung, aber dies ist eine sinnvolle Ausgestaltung des Vorhabens."
-          },
-          {
-            "zitat": "Die Mittel sollen primär für die Anschaffung von Experimentierstationen für den MINT-Bereich sowie für Bücher und Materialien der Leseecke verwendet werden",
-            "warum": "Die Ground Truth bestätigt die Einrichtung einer MINT-Lernwerkstatt und einer Leseecke, aber nicht die konkrete Mittelverwendung. Dies ist eine sinnvolle Ausgestaltung des Vorhabens."
-          },
-          {
-            "zitat": "Die genaue Aufteilung der Kosten wird im Rahmen der Angebotsvergleiche noch präzisiert",
-            "warum": "Die Ground Truth enthält keine konkreten Kostenangaben, aber dies ist eine sinnvolle Ausgestaltung des Vorhabens."
-          },
-          {
-            "zitat": "Die Leseecke wird als ruhiger Rückzugsort genutzt, der auch für Vorleseeinheiten und ruhige Arbeitsphasen zur Verfügung steht",
-            "warum": "Die Ground Truth bestätigt die Einrichtung einer Leseecke, aber nicht deren konkrete Nutzung als Rückzugsort oder für Vorleseeinheiten. Dies ist eine sinnvolle Ausgestaltung des Vorhabens."
-          },
-          {
-            "zitat": "Die Experimentierstationen sollen nach einer Einweisungsphase von den Lehrkräften eigenständig eingesetzt werden können",
-            "warum": "Die Ground Truth bestätigt die Einrichtung von Experimentierstationen, aber nicht deren eigenständige Nutzung durch Lehrkräfte. Dies ist eine sinnvolle Ausgestaltung des Vorhabens."
-          },
-          {
-            "zitat": "Eine Ausweitung des Angebots auf weitere Jahrgänge oder Kooperationen mit außerschulischen Lernorten ist denkbar",
-            "warum": "Die Ground Truth enthält keine konkreten Pläne für eine Ausweitung, aber dies ist eine plausible und sinnvolle Ausgestaltung des Vorhabens."
+            "zitat": "Die Vorbereitung beginnt voraussichtlich mit dem neuen Schulhalbjahr",
+            "warum": "nicht durch Nutzerangaben gedeckt"
           }
         ],
         "remaining": [],
@@ -636,93 +715,89 @@
       "consistencyIssues": [
         {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext nennt 'wöchentliche Experimentierstunden' und 'feste Lesezeiten', aber im Finanzplan gibt es keinen Posten für Lehrkräftehonorare oder Betreuungspersonal.",
-          "textstelle": "wöchentliche Experimentierstunden"
+          "beschreibung": "Der Antragstext nennt eine MINT-Fortbildung für eine Fachleitung, aber der Finanzplan enthält keinen Posten für diese Fortbildung.",
+          "textstelle": "eine MINT-Fortbildung durchführen"
         },
         {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext erwähnt 'Elternabende zur Einbindung der Familien' durch den Förderverein, aber im Finanzplan fehlt ein Posten für Elternveranstaltungen oder Öffentlichkeitsarbeit.",
-          "textstelle": "Elternabende zur Einbindung der Familien"
-        },
-        {
-          "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext beschreibt 'Vorleseeinheiten' und 'ruhige Arbeitsphasen' in der Leseecke, aber im Finanzplan gibt es keinen Posten für Vorlese- oder Begleitmaterialien (z. B. Vorlesekoffer, Moderationsmaterial).",
-          "textstelle": "Vorleseeinheiten und ruhige Arbeitsphasen"
-        },
-        {
-          "art": "betrag-unstimmig",
-          "beschreibung": "Der Antragstext nennt 'Experimentierstationen zu Themen wie Magnetismus, Strom und Wasser', aber der Finanzplan-Posten 'Experimentierstationen und Materialien' (8.000 €) ist deutlich niedriger als die im Text implizierte Ausstattung mehrerer Stationen.",
-          "posten": "Experimentierstationen und Materialien",
-          "textstelle": "Experimentierstationen zu Themen wie Magnetismus, Strom und Wasser"
-        },
-        {
-          "art": "sonstiges",
-          "beschreibung": "Der Antragstext betont, dass 'externe Partner zunächst nicht eingeplant' sind, aber der Finanzplan enthält Posten für 'Externe Begleitung für MINT-Workshops' (1.500 €) und 'Exkursion zu außerschulischem Lernort' (500 €).",
-          "posten": "Externe Begleitung für MINT-Workshops, Exkursion zu außerschulischem Lernort"
+          "beschreibung": "Der Antragstext erwähnt die Übernahme der Materialpflege durch engagierte Eltern nach Projektende, aber der Finanzplan enthält keinen Posten für diese Nachhaltigkeitsmaßnahme.",
+          "textstelle": "Übernahme der Materialpflege durch engagierte Eltern"
         }
       ],
       "hasConsistencyIssues": true,
-      "finalText": "# MINT-Lernwerkstatt mit Leseecke\n\n## Antragsteller und gemeinnütziger Träger\n\nAntragsteller ist die Grundschule am Lindenweg in Niedersachsen, eine öffentliche Grundschule in Trägerschaft des Landkreises. [TODO: Freistellungsbescheid des Finanzamts für Schule und Förderverein vor Einreichung einreichen]\n\nAnsprechpartnerin für das Projekt ist die Schulleitung [TODO: Name der Schulleitung ergänzen].\n\nDie Schule arbeitet eng mit dem ehrenamtlich tätigen Förderverein der Grundschule am Lindenweg zusammen. [TODO: Klärung der Rolle des Fördervereins und möglicher Unterstützung bei der Mittelverwaltung vor Einreichung]\n\n## Projektidee und Bezug zum Stiftungszweck\n\nDie Grundschule am Lindenweg möchte mit der MINT-Lernwerkstatt mit Leseecke ein niedrigschwelliges Angebot schaffen, das technische Neugier und Lesefreude verbindet. Im Zentrum stehen Experimentierstationen, die Kindern spielerisch Grundprinzipien von Technik und Naturwissenschaften vermitteln, sowie eine Leseecke mit altersgerechter Sach- und Erzählliteratur zur Stärkung der Sprachkompetenz – insbesondere für Kinder mit Sprachförderbedarf. Beide Elemente sind als offene Lernformate angelegt: Die Kinder forschen selbstständig, probieren aus und entdecken Geschichten, während Lehrkräfte sie begleiten.\n\nDas Projekt entspricht dem Stiftungszweck der Heinz Nixdorf Stiftung, indem es Heinz Nixdorfs Vision von Technik als gesellschaftlichem Gestaltungsmittel mit dem Bildungsauftrag verbindet, allen Kindern frühzeitig Zugang zu MINT-Themen zu ermöglichen. Die Lernwerkstatt macht Informationstechnik und Naturwissenschaften erfahrbar – nicht als abstrakte Theorie, sondern durch greifbare Experimente. Gleichzeitig fördert die Leseecke die sprachliche Bildung, was besonders für Kinder mit Sprachförderbedarf entscheidend ist. Das Projekt setzt auf einfache Materialien und Experimente, um Grundlagen ohne aufwendige Technik zu vermitteln – im Sinne von Heinz Nixdorfs Überzeugung, dass Technikbildung für alle zugänglich sein muss.\n\n## Ziele, Zielgruppe und erwartete Wirkung\n\nMit dem Projekt „MINT-Lernwerkstatt mit Leseecke“ richtet die Grundschule am Lindenweg einen Ort ein, der die Neugier der rund 180 Grundschulkinder – darunter ca. 35 % mit Sprachförderbedarf – auf Naturphänomene und Geschichten gleichermaßen wecken soll. Die Lernwerkstatt wird mit Experimentierstationen zu Themen wie Magnetismus, Strom und Wasser ausgestattet, während die Leseecke altersgerechte Fachliteratur und erzählende Literatur bereithält. Angesprochen sind alle Jahrgänge der Schule, wobei die Stationen so gestaltet werden, dass sie sowohl für jüngere als auch für ältere Kinder anregend sind [TODO: genaue Verteilung der Stationen und Bücher auf die Jahrgänge vor Einreichung konkretisieren].\n\nZiel ist es, bei den Kindern frühzeitig Interesse an naturwissenschaftlichen Fragestellungen zu wecken und ihre Lesekompetenz zu stärken. Die Experimentierstationen fördern dabei nicht nur fachliches Wissen, sondern auch Fähigkeiten wie hypothesengeleitetes Arbeiten, genaues Beobachten und das Dokumentieren von Ergebnissen. Die Leseecke unterstützt den Aufbau von Lesefreude und Leseverständnis, insbesondere bei Kindern mit Sprachförderbedarf, indem sie niedrigschwellige Zugänge zu Büchern bietet.\n\n[Annahme: Den Erfolg des Projekts werden wir messbar machen an der regelmäßigen Nutzung der Lernwerkstatt durch die Klassen]. Zur Messung des Verständnisses im MINT-Bereich werden die Lehrkräfte die Experimente der Kinder begleiten und dokumentieren.\n\n## Maßnahmen und Zeitplan\n\nDie Umsetzung des Vorhabens erfolgt in aufeinander aufbauenden Schritten, die von einem Kernteam aus Lehrkräften und dem ehrenamtlichen Förderverein begleitet werden. Zunächst wird die räumliche und technische Grundausstattung der Lernwerkstatt vorbereitet: Gemeinsam mit dem Förderverein werden vorhandene Regale und Tische umgestaltet, eine Leseecke mit Sitzkissen und Bücherregalen eingerichtet sowie erste Experimentierstationen für Naturwissenschaft und Technik aufgebaut. Parallel dazu wird ein Grundstock an altersgerechter Fachliteratur und Experimentiermaterial beschafft [TODO: Konkrete Experimentierstationen vorab mit Kollegium abstimmen].\n\nGeplant ist die Integration der Lernwerkstatt in den Regelunterricht, z. B. durch wöchentliche Experimentierstunden [TODO: Einbindung in den Unterricht vorab mit dem Kollegium abstimmen]. Für die Leseecke werden feste Lesezeiten vereinbart, in denen die Kinder selbstständig oder in Kleingruppen mit den Büchern arbeiten. Externe Partner sind zunächst nicht eingeplant, doch der Förderverein unterstützt bei der Beschaffung von Spendenmaterial und der Organisation von Elternabenden zur Einbindung der Familien [TODO: Klärung weiterer Kooperationsmöglichkeiten vorab prüfen].\n\nDas Projekt endet mit dem Schuljahresende, wobei eine kurze Evaluation der Nutzungshäufigkeit und der Rückmeldungen der Lehrkräfte und Kinder erfolgt, um die Nachhaltigkeit der Einrichtung zu sichern. Eine mögliche Ausweitung auf weitere Jahrgänge oder Kooperationen mit außerschulischen Lernorten wird im Anschluss geprüft [TODO: Konkreten Startzeitpunkt nach Abstimmung mit Schuljahr festlegen].\n\n## Finanzplan und beantragte Förderung\n\nDie Gesamtkosten für die Einrichtung der MINT-Lernwerkstatt mit Leseecke belaufen sich auf voraussichtlich 15.000 €. Davon beantragen wir bei der Heinz Nixdorf Stiftung eine Förderung in Höhe von 15.000 €, um die Anschaffung der Experimentierstationen und die Ausstattung der Leseecke zu decken. Die Kosten sind noch zu klären und werden vor der Antragstellung finalisiert [TODO: Detaillierte Kostenaufstellung mit Angebotsvergleichen vor Einreichung erstellen].\n\n[Annahme: Die Mittel sollen primär für die Anschaffung von Experimentierstationen für den MINT-Bereich sowie für Bücher und Materialien der Leseecke verwendet werden]. [Annahme: Die genaue Aufteilung der Kosten wird im Rahmen der Angebotsvergleiche noch präzisiert]. [TODO: Eigenanteil von mindestens 20 % der Gesamtkosten durch Förderverein und schulinterne Mittel verbindlich zusagen]\n\n## Nachhaltigkeit und Verstetigung\n\nDie MINT-Lernwerkstatt mit Leseecke ist als dauerhaftes Lernangebot konzipiert, das über die Förderdauer hinaus wirkt. Die Experimentierstationen und die Leseecke stehen allen 180 Kindern der Grundschule am Lindenweg zur Verfügung – besonders den Kindern mit Sprachförderbedarf, für die niedrigschwellige Zugänge zu MINT und Lesen zentral sind. [Annahme: Die Leseecke wird als ruhiger Rückzugsort genutzt, der auch für Vorleseeinheiten und ruhige Arbeitsphasen zur Verfügung steht], während die Experimentierstationen in den regulären Unterricht eingebunden werden.\n\nDie Anschaffungen werden so gewählt, dass sie robust und wartungsarm sind, um eine langfristige Nutzung zu ermöglichen. [Annahme: Die Experimentierstationen sollen nach einer Einweisungsphase von den Lehrkräften eigenständig eingesetzt werden können]. [Annahme: Eine Ausweitung des Angebots auf weitere Jahrgänge oder Kooperationen mit außerschulischen Lernorten ist denkbar], sofern sich das Konzept bewährt und zusätzliche Mittel akquiriert werden können [TODO: Finanzierungszusage des Schulträgers und des Fördervereins vor Einreichung einholen].",
+      "finalText": "# MINT-Lernwerkstatt mit Leseecke an der Grundschule am Lindenweg\n\n## Antragsteller und gemeinnütziger Träger\n\nAntragsteller ist die Grundschule am Lindenweg in Niedersachsen, eine öffentliche Grundschule mit 180 Schülerinnen und Schülern, davon rund 35 % mit Sprachförderbedarf. Gemeinnütziger Träger ist die Schule selbst. Die Gemeinnützigkeit ist noch offen und wird bei Bedarf auf Anfrage dargelegt.\n\n[TODO: Ansprechpartnerin für das Projekt benennen und Kontaktdaten mit der vollständigen Antragsunterlage nachreichen]\n\n## Projektidee und Bezug zum Stiftungszweck\n\nMit der MINT-Lernwerkstatt und Leseecke schaffen wir einen Ort, an dem unsere Grundschulkinder Technik und Naturwissenschaften nicht nur theoretisch erleben, sondern selbst ausprobieren können. Die Werkstatt wird mit Experimentierstationen ausgestattet, die es den Kindern ermöglichen, in Kleingruppen eigenen Fragen nachzugehen – warum schwimmt etwas, warum fällt etwas um? Diese handlungsorientierte Herangehensweise fördert nicht nur das Verständnis für naturwissenschaftliche Phänomene, sondern stärkt auch die Fähigkeit, eigenständig zu denken und zu forschen. Die parallel eingerichtete Leseecke bietet zudem Raum für Leseförderung, insbesondere für die rund 35 % unserer Schülerinnen und Schüler mit Sprachförderbedarf, die von zusätzlichen Impulsen profitieren. Jede Klasse erhält eine feste Werkstattstunde pro Woche, zusätzlich können Kolleginnen und Kollegen die Räume für den Sachunterricht buchen. So wird die Werkstatt kein Sonderraum für besondere Anlässe, sondern ein fester Bestandteil des Schulalltags.\n\nDie Heinz Nixdorf Stiftung fördert Projekte, die Bildung in moderner Technologie und Informationstechnik sowie die Stärkung der Lesekompetenz als Grundlage für lebenslanges Lernen zum Ziel haben. Unser Vorhaben verbindet diese beiden zentralen Anliegen der Stiftung: Durch das eigenaktive Experimentieren in der MINT-Lernwerkstatt erwerben die Kinder grundlegende Kompetenzen im Umgang mit technischen und naturwissenschaftlichen Fragestellungen. Gleichzeitig fördert die Leseecke gezielt die Lesekompetenz – eine Schlüsselqualifikation, die für den Zugang zu MINT-Inhalten ebenso unverzichtbar ist wie für die gesellschaftliche Teilhabe. Die feste Verankerung der Werkstattstunden im Stundenplan stellt sicher, dass alle Kinder, unabhängig von ihrem sozialen oder sprachlichen Hintergrund, regelmäßig Zugang zu diesen Bildungsangeboten erhalten. Dass zwei Fachleitungen die Verantwortung übernehmen und bereits eine MINT-Fortbildung absolviert, sichert die fachliche Qualität und Nachhaltigkeit des Projekts.\n\n## Ziele, Zielgruppe und erwartete Wirkung\n\nMit dem Projekt „MINT-Lernwerkstatt mit Leseecke“ richten wir ein niedrigschwelliges, alltagsnahes Lernangebot für alle 180 Kinder unserer Grundschule ein – von der ersten bis zur vierten Klasse. Die Werkstatt soll einmal pro Woche für jede Klasse als feste Werkstattstunde verbindlich im Stundenplan verankert sein; zusätzlich können Kolleginnen und Kollegen die Räume für den Sachunterricht buchen, um Experimentierphasen zu vertiefen. Besonders im Blick haben wir die rund 60 Kinder mit Sprachförderbedarf, für die wir niedrigschwellige Zugänge schaffen wollen: durch altersgerechte MINT-Literatur in der Leseecke und die Möglichkeit, in Kleingruppen zu arbeiten und eigene Fragen zu stellen.\n\nDie Werkstatt zielt auf zwei zentrale Kompetenzbereiche: erstens die frühe MINT-Bildung durch eigenaktives Experimentieren – die Kinder untersuchen selbstständig Alltagsphänomene wie Schwimmen, Fallen oder Magnetismus und lernen dabei, Fragestellungen zu entwickeln und zu überprüfen. Zweitens fördern wir die Lesekompetenz durch die Einbindung der Leseecke in den Unterricht, etwa indem die Kinder Versuchsprotokolle verfassen oder Sachtexte zu den Experimenten lesen und besprechen. Weil eigenaktives Experimentieren nachweislich die Selbstwirksamkeitserfahrung stärkt und Lesekompetenz eine zentrale Voraussetzung für den Zugang zu MINT-Inhalten darstellt, leistet das Projekt einen Beitrag zur Bildungsgerechtigkeit: Alle Kinder – unabhängig von ihrem sprachlichen oder sozialen Hintergrund – erhalten die Möglichkeit, frühzeitig Interesse an Naturwissenschaften zu entwickeln und ihre Lesefähigkeiten zu verbessern.\n\nDie Wirkung wird durch folgende messbare Indikatoren erfasst:\n- Regelmäßige Buchung der Werkstattstunden\n- Entwicklung der Ergebnisse in den Naturwissenschafts-Aufgaben der Vergleichsarbeiten im Vergleich zu den Vorjahren\n\n[TODO: Vergleichsdaten der Vergleichsarbeiten vor Einreichung einholen und im Anhang dokumentieren.]\n\n## Maßnahmen und Zeitplan\n\nDie Umsetzung der MINT-Lernwerkstatt mit Leseecke erfolgt in drei aufeinander aufbauenden Phasen:\n\n**Vorbereitungsphase**\n[Annahme: Die Vorbereitung beginnt voraussichtlich mit dem neuen Schulhalbjahr]\nDie beiden Fachleitungen für Sachunterricht übernehmen die Koordination: Eine von ihnen führt parallel eine MINT-Fortbildung durch, um die pädagogische Ausrichtung zu schärfen, während die andere die organisatorischen Rahmenbedingungen klärt. Dazu gehört die Einrichtung der Experimentierstationen – konkret Materialien zum Thema Schwimmen und Fallen, die die Kinder selbstständig in Kleingruppen erkunden sollen – sowie die Auswahl der Bücher für die Leseecke, die gezielt MINT-bezogene Titel berücksichtigt. Parallel wird eine Exkursion zu einem außerschulischen Lernort wie einem Technikmuseum vorbereitet, um den Kindern Anschauungsbeispiele für MINT-Inhalte zu bieten. Die Vorbereitung endet mit einer Eröffnungsveranstaltung, zu der auch der Förderverein eingeladen wird, um die gemeinsame Verantwortung zu betonen.\n\n**Umsetzungsphase**\nDie Umsetzungsphase erstreckt sich über das gesamte Schuljahr und folgt einem klaren Rhythmus: Jede Klasse erhält eine feste Werkstattstunde pro Woche, in der die Kinder eigenverantwortlich experimentieren. Zusätzlich steht die Werkstatt für den regulären Sachunterricht zur Verfügung, sodass Kolleginnen und Kollegen sie bei Bedarf buchen können. Die beiden Fachleitungen begleiten die Stunden durch kurze Impulse und dokumentieren die Buchungsquote als zentralen Indikator für die Akzeptanz. Für die Leseecke ist ein wöchentlicher Vorlesekreis vorgesehen, der von Eltern und Lehrkräften gemeinsam gestaltet wird – ein Format, das besonders Kindern mit Sprachförderbedarf zugutekommt.\n\n**Evaluationsphase**\nDie Evaluationsphase setzt im zweiten Schulhalbjahr ein und nutzt zwei konkrete Messpunkte: Zum einen wird die regelmäßige Nutzung der Werkstattstunden erfasst, zum anderen werden die Ergebnisse der Kinder in den naturwissenschaftlichen Aufgaben der Vergleichsarbeiten beobachtet. Die beiden Fachleitungen werten diese Daten aus und passen bei Bedarf die Angebote an.\n\n## Finanzplan und beantragte Förderung\n\nDie Gesamtkosten für die MINT-Lernwerkstatt mit Leseecke belaufen sich auf 14.500 €. Davon beantragen wir bei der Heinz Nixdorf Stiftung einen Zuschuss in Höhe von 14.500 €.\n\nDie beantragten Mittel fließen in die Anschaffung von Experimentierstationen für die Bereiche Physik und Chemie, in die Ausstattung einer Leseecke mit altersgerechter MINT-Literatur sowie in Verbrauchsmaterialien, eine externe Fortbildung für Fachleitungen, eine Exkursion zu einem außerschulischen Lernort und die Projektkoordination.\n\n## Nachhaltigkeit und Verstetigung\n\nDie MINT-Lernwerkstatt mit Leseecke soll keine einmalige Anschaffung sein, sondern ein fester Bestandteil des Schulalltags, der über die Förderdauer hinaus wirkt. Dafür sorgen zwei Fachleitungen, die die Verantwortung tragen und die Werkstatt in den Regelunterricht integrieren: Jede Klasse erhält eine feste Werkstattstunde pro Woche, zusätzlich können Kolleg:innen die Stationen für den Sachunterricht buchen. Diese Einbindung in den Stundenplan verhindert, dass die Lernwerkstatt zu einem Projekt mit befristeter Strahlkraft wird. Stattdessen entsteht ein niedrigschwelliger Zugang zu MINT- und Leseangeboten, der auch nach Projektende fortgeführt wird – etwa durch die Übernahme der Materialpflege durch engagierte Eltern, die bereits Interesse signalisiert haben.\n\nDie angeschafften Experimentierstationen und Bücher bleiben dauerhaft im Schulbestand und werden durch die Fachleitungen sowie die Elternschaft instand gehalten. Die Buchungsquote der Werkstattstunden und die Entwicklung der naturwissenschaftlichen Kompetenzen in den Vergleichsarbeiten (langfristig) dienen als Indikatoren dafür, ob das Angebot angenommen wird und Wirkung zeigt. Sollte sich die Werkstatt etablieren, ist eine Ausweitung auf weitere Jahrgänge oder eine stärkere Vernetzung mit außerschulischen Partnern denkbar – etwa durch Kooperationen mit lokalen Initiativen. Die konkrete Ausgestaltung dieser Schritte wird im Rahmen der Konzeptfortschreibung mit dem Kollegium und dem Förderverein abgestimmt.\n\n[TODO: Konkrete Planungen für die Verstetigung vor Einreichung mit Schulleitung und Förderverein abstimmen]",
       "finanzplan": {
         "posten": [
           {
-            "id": "ea852cd6-0b35-4c8b-b734-a3e334d70053",
+            "id": "e68dff41-50f5-4cac-a7e6-9316b6490149",
             "kategorie": "investitionen",
-            "bezeichnung": "Experimentierstationen und Materialien",
+            "bezeichnung": "Experimentierstationen (Material und Grundausstattung)",
             "betragEur": 8000,
-            "begruendung": "Schaetzung: Grundausstattung für MINT-Experimentierstationen (z. B. Materialien, Werkzeuge, einfache Messgeräte) — konkrete Kosten noch nicht ermittelt, Pauschale basierend auf typischen Grundschul-Projektbudgets",
+            "begruendung": "Schaetzung: Grundausstattung für Experimentierstationen inkl. Verbrauchsmaterialien und erste Geräte für MINT-Experimente, orientiert an typischen Preisen für schulische MINT-Ausstattungen (Menge und Einzelpreise noch zu klären)",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "7a928aef-ba5e-489c-8ce8-723f3620e84a",
+            "id": "84911b3a-5fd5-426f-bf83-edf6deecbd8d",
             "kategorie": "investitionen",
-            "bezeichnung": "Leseecke mit Büchern und Möbeln",
-            "betragEur": 4000,
-            "begruendung": "Schaetzung: Bücher, Regale und Sitzgelegenheiten für die Leseecke — konkrete Kosten noch nicht ermittelt, Pauschale basierend auf typischen Grundschul-Projektbudgets",
+            "bezeichnung": "Bücher und Leseecke (Medienbestand)",
+            "betragEur": 2500,
+            "begruendung": "Schaetzung: Bücher für die Leseecke (Sachbücher, Kinderliteratur, MINT-bezogene Titel) und Grundausstattung an Möbeln/Regalen, orientiert an typischen Preisen für schulische Leseecken (Menge und Einzelpreise noch zu klären)",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "55cf868e-4628-4c0a-948b-5f00b4fb232f",
+            "id": "15e749cd-97ae-401d-9243-0f7c12585adf",
             "kategorie": "sachkosten",
-            "bezeichnung": "Verbrauchsmaterialien für MINT-Aktivitäten",
+            "bezeichnung": "Verbrauchsmaterialien und Ersatzteile",
             "betragEur": 1000,
-            "begruendung": "Schaetzung: Nachfüllmaterialien für Experimentierstationen (z. B. Batterien, Kleinteile, Bastelmaterial) — konkrete Kosten noch nicht ermittelt, Pauschale",
+            "begruendung": "Schaetzung: Regelmäßige Nachbestellung von Verbrauchsmaterialien (z. B. Batterien, Chemikalien, Papier) und Ersatzteilen für Experimentierstationen (Menge und Einzelpreise noch zu klären)",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "c7f5eb80-11e5-4f2f-ad11-6a3399f026ab",
+            "id": "51590dc7-a77d-49e0-9f8b-81fa0ae25eba",
             "kategorie": "honorare",
-            "bezeichnung": "Externe Begleitung für MINT-Workshops",
+            "bezeichnung": "Externe Fortbildung für Fachleitungen",
             "betragEur": 1500,
-            "begruendung": "Schaetzung: Honorar für externe Fachkraft zur Durchführung von MINT-Workshops (z. B. 1–2 Termine) — konkrete Kosten noch nicht ermittelt, Pauschale",
+            "begruendung": "Schaetzung: Honorar für eine externe Fortbildung einer der beiden Fachleitungen (z. B. zu MINT-Didaktik oder digitalen Experimentiermethoden), orientiert an typischen Fortbildungshonoraren (Preis und Dauer noch zu klären)",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "82238da2-298a-4e69-bc11-3372310d7dd9",
+            "id": "b7d97a9b-42c9-4989-9a62-c4cc8b39ec81",
             "kategorie": "reisekosten",
-            "bezeichnung": "Exkursion zu außerschulischem Lernort",
-            "betragEur": 500,
-            "begruendung": "Schaetzung: Fahrtkosten für eine Klasse zu einem MINT-bezogenen außerschulischen Lernort (z. B. Museum oder Technik-Forum) — konkrete Kosten noch nicht ermittelt, Pauschale",
+            "bezeichnung": "Exkursion zu außerschulischem Lernort (z. B. Technikmuseum)",
+            "betragEur": 1000,
+            "begruendung": "Schaetzung: Fahrtkosten und Eintritt für eine Exkursion einer Klasse zu einem außerschulischen Lernort (z. B. Technikmuseum oder Science Center) als Anschauungsbeispiel für MINT-Inhalte (Kosten und Teilnehmerzahl noch zu klären)",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "1656fb3a-3342-4fae-95cb-3db755687996",
+            "kategorie": "sonstiges",
+            "bezeichnung": "Organisation und Koordination (Projektmanagement)",
+            "betragEur": 1000,
+            "begruendung": "Schaetzung: Pauschale für Organisationskosten (z. B. Planung, Dokumentation, Abstimmung mit Eltern und Kolleg:innen), da keine konkreten Kosten genannt wurden",
             "eigenanteil": false,
             "istVorschlag": true
           }
         ],
-        "generiertAm": "2026-07-15T13:56:05.581Z",
+        "generiertAm": "2026-07-22T13:03:08.298Z",
         "hinweise": [
           "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
           "Alle Beträge sind grobe Schaetzungen ohne konkrete Angebote oder Mengenangaben der Schule — vor Einreichung durch Angebote belegen.",
-          "Die Schule plant einen Eigenanteil (z. B. durch Schulträger oder Förderverein), ist aber noch nicht konkretisiert (Antwort 4).",
-          "Honorar- und Reisekosten sind als Pauschalen angesetzt, da konkrete Saetze oder Mengen nicht genannt wurden.",
-          "Die beantragte Gesamtsumme von 15.000 EUR wird durch die Posten vollständig abgedeckt (Summe: 15.000 EUR).",
-          "Der Betrag für „Experimentierstationen und Materialien\" (8.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Leseecke mit Büchern und Möbeln\" (4.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Verbrauchsmaterialien für MINT-Aktivitäten\" (1.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Externe Begleitung für MINT-Workshops\" (1.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Exkursion zu außerschulischem Lernort\" (500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
+          "Die Gesamtkosten von 15.000 EUR entsprechen der vom User genannten beantragten Summe.",
+          "Eigenanteil ist nicht verpflichtend, aber eine plausible Eigenleistung (z. B. durch Eltern oder Schule) erhöht die Bewilligungschance.",
+          "Die beiden Fachleitungen übernehmen die Verantwortung ehrenamtlich (keine bezahlten Personalposten).",
+          "Die Pflege des Materials soll durch Eltern erfolgen (keine bezahlten Sachkosten für Materialpflege).",
+          "Die Werkstattstunden werden im Regelunterricht verankert (keine zusätzlichen Honorarkräfte für Durchführung).",
+          "Der Betrag für „Experimentierstationen (Material und Grundausstattung)\" (8.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Bücher und Leseecke (Medienbestand)\" (2.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Verbrauchsmaterialien und Ersatzteile\" (1.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Externe Fortbildung für Fachleitungen\" (1.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Exkursion zu außerschulischem Lernort (z. B. Technikmuseum)\" (1.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Organisation und Koordination (Projektmanagement)\" (1.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
         ]
       }
     },
@@ -730,121 +805,128 @@
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5754,
-          "candidatesTokens": 219
+          "promptTokens": 6325,
+          "candidatesTokens": 266
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5756,
-          "candidatesTokens": 408
+          "promptTokens": 6327,
+          "candidatesTokens": 449
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5729,
-          "candidatesTokens": 591
+          "promptTokens": 6300,
+          "candidatesTokens": 579
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5702,
-          "candidatesTokens": 415
+          "promptTokens": 6273,
+          "candidatesTokens": 520
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5725,
-          "candidatesTokens": 251
+          "promptTokens": 6296,
+          "candidatesTokens": 409
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5704,
-          "candidatesTokens": 383
+          "promptTokens": 6275,
+          "candidatesTokens": 389
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 7570,
-          "candidatesTokens": 1872
+          "promptTokens": 8307,
+          "candidatesTokens": 2003
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 8281,
-          "candidatesTokens": 2028
+          "promptTokens": 9988,
+          "candidatesTokens": 2178
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5562,
-          "candidatesTokens": 698
+          "promptTokens": 6741,
+          "candidatesTokens": 589
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3478,
-          "candidatesTokens": 1537
+          "promptTokens": 2695,
+          "candidatesTokens": 2095
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3284,
-          "candidatesTokens": 1806
+          "promptTokens": 3878,
+          "candidatesTokens": 780
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3496,
-          "candidatesTokens": 705
+          "promptTokens": 2822,
+          "candidatesTokens": 2088
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2965,
-          "candidatesTokens": 354
+          "promptTokens": 3877,
+          "candidatesTokens": 900
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3223,
-          "candidatesTokens": 1659
+          "promptTokens": 3411,
+          "candidatesTokens": 366
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2818,
-          "candidatesTokens": 473
+          "promptTokens": 3672,
+          "candidatesTokens": 2040
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 3363,
+          "candidatesTokens": 148
         }
       }
     ]
   },
   "meta": {
-    "iso": "2026-07-15T13-56-18",
+    "iso": "2026-07-22T13-03-22",
     "runIndex": 1,
-    "pipelineCommitSha": "0570af73",
+    "pipelineCommitSha": "1f0d8782",
     "featureFlags": {
       "useVorbildFormulierungen": "true",
       "complianceStageEnabled": "false",
       "sharpPrompts": "true",
       "geberRoutingV2": "true"
     },
-    "latencyMs": 80563,
+    "latencyMs": 97587,
     "schemaVersion": 1
   }
 }

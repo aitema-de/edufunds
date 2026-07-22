@@ -38,6 +38,7 @@ import { getGeberGruppe, ALL_GEBER_GRUPPEN } from "@/lib/wizard/geber-classifica
 import { PIPELINE_CONFIG } from "@/lib/wizard/config";
 import { MODEL_FLASH, MODEL_PRO } from "@/lib/wizard/llm";
 import { emptyLedger, addUsage, formatEur } from "@/lib/wizard/pricing";
+import { pruefeSubstanz, substanzQuote, splitFinalText } from "@/lib/wizard/substanz";
 import type { GeberGruppe } from "@/lib/wizard/geber-classification";
 
 const execFile = promisify(execFileCb);
@@ -64,6 +65,7 @@ export {
   aggregateNRuns,
   passesThreshold,
 } from "./eval-pipeline-internals";
+import type { Wiz04Result } from "./eval-pipeline-internals";
 export type {
   PipelineKorpusEntry,
   PipelineSnapshot,
@@ -471,6 +473,24 @@ async function evaluateEntry(
   const gruppe = getGeberGruppe(entry.programmId);
   const wiz03 = await scoreWiz03(artefacts.finalText ?? "", gruppe, judgeModel);
 
+  // WIZ-04 Begruendungs-Substanz — deterministisch, laeuft auch im Replay
+  // (misst gespeicherte Artefakte neu, kein LLM, keine Kosten).
+  // Gemessen wird die FINALE FASSUNG (das Kunden-Artefakt) — die Revision
+  // repariert Substanz-Findings, und genau das muss die Metrik sehen.
+  // Fallback auf die Entwurfs-Abschnitte nur, wenn finalText fehlt.
+  const wiz04Sections = artefacts.finalText
+    ? splitFinalText(artefacts.finalText)
+    : (artefacts.sections ?? []).map((s) => ({ name: s.name, text: s.text ?? "" }));
+  const wiz04Befunde = wiz04Sections
+    .map((s) => pruefeSubstanz(s.name, s.text))
+    .filter((b) => b.relevant);
+  const wiz04Quote = substanzQuote(wiz04Sections);
+  const wiz04: Wiz04Result = {
+    score: wiz04Quote === null ? null : Math.round(wiz04Quote * 1000) / 10,
+    relevante: wiz04Befunde.length,
+    mitSubstanz: wiz04Befunde.filter((b) => b.hatSubstanz).length,
+  };
+
   // Finanzplan-Hallu-Marker zaehlen (aus Layer-1-Hits die im Finanzplan gefunden wurden)
   const finanzplanHalluCount = wiz02.layer1MarkerHitsDetail.filter(
     (h) =>
@@ -482,6 +502,7 @@ async function evaluateEntry(
     wiz01,
     wiz02,
     wiz03,
+    wiz04,
     finanzplan,
     latencyMs: 0,
   };
@@ -511,7 +532,7 @@ async function runForEntry(
       );
       results.push(score);
       console.log(
-        `${LOG_PREFIX}   [${entry.id}] Run ${i}/${flags.N}: WIZ-01=${score.wiz01.coveragePercent.toFixed(0)}% WIZ-02=${score.wiz02.score.toFixed(0)} WIZ-03=${score.wiz03.score}`
+        `${LOG_PREFIX}   [${entry.id}] Run ${i}/${flags.N}: WIZ-01=${score.wiz01.coveragePercent.toFixed(0)}% WIZ-02=${score.wiz02.score.toFixed(0)} WIZ-03=${score.wiz03.score} WIZ-04=${score.wiz04.score === null ? "n/a" : score.wiz04.score.toFixed(0) + "%"}`
       );
     } catch (err) {
       // Soft-Failure pro Eintrag — kein Abbruch (RESEARCH Pattern Z.540-585)
@@ -535,6 +556,7 @@ async function runForEntry(
           layer2RegexHitsDetail: [],
           score: 0,
         },
+        wiz04: { score: null, relevante: 0, mitSubstanz: 0 },
         wiz03: {
           judgeResponse: null,
           score: 0,
@@ -564,6 +586,7 @@ export function aggregate(
   const wiz01Scores: number[] = [];
   const wiz02Scores: number[] = [];
   const wiz03Scores: number[] = [];
+  const wiz04Scores: number[] = [];
   const finanzplanScores: number[] = [];
   let nErrored = 0;
 
@@ -586,6 +609,15 @@ export function aggregate(
       validScores.reduce((s, x) => s + x.wiz03.score, 0) / validScores.length;
     const entryFinanzplanMean =
       validScores.reduce((s, x) => s + x.finanzplan.score, 0) / validScores.length;
+
+    // WIZ-04: nur Runs mit messbarer Quote (score != null); ein Eintrag ganz
+    // ohne relevante Abschnitte fliesst nicht ein (statt als 0 oder 100 zu luegen).
+    const wiz04Valid = validScores
+      .map((x) => x.wiz04?.score)
+      .filter((v): v is number => typeof v === "number");
+    if (wiz04Valid.length > 0) {
+      wiz04Scores.push(wiz04Valid.reduce((s, x) => s + x, 0) / wiz04Valid.length);
+    }
 
     wiz01Scores.push(entryWiz01Mean);
     wiz02Scores.push(entryWiz02Mean);
@@ -645,6 +677,7 @@ export function aggregate(
     wiz01: aggregateNRuns(wiz01Scores),
     wiz02: aggregateNRuns(wiz02Scores),
     wiz03: aggregateNRuns(wiz03Scores),
+    wiz04: aggregateNRuns(wiz04Scores),
     finanzplan: aggregateNRuns(finanzplanScores),
     perGeberGruppe,
     perDossier,
@@ -741,6 +774,8 @@ export async function loadBaselineFromMd(): Promise<{
   wiz01: ScoreStat;
   wiz02: ScoreStat;
   wiz03: ScoreStat;
+  /** null, solange BASELINE.md noch keine WIZ-04-Zeile traegt (aeltere Staende). */
+  wiz04: ScoreStat | null;
 } | null> {
   if (!existsSync(BASELINE_MD_PATH)) return null;
 
@@ -752,10 +787,15 @@ export async function loadBaselineFromMd(): Promise<{
   const m = raw.match(tablePattern);
   if (!m) return null;
 
+  // WIZ-04 separat und tolerant: aeltere BASELINE.md-Staende haben die Zeile
+  // nicht — dann laeuft das Gate fuer WIZ-04 nicht (statt zu crashen).
+  const m04 = raw.match(/WIZ-04[^|]*\|\s*([\d.]+)\s*\|\s*([\d.]+)/);
+
   return {
     wiz01: { mean: parseFloat(m[1]), stddev: parseFloat(m[2]), runs: [] },
     wiz02: { mean: parseFloat(m[3]), stddev: parseFloat(m[4]), runs: [] },
     wiz03: { mean: parseFloat(m[5]), stddev: parseFloat(m[6]), runs: [] },
+    wiz04: m04 ? { mean: parseFloat(m04[1]), stddev: parseFloat(m04[2]), runs: [] } : null,
   };
 }
 
@@ -776,6 +816,9 @@ function printConsoleTable(metrics: AggregateMetrics): void {
   );
   console.log(
     `${LOG_PREFIX}   WIZ-03:  mean=${metrics.wiz03.mean.toFixed(1)}  stddev=${metrics.wiz03.stddev.toFixed(1)}`
+  );
+  console.log(
+    `${LOG_PREFIX}   WIZ-04:  mean=${metrics.wiz04.mean.toFixed(1)}  stddev=${metrics.wiz04.stddev.toFixed(1)}  (Begruendungs-Substanz)`
   );
   console.log(
     `${LOG_PREFIX}   Finanzp: mean=${metrics.finanzplan.mean.toFixed(1)}  stddev=${metrics.finanzplan.stddev.toFixed(1)}`
@@ -868,6 +911,9 @@ async function main() {
     const gateW01 = passesThreshold(metrics.wiz01, baseline.wiz01, "WIZ-01");
     const gateW02 = passesThreshold(metrics.wiz02, baseline.wiz02, "WIZ-02");
     const gateW03 = passesThreshold(metrics.wiz03, baseline.wiz03, "WIZ-03");
+    const gateW04 = baseline.wiz04
+      ? passesThreshold(metrics.wiz04, baseline.wiz04, "WIZ-04")
+      : null;
 
     console.log(
       `${LOG_PREFIX}   WIZ-01 (hart):         ${gateW01.passed ? "PASSED" : "FAILED"} — ${gateW01.reason}`
@@ -878,8 +924,20 @@ async function main() {
     console.log(
       `${LOG_PREFIX}   WIZ-03 (warning-only): ${gateW03.passed ? "OK" : "WARN"} — ${gateW03.reason}`
     );
+    if (gateW04) {
+      // HART, weil deterministisch: kein Judge-Rauschen, das WIZ-03 zur
+      // Dauer-Warnung gemacht hat. Faellt die Substanz-Quote unter
+      // Baseline-2σ, hat jemand die Begruendung wieder wegoptimiert.
+      console.log(
+        `${LOG_PREFIX}   WIZ-04 (hart):         ${gateW04.passed ? "PASSED" : "FAILED"} — ${gateW04.reason}`
+      );
+    } else {
+      console.log(
+        `${LOG_PREFIX}   WIZ-04:                kein Baseline-Eintrag — Gate inaktiv (BASELINE.md ergaenzen)`
+      );
+    }
 
-    if (!gateW01.passed || !gateW02.passed) {
+    if (!gateW01.passed || !gateW02.passed || (gateW04 !== null && !gateW04.passed)) {
       console.error(`${LOG_PREFIX} [GATE FAILED] Regression unter Baseline-2σ erkannt.`);
       process.exit(1);
     }

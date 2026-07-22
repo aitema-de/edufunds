@@ -90,6 +90,26 @@
         "role": "user",
         "kind": "answer",
         "content": "Keine Ahnung was das kostet. Viel haben wir nicht. Irgendwie muss das ja der Schulträger machen oder so."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie soll die Wartung und der Support der Geraete langfristig sichergestellt werden?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Oh, gute Frage. Da haben wir noch nicht drueber nachgedacht. Vielleicht macht das der Hausmeister mit? Oder es gibt doch bestimmt jemanden vom Bezirk."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Gibt es an Ihrer Schule ein Medienkonzept, an das das Vorhaben anknuepfen kann?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Ich glaube da gab es mal was, so ein Papier von der vorherigen Schulleitung. Muesste ich raussuchen. Aktuell arbeiten wir da eher nicht mit."
       }
     ],
     "facts": {
@@ -166,7 +186,7 @@
       }
     ],
     "expected_geber_gruppe": "oeffentlich",
-    "notes": "UAT-28.04.-Anker (Borsigwalder Reproducer, Session 37571430-e26c-448f-aef1-59e902097d1c in Dev-DB). 8 dokumentierte Halluzinations-Marker direkt aus UAT-Befunden uebernommen. Goldstandard-Eintrag fuer alle 21 Folge-Eintraege."
+    "notes": "UAT-28.04.-Anker (Borsigwalder Reproducer, Session 37571430-e26c-448f-aef1-59e902097d1c in Dev-DB). 8 dokumentierte Halluzinations-Marker direkt aus UAT-Befunden uebernommen. Goldstandard-Eintrag fuer alle 21 Folge-Eintraege. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-002",
@@ -219,6 +239,46 @@
         "role": "user",
         "kind": "answer",
         "content": "Budget weiss ich nicht. Irgendwas was reicht fuer einen Theaterprofi fuer ein paar Wochen. Stunden... vielleicht einmal pro Woche?"
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was soll sich fuer die teilnehmenden Kinder konkret veraendern — woran wuerden Sie am Ende erkennen, dass das Projekt gewirkt hat?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Also Frau Mueller sagt immer, die Kinder trauen sich nichts zu. Wenn die am Ende auf einer Buehne stehen und was vor Publikum sagen, waere das schon riesig. Und vielleicht, dass sie sich auch im Unterricht mehr melden."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie soll das Projekt konkret ablaufen — ueber welchen Zeitraum, mit welchem Abschluss?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Wir dachten an ein Schulhalbjahr, immer nachmittags nach dem Unterricht. Am Ende soll es eine richtige Auffuehrung geben, vielleicht in der Aula, zu der auch die Eltern kommen."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was passiert nach dem Projektende — soll etwas davon an der Schule bleiben?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Schoen waere eine feste Theater-AG. Frau Mueller wuerde die wohl weitermachen, aber alleine schafft sie das nicht jedes Jahr. Vielleicht kann der Jugendclub da dauerhaft mit einsteigen?"
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Erreichen Sie die Kinder, um die es geht — wie stellen Sie sicher, dass gerade die teilnehmen, die sonst keinen Zugang zu Kultur haben?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Die Klassenlehrerinnen kennen ihre Kinder gut und wuerden gezielt ansprechen. Bei uns haben viele Familien wenig Geld, das Angebot muss auf jeden Fall kostenlos sein, sonst kommt keiner."
       }
     ],
     "facts": {
@@ -237,12 +297,15 @@
         "aktivitaeten": [
           "Theaterprojekt"
         ],
-        "zeitraum": null
+        "zeitraum": "ein Schulhalbjahr, woechentlich nachmittags, Abschluss-Auffuehrung"
       },
       "wirkung": {
-        "erwartete_ergebnisse": [],
+        "erwartete_ergebnisse": [
+          "Kinder treten vor Publikum auf (Auffuehrung in der Aula)",
+          "Mehr Selbstvertrauen, haeufigeres Melden im Unterricht"
+        ],
         "messbare_indikatoren": [],
-        "nachhaltigkeit": null
+        "nachhaltigkeit": "Feste Theater-AG angestrebt, ggf. dauerhaft mit Jugendclub"
       },
       "budget": {
         "beantragt_eur": null,
@@ -289,7 +352,7 @@
       }
     ],
     "expected_geber_gruppe": "verband-uni",
-    "notes": "Standard pv-002: Kultur macht stark, mittlere Qualitaet. Typischer Fehler: Schule glaubt, selbst Antragstellerin zu sein."
+    "notes": "Standard pv-002: Kultur macht stark, mittlere Qualitaet. Typischer Fehler: Schule glaubt, selbst Antragstellerin zu sein. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-003",
@@ -342,6 +405,36 @@
         "role": "user",
         "kind": "answer",
         "content": "Weiss ich nicht genau. Vielleicht 15 von uns, und von denen drueben auch so viele. Was wir machen? Irgendwas zusammen, Spiele oder so."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was sollen die Schuelerinnen und Schueler beider Schulen aus der Kooperation mitnehmen?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Na dass die sich halt kennenlernen. Die Regelschueler sollen sehen, dass unsere Schueler auch was koennen. Mehr kann ich dazu jetzt nicht sagen."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie oft und in welchem Rahmen sollen sich die Gruppen treffen?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Weiss noch nicht, vielleicht einmal im Monat? Oder oefter, wenn es laeuft. Kommt drauf an wie die Kollegen Zeit haben."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Gibt es Ueberlegungen, wie die Kooperation nach dem Foerderzeitraum weiterlaufen kann?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Puh. Erstmal muss es ueberhaupt losgehen. Wenn es gut laeuft, machen wir bestimmt weiter, irgendwie."
       }
     ],
     "facts": {
@@ -411,7 +504,7 @@
       }
     ],
     "expected_geber_gruppe": "stiftung",
-    "notes": "Standard pv-003: Aktion Mensch Schulkooperation, vage Antworten. Schule weiss nicht dass sie nicht antragsberechtigt ist."
+    "notes": "Standard pv-003: Aktion Mensch Schulkooperation, vage Antworten. Schule weiss nicht dass sie nicht antragsberechtigt ist. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-004",
@@ -464,6 +557,36 @@
         "role": "user",
         "kind": "answer",
         "content": "Wir wollen ein Kollegium-Austauschprogramm mit zwei Schulen in Sachsen und Bayern aufbauen. Hospitationswochen, gegenseitige Unterrichtsbeobachtung, gemeinsame Curriculum-Entwicklung im MINT-Bereich. Budget: 45.000 EUR fuer 3 Jahre."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Welche messbaren Wirkungen erwarten Sie von den Hospitationswochen fuer Ihre eigene Unterrichtsentwicklung?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Drei Dinge, die wir auch erheben: Erstens sollen mindestens 80 Prozent der teilnehmenden Lehrkraefte ein konkretes Unterrichtselement aus der Hospitation in ihr eigenes Fach uebertragen — das erfassen wir ueber die halbjaehrlichen Portfolio-Gespraeche. Zweitens wollen wir die Schuelerrueckmeldungen zum differenzierten Kurssystem (unser Fragebogen laeuft seit 2022) um mindestens fuenf Punkte verbessern. Drittens soll aus jeder Hospitationswoche eine dokumentierte Unterrichtseinheit fuer unsere offene Materialdatenbank entstehen."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie sichern Sie, dass die Curriculum-Entwicklung nach Projektende weiterlaeuft?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Die Steuergruppe Unterrichtsentwicklung tagt bei uns ohnehin monatlich, die Partnerschaften werden dort als fester Tagesordnungspunkt verankert. Mit beiden saechsischen Schulen schliessen wir Kooperationsvereinbarungen ueber drei Jahre, und die Materialdatenbank liegt auf unserem Schulserver und steht allen offen. Die Schulkonferenz hat der Verstetigung bereits zugestimmt."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was ist der Kern Ihres paedagogischen Ansatzes, den die Partnerschulen bei Ihnen sehen sollen?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Unser Kern ist die Kopplung von individueller Foerderung und Verantwortungsuebernahme: Jedes Kind fuehrt sein Feedback-Portfolio selbst und praesentiert es den Eltern — nicht die Lehrkraft. Das staerkt die Selbststeuerung nachweislich, unsere Evaluationen zeigen das seit zwei Durchgaengen. Genau diese Portfolio-Praxis ist das, was die Partnerschulen uebernehmen wollen."
       }
     ],
     "facts": {
@@ -496,7 +619,10 @@
         ],
         "messbare_indikatoren": [
           "Schuelerergebnisse MINT",
-          "Lehrkraft-Feedback"
+          "Lehrkraft-Feedback",
+          "80% der Lehrkraefte uebertragen ein Element (Portfolio-Gespraeche)",
+          "Schuelerfragebogen Kurssystem +5 Punkte",
+          "1 dokumentierte Unterrichtseinheit je Hospitationswoche"
         ],
         "nachhaltigkeit": "Langfristige Schulpartnerschaft"
       },
@@ -544,7 +670,7 @@
       }
     ],
     "expected_geber_gruppe": "wirtschaftspreis",
-    "notes": "Standard pv-004: Bosch-Schulpreis, hochwertige Antworten. Marker fokussieren auf typische Preiskontext-Halluzinationen."
+    "notes": "Standard pv-004: Bosch-Schulpreis, hochwertige Antworten. Marker fokussieren auf typische Preiskontext-Halluzinationen. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-005",
@@ -597,6 +723,46 @@
         "role": "user",
         "kind": "answer",
         "content": "Nachhaltigkeit vielleicht? Das ist ja immer gut. Oder einfach gegenseitiges Kennenlernen und Sprachkompetenz staerken."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was sollen die Schuelerinnen und Schueler durch den Austausch lernen — ueber die Sprache hinaus?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Vor allem sollen sie merken, dass sie sich in einer fremden Umgebung zurechtfinden koennen. Viele von unseren Schuelern waren noch nie im Ausland. Und ein bisschen europaeisches Bewusstsein waere schoen, dass Frankreich eben nicht nur Baguette ist."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie bereiten Sie die Begegnung vor und nach — gibt es ein gemeinsames Thema?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Wir dachten an ein gemeinsames Projektthema, vielleicht Nachhaltigkeit oder regionale Umweltprojekte, da machen beide Schulen schon was. Vorher gibt es E-Mail-Kontakte zwischen den Tandems, danach sollen die Schueler eine kleine Praesentation fuer die Schulgemeinschaft machen."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie viele Schuelerinnen und Schueler nehmen teil, und wie waehlen Sie aus, wenn es mehr Interessenten gibt?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Geplant sind 24 aus den neunten Klassen. Wenn sich mehr melden, wollen wir nicht nur nach Noten gehen — gerade die Schueler, die sowas sonst nie machen koennten, sollen eine Chance haben. Wie genau, muessen wir noch festlegen."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Soll aus dem Austausch eine dauerhafte Partnerschaft werden?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Ja, das ist die Hoffnung. Die franzoesische Schule will das auch. Wenn die erste Runde klappt, soll das jaehrlich laufen, im Wechsel hin und zurueck."
       }
     ],
     "facts": {
@@ -614,7 +780,7 @@
           "Sprachkompetenz",
           "Europaeische Begegnung"
         ],
-        "zielgruppe": "Klassen 8 und 9, ca. 15-20 Schueler",
+        "zielgruppe": "24 Schueler der 9. Klassen, Auswahl bewusst nicht nur nach Noten",
         "aktivitaeten": [
           "Gegenseitiger Besuch"
         ],
@@ -622,10 +788,12 @@
       },
       "wirkung": {
         "erwartete_ergebnisse": [
-          "Sprachkompetenzstaerkung"
+          "Sprachkompetenzstaerkung",
+          "Selbststaendigkeit in fremder Umgebung",
+          "Europaeisches Bewusstsein"
         ],
         "messbare_indikatoren": [],
-        "nachhaltigkeit": null
+        "nachhaltigkeit": "Jaehrliche Partnerschaft im Wechsel angestrebt"
       },
       "budget": {
         "beantragt_eur": null,
@@ -667,7 +835,7 @@
       }
     ],
     "expected_geber_gruppe": "eu",
-    "notes": "Standard pv-005: Erasmus+ Schule 2026, mittlere Qualitaet. Bestehende Partnerschaft vorhanden, aber formale Anforderungen unklar."
+    "notes": "Standard pv-005: Erasmus+ Schule 2026, mittlere Qualitaet. Bestehende Partnerschaft vorhanden, aber formale Anforderungen unklar. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-006",
@@ -720,6 +888,36 @@
         "role": "user",
         "kind": "answer",
         "content": "400.000 klingt viel. Keine Ahnung was wir damit machen wuerden. Vielleicht Fortbildungen? Weiss nicht."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "In welchem Bereich soll sich Ihre Schule konkret weiterentwickeln — was ist das dringendste Thema?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Digitalisierung halt. Und vielleicht auch, wie andere Laender Berufsschule machen. Ist ja interessant zu sehen, wie die das so machen."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Mit welchen europaeischen Partnern moechten Sie zusammenarbeiten, und gibt es schon Kontakte?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Konkret noch nicht. Ein Kollege hatte mal Kontakt zu einer Schule in Daenemark, glaube ich. Da muessten wir mal nachfragen."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was soll am Ende des Projekts an Ihrer Schule anders sein als heute?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Schwer zu sagen. Moderner? Die Kollegen sollen halt neue Ideen mitbringen. Mal gucken was dabei rauskommt."
       }
     ],
     "facts": {
@@ -784,7 +982,7 @@
       }
     ],
     "expected_geber_gruppe": "eu",
-    "notes": "Standard pv-006: Erasmus+ Schulentwicklung, vage Antworten. Schule kennt die Programmstruktur nicht."
+    "notes": "Standard pv-006: Erasmus+ Schulentwicklung, vage Antworten. Schule kennt die Programmstruktur nicht. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-007",
@@ -837,6 +1035,46 @@
         "role": "user",
         "kind": "answer",
         "content": "Wir hatten an den Sommer gedacht, vielleicht Juli oder August. Ob das foerderbar ist weiss ich gerade nicht."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Welche Rolle spielt die kenianische Partnerschule bei der Planung — wird auf Augenhoehe entschieden?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Das ist uns wirklich wichtig. Die Themen legen wir in Videokonferenzen gemeinsam fest, die laufen schon seit einem halben Jahr. Die Kollegen in Nakuru haben zum Beispiel durchgesetzt, dass es um Wasser geht und nicht um Muell, weil das bei ihnen das draengendere Thema ist."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie bereiten Sie Ihre Schuelerinnen und Schueler auf die Begegnung vor, auch im Blick auf Stereotype und koloniale Bilder?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Wir machen vorher eine AG mit acht Terminen, da geht es genau darum: eigene Bilder hinterfragen, Geschichte der Beziehungen, und die Schueler recherchieren zu Kenia jenseits von Safari-Klischees. Eine Referentin von einem entwicklungspolitischen Verein aus Muenster unterstuetzt uns dabei."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was soll nach der Begegnungsreise mit der Partnerschaft passieren?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Die Partnerschaft soll dauerhaft werden, mit jaehrlichen gemeinsamen Projekten, im Wechsel online und mit Begegnung. Naechstes Jahr ist der Gegenbesuch geplant. An der Schule soll ausserdem eine feste Kenia-AG entstehen, die den Kontakt haelt."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Woran wuerden Sie festmachen, dass die Begegnung gelungen ist?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Wenn die Tandems danach weiter in Kontakt sind — das kann man ja sehen. Und wir werten die Reflexionstagebuecher aus, die alle Teilnehmenden fuehren. Wenn da steht, dass sich der Blick auf globale Zusammenhaenge veraendert hat, haben wir viel erreicht."
       }
     ],
     "facts": {
@@ -864,10 +1102,15 @@
       "wirkung": {
         "erwartete_ergebnisse": [
           "Interkulturelle Kompetenz",
-          "Klimabewusstsein"
+          "Klimabewusstsein",
+          "Fortbestehende Tandem-Kontakte",
+          "Veraenderter Blick auf globale Zusammenhaenge (Reflexionstagebuecher)"
         ],
-        "messbare_indikatoren": [],
-        "nachhaltigkeit": null
+        "messbare_indikatoren": [
+          "Auswertung der Reflexionstagebuecher",
+          "Fortbestehen der Tandem-Kontakte"
+        ],
+        "nachhaltigkeit": "Dauerhafte Partnerschaft, Gegenbesuch im Folgejahr, feste Kenia-AG"
       },
       "budget": {
         "beantragt_eur": null,
@@ -914,7 +1157,7 @@
       }
     ],
     "expected_geber_gruppe": "eu",
-    "notes": "Standard pv-007: ENSA/BMZ Begegnungsreise, mittlere Qualitaet. Problem: Reisezeitraum liegt ausserhalb der Foerderphase (Maerz-Oktober)."
+    "notes": "Standard pv-007: ENSA/BMZ Begegnungsreise, mittlere Qualitaet. Problem: Reisezeitraum liegt ausserhalb der Foerderphase (Maerz-Oktober). | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-008",
@@ -967,6 +1210,36 @@
         "role": "user",
         "kind": "answer",
         "content": "Generationendialog... vielleicht koennen die Kinder irgendwie mit Rentnern zusammenarbeiten? Weiss nicht genau wie."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was sollen die Kinder in der Roboter-AG am Ende koennen oder erlebt haben?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Na Roboter bauen halt. Und dass Technik Spass macht. Die sollen einfach mal was mit den Haenden machen."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie koennte der Generationendialog-Aspekt konkret aussehen?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Da war mal die Idee, dass Senioren aus dem Stift nebenan vorbeikommen. Ob das klappt, weiss keiner. War nur so eine Idee vom Vorstand."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wer betreut die AG fachlich, und wie geht es nach dem Foerderjahr weiter?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Ein Vater ist Ingenieur, der wuerde wohl helfen. Danach... mal sehen. Wenn die Kaesten erstmal da sind, kann man die ja immer wieder benutzen."
       }
     ],
     "facts": {
@@ -1031,7 +1304,7 @@
       }
     ],
     "expected_geber_gruppe": "wirtschaftspreis",
-    "notes": "Standard pv-008: Ferry Porsche Challenge 2025, vage Antworten. Programm-Mismatch erkennbar: MINT fuer Kinder passt nicht zu 'Gemeinsam aelter'. Schule versteht Programmthema nicht."
+    "notes": "Standard pv-008: Ferry Porsche Challenge 2025, vage Antworten. Programm-Mismatch erkennbar: MINT fuer Kinder passt nicht zu 'Gemeinsam aelter'. Schule versteht Programmthema nicht. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-009",
@@ -1084,6 +1357,36 @@
         "role": "user",
         "kind": "answer",
         "content": "Nein, das weiss ich nicht. Wie schnell muss man dann einreichen?"
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was sollen die Teilnehmenden nach dem Kurs selbststaendig koennen?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Mit dem Handy umgehen. Enkelfotos angucken, Arzttermine, sowas. Viele trauen sich ja gar nichts."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie finden die Seniorinnen und Senioren zu Ihrem Kurs — wie erreichen Sie auch die, die nicht von selbst kommen?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Ueber unsere Begegnungsstaette, da kommen ja viele sowieso zum Mittagstisch. Und die Nachbarschaftshelferinnen sagen es weiter. Plakate vielleicht."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Ist nach dem Kurs eine Fortsetzung geplant?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Wenn es gut ankommt, machen wir bestimmt wieder einen. Haengt auch davon ab, ob der Uebungsleiter weitermacht."
       }
     ],
     "facts": {
@@ -1152,7 +1455,7 @@
       }
     ],
     "expected_geber_gruppe": "wirtschaftspreis",
-    "notes": "Standard pv-009: Ferry Porsche Challenge (Legacy-Version), vage Antworten. Projekt passt grundsaetzlich zum Thema, aber kein Konzept vorhanden."
+    "notes": "Standard pv-009: Ferry Porsche Challenge (Legacy-Version), vage Antworten. Projekt passt grundsaetzlich zum Thema, aber kein Konzept vorhanden. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-010",
@@ -1205,6 +1508,46 @@
         "role": "user",
         "kind": "answer",
         "content": "Wir sind ca. 200 Mitglieder, aber aktiv sind vielleicht 20-30. Intern wuerden wir das dem Vorstand anlegen, der Vorsitzende oder seine Stellvertreterin."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Woran wuerden Sie in zwei Jahren erkennen, dass Klimaschutz wirklich im Verein verankert ist — und nicht nur auf dem Papier steht?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Gute Frage. Konkret: Jede Ortsgruppen-Aktion soll einen Klima-Check durchlaufen, das waere neu. Und wir wollen, dass mindestens zwei junge Leute aus dem Projekt in den Vorstand oder als Gruppenleiter nachruecken. Wenn das Leitbild nur im Schrank liegt, waere das Projekt gescheitert."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie nehmen Sie die aelteren, langjaehrigen Mitglieder mit, die vielleicht am bisherigen Kurs haengen?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Das ist ehrlich gesagt unsere groesste Sorge. Wir planen zwei moderierte Werkstattabende, wo ausdruecklich die Alteingesessenen ihre Naturschutzerfahrung einbringen — es soll ja keine Verdraengung sein, sondern eine Erweiterung. Der Vorsitzende steht dahinter, das hilft."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wer arbeitet konkret am neuen Leitbild mit, und wie wird es beschlossen?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Eine gemischte Arbeitsgruppe aus sechs bis acht Leuten, quer durch die Generationen. Am Ende muss die Mitgliederversammlung zustimmen, das ist bei uns satzungsgemaess. Geplant ist der Beschluss fuer die Fruehjahrsversammlung."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Welche Rolle spielt die Jugendgruppe dabei?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Die NAJU-Gruppe soll von Anfang an mit am Tisch sitzen, zwei Plaetze in der Arbeitsgruppe sind fuer sie reserviert. Die haben das Thema ueberhaupt erst aufgebracht, ehrlich gesagt."
       }
     ],
     "facts": {
@@ -1231,10 +1574,15 @@
       },
       "wirkung": {
         "erwartete_ergebnisse": [
-          "Klimaschutz in Satzung/Leitbild"
+          "Klimaschutz in Satzung/Leitbild",
+          "Klima-Check fuer jede Ortsgruppen-Aktion",
+          "Zwei junge Mitglieder ruecken in Leitungsrollen nach"
         ],
-        "messbare_indikatoren": [],
-        "nachhaltigkeit": null
+        "messbare_indikatoren": [
+          "Klima-Check etabliert",
+          "Nachwuchs in Vorstand/Gruppenleitung"
+        ],
+        "nachhaltigkeit": "Leitbild-Beschluss durch Mitgliederversammlung (Fruehjahr), AG mit 2 NAJU-Plaetzen"
       },
       "budget": {
         "beantragt_eur": null,
@@ -1276,7 +1624,7 @@
       }
     ],
     "expected_geber_gruppe": "stiftung",
-    "notes": "Standard pv-010: KlimaLab 2026, mittlere Qualitaet. Bewerbungsfrist moeglicherweise abgelaufen (27.02.2026), aber inhaltliche Eignung gegeben."
+    "notes": "Standard pv-010: KlimaLab 2026, mittlere Qualitaet. Bewerbungsfrist moeglicherweise abgelaufen (27.02.2026), aber inhaltliche Eignung gegeben. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-011",
@@ -1329,6 +1677,36 @@
         "role": "user",
         "kind": "answer",
         "content": "Lesekompetenz Klasse 2 soll um mindestens 15 Prozentpunkte gegenueber dem Vorjahr steigen, gemessen mit Hamburger Leseprobe. Fehlzeiten reduzieren von 12% auf unter 8%. Und alle Familien die Saeule-III-Angebote benoetigen sollen beim ersten Kontakt innerhalb von 2 Wochen erreichbar sein."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie greifen Sprachfoerderung, Lernmaterialien und die dritte Schulsozialarbeiterstelle ineinander?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Das ist ein abgestimmtes Paket: Die Sprachfoerderung laeuft in Kleingruppen waehrend der Lernzeiten, die neuen diagnostikbasierten Materialien machen die Gruppen ueberhaupt erst passgenau, und die dritte Sozialarbeiterstelle sichert die Elternarbeit ab — ohne die Familien erreichen wir bei uns im Kiez gar nichts. Jede Massnahme allein wuerde verpuffen, zusammen adressieren sie Sprache, Lernstand und familiaeres Umfeld gleichzeitig."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Mit welchen Indikatoren verfolgen Sie den Fortschritt?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Wir erheben ohnehin halbjaehrlich die Lesegeschwindigkeit und den Grundwortschatz mit standardisierten Verfahren; Ziel ist, dass der Anteil der Kinder unter Mindeststandard binnen zwei Jahren um ein Drittel sinkt. Bei der Elternarbeit zaehlen wir dokumentierte Beratungsgespraeche und die Teilnahmequote an Elternabenden, die liegt aktuell bei mageren 30 Prozent — 50 waeren ein Erfolg."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie stellen Sie sicher, dass die Massnahmen nach Auslaufen des Programms nicht wegbrechen?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Die Materialien und die Diagnostik bleiben dauerhaft im Haus und sind in die schulinternen Curricula eingearbeitet. Fuer die Sozialarbeiterstelle verhandeln wir parallel mit dem Bezirk ueber eine Anschlussfinanzierung — die Gespraeche laufen bereits, ein Termin mit dem Jugendamt steht. Und die Kleingruppen-Struktur ist so angelegt, dass sie mit dem vorhandenen Kollegium weiterlaufen kann, wenn auch reduziert."
       }
     ],
     "facts": {
@@ -1364,7 +1742,10 @@
         "messbare_indikatoren": [
           "Hamburger Leseprobe",
           "Fehlzeitenquote",
-          "Erstansprechzeit"
+          "Erstansprechzeit",
+          "Anteil Kinder unter Mindeststandard Lesen: -1/3 in 2 Jahren",
+          "Elternabend-Teilnahmequote 30% -> 50%",
+          "Dokumentierte Beratungsgespraeche"
         ],
         "nachhaltigkeit": "Formale Bezirksvereinbarung vorhanden"
       },
@@ -1413,7 +1794,7 @@
       }
     ],
     "expected_geber_gruppe": "oeffentlich",
-    "notes": "Standard pv-011: Berlin Startchancen, hochwertige Antworten. Schule ist bereits im Programm und hat konkrete Kennzahlen. Marker fokussieren auf buerokratische Halluzinationen."
+    "notes": "Standard pv-011: Berlin Startchancen, hochwertige Antworten. Schule ist bereits im Programm und hat konkrete Kennzahlen. Marker fokussieren auf buerokratische Halluzinationen. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-edge-001",
@@ -1477,6 +1858,36 @@
         "role": "user",
         "kind": "answer",
         "content": "Ja schon irgendwie. Weiss ich nicht genau was."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Koennen Sie beschreiben, was genau angeschafft oder umgesetzt werden soll?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Halt Digitales. Was man so braucht."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Welche Jahrgaenge oder Klassen sollen davon profitieren?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Alle am besten."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Gibt es an Ihrer Schule schon Erfahrungen oder ein Konzept, woran man anknuepfen koennte?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Weiss nicht. Glaube nicht. Deswegen brauchen wir ja das Geld."
       }
     ],
     "facts": {
@@ -1540,7 +1951,7 @@
       }
     ],
     "expected_geber_gruppe": "oeffentlich",
-    "notes": "Edge-Case vag-extrem: Alle Antworten extrem vage ('weiss nicht', 'glaub ich nicht'). Stress-Test fuer Pipeline-Halluzinations-Resistenz bei totalem Informationsmangel."
+    "notes": "Edge-Case vag-extrem: Alle Antworten extrem vage ('weiss nicht', 'glaub ich nicht'). Stress-Test fuer Pipeline-Halluzinations-Resistenz bei totalem Informationsmangel. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-edge-002",
@@ -1588,6 +1999,36 @@
         "role": "user",
         "kind": "answer",
         "content": "Weiss ich noch nicht. Gibt es da Vorschlaege?"
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "An welcher Schule oder Einrichtung soll das Musikprojekt stattfinden?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Das steht noch nicht ganz fest, wir sind da mit zwei Schulen im Gespraech. Erst mal geht es ums Konzept."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Welche Kinder sollen mitmachen, und wie viele?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Kommt drauf an, welche Schule es wird. So 15 bis 25 vielleicht. Grundschulalter."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was soll am Ende des Projekts stehen?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Ein kleines Konzert waere schoen. Hauptsache die Kinder kommen ueberhaupt mal mit Instrumenten in Beruehrung."
       }
     ],
     "facts": {
@@ -1649,7 +2090,7 @@
       }
     ],
     "expected_geber_gruppe": "verband-uni",
-    "notes": "Edge-Case profil-fehlt: User verweigert alle Profilangaben. Kein Bundesland, kein Schultyp, kein Name. Pipeline darf keine Profilangaben erfinden."
+    "notes": "Edge-Case profil-fehlt: User verweigert alle Profilangaben. Kein Bundesland, kein Schultyp, kein Name. Pipeline darf keine Profilangaben erfinden. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-edge-003",
@@ -1703,6 +2144,36 @@
         "role": "user",
         "kind": "answer",
         "content": "Wir schaetzen 25.000 bis 30.000 Euro fuer Geraete und eine Koordinationsstelle."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Der Fokus des Programms liegt auf Kooperationen zwischen Schule und Sportverein — welche Rolle spielt der Verein in Ihrem Vorhaben?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Der TSV waere schon dabei, die machen ja jetzt auch die Fussball-AG. Aber ehrlich gesagt geht es uns vor allem um die Turnhallen-Ausstattung, die ist marode. Die Kooperation laeuft ja eh schon."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was soll sich fuer die Schuelerinnen und Schueler durch das Vorhaben veraendern?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Mehr Bewegung, klar. Mit neuen Geraeten macht der Sportunterricht einfach mehr her. Und die AGs koennen mehr anbieten."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie viele Bewegungseinheiten pro Woche sollen durch die Kooperation zusaetzlich entstehen?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Zusaetzlich? Hm, die Fussball-AG gibt es ja schon. Vielleicht noch eine zweite AG, wenn der Verein jemanden findet."
       }
     ],
     "facts": {
@@ -1770,7 +2241,7 @@
       }
     ],
     "expected_geber_gruppe": "oeffentlich",
-    "notes": "Edge-Case programm-mismatch: programmId 'niedersachsen-sport' hat kein Dossier in data/richtlinien/. Eval prueft ob Pipeline sauber kommuniziert dass kein Dossier verfuegbar ist."
+    "notes": "Edge-Case programm-mismatch: programmId 'niedersachsen-sport' hat kein Dossier in data/richtlinien/. Eval prueft ob Pipeline sauber kommuniziert dass kein Dossier verfuegbar ist. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-edge-004",
@@ -1824,6 +2295,36 @@
         "role": "user",
         "kind": "answer",
         "content": "Oh sorry. Die Grundschule. Nein warte, eigentlich arbeiten wir mit beiden zusammen. Und wir sind nicht 200 Schueler, ich glaube eher 150."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Mit welcher Schule genau soll die Kooperation laufen?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Mit der Grundschule am Park. Also eigentlich sind es zwei Schulen, die Realschule auch noch. Hauptsaechlich aber die Grundschule, denke ich."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie viele Schuelerinnen und Schueler sollen insgesamt teilnehmen?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "So 40 von uns. Also von beiden Schulen zusammen 40. Oder von jeder 40? Ich muesste nochmal nachsehen, was wir da aufgeschrieben haben."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was ist das gemeinsame Thema der Kooperation?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Sport und Bewegung. Beziehungsweise eigentlich Musik, das war der neue Stand nach der letzten Sitzung. Wir sind da flexibel."
       }
     ],
     "facts": {
@@ -1884,7 +2385,7 @@
       }
     ],
     "expected_geber_gruppe": "stiftung",
-    "notes": "Edge-Case widerspruechlich: Schuelerzahl und Kooperationspartner widersprechen sich innerhalb des Gespraechs. Pipeline muss mit offenen Widerspruechen umgehen und darf keine Seite als gesichert uebernehmen."
+    "notes": "Edge-Case widerspruechlich: Schuelerzahl und Kooperationspartner widersprechen sich innerhalb des Gespraechs. Pipeline muss mit offenen Widerspruechen umgehen und darf keine Seite als gesichert uebernehmen. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-edge-005",
@@ -1938,6 +2439,36 @@
         "role": "user",
         "kind": "answer",
         "content": "Noch keine. Wir wuerden gerne mitmachen."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Das Startchancen-Programm laeuft ueber die Bundeslaender — Ihre Schule liegt in Koeln, das Programm hier ist das Berliner. Wie kommen Sie auf dieses Programm?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Eine Kollegin aus Berlin hat davon erzaehlt, die Schule ihrer Schwester kriegt da richtig viel Geld. Da dachten wir, das beantragen wir auch. Ist doch ein Bundesprogramm, oder?"
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Welche Bedarfe hat Ihre Schule, die Sie mit den Mitteln decken wollen?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Schulsozialarbeit vor allem, wir haben nur eine halbe Stelle fuer 350 Kinder. Und Moebel fuer die Differenzierungsraeume, die sind noch von 1985."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Gibt es an Ihrer Schule bereits Sozialindex-basierte Foerderung durch das Land NRW?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Wir sind Talentschule, falls Sie das meinen. Da gab es auch schon mal Mittel, aber das lief aus."
       }
     ],
     "facts": {
@@ -2000,7 +2531,7 @@
       }
     ],
     "expected_geber_gruppe": "oeffentlich",
-    "notes": "Edge-Case bl-konflikt: schulProfil.bundesland=NRW aber programmId=berlin-startchancen. Pipeline muss den Bundesland-Konflikt erkennen und kommunizieren, darf keine Berlin-Angaben erzeugen."
+    "notes": "Edge-Case bl-konflikt: schulProfil.bundesland=NRW aber programmId=berlin-startchancen. Pipeline muss den Bundesland-Konflikt erkennen und kommunizieren, darf keine Berlin-Angaben erzeugen. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-edge-006",
@@ -2044,6 +2575,36 @@
         "role": "user",
         "kind": "answer",
         "content": "Unsere Wirkungstheorie basiert auf drei Ebenen: Auf Schueler-Ebene erwarten wir eine messbare Steigerung der europaeischen Demokratiekompetenz-Scores (Referenzinstrument ICCS 2028) von mindestens 15 Prozentpunkten im Pre-Post-Vergleich bei allen ca. 4.200 direkt involvierten Schuelerinnen und Schuelern aus dem gesamten Konsortium. Auf Lehrer-Ebene sollen mindestens 180 Lehrkraefte aus 9 Laendern an zertifizierten Weiterbildungsmodulen teilnehmen und diese in ihre Unterrichtspraxis integrieren, dokumentiert durch externe Evaluatoren nach dem Kirkpatrick-Level-3-Modell. Auf Systemebene soll das gemeinsam entwickelte Curriculum 'Demokratiekompetenz 2.0' als Open Educational Resource unter CC-BY-SA-Lizenz veroeffentlicht und von mindestens 50 weiteren Schulen in Europa bis 2030 adaptiert werden, gemessen durch Downloads und nachgewiesene Adaptionen."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie ist die Arbeitsteilung zwischen den neun Partnerschulen organisiert?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Also das ist tatsaechlich ein Punkt, an dem wir aus den Fehlern des letzten Konsortiums gelernt haben, das muss man wirklich sagen, denn damals, 2019, als wir das erste Mal ein Konsortium koordiniert haben, damals noch unter Erasmus+ KA2 mit sieben Partnern, da hatten wir die Arbeitspakete viel zu grob geschnitten, was dazu fuehrte, dass die Kollegen in Ljubljana und die in Tampere praktisch dasselbe entwickelt haben, ohne es voneinander zu wissen, eine komplette Doppelarbeit von fast einem halben Jahr, und deshalb haben wir diesmal eine Matrix entwickelt, in der jede Partnerschule genau ein Modul des Demokratiekompetenz-Curriculums federfuehrend verantwortet, mit klaren Schnittstellen-Terminen alle sechs Wochen per Videokonferenz, einem gemeinsamen Repository, in dem alle Zwischenstaende liegen, und einem Peer-Review-Verfahren, bei dem jedes Modul von zwei anderen Partnerschulen gegengelesen wird, bevor es in die Pilotierung geht, was zugegebenermassen aufwaendig klingt, sich aber beim Vorprojekt als der einzige Weg erwiesen hat, wirklich vergleichbare Qualitaet ueber so viele Standorte hinweg zu sichern."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Welche Wirkung erwarten Sie auf Ebene der Schuelerinnen und Schueler?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Da muss ich etwas ausholen, weil wir Wirkung auf drei Ebenen denken, das haben wir uns vom Ansatz der Wirkungstreppe abgeschaut, den unsere Prozessbegleiterin eingebracht hat: Auf der ersten Ebene, der unmittelbaren, geht es um die etwa 540 Schuelerinnen und Schueler, die die pilotierten Module durchlaufen, dort messen wir mit einem Prae-Post-Design die Veraenderung in den Demokratiekompetenz-Dimensionen des Referenzrahmens des Europarats, konkret Perspektivenuebernahme, Konfliktfaehigkeit und politische Selbstwirksamkeit, mit einem validierten Instrument, das die Universitaet Jena uns angepasst hat; auf der zweiten Ebene erwarten wir, dass an jeder Partnerschule mindestens zwei demokratiepaedagogische Formate dauerhaft im Schulprogramm verankert werden, etwa Klassenrat oder Schuelerhaushalt, das ist vertraglich mit den Schulleitungen vereinbart; und auf der dritten Ebene, der Transferebene, sollen die Module ueber die nationalen Agenturen und unsere Verbaende frei verfuegbar gemacht werden, sodass Schulen ausserhalb des Konsortiums sie uebernehmen koennen, wofuer wir eigens eine niedrigschwellige Handreichung von maximal zwanzig Seiten je Modul erstellen."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie sichern Sie die Nachhaltigkeit des Konsortiums ueber die Foerderlaufzeit hinaus?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Die ehrliche Antwort ist, dass Nachhaltigkeit bei Konsortien dieser Groesse nur funktioniert, wenn man sie von Anfang an dreifach absichert, und genau das tun wir: institutionell, indem alle neun Schulleitungen eine Kooperationsvereinbarung ueber die Foerderlaufzeit hinaus unterzeichnet haben, die jaehrlich mindestens ein gemeinsames Online-Fortbildungsformat und ein Praesenztreffen im Rotationsprinzip vorsieht, wobei die Reisekosten dann aus den regulaeren Fortbildungsbudgets der Schulen getragen werden, was realistisch ist, weil es sich um jeweils eine Person pro Schule handelt; personell, indem an jeder Schule ein Tandem aus einer erfahrenen und einer juengeren Lehrkraft die Verantwortung traegt, sodass ein Weggang nicht das ganze Projekt gefaehrdet, das war die bittere Lehre aus 2019, als mit einer einzigen Pensionierung in Padua der komplette italienische Strang wegbrach; und inhaltlich, indem die Module so dokumentiert sind, dass sie ohne die Entwicklerinnen einsetzbar sind, was wir dadurch testen, dass die Pilotierung an jeder Schule ausdruecklich NICHT durch die Entwickler des jeweiligen Moduls erfolgt."
       }
     ],
     "facts": {
@@ -2117,7 +2678,7 @@
       }
     ],
     "expected_geber_gruppe": "eu",
-    "notes": "Edge-Case antworten-zu-lang: Antworten sind sehr ausfuehrlich (>400 Wörter pro Antwort). Pipeline-Test ob Extraktion bei Token-reichen Inputs stabil bleibt. Inhaltlich hochwertig."
+    "notes": "Edge-Case antworten-zu-lang: Antworten sind sehr ausfuehrlich (>400 Wörter pro Antwort). Pipeline-Test ob Extraktion bei Token-reichen Inputs stabil bleibt. Inhaltlich hochwertig. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-edge-007",
@@ -2171,6 +2732,36 @@
         "role": "user",
         "kind": "answer",
         "content": "Ja, Umweltbildung. Aber Demokratieerziehung machen wir auch. Und die 650 Schueler stimmt auch nicht ganz, wir haben eher 600."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Bleiben wir kurz beim Kern: Welches Vorhaben moechten Sie fuer den Schulpreis einreichen?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Unser Demokratie-Ding mit dem Schuelerparlament. Obwohl — eigentlich ist das Buddy-Projekt mit den Fuenftklaesslern viel besser gelaufen. Koennen wir auch beides nehmen? Ach, und die Garten-AG waere auch noch gut."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Welches dieser Projekte laeuft schon am laengsten und hat die deutlichsten Ergebnisse?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Das Schuelerparlament gibt es seit drei Jahren. Wobei die Ergebnisse... also die Garten-AG hat immerhin den Stadtteilpreis gewonnen letztes Jahr. Nehmen wir vielleicht doch die. Oder das Parlament, weil das passt besser zu so einem Schulpreis, oder?"
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was hat das Schuelerparlament an Ihrer Schule konkret veraendert?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Die Mensa-Regeln zum Beispiel, die kamen von den Schuelern. Und der Wasserspender. Achso, wichtig: Beim Buddy-Projekt sind die Konflikte in Klasse 5 deutlich runtergegangen, sagt zumindest die Beratungslehrerin. Das gehoert aber ja eigentlich nicht zum Parlament. Egal, irgendwie haengt ja alles zusammen."
       }
     ],
     "facts": {
@@ -2233,7 +2824,7 @@
       }
     ],
     "expected_geber_gruppe": "wirtschaftspreis",
-    "notes": "Edge-Case antrag-spruenge: User springt zurueck und korrigiert Hauptprofil und Schuelerzahl. Pipeline muss die jeweils letzte (korrigierte) Angabe verwenden."
+    "notes": "Edge-Case antrag-spruenge: User springt zurueck und korrigiert Hauptprofil und Schuelerzahl. Pipeline muss die jeweils letzte (korrigierte) Angabe verwenden. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-res-001",
@@ -2286,6 +2877,36 @@
         "role": "user",
         "kind": "answer",
         "content": "Weiss ich nicht wirklich. Da gibt es irgendwie eine Moscheegemeinde und einen Sportverein aber ob die bei Kultur mitmachen..."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was fuer ein Tanz- oder Bewegungsprojekt schwebt Ihnen vor?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Irgendwas wo die Kinder sich bewegen. HipHop kommt bestimmt gut an. Oder was Internationales, wir haben ja viele Nationen."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wer koennte das Projekt kuenstlerisch anleiten?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Da muessten wir jemanden finden. Es gibt doch bestimmt Tanzlehrer, die sowas machen. Kennen Sie da wen?"
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was waere fuer die Kinder der Hoehepunkt des Projekts?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Auftritt beim Sommerfest vielleicht. Das findet eh immer statt, da koennten die dann was zeigen."
       }
     ],
     "facts": {
@@ -2342,7 +2963,7 @@
       }
     ],
     "expected_geber_gruppe": "verband-uni",
-    "notes": "Reserve pv-res-001: zweiter Kultur-macht-stark-Eintrag, vag. Sichert vag-Quote fuer 50/30/20-Mix."
+    "notes": "Reserve pv-res-001: zweiter Kultur-macht-stark-Eintrag, vag. Sichert vag-Quote fuer 50/30/20-Mix. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-res-002",
@@ -2395,6 +3016,36 @@
         "role": "user",
         "kind": "answer",
         "content": "Keine Ahnung. Ich bin ja selbst schon ueberarbeitet."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie sollen die Tablets im Unterricht konkret eingesetzt werden?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Fuer Recherche und so. Die Kollegen werden sich da schon was ueberlegen. Erstmal muessen die Geraete ueberhaupt da sein und das WLAN laufen."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Gibt es Fortbildungen fuer das Kollegium zum Einsatz der Geraete?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Angedacht schon. Der Medienbeauftragte wollte da mal was organisieren. Konkret ist noch nichts."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wer kuemmert sich um Einrichtung und Verwaltung der Geraete?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Der Medienbeauftragte, nehme ich an. Der macht das jetzt auch schon so nebenbei. Ist natuerlich eigentlich zu viel fuer eine Person."
       }
     ],
     "facts": {
@@ -2451,7 +3102,7 @@
       }
     ],
     "expected_geber_gruppe": "oeffentlich",
-    "notes": "Reserve pv-res-002: zweiter DigitalPakt-Eintrag, vag. Hauptschule ohne Medienkonzept."
+    "notes": "Reserve pv-res-002: zweiter DigitalPakt-Eintrag, vag. Hauptschule ohne Medienkonzept. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-res-003",
@@ -2504,6 +3155,36 @@
         "role": "user",
         "kind": "answer",
         "content": "Wasser und Klimagerechtigkeit. Das sind Themen die in Ghana sehr relevant sind."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Welche Rolle spielt die ghanaische Partnerschule bei der Themensetzung der Anbahnungsreise?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Die Themensetzung kam sogar von dort: Unsere Partnerschule in Kumasi hat das Thema Wassergerechtigkeit vorgeschlagen, weil ihre Region massiv unter der Verschmutzung durch informellen Goldabbau leidet. Wir haben das aufgegriffen und um die Klimadimension erweitert — beide Seiten haben in drei gemeinsamen Videokonferenzen einen Themenfahrplan beschlossen, der fuer beide Lebenswirklichkeiten relevant ist. Uns war wichtig, dass es kein deutsches Projekt MIT ghanaischer Beteiligung wird, sondern ein gemeinsames."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie gehen Sie mit dem Machtgefaelle und moeglichen postkolonialen Mustern in der Partnerschaft um?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Sehr bewusst. Beide Kollegien durchlaufen vor der Reise eine gemeinsame Online-Fortbildung zu rassismuskritischer Bildungsarbeit, die eine ghanaisch-deutsche Trainerin leitet. Wir haben ausserdem Kommunikationsregeln vereinbart: Entscheidungen nur im Konsens beider Steuergruppen, Budgettransparenz in beide Richtungen, und die Dokumentation der Reise entsteht als gemeinsames Produkt, nicht als deutscher Blick auf Ghana. Der Fachbereich Gesellschaft hat das im Curriculum unter Globales Lernen verankert."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was soll die Anbahnungsreise konkret vorbereiten?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Eine dauerhafte Schulpartnerschaft mit jaehrlichen gemeinsamen SDG-Projekten. Die Reise dient dazu, die Steuergruppen persoenlich zusammenzubringen, die Machbarkeit von Schuelerbegegnungen zu klaeren — Unterbringung, Sicherheit, Finanzierung — und eine Partnerschaftsvereinbarung zu unterzeichnen, deren Entwurf beide Schulkonferenzen schon beraten haben. Direkt im Anschluss wollen wir den Antrag fuer die erste Schuelerbegegnung stellen."
       }
     ],
     "facts": {
@@ -2532,7 +3213,7 @@
           "Formale Schulpartnerschaft nach Reise"
         ],
         "messbare_indikatoren": [],
-        "nachhaltigkeit": null
+        "nachhaltigkeit": "Partnerschaftsvereinbarung (beide Schulkonferenzen), jaehrliche SDG-Projekte, direkt anschliessender Antrag Schuelerbegegnung"
       },
       "budget": {
         "beantragt_eur": null,
@@ -2571,7 +3252,7 @@
       }
     ],
     "expected_geber_gruppe": "eu",
-    "notes": "Reserve pv-res-003: zweiter ENSA-Eintrag, mittlere Qualitaet. Anbahnungsreise Ghana, Zielschule noch offen."
+    "notes": "Reserve pv-res-003: zweiter ENSA-Eintrag, mittlere Qualitaet. Anbahnungsreise Ghana, Zielschule noch offen. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-res-004",
@@ -2624,6 +3305,36 @@
         "role": "user",
         "kind": "answer",
         "content": "Ja, der Foerderverein ist eingetragener Verein. Ob der gemeinnuetzig ist weiss ich nicht genau."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was versprechen Sie sich von der Kooperation fuer Ihre eigenen Schuelerinnen und Schueler?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Bei Montessori ist Vielfalt ja sowieso Programm, aber ehrlich gesagt bleiben unsere Kinder doch ziemlich unter sich. Ein bisschen mehr echte Begegnung wuerde allen guttun."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Welche gemeinsamen Aktivitaeten koennten Sie sich vorstellen?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Vielleicht gemeinsames Werken? Unsere Werkstatt ist gut ausgestattet. Oder Ausfluege zusammen. Die Kollegin von der Foerderschule hatte auch Ideen, weiss nicht mehr genau welche."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie stehen die Eltern beider Schulen zu der Kooperation?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Unsere Eltern finden sowas erfahrungsgemaess gut, solange es den Stundenplan nicht durcheinanderbringt. Von der anderen Schule weiss ich es nicht."
       }
     ],
     "facts": {
@@ -2682,7 +3393,7 @@
       }
     ],
     "expected_geber_gruppe": "stiftung",
-    "notes": "Reserve pv-res-004: dritter Aktion-Mensch-Eintrag, vag. Montessori Bayern, Traegerstruktur unklar."
+    "notes": "Reserve pv-res-004: dritter Aktion-Mensch-Eintrag, vag. Montessori Bayern, Traegerstruktur unklar. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   },
   {
     "id": "pv-res-005",
@@ -2735,6 +3446,46 @@
         "role": "user",
         "kind": "answer",
         "content": "Das ist noch offen, wir hoffen dass die Schule das mittraegt. Genau geklaert ist es nicht."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie soll die Lernwerkstatt in den regulaeren Unterricht eingebunden werden?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Jede Klasse soll eine feste Werkstattstunde pro Woche bekommen, das haben wir in der Konferenz schon besprochen. Zusaetzlich koennen Kollegen die Werkstatt fuer Sachunterricht buchen. Es soll ausdruecklich kein Raum werden, der nur fuer besondere Anlaesse aufgeschlossen wird."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Was sollen die Kinder in der Lernwerkstatt lernen — worin unterscheidet sich das vom normalen Sachunterricht?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Selber ausprobieren statt zugucken. Im Sachunterricht zeigen wir oft nur Versuche vor, weil das Material fuer 25 Kinder fehlt. In der Werkstatt sollen die Kinder in Kleingruppen eigene Fragen untersuchen — warum schwimmt das, warum faellt das um. Das Fragenstellen ist uns fast wichtiger als die richtigen Antworten."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Wer betreut die Werkstatt fachlich und haelt sie am Laufen?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Zwei Kolleginnen haben die Sachunterricht-Fachleitung und wuerden die Werkstatt verantworten, eine macht gerade eine MINT-Fortbildung. Fuer die Pflege des Materials wollen wir Eltern gewinnen, ein paar haben schon zugesagt."
+      },
+      {
+        "role": "ai",
+        "kind": "question",
+        "content": "Woran messen Sie nach einem Jahr, ob die Werkstatt ein Erfolg ist?"
+      },
+      {
+        "role": "user",
+        "kind": "answer",
+        "content": "Ganz praktisch: Wird sie gebucht? Wenn die Werkstattstunden regelmaessig stattfinden und die Kollegen sie freiwillig zusaetzlich buchen, laeuft es. Und wir schauen uns an, ob die Kinder bei den Naturwissenschafts-Aufgaben der Vergleichsarbeiten besser abschneiden, wobei das natuerlich dauert."
       }
     ],
     "facts": {
@@ -2757,8 +3508,15 @@
       "wirkung": {
         "erwartete_ergebnisse": [
           "fruehe MINT-Foerderung",
-          "Lesefoerderung"
-        ]
+          "Lesefoerderung",
+          "Feste Werkstattstunde je Klasse/Woche",
+          "Eigenstaendiges Experimentieren in Kleingruppen"
+        ],
+        "messbare_indikatoren": [
+          "Buchungsquote der Werkstattstunden",
+          "Naturwissenschafts-Ergebnisse in Vergleichsarbeiten (langfristig)"
+        ],
+        "nachhaltigkeit": "Zwei Fachleitungen verantwortlich, Eltern fuer Materialpflege, keine Sonderraum-Loesung"
       },
       "budget": {
         "beantragt_eur": 15000
@@ -2783,6 +3541,6 @@
       }
     ],
     "expected_geber_gruppe": "stiftung",
-    "notes": "Pilot-Reproduktion 15.07.2026 (#004 + Textumfang): Foerderverein-Vorsitzende, MINT-Lernwerkstatt + Leseecke, ~180 Grundschulkinder, 15.000 EUR, duenner Input. Regressions-Anker fuer Struktur-Guard (Textumfang-Kollaps), WIZ-01b (finalText-Abschnittspraesenz) und den deterministischen Gesamtsummen-Konsistenzbefund. Stiftung + duenner Input war im Korpus bisher nicht abgedeckt."
+    "notes": "Pilot-Reproduktion 15.07.2026 (#004 + Textumfang): Foerderverein-Vorsitzende, MINT-Lernwerkstatt + Leseecke, ~180 Grundschulkinder, 15.000 EUR, duenner Input. Regressions-Anker fuer Struktur-Guard (Textumfang-Kollaps), WIZ-01b (finalText-Abschnittspraesenz) und den deterministischen Gesamtsummen-Konsistenzbefund. Stiftung + duenner Input war im Korpus bisher nicht abgedeckt. | 22.07.2026: Interview auf Produkt-Realitaet erweitert (real 6-12 Fragen; Korpus hatte Ø 4,2 und mass damit ein duenneres Produkt als das ausgelieferte)."
   }
 ]

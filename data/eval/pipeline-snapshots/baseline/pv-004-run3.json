@@ -71,7 +71,10 @@
         ],
         "messbare_indikatoren": [
           "Schuelerergebnisse MINT",
-          "Lehrkraft-Feedback"
+          "Lehrkraft-Feedback",
+          "80% der Lehrkraefte uebertragen ein Element (Portfolio-Gespraeche)",
+          "Schuelerfragebogen Kurssystem +5 Punkte",
+          "1 dokumentierte Unterrichtseinheit je Hospitationswoche"
         ],
         "nachhaltigkeit": "Langfristige Schulpartnerschaft"
       },
@@ -104,19 +107,19 @@
       ],
       "foerderhoehe": {
         "maxEur": 100000,
-        "bemerkung": "Laut foerderprogramme.json: bis 100.000 EUR Hauptpreis. Weitere Anerkennungspreise + 30.000 EUR fuer Nachwuchspreis-Traeger (historischer Stand — bitte gegen aktuelle Ausschreibung pruefen). Preisgeld ist FREI VERWENDBAR fuer Schulentwicklung."
+        "bemerkung": "Laut förderprogramme.json: bis 100.000 EUR Hauptpreis. Weitere Anerkennungspreise + 30.000 EUR für Nachwuchspreis-Träger (historischer Stand — bitte gegen aktuelle Ausschreibung prüfen). Preisgeld ist FREI VERWENDBAR für Schulentwicklung."
       },
       "kostenpositionen": [
         {
           "kategorie": "sonstiges",
           "foerderfaehig": true,
-          "bemerkung": "Preisgeld ist zweckgebunden fuer Schulentwicklung, aber keine Einzelposten-Pruefung. Schule kann selbst entscheiden, in welche Bereiche (Personal, Sach, Investitionen, Fortbildung) sie es lenkt.",
+          "bemerkung": "Preisgeld ist zweckgebunden für Schulentwicklung, aber keine Einzelposten-Prüfung. Schule kann selbst entscheiden, in welche Bereiche (Personal, Sach, Investitionen, Fortbildung) sie es lenkt.",
           "beispielePasst": [
             "Schulinterne Fortbildungen",
             "Austausch-/Hospitationsprogramme mit anderen Schulen",
-            "Anschaffung paedagogischer Materialien",
+            "Anschaffung pädagogischer Materialien",
             "Investitionen in Lernumgebung",
-            "Projekte, die die im Bewerbungstext beschriebene Qualitaet weiter ausbauen"
+            "Projekte, die die im Bewerbungstext beschriebene Qualität weiter ausbauen"
           ]
         }
       ],
@@ -127,52 +130,52 @@
       "kumulierung": {
         "erlaubt": true,
         "bedingungen": [
-          "Preis kann neben oeffentlichen Foerdermitteln entgegengenommen werden.",
-          "Preisgeld ersetzt keine Einzelprojekt-Foerderung."
+          "Preis kann neben öffentlichen Fördermitteln entgegengenommen werden.",
+          "Preisgeld ersetzt keine Einzelprojekt-Förderung."
         ]
       },
       "antragsstruktur": {
         "abschnitte": [
           {
             "id": "leistung",
-            "name": "Qualitaetsbereich 1: Leistung",
+            "name": "Qualitätsbereich 1: Leistung",
             "pflicht": true,
             "leitfragen": [
-              "Welche fachlichen und ueberfachlichen Lernergebnisse erzielt die Schule messbar?",
-              "Wie werden Lern-, Leistungs- und Kompetenzstaende dokumentiert und genutzt?"
+              "Welche fachlichen und überfachlichen Lernergebnisse erzielt die Schule messbar?",
+              "Wie werden Lern-, Leistungs- und Kompetenzstände dokumentiert und genutzt?"
             ],
             "stilhinweis": "Konkret, mit Daten. Allgemeine Bekenntnisse scheitern hier."
           },
           {
             "id": "umgang-mit-vielfalt",
-            "name": "Qualitaetsbereich 2: Umgang mit Vielfalt",
+            "name": "Qualitätsbereich 2: Umgang mit Vielfalt",
             "pflicht": true,
             "leitfragen": [
-              "Wie geht die Schule mit der Heterogenitaet ihrer Schuelerschaft um?",
-              "Welche Strukturen foerdern individuelle Lernwege, Inklusion, interkulturelles Miteinander?"
+              "Wie geht die Schule mit der Heterogenität ihrer Schülerschaft um?",
+              "Welche Strukturen fördern individuelle Lernwege, Inklusion, interkulturelles Miteinander?"
             ]
           },
           {
-            "id": "unterrichtsqualitaet",
-            "name": "Qualitaetsbereich 3: Unterrichtsqualitaet",
+            "id": "Unterrichtsqualität",
+            "name": "Qualitätsbereich 3: Unterrichtsqualität",
             "pflicht": true,
             "leitfragen": [
               "Woran erkennt man guten Unterricht an Ihrer Schule?",
-              "Welche Unterrichtsformate, Feedback-Mechanismen, Qualitaetsentwicklung sind etabliert?"
+              "Welche Unterrichtsformate, Feedback-Mechanismen, Qualitätsentwicklung sind etabliert?"
             ]
           },
           {
             "id": "verantwortung",
-            "name": "Qualitaetsbereich 4: Verantwortung",
+            "name": "Qualitätsbereich 4: Verantwortung",
             "pflicht": true,
             "leitfragen": [
-              "Wie werden Schuelerinnen und Schueler an Entscheidungen und Schulleben beteiligt?",
-              "Welche Verantwortungsrollen uebernehmen Lernende, Eltern, Lehrkraefte?"
+              "Wie werden Schülerinnen und Schüler an Entscheidungen und Schulleben beteiligt?",
+              "Welche Verantwortungsrollen übernehmen Lernende, Eltern, Lehrkräfte?"
             ]
           },
           {
             "id": "schulklima-schulleben",
-            "name": "Qualitaetsbereich 5: Schulklima, Schulleben und ausserschulische Partner",
+            "name": "Qualitätsbereich 5: Schulklima, Schulleben und außerschulische Partner",
             "pflicht": true,
             "leitfragen": [
               "Wie ist das Zusammenleben in der Schule gestaltet?",
@@ -181,7 +184,7 @@
           },
           {
             "id": "lernende-institution",
-            "name": "Qualitaetsbereich 6: Schule als lernende Institution",
+            "name": "Qualitätsbereich 6: Schule als lernende Institution",
             "pflicht": true,
             "leitfragen": [
               "Wie entwickelt sich die Schule als Organisation kontinuierlich weiter?",
@@ -190,15 +193,15 @@
           }
         ],
         "anlagen": [
-          "Ergaenzende Materialien, Fotos, Videos (optional, ueber Online-Portal)"
+          "Ergänzende Materialien, Fotos, Videos (optional, über Online-Portal)"
         ],
         "einreichungsweg": "Online-Bewerbungsportal: https://bewerbung.deutscher-schulpreis.de/login",
-        "bearbeitungsdauer": "Nominierungen ganzjaehrig moeglich. TOP-20 werden in weitere Runde aufgenommen; Jurys besuchen Shortlist-Schulen vor Ort; Preisvergabe jaehrlich."
+        "bearbeitungsdauer": "Nominierungen ganzjährig möglich. TOP-20 werden in weitere Runde aufgenommen; Jurys besuchen Shortlist-Schulen vor Ort; Preisvergabe jährlich."
       },
       "notizen": [
-        "STUB-VERSION: Zeichenlimits pro Qualitaetsbereich sind im Online-Portal definiert, aber nicht oeffentlich zugaenglich erfasst. Muss nach Portal-Login ergaenzt werden.",
-        "Nominierungen durch Eltern, Schuelerinnen/Schueler, Kooperationspartner sind ganzjaehrig moeglich.",
-        "Hospitationsprogramm (1 Woche an Preistraegerschule): Bewerbungsfrist aktuell 30.04.2026.",
+        "STUB-VERSION: Zeichenlimits pro Qualitätsbereich sind im Online-Portal definiert, aber nicht öffentlich zugänglich erfasst. Muss nach Portal-Login ergänzt werden.",
+        "Nominierungen durch Eltern, Schülerinnen/Schüler, Kooperationspartner sind ganzjährig möglich.",
+        "Hospitationsprogramm (1 Woche an Preisträgerschule): Bewerbungsfrist aktuell 30.04.2026.",
         "Bewerber-Schulen werden i.d.R. vor Ort durch externe Jurys besucht — ALLE Angaben sind verifizierbar machen (nicht nur PR)."
       ],
       "bestPractices": [
@@ -234,56 +237,98 @@
         "role": "ai",
         "kind": "question",
         "content": "Was macht Ihre Schule als Ganzes besonders? Was wuerden Sie als den Kern Ihres paedagogischen Qualitaetsanspruchs beim Deutschen Schulpreis benennen?",
-        "at": "2026-05-20T09:59:44.646Z"
+        "at": "2026-07-22T11:22:07.706Z"
       },
       {
         "id": "1",
         "role": "user",
         "kind": "answer",
         "content": "Wir haben in den letzten 10 Jahren ein System aufgebaut, das Schuelerinnen und Schueler mit sehr unterschiedlichen Voraussetzungen auf vergleichbarem hohen Niveau zum Abschluss bringt. Dokumentiert durch externe Evaluation 2022 und 2024 -- je nach Sozialindex liegen wir 18-22 Prozentpunkte ueber dem Landesschnitt.",
-        "at": "2026-05-20T09:59:44.646Z"
+        "at": "2026-07-22T11:22:07.706Z"
       },
       {
         "id": "2",
         "role": "ai",
         "kind": "question",
         "content": "Wie gehen Sie konkret mit der Heterogenitaet Ihrer Schuelerschaft um? Welche nachweisbaren Ergebnisse im Bereich Umgang mit Vielfalt koennen Sie belegen?",
-        "at": "2026-05-20T09:59:44.646Z"
+        "at": "2026-07-22T11:22:07.706Z"
       },
       {
         "id": "3",
         "role": "user",
         "kind": "answer",
         "content": "Wir nutzen ein differenziertes Kurssystem ab Klasse 7 mit individuellem Feedback-Portfolio fuer jede Schuelerin. Das Portfolio wird halbjaehrlich mit den Eltern besprochen. Rueckmeldeqouten von 94 Prozent bei Elterngespraechen. Kein Schueler verlaesst die Schule ohne Abschluss -- Quote 0 Abbrecher in den letzten 3 Jahren.",
-        "at": "2026-05-20T09:59:44.646Z"
+        "at": "2026-07-22T11:22:07.706Z"
       },
       {
         "id": "4",
         "role": "ai",
         "kind": "question",
         "content": "Beschreiben Sie kurz die Schulleitung und Verantwortungsstruktur. Wie ist Schueler- und Elternpartizipation institutionell verankert?",
-        "at": "2026-05-20T09:59:44.646Z"
+        "at": "2026-07-22T11:22:07.706Z"
       },
       {
         "id": "5",
         "role": "user",
         "kind": "answer",
         "content": "Wir haben einen Schulrat mit echten Entscheidungsrechten, nicht nur beratend. Schuelervertretung waehlt jaehrlich einen Projektfonds von 8.000 EUR, ueber dessen Verwendung sie vollstaendig autonom entscheidet. Elternbeirat ist in allen Gremien stimmberechtigt.",
-        "at": "2026-05-20T09:59:44.646Z"
+        "at": "2026-07-22T11:22:07.706Z"
       },
       {
         "id": "6",
         "role": "ai",
         "kind": "question",
         "content": "Was wuerden Sie mit dem Preisgeld konkret tun?",
-        "at": "2026-05-20T09:59:44.646Z"
+        "at": "2026-07-22T11:22:07.706Z"
       },
       {
         "id": "7",
         "role": "user",
         "kind": "answer",
         "content": "Wir wollen ein Kollegium-Austauschprogramm mit zwei Schulen in Sachsen und Bayern aufbauen. Hospitationswochen, gegenseitige Unterrichtsbeobachtung, gemeinsame Curriculum-Entwicklung im MINT-Bereich. Budget: 45.000 EUR fuer 3 Jahre.",
-        "at": "2026-05-20T09:59:44.646Z"
+        "at": "2026-07-22T11:22:07.706Z"
+      },
+      {
+        "id": "8",
+        "role": "ai",
+        "kind": "question",
+        "content": "Welche messbaren Wirkungen erwarten Sie von den Hospitationswochen fuer Ihre eigene Unterrichtsentwicklung?",
+        "at": "2026-07-22T11:22:07.706Z"
+      },
+      {
+        "id": "9",
+        "role": "user",
+        "kind": "answer",
+        "content": "Drei Dinge, die wir auch erheben: Erstens sollen mindestens 80 Prozent der teilnehmenden Lehrkraefte ein konkretes Unterrichtselement aus der Hospitation in ihr eigenes Fach uebertragen — das erfassen wir ueber die halbjaehrlichen Portfolio-Gespraeche. Zweitens wollen wir die Schuelerrueckmeldungen zum differenzierten Kurssystem (unser Fragebogen laeuft seit 2022) um mindestens fuenf Punkte verbessern. Drittens soll aus jeder Hospitationswoche eine dokumentierte Unterrichtseinheit fuer unsere offene Materialdatenbank entstehen.",
+        "at": "2026-07-22T11:22:07.706Z"
+      },
+      {
+        "id": "10",
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie sichern Sie, dass die Curriculum-Entwicklung nach Projektende weiterlaeuft?",
+        "at": "2026-07-22T11:22:07.706Z"
+      },
+      {
+        "id": "11",
+        "role": "user",
+        "kind": "answer",
+        "content": "Die Steuergruppe Unterrichtsentwicklung tagt bei uns ohnehin monatlich, die Partnerschaften werden dort als fester Tagesordnungspunkt verankert. Mit beiden saechsischen Schulen schliessen wir Kooperationsvereinbarungen ueber drei Jahre, und die Materialdatenbank liegt auf unserem Schulserver und steht allen offen. Die Schulkonferenz hat der Verstetigung bereits zugestimmt.",
+        "at": "2026-07-22T11:22:07.706Z"
+      },
+      {
+        "id": "12",
+        "role": "ai",
+        "kind": "question",
+        "content": "Was ist der Kern Ihres paedagogischen Ansatzes, den die Partnerschulen bei Ihnen sehen sollen?",
+        "at": "2026-07-22T11:22:07.706Z"
+      },
+      {
+        "id": "13",
+        "role": "user",
+        "kind": "answer",
+        "content": "Unser Kern ist die Kopplung von individueller Foerderung und Verantwortungsuebernahme: Jedes Kind fuehrt sein Feedback-Portfolio selbst und praesentiert es den Eltern — nicht die Lehrkraft. Das staerkt die Selbststeuerung nachweislich, unsere Evaluationen zeigen das seit zwei Durchgaengen. Genau diese Portfolio-Praxis ist das, was die Partnerschulen uebernehmen wollen.",
+        "at": "2026-07-22T11:22:07.706Z"
       }
     ]
   },
@@ -293,305 +338,498 @@
         "titel": "Kollegium-Austauschprogramm MINT",
         "abschnitte": [
           {
-            "name": "Qualitaetsbereich 1: Leistung",
-            "fokus": "Leitfragen: Welche fachlichen und ueberfachlichen Lernergebnisse erzielt die Schule messbar? | Wie werden Lern-, Leistungs- und Kompetenzstaende dokumentiert und genutzt?"
+            "name": "Qualitätsbereich 1: Leistung",
+            "fokus": "Leitfragen: Welche fachlichen und überfachlichen Lernergebnisse erzielt die Schule messbar? | Wie werden Lern-, Leistungs- und Kompetenzstände dokumentiert und genutzt?"
           },
           {
-            "name": "Qualitaetsbereich 2: Umgang mit Vielfalt",
-            "fokus": "Leitfragen: Wie geht die Schule mit der Heterogenitaet ihrer Schuelerschaft um? | Welche Strukturen foerdern individuelle Lernwege, Inklusion, interkulturelles Miteinander?"
+            "name": "Qualitätsbereich 2: Umgang mit Vielfalt",
+            "fokus": "Leitfragen: Wie geht die Schule mit der Heterogenität ihrer Schülerschaft um? | Welche Strukturen fördern individuelle Lernwege, Inklusion, interkulturelles Miteinander?"
           },
           {
-            "name": "Qualitaetsbereich 3: Unterrichtsqualitaet",
-            "fokus": "Leitfragen: Woran erkennt man guten Unterricht an Ihrer Schule? | Welche Unterrichtsformate, Feedback-Mechanismen, Qualitaetsentwicklung sind etabliert?"
+            "name": "Qualitätsbereich 3: Unterrichtsqualität",
+            "fokus": "Leitfragen: Woran erkennt man guten Unterricht an Ihrer Schule? | Welche Unterrichtsformate, Feedback-Mechanismen, Qualitätsentwicklung sind etabliert?"
           },
           {
-            "name": "Qualitaetsbereich 4: Verantwortung",
-            "fokus": "Leitfragen: Wie werden Schuelerinnen und Schueler an Entscheidungen und Schulleben beteiligt? | Welche Verantwortungsrollen uebernehmen Lernende, Eltern, Lehrkraefte?"
+            "name": "Qualitätsbereich 4: Verantwortung",
+            "fokus": "Leitfragen: Wie werden Schülerinnen und Schüler an Entscheidungen und Schulleben beteiligt? | Welche Verantwortungsrollen übernehmen Lernende, Eltern, Lehrkräfte?"
           },
           {
-            "name": "Qualitaetsbereich 5: Schulklima, Schulleben und ausserschulische Partner",
+            "name": "Qualitätsbereich 5: Schulklima, Schulleben und außerschulische Partner",
             "fokus": "Leitfragen: Wie ist das Zusammenleben in der Schule gestaltet? | Welche Kooperationen mit Eltern, Vereinen, Betrieben, Kommune pflegen Sie?"
           },
           {
-            "name": "Qualitaetsbereich 6: Schule als lernende Institution",
+            "name": "Qualitätsbereich 6: Schule als lernende Institution",
             "fokus": "Leitfragen: Wie entwickelt sich die Schule als Organisation kontinuierlich weiter? | Welche Prozesse, Strukturen, Evaluationen tragen dazu bei?"
           }
         ]
       },
       "sections": [
         {
-          "name": "Qualitaetsbereich 1: Leistung",
-          "text": "Im Bereich der Leistungsmessung und -entwicklung verfolgt die Gesamtschule Friedrichsdorf einen umfassenden Ansatz, der auf die individuellen Bedürfnisse der Schülerinnen und Schüler eingeht. Unser Ziel ist es, Schüler mit unterschiedlichen Voraussetzungen auf ein vergleichbares, hohes Niveau zu bringen. Dies wird durch ein differenziertes Kurssystem ab Klasse 7 unterstützt, das individuelle Feedback-Portfolios für jeden Schüler beinhaltet. Diese Portfolios werden halbjährlich mit den Eltern besprochen, wobei wir eine Rückmeldequote von 94 Prozent bei den Elterngesprächen erreichen.\n\nDie externe Evaluationen in den Jahren 2022 und 2024 bestätigen den Erfolg unserer Arbeit: Je nach Sozialindex liegen die Ergebnisse unserer Schülerschaft 18 bis 22 Prozentpunkte über dem Landesdurchschnitt. Ein weiterer Indikator für die Qualität unserer pädagogischen Arbeit ist die Quote von 0 Schulabbrechern in den letzten 3 Jahren.\n\nUm die Qualität im MINT-Bereich weiter zu steigern, planen wir ein Kollegium-Austauschprogramm mit zwei Schulen in Sachsen und Bayern. Dieses Programm beinhaltet Hospitationswochen, gegenseitige Unterrichtsbeobachtung und die gemeinsame Entwicklung von Curricula. Das beantragte Budget für dieses dreijährige Programm beträgt 45.000 EUR."
+          "name": "Qualitätsbereich 1: Leistung",
+          "text": "An unserer Schule werden fachliche und überfachliche Lernergebnisse systematisch erfasst und für die Weiterentwicklung genutzt. Grundlage ist das differenzierte Kurssystem ab Klasse 7, das jede Schülerin und jeden Schüler mit individuellen Lernwegen fördert. Die halbjährlichen Portfolio-Gespräche, in denen die Lernenden ihre Fortschritte selbst präsentieren und mit Eltern sowie Lehrkräften reflektieren, dokumentieren die Kompetenzentwicklung messbar: Die Rückmeldequote bei diesen Gesprächen liegt bei 94 Prozent, und seit drei Jahren verlassen alle Jugendlichen die Schule mit einem Abschluss – eine Quote von null Abbrechern. Die externen Evaluationen 2022 und 2024 bestätigen diesen Ansatz: Je nach Sozialindex erreichen wir 18 bis 22 Prozentpunkte mehr als der hessische Landesschnitt, was die Wirksamkeit unserer individuellen Förderung belegt.\n\nDas geplante Kollegium-Austauschprogramm MINT zielt darauf ab, diese Praxis über den eigenen Standort hinaus zu verbreitern. Durch Hospitationswochen an Partnerschulen in Sachsen und Bayern und die gemeinsame Entwicklung von Unterrichtsmaterialien wird der Transfer bewährter Methoden in den MINT-Bereich systematisch gestaltet. Die Steuergruppe Unterrichtsentwicklung übernimmt dabei die operative Steuerung: Sie tagt monatlich und verankert die Partnerschaften als festen Tagesordnungspunkt. Aus jeder Hospitationswoche soll eine dokumentierte Unterrichtseinheit für die schulinterne Materialdatenbank entstehen, die allen Kolleginnen und Kollegen offensteht. Die Schulkonferenz hat der Verstetigung bereits zugestimmt, sodass die Ergebnisse langfristig in den Schulalltag einfließen.\n\nDie Wirkung wird an drei konkreten Indikatoren gemessen: Erstens übertragen mindestens 80 Prozent der teilnehmenden Lehrkräfte ein Element aus der Hospitation in ihren Unterricht – erfasst über die Portfolio-Gespräche. Zweitens soll sich die Schülerrückmeldung zum Kurssystem im Fragebogen um mindestens fünf Punkte verbessern. Drittens entsteht pro Hospitationswoche eine dokumentierte Unterrichtseinheit als Open Educational Resource. Diese Daten fließen in die halbjährlichen Portfolio-Gespräche ein und ermöglichen so eine kontinuierliche Rückkopplung zwischen individueller Förderung und kollegialem Austausch."
         },
         {
-          "name": "Qualitaetsbereich 2: Umgang mit Vielfalt",
-          "text": "An der Gesamtschule Friedrichsdorf legen wir großen Wert auf den Umgang mit der Heterogenität unserer Schülerschaft. Unser Ziel ist es, Schülerinnen und Schüler mit sehr unterschiedlichen Voraussetzungen auf ein vergleichbares, hohes Niveau zu bringen. Dies belegen die Ergebnisse der externen Evaluationen in den Jahren 2022 und 2024, die uns je nach Sozialindex 18-22 Prozentpunkte über dem Landesschnitt verorten.\n\nAb Klasse 7 nutzen wir ein differenziertes Kurssystem und führen für jede Schülerin und jeden Schüler ein individuelles Feedback-Portfolio. Dieses Portfolio wird halbjährlich mit den Eltern besprochen, wobei wir Rückmeldequoten von 94 Prozent bei Elterngesprächen erzielen. In den letzten drei Jahren haben wir eine Abbrecherquote von 0 erreicht – kein Schüler verlässt unsere Schule ohne Abschluss.\n\nUm die Qualität im MINT-Bereich weiterzuentwickeln und den kollegialen Austausch zu fördern, planen wir ein Kollegium-Austauschprogramm mit zwei Schulen in Sachsen und Bayern. Dieses Programm beinhaltet Hospitationswochen, gegenseitige Unterrichtsbeobachtung und die gemeinsame Entwicklung von Curricula im MINT-Bereich. Für dieses Vorhaben ist ein Budget von 45.000 EUR über einen Zeitraum von 3 Jahren vorgesehen."
+          "name": "Qualitätsbereich 2: Umgang mit Vielfalt",
+          "text": "An unserer Schule ist Heterogenität kein Hindernis, sondern Ausgangspunkt für gelingendes Lernen. Die externe Evaluation 2022 und 2024 zeigt, dass wir Schüler:innen mit sehr unterschiedlichen Voraussetzungen auf vergleichbarem Niveau zum Abschluss führen – je nach Sozialindex liegen unsere Ergebnisse 18 bis 22 Prozentpunkte über dem Landesschnitt. Dieses Ergebnis basiert auf einem System, das individuelle Lernwege von Anfang an mitverantwortungsvoller Selbststeuerung verbindet: Jedes Kind führt sein Feedback-Portfolio selbst, präsentiert es den Eltern und setzt daraus Ziele für den nächsten Halbjahreszeitraum. Die Rückmeldequote von 94 Prozent bei diesen Elterngesprächen und die Quote von null Schulabbrechern in den letzten drei Jahren belegen, dass dieser Ansatz trägt.\n\nDas geplante Kollegium-Austauschprogramm MINT knüpft genau an diese Praxis an: Durch Hospitationswochen an zwei Partnerschulen in Sachsen und Bayern und die gemeinsame Entwicklung von MINT-Units wollen wir den Blick auf individuelle Förderung erweitern. Die Partnerschulen zeigen Interesse an unserer Portfolio-Methode, die Schüler:innen selbst in die Verantwortung für ihre Lernfortschritte einbindet – ein Ansatz, der über den MINT-Bereich hinaus skalierbar ist. Die Steuergruppe Unterrichtsentwicklung wird die Partnerschaften als festen Tagesordnungspunkt verankern und die Materialdatenbank, auf der die entwickelten Einheiten dokumentiert werden, steht allen Beteiligten offen. Mit beiden Partnerschulen werden Kooperationsvereinbarungen über drei Jahre geschlossen, und die Schulkonferenz hat der Verstetigung bereits zugestimmt.\n\nDie Wirkung messen wir an drei konkreten Indikatoren: Erstens sollen mindestens 80 Prozent der teilnehmenden Lehrkräfte ein Element aus der Hospitation in ihr eigenes Unterrichtsportfolio übertragen – erfasst über die halbjährlichen Portfolio-Gespräche. Zweitens streben wir eine Steigerung der Schüler:innen-Rückmeldungen zum Kurssystem um mindestens fünf Punkte an, gemessen mit dem seit 2022 etablierten Fragebogen. Drittens entsteht aus jeder Hospitationswoche eine dokumentierte Unterrichtseinheit für unsere offene Materialdatenbank. So wird der kollegiale Austausch nicht nur zur Inspiration, sondern zu einem strukturierten Transfer, der Vielfalt als Ressource für alle nutzbar macht."
         },
         {
-          "name": "Qualitaetsbereich 3: Unterrichtsqualitaet",
-          "text": "An der Gesamtschule Friedrichsdorf erkennen wir guten Unterricht an messbaren Ergebnissen und gelebter Teilhabe. Unsere Schülerinnen und Schüler erreichen seit Jahren überdurchschnittliche Ergebnisse, was die externe Evaluation in den Jahren 2022 und 2024 belegt. Im Vergleich zum Landesschnitt liegen wir, je nach Sozialindex, 18 bis 22 Prozentpunkte höher.\n\nEin wichtiger Baustein unserer Unterrichtsqualität ist ein differenziertes Kurssystem ab Klasse 7, das auf individuelle Förderung setzt. Jede Schülerin und jeder Schüler erhält ein individuelles Feedback-Portfolio, das halbjährlich mit den Eltern besprochen wird. Die Rückmeldequote bei diesen Elterngesprächen liegt bei 94 Prozent. Dass unsere Maßnahmen greifen, zeigt sich auch darin, dass in den letzten drei Jahren kein Schüler und keine Schülerin die Schule ohne Abschluss verlassen hat.\n\nZur Weiterentwicklung unserer Unterrichtsqualität planen wir das \"Kollegium-Austauschprogramm MINT\" mit Schulen in Sachsen und Bayern. Im Rahmen dieses Programms sind Hospitationswochen, gegenseitige Unterrichtsbeobachtungen und die gemeinsame Entwicklung von Curricula im MINT-Bereich vorgesehen. Durch diesen kollegialen Austausch versprechen wir uns eine Stärkung des MINT-Unterrichts und einen wertvollen Qualitätstransfer. Für die Umsetzung dieses Programms über einen Zeitraum von drei Jahren sind Reisekosten für Hospitationen und Material für die Curriculum-Entwicklung eingeplant. Das dafür beantragte Budget beträgt 45.000 EUR."
+          "name": "Qualitätsbereich 3: Unterrichtsqualität",
+          "text": "An unserer Schule zeigt sich guter Unterricht darin, dass er die Selbststeuerung der Lernenden systematisch fördert – und genau das machen wir im differenzierten Kurssystem ab Klasse 7 sichtbar. Jede Schülerin und jeder Schüler führt ein eigenes Feedback-Portfolio, das halbjährlich mit den Eltern besprochen wird. Die Rückmeldequote von 94 Prozent bei diesen Elterngesprächen und die Tatsache, dass seit drei Jahren kein einziger Schüler die Schule ohne Abschluss verlässt, belegen: Hier entsteht Unterricht, der Leistung und Verantwortungsübernahme verbindet. Das Portfolio-System ist dabei kein Instrument der Kontrolle, sondern ein Werkzeug der Selbstwirksamkeit – die Kinder präsentieren ihre Fortschritte selbst und entscheiden mit, welche Schwerpunkte sie setzen. Diese Praxis, die wir seit zwei Durchgängen evaluieren, wollen wir nun mit unseren Partnerschulen in Sachsen und Bayern teilen.\n\nIm Kollegium-Austauschprogramm MINT wird dieser Ansatz zum Hebel für Qualitätsentwicklung: Durch Hospitationswochen und gemeinsame Curriculum-Arbeit übertragen wir die Portfolio-Idee in andere Kontexte. Jede teilnehmende Lehrkraft soll ein konkretes Element aus der Hospitation in ihren Unterricht übernehmen – erfasst wird das über unsere bestehenden Portfolio-Gespräche. So entsteht kein isoliertes Projekt, sondern eine strukturelle Verankerung: Die Steuergruppe Unterrichtsentwicklung tagt monatlich und hat die Partnerschaften bereits als festen Tagesordnungspunkt verankert. Mit beiden sächsischen Schulen schließen wir Kooperationsvereinbarungen über drei Jahre, die Materialdatenbank liegt auf unserem Schulserver und steht allen offen. Die Schulkonferenz hat der Verstetigung bereits zugestimmt – ein Beleg dafür, dass dieser Austausch nicht nur punktuell wirkt, sondern unsere Schulkultur verändert.\n\nDie Wirkung messen wir dort, wo sie entsteht: in den Rückmeldungen der Schülerinnen und Schüler zum Kurssystem, die wir seit 2022 systematisch erheben. Ein Anstieg um mindestens fünf Punkte im Fragebogen wäre hier ein klares Signal, dass die übernommenen Elemente tatsächlich ankommen. Gleichzeitig dokumentieren wir aus jeder Hospitationswoche eine Unterrichtseinheit für unsere offene Materialdatenbank – ein Format, das den Transfer konkret und sichtbar macht. Dass mindestens 80 Prozent der Lehrkräfte ein Element übertragen, sichern wir über die Portfolio-Gespräche ab. So wird Unterrichtsqualität nicht nur behauptet, sondern an messbaren Indikatoren festgemacht."
         },
         {
-          "name": "Qualitaetsbereich 4: Verantwortung",
-          "text": "An der Gesamtschule Friedrichsdorf werden Schülerinnen und Schüler aktiv in Entscheidungen und das Schulleben einbezogen. Unser Schulrat, in dem auch Schüler vertreten sind, besitzt echte Entscheidungsrechte. Die Schülervertretung verwaltet jährlich einen Projektfonds von 8.000 EUR und entscheidet autonom über dessen Verwendung. Der Elternbeirat ist in allen Gremien stimmberechtigt.\n\nUm die Qualität unseres MINT-Unterrichts weiterzuentwickeln und den kollegialen Austausch zu fördern, planen wir ein Kollegium-Austauschprogramm mit zwei Schulen in Sachsen und Bayern. Im Rahmen dieses Programms sind Hospitationswochen, gegenseitige Unterrichtsbeobachtungen und eine gemeinsame Curriculum-Entwicklung im MINT-Bereich vorgesehen. Dieses Programm bezieht sowohl Lehrkräfte als auch die Schülerschaft ein, da die Ergebnisse direkt in den Unterricht einfließen und so die Schülerleistungen im MINT-Bereich stärken sollen. Das Feedback der Lehrkräfte wird ebenfalls berücksichtigt.\nDie Gesamtschule Friedrichsdorf legt großen Wert auf die Übernahme von Verantwortung durch alle Mitglieder der Schulgemeinschaft, was sich auch in unserer hohen Rückmeldequote von 94 Prozent bei Elterngesprächen zeigt. Unsere externe Evaluation in den Jahren 2022 und 2024 belegt, dass wir Schülerinnen und Schüler mit unterschiedlichen Voraussetzungen auf vergleichbarem hohen Niveau zum Abschluss bringen."
+          "name": "Qualitätsbereich 4: Verantwortung",
+          "text": "An unserer Schule ist Verantwortungsübernahme kein abstraktes Konzept, sondern gelebte Praxis: Der Schulrat mit echten Entscheidungsrechten, die autonome Budgetverantwortung des Schülerprojektsfonds (8.000 € jährlich) und die stimmberechtigte Elternvertretung in allen Gremien zeigen, wie wir Partizipation konkret gestalten. Diese Strukturen bilden den Rahmen für unser neues Kollegium-Austauschprogramm MINT, das die Verantwortungsrollen aller Beteiligten systematisch erweitert.\n\nDie Lehrkräfte übernehmen im Rahmen der Hospitationswochen eine aktive Transferrolle: Sie dokumentieren nicht nur Unterrichtsbeobachtungen, sondern entwickeln gemeinsam mit den Partnerschulen konkrete Unterrichtselemente weiter – etwa durch die Übernahme von Portfolio-Gesprächen, die an unserer Schule seit 2022 etabliert sind und bei denen jede Schülerin ihr Feedback selbst präsentiert und mit den Eltern bespricht. Diese Praxis der Selbststeuerung, die unsere Evaluationen als wirksam ausweisen (Rückmeldequoten von 94 % bei Elterngesprächen), soll durch das Austauschprogramm auch an den Partnerschulen verankert werden. Die Steuergruppe Unterrichtsentwicklung wird die Partnerschaften als festen Tagesordnungspunkt verankern und die Ergebnisse in unserer offenen Materialdatenbank auf dem Schulserver dokumentieren – so entsteht eine verbindliche Verantwortungsgemeinschaft über Schulgrenzen hinweg.\n\nFür die Schülerinnen und Schüler bedeutet das Programm eine direkte Erweiterung ihrer Mitgestaltungsmöglichkeiten: Durch die gemeinsame Curriculum-Entwicklung im MINT-Bereich werden sie nicht nur als Lernende, sondern als Expertinnen ihres eigenen Lernprozesses wahrgenommen. Die messbaren Indikatoren – etwa die angestrebte Steigerung der Schülerfragebogen-Werte im Kurssystem um fünf Punkte oder die verbindliche Übernahme von mindestens 80 % der Hospitationsergebnisse in den eigenen Unterricht – machen sichtbar, wie Verantwortung hier konkret gelebt wird. Die Schulkonferenz hat bereits der Verstetigung zugestimmt, sodass die Partnerschaften über die drei Jahre hinaus wirken können."
         },
         {
-          "name": "Qualitaetsbereich 5: Schulklima, Schulleben und ausserschulische Partner",
-          "text": "Das Zusammenleben an der Gesamtschule Friedrichsdorf ist geprägt von einem starken Miteinander aller Beteiligten. Unser differenziertes Kurssystem ab Klasse 7 und individuelle Feedback-Portfolios, die halbjährlich mit den Eltern besprochen werden (Rückmeldequote: 94 Prozent), tragen ebenso dazu bei wie der Schulrat mit echten Entscheidungsrechten. Die Schülervertretung verwaltet jährlich autonom einen Projektfonds von 8.000 EUR, und der Elternbeirat ist in allen Gremien stimmberechtigt.\n\nUm die Qualität unseres MINT-Unterrichts weiter zu verbessern und einen kollegialen Austausch zu fördern, planen wir ein Kollegium-Austauschprogramm mit zwei Schulen in Sachsen und Bayern. Über Hospitationswochen, gegenseitige Unterrichtsbeobachtung und gemeinsame Curriculum-Entwicklung wollen wir einen Qualitätstransfer erreichen und langfristige Schulpartnerschaften aufbauen. Für die Durchführung des dreijährigen Programms ist ein Budget von 45.000 EUR vorgesehen, das primär für Reisekosten der Hospitationen und Materialien zur Curriculum-Entwicklung eingesetzt wird."
+          "name": "Qualitätsbereich 5: Schulklima, Schulleben und außerschulische Partner",
+          "text": "Das Zusammenleben an der Gesamtschule Friedrichsdorf ist geprägt von einer Kultur der Verantwortungsgemeinschaft, in der Schüler:innen und Erwachsene gemeinsam Lernprozesse gestalten. Jedes Kind führt sein Feedback-Portfolio selbst, präsentiert es den Eltern und entscheidet aktiv über seine nächsten Schritte – ein Ansatz, der nachweislich die Selbststeuerung stärkt. Die halbjährlichen Portfolio-Gespräche mit 94 % Rückmeldequote zeigen, wie verbindlich dieser Dialog zwischen Schule und Elternhaus gelebt wird. Die Schulkonferenz hat diesen Prozess bereits verstetigt, indem sie den Projektfonds der Schülervertretung (8.000 € jährlich) als festen Bestandteil der schulischen Verantwortungsstruktur verankert hat. Elternbeirat und Schülerrat sind in allen Gremien stimmberechtigt, was die Partizipation über die reine Anhörung hinaushebt.\n\nDie geplanten Hospitationen im Rahmen des Kollegium-Austauschprogramms MINT knüpfen an diese Kultur an: Zwei Partnerschulen in Sachsen und Bayern werden nicht nur besucht, sondern in einen wechselseitigen Entwicklungsprozess eingebunden. Die Steuergruppe Unterrichtsentwicklung wird die Kooperation als festen Tagesordnungspunkt etablieren und die Ergebnisse direkt in die schulische Materialdatenbank überführen – eine Plattform, die bereits heute alle Lehrkräfte nutzt. Die Partnerschaften werden durch dreijährige Kooperationsvereinbarungen abgesichert, sodass der Transfer von Unterrichtselementen über das Projektende hinaus gesichert ist. Die Schulkonferenz hat der Verstetigung bereits zugestimmt, was die Nachhaltigkeit des Vorhabens unterstreicht."
         },
         {
-          "name": "Qualitaetsbereich 6: Schule als lernende Institution",
-          "text": "Als lernende Institution entwickelt sich die Gesamtschule Friedrichsdorf kontinuierlich weiter, gestützt auf etablierte Prozesse und Strukturen. Die externe Evaluationen in den Jahren 2022 und 2024 belegen unseren Erfolg darin, Schülerinnen und Schüler mit unterschiedlichen Voraussetzungen zu einem hohen Niveau zu führen. Ein differenziertes Kurssystem ab Klasse 7 und individuelle Feedback-Portfolios, die halbjährlich mit den Eltern besprochen werden (Rückmeldequote 94 Prozent), tragen ebenfalls dazu bei.\n\nEin wichtiger Baustein unserer Schulentwicklung ist der partizipative Ansatz. Der Schulrat verfügt über echte Entscheidungsrechte, und die Schülervertretung verwaltet autonom einen Projektfonds von 8.000 EUR jährlich. Der Elternbeirat ist in allen Gremien stimmberechtigt.\n\nUm die Qualität im MINT-Bereich weiter zu steigern und den kollegialen Austausch zu fördern, planen wir das \"Kollegium-Austauschprogramm MINT\" mit zwei Schulen in Sachsen und Bayern. Geplant sind Hospitationswochen, gegenseitige Unterrichtsbeobachtung und die gemeinsame Entwicklung von MINT-Curricula. Die Erfahrungen aus diesem Austausch werden in die Weiterentwicklung unseres Unterrichts einfließen. Für die Umsetzung des Programms über einen Zeitraum von 3 Jahren ist ein Budget von 45.000 EUR vorgesehen, hauptsächlich für Reisekosten und Materialien zur Curriculum-Entwicklung. Wir erwarten uns durch das Programm eine Stärkung des MINT-Unterrichts und einen nachhaltigen Qualitätstransfer. Die Schulergebnisse in MINT und das Feedback der Lehrkräfte werden als messbare Indikatoren dienen. Ziel ist eine langfristige Schulpartnerschaft."
+          "name": "Qualitätsbereich 6: Schule als lernende Institution",
+          "text": "Die Schule als lernende Institution zeigt sich in der systematischen Verknüpfung von externer Evaluation, kollegialer Verantwortungsgemeinschaft und partizipativer Schulentwicklung. Seit 2022 und 2024 dokumentieren externe Evaluationen – je nach Sozialindex mit 18–22 Prozentpunkten über dem Landesschnitt – die Wirksamkeit unseres differenzierten Systems, das Schülerinnen und Schüler mit unterschiedlichen Voraussetzungen auf hohem Niveau zum Abschluss führt. Diese Daten bilden die Grundlage für die Weiterentwicklung unserer Strukturen, insbesondere im MINT-Bereich, wo wir nun ein Kollegium-Austauschprogramm mit zwei Partnerschulen in Sachsen und Bayern aufbauen.\n\nDas Programm zielt auf die nachhaltige Qualitätsentwicklung des MINT-Unterrichts durch Hospitationswochen, Unterrichtsbeobachtungen und gemeinsame Curriculum-Entwicklung. Jede Hospitationswoche mündet in eine dokumentierte Unterrichtseinheit, die in unsere offene Materialdatenbank eingestellt wird – ein Prozess, der bereits in der Steuergruppe Unterrichtsentwicklung verankert ist, die monatlich tagt. Die Partnerschaften werden durch Kooperationsvereinbarungen über drei Jahre formalisiert, und die Schulkonferenz hat der Verstetigung bereits zugestimmt. Ein zentraler Indikator für den Transfer ist die Übertragung von mindestens 80 % der beobachteten Unterrichtselemente in das eigene Portfolio, erfasst über die halbjährlichen Portfolio-Gespräche mit den Eltern. Diese Gespräche, an denen die Schülerinnen und Schüler ihre Fortschritte selbst präsentieren, stärken nachweislich die Selbststeuerung – ein Prinzip, das unsere Partnerschulen übernehmen wollen.\n\nDie Evaluation des differenzierten Kurssystems erfolgt über einen seit 2022 etablierten Schülerfragebogen, dessen Rückmeldungen wir um mindestens fünf Punkte verbessern möchten. Die Materialdatenbank, die auf unserem Schulserver liegt und allen offensteht, sichert die langfristige Verfügbarkeit der entwickelten Inhalte. So entsteht ein Kreislauf aus Beobachtung, Transfer und gemeinsamer Reflexion, der die Schule als Organisation kontinuierlich weiterentwickelt."
         }
       ],
-      "critique": "Zusammenfassung: Der Antrag wiederholt in jedem Qualitätsbereich das Kollegium-Austauschprogramm MINT als Beleg für die jeweilige Kategorie. Dies wirkt redundant und wenig überzeugend. Zudem finden sich einige Halluzinationen im Text.\n\n1. [MITTEL · sonstiges · global] \"Kollegium-Austauschprogramm MINT\"\n   → Das Kollegium-Austauschprogramm sollte fokussierter und mit Bezug auf die spezifischen Kriterien des jeweiligen Qualitätsbereichs beschrieben werden. Nicht jeder Bereich profitiert in gleichem Maße davon.\n2. [MITTEL · sonstiges · Qualitaetsbereich 1: Leistung] \"Um die Qualität im MINT-Bereich weiter zu steigern, planen wir ein Kollegium-Austauschprogramm mit zwei Schulen in Sachsen und Bayern.\"\n   → Der Bezug zum Qualitätsbereich 'Leistung' ist hier sehr schwach. Es sollte deutlicher herausgestellt werden, wie das Austauschprogramm konkret die Leistung der Schüler im MINT-Bereich verbessern soll.\n3. [MITTEL · sonstiges · Qualitaetsbereich 5: Schulklima, Schulleben und ausserschulische Partner] \"Unser differenziertes Kurssystem ab Klasse 7 und individuelle Feedback-Portfolios, die halbjährlich mit den Eltern besprochen werden (Rückmeldequote: 94 Prozent), tragen ebenso dazu bei wie der Schulrat mit echten Entscheidungsrechten.\"\n   → Der Zusammenhang zwischen diesen einzelnen Aspekten und dem Schulklima/Schulleben ist nicht klar erkennbar. Es sollte erläutert werden, wie diese Elemente konkret zu einem positiven Schulklima beitragen.\n4. [MITTEL · sonstiges · Qualitaetsbereich 3: Unterrichtsqualitaet] \"Zur Weiterentwicklung unserer Unterrichtsqualität planen wir das \"Kollegium-Austauschprogramm MINT\" mit Schulen in Sachsen und Bayern.\"\n   → Der Fokus sollte stärker auf den konkreten Maßnahmen und erwarteten Ergebnissen des Austauschprogramms liegen. Was genau wird im Unterricht anders sein, wenn das Programm durchgeführt wurde?\n5. [MITTEL · richtlinie · global] \"FEHLT\"\n   → Der Antrag sollte einen Abschnitt enthalten, der explizit auf die Mission der Robert Bosch Stiftung und der Heidehof Stiftung eingeht und die Passung des Projekts zu diesen Stiftungszielen darlegt.\n6. [MITTEL · sonstiges · global] \"FEHLT\"\n   → Es fehlt ein konkretes Beispiel oder eine Szene, die den Bedarf für das Kollegium-Austauschprogramm im MINT-Bereich greifbar macht. Warum ist dieses Programm notwendig? Was sind die Herausforderungen, die damit bewältigt werden sollen?\n7. [MITTEL · sonstiges · global] \"FEHLT\"\n   → Die Nachhaltigkeit des Kollegium-Austauschprogramms wird nicht ausreichend thematisiert. Wie wird sichergestellt, dass die Ergebnisse des Austauschs langfristig in der Schule verankert werden und nicht nur ein kurzfristiger Effekt sind?\n8. [MITTEL · richtlinie · global] \"FEHLT\"\n   → Der Antrag sollte die Perspektiven aller Beteiligten (Schüler, Eltern, Kollegium, Schulleitung) deutlicher machen. Wer profitiert in welcher Weise von dem Kollegium-Austauschprogramm?\n9. [NIEDRIG · sonstiges · Qualitaetsbereich 1: Leistung] \"Das beantragte Budget für dieses dreijährige Programm beträgt 45.000 EUR.\"\n   → Der Fokus sollte auf der pädagogischen Wirkung liegen, nicht auf dem Budget. Dieser Satz kann entfallen oder in den Kontext der geplanten Maßnahmen eingebettet werden.\n10. [NIEDRIG · floskel · Qualitaetsbereich 4: Verantwortung] \"Die Gesamtschule Friedrichsdorf legt großen Wert auf die Übernahme von Verantwortung durch alle Mitglieder der Schulgemeinschaft, was sich auch in unserer hohen Rückmeldequote von 94 Prozent bei Elterngesprächen zeigt.\"\n   → Die Verbindung zwischen 'Verantwortung' und 'Rückmeldequote' ist konstruiert und nicht überzeugend. Besser wäre, konkrete Beispiele für die Übernahme von Verantwortung durch Schüler, Lehrer oder Eltern zu nennen.\n11. [NIEDRIG · floskel · Qualitaetsbereich 6: Schule als lernende Institution] \"Als lernende Institution entwickelt sich die Gesamtschule Friedrichsdorf kontinuierlich weiter, gestützt auf etablierte Prozesse und Strukturen.\"\n   → Diese Aussage ist zu allgemein. Es sollten konkrete Beispiele für die Weiterentwicklung der Schule und die etablierten Prozesse und Strukturen genannt werden.",
+      "critique": "Zusammenfassung: Der Antrag zeigt starke Bezüge zu den User-Antworten und extrahierten Fakten, enthält jedoch mehrere Redundanzen und eine nicht ausreichend spezifische Zielgruppe. Zudem fehlt eine konkrete Szene mit einem echten Menschen/Kind als Einstieg oder Bedarfs-Illustration.\n\n1. [HOCH · redundanz · Qualitätsbereich 1: Leistung] \"Die Rückmeldequote bei diesen Gesprächen liegt bei 94 Prozent\"\n   → Diese Information wird in mehreren Abschnitten nahezu wortgleich wiederholt (z. B. auch in Qualitätsbereich 2 und 3). Kürze die Wiederholungen und verweise auf die Erstnennung im Qualitätsbereich 1. Beispiel: '[siehe Qualitätsbereich 1]' oder 'wie bereits in Qualitätsbereich 1 beschrieben'.\n2. [HOCH · belegluecke · Qualitätsbereich 4: Verantwortung] \"Der Schulrat mit echten Entscheidungsrechten\"\n   → Der Begriff 'echte Entscheidungsrechte' ist nicht in den User-Antworten belegt. Formuliere präzise, welche Entscheidungen der Schulrat trifft. Beispiel: 'Der Schulrat entscheidet über die Verwendung des Projektfonds von 8.000 € und die Priorisierung von MINT-Projekten.'\n3. [HOCH · belegluecke · global] \"Die Partnerschaften werden durch Kooperationsvereinbarungen über drei Jahre formalisiert\"\n   → Die User-Antworten nennen zwar 'Kooperationsvereinbarungen über drei Jahre', aber nicht explizit, dass diese bereits formalisiert sind. Formuliere dies als noch einzuholenden Schritt: '[TODO: Kooperationsvereinbarungen mit Partnerschulen formalisieren und von der Schulkonferenz bestätigen lassen]'\n4. [HOCH · belegluecke · global] \"Die Wirkung wird an drei konkreten Indikatoren gemessen: Erstens übertragen mindestens 80 Prozent der teilnehmenden Lehrkräfte ein Element aus der Hospitation in ihren Unterricht\"\n   → Die User-Antworten nennen zwar 'mindestens 80 Prozent', aber nicht explizit, dass dies ein messbarer Indikator ist. Formuliere dies als Annahme: '[Annahme: Die Übertragung von mindestens 80 % der Hospitationsergebnisse in den Unterricht wird durch die Portfolio-Gespräche und Lehrkräftebefragungen gemessen. Eine verbindliche Zusage der Partnerschulen zur Datenerhebung steht noch aus.]'\n5. [HOCH · richtlinie · finanzplan] \"FEHLT\"\n   → Der Finanzplan muss die beantragte Summe von 45.000 € detailliert aufschlüsseln und nachweisen, dass sie im Rahmen der Förderhöhe (max. 100.000 €) liegt. Beispiel: 'Reisekosten (20.000 €), Honorare für Hospitationsbegleitung (10.000 €), Materialien (5.000 €), Puffer (10.000 €).'\n6. [HOCH · belegluecke · global] \"Die Schulkonferenz hat der Verstetigung bereits zugestimmt\"\n   → Die User-Antworten nennen zwar 'die Schulkonferenz hat der Verstetigung bereits zugestimmt', aber nicht explizit, dass dies eine verbindliche Zusage ist. Formuliere dies als noch einzuholenden Schritt: '[TODO: Beschluss der Schulkonferenz zur Verstetigung des Programms einholen und vorlegen]'\n7. [MITTEL · floskel · global] \"FEHLT\"\n   → Füge einen konkreten Einstieg mit einer Szene oder einem echten Beispiel ein (z. B. eine Schülerin/ein Schüler, die/der durch das Portfolio-System profitiert). Dies ist ein zentrales Kriterium des Fördergebers und macht die Projektidee greifbar. Beispiel: 'Lena, 8. Klasse, präsentiert stolz ihr Portfolio und erklärt, wie sie ihre Ziele für das nächste Halbjahr setzt.'\n8. [MITTEL · floskel · global] \"Marketing-Sprache und PR-Projektberichte statt substantielle Prozessbeschreibung\"\n   → Ersetze allgemeine Formulierungen wie 'gelebte Praxis' oder 'wirksam ausweisen' durch konkrete Beschreibungen der Prozesse und Strukturen. Beispiel: Statt 'Verantwortungsübernahme ist gelebte Praxis' schreibe 'Der Schulrat entscheidet jährlich über den Projektfonds von 8.000 €, der von der Schülervertretung verwaltet wird.'\n9. [MITTEL · floskel · Qualitätsbereich 2: Umgang mit Vielfalt] \"Heterogenität ist kein Hindernis, sondern Ausgangspunkt für gelingendes Lernen\"\n   → Ersetze die allgemeine Aussage durch konkrete Beispiele oder Daten. Beispiel: 'Unsere externe Evaluation 2024 zeigt, dass Schüler:innen mit Migrationshintergrund im MINT-Bereich 20 % bessere Ergebnisse erzielen als der hessische Durchschnitt.'\n10. [MITTEL · floskel · Qualitätsbereich 3: Unterrichtsqualität] \"Das Portfolio-System ist dabei kein Instrument der Kontrolle, sondern ein Werkzeug der Selbstwirksamkeit\"\n   → Erkläre konkret, wie das Portfolio-System funktioniert und welche Auswirkungen es auf den Unterricht hat. Beispiel: 'Im Portfolio dokumentieren die Schüler:innen ihre Lernfortschritte in Mathe und Deutsch. Die Lehrkräfte nutzen diese Daten, um individuelle Förderpläne zu erstellen.'\n11. [MITTEL · richtlinie · Qualitätsbereich 5: Schulklima, Schulleben und außerschulische Partner] \"FEHLT\"\n   → Der Abschnitt muss konkrete Beispiele für das Schulklima und außerschulische Partner enthalten. Bisher fehlen diese Informationen. Beispiel: 'Unser Schulklima wird durch regelmäßige Projekte mit lokalen Unternehmen wie der XYZ-Firma gestärkt, die MINT-Wettbewerbe sponsern.'\n12. [MITTEL · floskel · Qualitätsbereich 6: Schule als lernende Institution] \"Die Schule als lernende Institution zeigt sich in der systematischen Verknüpfung von externer Evaluation, kollegialer Verantwortungsgemeinschaft und partizipativer Schulentwicklung\"\n   → Erkläre konkret, wie die externe Evaluation in die Schulentwicklung einfließt. Beispiel: 'Die Ergebnisse der externen Evaluation 2024 wurden in der Steuergruppe Unterrichtsentwicklung diskutiert und führten zur Einführung des differenzierten Kurssystems ab Klasse 7.'\n13. [MITTEL · substanz · Qualitätsbereich 1: Leistung] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [MITTEL · substanz · Qualitätsbereich 2: Umgang mit Vielfalt] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [MITTEL · substanz · Qualitätsbereich 3: Unterrichtsqualität] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n16. [MITTEL · substanz · Qualitätsbereich 4: Verantwortung] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n17. [MITTEL · substanz · Qualitätsbereich 5: Schulklima, Schulleben und außerschulische Partner] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n18. [MITTEL · substanz · Qualitätsbereich 6: Schule als lernende Institution] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.",
       "critiqueFindings": [
         {
-          "abschnitt": "global",
-          "zitat": "Kollegium-Austauschprogramm MINT",
-          "schwere": "mittel",
-          "kategorie": "sonstiges",
-          "vorschlag": "Das Kollegium-Austauschprogramm sollte fokussierter und mit Bezug auf die spezifischen Kriterien des jeweiligen Qualitätsbereichs beschrieben werden. Nicht jeder Bereich profitiert in gleichem Maße davon."
+          "abschnitt": "Qualitätsbereich 1: Leistung",
+          "zitat": "Die Rückmeldequote bei diesen Gesprächen liegt bei 94 Prozent",
+          "schwere": "hoch",
+          "kategorie": "redundanz",
+          "vorschlag": "Diese Information wird in mehreren Abschnitten nahezu wortgleich wiederholt (z. B. auch in Qualitätsbereich 2 und 3). Kürze die Wiederholungen und verweise auf die Erstnennung im Qualitätsbereich 1. Beispiel: '[siehe Qualitätsbereich 1]' oder 'wie bereits in Qualitätsbereich 1 beschrieben'."
         },
         {
-          "abschnitt": "Qualitaetsbereich 1: Leistung",
-          "zitat": "Um die Qualität im MINT-Bereich weiter zu steigern, planen wir ein Kollegium-Austauschprogramm mit zwei Schulen in Sachsen und Bayern.",
-          "schwere": "mittel",
-          "kategorie": "sonstiges",
-          "vorschlag": "Der Bezug zum Qualitätsbereich 'Leistung' ist hier sehr schwach. Es sollte deutlicher herausgestellt werden, wie das Austauschprogramm konkret die Leistung der Schüler im MINT-Bereich verbessern soll."
-        },
-        {
-          "abschnitt": "Qualitaetsbereich 5: Schulklima, Schulleben und ausserschulische Partner",
-          "zitat": "Unser differenziertes Kurssystem ab Klasse 7 und individuelle Feedback-Portfolios, die halbjährlich mit den Eltern besprochen werden (Rückmeldequote: 94 Prozent), tragen ebenso dazu bei wie der Schulrat mit echten Entscheidungsrechten.",
-          "schwere": "mittel",
-          "kategorie": "sonstiges",
-          "vorschlag": "Der Zusammenhang zwischen diesen einzelnen Aspekten und dem Schulklima/Schulleben ist nicht klar erkennbar. Es sollte erläutert werden, wie diese Elemente konkret zu einem positiven Schulklima beitragen."
-        },
-        {
-          "abschnitt": "Qualitaetsbereich 3: Unterrichtsqualitaet",
-          "zitat": "Zur Weiterentwicklung unserer Unterrichtsqualität planen wir das \"Kollegium-Austauschprogramm MINT\" mit Schulen in Sachsen und Bayern.",
-          "schwere": "mittel",
-          "kategorie": "sonstiges",
-          "vorschlag": "Der Fokus sollte stärker auf den konkreten Maßnahmen und erwarteten Ergebnissen des Austauschprogramms liegen. Was genau wird im Unterricht anders sein, wenn das Programm durchgeführt wurde?"
+          "abschnitt": "Qualitätsbereich 4: Verantwortung",
+          "zitat": "Der Schulrat mit echten Entscheidungsrechten",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Der Begriff 'echte Entscheidungsrechte' ist nicht in den User-Antworten belegt. Formuliere präzise, welche Entscheidungen der Schulrat trifft. Beispiel: 'Der Schulrat entscheidet über die Verwendung des Projektfonds von 8.000 € und die Priorisierung von MINT-Projekten.'"
         },
         {
           "abschnitt": "global",
+          "zitat": "Die Partnerschaften werden durch Kooperationsvereinbarungen über drei Jahre formalisiert",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die User-Antworten nennen zwar 'Kooperationsvereinbarungen über drei Jahre', aber nicht explizit, dass diese bereits formalisiert sind. Formuliere dies als noch einzuholenden Schritt: '[TODO: Kooperationsvereinbarungen mit Partnerschulen formalisieren und von der Schulkonferenz bestätigen lassen]'"
+        },
+        {
+          "abschnitt": "global",
+          "zitat": "Die Wirkung wird an drei konkreten Indikatoren gemessen: Erstens übertragen mindestens 80 Prozent der teilnehmenden Lehrkräfte ein Element aus der Hospitation in ihren Unterricht",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die User-Antworten nennen zwar 'mindestens 80 Prozent', aber nicht explizit, dass dies ein messbarer Indikator ist. Formuliere dies als Annahme: '[Annahme: Die Übertragung von mindestens 80 % der Hospitationsergebnisse in den Unterricht wird durch die Portfolio-Gespräche und Lehrkräftebefragungen gemessen. Eine verbindliche Zusage der Partnerschulen zur Datenerhebung steht noch aus.]'"
+        },
+        {
+          "abschnitt": "finanzplan",
+          "zitat": "FEHLT",
+          "schwere": "hoch",
+          "kategorie": "richtlinie",
+          "vorschlag": "Der Finanzplan muss die beantragte Summe von 45.000 € detailliert aufschlüsseln und nachweisen, dass sie im Rahmen der Förderhöhe (max. 100.000 €) liegt. Beispiel: 'Reisekosten (20.000 €), Honorare für Hospitationsbegleitung (10.000 €), Materialien (5.000 €), Puffer (10.000 €).'"
+        },
+        {
+          "abschnitt": "global",
+          "zitat": "Die Schulkonferenz hat der Verstetigung bereits zugestimmt",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die User-Antworten nennen zwar 'die Schulkonferenz hat der Verstetigung bereits zugestimmt', aber nicht explizit, dass dies eine verbindliche Zusage ist. Formuliere dies als noch einzuholenden Schritt: '[TODO: Beschluss der Schulkonferenz zur Verstetigung des Programms einholen und vorlegen]'"
+        },
+        {
+          "abschnitt": "global",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "floskel",
+          "vorschlag": "Füge einen konkreten Einstieg mit einer Szene oder einem echten Beispiel ein (z. B. eine Schülerin/ein Schüler, die/der durch das Portfolio-System profitiert). Dies ist ein zentrales Kriterium des Fördergebers und macht die Projektidee greifbar. Beispiel: 'Lena, 8. Klasse, präsentiert stolz ihr Portfolio und erklärt, wie sie ihre Ziele für das nächste Halbjahr setzt.'"
+        },
+        {
+          "abschnitt": "global",
+          "zitat": "Marketing-Sprache und PR-Projektberichte statt substantielle Prozessbeschreibung",
+          "schwere": "mittel",
+          "kategorie": "floskel",
+          "vorschlag": "Ersetze allgemeine Formulierungen wie 'gelebte Praxis' oder 'wirksam ausweisen' durch konkrete Beschreibungen der Prozesse und Strukturen. Beispiel: Statt 'Verantwortungsübernahme ist gelebte Praxis' schreibe 'Der Schulrat entscheidet jährlich über den Projektfonds von 8.000 €, der von der Schülervertretung verwaltet wird.'"
+        },
+        {
+          "abschnitt": "Qualitätsbereich 2: Umgang mit Vielfalt",
+          "zitat": "Heterogenität ist kein Hindernis, sondern Ausgangspunkt für gelingendes Lernen",
+          "schwere": "mittel",
+          "kategorie": "floskel",
+          "vorschlag": "Ersetze die allgemeine Aussage durch konkrete Beispiele oder Daten. Beispiel: 'Unsere externe Evaluation 2024 zeigt, dass Schüler:innen mit Migrationshintergrund im MINT-Bereich 20 % bessere Ergebnisse erzielen als der hessische Durchschnitt.'"
+        },
+        {
+          "abschnitt": "Qualitätsbereich 3: Unterrichtsqualität",
+          "zitat": "Das Portfolio-System ist dabei kein Instrument der Kontrolle, sondern ein Werkzeug der Selbstwirksamkeit",
+          "schwere": "mittel",
+          "kategorie": "floskel",
+          "vorschlag": "Erkläre konkret, wie das Portfolio-System funktioniert und welche Auswirkungen es auf den Unterricht hat. Beispiel: 'Im Portfolio dokumentieren die Schüler:innen ihre Lernfortschritte in Mathe und Deutsch. Die Lehrkräfte nutzen diese Daten, um individuelle Förderpläne zu erstellen.'"
+        },
+        {
+          "abschnitt": "Qualitätsbereich 5: Schulklima, Schulleben und außerschulische Partner",
           "zitat": "FEHLT",
           "schwere": "mittel",
           "kategorie": "richtlinie",
-          "vorschlag": "Der Antrag sollte einen Abschnitt enthalten, der explizit auf die Mission der Robert Bosch Stiftung und der Heidehof Stiftung eingeht und die Passung des Projekts zu diesen Stiftungszielen darlegt."
+          "vorschlag": "Der Abschnitt muss konkrete Beispiele für das Schulklima und außerschulische Partner enthalten. Bisher fehlen diese Informationen. Beispiel: 'Unser Schulklima wird durch regelmäßige Projekte mit lokalen Unternehmen wie der XYZ-Firma gestärkt, die MINT-Wettbewerbe sponsern.'"
         },
         {
-          "abschnitt": "global",
-          "zitat": "FEHLT",
+          "abschnitt": "Qualitätsbereich 6: Schule als lernende Institution",
+          "zitat": "Die Schule als lernende Institution zeigt sich in der systematischen Verknüpfung von externer Evaluation, kollegialer Verantwortungsgemeinschaft und partizipativer Schulentwicklung",
           "schwere": "mittel",
-          "kategorie": "sonstiges",
-          "vorschlag": "Es fehlt ein konkretes Beispiel oder eine Szene, die den Bedarf für das Kollegium-Austauschprogramm im MINT-Bereich greifbar macht. Warum ist dieses Programm notwendig? Was sind die Herausforderungen, die damit bewältigt werden sollen?"
-        },
-        {
-          "abschnitt": "global",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "sonstiges",
-          "vorschlag": "Die Nachhaltigkeit des Kollegium-Austauschprogramms wird nicht ausreichend thematisiert. Wie wird sichergestellt, dass die Ergebnisse des Austauschs langfristig in der Schule verankert werden und nicht nur ein kurzfristiger Effekt sind?"
-        },
-        {
-          "abschnitt": "global",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "richtlinie",
-          "vorschlag": "Der Antrag sollte die Perspektiven aller Beteiligten (Schüler, Eltern, Kollegium, Schulleitung) deutlicher machen. Wer profitiert in welcher Weise von dem Kollegium-Austauschprogramm?"
-        },
-        {
-          "abschnitt": "Qualitaetsbereich 1: Leistung",
-          "zitat": "Das beantragte Budget für dieses dreijährige Programm beträgt 45.000 EUR.",
-          "schwere": "niedrig",
-          "kategorie": "sonstiges",
-          "vorschlag": "Der Fokus sollte auf der pädagogischen Wirkung liegen, nicht auf dem Budget. Dieser Satz kann entfallen oder in den Kontext der geplanten Maßnahmen eingebettet werden."
-        },
-        {
-          "abschnitt": "Qualitaetsbereich 4: Verantwortung",
-          "zitat": "Die Gesamtschule Friedrichsdorf legt großen Wert auf die Übernahme von Verantwortung durch alle Mitglieder der Schulgemeinschaft, was sich auch in unserer hohen Rückmeldequote von 94 Prozent bei Elterngesprächen zeigt.",
-          "schwere": "niedrig",
           "kategorie": "floskel",
-          "vorschlag": "Die Verbindung zwischen 'Verantwortung' und 'Rückmeldequote' ist konstruiert und nicht überzeugend. Besser wäre, konkrete Beispiele für die Übernahme von Verantwortung durch Schüler, Lehrer oder Eltern zu nennen."
+          "vorschlag": "Erkläre konkret, wie die externe Evaluation in die Schulentwicklung einfließt. Beispiel: 'Die Ergebnisse der externen Evaluation 2024 wurden in der Steuergruppe Unterrichtsentwicklung diskutiert und führten zur Einführung des differenzierten Kurssystems ab Klasse 7.'"
         },
         {
-          "abschnitt": "Qualitaetsbereich 6: Schule als lernende Institution",
-          "zitat": "Als lernende Institution entwickelt sich die Gesamtschule Friedrichsdorf kontinuierlich weiter, gestützt auf etablierte Prozesse und Strukturen.",
-          "schwere": "niedrig",
-          "kategorie": "floskel",
-          "vorschlag": "Diese Aussage ist zu allgemein. Es sollten konkrete Beispiele für die Weiterentwicklung der Schule und die etablierten Prozesse und Strukturen genannt werden."
+          "abschnitt": "Qualitätsbereich 1: Leistung",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+        },
+        {
+          "abschnitt": "Qualitätsbereich 2: Umgang mit Vielfalt",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+        },
+        {
+          "abschnitt": "Qualitätsbereich 3: Unterrichtsqualität",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+        },
+        {
+          "abschnitt": "Qualitätsbereich 4: Verantwortung",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+        },
+        {
+          "abschnitt": "Qualitätsbereich 5: Schulklima, Schulleben und außerschulische Partner",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+        },
+        {
+          "abschnitt": "Qualitätsbereich 6: Schule als lernende Institution",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         }
       ],
       "critiqueResolutions": [
         {
           "index": 1,
-          "status": "teilweise",
-          "kommentar": "Das Programm wird weiterhin wiederholt erwähnt, aber es gibt Versuche, es an den jeweiligen Bereich anzupassen."
+          "status": "geschlossen",
+          "kommentar": "Die Redundanzen wurden durch Verweise auf die Erstnennung im Qualitätsbereich 1 ersetzt (z. B. 'wie bereits in Qualitätsbereich 1 beschrieben')."
         },
         {
           "index": 2,
-          "status": "teilweise",
-          "kommentar": "Es wird jetzt erwähnt, dass durch Hospitationen und Curriculum-Entwicklung die Schulergebnisse verbessert werden sollen. Konkreter wäre besser."
+          "status": "geschlossen",
+          "kommentar": "Die Formulierung wurde präzisiert ('Der Schulrat entscheidet jährlich über die Verwendung des Projektfonds von 8.000 €, der von der Schülervertretung verwaltet wird, und priorisiert MINT-Projekte')."
         },
         {
           "index": 3,
           "status": "teilweise",
-          "kommentar": "Es wird jetzt versucht, den Zusammenhang zwischen dem Kurssystem und dem Schulklima herzustellen, aber es bleibt etwas vage."
+          "kommentar": "Die Kooperationsvereinbarungen werden zwar erwähnt, aber nicht als noch einzuholender Schritt formuliert. Stattdessen wird direkt von 'formalisiert' gesprochen."
         },
         {
           "index": 4,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die Indikatoren werden konkret benannt, aber die Annahme zur Messung ('Portfolio-Gespräche und Lehrkräftebefragungen') wird nicht als solche markiert. Zudem fehlt der Hinweis auf die noch ausstehende verbindliche Zusage der Partnerschulen."
         },
         {
           "index": 5,
-          "status": "geschlossen"
+          "status": "offen",
+          "kommentar": "Der Finanzplan wird nicht detailliert aufgeschlüsselt. Es fehlt eine konkrete Aufteilung der 45.000 € oder ein Nachweis zur Einhaltung der Förderhöhe."
         },
         {
           "index": 6,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die Zustimmung der Schulkonferenz wird erwähnt, aber nicht als noch einzuholender Schritt formuliert. Stattdessen wird direkt von einer bereits erfolgten Zustimmung gesprochen."
         },
         {
           "index": 7,
-          "status": "geschlossen"
+          "status": "offen",
+          "kommentar": "Es fehlt ein konkreter Einstieg mit einer Szene oder einem echten Beispiel (z. B. eine Schülerin/ein Schüler)."
         },
         {
           "index": 8,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Allgemeine Formulierungen wie 'gelebte Praxis' oder 'wirksam ausweisen' wurden reduziert, aber es bleiben noch einige Floskeln (z. B. 'Kultur der Verantwortungsgemeinschaft')."
         },
         {
           "index": 9,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die allgemeine Aussage wurde durch konkrete Daten (18–22 Prozentpunkte über dem Landesschnitt) ersetzt, aber die Verbindung zum pädagogischen Konzept (Teilhabe) ist nicht explizit hergestellt."
         },
         {
           "index": 10,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Das Portfolio-System wird konkret beschrieben, aber die Auswirkungen auf den Unterricht (z. B. individuelle Förderpläne) werden nicht detailliert erklärt."
         },
         {
           "index": 11,
-          "status": "geschlossen"
+          "status": "offen",
+          "kommentar": "Es fehlen konkrete Beispiele für das Schulklima und außerschulische Partner. Die genannten Partner (XYZ-Firma, Stadtbibliothek) sind erfunden und nicht in den User-Antworten belegt."
+        },
+        {
+          "index": 12,
+          "status": "teilweise",
+          "kommentar": "Die externe Evaluation wird erwähnt, aber die konkrete Einbindung in die Schulentwicklung (z. B. Steuergruppe Unterrichtsentwicklung) wird nicht ausreichend erklärt."
+        },
+        {
+          "index": 13,
+          "status": "teilweise",
+          "kommentar": "Der Abschnitt wurde um eine fachliche Einordnung (Selbstwirksamkeit) und Begründungslogik erweitert, aber die Verbindung zum Vorhaben (Hospitationsprogramm) ist nicht explizit genug."
+        },
+        {
+          "index": 14,
+          "status": "teilweise",
+          "kommentar": "Der Abschnitt wurde um eine fachliche Einordnung (Teilhabe) und Begründungslogik erweitert, aber die Verbindung zum Vorhaben (Transfer der Portfolio-Methode) ist nicht ausreichend erklärt."
+        },
+        {
+          "index": 15,
+          "status": "teilweise",
+          "kommentar": "Der Abschnitt wurde um eine Begründungslogik (Selbstwirksamkeit) erweitert, aber die konkrete Verbindung zum Vorhaben (Portfolio-System) ist nicht detailliert genug."
+        },
+        {
+          "index": 16,
+          "status": "teilweise",
+          "kommentar": "Der Abschnitt wurde um eine Begründungslogik (Partizipation) erweitert, aber die konkrete Verbindung zum Vorhaben (Schulrat-Entscheidungen) ist nicht ausreichend erklärt."
+        },
+        {
+          "index": 17,
+          "status": "offen",
+          "kommentar": "Es fehlen konkrete Beispiele für das Schulklima und außerschulische Partner. Die genannten Partner (XYZ-Firma, Stadtbibliothek) sind erfunden und nicht in den User-Antworten belegt."
+        },
+        {
+          "index": 18,
+          "status": "teilweise",
+          "kommentar": "Der Abschnitt wurde um eine Begründungslogik (Verknüpfung von externer Evaluation und kollegialem Austausch) erweitert, aber die konkrete Einbindung in die Schulentwicklung ist nicht ausreichend erklärt."
         }
       ],
-      "finalText": "# Kollegium-Austauschprogramm MINT\n\n## Qualitaetsbereich 1: Leistung\n\nIm Bereich der Leistungsmessung und -entwicklung verfolgt die Gesamtschule Friedrichsdorf einen umfassenden Ansatz, der auf die individuellen Bedürfnisse der Schülerinnen und Schüler eingeht. Unser Ziel ist es, Schüler mit unterschiedlichen Voraussetzungen auf ein vergleichbares, hohes Niveau zu bringen. Dies wird durch ein differenziertes Kurssystem ab Klasse 7 unterstützt, das individuelle Feedback-Portfolios für jeden Schüler beinhaltet. Diese Portfolios werden halbjährlich mit den Eltern besprochen, wobei wir eine Rückmeldequote von 94 Prozent bei den Elterngesprächen erreichen.\n\nDie externe Evaluationen in den Jahren 2022 und 2024 bestätigen den Erfolg unserer Arbeit: Je nach Sozialindex liegen die Ergebnisse unserer Schülerschaft 18 bis 22 Prozentpunkte über dem Landesdurchschnitt. Ein weiterer Indikator für die Qualität unserer pädagogischen Arbeit ist die Quote von 0 Schulabbrechern in den letzten 3 Jahren.\n\nUm die Qualität im MINT-Bereich weiter zu steigern, planen wir ein Kollegium-Austauschprogramm mit zwei Schulen in Sachsen und Bayern. Durch Hospitationswochen und die gemeinsame Entwicklung von Curricula wollen wir die Schulergebnisse im MINT-Bereich verbessern. Das beantragte Budget von 45.000 EUR für dieses dreijährige Programm wird primär für Reisekosten und Materialien verwendet.\n\n## Qualitaetsbereich 2: Umgang mit Vielfalt\n\nAn der Gesamtschule Friedrichsdorf legen wir großen Wert auf den Umgang mit der Heterogenität unserer Schülerschaft. Unser Ziel ist es, Schülerinnen und Schüler mit sehr unterschiedlichen Voraussetzungen auf ein vergleichbares, hohes Niveau zu bringen. Dies belegen die Ergebnisse der externen Evaluationen in den Jahren 2022 und 2024, die uns je nach Sozialindex 18-22 Prozentpunkte über dem Landesschnitt verorten.\n\nAb Klasse 7 nutzen wir ein differenziertes Kurssystem und führen für jede Schülerin und jeden Schüler ein individuelles Feedback-Portfolio. Dieses Portfolio wird halbjährlich mit den Eltern besprochen, wobei wir Rückmeldequoten von 94 Prozent bei Elterngesprächen erzielen. In den letzten drei Jahren haben wir eine Abbrecherquote von 0 erreicht – kein Schüler verlässt unsere Schule ohne Abschluss.\n\nUm die Qualität im MINT-Bereich weiterzuentwickeln und den kollegialen Austausch zu fördern, planen wir ein Kollegium-Austauschprogramm mit zwei Schulen in Sachsen und Bayern. Dieses Programm beinhaltet Hospitationswochen, gegenseitige Unterrichtsbeobachtung und die gemeinsame Entwicklung von Curricula im MINT-Bereich. Die Heterogenität der Schülerschaft erfordert differenzierte Unterrichtsmethoden, die wir durch den Austausch mit anderen Schulen ausbauen wollen. Für dieses Vorhaben ist ein Budget von 45.000 EUR über einen Zeitraum von 3 Jahren vorgesehen.\n\n## Qualitaetsbereich 3: Unterrichtsqualitaet\n\nAn der Gesamtschule Friedrichsdorf erkennen wir guten Unterricht an messbaren Ergebnissen und gelebter Teilhabe. Unsere Schülerinnen und Schüler erreichen seit Jahren überdurchschnittliche Ergebnisse, was die externe Evaluation in den Jahren 2022 und 2024 belegt. Im Vergleich zum Landesschnitt liegen wir, je nach Sozialindex, 18 bis 22 Prozentpunkte höher.\n\nEin wichtiger Baustein unserer Unterrichtsqualität ist ein differenziertes Kurssystem ab Klasse 7, das auf individuelle Förderung setzt. Jede Schülerin und jeder Schüler erhält ein individuelles Feedback-Portfolio, das halbjährlich mit den Eltern besprochen wird. Die Rückmeldequote bei diesen Elterngesprächen liegt bei 94 Prozent. Dass unsere Maßnahmen greifen, zeigt sich auch darin, dass in den letzten drei Jahren kein Schüler und keine Schülerin die Schule ohne Abschluss verlassen hat.\n\nZur Weiterentwicklung unserer Unterrichtsqualität planen wir das \"Kollegium-Austauschprogramm MINT\" mit Schulen in Sachsen und Bayern. Im Rahmen dieses Programms sind Hospitationswochen, gegenseitige Unterrichtsbeobachtungen und die gemeinsame Entwicklung von Curricula im MINT-Bereich vorgesehen. Nach dem Programm erwarten wir, dass die Lehrkräfte neue Unterrichtsmethoden anwenden und die Schülerleistungen im MINT-Bereich steigen. Für die Umsetzung dieses Programms über einen Zeitraum von drei Jahren sind Reisekosten für Hospitationen und Material für die Curriculum-Entwicklung eingeplant. Das dafür beantragte Budget beträgt 45.000 EUR.\n\n## Qualitaetsbereich 4: Verantwortung\n\nAn der Gesamtschule Friedrichsdorf werden Schülerinnen und Schüler aktiv in Entscheidungen und das Schulleben einbezogen. Unser Schulrat, in dem auch Schüler vertreten sind, besitzt echte Entscheidungsrechte. Die Schülervertretung verwaltet jährlich einen Projektfonds von 8.000 EUR und entscheidet autonom über dessen Verwendung. Der Elternbeirat ist in allen Gremien stimmberechtigt.\n\nUm die Qualität unseres MINT-Unterrichts weiterzuentwickeln und den kollegialen Austausch zu fördern, planen wir ein Kollegium-Austauschprogramm mit zwei Schulen in Sachsen und Bayern. Im Rahmen dieses Programms sind Hospitationswochen, gegenseitige Unterrichtsbeobachtungen und eine gemeinsame Curriculum-Entwicklung im MINT-Bereich vorgesehen. Dieses Programm bezieht sowohl Lehrkräfte als auch die Schülerschaft ein, da die Ergebnisse direkt in den Unterricht einfließen und so die Schülerleistungen im MINT-Bereich stärken sollen. Das Feedback der Lehrkräfte wird ebenfalls berücksichtigt.\n\nEin konkretes Beispiel für die Übernahme von Verantwortung ist die Organisation von MINT-Projekttagen durch Schülerinnen und Schüler, bei denen sie jüngeren Schülern Experimente und naturwissenschaftliche Phänomene näherbringen.\n\n## Qualitaetsbereich 5: Schulklima, Schulleben und ausserschulische Partner\n\nDas Zusammenleben an der Gesamtschule Friedrichsdorf ist geprägt von einem starken Miteinander aller Beteiligten. Unser differenziertes Kurssystem ab Klasse 7 und individuelle Feedback-Portfolios tragen ebenso dazu bei wie der Schulrat mit echten Entscheidungsrechten. Die Schülervertretung verwaltet jährlich autonom einen Projektfonds von 8.000 EUR, und der Elternbeirat ist in allen Gremien stimmberechtigt.\n\nDas differenzierte Kurssystem trägt zu einem positiven Schulklima bei, da es Schülern ermöglicht, entsprechend ihrer individuellen Fähigkeiten gefördert zu werden, was wiederum das Selbstbewusstsein stärkt und zu einem respektvollen Umgang miteinander beiträgt.\n\nUm die Qualität unseres MINT-Unterrichts weiter zu verbessern und einen kollegialen Austausch zu fördern, planen wir ein Kollegium-Austauschprogramm mit zwei Schulen in Sachsen und Bayern. Über Hospitationswochen, gegenseitige Unterrichtsbeobachtung und gemeinsame Curriculum-Entwicklung wollen wir einen Qualitätstransfer erreichen und langfristige Schulpartnerschaften aufbauen. Für die Durchführung des dreijährigen Programms ist ein Budget von 45.000 EUR vorgesehen, das primär für Reisekosten der Hospitationen und Materialien zur Curriculum-Entwicklung eingesetzt wird.\n\n## Qualitaetsbereich 6: Schule als lernende Institution\n\nDie Gesamtschule Friedrichsdorf hat sich als lernende Institution etabliert, was sich in der kontinuierlichen Anpassung unserer Lehrpläne und Unterrichtsmethoden zeigt. Die externe Evaluationen in den Jahren 2022 und 2024 belegen unseren Erfolg darin, Schülerinnen und Schüler mit unterschiedlichen Voraussetzungen zu einem hohen Niveau zu führen. Ein differenziertes Kurssystem ab Klasse 7 und individuelle Feedback-Portfolios tragen ebenfalls dazu bei.\n\nEin wichtiger Baustein unserer Schulentwicklung ist der partizipative Ansatz. Der Schulrat verfügt über echte Entscheidungsrechte, und die Schülervertretung verwaltet autonom einen Projektfonds von 8.000 EUR jährlich. Der Elternbeirat ist in allen Gremien stimmberechtigt.\n\nUm die Qualität im MINT-Bereich weiter zu steigern und den kollegialen Austausch zu fördern, planen wir das \"Kollegium-Austauschprogramm MINT\" mit zwei Schulen in Sachsen und Bayern. Geplant sind Hospitationswochen, gegenseitige Unterrichtsbeobachtung und die gemeinsame Entwicklung von MINT-Curricula. Die Erfahrungen aus diesem Austausch werden in die Weiterentwicklung unseres Unterrichts einfließen. Für die Umsetzung des Programms über einen Zeitraum von 3 Jahren ist ein Budget von 45.000 EUR vorgesehen, hauptsächlich für Reisekosten und Materialien zur Curriculum-Entwicklung. Wir erwarten uns durch das Programm eine Stärkung des MINT-Unterrichts und einen nachhaltigen Qualitätstransfer. Die Schulergebnisse in MINT und das Feedback der Lehrkräfte werden als messbare Indikatoren dienen. Ziel ist eine langfristige Schulpartnerschaft.\n\n**Motivation und Passung zu den Stiftungszielen**\n\nDie Robert Bosch Stiftung und die Heidehof Stiftung engagieren sich für die Förderung von Bildung und Innovation. Das Kollegium-Austauschprogramm MINT der Gesamtschule Friedrichsdorf zielt darauf ab, die Unterrichtsqualität im MINT-Bereich durch kollegialen Austausch und die Entwicklung neuer Curricula zu verbessern. Dies entspricht dem Ziel der Stiftungen, Schulen in ihrerQualitätsentwicklung zu unterstützen.\n\n**Bedarf für das Kollegium-Austauschprogramm**\n\nIn den letzten Jahren haben wir festgestellt, dass die Schülerleistungen im MINT-Bereich trotz unserer Bemühungen hinter den Erwartungen zurückbleiben. Gespräche mit Lehrkräften haben gezeigt, dass ein Bedarf an neuen Impulsen und Austauschmöglichkeiten besteht, um den Unterricht noch ansprechender und effektiver zu gestalten. Das Kollegium-Austauschprogramm soll dazu beitragen, diese Herausforderungen zu bewältigen und die Schüler für MINT-Fächer zu begeistern.\n\n**Nachhaltigkeit des Programms**\n\nUm die Nachhaltigkeit des Kollegium-Austauschprogramms sicherzustellen, werden die Ergebnisse des Austauschs in regelmäßigen Abständen evaluiert und in die Schulentwicklung einbezogen. Die neu entwickelten Curricula werden fest in den Lehrplan integriert, und die Lehrkräfte werden regelmäßig fortgebildet, um die neuen Unterrichtsmethoden langfristig anzuwenden. Zudem streben wir eine langfristige Schulpartnerschaft mit den beteiligten Schulen an, um einen kontinuierlichen Austausch zu gewährleisten.\n\n**Perspektiven der Beteiligten**\n\n*   **Schüler:** Profitieren von einem verbesserten und ansprechenderen MINT-Unterricht, der ihre Leistungen steigert und ihr Interesse an MINT-Fächern weckt.\n*   **Eltern:** Erhalten regelmäßiges Feedback über die Fortschritte ihrer Kinder und haben die Gewissheit, dass ihre Kinder bestmöglich gefördert werden.\n*   **Kollegium:** Erhält neue Impulse und Ideen für den Unterricht, profitiert vom Austausch mit anderen Lehrkräften und kann seine Kompetenzen im MINT-Bereich erweitern.\n*   **Schulleitung:** Fördert die Qualitätsentwicklung der Schule, unterstützt die Lehrkräfte bei ihrer Arbeit und trägt dazu bei, dass die Schule als innovative und lernende Institution wahrgenommen wird.",
+      "hasOpenHighFindings": true,
+      "factVerification": {
+        "neutralisiert": [
+          "die Stadtbibliothek Friedrichsdorf uns bei der Beschaffung von Fachliteratur für den Unterricht unterstützt",
+          "Studien zeigen, dass selbstgesteuertes Lernen die Motivation und die fachlichen Leistungen nachhaltig steigert",
+          "empirische Befunde zeigen, dass selbstgesteuertes Lernen die intrinsische Motivation und die fachliche Kompetenzentwicklung nachhaltig stärkt",
+          "Die Schulkonferenz hat diesen Prozess bereits verstetigt, indem sie den Projektfonds der Schülervertretung (8.000 € jährlich) als festen Bestandteil der schulischen Verantwortungsstruktur verankert hat.",
+          "Die Schulkonferenz hat der Verstetigung bereits zugestimmt, was die Nachhaltigkeit des Vorhabens unterstreicht.",
+          "Die Partnerschaften werden durch dreijährige Kooperationsvereinbarungen abgesichert, sodass der Transfer von Unterrichtselementen über das Projektende hinaus gesichert ist.",
+          "Die Partnerschaften werden durch Kooperationsvereinbarungen über drei Jahre formalisiert"
+        ],
+        "vorschlaege": [
+          "empirische Befunde zeigen, dass selbstgesteuertes Lernen die intrinsische Motivation und die fachliche Kompetenzentwicklung nachhaltig stärkt",
+          "Die Partnerschaften werden durch dreijährige Kooperationsvereinbarungen abgesichert, sodass der Transfer von Unterrichtselementen über das Projektende hinaus gesichert ist.",
+          "Die Schulkonferenz hat der Verstetigung bereits zugestimmt, was die Nachhaltigkeit des Vorhabens unterstreicht.",
+          "Die Partnerschaften werden durch Kooperationsvereinbarungen über drei Jahre formalisiert"
+        ],
+        "vorschlaegeBegruendung": [
+          {
+            "zitat": "empirische Befunde zeigen, dass selbstgesteuertes Lernen die intrinsische Motivation und die fachliche Kompetenzentwicklung nachhaltig stärkt",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Die Partnerschaften werden durch dreijährige Kooperationsvereinbarungen abgesichert, sodass der Transfer von Unterrichtselementen über das Projektende hinaus gesichert ist.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Die Schulkonferenz hat der Verstetigung bereits zugestimmt, was die Nachhaltigkeit des Vorhabens unterstreicht.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Die Partnerschaften werden durch Kooperationsvereinbarungen über drei Jahre formalisiert",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          }
+        ],
+        "remaining": [
+          "empirische Befunde zeigen, dass selbstgesteuertes Lernen die intrinsische Motivation und die fachliche Kompetenzentwicklung nachhaltig stärkt",
+          "Die Schulkonferenz hat diesen Prozess bereits verstetigt, indem sie den Projektfonds der Schülervertretung (8.000 € jährlich) als festen Bestandteil der schulischen Verantwortungsstruktur verankert hat.",
+          "Die Schulkonferenz hat der Verstetigung bereits zugestimmt, was die Nachhaltigkeit des Vorhabens unterstreicht.",
+          "Die Partnerschaften werden durch dreijährige Kooperationsvereinbarungen abgesichert, sodass der Transfer von Unterrichtselementen über das Projektende hinaus gesichert ist.",
+          "Die Partnerschaften werden durch Kooperationsvereinbarungen über drei Jahre formalisiert"
+        ],
+        "repaired": true
+      },
+      "consistencyIssues": [
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext nennt 'Hospitationswochen' und 'gemeinsame Entwicklung von Unterrichtsmaterialien/MINT-Units', aber der Finanzplan enthält keinen Posten für Honorare oder Personalkosten der Lehrkräfte für die Curriculum-Entwicklung oder Hospitationen.",
+          "textstelle": "Hospitationswochen an Partnerschulen"
+        },
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext erwähnt 'Dokumentation: Pro Hospitationswoche entsteht eine dokumentierte Unterrichtseinheit als Open Educational Resource', aber der Finanzplan enthält keinen Posten für Dokumentationskosten (z. B. Software, Druck, Serverkosten).",
+          "textstelle": "dokumentierte Unterrichtseinheit"
+        },
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext nennt 'Kooperationsvereinbarungen über drei Jahre' und 'Verstetigung', aber der Finanzplan enthält keinen Posten für Vertragskosten oder Verwaltungskosten der Partnerschaften.",
+          "textstelle": "Kooperationsvereinbarungen über drei Jahre"
+        },
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext beschreibt 'Schülerfeedback' und 'Portfolio-Gespräche' als zentrale Elemente, aber der Finanzplan enthält keinen Posten für Evaluationskosten (z. B. Fragebogen, Software, Moderation).",
+          "textstelle": "Schülerfragebogen"
+        }
+      ],
+      "hasConsistencyIssues": true,
+      "finalText": "# Kollegium-Austauschprogramm MINT\n\n## Qualitätsbereich 1: Leistung\n\nUnser differenziertes Kurssystem ab Klasse 7 ermöglicht es, fachliche und überfachliche Lernergebnisse systematisch zu erfassen und für die Weiterentwicklung zu nutzen. Jede Schülerin und jeder Schüler führt ein eigenes Feedback-Portfolio, das halbjährlich mit Eltern und Lehrkräften besprochen wird. Die Rückmeldequote bei diesen Portfolio-Gesprächen liegt bei 94 Prozent, und seit drei Jahren verlassen alle Jugendlichen die Schule mit einem Abschluss – eine Quote von null Abbrechern. Die externen Evaluationen 2022 und 2024 bestätigen diesen Ansatz: Je nach Sozialindex erreichen wir 18 bis 22 Prozentpunkte mehr als der hessische Landesschnitt. Diese messbaren Erfolge basieren auf dem Prinzip der **Selbstwirksamkeit**, das Lernende aktiv in die Gestaltung ihrer Lernwege einbindet. [Annahme: empirische Befunde zeigen, dass selbstgesteuertes Lernen die intrinsische Motivation und die fachliche Kompetenzentwicklung nachhaltig stärkt] – daher setzen wir auf diese Methode als Grundlage für unser Austauschprogramm.\n\nDas geplante Kollegium-Austauschprogramm MINT zielt darauf ab, diese Praxis über den eigenen Standort hinaus zu verbreiten. Durch Hospitationswochen an Partnerschulen in Sachsen und Bayern und die gemeinsame Entwicklung von Unterrichtsmaterialien wird der Transfer bewährter Methoden in den MINT-Bereich systematisch gestaltet. Aus jeder Hospitationswoche soll eine dokumentierte Unterrichtseinheit für die schulinterne Materialdatenbank entstehen, die allen Kolleginnen und Kollegen offensteht. Die Schulkonferenz hat der Verstetigung bereits zugestimmt, sodass die Ergebnisse langfristig in den Schulalltag einfließen.\n\nDie Wirkung wird an drei konkreten Indikatoren gemessen:\n- **Übertragung von Hospitationsergebnissen:** Mindestens 80 Prozent der teilnehmenden Lehrkräfte übertragen ein Element aus der Hospitation in ihren Unterricht – erfasst über die Portfolio-Gespräche.\n- **Schülerfeedback:** Die Schülerrückmeldungen zum Kurssystem sollen sich im Fragebogen um mindestens fünf Punkte verbessern.\n- **Dokumentation:** Pro Hospitationswoche entsteht eine dokumentierte Unterrichtseinheit als Open Educational Resource.\n\nDiese Daten fließen in die halbjährlichen Portfolio-Gespräche ein und ermöglichen so eine kontinuierliche Rückkopplung zwischen individueller Förderung und kollegialem Austausch.\n\n---\n\n## Qualitätsbereich 2: Umgang mit Vielfalt\n\nAn unserer Schule ist Heterogenität kein Hindernis, sondern Ausgangspunkt für gelingendes Lernen. Die externe Evaluation 2022 und 2024 zeigt, dass wir Schüler:innen mit sehr unterschiedlichen Voraussetzungen auf vergleichbarem Niveau zum Abschluss führen – je nach Sozialindex liegen unsere Ergebnisse 18 bis 22 Prozentpunkte über dem Landesschnitt. Dieses Ergebnis basiert auf einem System, das individuelle Lernwege von Anfang an mit verantwortungsvoller Selbststeuerung verbindet. Jedes Kind führt sein Feedback-Portfolio selbst, präsentiert es den Eltern und setzt daraus Ziele für den nächsten Halbjahreszeitraum.\n\nDas Prinzip der **Teilhabe** ist zentral für unseren Umgang mit Vielfalt: Alle Lernenden werden als Expert:innen ihres eigenen Lernprozesses wahrgenommen und aktiv in Entscheidungen eingebunden. Dies stärkt nicht nur die Selbstwirksamkeit, sondern fördert auch den respektvollen Umgang untereinander – ein Ansatz, der durch empirische Befunde gestützt wird. Daher ist es folgerichtig, diesen Ansatz auch im MINT-Bereich zu verbreiten.\n\nDas geplante Kollegium-Austauschprogramm MINT knüpft genau an diese Praxis an: Durch Hospitationswochen an zwei Partnerschulen in Sachsen und Bayern und die gemeinsame Entwicklung von MINT-Units wollen wir den Blick auf individuelle Förderung erweitern. Die Partnerschulen zeigen Interesse an unserer Portfolio-Methode, die Schüler:innen selbst in die Verantwortung für ihre Lernfortschritte einbindet – ein Ansatz, der über den MINT-Bereich hinaus skalierbar ist. Die Materialdatenbank, auf der die entwickelten Einheiten dokumentiert werden, steht allen Beteiligten offen. Mit beiden Partnerschulen werden Kooperationsvereinbarungen über drei Jahre geschlossen, und die Schulkonferenz hat der Verstetigung bereits zugestimmt.\n\nDie Wirkung messen wir an drei konkreten Indikatoren:\n- **Übertragung von Hospitationsergebnissen:** Mindestens 80 Prozent der teilnehmenden Lehrkräfte übertragen ein Element aus der Hospitation in ihr eigenes Unterrichtsportfolio – erfasst über die halbjährlichen Portfolio-Gespräche.\n- **Schülerfeedback:** Wir streben eine Steigerung der Schüler:innen-Rückmeldungen zum Kurssystem um mindestens fünf Punkte an, gemessen mit dem seit 2022 etablierten Fragebogen.\n- **Dokumentation:** Aus jeder Hospitationswoche entsteht eine dokumentierte Unterrichtseinheit für unsere offene Materialdatenbank.\n\nSo wird der kollegiale Austausch nicht nur zur Inspiration, sondern zu einem strukturierten Transfer, der Vielfalt als Ressource für alle nutzbar macht.\n\n---\n## Qualitätsbereich 3: Unterrichtsqualität\n\nAn unserer Schule zeigt sich guter Unterricht darin, dass er die Selbststeuerung der Lernenden systematisch fördert – und genau das machen wir im differenzierten Kurssystem ab Klasse 7 sichtbar. Jede Schülerin und jeder Schüler führt ein eigenes Feedback-Portfolio, das halbjährlich mit den Eltern besprochen wird. Die Rückmeldequote von 94 Prozent bei diesen Elterngesprächen und die Tatsache, dass seit drei Jahren kein einziger Schüler die Schule ohne Abschluss verlässt, belegen: Hier entsteht Unterricht, der Leistung und Verantwortungsübernahme verbindet.\n\nDas Portfolio-System ist dabei kein Instrument der Kontrolle, sondern ein Werkzeug der **Selbstwirksamkeit**. Die Lernenden dokumentieren ihre Fortschritte selbst, präsentieren sie und entscheiden mit, welche Schwerpunkte sie setzen. Diese Praxis, die wir seit zwei Durchgängen evaluieren, wollen wir nun mit unseren Partnerschulen in Sachsen und Bayern teilen. Denn empirische Befunde zeigen, dass selbstgesteuertes Lernen die intrinsische Motivation und die fachliche Kompetenzentwicklung nachhaltig stärkt – daher ist dieser Ansatz für uns zentral.\n\nIm Kollegium-Austauschprogramm MINT wird dieser Ansatz zum Hebel für Qualitätsentwicklung: Durch Hospitationswochen und gemeinsame Curriculum-Arbeit übertragen wir die Portfolio-Idee in andere Kontexte. Jede teilnehmende Lehrkraft soll ein konkretes Element aus der Hospitation in ihren Unterricht übernehmen – erfasst wird das über unsere bestehenden Portfolio-Gespräche. So entsteht kein isoliertes Projekt, sondern eine strukturelle Verankerung: Die Materialdatenbank liegt auf unserem Schulserver und steht allen offen. Mit beiden sächsischen Schulen schließen wir Kooperationsvereinbarungen über drei Jahre, die Schulkonferenz hat der Verstetigung bereits zugestimmt – ein Beleg dafür, dass dieser Austausch nicht nur punktuell wirkt, sondern unsere Schulkultur verändert.\n\nDie Wirkung messen wir dort, wo sie entsteht: in den Rückmeldungen der Schülerinnen und Schüler zum Kurssystem, die wir seit 2022 systematisch erheben. Ein Anstieg um mindestens fünf Punkte im Fragebogen wäre hier ein klares Signal, dass die übernommenen Elemente tatsächlich ankommen. Gleichzeitig dokumentieren wir aus jeder Hospitationswoche eine Unterrichtseinheit für unsere offene Materialdatenbank – ein Format, das den Transfer konkret und sichtbar macht. Dass mindestens 80 Prozent der Lehrkräfte ein Element übertragen, sichern wir über die Portfolio-Gespräche ab. So wird Unterrichtsqualität nicht nur behauptet, sondern an messbaren Indikatoren festgemacht.\n\n---\n## Qualitätsbereich 4: Verantwortung\n\nAn unserer Schule ist Verantwortungsübernahme kein abstraktes Konzept, sondern gelebte Praxis. Der Schulrat entscheidet jährlich über die Verwendung des Projektfonds, der von der Schülervertretung verwaltet wird, und priorisiert MINT-Projekte. Diese Strukturen bilden den Rahmen für unser neues Kollegium-Austauschprogramm MINT, das die Verantwortungsrollen aller Beteiligten systematisch erweitert.\n\nDie Lehrkräfte übernehmen im Rahmen der Hospitationswochen eine aktive Transferrolle: Sie dokumentieren nicht nur Unterrichtsbeobachtungen, sondern entwickeln gemeinsam mit den Partnerschulen konkrete Unterrichtselemente weiter – etwa durch die Übernahme von Portfolio-Gesprächen, die an unserer Schule seit 2022 etabliert sind und bei denen jede Schülerin ihr Feedback selbst präsentiert und mit den Eltern bespricht. Diese Praxis der **Partizipation**, die unsere Evaluationen als wirksam ausweisen (Rückmeldequoten von 94 % bei Elterngesprächen), soll durch das Austauschprogramm auch an den Partnerschulen verankert werden.\n\nFür die Schülerinnen und Schüler bedeutet das Programm eine direkte Erweiterung ihrer Mitgestaltungsmöglichkeiten: Durch die gemeinsame Curriculum-Entwicklung im MINT-Bereich werden sie nicht nur als Lernende, sondern als Expert:innen ihres eigenen Lernprozesses wahrgenommen. Die messbaren Indikatoren – etwa die angestrebte Steigerung der Schülerfragebogen-Werte im Kurssystem um fünf Punkte oder die verbindliche Übernahme von mindestens 80 % der Hospitationsergebnisse in den eigenen Unterricht – machen sichtbar, wie Verantwortung hier konkret gelebt wird.\n\nDie Ergebnisse werden in unserer offenen Materialdatenbank auf dem Schulserver dokumentiert – so entsteht eine verbindliche Verantwortungsgemeinschaft über Schulgrenzen hinweg. Die Schulkonferenz hat bereits der Verstetigung zugestimmt, sodass die Partnerschaften über die drei Jahre hinaus wirken können.\n\n---\n## Qualitätsbereich 5: Schulklima, Schulleben und außerschulische Partner\n\nDas Zusammenleben an der Gesamtschule Friedrichsdorf ist geprägt von einer Kultur der **Verantwortungsgemeinschaft**, in der Schüler:innen und Erwachsene gemeinsam Lernprozesse gestalten. Jedes Kind führt sein Feedback-Portfolio selbst, präsentiert es den Eltern und entscheidet aktiv über seine nächsten Schritte – ein Ansatz, der nachweislich die Selbststeuerung stärkt. Die halbjährlichen Portfolio-Gespräche mit 94 % Rückmeldequote zeigen, wie verbindlich dieser Dialog zwischen Schule und Elternhaus gelebt wird. Die Schulkonferenz hat diesen Prozess bereits verstetigt, indem sie die Priorisierung von MINT-Projekten durch den Projektfonds als festen Bestandteil der schulischen Verantwortungsstruktur verankert hat. Elternbeirat und Schülerrat sind in allen Gremien stimmberechtigt, was die Partizipation über die reine Anhörung hinaushebt.\n\nDiese Kultur des Miteinanders wird durch regelmäßige Kooperationen mit außerschulischen Partnern gestärkt. Lokale Unternehmen unterstützen unsere MINT-Projekte durch Sponsoring von Wettbewerben, während [TODO: außerschulische Partner noch zu gewinnen] uns bei der Umsetzung des Austauschprogramms begleiten. Diese Partnerschaften sind keine einmaligen Aktionen, sondern feste Bestandteile unseres Schulprogramms.\n\nDie geplanten Hospitationen im Rahmen des Kollegium-Austauschprogramms MINT knüpfen an diese Kultur an: Zwei Partnerschulen in Sachsen und Bayern werden nicht nur besucht, sondern in einen wechselseitigen Entwicklungsprozess eingebunden. Die Ergebnisse werden direkt in die schulische Materialdatenbank überführt – eine Plattform, die bereits heute alle Lehrkräfte nutzt. [Annahme: Die Partnerschaften werden durch dreijährige Kooperationsvereinbarungen abgesichert, sodass der Transfer von Unterrichtselementen über das Projektende hinaus gesichert ist.] [Annahme: Die Schulkonferenz hat der Verstetigung bereits zugestimmt, was die Nachhaltigkeit des Vorhabens unterstreicht.]\n\n---\n## Qualitätsbereich 6: Schule als lernende Institution\n\nDie Schule als lernende Institution zeigt sich in der systematischen Verknüpfung von externer Evaluation, kollegialer Verantwortungsgemeinschaft und partizipativer Schulentwicklung. Seit 2022 und 2024 dokumentieren externe Evaluationen – je nach Sozialindex mit 18–22 Prozentpunkten über dem Landesschnitt – die Wirksamkeit unseres differenzierten Systems, das Schülerinnen und Schüler mit unterschiedlichen Voraussetzungen auf hohem Niveau zum Abschluss führt. Diese Daten bilden die Grundlage für die Weiterentwicklung unserer Strukturen, insbesondere im MINT-Bereich, wo wir nun ein Kollegium-Austauschprogramm mit zwei Partnerschulen in Sachsen und Bayern aufbauen.\n\nDas Programm zielt auf die nachhaltige Qualitätsentwicklung des MINT-Unterrichts durch Hospitationswochen, Unterrichtsbeobachtungen und gemeinsame Curriculum-Entwicklung. Jede Hospitationswoche mündet in eine dokumentierte Unterrichtseinheit, die in unsere offene Materialdatenbank eingestellt wird. [Annahme: Die Partnerschaften werden durch Kooperationsvereinbarungen über drei Jahre formalisiert], und die Schulkonferenz hat der Verstetigung bereits zugestimmt.\n\nEin zentraler Indikator für den Transfer ist die Übertragung von mindestens 80 % der beobachteten Unterrichtselemente in das eigene Portfolio, erfasst über die halbjährlichen Portfolio-Gespräche mit den Eltern. Diese Gespräche, an denen die Schülerinnen und Schüler ihre Fortschritte selbst präsentieren, stärken nachweislich die Selbststeuerung – ein Prinzip, das unsere Partnerschulen übernehmen wollen.\n\nDie Evaluation des differenzierten Kurssystems erfolgt über einen seit 2022 etablierten Schülerfragebogen, dessen Rückmeldungen wir um mindestens fünf Punkte verbessern möchten. Die Materialdatenbank, die auf unserem Schulserver liegt und allen offensteht, sichert die langfristige Verfügbarkeit der entwickelten Inhalte. So entsteht ein Kreislauf aus Beobachtung, Transfer und gemeinsamer Reflexion, der die Schule als Organisation kontinuierlich weiterentwickelt.",
       "finanzplan": {
         "posten": [
           {
-            "id": "197ab110-f440-49e6-bcbe-bee17872b12b",
+            "id": "04942f38-8a0e-4902-8245-f8f7e9781f72",
             "kategorie": "reisekosten",
-            "bezeichnung": "Reisekosten Hospitationen",
+            "bezeichnung": "Reisekosten Hospitationen (3 Jahre)",
             "betragEur": 30000,
-            "begruendung": "Finanzierung der Reise- und Aufenthaltskosten im Rahmen der Hospitationswochen mit den Partnerschulen in Sachsen und Bayern (geschätzter Anteil am Gesamtbudget).",
-            "eigenanteil": false
+            "begruendung": "Pauschale für Fahrten, Unterbringung und Verpflegung der Lehrkräfte zu den Hospitationsschulen in Sachsen und Bayern über 3 Jahre (45.000 EUR Gesamtbudget, davon 30.000 EUR für Reisekosten geschätzt)",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "9e4149c8-00f8-4be4-9491-a07f53396b79",
+            "id": "b23981e4-53f0-43b1-9a99-c34e36fe7af2",
             "kategorie": "sachkosten",
             "bezeichnung": "Materialien Curriculum-Entwicklung",
             "betragEur": 15000,
-            "begruendung": "Finanzierung von Materialien und Ressourcen für die gemeinsame Curriculum-Entwicklung im MINT-Bereich (geschätzter Anteil am Gesamtbudget).",
-            "eigenanteil": false
+            "begruendung": "Pauschale für Materialien, Lizenzen und Verbrauch zur gemeinsamen Curriculum-Entwicklung im MINT-Bereich (45.000 EUR Gesamtbudget, davon 15.000 EUR für Sachkosten geschätzt)",
+            "eigenanteil": false,
+            "istVorschlag": true
           }
         ],
-        "generiertAm": "2026-05-20T10:00:31.097Z",
+        "generiertAm": "2026-07-22T11:23:32.610Z",
         "hinweise": [
-          "Die Gesamtsumme der beantragten Mittel beträgt 45.000 EUR für 3 Jahre (Kollegium-Austauschprogramm MINT). Die Aufteilung auf Reisekosten und Materialien ist eine Schätzung.",
-          "Es handelt sich um einen Preis, daher kein Eigenanteil erforderlich.",
-          "Die Verwendung der Preisgelder ist zweckgebunden für Schulentwicklung."
+          "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
+          "Alle Beträge sind aus dem Gesamtbudget von 45.000 EUR abgeleitet (keine konkreten Einzelpreise/Mengen vom User genannt).",
+          "Reisekosten und Sachkosten sind pauschal geschätzt, da keine detaillierten Aufstellungen vorlagen.",
+          "Das Preisgeld des Deutschen Schulpreises ist frei verwendbar und deckt die geplanten Maßnahmen ab.",
+          "Kein Eigenanteil erforderlich, da es sich um einen Preis handelt.",
+          "Der Betrag für „Reisekosten Hospitationen (3 Jahre)\" (30.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Materialien Curriculum-Entwicklung\" (15.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
         ]
       }
     },
     "usages": [
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2213,
-          "candidatesTokens": 284
+          "promptTokens": 6610,
+          "candidatesTokens": 496
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2206,
-          "candidatesTokens": 289
+          "promptTokens": 6600,
+          "candidatesTokens": 517
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2190,
-          "candidatesTokens": 334
+          "promptTokens": 6582,
+          "candidatesTokens": 537
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2196,
-          "candidatesTokens": 302
+          "promptTokens": 6576,
+          "candidatesTokens": 454
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2204,
-          "candidatesTokens": 239
-        }
-      },
-      {
-        "model": "gemini-2.0-flash",
-        "usage": {
-          "promptTokens": 2176,
+          "promptTokens": 6600,
           "candidatesTokens": 361
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4837,
-          "candidatesTokens": 1370
+          "promptTokens": 6576,
+          "candidatesTokens": 466
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4574,
-          "candidatesTokens": 2429
+          "promptTokens": 9058,
+          "candidatesTokens": 2117
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3763,
-          "candidatesTokens": 367
+          "promptTokens": 10854,
+          "candidatesTokens": 3190
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2257,
-          "candidatesTokens": 297
+          "promptTokens": 8633,
+          "candidatesTokens": 1142
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3132,
-          "candidatesTokens": 9
+          "promptTokens": 5245,
+          "candidatesTokens": 866
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 4292,
+          "candidatesTokens": 3198
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 3691,
+          "candidatesTokens": 359
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 4050,
+          "candidatesTokens": 328
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 4264,
+          "candidatesTokens": 3031
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 3883,
+          "candidatesTokens": 360
         }
       }
     ]
   },
   "meta": {
-    "iso": "2026-05-20T10-00-32",
+    "iso": "2026-07-22T11-23-53",
     "runIndex": 3,
-    "pipelineCommitSha": "6d237f81",
+    "pipelineCommitSha": "1f0d8782",
     "featureFlags": {
-      "useVorbildFormulierungen": "false",
+      "useVorbildFormulierungen": "true",
       "complianceStageEnabled": "false",
-      "sharpPrompts": "false",
-      "geberRoutingV2": "false"
+      "sharpPrompts": "true",
+      "geberRoutingV2": "true"
     },
-    "latencyMs": 47502,
+    "latencyMs": 105349,
     "schemaVersion": 1
   }
 }

@@ -191,11 +191,48 @@ function richtlinieBlock(
   return out.join("\n");
 }
 
+/**
+ * Umfangs-Direktive aus einem belegten Zeichenlimit des Antragsformulars.
+ *
+ * Bis 22.07.2026 wirkte `maxZeichen` NUR als Deckel ("Maximal X Zeichen").
+ * Gemessen an 64 Eval-Laeufen schrieb die Pipeline im Median ~800 Zeichen je
+ * Abschnitt — auch dort, wo der Foerdergeber 5.000+ einraeumt. Der Deckel wurde
+ * nie erreicht; die wirksame Vorgabe war die erfundene Standard-Konstante
+ * "150–400 Woerter" (80 % der Abschnitte lagen sogar UNTER deren Untergrenze).
+ * Ergebnis: Der vom Foerderer selbst vorgesehene Platz fuer die fachliche
+ * Begruendung blieb ungenutzt — genau der Teil, den Kolja als fehlend
+ * bemaengelt (sozialpaedagogische / bildungswissenschaftliche Begruendung).
+ *
+ * Deshalb wird ein belegtes Limit jetzt zusaetzlich zum ZIEL-Korridor
+ * (70–90 % des Platzes). Warum nicht 100 %: Antragsformulare zaehlen teils
+ * anders (Leerzeichen, Umbrueche), und die Revision darf nicht ueber den
+ * Deckel rutschen — 90 % laesst Puffer, bleibt aber weit ueber dem heutigen
+ * Ist. Der Begruendungs-Auftrag haengt am Korridor NUR bei grosszuegigem
+ * Platz (>= 2000 Zeichen): Bei einem 500-Zeichen-Feld ist Dichte richtig,
+ * nicht Theorie.
+ */
+const ZEICHEN_PRO_WORT = 7; // deutsche Antragsprosa inkl. Leerzeichen, konservativ
+
+export function umfangsDirektive(maxZeichen: number): string {
+  const von = Math.round((maxZeichen * 0.7) / 50) * 50;
+  const bis = Math.round((maxZeichen * 0.9) / 50) * 50;
+  const parts = [
+    `Maximal ${maxZeichen} Zeichen — hartes Limit des Antragsformulars, strikt einhalten. Es gilt auch dann, wenn eine TEXTTIEFE-Vorgabe einen groesseren Umfang nahelegt.`,
+    `ZIEL-UMFANG: Nutze den erlaubten Platz — schreibe ca. ${von}–${bis} Zeichen (≈ ${Math.round(von / ZEICHEN_PRO_WORT)}–${Math.round(bis / ZEICHEN_PRO_WORT)} Woerter). Diese programmspezifische Vorgabe ERSETZT die Standard-Laengenvorgabe (150–400 Woerter).`,
+  ];
+  if (maxZeichen >= 2000) {
+    parts.push(
+      `Der zusaetzliche Raum ist fuer die fachliche BEGRUENDUNG da, nicht fuer Fuellprosa: Verbinde das Beschriebene (WAS wir tun) mit dem WARUM — sozialpaedagogisch und bildungswissenschaftlich begruendet, welche Notwendigkeit das Vorhaben beantwortet und an welche Konzepte es anknuepft (Regeln dazu im Abschnitt "Fachliche Qualitaet & Theorie" oben). Diese Verbindung von belegtem Vorhaben und begruendender Theorie ist KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.`
+    );
+  }
+  return parts.join("\n");
+}
+
 export function abschnittPrompt(a: AntragsAbschnitt): string {
   const parts: string[] = [];
   parts.push(`Abschnitt: ${a.name}`);
   if (a.pflicht) parts.push("(Pflichtabschnitt)");
-  if (a.maxZeichen) parts.push(`Maximal ${a.maxZeichen} Zeichen — strikt einhalten.`);
+  if (a.maxZeichen) parts.push(umfangsDirektive(a.maxZeichen));
   if (a.leitfragen?.length) parts.push(`Leitfragen, die der Abschnitt beantworten muss:\n- ${a.leitfragen.join("\n- ")}`);
   if (a.stilhinweis) parts.push(`Stilhinweis: ${a.stilhinweis}`);
   return parts.join("\n");
@@ -505,6 +542,7 @@ Du bist nicht nur Schreibkraft, sondern fachlicher Berater. Ziel: ein Antrag, de
 ## Inhaltliche Regeln
 - Verwende AUSSCHLIESSLICH Fakten aus den mitgelieferten Daten. Halluziniere NICHTS — erfinde keine Zahlen, Namen, Ereignisse.
 - Konkret statt abstrakt. Wo Zahlen/Namen/Orte in den Fakten stehen: nenne sie.
+- **Beschreiben UND begründen.** Ein Abschnitt, der nur aufzählt, WAS geschieht, ist unvollständig: Jeder inhaltliche Abschnitt (nicht Finanzplan/Zeitplan/Formalia) braucht mindestens eine ausformulierte BEGRÜNDUNG, die das Vorhaben kausal (weil / daher / auf dieser Grundlage / dem Ansatz X folgend) mit dem pädagogischen Konzept verbindet, das seine Notwendigkeit trägt — s. Abschnitt "Fachliche Qualität & Theorie". Diese Begründung hat Vorrang vor Kürze: eher 2–3 Sätze WARUM als ein weiterer Satz WAS.
 - Formuliere aus Sicht der Schule ("wir", "an unserer Schule").
 - **Bleib strikt beim FOKUS dieses Abschnitts.** Andere Abschnitte des Antrags decken Bedarf, Zielgruppe, Ziele, Maßnahmen und Wirkung jeweils eigenständig ab. Wiederhole den allgemeinen Bedarf oder die Zielgruppe NICHT breit, wenn das nicht der Fokus dieses Abschnitts ist — nimm sie höchstens in einem knappen Halbsatz als Bezug auf. So vermeidest du Dopplungen über den Gesamtantrag hinweg. Die Entstehungs-/Motivationsgeschichte des Vorhabens (wie die Idee entstand, warum die Schule das angeht) gehört NUR in den Abschnitt, dessen Fokus das ist (typisch Ausgangslage/Einleitung) — in anderen Abschnitten setzt du sie als bekannt voraus, statt sie erneut zu erzählen.
 
@@ -517,7 +555,7 @@ Formuliere Ziele wirkungsorientiert statt vage: benenne, WAS sich für WEN beoba
 ## Form
 - Keine Überschrift, keine Markdown-Formatierung, kein # oder **.
 - Fließtext, keine Listen (außer wenn die Fakten eindeutig auflistbar sind, z. B. Hauptposten im Budget).
-- 150–400 Wörter je nach Thema — eher dicht als breit.
+- 150–400 Wörter je nach Thema — eher dicht als breit. AUSNAHME: Nennen die OFFIZIELLEN VORGABEN dieses Abschnitts einen ZIEL-UMFANG, gilt ausschließlich dieser (das Antragsformular des Fördergebers schlägt jede Standard-Vorgabe).
 
 Ausgabe: NUR der Abschnittstext, nichts anderes.`;
 
@@ -906,6 +944,7 @@ const REVISION_SYSTEM_BASE = `Du bist der Antragsautor. Überarbeite den Entwurf
 
 ## Umgang mit dem Gutachten
 Das Gutachten liefert nummerierte Findings mit Abschnitt, wörtlichem Zitat, Schwere und konkretem Vorschlag. Arbeite sie in dieser Reihenfolge ab: erst alle "hoch"-Findings (Richtlinien-Verstöße dürfen nicht stehenbleiben), dann "mittel", dann "niedrig". Bei "FEHLT" ergänze den fehlenden Inhalt aus den Fakten, ohne zu halluzinieren.
+- **"substanz"-Findings werden durch ERWEITERN behoben, nie durch Umformulieren des Bestands:** Ergänze im genannten Abschnitt 2–4 Sätze Begründung nach dem Muster im Vorschlag (Kausalsatz + pädagogisches Konzept, am Vorhaben erklärt). Der Abschnitt wird dadurch LÄNGER — das ist gewollt und kein Verstoß gegen das Verdichtungs-Gebot. Theorie als Begründung des belegten Vorhabens ist KEINE neue Behauptung über die Schule.
 
 ## Leerformel-Verbot (nicht: Fachsprache-Verbot)
 Tilge LEERE Schmuckfloskeln ohne Substanz ("ganzheitlicher Ansatz", "schafft Mehrwert", "in der heutigen Zeit", "es ist unerlässlich", "innovativer Ansatz", "passgenau", "zukunftsweisend", hingeworfenes "fördert Teilhabe"). ERSETZE sie durch fachlich SUBSTANZIELLE Formulierungen — nicht durch Weglassen von Fachlichkeit. Professionelle Förder-Fachsprache und theoretische Rahmung (Wirkungslogik, Bildungsgerechtigkeit, Selbstwirksamkeit, Partizipation, BNE …) BLEIBEN erhalten bzw. werden gestärkt, solange sie konkret am Vorhaben verankert sind. Fachlich begründete VORSCHLÄGE (Methoden, Formate), erkennbar als solche formuliert, NICHT entfernen.
@@ -916,6 +955,7 @@ Arbeite alle "redundanz"-Findings konsequent ab und tilge auch selbst erkannte W
 - Die Entstehungs-/Motivationsgeschichte des Vorhabens (wie die Idee entstand, warum die Schule sie angeht) wird GENAU EINMAL erzählt — an der passendsten Stelle (typisch Ausgangslage/Einleitung). Taucht dieselbe Genese-Erzählung in weiteren Abschnitten auf, verdichte sie dort auf einen knappen Rückbezug oder streiche sie; sie wirkt sonst generiert und inflationär.
 - Jeder Abschnitt behält seinen eigenen Fokus (Ausgangslage = Problem + Zahlen; Ziele = was sich messbar ändert; Maßnahmen = konkrete Schritte; Wirkung/Nachhaltigkeit = was nach der Förderung bleibt).
 - WICHTIG: Verdichten heißt umformulieren, nicht ausdünnen. ALLE Pflichtabschnitte bleiben erhalten und inhaltlich tragfähig — kein Abschnitt wird gestrichen oder auf einen bloßen Verweis reduziert. Struktur, Titel und Abschnittsreihenfolge bleiben unverändert.
+- **Kausale Begründungen sind tragende Substanz, NIE Streichkandidaten:** Sätze, die das Vorhaben mit einem pädagogischen Konzept oder einer Wirkannahme verbinden (erkennbar an weil / daher / auf dieser Grundlage / dem Ansatz X folgend), bleiben beim Verdichten VOLLSTÄNDIG erhalten. Wenn ein Abschnitt kürzer werden muss, streiche beschreibende Wiederholung — niemals das WARUM. Ein Antrag, der nur noch beschreibt, WAS geschieht, ist durch die Revision schlechter geworden.
 
 ## Ausgabeformat (Markdown)
 - Antragstitel als erste Zeile als H1: "# Titel"

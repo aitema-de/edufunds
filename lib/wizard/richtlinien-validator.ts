@@ -14,6 +14,11 @@
  */
 
 import { z } from "zod";
+import {
+  FristZustandSchema,
+  UmfangZustandSchema,
+  EinreichungsFormSchema,
+} from "@/lib/foerder-zustaende-schema";
 
 // ---------------------------------------------------------------------------
 // Sub-Schemas fuer die 4 neuen Felder (D-01..D-04)
@@ -61,6 +66,11 @@ const FristLogikSchema = z.discriminatedUnion("typ", [
   }),
 ]);
 
+// Explizite Zustaende (Frist / Umfang / Einreichung): Definition liegt in
+// lib/foerder-zustaende-schema.ts, weil Katalog UND Dossier sie tragen und
+// beide dieselbe Pruefung brauchen. Optional, weil die Migration pro Programm
+// laeuft (Katalog-Wahrheit, 17.07.).
+
 // ---------------------------------------------------------------------------
 // Bestehende Pflichtfelder — minimaler Mirror der Compile-Time-Interfaces.
 // Wir validieren nur die fuer FK + Strict-Mode relevanten Substrukturen
@@ -73,7 +83,11 @@ const AntragsAbschnittSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
   pflicht: z.boolean(),
-  maxZeichen: z.number().optional(),
+  // Positiv erzwungen seit 22.07.2026: bw-sommerschulen-2026 trug maxZeichen:0.
+  // Die 0 ist kein Limit, sondern ein nicht erfasstes Feld — und weil
+  // `if (a.maxZeichen)` sie als falsy verschluckt, fiel der Datenfehler nie
+  // auf. Ein fehlendes Limit heisst: Feld weglassen, nicht 0 schreiben.
+  maxZeichen: z.number().positive("maxZeichen 0/negativ ist kein Limit — Feld weglassen").optional(),
   leitfragen: z.array(z.string()).optional(),
   stilhinweis: z.string().optional(),
 });
@@ -128,6 +142,10 @@ const BaseRichtlinieShape = {
   // 86cabdzwk: optionales Per-Programm-Dokumentlabel (rueckwaertskompatibel).
   dokumentLabel: z.string().min(1).optional(),
   dokumentLabelGenus: z.enum(["der", "die", "das"]).optional(),
+  // Katalog-Wahrheit (17.07.2026): explizite Zustaende, optional bis migriert.
+  fristZustand: FristZustandSchema.optional(),
+  umfangZustand: UmfangZustandSchema.optional(),
+  einreichungsForm: EinreichungsFormSchema.optional(),
 };
 
 // ---------------------------------------------------------------------------

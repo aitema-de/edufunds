@@ -1,5 +1,30 @@
 // EduFunds Förderdatenbank - Schema
 
+import type {
+  FristZustand,
+  UmfangZustand,
+  EinreichungsForm,
+} from "@/lib/foerder-zustaende";
+
+/**
+ * Die Status-Werte, die der Katalog tatsächlich führt.
+ * Stand 17.07.2026: aktiv=157, archiviert=32, review_needed=0.
+ *
+ * EINE Quelle der Wahrheit — `lib/programm-status.ts` (Verkaufs-Gate) und
+ * `scripts/validate-data.ts` leiten von hier ab. Vorher stand die Liste dreimal
+ * im Code, in drei widersprüchlichen Fassungen: Dieser Typ und der Validator
+ * kannten `archiviert` NICHT (obwohl 32 Programme ihn tragen), führten dafür
+ * `auslaufend`/`pausiert`/`beendet`, die der Katalog nie setzt — und das Gate
+ * behandelte `pausiert` nicht als Ausschluss. Ein pausiertes Programm wäre also
+ * weiter verkauft worden.
+ *
+ * Wer hier einen Wert ergänzt, muss in `lib/programm-status.ts` entscheiden, ob
+ * er anbietbar ist. Default dort ist fail-closed: nicht anbietbar.
+ */
+export const PROGRAMM_STATUS = ["aktiv", "archiviert", "review_needed"] as const;
+
+export type ProgrammStatus = (typeof PROGRAMM_STATUS)[number];
+
 export type Foerderprogramm = {
   id: string;                    // UUID
   name: string;                  // Programmname
@@ -22,8 +47,22 @@ export type Foerderprogramm = {
   // Bewerbung
   bewerbungsfristStart?: string; // ISO Date
   bewerbungsfristEnde?: string;  // ISO Date
-  bewerbungsfristText?: string;  // z.B. "laufend", "quartalsweise"
+  bewerbungsfristText?: string;  // z.B. "laufend", "quartalsweise" (Freitext, kein Code liest ihn)
   bewerbungsart: 'online' | 'schriftlich' | 'beides';
+
+  /**
+   * Maschinenlesbarer Frist-Zustand (loest bewerbungsfristEnde/-Text als
+   * Verkaufs-Wahrheit ab). Trennt "belegt rollend" von "nicht erfasst".
+   * Fehlt das Feld, faellt das Gate auf bewerbungsfristEnde zurueck — diese
+   * Programme sind noch nicht migriert (getrackt in
+   * __tests__/data/katalog-fristen.test.ts). Fail-closed: art="unbekannt" =>
+   * nicht verkaeuflich. Entscheidung in lib/programm-status.ts.
+   */
+  fristZustand?: FristZustand;
+  /** Maschinenlesbarer Umfang (Laengenbegrenzung des Antrags). Nicht verkaufs-kritisch. */
+  umfangZustand?: UmfangZustand;
+  /** Strukturierte Einreichungsform (loest Freitext ab). Nicht verkaufs-kritisch. */
+  einreichungsForm?: EinreichungsForm;
   
   // Kontakt & Links
   antragsLink?: string;          // URL zum Antrag
@@ -35,8 +74,8 @@ export type Foerderprogramm = {
   kurzbeschreibung: string;      // 1-2 Sätze (max 300 Zeichen)
   beschreibung?: string;         // Volltext
   
-  // Status
-  status: 'aktiv' | 'auslaufend' | 'pausiert' | 'beendet' | 'abgelaufen';
+  // Status — Werte s. PROGRAMM_STATUS oben.
+  status: ProgrammStatus;
   createdAt: string;
   updatedAt: string;
   lastVerifiedAt?: string;       // Wann wurde das Programm zuletzt geprüft?

@@ -50,12 +50,14 @@ import { ensureSectionsPresent } from "./struktur-guard";
 import { buildFallbackTitle } from "./title-fallback";
 import { buildFallbackOutline } from "./outline-fallback";
 import { PIPELINE_CONFIG } from "./config";
+import { substanzFindings } from "./substanz";
 
 const SCHWERE_VALID: readonly CritiqueSchwere[] = ["hoch", "mittel", "niedrig"];
 const KATEGORIE_VALID: readonly CritiqueKategorie[] = [
   "floskel",
   "redundanz",
   "belegluecke",
+  "substanz",
   "richtlinie",
   "inkonsistenz",
   "sonstiges",
@@ -406,6 +408,15 @@ export async function runPipeline(
   );
   usages.push({ model: MODEL_PRO, usage: critiqueRes.usage });
   const critique = normalizeCritique(critiqueRes.value);
+
+  // Substanz-Gate (Kolja, 22.07.2026): deterministische Findings fuer
+  // Inhaltsabschnitte, die beschreiben statt begruenden — NACH normalize
+  // (dessen 12er-Kappung gilt nur fuer LLM-Findings), damit sie die Revision
+  // garantiert erreichen. Befund der Kalibrierung: 374/413 Korpus-Abschnitte
+  // enthielten NULL kausale Konnektive; der Critique-LLM hat das nie
+  // beanstandet. Was nicht gemessen wird, faellt weg.
+  critique.findings.push(...substanzFindings(sections.map((s) => ({ name: s.name, text: s.text ?? "" }))));
+
   const critiqueRendered = renderCritique(critique);
 
   await emit({ stage: "revision", message: "Finale Fassung" });

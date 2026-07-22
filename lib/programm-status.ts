@@ -1,49 +1,139 @@
-import type { Foerderprogramm } from "@/lib/foerderSchema";
+import type { Foerderprogramm, ProgrammStatus } from "@/lib/foerderSchema";
+import { istIsoDatum, type FristZustand } from "@/lib/foerder-zustaende";
+
+/** Kalendertag von `d` als ISO YYYY-MM-DD (UTC — wie `new Date("YYYY-MM-DD")`). */
+function isoDatum(d: Date): string {
+  return d.toISOString().slice(0, 10);
+}
 
 /**
- * TERMINALE Status: Programme, die redaktionell aus dem aktiven Katalog genommen
- * wurden und dort nie wieder auftauchen sollen — alte Wettbewerbsrunden, Dubletten,
- * eingestellte Programme ("archiviert") oder noch nicht freigegebene Rohdaten
- * ("review_needed"). Anders als eine abgelaufene Frist ist das kein Zeit-, sondern
- * ein Zustandsurteil.
- *
- * Reale Katalog-Werte: "aktiv" / "archiviert" / "review_needed". Die alten Werte
- * "abgelaufen"/"beendet" setzt der Katalog nie, werden aber defensiv mitgefuehrt.
+ * Der EINZIGE Status, unter dem ein Programm im Finder/Matcher erscheinen und
+ * damit verkauft werden darf. Die Liste aller Werte steht in `PROGRAMM_STATUS`
+ * (lib/foerderSchema.ts) — hier faellt nur die Entscheidung, welcher davon
+ * anbietbar ist.
  */
-export function isProgrammTerminalerStatus(p: Foerderprogramm): boolean {
-  const status = (p as { status?: string }).status;
-  return (
-    status === "archiviert" ||
-    status === "review_needed" ||
-    status === "abgelaufen" ||
-    status === "beendet"
-  );
+export const STATUS_ANBIETBAR: ProgrammStatus = "aktiv";
+
+/**
+ * Gehoert dieses Programm NICHT in den aktiven Katalog (unabhaengig von Fristen)?
+ *
+ * Bewusst eine ALLOWLIST (fail-closed): Nur exakt `aktiv` ist anbietbar, alles
+ * andere nicht — archiviert, review_needed, ein spaeter ergaenzter Status, ein
+ * Tippfehler, ein fehlendes Feld.
+ *
+ * Vorher war das eine SPERRLISTE ("archiviert"/"review_needed"/"abgelaufen"/
+ * "beendet" → terminal, sonst anbietbar). Eine Sperrliste muss jeden schlechten
+ * Fall im Voraus kennen und schweigt bei allem, was sie nicht kennt — der
+ * unbekannte Wert wird dann still VERKAUFT. Das war am 17.07.2026 real: Das
+ * Schema erlaubte `pausiert` und `auslaufend`, beide standen auf keiner
+ * Sperrliste. Ein pausiertes Programm waere also weiter angeboten worden.
+ *
+ * Fuer die heutigen Daten ist die Umstellung verhaltensgleich (aktiv → anbietbar,
+ * archiviert → nicht); sie schliesst nur die Luecke fuer alles Unbekannte.
+ */
+export function isStatusNichtAnbietbar(p: Foerderprogramm): boolean {
+  return (p as { status?: string }).status !== STATUS_ANBIETBAR;
+}
+
+/**
+ * Ist die Bewerbungsfrist eines Programms VERKAUFSFAEHIG, d. h. belegt offen?
+ *
+ * Zwei Wege, in dieser Reihenfolge:
+ *
+ * 1. Maschinenlesbarer `fristZustand` vorhanden (der Nachfolger, s.
+ *    lib/foerder-zustaende.ts) — FAIL-CLOSED:
+ *      - "keine"       (belegt rollend)                => verkaufsfaehig
+ *      - "stichtag"    wiederkehrend                   => verkaufsfaehig
+ *      - "stichtag"    letzter Termin heute/spaeter    => verkaufsfaehig
+ *      - "stichtag"    alle Termine vergangen          => NICHT
+ *      - "geschlossen" (belegt keine offene Runde)     => NICHT
+ *      - "unbekannt"   (nicht verifiziert)             => verkaufsfaehig MIT HINWEIS
+ *      - alles andere (Tippfehler, kaputte Struktur,
+ *        spaeter ergaenzte Variante)                   => NICHT
+ *
+ * ⚠️ Warum "unbekannt" verkaufsfaehig ist und trotzdem nichts aufweicht:
+ * "unbekannt" heisst NICHT "vermutlich tot", sondern "die Quelle schweigt".
+ * Nachweislich tote Programme tragen "geschlossen" oder einen vergangenen
+ * Stichtag und sind gesperrt. Fuer das Schweigen hat Kolja am 22.07.2026
+ * entschieden: verkaufen, aber der Kunde sieht vorher den Hinweis, die Frist
+ * selbst zu pruefen (brauchtFristHinweis in lib/foerder-zustaende.ts). Wer
+ * dieses Verhalten aendert, muss den Hinweis in der UI mitaendern — sonst
+ * verkauft EduFunds wieder stillschweigend Ungeprueftes.
+ *
+ * 2. Kein `fristZustand` — LEGACY-Fallback auf `bewerbungsfristEnde`:
+ *    verkaufsfaehig, solange kein Ende in der Vergangenheit belegt ist.
+ *
+ * ⚠️ Die LEGACY-Luecke (17.07.2026): `bewerbungsfristEnde` ist bei den meisten
+ * Programmen NICHT gesetzt, und dann ist "laeuft rollend" von "Frist nicht
+ * erfasst" nicht unterscheidbar — beides ein fehlendes Feld, das der Fallback
+ * als "laeuft" liest. So wurde ein Antrag fuer den Foerderfonds Demokratie
+ * verkauft, dessen einziger Stichtag am 30.09.2019 lag. `fristZustand` schliesst
+ * genau diese Luecke — pro migriertem Programm. Bis ein Programm migriert ist,
+ * gilt der Legacy-Weg; die Groesse der offenen Luecke haelt
+ * __tests__/data/katalog-fristen.test.ts fest.
+ */
+export function istFristVerkaufsfaehig(
+  p: Foerderprogramm,
+  now: Date = new Date()
+): boolean {
+  const fz: FristZustand | undefined = p.fristZustand;
+
+  if (fz !== undefined && fz !== null) {
+    // ACHTUNG: `fz` ist zwar als FristZustand typisiert, kommt aber ungeprueft
+    // aus JSON (`JSON.parse` behauptet den Typ nur). Jeder Zweig prueft daher
+    // die Struktur selbst, und alles Unbekannte faellt unten auf `false` —
+    // nicht auf den Legacy-Weg. Sonst haette ein Tippfehler in `art` das Gate
+    // still uebersprungen und das Programm waere verkauft worden (dieselbe
+    // Sperrliste-statt-Allowlist-Falle wie bei isStatusNichtAnbietbar).
+    const art = (fz as { art?: unknown }).art;
+
+    if (art === "keine") return true;
+
+    // Nicht verifiziert (Quelle schweigt): bleibt im Verkauf, aber die UI muss
+    // den Hinweis zeigen — s. brauchtFristHinweis.
+    if (art === "unbekannt") return true;
+
+    // Belegt keine offene Runde.
+    if (art === "geschlossen") return false;
+
+    if (art === "stichtag") {
+      if ((fz as { jaehrlichWiederkehrend?: unknown }).jaehrlichWiederkehrend === true) return true;
+      const stichtage = (fz as { stichtage?: unknown }).stichtage;
+      if (!Array.isArray(stichtage)) return false; // kaputte Struktur -> fail-closed
+      // Vergleich als ISO-String: lexikografisch == chronologisch, keine
+      // Zeitzonen-Falle. Der Stichtag SELBST zaehlt noch als offen (bis 23:59
+      // des Tages kann eingereicht werden) — mit Date-Vergleich waere
+      // "Frist heute" faelschlich schon abgelaufen gewesen.
+      const gueltige = stichtage.filter(
+        (s): s is string => typeof s === "string" && istIsoDatum(s)
+      );
+      if (gueltige.length === 0) return false; // belegter, aber unlesbarer Termin -> fail-closed
+      const letzter = gueltige.reduce((a, b) => (a > b ? a : b));
+      return letzter >= isoDatum(now);
+    }
+
+    // Alles Unerwartete (Tippfehler, kaputte Struktur, spaeter ergaenzte
+    // Variante): nicht verkaufsfaehig.
+    return false;
+  }
+
+  // Legacy-Fallback: nur ein belegtes Ende in der Vergangenheit sperrt.
+  const ende = p.bewerbungsfristEnde;
+  if (ende) {
+    const d = new Date(ende);
+    if (!Number.isNaN(d.getTime()) && d < now) return false;
+  }
+  return true;
 }
 
 /**
  * Ein Programm gehoert NICHT in den aktiven Finder (und damit ins Archiv), wenn
- *  - es einen terminalen Status hat (archiviert/review_needed/beendet), ODER
- *  - sein Bewerbungsfrist-Ende nachweislich in der Vergangenheit liegt
- *    (bewerbungsfristEnde < heute).
- *
- * Programme OHNE Enddatum ("laufend"/rolling) und mit Status "aktiv" sind NICHT
- * abgelaufen.
- *
- * Hintergrund: Das Archiv filterte frueher auf `status === "abgelaufen"` — diesen
- * Wert setzt der Katalog nie, also war das Archiv immer leer, obwohl Programme mit
- * vergangener Frist im aktiven Katalog auftauchten. Zusaetzlich fielen archivierte
- * Programme OHNE Enddatum (z. B. eingestellte Stiftungsfoerderungen, "keine
- * Ausschreibungen mehr") durch den Rost und blieben im oeffentlichen Finder sichtbar.
- * Diese Funktion ist die eine gemeinsame Quelle fuer die Trennlinie Katalog/Archiv
- * (Archiv einschliessen, Finder/Matcher ausschliessen) — deckungsgleich mit dem
- * Ausschluss in lib/wizard/matcher.ts.
+ *  - sein Status nicht `aktiv` ist (s. o.), ODER
+ *  - seine Bewerbungsfrist nicht verkaufsfaehig ist (s. istFristVerkaufsfaehig:
+ *    fail-closed bei fristZustand, Legacy-Fallback auf bewerbungsfristEnde).
  */
 export function isProgrammAbgelaufen(p: Foerderprogramm, now: Date = new Date()): boolean {
-  if (isProgrammTerminalerStatus(p)) return true;
-  const ende = p.bewerbungsfristEnde;
-  if (ende) {
-    const d = new Date(ende);
-    if (!Number.isNaN(d.getTime()) && d < now) return true;
-  }
+  if (isStatusNichtAnbietbar(p)) return true;
+  if (!istFristVerkaufsfaehig(p, now)) return true;
   return false;
 }

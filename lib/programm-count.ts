@@ -12,20 +12,31 @@
  * serioeser — und die Zahl darf nicht ueberzeichnen, was der Finder tatsaechlich
  * liefert (07.07.2026: 23 archivierte Datensaetze aus der Zaehlung genommen;
  * 08.07.2026: 9 weitere Programme ohne Antragsmoeglichkeit archiviert ->
- * Finder-sichtbar 152 -> "150+").
+ * Finder-sichtbar 152 -> "150+"; 17.07.2026: 4 Programme ohne offene Runde
+ * archiviert -> Finder-sichtbar 148 -> "140+").
  *
  * WICHTIG: Bewusst KEIN Import von data/foerderprogramme.json hier — diese
  * Konstante wird auch in Client-Komponenten (Header, Footer, Hero) genutzt,
  * und der 297-KB-JSON-Import wuerde das Client-Bundle aufblaehen.
  *
- * PFLEGE: Waechst der aktive Katalog ueber die naechste Zehnerstelle (aktuell 152
- * -> sobald >= 160), hier EINMAL erhoehen. Realen AKTIV-Count zeigt (Logik
- * deckungsgleich mit lib/programm-status.ts#isProgrammAbgelaufen):
- *   node -e "const d=require('./data/foerderprogramme.json'),n=new Date(),t=p=>['archiviert','review_needed','abgelaufen','beendet'].includes(p.status),x=p=>t(p)||(p.bewerbungsfristEnde&&new Date(p.bewerbungsfristEnde)<n);console.log(d.filter(p=>!x(p)).length)"
+ * PFLEGE: Waechst oder schrumpft der aktive Katalog ueber eine Zehnerstelle
+ * hinweg, hier EINMAL anpassen — __tests__/lib/programm-count.test.ts schlaegt
+ * in beide Richtungen an und nennt den Ist-Wert.
+ *
+ * Den realen Count NICHT mehr per Einzeiler nachbauen: Hier stand bis 17.07.2026
+ * eine Kopie der alten Sperrlisten-Logik (['archiviert','review_needed',
+ * 'abgelaufen','beendet']). Das Gate arbeitet inzwischen als Allowlist (nur
+ * "aktiv" zaehlt) — die Kopie war eine zweite Wahrheit, die still driftete.
+ * Massgeblich ist lib/programm-status.ts#isProgrammAbgelaufen; der Test oben
+ * ruft genau die auf.
  */
 
-/** Auf die naechste Zehnerstelle abgerundete AKTIVE Programm-Anzahl. */
-export const PROGRAMM_COUNT_ROUNDED = 150;
+/**
+ * Auf die naechste Zehnerstelle abgerundete AKTIVE Programm-Anzahl.
+ * Wird von __tests__/lib/programm-count.test.ts gegen den echten Katalog
+ * geprueft — sowohl gegen Ueberzeichnen als auch gegen unnoetige Bescheidenheit.
+ */
+export const PROGRAMM_COUNT_ROUNDED = 140;
 
 /** Marketing-Label, z. B. "180+" — fuer Stats-Karten/Badges. */
 export const PROGRAMM_COUNT_LABEL = `${PROGRAMM_COUNT_ROUNDED}+`;

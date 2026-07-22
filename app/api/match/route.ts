@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { runMatch, type MatchInput } from "@/lib/wizard/matcher";
+import { brauchtFristHinweis } from "@/lib/foerder-zustaende";
 
 export const maxDuration = 60;
 
@@ -47,6 +48,10 @@ export async function POST(req: NextRequest) {
           foerdersummeMax: (m.programm as any).foerdersummeMax,
           bewerbungsfristText: (m.programm as any).bewerbungsfristText,
           bewerbungsfristEnde: (m.programm as any).bewerbungsfristEnde,
+          // Nicht den rohen fristZustand ausliefern, sondern die Entscheidung:
+          // Muss der Kunde VOR dem Kauf sehen, dass die Frist ungeprueft ist?
+          // (Entscheidung 22.07.2026 — s. components/FristHinweis.tsx.)
+          fristUnverifiziert: brauchtFristHinweis((m.programm as any).fristZustand),
           kategorien: (m.programm as any).kategorien,
           kurzbeschreibung: (m.programm as any).kurzbeschreibung,
         },

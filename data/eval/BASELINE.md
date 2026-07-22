@@ -9,8 +9,92 @@
 
 > Phase-5-Pipeline-Baseline: Separate Eval-Schicht fuer Generate-Pipeline (lib/wizard/pipeline.ts).
 > Metriken: WIZ-01 (Pflichtabschnitt-Coverage), WIZ-02 (Halluzinations-Detection),
-> WIZ-03 (Tonalitaets-Passung via LLM-as-Judge), Finanzplan-Validity (Sub).
-> Format analog Phase-1 (append-only, neueste Eintraege oben).
+> WIZ-03 (Tonalitaets-Passung via LLM-as-Judge), WIZ-04 (Begruendungs-Substanz, deterministisch),
+> Finanzplan-Validity (Sub). Format analog Phase-1 (append-only, neueste Eintraege oben).
+
+## 2026-07-22 (abends) — WIZ-04-Metrik-Update: Konnektiv-Lexikon erweitert (pv-011-Analyse)
+
+- **Anlass:** Einzelfall-Analyse pv-011 (3× 0 % WIZ-04 trotz hochwertiger Inputs). Befund
+  zweigeteilt: (a) run1+run2 = **Revisions-Nichtbefolgung** — die 3 substanz-Findings blieben
+  laut Resolutions ausdruecklich "offen — nicht erweitert" (mistral-small triagiert bei 15
+  Findings zugunsten der Halluzinations-Fixes; Hebel "Revisions-Konsistenz" bleibt offen).
+  (b) run3 = **Detektor-Blindstelle**: Die Revision begruendete real ("indem", "sodass",
+  "da sie", "zielen darauf ab"), der Resolutions-Judge schloss die Findings zu Recht —
+  das Konnektiv-Lexikon kannte diese Wirkmechanismus-Sprache nicht, WIZ-04 mass 0.
+- **Aenderung:** NUR Metrik (`BEGRUENDUNGS_KONNEKTIVE` in `lib/wizard/substanz.ts` um
+  indem / sodass / wodurch / aufgrund / infolge / kausales "da <Pronomen>" /
+  "ziel(t|en) darauf ab" / "was ... ermoeglicht|staerkt|sichert|foerdert" erweitert).
+  Pipeline und Snapshots UNVERAENDERT — Anker weiterhin die 69 Snapshots vom 22.07.
+  (`2026-07-22T10-59-54`), neu gescored per `--replay <baseline> --N=3` (deterministisch,
+  kein LLM-Lauf noetig).
+- **Trennschaerfe-Beweis:** Alter (banaler) Gemini-Anker vom 20.05. mit demselben erweiterten
+  Lexikon: 0,5 % → 7,3 %. Neuer Anker: 35,8 % → 55,9 %. Der Abstand banal↔begruendet
+  WAECHST von ~35 auf ~49 Punkte — die Erweiterung entfernt False Negatives, sie
+  verwaessert das Gate nicht.
+
+### Haupt-Scores (nur WIZ-04 geaendert; uebrige Achsen identisch zum Eintrag darunter)
+
+| Achse | Mean | Stddev | 2σ-Band | Schwellwert (D-19) | Status |
+|-------|------|--------|---------|--------------------|--------|
+| WIZ-01 (Pflichtabschnitte) | 100.0 | 0.0 | 100.0 – 100.0 | ≥ 80 % | ✓ PASS |
+| WIZ-02 (Halluzinations-Detection) | 99.0 | 2.5 | 94.0 – 104.0 | kein Drop > 2σ+10 % | ✓ unveraendert |
+| WIZ-03 (Tonalitaets-Passung) | 63.7 | 16.1 | 31.5 – 95.9 | warning-only | unveraendert (LLM-Judge, kein Replay-Rescore) |
+| WIZ-04 (Begruendungs-Substanz) | 55.9 | 19.2 | 17.5 – 94.3 | kein Drop > max(2σ, 5) | Anker NEU (Metrik-Update; 2σ=38.4) |
+| Finanzplan-Validity (Sub) | 89.0 | 11.6 | 65.8 – 112.2 | — | ✓ unveraendert |
+
+**Replay-Eigenheit (unveraendert):** `--replay` ohne `--N=3` scored nur run1 → WIZ-04 52.1
+statt 55.9 (drop 3.8, vom 2σ-Spielraum gedeckt). Exakt-Reproduktion: `--replay <dir> --N=3`.
+**Offen (pv-011-Folge):** run1/run2-Muster "Revision ignoriert substanz-Findings bei vollem
+Findings-Stapel" ist ein Pipeline-Hebel (Revisions-Konsistenz), kein Metrik-Thema — naechste
+Hebel unveraendert: Revisions-Konsistenz, mehr maxZeichen-Programme, ggf. staerkeres
+Revisionsmodell.
+
+---
+
+## 2026-07-22 — Re-Baseline: Korpus v2 (Produkt-Realitaet) + Textqualitaets-Pipeline (n=23)
+
+- **Anlass:** Drei Aenderungen zugleich verankert — (1) Korpus v2: alle 23 Eintraege auf
+  reale Interview-Tiefe erweitert (Ø 7,3 Fragen statt 4,2; Kolja: das Produkt stellt 6-12),
+  (2) Umfangs-Direktive (PR #100: maxZeichen als Ziel-Korridor 70-90 %), (3) Substanz-Gate
+  (PR #101: Findings->Revision, Prompt-Schutz, WIZ-04). Bewusst EIN neuer Anker fuer alles:
+  Attribution der Einzeleffekte steht in den PRs (#100 A/B-Smoke, #101 Einzellaeufe); die
+  Baseline dient der Regressions-Erkennung ab hier, nicht der Attribution.
+- **Pipeline-Commit:** Branch `feat/korpus-realismus` auf `bd38017` (nach Merge #100) +
+  #101-Stand (Substanz-Gate).
+- **Run-Konfiguration:** N=3 × 23 Eintraege = 69 Runs, 0 Fehler, Wallclock 7608 s (~2h07).
+  `LLM_PROVIDER=mistral` (wie Prod, mistral-small) — NICHT vergleichbar mit dem
+  Gemini-Anker vom 2026-05-20 (Provider-Switch = neue Baseline gemaess D-26).
+- **Feature-Flags:** wie Prod (sharpPrompts etc. per .env.local).
+
+### Haupt-Scores (mean ± stddev ueber N=3 Runs × 23 Eintraege)
+
+| Achse | Mean | Stddev | 2σ-Band | Schwellwert (D-19) | Status |
+|-------|------|--------|---------|--------------------|--------|
+| WIZ-01 (Pflichtabschnitte) | 100.0 | 0.0 | 100.0 – 100.0 | ≥ 80 % | ✓ PASS |
+| WIZ-02 (Halluzinations-Detection) | 99.0 | 2.5 | 94.0 – 104.0 | kein Drop > 2σ+10 % | ✓ (vorher 98.3 — Theorie-Pflicht erzeugt KEINE Halluzinationen) |
+| WIZ-03 (Tonalitaets-Passung) | 63.7 | 16.1 | 31.5 – 95.9 | warning-only | +17.4 ggue. 46.3 — begruendete Texte gefallen auch dem Judge |
+| WIZ-04 (Begruendungs-Substanz) | 35.8 | 19.9 | 0.0 – 75.6 | kein Drop > max(2σ, 5) | Anker NEU — vorher 0.0; Gate beisst jetzt bei < ~0 (2σ=39.8; praktisch: Drop > 39.8 blockt) |
+| Finanzplan-Validity (Sub) | 89.0 | 11.6 | 65.8 – 112.2 | — | (vorher 92.0, innerhalb stddev) |
+
+**Befund WIZ-04:** 35.8 % ist der ehrliche Stand nach den drei Hebeln — deutlich ueber 0.0,
+weit unter gut. Stddev 19.9 zeigt: mistral-small folgt der Begruendungs-Anweisung
+inkonsistent (Einzelwerte 0-100 %). Auffaellig: pv-011 (hochwertig, Startchancen) 3× 0 % —
+Einzelfall-Analyse offen. Naechste Hebel: Konsistenz der Revision, maxZeichen-Extraktion
+(mehr Programme mit Ziel-Korridor), ggf. staerkeres Revisionsmodell.
+**Achtung Gate-Mechanik:** Bei stddev 19.9 blockt das 2σ-Gate erst bei einem Absturz um
+~40 Punkte. Sinkt die Stddev in kuenftigen Ankern, wird das Gate automatisch schaerfer.
+**Replay-Eigenheit (kein Bug):** `--replay` scored per Default nur run1 (N=1) — der
+Replay-Wert liegt daher systematisch neben dem N=3-Anker (hier 29.5 vs. 35.8, drop 6.35).
+Das gilt fuer alle Achsen (WIZ-02 zeigte es schon immer als Mini-Drift) und ist vom
+2σ-Spielraum gedeckt. Wer den Anker exakt reproduzieren will: `--replay <dir> --N=3`.
+
+### Reports / Snapshots
+
+- JSON/MD: `data/eval/pipeline-reports/2026-07-22T10-59-54.{json,md}`
+- **Baseline-Anker:** `data/eval/pipeline-snapshots/baseline/` = Kopie von
+  `2026-07-22T10-59-54/` (69 Snapshots, force-committed; ersetzt den Gemini-Anker vom 20.05.)
+
+---
 
 ## 2026-05-20 — Phase-5-Pipeline-Baseline (Korpus v1, n=22)
 
@@ -31,11 +115,24 @@
 | WIZ-01 (Pflichtabschnitte) | 100.0 | 0.0 | 100.0 – 100.0 | ≥ 80 % | ✓ PASS (trivial — maxZeichen=0 Dossiers) |
 | WIZ-02 (Halluzinations-Detection) | 98.3 | 4.5 | 89.3 – 107.3 | ≥ 50 % Reduktion vs. Baseline | Baseline = Anker |
 | WIZ-03 (Tonalitaets-Passung) | 46.3 | 15.8 | 14.7 – 77.9 | Score-Delta > 0 | n/a (Baseline) |
+| WIZ-04 (Begruendungs-Substanz) | 0.0 | 0.0 | 0.0 – 0.0 | kein Drop > max(2σ, 5) | Baseline = Anker (22.07.2026, finalText-Messung, Replay ueber 64 Snapshots) |
 | Finanzplan-Validity (Sub) | 92.0 | 10.8 | 70.4 – 113.6 | — | — |
 
 **Befund WIZ-01:** 100% Coverage mit 0 Stddev bedeutet, dass die Pipeline IMMER alle Pflicht-Abschnitte erzeugt. WIZ-01 ist als Differenz-Metrik in Wave 3 nur sinnvoll, wenn `maxZeichen`-Constraints in Dossiers eingetragen werden (dann koennen Ueberschreitungen gemessen werden).
 
 **Befund WIZ-02:** 98.3% Score = Halluzinations-Reduktion wirkt gut, aber baseline kennt noch keine echten Forbidden-Marker in den Eintraegen (die meisten Eintraege haben `expected_forbidden_markers=[]`). Echtes Signal kommt erst wenn Dossier-spezifische Forbidden-Marker in Korpus-Eintraegen gesetzt sind.
+
+**Befund WIZ-04 (22.07.2026):** 0.0% ist kein Messfehler, sondern der Ist-Zustand, den Kolja
+als "zu banal" beurteilt hat: 374 von 413 Korpus-Abschnitten enthalten NULL kausale
+Konnektive — die Texte behaupten, sie begruenden nicht. Gemessen wird die FINALE Fassung
+(das Kunden-Artefakt); der Entwurf laege bei 0.7% — die Revision hat Begruendung bisher
+sogar noch GESTRICHEN. Deterministisch (lib/wizard/substanz.ts: je Inhaltsabschnitt
+>= 1 Theorie-Marker UND >= 2 Begruendungs-Konnektive, ODER >= 3 Konnektive als dichte
+Kausal-Argumentation), deshalb hart gate-faehig (kein Judge-Rauschen wie bei WIZ-03).
+Live-Einzellaeufe nach Substanz-Findings + Prompt-Schutz: pv-005 80%, pv-001 17%,
+pv-004 0-17% (mistral-small folgt inkonsistent — Aggregat kommt mit dem naechsten
+Live-Snapshot-Lauf). Danach diese Baseline-Zeile NEU setzen, damit das Gate auf dem
+verbesserten Niveau verankert ist.
 
 **Befund WIZ-03:** Mean=46.3 mit Stddev=15.8 zeigt hohe Streuung. Wave-3-Hebel (Tonalitaets-Tuning per Geber-Cluster) zielt auf Steigerung des Cluster-spezifischen Means. Stiftungen (55.0) und EU (58.1) schneiden besser ab als oeffentlich (43.1) und verband-uni (39.1).
 

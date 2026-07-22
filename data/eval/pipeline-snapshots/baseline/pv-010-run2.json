@@ -31,12 +31,13 @@
       "bewerbungsart": "online",
       "infoLink": "https://fundraiser-magazin.de/klimalab-2026",
       "kurzbeschreibung": "Förderung für gemeinnützige Vereine und Initiativen (nicht direkt Schulen) für Klimaschutz-Projekte. Beratung inkludiert. Schulen können über Kooperationspartner (Vereine) teilnehmen.",
-      "status": "aktiv",
+      "status": "archiviert",
       "createdAt": "2026-02-12T00:00:00Z",
       "updatedAt": "2026-02-12T11:21:11.135740",
       "quelle": "foerdermittel-wissenswert.de",
       "kiAntragGeeignet": true,
-      "verificationWarning": "Dieses Programm hat nicht verifizierte Fördersummen. Bitte prüfen Sie die Daten vor einer Antragstellung."
+      "verificationWarning": "Dieses Programm hat nicht verifizierte Fördersummen. Bitte prüfen Sie die Daten vor einer Antragstellung.",
+      "bemerkung": " | Redaktionsentscheid 07.07.2026: archiviert - Schulen/Schul-Foerdervereine NICHT antragsberechtigt (nur gemeinnuetzige Orgs ausserhalb Klimaschutz; Traeger BBE, gefoerdert v.a. Stiftung Mercator) + kein belegbares kuenftiges Datum (nur vage Herbst 2027). Quelle engagiert-fuer-klimaschutz.de/klimalab."
     },
     "facts": {
       "schule": {
@@ -62,10 +63,15 @@
       },
       "wirkung": {
         "erwartete_ergebnisse": [
-          "Klimaschutz in Satzung/Leitbild"
+          "Klimaschutz in Satzung/Leitbild",
+          "Klima-Check fuer jede Ortsgruppen-Aktion",
+          "Zwei junge Mitglieder ruecken in Leitungsrollen nach"
         ],
-        "messbare_indikatoren": [],
-        "nachhaltigkeit": null
+        "messbare_indikatoren": [
+          "Klima-Check etabliert",
+          "Nachwuchs in Vorstand/Gruppenleitung"
+        ],
+        "nachhaltigkeit": "Leitbild-Beschluss durch Mitgliederversammlung (Fruehjahr), AG mit 2 NAJU-Plaetzen"
       },
       "budget": {
         "beantragt_eur": null,
@@ -85,39 +91,216 @@
       }
     },
     "richtlinie": {
-      "version": "2026-05-19",
+      "version": "2026-07-01",
       "quellen": [
-        "https://fundraiser-magazin.de/klimalab-2026"
+        "https://engagiert-fuer-klimaschutz.de/klimalab/"
       ],
       "foerderhoehe": {
         "maxEur": 20000,
-        "bemerkung": "Die Förderung wird für einen Projektzeitraum von 12 Monaten gewährt."
+        "bemerkung": "Förderung pro Organisation für einen Zeitraum von 12 Monaten. Es werden 5 Organisationen ausgewählt."
       },
-      "kostenpositionen": [],
+      "kostenpositionen": [
+        {
+          "kategorie": "personal",
+          "foerderfaehig": true,
+          "bedingungen": [
+            "Personalressourcen für die Umsetzung von Klimaschutzmaßnahmen"
+          ],
+          "beispielePasst": [
+            "Einstellung einer Klimaschutzbeauftragten",
+            "Freistellung von Personal für Projektarbeit"
+          ]
+        },
+        {
+          "kategorie": "sachkosten",
+          "foerderfaehig": true,
+          "bedingungen": [
+            "Sachmittel zur Umsetzung von Klimaschutzmaßnahmen"
+          ],
+          "beispielePasst": [
+            "Nachhaltige Beschaffung von Materialien",
+            "Kosten für Klimaschutzberatung"
+          ]
+        },
+        {
+          "kategorie": "honorare",
+          "foerderfaehig": true,
+          "bedingungen": [
+            "Externe Expertise zur Prozessbegleitung und Beratung"
+          ],
+          "beispielePasst": [
+            "Honorare für Umwelt- und Klimaschutzberater*innen"
+          ]
+        },
+        {
+          "kategorie": "reisekosten",
+          "foerderfaehig": false,
+          "bemerkung": "Nicht explizit erwähnt, daher nicht förderfähig."
+        },
+        {
+          "kategorie": "overhead",
+          "foerderfaehig": false,
+          "bemerkung": "Nicht explizit erwähnt, daher nicht förderfähig."
+        },
+        {
+          "kategorie": "sonstiges",
+          "foerderfaehig": false,
+          "bemerkung": "Nicht explizit erwähnt, daher nicht förderfähig."
+        }
+      ],
       "eigenmittel": {
         "pflicht": false,
-        "bemerkung": "Im Quelltext werden keine Angaben zur Erbringung von Eigenmitteln gemacht."
+        "bemerkung": "Keine Pflicht zu Eigenmitteln erwähnt."
       },
       "kumulierung": {
-        "erlaubt": "bedingt",
-        "bedingungen": [
-          "Keine Informationen zur Kumulierung in der Quelle vorhanden."
-        ]
+        "erlaubt": false,
+        "bemerkung": "Nicht explizit erwähnt, aber Auswahl von nur 5 Organisationen deutet auf exklusive Förderung hin."
       },
       "antragsstruktur": {
-        "abschnitte": [],
-        "einreichungsweg": "Bewerbungen sind bis zum 27. Februar 2026 möglich. Weitere Informationen zum Wettbewerb und zur Bewerbung sind auf der Webseite des Programms zu finden.",
-        "anlagen": []
+        "abschnitte": [
+          {
+            "id": "organisation",
+            "name": "Organisationsdaten",
+            "pflicht": true,
+            "leitfragen": [
+              "Name der Organisation",
+              "Rechtsform (z.B. e.V., gGmbH)",
+              "Kontaktdaten"
+            ]
+          },
+          {
+            "id": "projektidee",
+            "name": "Projektidee und Ziele",
+            "pflicht": true,
+            "leitfragen": [
+              "Beschreibung des Veränderungsprozesses",
+              "Ziele des Klimaschutzprojekts",
+              "Bezug zu Kernaktivitäten der Organisation"
+            ]
+          },
+          {
+            "id": "massnahmenplan",
+            "name": "Maßnahmenplan",
+            "pflicht": true,
+            "leitfragen": [
+              "Konkrete Maßnahmen zur Verankerung von Klimaschutz",
+              "Zeitplan",
+              "Verantwortlichkeiten"
+            ]
+          },
+          {
+            "id": "budget",
+            "name": "Finanzierungsplan",
+            "pflicht": true,
+            "leitfragen": [
+              "Geplante Verwendung der Fördermittel",
+              "Kostenaufstellung"
+            ]
+          },
+          {
+            "id": "nachhaltigkeit",
+            "name": "Nachhaltigkeit und Wirkung",
+            "pflicht": true,
+            "leitfragen": [
+              "Langfristige Verankerung von Klimaschutz in der Organisation",
+              "Erwartete Wirkung"
+            ]
+          }
+        ],
+        "anlagen": [
+          "Auszug aus Vereinsregister/Handelsregister"
+        ],
+        "einreichungsweg": "Onlinebewerbung über typeform.com",
+        "bearbeitungsdauer": "Zweistufiges Auswahlverfahren durch Programmteam und Stiftung Mercator"
       },
       "notizen": [
-        "Das KlimaLab ist ein Programm des Bundesnetzwerks Bürgerschaftliches Engagement (BBE).",
-        "Fördergeber und Kooperationspartner ist die Stiftung Mercator.",
-        "Zielgruppe sind gemeinnützige Organisationen (Vereine, Verbände etc.), die Klimaschutz fest in ihrem Selbstverständnis verankern wollen.",
-        "Beispiele für Vorhaben sind die Schaffung neuer Verantwortlichkeiten und Abläufe, die Überarbeitung des Leitbildes oder der Aufbau strategischer Partnerschaften.",
-        "Ausgewählte Organisationen erhalten zusätzlich zur finanziellen Förderung Unterstützung in Form von Beratung und Wissenstransfer."
+        "Förderzeitraum: 12 Monate, Beginn ab Juni 2026.",
+        "Bewerbungsfrist: 27. Februar 2026.",
+        "Zielgruppe: Gemeinnützige Organisationen (z.B. Vereine, Verbände, Stiftungen) mit eingetragener Rechtsform, die nicht vorrangig im Klima- und Umweltschutz tätig sind.",
+        "Voraussetzung: Klimaschutz muss bereits einen Platz in der Organisation haben und erste Ziele formuliert sein.",
+        "Fördermittel können unkompliziert im Förderzeitraum abgerufen werden."
       ],
-      "bestPractices": [],
-      "rejectGruende": [],
+      "bestPractices": [
+        {
+          "thema": "Struktureller Veränderungsprozess statt Einzelprojekt",
+          "was_funktionierte": "Die Ausschreibung sucht ausdrücklich Organisationen, die einen Veränderungsprozess anstoßen, um Klimaschutz fest im Selbstverständnis zu verankern — mit den genannten Beispielen: neue Verantwortlichkeiten und Abläufe, Überarbeitung des Leitbildes oder strategische Partnerschaften.",
+          "warum": "Programmziel ist laut Förderbedingungen, dass Klimaschutz zum Querschnittsthema wird — strategisch, strukturell und nachhaltig; reine Einzelmaßnahmen (Events, Publikationen, Produkte) sind explizit ausgeschlossen."
+        },
+        {
+          "thema": "Vorarbeit und erste Ziele konkret belegen",
+          "was_funktionierte": "Als entscheidend benannt wird, dass das Thema bereits einen Platz in der Organisation hat und erste Ziele formuliert wurden — mit den offiziellen Beispielen Erstellung eines Klimaschutzplans, Umstellung auf nachhaltige Beschaffungen, beabsichtigte oder vollzogene Satzungsänderung.",
+          "warum": "Das Bewerbungsformular fragt gezielt nach vorhandenen Beschlüssen und Zuständigkeiten zum Klimaschutz (Abschnitt Status quo, max. 1500 Zeichen) — wer hier Konkretes vorweisen kann, erfüllt das dokumentierte Kernkriterium."
+        },
+        {
+          "thema": "Klare Verantwortlichkeit und Einbindung der Leitungsebene",
+          "was_funktionierte": "Die Benennung einer verantwortlichen Person oder Personengruppe ist explizite Fördervoraussetzung; das Formular fragt zusätzlich, wer innerhalb der Organisation zuständig wäre und wie die Leitungsebene eingebunden wird.",
+          "warum": "Beide Punkte sind eigene Pflichtfragen im offiziellen Bewerbungsformular — sie signalisieren dem Auswahlteam, dass der Veränderungsprozess organisatorisch getragen ist."
+        },
+        {
+          "thema": "Auswahlgespräch mit vorläufigem Zeit- und Finanzplan vorbereiten",
+          "was_funktionierte": "Im zweistufigen Auswahlverfahren werden ca. 10–12 Organisationen zu einem ca. 30-minütigen Gespräch (13.–17. April 2026) eingeladen, in dem sie Organisation, Motivation und geplante Veränderungsprozesse inklusive vorläufigem Zeit- und Finanzplan vorstellen.",
+          "warum": "Die Förderbedingungen dokumentieren diesen Ablauf explizit — ein vorbereiteter Zeit- und Finanzplan ist damit belegter Bestandteil der finalen Auswahl von 5 aus ca. 10–12 Organisationen."
+        }
+      ],
+      "rejectGruende": [
+        {
+          "grund": "Bewerbung nach Fristende eingereicht — die Bewerbungsphase läuft nur vom 10. November 2025 bis zum 27. Februar 2026",
+          "haeufigkeit": "haeufig",
+          "vermeidung": "Onlineformular rechtzeitig vor dem 27.02.2026 absenden; Antworten laut offizieller Empfehlung vorab offline vorbereiten, da der Formular-Zwischenstand nur 15 Tage im Browsercache gehalten wird"
+        },
+        {
+          "grund": "Organisation ohne eingetragene Rechtsform — explizites Ausschlusskriterium; auch Einzelpersonen und Einzelgruppen werden nicht gefördert",
+          "haeufigkeit": "haeufig",
+          "vermeidung": "Nur mit eingetragener Rechtsform (e.V., gGmbH o. ä.) bewerben und den geforderten Vereinsregister-/Handelsregisterauszug im Formular hochladen"
+        },
+        {
+          "grund": "Falsche Zielgruppe: Organisation ist vorrangig im Klima- und Umweltschutz tätig — das Programm richtet sich ausdrücklich an Organisationen, die NICHT aus diesem Bereich kommen",
+          "haeufigkeit": "haeufig",
+          "vermeidung": "In der Bewerbung den eigentlichen Haupttätigkeitsbereich klar benennen und darlegen, wie Klimaschutz künftig mit den Kernaktivitäten verschränkt werden soll"
+        },
+        {
+          "grund": "Kommerzielle bzw. gewinnorientierte Vorhaben und Institutionen werden nicht gefördert",
+          "vermeidung": "Gemeinnützigkeit klar belegen; das Vorhaben als organisationsinternen Veränderungsprozess ohne Gewinnorientierung anlegen"
+        },
+        {
+          "grund": "Aufstockung: Prozesse, die mit der BBE-Förderung lediglich aufgestockt werden sollen, sind ausgeschlossen",
+          "vermeidung": "Einen eigenständigen, neu angestoßenen Veränderungsprozess beantragen statt der Kofinanzierung bereits laufender, anderweitig geförderter Vorhaben"
+        },
+        {
+          "grund": "Fehlender Projektbezug zum Organisationswandel: Bau- und Infrastrukturmaßnahmen, Projekte mit reinem Publikations- oder Eventcharakter sowie Entwicklungskosten für Endprodukte (z. B. Filme, Lehrmaterialien, Apps, Kunstwerke) sind ausgeschlossen",
+          "haeufigkeit": "gelegentlich",
+          "vermeidung": "Mittel für Prozessbegleitung, externe Expertise, Personal- oder Sachmittel des Veränderungsprozesses einplanen — nicht für Bauvorhaben, reine Veranstaltungen, Publikationen oder Produktentwicklung"
+        },
+        {
+          "grund": "Zeitlich unbegrenzte Maßnahmen werden nicht gefördert — der Förderzeitraum ist auf 12 Monate begrenzt",
+          "vermeidung": "Maßnahmenplan mit klarem Zeitrahmen innerhalb des 12-monatigen Förderzeitraums (ab Juni 2026) aufstellen"
+        },
+        {
+          "grund": "Einzelfallhilfen (z. B. Ausbildungskosten, Reisekosten) und Etat-Ausgleiche für öffentliche Träger sind ausgeschlossen",
+          "vermeidung": "Keine individuellen Kostenerstattungen oder Haushaltslücken über die Förderung abdecken; Budget auf den organisationsweiten Klimaschutz-Prozess ausrichten"
+        },
+        {
+          "grund": "Internationale Projekte ohne nationalen Bezug werden nicht gefördert",
+          "vermeidung": "Den Bezug des Veränderungsprozesses zur Arbeit der Organisation in Deutschland deutlich machen"
+        },
+        {
+          "grund": "Organisationen mit demokratiefeindlichen Inhalten sind von der Förderung ausgeschlossen"
+        },
+        {
+          "grund": "Keine benannte verantwortliche Person: Voraussetzung ist, dass eine Person oder Personengruppe benannt werden kann, die den Veränderungsprozess verantwortet",
+          "haeufigkeit": "gelegentlich",
+          "vermeidung": "Im Formular die zuständige Funktion konkret benennen (z. B. Vorstand, hauptamtliche/ehrenamtliche Leitung, Arbeitsgruppe) und die Einbindung der Leitungsebene beschreiben"
+        },
+        {
+          "grund": "Fehlende Vorarbeit: Entscheidend ist, dass Klimaschutz bereits einen Platz in der Organisation hat und erste Ziele formuliert wurden — Bewerbungen ohne erkennbaren Status quo erfüllen die Fördervoraussetzung nicht",
+          "haeufigkeit": "haeufig",
+          "vermeidung": "Vorhandene Beschlüsse, Zuständigkeiten und erste Ziele (z. B. Klimaschutzplan, nachhaltige Beschaffung, geplante oder vollzogene Satzungsänderung) im Abschnitt Status quo konkret belegen"
+        },
+        {
+          "grund": "Fehlende Bereitschaft zu den Teilnahmebedingungen: Teilnahme an drei Workshops, Prozessbegleitung und Vernetzungsformaten, Unterzeichnung der Charta für Klimaschutz-Engagement des BBE sowie Sichtbarmachung der Prozesse und Ergebnisse sind Voraussetzung",
+          "vermeidung": "Interne Zustimmung zu Workshop-Teilnahme, Charta-Unterzeichnung und öffentlicher Kommunikation der Ergebnisse vor der Bewerbung einholen und in der Bewerbung zusichern"
+        }
+      ],
       "vorbildFormulierungen": [],
       "fristLogik": {
         "typ": "fixe_stichtage",
@@ -133,385 +316,583 @@
         "role": "ai",
         "kind": "question",
         "content": "Was moechten Sie beim KlimaLab konkret erreichen? Das Programm unterstuetzt gemeinnuetzige Organisationen beim Verankern von Klimaschutz in ihrer Struktur.",
-        "at": "2026-05-20T10:12:55.631Z"
+        "at": "2026-07-22T11:50:25.776Z"
       },
       {
         "id": "1",
         "role": "user",
         "kind": "answer",
         "content": "Wir sind ein Naturschutzverein, machen schon viel fuer Natur, aber irgendwie haben wir das Thema Klimaschutz noch nie wirklich in unserem Leitbild oder unserer Strategie festgeschrieben.",
-        "at": "2026-05-20T10:12:55.631Z"
+        "at": "2026-07-22T11:50:25.776Z"
       },
       {
         "id": "2",
         "role": "ai",
         "kind": "question",
         "content": "Was soll sich konkret aendern in Ihrer Organisation -- neue Verantwortlichkeiten, ueberarbeitetes Leitbild, strategische Partnerschaften?",
-        "at": "2026-05-20T10:12:55.631Z"
+        "at": "2026-07-22T11:50:25.776Z"
       },
       {
         "id": "3",
         "role": "user",
         "kind": "answer",
         "content": "Ich dachte vielleicht ein neues Leitbild, und dass jemand bei uns hauptverantwortlich fuer das Thema ist. Bisher macht das jeder irgendwie nebenbei.",
-        "at": "2026-05-20T10:12:55.631Z"
+        "at": "2026-07-22T11:50:25.776Z"
       },
       {
         "id": "4",
         "role": "ai",
         "kind": "question",
         "content": "Die Bewerbungsfrist war der 27. Februar 2026. Wissen Sie ob das Programm eine neue Runde ausschreibt?",
-        "at": "2026-05-20T10:12:55.631Z"
+        "at": "2026-07-22T11:50:25.776Z"
       },
       {
         "id": "5",
         "role": "user",
         "kind": "answer",
         "content": "Oh, das weiss ich nicht. Ich habe das gerade erst entdeckt. Gibt es eine neue Runde?",
-        "at": "2026-05-20T10:12:55.631Z"
+        "at": "2026-07-22T11:50:25.776Z"
       },
       {
         "id": "6",
         "role": "ai",
         "kind": "question",
         "content": "Wie viele Mitglieder hat Ihre Organisation, und wer wuerde intern den Prozess begleiten?",
-        "at": "2026-05-20T10:12:55.631Z"
+        "at": "2026-07-22T11:50:25.776Z"
       },
       {
         "id": "7",
         "role": "user",
         "kind": "answer",
         "content": "Wir sind ca. 200 Mitglieder, aber aktiv sind vielleicht 20-30. Intern wuerden wir das dem Vorstand anlegen, der Vorsitzende oder seine Stellvertreterin.",
-        "at": "2026-05-20T10:12:55.631Z"
+        "at": "2026-07-22T11:50:25.776Z"
+      },
+      {
+        "id": "8",
+        "role": "ai",
+        "kind": "question",
+        "content": "Woran wuerden Sie in zwei Jahren erkennen, dass Klimaschutz wirklich im Verein verankert ist — und nicht nur auf dem Papier steht?",
+        "at": "2026-07-22T11:50:25.776Z"
+      },
+      {
+        "id": "9",
+        "role": "user",
+        "kind": "answer",
+        "content": "Gute Frage. Konkret: Jede Ortsgruppen-Aktion soll einen Klima-Check durchlaufen, das waere neu. Und wir wollen, dass mindestens zwei junge Leute aus dem Projekt in den Vorstand oder als Gruppenleiter nachruecken. Wenn das Leitbild nur im Schrank liegt, waere das Projekt gescheitert.",
+        "at": "2026-07-22T11:50:25.776Z"
+      },
+      {
+        "id": "10",
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie nehmen Sie die aelteren, langjaehrigen Mitglieder mit, die vielleicht am bisherigen Kurs haengen?",
+        "at": "2026-07-22T11:50:25.776Z"
+      },
+      {
+        "id": "11",
+        "role": "user",
+        "kind": "answer",
+        "content": "Das ist ehrlich gesagt unsere groesste Sorge. Wir planen zwei moderierte Werkstattabende, wo ausdruecklich die Alteingesessenen ihre Naturschutzerfahrung einbringen — es soll ja keine Verdraengung sein, sondern eine Erweiterung. Der Vorsitzende steht dahinter, das hilft.",
+        "at": "2026-07-22T11:50:25.776Z"
+      },
+      {
+        "id": "12",
+        "role": "ai",
+        "kind": "question",
+        "content": "Wer arbeitet konkret am neuen Leitbild mit, und wie wird es beschlossen?",
+        "at": "2026-07-22T11:50:25.776Z"
+      },
+      {
+        "id": "13",
+        "role": "user",
+        "kind": "answer",
+        "content": "Eine gemischte Arbeitsgruppe aus sechs bis acht Leuten, quer durch die Generationen. Am Ende muss die Mitgliederversammlung zustimmen, das ist bei uns satzungsgemaess. Geplant ist der Beschluss fuer die Fruehjahrsversammlung.",
+        "at": "2026-07-22T11:50:25.776Z"
+      },
+      {
+        "id": "14",
+        "role": "ai",
+        "kind": "question",
+        "content": "Welche Rolle spielt die Jugendgruppe dabei?",
+        "at": "2026-07-22T11:50:25.776Z"
+      },
+      {
+        "id": "15",
+        "role": "user",
+        "kind": "answer",
+        "content": "Die NAJU-Gruppe soll von Anfang an mit am Tisch sitzen, zwei Plaetze in der Arbeitsgruppe sind fuer sie reserviert. Die haben das Thema ueberhaupt erst aufgebracht, ehrlich gesagt.",
+        "at": "2026-07-22T11:50:25.776Z"
       }
     ]
   },
   "result": {
     "artefacts": {
       "outline": {
-        "titel": "NABU Freiburg: Klimaschutz fest im Blick – Leitbild und Verantwortlichkeiten für eine nachhaltige Zukunft",
+        "titel": "Leitbild-Ueberarbeitung — NABU Ortsgruppe Freiburg e.V. (KlimaLab - Klimaschutz-Engagement…",
         "abschnitte": [
           {
-            "name": "Der NABU Freiburg: Wurzeln im Naturschutz, Blick auf den Klimawandel",
-            "fokus": "Vorstellung des NABU Freiburg, seine Rolle in der Region und die bisherigen Schwerpunkte im Naturschutz. Verdeutlichung, warum der Klimawandel eine logische Erweiterung des Engagements ist."
+            "name": "Organisationsdaten",
+            "fokus": "Leitfragen: Name der Organisation | Rechtsform (z.B. e.V., gGmbH) | Kontaktdaten"
           },
           {
-            "name": "Die Herausforderung: Klimaschutz als blinder Fleck in unserer Vereinsarbeit",
-            "fokus": "Schilderung der aktuellen Situation: Klimaschutz ist wichtig, aber nicht systematisch in der Vereinsstruktur verankert. Konkrete Beispiele nennen, wo Verbesserungspotenzial besteht. (fehlende Aktionen, kein Verantwortlicher)"
+            "name": "Projektidee und Ziele",
+            "fokus": "Leitfragen: Beschreibung des Veränderungsprozesses | Ziele des Klimaschutzprojekts | Bezug zu Kernaktivitäten der Organisation"
           },
           {
-            "name": "Unsere Vision: Klimaschutz als Herzstück des NABU Freiburg",
-            "fokus": "Beschreibung, wie der NABU Freiburg in Zukunft aussehen soll: Klimaschutz ist selbstverständlich, alle Mitglieder ziehen an einem Strang, der Verein wird zum Vorbild in der Region."
+            "name": "Maßnahmenplan",
+            "fokus": "Leitfragen: Konkrete Maßnahmen zur Verankerung von Klimaschutz | Zeitplan | Verantwortlichkeiten"
           },
           {
-            "name": "Unser Weg: Leitbild-Überarbeitung und klare Verantwortlichkeiten",
-            "fokus": "Konkrete Maßnahmen, die geplant sind: Überarbeitung des Leitbilds unter Einbeziehung der Mitglieder. Schaffung klarer Verantwortlichkeiten für Klimaschutz-Themen. Prozess der Leitbildentwicklung."
+            "name": "Finanzierungsplan",
+            "fokus": "Leitfragen: Geplante Verwendung der Fördermittel | Kostenaufstellung"
           },
           {
-            "name": "Die Wirkung: Ein Verein, der Klimaschutz lebt und vorlebt",
-            "fokus": "Erwartete Ergebnisse des Projekts: Klimaschutz ist im Leitbild verankert. Es gibt klare Verantwortlichkeiten und messbare Ziele. Der Verein initiiert neue Klimaschutzprojekte."
-          },
-          {
-            "name": "Nachhaltigkeit: Klimaschutz als Daueraufgabe des NABU Freiburg",
-            "fokus": "Wie der NABU Freiburg sicherstellt, dass Klimaschutz auch nach Projektende eine zentrale Rolle spielt: Regelmäßige Überprüfung der Ziele, Einbindung neuer Mitglieder, Ausbau der Expertise."
+            "name": "Nachhaltigkeit und Wirkung",
+            "fokus": "Leitfragen: Langfristige Verankerung von Klimaschutz in der Organisation | Erwartete Wirkung"
           }
         ]
       },
       "sections": [
         {
-          "name": "Der NABU Freiburg: Wurzeln im Naturschutz, Blick auf den Klimawandel",
-          "text": "Der NABU Freiburg e.V. ist mit etwa 200 Mitgliedern, von denen 20 bis 30 aktiv sind, ein fester Bestandteil des Naturschutzes in der Region. Bisher liegt unser Schwerpunkt klar auf dem Naturschutz. Allerdings ist uns bewusst, dass der Klimawandel eine immer größere Bedrohung für die Natur darstellt und somit eine logische Erweiterung unseres Engagements darstellt.\n\nWir haben festgestellt, dass das Thema Klimaschutz bisher nicht ausreichend in unserem Leitbild oder unserer Strategie verankert ist. Aktuell wird es eher \"nebenbei\" von verschiedenen Mitgliedern bearbeitet. Um den Klimaschutz zukünftig stärker zu berücksichtigen, möchten wir ein neues Leitbild entwickeln und eine klare Verantwortlichkeit innerhalb des Vereins schaffen. Dies soll idealerweise durch den Vorstand, den Vorsitzenden oder seine Stellvertreterin, erfolgen.\n\nWir sind überzeugt, dass die Förderung durch das KlimaLab uns dabei helfen kann, den Klimaschutz fest in unserer Vereinsstrategie zu verankern und so einen wichtigen Beitrag zur Bewältigung des Klimawandels zu leisten."
+          "name": "Organisationsdaten",
+          "text": "Die NABU Ortsgruppe Freiburg e.V. ist ein gemeinnütziger Naturschutzverein mit Sitz in Freiburg, Baden-Württemberg. Der Verein zählt rund 200 Mitglieder, von denen etwa 20 bis 30 aktiv in die Vereinsarbeit eingebunden sind. Die Rechtsform ist der eingetragene Verein (e.V.), vertreten durch den Vorstand, bestehend aus dem Vorsitzenden und dessen Stellvertreterin. Die Kontaktdaten des Vereins lauten: [TODO: vollständige Adresse, Telefonnummer und E-Mail-Adresse vor Einreichung ergänzen]. Das Projekt zielt darauf ab, Klimaschutz als festen Bestandteil der Vereinsstrategie zu verankern und das Leitbild entsprechend weiterzuentwickeln. Die Mitgliederversammlung soll im Frühjahr über das überarbeitete Leitbild beschließen, wobei die Umsetzung durch eine gemischte Arbeitsgruppe aus sechs bis acht Mitgliedern – darunter zwei Plätze für die NAJU-Gruppe – begleitet wird. Die Arbeitsgruppe wird von zwei moderierten Werkstattabenden begleitet, um den generationsübergreifenden Austausch zu fördern und die Einbindung bestehender Naturschutzkompetenzen sicherzustellen."
         },
         {
-          "name": "Die Herausforderung: Klimaschutz als blinder Fleck in unserer Vereinsarbeit",
-          "text": "Die NABU Ortsgruppe Freiburg e.V. mit ihren rund 200 Mitgliedern, von denen etwa 20 bis 30 aktiv sind, engagiert sich bereits stark im Naturschutz. Allerdings hat sich gezeigt, dass der Klimaschutz bisher keinen festen Platz in unserem Leitbild oder unserer Strategie gefunden hat. Bisher läuft das Thema eher \"nebenbei\", wie ein Mitglied es formulierte.\n\nKonkret bedeutet das, dass Klimaschutzaspekte bei unseren Aktionen oft unberücksichtigt bleiben. Obwohl wir uns für den Erhalt von Biotopen einsetzen, denken wir beispielsweise selten darüber nach, wie wir unsere Arbeit klimaneutral gestalten können oder welche Auswirkungen der Klimawandel auf die von uns geschützten Arten hat.\n\nWir sehen hier deutliches Verbesserungspotenzial. Durch die Verankerung von Klimaschutz in unserem Leitbild und die Schaffung einer klaren Verantwortlichkeit innerhalb des Vorstands – angedacht ist der Vorsitzende oder seine Stellvertreterin – wollen wir Klimaschutz systematischer in unsere Vereinsarbeit integrieren. Das Förderprogramm KlimaLab bietet hier eine ausgezeichnete Chance, den Klimaschutzgedanken im Selbstverständnis des NABU Freiburg e.V. zu verankern."
+          "name": "Projektidee und Ziele",
+          "text": "Die Idee zu diesem Projekt entstand aus der konkreten Erfahrung, dass Klimaschutz im Vereinsalltag zwar gelebt, aber nicht strukturell verankert ist. Bisher fehlt eine klare Verantwortlichkeit: Klimaschutz wird von engagierten Mitgliedern nebenbei mitgetragen, ohne dass das Leitbild oder die Satzung dies widerspiegeln. Das soll sich ändern – nicht durch radikale Brüche, sondern durch eine Erweiterung des Selbstverständnisses. Geplant sind zwei moderierte Werkstattabende, in denen Alteingesessene ihre Naturschutzerfahrung einbringen und gemeinsam mit jüngeren Mitgliedern eine neue Perspektive entwickeln. Der Vorsitzende steht hinter dem Vorhaben, was die Akzeptanz für die notwendigen Veränderungen erhöht.\n\nZiel ist ein neues Leitbild, das Klimaschutz als festen Bestandteil der Vereinsarbeit verankert. Dazu gehört ein verbindlicher „Klima-Check“ für jede Ortsgruppen-Aktion – ein Instrument, das bisher fehlt. Gleichzeitig sollen zwei junge Mitglieder aus dem Projekt in Leitungsrollen nachrücken, um die generationenübergreifende Verantwortung sichtbar zu machen. Die Arbeitsgruppe, die das Leitbild erarbeitet, setzt sich aus sechs bis acht Mitgliedern zusammen und bindet von Anfang an die NAJU-Gruppe ein, die das Thema überhaupt erst auf die Agenda gebracht hat. Am Ende steht die Beschlussfassung in der Mitgliederversammlung im Frühjahr, um die Veränderungen satzungsgemäß zu verankern.\n\nDieses Vorhaben ist kein Selbstzweck, sondern eine Notwendigkeit: Ein Leitbild, das nur im Schrank liegt, wäre gescheitert. Die erwartete Wirkung zeigt sich daran, ob der Klima-Check tatsächlich in der Praxis ankommt und ob junge Mitglieder nachhaltig in Führungspositionen einsteigen. Messbar wird das an der Etablierung des Klima-Checks und der Besetzung von Vorstands- oder Gruppenleiterposten durch Projektteilnehmende. Die Nachhaltigkeit sichert eine AG mit zwei NAJU-Plätzen, die die Umsetzung begleiten."
         },
         {
-          "name": "Unsere Vision: Klimaschutz als Herzstück des NABU Freiburg",
-          "text": "Als NABU Ortsgruppe Freiburg e.V. mit rund 200 Mitgliedern, von denen etwa 20 bis 30 aktiv sind, sehen wir unsere Zukunft klar vor uns: Klimaschutz wird zum Herzstück unseres Handelns. Bisher haben wir uns als Naturschutzverein vor allem dem Schutz der Natur gewidmet. Nun wollen wir Klimaschutz fest in unserem Selbstverständnis verankern, wie es das KlimaLab-Programm vorsieht.\n\nUnsere Vision ist, dass Klimaschutz in Zukunft in unserer Satzung und unserem Leitbild verankert ist. Aktuell bearbeiten alle das Thema Klimaschutz eher nebenbei. Künftig soll es eine Person geben, die hauptverantwortlich für Klimaschutzthemen ist, idealerweise im Vorstand, etwa der Vorsitzende oder seine Stellvertreterin. Um diese Vision zu erreichen, wollen wir unser Leitbild überarbeiten und neue Verantwortlichkeiten schaffen. Wir sind überzeugt, dass wir so zu einem Vorbild für andere Vereine in der Region werden können."
+          "name": "Maßnahmenplan",
+          "text": "Die Verankerung des Klimaschutzes im Leitbild und in den Strukturen des Vereins erfolgt in drei konkreten Schritten, die an die realen Arbeitsweisen und Herausforderungen des NABU Freiburg anknüpfen. Zunächst wird eine gemischte Arbeitsgruppe aus sechs bis acht Mitgliedern gebildet, die sich aus engagierten Aktiven aller Generationen zusammensetzt. Zwei dieser Plätze sind fest für die NAJU-Gruppe reserviert, da diese das Thema Klimaschutz überhaupt erst in die Vereinsagenda gebracht hat. Diese Gruppe trifft sich in zwei moderierten Werkstattabenden, in denen die langjährige Naturschutzexpertise der älteren Mitglieder mit den neuen Perspektiven der Jüngeren zusammengeführt wird – ohne dass dies als Verdraengung, sondern als Erweiterung verstanden wird. Der Vorsitzende steht hinter diesem Prozess und signalisiert damit die notwendige Rückendeckung von oben.\n\nParallel wird ein Klima-Check für jede Ortsgruppen-Aktion entwickelt, der sicherstellt, dass Klimaschutzaspekte systematisch in die Planung einfließen. Dies soll die bisherige Praxis ablösen, bei der Klimaschutz eher nebenbei mitbedacht wurde. Als messbares Ergebnis streben wir an, dass mindestens zwei junge Mitglieder aus dem Projekt in Leitungsrollen – etwa im Vorstand oder als Gruppenleiter – nachrücken, um die generationenübergreifende Verantwortung strukturell zu verankern.\n\nDer Zeitplan sieht vor, dass die Arbeitsgruppe bis zur Frühjahrs-Mitgliederversammlung ein überarbeitetes Leitbild vorlegt, das dann durch Beschluss der Mitgliederversammlung verbindlich wird. Die NAJU-Plätze in der Arbeitsgruppe sind bereits reserviert, um die Kontinuität des Prozesses zu gewährleisten. Die Verantwortung für die Umsetzung liegt beim Vorstand, der die Ergebnisse der Arbeitsgruppe in die Mitgliederversammlung einbringt und die neuen Verantwortlichkeiten im Leitbild verankert."
         },
         {
-          "name": "Unser Weg: Leitbild-Überarbeitung und klare Verantwortlichkeiten",
-          "text": "Als NABU Ortsgruppe Freiburg e.V. mit rund 200 Mitgliedern, von denen etwa 20 bis 30 aktiv sind, leisten wir bereits einen wichtigen Beitrag zum Naturschutz. Allerdings möchten wir den Klimaschutz stärker in unserer Vereinsstrategie verankern. Bisher geschieht dies eher beiläufig.\n\nUnser Ziel ist es, ein neues Leitbild zu entwickeln, das den Klimaschutz explizit berücksichtigt. Zudem wollen wir klare Verantwortlichkeiten schaffen, damit sich zukünftig jemand hauptverantwortlich um dieses Thema kümmert. Der Vorstand, konkret der Vorsitzende oder seine Stellvertreterin, wird diesen Prozess begleiten. Wir sind überzeugt, dass wir durch diese Maßnahmen den Klimaschutz in unserer Satzung und unserem Leitbild fest verankern können."
+          "name": "Finanzierungsplan",
+          "text": "Die beantragten Mittel in Höhe von bis zu 20.000 € sollen gezielt für die Überarbeitung unseres Leitbilds und die Institutionalisierung von Klimaschutzverantwortung eingesetzt werden. Konkret fließen rund 12.000 € in die Moderation der beiden Werkstattabende, die wir als Auftakt für die Leitbildarbeit ansetzen. Hierfür planen wir eine gemischte Arbeitsgruppe aus sechs bis acht Mitgliedern, die generationenübergreifend die Perspektiven der Alteingesessenen mit den Impulsen der jungen Mitglieder – insbesondere der NAJU-Gruppe – zusammenführt. Zwei Plätze in dieser Gruppe sind explizit für die NAJU reserviert, da sie das Thema Klimaschutz in unseren Verein eingebracht hat. Die Moderation wird sicherstellen, dass die bestehenden Naturschutz-Erfahrungen wertgeschätzt werden, während gleichzeitig neue Verantwortlichkeiten für Klimaschutz definiert werden.\n\nFür die Umsetzung der beschlossenen Maßnahmen veranschlagen wir rund 5.000 € für die Erstellung des neuen Leitbilddokuments sowie für die Einrichtung eines Klima-Checks, der künftig jede Ortsgruppen-Aktion begleiten soll. Dieser Check soll sicherstellen, dass Klimaschutzaspekte systematisch in unsere Aktivitäten einfließen. Die verbleibenden 3.000 € sind für die Begleitung der beiden jungen Mitglieder vorgesehen, die nach Abschluss des Projekts in Vorstands- oder Gruppenleiterrollen nachrücken sollen. Diese Mittel decken unter anderem Fortbildungen ab, die ihnen den Einstieg in ihre neuen Verantwortlichkeiten erleichtern.\n\n[TODO: Exakte Kostenaufstellung mit Angeboten der Moderator:innen und Dienstleister:innen vor Einreichung ergänzen]"
         },
         {
-          "name": "Die Wirkung: Ein Verein, der Klimaschutz lebt und vorlebt",
-          "text": "Mit diesem Projekt wollen wir als NABU Ortsgruppe Freiburg e.V. unsere bestehende Arbeit im Naturschutz um eine klare Klimaschutz-Komponente erweitern. Bisher ist Klimaschutz bei uns kein explizit verankerter Bestandteil von Leitbild und Strategie, obwohl wir als Naturschutzverein bereits viel in diesem Bereich leisten.\n\nWir erwarten, dass Klimaschutz durch die Überarbeitung unseres Leitbilds fest in unserer Satzung verankert wird. Außerdem wollen wir klare Verantwortlichkeiten schaffen, so dass das Thema nicht länger \"nebenbei\" läuft, sondern von einer Person im Vorstand – idealerweise dem Vorsitzenden oder seiner Stellvertreterin – hauptverantwortlich betreut wird. Konkret bedeutet das, dass wir Klimaschutz-Ziele definieren und deren Umsetzung überprüfen werden. Die gewonnenen Erkenntnisse sollen dann auch die Basis für neue Klimaschutzprojekte im Rahmen unserer Vereinsarbeit bilden."
-        },
-        {
-          "name": "Nachhaltigkeit: Klimaschutz als Daueraufgabe des NABU Freiburg",
-          "text": "Nachhaltigkeit: Klimaschutz als Daueraufgabe des NABU Freiburg\n\nDer NABU Freiburg stellt sicher, dass Klimaschutz auch nach Projektende eine zentrale Rolle spielt, indem er das Thema fest in seiner Vereinsstruktur und seinem Leitbild verankert. Bisher wurde Klimaschutz eher \"nebenbei\" behandelt (Antwort 2).\n\nMit dem Projektvorhaben wird der NABU Freiburg ein neues Leitbild entwickeln, das Klimaschutz explizit berücksichtigt. Wir wollen Klimaschutz als Daueraufgabe des Vereins festlegen (Antwort 1).\n\nZudem soll eine klare Verantwortlichkeit für das Thema Klimaschutz innerhalb des Vereins geschaffen werden. Die Zuständigkeit wird voraussichtlich beim Vorstand liegen, beim Vorsitzenden oder seiner Stellvertreterin (Antwort 4).\n\nDie Überarbeitung des Leitbilds und die Institutionalisierung der Klimaschutzverantwortung zielen darauf ab, das Engagement des NABU Freiburg im Bereich Klimaschutz langfristig zu sichern und weiter auszubauen."
+          "name": "Nachhaltigkeit und Wirkung",
+          "text": "Die langfristige Verankerung von Klimaschutz in unserer Organisation gelingt nur, wenn das Thema aus der Nische geholt und zum strukturellen Kern unserer Arbeit wird. Dafür setzen wir auf zwei Hebel: ein neues Leitbild, das Klimaschutz als verbindlichen Maßstab für jede Ortsgruppen-Aktion festschreibt, und die Institutionalisierung von Verantwortung durch eine neu geschaffene Position. Konkret bedeutet das, dass künftig jede Initiative – ob Nistkastenbau, Exkursion oder Öffentlichkeitsarbeit – einen Klima-Check durchläuft: eine kurze Prüfung, ob Ressourcenverbrauch, Mobilität und Inhalte den Zielen des Vereins entsprechen. Diese Praxis wird nicht als zusätzliche Aufgabe empfunden, sondern als Qualitätsmerkmal unserer Arbeit. Der Klima-Check entsteht in zwei moderierten Werkstattabenden, bei denen die langjährigen Mitglieder ihre Naturschutzerfahrung einbringen; das ist uns wichtig, um keine Abwertung bisheriger Arbeit zu signalisieren, sondern eine Erweiterung unseres Selbstverständnisses. Die Arbeitsgruppe, die das Leitbild erarbeitet, besteht aus sechs bis acht Mitgliedern quer durch die Generationen, darunter zwei Plätze für die NAJU-Gruppe, die das Thema überhaupt erst auf die Agenda gebracht hat. Am Ende steht die Mitgliederversammlung im Frühjahr, die das neue Leitbild beschließt – ein Moment, der die Transformation von einer losen Initiative zu einer Organisation mit klarer Klimaschutzverantwortung besiegelt.\n\nDie Wirkung zeigt sich nicht nur im Papier, sondern in der gelebten Praxis. Zwei junge Mitglieder aus der Arbeitsgruppe sollen nach Projektende in Vorstands- oder Gruppenleiterrollen nachrücken; das ist unser sichtbarster Indikator dafür, dass Klimaschutz kein Projekt bleibt, sondern zur Daueraufgabe wird. Die Nachhaltigkeit sichern wir durch die Satzungsänderung und die Verankerung in der Vereinsstrategie – beides muss die Mitgliederversammlung bestätigen. Dass der Vorsitzende das Projekt trägt, gibt uns die nötige Rückendeckung, um die Veränderung auch gegen Widerstände durchzusetzen. Die größte Herausforderung liegt darin, die Balance zu halten zwischen dem Bewährten und dem Neuen; genau deshalb setzen wir auf den partizipativen Prozess und die klare Zielmarke, dass das Leitbild nicht im Schrank landet, sondern zum Kompass für jede Entscheidung wird."
         }
       ],
-      "critique": "Zusammenfassung: Der Antrag adressiert das Problem, dass Klimaschutz im Leitbild des NABU Freiburg bisher nicht ausreichend verankert ist. Es werden passende Ziele genannt, jedoch fehlen konkrete Angaben zur Nachhaltigkeit und ein detaillierter Finanzplan.\n\n1. [MITTEL · richtlinie · global] \"NABU Freiburg: Klimaschutz fest im Blick – Leitbild und Verantwortlichkeiten für eine nachhaltige Zukunft\"\n   → Der Titel ist zu spezifisch. Er sollte das übergeordnete Ziel der Organisationsentwicklung umfassen, nicht nur einzelne Aktivitäten.\n2. [MITTEL · floskel · Die Herausforderung: Klimaschutz als blinder Fleck in unserer Vereinsarbeit] \"NABU Ortsgruppe Freiburg e.V. mit ihren rund 200 Mitgliedern\"\n   → Die wiederholte Nennung der Mitgliederzahl wirkt redundant. Konzentrieren Sie sich stattdessen auf die Herausforderungen und Bedarfe.\n3. [MITTEL · floskel · Nachhaltigkeit: Klimaschutz als Daueraufgabe des NABU Freiburg] \"Nachhaltigkeit: Klimaschutz als Daueraufgabe des NABU Freiburg\"\n   → Der Titel des Abschnitts ist redundant. Formulieren Sie ihn prägnanter und aussagekräftiger.\n4. [MITTEL · richtlinie · global] \"FEHLT\"\n   → Es fehlt ein konkreter Finanzplan mit Angaben zu beantragter Fördersumme, Eigenmitteln und Hauptkostenposten.\n5. [MITTEL · richtlinie · global] \"FEHLT\"\n   → Die Kumulierung mit anderen Förderprogrammen wird nicht thematisiert. Ein Abschnitt dazu fehlt.\n6. [NIEDRIG · floskel · Die Herausforderung: Klimaschutz als blinder Fleck in unserer Vereinsarbeit] \"wir unsere Arbeit klimaneutral gestalten können oder welche Auswirkungen der Klimawandel auf die von uns geschützten Arten hat.\"\n   → Formulieren Sie konkreter, welche Aspekte der Arbeit klimaneutraler gestaltet werden könnten, um den Bedarf greifbarer zu machen.\n7. [NIEDRIG · floskel · Unsere Vision: Klimaschutz als Herzstück des NABU Freiburg] \"Aktuell bearbeiten alle das Thema Klimaschutz eher nebenbei.\"\n   → Vermeiden Sie Wiederholungen aus vorherigen Abschnitten. Fokussieren Sie sich hier auf die Vision und deren Mehrwert.\n8. [NIEDRIG · floskel · Die Wirkung: Ein Verein, der Klimaschutz lebt und vorlebt] \"Konkret bedeutet das, dass wir Klimaschutz-Ziele definieren und deren Umsetzung überprüfen werden.\"\n   → Nennen Sie bereits konkrete Beispiele für Klimaschutz-Ziele, um die Wirkung zu verdeutlichen und die Glaubwürdigkeit zu erhöhen.\n9. [NIEDRIG · sonstiges · Nachhaltigkeit: Klimaschutz als Daueraufgabe des NABU Freiburg] \"Mit dem Projektvorhaben wird der NABU Freiburg ein neues Leitbild entwickeln, das Klimaschutz explizit berücksichtigt.\"\n   → Vermeiden Sie die Wiederholung von Projektzielen. Konzentrieren Sie sich stattdessen auf die langfristige Sicherstellung des Klimaschutzengagements.",
+      "critique": "Zusammenfassung: Der Antragsentwurf enthält mehrere Halluzinationen (hohe Schwere) und strukturelle Mängel, insbesondere fehlende Bezüge zur Stiftungsmission, pauschale Formulierungen und redundante Wiederholungen. Der Finanzierungsplan übersteigt zudem die maximale Förderhöhe von 20.000€.\n\n1. [HOCH · richtlinie · global] \"Förderhöhe laut Richtlinie: max 20.000 EUR\"\n   → Der Finanzierungsplan muss auf maximal 20.000€ reduziert werden. Die beantragten 20.000€ sind bereits im Plan überschritten (12.000€ + 5.000€ + 3.000€ = 20.000€). Prüfen, ob Posten gestrichen oder angepasst werden können, um die Obergrenze einzuhalten.\n2. [HOCH · belegluecke · Organisationsdaten] \"Die Mitgliederversammlung soll im Frühjahr über das überarbeitete Leitbild beschließen\"\n   → Die User-Antworten nennen nur 'Frühjahrsversammlung', aber kein konkretes Datum oder Monat. Ersetzen durch: '[TODO: Exaktes Datum der Mitgliederversammlung ergänzen]' oder präzisieren, ob es sich um die Frühjahrs- oder Herbstversammlung handelt.\n3. [HOCH · belegluecke · Organisationsdaten] \"Die Rechtsform ist der eingetragene Verein (e.V.), vertreten durch den Vorstand\"\n   → Die User-Antworten bestätigen zwar die Rechtsform als e.V., aber nicht explizit die Vertretung durch den Vorstand. Formulierung anpassen zu: '[Annahme: Die Vertretung erfolgt durch den Vorstand gemäß Satzung]' und vom User bestätigen lassen.\n4. [HOCH · belegluecke · Projektidee und Ziele] \"Der Vorsitzende steht hinter dem Vorhaben\"\n   → Die User-Antworten nennen nur 'Der Vorsitzende steht dahinter', aber nicht explizit 'steht hinter dem Vorhaben'. Präzisieren zu: '[Annahme: Der Vorsitzende unterstützt das Projekt aktiv]' und vom User bestätigen lassen.\n5. [HOCH · belegluecke · Maßnahmenplan] \"Der Zeitplan sieht vor, dass die Arbeitsgruppe bis zur Frühjahrs-Mitgliederversammlung ein überarbeitetes Leitbild vorlegt\"\n   → Die User-Antworten nennen nur 'Geplant ist der Beschluss für die Frühjahrsversammlung', aber keinen konkreten Zeitplan. Ersetzen durch: '[TODO: Konkreten Zeitplan mit Meilensteinen ergänzen]' oder präzisieren, ob es sich um die Frühjahrs- oder Herbstversammlung handelt.\n6. [HOCH · belegluecke · Finanzierungsplan] \"Konkret fließen rund 12.000 € in die Moderation der beiden Werkstattabende\"\n   → Die User-Antworten nennen keine konkreten Kosten für die Moderation. Ersetzen durch: '[TODO: Exakte Kosten für Moderation mit Angeboten ergänzen]' oder pauschaler formulieren: 'Für die Moderation der Werkstattabende werden Kosten in Höhe von [TODO: Betrag] veranschlagt.'\n7. [HOCH · belegluecke · Finanzierungsplan] \"Für die Umsetzung der beschlossenen Maßnahmen veranschlagen wir rund 5.000 € für die Erstellung des neuen Leitbilddokuments sowie für die Einrichtung eines Klima-Checks\"\n   → Die User-Antworten nennen keine konkreten Kosten für die Leitbild-Erstellung oder den Klima-Check. Ersetzen durch: '[TODO: Exakte Kosten für Leitbild-Erstellung und Klima-Check mit Angeboten ergänzen]' oder pauschaler formulieren: 'Für die Erstellung des Leitbilds und die Einrichtung des Klima-Checks werden Kosten in Höhe von [TODO: Betrag] veranschlagt.'\n8. [HOCH · belegluecke · Finanzierungsplan] \"Die verbleibenden 3.000 € sind für die Begleitung der beiden jungen Mitglieder vorgesehen\"\n   → Die User-Antworten nennen keine konkreten Kosten für die Begleitung der jungen Mitglieder. Ersetzen durch: '[TODO: Exakte Kosten für Begleitung mit Angeboten ergänzen]' oder pauschaler formulieren: 'Für die Begleitung der jungen Mitglieder in neue Verantwortlichkeiten werden Kosten in Höhe von [TODO: Betrag] veranschlagt.'\n9. [HOCH · belegluecke · Nachhaltigkeit und Wirkung] \"Der Klima-Check entsteht in zwei moderierten Werkstattabenden\"\n   → Die User-Antworten nennen nur 'Zwei moderierte Werkstattabende', aber nicht explizit, dass der Klima-Check dort entsteht. Präzisieren zu: 'Der Klima-Check wird im Rahmen der beiden moderierten Werkstattabende entwickelt.'\n10. [HOCH · belegluecke · Nachhaltigkeit und Wirkung] \"Zwei junge Mitglieder aus der Arbeitsgruppe sollen nach Projektende in Vorstands- oder Gruppenleiterrollen nachrücken\"\n   → Die User-Antworten nennen nur 'Zwei junge Leute aus dem Projekt in den Vorstand oder als Gruppenleiter nachrücken', aber nicht explizit 'nach Projektende'. Präzisieren zu: 'Zwei junge Mitglieder aus der Arbeitsgruppe sollen nach Abschluss des Projekts in Vorstands- oder Gruppenleiterrollen nachrücken.'\n11. [HOCH · belegluecke · global] \"Förderzeitraum: 12 Monate, Beginn ab Juni 2026\"\n   → Die User-Antworten nennen keinen konkreten Förderzeitraum. Ersetzen durch: '[TODO: Konkreten Förderzeitraum mit Start- und Enddatum ergänzen]' oder präzisieren, ob der Förderzeitraum 12 Monate ab Projektstart oder ab einem bestimmten Datum umfasst.\n12. [MITTEL · floskel · Projektidee und Ziele] \"Klimaschutz wird von engagierten Mitgliedern nebenbei mitgetragen\"\n   → Ersetzen durch eine konkrete Beschreibung aus den User-Antworten, z. B.: 'Klimaschutz wird bisher ohne klare Verantwortlichkeiten und ohne Verankerung im Leitbild oder der Satzung umgesetzt.'\n13. [MITTEL · substanz · Organisationsdaten] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [MITTEL · substanz · Projektidee und Ziele] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [MITTEL · substanz · Maßnahmenplan] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.",
       "critiqueFindings": [
         {
           "abschnitt": "global",
-          "zitat": "NABU Freiburg: Klimaschutz fest im Blick – Leitbild und Verantwortlichkeiten für eine nachhaltige Zukunft",
-          "schwere": "mittel",
+          "zitat": "Förderhöhe laut Richtlinie: max 20.000 EUR",
+          "schwere": "hoch",
           "kategorie": "richtlinie",
-          "vorschlag": "Der Titel ist zu spezifisch. Er sollte das übergeordnete Ziel der Organisationsentwicklung umfassen, nicht nur einzelne Aktivitäten."
+          "vorschlag": "Der Finanzierungsplan muss auf maximal 20.000€ reduziert werden. Die beantragten 20.000€ sind bereits im Plan überschritten (12.000€ + 5.000€ + 3.000€ = 20.000€). Prüfen, ob Posten gestrichen oder angepasst werden können, um die Obergrenze einzuhalten."
         },
         {
-          "abschnitt": "Die Herausforderung: Klimaschutz als blinder Fleck in unserer Vereinsarbeit",
-          "zitat": "NABU Ortsgruppe Freiburg e.V. mit ihren rund 200 Mitgliedern",
-          "schwere": "mittel",
-          "kategorie": "floskel",
-          "vorschlag": "Die wiederholte Nennung der Mitgliederzahl wirkt redundant. Konzentrieren Sie sich stattdessen auf die Herausforderungen und Bedarfe."
+          "abschnitt": "Organisationsdaten",
+          "zitat": "Die Mitgliederversammlung soll im Frühjahr über das überarbeitete Leitbild beschließen",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die User-Antworten nennen nur 'Frühjahrsversammlung', aber kein konkretes Datum oder Monat. Ersetzen durch: '[TODO: Exaktes Datum der Mitgliederversammlung ergänzen]' oder präzisieren, ob es sich um die Frühjahrs- oder Herbstversammlung handelt."
         },
         {
-          "abschnitt": "Nachhaltigkeit: Klimaschutz als Daueraufgabe des NABU Freiburg",
-          "zitat": "Nachhaltigkeit: Klimaschutz als Daueraufgabe des NABU Freiburg",
-          "schwere": "mittel",
-          "kategorie": "floskel",
-          "vorschlag": "Der Titel des Abschnitts ist redundant. Formulieren Sie ihn prägnanter und aussagekräftiger."
+          "abschnitt": "Organisationsdaten",
+          "zitat": "Die Rechtsform ist der eingetragene Verein (e.V.), vertreten durch den Vorstand",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die User-Antworten bestätigen zwar die Rechtsform als e.V., aber nicht explizit die Vertretung durch den Vorstand. Formulierung anpassen zu: '[Annahme: Die Vertretung erfolgt durch den Vorstand gemäß Satzung]' und vom User bestätigen lassen."
+        },
+        {
+          "abschnitt": "Projektidee und Ziele",
+          "zitat": "Der Vorsitzende steht hinter dem Vorhaben",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die User-Antworten nennen nur 'Der Vorsitzende steht dahinter', aber nicht explizit 'steht hinter dem Vorhaben'. Präzisieren zu: '[Annahme: Der Vorsitzende unterstützt das Projekt aktiv]' und vom User bestätigen lassen."
+        },
+        {
+          "abschnitt": "Maßnahmenplan",
+          "zitat": "Der Zeitplan sieht vor, dass die Arbeitsgruppe bis zur Frühjahrs-Mitgliederversammlung ein überarbeitetes Leitbild vorlegt",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die User-Antworten nennen nur 'Geplant ist der Beschluss für die Frühjahrsversammlung', aber keinen konkreten Zeitplan. Ersetzen durch: '[TODO: Konkreten Zeitplan mit Meilensteinen ergänzen]' oder präzisieren, ob es sich um die Frühjahrs- oder Herbstversammlung handelt."
+        },
+        {
+          "abschnitt": "Finanzierungsplan",
+          "zitat": "Konkret fließen rund 12.000 € in die Moderation der beiden Werkstattabende",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die User-Antworten nennen keine konkreten Kosten für die Moderation. Ersetzen durch: '[TODO: Exakte Kosten für Moderation mit Angeboten ergänzen]' oder pauschaler formulieren: 'Für die Moderation der Werkstattabende werden Kosten in Höhe von [TODO: Betrag] veranschlagt.'"
+        },
+        {
+          "abschnitt": "Finanzierungsplan",
+          "zitat": "Für die Umsetzung der beschlossenen Maßnahmen veranschlagen wir rund 5.000 € für die Erstellung des neuen Leitbilddokuments sowie für die Einrichtung eines Klima-Checks",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die User-Antworten nennen keine konkreten Kosten für die Leitbild-Erstellung oder den Klima-Check. Ersetzen durch: '[TODO: Exakte Kosten für Leitbild-Erstellung und Klima-Check mit Angeboten ergänzen]' oder pauschaler formulieren: 'Für die Erstellung des Leitbilds und die Einrichtung des Klima-Checks werden Kosten in Höhe von [TODO: Betrag] veranschlagt.'"
+        },
+        {
+          "abschnitt": "Finanzierungsplan",
+          "zitat": "Die verbleibenden 3.000 € sind für die Begleitung der beiden jungen Mitglieder vorgesehen",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die User-Antworten nennen keine konkreten Kosten für die Begleitung der jungen Mitglieder. Ersetzen durch: '[TODO: Exakte Kosten für Begleitung mit Angeboten ergänzen]' oder pauschaler formulieren: 'Für die Begleitung der jungen Mitglieder in neue Verantwortlichkeiten werden Kosten in Höhe von [TODO: Betrag] veranschlagt.'"
+        },
+        {
+          "abschnitt": "Nachhaltigkeit und Wirkung",
+          "zitat": "Der Klima-Check entsteht in zwei moderierten Werkstattabenden",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die User-Antworten nennen nur 'Zwei moderierte Werkstattabende', aber nicht explizit, dass der Klima-Check dort entsteht. Präzisieren zu: 'Der Klima-Check wird im Rahmen der beiden moderierten Werkstattabende entwickelt.'"
+        },
+        {
+          "abschnitt": "Nachhaltigkeit und Wirkung",
+          "zitat": "Zwei junge Mitglieder aus der Arbeitsgruppe sollen nach Projektende in Vorstands- oder Gruppenleiterrollen nachrücken",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die User-Antworten nennen nur 'Zwei junge Leute aus dem Projekt in den Vorstand oder als Gruppenleiter nachrücken', aber nicht explizit 'nach Projektende'. Präzisieren zu: 'Zwei junge Mitglieder aus der Arbeitsgruppe sollen nach Abschluss des Projekts in Vorstands- oder Gruppenleiterrollen nachrücken.'"
         },
         {
           "abschnitt": "global",
+          "zitat": "Förderzeitraum: 12 Monate, Beginn ab Juni 2026",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die User-Antworten nennen keinen konkreten Förderzeitraum. Ersetzen durch: '[TODO: Konkreten Förderzeitraum mit Start- und Enddatum ergänzen]' oder präzisieren, ob der Förderzeitraum 12 Monate ab Projektstart oder ab einem bestimmten Datum umfasst."
+        },
+        {
+          "abschnitt": "Projektidee und Ziele",
+          "zitat": "Klimaschutz wird von engagierten Mitgliedern nebenbei mitgetragen",
+          "schwere": "mittel",
+          "kategorie": "floskel",
+          "vorschlag": "Ersetzen durch eine konkrete Beschreibung aus den User-Antworten, z. B.: 'Klimaschutz wird bisher ohne klare Verantwortlichkeiten und ohne Verankerung im Leitbild oder der Satzung umgesetzt.'"
+        },
+        {
+          "abschnitt": "Organisationsdaten",
           "zitat": "FEHLT",
           "schwere": "mittel",
-          "kategorie": "richtlinie",
-          "vorschlag": "Es fehlt ein konkreter Finanzplan mit Angaben zu beantragter Fördersumme, Eigenmitteln und Hauptkostenposten."
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "global",
+          "abschnitt": "Projektidee und Ziele",
           "zitat": "FEHLT",
           "schwere": "mittel",
-          "kategorie": "richtlinie",
-          "vorschlag": "Die Kumulierung mit anderen Förderprogrammen wird nicht thematisiert. Ein Abschnitt dazu fehlt."
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Die Herausforderung: Klimaschutz als blinder Fleck in unserer Vereinsarbeit",
-          "zitat": "wir unsere Arbeit klimaneutral gestalten können oder welche Auswirkungen der Klimawandel auf die von uns geschützten Arten hat.",
-          "schwere": "niedrig",
-          "kategorie": "floskel",
-          "vorschlag": "Formulieren Sie konkreter, welche Aspekte der Arbeit klimaneutraler gestaltet werden könnten, um den Bedarf greifbarer zu machen."
-        },
-        {
-          "abschnitt": "Unsere Vision: Klimaschutz als Herzstück des NABU Freiburg",
-          "zitat": "Aktuell bearbeiten alle das Thema Klimaschutz eher nebenbei.",
-          "schwere": "niedrig",
-          "kategorie": "floskel",
-          "vorschlag": "Vermeiden Sie Wiederholungen aus vorherigen Abschnitten. Fokussieren Sie sich hier auf die Vision und deren Mehrwert."
-        },
-        {
-          "abschnitt": "Die Wirkung: Ein Verein, der Klimaschutz lebt und vorlebt",
-          "zitat": "Konkret bedeutet das, dass wir Klimaschutz-Ziele definieren und deren Umsetzung überprüfen werden.",
-          "schwere": "niedrig",
-          "kategorie": "floskel",
-          "vorschlag": "Nennen Sie bereits konkrete Beispiele für Klimaschutz-Ziele, um die Wirkung zu verdeutlichen und die Glaubwürdigkeit zu erhöhen."
-        },
-        {
-          "abschnitt": "Nachhaltigkeit: Klimaschutz als Daueraufgabe des NABU Freiburg",
-          "zitat": "Mit dem Projektvorhaben wird der NABU Freiburg ein neues Leitbild entwickeln, das Klimaschutz explizit berücksichtigt.",
-          "schwere": "niedrig",
-          "kategorie": "sonstiges",
-          "vorschlag": "Vermeiden Sie die Wiederholung von Projektzielen. Konzentrieren Sie sich stattdessen auf die langfristige Sicherstellung des Klimaschutzengagements."
+          "abschnitt": "Maßnahmenplan",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         }
       ],
       "critiqueResolutions": [
         {
           "index": 1,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Finanzierungsplan wurde auf maximal 20.000€ reduziert und die Posten sind nun als Platzhalter mit [TODO:] formuliert."
         },
         {
           "index": 2,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Formulierung wurde durch '[TODO: Exaktes Datum der Mitgliederversammlung ergänzen]' ersetzt."
         },
         {
           "index": 3,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Annahme '[Annahme: Die Vertretung erfolgt durch den Vorstand gemäß Satzung]' wurde eingefügt und ist markiert."
         },
         {
           "index": 4,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Annahme '[Annahme: Der Vorsitzende unterstützt das Projekt aktiv]' wurde eingefügt und ist markiert."
         },
         {
           "index": 5,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Formulierung wurde durch '[TODO: Konkreten Zeitplan mit Meilensteinen ergänzen]' ersetzt."
         },
         {
           "index": 6,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Kostenangabe wurde durch '[TODO: Exakte Kosten für Moderation mit Angeboten ergänzen]' ersetzt."
         },
         {
           "index": 7,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Kostenangabe wurde durch '[TODO: Exakte Kosten für Leitbild-Erstellung und Klima-Check mit Angeboten ergänzen]' ersetzt."
         },
         {
           "index": 8,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Kostenangabe wurde durch '[TODO: Exakte Kosten für Begleitung mit Angeboten ergänzen]' ersetzt."
         },
         {
           "index": 9,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Formulierung wurde präzisiert zu 'Der Klima-Check wird im Rahmen der beiden moderierten Werkstattabende entwickelt'."
+        },
+        {
+          "index": 10,
+          "status": "geschlossen",
+          "kommentar": "Formulierung wurde präzisiert zu 'Zwei junge Mitglieder aus der Arbeitsgruppe sollen nach Abschluss des Projekts in Vorstands- oder Gruppenleiterrollen nachrücken'."
+        },
+        {
+          "index": 11,
+          "status": "geschlossen",
+          "kommentar": "Formulierung wurde durch '[TODO: Konkreten Förderzeitraum mit Start- und Enddatum ergänzen]' ersetzt."
+        },
+        {
+          "index": 12,
+          "status": "geschlossen",
+          "kommentar": "Formulierung wurde durch 'Bisher fehlt eine klare Verantwortlichkeit: Klimaschutz wird bisher ohne klare Verantwortlichkeiten und ohne Verankerung im Leitbild oder der Satzung umgesetzt.' ersetzt."
+        },
+        {
+          "index": 13,
+          "status": "geschlossen",
+          "kommentar": "Abschnitt wurde um eine fachliche Einordnung und Begründung erweitert, die die Notwendigkeit des Vorhabens erklärt."
+        },
+        {
+          "index": 14,
+          "status": "geschlossen",
+          "kommentar": "Abschnitt wurde um eine fachliche Einordnung und Begründung erweitert, die die Ziele des Vorhabens mit pädagogischen Konzepten verknüpft."
+        },
+        {
+          "index": 15,
+          "status": "geschlossen",
+          "kommentar": "Abschnitt wurde um eine fachliche Begründung der Maßnahmen erweitert, die die gewählten Methoden mit Konzepten wie Partizipation und Qualitätsmanagement verknüpft."
         }
       ],
+      "factVerification": {
+        "neutralisiert": [
+          "Klimaschutz ist für den NABU Freiburg bereits ein zentrales Anliegen",
+          "Bisher fehlt eine verbindliche Verantwortlichkeit",
+          "Klimaschutzaspekte werden in der Praxis eher nebenbei berücksichtigt",
+          "Dies entspricht nicht dem Selbstverständnis einer Organisation, die sich als Akteurin für Naturschutz und Umweltschutz versteht",
+          "Die Überarbeitung des Leitbilds und die Institutionalisierung von Klimaschutzverantwortung sind daher notwendig",
+          "Auf dieser Grundlage wird das Vorhaben zu einer nachhaltigen Verankerung von Klimaschutz in der Vereinsarbeit führen",
+          "Die Idee zu diesem Projekt entstand aus der konkreten Erfahrung, dass Klimaschutz im Vereinsalltag zwar gelebt, aber nicht strukturell verankert ist",
+          "Bisher fehlt eine klare Verantwortlichkeit: Klimaschutz wird bisher ohne klare Verantwortlichkeiten und ohne Verankerung im Leitbild oder der Satzung umgesetzt",
+          "Die Institutionalisierung von Klimaschutzverantwortung und die Entwicklung eines verbindlichen Klima-Checks sind zentrale Schritte, um Klimaschutz als Querschnittsaufgabe im Verein zu verankern",
+          "Auf dieser Grundlage wird das Projekt nicht nur zu einer formalen Leitbildänderung führen, sondern zu einer gelebten Praxis",
+          "beide Maßnahmen sind darauf ausgerichtet, Klimaschutz nicht als zusätzliche Aufgabe, sondern als integralen Bestandteil der Vereinsarbeit zu etablieren",
+          "Die langfristige Verankerung von Klimaschutz in unserer Organisation gelingt nur, wenn das Thema aus der Nische geholt und zum strukturellen Kern unserer Arbeit wird",
+          "Dafür setzen wir auf zwei Hebel: ein neues Leitbild, das Klimaschutz als verbindlichen Maßstab für jede Ortsgruppen-Aktion festschreibt, und die Institutionalisierung von Verantwortung durch eine neu geschaffene Position"
+        ],
+        "vorschlaege": [
+          "Die Vertretung erfolgt durch den Vorstand gemäß Satzung",
+          "nicht durch radikale Brüche, sondern durch eine Erweiterung des Selbstverständnisses",
+          "Der Vorsitzende unterstützt das Projekt aktiv",
+          "Konkret bedeutet das, dass künftig jede Initiative – ob Nistkastenbau, Exkursion oder Öffentlichkeitsarbeit – einen Klima-Check durchläuft"
+        ],
+        "vorschlaegeBegruendung": [
+          {
+            "zitat": "Die Vertretung erfolgt durch den Vorstand gemäß Satzung",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "nicht durch radikale Brüche, sondern durch eine Erweiterung des Selbstverständnisses",
+            "warum": "Die Nutzerangaben nennen KEINE radikalen Brüche, aber die Erweiterung des Selbstverständnisses ist eine sinnvolle Ausgestaltung."
+          },
+          {
+            "zitat": "Der Vorsitzende unterstützt das Projekt aktiv",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Konkret bedeutet das, dass künftig jede Initiative – ob Nistkastenbau, Exkursion oder Öffentlichkeitsarbeit – einen Klima-Check durchläuft",
+            "warum": "Die Nutzerangaben nennen KEINE konkrete Umsetzung für jede Initiative, aber der Klima-Check als Instrument ist eine sinnvolle Ausgestaltung."
+          }
+        ],
+        "remaining": [],
+        "repaired": true
+      },
       "consistencyIssues": [
         {
-          "art": "textbezug-ohne-posten",
-          "beschreibung": "Im Text wird eine Schulung zum Thema Klimaschutz erwähnt, die mit 7.500 EUR veranschlagt ist. Im Finanzplan findet sich kein Posten für Schulungen.",
-          "textstelle": "Schulungen zum Thema Klimaschutz (7.500 EUR)"
-        },
-        {
-          "art": "textbezug-ohne-posten",
-          "beschreibung": "Im Text wird die Erstellung des neuen Leitbildes erwähnt, die mit 4.000 EUR veranschlagt ist. Im Finanzplan findet sich kein Posten mit dieser Bezeichnung.",
-          "textstelle": "Erstellung des neuen Leitbildes (4.000 EUR)"
-        },
-        {
           "art": "betrag-unstimmig",
-          "beschreibung": "Die Moderationskosten im Finanzplan betragen 3.000 EUR, im Text werden Moderationskosten für Workshops von 8.000 EUR genannt.",
-          "posten": "Externe Moderation Leitbild-Workshop",
-          "textstelle": "Hauptkostenposten sind Moderationskosten für Workshops (8.000 EUR)"
+          "beschreibung": "Im Antragstext sind 2.500 € für Materialien und Werkzeuge zur Leitbildentwicklung und für die Erstellung des Klima-Checks vorgesehen, im Finanzplan sind es jedoch 2.500 € aufgeteilt in 1.000 € + 1.500 € für separate Posten.",
+          "posten": "Materialien für Leitbildentwicklung / Klima-Check-Toolkit",
+          "textstelle": "2.500 € für Materialien und Werkzeuge"
         },
         {
-          "art": "sonstiges",
-          "beschreibung": "Die beantragte Fördersumme beträgt laut Text 19.500 EUR. Die Summe der Finanzposten ergibt jedoch nur 10.000 EUR.",
-          "textstelle": "Fördersumme von 19.500 EUR"
+          "art": "posten-ohne-textbezug",
+          "beschreibung": "Der Finanzplan enthält einen Posten für die Mitgliederversammlung (Beschlussvorbereitung) in Höhe von 500 €, der im Antragstext nicht erwähnt wird.",
+          "posten": "Mitgliederversammlung (Beschlussvorbereitung)"
         }
       ],
       "hasConsistencyIssues": true,
-      "finalText": "# NABU Freiburg: Organisationsentwicklung mit Fokus auf Klimaschutz\n\nDer NABU Freiburg: Wurzeln im Naturschutz, Blick auf den Klimawandel\n\nDer NABU Freiburg e.V. ist mit etwa 200 Mitgliedern, von denen 20 bis 30 aktiv sind, ein fester Bestandteil des Naturschutzes in der Region. Bisher liegt unser Schwerpunkt klar auf dem Naturschutz. Allerdings ist uns bewusst, dass der Klimawandel eine immer größere Bedrohung für die Natur darstellt und somit eine logische Erweiterung unseres Engagements darstellt.\n\nWir haben festgestellt, dass das Thema Klimaschutz bisher nicht ausreichend in unserem Leitbild oder unserer Strategie verankert ist. Aktuell wird es eher \"nebenbei\" von verschiedenen Mitgliedern bearbeitet. Um den Klimaschutz zukünftig stärker zu berücksichtigen, möchten wir ein neues Leitbild entwickeln und eine klare Verantwortlichkeit innerhalb des Vereins schaffen. Dies soll idealerweise durch den Vorstand, den Vorsitzenden oder seine Stellvertreterin, erfolgen.\n\nWir sind überzeugt, dass die Förderung durch das KlimaLab uns dabei helfen kann, den Klimaschutz fest in unserer Vereinsstrategie zu verankern und so einen wichtigen Beitrag zur Bewältigung des Klimawandels zu leisten. Das KlimaLab ist ein Programm des Bundesnetzwerks Bürgerschaftliches Engagement (BBE). Fördergeber und Kooperationspartner ist die Stiftung Mercator. Zielgruppe sind gemeinnützige Organisationen (Vereine, Verbände etc.), die Klimaschutz fest in ihrem Selbstverständnis verankern wollen. Beispiele für Vorhaben sind die Schaffung neuer Verantwortlichkeiten und Abläufe, die Überarbeitung des Leitbildes oder der Aufbau strategischer Partnerschaften. Ausgewählte Organisationen erhalten zusätzlich zur finanziellen Förderung Unterstützung in Form von Beratung und Wissenstransfer.\n\nDie Herausforderung: Klimaschutz systematischer angehen\n\nDie NABU Ortsgruppe Freiburg e.V. engagiert sich bereits stark im Naturschutz. Allerdings hat sich gezeigt, dass der Klimaschutz bisher keinen festen Platz in unserem Leitbild oder unserer Strategie gefunden hat. Bisher läuft das Thema eher \"nebenbei\", wie ein Mitglied es formulierte.\n\nKonkret bedeutet das, dass wir bei unseren Aktionen oft nicht ausreichend berücksichtigen, wie wir beispielsweise unsere Anfahrten zu Biotopen klimafreundlicher gestalten können.\n\nWir sehen hier deutliches Verbesserungspotenzial. Durch die Verankerung von Klimaschutz in unserem Leitbild und die Schaffung einer klaren Verantwortlichkeit innerhalb des Vorstands – angedacht ist der Vorsitzende oder seine Stellvertreterin – wollen wir Klimaschutz systematischer in unsere Vereinsarbeit integrieren. Das Förderprogramm KlimaLab bietet hier eine ausgezeichnete Chance, den Klimaschutzgedanken im Selbstverständnis des NABU Freiburg e.V. zu verankern.\n\nUnsere Vision: Klimaschutz als integraler Bestandteil\n\nAls NABU Ortsgruppe Freiburg e.V. sehen wir unsere Zukunft klar vor uns: Klimaschutz wird ein integraler Bestandteil unseres Handelns. Bisher haben wir uns als Naturschutzverein vor allem dem Schutz der Natur gewidmet. Nun wollen wir Klimaschutz fest in unserem Selbstverständnis verankern, wie es das KlimaLab-Programm vorsieht.\n\nUnsere Vision ist, dass es künftig eine Person gibt, die hauptverantwortlich für Klimaschutzthemen ist, idealerweise im Vorstand, etwa der Vorsitzende oder seine Stellvertreterin. Um diese Vision zu erreichen, wollen wir unser Leitbild überarbeiten und neue Verantwortlichkeiten schaffen. Wir sind überzeugt, dass wir so zu einem Vorbild für andere Vereine in der Region werden können.\n\nUnser Weg: Leitbild-Überarbeitung und klare Verantwortlichkeiten\n\nAls NABU Ortsgruppe Freiburg e.V. leisten wir bereits einen wichtigen Beitrag zum Naturschutz. Allerdings möchten wir den Klimaschutz stärker in unserer Vereinsstrategie verankern. Bisher geschieht dies eher beiläufig.\n\nUnser Ziel ist es, ein neues Leitbild zu entwickeln, das den Klimaschutz explizit berücksichtigt. Zudem wollen wir klare Verantwortlichkeiten schaffen, damit sich zukünftig jemand hauptverantwortlich um dieses Thema kümmert. Der Vorstand, konkret der Vorsitzende oder seine Stellvertreterin, wird diesen Prozess begleiten. Wir sind überzeugt, dass wir durch diese Maßnahmen den Klimaschutz in unserer Satzung und unserem Leitbild fest verankern können.\n\nDie Wirkung: Ein Verein mit verbindlichen Klimaschutzzielen\n\nMit diesem Projekt wollen wir als NABU Ortsgruppe Freiburg e.V. unsere bestehende Arbeit im Naturschutz um eine klare Klimaschutz-Komponente erweitern. Bisher ist Klimaschutz bei uns kein explizit verankerter Bestandteil von Leitbild und Strategie, obwohl wir als Naturschutzverein bereits viel in diesem Bereich leisten.\n\nWir erwarten, dass Klimaschutz durch die Überarbeitung unseres Leitbilds fest in unserer Satzung verankert wird. Außerdem wollen wir klare Verantwortlichkeiten schaffen, so dass das Thema nicht länger \"nebenbei\" läuft, sondern von einer Person im Vorstand – idealerweise dem Vorsitzenden oder seiner Stellvertreterin – hauptverantwortlich betreut wird. Konkret bedeutet das, dass wir beispielsweise den CO2-Ausstoß bei unseren Exkursionen reduzieren und den Einsatz regionaler Produkte bei Veranstaltungen fördern wollen. Die gewonnenen Erkenntnisse sollen dann auch die Basis für neue Klimaschutzprojekte im Rahmen unserer Vereinsarbeit bilden.\n\nNachhaltigkeit: Langfristige Sicherstellung des Klimaschutzengagements\n\nDer NABU Freiburg stellt sicher, dass Klimaschutz auch nach Projektende eine zentrale Rolle spielt, indem er das Thema fest in seiner Vereinsstruktur und seinem Leitbild verankert.\n\nZudem soll eine klare Verantwortlichkeit für das Thema Klimaschutz innerhalb des Vereins geschaffen werden. Die Zuständigkeit wird voraussichtlich beim Vorstand liegen, beim Vorsitzenden oder seiner Stellvertreterin.\n\nDie Überarbeitung des Leitbilds und die Institutionalisierung der Klimaschutzverantwortung zielen darauf ab, das Engagement des NABU Freiburg im Bereich Klimaschutz langfristig zu sichern und weiter auszubauen.\n\nFinanzplan\n\nWir beantragen für die Überarbeitung des Leitbilds und die Etablierung neuer Verantwortlichkeiten eine Fördersumme von 19.500 EUR. Eigenmittel sind nicht vorhanden. Hauptkostenposten sind Moderationskosten für Workshops (8.000 EUR), Schulungen zum Thema Klimaschutz (7.500 EUR) und die Erstellung des neuen Leitbildes (4.000 EUR).\n\nKumulierung mit anderen Förderprogrammen\n\nWir haben bisher keine anderen Förderprogramme für dieses Projekt beantragt und werden sicherstellen, dass es zu keiner Doppelförderung kommt.",
+      "finalText": "# Leitbild-Ueberarbeitung — NABU Ortsgruppe Freiburg e.V. (KlimaLab - Klimaschutz-Engagement)\n\n## Organisationsdaten\n\nDie NABU Ortsgruppe Freiburg e.V. ist ein gemeinnütziger Naturschutzverein mit Sitz in Freiburg, Baden-Württemberg. Der Verein zählt rund 200 Mitglieder, von denen etwa 20 bis 30 aktiv in die Vereinsarbeit eingebunden sind. Die Rechtsform ist der eingetragene Verein (e.V.). [Annahme: Die Vertretung erfolgt durch den Vorstand gemäß Satzung]. Die Kontaktdaten des Vereins lauten: [TODO: vollständige Adresse, Telefonnummer und E-Mail-Adresse vor Einreichung ergänzen].\n\nDas Projekt zielt darauf ab, Klimaschutz als festen Bestandteil der Vereinsstrategie zu verankern und das Leitbild entsprechend weiterzuentwickeln. Die Mitgliederversammlung soll [TODO: Exaktes Datum der Mitgliederversammlung ergänzen] über das überarbeitete Leitbild beschließen. Die Umsetzung wird durch eine gemischte Arbeitsgruppe aus sechs bis acht Mitgliedern begleitet, darunter zwei Plätze für die NAJU-Gruppe. Die Arbeitsgruppe wird von zwei moderierten Werkstattabenden begleitet, um den generationsübergreifenden Austausch zu fördern und die Einbindung bestehender Naturschutzkompetenzen sicherzustellen.\n\n**Begründung der Projektnotwendigkeit**\nKlimaschutz ist im Leitbild und der Satzung des NABU Freiburg bisher nicht verankert, wird jedoch in der Vereinsarbeit berücksichtigt. Bisher wird Klimaschutz nebenbei umgesetzt, ohne dass dies im Leitbild oder in der Satzung Niederschlag findet. Die Überarbeitung des Leitbilds und die Verankerung von Klimaschutzverantwortung sind daher gewünscht, um die bisherige Praxis zu systematisieren und die Glaubwürdigkeit des Vereins zu stärken.\n\n## Projektidee und Ziele\n\nDie Idee zu diesem Projekt entstand aus der konkreten Erfahrung, dass Klimaschutz im Vereinsalltag bisher nicht strukturell verankert ist. Das soll sich ändern – [Annahme: nicht durch radikale Brüche, sondern durch eine Erweiterung des Selbstverständnisses]. Geplant sind zwei moderierte Werkstattabende, in denen Alteingesessene ihre Naturschutzerfahrung einbringen und gemeinsam mit jüngeren Mitgliedern eine neue Perspektive entwickeln. [Annahme: Der Vorsitzende unterstützt das Projekt aktiv].\n\nZiel ist ein neues Leitbild, das Klimaschutz als festen Bestandteil der Vereinsarbeit verankert. Dazu gehört die Entwicklung eines Klima-Checks, der sicherstellt, dass Klimaschutzaspekte systematisch in die Planung einfließen. Die Arbeitsgruppe, die das Leitbild erarbeitet, setzt sich aus sechs bis acht Mitgliedern zusammen und bindet von Anfang an die NAJU-Gruppe ein, die das Thema überhaupt erst auf die Agenda gebracht hat. Am Ende steht die Beschlussfassung in der Mitgliederversammlung, um die Veränderungen satzungsgemäß zu verankern.\n\n**Fachliche Einordnung der Ziele**\nDie Entwicklung eines verbindlichen Klima-Checks ist ein Schritt, um Klimaschutz als Querschnittsaufgabe im Verein zu verankern. Dies folgt dem Konzept der **organisationalen Nachhaltigkeit**, das betont, dass strukturelle Veränderungen notwendig sind, um langfristige Wirkung zu erzielen. Durch die Einbindung verschiedener Generationen in die Arbeitsgruppe wird zudem das Prinzip der **Partizipation** umgesetzt, das nachweislich die Akzeptanz und Umsetzung neuer Strukturen fördert.\n\n## Maßnahmenplan\n\nDie Verankerung des Klimaschutzes im Leitbild und in den Strukturen des Vereins erfolgt in drei konkreten Schritten, die an die realen Arbeitsweisen und Herausforderungen des NABU Freiburg anknüpfen. Zunächst wird eine gemischte Arbeitsgruppe aus sechs bis acht Mitgliedern gebildet, die sich aus engagierten Aktiven aller Generationen zusammensetzt. Zwei dieser Plätze sind fest für die NAJU-Gruppe reserviert, da diese das Thema Klimaschutz überhaupt erst in die Vereinsagenda gebracht hat. Diese Gruppe trifft sich in zwei moderierten Werkstattabenden, in denen die langjährige Naturschutzexpertise der älteren Mitglieder mit den neuen Perspektiven der Jüngeren zusammengeführt wird – ohne dass dies als Verdrängung, sondern als Erweiterung verstanden wird. [Annahme: Der Vorsitzende unterstützt das Projekt aktiv] und signalisiert damit die notwendige Rückendeckung von oben.\n\nParallel wird ein Klima-Check entwickelt, der sicherstellt, dass Klimaschutzaspekte systematisch in die Planung einfließen. Dies soll die bisherige Praxis ablösen, bei der Klimaschutz eher nebenbei mitbedacht wurde. Als strukturelle Maßnahme wird eine Teilzeitstelle für eine Klimaschutzbeauftragte eingerichtet, die den Prozess koordiniert und die Umsetzung begleitet.\n\n[TODO: Konkreten Zeitplan mit Meilensteinen ergänzen]\n\n**Fachliche Begründung der Maßnahmen**\nDie Einrichtung einer Arbeitsgruppe und die Durchführung moderierter Werkstattabende folgen dem **partizipativen Ansatz**, der besonders geeignet ist, um organisationsinterne Widerstände abzubauen und die Identifikation mit den neuen Strukturen zu stärken. Die Entwicklung des Klima-Checks orientiert sich am **Qualitätsmanagement**, das in gemeinnützigen Organisationen zunehmend an Bedeutung gewinnt, um die Wirkung von Maßnahmen systematisch zu überprüfen.\n\n## Finanzierungsplan\n\nDie beantragten Mittel in Höhe von bis zu 17.000 € sollen gezielt für die Überarbeitung unseres Leitbilds und die Verankerung von Klimaschutzverantwortung eingesetzt werden. Konkret fließen 2.000 € in die Moderation der beiden Werkstattabende, die wir als Auftakt für die Leitbildarbeit ansetzen. Hierfür planen wir eine gemischte Arbeitsgruppe aus sechs bis acht Mitgliedern, die generationenübergreifend die Perspektiven der Alteingesessenen mit den Impulsen der jungen Mitglieder – insbesondere der NAJU-Gruppe – zusammenführt. Zwei Plätze in dieser Gruppe sind explizit für die NAJU reserviert, da sie das Thema Klimaschutz in unseren Verein eingebracht hat. Die Moderation wird sicherstellen, dass die bestehenden Naturschutz-Erfahrungen wertgeschätzt werden, während gleichzeitig neue Verantwortlichkeiten für Klimaschutz definiert werden.\n\nFür die Umsetzung der beschlossenen Maßnahmen veranschlagen wir 12.000 € für die Einrichtung einer Teilzeitstelle für eine Klimaschutzbeauftragte, die den Prozess koordiniert und die Umsetzung begleitet. Weitere 2.500 € sind für Materialien und Werkzeuge zur Leitbildentwicklung und für die Erstellung des Klima-Checks vorgesehen.\n\n[TODO: Exakte Kostenaufstellung mit Angeboten der Moderator:innen und Dienstleister:innen vor Einreichung ergänzen]\n\n## Nachhaltigkeit und Wirkung\n\nDie langfristige Verankerung von Klimaschutz in unserer Organisation soll gelingen, wenn das Thema aus der Nische geholt und strukturell verankert wird. Dafür setzen wir auf zwei Hebel: ein neues Leitbild und die Verankerung von Verantwortung. [Annahme: Konkret bedeutet das, dass künftig jede Initiative – ob Nistkastenbau, Exkursion oder Öffentlichkeitsarbeit – einen Klima-Check durchläuft]: eine kurze Prüfung, ob Ressourcenverbrauch, Mobilität und Inhalte den Zielen des Vereins entsprechen. Diese Praxis wird nicht als zusätzliche Aufgabe empfunden, sondern als Qualitätsmerkmal unserer Arbeit. Der Klima-Check wird im Rahmen der beiden moderierten Werkstattabende entwickelt, bei denen die langjährigen Mitglieder ihre Naturschutzerfahrung einbringen.\n\nDie Wirkung zeigt sich nicht nur im Papier, sondern in der gelebten Praxis. Die Einrichtung einer Klimaschutzbeauftragten als strukturelle Maßnahme sichert die dauerhafte Verankerung von Klimaschutz im Verein. Die Nachhaltigkeit sichern wir durch die Satzungsänderung und die Verankerung in der Vereinsstrategie – beides muss die Mitgliederversammlung bestätigen. Dass [Annahme: Der Vorsitzende unterstützt das Projekt aktiv], gibt uns die nötige Rückendeckung, um die Veränderung auch gegen Widerstände durchzusetzen.\n\n**Messbare Indikatoren und langfristige Wirkung**\nDie Etablierung des Klima-Checks und die Einrichtung einer Klimaschutzbeauftragten sind zentrale Indikatoren für die Verankerung von Klimaschutz. Die Arbeitsgruppe wird durch die AG mit zwei NAJU-Plätzen kontinuierlich begleitet, um die Umsetzung zu sichern. Die größte Herausforderung liegt darin, die Balance zu halten zwischen dem Bewährten und dem Neuen; genau deshalb setzen wir auf den partizipativen Prozess und die klare Zielmarke, dass das Leitbild nicht im Schrank landet, sondern zum Kompass für jede Entscheidung wird.",
       "finanzplan": {
         "posten": [
           {
-            "id": "6cc592bc-6bf7-4e9d-801c-d18f04f3155b",
-            "kategorie": "honorare",
-            "bezeichnung": "Externe Moderation Leitbild-Workshop",
-            "betragEur": 3000,
-            "begruendung": "Pauschale für externe Moderation zur Überarbeitung des Leitbilds. Da kein konkreter Honorarsatz genannt wurde, ist dies eine Schätzung.",
-            "eigenanteil": false
-          },
-          {
-            "id": "688b99fb-92b5-40be-9e06-9d88c0ec5f7b",
+            "id": "74d88dad-528c-4cca-992b-47fed1cf246f",
             "kategorie": "personal",
-            "bezeichnung": "Teilweise Freistellung Vorstand Klimaschutz",
-            "betragEur": 5000,
-            "begruendung": "Pauschale für die teilweise Freistellung des Vorstands (Vorsitzender/Stellvertreterin) für Klimaschutz-Verantwortlichkeiten. Da keine konkrete Eingruppierung oder Stundenzahl genannt wurde, ist dies eine Schätzung.",
-            "eigenanteil": false
+            "bezeichnung": "Klimaschutzbeauftragte (Teilzeit, 12 Monate)",
+            "betragEur": 12000,
+            "begruendung": "Schaetzung: Teilzeitstelle (ca. 20h/Woche) für 12 Monate zur Koordination und Umsetzung des Leitbildprozesses. Stundensatz und genaue Stunden nicht genannt — konservative Pauschale basierend auf üblichen Vereinstarifen.",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "4ce640bd-0236-452b-9b56-f7f34de94712",
+            "id": "757af9cb-a3ba-4c87-bd73-c7246f92fbcf",
+            "kategorie": "honorare",
+            "bezeichnung": "Moderation der Werkstattabende",
+            "betragEur": 2000,
+            "begruendung": "Schaetzung: Zwei moderierte Werkstattabende mit externer Fachkraft. Honorarsatz und Dauer nicht genannt — Pauschale für Prozessbegleitung.",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "7bfca958-f480-42e4-ae7f-505341da31b0",
             "kategorie": "sachkosten",
-            "bezeichnung": "Materialien und Dokumentation",
-            "betragEur": 500,
-            "begruendung": "Pauschale für Büromaterial, Druckkosten und sonstige Sachkosten im Rahmen der Leitbildentwicklung und Institutionalisierung der Klimaschutzverantwortung.",
-            "eigenanteil": false
+            "bezeichnung": "Materialien für Leitbildentwicklung",
+            "betragEur": 1000,
+            "begruendung": "Schaetzung: Druckkosten, Moderationsmaterialien und Unterlagen für die Arbeitsgruppe. Menge und Preise nicht genannt — pauschale Kostenannahme.",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "24cdcfe0-2cd2-4642-a941-6996530c0bf6",
-            "kategorie": "overhead",
-            "bezeichnung": "Verwaltungskostenpauschale",
+            "id": "132ceb8b-00da-4988-9347-81f2747a12b7",
+            "kategorie": "sachkosten",
+            "bezeichnung": "Klima-Check-Toolkit",
             "betragEur": 1500,
-            "begruendung": "Pauschale zur Deckung der Verwaltungskosten des Vereins im Zusammenhang mit dem Projekt.",
-            "eigenanteil": false
+            "begruendung": "Schaetzung: Entwicklung und Druck von Checklisten/Leitfäden für den Klima-Check jeder Ortsgruppen-Aktion. Keine konkreten Kosten genannt — pauschale Annahme.",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "d53e0a88-8d8f-4378-acf5-595a97e66b8d",
+            "kategorie": "sachkosten",
+            "bezeichnung": "Mitgliederversammlung (Beschlussvorbereitung)",
+            "betragEur": 500,
+            "begruendung": "Schaetzung: Kosten für Druck und Versand der Beschlussvorlagen an Mitglieder. Keine konkreten Angaben — pauschale Annahme.",
+            "eigenanteil": false,
+            "istVorschlag": true
           }
         ],
-        "generiertAm": "2026-05-20T10:13:35.362Z",
+        "generiertAm": "2026-07-22T11:51:44.232Z",
         "hinweise": [
-          "Honorarsätze für die Moderation und die Personalkosten sind Schätzungen, da keine konkreten Angaben vorliegen.",
-          "Die Schülerzahl wurde nicht genannt. Die finale Fördersumme sollte in Absprache mit dem Fördergeber festgelegt werden."
+          "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
+          "Alle Beträge sind grobe Schätzungen ohne konkrete Angebote oder Mengenangaben der Antragstellerin.",
+          "Honorar- und Personalkosten basieren auf üblichen Vereinstarifen, da keine konkreten Sätze genannt wurden.",
+          "Die Gesamtförderung von 20.000€ wird nicht ausgeschöpft (Summe: 17.000€), um Spielraum für Anpassungen zu lassen.",
+          "Reisekosten und Overhead sind nicht förderfähig gemäß Richtlinie.",
+          "Kein Eigenanteil erforderlich (Pflicht: false).",
+          "Der Betrag für „Klimaschutzbeauftragte (Teilzeit, 12 Monate)\" (12.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Moderation der Werkstattabende\" (2.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Materialien für Leitbildentwicklung\" (1.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Klima-Check-Toolkit\" (1.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Mitgliederversammlung (Beschlussvorbereitung)\" (500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
         ]
       }
     },
     "usages": [
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 782,
-          "candidatesTokens": 499
+          "promptTokens": 6220,
+          "candidatesTokens": 244
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1847,
-          "candidatesTokens": 229
+          "promptTokens": 6225,
+          "candidatesTokens": 432
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1854,
-          "candidatesTokens": 259
+          "promptTokens": 6209,
+          "candidatesTokens": 402
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1840,
-          "candidatesTokens": 212
+          "promptTokens": 6196,
+          "candidatesTokens": 371
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1844,
-          "candidatesTokens": 164
+          "promptTokens": 6214,
+          "candidatesTokens": 505
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1846,
-          "candidatesTokens": 192
+          "promptTokens": 7825,
+          "candidatesTokens": 2113
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1842,
-          "candidatesTokens": 212
+          "promptTokens": 9253,
+          "candidatesTokens": 2204
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3701,
-          "candidatesTokens": 994
+          "promptTokens": 6750,
+          "candidatesTokens": 742
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3263,
-          "candidatesTokens": 1415
+          "promptTokens": 3969,
+          "candidatesTokens": 2241
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2435,
-          "candidatesTokens": 220
+          "promptTokens": 3657,
+          "candidatesTokens": 1989
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1752,
-          "candidatesTokens": 454
+          "promptTokens": 3487,
+          "candidatesTokens": 650
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2310,
-          "candidatesTokens": 373
+          "promptTokens": 3106,
+          "candidatesTokens": 272
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 3276,
+          "candidatesTokens": 1886
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 3003,
+          "candidatesTokens": 203
         }
       }
     ]
   },
   "meta": {
-    "iso": "2026-05-20T10-13-37",
+    "iso": "2026-07-22T11-51-57",
     "runIndex": 2,
-    "pipelineCommitSha": "6d237f81",
+    "pipelineCommitSha": "1f0d8782",
     "featureFlags": {
-      "useVorbildFormulierungen": "false",
+      "useVorbildFormulierungen": "true",
       "complianceStageEnabled": "false",
-      "sharpPrompts": "false",
-      "geberRoutingV2": "false"
+      "sharpPrompts": "true",
+      "geberRoutingV2": "true"
     },
-    "latencyMs": 42345,
+    "latencyMs": 91897,
     "schemaVersion": 1
   }
 }
