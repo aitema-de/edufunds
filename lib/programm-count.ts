@@ -18,7 +18,11 @@
  * fristZustand=geschlossen belegt (Berlin Startchancen = Landesauswahl ohne
  * Bewerbung, KI-Schulpreis/Town&Country/SH-Kultur/Berliner-Jugendbudget zwischen
  * den Runden, EVZ Bildungsagenda, deine-idee, innogy=Domain tot) ->
- * Finder-sichtbar 133 -> "130+").
+ * Finder-sichtbar 133 -> "130+"; 22.07.2026 spaet: Rest-'unbekannt'
+ * primaerquellen-geprueft, 4 weitere ohne Antragsweg als geschlossen belegt
+ * (hector = nur Nominierung, heinz-nixdorf = 'bittet von Foerderantraegen
+ * abzusehen', ideeninitiative = letzte Runde 2023, saechs. Schulgarten-
+ * wettbewerb = 12. Runde seit 05/2024 beendet) -> Finder-sichtbar 129 -> "120+").
  *
  * WICHTIG: Bewusst KEIN Import von data/foerderprogramme.json hier — diese
  * Konstante wird auch in Client-Komponenten (Header, Footer, Hero) genutzt,
@@ -41,7 +45,7 @@
  * Wird von __tests__/lib/programm-count.test.ts gegen den echten Katalog
  * geprueft — sowohl gegen Ueberzeichnen als auch gegen unnoetige Bescheidenheit.
  */
-export const PROGRAMM_COUNT_ROUNDED = 130;
+export const PROGRAMM_COUNT_ROUNDED = 120;
 
 /** Marketing-Label, z. B. "180+" — fuer Stats-Karten/Badges. */
 export const PROGRAMM_COUNT_LABEL = `${PROGRAMM_COUNT_ROUNDED}+`;
