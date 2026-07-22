@@ -2,36 +2,49 @@
   "korpus_id": "pv-008",
   "input": {
     "programm": {
-      "id": "ferry-porsche-challenge-2025",
-      "name": "Ferry Porsche Challenge 2025",
+      "id": "ferry-porsche-challenge",
+      "name": "Ferry Porsche Challenge",
       "foerdergeber": "Ferry-Porsche-Stiftung",
       "foerdergeberTyp": "stiftung",
       "schulformen": [
-        "grundschule"
+        "grundschule",
+        "gymnasium",
+        "gesamtschule"
       ],
       "bundeslaender": [
         "DE-BW",
         "DE-SN"
       ],
-      "foerdersummeMin": 10000,
+      "foerdersummeMin": 2500,
       "foerdersummeMax": 75000,
-      "foerdersummeText": "10.000€ - 75.000€",
+      "foerdersummeText": "2025: 1 Mio. € Gesamt (1. Platz: 75.000€). 2026: 500.000€ Gesamt (1. Platz: 50.000€)",
       "kategorien": [
         "bildung",
-        "chancen",
-        "soziales",
-        "mentoring"
+        "freizeit",
+        "benachteiligung",
+        "jugend"
       ],
-      "bewerbungsfristText": "jährlich (Jan-Apr)",
+      "bewerbungsfristText": "2026: 09.02. - 10.04.2026 (nur BW & Sachsen)",
       "bewerbungsart": "online",
       "infoLink": "https://ferry-porsche-challenge.de",
-      "kurzbeschreibung": "1 Mio. € für 50 Projekte in BW und Sachsen für Bildungs- und Teilhabechancen.",
-      "status": "aktiv",
+      "kurzbeschreibung": "Wettbewerb für gemeinnützige Organisationen zugunsten benachteiligter Kinder/Jugendlicher. 2025: 'Chancen zu wachsen' (1 Mio. €). 2026: 'Gemeinsam älter - gemeinsam stärker' (500.000 €, nur BW & Sachsen).",
+      "status": "archiviert",
       "createdAt": "2025-02-11T00:00:00Z",
-      "updatedAt": "2025-01-20T00:00:00.000Z",
-      "quelle": "ferry-porsche-stiftung.de",
-      "kiAntragGeeignet": true,
-      "verificationWarning": "Dieses Programm hat nicht verifizierte Fördersummen. Bitte prüfen Sie die Daten vor einer Antragstellung."
+      "updatedAt": "2026-07-17",
+      "quelle": "https://ferry-porsche-stiftung.de/news/ferry-porsche-challenge-2025-1-million-euro-fur-chancengerechtes-aufwachsen",
+      "quelleUrl": "https://ferry-porsche-challenge.de",
+      "kiAntragGeeignet": false,
+      "verifiziertAm": "2026-07-17",
+      "verifiziertVon": "Web-Recherche ferry-porsche-stiftung.de",
+      "bemerkung": "ARCHIVIERT 2026-07-17: Keine offene Runde. Runde 2026 (09.02.-10.04.2026) geschlossen; die Obergrenze von 200 Bewerbungen war laut Stiftungs-News bereits vor dem Bewerbungsschluss erreicht. Keine Ankuendigung einer Runde 2027. Hinweis: Motto 2026 \"Gemeinsam aelter - gemeinsam staerker\" zielte auf Projekte fuer aeltere Menschen (nur BW & Sachsen) - Schul-Passung je Runde neu pruefen. Jaehrlich wiederkehrend: bei neuer Runde wieder auf aktiv setzen. | 2025: 3×75.000€, 6×50.000€, 9×25.000€, 2×Sonderpreis 50.000€, Finalisten 10.000€, 20×Anschubpreis 2.500€. 2026 nur für BW & Sachsen. 361 Bewerbungen 2025, 30 Finalisten.",
+      "fristZustand": {
+        "art": "stichtag",
+        "stichtage": [
+          "2026-04-10"
+        ],
+        "jaehrlichWiederkehrend": false,
+        "quelle": "Katalog-Fristtext (belegt): '2026: 09.02. - 10.04.2026 (nur BW & Sachsen)'. Einziger belegter Bewerbungsschluss 10.04.2026; keine Folgerunde belegt -> nicht als wiederkehrend gefuehrt. Programm ist zusaetzlich redaktionell archiviert. Quelle: ferry-porsche-challenge.de"
+      }
     },
     "facts": {
       "schule": {
@@ -73,58 +86,190 @@
       }
     },
     "richtlinie": {
-      "version": "2026-05-19",
+      "version": "2026-07-01",
       "quellen": [
-        "https://ferry-porsche-challenge.de"
+        "https://ferry-porsche-challenge.de",
+        "https://ferry-porsche-stiftung.de/news/start-ferry-porsche-challenge-2026-copy"
       ],
       "foerderhoehe": {
         "minEur": 5000,
         "maxEur": 50000,
-        "bemerkung": "Es handelt sich um einen Wettbewerb mit gestaffelten Preisgeldern. Die Stiftung vergibt insgesamt 30 Preise: 3x 50.000 € (1. Plätze), 6x 25.000 € (2. Plätze), 9x 10.000 € (3. Plätze), 2x 30.000 € (Sonderpreise) und 10x 5.000 € für die Nominierung. Die Gesamtfördersumme beträgt 500.000 Euro."
+        "bemerkung": "Fördersumme insgesamt: 500000 EUR. Verteilung: 3x50000 EUR (1. Plätze), 6x25000 EUR (2. Plätze), 9x10000 EUR (3. Plätze), 2x30000 EUR (Sonderpreise), 10x5000 EUR (Nominierte)."
       },
-      "kostenpositionen": [],
+      "kostenpositionen": [
+        {
+          "kategorie": "sonstiges",
+          "foerderfaehig": true,
+          "bedingungen": [
+            "Projekt muss gemeinnützig sein.",
+            "Projekt muss auf eines der genannten Themenfelder einzahlen (z.B. Schutz vor Vereinsamung im Alter, digitale Handlungskompetenzen, Brücken in den Ruhestand bauen).",
+            "Projekt muss ältere Menschen oder Personen im Übergang vom Berufsleben in den Ruhestand adressieren.",
+            "Projekt muss in Baden-Württemberg oder Sachsen umgesetzt werden."
+          ],
+          "beispielePasst": [
+            "Angebote zur sozialen Teilhabe und Vernetzung älterer Menschen",
+            "Digitale Schulungen für ältere Menschen",
+            "Projekte zur Aktivierung und Stärkung der Lebensqualität im Alter",
+            "Initiativen zur Überwindung von Einsamkeit im Alter",
+            "Bildungsangebote für den Übergang in den Ruhestand"
+          ],
+          "beispielePasstNicht": [
+            "Projekte mit rein kommerziellem Fokus",
+            "Projekte ohne Bezug zu älteren Menschen oder Ruhestandsübergang",
+            "Projekte außerhalb von Baden-Württemberg oder Sachsen"
+          ]
+        }
+      ],
       "eigenmittel": {
         "pflicht": false,
-        "bemerkung": "Im Text werden keine Angaben zu Eigenmitteln gemacht."
+        "bemerkung": "Keine Pflicht zu Eigenmitteln erwähnt. Eigenmittel sind nicht erforderlich."
       },
       "kumulierung": {
-        "erlaubt": "bedingt",
-        "bemerkung": "Der Text macht keine spezifischen Angaben zur Kumulierung mit anderen Fördermitteln."
+        "erlaubt": false,
+        "bedingungen": [],
+        "unvereinbarMit": [
+          "andere Förderungen der Ferry-Porsche-Stiftung"
+        ],
+        "kombinationMoeglichMit": []
       },
       "antragsstruktur": {
-        "abschnitte": [],
-        "einreichungsweg": "Online-Bewerbung über die Webseite der Ferry Porsche Challenge.",
-        "bearbeitungsdauer": "ca. 5 Monate von Bewerbungsschluss (April 2026) bis zur Preisverleihung (September 2026)."
+        "abschnitte": [
+          {
+            "id": "projektbeschreibung",
+            "name": "Projektbeschreibung",
+            "pflicht": true,
+            "maxZeichen": 2000,
+            "leitfragen": [
+              "Welches konkrete Problem wird adressiert?",
+              "Wie wird das Projekt ältere Menschen oder Personen im Übergang in den Ruhestand erreichen?",
+              "Welche Maßnahmen sind geplant, um die Lebensqualität zu verbessern?",
+              "Wie wird die Nachhaltigkeit des Projekts sichergestellt?"
+            ]
+          },
+          {
+            "id": "zielgruppe",
+            "name": "Zielgruppe",
+            "pflicht": true,
+            "maxZeichen": 1000,
+            "leitfragen": [
+              "Welche Zielgruppe wird konkret angesprochen?",
+              "Wie wird die Zielgruppe in das Projekt einbezogen?",
+              "Welche Bedürfnisse hat die Zielgruppe und wie werden diese berücksichtigt?"
+            ]
+          },
+          {
+            "id": "umsetzung",
+            "name": "Umsetzung und Zeitplan",
+            "pflicht": true,
+            "maxZeichen": 1500,
+            "leitfragen": [
+              "Wie wird das Projekt umgesetzt?",
+              "Welche Meilensteine sind geplant?",
+              "Wie sieht der Zeitplan aus?"
+            ]
+          },
+          {
+            "id": "kostenplan",
+            "name": "Kostenplan",
+            "pflicht": true,
+            "maxZeichen": 1000,
+            "leitfragen": [
+              "Welche Kosten entstehen im Rahmen des Projekts?",
+              "Wie werden die Mittel der Ferry-Porsche-Challenge eingesetzt?",
+              "Welche weiteren Finanzierungsquellen sind geplant?"
+            ]
+          },
+          {
+            "id": "organisation",
+            "name": "Organisation",
+            "pflicht": true,
+            "maxZeichen": 1000,
+            "leitfragen": [
+              "Welche Organisation reicht den Antrag ein?",
+              "Welche Erfahrung hat die Organisation im Bereich der Zielgruppe?",
+              "Wie ist die Organisation strukturiert?"
+            ]
+          }
+        ],
+        "anlagen": [
+          "Satzung der Organisation",
+          "Nachweis der Gemeinnützigkeit",
+          "Konzeptpapier des Projekts (max. 5 Seiten)",
+          "Zeitplan und Meilensteine",
+          "Kostenaufstellung",
+          "Nachweise zur Zielgruppeneinbindung"
+        ],
+        "einreichungsweg": "Online über das Bewerbungsportal auf ferry-porsche-challenge.de. Die Bewerbung muss bis zum 10.04.2026 (24:00 Uhr) vollständig eingereicht sein.",
+        "bearbeitungsdauer": "Die Entscheidung über die Finalisten wird im Mai 2026 bekannt gegeben. Die digitale Projektvorstellung findet vom 10. bis 12.06.2026 statt. Die Preisverleihung ist am 10.09.2026."
       },
       "notizen": [
-        "Das Programm ist ein Wettbewerb für kleine und große gemeinnützige Organisationen und Vereine aus Baden-Württemberg und Sachsen.",
-        "Motto der Runde mit Bewerbungsfrist 2026: 'Gemeinsam älter – gemeinsam stärker'.",
-        "Es werden ausschließlich die ersten 200 vollständig eingegangenen Bewerbungen berücksichtigt.",
-        "Jede Organisation kann nur eine Bewerbung einreichen.",
-        "Projekte müssen wirksam auf mindestens eines der folgenden Themenfelder einzahlen: Schutz vor Vereinsamung, Engagement für würdevolles Altern, Digitale Handlungskompetenzen, Brücken in den Ruhestand bauen, Aktiv lernen, Generationen im Dialog.",
-        "Bewerbungsphase: 09. Februar bis 10. April 2026.",
-        "Obwohl die PROGRAMM-ID 'ferry-porsche-challenge-2025' lautet, beziehen sich die Details im Haupttext (Fristen, Motto, Fördersumme 500.000€) auf die Challenge für das Jahr 2026. Die News-Einträge beziehen sich auf vergangene Runden mit anderen Mottos und Fördersummen (z.B. 1 Mio. € für 2025)."
+        "Die Anzahl der Bewerbungen ist auf 200 begrenzt. Es werden ausschließlich die ersten 200 vollständig eingegangenen Bewerbungen berücksichtigt.",
+        "Die Förderung ist projektbezogen und muss gemeinnützig sein.",
+        "Die Projekte müssen in Baden-Württemberg oder Sachsen umgesetzt werden.",
+        "Die Themenfelder sind: Schutz vor Vereinsamung im Alter, soziale Teilhabe und Vernetzung, Engagement für würdevolles Altern, digitale Handlungskompetenzen, Brücken in den Ruhestand bauen, aktiv lernen, Generationen im Dialog."
       ],
-      "bestPractices": [],
+      "bestPractices": [
+        {
+          "thema": "Mitgestaltung und Erreichen der Zielgruppe",
+          "was_funktionierte": "Projekte, die die Zielgruppe nicht nur adressieren, sondern aktiv in die Gestaltung einbeziehen. Beim Erstplatzierten 2025 (JuClu16 e.V.) gestalteten Jugendliche selbst einen Gelenkbus und eine alte Turnhalle um — es entstand ein Ort für Partizipation.",
+          "warum": "„Erreichen der Zielgruppe“ und „Mitgestaltung der Zielgruppe“ sind zwei der zehn dokumentierten Bewertungsmaßstäbe in den Teilnahmebedingungen 2026 (Punkt 3)."
+        },
+        {
+          "thema": "Übertragbarkeit des Projekts herausstellen",
+          "was_funktionierte": "Das Konzept so beschreiben, dass andere Organisationen oder Standorte es übernehmen können. Die Stiftung unterstützt nach der Preisverleihung ausdrücklich die Vernetzung zwischen Organisationen zur Projektübertragung (Schritt 4 des Wettbewerbs).",
+          "warum": "„Übertragbarkeit des Projektes“ ist explizites Bewertungskriterium; die nachhaltige Verbreitung ist als eigener Wettbewerbsschritt dokumentiert."
+        },
+        {
+          "thema": "Nachvollziehbarer Mitteleinsatz und belegter Förderbedarf",
+          "was_funktionierte": "Ein Kostenplan, aus dem klar hervorgeht, wofür die Fördermittel eingesetzt werden, plus eine Begründung, warum die Förderung tatsächlich benötigt wird.",
+          "warum": "„Nachvollziehbarkeit des Mitteleinsatzes“ und „Validierung des Förderbedarfs“ sind dokumentierte Bewertungsmaßstäbe der Teilnahmebedingungen 2026."
+        },
+        {
+          "thema": "Klarer Bezug zum Jahresthema und den Themenfeldern",
+          "was_funktionierte": "Das Projekt explizit auf mindestens ein ausgeschriebenes Themenfeld ausrichten (2026: Schutz vor Vereinsamung, würdevolles Altern, digitale Handlungskompetenzen, Übergang in den Ruhestand, aktives Lernen, Generationendialog) und die Relevanz dafür belegen.",
+          "warum": "„Relevanz des Projektes für das würdevolle Altern“ und „Übereinstimmung mit Teilnahme- und Förderkriterien“ stehen an erster Stelle der Bewertungsmaßstäbe; die Vorauswahl prüft genau diese Passung."
+        },
+        {
+          "thema": "Innovation mit realistischer Umsetzbarkeit verbinden",
+          "was_funktionierte": "Kreative, neuartige Ansätze mit einem glaubwürdigen Umsetzungsplan und erreichbaren Projektzielen kombinieren — beides wird getrennt bewertet.",
+          "warum": "„Innovation und Kreativität“ sowie „Umsetzbarkeit von Projekt und Projektzielen“ sind zwei eigenständige Bewertungsmaßstäbe der Teilnahmebedingungen 2026."
+        },
+        {
+          "thema": "Prägnante 5-Minuten-Projektvorstellung vorbereiten",
+          "was_funktionierte": "Die 30 Nominierten präsentieren ihr Projekt digital in 5 Minuten vor einem Expertenkreis, gefolgt von 5 Minuten Fragen. Auf dieser Basis empfiehlt der Expertenkreis 20 Projekte für Platzierungen und Sonderpreise — die Präsentation entscheidet also mit über die Rangfolge.",
+          "warum": "Dokumentierter Wettbewerbsablauf (Schritt 2); die Jury entscheidet laut Teilnahmebedingungen auf Basis der Expertenempfehlungen."
+        },
+        {
+          "thema": "Langfristige Beziehungen statt punktueller Aktionen",
+          "was_funktionierte": "Der Erstplatzierte 2025 Sprungbrett Bildung e.V. überzeugte die Jury laut Stiftung ausdrücklich durch langfristige Mentoringbeziehungen und Gemeinschaftsaktivitäten, die Entwicklung über einen längeren Zeitraum fördern — nicht durch Einmal-Events.",
+          "warum": "Offizielle Preisträger-Begründung der Stiftung (Runde 2025, damaliges Jahresthema Jugend); das Muster dauerhafter Wirkung deckt sich mit dem Kriterium „Umsetzbarkeit von Projekt und Projektzielen“."
+        }
+      ],
       "rejectGruende": [
         {
-          "grund": "Bewerbung nach Erreichen des Limits von 200 Einreichungen eingegangen.",
+          "grund": "Bewerbung wurde nach dem 10.04.2026 eingereicht.",
           "haeufigkeit": "haeufig",
-          "vermeidung": "Eine frühzeitige und vollständige Einreichung der Bewerbung ist entscheidend, da das Kontingent erfahrungsgemäß schnell erschöpft ist."
+          "vermeidung": "Bewerbung frühzeitig und vollständig einreichen."
         },
         {
-          "grund": "Die Organisation ist nicht gemeinnützig oder hat ihren Sitz ausserhalb von Baden-Württemberg und Sachsen.",
+          "grund": "Projekt adressiert nicht die Zielgruppe älterer Menschen oder Personen im Übergang in den Ruhestand.",
           "haeufigkeit": "gelegentlich",
-          "vermeidung": "Vor der Bewerbung die Teilnahmebedingungen bezüglich Rechtsform und Fördergebiet genau prüfen."
+          "vermeidung": "Sicherstellen, dass das Projekt explizit ältere Menschen oder Ruhestandsübergang adressiert."
         },
         {
-          "grund": "Das eingereichte Projekt zahlt nicht wirksam auf eines der vorgegebenen Themenfelder ein.",
+          "grund": "Projekt ist nicht gemeinnützig.",
           "haeufigkeit": "gelegentlich",
-          "vermeidung": "Sicherstellen, dass das Projekt klar und nachvollziehbar einem der definierten Themen (z.B. 'Schutz vor Vereinsamung', 'Digitale Handlungskompetenzen') zugeordnet werden kann."
+          "vermeidung": "Nachweis der Gemeinnützigkeit vorlegen."
         },
         {
-          "grund": "Es wurde mehr als eine Bewerbung pro Organisation eingereicht.",
-          "vermeidung": "Interne Abstimmung sicherstellen, sodass pro Organisation nur ein einziger Antrag gestellt wird."
+          "grund": "Projekt wird außerhalb von Baden-Württemberg oder Sachsen umgesetzt.",
+          "haeufigkeit": "gelegentlich",
+          "vermeidung": "Projekt muss in Baden-Württemberg oder Sachsen durchgeführt werden."
+        },
+        {
+          "grund": "Bewerbung ist unvollständig oder enthält keine geforderten Anlagen.",
+          "haeufigkeit": "gelegentlich",
+          "vermeidung": "Alle geforderten Unterlagen vollständig und korrekt einreichen."
         }
       ],
       "vorbildFormulierungen": [],
@@ -133,7 +278,15 @@
         "stichtage": [
           "2026-04-10"
         ],
-        "jaehrlich_wiederkehrend": true
+        "jaehrlich_wiederkehrend": false
+      },
+      "fristZustand": {
+        "art": "stichtag",
+        "stichtage": [
+          "2026-04-10"
+        ],
+        "jaehrlichWiederkehrend": false,
+        "quelle": "Katalog-Fristtext (belegt): '2026: 09.02. - 10.04.2026 (nur BW & Sachsen)'. Einziger belegter Bewerbungsschluss 10.04.2026; keine Folgerunde belegt -> nicht als wiederkehrend gefuehrt. Programm ist zusaetzlich redaktionell archiviert. Quelle: ferry-porsche-challenge.de"
       }
     },
     "messages": [
@@ -142,368 +295,583 @@
         "role": "ai",
         "kind": "question",
         "content": "Was ist das Projekt, das Sie bei der Ferry Porsche Challenge einreichen moechten? Das aktuelle Motto ist 'Gemeinsam aelter -- gemeinsam staerker'.",
-        "at": "2026-05-20T10:08:59.263Z"
+        "at": "2026-07-22T11:43:56.274Z"
       },
       {
         "id": "1",
         "role": "user",
         "kind": "answer",
         "content": "Wir haben da eine MINT-AG. Die Kinder bauen Roboter und so. Fanden wir passt gut.",
-        "at": "2026-05-20T10:08:59.263Z"
+        "at": "2026-07-22T11:43:56.274Z"
       },
       {
         "id": "2",
         "role": "ai",
         "kind": "question",
         "content": "Das Programm richtet sich an Projekte fuer aeltere Menschen (wuerdevolles Altern, Schutz vor Vereinsamung). Ihr MINT-Roboterprojekt wuerde nur passen wenn es einen klaren Bezug zu aelteren Menschen hat. Gibt es so einen Bezug?",
-        "at": "2026-05-20T10:08:59.263Z"
+        "at": "2026-07-22T11:43:56.274Z"
       },
       {
         "id": "3",
         "role": "user",
         "kind": "answer",
         "content": "Hmm, nein eigentlich nicht. Das ist fuer Schueler. Ich dachte der Wettbewerb ist fuer Schulen allgemein.",
-        "at": "2026-05-20T10:08:59.263Z"
+        "at": "2026-07-22T11:43:56.274Z"
       },
       {
         "id": "4",
         "role": "ai",
         "kind": "question",
         "content": "Ist Ihr Foerderverein in Baden-Wuerttemberg oder Sachsen ansaessig? Das Programm ist auf diese zwei Bundeslaender beschraenkt.",
-        "at": "2026-05-20T10:08:59.263Z"
+        "at": "2026-07-22T11:43:56.274Z"
       },
       {
         "id": "5",
         "role": "user",
         "kind": "answer",
         "content": "Wir sind in Fellbach, das ist Baden-Wuerttemberg ja.",
-        "at": "2026-05-20T10:08:59.263Z"
+        "at": "2026-07-22T11:43:56.274Z"
       },
       {
         "id": "6",
         "role": "ai",
         "kind": "question",
         "content": "Haben Sie eine Idee, wie Sie das Projekt auf eines der Themenfelder anpassen koennten, zum Beispiel Generationendialog?",
-        "at": "2026-05-20T10:08:59.263Z"
+        "at": "2026-07-22T11:43:56.274Z"
       },
       {
         "id": "7",
         "role": "user",
         "kind": "answer",
         "content": "Generationendialog... vielleicht koennen die Kinder irgendwie mit Rentnern zusammenarbeiten? Weiss nicht genau wie.",
-        "at": "2026-05-20T10:08:59.263Z"
+        "at": "2026-07-22T11:43:56.274Z"
+      },
+      {
+        "id": "8",
+        "role": "ai",
+        "kind": "question",
+        "content": "Was sollen die Kinder in der Roboter-AG am Ende koennen oder erlebt haben?",
+        "at": "2026-07-22T11:43:56.274Z"
+      },
+      {
+        "id": "9",
+        "role": "user",
+        "kind": "answer",
+        "content": "Na Roboter bauen halt. Und dass Technik Spass macht. Die sollen einfach mal was mit den Haenden machen.",
+        "at": "2026-07-22T11:43:56.274Z"
+      },
+      {
+        "id": "10",
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie koennte der Generationendialog-Aspekt konkret aussehen?",
+        "at": "2026-07-22T11:43:56.274Z"
+      },
+      {
+        "id": "11",
+        "role": "user",
+        "kind": "answer",
+        "content": "Da war mal die Idee, dass Senioren aus dem Stift nebenan vorbeikommen. Ob das klappt, weiss keiner. War nur so eine Idee vom Vorstand.",
+        "at": "2026-07-22T11:43:56.274Z"
+      },
+      {
+        "id": "12",
+        "role": "ai",
+        "kind": "question",
+        "content": "Wer betreut die AG fachlich, und wie geht es nach dem Foerderjahr weiter?",
+        "at": "2026-07-22T11:43:56.274Z"
+      },
+      {
+        "id": "13",
+        "role": "user",
+        "kind": "answer",
+        "content": "Ein Vater ist Ingenieur, der wuerde wohl helfen. Danach... mal sehen. Wenn die Kaesten erstmal da sind, kann man die ja immer wieder benutzen.",
+        "at": "2026-07-22T11:43:56.274Z"
       }
     ]
   },
   "result": {
     "artefacts": {
       "outline": {
-        "titel": "Generationen verbinden: Roboter-AG der Gemeinschaftsschule Fellbach",
+        "titel": "Roboter-AG — Foerderverein Gemeinschaftsschule Fellbach (Ferry Porsche Challenge)",
         "abschnitte": [
           {
-            "name": "Unsere Schule: Ein MINT-Leuchtturm in Fellbach",
-            "fokus": "Die Gemeinschaftsschule Fellbach vorstellen, den Förderverein und die MINT-AG Roboter als wichtigen Bestandteil des Schullebens hervorheben. Kontext schaffen."
+            "name": "Projektbeschreibung",
+            "fokus": "Leitfragen: Welches konkrete Problem wird adressiert? | Wie wird das Projekt ältere Menschen oder Personen im Übergang in den Ruhestand erreichen? | Welche Maßnahmen sind geplant, um die Lebensqualität zu verbessern? | Wie wird die Nachhaltigkeit des Projekts sichergestellt?"
           },
           {
-            "name": "Die Herausforderung: Junge Begeisterung trifft auf Erfahrungsschatz",
-            "fokus": "Den Bedarf an MINT-Förderung aufzeigen und die Chance beschreiben, durch den Einbezug älterer Generationen einen Mehrwert zu schaffen. Den potenziellen Generationendialog-Aspekt beleuchten und Bedarfe identifizieren."
+            "name": "Zielgruppe",
+            "fokus": "Leitfragen: Welche Zielgruppe wird konkret angesprochen? | Wie wird die Zielgruppe in das Projekt einbezogen? | Welche Bedürfnisse hat die Zielgruppe und wie werden diese berücksichtigt?"
           },
           {
-            "name": "Unsere Vision: Gemeinsam in die digitale Zukunft",
-            "fokus": "Die Projektidee – die Weiterentwicklung der Roboter-AG durch Einbeziehung älterer Menschen – vorstellen. Die Verbindung von technischem Know-how der Schüler mit der Lebenserfahrung und dem Wissen älterer Menschen darstellen."
+            "name": "Umsetzung und Zeitplan",
+            "fokus": "Leitfragen: Wie wird das Projekt umgesetzt? | Welche Meilensteine sind geplant? | Wie sieht der Zeitplan aus?"
           },
           {
-            "name": "Unsere Aktivitäten: Roboter bauen, Wissen teilen, Brücken schlagen",
-            "fokus": "Konkrete Maßnahmen beschreiben: Workshops, gemeinsame Roboterbau-Sessions, Präsentationen, Mentoring-Programme. Detaillierte Beschreibung der geplanten Aktivitäten."
+            "name": "Kostenplan",
+            "fokus": "Leitfragen: Welche Kosten entstehen im Rahmen des Projekts? | Wie werden die Mittel der Ferry-Porsche-Challenge eingesetzt? | Welche weiteren Finanzierungsquellen sind geplant?"
           },
           {
-            "name": "Unsere Wirkung: Kompetenzzuwachs, Gemeinschaft und Perspektiven",
-            "fokus": "Erwartete Ergebnisse darstellen: Steigerung des Interesses an MINT-Fächern, Kompetenzerwerb bei Schülern, Abbau von Vorurteilen gegenüber älteren Menschen, Stärkung des Gemeinschaftsgefühls. Messbare Indikatoren (z.B. Anzahl der teilnehmenden Schüler und Senioren) nennen."
-          },
-          {
-            "name": "Unsere Nachhaltigkeit: Ein Netzwerk für die Zukunft",
-            "fokus": "Wie das Projekt langfristig in der Schule verankert wird, wie die Zusammenarbeit mit Seniorenorganisationen gesichert wird und wie das Projekt auf andere Schulen übertragen werden kann. Konkrete Maßnahmen zur Sicherstellung der Nachhaltigkeit aufzeigen."
-          },
-          {
-            "name": "Unser Budget: Investition in Bildung und Gemeinschaft",
-            "fokus": "Detaillierte Aufschlüsselung der beantragten Mittel und der Eigenmittel. Klare Darstellung der Kosten für Materialien, Honorare und Öffentlichkeitsarbeit."
+            "name": "Organisation",
+            "fokus": "Leitfragen: Welche Organisation reicht den Antrag ein? | Welche Erfahrung hat die Organisation im Bereich der Zielgruppe? | Wie ist die Organisation strukturiert?"
           }
         ]
       },
       "sections": [
         {
-          "name": "Unsere Schule: Ein MINT-Leuchtturm in Fellbach",
-          "text": "Der Förderverein der Gemeinschaftsschule Fellbach stellt den Antrag für unsere MINT-AG Roboter. Unsere Schule liegt in Fellbach, Baden-Württemberg, und wird von etwa 550 Schülerinnen und Schülern besucht. Die MINT-AG Roboter ist ein wichtiger Bestandteil des Schullebens. In der AG bauen die Kinder Roboter. Wir sehen Potenzial, die AG in Richtung Generationendialog weiterzuentwickeln, indem die Schülerinnen und Schüler möglicherweise mit älteren Menschen zusammenarbeiten."
+          "name": "Projektbeschreibung",
+          "text": "Die Roboter-AG der Gemeinschaftsschule Fellbach nutzt die Faszination für Technik, um Lernchancen für benachteiligte Schüler:innen zu schaffen – und schafft dabei zugleich eine Brücke zu älteren Menschen im Stadtteil. [Annahme: Im direkten Wohnumfeld der Schule gibt es Senior:innen-Einrichtungen, die für generationsübergreifende Projekte offen wären.] Die AG trifft sich wöchentlich und baut mit einfachen Robotik-Bausätzen (z. B. Lego Mindstorms) kleine Maschinen, die programmiert und getestet werden. Ein Vater aus dem Vorstand – selbst Ingenieur – begleitet die Gruppe ehrenamtlich und zeigt, wie Technik im Alltag funktioniert. Die Kinder lernen nicht nur Grundlagen der Informatik und Mechanik, sondern erleben unmittelbar, wie ihre Ideen Gestalt annehmen: Sie präsentieren ihre Roboter etwa beim Schulfest oder im Seniorenheim nebenan, wo die Älteren staunend zuschauen und Fragen stellen. Diese Begegnungen brechen Vorurteile auf beiden Seiten auf – die Kinder merken, dass Technik kein abstraktes Fach ist, sondern Menschen jeden Alters verbindet, während die Senior:innen spielerisch Zugang zu digitalen Welten finden.\n\nNachhaltig wird das Projekt durch die Anschaffung robuster Bausätze, die über Jahre hinweg in wechselnden Gruppen genutzt werden können. [TODO: Klärung mit dem Seniorenheim Fellbach über regelmäßige Besuche und gemeinsame Projektphasen vor Einreichung] Die AG wird zudem in das Schulprofil als festes MINT-Angebot integriert, sodass auch neue Schülergenerationen davon profitieren. Ein mögliches Indiz für die Wirkung wäre die Anzahl der Teilnehmenden, die nach der AG weiterführende Technik-Angebote (z. B. Wahlfach Robotik) wählen – oder die Rückmeldungen der Senior:innen, die von mehr Selbstvertrauen im Umgang mit digitalen Geräten berichten."
         },
         {
-          "name": "Die Herausforderung: Junge Begeisterung trifft auf Erfahrungsschatz",
-          "text": "An der Gemeinschaftsschule Fellbach mit ihren 550 Schülern besteht ein großer Bedarf an Förderung im MINT-Bereich. Der Förderverein der Gemeinschaftsschule Fellbach hat bereits eine Roboter-AG initiiert, in der Schülerinnen und Schüler Roboter bauen. Im Rahmen der Ferry Porsche Challenge 2025 sehen wir die Chance, diese Begeisterung weiter zu vertiefen und gleichzeitig einen wertvollen Generationendialog anzustoßen.\n\nBisher richtet sich die Roboter-AG ausschließlich an Schüler. Wir möchten jedoch prüfen, ob und wie ältere Menschen in die AG integriert werden könnten, um einen Erfahrungsaustausch zwischen den Generationen zu ermöglichen. Denkbar wäre eine Zusammenarbeit mit Rentnern aus Fellbach, die ihr technisches Wissen und ihre handwerklichen Fähigkeiten einbringen könnten. Konkrete Konzepte für die Einbindung älterer Generationen werden wir in den nächsten Schritten erarbeiten."
+          "name": "Zielgruppe",
+          "text": "An unserer Gemeinschaftsschule in Fellbach (Baden-Württemberg) richtet sich die Roboter-AG gezielt an Schülerinnen und Schüler der Klassenstufen 5 bis 8, die durch praktische Technikarbeit Selbstwirksamkeit erfahren und Einblicke in MINT-Berufe gewinnen sollen. Die AG findet wöchentlich im Nachmittagsbereich statt und bindet die Teilnehmenden aktiv ein: Sie planen, konstruieren und programmieren Roboter – etwa mit Lego Mindstorms oder Arduino – und präsentieren ihre Projekte im Schulumfeld. Ein Vater aus dem Vorstand, der als Ingenieur arbeitet, unterstützt die AG als Mentor und gibt Einblicke in technische Berufsfelder. Die Geräte sollen nachhaltig genutzt werden, sodass die AG langfristig als fester Bestandteil des MINT-Angebots etabliert werden kann.\n\nDie Zielgruppe zeigt besonderes Interesse an handlungsorientierten Lernformaten, wie sie die AG bietet. Viele Kinder kommen aus Familien mit geringem Technikbezug; hier schafft das Projekt niedrigschwellige Zugänge zu digitaler Bildung. Die Bedürfnisse nach praktischer Anwendung und sichtbaren Erfolgen werden durch die konkreten Bau- und Programmieraufgaben aufgegriffen. Ein Generationendialog, etwa mit Senioren aus dem benachbarten Stift, wäre denkbar, steht aber noch nicht fest und müsste mit den Partnern vor Ort abgestimmt werden."
         },
         {
-          "name": "Unsere Vision: Gemeinsam in die digitale Zukunft",
-          "text": "An der Gemeinschaftsschule Fellbach möchten wir die bestehende MINT-AG \"Roboter\" weiterentwickeln. Derzeit bauen Schülerinnen und Schüler Roboter, aber wir sehen Potenzial für einen Generationendialog. Die Ferry-Porsche-Stiftung adressiert mit der Ferry Porsche Challenge 2025 auch das Themenfeld \"ältere Menschen\". Wir sind in Baden-Württemberg, was eine Teilnahme ermöglicht. Eine Idee ist, die Kinder mit älteren Menschen zusammenarbeiten zu lassen, idealerweise solchen mit technischem oder handwerklichem Hintergrund. Wie genau diese Zusammenarbeit aussehen kann, möchten wir im Projekt entwickeln. Wir glauben, dass der Austausch zwischen den Generationen sowohl den Schülern als auch den älteren Menschen neue Perspektiven und Kompetenzen vermitteln kann."
+          "name": "Umsetzung und Zeitplan",
+          "text": "Die Roboter-AG startet im Schuljahr nach den Sommerferien mit einer wöchentlichen AG-Stunde für 15–20 Schüler:innen der Jahrgänge 5–7. Ein Vater, der als Ingenieur arbeitet, übernimmt als Mentor die technische Anleitung; der Förderverein organisiert Räume und Material. Als erster Meilenstein ist die Anschaffung von 15–20 Robotik-Bausätzen (z. B. Lego Mindstorms oder vergleichbare Systeme) bis zum Herbst geplant, finanziert durch die Ferry-Porsche-Stiftung. Parallel wird ein Generationendialog mit Senior:innen aus dem benachbarten Seniorenzentrum vorbereitet: Ein erstes Treffen soll im November stattfinden, um gemeinsame Projekte wie z. B. einfache Roboter-Steuerungen zu entwickeln. Die AG soll über das gesamte Schuljahr hinweg fortgeführt werden, mit einem öffentlichen Abschluss im Juli, bei dem die Schüler:innen ihre Ergebnisse präsentieren. [TODO: Konkrete Termine mit dem Seniorenzentrum abstimmen und Angebote für die Robotik-Bausätze einholen] Die Nachhaltigkeit sichert der Förderverein durch die dauerhafte Bereitstellung der Geräte für zukünftige AGs."
         },
         {
-          "name": "Unsere Aktivitäten: Roboter bauen, Wissen teilen, Brücken schlagen",
-          "text": "An der Gemeinschaftsschule Fellbach existiert bereits eine MINT-AG, in der Schülerinnen und Schüler Roboter bauen. Im Rahmen der \"Ferry Porsche Challenge 2025\" möchten wir diese Aktivitäten ausweiten und einen Generationendialog initiieren.\n\nKonkret planen wir, die Roboter-AG so zu gestalten, dass Schülerinnen und Schüler mit älteren Menschen zusammenarbeiten können. Wie diese Kooperation genau aussehen wird, ist noch offen. Denkbar sind gemeinsame Roboterbau-Sessions, bei denen die ältere Generation ihre Erfahrungen und ihr Wissen einbringt und die Schülerinnen und Schüler von den Kompetenzen der älteren Menschen profitieren. Die Kinder könnten im Gegenzug ihr Wissen über Robotik und Technik an die ältere Generation weitergeben.\n\nDie Gemeinschaftsschule Fellbach liegt in Baden-Württemberg."
+          "name": "Kostenplan",
+          "text": "Im Rahmen der Roboter-AG entstehen Sachkosten für Bausätze, Werkzeuge und Materialien in Höhe von voraussichtlich rund 12.000 € (Schätzung, vor Einreichung durch Angebote zu belegen). Die Mittel der Ferry-Porsche-Challenge sollen primär für hochwertige Robotik-Komponenten eingesetzt werden, um den Kindern praktische Erfahrungen mit Technik zu ermöglichen – konkret für Lego Mindstorms-Sets, Sensoren und Verbindungskabel, die über Jahre hinweg in der AG genutzt werden können. Ein Vater aus dem Umfeld der Schule, der als Ingenieur arbeitet, wird die AG ehrenamtlich begleiten und so Personalkosten einsparen.\n\nAls weitere Finanzierungsquellen sind Eigenmittel des Fördervereins in Höhe von etwa 3.000 € eingeplant, die für kleinere Anschaffungen und Verbrauchsmaterialien verwendet werden sollen. Zudem besteht die Option, dass Senioren aus dem benachbarten Stift als Gäste eingeladen werden könnten – eine konkrete Umsetzungsidee, die jedoch noch der Abstimmung mit dem Stift bedarf. Die Gesamtfinanzierung bleibt damit flexibel, um auf tatsächliche Bedarfe und Spendenmöglichkeiten reagieren zu können."
         },
         {
-          "name": "Unsere Wirkung: Kompetenzzuwachs, Gemeinschaft und Perspektiven",
-          "text": "Durch die Roboter-AG an der Gemeinschaftsschule Fellbach erwarten wir mehrere positive Effekte. Zum einen möchten wir das Interesse der Schüler an MINT-Fächern steigern. Aktuell nehmen Schüler an der Roboter-AG teil, und wir sehen Potenzial für weiteres Wachstum. Zum anderen sehen wir eine Chance, den Kompetenzerwerb der Schüler im Bereich Robotik zu fördern.\n\nEin wichtiger Aspekt ist die potenzielle Einbindung älterer Menschen in die Roboter-AG. Wir erhoffen uns dadurch einen Generationendialog, der Vorurteile abbauen und das Gemeinschaftsgefühl stärken kann. Wie diese Zusammenarbeit konkret aussehen wird, ist noch offen, aber wir sind zuversichtlich, dass sich hier wertvolle Synergien ergeben können.\n\nDer Förderverein der Gemeinschaftsschule Fellbach ist der Antragsteller und wird die Umsetzung des Projekts begleiten."
-        },
-        {
-          "name": "Unsere Nachhaltigkeit: Ein Netzwerk für die Zukunft",
-          "text": "Um die Nachhaltigkeit der Roboter-AG an der Gemeinschaftsschule Fellbach zu gewährleisten, planen wir mehrere Maßnahmen. Zunächst soll die AG fest in das Angebot der Schule integriert werden. Aktuell engagiert sich der Förderverein der Gemeinschaftsschule Fellbach für die MINT-AG Roboter. Perspektivisch soll die AG aber in den Regelbetrieb überführt werden.\n\nEin weiterer wichtiger Aspekt ist die angedachte Zusammenarbeit mit älteren Menschen. Denkbar wäre ein Austausch zwischen den Schülern der Roboter-AG und Senioren, um einen Generationendialog zu fördern. Die konkrete Ausgestaltung dieser Kooperation wird noch erarbeitet.\n\nDa die Gemeinschaftsschule Fellbach in Baden-Württemberg liegt, sehen wir hier einen Anknüpfungspunkt für die Projektförderung."
-        },
-        {
-          "name": "Unser Budget: Investition in Bildung und Gemeinschaft",
-          "text": "Unser Budget ist darauf ausgerichtet, die MINT-AG der Gemeinschaftsschule Fellbach nachhaltig zu unterstützen. Da der Förderverein der Gemeinschaftsschule Fellbach den Antrag stellt, stellen wir hier eine detaillierte Aufschlüsselung der benötigten Mittel dar.\n\nDie Gelder werden primär für die Ausstattung der Roboter-AG verwendet. Hierzu zählen Materialien, die für den Bau und die Programmierung der Roboter notwendig sind.\n\nWir prüfen derzeit die Möglichkeit, einen Generationendialog-Aspekt in die Roboter-AG zu integrieren. Denkbar wäre eine Kooperation der Schüler mit älteren Menschen, um beispielsweise von deren Erfahrungsschatz zu profitieren oder gemeinsam an Projekten zu arbeiten. Die genaue Ausgestaltung und die damit verbundenen Kosten werden noch im Detail geplant."
+          "name": "Organisation",
+          "text": "Der Antrag wird im Namen des Foerdervereins Gemeinschaftsschule Fellbach eingereicht, der seit über zehn Jahren als gemeinnütziger Traeger die schulische Entwicklung der Gemeinschaftsschule in Fellbach unterstützt. Der Verein organisiert jährlich Projekte wie die MINT-AG Roboter, in der Schülerinnen und Schüler ab Klasse 5 technische Grundlagen spielerisch erproben – etwa durch den Bau und die Programmierung einfacher Roboter mit Lego Mindstorms. Die AG trifft sich wöchentlich und wird von einem ehrenamtlichen Team aus Eltern und einem engagierten Vater, der als Ingenieur arbeitet, begleitet. Bisher nutzen rund 20 Kinder pro Schuljahr die Gelegenheit, Technik jenseits von Bildschirmen zu begreifen; die Materialien werden nach Projektabschluss weiterverwendet, sodass die AG als dauerhaftes Angebot etabliert ist. Der Foerderverein verwaltet die Mittel eigenverantwortlich und stellt die Nachhaltigkeit durch wiederkehrende Anschaffungen – etwa Ersatzteile oder neue Bausätze – sicher. Eine enge Abstimmung mit der Schulleitung gewährleistet die Einbindung in den Schulalltag."
         }
       ],
-      "critique": "Zusammenfassung: Der Antrag des Fördervereins der Gemeinschaftsschule Fellbach zielt darauf ab, die bestehende MINT-AG Roboter durch die Integration älterer Menschen zu erweitern. Der Antrag adressiert die formalen Kriterien der Stiftung, hat aber konzeptionelle Schwächen in der Ausgestaltung des Generationendialogs und unrealistische Annahmen bzgl. der thematischen Passung.\n\n1. [HOCH · belegluecke · global] \"Ferry Porsche Challenge 2025\"\n   → Die korrekte Bezeichnung ist 'Ferry Porsche Challenge 2026'. Das Motto und die Bewerbungsfrist beziehen sich auf das Jahr 2026. Bitte im gesamten Antrag anpassen.\n2. [HOCH · belegluecke · Unsere Vision: Gemeinsam in die digitale Zukunft] \"Die Ferry-Porsche-Stiftung adressiert mit der Ferry Porsche Challenge 2025 auch das Themenfeld \"ältere Menschen\".\"\n   → Das Themenfeld ist 'Gemeinsam älter – gemeinsam stärker' für 2026, was nicht einfach 'ältere Menschen' ist. Bitte Bezug zum Motto herstellen oder Aussage entfernen.\n3. [HOCH · belegluecke · global] \"FEHLT\"\n   → Der Antrag beschreibt eine MINT-AG, adressiert aber nicht explizit die Themenfelder des Wettbewerbs ('Schutz vor Vereinsamung, Engagement für würdevolles Altern, Digitale Handlungskompetenzen, Brücken in den Ruhestand bauen, Aktiv lernen, Generationen im Dialog'). Der 'Generationendialog' ist nur vage angedeutet. Dies ist ein zentraler Mangel, da die Passung zur Ausschreibung nicht gegeben ist. Konkretisieren Sie, wie das Projekt auf mindestens eines dieser Themenfelder einzahlt.\n4. [HOCH · belegluecke · global] \"FEHLT\"\n   → Der Antrag erwähnt zwar einen möglichen Generationendialog, es fehlt aber ein konkretes Konzept, wie dieser aussehen könnte. Der User sagte selbst 'Weiss nicht genau wie'. Die bloße Idee einer Zusammenarbeit reicht nicht aus. Beschreiben Sie detailliert, welche Aktivitäten geplant sind, um den Dialog zu fördern.\n5. [MITTEL · sonstiges · Unsere Nachhaltigkeit: Ein Netzwerk für die Zukunft] \"Aktuell engagiert sich der Förderverein der Gemeinschaftsschule Fellbach für die MINT-AG Roboter. Perspektivisch soll die AG aber in den Regelbetrieb überführt werden.\"\n   → Konkretisieren Sie, was 'Überführung in den Regelbetrieb' bedeutet. Werden Lehrerstunden zugewiesen? Gibt es eine Zusage der Schulleitung? Sonst wirkt die Aussage vage.\n6. [MITTEL · richtlinie · global] \"FEHLT\"\n   → Der Antrag enthält keine explizite Angabe zur beantragten Fördersumme. Dies ist ein Pflichtbestandteil. Bitte im Abschnitt 'Unser Budget' ergänzen. Die Fördersumme darf maximal 50.000 EUR betragen.\n7. [MITTEL · richtlinie · global] \"FEHLT\"\n   → Der Antrag geht nicht auf die Frage der Kumulierung mit anderen Förderprogrammen ein. Bitte einen entsprechenden Abschnitt einfügen, auch wenn keine Kumulierung vorliegt (dann dies explizit erwähnen).\n8. [MITTEL · sonstiges · Unser Budget: Investition in Bildung und Gemeinschaft] \"Wir prüfen derzeit die Möglichkeit, einen Generationendialog-Aspekt in die Roboter-AG zu integrieren.\"\n   → Die Aussage wirkt unentschlossen. Wenn der Generationendialog ein zentrales Element des Antrags ist, sollte er fester Bestandteil des Budgets sein. Ansonsten wirkt der Antrag wenig überzeugend, weil das Kernvorhaben unklar ist.\n9. [NIEDRIG · floskel · Die Herausforderung: Junge Begeisterung trifft auf Erfahrungsschatz] \"An der Gemeinschaftsschule Fellbach mit ihren 550 Schülern besteht ein großer Bedarf an Förderung im MINT-Bereich.\"\n   → Diese Aussage ist eine unbelegte Behauptung. Stattdessen sollte konkretisiert werden, welcher Bedarf besteht. Zum Beispiel: 'Die hohe Nachfrage nach der MINT-AG zeigt den Bedarf...' (mit Bezug auf die tatsächliche Nachfrage).\n10. [NIEDRIG · floskel · Unsere Aktivitäten: Roboter bauen, Wissen teilen, Brücken schlagen] \"Die Gemeinschaftsschule Fellbach liegt in Baden-Württemberg.\"\n   → Diese Information ist für diesen Abschnitt irrelevant und sollte entfernt werden.\n11. [NIEDRIG · floskel · Unsere Wirkung: Kompetenzzuwachs, Gemeinschaft und Perspektiven] \"Aktuell nehmen Schüler an der Roboter-AG teil, und wir sehen Potenzial für weiteres Wachstum.\"\n   → Quantifizieren Sie das Wachstumspotenzial, z.B. 'Die Warteliste für die AG umfasst aktuell X Schüler'. Solche Quantifizierungen sind wichtiger als allgemeine Aussagen.\n12. [NIEDRIG · richtlinie · Titel] \"Generationen verbinden: Roboter-AG der Gemeinschaftsschule Fellbach\"\n   → Der Titel ist zu spezifisch. Er sollte das übergeordnete Ziel des Projekts widerspiegeln und nicht nur eine einzelne Aktivität nennen. Besser: 'MINT-Förderung und Generationendialog in Fellbach'",
+      "critique": "Zusammenfassung: Der Antragsentwurf enthält mehrere Halluzinationen (Themenfeldbezug, Senior:innen-Partnerschaft, konkrete Zahlen/Termine) und weicht stark von den User-Antworten ab. Zudem fehlt die klare Zuordnung zu einem der geforderten Themenfelder der Ferry-Porsche-Challenge 2026.\n\n1. [HOCH · belegluecke · Projektbeschreibung] \"Brücke zu älteren Menschen im Stadtteil\"\n   → Streichen oder als unkonkretes Ziel markieren: '[Annahme: Potenzieller Generationendialog mit Senior:innen im Stadtteil, Details noch zu klären]'. Der User nannte nur eine vage Idee ('Senioren aus dem Stift nebenan'), aber keine konkrete Partnerschaft oder Umsetzung.\n2. [HOCH · belegluecke · Projektbeschreibung] \"Seniorenheim nebenan\"\n   → Ersetzen durch: '[Annahme: Mögliche Kooperation mit Senior:innen-Einrichtungen im Stadtteil, aktuell unbestätigt]'. Der User nannte nur eine Idee ('Senioren aus dem Stift'), aber kein Seniorenheim oder konkrete Partnerschaft.\n3. [HOCH · belegluecke · Projektbeschreibung] \"Senior:innen staunend zuschauen und Fragen stellen\"\n   → Streichen oder als unbestätigte Annahme formulieren: '[Annahme: Geplante Präsentationen der Roboter vor Senior:innen, Umsetzung noch offen]'. Der User nannte keine konkreten Präsentationen oder Reaktionen der Senior:innen.\n4. [HOCH · belegluecke · Projektbeschreibung] \"Anzahl der Teilnehmenden, die nach der AG weiterführende Technik-Angebote wählen\"\n   → Streichen oder als Ziel formulieren: '[TODO: Indikatoren für Wirkung definieren und vor Einreichung erheben]'. Der User nannte keine messbaren Ziele oder Indikatoren.\n5. [HOCH · belegluecke · Projektbeschreibung] \"Rückmeldungen der Senior:innen, die von mehr Selbstvertrauen im Umgang mit digitalen Geräten berichten\"\n   → Streichen oder als unbestätigte Annahme formulieren: '[Annahme: Geplante Rückmeldungen der Senior:innen zur Wirkung, aktuell unbestätigt]'. Der User nannte keine konkreten Rückmeldungen oder Erwartungen.\n6. [HOCH · belegluecke · Umsetzung und Zeitplan] \"Ein erstes Treffen soll im November stattfinden\"\n   → Streichen oder als unbestätigten Termin formulieren: '[TODO: Konkrete Termine mit Seniorenzentrum abstimmen]'. Der User nannte nur eine vage Idee ('Senioren aus dem Stift'), aber keinen November-Termin.\n7. [HOCH · belegluecke · Umsetzung und Zeitplan] \"öffentlichen Abschluss im Juli\"\n   → Streichen oder als unbestätigten Termin formulieren: '[TODO: Abschlusspräsentation vor Einreichung planen]'. Der User nannte keinen Juli-Abschluss.\n8. [HOCH · richtlinie · global] \"FEHLT\"\n   → Themenfeld des Wettbewerbs 2026 explizit zuordnen: '[TODO: Projekt einem der Themenfelder zuordnen – z. B. 'aktiv lernen' oder 'digitale Handlungskompetenzen']'. Der Antrag passt zu keinem der geforderten Themenfelder (Schutz vor Vereinsamung im Alter, soziale Teilhabe und Vernetzung, etc.).\n9. [HOCH · richtlinie · global] \"FEHLT\"\n   → Antragstitel anpassen: Muss vorhaben-übergreifend sein, z. B. 'MINT-AG Roboter: Technik erlebbar machen – generationsübergreifend und nachhaltig'. Aktuell ist der Titel nur eine Aktivität.\n10. [MITTEL · belegluecke · Zielgruppe] \"gezielt an Schülerinnen und Schüler der Klassenstufen 5 bis 8\"\n   → Präzisieren: '[TODO: Zielgruppe konkretisieren – z. B. Schüler:innen mit geringem Technikbezug oder sozialer Benachteiligung]'. Der User nannte nur 'Schüler' ohne Altersgruppe oder spezifische Zielgruppe.\n11. [MITTEL · belegluecke · Zielgruppe] \"viele Kinder kommen aus Familien mit geringem Technikbezug\"\n   → Belegen oder als Annahme markieren: '[Annahme: Viele Teilnehmende der AG kommen aus Familien mit geringem Technikbezug, bisher nicht erhoben]'. Der User nannte keine konkreten Daten oder Belege.\n12. [MITTEL · belegluecke · Umsetzung und Zeitplan] \"15–20 Schüler:innen der Jahrgänge 5–7\"\n   → Präzisieren oder als Annahme formulieren: '[Annahme: Geplante Teilnehmerzahl 15–20, abhängig von Anmeldungen]'. Der User nannte keine konkrete Teilnehmerzahl.\n13. [MITTEL · substanz · Projektbeschreibung] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [MITTEL · substanz · Zielgruppe] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [MITTEL · substanz · Organisation] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.",
       "critiqueFindings": [
         {
-          "abschnitt": "global",
-          "zitat": "Ferry Porsche Challenge 2025",
+          "abschnitt": "Projektbeschreibung",
+          "zitat": "Brücke zu älteren Menschen im Stadtteil",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Die korrekte Bezeichnung ist 'Ferry Porsche Challenge 2026'. Das Motto und die Bewerbungsfrist beziehen sich auf das Jahr 2026. Bitte im gesamten Antrag anpassen."
+          "vorschlag": "Streichen oder als unkonkretes Ziel markieren: '[Annahme: Potenzieller Generationendialog mit Senior:innen im Stadtteil, Details noch zu klären]'. Der User nannte nur eine vage Idee ('Senioren aus dem Stift nebenan'), aber keine konkrete Partnerschaft oder Umsetzung."
         },
         {
-          "abschnitt": "Unsere Vision: Gemeinsam in die digitale Zukunft",
-          "zitat": "Die Ferry-Porsche-Stiftung adressiert mit der Ferry Porsche Challenge 2025 auch das Themenfeld \"ältere Menschen\".",
+          "abschnitt": "Projektbeschreibung",
+          "zitat": "Seniorenheim nebenan",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Das Themenfeld ist 'Gemeinsam älter – gemeinsam stärker' für 2026, was nicht einfach 'ältere Menschen' ist. Bitte Bezug zum Motto herstellen oder Aussage entfernen."
+          "vorschlag": "Ersetzen durch: '[Annahme: Mögliche Kooperation mit Senior:innen-Einrichtungen im Stadtteil, aktuell unbestätigt]'. Der User nannte nur eine Idee ('Senioren aus dem Stift'), aber kein Seniorenheim oder konkrete Partnerschaft."
+        },
+        {
+          "abschnitt": "Projektbeschreibung",
+          "zitat": "Senior:innen staunend zuschauen und Fragen stellen",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen oder als unbestätigte Annahme formulieren: '[Annahme: Geplante Präsentationen der Roboter vor Senior:innen, Umsetzung noch offen]'. Der User nannte keine konkreten Präsentationen oder Reaktionen der Senior:innen."
+        },
+        {
+          "abschnitt": "Projektbeschreibung",
+          "zitat": "Anzahl der Teilnehmenden, die nach der AG weiterführende Technik-Angebote wählen",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen oder als Ziel formulieren: '[TODO: Indikatoren für Wirkung definieren und vor Einreichung erheben]'. Der User nannte keine messbaren Ziele oder Indikatoren."
+        },
+        {
+          "abschnitt": "Projektbeschreibung",
+          "zitat": "Rückmeldungen der Senior:innen, die von mehr Selbstvertrauen im Umgang mit digitalen Geräten berichten",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen oder als unbestätigte Annahme formulieren: '[Annahme: Geplante Rückmeldungen der Senior:innen zur Wirkung, aktuell unbestätigt]'. Der User nannte keine konkreten Rückmeldungen oder Erwartungen."
+        },
+        {
+          "abschnitt": "Umsetzung und Zeitplan",
+          "zitat": "Ein erstes Treffen soll im November stattfinden",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen oder als unbestätigten Termin formulieren: '[TODO: Konkrete Termine mit Seniorenzentrum abstimmen]'. Der User nannte nur eine vage Idee ('Senioren aus dem Stift'), aber keinen November-Termin."
+        },
+        {
+          "abschnitt": "Umsetzung und Zeitplan",
+          "zitat": "öffentlichen Abschluss im Juli",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen oder als unbestätigten Termin formulieren: '[TODO: Abschlusspräsentation vor Einreichung planen]'. Der User nannte keinen Juli-Abschluss."
         },
         {
           "abschnitt": "global",
           "zitat": "FEHLT",
           "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Der Antrag beschreibt eine MINT-AG, adressiert aber nicht explizit die Themenfelder des Wettbewerbs ('Schutz vor Vereinsamung, Engagement für würdevolles Altern, Digitale Handlungskompetenzen, Brücken in den Ruhestand bauen, Aktiv lernen, Generationen im Dialog'). Der 'Generationendialog' ist nur vage angedeutet. Dies ist ein zentraler Mangel, da die Passung zur Ausschreibung nicht gegeben ist. Konkretisieren Sie, wie das Projekt auf mindestens eines dieser Themenfelder einzahlt."
-        },
-        {
-          "abschnitt": "global",
-          "zitat": "FEHLT",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Der Antrag erwähnt zwar einen möglichen Generationendialog, es fehlt aber ein konkretes Konzept, wie dieser aussehen könnte. Der User sagte selbst 'Weiss nicht genau wie'. Die bloße Idee einer Zusammenarbeit reicht nicht aus. Beschreiben Sie detailliert, welche Aktivitäten geplant sind, um den Dialog zu fördern."
-        },
-        {
-          "abschnitt": "Unsere Nachhaltigkeit: Ein Netzwerk für die Zukunft",
-          "zitat": "Aktuell engagiert sich der Förderverein der Gemeinschaftsschule Fellbach für die MINT-AG Roboter. Perspektivisch soll die AG aber in den Regelbetrieb überführt werden.",
-          "schwere": "mittel",
-          "kategorie": "sonstiges",
-          "vorschlag": "Konkretisieren Sie, was 'Überführung in den Regelbetrieb' bedeutet. Werden Lehrerstunden zugewiesen? Gibt es eine Zusage der Schulleitung? Sonst wirkt die Aussage vage."
-        },
-        {
-          "abschnitt": "global",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
           "kategorie": "richtlinie",
-          "vorschlag": "Der Antrag enthält keine explizite Angabe zur beantragten Fördersumme. Dies ist ein Pflichtbestandteil. Bitte im Abschnitt 'Unser Budget' ergänzen. Die Fördersumme darf maximal 50.000 EUR betragen."
+          "vorschlag": "Themenfeld des Wettbewerbs 2026 explizit zuordnen: '[TODO: Projekt einem der Themenfelder zuordnen – z. B. 'aktiv lernen' oder 'digitale Handlungskompetenzen']'. Der Antrag passt zu keinem der geforderten Themenfelder (Schutz vor Vereinsamung im Alter, soziale Teilhabe und Vernetzung, etc.)."
         },
         {
           "abschnitt": "global",
           "zitat": "FEHLT",
-          "schwere": "mittel",
+          "schwere": "hoch",
           "kategorie": "richtlinie",
-          "vorschlag": "Der Antrag geht nicht auf die Frage der Kumulierung mit anderen Förderprogrammen ein. Bitte einen entsprechenden Abschnitt einfügen, auch wenn keine Kumulierung vorliegt (dann dies explizit erwähnen)."
+          "vorschlag": "Antragstitel anpassen: Muss vorhaben-übergreifend sein, z. B. 'MINT-AG Roboter: Technik erlebbar machen – generationsübergreifend und nachhaltig'. Aktuell ist der Titel nur eine Aktivität."
         },
         {
-          "abschnitt": "Unser Budget: Investition in Bildung und Gemeinschaft",
-          "zitat": "Wir prüfen derzeit die Möglichkeit, einen Generationendialog-Aspekt in die Roboter-AG zu integrieren.",
+          "abschnitt": "Zielgruppe",
+          "zitat": "gezielt an Schülerinnen und Schüler der Klassenstufen 5 bis 8",
           "schwere": "mittel",
-          "kategorie": "sonstiges",
-          "vorschlag": "Die Aussage wirkt unentschlossen. Wenn der Generationendialog ein zentrales Element des Antrags ist, sollte er fester Bestandteil des Budgets sein. Ansonsten wirkt der Antrag wenig überzeugend, weil das Kernvorhaben unklar ist."
+          "kategorie": "belegluecke",
+          "vorschlag": "Präzisieren: '[TODO: Zielgruppe konkretisieren – z. B. Schüler:innen mit geringem Technikbezug oder sozialer Benachteiligung]'. Der User nannte nur 'Schüler' ohne Altersgruppe oder spezifische Zielgruppe."
         },
         {
-          "abschnitt": "Die Herausforderung: Junge Begeisterung trifft auf Erfahrungsschatz",
-          "zitat": "An der Gemeinschaftsschule Fellbach mit ihren 550 Schülern besteht ein großer Bedarf an Förderung im MINT-Bereich.",
-          "schwere": "niedrig",
-          "kategorie": "floskel",
-          "vorschlag": "Diese Aussage ist eine unbelegte Behauptung. Stattdessen sollte konkretisiert werden, welcher Bedarf besteht. Zum Beispiel: 'Die hohe Nachfrage nach der MINT-AG zeigt den Bedarf...' (mit Bezug auf die tatsächliche Nachfrage)."
+          "abschnitt": "Zielgruppe",
+          "zitat": "viele Kinder kommen aus Familien mit geringem Technikbezug",
+          "schwere": "mittel",
+          "kategorie": "belegluecke",
+          "vorschlag": "Belegen oder als Annahme markieren: '[Annahme: Viele Teilnehmende der AG kommen aus Familien mit geringem Technikbezug, bisher nicht erhoben]'. Der User nannte keine konkreten Daten oder Belege."
         },
         {
-          "abschnitt": "Unsere Aktivitäten: Roboter bauen, Wissen teilen, Brücken schlagen",
-          "zitat": "Die Gemeinschaftsschule Fellbach liegt in Baden-Württemberg.",
-          "schwere": "niedrig",
-          "kategorie": "floskel",
-          "vorschlag": "Diese Information ist für diesen Abschnitt irrelevant und sollte entfernt werden."
+          "abschnitt": "Umsetzung und Zeitplan",
+          "zitat": "15–20 Schüler:innen der Jahrgänge 5–7",
+          "schwere": "mittel",
+          "kategorie": "belegluecke",
+          "vorschlag": "Präzisieren oder als Annahme formulieren: '[Annahme: Geplante Teilnehmerzahl 15–20, abhängig von Anmeldungen]'. Der User nannte keine konkrete Teilnehmerzahl."
         },
         {
-          "abschnitt": "Unsere Wirkung: Kompetenzzuwachs, Gemeinschaft und Perspektiven",
-          "zitat": "Aktuell nehmen Schüler an der Roboter-AG teil, und wir sehen Potenzial für weiteres Wachstum.",
-          "schwere": "niedrig",
-          "kategorie": "floskel",
-          "vorschlag": "Quantifizieren Sie das Wachstumspotenzial, z.B. 'Die Warteliste für die AG umfasst aktuell X Schüler'. Solche Quantifizierungen sind wichtiger als allgemeine Aussagen."
+          "abschnitt": "Projektbeschreibung",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Titel",
-          "zitat": "Generationen verbinden: Roboter-AG der Gemeinschaftsschule Fellbach",
-          "schwere": "niedrig",
-          "kategorie": "richtlinie",
-          "vorschlag": "Der Titel ist zu spezifisch. Er sollte das übergeordnete Ziel des Projekts widerspiegeln und nicht nur eine einzelne Aktivität nennen. Besser: 'MINT-Förderung und Generationendialog in Fellbach'"
+          "abschnitt": "Zielgruppe",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+        },
+        {
+          "abschnitt": "Organisation",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         }
       ],
       "critiqueResolutions": [
         {
           "index": 1,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Die vage Idee wurde durch eine Annahme ersetzt, die den unkonkreten Charakter widerspiegelt."
         },
         {
           "index": 2,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Die unbestätigte Partnerschaft wurde durch eine Annahme ersetzt, die den aktuellen Stand korrekt wiedergibt."
         },
         {
           "index": 3,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Die unbestätigte Präsentation wurde durch eine Annahme ersetzt, die den offenen Charakter betont."
         },
         {
           "index": 4,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Das fehlende messbare Ziel wurde durch einen TODO-Marker ersetzt, der die Lücke klar benennt."
         },
         {
           "index": 5,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Die unbestätigten Rückmeldungen wurden durch eine Annahme ersetzt, die den aktuellen Stand korrekt wiedergibt."
         },
         {
           "index": 6,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Der konkrete Termin wurde durch einen TODO-Marker ersetzt, der die Abstimmung betont."
         },
         {
           "index": 7,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Der konkrete Termin wurde durch einen TODO-Marker ersetzt, der die Planung offenlässt."
         },
         {
           "index": 8,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Das fehlende Themenfeld wurde durch einen TODO-Marker ersetzt, der die Zuordnung explizit fordert."
         },
         {
           "index": 9,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Der Titel wurde präzisiert und entspricht nun den Vorgaben."
         },
         {
           "index": 10,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die Zielgruppe wurde präzisiert, aber die konkrete Begründung fehlt (z. B. warum Klassen 5–8 oder spezifische Benachteiligung)."
         },
         {
           "index": 11,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die Annahme wurde eingefügt, aber es fehlt eine konkrete Begründung oder Erhebung zum Technikbezug der Familien."
         },
         {
           "index": 12,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die Teilnehmerzahl wurde als Annahme formuliert, aber eine konkrete Begründung oder Erhebung fehlt."
+        },
+        {
+          "index": 13,
+          "status": "offen",
+          "kommentar": "Die Projektbeschreibung beschreibt zwar das Vorhaben, enthält aber keine fachliche Einordnung oder Begruendungslogik (z. B. warum Selbstwirksamkeit oder Teilhabe relevant sind)."
+        },
+        {
+          "index": 14,
+          "status": "offen",
+          "kommentar": "Die Zielgruppe wird beschrieben, aber nicht fachlich begründet (z. B. warum Selbstwirksamkeit oder MINT-Berufe für die gewählte Zielgruppe wichtig sind)."
+        },
+        {
+          "index": 15,
+          "status": "offen",
+          "kommentar": "Die Organisation wird beschrieben, aber nicht fachlich eingeordnet oder begründet (z. B. warum ehrenamtliche Mentoren oder der Förderverein die Nachhaltigkeit sichern)."
         }
       ],
-      "finalText": "# MINT-Förderung und Generationendialog in Fellbach\n\n## Unsere Schule: Ein MINT-Leuchtturm in Fellbach\n\nDer Förderverein der Gemeinschaftsschule Fellbach stellt den Antrag für unsere MINT-AG Roboter. Unsere Schule liegt in Fellbach, Baden-Württemberg, und wird von etwa 550 Schülerinnen und Schülern besucht. Die MINT-AG Roboter ist ein wichtiger Bestandteil des Schullebens. In der AG bauen die Kinder Roboter. Wir sehen Potenzial, die AG in Richtung Generationendialog weiterzuentwickeln, indem die Schülerinnen und Schüler mit älteren Menschen zusammenarbeiten.\n\n## Die Herausforderung: Junge Begeisterung trifft auf Erfahrungsschatz\n\nAn der Gemeinschaftsschule Fellbach mit ihren 550 Schülern zeigt die hohe Nachfrage nach der MINT-AG den Bedarf. Der Förderverein der Gemeinschaftsschule Fellbach hat bereits eine Roboter-AG initiiert, in der Schülerinnen und Schüler Roboter bauen. Im Rahmen der Ferry Porsche Challenge 2026 sehen wir die Chance, diese Begeisterung weiter zu vertiefen und gleichzeitig einen wertvollen Generationendialog anzustoßen, um so das Motto 'Gemeinsam älter – gemeinsam stärker' zu unterstützen.\n\nBisher richtet sich die Roboter-AG ausschließlich an Schüler. Wir möchten ältere Menschen in die AG integrieren, um einen Erfahrungsaustausch zwischen den Generationen zu ermöglichen. Geplant ist eine feste Zusammenarbeit mit Senioren aus Fellbach, die ihr technisches Wissen und ihre handwerklichen Fähigkeiten einbringen. Konkret werden wir regelmäßige gemeinsame Roboterbau-Sessions veranstalten, bei denen die Schüler von den Kompetenzen und der Erfahrung der älteren Generation profitieren.\n\n## Unsere Vision: Gemeinsam in die digitale Zukunft\n\nAn der Gemeinschaftsschule Fellbach möchten wir die bestehende MINT-AG \"Roboter\" weiterentwickeln. Derzeit bauen Schülerinnen und Schüler Roboter, aber wir sehen Potenzial für einen Generationendialog, um so das Motto 'Gemeinsam älter – gemeinsam stärker' zu unterstützen. Wir sind in Baden-Württemberg, was eine Teilnahme ermöglicht. Geplant ist, die Kinder mit älteren Menschen zusammenarbeiten zu lassen, idealerweise solchen mit technischem oder handwerklichem Hintergrund. Wir glauben, dass der Austausch zwischen den Generationen sowohl den Schülern als auch den älteren Menschen neue Perspektiven und Kompetenzen vermitteln kann und so dazu beiträgt, digitale Handlungskompetenzen zu vermitteln und Generationen in Dialog zu bringen.\n\n## Unsere Aktivitäten: Roboter bauen, Wissen teilen\n\nAn der Gemeinschaftsschule Fellbach existiert bereits eine MINT-AG, in der Schülerinnen und Schüler Roboter bauen. Im Rahmen der \"Ferry Porsche Challenge 2026\" möchten wir diese Aktivitäten ausweiten und einen Generationendialog initiieren, um so das Motto 'Gemeinsam älter – gemeinsam stärker' zu unterstützen.\n\nKonkret planen wir, die Roboter-AG so zu gestalten, dass Schülerinnen und Schüler mit älteren Menschen zusammenarbeiten können. Geplant sind gemeinsame Roboterbau-Sessions, bei denen die ältere Generation ihre Erfahrungen und ihr Wissen einbringt und die Schülerinnen und Schüler von den Kompetenzen der älteren Menschen profitieren. Die Kinder könnten im Gegenzug ihr Wissen über Robotik und Technik an die ältere Generation weitergeben. Durch diese gemeinsamen Aktivitäten adressieren wir die Themenfelder \"Digitale Handlungskompetenzen\" und \"Generationen im Dialog\".\n\n## Unsere Wirkung: Kompetenzzuwachs, Gemeinschaft und Perspektiven\n\nDurch die Roboter-AG an der Gemeinschaftsschule Fellbach erwarten wir mehrere positive Effekte. Zum einen möchten wir das Interesse der Schüler an MINT-Fächern steigern. Aktuell nehmen Schüler an der Roboter-AG teil, und die Warteliste für die AG umfasst aktuell 15 Schüler. Zum anderen sehen wir eine Chance, den Kompetenzerwerb der Schüler im Bereich Robotik zu fördern.\n\nEin wichtiger Aspekt ist die Einbindung älterer Menschen in die Roboter-AG. Wir erhoffen uns dadurch einen Generationendialog, der Vorurteile abbauen und das Gemeinschaftsgefühl stärken kann. Durch die gemeinsame Arbeit an Robotern werden Kompetenzen im Umgang mit digitalen Technologien vermittelt und ein aktiver Austausch zwischen den Generationen gefördert. Dies trägt dazu bei, das Themenfeld \"Digitale Handlungskompetenzen\" zu adressieren und Brücken zwischen den Generationen zu bauen.\n\nDer Förderverein der Gemeinschaftsschule Fellbach ist der Antragsteller und wird die Umsetzung des Projekts begleiten.\n\n## Unsere Nachhaltigkeit: Ein Netzwerk für die Zukunft\n\nUm die Nachhaltigkeit der Roboter-AG an der Gemeinschaftsschule Fellbach zu gewährleisten, planen wir mehrere Maßnahmen. Zunächst soll die AG fest in das Angebot der Schule integriert werden. Aktuell engagiert sich der Förderverein der Gemeinschaftsschule Fellbach für die MINT-AG Roboter. Perspektivisch soll die AG aber in den Regelbetrieb überführt werden, indem Lehrerstunden zugewiesen werden, hierfür liegt eine Zusage der Schulleitung vor.\n\nEin weiterer wichtiger Aspekt ist die Zusammenarbeit mit älteren Menschen. Geplant ist ein regelmäßiger Austausch zwischen den Schülern der Roboter-AG und Senioren, um einen Generationendialog zu fördern.\n\n## Unser Budget: Investition in Bildung und Gemeinschaft\n\nUnser Budget ist darauf ausgerichtet, die MINT-AG der Gemeinschaftsschule Fellbach nachhaltig zu unterstützen. Da der Förderverein der Gemeinschaftsschule Fellbach den Antrag stellt, stellen wir hier eine detaillierte Aufschlüsselung der benötigten Mittel dar.\n\nDie Gelder werden primär für die Ausstattung der Roboter-AG verwendet. Hierzu zählen Materialien, die für den Bau und die Programmierung der Roboter notwendig sind. Ein fester Bestandteil des Budgets ist die Durchführung des Generationendialogs. Hierfür sind Mittel für die Koordination der Zusammenarbeit mit den Senioren, die Organisation der gemeinsamen Roboterbau-Sessions und die Bereitstellung von altersgerechten Materialien eingeplant.\n\nWir beantragen eine Fördersumme von 45.000 EUR.\n\n## Kumulierung mit anderen Förderprogrammen\n\nAktuell beziehen wir keine weiteren Fördergelder für die MINT-AG Roboter.",
+      "factVerification": {
+        "neutralisiert": [],
+        "vorschlaege": [
+          "Viele Teilnehmende kommen aus Familien mit geringem Technikbezug und haben dadurch eingeschränkte Zugänge zu digitaler Bildung.",
+          "Die AG fördert nicht nur technische Kompetenzen, sondern auch Schlüsselqualifikationen wie Problemlösen, Teamarbeit und Durchhaltevermögen.",
+          "Durch die praktische Anwendung wird abstraktes Wissen greifbar, was besonders für benachteiligte Kinder wichtig ist, die seltener Zugang zu außerschulischen MINT-Angeboten haben.",
+          "Viele Teilnehmende kommen aus Familien mit geringem Technikbezug, sodass das Projekt niedrigschwellige Zugänge zu digitaler Bildung schafft.",
+          "Die AG findet wöchentlich im Nachmittagsbereich statt und bindet die Teilnehmenden aktiv ein: Sie planen, konstruieren und programmieren Roboter – etwa mit Lego Mindstorms oder Arduino – und präsentieren ihre Projekte im Schulumfeld.",
+          "Die AG soll über das gesamte Schuljahr hinweg fortgeführt werden, mit einer Abschlusspräsentation im Schuljahresverlauf.",
+          "Die Umsetzung erfolgt in enger Abstimmung mit der Schulleitung, um die Einbindung in den Schulalltag zu sichern.",
+          "Der Verein organisiert jährlich Projekte wie die MINT-AG Roboter, in der Schüler:innen ab Klasse 5 technische Grundlagen spielerisch erproben – etwa durch den Bau und die Programmierung einfacher Roboter mit Lego Mindstorms.",
+          "Die AG trifft sich wöchentlich und wird von einem ehrenamtlichen Team aus Eltern und einem engagierten Vater, der als Ingenieur arbeitet, begleitet.",
+          "Bisher nutzen rund 20 Kinder pro Schuljahr die Gelegenheit, Technik jenseits von Bildschirmen zu begreifen; die Materialien werden nach Projektabschluss weiterverwendet, sodass die AG als dauerhaftes Angebot etabliert ist.",
+          "Der Förderverein verwaltet die Mittel eigenverantwortlich und stellt die Nachhaltigkeit durch wiederkehrende Anschaffungen – etwa Ersatzteile oder neue Bausätze – sicher.",
+          "Eine enge Abstimmung mit der Schulleitung gewährleistet die Einbindung in den Schulalltag."
+        ],
+        "vorschlaegeBegruendung": [
+          {
+            "zitat": "Viele Teilnehmende kommen aus Familien mit geringem Technikbezug und haben dadurch eingeschränkte Zugänge zu digitaler Bildung.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Die AG fördert nicht nur technische Kompetenzen, sondern auch Schlüsselqualifikationen wie Problemlösen, Teamarbeit und Durchhaltevermögen.",
+            "warum": "Die Ground Truth nennt nur den Bau von Robotern und Technikspaß als Ziel – die genannten Schlüsselqualifikationen sind eine sinnvolle fachliche Ausgestaltung."
+          },
+          {
+            "zitat": "Durch die praktische Anwendung wird abstraktes Wissen greifbar, was besonders für benachteiligte Kinder wichtig ist, die seltener Zugang zu außerschulischen MINT-Angeboten haben.",
+            "warum": "Die Ground Truth nennt nur eingeschränkte Zugänge zu Technik als Problem – die konkrete Zielgruppe 'benachteiligte Kinder' ist eine plausible Ausgestaltung."
+          },
+          {
+            "zitat": "Viele Teilnehmende kommen aus Familien mit geringem Technikbezug, sodass das Projekt niedrigschwellige Zugänge zu digitaler Bildung schafft.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Die AG findet wöchentlich im Nachmittagsbereich statt und bindet die Teilnehmenden aktiv ein: Sie planen, konstruieren und programmieren Roboter – etwa mit Lego Mindstorms oder Arduino – und präsentieren ihre Projekte im Schulumfeld.",
+            "warum": "Die Ground Truth nennt nur 'Roboter bauen' als Aktivität – die konkrete Ausgestaltung (wöchentliche Termine, Arduino, Präsentationen) ist eine sinnvolle fachliche Ergänzung."
+          },
+          {
+            "zitat": "Die AG soll über das gesamte Schuljahr hinweg fortgeführt werden, mit einer Abschlusspräsentation im Schuljahresverlauf.",
+            "warum": "Die Ground Truth nennt keine konkreten Zeitplanungen – die Ausgestaltung ist eine plausible fachliche Ergänzung."
+          },
+          {
+            "zitat": "Die Umsetzung erfolgt in enger Abstimmung mit der Schulleitung, um die Einbindung in den Schulalltag zu sichern.",
+            "warum": "Die Ground Truth nennt keine konkreten Organisationsdetails – die Ausgestaltung ist eine plausible fachliche Ergänzung."
+          },
+          {
+            "zitat": "Der Verein organisiert jährlich Projekte wie die MINT-AG Roboter, in der Schüler:innen ab Klasse 5 technische Grundlagen spielerisch erproben – etwa durch den Bau und die Programmierung einfacher Roboter mit Lego Mindstorms.",
+            "warum": "Die Ground Truth nennt nur 'Roboter bauen' als Aktivität – die konkrete Ausgestaltung (Programmierung, Lego Mindstorms) ist eine plausible fachliche Ergänzung."
+          },
+          {
+            "zitat": "Die AG trifft sich wöchentlich und wird von einem ehrenamtlichen Team aus Eltern und einem engagierten Vater, der als Ingenieur arbeitet, begleitet.",
+            "warum": "Die Ground Truth nennt nur einen Ingenieur-Vater als mögliche Unterstützung – die konkrete Teamstruktur ist eine plausible fachliche Ausgestaltung."
+          },
+          {
+            "zitat": "Bisher nutzen rund 20 Kinder pro Schuljahr die Gelegenheit, Technik jenseits von Bildschirmen zu begreifen; die Materialien werden nach Projektabschluss weiterverwendet, sodass die AG als dauerhaftes Angebot etabliert ist.",
+            "warum": "Die Ground Truth nennt keine konkreten Teilnehmerzahlen oder Nachhaltigkeitsdetails – die Ausgestaltung ist eine plausible fachliche Ergänzung."
+          },
+          {
+            "zitat": "Der Förderverein verwaltet die Mittel eigenverantwortlich und stellt die Nachhaltigkeit durch wiederkehrende Anschaffungen – etwa Ersatzteile oder neue Bausätze – sicher.",
+            "warum": "Die Ground Truth nennt keine konkreten Organisationsdetails – die Ausgestaltung ist eine plausible fachliche Ergänzung."
+          },
+          {
+            "zitat": "Eine enge Abstimmung mit der Schulleitung gewährleistet die Einbindung in den Schulalltag.",
+            "warum": "Die Ground Truth nennt keine konkreten Organisationsdetails – die Ausgestaltung ist eine plausible fachliche Ergänzung."
+          }
+        ],
+        "remaining": [],
+        "repaired": false
+      },
+      "consistencyIssues": [
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext erwähnt explizit 'Sensoren und Verbindungskabel' als Teil der Anschaffung, die im Finanzplan nicht als separate Posten aufgeführt sind.",
+          "textstelle": "Sensoren und Verbindungskabel"
+        },
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext beschreibt eine 'Abschlusspräsentation' als Teil der Umsetzung, die im Finanzplan nicht als Posten oder Aktivität berücksichtigt wird.",
+          "textstelle": "Abschlusspräsentation"
+        },
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext nennt explizit 'Arduino' als mögliche Alternative zu Lego Mindstorms, ohne dass dies im Finanzplan als Option oder Posten erscheint.",
+          "textstelle": "Arduino"
+        },
+        {
+          "art": "sonstiges",
+          "beschreibung": "Der Finanzplan enthält einen Posten für 'Anbahnung Generationendialog (Senioren aus Stift)' mit 1.000 €, der im Antragstext keinerlei Erwähnung findet.",
+          "posten": "Anbahnung Generationendialog (Senioren aus Stift)"
+        },
+        {
+          "art": "sonstiges",
+          "beschreibung": "Der Finanzplan enthält einen Posten für 'Unterstützung durch Ingenieur' mit 1.500 €, obwohl der Antragstext explizit betont, dass der Mentor ehrenamtlich (unentgeltlich) tätig ist.",
+          "posten": "Unterstützung durch Ingenieur (Vater eines Schülers)",
+          "textstelle": "ehrenamtlicher Mentor"
+        }
+      ],
+      "hasConsistencyIssues": true,
+      "finalText": "# MINT-AG Roboter: Technik erlebbar machen – nachhaltig und praxisnah\n\n## Projektbeschreibung\n\nDie Roboter-AG der Gemeinschaftsschule Fellbach nutzt handlungsorientiertes Lernen, um Schüler:innen der Klassen 5 bis 8 für MINT-Fächer zu begeistern. [Annahme: Viele Teilnehmende kommen aus Familien mit geringem Technikbezug und haben dadurch eingeschränkte Zugänge zu digitaler Bildung.] Durch den Bau und die Programmierung einfacher Roboter mit Lego Mindstorms oder vergleichbaren Systemen erfahren die Kinder unmittelbare Selbstwirksamkeit: Sie planen, konstruieren und testen ihre Maschinen selbstständig. Ein ehrenamtlicher Mentor aus dem Umfeld der Schule – selbst Ingenieur – begleitet die AG und zeigt, wie Technik im Alltag funktioniert. Die Roboter werden bei Schulveranstaltungen präsentiert, sodass die Schüler:innen ihre Ergebnisse einem breiten Publikum zeigen können.\n\n[Annahme: Die AG fördert nicht nur technische Kompetenzen, sondern auch Schlüsselqualifikationen wie Problemlösen, Teamarbeit und Durchhaltevermögen.] [Annahme: Durch die praktische Anwendung wird abstraktes Wissen greifbar, was besonders für benachteiligte Kinder wichtig ist, die seltener Zugang zu außerschulischen MINT-Angeboten haben.] Die nachhaltige Nutzung der Materialien sichert die langfristige Wirkung: Die Bausätze stehen auch zukünftigen AG-Generationen zur Verfügung und können schrittweise erweitert werden.\n\n## Zielgruppe\n\nDie Roboter-AG richtet sich an Schüler:innen der Klassen 5 bis 8, die durch praktische Technikarbeit Selbstwirksamkeit erfahren und Einblicke in MINT-Berufe gewinnen sollen. [Annahme: Viele Teilnehmende kommen aus Familien mit geringem Technikbezug, sodass das Projekt niedrigschwellige Zugänge zu digitaler Bildung schafft.] [Annahme: Die AG findet wöchentlich im Nachmittagsbereich statt und bindet die Teilnehmenden aktiv ein: Sie planen, konstruieren und programmieren Roboter – etwa mit Lego Mindstorms oder Arduino – und präsentieren ihre Projekte im Schulumfeld.]\n\nAuf dieser Grundlage wird ein niedrigschwelliges Angebot geschaffen, das gezielt Kinder anspricht, die sonst seltener Zugang zu Technik-AGs hätten. Durch die Einbindung eines ehrenamtlichen Mentors aus der Praxis wird zudem der Bezug zu realen Berufsfeldern hergestellt, was die Motivation und das Interesse an MINT-Fächern nachhaltig stärkt.\n\n## Umsetzung und Zeitplan\n\nDie Roboter-AG startet im Schuljahr nach den Sommerferien mit einer wöchentlichen AG-Stunde für 15–20 Schüler:innen der Jahrgänge 5–7. Ein ehrenamtlicher Mentor übernimmt die technische Anleitung; der Förderverein organisiert Räume und Material. Bis zum Herbst werden Robotik-Bausätze (z. B. Lego Mindstorms oder vergleichbare Systeme) angeschafft. [Annahme: Die AG soll über das gesamte Schuljahr hinweg fortgeführt werden, mit einer Abschlusspräsentation im Schuljahresverlauf.] [TODO: Abschlusspräsentation vor Einreichung planen]\n\n[Annahme: Die Umsetzung erfolgt in enger Abstimmung mit der Schulleitung, um die Einbindung in den Schulalltag zu sichern.] Die Nachhaltigkeit wird durch die dauerhafte Bereitstellung der Geräte für zukünftige AGs gewährleistet.\n\n## Kostenplan\n\nFür die Anschaffung hochwertiger Robotik-Komponenten werden voraussichtlich 4.500 € benötigt (Schätzung, vor Einreichung durch Angebote zu belegen). Die Mittel der Ferry-Porsche-Challenge sollen primär für Lego Mindstorms-Sets, Sensoren und Verbindungskabel eingesetzt werden, die über Jahre hinweg in der AG genutzt werden können. Ein ehrenamtlicher Mentor aus dem Umfeld der Schule übernimmt die Begleitung der AG, sodass Personalkosten eingespart werden.\n\n## Organisation\n\nDer Antrag wird im Namen des Fördervereins Gemeinschaftsschule Fellbach eingereicht, der seit über zehn Jahren als gemeinnütziger Träger die schulische Entwicklung der Gemeinschaftsschule in Fellbach unterstützt. [Annahme: Der Verein organisiert jährlich Projekte wie die MINT-AG Roboter, in der Schüler:innen ab Klasse 5 technische Grundlagen spielerisch erproben – etwa durch den Bau und die Programmierung einfacher Roboter mit Lego Mindstorms.] [Annahme: Die AG trifft sich wöchentlich und wird von einem ehrenamtlichen Team aus Eltern und einem engagierten Vater, der als Ingenieur arbeitet, begleitet.] [Annahme: Bisher nutzen rund 20 Kinder pro Schuljahr die Gelegenheit, Technik jenseits von Bildschirmen zu begreifen; die Materialien werden nach Projektabschluss weiterverwendet, sodass die AG als dauerhaftes Angebot etabliert ist.]\n\n[Annahme: Der Förderverein verwaltet die Mittel eigenverantwortlich und stellt die Nachhaltigkeit durch wiederkehrende Anschaffungen – etwa Ersatzteile oder neue Bausätze – sicher.] [Annahme: Eine enge Abstimmung mit der Schulleitung gewährleistet die Einbindung in den Schulalltag.]",
       "finanzplan": {
-        "posten": [],
-        "generiertAm": "2026-05-20T10:09:44.262Z",
+        "posten": [
+          {
+            "id": "ee65b7ad-49d4-4b81-bd7c-abd00347c2a9",
+            "kategorie": "investitionen",
+            "bezeichnung": "Roboter-Baukästen für MINT-AG",
+            "betragEur": 4500,
+            "begruendung": "Schaetzung: Klassensatz Roboter-Baukästen, übliche Gerätepreise für Schulprojekte, Menge noch festzulegen",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "041e00a3-8837-43da-96c5-aa58c0f7f834",
+            "kategorie": "honorare",
+            "bezeichnung": "Unterstützung durch Ingenieur (Vater eines Schülers)",
+            "betragEur": 1500,
+            "begruendung": "Schaetzung: Pauschale für gelegentliche Unterstützung durch externen Experten (z. B. 10 Stunden à 150 EUR, Satz nicht vom User genannt)",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "2508b2c6-f431-4a5d-a1bb-eaec2bada4e4",
+            "kategorie": "sonstiges",
+            "bezeichnung": "Anbahnung Generationendialog (Senioren aus Stift)",
+            "betragEur": 1000,
+            "begruendung": "Schaetzung: Pauschale für erste Kontaktaufnahme und Organisation (z. B. Material, Transport, kleine Aufwandsentschädigung für Senioren, nicht vom User konkretisiert)",
+            "eigenanteil": false,
+            "istVorschlag": true
+          }
+        ],
+        "generiertAm": "2026-07-22T11:44:45.832Z",
         "hinweise": [
-          "Da der Förderantrag im Rahmen eines Wettbewerbs erfolgt, ist es nicht möglich, konkrete Kostenpositionen anzugeben. Der Förderverein Gemeinschaftsschule Fellbach nimmt an der Ferry Porsche Challenge 2025 teil. Die Höhe der beantragten Fördersumme hängt vom Abschneiden im Wettbewerb ab (siehe Förderrichtlinie)."
+          "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
+          "Alle Beträge sind grobe Schätzungen ohne konkrete Angaben der Schule — vor Einreichung durch Angebote belegen.",
+          "Keine konkreten Mengenangaben zu Roboter-Baukästen oder Honorarstunden vorhanden.",
+          "Generationendialog-Aspekt ist nur eine vage Idee (Senioren aus Stift), keine verbindliche Planung.",
+          "Projekt passt nicht vollumfänglich zum Wettbewerbsmotto der Ferry Porsche Challenge 2026 ('Gemeinsam älter - gemeinsam stärker').",
+          "Förderhöchstgrenze von 50.000 EUR wird eingehalten.",
+          "Der Betrag für „Roboter-Baukästen für MINT-AG\" (4.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Unterstützung durch Ingenieur (Vater eines Schülers)\" (1.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Anbahnung Generationendialog (Senioren aus Stift)\" (1.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
         ]
       }
     },
     "usages": [
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 708,
-          "candidatesTokens": 577
+          "promptTokens": 6278,
+          "candidatesTokens": 417
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1710,
-          "candidatesTokens": 108
+          "promptTokens": 6110,
+          "candidatesTokens": 299
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1727,
-          "candidatesTokens": 195
+          "promptTokens": 6084,
+          "candidatesTokens": 262
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1716,
-          "candidatesTokens": 158
+          "promptTokens": 6096,
+          "candidatesTokens": 262
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1711,
-          "candidatesTokens": 172
+          "promptTokens": 6084,
+          "candidatesTokens": 244
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1748,
-          "candidatesTokens": 183
+          "promptTokens": 7132,
+          "candidatesTokens": 1790
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1719,
-          "candidatesTokens": 166
+          "promptTokens": 8316,
+          "candidatesTokens": 1160
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1704,
-          "candidatesTokens": 162
+          "promptTokens": 5429,
+          "candidatesTokens": 722
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3583,
-          "candidatesTokens": 1557
+          "promptTokens": 2629,
+          "candidatesTokens": 1451
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3664,
-          "candidatesTokens": 1321
+          "promptTokens": 3212,
+          "candidatesTokens": 454
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2813,
-          "candidatesTokens": 292
+          "promptTokens": 2078,
+          "candidatesTokens": 347
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1749,
-          "candidatesTokens": 95
+          "promptTokens": 2311,
+          "candidatesTokens": 1085
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 2003,
+          "candidatesTokens": 387
         }
       }
     ]
   },
   "meta": {
-    "iso": "2026-05-20T10-09-44",
+    "iso": "2026-07-22T11-44-55",
     "runIndex": 3,
-    "pipelineCommitSha": "6d237f81",
+    "pipelineCommitSha": "1f0d8782",
     "featureFlags": {
-      "useVorbildFormulierungen": "false",
+      "useVorbildFormulierungen": "true",
       "complianceStageEnabled": "false",
-      "sharpPrompts": "false",
-      "geberRoutingV2": "false"
+      "sharpPrompts": "true",
+      "geberRoutingV2": "true"
     },
-    "latencyMs": 45000,
+    "latencyMs": 59022,
     "schemaVersion": 1
   }
 }

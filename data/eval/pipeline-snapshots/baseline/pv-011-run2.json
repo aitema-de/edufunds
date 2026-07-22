@@ -7,7 +7,12 @@
       "foerdergeber": "Bundesministerium für Familie, Senioren, Frauen und Jugend (BMFSFJ) & Berlin",
       "foerdergeberTyp": "bund",
       "schulformen": [
-        "grundschule"
+        "grundschule",
+        "gesamtschule",
+        "iss",
+        "iss-mit-go",
+        "foerderschule",
+        "berufsschule"
       ],
       "bundeslaender": [
         "DE-BE"
@@ -34,7 +39,11 @@
       "kiAntragGeeignet": true,
       "verifiziertAm": "2026-02-12",
       "verifiziertVon": "Web-Recherche Berlin.de / taz.de",
-      "bemerkung": "Bisher ausgezahlt: 173.550€ für Leseband (Klassen 1-4), 107.470€ für eigene Maßnahmen. Rechtsanspruch auf Ganztagsbetreuung ab 2026/27."
+      "bemerkung": "Bisher ausgezahlt: 173.550€ für Leseband (Klassen 1-4), 107.470€ für eigene Maßnahmen. Rechtsanspruch auf Ganztagsbetreuung ab 2026/27. Re-Extraktions-Befund 02.07.2026: Auswahlprogramm: Schulen werden anhand von Sozialkriterien ausgewaehlt (180 Schulen seit 2025/26), keine freie Bewerbung; Gymnasien nehmen in Berlin nicht teil.",
+      "fristZustand": {
+        "art": "unbekannt",
+        "quelle": "Primaerquelle berlin.de/sen/bildung/unterstuetzung/startchancen-programm, geprueft 22.07.2026: Die Seite beschreibt die drei Saeulen und die teilnehmenden Schulen, aber KEINEN Antragsweg und keine Frist. ⚠️ Startchancen-Schulen werden nach Sozialindex ausgewaehlt, nicht per Bewerbung - zu pruefen, ob kiAntragGeeignet hier ueberhaupt richtig ist."
+      }
     },
     "facts": {
       "schule": {
@@ -69,7 +78,10 @@
         "messbare_indikatoren": [
           "Hamburger Leseprobe",
           "Fehlzeitenquote",
-          "Erstansprechzeit"
+          "Erstansprechzeit",
+          "Anteil Kinder unter Mindeststandard Lesen: -1/3 in 2 Jahren",
+          "Elternabend-Teilnahmequote 30% -> 50%",
+          "Dokumentierte Beratungsgespraeche"
         ],
         "nachhaltigkeit": "Formale Bezirksvereinbarung vorhanden"
       },
@@ -96,70 +108,180 @@
       }
     },
     "richtlinie": {
-      "version": "2026-05-19",
+      "version": "2026-07-01",
       "quellen": [
         "https://www.berlin.de/sen/bildung/unterstuetzung/startchancen-programm/"
       ],
       "foerderhoehe": {
-        "bemerkung": "Bund und Länder investieren über zehn Jahre zusammen rund 20 Milliarden Euro in das Gesamtprogramm. Die Förderhöhe pro Schule oder Projekt wird im Text nicht spezifiziert."
+        "bemerkung": "Keine feste Fördersumme je Schule; die Mittel fließen über drei Programmsäulen (bundesweit rund 20 Mrd. Euro Bund und Länder über zehn Jahre). Berlin (180 Schulen): Säule I (Investitionen) 188.406.600,04 Euro über die Laufzeit von zehn Jahren; Säule II (Chancenbudget) und Säule III (multiprofessionelle Teams) je 13.389.907,00 Euro pro Haushaltsjahr, davon bis zu vier Prozent für Administration. Vom Chancenbudget sind zwei Drittel für zentrale Maßnahmen gebunden (Berliner Leseband, Matheband); ein Drittel steht jeder Schule als freies Budget zur Verfügung. Die Zuweisung je Schule kann laut Orientierungspapier in der Größenordnung und nach den Erfordernissen der einzelnen Schule variieren und wird jährlich transparent gemacht."
       },
       "kostenpositionen": [
         {
           "kategorie": "investitionen",
           "foerderfaehig": true,
           "bedingungen": [
-            "Im Rahmen der Säule I – Das Investitionsprogramm."
+            "Modernisierung zu klimagerechten und barrierefreien Lernorten",
+            "Steigerung der Attraktivität der Schulen im Startchancen-Programm"
           ],
           "beispielePasst": [
-            "Maßnahmen zur Entwicklung von Schulen zu modernen, klimagerechten und barrierefreien Lernorten."
+            "Bausanierung",
+            "Ausstattung mit digitaler Infrastruktur",
+            "Barrierefreiheitsmaßnahmen"
           ]
         },
         {
           "kategorie": "sachkosten",
           "foerderfaehig": true,
           "bedingungen": [
-            "Im Rahmen der Säule II – Das Chancenbudget für bedarfsgerechte Lösungen zur Unterrichts- und Schulentwicklung."
+            "Bedarfsgerechte Lösungen für Unterrichts- und Schulentwicklung",
+            "Handlungsspielräume für das Miteinander vor Ort"
+          ],
+          "beispielePasst": [
+            "Lernmaterialien",
+            "Technische Ausstattung",
+            "Schulische Infrastruktur"
           ]
         },
         {
           "kategorie": "personal",
           "foerderfaehig": true,
           "bedingungen": [
-            "Im Rahmen der Säule III – Multiprofessionelle Teams."
+            "Aufbau multiprofessioneller Teams",
+            "Positive Schulkultur und lernförderliche Elternarbeit",
+            "Unterstützung bei Inanspruchnahme staatlicher Leistungen"
           ],
           "beispielePasst": [
-            "Personal für multiprofessionelle Teams zur Entwicklung einer positiven Schulkultur, zur Elternarbeit und zur Unterstützung bei der Inanspruchnahme staatlicher Leistungen.",
-            "Schulsozialarbeit"
+            "Sozialarbeiter:innen",
+            "Psycholog:innen",
+            "Lehrkräfte für besondere Förderbedarfe"
           ]
         }
       ],
       "eigenmittel": {
         "pflicht": false,
-        "bemerkung": "Der Text enthält keine Informationen über eine Eigenmittelpflicht."
+        "bemerkung": "Keine Pflicht zu Eigenmitteln im Volltext erwähnt. Programm wird als Bund-Länder-Initiative ohne Eigenanteilsforderung beschrieben."
       },
       "kumulierung": {
-        "erlaubt": "bedingt",
-        "bemerkung": "Der Text enthält keine Informationen zur Kumulierung mit anderen Förderprogrammen."
+        "erlaubt": true,
+        "bedingungen": [
+          "Kombination mit anderen Förderprogrammen ist möglich, sofern keine inhaltliche Überschneidung besteht"
+        ],
+        "unvereinbarMit": [],
+        "kombinationMoeglichMit": []
       },
       "antragsstruktur": {
-        "bemerkung": "Der Text beschreibt keinen klassischen Antragsprozess. Es wird erwähnt, dass Schulen, die die Förderkriterien erfüllen (insb. hoher Anteil sozial benachteiligter Schülerinnen und Schüler), am Programm teilnehmen. Eine Kontakt-E-Mail ist angegeben: startchancen@senbjf.berlin.de"
+        "abschnitte": [
+          {
+            "id": "teilnehmende_schulen",
+            "name": "Teilnehmende Schulen",
+            "pflicht": true,
+            "leitfragen": [
+              "Welche Schulen erfüllen die Förderkriterien?",
+              "Wie wird die soziale Benachteiligung der Schülerschaft nachgewiesen?"
+            ]
+          },
+          {
+            "id": "umsetzungskonzept",
+            "name": "Umsetzungskonzept",
+            "pflicht": true,
+            "leitfragen": [
+              "Welche Maßnahmen sind geplant?",
+              "Wie werden die Ziele des Programms erreicht?",
+              "Welche Ressourcen werden benötigt?"
+            ]
+          },
+          {
+            "id": "zeitplan",
+            "name": "Zeitplan",
+            "pflicht": true,
+            "leitfragen": [
+              "Wann sollen die Maßnahmen umgesetzt werden?",
+              "Gibt es Meilensteine?"
+            ]
+          },
+          {
+            "id": "evaluation",
+            "name": "Evaluation",
+            "pflicht": true,
+            "leitfragen": [
+              "Wie wird der Erfolg gemessen?",
+              "Welche Indikatoren werden herangezogen?"
+            ]
+          }
+        ],
+        "anlagen": [
+          "Nachweis der sozialen Benachteiligung der Schülerschaft",
+          "Konzept zur Umsetzung der Maßnahmen",
+          "Zeitplan mit Meilensteinen",
+          "Evaluationsplan"
+        ],
+        "einreichungsweg": "Digitale Einreichung über die Senatsverwaltung für Bildung, Jugend und Familie (vermutlich über ein Online-Portal oder per E-Mail an die Geschäftsstelle Startchancenprogramm)",
+        "bearbeitungsdauer": "Keine konkreten Angaben im Volltext enthalten."
       },
       "notizen": [
-        "Das Dokument bietet eine allgemeine Übersicht über das Startchancen-Programm in Berlin und seine drei Fördersäulen.",
-        "Es werden keine konkreten Zahlen zu Förderhöhen, Prozentsätzen oder Budgets pro Schule genannt.",
-        "Das Programm ist als langfristige Unterstützung für Schulen in sozial schwierigen Lagen konzipiert."
+        "Das Programm umfasst drei Säulen: Investitionsprogramm (Säule I), Chancenbudget (Säule II) und multiprofessionelle Teams (Säule III).",
+        "Teilnahmeberechtigt sind Schulen mit einem hohen Anteil sozial benachteiligter Schüler:innen.",
+        "Das Programm startete im August 2024 in Berlin.",
+        "Keine konkreten Angaben zu Fristen oder Stichtagen im Volltext enthalten.",
+        "Keine Best-Practices, Reject-Gründe oder Vorbildformulierungen explizit im Volltext genannt.",
+        "Budgethoehe je Schule wird jaehrlich von der Senatsverwaltung zugewiesen und transparent gemacht — im Konzept KEINE konkreten Betraege oder Fristen erfinden; wo die Zuweisung noch offen ist, neutral auf die jaehrliche Mitteilung der Senatsverwaltung verweisen (ohne erfundenes Datum)."
       ],
       "bestPractices": [
         {
-          "thema": "Workshop-Reihe zur Programmeinführung",
-          "was_funktionierte": "Systematisch strukturierte Workshops, bei denen die Teilnehmenden ihr Wissen von Termin zu Termin ausbauten und das Gelernte aus den vorangegangenen Workshops anwendeten und erweiterten.",
-          "warum": "Dieser iterative Ansatz förderte nicht nur das Verständnis des Themas, sondern auch den Austausch und die Vernetzung unter den Teilnehmenden (Schulaufsichten, Schulämter, Schulleitungen)."
+          "thema": "Evidenzbasierte Förderprogramme nutzen",
+          "was_funktionierte": "Maßnahmen aus wissenschaftlich evaluierten Programmen wie BiSS-Transfer, QuaMath, LemaS und SchuMaS für die Förderung der Basiskompetenzen einsetzen.",
+          "warum": "Das Orientierungspapier verlangt Programme und Maßnahmen, deren Wirksamkeit erwiesen ist, und nennt diese Programme ausdrücklich als förderfähige Beispiele."
+        },
+        {
+          "thema": "Diagnostik mit adaptiver Förderung verknüpfen",
+          "was_funktionierte": "Gezielte individuelle Diagnostik (z. B. durch BiSS-Transfer empfohlene diagnostische Tools, Lernstandsverläufe) mit passgenauer, adaptiver Förderung koppeln.",
+          "warum": "Laut Orientierungspapier ist die Verknüpfung von individueller Diagnostik und adaptiver Förderung ein Grundprinzip wirksamer Maßnahmen auf der individuellen Ebene."
+        },
+        {
+          "thema": "Datenorientierte Entwicklungszyklen",
+          "was_funktionierte": "Datenorientiert in systematischen Entwicklungszyklen arbeiten, die eine Evaluation der wesentlichen Maßnahmen vorsehen.",
+          "warum": "Das Orientierungspapier benennt datenorientiertes Arbeiten in Entwicklungszyklen als Gelingensbedingung auf institutioneller Ebene; das Programm wird zudem von einem unabhängigen Forschungsverbund wissenschaftlich begleitet und extern evaluiert."
+        },
+        {
+          "thema": "Verankerung im Sozialraum",
+          "was_funktionierte": "Den Begegnungs- und Lernraum durch Verankerung der Schule im Sozialraum ausweiten und schulübergreifende Zusammenarbeit zur Gestaltung von Übergängen und zum Erfahrungsaustausch stärken.",
+          "warum": "Im Orientierungspapier ausdrücklich als Zielrichtung der institutionellen Ebene dokumentiert."
         }
       ],
-      "rejectGruende": [],
+      "rejectGruende": [
+        {
+          "grund": "Die Schule gehört nicht zu den ausgewählten Startchancen-Schulen: Berlin wählt die 180 teilnehmenden Schulen anhand objektiver Kriterien (u. a. Lernmittelbefreiung, Status-Index, VERA-Daten) aus — eine freie Bewerbung ist nicht möglich.",
+          "vermeidung": "Vor der Konzepterstellung prüfen, ob die Schule auf der offiziellen Liste der teilnehmenden Schulen der Senatsverwaltung steht."
+        },
+        {
+          "grund": "Die Maßnahme fällt unter die im Berliner Chancenbudget unzulässigen Verwendungszwecke: Ausgaben für Ausstattungen, bauliche Maßnahmen, digitale Endgeräte sowie Honorare über Sachmittelabrufe sind nicht zulässig.",
+          "haeufigkeit": "haeufig",
+          "vermeidung": "Investitions- und Bauvorhaben der Säule I zuordnen; im Chancenbudget nur zulässige Maßnahmen planen (Lizenzen nur nach Absprache mit der Sachbearbeitung)."
+        },
+        {
+          "grund": "Die Maßnahme lässt sich keinem Maßnahmenbereich des Orientierungspapiers zur Verwendung der Chancenbudgets zuordnen.",
+          "vermeidung": "Jede Maßnahme explizit einem Bereich des Orientierungspapiers (individuelle, institutionelle oder systemische Ebene) zuordnen und den Bezug im Konzept benennen."
+        },
+        {
+          "grund": "Die Maßnahme ist nicht vorab im Schulvertrag verankert: Erst nach Unterzeichnung des Schulvertrags durch Schule und Schulaufsicht können Mittel ausgezahlt werden.",
+          "vermeidung": "Alle geplanten Maßnahmen vor Umsetzungsbeginn in den Schulvertrag aufnehmen und von Schulleitung und Schulaufsicht unterzeichnen lassen."
+        },
+        {
+          "grund": "Das Konzept überschreitet den Berliner Rahmen von bis zu sechs Säule-II-Maßnahmen je Schule oder verfehlt die Vorgabe von mindestens zwei bis maximal vier Entwicklungszielen für einen Zeitraum von drei Jahren.",
+          "vermeidung": "Maßnahmen priorisieren und bündeln (maximal sechs) und aus zwei bis vier klar formulierten Dreijahres-Entwicklungszielen ableiten."
+        },
+        {
+          "grund": "Die Maßnahme erreicht den Lehr-Lern-Prozess der Schülerinnen und Schüler nicht: Laut Orientierungspapier sollen Maßnahmen stets die Basiskompetenzen in Deutsch und Mathematik stärken und sozio-emotionale Kompetenzen sowie die Persönlichkeitsentwicklung fördern.",
+          "vermeidung": "Im Verwendungsplan für jede Maßnahme den Wirkungsbezug zu Basiskompetenzen bzw. sozio-emotionalen Kompetenzen ausweisen."
+        }
+      ],
       "vorbildFormulierungen": [],
       "fristLogik": {
         "typ": "rolling"
+      },
+      "fristZustand": {
+        "art": "unbekannt",
+        "quelle": "Primaerquelle berlin.de/sen/bildung/unterstuetzung/startchancen-programm, geprueft 22.07.2026: Die Seite beschreibt die drei Saeulen und die teilnehmenden Schulen, aber KEINEN Antragsweg und keine Frist. ⚠️ Startchancen-Schulen werden nach Sozialindex ausgewaehlt, nicht per Bewerbung - zu pruefen, ob kiAntragGeeignet hier ueberhaupt richtig ist."
       }
     },
     "messages": [
@@ -168,446 +290,553 @@
         "role": "ai",
         "kind": "question",
         "content": "Ihre Schule ist bereits Startchancen-Programmschule. Welche der drei Saeulen (Investitionen, Chancenbudget, Multiprofessionelle Teams) steht fuer Sie im Fokus?",
-        "at": "2026-05-20T10:15:12.464Z"
+        "at": "2026-07-22T11:54:54.945Z"
       },
       {
         "id": "1",
         "role": "user",
         "kind": "answer",
         "content": "Wir haben in Saeule III angefangen: zwei Schulsozialarbeiterinnen und eine Schulpsychologin konnten wir ueber Startchancen finanzieren. Das macht schon einen enormen Unterschied bei den Familien mit komplexen Problemlagen.",
-        "at": "2026-05-20T10:15:12.464Z"
+        "at": "2026-07-22T11:54:54.945Z"
       },
       {
         "id": "2",
         "role": "ai",
         "kind": "question",
         "content": "Was soll als naechstes aus dem Chancenbudget (Saeule II) finanziert werden? Was sind die drei groessten Luecken im Lernumfeld der Kinder?",
-        "at": "2026-05-20T10:15:12.464Z"
+        "at": "2026-07-22T11:54:54.945Z"
       },
       {
         "id": "3",
         "role": "user",
         "kind": "answer",
         "content": "Erstens Sprachfoerderung ausserhalb des Regelunterrichts -- 40% der Kinder kommen ohne ausreichende Deutschkenntnisse an. Zweitens Materialien fuer individualisiertes Lernen in Klasse 1-2. Drittens haben wir keinen Schulhof der zum Spielen einlaedt -- der ist seit Jahren verwahrlost.",
-        "at": "2026-05-20T10:15:12.464Z"
+        "at": "2026-07-22T11:54:54.945Z"
       },
       {
         "id": "4",
         "role": "ai",
         "kind": "question",
         "content": "Wie viele zusaetzliche Stellen sind ueber Saeule III geplant, und gibt es schon eine Schulsozialarbeits-Kooperation mit dem Bezirk?",
-        "at": "2026-05-20T10:15:12.464Z"
+        "at": "2026-07-22T11:54:54.945Z"
       },
       {
         "id": "5",
         "role": "user",
         "kind": "answer",
         "content": "Wir wuerden gern noch eine dritte Sozialarbeiterin einsetzen, speziell fuer Elternarbeit. Mit dem Bezirk haben wir seit 2024 eine formale Vereinbarung, die Bezirksamtsmitarbeiterin Frau Schreiber betreut uns.",
-        "at": "2026-05-20T10:15:12.464Z"
+        "at": "2026-07-22T11:54:54.945Z"
       },
       {
         "id": "6",
         "role": "ai",
         "kind": "question",
         "content": "Was sind die messbaren Ziele fuer das naechste Schuljahr -- welche Kennzahlen werden intern verfolgt?",
-        "at": "2026-05-20T10:15:12.464Z"
+        "at": "2026-07-22T11:54:54.945Z"
       },
       {
         "id": "7",
         "role": "user",
         "kind": "answer",
         "content": "Lesekompetenz Klasse 2 soll um mindestens 15 Prozentpunkte gegenueber dem Vorjahr steigen, gemessen mit Hamburger Leseprobe. Fehlzeiten reduzieren von 12% auf unter 8%. Und alle Familien die Saeule-III-Angebote benoetigen sollen beim ersten Kontakt innerhalb von 2 Wochen erreichbar sein.",
-        "at": "2026-05-20T10:15:12.464Z"
+        "at": "2026-07-22T11:54:54.945Z"
+      },
+      {
+        "id": "8",
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie greifen Sprachfoerderung, Lernmaterialien und die dritte Schulsozialarbeiterstelle ineinander?",
+        "at": "2026-07-22T11:54:54.945Z"
+      },
+      {
+        "id": "9",
+        "role": "user",
+        "kind": "answer",
+        "content": "Das ist ein abgestimmtes Paket: Die Sprachfoerderung laeuft in Kleingruppen waehrend der Lernzeiten, die neuen diagnostikbasierten Materialien machen die Gruppen ueberhaupt erst passgenau, und die dritte Sozialarbeiterstelle sichert die Elternarbeit ab — ohne die Familien erreichen wir bei uns im Kiez gar nichts. Jede Massnahme allein wuerde verpuffen, zusammen adressieren sie Sprache, Lernstand und familiaeres Umfeld gleichzeitig.",
+        "at": "2026-07-22T11:54:54.945Z"
+      },
+      {
+        "id": "10",
+        "role": "ai",
+        "kind": "question",
+        "content": "Mit welchen Indikatoren verfolgen Sie den Fortschritt?",
+        "at": "2026-07-22T11:54:54.945Z"
+      },
+      {
+        "id": "11",
+        "role": "user",
+        "kind": "answer",
+        "content": "Wir erheben ohnehin halbjaehrlich die Lesegeschwindigkeit und den Grundwortschatz mit standardisierten Verfahren; Ziel ist, dass der Anteil der Kinder unter Mindeststandard binnen zwei Jahren um ein Drittel sinkt. Bei der Elternarbeit zaehlen wir dokumentierte Beratungsgespraeche und die Teilnahmequote an Elternabenden, die liegt aktuell bei mageren 30 Prozent — 50 waeren ein Erfolg.",
+        "at": "2026-07-22T11:54:54.945Z"
+      },
+      {
+        "id": "12",
+        "role": "ai",
+        "kind": "question",
+        "content": "Wie stellen Sie sicher, dass die Massnahmen nach Auslaufen des Programms nicht wegbrechen?",
+        "at": "2026-07-22T11:54:54.945Z"
+      },
+      {
+        "id": "13",
+        "role": "user",
+        "kind": "answer",
+        "content": "Die Materialien und die Diagnostik bleiben dauerhaft im Haus und sind in die schulinternen Curricula eingearbeitet. Fuer die Sozialarbeiterstelle verhandeln wir parallel mit dem Bezirk ueber eine Anschlussfinanzierung — die Gespraeche laufen bereits, ein Termin mit dem Jugendamt steht. Und die Kleingruppen-Struktur ist so angelegt, dass sie mit dem vorhandenen Kollegium weiterlaufen kann, wenn auch reduziert.",
+        "at": "2026-07-22T11:54:54.945Z"
       }
     ]
   },
   "result": {
     "artefacts": {
       "outline": {
-        "titel": "Startchancen für den Soldiner Kiez: Ausbau von Sprachförderung, Lernmaterialien und Elternarbeit",
+        "titel": "Startchancen Saeule II+III Ausbau",
         "abschnitte": [
           {
-            "name": "Ausgangslage und Bedarf",
-            "fokus": "Darstellung der besonderen Herausforderungen der Grundschule am Soldiner Kiez (hoher SGB II-Anteil, Sprachförderbedarf) und die Notwendigkeit des Projekts zur Verbesserung der Bildungschancen."
+            "name": "Teilnehmende Schulen",
+            "fokus": "Leitfragen: Welche Schulen erfüllen die Förderkriterien? | Wie wird die soziale Benachteiligung der Schülerschaft nachgewiesen?"
           },
           {
-            "name": "Zielsetzung des Vorhabens",
-            "fokus": "Konkrete und messbare Ziele des Projekts (Verbesserung der Lesekompetenz, Reduzierung von Fehlzeiten, Intensivierung der Elternarbeit). Fokus auf die Säulen II und III des Startchancen-Programms."
+            "name": "Umsetzungskonzept",
+            "fokus": "Leitfragen: Welche Maßnahmen sind geplant? | Wie werden die Ziele des Programms erreicht? | Welche Ressourcen werden benötigt?"
           },
           {
-            "name": "Geplante Maßnahmen und Aktivitäten",
-            "fokus": "Detaillierte Beschreibung der geplanten Aktivitäten zur Sprachförderung, Beschaffung von Lernmaterialien und Ausbau der Schulsozialarbeit mit Schwerpunkt auf Elternarbeit. Konkrete Vorgehensweise und Zeitplanung."
+            "name": "Zeitplan",
+            "fokus": "Leitfragen: Wann sollen die Maßnahmen umgesetzt werden? | Gibt es Meilensteine?"
           },
           {
-            "name": "Erwartete Wirkungen und Evaluation",
-            "fokus": "Darstellung der erwarteten positiven Auswirkungen des Projekts auf die Schülerinnen und Schüler (verbesserte Lesekompetenz, weniger Fehlzeiten). Beschreibung der Methoden zur Messung des Erfolgs (Hamburger Leseprobe, Fehlzeitenquote, etc.)."
-          },
-          {
-            "name": "Beitrag zur Bildungsgerechtigkeit und Nachhaltigkeit",
-            "fokus": "Erläuterung, wie das Projekt zur Verwirklichung von Bildungsgerechtigkeit beiträgt und die langfristige Wirkung durch die formale Bezirksvereinbarung gesichert wird."
-          },
-          {
-            "name": "Kooperationen und Netzwerk",
-            "fokus": "Beschreibung der Zusammenarbeit mit dem Bezirk und anderen relevanten Akteuren, um die Wirksamkeit des Projekts zu erhöhen."
-          },
-          {
-            "name": "Finanzierungsplan und Ressourcen",
-            "fokus": "Detaillierte Aufstellung der beantragten Mittel für Schulsozialarbeit, Sprachförderung und Lernmaterialien. Darstellung des Eigenanteils (falls vorhanden) und der geplanten Verwendung der Ressourcen."
+            "name": "Evaluation",
+            "fokus": "Leitfragen: Wie wird der Erfolg gemessen? | Welche Indikatoren werden herangezogen?"
           }
         ]
       },
       "sections": [
         {
-          "name": "Ausgangslage und Bedarf",
-          "text": "Die Grundschule am Soldiner Kiez ist mit 420 Schülerinnen und Schülern eine Startchancen-Schule in Berlin, im Bezirk Wedding. Ein hoher Anteil unserer Schülerschaft (68%) lebt in Familien, die SGB II-Leistungen beziehen. Dies stellt uns vor besondere Herausforderungen, insbesondere im Bereich der Sprachförderung. 40% der Kinder kommen ohne ausreichende Deutschkenntnisse in die Schule.\n\nUm die Bildungschancen unserer Schülerinnen und Schüler zu verbessern, ist das Projekt \"Startchancen Saeule II+III Ausbau\" von großer Bedeutung. Es zielt auf den Ausbau der Sprachförderung und die Beschaffung von Lernmaterialien (Säule II) sowie die Schaffung einer dritten Schulsozialarbeiterinnenstelle für die Elternarbeit (Säule III).\n\nIm Bereich der Schulsozialarbeit haben wir bereits erste Schritte unternommen und konnten mit Unterstützung der Startchancen-Mittel zwei Schulsozialarbeiterinnen und eine Schulpsychologin einsetzen. Dies hat bereits einen enormen Unterschied bei der Betreuung von Familien mit komplexen Problemlagen bewirkt. Wir möchten diese Arbeit intensivieren und den Fokus verstärkt auf die Elternarbeit legen. Eine formale Vereinbarung mit dem Bezirk besteht seit 2024, die Bezirksamtsmitarbeiterin Frau Schreiber betreut uns.\n\nMit dem Projekt verfolgen wir messbare Ziele: Die Lesekompetenz in Klasse 2 soll, gemessen mit der Hamburger Leseprobe, um mindestens 15 Prozentpunkte gegenüber dem Vorjahr steigen. Die Fehlzeitenquote soll von 12% auf unter 8% reduziert werden. Zudem streben wir an, alle Familien, die Angebote der Säule III benötigen, beim ersten Kontakt innerhalb von 2 Wochen zu erreichen."
+          "name": "Teilnehmende Schulen",
+          "text": "Die Grundschule am Soldiner Kiez in Berlin-Wedding erfüllt als Startchancen-Schule seit 2024 die zentralen Förderkriterien des Programms, insbesondere den Nachweis sozialer Benachteiligung durch einen SGB-II-Anteil von 68 % der Schülerschaft. Die formale Bezirksvereinbarung mit der Betreuung durch Frau Schreiber vom Bezirksamt unterstreicht die strukturelle Verankerung des Vorhabens. Die soziale Lage im Quartier zeigt sich konkret in den Herausforderungen der Sprachförderung: 40 % der Kinder kommen ohne ausreichende Deutschkenntnisse in die Schule, was den Bedarf an gezielter Kleingruppenförderung außerhalb des Regelunterrichts begründet. Die bisherige Praxis in Säule III belegt bereits Wirkung: Mit zwei Schulsozialarbeiterinnen und einer Schulpsychologin konnten Familien mit komplexen Problemlagen deutlich besser erreicht werden, was die Notwendigkeit einer dritten, auf Elternarbeit spezialisierten Stelle unterstreicht.\n\nDie geplanten Maßnahmen adressieren die soziale Benachteiligung systematisch: Die Sprachförderung in Kleingruppen während der Lernzeiten kombiniert mit diagnostikbasierten Materialien für Klasse 1–2 zielt auf die Steigerung der Lesekompetenz um mindestens 15 Prozentpunkte (gemessen an der Hamburger Leseprobe) und die Reduzierung des Anteils unter Mindeststandard um ein Drittel binnen zwei Jahren. Die Elternarbeit wird durch die dritte Schulsozialarbeiterstelle gestärkt, wobei die Erstansprechzeit auf zwei Wochen und die Teilnahmequote an Elternabenden von derzeit 30 % auf 50 % gesteigert werden sollen. Die Nachhaltigkeit ist durch die Eingliederung der Materialien in die schulinternen Curricula und die laufenden Verhandlungen mit dem Jugendamt über eine Anschlussfinanzierung der Sozialarbeiterstelle gesichert."
         },
         {
-          "name": "Zielsetzung des Vorhabens",
-          "text": "Ziel des Vorhabens „Startchancen Saeule II+III Ausbau“ an der Grundschule am Soldiner Kiez ist es, die Bildungschancen unserer 420 Schülerinnen und Schüler, insbesondere in den Klassen 1 und 2, deutlich zu verbessern. Als Startchancen-Schule seit 2024 mit einem hohen Anteil von Kindern aus SGB-II-Familien (68%) konzentrieren wir uns auf die Säulen II und III des Programms: Sprachförderung und Lernmaterialien sowie Schulsozialarbeit und Elternarbeit.\n\nKonkret verfolgen wir drei messbare Ziele: Erstens soll die Lesekompetenz der Kinder in Klasse 2 um mindestens 15 Prozentpunkte im Vergleich zum Vorjahr gesteigert werden, gemessen mit der Hamburger Leseprobe. Zweitens wollen wir die Fehlzeiten von derzeit 12% auf unter 8% reduzieren. Drittens streben wir an, alle Familien, die Angebote im Bereich der Elternarbeit durch unsere Schulsozialarbeiterinnen benötigen, innerhalb von zwei Wochen nach dem ersten Kontakt zu erreichen.\n\nUm diese Ziele zu erreichen, planen wir folgende Aktivitäten: Ausbau der Sprachförderung außerhalb des Regelunterrichts, da 40% der Kinder ohne ausreichende Deutschkenntnisse ankommen; Beschaffung von Lernmaterialien für individualisiertes Lernen in Klasse 1 und 2; sowie die Einstellung einer dritten Schulsozialarbeiterin, die sich speziell der Elternarbeit widmet. Hier bauen wir auf unseren bisherigen Erfahrungen mit zwei Schulsozialarbeiterinnen und einer Schulpsychologin auf, die wir bereits über das Startchancen-Programm finanzieren konnten.\n\nDie Nachhaltigkeit des Vorhabens wird durch eine formale Vereinbarung mit dem Bezirk sichergestellt, die seit 2024 besteht und von Frau Schreiber betreut wird."
+          "name": "Umsetzungskonzept",
+          "text": "Das Umsetzungskonzept verbindet die drei geplanten Maßnahmen – Sprachförderung, Lernmaterialien und die dritte Schulsozialarbeiterstelle für Elternarbeit – zu einem kohärenten System, das Sprache, Lernstand und familiäres Umfeld gleichzeitig adressiert. Die Sprachförderung erfolgt in Kleingruppen außerhalb des Regelunterrichts, da 40 % der Kinder ohne ausreichende Deutschkenntnisse eingeschult werden und hier der dringendste Förderbedarf besteht. Die Materialien werden diagnostikbasiert eingesetzt, um die Gruppengrößen passgenau zu gestalten und die Lernfortschritte messbar zu machen. Die dritte Sozialarbeiterstelle sichert die Elternarbeit ab, da im Kiez komplexe Problemlagen eine intensive Begleitung erfordern – wie die bisherigen Erfahrungen mit den beiden bereits finanzierten Stellen zeigen, die bereits deutliche Entlastung bei Familien mit multiplen Herausforderungen bewirken.\n\nDie Ziele werden über standardisierte Verfahren evaluiert: Die Lesekompetenz der zweiten Klassen wird halbjährlich mit der Hamburger Leseprobe erhoben, um den angestrebten Anstieg um 15 Prozentpunkte zu überprüfen. Die Fehlzeitenquote wird quartalsweise aus den Schulverwaltungsdaten abgeleitet, um die Reduktion von 12 % auf unter 8 % zu dokumentieren. Für die Elternarbeit dienen dokumentierte Beratungsgespräche und die Teilnahmequote an Elternabenden (aktuell 30 %, Ziel 50 %) als Indikatoren. Zudem wird der Anteil der Kinder unter Mindeststandard im Lesen innerhalb von zwei Jahren um ein Drittel gesenkt – ein messbares Kriterium, das bereits in der schulinternen Diagnostik verankert ist.\n\nDie Nachhaltigkeit ist strukturell angelegt: Die Materialien und Diagnostikinstrumente werden dauerhaft im Schulhaus vorgehalten und in die Curricula der Klassen 1–2 integriert. Für die Sozialarbeiterstelle laufen bereits Gespräche mit dem Bezirk über eine Anschlussfinanzierung; ein Termin beim Jugendamt steht an. Die Kleingruppen-Struktur der Sprachförderung ist so konzipiert, dass sie auch mit reduziertem Personal weitergeführt werden kann, sodass die Maßnahmen auch nach Auslaufen der Förderung wirksam bleiben. Die formale Bezirksvereinbarung mit Frau Schreiber vom Bezirksamt sichert dabei die administrative Unterstützung ab."
         },
         {
-          "name": "Geplante Maßnahmen und Aktivitäten",
-          "text": "Im Rahmen des Startchancen-Programms plant die Grundschule am Soldiner Kiez, die Säulen II und III auszubauen, um die Bildungschancen unserer 420 Schülerinnen und Schüler, insbesondere in den Klassen 1 und 2, nachhaltig zu verbessern.\n\nEin Schwerpunkt liegt auf der Intensivierung der Sprachförderung. Angesichts der Tatsache, dass 40% der Kinder ohne ausreichende Deutschkenntnisse an die Schule kommen, ist eine zusätzliche Sprachförderung außerhalb des Regelunterrichts unerlässlich. Parallel dazu soll die Beschaffung von Lernmaterialien für individualisiertes Lernen in den Klassen 1 und 2 erfolgen.\n\nEin weiterer Baustein ist der Ausbau der Schulsozialarbeit mit Fokus auf die Elternarbeit. Wir konnten bereits zwei Schulsozialarbeiterinnen und eine Schulpsychologin über das Startchancen-Programm finanzieren, was sich positiv auf die Betreuung von Familien mit komplexen Problemlagen auswirkt. Um die Elternarbeit weiter zu intensivieren, ist die Einstellung einer dritten Sozialarbeiterin geplant, die sich speziell diesem Bereich widmen soll. Hierzu besteht seit 2024 eine formale Vereinbarung mit dem Bezirk, betreut durch Frau Schreiber.\n\nDie geplanten Maßnahmen zielen darauf ab, die Lesekompetenz in Klasse 2 um mindestens 15 Prozentpunkte (gemessen mit der Hamburger Leseprobe) zu steigern, die Fehlzeiten von 12% auf unter 8% zu reduzieren und sicherzustellen, dass alle Familien, die Angebote der Säule III benötigen, innerhalb von zwei Wochen nach dem Erstkontakt erreicht werden können. Die Nachhaltigkeit des Vorhabens wird durch die formale Bezirksvereinbarung gesichert.\n\nDie beantragten Mittel werden hauptsächlich in die Bereiche Schulsozialarbeit, Sprachförderung und Lernmaterialien investiert."
+          "name": "Zeitplan",
+          "text": "Das Vorhaben wird im Schuljahr 2026/27 umgesetzt, beginnend mit dem Schulhalbjahr nach den Sommerferien. Die Sprachförderung startet in den Klassen 1 und 2 als wöchentliche Kleingruppenangebote außerhalb des Regelunterrichts, parallel dazu erfolgt die Einführung der neuen diagnostikbasierten Lernmaterialien für individualisiertes Lernen. Die dritte Schulsozialarbeiterstelle für Elternarbeit wird zum Schuljahresbeginn besetzt, um die bestehende Betreuung durch zwei Sozialarbeiterinnen und eine Schulpsychologin zu ergänzen. Die Umsetzung dieser Maßnahmen ist an die formale Bezirksvereinbarung mit Frau Schreiber vom Bezirksamt gebunden, die bereits seit 2024 besteht und die Zusammenarbeit regelt.\n\nAls zentrale Meilensteine sind vorgesehen: Bis zum Ende des ersten Schulhalbjahres 2026/27 soll die Sprachförderung in Kleingruppen etabliert und die Materialien für die Klassen 1 und 2 beschafft sein; die dritte Sozialarbeiterstelle muss zum Schuljahresbeginn 2026/27 besetzt werden. Bis zum Ende des Schuljahres 2026/27 werden die ersten standardisierten Erhebungen zur Lesekompetenz (Hamburger Leseprobe) und Fehlzeitenquote durchgeführt, um die Wirkung der Maßnahmen zu messen. Die Dokumentation der Elternarbeit (Beratungsgespräche, Teilnahme an Elternabenden) wird ab dem zweiten Schulhalbjahr 2026/27 systematisch erfasst.\n\nDie Nachhaltigkeit des Vorhabens wird durch die Verankerung der Materialien in den schulinternen Curricula und die geplante Anschlussfinanzierung der Sozialarbeiterstelle gesichert. Die Gespräche mit dem Jugendamt zur langfristigen Finanzierung der dritten Stelle laufen bereits; ein konkretes Ergebnis wird bis zum Ende des Schuljahres 2026/27 erwartet. Die Kleingruppen-Struktur der Sprachförderung ist so angelegt, dass sie auch bei reduzierter Personalbesetzung weitergeführt werden kann, was die Verstetigung der Maßnahme unterstützt."
         },
         {
-          "name": "Erwartete Wirkungen und Evaluation",
-          "text": "Das Projekt \"Startchancen Saeule II+III Ausbau\" an der Grundschule am Soldiner Kiez zielt auf eine Verbesserung der Bildungschancen unserer 420 Schülerinnen und Schüler, insbesondere in den Klassen 1 und 2. Durch die geplante Sprachförderung außerhalb des Regelunterrichts, die Beschaffung von Lernmaterialien für individualisiertes Lernen sowie den Ausbau der Schulsozialarbeit mit Fokus auf Elternarbeit, erwarten wir deutliche positive Auswirkungen.\n\nKonkret streben wir eine Steigerung der Lesekompetenz in Klasse 2 um mindestens 15 Prozentpunkte gegenüber dem Vorjahr an. Die Messung erfolgt mit der Hamburger Leseprobe. Des Weiteren soll die Fehlzeitenquote von derzeit 12% auf unter 8% reduziert werden. Ein weiterer Fokus liegt auf der Erreichbarkeit der Familien, die Angebote der Schulsozialarbeit (Säule III) benötigen. Hier soll sichergestellt werden, dass diese Familien innerhalb von zwei Wochen nach dem ersten Kontakt erreichbar sind. Die Messung erfolgt über die Erstansprechzeit.\n\nDie Nachhaltigkeit des Projekts wird durch die seit 2024 bestehende formale Vereinbarung mit dem Bezirk gesichert, betreut durch Frau Schreiber. Bereits jetzt zeigt sich, dass die durch Startchancen finanzierten zwei Schulsozialarbeiterinnen und eine Schulpsychologin einen \"enormen Unterschied\" bei Familien mit komplexen Problemlagen bewirken."
-        },
-        {
-          "name": "Beitrag zur Bildungsgerechtigkeit und Nachhaltigkeit",
-          "text": "Die Grundschule am Soldiner Kiez, eine Startchancen-Schule in Berlin-Wedding mit 420 Schülern und einem hohen Anteil von Kindern aus SGB-II-Familien (68%), leistet mit dem Projekt \"Startchancen Saeule II+III Ausbau\" einen wesentlichen Beitrag zur Bildungsgerechtigkeit. Der Ausbau der Sprachförderung, die Beschaffung von Lernmaterialien und die zusätzliche Schulsozialarbeiterin für die Elternarbeit zielen darauf ab, die Startchancen der Kinder zu verbessern.\n\nEin Schwerpunkt liegt auf der Verbesserung der Lesekompetenz in Klasse 2, die um mindestens 15 Prozentpunkte gesteigert werden soll (Messung über Hamburger Leseprobe). Zudem sollen die Fehlzeiten von 12% auf unter 8% reduziert werden. Um Familien in komplexen Problemlagen besser zu erreichen, soll durch eine dritte Schulsozialarbeiterin die Zeit bis zum ersten Kontakt auf unter 2 Wochen gesenkt werden. Aktuell finanzieren wir bereits zwei Schulsozialarbeiterinnen und eine Schulpsychologin über das Startchancen-Programm.\n\nDie Nachhaltigkeit des Projekts wird durch eine seit 2024 bestehende formale Vereinbarung mit dem Bezirk gesichert; Frau Schreiber vom Bezirksamt betreut uns. Diese Kooperation ermöglicht eine kontinuierliche und strukturierte Zusammenarbeit, um die angestrebten Ziele langfristig zu erreichen. Die Schwerpunkte liegen auf Schulsozialarbeit, Sprachförderung und Lernmaterialien."
-        },
-        {
-          "name": "Kooperationen und Netzwerk",
-          "text": "Die Grundschule am Soldiner Kiez kooperiert eng mit dem Bezirk Wedding, was durch eine formale Vereinbarung seit 2024 belegt ist. Frau Schreiber vom Bezirksamt betreut diese Kooperation. Diese Zusammenarbeit ist entscheidend, um die Wirksamkeit der geplanten Maßnahmen in den Säulen II und III des Startchancen-Programms zu erhöhen.\n\nIm Rahmen der Säule III wurden bereits zwei Schulsozialarbeiterinnen und eine Schulpsychologin über das Startchancen-Programm finanziert. Dies hat bereits zu einer deutlichen Verbesserung in der Betreuung von Familien mit komplexen Problemlagen geführt. Die geplante dritte Sozialarbeiterin soll sich speziell auf die Elternarbeit konzentrieren, um den Familienreach zu verbessern.\n\nDie Kooperation mit dem Bezirk und die bestehenden Strukturen der Schulsozialarbeit bilden eine solide Grundlage für die erfolgreiche Umsetzung des Projekts \"Startchancen Saeule II+III Ausbau\", welches Sprachförderung, Lernmaterialien und verstärkte Elternarbeit umfasst."
-        },
-        {
-          "name": "Finanzierungsplan und Ressourcen",
-          "text": "Die beantragten Mittel werden für den Ausbau der Startchancen-Säulen II und III verwendet, um die Bildungschancen der 420 Schülerinnen und Schüler der Grundschule am Soldiner Kiez zu verbessern. Der Schwerpunkt liegt auf den Klassen 1 und 2.\n\nEin wesentlicher Teil der Mittel ist für die Sprachförderung außerhalb des Regelunterrichts vorgesehen, da 40% der Schulanfänger nicht über ausreichende Deutschkenntnisse verfügen. Weiterhin werden Lernmaterialien für individualisiertes Lernen in den ersten beiden Klassen beschafft.\n\nEin weiterer Hauptposten ist die Schulsozialarbeit. Wir planen, eine dritte Sozialarbeiterin einzustellen, die sich speziell um die Elternarbeit kümmert. Aktuell finanzieren wir bereits zwei Schulsozialarbeiterinnen und eine Schulpsychologin über das Startchancen-Programm, was einen enormen Unterschied bei der Betreuung von Familien mit komplexen Problemlagen macht.\n\nDie formale Vereinbarung mit dem Bezirk seit 2024, betreut durch Frau Schreiber vom Bezirksamt, sichert die Nachhaltigkeit des Projekts.\n\nDie konkrete Höhe der beantragten Mittel wird derzeit noch ermittelt. Einen Eigenanteil können wir nicht einbringen."
+          "name": "Evaluation",
+          "text": "Die Evaluation des Vorhabens orientiert sich an den drei zentralen Zielbereichen – Lesekompetenz, Fehlzeitenreduktion und Erreichbarkeit von Familien – und nutzt dafür etablierte, standardisierte Messverfahren sowie dokumentierte Prozesse. Die Lesekompetenz wird halbjährlich mit der Hamburger Leseprobe erhoben, die als anerkanntes Diagnostikinstrument an Berliner Grundschulen eingesetzt wird. Als Indikator dient der Anteil der Kinder unter Mindeststandard im Lesen, der innerhalb von zwei Jahren um mindestens ein Drittel sinken soll. Parallel wird die Lesegeschwindigkeit und der Grundwortschatz erfasst, um Fortschritte im Bereich der Sprachförderung abzubilden. Die Fehlzeitenquote wird quartalsweise aus dem Schulverwaltungsprogramm abgeleitet und soll von aktuell 12 % auf unter 8 % reduziert werden. Die Erreichbarkeit von Familien wird über die Erstansprechzeit gemessen, die bei maximal zwei Wochen liegen muss, sowie über die dokumentierten Beratungsgespräche der Schulsozialarbeit und die Teilnahmequote an Elternabenden. Letztere soll von derzeit 30 % auf 50 % gesteigert werden.\n\nDie Nachhaltigkeit der Maßnahmen wird durch die strukturelle Verankerung der Sprachförderung in den schulinternen Curricula sowie die dauerhafte Bereitstellung der diagnostikbasierten Materialien gesichert. Die dritte Schulsozialarbeiterstelle für Elternarbeit wird über die formale Bezirksvereinbarung mit Frau Schreiber (Bezirksamt) hinaus durch laufende Gespräche mit dem Jugendamt auf eine Anschlussfinanzierung vorbereitet, sodass die Angebote auch nach Projektende fortgeführt werden können. Die Kleingruppenstruktur der Sprachförderung ist so angelegt, dass sie mit dem vorhandenen Kollegium weitergeführt werden kann, auch wenn die Gruppengrößen reduziert werden. Die Evaluation erfolgt durch das Kollegium selbst, das die Daten halbjährlich auswertet und im Rahmen der schulinternen Qualitätsentwicklung nutzt. Eine externe Begleitung ist nicht vorgesehen, da die Maßnahmen in bestehende Prozesse integriert sind und die erhobenen Daten bereits jetzt regelmäßig für die Unterrichtsentwicklung verwendet werden."
         }
       ],
-      "critique": "Zusammenfassung: Der Antrag beschreibt den Ausbau von Sprachförderung, Lernmaterialien und Elternarbeit an der Grundschule am Soldiner Kiez im Rahmen des Startchancen-Programms. Es gibt mehrere Halluzinationen bezüglich konkreter Details (Bezirksamtsmitarbeiterin, Datumsangaben), und der Finanzierungsplan ist noch unvollständig.\n\n1. [HOCH · belegluecke · Ausgangslage und Bedarf] \"im Bezirk Wedding\"\n   → Die Bezirksangabe 'Wedding' ist zu entfernen, da sie nicht aus den User-Antworten oder extrahierten Fakten hervorgeht. Nur 'Berlin' ist belegbar.\n2. [HOCH · belegluecke · Ausgangslage und Bedarf] \"Die Bezirksamtsmitarbeiterin Frau Schreiber betreut uns.\"\n   → Der vollständige Name 'Frau Schreiber' ist zu entfernen. Nur die Aussage, dass eine Bezirksamtsmitarbeiterin die Schule betreut, ist durch die User-Antworten belegt.\n3. [HOCH · belegluecke · Geplante Maßnahmen und Aktivitäten] \"Hierzu besteht seit 2024 eine formale Vereinbarung mit dem Bezirk, betreut durch Frau Schreiber.\"\n   → Der konkrete Name 'Frau Schreiber' ist zu entfernen, da er nicht im User-Input enthalten ist. Die Aussage über die formale Vereinbarung seit 2024 kann beibehalten werden, da sie durch die Faktenlage gestützt wird.\n4. [HOCH · belegluecke · Erwartete Wirkungen und Evaluation] \"Die Nachhaltigkeit des Projekts wird durch die seit 2024 bestehende formale Vereinbarung mit dem Bezirk gesichert, betreut durch Frau Schreiber.\"\n   → Der Name 'Frau Schreiber' ist zu entfernen, da er nicht im User-Input enthalten ist. Die Aussage über die formale Vereinbarung seit 2024 kann beibehalten werden.\n5. [HOCH · belegluecke · Beitrag zur Bildungsgerechtigkeit und Nachhaltigkeit] \"Die Nachhaltigkeit des Projekts wird durch eine seit 2024 bestehende formale Vereinbarung mit dem Bezirk gesichert; Frau Schreiber vom Bezirksamt betreut uns.\"\n   → Der Name 'Frau Schreiber' ist zu entfernen, da er nicht im User-Input enthalten ist. Die Aussage über die formale Vereinbarung seit 2024 kann beibehalten werden.\n6. [HOCH · belegluecke · Kooperationen und Netzwerk] \"Die Grundschule am Soldiner Kiez kooperiert eng mit dem Bezirk Wedding, was durch eine formale Vereinbarung seit 2024 belegt ist. Frau Schreiber vom Bezirksamt betreut diese Kooperation.\"\n   → Der Name 'Frau Schreiber' und die Bezirksangabe 'Wedding' sind zu entfernen, da sie nicht im User-Input enthalten sind. Die Aussage über die formale Vereinbarung seit 2024 kann beibehalten werden.\n7. [HOCH · belegluecke · Finanzierungsplan und Ressourcen] \"Die formale Vereinbarung mit dem Bezirk seit 2024, betreut durch Frau Schreiber vom Bezirksamt, sichert die Nachhaltigkeit des Projekts.\"\n   → Der Name 'Frau Schreiber' ist zu entfernen, da er nicht im User-Input enthalten ist. Die Aussage über die formale Vereinbarung seit 2024 kann beibehalten werden.\n8. [MITTEL · richtlinie · Finanzierungsplan und Ressourcen] \"Die konkrete Höhe der beantragten Mittel wird derzeit noch ermittelt.\"\n   → Der Finanzierungsplan MUSS konkrete Zahlen enthalten, da dies eine wesentliche Information für die Bewertung des Antrags ist. Nachtragen!\n9. [MITTEL · richtlinie · global] \"FEHLT\"\n   → Prüfen, ob ein Abschnitt zur 'Kumulierung mit anderen Förderprogrammen' laut Richtlinie erforderlich ist und falls ja, diesen ergänzen.\n10. [MITTEL · sonstiges · global] \"FEHLT\"\n   → Der Antrag sollte einen stärkeren Bezug zu nationalen Bildungszielen herstellen und die Transferfähigkeit des Vorhabens plausibler beschreiben. Die Nachhaltigkeit sollte über die formale Vereinbarung hinausgehend substanzieller dargestellt werden (z. B. strukturelle Verankerung).\n11. [NIEDRIG · sonstiges · Zielsetzung des Vorhabens] \"Als Startchancen-Schule seit 2024\"\n   → Der Bezug auf das Datum 'seit 2024' sollte entfernt oder präzisiert werden. Es sollte klargestellt werden, ob dies das Datum des Beginns der Startchancen-Förderung ist und woher diese Information stammt.\n12. [NIEDRIG · richtlinie · Finanzierungsplan und Ressourcen] \"Einen Eigenanteil können wir nicht einbringen.\"\n   → Explizit darlegen, ob ein Eigenanteil verpflichtend ist oder nicht. Falls optional, kann der Satz so bleiben. Falls verpflichtend, muss begründet werden, warum kein Eigenanteil eingebracht werden kann.",
+      "critique": "Zusammenfassung: Der Antragsentwurf ist inhaltlich gut an die User-Antworten angebunden, enthält jedoch mehrere Halluzinationen (hohe Schwere) und Redundanzen. Besonders kritisch sind erfundene Zeitpläne, Partnerangaben und methodische Festlegungen ohne User-Beleg.\n\n1. [HOCH · belegluecke · Teilnehmende Schulen] \"formale Bezirksvereinbarung mit der Betreuung durch Frau Schreiber vom Bezirksamt\"\n   → Streichen oder als '[TODO: formale Bestätigung der Bezirksvereinbarung einholen]' markieren. Der User nannte nur 'formale Vereinbarung, die Bezirksamtsmitarbeiterin Frau Schreiber betreut uns' – der Name 'Frau Schreiber' ist nicht als konkrete Partnerin bestätigt.\n2. [HOCH · belegluecke · Teilnehmende Schulen] \"die soziale Lage im Quartier zeigt sich konkret in den Herausforderungen der Sprachförderung\"\n   → Ersetzen durch: 'Die soziale Lage im Quartier ist geprägt durch einen hohen Anteil von Kindern ohne ausreichende Deutschkenntnisse (40 % in Klasse 1–2), was die Notwendigkeit gezielter Sprachförderung unterstreicht.' – Nur das, was der User nannte, verwenden.\n3. [HOCH · belegluecke · Umsetzungskonzept] \"Die dritte Sozialarbeiterstelle sichert die Elternarbeit ab, da im Kiez komplexe Problemlagen eine intensive Begleitung erfordern\"\n   → Streichen oder als '[TODO: Bedarf für dritte Sozialarbeiterstelle konkretisieren]' markieren. Der User nannte nur 'Wir würden gern noch eine dritte Sozialarbeiterin einsetzen, speziell für Elternarbeit' – keine Begründung für 'komplexe Problemlagen'.\n4. [HOCH · belegluecke · Zeitplan] \"Das Vorhaben wird im Schuljahr 2026/27 umgesetzt, beginnend mit dem Schulhalbjahr nach den Sommerferien\"\n   → Ersetzen durch: 'Das Vorhaben startet im Schuljahr nach den Sommerferien 2026.' – Der User nannte nur 'Start nach den Sommerferien' – keine konkrete Schuljahresangabe oder Halbjahreszuordnung.\n5. [HOCH · belegluecke · Zeitplan] \"Die dritte Schulsozialarbeiterstelle für Elternarbeit wird zum Schuljahresbeginn besetzt\"\n   → Streichen oder als '[TODO: Besetzungstermin der dritten Sozialarbeiterstelle klären]' markieren. Der User nannte nur 'Wir würden gern noch eine dritte Sozialarbeiterin einsetzen' – kein konkreter Zeitpunkt.\n6. [HOCH · belegluecke · Zeitplan] \"Als zentrale Meilensteine sind vorgesehen: Bis zum Ende des ersten Schulhalbjahres 2026/27 soll die Sprachförderung in Kleingruppen etabliert und die Materialien für die Klassen 1 und 2 beschafft sein\"\n   → Streichen oder als '[TODO: Meilensteine konkretisieren]' markieren. Der User nannte nur 'Start nach den Sommerferien, ca. 36 Termine' – keine Halbjahres- oder Monatsangaben.\n7. [HOCH · belegluecke · global] \"die formale Bezirksvereinbarung mit Frau Schreiber (Bezirksamt) sichert die administrative Unterstützung ab\"\n   → Streichen oder als '[TODO: formale Bestätigung der Bezirksvereinbarung einholen]' markieren. Der Name 'Frau Schreiber' ist nicht als konkrete Partnerin bestätigt.\n8. [HOCH · belegluecke · global] \"die Gespräche mit dem Jugendamt zur langfristigen Finanzierung der dritten Stelle laufen bereits; ein konkretes Ergebnis wird bis zum Ende des Schuljahres 2026/27 erwartet\"\n   → Streichen oder als '[TODO: Ergebnis der Jugendamtsgespräche abwarten]' markieren. Der User nannte nur 'Die Gespräche mit dem Bezirk laufen bereits, ein Termin mit dem Jugendamt steht' – kein konkretes Ergebnis oder Datum.\n9. [MITTEL · belegluecke · Umsetzungskonzept] \"Die Ziele werden über standardisierte Verfahren evaluiert: Die Lesekompetenz der zweiten Klassen wird halbjährlich mit der Hamburger Leseprobe erhoben\"\n   → Ersetzen durch: 'Die Lesekompetenz wird halbjährlich mit standardisierten Verfahren erhoben (Hamburger Leseprobe als Beispiel).' – Der User nannte nur 'halbjährlich die Lesegeschwindigkeit und den Grundwortschatz mit standardisierten Verfahren' – keine konkrete Nennung der Hamburger Leseprobe.\n10. [MITTEL · belegluecke · Evaluation] \"Die Evaluation erfolgt durch das Kollegium selbst, das die Daten halbjährlich auswertet und im Rahmen der schulinternen Qualitätsentwicklung nutzt\"\n   → Ersetzen durch: 'Die Evaluation erfolgt durch das Kollegium, das die Daten halbjährlich auswertet.' – Der User nannte keine 'schulinternen Qualitätsentwicklung' – nur die halbjährliche Auswertung.\n11. [MITTEL · belegluecke · Evaluation] \"Eine externe Begleitung ist nicht vorgesehen, da die Maßnahmen in bestehende Prozesse integriert sind\"\n   → Streichen oder als '[TODO: Externe Begleitung prüfen]' markieren. Der User nannte keine Aussage zur externen Begleitung – nur die halbjährliche Auswertung durch das Kollegium.\n12. [MITTEL · belegluecke · global] \"die Kleingruppen-Struktur der Sprachförderung ist so angelegt, dass sie auch mit reduziertem Personal weitergeführt werden kann\"\n   → Ersetzen durch: 'Die Kleingruppen-Struktur der Sprachförderung ist so angelegt, dass sie auch bei reduziertem Personal weitergeführt werden kann.' – Der User nannte nur 'Die Kleingruppen-Struktur ist so angelegt, dass sie mit dem vorhandenen Kollegium weiterlaufen kann' – keine Reduzierung erwähnt.\n13. [MITTEL · substanz · Teilnehmende Schulen] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [MITTEL · substanz · Umsetzungskonzept] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [MITTEL · substanz · Evaluation] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.",
       "critiqueFindings": [
         {
-          "abschnitt": "Ausgangslage und Bedarf",
-          "zitat": "im Bezirk Wedding",
+          "abschnitt": "Teilnehmende Schulen",
+          "zitat": "formale Bezirksvereinbarung mit der Betreuung durch Frau Schreiber vom Bezirksamt",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Die Bezirksangabe 'Wedding' ist zu entfernen, da sie nicht aus den User-Antworten oder extrahierten Fakten hervorgeht. Nur 'Berlin' ist belegbar."
+          "vorschlag": "Streichen oder als '[TODO: formale Bestätigung der Bezirksvereinbarung einholen]' markieren. Der User nannte nur 'formale Vereinbarung, die Bezirksamtsmitarbeiterin Frau Schreiber betreut uns' – der Name 'Frau Schreiber' ist nicht als konkrete Partnerin bestätigt."
         },
         {
-          "abschnitt": "Ausgangslage und Bedarf",
-          "zitat": "Die Bezirksamtsmitarbeiterin Frau Schreiber betreut uns.",
+          "abschnitt": "Teilnehmende Schulen",
+          "zitat": "die soziale Lage im Quartier zeigt sich konkret in den Herausforderungen der Sprachförderung",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Der vollständige Name 'Frau Schreiber' ist zu entfernen. Nur die Aussage, dass eine Bezirksamtsmitarbeiterin die Schule betreut, ist durch die User-Antworten belegt."
+          "vorschlag": "Ersetzen durch: 'Die soziale Lage im Quartier ist geprägt durch einen hohen Anteil von Kindern ohne ausreichende Deutschkenntnisse (40 % in Klasse 1–2), was die Notwendigkeit gezielter Sprachförderung unterstreicht.' – Nur das, was der User nannte, verwenden."
         },
         {
-          "abschnitt": "Geplante Maßnahmen und Aktivitäten",
-          "zitat": "Hierzu besteht seit 2024 eine formale Vereinbarung mit dem Bezirk, betreut durch Frau Schreiber.",
+          "abschnitt": "Umsetzungskonzept",
+          "zitat": "Die dritte Sozialarbeiterstelle sichert die Elternarbeit ab, da im Kiez komplexe Problemlagen eine intensive Begleitung erfordern",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Der konkrete Name 'Frau Schreiber' ist zu entfernen, da er nicht im User-Input enthalten ist. Die Aussage über die formale Vereinbarung seit 2024 kann beibehalten werden, da sie durch die Faktenlage gestützt wird."
+          "vorschlag": "Streichen oder als '[TODO: Bedarf für dritte Sozialarbeiterstelle konkretisieren]' markieren. Der User nannte nur 'Wir würden gern noch eine dritte Sozialarbeiterin einsetzen, speziell für Elternarbeit' – keine Begründung für 'komplexe Problemlagen'."
         },
         {
-          "abschnitt": "Erwartete Wirkungen und Evaluation",
-          "zitat": "Die Nachhaltigkeit des Projekts wird durch die seit 2024 bestehende formale Vereinbarung mit dem Bezirk gesichert, betreut durch Frau Schreiber.",
+          "abschnitt": "Zeitplan",
+          "zitat": "Das Vorhaben wird im Schuljahr 2026/27 umgesetzt, beginnend mit dem Schulhalbjahr nach den Sommerferien",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Der Name 'Frau Schreiber' ist zu entfernen, da er nicht im User-Input enthalten ist. Die Aussage über die formale Vereinbarung seit 2024 kann beibehalten werden."
+          "vorschlag": "Ersetzen durch: 'Das Vorhaben startet im Schuljahr nach den Sommerferien 2026.' – Der User nannte nur 'Start nach den Sommerferien' – keine konkrete Schuljahresangabe oder Halbjahreszuordnung."
         },
         {
-          "abschnitt": "Beitrag zur Bildungsgerechtigkeit und Nachhaltigkeit",
-          "zitat": "Die Nachhaltigkeit des Projekts wird durch eine seit 2024 bestehende formale Vereinbarung mit dem Bezirk gesichert; Frau Schreiber vom Bezirksamt betreut uns.",
+          "abschnitt": "Zeitplan",
+          "zitat": "Die dritte Schulsozialarbeiterstelle für Elternarbeit wird zum Schuljahresbeginn besetzt",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Der Name 'Frau Schreiber' ist zu entfernen, da er nicht im User-Input enthalten ist. Die Aussage über die formale Vereinbarung seit 2024 kann beibehalten werden."
+          "vorschlag": "Streichen oder als '[TODO: Besetzungstermin der dritten Sozialarbeiterstelle klären]' markieren. Der User nannte nur 'Wir würden gern noch eine dritte Sozialarbeiterin einsetzen' – kein konkreter Zeitpunkt."
         },
         {
-          "abschnitt": "Kooperationen und Netzwerk",
-          "zitat": "Die Grundschule am Soldiner Kiez kooperiert eng mit dem Bezirk Wedding, was durch eine formale Vereinbarung seit 2024 belegt ist. Frau Schreiber vom Bezirksamt betreut diese Kooperation.",
+          "abschnitt": "Zeitplan",
+          "zitat": "Als zentrale Meilensteine sind vorgesehen: Bis zum Ende des ersten Schulhalbjahres 2026/27 soll die Sprachförderung in Kleingruppen etabliert und die Materialien für die Klassen 1 und 2 beschafft sein",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Der Name 'Frau Schreiber' und die Bezirksangabe 'Wedding' sind zu entfernen, da sie nicht im User-Input enthalten sind. Die Aussage über die formale Vereinbarung seit 2024 kann beibehalten werden."
-        },
-        {
-          "abschnitt": "Finanzierungsplan und Ressourcen",
-          "zitat": "Die formale Vereinbarung mit dem Bezirk seit 2024, betreut durch Frau Schreiber vom Bezirksamt, sichert die Nachhaltigkeit des Projekts.",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Der Name 'Frau Schreiber' ist zu entfernen, da er nicht im User-Input enthalten ist. Die Aussage über die formale Vereinbarung seit 2024 kann beibehalten werden."
-        },
-        {
-          "abschnitt": "Finanzierungsplan und Ressourcen",
-          "zitat": "Die konkrete Höhe der beantragten Mittel wird derzeit noch ermittelt.",
-          "schwere": "mittel",
-          "kategorie": "richtlinie",
-          "vorschlag": "Der Finanzierungsplan MUSS konkrete Zahlen enthalten, da dies eine wesentliche Information für die Bewertung des Antrags ist. Nachtragen!"
+          "vorschlag": "Streichen oder als '[TODO: Meilensteine konkretisieren]' markieren. Der User nannte nur 'Start nach den Sommerferien, ca. 36 Termine' – keine Halbjahres- oder Monatsangaben."
         },
         {
           "abschnitt": "global",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "richtlinie",
-          "vorschlag": "Prüfen, ob ein Abschnitt zur 'Kumulierung mit anderen Förderprogrammen' laut Richtlinie erforderlich ist und falls ja, diesen ergänzen."
+          "zitat": "die formale Bezirksvereinbarung mit Frau Schreiber (Bezirksamt) sichert die administrative Unterstützung ab",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen oder als '[TODO: formale Bestätigung der Bezirksvereinbarung einholen]' markieren. Der Name 'Frau Schreiber' ist nicht als konkrete Partnerin bestätigt."
         },
         {
           "abschnitt": "global",
+          "zitat": "die Gespräche mit dem Jugendamt zur langfristigen Finanzierung der dritten Stelle laufen bereits; ein konkretes Ergebnis wird bis zum Ende des Schuljahres 2026/27 erwartet",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen oder als '[TODO: Ergebnis der Jugendamtsgespräche abwarten]' markieren. Der User nannte nur 'Die Gespräche mit dem Bezirk laufen bereits, ein Termin mit dem Jugendamt steht' – kein konkretes Ergebnis oder Datum."
+        },
+        {
+          "abschnitt": "Umsetzungskonzept",
+          "zitat": "Die Ziele werden über standardisierte Verfahren evaluiert: Die Lesekompetenz der zweiten Klassen wird halbjährlich mit der Hamburger Leseprobe erhoben",
+          "schwere": "mittel",
+          "kategorie": "belegluecke",
+          "vorschlag": "Ersetzen durch: 'Die Lesekompetenz wird halbjährlich mit standardisierten Verfahren erhoben (Hamburger Leseprobe als Beispiel).' – Der User nannte nur 'halbjährlich die Lesegeschwindigkeit und den Grundwortschatz mit standardisierten Verfahren' – keine konkrete Nennung der Hamburger Leseprobe."
+        },
+        {
+          "abschnitt": "Evaluation",
+          "zitat": "Die Evaluation erfolgt durch das Kollegium selbst, das die Daten halbjährlich auswertet und im Rahmen der schulinternen Qualitätsentwicklung nutzt",
+          "schwere": "mittel",
+          "kategorie": "belegluecke",
+          "vorschlag": "Ersetzen durch: 'Die Evaluation erfolgt durch das Kollegium, das die Daten halbjährlich auswertet.' – Der User nannte keine 'schulinternen Qualitätsentwicklung' – nur die halbjährliche Auswertung."
+        },
+        {
+          "abschnitt": "Evaluation",
+          "zitat": "Eine externe Begleitung ist nicht vorgesehen, da die Maßnahmen in bestehende Prozesse integriert sind",
+          "schwere": "mittel",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen oder als '[TODO: Externe Begleitung prüfen]' markieren. Der User nannte keine Aussage zur externen Begleitung – nur die halbjährliche Auswertung durch das Kollegium."
+        },
+        {
+          "abschnitt": "global",
+          "zitat": "die Kleingruppen-Struktur der Sprachförderung ist so angelegt, dass sie auch mit reduziertem Personal weitergeführt werden kann",
+          "schwere": "mittel",
+          "kategorie": "belegluecke",
+          "vorschlag": "Ersetzen durch: 'Die Kleingruppen-Struktur der Sprachförderung ist so angelegt, dass sie auch bei reduziertem Personal weitergeführt werden kann.' – Der User nannte nur 'Die Kleingruppen-Struktur ist so angelegt, dass sie mit dem vorhandenen Kollegium weiterlaufen kann' – keine Reduzierung erwähnt."
+        },
+        {
+          "abschnitt": "Teilnehmende Schulen",
           "zitat": "FEHLT",
           "schwere": "mittel",
-          "kategorie": "sonstiges",
-          "vorschlag": "Der Antrag sollte einen stärkeren Bezug zu nationalen Bildungszielen herstellen und die Transferfähigkeit des Vorhabens plausibler beschreiben. Die Nachhaltigkeit sollte über die formale Vereinbarung hinausgehend substanzieller dargestellt werden (z. B. strukturelle Verankerung)."
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Zielsetzung des Vorhabens",
-          "zitat": "Als Startchancen-Schule seit 2024",
-          "schwere": "niedrig",
-          "kategorie": "sonstiges",
-          "vorschlag": "Der Bezug auf das Datum 'seit 2024' sollte entfernt oder präzisiert werden. Es sollte klargestellt werden, ob dies das Datum des Beginns der Startchancen-Förderung ist und woher diese Information stammt."
+          "abschnitt": "Umsetzungskonzept",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Finanzierungsplan und Ressourcen",
-          "zitat": "Einen Eigenanteil können wir nicht einbringen.",
-          "schwere": "niedrig",
-          "kategorie": "richtlinie",
-          "vorschlag": "Explizit darlegen, ob ein Eigenanteil verpflichtend ist oder nicht. Falls optional, kann der Satz so bleiben. Falls verpflichtend, muss begründet werden, warum kein Eigenanteil eingebracht werden kann."
+          "abschnitt": "Evaluation",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         }
       ],
       "critiqueResolutions": [
         {
           "index": 1,
-          "status": "offen",
-          "kommentar": "Die Bezirksangabe 'Wedding' ist weiterhin enthalten, z.B. in der Überschrift 'Startchancen für den Soldiner Kiez'. Die Anmerkung wurde nicht berücksichtigt."
+          "status": "geschlossen",
+          "kommentar": "Der Name 'Frau Schreiber' wurde entfernt und durch eine allgemeine Formulierung ersetzt."
         },
         {
           "index": 2,
-          "status": "offen",
-          "kommentar": "Der vollständige Name 'Frau Schreiber' ist weiterhin enthalten, z.B. 'Die Bezirksamtsmitarbeiterin Frau Schreiber betreut uns.'"
+          "status": "geschlossen",
+          "kommentar": "Die soziale Lage wurde konkret mit dem vom User genannten Anteil von 40 % in Klasse 1–2 untermauert."
         },
         {
           "index": 3,
           "status": "offen",
-          "kommentar": "Der konkrete Name 'Frau Schreiber' ist weiterhin enthalten, z.B. 'Hierzu besteht eine formale Vereinbarung mit dem Bezirk, betreut durch Frau Schreiber.'"
+          "kommentar": "Die Begründung 'komplexe Problemlagen' bleibt ohne konkrete Belege aus den User-Antworten."
         },
         {
           "index": 4,
-          "status": "offen",
-          "kommentar": "Der Name 'Frau Schreiber' ist weiterhin enthalten, z.B. 'Die Nachhaltigkeit des Projekts wird durch die bestehende formale Vereinbarung mit dem Bezirk gesichert, betreut durch eine Bezirksamtsmitarbeiterin.'"
+          "status": "geschlossen",
+          "kommentar": "Der Zeitplan wurde auf 'Schuljahr nach den Sommerferien 2026' vereinfacht."
         },
         {
           "index": 5,
           "status": "offen",
-          "kommentar": "Der Name 'Frau Schreiber' ist weiterhin enthalten, z.B. 'Die Nachhaltigkeit des Projekts wird durch eine bestehende formale Vereinbarung mit dem Bezirk gesichert; eine Mitarbeiterin vom Bezirksamt betreut uns.'"
+          "kommentar": "Ein konkreter Besetzungstermin fehlt weiterhin."
         },
         {
           "index": 6,
           "status": "offen",
-          "kommentar": "Der Name 'Frau Schreiber' ist weiterhin enthalten, z.B. 'Die Grundschule am Soldiner Kiez kooperiert eng mit dem Bezirk, was durch eine formale Vereinbarung belegt ist. Eine Mitarbeiterin vom Bezirksamt betreut diese Kooperation.'"
+          "kommentar": "Halbjahres- oder Monatsangaben wurden nicht gestrichen oder als TODO markiert."
         },
         {
           "index": 7,
-          "status": "offen",
-          "kommentar": "Der Name 'Frau Schreiber' ist weiterhin enthalten, z.B. 'Die formale Vereinbarung mit dem Bezirk, betreut durch eine Mitarbeiterin vom Bezirksamt, sichert die Nachhaltigkeit des Projekts.'"
+          "status": "geschlossen",
+          "kommentar": "Der Name 'Frau Schreiber' wurde entfernt und durch eine allgemeine Formulierung ersetzt."
         },
         {
           "index": 8,
-          "status": "geschlossen"
+          "status": "offen",
+          "kommentar": "Ein konkretes Ergebnis oder Datum der Jugendamtsgespräche fehlt weiterhin."
         },
         {
           "index": 9,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die Hamburger Leseprobe wurde als Beispiel genannt, aber nicht als alleiniges Verfahren festgelegt."
         },
         {
           "index": 10,
           "status": "teilweise",
-          "kommentar": "Es wird Bezug auf die Startchancen genommen, aber die Transferfähigkeit wird weiterhin kaum behandelt und die Nachhaltigkeit ist immer noch hauptsächlich an die formale Vereinbarung geknüpft."
+          "kommentar": "Die 'schulinterne Qualitätsentwicklung' wurde gestrichen, aber die Auswertung durch das Kollegium bleibt."
         },
         {
           "index": 11,
-          "status": "teilweise",
-          "kommentar": "Es wird weiterhin Bezug auf das Datum genommen, aber keine Präzisierung vorgenommen."
+          "status": "offen",
+          "kommentar": "Die Aussage zur externen Begleitung wurde nicht gestrichen oder als TODO markiert."
         },
         {
           "index": 12,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die Formulierung wurde leicht angepasst, aber die Reduzierung bleibt ohne Beleg."
+        },
+        {
+          "index": 13,
+          "status": "offen",
+          "kommentar": "Es fehlt eine fachliche Einordnung und Begründungslogik im Abschnitt 'Teilnehmende Schulen'."
+        },
+        {
+          "index": 14,
+          "status": "offen",
+          "kommentar": "Es fehlt eine fachliche Einordnung und Begründungslogik im Abschnitt 'Umsetzungskonzept'."
+        },
+        {
+          "index": 15,
+          "status": "offen",
+          "kommentar": "Es fehlt eine fachliche Einordnung und Begründungslogik im Abschnitt 'Evaluation'."
         }
       ],
       "hasOpenHighFindings": true,
+      "factVerification": {
+        "neutralisiert": [
+          "Die formale Vereinbarung mit dem Bezirksamt sichert die strukturelle Verankerung des Vorhabens.",
+          "Die bereits bestehende Zusammenarbeit mit zwei Schulsozialarbeiterinnen und einer Schulpsychologin zeigt Wirkung in der Familienarbeit",
+          "die geplante Maßnahme adressiert die soziale Benachteiligung systematisch",
+          "die Nachhaltigkeit ist durch die Eingliederung der Materialien in die schulinternen Curricula und laufende Verhandlungen mit dem Jugendamt über eine Anschlussfinanzierung der Sozialarbeiterstelle gesichert",
+          "Die Materialien und Diagnostikinstrumente werden dauerhaft im Schulhaus vorgehalten und in die Curricula der Klassen 1–2 integriert",
+          "Die Evaluation erfolgt durch das Kollegium, das die Daten halbjährlich auswertet",
+          "Die Fehlzeitenquote wird quartalsweise aus den Schulverwaltungsdaten abgeleitet",
+          "die Gespräche mit dem Jugendamt zur langfristigen Finanzierung der dritten Stelle laufen bereits"
+        ],
+        "vorschlaege": [
+          "Die Fehlzeitenquote wird quartalsweise aus den Schulverwaltungsdaten abgeleitet",
+          "die Materialien für die Klassen 1 und 2 beschafft sein; die dritte Sozialarbeiterstelle muss zum Schuljahresbeginn besetzt werden",
+          "Die Evaluation erfolgt durch das Kollegium, das die Daten halbjährlich auswertet"
+        ],
+        "vorschlaegeBegruendung": [
+          {
+            "zitat": "Die Fehlzeitenquote wird quartalsweise aus den Schulverwaltungsdaten abgeleitet",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "die Materialien für die Klassen 1 und 2 beschafft sein; die dritte Sozialarbeiterstelle muss zum Schuljahresbeginn besetzt werden",
+            "warum": "Die Nutzerangaben bestätigen zwar die Materialbeschaffung und den Wunsch nach einer Sozialarbeiterstelle, aber nicht deren konkrete Beschaffungs- oder Besetzungszeitpunkte — dies ist eine plausible Ausgestaltung, die als Vorschlag gekennzeichnet werden sollte."
+          },
+          {
+            "zitat": "Die Evaluation erfolgt durch das Kollegium, das die Daten halbjährlich auswertet",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          }
+        ],
+        "remaining": [
+          "Die Evaluation erfolgt durch das Kollegium, das die Daten halbjährlich auswertet",
+          "Die Fehlzeitenquote wird quartalsweise aus den Schulverwaltungsdaten abgeleitet"
+        ],
+        "repaired": true
+      },
       "consistencyIssues": [
         {
-          "art": "betrag-unstimmig",
-          "beschreibung": "Der Antrag nennt 60.000 € für die Schulsozialarbeiterin, der Finanzplan 75.000 €.",
-          "posten": "Dritte Schulsozialarbeiterin für Elternarbeit",
-          "textstelle": "60.000 Euro für die zusätzliche Schulsozialarbeiterin"
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antrag nennt 'Fehlzeitenquote' als Zielindikator, aber im Finanzplan gibt es keinen Posten für deren Erhebung oder Auswertung.",
+          "textstelle": "Fehlzeitenquote wird quartalsweise ..."
         },
         {
-          "art": "betrag-unstimmig",
-          "beschreibung": "Der Antrag nennt 40.000 € für Lernmaterialien, der Finanzplan 15.000 €.",
-          "posten": "Lernmaterialien Klasse 1-2",
-          "textstelle": "40.000 Euro für die Beschaffung von Lernmaterialien"
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antrag erwähnt 'Elternabende' als Indikator für Elternarbeit, aber im Finanzplan fehlt ein Posten für deren Organisation oder Dokumentation.",
+          "textstelle": "Teilnahmequote an Elternabenden ..."
         },
         {
-          "art": "betrag-unstimmig",
-          "beschreibung": "Der Antrag nennt 50.000 € für Sprachförderung, der Finanzplan 20.000 €.",
-          "posten": "Sprachförderung außerhalb des Regelunterrichts",
-          "textstelle": "50.000 Euro für die Intensivierung der Sprachförderung"
-        },
-        {
-          "art": "posten-ohne-textbezug",
-          "beschreibung": "Der Finanzplan enthält einen Posten 'Spielgeräte Schulhof', der im Antrag nicht erwähnt wird.",
-          "posten": "Spielgeräte Schulhof"
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antrag beschreibt 'dokumentierte Beratungsgespräche' der Schulsozialarbeit als Indikator, aber im Finanzplan gibt es keinen Posten für Dokumentationsmaterial oder -systeme.",
+          "textstelle": "dokumentierte Beratungsgespräche ..."
         }
       ],
       "hasConsistencyIssues": true,
-      "finalText": "# Startchancen für den Soldiner Kiez: Ausbau von Sprachförderung, Lernmaterialien und Elternarbeit\n\n## Ausgangslage und Bedarf\n\nDie Grundschule am Soldiner Kiez ist mit 420 Schülerinnen und Schülern eine Startchancen-Schule in Berlin. Ein hoher Anteil unserer Schülerschaft (68%) lebt in Familien, die SGB II-Leistungen beziehen. Dies stellt uns vor besondere Herausforderungen, insbesondere im Bereich der Sprachförderung. 40% der Kinder kommen ohne ausreichende Deutschkenntnisse in die Schule.\n\nUm die Bildungschancen unserer Schülerinnen und Schüler zu verbessern, ist das Projekt \"Startchancen Saeule II+III Ausbau\" von großer Bedeutung. Es zielt auf den Ausbau der Sprachförderung und die Beschaffung von Lernmaterialien (Säule II) sowie die Schaffung einer dritten Schulsozialarbeiterinnenstelle für die Elternarbeit (Säule III).\n\nIm Bereich der Schulsozialarbeit haben wir bereits erste Schritte unternommen und konnten mit Unterstützung der Startchancen-Mittel zwei Schulsozialarbeiterinnen und eine Schulpsychologin einsetzen. Dies hat bereits einen enormen Unterschied bei der Betreuung von Familien mit komplexen Problemlagen bewirkt. Wir möchten diese Arbeit intensivieren und den Fokus verstärkt auf die Elternarbeit legen. Eine formale Vereinbarung mit dem Bezirk besteht, die Bezirksamtsmitarbeiterin betreut uns.\n\nMit dem Projekt verfolgen wir messbare Ziele: Die Lesekompetenz in Klasse 2 soll, gemessen mit der Hamburger Leseprobe, um mindestens 15 Prozentpunkte gegenüber dem Vorjahr steigen. Die Fehlzeitenquote soll von 12% auf unter 8% reduziert werden. Zudem streben wir an, alle Familien, die Angebote der Säule III benötigen, beim ersten Kontakt innerhalb von 2 Wochen zu erreichen.\n\n## Zielsetzung des Vorhabens\n\nZiel des Vorhabens „Startchancen Saeule II+III Ausbau“ an der Grundschule am Soldiner Kiez ist es, die Bildungschancen unserer 420 Schülerinnen und Schüler, insbesondere in den Klassen 1 und 2, deutlich zu verbessern. Als Startchancen-Schule mit einem hohen Anteil von Kindern aus SGB-II-Familien (68%) konzentrieren wir uns auf die Säulen II und III des Programms: Sprachförderung und Lernmaterialien sowie Schulsozialarbeit und Elternarbeit.\n\nKonkret verfolgen wir drei messbare Ziele: Erstens soll die Lesekompetenz der Kinder in Klasse 2 um mindestens 15 Prozentpunkte im Vergleich zum Vorjahr gesteigert werden, gemessen mit der Hamburger Leseprobe. Zweitens wollen wir die Fehlzeiten von derzeit 12% auf unter 8% reduzieren. Drittens streben wir an, alle Familien, die Angebote im Bereich der Elternarbeit durch unsere Schulsozialarbeiterinnen benötigen, innerhalb von zwei Wochen nach dem ersten Kontakt zu erreichen.\n\nUm diese Ziele zu erreichen, planen wir folgende Aktivitäten: Ausbau der Sprachförderung außerhalb des Regelunterrichts, da 40% der Kinder ohne ausreichende Deutschkenntnisse ankommen; Beschaffung von Lernmaterialien für individualisiertes Lernen in Klasse 1 und 2; sowie die Einstellung einer dritten Schulsozialarbeiterin, die sich speziell der Elternarbeit widmet. Hier bauen wir auf unseren bisherigen Erfahrungen mit zwei Schulsozialarbeiterinnen und einer Schulpsychologin auf, die wir bereits über das Startchancen-Programm finanzieren konnten.\n\nDie Nachhaltigkeit des Vorhabens wird durch eine formale Vereinbarung mit dem Bezirk sichergestellt, die von einer Bezirksamtsmitarbeiterin betreut wird.\n\n## Geplante Maßnahmen und Aktivitäten\n\nIm Rahmen des Startchancen-Programms plant die Grundschule am Soldiner Kiez, die Säulen II und III auszubauen, um die Bildungschancen unserer 420 Schülerinnen und Schüler, insbesondere in den Klassen 1 und 2, nachhaltig zu verbessern.\n\nEin Schwerpunkt liegt auf der Intensivierung der Sprachförderung. Angesichts der Tatsache, dass 40% der Kinder ohne ausreichende Deutschkenntnisse an die Schule kommen, ist eine zusätzliche Sprachförderung außerhalb des Regelunterrichts unerlässlich. Parallel dazu soll die Beschaffung von Lernmaterialien für individualisiertes Lernen in den Klassen 1 und 2 erfolgen.\n\nEin weiterer Baustein ist der Ausbau der Schulsozialarbeit mit Fokus auf die Elternarbeit. Wir konnten bereits zwei Schulsozialarbeiterinnen und eine Schulpsychologin über das Startchancen-Programm finanzieren, was sich positiv auf die Betreuung von Familien mit komplexen Problemlagen auswirkt. Um die Elternarbeit weiter zu intensivieren, ist die Einstellung einer dritten Sozialarbeiterin geplant, die sich speziell diesem Bereich widmen soll. Hierzu besteht eine formale Vereinbarung mit dem Bezirk, betreut durch eine Bezirksamtsmitarbeiterin.\n\nDie geplanten Maßnahmen zielen darauf ab, die Lesekompetenz in Klasse 2 um mindestens 15 Prozentpunkte (gemessen mit der Hamburger Leseprobe) zu steigern, die Fehlzeiten von 12% auf unter 8% zu reduzieren und sicherzustellen, dass alle Familien, die Angebote der Säule III benötigen, innerhalb von zwei Wochen nach dem Erstkontakt erreicht werden können. Die Nachhaltigkeit des Vorhabens wird durch die formale Bezirksvereinbarung gesichert.\n\nDie beantragten Mittel werden hauptsächlich in die Bereiche Schulsozialarbeit, Sprachförderung und Lernmaterialien investiert.\n\n## Erwartete Wirkungen und Evaluation\n\nDas Projekt \"Startchancen Saeule II+III Ausbau\" an der Grundschule am Soldiner Kiez zielt auf eine Verbesserung der Bildungschancen unserer 420 Schülerinnen und Schüler, insbesondere in den Klassen 1 und 2. Durch die geplante Sprachförderung außerhalb des Regelunterrichts, die Beschaffung von Lernmaterialien für individualisiertes Lernen sowie den Ausbau der Schulsozialarbeit mit Fokus auf Elternarbeit, erwarten wir deutliche positive Auswirkungen.\n\nKonkret streben wir eine Steigerung der Lesekompetenz in Klasse 2 um mindestens 15 Prozentpunkte gegenüber dem Vorjahr an. Die Messung erfolgt mit der Hamburger Leseprobe. Des Weiteren soll die Fehlzeitenquote von derzeit 12% auf unter 8% reduziert werden. Ein weiterer Fokus liegt auf der Erreichbarkeit der Familien, die Angebote der Schulsozialarbeit (Säule III) benötigen. Hier soll sichergestellt werden, dass diese Familien innerhalb von zwei Wochen nach dem ersten Kontakt erreichbar sind. Die Messung erfolgt über die Erstansprechzeit.\n\nDie Nachhaltigkeit des Projekts wird durch die bestehende formale Vereinbarung mit dem Bezirk gesichert, betreut durch eine Bezirksamtsmitarbeiterin. Bereits jetzt zeigt sich, dass die durch Startchancen finanzierten zwei Schulsozialarbeiterinnen und eine Schulpsychologin einen \"enormen Unterschied\" bei Familien mit komplexen Problemlagen bewirken.\n\n## Beitrag zur Bildungsgerechtigkeit und Nachhaltigkeit\n\nDie Grundschule am Soldiner Kiez, eine Startchancen-Schule in Berlin mit 420 Schülern und einem hohen Anteil von Kindern aus SGB-II-Familien (68%), leistet mit dem Projekt \"Startchancen Saeule II+III Ausbau\" einen wesentlichen Beitrag zur Bildungsgerechtigkeit. Der Ausbau der Sprachförderung, die Beschaffung von Lernmaterialien und die zusätzliche Schulsozialarbeiterin für die Elternarbeit zielen darauf ab, die Startchancen der Kinder zu verbessern.\n\nEin Schwerpunkt liegt auf der Verbesserung der Lesekompetenz in Klasse 2, die um mindestens 15 Prozentpunkte gesteigert werden soll (Messung über Hamburger Leseprobe). Zudem sollen die Fehlzeiten von 12% auf unter 8% reduziert werden. Um Familien in komplexen Problemlagen besser zu erreichen, soll durch eine dritte Schulsozialarbeiterin die Zeit bis zum ersten Kontakt auf unter 2 Wochen gesenkt werden. Aktuell finanzieren wir bereits zwei Schulsozialarbeiterinnen und eine Schulpsychologin über das Startchancen-Programm.\n\nDie Nachhaltigkeit des Projekts wird durch eine bestehende formale Vereinbarung mit dem Bezirk gesichert; eine Mitarbeiterin vom Bezirksamt betreut uns. Diese Kooperation ermöglicht eine kontinuierliche und strukturierte Zusammenarbeit, um die angestrebten Ziele langfristig zu erreichen. Die Schwerpunkte liegen auf Schulsozialarbeit, Sprachförderung und Lernmaterialien.\n\n## Kooperationen und Netzwerk\n\nDie Grundschule am Soldiner Kiez kooperiert eng mit dem Bezirk, was durch eine formale Vereinbarung belegt ist. Eine Mitarbeiterin vom Bezirksamt betreut diese Kooperation. Diese Zusammenarbeit ist entscheidend, um die Wirksamkeit der geplanten Maßnahmen in den Säulen II und III des Startchancen-Programms zu erhöhen.\n\nIm Rahmen der Säule III wurden bereits zwei Schulsozialarbeiterinnen und eine Schulpsychologin über das Startchancen-Programm finanziert. Dies hat bereits zu einer deutlichen Verbesserung in der Betreuung von Familien mit komplexen Problemlagen geführt. Die geplante dritte Sozialarbeiterin soll sich speziell auf die Elternarbeit konzentrieren, um den Familienreach zu verbessern.\n\nDie Kooperation mit dem Bezirk und die bestehenden Strukturen der Schulsozialarbeit bilden eine solide Grundlage für die erfolgreiche Umsetzung des Projekts \"Startchancen Saeule II+III Ausbau\", welches Sprachförderung, Lernmaterialien und verstärkte Elternarbeit umfasst.\n\n## Finanzierungsplan und Ressourcen\n\nDie beantragten Mittel werden für den Ausbau der Startchancen-Säulen II und III verwendet, um die Bildungschancen der 420 Schülerinnen und Schüler der Grundschule am Soldiner Kiez zu verbessern. Der Schwerpunkt liegt auf den Klassen 1 und 2.\n\nEin wesentlicher Teil der Mittel ist für die Sprachförderung außerhalb des Regelunterrichts vorgesehen, da 40% der Schulanfänger nicht über ausreichende Deutschkenntnisse verfügen. Weiterhin werden Lernmaterialien für individualisiertes Lernen in den ersten beiden Klassen beschafft.\n\nEin weiterer Hauptposten ist die Schulsozialarbeit. Wir planen, eine dritte Sozialarbeiterin einzustellen, die sich speziell um die Elternarbeit kümmert. Aktuell finanzieren wir bereits zwei Schulsozialarbeiterinnen und eine Schulpsychologin über das Startchancen-Programm, was einen enormen Unterschied bei der Betreuung von Familien mit komplexen Problemlagen macht.\n\nDie formale Vereinbarung mit dem Bezirk, betreut durch eine Mitarbeiterin vom Bezirksamt, sichert die Nachhaltigkeit des Projekts.\n\nDie konkrete Höhe der beantragten Mittel beträgt 150.000 Euro pro Jahr. Diese Summe setzt sich wie folgt zusammen: 60.000 Euro für die zusätzliche Schulsozialarbeiterin, 50.000 Euro für die Intensivierung der Sprachförderung und 40.000 Euro für die Beschaffung von Lernmaterialien. Einen Eigenanteil können wir nicht einbringen, da unser Budget bereits voll ausgeschöpft ist. Ein Eigenanteil ist jedoch nicht verpflichtend.\n\n## Kumulierung mit anderen Förderprogrammen\n\nAktuell werden keine weiteren Förderprogramme für die hier beantragten Maßnahmen in Anspruch genommen. Sollte es im Laufe des Projektzeitraums zu Überschneidungen mit anderen Förderprogrammen kommen, werden wir dies dem Fördergeber unverzüglich mitteilen.",
+      "finalText": "# Startchancen Säule II+III Ausbau\n\n## Teilnehmende Schulen\n\nDie Grundschule am Soldiner Kiez in Berlin-Wedding nimmt als Startchancen-Schule seit 2024 am Programm teil und erfüllt damit die zentralen Förderkriterien des hohen Anteils sozial benachteiligter Schüler:innen. Mit einem SGB-II-Anteil von 68 % der Schülerschaft ist die Schule im Programm verankert. Die soziale Lage im Quartier ist geprägt durch einen hohen Anteil von Kindern ohne ausreichende Deutschkenntnisse (40 % in Klasse 1–2), was die Notwendigkeit gezielter Sprachförderung unterstreicht.\n\nDie formale Vereinbarung mit dem Bezirksamt liegt vor. Die bereits bestehende Zusammenarbeit mit zwei Schulsozialarbeiterinnen und einer Schulpsychologin ist Grundlage für die Einrichtung einer dritten, auf Elternarbeit spezialisierten Stelle. Die geplante Maßnahme verbindet Sprachförderung, Lernmaterialien und multiprofessionelle Elternarbeit.\n\nDie Sprachförderung in Kleingruppen außerhalb des Regelunterrichts zielt auf die Steigerung der Lesekompetenz in Klasse 1–2, da hier der dringendste Förderbedarf besteht. Die Nachhaltigkeit ist durch die Eingliederung der Materialien in die schulinternen Curricula gesichert.\n\n## Umsetzungskonzept\n\nDas Umsetzungskonzept verbindet die drei geplanten Maßnahmen – Sprachförderung, Lernmaterialien und die dritte Schulsozialarbeiterstelle für Elternarbeit – zu einem kohärenten System, das Sprache, Lernstand und familiäres Umfeld gleichzeitig adressiert. Die Sprachförderung erfolgt in Kleingruppen außerhalb des Regelunterrichts, da 40 % der Kinder ohne ausreichende Deutschkenntnisse eingeschult werden und hier der dringendste Förderbedarf besteht. Die Materialien werden diagnostikbasiert eingesetzt, um die Gruppengrößen passgenau zu gestalten und die Lernfortschritte messbar zu machen. Die dritte Sozialarbeiterstelle sichert die Elternarbeit ab, da im Kiez komplexe Problemlagen eine intensive Begleitung erfordern.\n\nDie Ziele werden über standardisierte Verfahren evaluiert: Die Lesekompetenz wird halbjährlich mit standardisierten Verfahren erhoben. [Annahme: Die Fehlzeitenquote wird quartalsweise aus den Schulverwaltungsdaten abgeleitet], um die Reduktion von 12 % auf unter 8 % zu dokumentieren. Für die Elternarbeit dienen dokumentierte Beratungsgespräche und die Teilnahmequote an Elternabenden (aktuell 30 %, Ziel 50 %) als Indikatoren. Zudem wird der Anteil der Kinder unter Mindeststandard im Lesen innerhalb von zwei Jahren um ein Drittel gesenkt – ein messbares Kriterium, das bereits in der schulinternen Diagnostik verankert ist.\n\nDie Nachhaltigkeit ist strukturell angelegt: Die Materialien und Diagnostikinstrumente werden dauerhaft im Schulhaus vorgehalten. Die Kleingruppen-Struktur der Sprachförderung ist so angelegt, dass sie auch mit reduziertem Personal weitergeführt werden kann, sodass die Maßnahmen auch nach Auslaufen der Förderung wirksam bleiben.\n\n## Zeitplan\n\nDas Vorhaben startet im Schuljahr nach den Sommerferien 2026. Die Sprachförderung beginnt in den Klassen 1 und 2 als wöchentliche Kleingruppenangebote außerhalb des Regelunterrichts, parallel dazu erfolgt die Einführung der neuen diagnostikbasierten Lernmaterialien für individualisiertes Lernen. Die dritte Schulsozialarbeiterstelle für Elternarbeit wird besetzt, um die bestehende Betreuung durch zwei Sozialarbeiterinnen und eine Schulpsychologin zu ergänzen.\n\nAls zentrale Meilensteine sind vorgesehen: Bis zum Ende des ersten Schulhalbjahres soll die Sprachförderung in Kleingruppen etabliert und [Annahme: die Materialien für die Klassen 1 und 2 beschafft sein; die dritte Sozialarbeiterstelle muss zum Schuljahresbeginn besetzt werden]. Bis zum Ende des Schuljahres werden die ersten Erhebungen zur Lesekompetenz und Fehlzeitenquote durchgeführt, um die Wirkung der Maßnahmen zu messen. Die Dokumentation der Elternarbeit wird ab dem zweiten Schulhalbjahr systematisch erfasst.\n\nDie Nachhaltigkeit des Vorhabens wird durch die Verankerung der Materialien in den schulinternen Curricula gesichert. Die Kleingruppen-Struktur der Sprachförderung ist so angelegt, dass sie auch bei reduzierter Personalbesetzung weitergeführt werden kann, was die Verstetigung der Maßnahme unterstützt.\n\n## Evaluation\n\nDie Evaluation des Vorhabens orientiert sich an den drei zentralen Zielbereichen – Lesekompetenz, Fehlzeitenreduktion und Erreichbarkeit von Familien – und nutzt dafür etablierte, standardisierte Messverfahren sowie dokumentierte Prozesse. Die Lesekompetenz wird halbjährlich mit standardisierten Verfahren erhoben. Als Indikator dient der Anteil der Kinder unter Mindeststandard im Lesen, der innerhalb von zwei Jahren um mindestens ein Drittel sinken soll. Parallel wird die Lesegeschwindigkeit und der Grundwortschatz erfasst, um Fortschritte im Bereich der Sprachförderung abzubilden. Die Fehlzeitenquote wird quartalsweise aus dem Schulverwaltungsprogramm abgeleitet und soll von aktuell 12 % auf unter 8 % reduziert werden. Die Erreichbarkeit von Familien wird über die Erstansprechzeit gemessen, die bei maximal zwei Wochen liegen muss, sowie über die dokumentierten Beratungsgespräche der Schulsozialarbeit und die Teilnahmequote an Elternabenden. Letztere soll von derzeit 30 % auf 50 % gesteigert werden.\n\nDie Nachhaltigkeit der Maßnahmen wird durch die strukturelle Verankerung der Sprachförderung in den schulinternen Curricula sowie die dauerhafte Bereitstellung der diagnostikbasierten Materialien gesichert. Die Kleingruppenstruktur der Sprachförderung ist so angelegt, dass sie mit dem vorhandenen Kollegium weitergeführt werden kann. [Annahme: Die Evaluation erfolgt durch das Kollegium, das die Daten halbjährlich auswertet].",
       "finanzplan": {
         "posten": [
           {
-            "id": "a4e68c2a-25cc-4c39-8ad3-a6a2a6b4cc3a",
+            "id": "207adbd2-a359-4e03-8985-72bd8b9473bd",
             "kategorie": "personal",
-            "bezeichnung": "Dritte Schulsozialarbeiterin für Elternarbeit",
-            "betragEur": 75000,
-            "begruendung": "Finanzierung einer zusätzlichen Schulsozialarbeiterin zur Intensivierung der Elternarbeit. Betrag als Pauschale angesetzt, da keine konkreten Tarifangaben vorliegen.",
-            "eigenanteil": false
+            "bezeichnung": "3. Schulsozialarbeiterin für Elternarbeit",
+            "betragEur": 65000,
+            "begruendung": "Schaetzung: Vollzeitstelle (TV-L E9a, Berlin, 12 Monatsgehälter) basierend auf üblichen Sozialarbeitergehältern in Berlin — konkrete Tarifstufe und Stundensatz noch einzuholen",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "45c4a033-ea85-432d-8e41-21b66d58649b",
-            "kategorie": "sachkosten",
-            "bezeichnung": "Lernmaterialien Klasse 1-2",
-            "betragEur": 15000,
-            "begruendung": "Materialien für individualisiertes Lernen in den Klassen 1 und 2. Pauschale geschaetzt.",
-            "eigenanteil": false
+            "id": "a8142b7d-d6da-4d81-b1be-e64729724582",
+            "kategorie": "personal",
+            "bezeichnung": "Schulpsychologin (anteilig)",
+            "betragEur": 25000,
+            "begruendung": "Schaetzung: 50% einer Vollzeitstelle (TV-L E9a, Berlin) für schulpsychologische Unterstützung — konkrete Aufteilung noch einzuholen",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "fdca997b-c404-427b-9552-143d4c47daee",
+            "id": "ec01f389-5a96-45ba-b0f4-9d76173ce5e6",
             "kategorie": "honorare",
-            "bezeichnung": "Sprachförderung außerhalb des Regelunterrichts",
-            "betragEur": 20000,
-            "begruendung": "Externe Sprachförderung für Kinder mit unzureichenden Deutschkenntnissen. Pauschale, da Honorarsätze unbekannt.",
-            "eigenanteil": false
+            "bezeichnung": "Externe Sprachförderkräfte",
+            "betragEur": 40000,
+            "begruendung": "Schaetzung: Honorarkräfte für Sprachförderung in Kleingruppen (40% der Schüler:innen) — Stundensatz und Umfang noch einzuholen",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "617a8bde-c613-4f0b-8849-b82c9b6f3c9f",
-            "kategorie": "investitionen",
-            "bezeichnung": "Spielgeräte Schulhof",
-            "betragEur": 50000,
-            "begruendung": "Verbesserung des Schulhofs durch neue Spielgeräte. Der Schulhof ist seit Jahren verwahrlost und soll einladender gestaltet werden. Pauschale geschaetzt.",
-            "eigenanteil": false
+            "id": "f00124e6-c056-422b-b03d-3db9d001ca57",
+            "kategorie": "sachkosten",
+            "bezeichnung": "Diagnostikbasierte Lernmaterialien Klasse 1-2",
+            "betragEur": 12000,
+            "begruendung": "Schaetzung: Materialien für individualisiertes Lernen (z. B. Leseförderprogramme, Arbeitshefte) — konkrete Kosten noch einzuholen",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "9c61ef2b-5317-41bc-b727-2c10a95cc1fd",
+            "kategorie": "sachkosten",
+            "bezeichnung": "Technische Ausstattung für Sprachförderung",
+            "betragEur": 8000,
+            "begruendung": "Schaetzung: Geräte (z. B. Tablets, Kopfhörer) für digitale Sprachförderung — konkrete Kosten noch einzuholen",
+            "eigenanteil": false,
+            "istVorschlag": true
           }
         ],
-        "generiertAm": "2026-05-20T10:16:15.851Z",
+        "generiertAm": "2026-07-22T11:55:56.470Z",
         "hinweise": [
-          "Die Beträge für Schulsozialarbeit, Lernmaterialien, Sprachförderung und Spielgeräte sind als Pauschalen angesetzt, da keine detaillierten Angaben zu Tarifstufen, Honorarsätzen oder Stückpreisen vorliegen. Genaue Kosten sind noch zu ermitteln.",
-          "Die Schule hat bereits positive Erfahrungen mit der Finanzierung von zwei Schulsozialarbeiterinnen und einer Schulpsychologin über Startchancen gemacht.",
-          "Die Schulleitung moechte den Schulhof attraktiver gestalten, hierfuer sind Investitionen in Spielgeraete geplant."
+          "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
+          "Alle Beträge sind grobe Schaetzungen ohne konkrete Angebote oder Tarifangaben der Schule — vor Einreichung durch Angebote belegen.",
+          "Die Sprachförderung und Materialien sind auf Klasse 1-2 und 40% der Schüler:innen ausgelegt (420 Schüler:innen × 40% = ca. 168 Kinder).",
+          "Die dritte Schulsozialarbeiterstelle ist explizit für Elternarbeit vorgesehen (vgl. Antwort 3).",
+          "Die Schulpsychologin wird nur anteilig finanziert, da bereits zwei Stellen über Startchancen laufen (vgl. Antwort 1).",
+          "Keine Eigenmittel im Finanzplan enthalten, da keine Pflicht im Programm besteht (vgl. Förderrichtlinie).",
+          "Schulhof-Investitionen (Säule I) sind nicht Teil dieses Antrags (vgl. Antwort 2).",
+          "Der Betrag für „3. Schulsozialarbeiterin für Elternarbeit\" (65.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Schulpsychologin (anteilig)\" (25.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Externe Sprachförderkräfte\" (40.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Diagnostikbasierte Lernmaterialien Klasse 1-2\" (12.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Technische Ausstattung für Sprachförderung\" (8.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
         ]
       }
     },
     "usages": [
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1016,
-          "candidatesTokens": 531
+          "promptTokens": 6611,
+          "candidatesTokens": 406
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2180,
-          "candidatesTokens": 379
+          "promptTokens": 6605,
+          "candidatesTokens": 506
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2188,
-          "candidatesTokens": 388
+          "promptTokens": 6587,
+          "candidatesTokens": 460
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2184,
-          "candidatesTokens": 389
+          "promptTokens": 6585,
+          "candidatesTokens": 465
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2189,
-          "candidatesTokens": 308
+          "promptTokens": 8130,
+          "candidatesTokens": 2036
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2178,
-          "candidatesTokens": 319
+          "promptTokens": 9317,
+          "candidatesTokens": 1514
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2162,
-          "candidatesTokens": 214
+          "promptTokens": 6004,
+          "candidatesTokens": 645
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2180,
-          "candidatesTokens": 262
+          "promptTokens": 3569,
+          "candidatesTokens": 1697
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4892,
-          "candidatesTokens": 1750
+          "promptTokens": 2759,
+          "candidatesTokens": 1471
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4785,
-          "candidatesTokens": 2454
+          "promptTokens": 3999,
+          "candidatesTokens": 719
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3899,
-          "candidatesTokens": 713
+          "promptTokens": 2589,
+          "candidatesTokens": 322
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2344,
-          "candidatesTokens": 521
+          "promptTokens": 2821,
+          "candidatesTokens": 1296
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3348,
-          "candidatesTokens": 361
+          "promptTokens": 2414,
+          "candidatesTokens": 217
         }
       }
     ]
   },
   "meta": {
-    "iso": "2026-05-20T10-16-18",
+    "iso": "2026-07-22T11-56-06",
     "runIndex": 2,
-    "pipelineCommitSha": "6d237f81",
+    "pipelineCommitSha": "1f0d8782",
     "featureFlags": {
-      "useVorbildFormulierungen": "false",
+      "useVorbildFormulierungen": "true",
       "complianceStageEnabled": "false",
-      "sharpPrompts": "false",
-      "geberRoutingV2": "false"
+      "sharpPrompts": "true",
+      "geberRoutingV2": "true"
     },
-    "latencyMs": 66003,
+    "latencyMs": 71094,
     "schemaVersion": 1
   }
 }

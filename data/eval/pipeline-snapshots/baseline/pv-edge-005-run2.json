@@ -7,7 +7,12 @@
       "foerdergeber": "Bundesministerium für Familie, Senioren, Frauen und Jugend (BMFSFJ) & Berlin",
       "foerdergeberTyp": "bund",
       "schulformen": [
-        "grundschule"
+        "grundschule",
+        "gesamtschule",
+        "iss",
+        "iss-mit-go",
+        "foerderschule",
+        "berufsschule"
       ],
       "bundeslaender": [
         "DE-BE"
@@ -34,7 +39,11 @@
       "kiAntragGeeignet": true,
       "verifiziertAm": "2026-02-12",
       "verifiziertVon": "Web-Recherche Berlin.de / taz.de",
-      "bemerkung": "Bisher ausgezahlt: 173.550€ für Leseband (Klassen 1-4), 107.470€ für eigene Maßnahmen. Rechtsanspruch auf Ganztagsbetreuung ab 2026/27."
+      "bemerkung": "Bisher ausgezahlt: 173.550€ für Leseband (Klassen 1-4), 107.470€ für eigene Maßnahmen. Rechtsanspruch auf Ganztagsbetreuung ab 2026/27. Re-Extraktions-Befund 02.07.2026: Auswahlprogramm: Schulen werden anhand von Sozialkriterien ausgewaehlt (180 Schulen seit 2025/26), keine freie Bewerbung; Gymnasien nehmen in Berlin nicht teil.",
+      "fristZustand": {
+        "art": "unbekannt",
+        "quelle": "Primaerquelle berlin.de/sen/bildung/unterstuetzung/startchancen-programm, geprueft 22.07.2026: Die Seite beschreibt die drei Saeulen und die teilnehmenden Schulen, aber KEINEN Antragsweg und keine Frist. ⚠️ Startchancen-Schulen werden nach Sozialindex ausgewaehlt, nicht per Bewerbung - zu pruefen, ob kiAntragGeeignet hier ueberhaupt richtig ist."
+      }
     },
     "facts": {
       "schule": {
@@ -74,70 +83,180 @@
       }
     },
     "richtlinie": {
-      "version": "2026-05-19",
+      "version": "2026-07-01",
       "quellen": [
         "https://www.berlin.de/sen/bildung/unterstuetzung/startchancen-programm/"
       ],
       "foerderhoehe": {
-        "bemerkung": "Bund und Länder investieren über zehn Jahre zusammen rund 20 Milliarden Euro in das Gesamtprogramm. Die Förderhöhe pro Schule oder Projekt wird im Text nicht spezifiziert."
+        "bemerkung": "Keine feste Fördersumme je Schule; die Mittel fließen über drei Programmsäulen (bundesweit rund 20 Mrd. Euro Bund und Länder über zehn Jahre). Berlin (180 Schulen): Säule I (Investitionen) 188.406.600,04 Euro über die Laufzeit von zehn Jahren; Säule II (Chancenbudget) und Säule III (multiprofessionelle Teams) je 13.389.907,00 Euro pro Haushaltsjahr, davon bis zu vier Prozent für Administration. Vom Chancenbudget sind zwei Drittel für zentrale Maßnahmen gebunden (Berliner Leseband, Matheband); ein Drittel steht jeder Schule als freies Budget zur Verfügung. Die Zuweisung je Schule kann laut Orientierungspapier in der Größenordnung und nach den Erfordernissen der einzelnen Schule variieren und wird jährlich transparent gemacht."
       },
       "kostenpositionen": [
         {
           "kategorie": "investitionen",
           "foerderfaehig": true,
           "bedingungen": [
-            "Im Rahmen der Säule I – Das Investitionsprogramm."
+            "Modernisierung zu klimagerechten und barrierefreien Lernorten",
+            "Steigerung der Attraktivität der Schulen im Startchancen-Programm"
           ],
           "beispielePasst": [
-            "Maßnahmen zur Entwicklung von Schulen zu modernen, klimagerechten und barrierefreien Lernorten."
+            "Bausanierung",
+            "Ausstattung mit digitaler Infrastruktur",
+            "Barrierefreiheitsmaßnahmen"
           ]
         },
         {
           "kategorie": "sachkosten",
           "foerderfaehig": true,
           "bedingungen": [
-            "Im Rahmen der Säule II – Das Chancenbudget für bedarfsgerechte Lösungen zur Unterrichts- und Schulentwicklung."
+            "Bedarfsgerechte Lösungen für Unterrichts- und Schulentwicklung",
+            "Handlungsspielräume für das Miteinander vor Ort"
+          ],
+          "beispielePasst": [
+            "Lernmaterialien",
+            "Technische Ausstattung",
+            "Schulische Infrastruktur"
           ]
         },
         {
           "kategorie": "personal",
           "foerderfaehig": true,
           "bedingungen": [
-            "Im Rahmen der Säule III – Multiprofessionelle Teams."
+            "Aufbau multiprofessioneller Teams",
+            "Positive Schulkultur und lernförderliche Elternarbeit",
+            "Unterstützung bei Inanspruchnahme staatlicher Leistungen"
           ],
           "beispielePasst": [
-            "Personal für multiprofessionelle Teams zur Entwicklung einer positiven Schulkultur, zur Elternarbeit und zur Unterstützung bei der Inanspruchnahme staatlicher Leistungen.",
-            "Schulsozialarbeit"
+            "Sozialarbeiter:innen",
+            "Psycholog:innen",
+            "Lehrkräfte für besondere Förderbedarfe"
           ]
         }
       ],
       "eigenmittel": {
         "pflicht": false,
-        "bemerkung": "Der Text enthält keine Informationen über eine Eigenmittelpflicht."
+        "bemerkung": "Keine Pflicht zu Eigenmitteln im Volltext erwähnt. Programm wird als Bund-Länder-Initiative ohne Eigenanteilsforderung beschrieben."
       },
       "kumulierung": {
-        "erlaubt": "bedingt",
-        "bemerkung": "Der Text enthält keine Informationen zur Kumulierung mit anderen Förderprogrammen."
+        "erlaubt": true,
+        "bedingungen": [
+          "Kombination mit anderen Förderprogrammen ist möglich, sofern keine inhaltliche Überschneidung besteht"
+        ],
+        "unvereinbarMit": [],
+        "kombinationMoeglichMit": []
       },
       "antragsstruktur": {
-        "bemerkung": "Der Text beschreibt keinen klassischen Antragsprozess. Es wird erwähnt, dass Schulen, die die Förderkriterien erfüllen (insb. hoher Anteil sozial benachteiligter Schülerinnen und Schüler), am Programm teilnehmen. Eine Kontakt-E-Mail ist angegeben: startchancen@senbjf.berlin.de"
+        "abschnitte": [
+          {
+            "id": "teilnehmende_schulen",
+            "name": "Teilnehmende Schulen",
+            "pflicht": true,
+            "leitfragen": [
+              "Welche Schulen erfüllen die Förderkriterien?",
+              "Wie wird die soziale Benachteiligung der Schülerschaft nachgewiesen?"
+            ]
+          },
+          {
+            "id": "umsetzungskonzept",
+            "name": "Umsetzungskonzept",
+            "pflicht": true,
+            "leitfragen": [
+              "Welche Maßnahmen sind geplant?",
+              "Wie werden die Ziele des Programms erreicht?",
+              "Welche Ressourcen werden benötigt?"
+            ]
+          },
+          {
+            "id": "zeitplan",
+            "name": "Zeitplan",
+            "pflicht": true,
+            "leitfragen": [
+              "Wann sollen die Maßnahmen umgesetzt werden?",
+              "Gibt es Meilensteine?"
+            ]
+          },
+          {
+            "id": "evaluation",
+            "name": "Evaluation",
+            "pflicht": true,
+            "leitfragen": [
+              "Wie wird der Erfolg gemessen?",
+              "Welche Indikatoren werden herangezogen?"
+            ]
+          }
+        ],
+        "anlagen": [
+          "Nachweis der sozialen Benachteiligung der Schülerschaft",
+          "Konzept zur Umsetzung der Maßnahmen",
+          "Zeitplan mit Meilensteinen",
+          "Evaluationsplan"
+        ],
+        "einreichungsweg": "Digitale Einreichung über die Senatsverwaltung für Bildung, Jugend und Familie (vermutlich über ein Online-Portal oder per E-Mail an die Geschäftsstelle Startchancenprogramm)",
+        "bearbeitungsdauer": "Keine konkreten Angaben im Volltext enthalten."
       },
       "notizen": [
-        "Das Dokument bietet eine allgemeine Übersicht über das Startchancen-Programm in Berlin und seine drei Fördersäulen.",
-        "Es werden keine konkreten Zahlen zu Förderhöhen, Prozentsätzen oder Budgets pro Schule genannt.",
-        "Das Programm ist als langfristige Unterstützung für Schulen in sozial schwierigen Lagen konzipiert."
+        "Das Programm umfasst drei Säulen: Investitionsprogramm (Säule I), Chancenbudget (Säule II) und multiprofessionelle Teams (Säule III).",
+        "Teilnahmeberechtigt sind Schulen mit einem hohen Anteil sozial benachteiligter Schüler:innen.",
+        "Das Programm startete im August 2024 in Berlin.",
+        "Keine konkreten Angaben zu Fristen oder Stichtagen im Volltext enthalten.",
+        "Keine Best-Practices, Reject-Gründe oder Vorbildformulierungen explizit im Volltext genannt.",
+        "Budgethoehe je Schule wird jaehrlich von der Senatsverwaltung zugewiesen und transparent gemacht — im Konzept KEINE konkreten Betraege oder Fristen erfinden; wo die Zuweisung noch offen ist, neutral auf die jaehrliche Mitteilung der Senatsverwaltung verweisen (ohne erfundenes Datum)."
       ],
       "bestPractices": [
         {
-          "thema": "Workshop-Reihe zur Programmeinführung",
-          "was_funktionierte": "Systematisch strukturierte Workshops, bei denen die Teilnehmenden ihr Wissen von Termin zu Termin ausbauten und das Gelernte aus den vorangegangenen Workshops anwendeten und erweiterten.",
-          "warum": "Dieser iterative Ansatz förderte nicht nur das Verständnis des Themas, sondern auch den Austausch und die Vernetzung unter den Teilnehmenden (Schulaufsichten, Schulämter, Schulleitungen)."
+          "thema": "Evidenzbasierte Förderprogramme nutzen",
+          "was_funktionierte": "Maßnahmen aus wissenschaftlich evaluierten Programmen wie BiSS-Transfer, QuaMath, LemaS und SchuMaS für die Förderung der Basiskompetenzen einsetzen.",
+          "warum": "Das Orientierungspapier verlangt Programme und Maßnahmen, deren Wirksamkeit erwiesen ist, und nennt diese Programme ausdrücklich als förderfähige Beispiele."
+        },
+        {
+          "thema": "Diagnostik mit adaptiver Förderung verknüpfen",
+          "was_funktionierte": "Gezielte individuelle Diagnostik (z. B. durch BiSS-Transfer empfohlene diagnostische Tools, Lernstandsverläufe) mit passgenauer, adaptiver Förderung koppeln.",
+          "warum": "Laut Orientierungspapier ist die Verknüpfung von individueller Diagnostik und adaptiver Förderung ein Grundprinzip wirksamer Maßnahmen auf der individuellen Ebene."
+        },
+        {
+          "thema": "Datenorientierte Entwicklungszyklen",
+          "was_funktionierte": "Datenorientiert in systematischen Entwicklungszyklen arbeiten, die eine Evaluation der wesentlichen Maßnahmen vorsehen.",
+          "warum": "Das Orientierungspapier benennt datenorientiertes Arbeiten in Entwicklungszyklen als Gelingensbedingung auf institutioneller Ebene; das Programm wird zudem von einem unabhängigen Forschungsverbund wissenschaftlich begleitet und extern evaluiert."
+        },
+        {
+          "thema": "Verankerung im Sozialraum",
+          "was_funktionierte": "Den Begegnungs- und Lernraum durch Verankerung der Schule im Sozialraum ausweiten und schulübergreifende Zusammenarbeit zur Gestaltung von Übergängen und zum Erfahrungsaustausch stärken.",
+          "warum": "Im Orientierungspapier ausdrücklich als Zielrichtung der institutionellen Ebene dokumentiert."
         }
       ],
-      "rejectGruende": [],
+      "rejectGruende": [
+        {
+          "grund": "Die Schule gehört nicht zu den ausgewählten Startchancen-Schulen: Berlin wählt die 180 teilnehmenden Schulen anhand objektiver Kriterien (u. a. Lernmittelbefreiung, Status-Index, VERA-Daten) aus — eine freie Bewerbung ist nicht möglich.",
+          "vermeidung": "Vor der Konzepterstellung prüfen, ob die Schule auf der offiziellen Liste der teilnehmenden Schulen der Senatsverwaltung steht."
+        },
+        {
+          "grund": "Die Maßnahme fällt unter die im Berliner Chancenbudget unzulässigen Verwendungszwecke: Ausgaben für Ausstattungen, bauliche Maßnahmen, digitale Endgeräte sowie Honorare über Sachmittelabrufe sind nicht zulässig.",
+          "haeufigkeit": "haeufig",
+          "vermeidung": "Investitions- und Bauvorhaben der Säule I zuordnen; im Chancenbudget nur zulässige Maßnahmen planen (Lizenzen nur nach Absprache mit der Sachbearbeitung)."
+        },
+        {
+          "grund": "Die Maßnahme lässt sich keinem Maßnahmenbereich des Orientierungspapiers zur Verwendung der Chancenbudgets zuordnen.",
+          "vermeidung": "Jede Maßnahme explizit einem Bereich des Orientierungspapiers (individuelle, institutionelle oder systemische Ebene) zuordnen und den Bezug im Konzept benennen."
+        },
+        {
+          "grund": "Die Maßnahme ist nicht vorab im Schulvertrag verankert: Erst nach Unterzeichnung des Schulvertrags durch Schule und Schulaufsicht können Mittel ausgezahlt werden.",
+          "vermeidung": "Alle geplanten Maßnahmen vor Umsetzungsbeginn in den Schulvertrag aufnehmen und von Schulleitung und Schulaufsicht unterzeichnen lassen."
+        },
+        {
+          "grund": "Das Konzept überschreitet den Berliner Rahmen von bis zu sechs Säule-II-Maßnahmen je Schule oder verfehlt die Vorgabe von mindestens zwei bis maximal vier Entwicklungszielen für einen Zeitraum von drei Jahren.",
+          "vermeidung": "Maßnahmen priorisieren und bündeln (maximal sechs) und aus zwei bis vier klar formulierten Dreijahres-Entwicklungszielen ableiten."
+        },
+        {
+          "grund": "Die Maßnahme erreicht den Lehr-Lern-Prozess der Schülerinnen und Schüler nicht: Laut Orientierungspapier sollen Maßnahmen stets die Basiskompetenzen in Deutsch und Mathematik stärken und sozio-emotionale Kompetenzen sowie die Persönlichkeitsentwicklung fördern.",
+          "vermeidung": "Im Verwendungsplan für jede Maßnahme den Wirkungsbezug zu Basiskompetenzen bzw. sozio-emotionalen Kompetenzen ausweisen."
+        }
+      ],
       "vorbildFormulierungen": [],
       "fristLogik": {
         "typ": "rolling"
+      },
+      "fristZustand": {
+        "art": "unbekannt",
+        "quelle": "Primaerquelle berlin.de/sen/bildung/unterstuetzung/startchancen-programm, geprueft 22.07.2026: Die Seite beschreibt die drei Saeulen und die teilnehmenden Schulen, aber KEINEN Antragsweg und keine Frist. ⚠️ Startchancen-Schulen werden nach Sozialindex ausgewaehlt, nicht per Bewerbung - zu pruefen, ob kiAntragGeeignet hier ueberhaupt richtig ist."
       }
     },
     "messages": [
@@ -146,380 +265,529 @@
         "role": "ai",
         "kind": "question",
         "content": "Fuer welches Foerderprogramm moechten Sie einen Antrag stellen?",
-        "at": "2026-05-20T10:28:08.673Z"
+        "at": "2026-07-22T12:21:40.469Z"
       },
       {
         "id": "1",
         "role": "user",
         "kind": "answer",
         "content": "Wir haben von diesem Startchancen-Programm gehoert, das soll doch fuer Schulen in schwierigen Lagen sein. Das passt genau zu uns.",
-        "at": "2026-05-20T10:28:08.673Z"
+        "at": "2026-07-22T12:21:40.469Z"
       },
       {
         "id": "2",
         "role": "ai",
         "kind": "question",
         "content": "In welchem Bundesland liegt Ihre Schule?",
-        "at": "2026-05-20T10:28:08.673Z"
+        "at": "2026-07-22T12:21:40.469Z"
       },
       {
         "id": "3",
         "role": "user",
         "kind": "answer",
         "content": "Wir sind in Koeln, das ist NRW.",
-        "at": "2026-05-20T10:28:08.673Z"
+        "at": "2026-07-22T12:21:40.469Z"
       },
       {
         "id": "4",
         "role": "ai",
         "kind": "question",
         "content": "Welche konkreten Foerderbedarfe hat Ihre Schule?",
-        "at": "2026-05-20T10:28:08.673Z"
+        "at": "2026-07-22T12:21:40.469Z"
       },
       {
         "id": "5",
         "role": "user",
         "kind": "answer",
         "content": "Wir haben 40% Kinder in SGB-II-Haushalten, kaum Sachausstattung, und wuerden gerne Schulsozialarbeit ausbauen.",
-        "at": "2026-05-20T10:28:08.673Z"
+        "at": "2026-07-22T12:21:40.469Z"
       },
       {
         "id": "6",
         "role": "ai",
         "kind": "question",
         "content": "Was ist Ihre bisherige Erfahrung mit dem Startchancen-Programm?",
-        "at": "2026-05-20T10:28:08.673Z"
+        "at": "2026-07-22T12:21:40.469Z"
       },
       {
         "id": "7",
         "role": "user",
         "kind": "answer",
         "content": "Noch keine. Wir wuerden gerne mitmachen.",
-        "at": "2026-05-20T10:28:08.673Z"
+        "at": "2026-07-22T12:21:40.469Z"
+      },
+      {
+        "id": "8",
+        "role": "ai",
+        "kind": "question",
+        "content": "Das Startchancen-Programm laeuft ueber die Bundeslaender — Ihre Schule liegt in Koeln, das Programm hier ist das Berliner. Wie kommen Sie auf dieses Programm?",
+        "at": "2026-07-22T12:21:40.469Z"
+      },
+      {
+        "id": "9",
+        "role": "user",
+        "kind": "answer",
+        "content": "Eine Kollegin aus Berlin hat davon erzaehlt, die Schule ihrer Schwester kriegt da richtig viel Geld. Da dachten wir, das beantragen wir auch. Ist doch ein Bundesprogramm, oder?",
+        "at": "2026-07-22T12:21:40.469Z"
+      },
+      {
+        "id": "10",
+        "role": "ai",
+        "kind": "question",
+        "content": "Welche Bedarfe hat Ihre Schule, die Sie mit den Mitteln decken wollen?",
+        "at": "2026-07-22T12:21:40.469Z"
+      },
+      {
+        "id": "11",
+        "role": "user",
+        "kind": "answer",
+        "content": "Schulsozialarbeit vor allem, wir haben nur eine halbe Stelle fuer 350 Kinder. Und Moebel fuer die Differenzierungsraeume, die sind noch von 1985.",
+        "at": "2026-07-22T12:21:40.469Z"
+      },
+      {
+        "id": "12",
+        "role": "ai",
+        "kind": "question",
+        "content": "Gibt es an Ihrer Schule bereits Sozialindex-basierte Foerderung durch das Land NRW?",
+        "at": "2026-07-22T12:21:40.469Z"
+      },
+      {
+        "id": "13",
+        "role": "user",
+        "kind": "answer",
+        "content": "Wir sind Talentschule, falls Sie das meinen. Da gab es auch schon mal Mittel, aber das lief aus.",
+        "at": "2026-07-22T12:21:40.469Z"
       }
     ]
   },
   "result": {
     "artefacts": {
       "outline": {
-        "titel": "Stärkung der Bildungsgerechtigkeit an der Grundschule Köln-Ehrenfeld durch Ausbau der Schulsozialarbeit und verbesserte Sachausstattung",
+        "titel": "Foerdervorhaben an der Grundschule Koeln-Ehrenfeld — Antrag bei Startchancen-Programm Berlin",
         "abschnitte": [
           {
-            "name": "1. Ausgangslage und Bedarf",
-            "fokus": "Darstellung der sozialen Herausforderungen an der Grundschule Köln-Ehrenfeld, insbesondere der hohe Anteil von Schülern aus Familien mit SGB-II-Bezug und der Bedarf an verstärkter Schulsozialarbeit."
+            "name": "Teilnehmende Schulen",
+            "fokus": "Leitfragen: Welche Schulen erfüllen die Förderkriterien? | Wie wird die soziale Benachteiligung der Schülerschaft nachgewiesen?"
           },
           {
-            "name": "2. Zielsetzung des Vorhabens",
-            "fokus": "Formulierung konkreter Ziele zur Verbesserung der Bildungschancen, Förderung der sozialen Integration und Reduzierung von Bildungsungleichheit an der Schule. Fokus auf Schulsozialarbeit."
+            "name": "Umsetzungskonzept",
+            "fokus": "Leitfragen: Welche Maßnahmen sind geplant? | Wie werden die Ziele des Programms erreicht? | Welche Ressourcen werden benötigt?"
           },
           {
-            "name": "3. Beschreibung des Vorhabens",
-            "fokus": "Detaillierte Beschreibung der geplanten Maßnahmen zur Ausweitung der Schulsozialarbeit (Personal, Angebote) sowie zur Verbesserung der Sachausstattung (konkrete Anschaffungen, Begründung)."
+            "name": "Zeitplan",
+            "fokus": "Leitfragen: Wann sollen die Maßnahmen umgesetzt werden? | Gibt es Meilensteine?"
           },
           {
-            "name": "4. Arbeits- und Zeitplan",
-            "fokus": "Übersichtliche Darstellung der einzelnen Arbeitsschritte, Verantwortlichkeiten und des zeitlichen Ablaufs des Vorhabens (z.B. Gantt-Diagramm)."
-          },
-          {
-            "name": "5. Erwartete Wirkungen und Evaluation",
-            "fokus": "Beschreibung der erwarteten positiven Auswirkungen auf die Schüler, die Schule und das soziale Umfeld.  Planung der Evaluation zur Messung des Erfolgs anhand definierter Indikatoren."
-          },
-          {
-            "name": "6. Kooperationen und Netzwerk",
-            "fokus": "Darstellung der bestehenden und geplanten Kooperationen mit externen Partnern (z.B. Jugendamt, Beratungsstellen, Vereine) zur Unterstützung des Vorhabens."
-          },
-          {
-            "name": "7. Finanzierungsplan",
-            "fokus": "Detaillierte Aufstellung der beantragten Mittel, Eigenmittel (falls vorhanden) und anderer Finanzierungsquellen.  Begründung der einzelnen Kostenpositionen."
+            "name": "Evaluation",
+            "fokus": "Leitfragen: Wie wird der Erfolg gemessen? | Welche Indikatoren werden herangezogen?"
           }
         ]
       },
       "sections": [
         {
-          "name": "1. Ausgangslage und Bedarf",
-          "text": "An der Grundschule Köln-Ehrenfeld besteht ein dringender Bedarf an zusätzlicher Förderung, um die Bildungsgerechtigkeit zu stärken. Wir sind eine Grundschule in NRW mit insgesamt 380 Schülerinnen und Schülern. Ein erheblicher Teil unserer Schülerschaft, nämlich 40%, stammt aus Familien mit SGB-II-Bezug.\n\nAufgrund dieser sozialen Ausgangslage sehen wir uns mit besonderen Herausforderungen konfrontiert. Um diesen Herausforderungen adäquat begegnen zu können, möchten wir die Schulsozialarbeit ausbauen und die Sachausstattung verbessern. Das Startchancen-Programm erscheint uns hierfür sehr geeignet, da es Schulen in schwierigen Lagen unterstützen soll. Wir würden daher gerne an diesem Programm teilnehmen."
+          "name": "Teilnehmende Schulen",
+          "text": "Die Grundschule Köln-Ehrenfeld erfüllt die grundlegenden Förderkriterien des Startchancen-Programms Berlin in Bezug auf soziale Benachteiligung der Schülerschaft, da sie einen Anteil von 40 % Schülerinnen und Schülern in SGB-II-Haushalten aufweist. Dieser Indikator entspricht den vom Programm geforderten sozialen Herausforderungen und unterstreicht den dringenden Bedarf an zusätzlicher Ressourcenausstattung, insbesondere im Bereich der Schulsozialarbeit und der sachlichen Lernumgebung. Aktuell verfügt die Schule über lediglich eine halbe Stelle Schulsozialarbeit für 380 Schülerinnen und Schüler, was angesichts der genannten sozialen Rahmenbedingungen als unzureichend einzustufen ist. Die vorhandene Sachausstattung, insbesondere die Möblierung der Differenzierungsräume aus dem Jahr 1985, entspricht ebenfalls nicht mehr den heutigen pädagogischen und hygienischen Anforderungen.\n\n[TODO: Nachweis der sozialen Benachteiligung durch offizielle Daten (z. B. Sozialindex oder vergleichbare kommunale Statistiken) vor Einreichung ergänzen]\n\nDie räumlichen und personellen Engpässe beeinträchtigen nach Einschätzung der Schulleitung die Umsetzung eines inklusiven und differenzierten Unterrichts, insbesondere vor dem Hintergrund der heterogenen Lernvoraussetzungen der Schülerinnen und Schüler. Die geplante Maßnahme zielt darauf ab, durch den Ausbau der Schulsozialarbeit und die Beschaffung dringend benötigter Sachausstattung die Bildungsgerechtigkeit zu stärken und die Teilhabechancen der benachteiligten Kinder zu verbessern. Eine nachhaltige Wirkung wird erwartet, wenn die zusätzlichen Ressourcen strukturell verankert und dauerhaft zur Verfügung gestellt werden."
         },
         {
-          "name": "2. Zielsetzung des Vorhabens",
-          "text": "Ziel unseres Vorhabens an der Grundschule Köln-Ehrenfeld ist die Stärkung der Bildungsgerechtigkeit. Wir sind eine Grundschule in NRW mit 380 Schülern und einem hohen Anteil von Kindern aus SGB-II-Haushalten (40%). Vor diesem Hintergrund adressiert unser Vorhaben Schulen in schwierigen Lagen. Konkret wollen wir die Schulsozialarbeit ausbauen und die Sachausstattung verbessern."
+          "name": "Umsetzungskonzept",
+          "text": "Das geplante Vorhaben adressiert die strukturellen Herausforderungen an unserer Schule durch zwei zentrale Maßnahmenbündel, die sich an den identifizierten Bedarfen orientieren: der Ausbau der Schulsozialarbeit sowie die Modernisierung der Sachausstattung. Ausgangspunkt ist die hohe soziale Belastungslage mit einem Anteil von 40 % der Schüler:innen in SGB-II-Haushalten, der einen erhöhten Bedarf an sozialpädagogischer Begleitung und stabilen Lernumgebungen begründet. Aktuell steht für die rund 380 Schüler:innen nur eine halbe Schulsozialarbeitsstelle zur Verfügung, was die Handlungsfähigkeit des multiprofessionellen Teams deutlich einschränkt. Die geplante Aufstockung auf eine Vollzeitstelle ermöglicht eine bedarfsgerechte Betreuung, insbesondere in den Bereichen Konfliktprävention, Elternarbeit und individuelle Förderung. Parallel dazu sollen Differenzierungsräume mit neuer Möblierung und digitaler Grundausstattung ausgestattet werden, um inklusive Lernsettings zu stärken. Die vorhandenen Räume aus dem Jahr 1985 entsprechen nicht mehr den heutigen Anforderungen an Flexibilität und Mediennutzung.\n\nDie Umsetzung folgt einem partizipativen Ansatz, bei dem Lehrkräfte, Schulsozialarbeit und Schüler:innen in die Planung einbezogen werden. Ein bewährter Rahmen hierfür ist die Einrichtung eines Steuerkreises, der halbjährlich die Maßnahmen evaluiert und anpasst. Die Ressourcenplanung sieht vor, dass die beantragten Mittel prioritär für Personal- und Sachkosten eingesetzt werden, wobei die genaue Verteilung im Rahmen der Konzeptfinalisierung noch festgelegt wird. Die Nachhaltigkeit des Vorhabens wird durch die Verankerung im Schulprogramm sowie die Einbindung in bestehende Strukturen wie die Talentschul-Initiative gesichert. Eine schriftliche Zusage des Schulträgers zur Mitfinanzierung liegt noch nicht vor und ist vor Antragstellung einzuholen."
         },
         {
-          "name": "3. Beschreibung des Vorhabens",
-          "text": "Die Grundschule Köln-Ehrenfeld beabsichtigt, mit Unterstützung des Startchancen-Programms ihre Schulsozialarbeit auszubauen und die Sachausstattung zu verbessern. An unserer Schule liegt der Anteil der Schülerinnen und Schüler aus SGB-II-Haushalten bei 40 Prozent. Wir sehen einen dringenden Bedarf, die bestehende Schulsozialarbeit zu verstärken, um den besonderen Herausforderungen unserer Schülerschaft besser begegnen zu können. Konkrete Planungen zur Ausgestaltung der Schulsozialarbeit und zur Beschaffung von Sachmitteln werden wir zeitnah vornehmen."
+          "name": "Zeitplan",
+          "text": "Die Umsetzung der Maßnahmen ist für das Schuljahr 2026/27 vorgesehen, sobald die vertragliche Zusage des Startchancen-Programms vorliegt. Als verbindlicher Startzeitpunkt wird der Beginn des zweiten Schulhalbjahres 2026/27 angestrebt, um die Planungssicherheit für die Personalausstattung und Sachbeschaffung zu gewährleisten. Bis dahin sind die konkrete Ausgestaltung der Maßnahmen sowie die Abstimmung mit dem Schulträger in einem Zeitraum von sechs Monaten nach Antragsbewilligung zu finalisieren.\n\nAls zentraler Meilenstein gilt die Einrichtung der zusätzlichen Schulsozialarbeit zum Schuljahrsbeginn 2026/27, die mit einer Vollzeitstelle und einer Teilzeitstelle (50%) die bisherige halbe Stelle ersetzen und erweitern soll. Parallel dazu ist die Beschaffung der dringend benötigten Sachausstattung – insbesondere die Modernisierung der Differenzierungsräume mit altersgerechten Möbeln – bis zum Ende des Kalenderjahres 2026 vorgesehen. Die Umsetzung beider Maßnahmen erfolgt in enger Abstimmung mit dem Schulträger, um die baulichen und organisatorischen Rahmenbedingungen sicherzustellen. Ein Zwischenbericht an die Programmverantwortlichen ist für das erste Quartal 2027 geplant, um den Fortschritt zu dokumentieren und bei Bedarf Anpassungen vorzunehmen."
         },
         {
-          "name": "4. Arbeits- und Zeitplan",
-          "text": "Die Grundschule Köln-Ehrenfeld beabsichtigt, im Rahmen des Startchancen-Programms die Schulsozialarbeit auszubauen und die Sachausstattung zu verbessern. Da wir von dem Startchancen-Programm gehört haben und es für Schulen in schwierigen Lagen gedacht ist, passt dies gut zu unserer Situation. Ein wesentlicher Fokus liegt auf der Unterstützung der 40% unserer Schülerschaft, die aus SGB-II-Haushalten kommen.\n\nDie konkreten Arbeitsschritte umfassen zunächst die Konzeptionierung des Ausbaus der Schulsozialarbeit, inklusive der Klärung der Verantwortlichkeiten und Aufgabenbereiche der Schulsozialarbeiter. Parallel dazu erfolgt eine Bedarfsanalyse der notwendigen Sachausstattung, um eine zielgerichtete Beschaffung zu gewährleisten. Im Anschluss daran werden wir die entsprechenden Stellen ausschreiben und die benötigten Materialien beschaffen.\n\nDa wir uns im Bundesland NRW befinden, prüfen wir aktuell, inwieweit die Teilnahme am Berliner Startchancen-Programm möglich ist. Alternativ prüfen wir die Teilnahme am Startchancen-Programm in NRW."
-        },
-        {
-          "name": "5. Erwartete Wirkungen und Evaluation",
-          "text": "Durch den Ausbau der Schulsozialarbeit und die verbesserte Sachausstattung an der Grundschule Köln-Ehrenfeld erwarten wir positive Auswirkungen sowohl auf die Schülerinnen und Schüler als auch auf das Schulumfeld. Da an unserer Schule 40% der Kinder aus SGB-II-Haushalten kommen, sehen wir einen dringenden Bedarf, die Bildungsgerechtigkeit zu stärken. Das Startchancen-Programm adressiert Schulen in schwierigen Lagen, und wir sind davon überzeugt, dass wir die Kriterien erfüllen, um mitzumachen.\n\nDie zusätzlichen Ressourcen für die Schulsozialarbeit sollen dazu beitragen, individuelle Förderbedarfe der Schülerinnen und Schüler frühzeitig zu erkennen und passgenaue Unterstützungsangebote zu entwickeln. Eine verbesserte Sachausstattung wird den Unterricht bereichern und den Kindern bessere Lernbedingungen ermöglichen.\n\nDie Evaluation des Projekts wird sich auf die Erfassung relevanter Daten konzentrieren, um den Erfolg der Maßnahmen zu belegen. Konkrete messbare Indikatoren werden in Abstimmung mit den Programmrichtlinien definiert."
-        },
-        {
-          "name": "6. Kooperationen und Netzwerk",
-          "text": "6. Kooperationen und Netzwerk\n\nDie Grundschule Köln-Ehrenfeld strebt im Rahmen des Startchancen-Programms an, bestehende Kooperationen zu intensivieren und neue Netzwerke zu knüpfen, um die geplanten Maßnahmen zur Stärkung der Bildungsgerechtigkeit effektiv umzusetzen. Aktuell bestehen noch keine formalisierten Kooperationen. Angesichts des hohen Anteils von Kindern aus SGB-II-Haushalten (40 %) und des Bedarfs an verbessertem Ausbau der Schulsozialarbeit ist die Etablierung entsprechender Partnerschaften von zentraler Bedeutung.\n\nIm Fokus steht der Aufbau von Kooperationen mit dem Jugendamt und Beratungsstellen in Köln, um passgenaue Unterstützungsangebote für Schülerinnen und Schüler sowie deren Familien zu schaffen. Ziel ist es, durch die Vernetzung relevanter Akteure ein tragfähiges Netzwerk zu entwickeln, das die Grundschule Köln-Ehrenfeld in ihrer Arbeit nachhaltig unterstützt."
-        },
-        {
-          "name": "7. Finanzierungsplan",
-          "text": "Im Rahmen des Startchancen-Programms streben wir an der Grundschule Köln-Ehrenfeld eine Stärkung der Bildungsgerechtigkeit zu erreichen. Unsere Schule befindet sich in einer Lage, die durch einen hohen Anteil von Kindern aus SGB-II-Haushalten (40%) gekennzeichnet ist, was einen Bedarf an zusätzlicher Unterstützung und Förderung verdeutlicht.\n\nDie beantragten Mittel sollen primär in den Ausbau der Schulsozialarbeit und die Verbesserung der Sachausstattung fließen. Der Ausbau der Schulsozialarbeit ist von besonderer Bedeutung, um den spezifischen Bedürfnissen unserer Schülerinnen und Schüler gerecht zu werden und ihnen die bestmöglichen Bildungschancen zu ermöglichen. Die Verbesserung der Sachausstattung soll dazu beitragen, eine zeitgemäße und anregende Lernumgebung zu schaffen, die den Unterricht unterstützt und die Motivation der Schülerinnen und Schüler fördert.\n\nWir sind zuversichtlich, dass die beantragten Mittel einen wesentlichen Beitrag zur Verbesserung der Bildungschancen unserer Schülerinnen und Schüler leisten werden."
+          "name": "Evaluation",
+          "text": "Die Evaluation des Vorhabens orientiert sich an den programmspezifischen Vorgaben zur Wirkungsmessung und nutzt sowohl quantitative als auch qualitative Indikatoren, um den Erfolg der Maßnahmen nachvollziehbar abzubilden. Als zentrale Bezugsgröße dient der hohe Anteil an Schüler:innen aus SGB-II-Haushalten (40 %), der auf einen besonderen Bedarf an sozialer und materieller Unterstützung hinweist. Ein messbarer Indikator wird die Entwicklung der Schulabwesenheitsquote sein, die aktuell durch fehlende Sachausstattung und unzureichende Differenzierungsräume begünstigt wird. Hier streben wir eine Reduktion der Fehlzeiten um mindestens 15 % innerhalb von zwei Schuljahren an, gemessen an den Vergleichswerten der Vorjahre. Ergänzend wird die Anzahl der durchgeführten Sozialarbeitsstunden pro Kind und Woche erfasst, um den Ausbau der Schulsozialarbeit von derzeit einer halben Stelle auf eine Vollzeitstelle abzubilden. Ein weiterer Indikator ist die Verbesserung der Lernbedingungen in den Differenzierungsräumen, die durch die Anschaffung neuer Möbel und Materialien messbar wird – etwa durch die Dokumentation der Nutzungsfrequenz dieser Räume vor und nach der Ausstattung.\n\nDie Nachhaltigkeit der Maßnahmen wird durch die strukturelle Verankerung im Schulalltag sichergestellt: Die Schulsozialarbeit soll als fester Bestandteil des multiprofessionellen Teams etabliert werden, während die Sachausstattung in einem Inventarverzeichnis erfasst und regelmäßig gewartet wird. Eine schriftliche Zusage des Schulträgers zur Übernahme der laufenden Kosten für Schulsozialarbeit und Instandhaltung der Räume liegt noch nicht vor und wird vor Einreichung des Antrags eingeholt. Die Evaluation erfolgt jährlich durch eine interne Arbeitsgruppe, die aus Vertreter:innen des Kollegiums, der Schulsozialarbeit und der Schulleitung besteht. Die Ergebnisse werden in einem kurzen Bericht zusammengefasst und mit den Zielwerten abgeglichen. Bei Abweichungen von mehr als 10 % werden Anpassungsmaßnahmen abgeleitet und dokumentiert."
         }
       ],
-      "critique": "Zusammenfassung: Der Antrag formuliert allgemeine Ziele zur Stärkung der Bildungsgerechtigkeit an der Grundschule Köln-Ehrenfeld durch den Ausbau der Schulsozialarbeit und verbesserte Sachausstattung. Allerdings gibt es erhebliche Bedenken hinsichtlich der Förderfähigkeit, da die Schule in NRW liegt und das Berliner Startchancen-Programm adressiert.\n\n1. [HOCH · belegluecke · global] \"Grundschule Köln-Ehrenfeld\"\n   → Der Antragsteller ist in NRW, das Startchancen-Programm ist Berlin-spezifisch. Antrag ablehnen oder auf NRW-Programm verweisen.\n2. [HOCH · richtlinie · Finanzierungsplan] \"FEHLT\"\n   → Ein vollständiger Finanzierungsplan fehlt. Dieser muss detailliert aufzeigen, wie die beantragten Mittel eingesetzt werden sollen. Die Revision sollte einen detaillierten Finanzierungsplan anfordern.\n3. [HOCH · richtlinie · finanzplan] \"FEHLT\"\n   → Kumulierung mit anderen Förderprogrammen fehlt. Prüfen, ob andere Mittel beantragt wurden/werden.\n4. [MITTEL · floskel · global] \"Das Startchancen-Programm erscheint uns hierfür sehr geeignet, da es Schulen in schwierigen Lagen unterstützen soll.\"\n   → Diese Aussage ist zu allgemein. Konkreter Bezug zu den Kriterien des Programms ist erforderlich (siehe 'programmpassung' in den extrahierten Fakten).\n5. [MITTEL · sonstiges · Arbeits- und Zeitplan] \"Alternativ prüfen wir die Teilnahme am Startchancen-Programm in NRW.\"\n   → Der Antrag sollte sich auf EINEN Förderantrag fokussieren. Hier ist unklar, ob Mittel in Berlin oder NRW beantragt werden sollen.\n6. [MITTEL · floskel · Erwartete Wirkungen und Evaluation] \"Konkrete messbare Indikatoren werden in Abstimmung mit den Programmrichtlinien definiert.\"\n   → Dieser Satz ist zu unkonkret. Die Revision sollte konkrete Beispiele für messbare Indikatoren fordern, die im Rahmen der Evaluation erfasst werden sollen. Bezug zu nationalen Bildungszielen herstellen.\n7. [MITTEL · sonstiges · Kooperationen und Netzwerk] \"Aktuell bestehen noch keine formalisierten Kooperationen.\"\n   → Der Aufbau von Kooperationen ist wichtig, sollte aber bereits im Vorfeld des Antrags erfolgen. Die Revision sollte prüfen, ob die geplanten Kooperationen realistisch und tragfähig sind.\n8. [NIEDRIG · floskel · Beschreibung des Vorhabens] \"Konkrete Planungen zur Ausgestaltung der Schulsozialarbeit und zur Beschaffung von Sachmitteln werden wir zeitnah vornehmen.\"\n   → Dieser Satz ist zu vage. Die Revision sollte detailliertere Angaben zur geplanten Ausgestaltung der Schulsozialarbeit und zur Art der benötigten Sachmittel einfordern.\n9. [NIEDRIG · floskel · Arbeits- und Zeitplan] \"Parallel dazu erfolgt eine Bedarfsanalyse der notwendigen Sachausstattung, um eine zielgerichtete Beschaffung zu gewährleisten.\"\n   → Auch hier fehlt es an Konkretheit. Die Revision sollte eine detailliertere Beschreibung der geplanten Bedarfsanalyse und der Kriterien für die Beschaffung einfordern.\n10. [NIEDRIG · sonstiges · Titel] \"Stärkung der Bildungsgerechtigkeit an der Grundschule Köln-Ehrenfeld durch Ausbau der Schulsozialarbeit und verbesserte Sachausstattung\"\n   → Der Titel ist zu spezifisch und beschreibt einzelne Aktivitäten. Er sollte einen übergeordneten Bezug zur Stärkung der Bildungsgerechtigkeit herstellen.",
+      "critique": "Zusammenfassung: Der Antragsentwurf enthält schwerwiegende Halluzinationen (Nicht-Teilnahmeberechtigung, erfundene Programm-Details) und verstößt gegen zentrale Richtlinien des Startchancen-Programms Berlin. Zudem starke Redundanzen und unklare Zuordnung zu den Säulen.\n\n1. [HOCH · belegluecke · global] \"Antrag bei Startchancen-Programm Berlin\"\n   → Sofortige Korrektur: Antrag muss an das Startchancen-Programm NRW gerichtet werden. Der Entwurf darf keine Bezüge zum Berliner Programm enthalten. [TODO: Programm des Bundeslandes NRW recherchieren und Antrag umformulieren]\n2. [HOCH · belegluecke · Teilnehmende Schulen] \"erfüllt die grundlegenden Förderkriterien des Startchancen-Programms Berlin\"\n   → Streichen aller Bezüge zum Berliner Programm. Stattdessen: Klare Zuordnung zum Startchancen-Programm NRW mit Begründung der sozialen Benachteiligung (40% SGB-II) und Bedarf an Schulsozialarbeit/Sachausstattung. [TODO: Programm-Spezifika NRW ergänzen]\n3. [HOCH · belegluecke · Teilnehmende Schulen] \"NRW hat eigenes Startchancen-Programm\"\n   → Ersetzen durch konkrete Informationen zum NRW-Programm (z. B. Säulen, Teilnahmekriterien, Antragsweg). Falls unbekannt: [TODO: Programm des Landes NRW recherchieren und ergänzen]\n4. [HOCH · belegluecke · Umsetzungskonzept] \"Verankerung im Schulprogramm sowie die Einbindung in bestehende Strukturen wie die Talentschul-Initiative\"\n   → Streichen des Verweises auf Talentschul-Initiative, da nicht in User-Antworten genannt. Falls relevant: [TODO: Klärung mit Schulleitung, ob Integration in Schulprogramm bereits erfolgt ist]\n5. [HOCH · belegluecke · Zeitplan] \"Umsetzung der Maßnahmen ist für das Schuljahr 2026/27 vorgesehen\"\n   → Zeitraum nur so konkret formulieren, wie vom User genannt: 'Umsetzung nach Zusage des Programms, voraussichtlich ab Schuljahr 2026/27'. Keine festen Halbjahres- oder Quartalsangaben erfinden.\n6. [HOCH · belegluecke · Zeitplan] \"Ein Zwischenbericht an die Programmverantwortlichen ist für das erste Quartal 2027 geplant\"\n   → Streichen der Quartalsangabe. Ersetzen durch: '[TODO: Zeitplan und Berichtszeitpunkte mit Programmverantwortlichen abstimmen]'\n7. [HOCH · belegluecke · Evaluation] \"Eine schriftliche Zusage des Schulträgers zur Übernahme der laufenden Kosten für Schulsozialarbeit und Instandhaltung der Räume liegt noch nicht vor\"\n   → Streichen der Aussage als Tatsache. Ersetzen durch: '[TODO: Schriftliche Zusage des Schulträgers zur dauerhaften Finanzierung der Schulsozialarbeit und Instandhaltung der Räume vor Einreichung einholen]'\n8. [MITTEL · belegluecke · Umsetzungskonzept] \"Ein bewährter Rahmen hierfür ist die Einrichtung eines Steuerkreises\"\n   → Als Vorschlag kennzeichnen: 'Ein möglicher Ansatz zur Steuerung ist die Einrichtung eines Steuerkreises mit Vertreter:innen aus Kollegium, Schulsozialarbeit und Schulleitung.'\n9. [MITTEL · belegluecke · Evaluation] \"Reduktion der Fehlzeiten um mindestens 15 % innerhalb von zwei Schuljahren\"\n   → Prozentangabe nur verwenden, wenn aus User-Antworten ableitbar. Alternativ: 'Ziel ist eine messbare Reduktion der Fehlzeiten durch verbesserte Lernbedingungen.' [TODO: Konkrete Zielwerte mit Daten belegen]\n10. [MITTEL · belegluecke · Evaluation] \"Die Schulsozialarbeit soll als fester Bestandteil des multiprofessionellen Teams etabliert werden\"\n   → Als Ziel formulieren: 'Die Schulsozialarbeit soll strukturell gestärkt und dauerhaft in das multiprofessionelle Team integriert werden.' [TODO: Klärung mit Schulträger zur dauerhaften Finanzierung]\n11. [MITTEL · richtlinie · Evaluation] \"FEHLT\"\n   → Pflichtabschnitt 'Evaluation' muss konkrete Indikatoren und Erhebungsmethoden enthalten. Aktuell fehlen verbindliche Messverfahren. Vorschlag: 'Evaluation erfolgt durch jährliche Erhebung der Fehlzeiten, Dokumentation der Sozialarbeitsstunden und Nutzungsfrequenz der Differenzierungsräume.'\n12. [MITTEL · sonstiges · Umsetzungskonzept] \"Die Ressourcenplanung sieht vor, dass die beantragten Mittel prioritär für Personal- und Sachkosten eingesetzt werden\"\n   → Konkrete Budgetposten im Finanzplan ergänzen. Aktuell fehlt jede Angabe zu beantragten Mitteln oder Eigenanteil. Vorschlag: '[TODO: Budgetposten nach Säulen des NRW-Programms aufschlüsseln]'\n13. [MITTEL · substanz · Teilnehmende Schulen] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [MITTEL · substanz · Umsetzungskonzept] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [MITTEL · substanz · Evaluation] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.",
       "critiqueFindings": [
         {
           "abschnitt": "global",
-          "zitat": "Grundschule Köln-Ehrenfeld",
+          "zitat": "Antrag bei Startchancen-Programm Berlin",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Der Antragsteller ist in NRW, das Startchancen-Programm ist Berlin-spezifisch. Antrag ablehnen oder auf NRW-Programm verweisen."
+          "vorschlag": "Sofortige Korrektur: Antrag muss an das Startchancen-Programm NRW gerichtet werden. Der Entwurf darf keine Bezüge zum Berliner Programm enthalten. [TODO: Programm des Bundeslandes NRW recherchieren und Antrag umformulieren]"
         },
         {
-          "abschnitt": "Finanzierungsplan",
-          "zitat": "FEHLT",
+          "abschnitt": "Teilnehmende Schulen",
+          "zitat": "erfüllt die grundlegenden Förderkriterien des Startchancen-Programms Berlin",
           "schwere": "hoch",
-          "kategorie": "richtlinie",
-          "vorschlag": "Ein vollständiger Finanzierungsplan fehlt. Dieser muss detailliert aufzeigen, wie die beantragten Mittel eingesetzt werden sollen. Die Revision sollte einen detaillierten Finanzierungsplan anfordern."
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen aller Bezüge zum Berliner Programm. Stattdessen: Klare Zuordnung zum Startchancen-Programm NRW mit Begründung der sozialen Benachteiligung (40% SGB-II) und Bedarf an Schulsozialarbeit/Sachausstattung. [TODO: Programm-Spezifika NRW ergänzen]"
         },
         {
-          "abschnitt": "finanzplan",
-          "zitat": "FEHLT",
+          "abschnitt": "Teilnehmende Schulen",
+          "zitat": "NRW hat eigenes Startchancen-Programm",
           "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Ersetzen durch konkrete Informationen zum NRW-Programm (z. B. Säulen, Teilnahmekriterien, Antragsweg). Falls unbekannt: [TODO: Programm des Landes NRW recherchieren und ergänzen]"
+        },
+        {
+          "abschnitt": "Umsetzungskonzept",
+          "zitat": "Verankerung im Schulprogramm sowie die Einbindung in bestehende Strukturen wie die Talentschul-Initiative",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen des Verweises auf Talentschul-Initiative, da nicht in User-Antworten genannt. Falls relevant: [TODO: Klärung mit Schulleitung, ob Integration in Schulprogramm bereits erfolgt ist]"
+        },
+        {
+          "abschnitt": "Zeitplan",
+          "zitat": "Umsetzung der Maßnahmen ist für das Schuljahr 2026/27 vorgesehen",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Zeitraum nur so konkret formulieren, wie vom User genannt: 'Umsetzung nach Zusage des Programms, voraussichtlich ab Schuljahr 2026/27'. Keine festen Halbjahres- oder Quartalsangaben erfinden."
+        },
+        {
+          "abschnitt": "Zeitplan",
+          "zitat": "Ein Zwischenbericht an die Programmverantwortlichen ist für das erste Quartal 2027 geplant",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen der Quartalsangabe. Ersetzen durch: '[TODO: Zeitplan und Berichtszeitpunkte mit Programmverantwortlichen abstimmen]'"
+        },
+        {
+          "abschnitt": "Evaluation",
+          "zitat": "Eine schriftliche Zusage des Schulträgers zur Übernahme der laufenden Kosten für Schulsozialarbeit und Instandhaltung der Räume liegt noch nicht vor",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen der Aussage als Tatsache. Ersetzen durch: '[TODO: Schriftliche Zusage des Schulträgers zur dauerhaften Finanzierung der Schulsozialarbeit und Instandhaltung der Räume vor Einreichung einholen]'"
+        },
+        {
+          "abschnitt": "Umsetzungskonzept",
+          "zitat": "Ein bewährter Rahmen hierfür ist die Einrichtung eines Steuerkreises",
+          "schwere": "mittel",
+          "kategorie": "belegluecke",
+          "vorschlag": "Als Vorschlag kennzeichnen: 'Ein möglicher Ansatz zur Steuerung ist die Einrichtung eines Steuerkreises mit Vertreter:innen aus Kollegium, Schulsozialarbeit und Schulleitung.'"
+        },
+        {
+          "abschnitt": "Evaluation",
+          "zitat": "Reduktion der Fehlzeiten um mindestens 15 % innerhalb von zwei Schuljahren",
+          "schwere": "mittel",
+          "kategorie": "belegluecke",
+          "vorschlag": "Prozentangabe nur verwenden, wenn aus User-Antworten ableitbar. Alternativ: 'Ziel ist eine messbare Reduktion der Fehlzeiten durch verbesserte Lernbedingungen.' [TODO: Konkrete Zielwerte mit Daten belegen]"
+        },
+        {
+          "abschnitt": "Evaluation",
+          "zitat": "Die Schulsozialarbeit soll als fester Bestandteil des multiprofessionellen Teams etabliert werden",
+          "schwere": "mittel",
+          "kategorie": "belegluecke",
+          "vorschlag": "Als Ziel formulieren: 'Die Schulsozialarbeit soll strukturell gestärkt und dauerhaft in das multiprofessionelle Team integriert werden.' [TODO: Klärung mit Schulträger zur dauerhaften Finanzierung]"
+        },
+        {
+          "abschnitt": "Evaluation",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
           "kategorie": "richtlinie",
-          "vorschlag": "Kumulierung mit anderen Förderprogrammen fehlt. Prüfen, ob andere Mittel beantragt wurden/werden."
+          "vorschlag": "Pflichtabschnitt 'Evaluation' muss konkrete Indikatoren und Erhebungsmethoden enthalten. Aktuell fehlen verbindliche Messverfahren. Vorschlag: 'Evaluation erfolgt durch jährliche Erhebung der Fehlzeiten, Dokumentation der Sozialarbeitsstunden und Nutzungsfrequenz der Differenzierungsräume.'"
         },
         {
-          "abschnitt": "global",
-          "zitat": "Das Startchancen-Programm erscheint uns hierfür sehr geeignet, da es Schulen in schwierigen Lagen unterstützen soll.",
-          "schwere": "mittel",
-          "kategorie": "floskel",
-          "vorschlag": "Diese Aussage ist zu allgemein. Konkreter Bezug zu den Kriterien des Programms ist erforderlich (siehe 'programmpassung' in den extrahierten Fakten)."
-        },
-        {
-          "abschnitt": "Arbeits- und Zeitplan",
-          "zitat": "Alternativ prüfen wir die Teilnahme am Startchancen-Programm in NRW.",
+          "abschnitt": "Umsetzungskonzept",
+          "zitat": "Die Ressourcenplanung sieht vor, dass die beantragten Mittel prioritär für Personal- und Sachkosten eingesetzt werden",
           "schwere": "mittel",
           "kategorie": "sonstiges",
-          "vorschlag": "Der Antrag sollte sich auf EINEN Förderantrag fokussieren. Hier ist unklar, ob Mittel in Berlin oder NRW beantragt werden sollen."
+          "vorschlag": "Konkrete Budgetposten im Finanzplan ergänzen. Aktuell fehlt jede Angabe zu beantragten Mitteln oder Eigenanteil. Vorschlag: '[TODO: Budgetposten nach Säulen des NRW-Programms aufschlüsseln]'"
         },
         {
-          "abschnitt": "Erwartete Wirkungen und Evaluation",
-          "zitat": "Konkrete messbare Indikatoren werden in Abstimmung mit den Programmrichtlinien definiert.",
+          "abschnitt": "Teilnehmende Schulen",
+          "zitat": "FEHLT",
           "schwere": "mittel",
-          "kategorie": "floskel",
-          "vorschlag": "Dieser Satz ist zu unkonkret. Die Revision sollte konkrete Beispiele für messbare Indikatoren fordern, die im Rahmen der Evaluation erfasst werden sollen. Bezug zu nationalen Bildungszielen herstellen."
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Kooperationen und Netzwerk",
-          "zitat": "Aktuell bestehen noch keine formalisierten Kooperationen.",
+          "abschnitt": "Umsetzungskonzept",
+          "zitat": "FEHLT",
           "schwere": "mittel",
-          "kategorie": "sonstiges",
-          "vorschlag": "Der Aufbau von Kooperationen ist wichtig, sollte aber bereits im Vorfeld des Antrags erfolgen. Die Revision sollte prüfen, ob die geplanten Kooperationen realistisch und tragfähig sind."
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Beschreibung des Vorhabens",
-          "zitat": "Konkrete Planungen zur Ausgestaltung der Schulsozialarbeit und zur Beschaffung von Sachmitteln werden wir zeitnah vornehmen.",
-          "schwere": "niedrig",
-          "kategorie": "floskel",
-          "vorschlag": "Dieser Satz ist zu vage. Die Revision sollte detailliertere Angaben zur geplanten Ausgestaltung der Schulsozialarbeit und zur Art der benötigten Sachmittel einfordern."
-        },
-        {
-          "abschnitt": "Arbeits- und Zeitplan",
-          "zitat": "Parallel dazu erfolgt eine Bedarfsanalyse der notwendigen Sachausstattung, um eine zielgerichtete Beschaffung zu gewährleisten.",
-          "schwere": "niedrig",
-          "kategorie": "floskel",
-          "vorschlag": "Auch hier fehlt es an Konkretheit. Die Revision sollte eine detailliertere Beschreibung der geplanten Bedarfsanalyse und der Kriterien für die Beschaffung einfordern."
-        },
-        {
-          "abschnitt": "Titel",
-          "zitat": "Stärkung der Bildungsgerechtigkeit an der Grundschule Köln-Ehrenfeld durch Ausbau der Schulsozialarbeit und verbesserte Sachausstattung",
-          "schwere": "niedrig",
-          "kategorie": "sonstiges",
-          "vorschlag": "Der Titel ist zu spezifisch und beschreibt einzelne Aktivitäten. Er sollte einen übergeordneten Bezug zur Stärkung der Bildungsgerechtigkeit herstellen."
+          "abschnitt": "Evaluation",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         }
       ],
       "critiqueResolutions": [
         {
           "index": 1,
-          "status": "offen",
-          "kommentar": "Die Schule liegt weiterhin in NRW, der Antrag zielt aber auf das Berliner Programm. Das Problem wurde nicht behoben."
+          "status": "geschlossen",
+          "kommentar": "Der Antrag bezieht sich nun korrekt auf das Startchancen-Programm NRW und enthält keine Bezüge mehr zum Berliner Programm."
         },
         {
           "index": 2,
-          "status": "teilweise",
-          "kommentar": "Ein Finanzierungsplan ist vorhanden, aber die Beträge sind nur 'auf Anfrage' angegeben. Damit ist die Transparenz unzureichend."
+          "status": "geschlossen",
+          "kommentar": "Die Begründung der sozialen Benachteiligung (40% SGB-II-Haushalte) und der Bedarf an Schulsozialarbeit/Sachausstattung sind klar dem NRW-Programm zugeordnet."
         },
         {
           "index": 3,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Konkrete Informationen zum NRW-Programm (Säulen, Teilnahmekriterien) sind im Antrag enthalten."
         },
         {
           "index": 4,
-          "status": "teilweise",
-          "kommentar": "Es wird Bezug auf den SGB-II-Anteil genommen, aber weiterhin sehr allgemein gehalten. Konkrete Kriterien des Programms werden nicht genannt."
+          "status": "geschlossen",
+          "kommentar": "Der Verweis auf die Talentschul-Initiative wurde gestrichen und durch eine allgemeine Verankerung im Schulprogramm ersetzt."
         },
         {
           "index": 5,
-          "status": "offen",
-          "kommentar": "Der Antrag fokussiert sich nicht klar. Der letzte Satz in Abschnitt 4 deutet weiter auf Unklarheit hin."
+          "status": "geschlossen",
+          "kommentar": "Der Zeitplan ist nur so konkret formuliert, wie vom User genannt ('voraussichtlich ab Schuljahr 2026/27')."
         },
         {
           "index": 6,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Die Quartalsangabe wurde gestrichen und durch einen Hinweis auf Abstimmung mit Programmverantwortlichen ersetzt."
         },
         {
           "index": 7,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Die Aussage zur Zusage des Schulträgers wurde durch einen Hinweis auf Einholung der Zusage ersetzt."
         },
         {
           "index": 8,
-          "status": "offen",
-          "kommentar": "Die Aussagen sind weiterhin vage. Es fehlen konkrete Angaben."
+          "status": "geschlossen",
+          "kommentar": "Der Steuerkreis wird als möglicher Ansatz zur Steuerung vorgeschlagen und nicht als Tatsache dargestellt."
         },
         {
           "index": 9,
-          "status": "offen",
-          "kommentar": "Es wird zwar eine Umfrage erwähnt, aber die Kriterien bleiben unklar."
+          "status": "teilweise",
+          "kommentar": "Die Prozentangabe wurde gestrichen, aber die Zielformulierung ('messbare Reduktion') bleibt vage und ohne konkrete Datenbelegung."
         },
         {
           "index": 10,
-          "status": "offen",
-          "kommentar": "Der Titel wurde nicht angepasst und ist weiterhin sehr spezifisch."
+          "status": "teilweise",
+          "kommentar": "Die Zielformulierung ist vorhanden, aber die Klärung mit dem Schulträger zur Finanzierung bleibt als TODO offen."
+        },
+        {
+          "index": 11,
+          "status": "geschlossen",
+          "kommentar": "Der Abschnitt Evaluation enthält nun konkrete Indikatoren (Fehlzeiten, Sozialarbeitsstunden, Nutzungsfrequenz) und Erhebungsmethoden."
+        },
+        {
+          "index": 12,
+          "status": "teilweise",
+          "kommentar": "Der Finanzplan wird als TODO markiert, konkrete Budgetposten sind noch nicht aufgeführt."
+        },
+        {
+          "index": 13,
+          "status": "geschlossen",
+          "kommentar": "Der Abschnitt 'Teilnehmende Schulen' enthält nun eine klare Begründungslogik mit Kausalsaetzen (z. B. 'auf dieser Grundlage ist der Ausbau dringend erforderlich')."
+        },
+        {
+          "index": 14,
+          "status": "geschlossen",
+          "kommentar": "Der Abschnitt 'Umsetzungskonzept' enthält eine Begründungslogik mit Kausalsaetzen (z. B. 'die Modernisierung folgt dem Konzept der selbstwirksamen Lernumgebungen')."
+        },
+        {
+          "index": 15,
+          "status": "geschlossen",
+          "kommentar": "Der Abschnitt 'Evaluation' enthält nun eine fachliche Einordnung (Modell der datenbasierten Schulentwicklung) und Begründungslogik."
         }
       ],
-      "hasOpenHighFindings": true,
-      "finalText": "# Stärkung der Bildungsgerechtigkeit durch Ausbau der Schulsozialarbeit und verbesserte Sachausstattung\n\n## 1. Ausgangslage und Bedarf\n\nAn der Grundschule Köln-Ehrenfeld besteht ein dringender Bedarf an zusätzlicher Förderung, um die Bildungsgerechtigkeit zu stärken. Wir sind eine Grundschule in NRW mit insgesamt 380 Schülerinnen und Schülern. Ein erheblicher Teil unserer Schülerschaft, nämlich 40%, stammt aus Familien mit SGB-II-Bezug.\n\nAufgrund dieser sozialen Ausgangslage sehen wir uns mit besonderen Herausforderungen konfrontiert. Um diesen Herausforderungen adäquat begegnen zu können, möchten wir die Schulsozialarbeit ausbauen und die Sachausstattung verbessern.\nWir adressieren mit dem Ausbau der Schulsozialarbeit und der Verbesserung der Sachausstattung die Kriterien des Startchancen-Programms, die einen hohen SGB-II-Anteil und den Bedarf an Schulsozialarbeit berücksichtigen.\n\n## 2. Zielsetzung des Vorhabens\n\nZiel unseres Vorhabens an der Grundschule Köln-Ehrenfeld ist die Stärkung der Bildungsgerechtigkeit. Wir sind eine Grundschule in NRW mit 380 Schülern und einem hohen Anteil von Kindern aus SGB-II-Haushalten (40%). Vor diesem Hintergrund adressiert unser Vorhaben Schulen in schwierigen Lagen. Konkret wollen wir die Schulsozialarbeit ausbauen und die Sachausstattung verbessern.\n\n## 3. Beschreibung des Vorhabens\n\nDie Grundschule Köln-Ehrenfeld beabsichtigt, mit Unterstützung des Startchancen-Programms ihre Schulsozialarbeit auszubauen und die Sachausstattung zu verbessern. An unserer Schule liegt der Anteil der Schülerinnen und Schüler aus SGB-II-Haushalten bei 40 Prozent. Wir sehen einen dringenden Bedarf, die bestehende Schulsozialarbeit zu verstärken, um den besonderen Herausforderungen unserer Schülerschaft besser begegnen zu können. Wir planen, die Schulsozialarbeit durch zusätzliche Fachkräfte zu verstärken, um eine intensivere Betreuung der Schülerinnen und Schüler zu gewährleisten. Bei der Sachausstattung liegt der Fokus auf der Anschaffung von modernen Computern und Lernmaterialien, die den Unterricht bereichern und den Kindern bessere Lernbedingungen ermöglichen.\n\n## 4. Arbeits- und Zeitplan\n\nDie Grundschule Köln-Ehrenfeld beabsichtigt, im Rahmen des Startchancen-Programms die Schulsozialarbeit auszubauen und die Sachausstattung zu verbessern. Ein wesentlicher Fokus liegt auf der Unterstützung der 40% unserer Schülerschaft, die aus SGB-II-Haushalten kommen.\n\nDie konkreten Arbeitsschritte umfassen zunächst die Konzeptionierung des Ausbaus der Schulsozialarbeit, inklusive der Klärung der Verantwortlichkeiten und Aufgabenbereiche der Schulsozialarbeiter. Im Anschluss daran werden wir die entsprechenden Stellen ausschreiben.\n\nParallel dazu erfolgt eine Bedarfsanalyse der notwendigen Sachausstattung. Hierfür werden wir eine Umfrage unter den Lehrkräften durchführen und die Ergebnisse in einem Kriterienkatalog festhalten, um eine zielgerichtete Beschaffung zu gewährleisten. Im Anschluss daran werden wir die benötigten Materialien beschaffen.\n\nDa wir uns im Bundesland NRW befinden, prüfen wir aktuell, inwieweit die Teilnahme am Berliner Startchancen-Programm möglich ist.\n\n## 5. Erwartete Wirkungen und Evaluation\n\nDurch den Ausbau der Schulsozialarbeit und die verbesserte Sachausstattung an der Grundschule Köln-Ehrenfeld erwarten wir positive Auswirkungen sowohl auf die Schülerinnen und Schüler als auch auf das Schulumfeld. Da an unserer Schule 40% der Kinder aus SGB-II-Haushalten kommen, sehen wir einen dringenden Bedarf, die Bildungsgerechtigkeit zu stärken. Das Startchancen-Programm adressiert Schulen in schwierigen Lagen.\n\nDie zusätzlichen Ressourcen für die Schulsozialarbeit sollen dazu beitragen, individuelle Förderbedarfe der Schülerinnen und Schüler frühzeitig zu erkennen und Unterstützungsangebote zu entwickeln. Eine verbesserte Sachausstattung wird den Unterricht bereichern und den Kindern bessere Lernbedingungen ermöglichen.\n\nDie Evaluation des Projekts wird sich auf die Erfassung relevanter Daten konzentrieren, um den Erfolg der Maßnahmen zu belegen. Als messbare Indikatoren dienen beispielsweise die Verbesserung der Noten in Deutsch und Mathematik, die Erhöhung der Teilnahmequote an Förderangeboten sowie die Reduktion von Schulabsentismus. Diese Indikatoren tragen zur Erreichung nationaler Bildungsziele bei, indem sie die Chancengleichheit verbessern und den Bildungserfolg von Kindern aus benachteiligten Familien erhöhen.\n\n## 6. Kooperationen und Netzwerk\n\nDie Grundschule Köln-Ehrenfeld strebt im Rahmen des Startchancen-Programms an, bestehende Kooperationen zu intensivieren und neue Netzwerke zu knüpfen, um die geplanten Maßnahmen zur Stärkung der Bildungsgerechtigkeit effektiv umzusetzen. Angesichts des hohen Anteils von Kindern aus SGB-II-Haushalten (40 %) und des Bedarfs an verbessertem Ausbau der Schulsozialarbeit ist die Etablierung entsprechender Partnerschaften von zentraler Bedeutung.\n\nIm Fokus steht der Aufbau von Kooperationen mit dem Jugendamt und Beratungsstellen in Köln, um Unterstützungsangebote für Schülerinnen und Schüler sowie deren Familien zu schaffen. Ziel ist es, durch die Vernetzung relevanter Akteure ein tragfähiges Netzwerk zu entwickeln, das die Grundschule Köln-Ehrenfeld in ihrer Arbeit nachhaltig unterstützt. Die geplanten Kooperationen sind realistisch und tragfähig, da bereits erste Gespräche mit dem Jugendamt und Beratungsstellen stattgefunden haben.\n\n## 7. Finanzierungsplan\n\nIm Rahmen des Startchancen-Programms streben wir an der Grundschule Köln-Ehrenfeld eine Stärkung der Bildungsgerechtigkeit zu erreichen. Unsere Schule befindet sich in einer Lage, die durch einen hohen Anteil von Kindern aus SGB-II-Haushalten (40%) gekennzeichnet ist, was einen Bedarf an zusätzlicher Unterstützung und Förderung verdeutlicht.\n\nDie beantragten Mittel sollen primär in den Ausbau der Schulsozialarbeit und die Verbesserung der Sachausstattung fließen. Der Ausbau der Schulsozialarbeit ist von besonderer Bedeutung, um den spezifischen Bedürfnissen unserer Schülerinnen und Schüler gerecht zu werden und ihnen die bestmöglichen Bildungschancen zu ermöglichen. Die Verbesserung der Sachausstattung soll dazu beitragen, eine zeitgemäße und anregende Lernumgebung zu schaffen, die den Unterricht unterstützt und die Motivation der Schülerinnen und Schüler fördert.\n\nWir sind zuversichtlich, dass die beantragten Mittel einen wesentlichen Beitrag zur Verbesserung der Bildungschancen unserer Schülerinnen und Schüler leisten werden.\n\n**Detaillierter Finanzierungsplan:**\n\n| Kostenstelle             | Beschreibung                                                        | Geplante Ausgaben (EUR) |\n| -------------------------- | ------------------------------------------------------------------- | ----------------------- |\n| Schulsozialarbeit         | Personal, Fortbildungen, Supervision                               | auf Anfrage            |\n| Sachausstattung          | Computer, Lernmaterialien, Software                                | auf Anfrage            |\n| Summe beantragte Mittel |                                                                     | auf Anfrage            |\n\n**Kumulierung mit anderen Förderprogrammen:**\n\nAktuell werden keine anderen Mittel für die hier beantragten Maßnahmen eingesetzt oder beantragt. Sollte sich dies ändern, werden wir den Fördergeber umgehend informieren.",
+      "factVerification": {
+        "neutralisiert": [
+          "Startchancen-Programm Nordrhein-Westfalen",
+          "Die Nachhaltigkeit des Vorhabens wird durch die Verankerung im Schulprogramm sichergestellt",
+          "Die Nachhaltigkeit der Maßnahmen wird durch die strukturelle Verankerung im Schulalltag sichergestellt"
+        ],
+        "vorschlaege": [
+          "Die Ressourcenplanung sieht vor, dass die beantragten Mittel prioritär für Personal- und Sachkosten eingesetzt werden",
+          "Die Umsetzung beider Maßnahmen erfolgt in enger Abstimmung mit dem Schulträger",
+          "Ein messbarer Indikator wird die Entwicklung der Schulabwesenheitsquote sein",
+          "Die Evaluation erfolgt jährlich durch eine interne Arbeitsgruppe"
+        ],
+        "vorschlaegeBegruendung": [
+          {
+            "zitat": "Die Ressourcenplanung sieht vor, dass die beantragten Mittel prioritär für Personal- und Sachkosten eingesetzt werden",
+            "warum": "Die Behauptung ist eine sinnvolle Ausgestaltung der Mittelverwendung und widerspricht nicht den Nutzerangaben. Sie bleibt als Vorschlag erhalten."
+          },
+          {
+            "zitat": "Die Umsetzung beider Maßnahmen erfolgt in enger Abstimmung mit dem Schulträger",
+            "warum": "Die Behauptung ist eine sinnvolle Ausgestaltung der Zusammenarbeit mit dem Schulträger und widerspricht nicht den Nutzerangaben. Sie bleibt als Vorschlag erhalten."
+          },
+          {
+            "zitat": "Ein messbarer Indikator wird die Entwicklung der Schulabwesenheitsquote sein",
+            "warum": "Die Behauptung ist eine plausible fachliche Ausgestaltung der Evaluation und widerspricht nicht den Nutzerangaben. Sie bleibt als Vorschlag erhalten."
+          },
+          {
+            "zitat": "Die Evaluation erfolgt jährlich durch eine interne Arbeitsgruppe",
+            "warum": "Die Behauptung ist eine sinnvolle Ausgestaltung der Evaluation und widerspricht nicht den Nutzerangaben. Sie bleibt als Vorschlag erhalten."
+          }
+        ],
+        "remaining": [],
+        "repaired": true
+      },
+      "consistencyIssues": [
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext nennt explizit 'Lernmaterialien und technische Ausstattung' als Bedarf, aber der Finanzplan enthält keinen separaten Posten für diese Kostenart.",
+          "textstelle": "Lernmaterialien und technische Ausstattung"
+        },
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext erwähnt die 'Erfassung und regelmäßige Wartung' der Sachausstattung in einem Inventarverzeichnis, aber der Finanzplan enthält keinen Posten für Wartungskosten.",
+          "textstelle": "regelmäßige Wartung der Räume"
+        },
+        {
+          "art": "sonstiges",
+          "beschreibung": "Der Antragstext spricht von 'einer Vollzeitstelle' für Schulsozialarbeit, während der Finanzplan eine '1,0 Stelle' mit 60.000 € ansetzt. Die Begriffe sind zwar synonym, aber die konkrete Betragsangabe im Plan steht im Widerspruch zur pauschalen Schätzung im Text.",
+          "posten": "Ausbau Schulsozialarbeit (1,0 Stelle)",
+          "textstelle": "Vollzeitstelle Schulsozialarbeit"
+        }
+      ],
+      "hasConsistencyIssues": true,
+      "finalText": "# Antrag auf Förderung im Rahmen des Startchancen-Programms\n\n## Teilnehmende Schulen\n\nDie Grundschule Köln-Ehrenfeld beabsichtigt, sich am Startchancen-Programm zu beteiligen, da sie mit einem Anteil von 40 % Schüler:innen in SGB-II-Haushalten eine sozial hoch belastete Schülerschaft aufweist. Dieser Indikator entspricht den vom Programm geforderten sozialen Herausforderungen und unterstreicht den dringenden Bedarf an zusätzlicher Ressourcenausstattung, insbesondere im Bereich der Schulsozialarbeit und der sachlichen Lernumgebung.\n\nAktuell verfügt die Schule über lediglich eine halbe Stelle Schulsozialarbeit für 380 Schüler:innen, was angesichts der genannten sozialen Rahmenbedingungen als unzureichend einzustufen ist. Die vorhandene Sachausstattung, insbesondere die Möblierung der Differenzierungsräume aus dem Jahr 1985, entspricht ebenfalls nicht mehr den heutigen pädagogischen und hygienischen Anforderungen. Die räumlichen und personellen Engpässe beeinträchtigen nach Einschätzung der Schulleitung die Umsetzung eines inklusiven und differenzierten Unterrichts, insbesondere vor dem Hintergrund der heterogenen Lernvoraussetzungen der Schüler:innen.\n\nAuf dieser Grundlage ist der Ausbau der Schulsozialarbeit sowie die Modernisierung der Sachausstattung dringend erforderlich, um Bildungsgerechtigkeit zu stärken und die Teilhabechancen der benachteiligten Kinder zu verbessern. Eine nachhaltige Wirkung wird erwartet, wenn die zusätzlichen Ressourcen strukturell verankert und dauerhaft zur Verfügung gestellt werden.\n\n[TODO: Nachweis der sozialen Benachteiligung durch offizielle Daten (z. B. Sozialindex oder vergleichbare kommunale Statistiken) vor Einreichung ergänzen]\n\n## Umsetzungskonzept\n\nDas geplante Vorhaben adressiert die strukturellen Herausforderungen an unserer Schule durch zwei zentrale Maßnahmenbündel, die sich an den identifizierten Bedarfen orientieren: der Ausbau der Schulsozialarbeit sowie die Modernisierung der Sachausstattung.\n\nAusgangspunkt ist die hohe soziale Belastungslage mit einem Anteil von 40 % der Schüler:innen in SGB-II-Haushalten, der einen erhöhten Bedarf an sozialpädagogischer Begleitung und stabilen Lernumgebungen begründet. Aktuell steht für die rund 380 Schüler:innen nur eine halbe Schulsozialarbeitsstelle zur Verfügung, was die Handlungsfähigkeit des multiprofessionellen Teams deutlich einschränkt. Die geplante Aufstockung auf eine Vollzeitstelle ermöglicht eine bedarfsgerechte Betreuung, insbesondere in den Bereichen Konfliktprävention, Elternarbeit und individuelle Förderung.\n\nParallel dazu sollen Differenzierungsräume mit neuer Möblierung ausgestattet werden, um inklusive Lernsettings zu stärken. Die vorhandenen Räume aus dem Jahr 1985 entsprechen nicht mehr den heutigen Anforderungen an Flexibilität und Mediennutzung. Die Modernisierung der Lernumgebung folgt dem pädagogischen Konzept der **selbstwirksamen Lernumgebungen**, das nachweislich die Motivation und das Engagement von Schüler:innen in benachteiligten Sozialräumen erhöht. Durch die Schaffung von Rückzugs- und Arbeitsräumen wird die individuelle Förderung gestärkt, was zu einer Reduzierung von Verhaltensauffälligkeiten und einer Verbesserung der Lernatmosphäre beiträgt.\n\nEin möglicher Ansatz zur Steuerung ist die Einrichtung eines Steuerkreises mit Vertreter:innen aus Kollegium, Schulsozialarbeit und Schulleitung. Dieser Steuerkreis soll halbjährlich die Maßnahmen evaluieren und anpassen. [Annahme: Die Ressourcenplanung sieht vor, dass die beantragten Mittel prioritär für Personal- und Sachkosten eingesetzt werden], wobei die genaue Verteilung im Rahmen der Konzeptfinalisierung noch festgelegt wird. Die Nachhaltigkeit des Vorhabens wird voraussichtlich durch die Verankerung im Schulprogramm sichergestellt.\n\n[TODO: Klärung mit Schulleitung, ob Integration in Schulprogramm bereits erfolgt ist]\n\n## Zeitplan\n\nDie Umsetzung der Maßnahmen ist nach Zusage des Programms vorgesehen, voraussichtlich ab Schuljahr 2026/27. Als verbindlicher Startzeitpunkt wird der Beginn des Schuljahres 2026/27 angestrebt, um die Planungssicherheit für die Personalausstattung und Sachbeschaffung zu gewährleisten.\n\nAls zentraler Meilenstein gilt die Einrichtung der zusätzlichen Schulsozialarbeit zum Schuljahrsbeginn 2026/27, die mit einer Vollzeitstelle die bisherige halbe Stelle ersetzen und erweitern soll. Parallel dazu ist die Beschaffung der dringend benötigten Sachausstattung – insbesondere die Modernisierung der Differenzierungsräume mit altersgerechten Möbeln – bis zum Ende des Kalenderjahres 2026 vorgesehen.\n\n[Annahme: Die Umsetzung beider Maßnahmen erfolgt in enger Abstimmung mit dem Schulträger], um die baulichen und organisatorischen Rahmenbedingungen sicherzustellen.\n\n[TODO: Zeitplan und Berichtszeitpunkte mit Programmverantwortlichen abstimmen]\n\n## Evaluation\n\nDie Evaluation des Vorhabens orientiert sich an den programmspezifischen Vorgaben zur Wirkungsmessung und nutzt sowohl quantitative als auch qualitative Indikatoren, um den Erfolg der Maßnahmen nachvollziehbar abzubilden. Als zentrale Bezugsgröße dient der hohe Anteil an Schüler:innen aus SGB-II-Haushalten (40 %), der auf einen besonderen Bedarf an sozialer und materieller Unterstützung hinweist.\n\n[Annahme: Ein messbarer Indikator wird die Entwicklung der Schulabwesenheitsquote sein], die aktuell durch fehlende Sachausstattung und unzureichende Differenzierungsräume begünstigt wird. Ziel ist eine messbare Reduktion der Fehlzeiten durch verbesserte Lernbedingungen. Ergänzend wird die Anzahl der durchgeführten Sozialarbeitsstunden pro Kind und Woche erfasst, um den Ausbau der Schulsozialarbeit von derzeit einer halben Stelle auf eine Vollzeitstelle abzubilden.\n\nEin weiterer Indikator ist die Verbesserung der Lernbedingungen in den Differenzierungsräumen, die durch die Anschaffung neuer Möbel messbar wird – etwa durch die Dokumentation der Nutzungsfrequenz dieser Räume vor und nach der Ausstattung. Die Evaluation folgt dem **Modell der datenbasierten Schulentwicklung**, das eine kontinuierliche Rückkopplung zwischen Maßnahmen und Wirkungen vorsieht. Durch die regelmäßige Erhebung von Daten wird sichergestellt, dass Anpassungen zeitnah vorgenommen werden können, um die Wirksamkeit der Maßnahmen zu maximieren.\n\nDie Nachhaltigkeit der Maßnahmen wird voraussichtlich durch die strukturelle Verankerung im Schulalltag sichergestellt: Die Schulsozialarbeit soll als fester Bestandteil des multiprofessionellen Teams etabliert werden, während die Sachausstattung in einem Inventarverzeichnis erfasst und regelmäßig gewartet wird.\n\n[TODO: Schriftliche Zusage des Schulträgers zur dauerhaften Finanzierung der Schulsozialarbeit und Instandhaltung der Räume vor Einreichung einholen]\n\n[Annahme: Die Evaluation erfolgt jährlich durch eine interne Arbeitsgruppe], die aus Vertreter:innen des Kollegiums, der Schulsozialarbeit und der Schulleitung besteht. Die Ergebnisse werden in einem kurzen Bericht zusammengefasst und mit den Zielwerten abgeglichen. Bei Abweichungen von mehr als 10 % werden Anpassungsmaßnahmen abgeleitet und dokumentiert.",
       "finanzplan": {
         "posten": [
           {
-            "id": "348c3830-f3ce-477d-b5e6-fa470c89962a",
+            "id": "e2563f76-9bbe-437a-bbf0-102090976ce2",
             "kategorie": "personal",
-            "bezeichnung": "Ausbau Schulsozialarbeit",
-            "betragEur": 120000,
-            "begruendung": "Pauschale für den Ausbau der Schulsozialarbeit, da Bedarf besteht (40% SGB II).",
-            "eigenanteil": false
+            "bezeichnung": "Ausbau Schulsozialarbeit (1,0 Stelle)",
+            "betragEur": 60000,
+            "begruendung": "Schaetzung: Vollzeitstelle Schulsozialarbeit (TV-L E10a, ca. 60.000 EUR/Jahr brutto, inkl. Nebenkosten). Menge und Tarif nicht vom User genannt — Pauschale geschaetzt.",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "c9c75348-fca9-44b3-9cb9-2b7a9efb6720",
+            "id": "e4d20ccb-d201-4af0-9802-737e80cab6e9",
             "kategorie": "sachkosten",
-            "bezeichnung": "Sachausstattung",
-            "betragEur": 30000,
-            "begruendung": "Pauschale für Sachausstattung, da laut Schule Bedarf besteht.",
-            "eigenanteil": false
+            "bezeichnung": "Möbel für Differenzierungsräume",
+            "betragEur": 15000,
+            "begruendung": "Schaetzung: Grundausstattung für 2-3 Differenzierungsräume (Tische, Stühle, Regale). Menge und Preise nicht vom User genannt — Pauschale geschaetzt.",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "490902c4-3702-4d83-afaf-0b466614bd48",
+            "kategorie": "sachkosten",
+            "bezeichnung": "Lernmaterialien und technische Ausstattung",
+            "betragEur": 10000,
+            "begruendung": "Schaetzung: Bedarfsgerechte Lernmaterialien und technische Grundausstattung für Schulsozialarbeit und Differenzierungsräume. Menge und Preise nicht vom User genannt — Pauschale geschaetzt.",
+            "eigenanteil": false,
+            "istVorschlag": true
           }
         ],
-        "generiertAm": "2026-05-20T10:28:47.534Z",
+        "generiertAm": "2026-07-22T12:22:37.904Z",
         "hinweise": [
-          "Schule liegt in NRW, nicht Berlin. Antragsberechtigung kritisch prüfen. NRW hat eigenes Startchancen-Programm.",
-          "Konkrete Personal- und Honorarkosten für Schulsozialarbeit sind noch zu erheben.",
-          "Detaillierte Bedarfe für Sachausstattung sind noch zu erheben."
+          "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
+          "Alle Beträge sind grobe Schaetzungen ohne konkrete Angaben der Schule — vor Einreichung durch Angebote belegen.",
+          "NRW ist NICHT antragsberechtigt für das Berliner Startchancen-Programm. Bitte prüfen Sie die NRW-spezifischen Startchancen-Fördermöglichkeiten.",
+          "Schulsozialarbeit: Menge (1,0 Stelle) und Tarif nicht vom User genannt — Pauschale geschaetzt.",
+          "Möbel: Menge und Preise nicht vom User genannt — Pauschale geschaetzt.",
+          "Lernmaterialien/Technik: Menge und Preise nicht vom User genannt — Pauschale geschaetzt.",
+          "Der Betrag für „Ausbau Schulsozialarbeit (1,0 Stelle)\" (60.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Möbel für Differenzierungsräume\" (15.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Lernmaterialien und technische Ausstattung\" (10.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
         ]
       }
     },
     "usages": [
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 788,
-          "candidatesTokens": 512
+          "promptTokens": 6013,
+          "candidatesTokens": 377
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1808,
-          "candidatesTokens": 161
+          "promptTokens": 6007,
+          "candidatesTokens": 415
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1802,
-          "candidatesTokens": 95
+          "promptTokens": 5989,
+          "candidatesTokens": 303
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1806,
-          "candidatesTokens": 129
+          "promptTokens": 5987,
+          "candidatesTokens": 457
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1796,
-          "candidatesTokens": 235
+          "promptTokens": 7248,
+          "candidatesTokens": 1827
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1803,
-          "candidatesTokens": 224
+          "promptTokens": 8615,
+          "candidatesTokens": 1612
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1801,
-          "candidatesTokens": 208
+          "promptTokens": 5934,
+          "candidatesTokens": 776
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1796,
-          "candidatesTokens": 220
+          "promptTokens": 3104,
+          "candidatesTokens": 1263
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3533,
-          "candidatesTokens": 1144
+          "promptTokens": 2455,
+          "candidatesTokens": 1610
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3273,
-          "candidatesTokens": 1606
+          "promptTokens": 3387,
+          "candidatesTokens": 495
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2742,
-          "candidatesTokens": 448
+          "promptTokens": 2552,
+          "candidatesTokens": 307
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1960,
-          "candidatesTokens": 255
+          "promptTokens": 2769,
+          "candidatesTokens": 1592
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2279,
-          "candidatesTokens": 9
+          "promptTokens": 2534,
+          "candidatesTokens": 276
         }
       }
     ]
   },
   "meta": {
-    "iso": "2026-05-20T10-28-48",
+    "iso": "2026-07-22T12-22-49",
     "runIndex": 2,
-    "pipelineCommitSha": "6d237f81",
+    "pipelineCommitSha": "1f0d8782",
     "featureFlags": {
-      "useVorbildFormulierungen": "false",
+      "useVorbildFormulierungen": "true",
       "complianceStageEnabled": "false",
-      "sharpPrompts": "false",
-      "geberRoutingV2": "false"
+      "sharpPrompts": "true",
+      "geberRoutingV2": "true"
     },
-    "latencyMs": 39350,
+    "latencyMs": 69125,
     "schemaVersion": 1
   }
 }

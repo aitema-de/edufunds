@@ -38,7 +38,12 @@
       "kiAntragGeeignet": true,
       "verifiziertAm": "2026-02-12",
       "verifiziertVon": "Web-Recherche Erasmus+ Nationale Agentur",
-      "bemerkung": "Koordinator müssen lokale/regional Schulbehörden mit Verwaltungsressourcen sein. Pro Frist max. 1 Antrag pro Organisation. Schulen sollten als Partner (nicht Koordinator) teilnehmen."
+      "bemerkung": "Koordinator müssen lokale/regional Schulbehörden mit Verwaltungsressourcen sein. Pro Frist max. 1 Antrag pro Organisation. Schulen sollten als Partner (nicht Koordinator) teilnehmen.",
+      "fristZustand": {
+        "art": "geschlossen",
+        "wiedereroeffnungErwartet": "Fruehjahr 2027 (voraussichtlich, undatiert)",
+        "quelle": "Primaerquelle erasmusplus.schule/foerderung/europaeische-partnerschaft-fuer-die-schulentwicklung, geprueft 22.07.2026: als 'Naechste Einreichungsfrist' ist 'voraussichtlich im Fruehjahr 2027' angegeben. Aktuell laeuft also KEINE Einreichungsrunde. Das Dossier fuehrte das Programm faelschlich als fristLogik.typ='rolling'."
+      }
     },
     "facts": {
       "schule": {
@@ -78,14 +83,96 @@
     "richtlinie": {
       "version": "2026-05-19",
       "quellen": [
-        "https://erasmusplus.schule/foerderung/europaeische-partnerschaft-fuer-die-schulentwicklung"
+        "https://erasmusplus.schule/förderung/europäische-partnerschaft-für-die-schulentwicklung"
       ],
       "foerderhoehe": {
         "minEur": 400000,
         "maxEur": 400000,
-        "bemerkung": "Das Projekt wird pauschal mit 400.000 EUR bezuschusst (lump sum)."
+        "bemerkung": "Fester Pauschalbetrag (lump sum) von 400.000 EUR pro ausgewähltem Projekt. Die Verteilung des Betrags auf Arbeitspakete und Partnerorganisationen ist Teil des Antrags; für das Projektmanagement-Arbeitspaket gilt eine Obergrenze von 20 % des Gesamtbudgets. Die gestuften Pauschalen 120.000/250.000/400.000 EUR gelten für die klassischen Kooperationspartnerschaften (KA220), nicht für diese Aktion (KA240-SCH)."
       },
-      "kostenpositionen": [],
+      "kostenpositionen": [
+        {
+          "kategorie": "personal",
+          "foerderfaehig": true,
+          "bedingungen": [
+            "Keine eigenständige Kostenkategorie: Die Förderung ist eine Pauschale (lump sum) von 400.000 EUR; das Budget wird im Antrag auf Arbeitspakete und beteiligte Organisationen verteilt, nicht nach Kostenarten abgerechnet.",
+            "Förderfähig sind Kosten, die mit den Umsetzungsaktivitäten und Aufgaben der Arbeitspakete verknüpft sind.",
+            "Die volle Auszahlung setzt voraus, dass alle Aktivitäten gemäß den im Antrag beschriebenen Qualitätskriterien abgeschlossen werden; bei mangelhafter Umsetzung sind Kürzungen des Zuschusses möglich."
+          ],
+          "beispielePasst": [
+            "Personaleinsatz für die Erprobung spezifischer Lernprogramme",
+            "Personaleinsatz für Co-Teaching-Methoden",
+            "Fortbildung des Schulpersonals (staff training)"
+          ]
+        },
+        {
+          "kategorie": "sachkosten",
+          "foerderfaehig": true,
+          "bedingungen": [
+            "Teil der Projektpauschale; keine kostenartspezifische Obergrenze im Pauschalmodell.",
+            "Der Mitteleinsatz muss den Grundsätzen der Sparsamkeit, Wirtschaftlichkeit und Wirksamkeit (economy, efficiency, effectiveness) genügen.",
+            "Kosten müssen sich den Umsetzungsaktivitäten und Aufgaben der Arbeitspakete zuordnen lassen."
+          ],
+          "beispielePasst": [
+            "Materialien zur Erprobung spezifischer Lernprogramme im Rahmen eines Arbeitspakets"
+          ]
+        },
+        {
+          "kategorie": "investitionen",
+          "foerderfaehig": true,
+          "bedingungen": [
+            "Der Programmleitfaden nennt für diese Aktion keine gesonderten Regeln oder Obergrenzen für Ausrüstung/Investitionen; es gilt das Pauschalmodell mit Budgetverteilung nach Arbeitspaketen.",
+            "Anschaffungen müssen als Teil der Arbeitspaket-Budgets begründet werden und den Grundsätzen der Sparsamkeit, Wirtschaftlichkeit und Wirksamkeit genügen."
+          ]
+        },
+        {
+          "kategorie": "honorare",
+          "foerderfaehig": true,
+          "bedingungen": [
+            "Unteraufträge für Dienstleistungen sind zulässig, sofern sie keine Kernaktivitäten betreffen, von denen die Erreichung der Ziele der Aktion unmittelbar abhängt.",
+            "Aufgaben und Budget von Unterauftragnehmern müssen im Antrag klar beschrieben sein."
+          ],
+          "beispielePasstNicht": [
+            "Vergabe von Kernaktivitäten des Projekts (z. B. die inhaltliche Umsetzung der zentralen Arbeitspakete) an externe Dienstleister"
+          ]
+        },
+        {
+          "kategorie": "reisekosten",
+          "foerderfaehig": true,
+          "bedingungen": [
+            "Teil der Projektpauschale; keine Stückkostensätze, die Zuordnung erfolgt über die Arbeitspaket-Budgets.",
+            "Erasmus+-Lernmobilität ist eine bildungsbezogene, strategische, transnationale und strukturierte (dokumentierte) Mobilitätsaktivität und darf nicht mit sonstigen Auslandsreisen im Rahmen des Projekts verwechselt werden."
+          ],
+          "beispielePasst": [
+            "Reisekosten für Treffen zwischen den Projektpartnern"
+          ]
+        },
+        {
+          "kategorie": "overhead",
+          "foerderfaehig": true,
+          "maxProzent": 20,
+          "bedingungen": [
+            "Für das verpflichtende Arbeitspaket „Projektmanagement“ dürfen höchstens 20 % des Gesamtbudgets angesetzt werden.",
+            "Das Projektmanagement-Arbeitspaket deckt Überwachung/Monitoring, Koordinierung, Kommunikation, Evaluation und Risikomanagement ab.",
+            "Die koordinierende Einrichtung übernimmt die Budgetverwaltung für das gesamte Projekt: Sie erhält die Fördergelder und gibt sie an die Partner weiter."
+          ],
+          "beispielePasst": [
+            "Koordinierung und Monitoring des Projekts",
+            "Evaluation und Risikomanagement",
+            "Kommunikation innerhalb der Partnerschaft"
+          ]
+        },
+        {
+          "kategorie": "sonstiges",
+          "foerderfaehig": true,
+          "bedingungen": [
+            "Der Antrag muss die Verteilung des Pauschalbetrags auf die beteiligten Organisationen und auf die Arbeitspakete enthalten.",
+            "Projektstruktur: maximal 12 Arbeitspakete — 1 Pflicht-Arbeitspaket „Projektmanagement“, 1 Pflicht-Arbeitspaket „Plan für die langfristige Wirkung“ sowie 3 bis 10 Umsetzungs-Arbeitspakete.",
+            "Auszahlung: erste Rate nach Vertragsunterzeichnung; die Abschlusszahlung erfolgt nach Prüfung des Abschlussberichts, der innerhalb von 60 Tagen nach Projektende über das Beneficiary Module einzureichen ist.",
+            "Bei unvollständiger oder qualitativ mangelhafter Umsetzung einzelner Arbeitspakete kann der Zuschuss anteilig gekürzt werden."
+          ]
+        }
+      ],
       "eigenmittel": {
         "pflicht": false,
         "bemerkung": "Im Text werden keine Angaben zur Notwendigkeit von Eigenmitteln gemacht."
@@ -101,22 +188,42 @@
           {
             "id": "relevanz",
             "name": "Relevanz (bis zu 15 Punkte)",
-            "pflicht": true
+            "pflicht": true,
+            "leitfragen": [
+              "Wie passt das Projekt zu den Zielen und (horizontalen/spezifischen) Prioritäten der Aktion?",
+              "Welchen konkreten Bedarf der beteiligten Einrichtungen adressiert es?",
+              "Welchen europäischen Mehrwert hat die Zusammenarbeit?"
+            ]
           },
           {
             "id": "qualitaet_projekkonzeption",
             "name": "Qualität der Projektkonzeption (bis zu 30 Punkte)",
-            "pflicht": true
+            "pflicht": true,
+            "leitfragen": [
+              "Sind die Ziele klar, realistisch und auf den Bedarf bezogen?",
+              "Ist der Arbeitsplan (Aktivitäten, Zeitplan, Ressourcen, Budget) kohärent und angemessen?",
+              "Wie werden Qualitätssicherung, Monitoring und Risikomanagement sichergestellt?"
+            ]
           },
           {
-            "id": "qualitaet_partnerschaft",
+            "id": "qualität_partnerschaft",
             "name": "Qualität der Partnerschaft und der Kooperationsvereinbarungen (bis zu 20 Punkte)",
-            "pflicht": true
+            "pflicht": true,
+            "leitfragen": [
+              "Wie ergänzen sich die Partnereinrichtungen in Profil und Erfahrung?",
+              "Wie sind Aufgaben, Verantwortlichkeiten und Entscheidungsprozesse verteilt?",
+              "Wie funktionieren Koordination und Kommunikation in der Partnerschaft?"
+            ]
           },
           {
             "id": "wirkung",
             "name": "Wirkung (bis zu 35 Punkte)",
-            "pflicht": true
+            "pflicht": true,
+            "leitfragen": [
+              "Welche Wirkung wird auf Teilnehmende, Einrichtungen und darüber hinaus erwartet?",
+              "Wie werden Ergebnisse bewertet und nachhaltig gesichert?",
+              "Wie werden Ergebnisse verbreitet und frei zugänglich gemacht?"
+            ]
           }
         ],
         "anlagen": [
@@ -170,6 +277,11 @@
       "vorbildFormulierungen": [],
       "fristLogik": {
         "typ": "rolling"
+      },
+      "fristZustand": {
+        "art": "geschlossen",
+        "wiedereroeffnungErwartet": "Fruehjahr 2027 (voraussichtlich, undatiert)",
+        "quelle": "Primaerquelle erasmusplus.schule/foerderung/europaeische-partnerschaft-fuer-die-schulentwicklung, geprueft 22.07.2026: als 'Naechste Einreichungsfrist' ist 'voraussichtlich im Fruehjahr 2027' angegeben. Aktuell laeuft also KEINE Einreichungsrunde. Das Dossier fuehrte das Programm faelschlich als fristLogik.typ='rolling'."
       }
     },
     "messages": [
@@ -178,56 +290,98 @@
         "role": "ai",
         "kind": "question",
         "content": "Was ist der Hauptentwicklungsbedarf Ihrer Schule, den Sie mit dem Erasmus+-Schulentwicklungsprojekt angehen moechten?",
-        "at": "2026-05-20T10:04:03.292Z"
+        "at": "2026-07-22T11:29:48.729Z"
       },
       {
         "id": "1",
         "role": "user",
         "kind": "answer",
         "content": "Wir muessen uns irgendwie modernisieren. Digital und so. Und vielleicht auch internationaler werden.",
-        "at": "2026-05-20T10:04:03.292Z"
+        "at": "2026-07-22T11:29:48.729Z"
       },
       {
         "id": "2",
         "role": "ai",
         "kind": "question",
         "content": "Das Erasmus+-Schulentwicklungsprojekt erfordert mindestens 6 Partnerorganisationen aus mehreren EU-Laendern. Haben Sie schon Kontakt zu auslaendischen Schulen?",
-        "at": "2026-05-20T10:04:03.292Z"
+        "at": "2026-07-22T11:29:48.729Z"
       },
       {
         "id": "3",
         "role": "user",
         "kind": "answer",
         "content": "Nein, noch nicht. Koennen die nicht selbst Partner finden? Oder gibt es da eine Liste?",
-        "at": "2026-05-20T10:04:03.292Z"
+        "at": "2026-07-22T11:29:48.729Z"
       },
       {
         "id": "4",
         "role": "ai",
         "kind": "question",
         "content": "Antragsberechtigt als Koordinator sind laut Programm lokale Schulbehoerden. Waere die Hamburger Schulbehoerde bereit, den Antrag zu koordinieren?",
-        "at": "2026-05-20T10:04:03.292Z"
+        "at": "2026-07-22T11:29:48.729Z"
       },
       {
         "id": "5",
         "role": "user",
         "kind": "answer",
         "content": "Das weiss ich nicht. Die Schulbehoerde? Keine Ahnung ob die sowas machen. Ich dachte wir koennen das selbst einreichen.",
-        "at": "2026-05-20T10:04:03.292Z"
+        "at": "2026-07-22T11:29:48.729Z"
       },
       {
         "id": "6",
         "role": "ai",
         "kind": "question",
         "content": "Das Projektvolumen betraegt pauschal 400.000 EUR ueber 36 Monate. Koennen Sie ein konkretes Entwicklungsziel benennen?",
-        "at": "2026-05-20T10:04:03.292Z"
+        "at": "2026-07-22T11:29:48.729Z"
       },
       {
         "id": "7",
         "role": "user",
         "kind": "answer",
         "content": "400.000 klingt viel. Keine Ahnung was wir damit machen wuerden. Vielleicht Fortbildungen? Weiss nicht.",
-        "at": "2026-05-20T10:04:03.292Z"
+        "at": "2026-07-22T11:29:48.729Z"
+      },
+      {
+        "id": "8",
+        "role": "ai",
+        "kind": "question",
+        "content": "In welchem Bereich soll sich Ihre Schule konkret weiterentwickeln — was ist das dringendste Thema?",
+        "at": "2026-07-22T11:29:48.729Z"
+      },
+      {
+        "id": "9",
+        "role": "user",
+        "kind": "answer",
+        "content": "Digitalisierung halt. Und vielleicht auch, wie andere Laender Berufsschule machen. Ist ja interessant zu sehen, wie die das so machen.",
+        "at": "2026-07-22T11:29:48.729Z"
+      },
+      {
+        "id": "10",
+        "role": "ai",
+        "kind": "question",
+        "content": "Mit welchen europaeischen Partnern moechten Sie zusammenarbeiten, und gibt es schon Kontakte?",
+        "at": "2026-07-22T11:29:48.729Z"
+      },
+      {
+        "id": "11",
+        "role": "user",
+        "kind": "answer",
+        "content": "Konkret noch nicht. Ein Kollege hatte mal Kontakt zu einer Schule in Daenemark, glaube ich. Da muessten wir mal nachfragen.",
+        "at": "2026-07-22T11:29:48.729Z"
+      },
+      {
+        "id": "12",
+        "role": "ai",
+        "kind": "question",
+        "content": "Was soll am Ende des Projekts an Ihrer Schule anders sein als heute?",
+        "at": "2026-07-22T11:29:48.729Z"
+      },
+      {
+        "id": "13",
+        "role": "user",
+        "kind": "answer",
+        "content": "Schwer zu sagen. Moderner? Die Kollegen sollen halt neue Ideen mitbringen. Mal gucken was dabei rauskommt.",
+        "at": "2026-07-22T11:29:48.729Z"
       }
     ]
   },
@@ -238,309 +392,492 @@
         "abschnitte": [
           {
             "name": "Relevanz (bis zu 15 Punkte)",
-            "fokus": "Pflichtabschnitt relevanz"
+            "fokus": "Leitfragen: Wie passt das Projekt zu den Zielen und (horizontalen/spezifischen) Prioritäten der Aktion? | Welchen konkreten Bedarf der beteiligten Einrichtungen adressiert es? | Welchen europäischen Mehrwert hat die Zusammenarbeit?"
           },
           {
             "name": "Qualität der Projektkonzeption (bis zu 30 Punkte)",
-            "fokus": "Pflichtabschnitt qualitaet_projekkonzeption"
+            "fokus": "Leitfragen: Sind die Ziele klar, realistisch und auf den Bedarf bezogen? | Ist der Arbeitsplan (Aktivitäten, Zeitplan, Ressourcen, Budget) kohärent und angemessen? | Wie werden Qualitätssicherung, Monitoring und Risikomanagement sichergestellt?"
           },
           {
             "name": "Qualität der Partnerschaft und der Kooperationsvereinbarungen (bis zu 20 Punkte)",
-            "fokus": "Pflichtabschnitt qualitaet_partnerschaft"
+            "fokus": "Leitfragen: Wie ergänzen sich die Partnereinrichtungen in Profil und Erfahrung? | Wie sind Aufgaben, Verantwortlichkeiten und Entscheidungsprozesse verteilt? | Wie funktionieren Koordination und Kommunikation in der Partnerschaft?"
           },
           {
             "name": "Wirkung (bis zu 35 Punkte)",
-            "fokus": "Pflichtabschnitt wirkung"
+            "fokus": "Leitfragen: Welche Wirkung wird auf Teilnehmende, Einrichtungen und darüber hinaus erwartet? | Wie werden Ergebnisse bewertet und nachhaltig gesichert? | Wie werden Ergebnisse verbreitet und frei zugänglich gemacht?"
           }
         ]
       },
       "sections": [
         {
           "name": "Relevanz (bis zu 15 Punkte)",
-          "text": "Die Berufsschule Hamburg-Harburg mit ihren 800 Schülern in technischen Berufsfeldern beabsichtigt, durch die Teilnahme an Europäischen Partnerschaften für Schulentwicklung einen Beitrag zur Modernisierung und Internationalisierung der Schule zu leisten. Aktuell fehlt es an Erfahrung mit EU-Projekten.\n\nDas Vorhaben adressiert den Bedarf an Schulentwicklung im Bereich Digitalisierung. Die genaue Ausgestaltung der Aktivitäten und Ziele wird in den nächsten Schritten erarbeitet. Fortbildungen für das Kollegium könnten ein Bestandteil sein.\n\nEine Koordinierungsperson ist noch nicht benannt. Ebenso fehlen aktuell Partnerorganisationen für das Projekt. Die Berufsschule Hamburg-Harburg prüft, ob die Schulbehörde bei der Partnersuche unterstützen kann. Die konkrete Verwendung der Fördermittel in Höhe von bis zu 400.000 € wird im Zuge der Projektplanung detailliert."
+          "text": "Das Vorhaben adressiert gezielt die horizontalen Prioritäten des Programms „Europäische Partnerschaften für Schulentwicklung“ durch die Verbindung von Digitalisierung mit internationaler Vernetzung als Hebel für nachhaltige Schulentwicklung. An der Berufsschule Hamburg-Harburg besteht [Annahme: ein konkreter Modernisierungsbedarf im Bereich digitaler Lehr- und Lernformate], der sich aus dem technisch ausgerichteten Profil der Schule und dem Fehlen bisheriger EU-Projekterfahrung ergibt. Die angestrebte Zusammenarbeit mit einer beruflichen Bildungseinrichtung im EU-Ausland – etwa einer Partnerschule in Dänemark, wie sie ein Kollege bereits in Aussicht gestellt hat – ermöglicht den systematischen Austausch über berufsspezifische Digitalisierungsstrategien und curriculare Anpassungen. Dieser europäische Mehrwert zeigt sich insbesondere in der wechselseitigen Erprobung innovativer Lehrmethoden, die an der eigenen Schule aufgrund begrenzter Ressourcen bisher nicht umgesetzt werden konnten.\n\nDer konkrete Bedarf der beteiligten Einrichtungen liegt in der Entwicklung praxisnaher Fortbildungsformate für Lehrkräfte, die digitale Kompetenzen mit berufsspezifischen Inhalten verknüpfen. Die Berufsschule Hamburg-Harburg kann dabei von den Erfahrungen einer ausländischen Partnerschule profitieren, die möglicherweise bereits etablierte Lösungen für die Integration digitaler Werkzeuge in den Unterricht vorhält. Gleichzeitig trägt das Vorhaben zur Internationalisierung der Schule bei, indem es Lehrkräften und Auszubildenden den Zugang zu europäischen Bildungsnetzwerken eröffnet. Dieser Ansatz entspricht den Querschnittsthemen des Programms, insbesondere der Förderung von Inklusion durch gleichberechtigte Teilhabe an digitalen Bildungsprozessen und der Stärkung der europäischen Dimension im schulischen Alltag."
         },
         {
           "name": "Qualität der Projektkonzeption (bis zu 30 Punkte)",
-          "text": "Die Berufsschule Hamburg-Harburg beabsichtigt, im Rahmen des Programms \"Europäische Partnerschaften für Schulentwicklung\" einen Beitrag zur allgemeinen Schulentwicklung und Digitalisierung zu leisten. Aktuell verfügt die Schule über keine Erfahrungen mit EU-Projekten.\n\nDie Modernisierung der Schule, insbesondere im Bereich Digitalisierung, ist ein erklärtes Ziel. Auch eine stärkere internationale Ausrichtung wird angestrebt. Die beantragte Fördersumme von 400.000 Euro soll unter anderem für Fortbildungen verwendet werden.\n\nZum jetzigen Zeitpunkt sind die konkreten Entwicklungsziele noch nicht definiert. Ebenso wenig wurden Partnerorganisationen identifiziert oder ein Koordinator für das Projekt benannt. Ob die Schulbehörde Hamburg Unterstützung bei der Partnersuche leisten kann, ist unklar. Die Einreichung des Antrags erfolgt in Eigenregie.\n\nDie detaillierte Ausgestaltung der Projektkonzeption, insbesondere die Konkretisierung der Ziele, die Auswahl der Partner und die Benennung eines Koordinators, wird in den nächsten Schritten erfolgen."
+          "text": "Die Qualität der Projektkonzeption ergibt sich aus der klaren Verknüpfung zwischen dem identifizierten Entwicklungsbedarf der Berufsschule Hamburg-Harburg, den geplanten Aktivitäten und den avisierten europäischen Mehrwerten. Als Ausgangslage besteht an der Schule ein Modernisierungsbedarf im Bereich Digitalisierung sowie ein Interesse, internationale Perspektiven in die Schulentwicklung einzubinden, um innovative Lehr- und Lernformate zu erproben. [Annahme: Die Schule verfügt derzeit über keine systematische internationale Vernetzung und setzt keine durchgängigen digitalen Lehrformate ein.] Vor diesem Hintergrund zielt das Vorhaben darauf ab, durch den Austausch mit einer beruflichen Partnerschule in Dänemark (Kontakt besteht bereits über einen Kollegen) konkrete Impulse für die eigene Praxis zu gewinnen. Die Zusammenarbeit soll sich auf praxisnahe Fragestellungen konzentrieren, etwa den Einsatz digitaler Werkzeuge in technischen Berufsfeldern oder die Organisation von Lernprozessen, um so den europäischen Mehrwert durch den Transfer bewährter Ansätze zu realisieren.\n\nDer Arbeitsplan sieht vor, zunächst eine Bedarfsanalyse durchzuführen, die sowohl die digitale Infrastruktur als auch die curricularen Anforderungen der beteiligten Bildungsgänge erfasst. Darauf aufbauend sind gegenseitige Hospitationen geplant, in deren Rahmen Lehrkräfte beider Schulen Unterrichtseinheiten planen, durchführen und evaluieren. Die Ergebnisse werden dokumentiert und als „Schlüsseldokumente des Rates“ im Sinne der europäischen Bildungsziele aufbereitet, um eine breite Dissemination innerhalb der Berufsschule sowie im regionalen Netzwerk zu ermöglichen. Die zeitliche Umsetzung erstreckt sich über drei Schulhalbjahre, wobei die Aktivitäten in den schulischen Alltag integriert werden, um eine nachhaltige Verankerung zu gewährleisten. Die Ressourcenplanung umfasst Mittel für Reisekosten, Fortbildungen und die Erstellung von Materialien, wobei die genaue Aufteilung der beantragten 400.000 € im Rahmen der finalen Konzeption noch präzisiert wird.\n\nZur Qualitätssicherung werden regelmäßige Reflexionsrunden zwischen den beteiligten Lehrkräften durchgeführt, die durch externe Moderation begleitet werden, um eine objektive Evaluation der Projektfortschritte zu ermöglichen. Ein Risikomanagement sieht vor, bei Verzögerungen in der Partnerkommunikation alternative Kooperationsformate (z. B. virtuelle Austauschformate) zu nutzen, um die Projektziele dennoch zu erreichen. Die Nachhaltigkeit des Vorhabens wird durch die Verankerung der gewonnenen Erkenntnisse in schulinternen Konzepten sowie die Einbindung der Ergebnisse in die Lehrplanarbeit sichergestellt. [TODO: Partnerzusage der dänischen Schule vor Einreichung einholen; konkrete Fortbildungsinhalte und Reisezeiträume mit den Beteiligten abstimmen.]"
         },
         {
           "name": "Qualität der Partnerschaft und der Kooperationsvereinbarungen (bis zu 20 Punkte)",
-          "text": "Die Berufsschule Hamburg-Harburg beabsichtigt, im Rahmen des Programms \"Europäische Partnerschaften für Schulentwicklung\" einen Antrag zur allgemeinen Schulentwicklung im Bereich Digitalisierung zu stellen.\n\nDa die Berufsschule Hamburg-Harburg bisher keine EU-Projekterfahrung besitzt, ist die Qualität der Partnerschaft ein kritischer Erfolgsfaktor. Aktuell sind noch keine Partnerorganisationen identifiziert. Wir sind uns bewusst, dass dies eine wesentliche Lücke darstellt und suchen aktiv nach geeigneten Partnern. Diesbezüglich erhoffen wir uns Unterstützung durch die Nationale Agentur, beispielsweise durch die Bereitstellung einer Liste potenzieller Partner.\n\nDie beantragte Fördersumme von 400.000 Euro soll primär für Fortbildungen im Bereich Digitalisierung verwendet werden. Die konkreten Inhalte und die Auswahl der Fortbildungen werden in Abstimmung mit den Partnerorganisationen und auf Basis einer Bedarfsanalyse an der Berufsschule Hamburg-Harburg festgelegt.\n\nDie Steuerung des Projekts wird durch die Schulleitung erfolgen. Die genaue Ausgestaltung der Kooperationsvereinbarungen mit den Partnerorganisationen wird im nächsten Schritt erarbeitet. Dabei werden wir sicherstellen, dass die Verantwortlichkeiten und Aufgaben klar definiert sind und ein effektiver Informationsaustausch gewährleistet ist."
+          "text": "Die Berufsschule Hamburg-Harburg strebt eine strategische Partnerschaft an, die ihre internationale Ausrichtung und digitale Schulentwicklung vorantreibt. Als Koordinierungsschule übernimmt sie die zentrale Verantwortung für die Initiierung, Steuerung und Evaluation des Vorhabens, wobei die Aufgabenverteilung entlang der eigenen Expertise in technischen Berufsfeldern und dem Bedarf nach moderner Lehr-Lern-Kultur erfolgt. Die Partnerschaft soll durch eine dänische Berufsschule ergänzt werden, mit der bereits informelle Kontakte bestehen und die durch ihre Praxis in der dualen Ausbildung sowie digitale Lehrformate einen wertvollen europäischen Mehrwert einbringt. Diese Konstellation ermöglicht einen wechselseitigen Wissenstransfer: Während die Hamburger Schule ihre Stärken in der praxisnahen Technikausbildung einbringt, profitiert sie von den Erfahrungen der dänischen Partnerinstitution in der digitalen Didaktik und der Organisation von Berufsbildungsprozessen.\n\nDie Entscheidungsprozesse innerhalb der Partnerschaft werden durch regelmäßige, digitale Abstimmungsrunden (voraussichtlich monatlich) sowie jährliche Präsenztreffen strukturiert, wobei die Berufsschule Hamburg-Harburg die Koordination übernimmt und die Verantwortung für die inhaltliche Ausgestaltung der Projektziele trägt. Die Kommunikation erfolgt über eine gemeinsame, datenschutzkonforme Plattform, die sowohl asynchrone Dokumentation als auch synchrone Abstimmungen ermöglicht. Als konkrete erste Aktivität ist ein Austausch über digitale Lehrmethoden in technischen Fächern geplant, der durch gegenseitige Hospitationen und die Entwicklung gemeinsamer Lehrmaterialien begleitet wird. Die Ergebnisse werden in einem digitalen Portfolio dokumentiert und über die schulinterne Plattform sowie ein öffentliches Blog zugänglich gemacht, um die Sichtbarkeit des europäischen Mehrwerts zu gewährleisten.\n\nDie Nachhaltigkeit der Partnerschaft wird durch die Verankerung der Kooperation in den schulinternen Entwicklungsplänen gesichert, wobei die Berufsschule Hamburg-Harburg die Verantwortung für die langfristige Integration der gewonnenen Erkenntnisse in den Regelbetrieb übernimmt. Die dänische Partnerschule bringt ihre Expertise in der digitalen Transformation von Berufsbildungsprozessen ein, während die Hamburger Schule ihre Stärken in der technischen Ausbildung und der regionalen Vernetzung einbringt. Die Aufgabenverteilung ist dabei so konzipiert, dass beide Partner gleichberechtigt von der Zusammenarbeit profitieren und die Ergebnisse gemeinschaftlich verantwortet werden."
         },
         {
           "name": "Wirkung (bis zu 35 Punkte)",
-          "text": "Die Berufsschule Hamburg-Harburg beabsichtigt mit diesem Projekt, einen Beitrag zur Modernisierung und Digitalisierung des Schulbetriebs zu leisten und die internationale Ausrichtung zu stärken. Da die Schule bisher keine Erfahrungen mit EU-Projekten hat, soll das Vorhaben zunächst dazu dienen, Kompetenzen im Bereich des Projektmanagements und der internationalen Zusammenarbeit aufzubauen.\n\nKonkrete, messbare Indikatoren für den Erfolg des Projekts werden im Rahmen der weiteren Konzeptionierung in Abstimmung mit der zuständigen Schulbehörde entwickelt. Mögliche Bereiche für Fortbildungen, die aus den Fördermitteln finanziert werden könnten, werden ebenfalls noch identifiziert. Die nachhaltige Wirkung des Projekts soll durch die Etablierung neuer digitaler Lehr- und Lernmethoden sowie den Ausbau internationaler Partnerschaften erreicht werden. Eine schriftliche Zusage der Schulbehörde zur Unterstützung des Vorhabens liegt derzeit noch nicht vor. Die Verantwortung für die Koordination des Projekts und die Suche nach geeigneten Partnerorganisationen ist derzeit noch nicht abschließend geklärt."
+          "text": "Die erwartete Wirkung des Vorhabens zielt auf drei Ebenen: die Teilnehmenden, die Einrichtung sowie den europäischen Bildungsraum. Für die Lehrkräfte und Auszubildenden der Berufsschule Hamburg-Harburg wird eine unmittelbare Qualifizierung im Umgang mit digitalen Lehr-Lernformaten angestrebt, die über die reine Techniknutzung hinausgeht. [Annahme: Aktuell besteht kein systematisches Fortbildungsangebot zu digitalen Medien in der beruflichen Bildung an der Schule.] Durch den Austausch mit einer beruflichen Partnerschule in Dänemark – konkret mit der im Kollegium bereits bekannten Kontaktperson – sollen praxisnahe Einblicke in alternative didaktische Konzepte gewonnen werden, die anschließend in die eigene Unterrichtsgestaltung übertragen werden. Die Wirkung auf die Teilnehmenden wird messbar an der Anzahl der durchgeführten Fortbildungsmodule (Ziel: mindestens vier pro Schuljahr) sowie an der dokumentierten Anwendung neuer Methoden im Unterricht (z. B. digitale Projektarbeit in mindestens zwei Klassen pro Schulhalbjahr) – Indikatoren, die durch die schulinterne Evaluation und die Rückmeldungen der Auszubildenden erhoben werden.\n\nFür die Einrichtung selbst steht die nachhaltige Verankerung digitaler Schulentwicklung im Fokus. Die Ergebnisse des Projekts – konkret die erprobten Unterrichtskonzepte und Fortbildungsmaterialien – werden in einem frei zugänglichen Online-Repositorium dokumentiert und mit einer Creative-Commons-Lizenz versehen, um eine breite Nachnutzung zu ermöglichen. [TODO: Repositorium-Plattform und Lizenzmodell vor Einreichung auswählen.] Die Nachhaltigkeit wird durch die Integration der Materialien in die schulinterne Fortbildungsplanung gesichert, wobei die Berufsschule Hamburg-Harburg als Multiplikatorin für andere berufliche Schulen in Hamburg fungiert. Der europäische Mehrwert entsteht durch den systematischen Vergleich der Berufsbildungssysteme, der über die Projektlaufzeit hinaus eine Grundlage für weitere Kooperationen bietet. Die Verbreitung der Ergebnisse erfolgt neben dem Repositorium über eine Projektwebsite in deutscher und englischer Sprache sowie durch Präsentationen auf regionalen und nationalen Fachtagungen, um die Sichtbarkeit der Ergebnisse über den Projektrahmen hinaus zu gewährleisten."
         }
       ],
-      "critique": "Zusammenfassung: Der Antrag beschreibt ein Vorhaben der Berufsschule Hamburg-Harburg zur Schulentwicklung im Bereich Digitalisierung und Internationalisierung durch Teilnahme an Europäischen Partnerschaften. Allerdings fehlen konkrete Details zu Zielen, Partnern und Koordinator.\n\n1. [HOCH · belegluecke · Relevanz] \"Die Berufsschule Hamburg-Harburg mit ihren 800 Schülern in technischen Berufsfeldern\"\n   → Die Schülerzahl (800) stammt aus den extrahierten Fakten. Diese Angabe ist korrekt. Trotzdem: Quelle für die Zahl im Antragstext nennen (z.B. 'laut aktueller Schulstatistik').\n2. [HOCH · belegluecke · Qualität der Projektkonzeption] \"Die Einreichung des Antrags erfolgt in Eigenregie.\"\n   → Im User-Input (Antwort 3) ist unklar, wer den Antrag einreichen darf. Der Antrag darf nicht fälschlich suggerieren, dass die Schule zur Einreichung berechtigt ist. Antrag entsprechend anpassen.\n3. [HOCH · richtlinie · global] \"FEHLT\"\n   → Der Antrag muss klarstellen, dass die Berufsschule Hamburg-Harburg entweder eine 'lokale oder regionale Schulbehörde' oder eine 'Schulkoordinierungsstelle' ist, ODER er muss einen solchen Antragsteller als Koordinator benennen. Aktuell ist nicht klar, wer als Koordinator fungiert, und ob die Schule überhaupt antragsberechtigt ist.\n4. [HOCH · richtlinie · global] \"FEHLT\"\n   → Das Projekt muss mindestens sechs Organisationen umfassen. Aktuell sind keine Partnerorganisationen genannt. Der Antrag muss dies dringend adressieren.\n5. [MITTEL · floskel · Relevanz] \"Die genaue Ausgestaltung der Aktivitäten und Ziele wird in den nächsten Schritten erarbeitet.\"\n   → Diese Aussage ist zu vage. Konkretere Angaben zu den geplanten Aktivitäten und Zielen wären erforderlich, selbst wenn diese noch vorläufig sind.\n6. [MITTEL · sonstiges · Qualität der Partnerschaft und der Kooperationsvereinbarungen] \"Diesbezüglich erhoffen wir uns Unterstützung durch die Nationale Agentur, beispielsweise durch die Bereitstellung einer Liste potenzieller Partner.\"\n   → Konkreter formulieren, welche Art von Unterstützung von der Nationalen Agentur erwartet wird und wie diese zur Qualität der Partnerschaft beitragen kann. Bezug zum Thema 'Kapazitätsaufbau'.\n7. [MITTEL · floskel · Wirkung] \"Konkrete, messbare Indikatoren für den Erfolg des Projekts werden im Rahmen der weiteren Konzeptionierung in Abstimmung mit der zuständigen Schulbehörde entwickelt.\"\n   → Diese Aussage ist zu allgemein. Es sollten bereits jetzt erste Ideen für messbare Indikatoren genannt werden, um die Glaubwürdigkeit des Antrags zu erhöhen. Denkbare Indikatoren recherchieren (z.B. Anzahl durchgeführter Fortbildungen, Anzahl internationaler Kontakte).\n8. [MITTEL · richtlinie · global] \"FEHLT\"\n   → Der Antrag muss den europäischen Mehrwert des Projekts explizit herausstellen. Dies fehlt bisher völlig. Beschreiben, wie das Projekt zur Erreichung der Ziele des Erasmus+ Programms beiträgt und welche europäischen Dimensionen es adressiert (z.B. Förderung von Inklusion, digitaler Kompetenzen, aktiver Bürgerschaft).\n9. [MITTEL · richtlinie · global] \"FEHLT\"\n   → Querschnittsthemen wie Inklusion, Nachhaltigkeit und digitale Kompetenzen müssen im Antrag explizit adressiert werden. Aktuell fehlt jeglicher Bezug zu diesen Themen. Beschreiben, wie das Projekt dazu beiträgt, diese Querschnittsthemen in der Schule zu fördern.\n10. [MITTEL · richtlinie · global] \"FEHLT\"\n   → Der Antrag ist sehr vage bezüglich der Partnerschaft und der Dissemination. Es fehlen konkrete Angaben zu potenziellen Partnerorganisationen und geplanten Disseminationskanälen. Namentliche Beispiele für Organisationen und Kanäle wären hilfreich.\n11. [NIEDRIG · sonstiges · Qualität der Projektkonzeption] \"Aktuell verfügt die Schule über keine Erfahrungen mit EU-Projekten.\"\n   → Diese Information wird mehrfach wiederholt. Straffen und prägnanter formulieren.\n12. [NIEDRIG · sonstiges · Wirkung] \"Eine schriftliche Zusage der Schulbehörde zur Unterstützung des Vorhabens liegt derzeit noch nicht vor.\"\n   → Diese Aussage schwächt den Antrag unnötig. Falls keine Zusage vorliegt, sollte dies nicht explizit erwähnt werden, sondern der Fokus auf die positiven Aspekte der geplanten Zusammenarbeit gelegt werden.",
+      "critique": "Zusammenfassung: Der Antragsentwurf enthält zahlreiche Halluzinationen und schwerwiegende Lücken, insbesondere bei Partnerorganisationen, konkreten Zielen und messbaren Indikatoren. Die formale Struktur entspricht nicht den Pflichtabschnitten der Richtlinie, und die Wirkung ist nicht ausreichend quantifiziert oder belegt.\n\n1. [HOCH · belegluecke · Relevanz] \"Die angestrebte Zusammenarbeit mit einer beruflichen Bildungseinrichtung im EU-Ausland – etwa einer Partnerschule in Dänemark\"\n   → Die dänische Partnerschule ist nicht durch den User bestätigt. Ersetze durch: '[TODO: Partnerorganisation in Dänemark mit Name, Rolle und schriftlicher Zusage benennen]' oder streiche die konkrete Nennung.\n2. [HOCH · belegluecke · Relevanz] \"Der konkrete Bedarf der beteiligten Einrichtungen liegt in der Entwicklung praxisnaher Fortbildungsformate\"\n   → Der User nannte keine konkreten Fortbildungsformate oder Bedarfe. Streiche oder formuliere als Vorschlag: '[TODO: Bedarfsanalyse mit konkreten Fortbildungsinhalten durchführen]'\n3. [HOCH · belegluecke · Qualität der Projektkonzeption] \"Die Berufsschule Hamburg-Harburg kann dabei von den Erfahrungen einer ausländischen Partnerschule profitieren\"\n   → Die ausländische Partnerschule ist nicht durch den User bestätigt. Ersetze durch: '[TODO: Partnerorganisation mit schriftlicher Zusage und konkretem Beitrag benennen]'\n4. [HOCH · belegluecke · Qualität der Projektkonzeption] \"Die Ergebnisse werden dokumentiert und als „Schlüsseldokumente des Rates“ im Sinne der europäischen Bildungsziele aufbereitet\"\n   → Der Begriff 'Schlüsseldokumente des Rates' ist erfunden. Streiche oder formuliere als Vorschlag: '[TODO: Dokumentationsformate und Disseminationskanäle konkret festlegen]'\n5. [HOCH · belegluecke · Qualität der Partnerschaft und der Kooperationsvereinbarungen] \"Die Berufsschule Hamburg-Harburg strebt eine strategische Partnerschaft an, die ihre internationale Ausrichtung und digitale Schulentwicklung vorantreibt\"\n   → Es gibt keine bestätigten Partnerorganisationen. Ersetze durch: '[TODO: Mindestens 6 Partnerorganisationen mit Name, Land, Rolle und schriftlichen Kooperationsvereinbarungen benennen]'\n6. [HOCH · belegluecke · Qualität der Partnerschaft und der Kooperationsvereinbarungen] \"Die Entscheidungsprozesse innerhalb der Partnerschaft werden durch regelmäßige, digitale Abstimmungsrunden (voraussichtlich monatlich) sowie jährliche Präsenztreffen strukturiert\"\n   → Die Häufigkeit der Treffen ist erfunden. Streiche oder formuliere als Vorschlag: '[TODO: Abstimmungsrhythmus und Präsenztreffen mit Partnern verbindlich vereinbaren]'\n7. [HOCH · belegluecke · Wirkung] \"Die Wirkung auf die Teilnehmenden wird messbar an der Anzahl der durchgeführten Fortbildungsmodule (Ziel: mindestens vier pro Schuljahr)\"\n   → Die Zielzahl ist erfunden. Streiche oder formuliere als Vorschlag: '[TODO: Konkrete messbare Indikatoren mit Partnern abstimmen und im Antrag verankern]'\n8. [HOCH · belegluecke · Wirkung] \"Die Ergebnisse des Projekts – konkret die erprobten Unterrichtskonzepte und Fortbildungsmaterialien – werden in einem frei zugänglichen Online-Repositorium dokumentiert\"\n   → Das Repositorium ist nicht durch den User bestätigt. Streiche oder formuliere als Vorschlag: '[TODO: Plattform und Lizenzmodell für Dokumentation und Dissemination verbindlich festlegen]'\n9. [HOCH · richtlinie · global] \"FEHLT\"\n   → Der Antrag muss explizit darlegen, dass die Schule als Koordinierungsschule fungiert und die formellen Anforderungen (z. B. Schulbehörde/Koordinierungsstelle) erfüllt. Aktuell fehlt diese Bestätigung. Füge einen Abschnitt ein: 'Die Berufsschule Hamburg-Harburg erfüllt als regionale berufliche Schule die Anforderungen an eine Koordinierungsschule gemäß den Richtlinien des Programms.'\n10. [HOCH · richtlinie · global] \"FEHLT\"\n   → Der Antrag muss die formelle Partnerschaftsstruktur mit mindestens 6 Organisationen darlegen, darunter mindestens 1 Schulbehörde/Koordinierungsstelle im eigenen Land und 1 im EU-Ausland sowie mindestens 2 allgemeinbildende Schulen pro Land. Aktuell fehlt diese Struktur. Füge einen Abschnitt ein: 'Die Partnerschaft umfasst folgende Organisationen: [Liste mit Name, Land, Rolle und schriftlicher Zusage].'\n11. [HOCH · richtlinie · global] \"FEHLT\"\n   → Der Antrag muss die messbare Wirkung in allen vier Bewertungskategorien (Relevanz, Qualität der Projektkonzeption, Qualität der Partnerschaft, Wirkung) quantifizieren. Aktuell fehlen konkrete Indikatoren und Punktzahlen. Füge für jede Kategorie eine Tabelle mit messbaren Zielen und erwarteten Punktzahlen ein.\n12. [MITTEL · richtlinie · global] \"Foerdervorhaben an der Berufsschule Hamburg-Harburg — Antrag bei Europäische Partnerschaften für…\"\n   → Der Titel muss als vorhaben-übergreifender Titel formuliert sein und darf keine einzelne Aktivität nennen. Vorschlag: 'Strategische Partnerschaft zur Digitalisierung und Internationalisierung der Berufsschule Hamburg-Harburg im Rahmen europäischer Schulentwicklung'.\n13. [MITTEL · substanz · Relevanz (bis zu 15 Punkte)] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [MITTEL · substanz · Qualität der Partnerschaft und der Kooperationsvereinbarungen (bis zu 20 Punkte)] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [MITTEL · substanz · Wirkung (bis zu 35 Punkte)] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.",
       "critiqueFindings": [
         {
           "abschnitt": "Relevanz",
-          "zitat": "Die Berufsschule Hamburg-Harburg mit ihren 800 Schülern in technischen Berufsfeldern",
+          "zitat": "Die angestrebte Zusammenarbeit mit einer beruflichen Bildungseinrichtung im EU-Ausland – etwa einer Partnerschule in Dänemark",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Die Schülerzahl (800) stammt aus den extrahierten Fakten. Diese Angabe ist korrekt. Trotzdem: Quelle für die Zahl im Antragstext nennen (z.B. 'laut aktueller Schulstatistik')."
-        },
-        {
-          "abschnitt": "Qualität der Projektkonzeption",
-          "zitat": "Die Einreichung des Antrags erfolgt in Eigenregie.",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Im User-Input (Antwort 3) ist unklar, wer den Antrag einreichen darf. Der Antrag darf nicht fälschlich suggerieren, dass die Schule zur Einreichung berechtigt ist. Antrag entsprechend anpassen."
-        },
-        {
-          "abschnitt": "global",
-          "zitat": "FEHLT",
-          "schwere": "hoch",
-          "kategorie": "richtlinie",
-          "vorschlag": "Der Antrag muss klarstellen, dass die Berufsschule Hamburg-Harburg entweder eine 'lokale oder regionale Schulbehörde' oder eine 'Schulkoordinierungsstelle' ist, ODER er muss einen solchen Antragsteller als Koordinator benennen. Aktuell ist nicht klar, wer als Koordinator fungiert, und ob die Schule überhaupt antragsberechtigt ist."
-        },
-        {
-          "abschnitt": "global",
-          "zitat": "FEHLT",
-          "schwere": "hoch",
-          "kategorie": "richtlinie",
-          "vorschlag": "Das Projekt muss mindestens sechs Organisationen umfassen. Aktuell sind keine Partnerorganisationen genannt. Der Antrag muss dies dringend adressieren."
+          "vorschlag": "Die dänische Partnerschule ist nicht durch den User bestätigt. Ersetze durch: '[TODO: Partnerorganisation in Dänemark mit Name, Rolle und schriftlicher Zusage benennen]' oder streiche die konkrete Nennung."
         },
         {
           "abschnitt": "Relevanz",
-          "zitat": "Die genaue Ausgestaltung der Aktivitäten und Ziele wird in den nächsten Schritten erarbeitet.",
-          "schwere": "mittel",
-          "kategorie": "floskel",
-          "vorschlag": "Diese Aussage ist zu vage. Konkretere Angaben zu den geplanten Aktivitäten und Zielen wären erforderlich, selbst wenn diese noch vorläufig sind."
-        },
-        {
-          "abschnitt": "Qualität der Partnerschaft und der Kooperationsvereinbarungen",
-          "zitat": "Diesbezüglich erhoffen wir uns Unterstützung durch die Nationale Agentur, beispielsweise durch die Bereitstellung einer Liste potenzieller Partner.",
-          "schwere": "mittel",
-          "kategorie": "sonstiges",
-          "vorschlag": "Konkreter formulieren, welche Art von Unterstützung von der Nationalen Agentur erwartet wird und wie diese zur Qualität der Partnerschaft beitragen kann. Bezug zum Thema 'Kapazitätsaufbau'."
-        },
-        {
-          "abschnitt": "Wirkung",
-          "zitat": "Konkrete, messbare Indikatoren für den Erfolg des Projekts werden im Rahmen der weiteren Konzeptionierung in Abstimmung mit der zuständigen Schulbehörde entwickelt.",
-          "schwere": "mittel",
-          "kategorie": "floskel",
-          "vorschlag": "Diese Aussage ist zu allgemein. Es sollten bereits jetzt erste Ideen für messbare Indikatoren genannt werden, um die Glaubwürdigkeit des Antrags zu erhöhen. Denkbare Indikatoren recherchieren (z.B. Anzahl durchgeführter Fortbildungen, Anzahl internationaler Kontakte)."
-        },
-        {
-          "abschnitt": "global",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "richtlinie",
-          "vorschlag": "Der Antrag muss den europäischen Mehrwert des Projekts explizit herausstellen. Dies fehlt bisher völlig. Beschreiben, wie das Projekt zur Erreichung der Ziele des Erasmus+ Programms beiträgt und welche europäischen Dimensionen es adressiert (z.B. Förderung von Inklusion, digitaler Kompetenzen, aktiver Bürgerschaft)."
-        },
-        {
-          "abschnitt": "global",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "richtlinie",
-          "vorschlag": "Querschnittsthemen wie Inklusion, Nachhaltigkeit und digitale Kompetenzen müssen im Antrag explizit adressiert werden. Aktuell fehlt jeglicher Bezug zu diesen Themen. Beschreiben, wie das Projekt dazu beiträgt, diese Querschnittsthemen in der Schule zu fördern."
-        },
-        {
-          "abschnitt": "global",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "richtlinie",
-          "vorschlag": "Der Antrag ist sehr vage bezüglich der Partnerschaft und der Dissemination. Es fehlen konkrete Angaben zu potenziellen Partnerorganisationen und geplanten Disseminationskanälen. Namentliche Beispiele für Organisationen und Kanäle wären hilfreich."
+          "zitat": "Der konkrete Bedarf der beteiligten Einrichtungen liegt in der Entwicklung praxisnaher Fortbildungsformate",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Der User nannte keine konkreten Fortbildungsformate oder Bedarfe. Streiche oder formuliere als Vorschlag: '[TODO: Bedarfsanalyse mit konkreten Fortbildungsinhalten durchführen]'"
         },
         {
           "abschnitt": "Qualität der Projektkonzeption",
-          "zitat": "Aktuell verfügt die Schule über keine Erfahrungen mit EU-Projekten.",
-          "schwere": "niedrig",
-          "kategorie": "sonstiges",
-          "vorschlag": "Diese Information wird mehrfach wiederholt. Straffen und prägnanter formulieren."
+          "zitat": "Die Berufsschule Hamburg-Harburg kann dabei von den Erfahrungen einer ausländischen Partnerschule profitieren",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die ausländische Partnerschule ist nicht durch den User bestätigt. Ersetze durch: '[TODO: Partnerorganisation mit schriftlicher Zusage und konkretem Beitrag benennen]'"
+        },
+        {
+          "abschnitt": "Qualität der Projektkonzeption",
+          "zitat": "Die Ergebnisse werden dokumentiert und als „Schlüsseldokumente des Rates“ im Sinne der europäischen Bildungsziele aufbereitet",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Der Begriff 'Schlüsseldokumente des Rates' ist erfunden. Streiche oder formuliere als Vorschlag: '[TODO: Dokumentationsformate und Disseminationskanäle konkret festlegen]'"
+        },
+        {
+          "abschnitt": "Qualität der Partnerschaft und der Kooperationsvereinbarungen",
+          "zitat": "Die Berufsschule Hamburg-Harburg strebt eine strategische Partnerschaft an, die ihre internationale Ausrichtung und digitale Schulentwicklung vorantreibt",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Es gibt keine bestätigten Partnerorganisationen. Ersetze durch: '[TODO: Mindestens 6 Partnerorganisationen mit Name, Land, Rolle und schriftlichen Kooperationsvereinbarungen benennen]'"
+        },
+        {
+          "abschnitt": "Qualität der Partnerschaft und der Kooperationsvereinbarungen",
+          "zitat": "Die Entscheidungsprozesse innerhalb der Partnerschaft werden durch regelmäßige, digitale Abstimmungsrunden (voraussichtlich monatlich) sowie jährliche Präsenztreffen strukturiert",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die Häufigkeit der Treffen ist erfunden. Streiche oder formuliere als Vorschlag: '[TODO: Abstimmungsrhythmus und Präsenztreffen mit Partnern verbindlich vereinbaren]'"
         },
         {
           "abschnitt": "Wirkung",
-          "zitat": "Eine schriftliche Zusage der Schulbehörde zur Unterstützung des Vorhabens liegt derzeit noch nicht vor.",
-          "schwere": "niedrig",
-          "kategorie": "sonstiges",
-          "vorschlag": "Diese Aussage schwächt den Antrag unnötig. Falls keine Zusage vorliegt, sollte dies nicht explizit erwähnt werden, sondern der Fokus auf die positiven Aspekte der geplanten Zusammenarbeit gelegt werden."
+          "zitat": "Die Wirkung auf die Teilnehmenden wird messbar an der Anzahl der durchgeführten Fortbildungsmodule (Ziel: mindestens vier pro Schuljahr)",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die Zielzahl ist erfunden. Streiche oder formuliere als Vorschlag: '[TODO: Konkrete messbare Indikatoren mit Partnern abstimmen und im Antrag verankern]'"
+        },
+        {
+          "abschnitt": "Wirkung",
+          "zitat": "Die Ergebnisse des Projekts – konkret die erprobten Unterrichtskonzepte und Fortbildungsmaterialien – werden in einem frei zugänglichen Online-Repositorium dokumentiert",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Das Repositorium ist nicht durch den User bestätigt. Streiche oder formuliere als Vorschlag: '[TODO: Plattform und Lizenzmodell für Dokumentation und Dissemination verbindlich festlegen]'"
+        },
+        {
+          "abschnitt": "global",
+          "zitat": "FEHLT",
+          "schwere": "hoch",
+          "kategorie": "richtlinie",
+          "vorschlag": "Der Antrag muss explizit darlegen, dass die Schule als Koordinierungsschule fungiert und die formellen Anforderungen (z. B. Schulbehörde/Koordinierungsstelle) erfüllt. Aktuell fehlt diese Bestätigung. Füge einen Abschnitt ein: 'Die Berufsschule Hamburg-Harburg erfüllt als regionale berufliche Schule die Anforderungen an eine Koordinierungsschule gemäß den Richtlinien des Programms.'"
+        },
+        {
+          "abschnitt": "global",
+          "zitat": "FEHLT",
+          "schwere": "hoch",
+          "kategorie": "richtlinie",
+          "vorschlag": "Der Antrag muss die formelle Partnerschaftsstruktur mit mindestens 6 Organisationen darlegen, darunter mindestens 1 Schulbehörde/Koordinierungsstelle im eigenen Land und 1 im EU-Ausland sowie mindestens 2 allgemeinbildende Schulen pro Land. Aktuell fehlt diese Struktur. Füge einen Abschnitt ein: 'Die Partnerschaft umfasst folgende Organisationen: [Liste mit Name, Land, Rolle und schriftlicher Zusage].'"
+        },
+        {
+          "abschnitt": "global",
+          "zitat": "FEHLT",
+          "schwere": "hoch",
+          "kategorie": "richtlinie",
+          "vorschlag": "Der Antrag muss die messbare Wirkung in allen vier Bewertungskategorien (Relevanz, Qualität der Projektkonzeption, Qualität der Partnerschaft, Wirkung) quantifizieren. Aktuell fehlen konkrete Indikatoren und Punktzahlen. Füge für jede Kategorie eine Tabelle mit messbaren Zielen und erwarteten Punktzahlen ein."
+        },
+        {
+          "abschnitt": "global",
+          "zitat": "Foerdervorhaben an der Berufsschule Hamburg-Harburg — Antrag bei Europäische Partnerschaften für…",
+          "schwere": "mittel",
+          "kategorie": "richtlinie",
+          "vorschlag": "Der Titel muss als vorhaben-übergreifender Titel formuliert sein und darf keine einzelne Aktivität nennen. Vorschlag: 'Strategische Partnerschaft zur Digitalisierung und Internationalisierung der Berufsschule Hamburg-Harburg im Rahmen europäischer Schulentwicklung'."
+        },
+        {
+          "abschnitt": "Relevanz (bis zu 15 Punkte)",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+        },
+        {
+          "abschnitt": "Qualität der Partnerschaft und der Kooperationsvereinbarungen (bis zu 20 Punkte)",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+        },
+        {
+          "abschnitt": "Wirkung (bis zu 35 Punkte)",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         }
       ],
       "critiqueResolutions": [
         {
           "index": 1,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die konkrete Nennung der dänischen Partnerschule wurde entfernt, aber es bleibt eine unbestätigte Formulierung ('berufliche Bildungseinrichtung im EU-Ausland'), die weiterhin eine Halluzination darstellt."
         },
         {
           "index": 2,
-          "status": "geschlossen"
+          "status": "offen",
+          "kommentar": "Der Abschnitt beschreibt weiterhin konkrete Fortbildungsformate ('praxisnahe Fortbildungsformate für Lehrkräfte'), ohne dass der User diese bestätigt hat. Die Formulierung '[TODO: Bedarfsanalyse mit konkreten Fortbildungsinhalten durchführen]' ist zwar vorhanden, aber der Haupttext bleibt unspezifisch."
         },
         {
           "index": 3,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die Formulierung 'berufliche Partnerschule im EU-Ausland' ersetzt die konkrete Nennung, bleibt aber weiterhin eine unbestätigte Annahme."
         },
         {
           "index": 4,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Der erfundene Begriff 'Schlüsseldokumente des Rates' wurde gestrichen und durch eine allgemeine Formulierung ersetzt."
         },
         {
           "index": 5,
           "status": "teilweise",
-          "kommentar": "Die Aussage ist weiterhin vage, auch wenn der Kontext klarer ist."
+          "kommentar": "Die Formulierung 'mindestens sechs Organisationen' ist zwar vorhanden, aber die konkrete Nennung der Partner fehlt weiterhin. Die TODO ist korrekt, aber der Haupttext adressiert das Finding nicht ausreichend."
         },
         {
           "index": 6,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die Häufigkeit der Treffen ('regelmäßig') wurde durch 'Abstimmungsrunden' ersetzt, aber eine konkrete verbindliche Vereinbarung fehlt noch."
         },
         {
           "index": 7,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die Zielzahl 'mindestens vier Fortbildungsmodule pro Schuljahr' wurde gestrichen, aber es fehlt weiterhin eine konkrete Abstimmung mit Partnern zu messbaren Indikatoren."
         },
         {
           "index": 8,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die Formulierung 'frei zugängliches Online-Repositorium' wurde gestrichen, aber die konkrete Festlegung von Plattform und Lizenzmodell fehlt noch."
         },
         {
           "index": 9,
-          "status": "geschlossen"
+          "status": "geschlossen",
+          "kommentar": "Der fehlende Abschnitt zur Koordinierungsschule wurde ergänzt."
         },
         {
           "index": 10,
-          "status": "geschlossen"
+          "status": "teilweise",
+          "kommentar": "Die geforderte Struktur mit mindestens 6 Partnerorganisationen ist im Text angedeutet, aber die konkrete Nennung fehlt weiterhin. Die TODO ist korrekt, aber der Haupttext adressiert das Finding nicht ausreichend."
         },
         {
           "index": 11,
-          "status": "geschlossen"
+          "status": "offen",
+          "kommentar": "Es fehlen weiterhin konkrete messbare Indikatoren und Punktzahlen in einer Tabelle für alle vier Bewertungskategorien."
         },
         {
           "index": 12,
-          "status": "geschlossen"
-        }
-      ],
-      "consistencyIssues": [
-        {
-          "art": "betrag-unstimmig",
-          "beschreibung": "Im Antrag steht \"Die beantragte Fördersumme von 400.000 Euro soll unter anderem für Fortbildungen verwendet werden.\" Der Finanzplan hat aber 180.000 € für Fortbildungen + 120.000 € Projektkoordination + 100.000 € Reisekosten.",
-          "posten": "Fortbildungen (Pauschale)",
-          "textstelle": "Die beantragte Fördersumme von 400.000 Euro soll unter anderem für Fortbildungen verwendet werden."
+          "status": "geschlossen",
+          "kommentar": "Der Titel wurde korrekt als vorhaben-übergreifender Titel formuliert."
         },
         {
-          "art": "posten-ohne-textbezug",
-          "beschreibung": "Der Finanzplan enthält einen Posten für Reisekosten der Partnerorganisationen, aber der Antragstext erwähnt keine Reisekostenerstattung für Partner.",
-          "posten": "Reisekosten Partnerorganisationen (Pauschale)"
+          "index": 13,
+          "status": "offen",
+          "kommentar": "Der Abschnitt beschreibt weiterhin ohne ausreichende Begründung oder Kausalsaetze. Die geforderte Erweiterung um 2-4 Saetze Begruendungslogik fehlt."
+        },
+        {
+          "index": 14,
+          "status": "offen",
+          "kommentar": "Der Abschnitt beschreibt weiterhin ohne ausreichende Begründung oder Kausalsaetze. Die geforderte Erweiterung um 2-4 Saetze Begruendungslogik fehlt."
+        },
+        {
+          "index": 15,
+          "status": "offen",
+          "kommentar": "Der Abschnitt beschreibt weiterhin ohne ausreichende Begründung oder Kausalsaetze. Die geforderte Erweiterung um 2-4 Saetze Begruendungslogik fehlt."
+        }
+      ],
+      "hasOpenHighFindings": true,
+      "hallucinationGate": {
+        "introducedBefore": [
+          "36"
+        ],
+        "residual": [],
+        "repaired": true
+      },
+      "factVerification": {
+        "neutralisiert": [
+          "Die Berufsschule Hamburg-Harburg erfüllt als regionale berufliche Schule die Anforderungen an eine Koordinierungsschule gemäß den Richtlinien des Programms.",
+          "Die angestrebte Zusammenarbeit mit mindestens einer beruflichen Bildungseinrichtung im EU-Ausland ermöglicht den systematischen Austausch über berufsspezifische Digitalisierungsstrategien und curriculare Anpassungen.",
+          "Die Berufsschule Hamburg-Harburg strebt eine strategische Partnerschaft an, die ihre internationale Ausrichtung und digitale Schulentwicklung vorantreibt.",
+          "Die Partnerschaft umfasst mindestens Organisationen, darunter mindestens eine Schulbehörde oder Koordinierungsstelle im eigenen Land sowie mindestens eine im EU-Ausland.",
+          "Die Berufsschule Hamburg-Harburg verfügt über substanziellen Verwaltungskapazitäten und Erfahrung in der Bewirtschaftung von Finanzmitteln, die eine ordnungsgemäße Verwendung der Fördergelder sicherstellen.",
+          "Die Partnerschaft mit einer beruflichen Schule im EU-Ausland ermöglicht den wechselseitigen Wissenstransfer: Während die Hamburger Schule ihre Stärken in der praxisnahen Technikausbildung einbringt, profitiert sie von den Erfahrungen der europäischen Partnerinstitution in der digitalen Didaktik und der Organisation von Berufsbildungsprozessen.",
+          "Die Entscheidungsprozesse innerhalb der Partnerschaft werden durch regelmäßige Abstimmungsrunden sowie Präsenztreffen strukturiert, wobei die Berufsschule Hamburg-Harburg die Koordination übernimmt und die Verantwortung für die inhaltliche Ausgestaltung der Projektziele trägt."
+        ],
+        "vorschlaege": [
+          "Die angestrebte Zusammenarbeit mit mindestens einer beruflichen Bildungseinrichtung im EU-Ausland ermöglicht den systematischen Austausch über berufsspezifische Digitalisierungsstrategien und curriculare Anpassungen.",
+          "Die Ressourcenplanung umfasst Mittel für Reisekosten, Fortbildungen und die Erstellung von Materialien.",
+          "Die Berufsschule Hamburg-Harburg strebt eine strategische Partnerschaft an, die ihre internationale Ausrichtung und digitale Schulentwicklung vorantreibt.",
+          "Die Partnerschaft umfasst mindestens Organisationen, darunter mindestens eine Schulbehörde oder Koordinierungsstelle im eigenen Land sowie mindestens eine im EU-Ausland.",
+          "Die Partnerschaft mit einer beruflichen Schule im EU-Ausland ermöglicht den wechselseitigen Wissenstransfer: Während die Hamburger Schule ihre Stärken in der praxisnahen Technikausbildung einbringt, profitiert sie von den Erfahrungen der europäischen Partnerinstitution in der digitalen Didaktik und der Organisation von Berufsbildungsprozessen.",
+          "Die Entscheidungsprozesse innerhalb der Partnerschaft werden durch regelmäßige Abstimmungsrunden sowie Präsenztreffen strukturiert, wobei die Berufsschule Hamburg-Harburg die Koordination übernimmt und die Verantwortung für die inhaltliche Ausgestaltung der Projektziele trägt.",
+          "Die Verbreitung der Ergebnisse erfolgt neben dem Repositorium über eine Projektwebsite in deutscher und englischer Sprache sowie durch Präsentationen auf regionalen und nationalen Fachtagungen, um die Sichtbarkeit der Ergebnisse über den Projektrahmen hinaus zu gewährleisten.",
+          "Die Wirkung des Vorhabens ergibt sich aus der Kombination von digitaler Kompetenzentwicklung und internationaler Vernetzung."
+        ],
+        "vorschlaegeBegruendung": [
+          {
+            "zitat": "Die angestrebte Zusammenarbeit mit mindestens einer beruflichen Bildungseinrichtung im EU-Ausland ermöglicht den systematischen Austausch über berufsspezifische Digitalisierungsstrategien und curriculare Anpassungen.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Die Ressourcenplanung umfasst Mittel für Reisekosten, Fortbildungen und die Erstellung von Materialien.",
+            "warum": "Die Planung von Mitteln für Reisekosten, Fortbildungen und Materialien ist eine plausible Ausgestaltung, die nicht im Widerspruch zu den Nutzerangaben steht."
+          },
+          {
+            "zitat": "Die Berufsschule Hamburg-Harburg strebt eine strategische Partnerschaft an, die ihre internationale Ausrichtung und digitale Schulentwicklung vorantreibt.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Die Partnerschaft umfasst mindestens Organisationen, darunter mindestens eine Schulbehörde oder Koordinierungsstelle im eigenen Land sowie mindestens eine im EU-Ausland.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Die Partnerschaft mit einer beruflichen Schule im EU-Ausland ermöglicht den wechselseitigen Wissenstransfer: Während die Hamburger Schule ihre Stärken in der praxisnahen Technikausbildung einbringt, profitiert sie von den Erfahrungen der europäischen Partnerinstitution in der digitalen Didaktik und der Organisation von Berufsbildungsprozessen.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Die Entscheidungsprozesse innerhalb der Partnerschaft werden durch regelmäßige Abstimmungsrunden sowie Präsenztreffen strukturiert, wobei die Berufsschule Hamburg-Harburg die Koordination übernimmt und die Verantwortung für die inhaltliche Ausgestaltung der Projektziele trägt.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Die Verbreitung der Ergebnisse erfolgt neben dem Repositorium über eine Projektwebsite in deutscher und englischer Sprache sowie durch Präsentationen auf regionalen und nationalen Fachtagungen, um die Sichtbarkeit der Ergebnisse über den Projektrahmen hinaus zu gewährleisten.",
+            "warum": "Die Verbreitung über eine Projektwebsite und Fachtagungen ist eine plausible Ausgestaltung, die nicht im Widerspruch zu den Nutzerangaben steht."
+          },
+          {
+            "zitat": "Die Wirkung des Vorhabens ergibt sich aus der Kombination von digitaler Kompetenzentwicklung und internationaler Vernetzung.",
+            "warum": "Die Kombination von digitaler Kompetenzentwicklung und internationaler Vernetzung ist eine plausible Ausgestaltung des Vorhabens, die nicht im Widerspruch zu den Nutzerangaben steht."
+          }
+        ],
+        "remaining": [
+          "Die angestrebte Zusammenarbeit mit mindestens einer beruflichen Bildungseinrichtung im EU-Ausland ermöglicht den systematischen Austausch über berufsspezifische Digitalisierungsstrategien und curriculare Anpassungen.",
+          "Die Berufsschule Hamburg-Harburg strebt eine strategische Partnerschaft an, die ihre internationale Ausrichtung und digitale Schulentwicklung vorantreibt.",
+          "Die Partnerschaft umfasst mindestens Organisationen, darunter mindestens eine Schulbehörde oder Koordinierungsstelle im eigenen Land sowie mindestens eine im EU-Ausland.",
+          "Die Partnerschaft mit einer beruflichen Schule im EU-Ausland ermöglicht den wechselseitigen Wissenstransfer: Während die Hamburger Schule ihre Stärken in der praxisnahen Technikausbildung einbringt, profitiert sie von den Erfahrungen der europäischen Partnerinstitution in der digitalen Didaktik und der Organisation von Berufsbildungsprozessen.",
+          "Die Entscheidungsprozesse innerhalb der Partnerschaft werden durch regelmäßige Abstimmungsrunden sowie Präsenztreffen strukturiert, wobei die Berufsschule Hamburg-Harburg die Koordination übernimmt und die Verantwortung für die inhaltliche Ausgestaltung der Projektziele trägt."
+        ],
+        "repaired": true
+      },
+      "consistencyIssues": [
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext nennt 'Fortbildungsaktivitäten für Lehrkräfte' als messbaren Indikator, aber im Finanzplan gibt es keinen separaten Posten für Fortbildungen.",
+          "textstelle": "Fortbildungsaktivitäten für Lehrkräfte"
         },
         {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antrag erwähnt internationale Austauschprogramme für Schüler, aber der Finanzplan enthält keinen Posten für Reisekosten oder Aufenthaltskosten der Schüler.",
-          "textstelle": "Anzahl der Schüler sein, die an internationalen Austauschprogrammen teilnehmen."
+          "beschreibung": "Der Antragstext erwähnt 'digitale Lernprogramme' als Materialien, aber der Finanzplan nennt nur pauschal 'Materialien für Digitalisierung und Schulentwicklung'.",
+          "posten": "Materialien für Digitalisierung und Schulentwicklung",
+          "textstelle": "digitale Lernprogramme"
+        },
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext nennt 'Unterrichtskonzepte und Materialien' als zu dokumentierende Ergebnisse, aber der Finanzplan enthält keinen Posten für Dokumentation oder Erstellung von Unterrichtsmaterialien.",
+          "textstelle": "Unterrichtskonzepte und Materialien"
+        },
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext erwähnt 'Online-Repositorium' und 'Projektwebsite' als Disseminationskanäle, aber der Finanzplan enthält keinen Posten für Hosting, Domain oder Entwicklung dieser Plattformen.",
+          "textstelle": "Online-Repositorium / Projektwebsite"
         }
       ],
       "hasConsistencyIssues": true,
-      "finalText": "# Fördervorhaben an der Berufsschule Hamburg-Harburg — Antrag bei Europäische Partnerschaften für Schulentwicklung\n\n## Relevanz (bis zu 15 Punkte)\n\nDie Berufsschule Hamburg-Harburg, mit *800* Schülern laut aktueller Schulstatistik in technischen Berufsfeldern, beabsichtigt, durch die Teilnahme an Europäischen Partnerschaften für Schulentwicklung einen Beitrag zur Modernisierung und Internationalisierung der Schule zu leisten. Aktuell fehlt es an Erfahrung mit EU-Projekten.\n\nDas Vorhaben adressiert den Bedarf an Schulentwicklung im Bereich Digitalisierung. Geplant sind Aktivitäten zur Förderung digitaler Kompetenzen der Schüler und Lehrer, beispielsweise durch die Einführung neuer Lernplattformen und den Einsatz von digitalen Werkzeugen im Unterricht. Ziel ist, die Schüler besser auf die Anforderungen des digitalen Arbeitsmarktes vorzubereiten und die Lehrkräfte in ihrer Rolle als Vermittler digitaler Kompetenzen zu stärken.\n\nDie Berufsschule Hamburg-Harburg ist eine berufsbildende Schule und fungiert somit als Schulkoordinierungsstelle. Es werden mindestens sechs Partnerorganisationen benötigt, darunter lokale oder regionale Schulbehörden/Koordinierungsstellen sowie allgemeinbildende Schulen aus mindestens zwei Programmstaaten.\n\n## Qualität der Projektkonzeption (bis zu 30 Punkte)\n\nDie Berufsschule Hamburg-Harburg beabsichtigt, im Rahmen des Programms \"Europäische Partnerschaften für Schulentwicklung\" einen Beitrag zur allgemeinen Schulentwicklung und Digitalisierung zu leisten. Bisher hat die Schule keine Erfahrungen mit EU-Projekten.\n\nDie Modernisierung der Schule, insbesondere im Bereich Digitalisierung, ist ein erklärtes Ziel. Auch eine stärkere internationale Ausrichtung wird angestrebt. Die beantragte Fördersumme von 400.000 Euro soll unter anderem für Fortbildungen verwendet werden.\n\nZum jetzigen Zeitpunkt sind die konkreten Entwicklungsziele noch nicht vollständig definiert. Die Konkretisierung der Ziele, die Auswahl der Partner und die Benennung eines Koordinators, wird in den nächsten Schritten erfolgen. Die Einreichung des Antrags erfolgt durch die Berufsschule Hamburg-Harburg als Schulkoordinierungsstelle.\n\nDie detaillierte Ausgestaltung der Projektkonzeption, insbesondere die Konkretisierung der Ziele und die Auswahl der Partner, wird in den nächsten Schritten erfolgen.\n\n## Qualität der Partnerschaft und der Kooperationsvereinbarungen (bis zu 20 Punkte)\n\nDie Berufsschule Hamburg-Harburg beabsichtigt, im Rahmen des Programms \"Europäische Partnerschaften für Schulentwicklung\" einen Antrag zur allgemeinen Schulentwicklung im Bereich Digitalisierung zu stellen.\n\nDa die Berufsschule Hamburg-Harburg bisher keine EU-Projekterfahrung besitzt, ist die Qualität der Partnerschaft ein kritischer Erfolgsfaktor. Aktuell sind noch keine Partnerorganisationen identifiziert, aber die Schule sucht aktiv nach geeigneten Partnern. Um die Qualität der Partnerschaft zu gewährleisten, erwartet die Berufsschule Hamburg-Harburg Unterstützung durch die Nationale Agentur, beispielsweise durch die Bereitstellung von Kontaktinformationen potenzieller Partner und die Vermittlung von Best Practices im Bereich des Projektmanagements. Dies soll den Kapazitätsaufbau der Schule unterstützen und einen reibungslosen Projektstart ermöglichen.\n\nDie beantragte Fördersumme von 400.000 Euro soll primär für Fortbildungen im Bereich Digitalisierung verwendet werden. Die konkreten Inhalte und die Auswahl der Fortbildungen werden in Abstimmung mit den Partnerorganisationen und auf Basis einer Bedarfsanalyse an der Berufsschule Hamburg-Harburg festgelegt.\n\nDie Steuerung des Projekts wird durch die Schulleitung erfolgen. Die genaue Ausgestaltung der Kooperationsvereinbarungen mit den Partnerorganisationen wird im nächsten Schritt erarbeitet. Dabei wird sichergestellt, dass die Verantwortlichkeiten und Aufgaben klar definiert sind und ein effektiver Informationsaustausch gewährleistet ist.\n\n## Wirkung (bis zu 35 Punkte)\n\nDie Berufsschule Hamburg-Harburg beabsichtigt mit diesem Projekt, einen Beitrag zur Modernisierung und Digitalisierung des Schulbetriebs zu leisten und die internationale Ausrichtung zu stärken. Da die Schule bisher keine Erfahrungen mit EU-Projekten hat, soll das Vorhaben zunächst dazu dienen, Kompetenzen im Bereich des Projektmanagements und der internationalen Zusammenarbeit aufzubauen.\n\nAls erste Ideen für messbare Indikatoren könnten die Anzahl der durchgeführten Fortbildungen im Bereich Digitalisierung, die Anzahl der neu etablierten internationalen Kontakte und die Anzahl der Schüler sein, die an internationalen Austauschprogrammen teilnehmen.\n\nDas Projekt trägt zur Erreichung der Ziele des Erasmus+ Programms bei, indem es die Inklusion fördert, digitale Kompetenzen vermittelt und die aktive Bürgerschaft stärkt. Es adressiert europäische Dimensionen, indem es den Austausch von Best Practices im Bereich der Digitalisierung zwischen europäischen Schulen ermöglicht und die interkulturelle Kompetenz der Schüler und Lehrer fördert. Querschnittsthemen wie Inklusion, Nachhaltigkeit und digitale Kompetenzen werden explizit adressiert, indem beispielsweise Fortbildungen zu inklusiven digitalen Lernmethoden angeboten und der Einsatz von Open-Source-Software gefördert wird.\n\nDie Berufsschule Hamburg-Harburg plant, die Projektergebnisse durch verschiedene Kanäle zu disseminieren, darunter die Schulwebsite, lokale Medien und Fachzeitschriften. Namentliche Beispiele für potenzielle Partnerorganisationen sind das Erasmus+-Netzwerk der Stadt Hamburg und die örtliche Industrie- und Handelskammer.",
+      "finalText": "# Strategische Partnerschaft zur Digitalisierung und Internationalisierung der Berufsschule Hamburg-Harburg im Rahmen europäischer Schulentwicklung\n\n## Relevanz (bis zu 15 Punkte)\n\nDie Berufsschule Hamburg-Harburg beantragt im Rahmen des Programms „Europäische Partnerschaften für Schulentwicklung“ eine Förderung zur strategischen Weiterentwicklung ihrer digitalen Lehr- und Lernformate sowie zur Internationalisierung der schulischen Praxis. Als berufliche Schule mit technischem Profil besteht an der Einrichtung ein konkreter Modernisierungsbedarf im Bereich digitaler Kompetenzen von Lehrkräften und Auszubildenden, der sich aus dem technisch ausgerichteten Bildungsauftrag und dem Fehlen bisheriger EU-Projekterfahrung ergibt. [Annahme: Die angestrebte Zusammenarbeit mit mindestens einer beruflichen Bildungseinrichtung im EU-Ausland ermöglicht den systematischen Austausch über berufsspezifische Digitalisierungsstrategien und curriculare Anpassungen.] Dieser europäische Mehrwert zeigt sich insbesondere in der wechselseitigen Erprobung innovativer Lehrmethoden, die an der eigenen Schule aufgrund begrenzter Ressourcen bisher nicht umgesetzt werden konnten.\n\nDie Berufsschule Hamburg-Harburg strebt als regionale berufliche Schule die Rolle einer Koordinierungsschule an. Sie übernimmt damit die zentrale Verantwortung für die Initiierung, Steuerung und Evaluation des Vorhabens und bringt ihre Expertise in der praxisnahen Technikausbildung sowie in der regionalen Vernetzung ein. Die angestrebte Partnerschaft mit einer beruflichen Schule im EU-Ausland zielt darauf ab, durch den Transfer bewährter Ansätze aus der digitalen Didaktik und der Organisation von Berufsbildungsprozessen konkrete Impulse für die eigene Schulentwicklung zu gewinnen. Gleichzeitig trägt das Vorhaben zur Stärkung der europäischen Dimension im schulischen Alltag bei, indem es Lehrkräften und Auszubildenden den Zugang zu europäischen Bildungsnetzwerken eröffnet.\n\nDie Relevanz des Vorhabens ergibt sich aus der Notwendigkeit, digitale Kompetenzen in der beruflichen Bildung systematisch zu verankern. Studien zur digitalen Transformation in der Berufsbildung zeigen, dass praxisnahe Fortbildungsformate für Lehrkräfte eine zentrale Gelingensbedingung für die nachhaltige Integration digitaler Medien in den Unterricht darstellen. Daher ist die Entwicklung und Erprobung solcher Formate ein zentrales Ziel des Vorhabens. Die internationale Vernetzung ermöglicht dabei den Zugang zu innovativen Ansätzen, die an der eigenen Schule aufgrund begrenzter Ressourcen bisher nicht umgesetzt werden konnten. Der europäische Mehrwert entsteht durch den systematischen Vergleich der Berufsbildungssysteme, der über die Projektlaufzeit hinaus eine Grundlage für weitere Kooperationen bietet.\n\n## Qualität der Projektkonzeption (bis zu 30 Punkte)\n\nDie Qualität der Projektkonzeption ergibt sich aus der klaren Verknüpfung zwischen dem identifizierten Entwicklungsbedarf der Berufsschule Hamburg-Harburg, den geplanten Aktivitäten und den avisierten europäischen Mehrwerten. Als Ausgangslage besteht an der Schule ein Modernisierungsbedarf im Bereich Digitalisierung sowie ein Interesse, internationale Perspektiven in die Schulentwicklung einzubinden, um innovative Lehr- und Lernformate zu erproben. Vor diesem Hintergrund zielt das Vorhaben darauf ab, durch den Austausch mit einer beruflichen Partnerschule im EU-Ausland konkrete Impulse für die eigene Praxis zu gewinnen. Die Zusammenarbeit soll sich auf praxisnahe Fragestellungen konzentrieren, etwa den Einsatz digitaler Werkzeuge in technischen Berufsfeldern oder die Organisation von Lernprozessen, um so den europäischen Mehrwert durch den Transfer bewährter Ansätze zu realisieren.\n\nDer Arbeitsplan sieht vor, zunächst eine Bedarfsanalyse durchzuführen, die sowohl die digitale Infrastruktur als auch die curricularen Anforderungen der beteiligten Bildungsgänge erfasst. Darauf aufbauend sind gegenseitige Hospitationen geplant, in deren Rahmen Lehrkräfte beider Schulen Unterrichtseinheiten planen, durchführen und evaluieren. Die Ergebnisse werden dokumentiert und als europäischer Mehrwert aufbereitet, um eine breite Dissemination innerhalb der Berufsschule sowie im regionalen Netzwerk zu ermöglichen. Die zeitliche Umsetzung erstreckt sich über die gesamte Projektlaufzeit von Monaten, wobei die Aktivitäten in den schulischen Alltag integriert werden, um eine nachhaltige Verankerung zu gewährleisten.\n\nZur Qualitätssicherung werden regelmäßige Reflexionsrunden zwischen den beteiligten Lehrkräften durchgeführt, die durch externe Moderation begleitet werden, um eine objektive Evaluation der Projektfortschritte zu ermöglichen. Ein Risikomanagement sieht vor, bei Verzögerungen in der Partnerkommunikation alternative Kooperationsformate (z. B. virtuelle Austauschformate) zu nutzen, um die Projektziele dennoch zu erreichen. Die Nachhaltigkeit des Vorhabens wird durch die Verankerung der gewonnenen Erkenntnisse in schulinternen Konzepten sowie durch die im Finanzplan vorgesehenen Maßnahmen zur langfristigen Wirkung und Evaluation sichergestellt.\n\nDie Berufsschule Hamburg-Harburg beantragt eine Förderung in Höhe von 400.000 EUR, wobei die Mittel gemäß Finanzplan auf die Positionen Projektmanagement, Personaleinsatz, Sachkosten, Reisekosten sowie Wirkung und Evaluation verteilt werden. [Annahme: Die Ressourcenplanung umfasst Mittel für Reisekosten, Fortbildungen und die Erstellung von Materialien.] Die Mittelverwaltung erfolgt gemäß den Vorgaben des lump sum funding models, wobei die Auszahlung an die Umsetzung der Projektaktivitäten und -ergebnisse geknüpft ist. Die Zustimmung der Schulbehörde zur Mittelverwaltung ist noch einzuholen.\n\n[TODO: Partnerorganisationen mit schriftlichen Zusagen und konkreten Beiträgen benennen; Bedarfsanalyse mit konkreten Fortbildungsinhalten durchführen; Dokumentationsformate und Disseminationskanäle konkret festlegen; Abstimmungsrhythmus und Präsenztreffen mit Partnern verbindlich vereinbaren]\n\n## Qualität der Partnerschaft und der Kooperationsvereinbarungen (bis zu 20 Punkte)\n\n[Annahme: Die Berufsschule Hamburg-Harburg strebt eine strategische Partnerschaft an, die ihre internationale Ausrichtung und digitale Schulentwicklung vorantreibt.] Als Koordinierungsschule übernimmt sie die zentrale Verantwortung für die Initiierung, Steuerung und Evaluation des Vorhabens, wobei die Aufgabenverteilung entlang der eigenen Expertise in technischen Berufsfeldern und dem Bedarf nach moderner Lehr-Lern-Kultur erfolgt. [Annahme: Die Partnerschaft umfasst mindestens Organisationen, darunter mindestens eine Schulbehörde oder Koordinierungsstelle im eigenen Land sowie mindestens eine im EU-Ausland.] Im Staat der antragstellenden Einrichtung und in mindestens einem weiteren Programmstaat sind jeweils mindestens eine lokale oder regionale Schulbehörde/Koordinierungsstelle sowie mindestens zwei allgemeinbildende Schulen beteiligt.\n\nDie Berufsschule Hamburg-Harburg strebt als regionale berufliche Schule die Rolle einer Koordinierungsschule an. Sie bringt ihre Expertise in der praxisnahen Technikausbildung sowie in der regionalen Vernetzung ein und übernimmt die zentrale Verantwortung für die Initiierung, Steuerung und Evaluation des Vorhabens. [Annahme: Die Partnerschaft mit einer beruflichen Schule im EU-Ausland ermöglicht den wechselseitigen Wissenstransfer: Während die Hamburger Schule ihre Stärken in der praxisnahen Technikausbildung einbringt, profitiert sie von den Erfahrungen der europäischen Partnerinstitution in der digitalen Didaktik und der Organisation von Berufsbildungsprozessen.]\n\n[Annahme: Die Entscheidungsprozesse innerhalb der Partnerschaft werden durch regelmäßige Abstimmungsrunden sowie Präsenztreffen strukturiert, wobei die Berufsschule Hamburg-Harburg die Koordination übernimmt und die Verantwortung für die inhaltliche Ausgestaltung der Projektziele trägt.] Die Kommunikation erfolgt über eine gemeinsame, datenschutzkonforme Plattform, die sowohl asynchrone Dokumentation als auch synchrone Abstimmungen ermöglicht. Als konkrete erste Aktivität ist ein Austausch über digitale Lehrmethoden in technischen Fächern geplant, der durch gegenseitige Hospitationen begleitet wird. Die Ergebnisse werden in einem digitalen Portfolio dokumentiert und über die schulinterne Plattform sowie öffentliche Kanäle zugänglich gemacht, um die Sichtbarkeit des europäischen Mehrwerts zu gewährleisten.\n\nDie Nachhaltigkeit der Partnerschaft wird durch die Verankerung der Kooperation in den schulinternen Entwicklungsplänen gesichert, wobei die Berufsschule Hamburg-Harburg die Verantwortung für die langfristige Integration der gewonnenen Erkenntnisse in den Regelbetrieb übernimmt. Die Aufgabenverteilung ist dabei so konzipiert, dass alle Partner gleichberechtigt von der Zusammenarbeit profitieren und die Ergebnisse gemeinschaftlich verantwortet werden. Die formellen Kooperationsvereinbarungen werden vor Projektbeginn verbindlich abgeschlossen und legen die Rechte und Pflichten aller beteiligten Organisationen fest.\n\n[TODO: Mindestens Partnerorganisationen mit Name, Land, Rolle und schriftlichen Kooperationsvereinbarungen benennen; Abstimmungsrhythmus und Präsenztreffen mit Partnern verbindlich vereinbaren]\n\n## Wirkung (bis zu 35 Punkte)\n\nDie erwartete Wirkung des Vorhabens zielt auf drei Ebenen: die Teilnehmenden, die Einrichtung sowie den europäischen Bildungsraum. Für die Lehrkräfte und Auszubildenden der Berufsschule Hamburg-Harburg wird eine unmittelbare Qualifizierung im Umgang mit digitalen Lehr-Lernformaten angestrebt, die über die reine Techniknutzung hinausgeht. Durch den Austausch mit einer beruflichen Partnerschule im EU-Ausland sollen praxisnahe Einblicke in alternative didaktische Konzepte gewonnen werden, die anschließend in die eigene Unterrichtsgestaltung übertragen werden. Die Wirkung auf die Teilnehmenden wird messbar an der Anzahl der durchgeführten Fortbildungsaktivitäten sowie an der dokumentierten Anwendung neuer Methoden im Unterricht – Indikatoren, die durch die schulinterne Evaluation und die Rückmeldungen der Auszubildenden erhoben werden.\n\nFür die Einrichtung selbst steht die nachhaltige Verankerung digitaler Schulentwicklung im Fokus. Die Ergebnisse des Projekts – konkret die erprobten Unterrichtskonzepte und Materialien – werden in einem frei zugänglichen Online-Repositorium dokumentiert und mit einer Creative-Commons-Lizenz versehen, um eine breite Nachnutzung zu ermöglichen. Die Nachhaltigkeit wird durch die Integration der Materialien in die schulinterne Fortbildungsplanung gesichert, wobei die Berufsschule Hamburg-Harburg als Multiplikatorin für andere berufliche Schulen in Hamburg fungiert. Der europäische Mehrwert entsteht durch den systematischen Vergleich der Berufsbildungssysteme, der über die Projektlaufzeit hinaus eine Grundlage für weitere Kooperationen bietet.\n\n[Annahme: Die Verbreitung der Ergebnisse erfolgt neben dem Repositorium über eine Projektwebsite in deutscher und englischer Sprache sowie durch Präsentationen auf regionalen und nationalen Fachtagungen, um die Sichtbarkeit der Ergebnisse über den Projektrahmen hinaus zu gewährleisten.] Die messbaren Indikatoren für die Wirkung umfassen:\n- Anzahl der durchgeführten Fortbildungsaktivitäten für Lehrkräfte\n- Anzahl der Klassen, in denen neue digitale Lehrmethoden angewendet werden\n- Anzahl der dokumentierten Unterrichtskonzepte und Materialien im Online-Repositorium\n- Anzahl der Präsentationen auf Fachtagungen\n\n[Annahme: Die Wirkung des Vorhabens ergibt sich aus der Kombination von digitaler Kompetenzentwicklung und internationaler Vernetzung.] Forschungsergebnisse zeigen, dass praxisnahe Fortbildungsformate für Lehrkräfte eine zentrale Gelingensbedingung für die nachhaltige Integration digitaler Medien in den Unterricht darstellen. Gleichzeitig fördert die internationale Zusammenarbeit die europäische Dimension im schulischen Alltag und ermöglicht den Transfer bewährter Ansätze zwischen den Bildungssystemen. Daher ist die messbare Wirkung des Vorhabens in der Qualifizierung der Teilnehmenden, der nachhaltigen Verankerung digitaler Schulentwicklung und der Stärkung der europäischen Zusammenarbeit zu sehen.\n\n[TODO: Konkrete messbare Indikatoren mit Partnern abstimmen und im Antrag verankern; Plattform und Lizenzmodell für Dokumentation und Dissemination verbindlich festlegen]",
       "finanzplan": {
         "posten": [
           {
-            "id": "e6d7d2a8-14da-4172-ad46-cc2bba632483",
+            "id": "e4a2dd57-7d85-402e-8f6b-deae09b29160",
+            "kategorie": "overhead",
+            "bezeichnung": "Projektmanagement (20 % der Pauschale)",
+            "betragEur": 80000,
+            "begruendung": "Verpflichtendes Arbeitspaket 'Projektmanagement' mit Koordinierung, Monitoring, Kommunikation und Evaluation (max. 20 % der Pauschale 400.000 EUR).",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "6e59f4ae-5211-41a7-a0e6-44a943243e6a",
             "kategorie": "personal",
-            "bezeichnung": "Projektkoordination (Pauschale)",
+            "bezeichnung": "Personaleinsatz für Fortbildungen und Koordination",
             "betragEur": 120000,
-            "begruendung": "Pauschale fuer interne Koordination des EU-Projekts ueber 36 Monate",
-            "eigenanteil": false
+            "begruendung": "Pauschale für Personaleinsatz (Lehrkräfte/Administrative) zur Umsetzung von Fortbildungen und Koordinationsaufgaben im Rahmen der Projektaktivitäten (36 Monate).",
+            "eigenanteil": false,
+            "istVorschlag": true
           },
           {
-            "id": "5f2b0c46-7c7c-4e4e-bce8-1e5ba487e5f1",
-            "kategorie": "honorare",
-            "bezeichnung": "Fortbildungen (Pauschale)",
-            "betragEur": 180000,
-            "begruendung": "Pauschale fuer externe Trainer und Referenten im Bereich Digitalisierung und Schulentwicklung",
-            "eigenanteil": false
-          },
-          {
-            "id": "311a232d-4ff6-4e02-9d48-29101e218647",
+            "id": "06e65f38-005f-4e57-a2db-0a6c7b81b2d3",
             "kategorie": "sachkosten",
-            "bezeichnung": "Reisekosten Partnerorganisationen (Pauschale)",
+            "bezeichnung": "Materialien für Digitalisierung und Schulentwicklung",
+            "betragEur": 60000,
+            "begruendung": "Pauschale für Materialien zur Erprobung digitaler Lernprogramme und Methoden im Rahmen der Projektaktivitäten.",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "f4cb7c9b-edd4-47e5-9644-008214e8b7fb",
+            "kategorie": "reisekosten",
+            "bezeichnung": "Reisekosten für internationale Partnerschaften",
+            "betragEur": 40000,
+            "begruendung": "Pauschale für Reisekosten zu Treffen mit Partnerorganisationen im EU-Ausland (z. B. Dänemark) im Rahmen der Projektaktivitäten.",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "9ca1c5ef-2d10-4d28-b192-cc356e16e2ab",
+            "kategorie": "sonstiges",
+            "bezeichnung": "Pauschale für langfristige Wirkung und Evaluation",
             "betragEur": 100000,
-            "begruendung": "Pauschale zur Deckung der Reisekosten von und zu Partnerorganisationen",
-            "eigenanteil": false
+            "begruendung": "Pauschale für das verpflichtende Arbeitspaket 'Plan für die langfristige Wirkung' und Evaluation der Projektaktivitäten.",
+            "eigenanteil": false,
+            "istVorschlag": true
           }
         ],
-        "generiertAm": "2026-05-20T10:04:38.100Z",
+        "generiertAm": "2026-07-22T11:31:18.726Z",
         "hinweise": [
-          "Detailplanung der Fortbildungen und Partnerorganisationen erforderlich",
-          "Aufteilung der Personal- und Honorarkosten auf 36 Monate erforderlich"
+          "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
+          "Alle Beträge sind Pauschalen, da der User keine konkreten Kosten, Mengen oder Honorarsätze genannt hat. Die Verteilung der 400.000 EUR-Pauschale folgt den Vorgaben der Richtlinie (max. 20 % für Projektmanagement).",
+          "Die Schule hat keine EU-Projekterfahrung und keine konkreten Partnerorganisationen oder Ziele genannt — die Umsetzung erfordert vor Antragstellung Klärung dieser Punkte.",
+          "Fortbildungen und Digitalisierung sind als Projektinhalte genannt, aber keine konkreten Maßnahmen oder Kosten. Die Pauschale für Personal und Sachkosten deckt diese Aktivitäten ab.",
+          "Reisekosten sind pauschal angesetzt, da der User eine Partnerschaft mit Dänemark erwähnte, aber keine konkreten Reisedaten oder -kosten nannte.",
+          "Die Pauschale für langfristige Wirkung und Evaluation ist als separates Arbeitspaket angesetzt, wie in der Richtlinie gefordert."
         ]
       }
     },
     "usages": [
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1708,
-          "candidatesTokens": 193
+          "promptTokens": 5954,
+          "candidatesTokens": 390
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1718,
-          "candidatesTokens": 226
+          "promptTokens": 5978,
+          "candidatesTokens": 613
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1728,
-          "candidatesTokens": 275
+          "promptTokens": 5958,
+          "candidatesTokens": 528
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1704,
-          "candidatesTokens": 223
+          "promptTokens": 5932,
+          "candidatesTokens": 492
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3371,
-          "candidatesTokens": 1434
+          "promptTokens": 7872,
+          "candidatesTokens": 1916
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3321,
-          "candidatesTokens": 1163
+          "promptTokens": 9179,
+          "candidatesTokens": 2687
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 2527,
-          "candidatesTokens": 314
+          "promptTokens": 7122,
+          "candidatesTokens": 937
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1630,
-          "candidatesTokens": 300
+          "promptTokens": 3201,
+          "candidatesTokens": 2680
         }
       },
       {
-        "model": "gemini-2.0-flash",
+        "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 1924,
-          "candidatesTokens": 316
+          "promptTokens": 4119,
+          "candidatesTokens": 1729
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 3918,
+          "candidatesTokens": 2639
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 4049,
+          "candidatesTokens": 701
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 3733,
+          "candidatesTokens": 303
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 3946,
+          "candidatesTokens": 2609
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 3703,
+          "candidatesTokens": 326
         }
       }
     ]
   },
   "meta": {
-    "iso": "2026-05-20T10-04-40",
+    "iso": "2026-07-22T11-31-36",
     "runIndex": 2,
-    "pipelineCommitSha": "6d237f81",
+    "pipelineCommitSha": "1f0d8782",
     "featureFlags": {
-      "useVorbildFormulierungen": "false",
+      "useVorbildFormulierungen": "true",
       "complianceStageEnabled": "false",
-      "sharpPrompts": "false",
-      "geberRoutingV2": "false"
+      "sharpPrompts": "true",
+      "geberRoutingV2": "true"
     },
-    "latencyMs": 37449,
+    "latencyMs": 107483,
     "schemaVersion": 1
   }
 }
