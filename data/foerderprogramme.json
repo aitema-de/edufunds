@@ -293,8 +293,13 @@
     "verifiziertVon": "Web-Recherche DKHW Förderfonds/Themenfonds Spielraum (Claude)",
     "bemerkung": "Korrigiert 19.06.2026: Eintrag war faelschlich als DKJS (Deutsche Kinder- und Jugendstiftung) gefuehrt. Tatsaechlicher Traeger ist das Deutsche Kinderhilfswerk e.V. (DKHW), konkret der Foerderfonds/Themenfonds Spielraum (bewegungsfoerdernde Spiel- und Bewegungsorte, auch auf dem Schulgelaende; bis 10.000 EUR, i.d.R. max 5.000 EUR; mind. 20% Eigenanteil; Stichtage 31.03./30.09.). Verifiziert ueber dkhw.de + DSEE-Foerderdatenbank. Slug dkjs-sport aus historischen Gruenden beibehalten. WICHTIG: Antragstellerin ist NICHT die Schule selbst, sondern Verein/Foerderverein/Schueler- oder Elterninitiative.",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle dkhw.de/foerderung-und-hilfe/projektfoerderung, geprueft 22.07.2026: Die Seite fuehrt mehrere Fonds mit Status 'aktiv' bzw. 'aktuell keine Bewerbungen moeglich'; die einzige konkrete Frist ist 'Bewerbungen bis 15.08. moeglich' fuer den Laenderfonds Kinder und Kultur Baden-Wuerttemberg. Keine allgemeine Frist. ⚠️ Die Programm-ID lautet 'dkjs-sport' (Deutsche Kinder- und Jugendstiftung), der infoLink zeigt aber auf das Deutsche Kinderhilfswerk (dkhw.de) - Zuordnung pruefen."
+      "art": "stichtag",
+      "stichtage": [
+        "2026-09-30",
+        "2027-03-31"
+      ],
+      "jaehrlichWiederkehrend": true,
+      "quelle": "Primaerquelle dkhw.de/.../themenfonds-spielraum (Deutsches Kinderhilfswerk), geprueft 22.07.2026, woertlich: 'Sie koennen fortlaufend Antraege einreichen zu den folgenden Fristen: jeweils zum 31.03. und zum 30.09. eines Jahres.' Entscheidung bis 15.05./15.11. Wiederkehrend. HINWEIS: Traeger ist das Deutsche Kinderhilfswerk (Themenfonds Spielraum), NICHT DKJS - Katalog-Name pruefen."
     }
   },
   {
@@ -419,8 +424,8 @@
     "verifiziertVon": "Web-Recherche AOK-Programme",
     "bemerkung": "Regionale Unterschiede: AOK PLUS (Sachsen/Thüringen) bis 2.000€ für mentale Gesundheit, Fit durch die Schule bundesweit bis 5.500€ für Bewegungsprojekte | Queue-Audit 2026-06-01: kein Schul-Antragsprogramm / Dublette -> aus Matcher-Pool entfernt. Schulformen-Angabe unbelegt (Quelle ohne konkrete Zielgruppen-Nennung, Re-Extraktion 02.07.2026, konservativ breit gesetzt).",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle aok.de/pk/leistungen/schulen/gesundheitsprogramme, geprueft 22.07.2026: ⚠️ Kein Antragsverfahren und keine Fristen - die AOK 'unterstuetzt Schulen in ganz Deutschland mit vielfaeltigen Programmen', die regional per PLZ ausgespielt werden. Das sind Angebote, keine Zuwendung auf Antrag. Zu pruefen, ob kiAntragGeeignet hier richtig ist."
+      "art": "keine",
+      "quelle": "Primaerquelle aok.de/pk/leistungen/schulen/gesundheitsprogramme, geprueft 22.07.2026: Kein zentraler Stichtag, regional verwaltet; laufender Einstieg ueber Schulkonferenzbeschluss und Projektantrag an die regionale AOK (Programmlaufzeit i.d.R. 3 Jahre). Regional variierend."
     }
   },
   {
@@ -506,8 +511,8 @@
     "bemerkung": "Schulpartnerschaft Chemie seit 2001: über 43 Mio. € in 8.200+ Schulen. Auch Grundschulen mit experimentellem Sachunterricht förderfähig. | Neue URL: VCI-Webseite (fondschemie.de existiert nicht mehr) | Neue Domain: vci.de (Verband der Chemischen Industrie) | Neue URL: /bildung/ Pfad hinzugefügt",
     "quelleUrl": "https://www.vci.de/bildung/fonds-der-chemischen-industrie.html",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle vci.de/fonds/schulpartnerschaft/unterrichtsfoerderung, geprueft 22.07.2026: Die Seite nennt keine Fristen oder Einreichungszeitraeume; die Angaben stehen in den nach Schulform getrennten Merkblaettern/Antragsformularen (PDF), die nicht mitgeprueft wurden. Katalog-Fristtext sagt 'laufend', ist aber nicht belegt."
+      "art": "keine",
+      "quelle": "Primaerquelle vci.de/fonds/schulpartnerschaft/unterrichtsfoerderung, geprueft 22.07.2026: Unterrichtsfoerderung wird fortlaufend ohne Stichtag entgegengenommen (bis 5.000 EUR/Schule). Die Termine 15.02./15.08. gehoeren zum separaten Mentoring-Programm, nicht zur Unterrichtsfoerderung."
     }
   },
   {
@@ -828,8 +833,12 @@
     "bemerkung": "Seit 2022 über 500.000€ investiert. Beispiele: Energielernraum (3.200€), Makerspace (12.500€), Tauschraum. Keine individuelle Antragsmöglichkeit, sondern durch Ausschreibung. Schulformen-Angabe unbelegt (Quelle ohne konkrete Zielgruppen-Nennung, Re-Extraktion 02.07.2026, konservativ breit gesetzt). Re-Extraktions-Befund 02.07.2026: Foerderung faktisch auf SCHOTT-Standortregionen begrenzt (u. a. Mainz, Jena, Erfurt, Landshut, Marktredwitz).",
     "quelleUrl": "https://www.schott.com/de-de/news-and-media/pressemitteilungen/2025/bildung-fuer-nachhaltige-entwicklung-schott-foerdert-17-projekte-an-standorten-in-ganz-deutschland",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Geprueft 22.07.2026: Als infoLink ist nur eine Pressemitteilung vom 04.12.2025 hinterlegt, die die Ergebnisse der 4. Foerderrunde 2025 meldet ('wird 2025 zum vierten Mal durchgefuehrt'). Weder Bewerbungsfrist noch offene Runde belegt. Nicht als 'geschlossen' gewertet, weil die Quelle das nicht sagt - sie schweigt. Zu klaeren: offizielle Programmseite statt Pressemitteilung als infoLink hinterlegen."
+      "art": "stichtag",
+      "stichtage": [
+        "2026-11-30"
+      ],
+      "jaehrlichWiederkehrend": true,
+      "quelle": "SCHOTT-Pressemitteilungen (schott.com), geprueft 22.07.2026: Jaehrliche Ausschreibung ('2025 zum vierten Mal'); Projektideen 'bis Ende November' einreichbar. Exaktes Datum des aktuellen Zyklus nicht praezise publiziert - 30.11. als Interpretation von 'Ende November', wiederkehrend (unsicher)."
     }
   },
   {
@@ -915,8 +924,8 @@
     "verifiziertVon": "Web-Recherche Reinhold-Beitlich-Stiftung",
     "bemerkung": "Keine festen Obergrenzen für Einzelprojekte. Anträge von gemeinnützigen Organisationen (Vereine, Genossenschaften, Stiftungen) möglich. Keine Privatpersonen oder Auslandsprojekte. Schulformen-Angabe unbelegt (Quelle ohne konkrete Zielgruppen-Nennung, Re-Extraktion 02.07.2026, konservativ breit gesetzt).",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle reinhold-beitlich-stiftung.de, geprueft 22.07.2026: Erwaehnt einen 'Foerderantrag', nennt aber keine Stichtage oder Einreichungszeitraeume; Details stehen auf der Unterseite 'Foerderrichtlinien & Foerderantrag'. Katalog-Fristtext sagt 'laufend (kein Stichtag)', ist aber nicht belegt."
+      "art": "keine",
+      "quelle": "Foerderdatenbank DSEE, geprueft 22.07.2026: 'Bewerbungsfrist: Fortlaufende Foerderung.' Reinhold-Beitlich-Stiftung, Bereich Erziehung und Bildung, kein Stichtag."
     }
   },
   {
@@ -1274,8 +1283,12 @@
     "verifiziertVon": "Web-Recherche ESF Hessen / WIBank",
     "bemerkung": "ESF+ Programm 2021-2027 mit 423 Mio. € für Hessen. Zweistufig: Interessenbekundung im 1. Quartal, formeller Antrag bis 30.06. Zielgruppe: Sekundarstufe I (nicht Grundschule).",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Geprueft 22.07.2026: 🔴 Die hinterlegte Seite (foerderdatenbank.de) liefert statt Inhalt eine Radware-Sicherheitsabfrage - NICHT PRUEFBAR. Katalog-Fristtext nennt 'Interessenbekundung: 1. Quartal | Antrag: bis 30.06. jaehrlich', das Dossier dagegen den Stichtag 30.04. - Widerspruch, keiner davon belegt."
+      "art": "stichtag",
+      "stichtage": [
+        "2026-02-27"
+      ],
+      "jaehrlichWiederkehrend": true,
+      "quelle": "Primaerquelle esf-hessen.de (Interessentenaufruf PUSCH), geprueft 22.07.2026: Interessenbekundung bis 27.02.2026 (Posteingang WIBank) fuer Schuljahr 2026/2027, jaehrlicher Aufruf ~Ende Februar. Die im Katalog behauptete Antragsfrist 30.06. war NICHT belegbar. 27.02.2026 verstrichen, wiederkehrend."
     }
   },
   {
@@ -1352,8 +1365,8 @@
     "verifiziertVon": "Web-Recherche BayWa Stiftung",
     "bemerkung": "Versand der Sets startet im Januar. Empfohlen vom Bayerischen Staatsministerium für Unterricht und Kultus. Nur eine Bewerbung pro Schule möglich. Bewerbung über Online-Formular. | Queue-Audit 2026-06-01: kein Schul-Antragsprogramm / Dublette -> aus Matcher-Pool entfernt.",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle baywastiftung.de/projekte/schulgarten + betterplace, geprueft 22.07.2026: Bewerbung AKTUELL OFFEN fuer die Pflanzsaison 2027 ueber Online-Formular. Kein exakter Bewerbungsschluss veroeffentlicht (historisch Januar-Zyklus); genauer Stichtag daher nicht belegbar. Programm ist verkaeuflich, aber Frist beim Traeger zu erfragen."
+      "art": "keine",
+      "quelle": "Primaerquelle baywastiftung.de/projekte/schulgarten + Foerderdatenbank (foerdersuche.org: 'Antrag: Jederzeit'), geprueft 22.07.2026: Bewerbung aktuell offen fuer Pflanzsaison 2027 ueber Online-Formular; laufende Annahme ohne festen Bewerbungsschluss. (Praezisiert das fruehere 'unbekannt'.)"
     }
   },
   {
@@ -1525,8 +1538,8 @@
     "verifiziertVon": "Web-Recherche Berlin.de / taz.de",
     "bemerkung": "Bisher ausgezahlt: 173.550€ für Leseband (Klassen 1-4), 107.470€ für eigene Maßnahmen. Rechtsanspruch auf Ganztagsbetreuung ab 2026/27. Re-Extraktions-Befund 02.07.2026: Auswahlprogramm: Schulen werden anhand von Sozialkriterien ausgewaehlt (180 Schulen seit 2025/26), keine freie Bewerbung; Gymnasien nehmen in Berlin nicht teil.",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle berlin.de/sen/bildung/unterstuetzung/startchancen-programm, geprueft 22.07.2026: Die Seite beschreibt die drei Saeulen und die teilnehmenden Schulen, aber KEINEN Antragsweg und keine Frist. ⚠️ Startchancen-Schulen werden nach Sozialindex ausgewaehlt, nicht per Bewerbung - zu pruefen, ob kiAntragGeeignet hier ueberhaupt richtig ist."
+      "art": "geschlossen",
+      "quelle": "Primaerquelle berlin.de/sen/bildung/unterstuetzung/startchancen-programm, geprueft 22.07.2026: Schulen koennen sich NICHT bewerben - das Land waehlt die gefoerderten Schulen anhand wissenschaftsbasierter Kriterien aus; 'eine Bewerbung ist grundsaetzlich nicht notwendig'. Kein offener Antragsweg fuer einzelne Schulen. (Auch kiAntragGeeignet fraglich - kein Antragsverfahren.)"
     }
   },
   {
@@ -1666,8 +1679,8 @@
     "verificationWarning": "Dieses Programm hat nicht verifizierte Fördersummen. Bitte prüfen Sie die Daten vor einer Antragstellung.",
     "bemerkung": "D5-Web-Verifikation 2026-06-11: Einzelne Grund-/Förderschule meldet sich direkt online an (kostenloser betreuter Waldschultag = geldwerte Sachleistung) -> ki=true. Bayern-beschränkt (Bayerische Staatsforsten) -> DE-BY. Korrigiert die Fehleinordnung des Queue-Audits 2026-06-01.",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Geprueft 22.07.2026: 🔴 baywastiftung.de liefert ein ungueltiges TLS-Zertifikat ('unable to verify the first certificate') - die Seite war nicht pruefbar. Keine Frist belegbar."
+      "art": "keine",
+      "quelle": "Primaerquelle baywastiftung.de/projekte/waldschule, geprueft 22.07.2026: Fortlaufende Anmeldung fuer kostenlose Waldschul-Tage (Grund-/Foerderschulen Bayern) ueber Anmeldeformular, kein Stichtag/Bewerbungszeitraum. (Anmeldeseite selbst TLS-gesperrt; Beleg aus Projektseite + Suche.)"
     }
   },
   {
@@ -1896,8 +1909,12 @@
     "verificationWarning": "Dieses Programm hat nicht verifizierte Fördersummen. Bitte prüfen Sie die Daten vor einer Antragstellung.",
     "quelleUrl": "https://ensa.engagement-global.de",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle ensa.engagement-global.de, geprueft 22.07.2026: Eine Runde ist OFFEN - woertlich 'Jetzt fuer die Foerderung Ihrer Nord-Sued-Schulpartnerschaft 2027 bewerben!' -, aber die Seite nennt KEINE Frist. Der Dossier-Stichtag 30.09. ist unbelegt. Zu erheben auf den Unterseiten 'Bewerbung fuer Anbahnungsreisen' / 'Bewerbung fuer Begegnungsreisen'."
+      "art": "stichtag",
+      "stichtage": [
+        "2026-09-30"
+      ],
+      "jaehrlichWiederkehrend": true,
+      "quelle": "Primaerquelle ensa.engagement-global.de/begegnungsreisen-ensa-jahreszyklus, geprueft 22.07.2026, woertlich: 'Bis Ende September muss der Projektantrag Teil 1 (Projektskizze) fuer Begegnungsreisen im Folgejahr bei uns eingegangen sein.' Bewerbungszeitraum Juli-September, jaehrlich wiederkehrend (fuer Foerderung 2027 bis 30.09.2026). Korrigiert das alte 'laufend'."
     }
   },
   {
@@ -2371,8 +2388,15 @@
     "verificationWarning": "Dieses Programm hat nicht verifizierte Fördersummen. Bitte prüfen Sie die Daten vor einer Antragstellung.",
     "bemerkung": "Schulformen-Angabe unbelegt (Quelle ohne konkrete Zielgruppen-Nennung, Re-Extraktion 02.07.2026, konservativ breit gesetzt).",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Geprueft 22.07.2026: 🔴 Der hinterlegte infoLink ist nur die Ministeriums-Startseite bm.rlp.de, keine programmspezifische Seite - nicht pruefbar. Zusaetzlich Widerspruch in den vorhandenen Daten: Katalog-Fristtext sagt 'laufend', das Dossier einen wiederkehrenden Stichtag 15.11. infoLink nachziehen."
+      "art": "stichtag",
+      "stichtage": [
+        "2026-10-15",
+        "2026-11-11",
+        "2026-12-01",
+        "2027-01-15"
+      ],
+      "jaehrlichWiederkehrend": true,
+      "quelle": "Primaerquelle add.rlp.de (Europa/Internationales fuer Schulen), geprueft 22.07.2026: Buendel mehrerer Programme mit je eigenem jaehrlichem Termin - Landesfoerderung Schuelerbegegnungen bis 15.10. des Vorjahres, Fremdsprachenassistenz USA 11.11./uebrige 15.01., 'Klasse getauscht'/'Echange de proximite' 01.12. Naechster relevanter Stichtag 15.10.2026. Korrigiert das alte 'laufend'."
     }
   },
   {
@@ -2938,8 +2962,8 @@
     "verifiziertVon": "Web-Recherche Kulturelle Bildung SH",
     "bemerkung": "Über 80 registrierte Kulturvermittler:innen in Bereichen Bildende Kunst, Theater, Tanz, Literatur. Qualifizierte Fachberater:innen in allen Kreisen seit 2019. Antrag immer durch die Schule.",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle kulturellebildung-sh.de/info/aktuelles/news/41, geprueft 22.07.2026: Die Meldung nennt 'Antragsschluss ist der 15.02.2025' und formuliert 'auch im Jahr 2025 wieder', belegt damit aber KEINE feste jaehrliche Regel zum 15. Februar. Der hinterlegte infoLink ist eine Einzelmeldung von 2025 ohne aktuellen Stichtag."
+      "art": "geschlossen",
+      "quelle": "Primaerquelle schleswig-holstein.de/.../schule_trifft_kultur, geprueft 22.07.2026, woertlich: 'Der Antragstermin fuer das Schuljahr 2025/26 ist abgelaufen.' Aktuell keine offene Runde. (Der Katalog-Stichtag '15. Februar' stammte aus der 2025er-Ausschreibung.)"
     }
   },
   {
@@ -3613,8 +3637,8 @@
     "kiAntragGeeignet": true,
     "verificationWarning": "Dieses Programm hat nicht verifizierte Fördersummen. Bitte prüfen Sie die Daten vor einer Antragstellung.",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle stiftungbildung.org/foerderfonds, geprueft 22.07.2026: Die Seite sagt nicht, ob laufend oder in Runden eingereicht wird, und verweist auf Newsletter/Landesverbaende sowie ein PDF zu aktuellen Foerdermoeglichkeiten. Katalog-Fristtext sagt 'laufend', ist aber nicht belegt."
+      "art": "keine",
+      "quelle": "Primaerquelle stiftungbildung.org/foerderfonds, geprueft 22.07.2026, woertlich: 'Antraege koennen fortlaufend und jeder Zeit formlos gestellt werden.'"
     }
   },
   {
@@ -3765,8 +3789,8 @@
     "verifiziertVon": "Web-Recherche RÜTGERS Stiftung",
     "bemerkung": "Ziel: Interesse an wissenschaftlichen Berufen fördern. Beratung zu Auswahl und Ablauf inklusive. Beispiele: 'Groß für Klein – Wir machen MINT!', Bienenförderung, Ressourceneffizienz. Schulformen-Angabe unbelegt (Quelle ohne konkrete Zielgruppen-Nennung, Re-Extraktion 02.07.2026, konservativ breit gesetzt).",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle ruetgers-stiftung.de, geprueft 22.07.2026: Beschreibt, dass 'die besten Eurer Schulprojekte' aus MINT finanziert werden, nennt aber keine Antragszeitraeume. Formulierung ('die besten') deutet eher auf eine Auswahlrunde als auf laufende Foerderung hin - unbelegt."
+      "art": "keine",
+      "quelle": "Primaerquelle ruetgers-stiftung.de/dabei-sein, geprueft 22.07.2026: Bewerbung jederzeit per Mail (Idee, Titel, Projektgruppe, Zeitraum, Kosten), keine Frist/kein Stichtag genannt."
     }
   },
   {
@@ -4285,8 +4309,12 @@
     "verifiziertVon": "Web-Recherche Aktion Mensch",
     "bemerkung": "Laufzeit bis zu 5 Jahre. Beispiele: Theaterprojekte (248.000€), Schulstart-Hilfen (125.760€). Antragstellung über aktion-mensch.de/förderung/antrag",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle aktion-mensch.de/inklusion/bildung/foerderung/schul-kooperationen, geprueft 22.07.2026: Nennt Zuschusshoehe (max. 350.000 EUR) und Laufzeit (bis 5 Jahre), aber keine Frist und keinen Hinweis, ob die Foerderung offen ist."
+      "art": "stichtag",
+      "stichtage": [
+        "2026-10-15"
+      ],
+      "jaehrlichWiederkehrend": true,
+      "quelle": "Primaerquelle aktion-mensch.de/foerderung/foerderangebote/junge-menschen, geprueft 22.07.2026, woertlich: 'Eine Antragstellung ist nur innerhalb unserer Antragszyklen moeglich.' Drei feste Antragszyklen pro Jahr (wiederkehrend), naechstes Fenster 01.09.-15.10.2026. Korrigiert das alte 'laufend'."
     },
     "umfangZustand": {
       "art": "unbekannt",
@@ -5168,8 +5196,12 @@
     "updatedAt": "2026-06-01T00:00:00Z",
     "quelle": "https://www.amadeu-antonio-stiftung.de/projektfoerderung/foerderbilanz/",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle amadeu-antonio-stiftung.de/projektfoerderung/foerderbilanz, geprueft 22.07.2026: Die Seite ist eine Foerderbilanz und listet gefoerderte Projekte, nennt aber weder Antragsfristen noch ein Antragsverfahren fuer die Aktions- und Bildungswochen. infoLink zeigt auf die falsche Unterseite."
+      "art": "stichtag",
+      "stichtage": [
+        "2026-07-01"
+      ],
+      "jaehrlichWiederkehrend": true,
+      "quelle": "Primaerquelle amadeu-antonio-stiftung.de/antisemitismus/aktionswochen-mitmachen, geprueft 22.07.2026: Antragsfrist jaehrlich zum 01.07. (23. Auflage, Veranstaltungszeitraum Okt-Nov). Die 2026er-Frist (01.07.2026) ist verstrichen; wiederkehrend, naechster Termin ~01.07.2027."
     }
   },
   {
@@ -5259,8 +5291,8 @@
     "updatedAt": "2026-06-01T00:00:00Z",
     "quelle": "https://www.dbu.de/foerderung/projektfoerderung/foerderung-beantragen/",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle dbu.de/foerderung/projektfoerderung/foerderung-beantragen, geprueft 22.07.2026: Die Seite verweist nur auf 'allgemeine Informationen' und 'Arbeitshilfen zur Antragstellung', nennt selbst keine Fristen oder Stichtage. Katalog-Fristtext sagt 'laufend', ist aber nicht belegt."
+      "art": "keine",
+      "quelle": "Primaerquelle dbu.de/foerderung/projektfoerderung, geprueft 22.07.2026, woertlich: 'Projektskizzen und Foerderantraege koennen jederzeit eingereicht werden.'"
     }
   },
   {
@@ -5436,8 +5468,8 @@
     "updatedAt": "2026-06-01T00:00:00Z",
     "quelle": "https://dpjw.org/projektfoerderung/",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle dpjw.org/projektfoerderung, geprueft 22.07.2026: Verweist auf die Unterseite 'Antrag stellen', nennt selbst keine Stichtage. Katalog-Fristtext nennt zusaetzlich '31.03.2026' als Garantie-Datum fuer 2026 - das ist verstrichen und war ohnehin nur eine Foerdergarantie, keine Ausschlussfrist."
+      "art": "keine",
+      "quelle": "Primaerquelle dpjw.org/foerderkriterien-2026, geprueft 22.07.2026: Laufende Antragstellung ueber das OASE-Portal, keine festen Jahresstichtage; Antrag mind. 3 Monate vor Projektbeginn einzureichen."
     },
     "umfangZustand": {
       "art": "unbekannt",
@@ -5527,8 +5559,8 @@
     "updatedAt": "2026-06-01T00:00:00Z",
     "quelle": "https://www.deutsche-stiftung-engagement-und-ehrenamt.de/foerderung/aktuelle-programme/",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle deutsche-stiftung-engagement-und-ehrenamt.de/foerderung/aktuelle-programme, geprueft 22.07.2026: Das Mikrofoerderprogramm ist gelistet, aber ohne Antragsstatus und ohne Frist; die Seite verweist aufs Foerderportal. (Andere DSEE-Programme tragen dort harte Fristen, z. B. FuturE bis 16.06.2026 - fuer die Mikrofoerderung steht nichts.)"
+      "art": "keine",
+      "quelle": "Primaerquelle deutsche-stiftung-engagement-und-ehrenamt.de/mikrofoerderprogramm, geprueft 22.07.2026, woertlich: 'Eine Antragstellung ist durchgaengig moeglich.' Laufend nach Eingangsreihenfolge (ab 15.01. des Jahres, letztmoeglich 01.11.)."
     }
   },
   {
@@ -5860,7 +5892,7 @@
     "quelle": "https://www.heinz-nixdorf-stiftung.de/",
     "fristZustand": {
       "art": "unbekannt",
-      "quelle": "Geprueft 22.07.2026: 🔴 heinz-nixdorf-stiftung.de leitet per 301 auf stiftung-westfalen.de um - die Stiftung firmiert offenbar neu. Die Zielseite nennt weder Antragsfristen noch ein Antragsverfahren. Zu klaeren: infoLink auf die neue Domain ziehen und Programm-Fortbestand pruefen."
+      "quelle": "Geprueft 22.07.2026: Der Katalog-infoLink heinz-nixdorf-stiftung.de leitet 301 auf stiftung-westfalen.de um. Deren Startseite nennt KEINE Antragsfrist; ein Foerderaggregator behauptet 'jederzeit', das ist aber nicht primaerquellenbelegt. Katalog-Link aktualisieren, Frist ueber Stiftung erfragen."
     }
   },
   {
@@ -5945,8 +5977,9 @@
     "updatedAt": "2026-06-01T00:00:00Z",
     "quelle": "https://innogy-stiftung.com/ueber-die-stiftung/foerderantraege/",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Geprueft 22.07.2026: 🔴 Die hinterlegte Domain innogy-stiftung.com ist NICHT MEHR AUFLOESBAR (DNS ENOTFOUND) - der infoLink im Katalog ist tot. Recherche deutet darauf hin, dass die Stiftung in der E.ON Stiftung aufgegangen ist. Weder Frist noch Fortbestand des Programms belegt. Zu klaeren: infoLink korrigieren oder Programm archivieren."
+      "art": "geschlossen",
+      "quelle": "Geprueft 22.07.2026: Die Domain innogy-stiftung.com ist TOT (ENOTFOUND); unter dem Namen 'innogy Stiftung' nimmt niemand mehr Antraege entgegen. Die Stiftung ist offenbar in der RWE Foundation aufgegangen (rwe-foundation.com, Stichtage 1.4./1.10.), die Identitaet/Nachfolge ist aber nicht zweifelsfrei belegt.",
+      "wiedereroeffnungErwartet": "Moegliche Nachfolge RWE Foundation (Stichtag 01.10.2026) - Katalog-Eintrag (Name/Link/kiAntragGeeignet) pruefen und ggf. auf RWE Foundation umstellen."
     }
   },
   {
@@ -5987,8 +6020,9 @@
     "updatedAt": "2026-06-01T00:00:00Z",
     "quelle": "https://ki-schulpreis.land-der-ideen.de/",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle ki-schulpreis.land-der-ideen.de, geprueft 22.07.2026: Die Seite beschreibt den Wettbewerb und die Gewinner, nennt aber weder eine laufende Runde noch Fristen. Der Katalog-Fristtext sagt selbst 'Rundenabhaengiger Stichtag ... Naechste Runde auf der Wettbewerbsseite pruefen' - die 2025er-Runde lief 08.04.-10.10.2025."
+      "art": "geschlossen",
+      "quelle": "Primaerquelle ki-schulpreis.land-der-ideen.de, geprueft 22.07.2026: 2025er-Runde (8.4.-10.10.2025) beendet, Bewerbungsseite /jetzt-bewerben liefert 404, aktuell nur Shortlist 2025 beworben (Preisverleihung 16.01.2026). Keine 2026er-Runde angekuendigt.",
+      "wiedereroeffnungErwartet": "unklar - keine neue Runde angekuendigt (ein Neustart ist nicht ausgeschlossen)"
     }
   },
   {
@@ -6123,8 +6157,12 @@
     "updatedAt": "2026-06-01T00:00:00Z",
     "quelle": "https://www.bkj.de/projekte/mixed-up-wettbewerb/",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle bkj.de/projekte/mixed-up-wettbewerb, geprueft 22.07.2026: Die Projektseite verlinkt Unterseiten (MIXED UP Preis, Kick-Off-Foerderung, Preistraeger), nennt aber selbst weder eine laufende Runde noch eine Frist. Der Dossier-Stichtag 31.07.2026 ist unbelegt."
+      "art": "stichtag",
+      "stichtage": [
+        "2026-07-31"
+      ],
+      "jaehrlichWiederkehrend": true,
+      "quelle": "Primaerquelle bkj.de/projekte/mixed-up-wettbewerb, geprueft 22.07.2026, woertlich: 'Der Einsendeschluss fuer die Bewerbung ist der 31. Juli 2026.' Jaehrlich wiederkehrender Wettbewerb, aktuell offen."
     }
   },
   {
@@ -6296,8 +6334,9 @@
     "updatedAt": "2026-06-01T00:00:00Z",
     "quelle": "https://www.tc-stiftung.de/stiftungspreis/",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle tc-stiftung.de/stiftungspreis, geprueft 22.07.2026: Die Seite meldet nur 'Die 300 Preistraeger stehen fest!' und verweist auf die FAQ; weder Frist noch laufende Runde genannt. Galas 2024 und 2026 erwaehnt, jaehrlicher Rhythmus daraus NICHT ableitbar. Dossier-Stichtag 31.10. unbelegt."
+      "art": "geschlossen",
+      "quelle": "Primaerquelle tc-stiftung.de/stiftungspreis-faqs, geprueft 22.07.2026: 12. Stiftungspreis (Bewerbung bis 31.10.2025) beendet. Aktuell keine offene Bewerbungsphase.",
+      "wiedereroeffnungErwartet": "13. Stiftungspreis wird Ende 2026 bekanntgegeben, naechster Preis 2027."
     }
   },
   {
@@ -6524,8 +6563,8 @@
     "updatedAt": "2026-06-01T00:00:00Z",
     "quelle": "https://dietmar-hopp-stiftung.de/foerderbereiche/bildung.html",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Geprueft 22.07.2026: 🔴 Der hinterlegte infoLink dietmar-hopp-stiftung.de/foerderbereiche/bildung.html liefert HTTP 404. Keine Frist belegbar. Zu klaeren: infoLink korrigieren."
+      "art": "keine",
+      "quelle": "Primaerquelle Dietmar Hopp Stiftung / Foerderdatenbank DSEE, geprueft 22.07.2026: 'Gemeinnuetzige Organisationen koennen ganzjaehrig Foerderantraege einreichen.' Keine festen Stichtage."
     }
   },
   {
@@ -6707,8 +6746,8 @@
     "updatedAt": "2026-06-01T00:00:00Z",
     "quelle": "https://www.saechsische-jugendstiftung.de/",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle saechsische-jugendstiftung.de, geprueft 22.07.2026: Die Stiftung listet acht Programme, dieses ist NICHT darunter. Kein Beleg fuer eine offene Runde, aber auch keine ausdrueckliche Einstellung -> unbekannt statt geschlossen. Zu klaeren: laeuft das Programm noch?"
+      "art": "geschlossen",
+      "quelle": "Beste belegte Quelle Deutsche UNESCO-Kommission (bne.unesco.de), geprueft 22.07.2026, woertlich: 'Aktuell wird das Programm nicht gefoerdert und durchgefuehrt. Fuer Anfrage stehen wir dennoch sehr gern zur Verfuegung.' Offizielle Programm-Unterseiten der Saechsischen Jugendstiftung liefern 404 - aktuell keine gefoerderte Runde."
     }
   },
   {
@@ -6885,8 +6924,8 @@
     "updatedAt": "2026-06-01T00:00:00Z",
     "quelle": "https://www.ewe-stiftung.de/foerderantrag/foerderkriterien/",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle ewe-stiftung.de/foerderantrag/foerderkriterien, geprueft 22.07.2026: Die Foerderkriterien nennen KEINE Antragsfristen oder Stichtage. Das einzige Datum auf der Seite ('noch bis 21. September') gehoert zum Klaus-von-Klitzing-Preis, nicht zur Projektfoerderung. Der Dossier-Stichtag 27.07.2026 ist damit unbelegt."
+      "art": "keine",
+      "quelle": "Primaerquelle ewe-stiftung.de/sitzungstermine, geprueft 22.07.2026: Fortlaufende Antragstellung gebunden an Sitzungstermine (Kleinprojekte bis 9.999 EUR alle 2 Monate, groessere ab 10.000 EUR alle 3 Monate); Unterlagen jeweils einige Tage/Wochen vor dem Sitzungstermin."
     }
   },
   {
@@ -7064,8 +7103,9 @@
     "updatedAt": "2026-06-01T00:00:00Z",
     "quelle": "https://stark-gemacht.de/",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle stark-gemacht.de, geprueft 22.07.2026: Belegt ist, dass es mehrere Runden pro Jahr gibt ('zweite Ausschreibung des Berliner Jugendbudgets 2026', Jurysitzung 20.06.2026, 21 Projekte in Foerderung), aber die Startseite nennt keine Fristen. Zu erheben unter stark-gemacht.de/foerderung/berliner-jugendbudget."
+      "art": "geschlossen",
+      "quelle": "Primaerquelle stark-gemacht.de/foerderung/berliner-jugendbudget, geprueft 22.07.2026, woertlich: 'Die Antragsfrist fuer die zweite und letzte Ausschreibung des Berliner Jugendbudgets 2026 ist abgelaufen.'",
+      "wiedereroeffnungErwartet": "Naechste Ausschreibung im letzten Quartal 2026, vorbehaltlich der Foerderzusage fuer 2027."
     }
   },
   {
@@ -7243,8 +7283,8 @@
     "updatedAt": "2026-06-01T00:00:00Z",
     "quelle": "https://www.joachim-herz-stiftung.de/foerdern/ganzjaehrige-ausschreibungen",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Primaerquelle joachim-herz-stiftung.de/foerdern/ganzjaehrige-ausschreibungen, geprueft 22.07.2026: Das Programm ist als 'ganzjaehrig' gefuehrt, aber ohne ausdrueckliche Aussage 'ohne Stichtag'. ⚠️ Starke Eingrenzung: 'Wir unterstuetzen z. B. Schulen, Kitas, Gemeinden und Vereine direkt im Quartier unseres Stiftungssitzes' - foerderfaehig ist praktisch nur Hamburg-Langenhorn. Zu pruefen, ob das im Matcher als regionale Einschraenkung hinterlegt ist."
+      "art": "keine",
+      "quelle": "Primaerquelle joachim-herz-stiftung.de/foerdern/.../lernen-in-langenhorn, geprueft 22.07.2026: Ganzjaehrige Ausschreibung, keine festen Stichtage; Bescheid i.d.R. binnen 6 Wochen."
     }
   },
   {
@@ -7672,8 +7712,8 @@
     "updatedAt": "2026-06-01T00:00:00Z",
     "quelle": "https://www.wilo-foundation.de/foerderprojekte/bildung-soziales/",
     "fristZustand": {
-      "art": "unbekannt",
-      "quelle": "Geprueft 22.07.2026: 🔴 Der hinterlegte infoLink wilo-foundation.de/foerderprojekte/bildung-soziales liefert HTTP 404. Die Startseite existiert und fuehrt 'Bildung' und 'Soziales' als Foerderbereiche, nennt aber kein Antragsverfahren und keine Fristen. Zu klaeren: infoLink korrigieren."
+      "art": "keine",
+      "quelle": "Foerderdatenbank DSEE / foerdersuche.org, geprueft 22.07.2026: 'Bewerbungsfrist / Antrag: Jederzeit.' (Wilo-Primaer-infoLink /foerderprojekte/bildung-soziales liefert 404 - Katalog-Link zu aktualisieren.)"
     }
   },
   {

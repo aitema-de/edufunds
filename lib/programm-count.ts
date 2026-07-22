@@ -13,7 +13,12 @@
  * liefert (07.07.2026: 23 archivierte Datensaetze aus der Zaehlung genommen;
  * 08.07.2026: 9 weitere Programme ohne Antragsmoeglichkeit archiviert ->
  * Finder-sichtbar 152 -> "150+"; 17.07.2026: 4 Programme ohne offene Runde
- * archiviert -> Finder-sichtbar 148 -> "140+").
+ * archiviert -> Finder-sichtbar 148 -> "140+"; 22.07.2026: Frist-Verifikation
+ * aller 'unbekannt'-Programme -> 8 weitere ohne offenen Antragsweg als
+ * fristZustand=geschlossen belegt (Berlin Startchancen = Landesauswahl ohne
+ * Bewerbung, KI-Schulpreis/Town&Country/SH-Kultur/Berliner-Jugendbudget zwischen
+ * den Runden, EVZ Bildungsagenda, deine-idee, innogy=Domain tot) ->
+ * Finder-sichtbar 133 -> "130+").
  *
  * WICHTIG: Bewusst KEIN Import von data/foerderprogramme.json hier — diese
  * Konstante wird auch in Client-Komponenten (Header, Footer, Hero) genutzt,
@@ -36,7 +41,7 @@
  * Wird von __tests__/lib/programm-count.test.ts gegen den echten Katalog
  * geprueft — sowohl gegen Ueberzeichnen als auch gegen unnoetige Bescheidenheit.
  */
-export const PROGRAMM_COUNT_ROUNDED = 140;
+export const PROGRAMM_COUNT_ROUNDED = 130;
 
 /** Marketing-Label, z. B. "180+" — fuer Stats-Karten/Badges. */
 export const PROGRAMM_COUNT_LABEL = `${PROGRAMM_COUNT_ROUNDED}+`;
