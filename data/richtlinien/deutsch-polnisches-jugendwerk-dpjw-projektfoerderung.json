@@ -1,5 +1,5 @@
 {
-  "version": "2026-06-01",
+  "version": "2026-07-22",
   "quellen": [
     "https://dpjw.org/projektfoerderung/",
     "https://dpjw.org/foerderkriterien-2026/",
@@ -123,7 +123,8 @@
           "Wie wird der deutsch-polnische Austausch und das gemeinsame Lernen konkret gestaltet?",
           "Welche Methoden (Workshops, Exkursionen, Sprachanimation) kommen zum Einsatz?"
         ],
-        "stilhinweis": "Den interkulturellen Mehrwert und das gemeinsame Programm in den Vordergrund stellen."
+        "stilhinweis": "Den interkulturellen Mehrwert und das gemeinsame Programm in den Vordergrund stellen. Umfangsbeleg: Das OASE-Feld 'Projektbeschreibung' kappt serverseitig bei 500 Zeichen inkl. Leerzeichen OHNE Warnung (Titel: 128 Zeichen) — hoechste Dichte noetig; ausfuehrliche Ziele/Methoden gehoeren in die drei unbegrenzten Portal-Fragen (s. Notizen). Empirisch erhoben im OASE-Portal per Speichern-Roundtrip, 22.07.2026.",
+        "maxZeichen": 500
       },
       {
         "id": "teilnehmer",
@@ -145,7 +146,7 @@
           "Welche Aktivitäten fördern Begegnung und Spracherwerb?",
           "Wann finden Vor- und ggf. Nachbereitung statt?"
         ],
-        "stilhinweis": "Konkreten, realistisch getakteten Programmplan mit gemeinsamen Aktivitäten darstellen."
+        "stilhinweis": "Konkreten, realistisch getakteten Programmplan mit gemeinsamen Aktivitäten darstellen. OASE erfasst das Programm als Tabelle (Datum / Tageszeit / Programmpunkte / mit Partnergruppe / Unterkunftsart), Programmpunkte je Zeile ohne Zeichenlimit; ohne Programm keine Foerderung. Alternativ Programm-Dokument als Upload (max. 20 MB)."
       },
       {
         "id": "finanzplan",
@@ -181,7 +182,9 @@
   "notizen": [
     "Zuständig: Warschau für schulischen Austausch, Potsdam für außerschulischen Austausch.",
     "Schulen können selbst oder über Förderverein/Zentralstelle beantragen.",
-    "Konkrete Tagessätze nur im PDF DPJW-Fördersätze 2026, Reisekosten über Reisekostenrechner."
+    "Konkrete Tagessätze nur im PDF DPJW-Fördersätze 2026, Reisekosten über Reisekostenrechner.",
+    "OASE-Portalstruktur (empirisch erhoben 22.07.2026, Projekttyp 'Schulischer Austausch / Jugendbegegnung'): Projektthema/Titel (128 Zeichen) + Projektbeschreibung (500 Zeichen, serverseitige Kappung ohne Warnung) + drei UNBEGRENZTE Freitext-Fragen unter 'Ziele und Methoden': (1) 'Was wollen Sie mit dieser Begegnung erreichen: für Ihre Schule/Organisation? für die Jugendlichen?' (2) 'Welche Methoden und Mittel (z.B. besondere Programmpunkte oder Arbeitsformen, Einsatz von Referenten oder Medien) wollen Sie zum Erreichen dieser Ziele einsetzen?' (3) 'Wie beteiligen sich die Jugendlichen an der Vorbereitung und Gestaltung des Projekts?' — die inhaltliche Tiefe gehört in diese drei Fragen, nicht in die 500-Zeichen-Beschreibung.",
+    "OASE-Ablauf: Projekttyp (einmal gewählt, nicht änderbar) → Projektdaten und Teilnehmer (Termin, Ort, Projektart-Checkboxen, Teilnehmer-Zahlenmatrix DE/PL/Drittland) → Ziele und Methoden → Programm (Tabelle) → Antragsparteien (Rolle Gastgeber/Gast, Trägerdaten, Bankverbindung). Datei-Uploads werden NICHT zwischengespeichert, erst vor dem Absenden hochladen."
   ],
   "bestPractices": [
     {
@@ -257,7 +260,8 @@
     "quelle": "Primaerquelle dpjw.org/projektfoerderung, geprueft 22.07.2026: Verweist auf die Unterseite 'Antrag stellen', nennt selbst keine Stichtage. Katalog-Fristtext nennt zusaetzlich '31.03.2026' als Garantie-Datum fuer 2026 - das ist verstrichen und war ohnehin nur eine Foerdergarantie, keine Ausschlussfrist."
   },
   "umfangZustand": {
-    "art": "unbekannt",
-    "quelle": "Geprueft 22.07.2026 (dpjw.org/foerderkriterien-2026): Bestandteile benannt (Antragszusammenfassung, Kontaktdaten, Finanzplaene beider Partner, Unterschriftsseite), keine Feldlimits — Einreichung ausschliesslich ueber das OASE-Portal; Limits dort zu erheben."
+    "art": "zeichen",
+    "wert": 500,
+    "quelle": "Empirisch im OASE-Portal erhoben (oase.dpjw.org, 22.07.2026, autorisiertes Wegwerf-Konto, danach geloescht): Speichern-Roundtrip mit Testlaengen — Projektbeschreibung wird serverseitig bei 500 Zeichen gekappt (Eingabe 14.000 -> persistiert 500, KEINE Client-Warnung), Titel bei 128. Die drei 'Ziele und Methoden'-Fragen persistieren >= 13.997 Zeichen (praktisch unbegrenzt), Programmpunkte je Tabellenzeile ebenso. wert=500 bezeichnet das Limit der Projektbeschreibung (zentrales Pflicht-Freitextfeld); Details je Abschnitt im Dossier."
   }
 }
