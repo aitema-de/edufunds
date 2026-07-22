@@ -291,7 +291,11 @@
     "kiAntragGeeignet": true,
     "verifiziertAm": "2026-06-19",
     "verifiziertVon": "Web-Recherche DKHW Förderfonds/Themenfonds Spielraum (Claude)",
-    "bemerkung": "Korrigiert 19.06.2026: Eintrag war faelschlich als DKJS (Deutsche Kinder- und Jugendstiftung) gefuehrt. Tatsaechlicher Traeger ist das Deutsche Kinderhilfswerk e.V. (DKHW), konkret der Foerderfonds/Themenfonds Spielraum (bewegungsfoerdernde Spiel- und Bewegungsorte, auch auf dem Schulgelaende; bis 10.000 EUR, i.d.R. max 5.000 EUR; mind. 20% Eigenanteil; Stichtage 31.03./30.09.). Verifiziert ueber dkhw.de + DSEE-Foerderdatenbank. Slug dkjs-sport aus historischen Gruenden beibehalten. WICHTIG: Antragstellerin ist NICHT die Schule selbst, sondern Verein/Foerderverein/Schueler- oder Elterninitiative."
+    "bemerkung": "Korrigiert 19.06.2026: Eintrag war faelschlich als DKJS (Deutsche Kinder- und Jugendstiftung) gefuehrt. Tatsaechlicher Traeger ist das Deutsche Kinderhilfswerk e.V. (DKHW), konkret der Foerderfonds/Themenfonds Spielraum (bewegungsfoerdernde Spiel- und Bewegungsorte, auch auf dem Schulgelaende; bis 10.000 EUR, i.d.R. max 5.000 EUR; mind. 20% Eigenanteil; Stichtage 31.03./30.09.). Verifiziert ueber dkhw.de + DSEE-Foerderdatenbank. Slug dkjs-sport aus historischen Gruenden beibehalten. WICHTIG: Antragstellerin ist NICHT die Schule selbst, sondern Verein/Foerderverein/Schueler- oder Elterninitiative.",
+    "fristZustand": {
+      "art": "unbekannt",
+      "quelle": "Primaerquelle dkhw.de/foerderung-und-hilfe/projektfoerderung, geprueft 22.07.2026: Die Seite fuehrt mehrere Fonds mit Status 'aktiv' bzw. 'aktuell keine Bewerbungen moeglich'; die einzige konkrete Frist ist 'Bewerbungen bis 15.08. moeglich' fuer den Laenderfonds Kinder und Kultur Baden-Wuerttemberg. Keine allgemeine Frist. ⚠️ Die Programm-ID lautet 'dkjs-sport' (Deutsche Kinder- und Jugendstiftung), der infoLink zeigt aber auf das Deutsche Kinderhilfswerk (dkhw.de) - Zuordnung pruefen."
+    }
   },
   {
     "id": "nabu-schulen",
@@ -1877,7 +1881,11 @@
     "quelle": "https://ensa.engagement-global.de",
     "kiAntragGeeignet": true,
     "verificationWarning": "Dieses Programm hat nicht verifizierte Fördersummen. Bitte prüfen Sie die Daten vor einer Antragstellung.",
-    "quelleUrl": "https://ensa.engagement-global.de"
+    "quelleUrl": "https://ensa.engagement-global.de",
+    "fristZustand": {
+      "art": "unbekannt",
+      "quelle": "Primaerquelle ensa.engagement-global.de, geprueft 22.07.2026: Eine Runde ist OFFEN - woertlich 'Jetzt fuer die Foerderung Ihrer Nord-Sued-Schulpartnerschaft 2027 bewerben!' -, aber die Seite nennt KEINE Frist. Der Dossier-Stichtag 30.09. ist unbelegt. Zu erheben auf den Unterseiten 'Bewerbung fuer Anbahnungsreisen' / 'Bewerbung fuer Begegnungsreisen'."
+    }
   },
   {
     "id": "bne-portal-foerderung",
@@ -4794,7 +4802,15 @@
     "kiAntragGeeignet": true,
     "verifiziertAm": "2026-02-18",
     "verifiziertVon": "Cron-Scan + Web-Fetch",
-    "bemerkung": "Anträge bei den Regierungen der 7 bayerischen Regierungsbezirke. Für Einzelanträge: www.kulturfonds-antrag.bayern.de. Gültig für 3 Jahre, jährliche Fortsetzungsanträge nötig."
+    "bemerkung": "Anträge bei den Regierungen der 7 bayerischen Regierungsbezirke. Für Einzelanträge: www.kulturfonds-antrag.bayern.de. Gültig für 3 Jahre, jährliche Fortsetzungsanträge nötig.",
+    "fristZustand": {
+      "art": "stichtag",
+      "stichtage": [
+        "2026-03-01"
+      ],
+      "jaehrlichWiederkehrend": true,
+      "quelle": "Primaerquelle km.bayern.de/ministerium/kooperationen-und-stiftungen/kulturfonds, geprueft 22.07.2026, woertlich: 'Antraege sind grundsaetzlich bis zum 1. Maerz vor Beginn des jeweiligen Schuljahres' (Schuljahr 01.08.-31.07.) bei der zustaendigen Bezirksregierung einzureichen. Spaetere Antraege sind bei besonderen/unvorhergesehenen Projekten mit Begruendung moeglich."
+    }
   },
   {
     "id": "uk-german-connection",
@@ -5657,7 +5673,15 @@
     "kiAntragGeeignet": true,
     "createdAt": "2026-06-01T00:00:00Z",
     "updatedAt": "2026-06-01T00:00:00Z",
-    "quelle": "https://www.ghst.de/en/fund-for-anti-semitism-prevention-and-education"
+    "quelle": "https://www.ghst.de/en/fund-for-anti-semitism-prevention-and-education",
+    "fristZustand": {
+      "art": "stichtag",
+      "stichtage": [
+        "2026-09-30"
+      ],
+      "jaehrlichWiederkehrend": false,
+      "quelle": "Primaerquelle ghst.de/en/fund-for-anti-semitism-prevention-and-education, geprueft 22.07.2026: Antragsfrist 30. September 2026, Zu-/Absagen im November 2026, fruehester Projektstart 1. Januar 2027. Der Fonds ist derzeit OFFEN. ⚠️ Eine jaehrliche Wiederholung sagt die Quelle NICHT - deshalb fail-closed nicht wiederkehrend; nach dem 30.09.2026 faellt das Programm aus dem Verkauf, bis eine neue Runde belegt ist."
+    }
   },
   {
     "id": "foerderfonds-demokratie",
@@ -5827,7 +5851,11 @@
     "kiAntragGeeignet": true,
     "createdAt": "2026-06-01T00:00:00Z",
     "updatedAt": "2026-06-01T00:00:00Z",
-    "quelle": "https://bewerbung.kultur-und-musikstiftung.de/"
+    "quelle": "https://bewerbung.kultur-und-musikstiftung.de/",
+    "fristZustand": {
+      "art": "unbekannt",
+      "quelle": "Primaerquelle bewerbung.kultur-und-musikstiftung.de, geprueft 22.07.2026: 🔴 Das Bewerbungsportal zeigt einen Stand von 2023 - woertlich 'Bewerbungsfrist ist der 5. November 2023 (NEU)'. Keine aktuelle Runde erkennbar; der Dossier-Stichtag 30.11. ist unbelegt. Zu klaeren, ob die Initiative noch laeuft."
+    }
   },
   {
     "id": "innogy-stiftung-fuer-energie-und",
@@ -6467,7 +6495,15 @@
     "kiAntragGeeignet": true,
     "createdAt": "2026-06-01T00:00:00Z",
     "updatedAt": "2026-06-01T00:00:00Z",
-    "quelle": "https://mbjs-fachportal.brandenburg.de/und-mehr/foerderung-aus-lottomitteln.html"
+    "quelle": "https://mbjs-fachportal.brandenburg.de/und-mehr/foerderung-aus-lottomitteln.html",
+    "fristZustand": {
+      "art": "stichtag",
+      "stichtage": [
+        "2026-09-30"
+      ],
+      "jaehrlichWiederkehrend": true,
+      "quelle": "Primaerquelle mbjs-fachportal.brandenburg.de/und-mehr/foerderung-aus-lottomitteln.html, geprueft 22.07.2026, woertlich: Anfragen koennen 'in der Zeit vom 1. Januar bis zum 30. September eines Jahres' eingereicht werden; 'Ab dem 01.Oktober eines Jahres werden i.d.R. nur noch Anfragen fuer das Folgejahr entgegen genommen.' Zusaetzlich: 'spaetestens jedoch drei Monate vor dem beabsichtigten Projektbeginn'. Das 'eines Jahres' belegt die Wiederkehr."
+    }
   },
   {
     "id": "bremen-gewoba-stiftung-zur-foerderung",
@@ -6678,7 +6714,12 @@
     "kiAntragGeeignet": true,
     "createdAt": "2026-06-01T00:00:00Z",
     "updatedAt": "2026-06-01T00:00:00Z",
-    "quelle": "https://www.aewb-nds.de/themen/dbs"
+    "quelle": "https://www.aewb-nds.de/themen/dbs",
+    "fristZustand": {
+      "art": "geschlossen",
+      "wiedereroeffnungErwartet": "Veroeffentlichung der verlaengerten Richtlinie war 'vor den Sommerferien 2026' geplant",
+      "quelle": "Primaerquelle aewb-nds.de/themen/dbs, geprueft 22.07.2026: Kein offenes Antragsfenster. Woertlich: die Richtlinie 'wird aktuell um ein Jahr verlaengert - die Veroeffentlichung ist noch vor den Sommerferien 2026 geplant'. Letztes belegtes Fenster laut Katalog-Fristtext: 11.09.-22.11.2025."
+    }
   },
   {
     "id": "ermoeglichungsbudget-fuer-innovative-schul-und",
