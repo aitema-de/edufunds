@@ -14,6 +14,11 @@
  */
 
 import { z } from "zod";
+import {
+  FristZustandSchema,
+  UmfangZustandSchema,
+  EinreichungsFormSchema,
+} from "@/lib/foerder-zustaende-schema";
 
 // ---------------------------------------------------------------------------
 // Sub-Schemas fuer die 4 neuen Felder (D-01..D-04)
@@ -60,6 +65,11 @@ const FristLogikSchema = z.discriminatedUnion("typ", [
     jaehrlich_wiederkehrend: z.boolean().optional(),
   }),
 ]);
+
+// Explizite Zustaende (Frist / Umfang / Einreichung): Definition liegt in
+// lib/foerder-zustaende-schema.ts, weil Katalog UND Dossier sie tragen und
+// beide dieselbe Pruefung brauchen. Optional, weil die Migration pro Programm
+// laeuft (Katalog-Wahrheit, 17.07.).
 
 // ---------------------------------------------------------------------------
 // Bestehende Pflichtfelder — minimaler Mirror der Compile-Time-Interfaces.
@@ -128,6 +138,10 @@ const BaseRichtlinieShape = {
   // 86cabdzwk: optionales Per-Programm-Dokumentlabel (rueckwaertskompatibel).
   dokumentLabel: z.string().min(1).optional(),
   dokumentLabelGenus: z.enum(["der", "die", "das"]).optional(),
+  // Katalog-Wahrheit (17.07.2026): explizite Zustaende, optional bis migriert.
+  fristZustand: FristZustandSchema.optional(),
+  umfangZustand: UmfangZustandSchema.optional(),
+  einreichungsForm: EinreichungsFormSchema.optional(),
 };
 
 // ---------------------------------------------------------------------------

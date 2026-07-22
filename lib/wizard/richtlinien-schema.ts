@@ -9,6 +9,12 @@
  * zurueck — der Wizard kennzeichnet das fuer den Nutzer transparent.
  */
 
+import type {
+  FristZustand,
+  UmfangZustand,
+  EinreichungsForm,
+} from "@/lib/foerder-zustaende";
+
 export type Kostenkategorie =
   | "personal"
   | "sachkosten"
@@ -168,6 +174,21 @@ export interface Richtlinie {
   rejectGruende?: RejectGrund[];
   /** Programm-spezifische Vorbild-Formulierungen, FK auf antragsstruktur.abschnitte[].id. Optional (D-06). */
   vorbildFormulierungen?: VorbildFormulierung[];
-  /** Discriminated Union: rolling | fixe_stichtage. Optional (D-06). */
+  /**
+   * Discriminated Union: rolling | fixe_stichtage. Optional (D-06).
+   * @deprecated Vorlaeufer von `fristZustand`. Kennt keinen "unbekannt"-Zustand
+   * und keinen Quellenbeleg. Fuer neu extrahierte Dossiers `fristZustand` setzen;
+   * fristLogik bleibt fuer die Bestands-Dossiers und den Katalog-x-Dossier-Test.
+   */
   fristLogik?: FristLogik;
+  /**
+   * Maschinenlesbarer Frist-Zustand (Nachfolger von fristLogik). Spiegelt das
+   * gleichnamige Katalog-Feld. Trennt "belegt rollend" von "nicht erfasst" und
+   * traegt eine Quelle. S. lib/foerder-zustaende.ts.
+   */
+  fristZustand?: FristZustand;
+  /** Maschinenlesbarer Umfang (Laengenbegrenzung des Antrags). */
+  umfangZustand?: UmfangZustand;
+  /** Strukturierte Einreichungsform (loest den Freitext `einreichungsweg` ab). */
+  einreichungsForm?: EinreichungsForm;
 }

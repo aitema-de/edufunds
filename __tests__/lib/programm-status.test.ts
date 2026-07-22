@@ -95,3 +95,55 @@ describe("Regression: der reale Fall vom 17.07.2026", () => {
     expect(isProgrammAbgelaufen(nachKorrektur, HEUTE)).toBe(true);
   });
 });
+
+describe("fristZustand: fail-closed auch bei kaputten Daten", () => {
+  // Der fristZustand kommt aus JSON. TypeScript behauptet den Typ nur —
+  // geprueft wird er zur Laufzeit nirgends im Verkaufspfad. Diese Tests halten
+  // fest, dass jede Abweichung SPERRT statt still auf den Legacy-Weg zu
+  // fallen (der ohne bewerbungsfristEnde "laeuft" bedeutet und damit verkauft).
+  function mitZustand(fz: unknown): Foerderprogramm {
+    return programm({ fristZustand: fz } as unknown as Partial<Foerderprogramm>);
+  }
+
+  it("Tippfehler in art ('stichtage') sperrt, statt auf Legacy zu fallen", () => {
+    const p = mitZustand({ art: "stichtage", stichtage: ["2019-09-30"], quelle: "q" });
+    expect(isProgrammAbgelaufen(p, HEUTE)).toBe(true);
+  });
+
+  it("eine spaeter ergaenzte, hier unbekannte Variante sperrt", () => {
+    expect(isProgrammAbgelaufen(mitZustand({ art: "rollend_ab", quelle: "q" }), HEUTE)).toBe(true);
+  });
+
+  it("art='stichtag' ohne stichtage-Array sperrt, statt zu werfen", () => {
+    // Vorher: TypeError beim .map() -> Absturz der Foerderprogramme-Seite.
+    expect(() => isProgrammAbgelaufen(mitZustand({ art: "stichtag", quelle: "q" }), HEUTE)).not.toThrow();
+    expect(isProgrammAbgelaufen(mitZustand({ art: "stichtag", quelle: "q" }), HEUTE)).toBe(true);
+  });
+
+  it("unlesbare Stichtage sperren", () => {
+    const p = mitZustand({ art: "stichtag", stichtage: ["demnaechst"], quelle: "q" });
+    expect(isProgrammAbgelaufen(p, HEUTE)).toBe(true);
+  });
+
+  it("null als fristZustand faellt auf den Legacy-Weg (Feld gilt als nicht gesetzt)", () => {
+    expect(isProgrammAbgelaufen(mitZustand(null), HEUTE)).toBe(false);
+  });
+
+  it("am Stichtag SELBST ist das Programm noch offen", () => {
+    // Einreichung ist bis 23:59 des Stichtags moeglich. Ein Date-Vergleich
+    // gegen UTC-Mitternacht haette den Tag faelschlich schon gesperrt — und
+    // damit am letzten Verkaufstag den Umsatz gekostet.
+    const p = mitZustand({ art: "stichtag", stichtage: ["2026-07-17"], quelle: "q" });
+    expect(isProgrammAbgelaufen(p, new Date("2026-07-17T23:30:00Z"))).toBe(false);
+    expect(isProgrammAbgelaufen(p, new Date("2026-07-18T00:30:00Z"))).toBe(true);
+  });
+
+  it("der spaeteste Stichtag entscheidet, unabhaengig von der Reihenfolge", () => {
+    const p = mitZustand({
+      art: "stichtag",
+      stichtage: ["2026-12-01", "2019-09-30"],
+      quelle: "q",
+    });
+    expect(isProgrammAbgelaufen(p, HEUTE)).toBe(false);
+  });
+});
