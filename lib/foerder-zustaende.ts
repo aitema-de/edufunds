@@ -141,3 +141,60 @@ export function brauchtFristHinweis(fz: FristZustand | undefined): boolean {
   if (!fz) return true; // noch nicht migriert -> ebenfalls unverifiziert
   return fz.art === "unbekannt";
 }
+
+/**
+ * Naechster kuenftiger Stichtag eines Programms als ISO-Datum (YYYY-MM-DD),
+ * oder null, wenn keiner bestimmbar ist.
+ *
+ * Hintergrund (Issue #109, Entscheidung Kolja 22.07.2026): Wiederkehrende
+ * Stichtag-Programme bleiben ganzjaehrig verkaeuflich — dann muss der Kunde
+ * aber sehen, WANN die naechste Runde ansteht, sonst kauft er blind ein
+ * Dossier fuer einen Termin in ferner Zukunft.
+ *
+ * Regeln:
+ * - Nur `art === "stichtag"` liefert ein Datum; `keine` (laufend) und
+ *   `unbekannt` (eigener Hinweis) bewusst nicht.
+ * - Ein Stichtag HEUTE zaehlt als kuenftig (Lehre aus dem Gate-Haertungsfall
+ *   17.07.2026: UTC-Mitternacht < now liess "heute" faelschlich verfallen).
+ * - Vergangene Stichtage werden NUR bei `jaehrlichWiederkehrend` ins naechste
+ *   Jahr gerollt (Monat/Tag behalten; 29.02. normalisiert Date auf den 01.03.).
+ * - Mehrere Stichtage/Saeulen: der zeitlich naechste gewinnt.
+ * - Vergangen + nicht wiederkehrend -> null (Verkaufsfaehigkeit regelt das
+ *   Gate `istFristVerkaufsfaehig`, hier geht es NUR um Anzeige).
+ */
+export function naechsteFrist(
+  fz: FristZustand | undefined,
+  now: Date = new Date()
+): string | null {
+  if (!fz || fz.art !== "stichtag") return null;
+  if (!Array.isArray(fz.stichtage) || fz.stichtage.length === 0) return null;
+
+  const heute = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  const kandidaten: number[] = [];
+
+  for (const s of fz.stichtage) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s);
+    if (!m) continue; // kaputtes Datum ignorieren statt werfen (Anzeige-Pfad)
+    const monat = Number(m[2]) - 1;
+    const tag = Number(m[3]);
+    const t = Date.UTC(Number(m[1]), monat, tag);
+    if (t >= heute) {
+      kandidaten.push(t);
+    } else if (fz.jaehrlichWiederkehrend) {
+      const diesesJahr = Date.UTC(now.getUTCFullYear(), monat, tag);
+      kandidaten.push(
+        diesesJahr >= heute ? diesesJahr : Date.UTC(now.getUTCFullYear() + 1, monat, tag)
+      );
+    }
+  }
+
+  if (kandidaten.length === 0) return null;
+  return new Date(Math.min(...kandidaten)).toISOString().slice(0, 10);
+}
+
+/** ISO-Datum (YYYY-MM-DD) -> deutsche Anzeige (TT.MM.JJJJ). */
+export function formatFristDatum(iso: string): string {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
+  if (!m) return iso;
+  return `${m[3]}.${m[2]}.${m[1]}`;
+}
