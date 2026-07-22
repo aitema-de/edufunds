@@ -72,6 +72,17 @@ const RATE_LIMITS: Record<string, RateLimitConfig> = {
     windowMs: 60 * 60 * 1000, // 1 Stunde
     maxRequests: 5,
   },
+  // Web-Vitals-Telemetrie (/api/vitals): EIGENER Bucket, damit Telemetrie NIE
+  // das default-Budget funktionaler Routen derselben IP aufzehrt. Genau das ist
+  // am 22.07.2026 auf Prod passiert: Ein Observer-Leak im Client hat >2.500
+  // Vitals-POSTs in 29 Minuten geschickt, das default-Limit (100/15min) der IP
+  // ausgeschoepft und damit /api/match + /api/antrag/list blockiert („KI
+  // ueberlastet"). Der Client ist gefixt (Beacon nur noch beim Seiten-Verlassen),
+  // der getrennte Bucket ist die Verteidigung in der Tiefe.
+  vitals: {
+    windowMs: 15 * 60 * 1000, // 15 Minuten
+    maxRequests: 60,
+  },
   // Kauf auf Rechnung (/api/wizard/invoice, /api/kontingent/order): schaltet die
   // Leistung SOFORT frei, bevor Geld geflossen ist — beim Kontingent bis 459,90 EUR.
   // Der einzige Schutz war bisher ein Honeypot + 3-Sekunden-Timer und der
@@ -165,6 +176,10 @@ export function getClientIP(request: { headers: { get(name: string): string | nu
 function getRateLimitType(pathname: string): string {
   if (pathname.includes('/api/admin/login') || pathname.includes('/api/auth')) {
     return 'auth';
+  }
+  // Telemetrie strikt vom Rest isolieren (s. Kommentar am 'vitals'-Bucket).
+  if (pathname === '/api/vitals') {
+    return 'vitals';
   }
   // Rechnungskauf VOR allen /api/wizard/-Klauseln: schaltet ohne Zahlung frei und
   // braucht deshalb das strengste Limit (3/24h), nicht das grosszuegige 'wizard'.
