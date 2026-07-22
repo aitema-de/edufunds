@@ -143,13 +143,16 @@ describe("Katalog: dokumentierte Luecke, die dieser Test NICHT schliesst", () =>
     // 7 GESCHLOSSEN/kein offener Antragsweg (Berlin Startchancen = Landesauswahl ohne
     // Bewerbung, KI-Schulpreis, Town&Country, SH Schule trifft Kultur, Berliner
     // Jugendbudget, deine-idee, innogy=Domain tot) -> fallen aus verkaeuflich.
-    // Es bleiben 10 ehrlich unbekannte (nominierungsbasiert/regional-fragmentiert/
-    // Quelle schweigt): hector, telekom-mint, jugendbruecke, heinz-nixdorf,
-    // sozialgenial, ideeninitiative-musik, hopp-foundation, dieter-schwarz,
+    // Es bleiben 9 ehrlich unbekannte (nominierungsbasiert/regional-fragmentiert/
+    // Quelle schweigt): telekom-mint, jugendbruecke, heinz-nixdorf, sozialgenial,
+    // ideeninitiative-musik, hopp-foundation, dieter-schwarz,
     // saechsischer-schulgartenwettbewerb, kultur-macht-stark.
+    // (hector-kinderakademie war der 10., ist aber seit dem kiAntragGeeignet-Fix
+    // gar nicht mehr verkaeuflich — Teilnahme ist Kinder-Nominierung, kein
+    // Schul-Foerderantrag; ebenso berlin-startchancen = Landesauswahl ohne Antrag.)
     // Diese Zahl DARF sinken (Luecke wird geschlossen). Steigt sie, waechst das
     // ungepruefte Risiko — dann ist die Erwartung bewusst anzupassen.
-    expect(ohneFrist.length).toBeLessThanOrEqual(10);
+    expect(ohneFrist.length).toBeLessThanOrEqual(9);
   });
 });
 
