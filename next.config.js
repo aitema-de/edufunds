@@ -18,6 +18,38 @@ const nextConfig = {
   // die 301 sind Absicherung fuer etwaige Backlinks.
   async redirects() {
     return [
+      // Alt-Bestand: 128 statische Programm-Seiten lagen bis 22.07.2026 unter
+      // public/foerderprogramme/<id>.html (Stand Feb 2026). Sie standen in
+      // KEINER Sitemap und waren nirgends verlinkt, wurden von Next aber weiter
+      // ausgeliefert — mit dem Stand von damals, inklusive der Zusage
+      // "128 Foerderprogramme" in jeder Meta-Description. Damit waren sie
+      // zugleich Duplicate Content zur App-Route und eine falsche Zahl.
+      // Dateien entfernt, URLs bleiben per 301 gueltig.
+      //
+      // Diese acht IDs gibt es im Katalog nicht mehr (umbenannt/entfernt) —
+      // sie gehen bewusst auf den Finder statt auf eine geratene ID, damit
+      // niemand auf dem falschen Programm landet.
+      ...[
+        'digitalpakt-20',
+        'eit-higher-education-2026',
+        'erasmus-alliances-innovation',
+        'ferry-porsche-challenge-2025',
+        'klaus-tschira-mint',
+        'sprungbrett-bildung-karlsruhe',
+        'tschira-stiftung',
+        'z-lab-bruchsal',
+      ].map((id) => ({
+        source: `/foerderprogramme/${id}.html`,
+        destination: '/foerderprogramme',
+        permanent: true,
+      })),
+      // Alle uebrigen .html-Altlasten auf ihre App-Route.
+      {
+        source: '/foerderprogramme/:id.html',
+        destination: '/foerderprogramme/:id',
+        permanent: true,
+      },
+
       { source: '/programme.html', destination: '/foerderprogramme', permanent: true },
       { source: '/ueber-uns.html', destination: '/ueber-uns', permanent: true },
       { source: '/kontakt.html', destination: '/kontakt', permanent: true },
