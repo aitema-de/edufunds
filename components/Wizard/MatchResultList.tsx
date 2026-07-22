@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { AlertTriangle, ArrowRight, CheckCircle, Coins, ExternalLink, SearchX, Star } from "lucide-react";
 import { buildFoerderhoeheHinweis } from "@/lib/foerderhoehe-empfehlung";
-import { FristHinweisBadge } from "@/components/FristHinweis";
+import { FristHinweisBadge, NaechsteFristBadge } from "@/components/FristHinweis";
 
 export interface MatchEntry {
   id: string;
@@ -26,6 +26,12 @@ export interface MatchEntry {
      * Muss vor dem Kauf sichtbar sein — s. components/FristHinweis.tsx.
      */
     fristUnverifiziert?: boolean;
+    /**
+     * Belegter naechster Stichtag (ISO, YYYY-MM-DD) — bei jaehrlich
+     * wiederkehrenden Programmen serverseitig uebers Jahr gerollt
+     * (app/api/match/route.ts, Issue #109). null/fehlend = kein Stichtag.
+     */
+    naechsteFrist?: string | null;
     kategorien?: string[];
     kurzbeschreibung?: string;
   };
@@ -129,10 +135,17 @@ export function MatchResultList({ matches, onStartAntrag, onReset }: Props) {
                 {m.programm.bewerbungsfristText && (
                   <span>· Frist: {m.programm.bewerbungsfristText}</span>
                 )}
-                {expired && (
+                {/* "Frist abgelaufen" (rot) nur, wenn KEIN naechster Stichtag
+                    belegt ist — bei wiederkehrenden Programmen ist die alte
+                    Runde vorbei, aber die naechste steht fest; beides zugleich
+                    anzuzeigen wuerde den Kunden verwirren (Issue #109). */}
+                {expired && !m.programm.naechsteFrist && (
                   <span className="rounded-full border border-red-300 bg-red-50 px-2 py-0.5 text-[11px] font-medium text-red-700">
                     Frist abgelaufen
                   </span>
+                )}
+                {m.programm.naechsteFrist && (
+                  <NaechsteFristBadge datumIso={m.programm.naechsteFrist} />
                 )}
                 {m.programm.fristUnverifiziert && <FristHinweisBadge />}
               </div>

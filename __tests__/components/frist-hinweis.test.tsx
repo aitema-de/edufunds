@@ -44,6 +44,38 @@ describe("FristHinweis in der Trefferliste (vor dem Kauf)", () => {
   });
 });
 
+describe("NaechsteFrist in der Trefferliste (Issue #109)", () => {
+  it("zeigt den naechsten Stichtag als Badge", () => {
+    render(<MatchResultList matches={[eintrag({ naechsteFrist: "2026-10-02" })]} />);
+    const badge = screen.getByTestId("naechste-frist-badge");
+    expect(badge).toBeInTheDocument();
+    expect(badge.textContent).toContain("02.10.2026");
+  });
+
+  it("zeigt KEIN Badge ohne belegten Stichtag", () => {
+    render(<MatchResultList matches={[eintrag({ naechsteFrist: null })]} />);
+    expect(screen.queryByTestId("naechste-frist-badge")).not.toBeInTheDocument();
+  });
+
+  it("unterdrueckt 'Frist abgelaufen', wenn ein naechster Stichtag belegt ist", () => {
+    // Wiederkehrendes Programm: alte Runde vorbei (bewerbungsfristEnde in der
+    // Vergangenheit), naechste Runde belegt -> nur die positive Anzeige,
+    // nicht das rote "abgelaufen" daneben.
+    render(
+      <MatchResultList
+        matches={[eintrag({ bewerbungsfristEnde: "2020-01-01", naechsteFrist: "2026-10-02" })]}
+      />
+    );
+    expect(screen.getByTestId("naechste-frist-badge")).toBeInTheDocument();
+    expect(screen.queryByText("Frist abgelaufen")).not.toBeInTheDocument();
+  });
+
+  it("ohne naechsten Stichtag bleibt 'Frist abgelaufen' sichtbar", () => {
+    render(<MatchResultList matches={[eintrag({ bewerbungsfristEnde: "2020-01-01" })]} />);
+    expect(screen.getByText("Frist abgelaufen")).toBeInTheDocument();
+  });
+});
+
 describe("brauchtFristHinweis — welcher Zustand loest den Hinweis aus", () => {
   it("unbekannt und fehlend loesen aus, belegte Zustaende nicht", () => {
     expect(brauchtFristHinweis({ art: "unbekannt" })).toBe(true);

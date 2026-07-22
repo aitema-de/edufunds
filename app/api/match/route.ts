@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { runMatch, type MatchInput } from "@/lib/wizard/matcher";
-import { brauchtFristHinweis } from "@/lib/foerder-zustaende";
+import { brauchtFristHinweis, naechsteFrist } from "@/lib/foerder-zustaende";
 
 export const maxDuration = 60;
 
@@ -52,6 +52,10 @@ export async function POST(req: NextRequest) {
           // Muss der Kunde VOR dem Kauf sehen, dass die Frist ungeprueft ist?
           // (Entscheidung 22.07.2026 — s. components/FristHinweis.tsx.)
           fristUnverifiziert: brauchtFristHinweis((m.programm as any).fristZustand),
+          // Belegter naechster Stichtag (ISO) — bei wiederkehrenden Programmen
+          // uebers Jahr gerollt. Der Kunde soll VOR dem Kauf sehen, wann die
+          // naechste Runde ansteht (Issue #109).
+          naechsteFrist: naechsteFrist((m.programm as any).fristZustand),
           kategorien: (m.programm as any).kategorien,
           kurzbeschreibung: (m.programm as any).kurzbeschreibung,
         },

@@ -30,8 +30,8 @@ import foerderprogrammeData from '@/data/foerderprogramme.json';
 import { EinreichungInfo } from "@/components/Wizard/EinreichungInfo";
 import type { EinreichungInfo as EinreichungInfoData } from "@/lib/wizard/einreichung";
 import { formatKategorie } from "@/lib/kategorie-labels";
-import { brauchtFristHinweis } from "@/lib/foerder-zustaende";
-import { FristHinweis } from "@/components/FristHinweis";
+import { brauchtFristHinweis, naechsteFrist } from "@/lib/foerder-zustaende";
+import { FristHinweis, NaechsteFristHinweis } from "@/components/FristHinweis";
 
 const foerderprogramme = foerderprogrammeData as Foerderprogramm[];
 
@@ -433,6 +433,22 @@ export default function FoerderprogrammDetailClient({ programm, einreichung }: F
                   {brauchtFristHinweis(programm.fristZustand) && (
                     <FristHinweis className="mt-4" />
                   )}
+
+                  {/* Belegter naechster Stichtag — bei wiederkehrenden Programmen
+                      uebers Jahr gerollt, damit niemand blind kauft (Issue #109). */}
+                  {(() => {
+                    const nf = naechsteFrist(programm.fristZustand);
+                    return nf ? (
+                      <NaechsteFristHinweis
+                        datumIso={nf}
+                        wiederkehrend={
+                          programm.fristZustand?.art === "stichtag" &&
+                          programm.fristZustand.jaehrlichWiederkehrend === true
+                        }
+                        className="mt-4"
+                      />
+                    ) : null;
+                  })()}
 
                   {/* Die grobe Bewerbungsart-Angabe ("Online-Antrag" etc.) nur zeigen,
                       wenn KEIN ausfuehrlicher Einreichungsweg aus dem Dossier vorliegt.
