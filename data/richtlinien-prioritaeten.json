@@ -1,19 +1,9 @@
 {
-  "generatedAt": "2026-07-02T05:50:32.797Z",
+  "generatedAt": "2026-07-23T11:18:52.894Z",
   "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
   "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
-  "total": 105,
+  "total": 97,
   "items": [
-    {
-      "programmId": "berlin-startchancen",
-      "name": "Startchancen-Programm Berlin",
-      "foerdergeberTyp": "bund",
-      "foerdersummeMax": 255000,
-      "reichweite": "DE-BE",
-      "infoLink": "https://www.berlin.de/sen/bildung/unterstuetzung/startchancen-programm/",
-      "score": 96.1,
-      "status": "done"
-    },
     {
       "programmId": "bmbf-digitalpakt-2",
       "name": "DigitalPakt Schule 2.0",
@@ -50,7 +40,7 @@
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 800000,
       "reichweite": "DE-BW",
-      "infoLink": "https://dietmar-hopp-stiftung.de/foerderbereiche/bildung.html",
+      "infoLink": "https://www.dietmar-hopp-stiftung.de/",
       "score": 91,
       "status": "done"
     },
@@ -185,16 +175,6 @@
       "status": "done"
     },
     {
-      "programmId": "ferry-porsche-challenge",
-      "name": "Ferry Porsche Challenge",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 75000,
-      "reichweite": "DE-BW/DE-SN",
-      "infoLink": "https://ferry-porsche-challenge.de",
-      "score": 76.8,
-      "status": "done"
-    },
-    {
       "programmId": "perlenfonds",
       "name": "Perlenfonds",
       "foerdergeberTyp": "stiftung",
@@ -280,17 +260,7 @@
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": 15000,
       "reichweite": "alle",
-      "infoLink": "https://www.heinz-nixdorf-stiftung.de/",
-      "score": 73.8,
-      "status": "done"
-    },
-    {
-      "programmId": "konzeptwettbewerb-schuelerforschungszentren",
-      "name": "Konzeptwettbewerb Schülerforschungszentren",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 15000,
-      "reichweite": "alle",
-      "infoLink": "https://schuelerforschungszentren.de/foerderungen/konzeptwettbewerb",
+      "infoLink": "https://www.stiftung-westfalen.de/",
       "score": 73.8,
       "status": "done"
     },
@@ -395,16 +365,6 @@
       "status": "done"
     },
     {
-      "programmId": "hector-kinderakademie",
-      "name": "HECTA Kinderakademien",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 50000,
-      "reichweite": "DE-BW",
-      "infoLink": "https://hector-kinderakademie.de/",
-      "score": 69,
-      "status": "done"
-    },
-    {
       "programmId": "stiftung-bildung-foerderfonds",
       "name": "Förderfonds der Stiftung Bildung",
       "foerdergeberTyp": "stiftung",
@@ -475,16 +435,6 @@
       "status": "done"
     },
     {
-      "programmId": "hopp-foundation-schulpreis",
-      "name": "HOPP-Foundation-Schulpreis",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 2500,
-      "reichweite": "DE-BW/DE-HE/DE-RP",
-      "infoLink": "https://www.hopp-foundation.de/foerderrichtlinen/",
-      "score": 68,
-      "status": "done"
-    },
-    {
       "programmId": "telekom-junior-ingenieur-2026",
       "name": "Junior-Ingenieur-Akademie (JIA)",
       "foerdergeberTyp": "stiftung",
@@ -551,16 +501,6 @@
       "foerdersummeMax": 5000,
       "reichweite": "alle",
       "infoLink": "https://www.telekom-stiftung.de",
-      "score": 67,
-      "status": "done"
-    },
-    {
-      "programmId": "foerderfonds-demokratie",
-      "name": "Förderfonds Demokratie",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 5000,
-      "reichweite": "alle",
-      "infoLink": "https://www.foerderfonds-demokratie.de/ausschreibung",
       "score": 67,
       "status": "done"
     },
@@ -682,16 +622,6 @@
       "foerdersummeMax": 1500,
       "reichweite": "alle",
       "infoLink": "https://www.amadeu-antonio-stiftung.de/projektfoerderung/foerderbilanz/",
-      "score": 63.8,
-      "status": "done"
-    },
-    {
-      "programmId": "ermoeglichungsbudget-fuer-innovative-schul-und",
-      "name": "Ermöglichungsbudget für innovative Schul- und Unterrichtsentwicklung (Niedersachsen)",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 15000,
-      "reichweite": "DE-NI",
-      "infoLink": "https://www.mk.niedersachsen.de/startseite/aktuelles/presseinformationen/ermoglichungsbudget-niedersachsen-stellt-schulen-350-000-euro-fur-innovative-schul-und-unterrichtsentwicklung-zur-verfugung-242870.html",
       "score": 63.8,
       "status": "done"
     },
@@ -866,16 +796,6 @@
       "status": "done"
     },
     {
-      "programmId": "sh-perspektivkita",
-      "name": "PerspektivKita Schleswig-Holstein",
-      "foerdergeberTyp": "land",
-      "foerdersummeMax": 50000,
-      "reichweite": "DE-SH",
-      "infoLink": "https://www.schleswig-holstein.de",
-      "score": 57,
-      "status": "done"
-    },
-    {
       "programmId": "zukunftsschule-sh-nachhaltigkeitspreisgelder-der-sparkassen",
       "name": "Zukunftsschule.SH - Nachhaltigkeitspreisgelder der Sparkassen",
       "foerdergeberTyp": "land",
@@ -961,7 +881,7 @@
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": null,
       "reichweite": "alle",
-      "infoLink": "https://innogy-stiftung.com/ueber-die-stiftung/foerderantraege/",
+      "infoLink": "https://www.rwe-foundation.com/",
       "score": 32,
       "status": "done"
     },
@@ -981,7 +901,7 @@
       "foerdergeberTyp": "stiftung",
       "foerdersummeMax": null,
       "reichweite": "DE-NW",
-      "infoLink": "https://www.wilo-foundation.de/foerderprojekte/bildung-soziales/",
+      "infoLink": "https://www.wilo-foundation.de/",
       "score": 32,
       "status": "done"
     },
