@@ -12,10 +12,31 @@
  * Voll-Markdown→RTF mit echten Tabellen waere fragil und ist hier nicht noetig.
  */
 
-const RTF_HEADER =
-  "{\\rtf1\\ansi\\ansicpg1252\\deff0" +
-  "{\\fonttbl{\\f0\\froman Times New Roman;}}" +
-  "\\fs24\n"; // \fs24 = 12pt (RTF misst in Half-Points)
+// \info-Block gehoert laut Spez. zwischen Header-Tabellen und Dokument-
+// Formatierung, daher zweigeteilt: Prolog + \fs24 (= 12pt, Half-Points).
+const RTF_PROLOG =
+  "{\\rtf1\\ansi\\ansicpg1252\\deff0" + "{\\fonttbl{\\f0\\froman Times New Roman;}}";
+const RTF_BODY_START = "\\fs24\n";
+
+/**
+ * AI-Act Art. 50(2): maschinenlesbare Kennzeichnung synthetischer Inhalte.
+ * Der sichtbare Hinweis im Text (KI_EXPORT_HINWEIS) allein genuegt dafuer
+ * nicht — analog zu den PDF-Metadaten in AntragResult.tsx traegt das RTF
+ * (der Default-Download!) die Kennzeichnung zusaetzlich im \info-Block,
+ * wo Word/LibreOffice/Pages sie als Dokumenteigenschaften auslesen und sie
+ * beim Weiterreichen der Datei erhalten bleibt.
+ */
+function rtfInfoBlock(title?: string): string {
+  const parts = [
+    title && title.trim() ? `{\\title ${escapeRtf(title.trim())}}` : "",
+    "{\\subject KI-generierter Antragsentwurf (AI-generated content)}",
+    `{\\author ${escapeRtf("aitema GmbH — EduFunds")}}`,
+    "{\\*\\company aitema GmbH}",
+    "{\\keywords KI-generiert, AI-generated, synthetic-content, Entwurf, EU-AI-Act-Art-50}",
+    `{\\doccomm ${escapeRtf("KI-generiert / AI-generated — EduFunds (aitema GmbH)")}}`,
+  ];
+  return `{\\info${parts.filter(Boolean).join("")}}\n`;
+}
 
 /** Escaped Sonderzeichen und kodiert Nicht-ASCII (Umlaute, ß, €, …) als \uN?. */
 function escapeRtf(s: string): string {
@@ -91,5 +112,5 @@ export function markdownToRtf(markdown: string, title?: string): string {
     }
   }
 
-  return RTF_HEADER + body.join("\n") + "}";
+  return RTF_PROLOG + rtfInfoBlock(title) + RTF_BODY_START + body.join("\n") + "}";
 }
