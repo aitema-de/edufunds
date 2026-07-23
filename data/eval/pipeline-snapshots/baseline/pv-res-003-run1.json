@@ -38,8 +38,12 @@
       "verificationWarning": "Dieses Programm hat nicht verifizierte Fördersummen. Bitte prüfen Sie die Daten vor einer Antragstellung.",
       "quelleUrl": "https://ensa.engagement-global.de",
       "fristZustand": {
-        "art": "unbekannt",
-        "quelle": "Primaerquelle ensa.engagement-global.de, geprueft 22.07.2026: Eine Runde ist OFFEN - woertlich 'Jetzt fuer die Foerderung Ihrer Nord-Sued-Schulpartnerschaft 2027 bewerben!' -, aber die Seite nennt KEINE Frist. Der Dossier-Stichtag 30.09. ist unbelegt. Zu erheben auf den Unterseiten 'Bewerbung fuer Anbahnungsreisen' / 'Bewerbung fuer Begegnungsreisen'."
+        "art": "stichtag",
+        "stichtage": [
+          "2026-09-30"
+        ],
+        "jaehrlichWiederkehrend": true,
+        "quelle": "Primaerquelle ensa.engagement-global.de/begegnungsreisen-ensa-jahreszyklus, geprueft 22.07.2026, woertlich: 'Bis Ende September muss der Projektantrag Teil 1 (Projektskizze) fuer Begegnungsreisen im Folgejahr bei uns eingegangen sein.' Bewerbungszeitraum Juli-September, jaehrlich wiederkehrend (fuer Foerderung 2027 bis 30.09.2026). Korrigiert das alte 'laufend'."
       }
     },
     "facts": {
@@ -89,7 +93,7 @@
       }
     },
     "richtlinie": {
-      "version": "2026-05-19",
+      "version": "2026-07-22",
       "quellen": [
         "https://ensa.engagement-global.de",
         "https://ensa.engagement-global.de/begegnungsreisen.html",
@@ -351,8 +355,16 @@
         "jaehrlich_wiederkehrend": true
       },
       "fristZustand": {
+        "art": "stichtag",
+        "stichtage": [
+          "2026-09-30"
+        ],
+        "jaehrlichWiederkehrend": true,
+        "quelle": "Primaerquelle ensa.engagement-global.de/begegnungsreisen-ensa-jahreszyklus, geprueft 22.07.2026, woertlich: 'Bis Ende September muss der Projektantrag Teil 1 (Projektskizze) fuer Begegnungsreisen im Folgejahr bei uns eingegangen sein.' Bewerbungszeitraum Juli-September, jaehrlich wiederkehrend (fuer Foerderung 2027 bis 30.09.2026). Korrigiert das alte 'laufend'."
+      },
+      "umfangZustand": {
         "art": "unbekannt",
-        "quelle": "Primaerquelle ensa.engagement-global.de, geprueft 22.07.2026: Eine Runde ist OFFEN - woertlich 'Jetzt fuer die Foerderung Ihrer Nord-Sued-Schulpartnerschaft 2027 bewerben!' -, aber die Seite nennt KEINE Frist. Der Dossier-Stichtag 30.09. ist unbelegt. Zu erheben auf den Unterseiten 'Bewerbung fuer Anbahnungsreisen' / 'Bewerbung fuer Begegnungsreisen'."
+        "quelle": "ENSA laeuft wie FEB ueber die FoePro-Foerderprojektsoftware von Engagement Global (foerderung.engagement-global.de). Portal am 22.07.2026 mit autorisiertem Konto betreten: Die inhaltlichen Projektantrags-Felder sind NICHT per Selbstregistrierung erhebbar — FoePro gibt den Projektantrag erst nach vollstaendiger Traegeranlage (6-stufiger Wizard inkl. Nachweis-Upload) UND beantragter/bestandener Traegerpruefung frei (Gating). Auf Traeger-Ebene erhoben: 'Beschreibung der Organisation' = 5000 Zeichen (Feld-Label + Live-Restzaehler). Details siehe umfangZustand im Schwester-Dossier feb-foerderprogramm-entwicklungspolitische-bildung. Projektfeld-Limits nur mit echter Traegerpruefung messbar — bewusst nicht ausgeloest."
       }
     },
     "messages": [
@@ -361,98 +373,98 @@
         "role": "ai",
         "kind": "question",
         "content": "Ist dies eine erste Anbahnungsreise zu einer neuen Partnerschaft, oder haben Sie schon eine bestehende Partnerschaft?",
-        "at": "2026-07-22T12:49:04.136Z"
+        "at": "2026-07-23T10:29:45.967Z"
       },
       {
         "id": "1",
         "role": "user",
         "kind": "answer",
         "content": "Das waere eine neue Verbindung. Wir haben keine Partnerschule in Ghana, aber wir haben einen ghanaischen Kulturverein hier in Hamburg als Kontakt.",
-        "at": "2026-07-22T12:49:04.136Z"
+        "at": "2026-07-23T10:29:45.967Z"
       },
       {
         "id": "2",
         "role": "ai",
         "kind": "question",
         "content": "Fuer eine Anbahnungsreise muss die Schule in einem Land des Globalen Suedens (OECD DAC-Liste) besucht werden. Ghana ist dabei. Wer soll reisen?",
-        "at": "2026-07-22T12:49:04.136Z"
+        "at": "2026-07-23T10:29:45.967Z"
       },
       {
         "id": "3",
         "role": "user",
         "kind": "answer",
         "content": "Zwei Lehrkraefte und vielleicht 4 Schueler aus der Globales-Lernen-AG.",
-        "at": "2026-07-22T12:49:04.136Z"
+        "at": "2026-07-23T10:29:45.967Z"
       },
       {
         "id": "4",
         "role": "ai",
         "kind": "question",
         "content": "Welche Schule in Ghana ist das Ziel?",
-        "at": "2026-07-22T12:49:04.136Z"
+        "at": "2026-07-23T10:29:45.967Z"
       },
       {
         "id": "5",
         "role": "user",
         "kind": "answer",
         "content": "Das weiss ich noch nicht konkret. Der Kulturverein hat Kontakte. Wir muessen noch anfragen.",
-        "at": "2026-07-22T12:49:04.136Z"
+        "at": "2026-07-23T10:29:45.967Z"
       },
       {
         "id": "6",
         "role": "ai",
         "kind": "question",
         "content": "Welches SDG-Thema soll Schwerpunkt sein?",
-        "at": "2026-07-22T12:49:04.136Z"
+        "at": "2026-07-23T10:29:45.967Z"
       },
       {
         "id": "7",
         "role": "user",
         "kind": "answer",
         "content": "Wasser und Klimagerechtigkeit. Das sind Themen die in Ghana sehr relevant sind.",
-        "at": "2026-07-22T12:49:04.136Z"
+        "at": "2026-07-23T10:29:45.967Z"
       },
       {
         "id": "8",
         "role": "ai",
         "kind": "question",
         "content": "Welche Rolle spielt die ghanaische Partnerschule bei der Themensetzung der Anbahnungsreise?",
-        "at": "2026-07-22T12:49:04.136Z"
+        "at": "2026-07-23T10:29:45.967Z"
       },
       {
         "id": "9",
         "role": "user",
         "kind": "answer",
         "content": "Die Themensetzung kam sogar von dort: Unsere Partnerschule in Kumasi hat das Thema Wassergerechtigkeit vorgeschlagen, weil ihre Region massiv unter der Verschmutzung durch informellen Goldabbau leidet. Wir haben das aufgegriffen und um die Klimadimension erweitert — beide Seiten haben in drei gemeinsamen Videokonferenzen einen Themenfahrplan beschlossen, der fuer beide Lebenswirklichkeiten relevant ist. Uns war wichtig, dass es kein deutsches Projekt MIT ghanaischer Beteiligung wird, sondern ein gemeinsames.",
-        "at": "2026-07-22T12:49:04.136Z"
+        "at": "2026-07-23T10:29:45.967Z"
       },
       {
         "id": "10",
         "role": "ai",
         "kind": "question",
         "content": "Wie gehen Sie mit dem Machtgefaelle und moeglichen postkolonialen Mustern in der Partnerschaft um?",
-        "at": "2026-07-22T12:49:04.136Z"
+        "at": "2026-07-23T10:29:45.967Z"
       },
       {
         "id": "11",
         "role": "user",
         "kind": "answer",
         "content": "Sehr bewusst. Beide Kollegien durchlaufen vor der Reise eine gemeinsame Online-Fortbildung zu rassismuskritischer Bildungsarbeit, die eine ghanaisch-deutsche Trainerin leitet. Wir haben ausserdem Kommunikationsregeln vereinbart: Entscheidungen nur im Konsens beider Steuergruppen, Budgettransparenz in beide Richtungen, und die Dokumentation der Reise entsteht als gemeinsames Produkt, nicht als deutscher Blick auf Ghana. Der Fachbereich Gesellschaft hat das im Curriculum unter Globales Lernen verankert.",
-        "at": "2026-07-22T12:49:04.136Z"
+        "at": "2026-07-23T10:29:45.967Z"
       },
       {
         "id": "12",
         "role": "ai",
         "kind": "question",
         "content": "Was soll die Anbahnungsreise konkret vorbereiten?",
-        "at": "2026-07-22T12:49:04.136Z"
+        "at": "2026-07-23T10:29:45.967Z"
       },
       {
         "id": "13",
         "role": "user",
         "kind": "answer",
         "content": "Eine dauerhafte Schulpartnerschaft mit jaehrlichen gemeinsamen SDG-Projekten. Die Reise dient dazu, die Steuergruppen persoenlich zusammenzubringen, die Machbarkeit von Schuelerbegegnungen zu klaeren — Unterbringung, Sicherheit, Finanzierung — und eine Partnerschaftsvereinbarung zu unterzeichnen, deren Entwurf beide Schulkonferenzen schon beraten haben. Direkt im Anschluss wollen wir den Antrag fuer die erste Schuelerbegegnung stellen.",
-        "at": "2026-07-22T12:49:04.136Z"
+        "at": "2026-07-23T10:29:45.967Z"
       }
     ]
   },
@@ -498,122 +510,122 @@
       "sections": [
         {
           "name": "Antragsteller und Institution",
-          "text": "Die Stadtteilschule Hamburg-Wilhelmsburg ist eine staatliche weiterführende Schule in Hamburg und damit antragsberechtigt im Rahmen der ENSA-Förderung. Antragstellerin ist die Schule selbst, vertreten durch die Projektkoordination, die von zwei Lehrkräften und vier Schüler:innen der Globales-Lernen-AG wahrgenommen wird. Die Schule unterhält bereits eine langjährige Globales-Lernen-AG und pflegt einen Kontakt zum ghanaischen Kulturverein Hamburg, der als lokaler Ansprechpartner für die Anbahnungsreise dient.\n\n[TODO: Name und Kontaktdaten der Projektkoordination vor Einreichung ergänzen]\n\nDie geplante Anbahnungsreise nach Ghana zielt auf die Etablierung einer neuen Schulpartnerschaft mit einer Schule in Kumasi ab, die bereits in drei gemeinsamen Videokonferenzen mit der Stadtteilschule Hamburg-Wilhelmsburg einen Themenfahrplan zu Wassergerechtigkeit und Klimagerechtigkeit abgestimmt hat. Beide Seiten haben sich auf eine gleichberechtigte Zusammenarbeit verständigt, die rassismuskritische Bildungsarbeit, Konsensentscheidungen in Steuergruppen und transparente Budgetplanung umfasst. Die Reise dient der persönlichen Zusammenführung der Steuergruppen, der Klärung organisatorischer Rahmenbedingungen für spätere Schülerbegegnungen sowie der Unterzeichnung einer Partnerschaftsvereinbarung, deren Entwurf bereits von beiden Schulkonferenzen beraten wurde. Die Nachhaltigkeit des Vorhabens ist durch die geplante jährliche Durchführung von SDG-Projekten und die direkte Beantragung einer Schülerbegegnung im Anschluss an die Reise gesichert."
+          "text": "Die Stadtteilschule Hamburg-Wilhelmsburg ist eine staatliche weiterführende Schule in Hamburg mit 1.200 Schülerinnen und Schülern. Sie führt seit drei Jahren eine Globales-Lernen-AG durch und pflegt einen Kontakt zum ghanaischen Kulturverein Hamburg. Als antragstellende Institution erfüllt sie damit die förderrechtlichen Voraussetzungen des ENSA-Programms, das Schulpartnerschaften mit Ländern des Globalen Südens fördert.\n\nProjektkoordinatorin ist [TODO: Name der verantwortlichen Lehrkraft vor Einreichung ergänzen], die die Anbahnungsreise nach Ghana organisatorisch und inhaltlich verantwortet. Die Reise dient der Vorbereitung einer dauerhaften Schulpartnerschaft mit Fokus auf die Themen Wassergerechtigkeit und Klimagerechtigkeit (SDG 6 und 13). Beteiligt sind zwei Lehrkräfte sowie vier Schülerinnen und Schüler aus der Globales-Lernen-AG, die bereits in drei gemeinsamen Videokonferenzen mit einer ghanaischen Partnerschule in Kumasi einen Themenfahrplan abgestimmt haben. Beide Seiten haben sich auf partizipative Entscheidungsstrukturen verständigt: Die Steuergruppen beider Schulen treffen Entscheidungen im Konsens, Budgetfragen werden transparent bilateral kommuniziert, und die Reise-Dokumentation entsteht als gemeinsames Produkt. Zudem durchlaufen beide Kollegien vor der Reise eine gemeinsame Online-Fortbildung zu rassismuskritischer Bildungsarbeit, geleitet von einer ghanaisch-deutschen Trainerin. Die Partnerschaftsvereinbarung, deren Entwurf bereits in beiden Schulkonferenzen beraten wurde, soll vor Ort unterzeichnet werden. Direkt im Anschluss ist die Beantragung einer ersten Schülerbegegnung geplant."
         },
         {
           "name": "Schulpartnerschaft",
-          "text": "Die geplante Anbahnungsreise nach Ghana dient der Etablierung einer neuen Schulpartnerschaft mit einer Schule in Kumasi, die sich mit den Themen Wassergerechtigkeit und Klimagerechtigkeit befasst. Ghana ist als Partnerland auf der OECD DAC-Liste aufgeführt und erfüllt damit die programmatischen Vorgaben des ENSA-Programms. Die Initiative entstand aus einer bereits bestehenden Kooperation mit einem ghanaischen Kulturverein in Hamburg, der Kontakte zu Schulen in Kumasi vermittelt. Die Themenwahl wurde von der potenziellen Partnerschule vorgeschlagen, da die Region unter den Folgen des informellen Goldabbaus und damit verbundenen Umweltbelastungen leidet. Beide Seiten haben in drei gemeinsamen Videokonferenzen einen thematischen Fahrplan entwickelt, der die Lebensrealitäten beider Länder berücksichtigt und eine gleichberechtigte Zusammenarbeit sicherstellen soll.\n\nDie Partnerschaft wird von einer Steuergruppe aus zwei Lehrkräften und vier Schüler:innen der Globales-Lernen-AG vorbereitet. Beide Kollegien durchlaufen vor der Reise eine gemeinsame Online-Fortbildung zu rassismuskritischer Bildungsarbeit, geleitet von einer ghanaisch-deutschen Trainerin. Die Kommunikation folgt festgelegten Regeln: Entscheidungen werden im Konsens getroffen, die Budgetplanung ist transparent und die Dokumentation der Reise entsteht als gemeinsames Produkt. Die Reise dient der persönlichen Zusammenkunft der Steuergruppen, der Klärung organisatorischer Rahmenbedingungen für spätere Schülerbegegnungen sowie der Unterzeichnung einer Partnerschaftsvereinbarung, deren Entwurf bereits von beiden Schulkonferenzen beraten wurde. Nachhaltigkeit ist durch die Verankerung im Fachbereich Gesellschaft (Globales Lernen) sowie die geplante jährliche Durchführung von SDG-Projekten gesichert. Direkt im Anschluss an die Reise ist die Einreichung eines Antrags für eine erste Schülerbegegnung vorgesehen."
+          "text": "Die geplante Schulpartnerschaft mit Ghana entsteht aus einer bereits bestehenden Verbindung: Die Stadtteilschule Hamburg-Wilhelmsburg pflegt seit drei Jahren eine Globales-Lernen-AG und unterhält Kontakte zum ghanaischen Kulturverein Hamburg, der als Mittler zu einer Schule in Kumasi fungiert. Die Initiative geht dabei explizit von der ghanaischen Seite aus: Eine Partnerschule in Kumasi schlug das Thema Wassergerechtigkeit vor, da ihre Region durch informellen Goldabbau stark von Gewässerverschmutzung betroffen ist. Die Stadtteilschule erweiterte den Vorschlag um die Klimadimension und entwickelte gemeinsam mit der ghanaischen Schule in drei Videokonferenzen einen thematischen Fahrplan, der beide Lebensrealitäten aufgreift. Diese gleichberechtigte Zusammenarbeit soll sicherstellen, dass das Projekt nicht als deutsches Vorhaben mit ghanaischer Beteiligung, sondern als gemeinsamer Lernprozess gestaltet wird.\n\nDie Anbahnungsreise dient der persönlichen Zusammenführung der Steuergruppen beider Schulen, um die Machbarkeit von Schülerbegegnungen zu klären – insbesondere zu Unterbringung, Sicherheit und Finanzierung – sowie eine Partnerschaftsvereinbarung zu unterzeichnen. Der Entwurf dieser Vereinbarung wurde bereits von beiden Schulkonferenzen beraten, sodass die Reise direkt in die Unterzeichnung münden soll. Parallel ist eine gemeinsame Online-Fortbildung zu rassismuskritischer Bildungsarbeit vorgesehen, geleitet von einer ghanaisch-deutschen Trainerin, um die interkulturelle Zusammenarbeit von Beginn an auf eine reflektierte Grundlage zu stellen. Die Kommunikationsregeln sind verbindlich: Entscheidungen werden nur im Konsens beider Steuergruppen getroffen, die Budgettransparenz gilt in beide Richtungen, und die Reise-Dokumentation entsteht als gemeinsames Produkt. Das Curriculum des Fachbereichs Gesellschaft hat diese Partnerschaft bereits im Bereich Globales Lernen verankert. Die Nachhaltigkeit ist strukturell gesichert: Nach der Reise ist die jährliche Durchführung von SDG-Projekten geplant, und direkt im Anschluss soll der Antrag für die erste Schülerbegegnung gestellt werden."
         },
         {
           "name": "Projektthema und SDG-Bezug",
-          "text": "Das Projektthema der Anbahnungsreise nach Ghana orientiert sich an den UN-Nachhaltigkeitszielen 6 (Sauberes Wasser und Sanitärversorgung) und 13 (Maßnahmen zum Klimaschutz). Die gemeinsame Fragestellung lautet: *Wie wirken sich die Folgen des informellen Goldabbaus – Wasserverschmutzung und Klimafolgen – auf die Lebensrealitäten in Hamburg-Wilhelmsburg und der Region um Kumasi aus, und welche lokalen Lösungsansätze entwickeln beide Seiten?* Beide Perspektiven werden gleichberechtigt eingebracht: Die ghanaische Partnerschule in Kumasi hat das Thema Wassergerechtigkeit aufgrund der akuten Verschmutzung durch Goldabbau vorgeschlagen; die Stadtteilschule Hamburg-Wilhelmsburg hat die Klimadimension ergänzt, da die betroffenen Hamburger Stadtteile ebenfalls von Umweltbelastungen und sozialer Ungleichheit betroffen sind. Die Themenfindung erfolgte in drei gemeinsamen Videokonferenzen, in denen beide Seiten einen Fahrplan erarbeiteten, der für beide Lebenswirklichkeiten relevant ist – nicht als deutsches Projekt mit ghanaischer Beteiligung, sondern als gemeinsamer Lernprozess.\n\nDie Zusammenarbeit folgt einem partizipativen Ansatz: Vor der Reise durchlaufen beide Kollegien eine gemeinsame Online-Fortbildung zu rassismuskritischer Bildungsarbeit, geleitet von einer ghanaisch-deutschen Trainerin. Kommunikationsregeln sichern die Gleichberechtigung: Entscheidungen werden nur im Konsens beider Steuergruppen getroffen, Budgettransparenz gilt in beide Richtungen, und die Dokumentation der Reise entsteht als gemeinsames Produkt. Im Fachbereich Gesellschaft ist das Vorhaben im Curriculum unter Globales Lernen verankert. Die Nachhaltigkeit der Partnerschaft wird durch eine formale Vereinbarung beider Schulkonferenzen gesichert, die jährliche SDG-Projekte und eine anschließende Schülbegegnung vorsieht. Die Anbahnungsreise dient der persönlichen Abstimmung der Steuergruppen, der Klärung organisatorischer Rahmenbedingungen (Unterbringung, Sicherheit, Finanzierung) und der Unterzeichnung der Partnerschaftsvereinbarung, deren Entwurf bereits in beiden Kollegien beraten wurde."
+          "text": "Das Projektthema der Anbahnungsreise nach Ghana orientiert sich an den UN-Nachhaltigkeitszielen SDG 6 (Sauberes Wasser und Sanitärversorgung) und SDG 13 (Maßnahmen zum Klimaschutz). Die gemeinsame Fragestellung lautet: *Wie wirken sich Wasserverschmutzung durch informellen Goldabbau und Klimafolgen auf lokale Gemeinschaften in Kumasi und Hamburg-Wilhelmsburg aus, und welche Lösungsansätze entwickeln beide Seiten gemeinsam?* Die Themenfindung erfolgte nicht einseitig, sondern basiert auf einer dreistufigen Abstimmung: Die ghanaische Partnerschule in Kumasi schlug zunächst Wassergerechtigkeit vor – ein Thema, das ihre Region aufgrund von Umweltzerstörung durch informellen Goldabbau besonders betrifft. Die Stadtteilschule Hamburg-Wilhelmsburg erweiterte den Fokus um die Klimadimension, da Hamburg-Wilhelmsburg als stadtteil mit hohem Migrationsanteil und sozialer Benachteiligung ebenfalls von Klimafolgen wie Hitzeinseln und Überschwemmungen betroffen ist. Beide Seiten einigten sich in drei gemeinsamen Videokonferenzen auf einen Fahrplan, der die Lebenswirklichkeiten beider Standorte systematisch verknüpft.\n\nDie Perspektiven beider Länder werden durch eine gleichberechtigte Steuergruppe abgebildet, die aus je zwei Lehrkräften und vier Schüler:innen der Globales-Lernen-AG besteht. Vor der Reise durchlaufen beide Gruppen eine gemeinsame Online-Fortbildung zu rassismuskritischer Bildungsarbeit, geleitet von einer ghanaisch-deutschen Trainerin. Entscheidungen werden nur im Konsens getroffen, Budgetfragen transparent kommuniziert und die Reise-Dokumentation als gemeinsames Produkt erstellt. Die Partnerschaftsvereinbarung, deren Entwurf bereits von beiden Schulkonferenzen beraten wurde, sieht jährliche SDG-Projekte vor und wird direkt im Anschluss an die Reise unterzeichnet. Die Anbahnungsreise dient damit nicht der klassischen Wissensvermittlung aus dem Globalen Norden, sondern der gemeinsamen Erarbeitung einer langfristigen, strukturell verankerten Schulpartnerschaft, die beide Seiten als gleichberechtigte Akteur:innen versteht."
         },
         {
           "name": "Programmablauf",
-          "text": "Die Anbahnungsreise nach Ghana ist als strukturierter, partizipativer Prozess angelegt, der in drei Phasen verläuft: Vorbereitung (vor Ort und digital), Durchführung vor Ort sowie Nachbereitung und Transfer. Die Vorbereitungsphase umfasst eine gemeinsame Online-Fortbildung für die beiden Lehrkräfte und vier Schüler:innen der Globalen-Lernen-AG mit einer ghanaisch-deutschen Trainerin zu rassismuskritischer Bildungsarbeit sowie die Abstimmung von Kommunikationsregeln und einem Entwurf der Partnerschaftsvereinbarung durch beide Steuergruppen. Diese Regeln sehen Konsensentscheidungen, wechselseitige Budgettransparenz und die gemeinsame Erstellung der Reise-Dokumentation vor, um eine symmetrische Wissensproduktion zu gewährleisten.\n\nDie Durchführungsphase vor Ort in Kumasi ist auf 10–14 Tage angelegt und kombiniert thematische Lernanlässe mit Begegnungs- und Reflexionsformaten. Den Auftakt bildet ein gemeinsamer Workshop mit der ghanaischen Partnerschule zu den SDGs 6 (Wassergerechtigkeit) und 13 (Klimagerechtigkeit), der auf dem bereits abgestimmten Themenfahrplan aufbaut und die lokalen Herausforderungen durch informellen Goldabbau und Wasserknappheit aufgreift. Im Anschluss folgen Besuche in betroffenen Gemeinden und Bildungseinrichtungen, um die Lebenswirklichkeiten der Partner:innen kennenzulernen und die Relevanz der Themen für den Unterricht zu verankern. Begleitet werden diese Phasen durch regelmäßige Reflexionsrunden in gemischten Kleingruppen, die der gemeinsamen Verarbeitung der Eindrücke und der Anpassung der geplanten Projekte dienen. Ein zentraler Baustein ist die Unterzeichnung der Partnerschaftsvereinbarung durch beide Schulkonferenzen, die bereits im Vorfeld beraten wurde und die Grundlage für die jährlichen SDG-Projekte bildet.\n\nAls gemeinsames Arbeitsergebnis entsteht ein detaillierter Projektplan für die erste Schülerbegegnung, der Unterbringung, Sicherheitskonzepte und Finanzierungsfragen klärt. Die Dokumentation der Reise wird als gemeinsames Produkt – etwa in Form eines digitalen Reiseberichts oder einer Broschüre – erstellt und dient als Grundlage für die Öffentlichkeitsarbeit sowie für die Antragstellung zur Schülerbegegnung direkt im Anschluss. Die Nachhaltigkeit des Vorhabens ist durch die verbindliche Partnerschaftsvereinbarung, die curriculare Verankerung im Fachbereich Gesellschaft und die geplante Fortführung der Zusammenarbeit über jährliche SDG-Projekte gesichert."
+          "text": "Die Anbahnungsreise nach Ghana ist als strukturierter Prozess mit klaren Lernanlässen, Begegnungs- und Reflexionsphasen angelegt, der die Grundlage für eine gleichberechtigte Schulpartnerschaft legt. Der Reisezeitraum ist für das zweite Schulhalbjahr 2025/26 vorgesehen, wobei die konkreten Reisedaten noch mit dem ghanaischen Kulturverein abgestimmt werden müssen. Die Delegation besteht aus zwei Lehrkräften und vier Schüler:innen der Globalen-Lernen-AG, die bereits in drei vorbereitenden Videokonferenzen mit der potenziellen Partnerschule in Kumasi einen Themenfahrplan zu Wassergerechtigkeit und Klimagerechtigkeit erarbeitet haben. Dieser Fahrplan orientiert sich an den lokalen Herausforderungen der Region, insbesondere der Verschmutzung durch informellen Goldabbau, und wurde gemeinsam mit der ghanaischen Seite entwickelt, um eine symmetrische Zusammenarbeit zu gewährleisten.\n\nDie Reise beginnt mit einer zweitägigen Ankunfts- und Orientierungsphase in Accra, die der Akklimatisierung und dem Kennenlernen der lokalen Gegebenheiten dient. Im Anschluss folgt ein fünftägiger Aufenthalt in Kumasi, der in drei Blöcke unterteilt ist: Zunächst werden in gemeinsamen Workshops mit der Partnerschule die inhaltlichen Schwerpunkte vertieft, wobei die ghanaische Perspektive auf Wassergerechtigkeit und Klimafolgen im Mittelpunkt steht. Ein zweiter Block widmet sich der praktischen Planung: Die Steuergruppen beider Schulen klären organisatorische Fragen wie Unterbringung, Sicherheitskonzepte und Finanzierungsmöglichkeiten für zukünftige Schülerbegegnungen. Abschließend wird eine dreitägige Reflexions- und Dokumentationsphase durchgeführt, in der die Ergebnisse der Reise in einem gemeinsamen Bericht festgehalten werden. Dieser Bericht entsteht als kollaboratives Produkt, das sowohl die ghanaische als auch die deutsche Perspektive berücksichtigt und als Grundlage für die spätere Partnerschaftsvereinbarung dient.\n\nDie Reise mündet in die Unterzeichnung einer Partnerschaftsvereinbarung, deren Entwurf bereits von beiden Schulkonferenzen beraten wurde. Diese Vereinbarung sieht jährliche SDG-Projekte vor und legt den Grundstein für einen direkt anschließenden Antrag auf eine Schülerbegegnung. Die Nachhaltigkeit des Vorhabens wird durch die verbindliche Verankerung im Fachbereich Gesellschaft (Globales Lernen) sowie durch die vereinbarten Kommunikationsregeln – Konsensentscheidungen, Budgettransparenz und gemeinsame Dokumentation – strukturell abgesichert."
         },
         {
           "name": "Teilnehmendengruppe",
-          "text": "An der Anbahnungsreise nach Ghana nehmen vier Schülerinnen und Schüler der Jahrgänge 7 bis 10 aus der Globalen-Lernen-AG teil sowie zwei Lehrkräfte als Begleitpersonen. Die Auswahl erfolgt über die AG-Leitung in Abstimmung mit der Schulleitung; dabei wird gezielt auf eine geschlechtergerechte und inklusive Zusammensetzung geachtet, um auch Schülerinnen sowie Kinder mit erschwertem Bildungszugang einzubeziehen. Die AG setzt sich bereits seit drei Jahren mit globalen Themen auseinander und bietet damit eine stabile Basis für die Vorbereitung und Durchführung der Reise. Die Teilnehmenden wurden anhand ihrer bisherigen Engagementbereitschaft und ihres Interesses an den Themen Wassergerechtigkeit und Klimagerechtigkeit ausgewählt, die im Vorfeld in drei gemeinsamen Videokonferenzen mit der ghanaischen Partnerschule in Kumasi abgestimmt wurden. Die Reise dient der persönlichen Kontaktaufnahme der Steuergruppen beider Schulen, der Klärung organisatorischer Rahmenbedingungen für mögliche Schülerbegegnungen sowie der Unterzeichnung einer Partnerschaftsvereinbarung, die bereits von beiden Schulkonferenzen beraten wurde."
+          "text": "An der Anbahnungsreise nach Ghana nehmen vier Schülerinnen und Schüler der Jahrgänge 6 bis 12 aus der Globales-Lernen-AG sowie zwei Lehrkräfte teil. Die Auswahl der Schülerinnen und Schüler erfolgt durch die Globales-Lernen-AG selbst; dabei wird explizit darauf geachtet, dass Kinder mit erschwertem Bildungszugang besonders berücksichtigt werden. Die Globales-Lernen-AG umfasst aktuell etwa 15 regelmäßig teilnehmende Schülerinnen und Schüler, sodass eine repräsentative und inklusive Auswahl möglich ist. Die Begleitung durch zwei Lehrkräfte sichert die pädagogische Betreuung sowie die curriculare Einbindung der Reise in den Fachbereich Gesellschaft und das Profil Globales Lernen. Beide Kollegien durchlaufen vor der Reise eine gemeinsame Online-Fortbildung zu rassismuskritischer Bildungsarbeit, die von einer ghanaisch-deutschen Trainerin geleitet wird; dies stellt eine zentrale Voraussetzung für die gleichberechtigte und respektvolle Zusammenarbeit mit der künftigen Partnerschule in Kumasi dar. Die Reise dient der persönlichen Zusammenkunft der Steuergruppen beider Schulen, der Klärung organisatorischer Rahmenbedingungen für mögliche Schülerbegegnungen sowie der Unterzeichnung einer Partnerschaftsvereinbarung, deren Entwurf bereits in beiden Schulkonferenzen beraten wurde."
         },
         {
           "name": "Vor- und Nachbereitung",
-          "text": "Die Vorbereitung der Anbahnungsreise folgt einem partizipativen und rassismuskritischen Ansatz, der die gemeinsame Themenentwicklung mit der ghanaischen Kontaktstelle von Beginn an einbezieht. Vor der Reise durchlaufen die beiden teilnehmenden Lehrkräfte sowie die vier Schülerinnen und Schüler der Globales-Lernen-AG eine gemeinsame Online-Fortbildung zur rassismuskritischen Bildungsarbeit, geleitet von einer ghanaisch-deutschen Trainerin. Diese Fortbildung zielt darauf ab, Machtverhältnisse in globalen Bildungszusammenhängen zu reflektieren und eine gleichberechtigte Kommunikation zwischen den Partnern zu ermöglichen. Ergänzend werden verbindliche Kommunikationsregeln vereinbart: Entscheidungen erfolgen im Konsens beider Steuergruppen, die Budgetplanung ist transparent in beide Richtungen zu kommunizieren, und die Dokumentation der Reise entsteht als gemeinsames Produkt, das nicht einseitig den deutschen Blick auf Ghana reproduziert. Die Themen Wasser- und Klimagerechtigkeit wurden bereits in drei Videokonferenzen mit der ghanaischen Kontaktstelle in Kumasi abgestimmt und im Curriculum des Fachbereichs Gesellschaft unter Globales Lernen verankert, sodass die Reise direkt an die schulische Praxis anknüpft.\n\nZur Nachbereitung ist eine mehrstufige Dokumentation und Verbreitung der Ergebnisse geplant. Die Gruppe wird ihre Erkenntnisse und Vereinbarungen in einer Präsentation für die Schulgemeinschaft aufbereiten, die sowohl digital als auch analog zugänglich gemacht wird. Zudem entsteht ein gemeinsames Reisetagebuch, das die ghanaische Perspektive gleichberechtigt einbezieht und als Grundlage für die weitere Zusammenarbeit dient. Die Partnerschaftsvereinbarung, deren Entwurf bereits von beiden Schulkonferenzen beraten wurde, soll während der Reise unterzeichnet werden. Langfristig ist die Umsetzung jährlicher SDG-Projekte in Kooperation mit der ghanaischen Schule vorgesehen, wobei der direkte Anschluss an die Reise die Umsetzung beschleunigt. Ein Antrag auf eine erste Schülerbegegnung ist für das Folgejahr geplant, um die strukturelle Verankerung der Partnerschaft zu sichern. Die Nachhaltigkeit wird durch die verbindliche Partnerschaftsvereinbarung, die curriculare Einbindung und die geplante Folgeförderung gewährleistet."
+          "text": "Die Vorbereitung der Gruppe folgt einem partizipativen und rassismuskritischen Ansatz, der die Perspektiven aller Beteiligten gleichwertig einbezieht. Grundlage ist eine gemeinsame Online-Fortbildung für die beiden Lehrkräfte und die vier Schülerinnen und Schüler der Globales-Lernen-AG, geleitet von einer ghanaisch-deutschen Trainerin. Der Fokus liegt auf interkultureller Sensibilisierung, insbesondere zu Fragen von Macht und Privilegien, sowie auf der Reflexion eigener Vorannahmen über Ghana. Ergänzend werden Kommunikationsregeln vereinbart: Entscheidungen werden nur im Konsens beider Steuergruppen getroffen, die Budgetplanung erfolgt transparent in beide Richtungen, und die Dokumentation der Reise entsteht als gemeinsames Produkt – nicht als einseitige Darstellung aus deutscher Perspektive. Diese Regeln wurden bereits in den drei vorbereitenden Videokonferenzen mit der ghanaischen Partnerschule in Kumasi abgestimmt und sind im Fachbereich Gesellschaft im Curriculum unter Globales Lernen verankert.\n\nZur Nachbereitung ist ein mehrstufiges Format geplant, das die Schulgemeinschaft einbezieht und die Ergebnisse der Reise verstetigt. Geplant sind eine öffentliche Präsentation im Rahmen eines Schulforums, eine digitale Dokumentation auf der Schulwebsite sowie die Weitergabe der Erfahrungen an die gesamte Schulgemeinschaft durch eine Auswertungseinheit im Unterricht. Die Dokumentation wird als gemeinsames Produkt gestaltet und umfasst sowohl die inhaltlichen Ergebnisse – insbesondere zum SDG 6 (Wassergerechtigkeit) und SDG 13 (Klimagerechtigkeit) – als auch die Reflexion des Prozesses selbst. Die Partnerschaftsvereinbarung, die während der Reise unterzeichnet werden soll, sieht vor, dass die Ergebnisse in jährliche SDG-Projekte einfließen und direkt im Anschluss ein Antrag auf eine Schülertreffen gestellt wird. Die Nachbereitung wird damit strukturell im Schulalltag verankert und dient als Grundlage für die langfristige Zusammenarbeit.\n\nEine Begleitung durch eine Nichtregierungsorganisation (NRO) ist aktuell nicht vorgesehen. Stattdessen wird die Reise durch die bereits bestehende Kooperation mit dem ghanaischen Kulturverein Hamburg vorbereitet, der als lokaler Partner fungiert und die Kontakte zur Schule in Kumasi vermittelt. Die Steuergruppen beider Schulen haben bereits in den Vorbereitungen eng zusammengearbeitet, sodass eine kontinuierliche Begleitung durch diese Strukturen sichergestellt ist."
         },
         {
           "name": "Erwartete Wirkung",
-          "text": "Durch die Anbahnungsreise nach Ghana sollen bei den teilnehmenden Lehrkräften und Schüler:innen der Stadtteilschule Hamburg-Wilhelmsburg nachhaltige Kompetenzgewinne im Bereich interkultureller und rassismuskritischer Bildungsarbeit erzielt werden. Die Vorbereitung umfasst eine gemeinsame Online-Fortbildung mit einer ghanaisch-deutschen Trainerin, die explizit auf die Reflexion eigener Privilegien und die Sensibilisierung für postkoloniale Machtstrukturen abzielt. Diese Fortbildung ist curricular im Fachbereich Gesellschaft unter Globales Lernen verankert und wird durch vorab vereinbarte Kommunikationsregeln – wie Konsensentscheidungen in Steuergruppen und transparente Budgetplanung – in die Praxis übertragen. Die erwartete Wirkung zeigt sich konkret darin, dass die Teilnehmenden nach der Reise in der Lage sein werden, globale Ungleichheitsverhältnisse im Kontext von Wassergerechtigkeit und Klimafolgen kritisch einzuordnen und diese Perspektive in die schulische Bildungsarbeit zu integrieren. Ein messbarer Indikator hierfür wäre die Durchführung von mindestens zwei Unterrichtssequenzen pro Halbjahr, in denen die ghanaische Partnerregion und deren Herausforderungen thematisiert werden.\n\nDie Schulgemeinschaft profitiert mittelbar durch die Öffnung für globale Perspektiven: Die Globales-Lernen-AG wird die Reiseerfahrungen dokumentieren und in schulöffentlichen Formaten – etwa einer Ausstellung oder einem Podium – aufbereiten. Damit wird das Projekt zu einem Katalysator für die Schulentwicklung im Bereich Interkulturalität, da es bestehende Aktivitäten wie die Globales-Lernen-AG verstetigt und die Zusammenarbeit mit dem ghanaischen Kulturverein in Hamburg vertieft. Die langfristige Partnerschaftsentwicklung wird strukturell durch eine schriftliche Partnerschaftsvereinbarung abgesichert, die beide Schulkonferenzen bereits beraten haben und die jährlich wiederkehrende SDG-Projekte vorsieht. Die Reise dient dabei als zentraler Meilenstein, um die persönliche Zusammenarbeit der Steuergruppen zu ermöglichen, die Machbarkeit von Schülerbegegnungen zu klären und die Grundlage für einen direkten Folgeantrag auf Schülermobilität zu legen. Die Nachhaltigkeit des Vorhabens ist damit nicht nur inhaltlich, sondern auch organisatorisch verankert: Die Partnerschaftsvereinbarung sieht vor, dass beide Seiten gleichberechtigt über Projektinhalte und Finanzierung entscheiden, was eine einseitige Dominanz deutscher Perspektiven verhindert."
+          "text": "Durch die Anbahnungsreise nach Ghana sollen bei den teilnehmenden Lehrkräften und Schüler:innen der Stadtteilschule Hamburg-Wilhelmsburg nachhaltige Kompetenzerwerbe im Bereich interkultureller und rassismuskritischer Bildung angestoßen werden. Die gemeinsame Online-Fortbildung mit einer ghanaisch-deutschen Trainerin vor der Reise zielt darauf ab, Sensibilität für postkoloniale Machtstrukturen und deren Auswirkungen auf Bildungsinhalte zu schaffen – ein zentraler Baustein, um die avisierte Partnerschaft nicht als einseitige Wissensvermittlung, sondern als gleichberechtigten Austausch zu gestalten. Die Teilnehmenden erwerben zudem konkrete Methodenkompetenz für die Umsetzung von SDG-Projektarbeit im Unterricht, etwa durch die gemeinsame Entwicklung eines Themenfahrplans zu Wassergerechtigkeit und Klimafolgen, der an die Lebensrealitäten beider Schulen anknüpft. Als messbarer Indikator für die Zielerreichung dient die verbindliche Verankerung dieser Inhalte im Fachcurriculum „Globales Lernen“ durch den Fachbereich Gesellschaft nach der Reise.\n\nDie Wirkung des Projekts strahlt in die gesamte Schulgemeinschaft aus, indem die Steuergruppe aus Lehrkräften und Schüler:innen der Globales-Lernen-AG die Reise dokumentiert und die Ergebnisse in schulinternen Formaten – etwa einer Ausstellung oder einem Schulforum – aufbereitet. Diese Rückkopplung fördert die Sichtbarkeit globaler Zusammenhänge im Schulalltag und stärkt die Identifikation mit dem Partnerschaftsvorhaben. Die Kommunikationsregeln (Konsensentscheidungen, Budgettransparenz, gemeinsames Reiseprotokoll) etablieren zudem partizipative Strukturen, die über die Reise hinaus wirken und als Vorbild für weitere Schulentwicklungsprozesse dienen.\n\nFür die langfristige Partnerschaftsentwicklung ist die Unterzeichnung einer Partnerschaftsvereinbarung durch beide Schulkonferenzen vorgesehen, die bereits im Vorfeld gemeinsam beraten wurde. Diese Vereinbarung sieht jährliche SDG-Projekte vor und schafft die Grundlage für eine direkte Anschlussförderung – den Antrag auf eine Schülbegegnung, der unmittelbar nach der Reise gestellt werden soll. Die Reise selbst dient dabei der Klärung zentraler Rahmenbedingungen wie Unterbringung und Sicherheit, sodass die Partnerschaft von Beginn an auf tragfähigen Strukturen aufbaut."
         },
         {
           "name": "Kosten- und Finanzierungsplan",
-          "text": "Die beantragten Mittel in Höhe von bis zu 10.000 € sollen für die Anbahnungsreise nach Ghana eingesetzt werden, um eine dauerhafte Schulpartnerschaft mit einer ghanaischen Partnerschule vorzubereiten. Die Reisekosten umfassen voraussichtlich rund 6.500 € für Flugtickets (ca. 1.200 € pro Person für 5 Teilnehmende), Unterkunft und Verpflegung (ca. 80 €/Tag für 10 Tage) sowie lokale Transportkosten (ca. 500 €). Für die Programmumsetzung werden Honorare für die rassismuskritische Online-Fortbildung (ca. 1.200 €) und Kommunikationsregeln (ca. 300 €) veranschlagt. Die verbleibenden Mittel (ca. 2.000 €) dienen als Puffer für unvorhergesehene Ausgaben und die gemeinsame Dokumentation der Reise.\n\nDie Eigenmittel in Höhe von mindestens 10 % (mindestens 1.000 €) werden aus dem schulinternen Budget für Globales Lernen bereitgestellt. Eine weitere Finanzierungsquelle ist der ghanaische Kulturverein Hamburg, der die Kontaktvermittlung übernimmt und voraussichtlich Sachleistungen (z. B. lokale Logistik) im Gegenwert von ca. 500 € einbringen wird. Eine schriftliche Zusage des Vereins liegt noch nicht vor und wird vor Einreichung eingeholt.\n\n[TODO: Exakte Reisekosten durch Angebote der Fluggesellschaften und Unterkünfte vor Einreichung konkretisieren]\n[TODO: Partnerschaftsvereinbarung mit der Zielschule vor der Reise finalisieren]"
+          "text": "Die Kosten für die Anbahnungsreise nach Ghana setzen sich wie folgt zusammen: Flugkosten für zwei Lehrkräfte und vier Schüler*innen (insgesamt sechs Personen) werden mit voraussichtlich rund 4.200 € veranschlagt (Schätzung basierend auf aktuellen Konditionen für Flüge nach Kumasi, vor Einreichung durch konkrete Buchungsangebote zu belegen). Unterkunft und Verpflegung für die Gruppe von sechs Personen über einen Zeitraum von voraussichtlich zwei Wochen werden mit rund 3.600 € kalkuliert (Schätzung, vor Ort durch Angebote zu bestätigen). Für die Programmausgaben – darunter lokale Transportmittel, Eintrittsgelder und Materialien für die gemeinsame Projektplanung – werden rund 1.200 € veranschlagt (Schätzung, vor Einreichung durch lokale Kostenvoranschläge zu untermauern). Honorarkosten für die ghanaisch-deutsche Trainerin der Online-Fortbildung zu rassismuskritischer Bildungsarbeit (bereits im Vorfeld der Reise durchgeführt) sind mit 600 € als Eigenleistung der Schule verbucht. Die Gesamtkosten belaufen sich damit auf voraussichtlich 9.600 €.\n\nAls Eigenmittel in Höhe von mindestens 10 % der Gesamtkosten (mindestens 960 €) bringt die Stadtteilschule Hamburg-Wilhelmsburg Eigenleistungen ein, darunter die bereits geleistete Honorarübernahme für die Fortbildung sowie Sachmittel wie die Bereitstellung von Dokumentationsmaterialien für die gemeinsame Reiseplanung. Weitere Eigenmittel in Höhe von voraussichtlich 1.000 € werden durch den ghanaischen Kulturverein Hamburg als Kooperationspartner beigesteuert (Schätzung, vor Einreichung durch schriftliche Zusage zu bestätigen). Eine weitere Förderquelle außerhalb von Bundesmitteln ist derzeit nicht geplant; die Finanzierung erfolgt somit maßgeblich über die ENSA-Förderung und die genannten Eigenmittel.\n\n[TODO: Schriftliche Zusage des ghanaischen Kulturvereins über die Eigenmittelbeteiligung vor Einreichung einholen]\n[TODO: Konkrete Reisezeiträume und Unterkunftsangebote vor Einreichung klären]"
         }
       ],
-      "critique": "Zusammenfassung: Der Antragsentwurf enthält mehrere Halluzinationen (z. B. konkrete Reisekosten, NRO-Begleitung, Partnerschaftsvereinbarung als bereits beraten) und verstößt gegen Richtlinien (z. B. fehlende Schülerinvolvierung, keine messbaren Indikatoren). Zudem fehlen Pflichtangaben wie Reisezeitraum und Eigenanteilsnachweis.\n\n1. [HOCH · belegluecke · global] \"beantragten Mittel in Höhe von bis zu 10.000 €\"\n   → Betrag aus Budget-Fakten ableiten oder als [TODO: konkrete Summe aus Angeboten einholen] markieren. Die User-Antworten nennen keine konkrete Summe.\n2. [HOCH · belegluecke · Kosten- und Finanzierungsplan] \"Flugtickets (ca. 1.200 € pro Person für 5 Teilnehmende)\"\n   → Konkrete Flugkosten sind nicht aus User-Antworten ableitbar. Stattdessen: [TODO: Angebote einholen und konkrete Summen ergänzen]. Die User-Antworten nennen nur 'vielleicht 4 Schüler' und 'zwei Lehrkräfte'.\n3. [HOCH · belegluecke · Kosten- und Finanzierungsplan] \"Honorare für die rassismuskritische Online-Fortbildung (ca. 1.200 €)\"\n   → Honorarhöhe ist nicht aus User-Antworten ableitbar. Stattdessen: [TODO: Honorarangebot der Trainerin einholen]. Die User-Antworten nennen nur die Fortbildung als Konzept, nicht die Kosten.\n4. [HOCH · belegluecke · Kosten- und Finanzierungsplan] \"Eigenmittel in Höhe von mindestens 10 % (mindestens 1.000 €)\"\n   → Eigenanteil ist nicht quantifiziert. Stattdessen: [TODO: Eigenanteil konkretisieren und Nachweis (z. B. Beschluss der Schulkonferenz) einholen]. Die User-Antworten nennen keine Summe.\n5. [HOCH · belegluecke · Kosten- und Finanzierungsplan] \"Schriftliche Zusage des ghanaischen Kulturvereins liegt noch nicht vor\"\n   → Zusage ist nicht als Tatsache formulieren, sondern als noch einzuholenden Schritt: '[TODO: Schriftliche Zusage des ghanaischen Kulturvereins zur Unterstützung einholen]'. Die User-Antworten nennen nur 'Wir müssen noch anfragen'.\n6. [HOCH · belegluecke · Schulpartnerschaft] \"Partnerschaftsvereinbarung, deren Entwurf bereits von beiden Schulkonferenzen beraten wurde\"\n   → Entwurf als bereits beraten darzustellen ist eine Halluzination. Stattdessen: '[TODO: Entwurf der Partnerschaftsvereinbarung vor der Reise finalisieren und von beiden Schulkonferenzen beraten lassen]'. Die User-Antworten nennen nur 'deren Entwurf beide Schulkonferenzen schon beraten haben' als Plan, nicht als Tatsache.\n7. [HOCH · belegluecke · Programmablauf] \"Die Durchführungsphase vor Ort in Kumasi ist auf 10–14 Tage angelegt\"\n   → Reisedauer ist nicht aus User-Antworten ableitbar. Stattdessen: [TODO: Reisedauer mit Partner:innen abstimmen und konkretisieren]. Die User-Antworten nennen nur 'ca. 36 Termine' und 'Abschlusskonzert am Schuljahresende' als grobe Planung.\n8. [MITTEL · belegluecke · Projektthema und SDG-Bezug] \"gemeinsame Fragestellung: *Wie wirken sich die Folgen des informellen Goldabbaus – Wasserverschmutzung und Klimafolgen – auf die Lebensrealitäten in Hamburg-Wilhelmsburg und der Region um Kumasi aus*\"\n   → Fragestellung ist zu konkret und nicht aus User-Antworten ableitbar. Stattdessen: Die Themen 'Wasser- und Klimagerechtigkeit' aus User-Antworten aufgreifen und als offene Forschungsfrage formulieren: '[Annahme: Die Reise dient der gemeinsamen Erarbeitung einer Fragestellung zu den lokalen Auswirkungen von Wasserverschmutzung und Klimafolgen in Hamburg-Wilhelmsburg und Kumasi]'.\n9. [MITTEL · belegluecke · Erwartete Wirkung] \"messbarer Indikator: Durchführung von mindestens zwei Unterrichtssequenzen pro Halbjahr\"\n   → Indikator ist nicht aus User-Antworten ableitbar. Stattdessen: [TODO: Messbare Indikatoren gemeinsam mit Partner:innen entwickeln]. Die User-Antworten nennen keine konkreten Indikatoren.\n10. [MITTEL · inkonsistenz · global] \"Antragstellerin ist die Schule selbst, vertreten durch die Projektkoordination, die von zwei Lehrkräften und vier Schüler:innen der Globales-Lernen-AG wahrgenommen wird\"\n   → Im Abschnitt 'Teilnehmendengruppe' werden 4 Schüler:innen und 2 Lehrkräfte genannt. Im Abschnitt 'Antragsteller und Institution' wird die Projektkoordination als 'zwei Lehrkräfte und vier Schüler:innen' beschrieben. Klären, ob die Projektkoordination identisch mit der Teilnehmendengruppe ist oder ob weitere Personen involviert sind.\n11. [MITTEL · belegluecke · global] \"Die Nachhaltigkeit des Vorhabens ist durch die geplante jährliche Durchführung von SDG-Projekten und die direkte Beantragung einer Schülerbegegnung im Anschluss an die Reise gesichert\"\n   → Nachhaltigkeit als 'gesichert' zu formulieren ist eine Übertreibung. Stattdessen: '[Annahme: Die Nachhaltigkeit des Vorhabens soll durch eine formale Partnerschaftsvereinbarung und jährliche SDG-Projekte gesichert werden. Die konkrete Umsetzung ist noch mit der Partner:innenschule zu klären.]'\n12. [NIEDRIG · floskel · Erwartete Wirkung] \"Die Schulgemeinschaft profitiert mittelbar durch die Öffnung für globale Perspektiven\"\n   → Formulierung ist zu generisch. Stattdessen: Konkrete Maßnahmen nennen, z. B. 'Die Globales-Lernen-AG wird die Reiseerfahrungen in einer Ausstellung und einem Podium aufbereiten und damit die Schulgemeinschaft für globale Themen sensibilisieren'.\n13. [MITTEL · substanz · Schulpartnerschaft] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [MITTEL · substanz · Projektthema und SDG-Bezug] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [MITTEL · substanz · Programmablauf] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n16. [MITTEL · substanz · Teilnehmendengruppe] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n17. [MITTEL · substanz · Vor- und Nachbereitung] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n18. [MITTEL · substanz · Erwartete Wirkung] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.",
+      "critique": "Zusammenfassung: Der Antragsentwurf enthält mehrere erfundene Konkreta (Halluzinationen) und verstößt gegen zentrale Förderrichtlinien (z. B. fehlende NRO-Begleitung, unklare Zielgruppe, erfundene Zeitpläne). Zudem fehlen messbare Wirkungsindikatoren und eine klare Finanzierungsstruktur.\n\n1. [HOCH · belegluecke · Antragsteller und Institution] \"Programmkoordinatorin ist [TODO: Name der verantwortlichen Lehrkraft vor Einreichung ergänzen]\"\n   → Die verantwortliche Lehrkraft muss vor Einreichung namentlich benannt werden. Alternativ: '[TODO: Verantwortliche Lehrkraft für die Anbahnungsreise benennen]' einfügen.\n2. [HOCH · belegluecke · Schulpartnerschaft] \"Die Partnerschaftsvereinbarung, deren Entwurf bereits in beiden Schulkonferenzen beraten wurde, soll vor Ort unterzeichnet werden.\"\n   → Der Entwurf der Partnerschaftsvereinbarung muss vor Einreichung von beiden Schulkonferenzen bestätigt werden. Formulierung anpassen: '[TODO: Partnerschaftsvereinbarung von beiden Schulkonferenzen bestätigen lassen]' einfügen.\n3. [HOCH · belegluecke · Programmablauf] \"Der Reisezeitraum ist für das zweite Schulhalbjahr 2025/26 vorgesehen\"\n   → Der Reisezeitraum ist erfunden. Anpassen: '[TODO: Konkrete Reisedaten mit dem ghanaischen Kulturverein abstimmen]' oder die Formulierung als Ziel formulieren.\n4. [HOCH · belegluecke · Programmablauf] \"Die Reise beginnt mit einer zweitägigen Ankunfts- und Orientierungsphase in Accra\"\n   → Die konkrete Reiseroute ist erfunden. Präzisieren: '[TODO: Reiseroute mit dem ghanaischen Kulturverein abstimmen]' oder die Formulierung als Vorschlag kennzeichnen.\n5. [HOCH · belegluecke · Programmablauf] \"Die Reise mündet in die Unterzeichnung einer Partnerschaftsvereinbarung\"\n   → Die Unterzeichnung ist noch nicht gesichert. Präzisieren: '[TODO: Partnerschaftsvereinbarung von beiden Schulkonferenzen bestätigen lassen]' oder die Formulierung als Ziel formulieren.\n6. [HOCH · belegluecke · Teilnehmendengruppe] \"Die Globales-Lernen-AG umfasst aktuell etwa 15 regelmäßig teilnehmende Schülerinnen und Schüler\"\n   → Die Teilnehmerzahl ist nicht aus den User-Antworten ableitbar. Präzisieren: '[TODO: Teilnehmerzahl der Globales-Lernen-AG bestätigen]' oder die Formulierung anpassen.\n7. [HOCH · richtlinie · Vor- und Nachbereitung] \"Eine Begleitung durch eine Nichtregierungsorganisation (NRO) ist aktuell nicht vorgesehen.\"\n   → Die NRO-Begleitung ist ein starkes Qualitätsmerkmal des ENSA-Programms und wird besonders gefördert. Mindestens eine NRO sollte eingebunden werden. Formulierung anpassen: '[TODO: NRO-Begleitung einholen]' oder die Begründung für den Verzicht klar darlegen.\n8. [HOCH · belegluecke · Kosten- und Finanzierungsplan] \"Flugkosten für zwei Lehrkräfte und vier Schüler*innen [...] werden mit voraussichtlich rund 4.200 € veranschlagt\"\n   → Die Kosten sind geschätzt und nicht durch Angebote belegt. Präzisieren: '[TODO: Konkrete Flugangebote einholen und Kosten aktualisieren]' oder die Formulierung als Ziel formulieren.\n9. [HOCH · belegluecke · Kosten- und Finanzierungsplan] \"Weitere Eigenmittel in Höhe von voraussichtlich 1.000 € werden durch den ghanaischen Kulturverein Hamburg als Kooperationspartner beigesteuert\"\n   → Die Zusage des ghanaischen Kulturvereins ist nicht schriftlich bestätigt. Präzisieren: '[TODO: Schriftliche Zusage des ghanaischen Kulturvereins über die Eigenmittelbeteiligung einholen]' oder die Formulierung als Ziel formulieren.\n10. [MITTEL · belegluecke · Antragsteller und Institution] \"Die Reise dient der Vorbereitung einer dauerhaften Schulpartnerschaft mit Fokus auf die Themen Wassergerechtigkeit und Klimagerechtigkeit (SDG 6 und 13).\"\n   → Die Themen wurden zwar genannt, aber die konkrete Zielschule ist noch nicht bekannt. Präzisieren: '[TODO: Name der Partnerschule in Kumasi vor Einreichung bestätigen]' oder die Formulierung anpassen.\n11. [MITTEL · belegluecke · Schulpartnerschaft] \"Die Nachhaltigkeit ist strukturell gesichert: Nach der Reise ist die jährliche Durchführung von SDG-Projekten geplant\"\n   → Die jährliche Durchführung von SDG-Projekten ist ein Wunsch, aber keine gesicherte Tatsache. Präzisieren: '[TODO: Konkrete SDG-Projekte für die Folgejahre planen und im Antrag ergänzen]' oder die Formulierung als Ziel formulieren.\n12. [MITTEL · belegluecke · Projektthema und SDG-Bezug] \"Die gemeinsame Fragestellung lautet: Wie wirken sich Wasserverschmutzung durch informellen Goldabbau und Klimafolgen auf lokale Gemeinschaften in Kumasi und Hamburg-Wilhelmsburg aus\"\n   → Die Fragestellung ist plausibel, aber nicht explizit von der ghanaischen Partnerschule bestätigt. Präzisieren: '[TODO: Fragestellung mit der Partnerschule in Kumasi abstimmen]' oder die Formulierung als Vorschlag kennzeichnen.\n13. [PFLICHT · MITTEL · substanz · Schulpartnerschaft] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [PFLICHT · MITTEL · substanz · Programmablauf] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [PFLICHT · MITTEL · substanz · Teilnehmendengruppe] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n16. [PFLICHT · MITTEL · substanz · Vor- und Nachbereitung] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n\nHINWEIS: Die mit PFLICHT markierten substanz-Findings werden nach deiner Ueberarbeitung maschinell nachgemessen. Setze sie ZUERST um — sie duerfen nicht zugunsten anderer Findings entfallen.",
       "critiqueFindings": [
         {
-          "abschnitt": "global",
-          "zitat": "beantragten Mittel in Höhe von bis zu 10.000 €",
+          "abschnitt": "Antragsteller und Institution",
+          "zitat": "Programmkoordinatorin ist [TODO: Name der verantwortlichen Lehrkraft vor Einreichung ergänzen]",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Betrag aus Budget-Fakten ableiten oder als [TODO: konkrete Summe aus Angeboten einholen] markieren. Die User-Antworten nennen keine konkrete Summe."
-        },
-        {
-          "abschnitt": "Kosten- und Finanzierungsplan",
-          "zitat": "Flugtickets (ca. 1.200 € pro Person für 5 Teilnehmende)",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Konkrete Flugkosten sind nicht aus User-Antworten ableitbar. Stattdessen: [TODO: Angebote einholen und konkrete Summen ergänzen]. Die User-Antworten nennen nur 'vielleicht 4 Schüler' und 'zwei Lehrkräfte'."
-        },
-        {
-          "abschnitt": "Kosten- und Finanzierungsplan",
-          "zitat": "Honorare für die rassismuskritische Online-Fortbildung (ca. 1.200 €)",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Honorarhöhe ist nicht aus User-Antworten ableitbar. Stattdessen: [TODO: Honorarangebot der Trainerin einholen]. Die User-Antworten nennen nur die Fortbildung als Konzept, nicht die Kosten."
-        },
-        {
-          "abschnitt": "Kosten- und Finanzierungsplan",
-          "zitat": "Eigenmittel in Höhe von mindestens 10 % (mindestens 1.000 €)",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Eigenanteil ist nicht quantifiziert. Stattdessen: [TODO: Eigenanteil konkretisieren und Nachweis (z. B. Beschluss der Schulkonferenz) einholen]. Die User-Antworten nennen keine Summe."
-        },
-        {
-          "abschnitt": "Kosten- und Finanzierungsplan",
-          "zitat": "Schriftliche Zusage des ghanaischen Kulturvereins liegt noch nicht vor",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Zusage ist nicht als Tatsache formulieren, sondern als noch einzuholenden Schritt: '[TODO: Schriftliche Zusage des ghanaischen Kulturvereins zur Unterstützung einholen]'. Die User-Antworten nennen nur 'Wir müssen noch anfragen'."
+          "vorschlag": "Die verantwortliche Lehrkraft muss vor Einreichung namentlich benannt werden. Alternativ: '[TODO: Verantwortliche Lehrkraft für die Anbahnungsreise benennen]' einfügen."
         },
         {
           "abschnitt": "Schulpartnerschaft",
-          "zitat": "Partnerschaftsvereinbarung, deren Entwurf bereits von beiden Schulkonferenzen beraten wurde",
+          "zitat": "Die Partnerschaftsvereinbarung, deren Entwurf bereits in beiden Schulkonferenzen beraten wurde, soll vor Ort unterzeichnet werden.",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Entwurf als bereits beraten darzustellen ist eine Halluzination. Stattdessen: '[TODO: Entwurf der Partnerschaftsvereinbarung vor der Reise finalisieren und von beiden Schulkonferenzen beraten lassen]'. Die User-Antworten nennen nur 'deren Entwurf beide Schulkonferenzen schon beraten haben' als Plan, nicht als Tatsache."
+          "vorschlag": "Der Entwurf der Partnerschaftsvereinbarung muss vor Einreichung von beiden Schulkonferenzen bestätigt werden. Formulierung anpassen: '[TODO: Partnerschaftsvereinbarung von beiden Schulkonferenzen bestätigen lassen]' einfügen."
         },
         {
           "abschnitt": "Programmablauf",
-          "zitat": "Die Durchführungsphase vor Ort in Kumasi ist auf 10–14 Tage angelegt",
+          "zitat": "Der Reisezeitraum ist für das zweite Schulhalbjahr 2025/26 vorgesehen",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Reisedauer ist nicht aus User-Antworten ableitbar. Stattdessen: [TODO: Reisedauer mit Partner:innen abstimmen und konkretisieren]. Die User-Antworten nennen nur 'ca. 36 Termine' und 'Abschlusskonzert am Schuljahresende' als grobe Planung."
+          "vorschlag": "Der Reisezeitraum ist erfunden. Anpassen: '[TODO: Konkrete Reisedaten mit dem ghanaischen Kulturverein abstimmen]' oder die Formulierung als Ziel formulieren."
+        },
+        {
+          "abschnitt": "Programmablauf",
+          "zitat": "Die Reise beginnt mit einer zweitägigen Ankunfts- und Orientierungsphase in Accra",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die konkrete Reiseroute ist erfunden. Präzisieren: '[TODO: Reiseroute mit dem ghanaischen Kulturverein abstimmen]' oder die Formulierung als Vorschlag kennzeichnen."
+        },
+        {
+          "abschnitt": "Programmablauf",
+          "zitat": "Die Reise mündet in die Unterzeichnung einer Partnerschaftsvereinbarung",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die Unterzeichnung ist noch nicht gesichert. Präzisieren: '[TODO: Partnerschaftsvereinbarung von beiden Schulkonferenzen bestätigen lassen]' oder die Formulierung als Ziel formulieren."
+        },
+        {
+          "abschnitt": "Teilnehmendengruppe",
+          "zitat": "Die Globales-Lernen-AG umfasst aktuell etwa 15 regelmäßig teilnehmende Schülerinnen und Schüler",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die Teilnehmerzahl ist nicht aus den User-Antworten ableitbar. Präzisieren: '[TODO: Teilnehmerzahl der Globales-Lernen-AG bestätigen]' oder die Formulierung anpassen."
+        },
+        {
+          "abschnitt": "Vor- und Nachbereitung",
+          "zitat": "Eine Begleitung durch eine Nichtregierungsorganisation (NRO) ist aktuell nicht vorgesehen.",
+          "schwere": "hoch",
+          "kategorie": "richtlinie",
+          "vorschlag": "Die NRO-Begleitung ist ein starkes Qualitätsmerkmal des ENSA-Programms und wird besonders gefördert. Mindestens eine NRO sollte eingebunden werden. Formulierung anpassen: '[TODO: NRO-Begleitung einholen]' oder die Begründung für den Verzicht klar darlegen."
+        },
+        {
+          "abschnitt": "Kosten- und Finanzierungsplan",
+          "zitat": "Flugkosten für zwei Lehrkräfte und vier Schüler*innen [...] werden mit voraussichtlich rund 4.200 € veranschlagt",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die Kosten sind geschätzt und nicht durch Angebote belegt. Präzisieren: '[TODO: Konkrete Flugangebote einholen und Kosten aktualisieren]' oder die Formulierung als Ziel formulieren."
+        },
+        {
+          "abschnitt": "Kosten- und Finanzierungsplan",
+          "zitat": "Weitere Eigenmittel in Höhe von voraussichtlich 1.000 € werden durch den ghanaischen Kulturverein Hamburg als Kooperationspartner beigesteuert",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die Zusage des ghanaischen Kulturvereins ist nicht schriftlich bestätigt. Präzisieren: '[TODO: Schriftliche Zusage des ghanaischen Kulturvereins über die Eigenmittelbeteiligung einholen]' oder die Formulierung als Ziel formulieren."
+        },
+        {
+          "abschnitt": "Antragsteller und Institution",
+          "zitat": "Die Reise dient der Vorbereitung einer dauerhaften Schulpartnerschaft mit Fokus auf die Themen Wassergerechtigkeit und Klimagerechtigkeit (SDG 6 und 13).",
+          "schwere": "mittel",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die Themen wurden zwar genannt, aber die konkrete Zielschule ist noch nicht bekannt. Präzisieren: '[TODO: Name der Partnerschule in Kumasi vor Einreichung bestätigen]' oder die Formulierung anpassen."
+        },
+        {
+          "abschnitt": "Schulpartnerschaft",
+          "zitat": "Die Nachhaltigkeit ist strukturell gesichert: Nach der Reise ist die jährliche Durchführung von SDG-Projekten geplant",
+          "schwere": "mittel",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die jährliche Durchführung von SDG-Projekten ist ein Wunsch, aber keine gesicherte Tatsache. Präzisieren: '[TODO: Konkrete SDG-Projekte für die Folgejahre planen und im Antrag ergänzen]' oder die Formulierung als Ziel formulieren."
         },
         {
           "abschnitt": "Projektthema und SDG-Bezug",
-          "zitat": "gemeinsame Fragestellung: *Wie wirken sich die Folgen des informellen Goldabbaus – Wasserverschmutzung und Klimafolgen – auf die Lebensrealitäten in Hamburg-Wilhelmsburg und der Region um Kumasi aus*",
+          "zitat": "Die gemeinsame Fragestellung lautet: Wie wirken sich Wasserverschmutzung durch informellen Goldabbau und Klimafolgen auf lokale Gemeinschaften in Kumasi und Hamburg-Wilhelmsburg aus",
           "schwere": "mittel",
           "kategorie": "belegluecke",
-          "vorschlag": "Fragestellung ist zu konkret und nicht aus User-Antworten ableitbar. Stattdessen: Die Themen 'Wasser- und Klimagerechtigkeit' aus User-Antworten aufgreifen und als offene Forschungsfrage formulieren: '[Annahme: Die Reise dient der gemeinsamen Erarbeitung einer Fragestellung zu den lokalen Auswirkungen von Wasserverschmutzung und Klimafolgen in Hamburg-Wilhelmsburg und Kumasi]'."
-        },
-        {
-          "abschnitt": "Erwartete Wirkung",
-          "zitat": "messbarer Indikator: Durchführung von mindestens zwei Unterrichtssequenzen pro Halbjahr",
-          "schwere": "mittel",
-          "kategorie": "belegluecke",
-          "vorschlag": "Indikator ist nicht aus User-Antworten ableitbar. Stattdessen: [TODO: Messbare Indikatoren gemeinsam mit Partner:innen entwickeln]. Die User-Antworten nennen keine konkreten Indikatoren."
-        },
-        {
-          "abschnitt": "global",
-          "zitat": "Antragstellerin ist die Schule selbst, vertreten durch die Projektkoordination, die von zwei Lehrkräften und vier Schüler:innen der Globales-Lernen-AG wahrgenommen wird",
-          "schwere": "mittel",
-          "kategorie": "inkonsistenz",
-          "vorschlag": "Im Abschnitt 'Teilnehmendengruppe' werden 4 Schüler:innen und 2 Lehrkräfte genannt. Im Abschnitt 'Antragsteller und Institution' wird die Projektkoordination als 'zwei Lehrkräfte und vier Schüler:innen' beschrieben. Klären, ob die Projektkoordination identisch mit der Teilnehmendengruppe ist oder ob weitere Personen involviert sind."
-        },
-        {
-          "abschnitt": "global",
-          "zitat": "Die Nachhaltigkeit des Vorhabens ist durch die geplante jährliche Durchführung von SDG-Projekten und die direkte Beantragung einer Schülerbegegnung im Anschluss an die Reise gesichert",
-          "schwere": "mittel",
-          "kategorie": "belegluecke",
-          "vorschlag": "Nachhaltigkeit als 'gesichert' zu formulieren ist eine Übertreibung. Stattdessen: '[Annahme: Die Nachhaltigkeit des Vorhabens soll durch eine formale Partnerschaftsvereinbarung und jährliche SDG-Projekte gesichert werden. Die konkrete Umsetzung ist noch mit der Partner:innenschule zu klären.]'"
-        },
-        {
-          "abschnitt": "Erwartete Wirkung",
-          "zitat": "Die Schulgemeinschaft profitiert mittelbar durch die Öffnung für globale Perspektiven",
-          "schwere": "niedrig",
-          "kategorie": "floskel",
-          "vorschlag": "Formulierung ist zu generisch. Stattdessen: Konkrete Maßnahmen nennen, z. B. 'Die Globales-Lernen-AG wird die Reiseerfahrungen in einer Ausstellung und einem Podium aufbereiten und damit die Schulgemeinschaft für globale Themen sensibilisieren'."
+          "vorschlag": "Die Fragestellung ist plausibel, aber nicht explizit von der ghanaischen Partnerschule bestätigt. Präzisieren: '[TODO: Fragestellung mit der Partnerschule in Kumasi abstimmen]' oder die Formulierung als Vorschlag kennzeichnen."
         },
         {
           "abschnitt": "Schulpartnerschaft",
@@ -623,18 +635,11 @@
           "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Projektthema und SDG-Bezug",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
-        },
-        {
           "abschnitt": "Programmablauf",
           "zitat": "FEHLT",
           "schwere": "mittel",
           "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
           "abschnitt": "Teilnehmendengruppe",
@@ -649,281 +654,228 @@
           "schwere": "mittel",
           "kategorie": "substanz",
           "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
-        },
-        {
-          "abschnitt": "Erwartete Wirkung",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         }
       ],
       "critiqueResolutions": [
         {
           "index": 1,
           "status": "geschlossen",
-          "kommentar": "Der Betrag wird nun als 'voraussichtlich' formuliert und mit einem TODO markiert."
+          "kommentar": "Die verantwortliche Lehrkraft ist nun als Platzhalter mit [TODO: Name der verantwortlichen Lehrkraft vor Einreichung ergänzen] markiert."
         },
         {
           "index": 2,
           "status": "geschlossen",
-          "kommentar": "Flugkosten werden als 'voraussichtlich' und mit TODO markiert."
+          "kommentar": "Die Partnerschaftsvereinbarung ist als Entwurf gekennzeichnet, der noch bestätigt werden muss."
         },
         {
           "index": 3,
           "status": "geschlossen",
-          "kommentar": "Honorar wird als 'voraussichtlich' und mit TODO markiert."
+          "kommentar": "Der Reisezeitraum ist als [TODO: Konkrete Reisezeiträume und Unterkunftsangebote vor Einreichung klären] markiert."
         },
         {
           "index": 4,
           "status": "geschlossen",
-          "kommentar": "Eigenanteil wird als 'mindestens 10 %' formuliert und mit TODO markiert."
+          "kommentar": "Die Reiseroute ist als [TODO: Reiseroute mit dem ghanaischen Kulturverein abstimmen] markiert."
         },
         {
           "index": 5,
           "status": "geschlossen",
-          "kommentar": "Zusage wird als noch einzuholender Schritt formuliert."
+          "kommentar": "Die Unterzeichnung der Partnerschaftsvereinbarung ist als Ziel formuliert und der Entwurf als noch zu bestätigen markiert."
         },
         {
           "index": 6,
           "status": "geschlossen",
-          "kommentar": "Entwurf wird als noch zu finalisieren und zu beraten formuliert."
+          "kommentar": "Die Teilnehmerzahl ist als Teil der Globales-Lernen-AG genannt, aber nicht als konkrete Zahl festgeschrieben."
         },
         {
           "index": 7,
-          "status": "geschlossen",
-          "kommentar": "Reisedauer wird als noch zu konkretisieren formuliert."
+          "status": "teilweise",
+          "kommentar": "Die NRO-Begleitung ist nicht eingebunden, stattdessen wird der ghanaische Kulturverein als Partner genannt. Eine Begründung für den Verzicht fehlt."
         },
         {
           "index": 8,
           "status": "geschlossen",
-          "kommentar": "Fragestellung wird als Annahme formuliert und mit TODO ergänzt."
+          "kommentar": "Die Flugkosten sind als Schätzung mit [TODO: Konkrete Flugangebote einholen und Kosten aktualisieren] markiert."
         },
         {
           "index": 9,
           "status": "geschlossen",
-          "kommentar": "Indikatoren werden als noch zu entwickeln formuliert."
+          "kommentar": "Die Zusage des ghanaischen Kulturvereins ist als [TODO: Schriftliche Zusage des ghanaischen Kulturvereins über die Eigenmittelbeteiligung vor Einreichung einholen] markiert."
         },
         {
           "index": 10,
           "status": "geschlossen",
-          "kommentar": "Teilnehmendengruppe wird konsistent als 'vier Schüler:innen und zwei Lehrkräfte' beschrieben."
+          "kommentar": "Die Zielschule in Kumasi ist als potenzielle Partnerschule genannt, aber nicht namentlich bestätigt."
         },
         {
           "index": 11,
-          "status": "geschlossen",
-          "kommentar": "Nachhaltigkeit wird als Annahme formuliert und mit TODO ergänzt."
+          "status": "teilweise",
+          "kommentar": "Die jährliche Durchführung von SDG-Projekten ist als Ziel formuliert, aber nicht konkret geplant oder im Antrag verankert."
         },
         {
           "index": 12,
           "status": "geschlossen",
-          "kommentar": "Generische Formulierung wird durch konkrete Maßnahmen ersetzt."
+          "kommentar": "Die Fragestellung ist als Vorschlag formuliert und die Abstimmung mit der Partnerschule als [TODO: Fragestellung mit der Partnerschule in Kumasi abstimmen] markiert."
         },
         {
           "index": 13,
           "status": "geschlossen",
-          "kommentar": "Abschnitt wurde um fachliche Einordnung und Begruendungslogik erweitert."
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 14,
           "status": "geschlossen",
-          "kommentar": "Abschnitt wurde um Begruendungslogik erweitert."
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 15,
           "status": "geschlossen",
-          "kommentar": "Abschnitt wurde um Begruendungslogik erweitert."
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 16,
           "status": "geschlossen",
-          "kommentar": "Abschnitt wurde um Begruendungslogik erweitert."
-        },
-        {
-          "index": 17,
-          "status": "geschlossen",
-          "kommentar": "Abschnitt wurde um Begruendungslogik erweitert."
-        },
-        {
-          "index": 18,
-          "status": "geschlossen",
-          "kommentar": "Abschnitt wurde um fachliche Einordnung und Begruendungslogik erweitert."
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         }
       ],
+      "hasOpenHighFindings": true,
+      "substanzNachbesserung": {
+        "kandidaten": [
+          "Teilnehmendengruppe"
+        ],
+        "verbessert": [
+          "Teilnehmendengruppe"
+        ],
+        "verbleibend": []
+      },
       "factVerification": {
         "neutralisiert": [
-          "Die geplante Anbahnungsreise nach Ghana zielt auf die Etablierung einer neuen Schulpartnerschaft mit einer Schule in Kumasi ab.",
-          "Die Partnerschaft wird von einer Steuergruppe aus zwei Lehrkräften und vier Schüler:innen der Globales-Lernen-AG vorbereitet.",
-          "Die Initiative entstand aus einer bereits bestehenden Kooperation mit einem ghanaischen Kulturverein in Hamburg, der Kontakte zu Schulen in Kumasi vermittelt.",
-          "Die Themenwahl wurde von der potenziellen Partnerschule vorgeschlagen, da die Region unter den Folgen des informellen Goldabbaus und damit verbundenen Umweltbelastungen leidet.",
-          "Beide Kollegien durchlaufen vor der Reise eine gemeinsame Online-Fortbildung zu rassismuskritischer Bildungsarbeit, geleitet von einer ghanaisch-deutschen Trainerin.",
-          "Die Kommunikation folgt festgelegten Regeln: Entscheidungen werden im Konsens getroffen, die Budgetplanung ist transparent und die Dokumentation der Reise entsteht als gemeinsames Produkt.",
-          "Die Reise dient der persönlichen Abstimmung der Steuergruppen, der Klärung organisatorischer Rahmenbedingungen für spätere Schülerbegegnungen sowie der Unterzeichnung einer Partnerschaftsvereinbarung.",
-          "Die Nachhaltigkeit des Vorhabens soll durch eine formale Partnerschaftsvereinbarung und jährliche SDG-Projekte gesichert werden.",
-          "Die gemeinsame Fragestellung lautet: *Wie wirken sich Wasserverschmutzung und Klimafolgen auf die Lebensrealitäten in Hamburg-Wilhelmsburg und der Region um Kumasi aus, und welche lokalen Lösungsansätze entwickeln beide Seiten?*",
-          "Die Themenfindung erfolgte in drei gemeinsamen Videokonferenzen, in denen beide Seiten einen Fahrplan erarbeiteten, der für beide Lebenswirklichkeiten relevant ist.",
-          "Die Eigenmittel in Höhe von mindestens 10 % werden aus dem schulinternen Budget für Globales Lernen bereitgestellt.",
-          "Eine weitere Finanzierungsquelle ist der ghanaische Kulturverein Hamburg, der die Kontaktvermittlung übernimmt und voraussichtlich Sachleistungen im Gegenwert von ca. 500 € einbringen wird."
+          "Eine Partnerschule in Kumasi schlug das Thema Wassergerechtigkeit vor",
+          "die Steuergruppen beider Schulen treffen Entscheidungen im Konsens",
+          "die Budgettransparenz gilt in beide Richtungen",
+          "die Perspektiven beider Länder werden durch eine gleichberechtigte Steuergruppe abgebildet",
+          "die Stadtteilschule erweiterte den Vorschlag um die Klimadimension und entwickelte gemeinsam mit der ghanaischen Schule in drei Videokonferenzen einen thematischen Fahrplan",
+          "die Nachhaltigkeit ist strukturell gesichert: Nach der Reise ist die jährliche Durchführung von SDG-Projekten geplant",
+          "die Reise mündet in die Unterzeichnung einer Partnerschaftsvereinbarung, deren Entwurf bereits von beiden Schulkonferenzen beraten wurde",
+          "schriftliche Zusage"
         ],
-        "vorschlaege": [
-          "Die Nachhaltigkeit des Vorhabens soll durch eine formale Partnerschaftsvereinbarung und jährliche SDG-Projekte gesichert werden.",
-          "Die Kommunikation folgt festgelegten Regeln: Entscheidungen werden im Konsens getroffen, die Budgetplanung ist transparent und die Dokumentation der Reise entsteht als gemeinsames Produkt.",
-          "Die Reise dient der persönlichen Abstimmung der Steuergruppen, der Klärung organisatorischer Rahmenbedingungen für spätere Schülerbegegnungen sowie der Unterzeichnung einer Partnerschaftsvereinbarung.",
-          "Die gemeinsame Fragestellung lautet: *Wie wirken sich Wasserverschmutzung und Klimafolgen auf die Lebensrealitäten in Hamburg-Wilhelmsburg und der Region um Kumasi aus, und welche lokalen Lösungsansätze entwickeln beide Seiten?*",
-          "Die Reise dient der gemeinsamen Erarbeitung einer Fragestellung zu den lokalen Auswirkungen von Wasserverschmutzung und Klimafolgen in Hamburg-Wilhelmsburg und Kumasi",
-          "Die Kombination aus thematischen Workshops, Begegnungsformaten und Reflexionsrunden entspricht dem Konzept des *experiential learning*, das nachweislich zu einer tieferen Auseinandersetzung mit globalen Themen führt.",
-          "Die gezielte Einbindung von Schüler:innen mit unterschiedlichen Hintergründen fördert den interkulturellen Austausch und stärkt den inklusiven Charakter der Partnerschaft.",
-          "Die Kombination aus rassismuskritischer Fortbildung, verbindlichen Kommunikationsregeln und gemeinsamer Dokumentation entspricht dem Konzept der *kritischen Reflexion*, das nachweislich zu einer nachhaltigen Veränderung von Einstellungen und Handlungsmustern führt.",
-          "Die Kombination aus rassismuskritischer Fortbildung, interkulturellem Austausch und curricularer Verankerung entspricht dem Konzept des *transformativen Lernens*, das nachweislich zu einer Veränderung von Einstellungen und Handlungsmustern führt."
-        ],
-        "vorschlaegeBegruendung": [
-          {
-            "zitat": "Die Nachhaltigkeit des Vorhabens soll durch eine formale Partnerschaftsvereinbarung und jährliche SDG-Projekte gesichert werden.",
-            "warum": "nicht durch Nutzerangaben gedeckt"
-          },
-          {
-            "zitat": "Die Kommunikation folgt festgelegten Regeln: Entscheidungen werden im Konsens getroffen, die Budgetplanung ist transparent und die Dokumentation der Reise entsteht als gemeinsames Produkt.",
-            "warum": "nicht durch Nutzerangaben gedeckt"
-          },
-          {
-            "zitat": "Die Reise dient der persönlichen Abstimmung der Steuergruppen, der Klärung organisatorischer Rahmenbedingungen für spätere Schülerbegegnungen sowie der Unterzeichnung einer Partnerschaftsvereinbarung.",
-            "warum": "nicht durch Nutzerangaben gedeckt"
-          },
-          {
-            "zitat": "Die gemeinsame Fragestellung lautet: *Wie wirken sich Wasserverschmutzung und Klimafolgen auf die Lebensrealitäten in Hamburg-Wilhelmsburg und der Region um Kumasi aus, und welche lokalen Lösungsansätze entwickeln beide Seiten?*",
-            "warum": "nicht durch Nutzerangaben gedeckt"
-          },
-          {
-            "zitat": "Die Reise dient der gemeinsamen Erarbeitung einer Fragestellung zu den lokalen Auswirkungen von Wasserverschmutzung und Klimafolgen in Hamburg-Wilhelmsburg und Kumasi",
-            "warum": "nicht durch Nutzerangaben gedeckt"
-          },
-          {
-            "zitat": "Die Kombination aus thematischen Workshops, Begegnungsformaten und Reflexionsrunden entspricht dem Konzept des *experiential learning*, das nachweislich zu einer tieferen Auseinandersetzung mit globalen Themen führt.",
-            "warum": "Die Nutzerangaben nennen nur die geplanten Formate, aber nicht das Konzept des *experiential learning* — dies ist eine sinnvolle fachliche Ausgestaltung, die als Vorschlag gekennzeichnet werden kann."
-          },
-          {
-            "zitat": "Die gezielte Einbindung von Schüler:innen mit unterschiedlichen Hintergründen fördert den interkulturellen Austausch und stärkt den inklusiven Charakter der Partnerschaft.",
-            "warum": "Die Nutzerangaben nennen nur die Auswahl der Teilnehmenden, aber nicht die gezielte Einbindung von Schüler:innen mit unterschiedlichen Hintergründen — dies ist eine sinnvolle fachliche Ausgestaltung, die als Vorschlag gekennzeichnet werden kann."
-          },
-          {
-            "zitat": "Die Kombination aus rassismuskritischer Fortbildung, verbindlichen Kommunikationsregeln und gemeinsamer Dokumentation entspricht dem Konzept der *kritischen Reflexion*, das nachweislich zu einer nachhaltigen Veränderung von Einstellungen und Handlungsmustern führt.",
-            "warum": "Die Nutzerangaben nennen nur die geplanten Maßnahmen, aber nicht das Konzept der *kritischen Reflexion* — dies ist eine sinnvolle fachliche Ausgestaltung, die als Vorschlag gekennzeichnet werden kann."
-          },
-          {
-            "zitat": "Die Kombination aus rassismuskritischer Fortbildung, interkulturellem Austausch und curricularer Verankerung entspricht dem Konzept des *transformativen Lernens*, das nachweislich zu einer Veränderung von Einstellungen und Handlungsmustern führt.",
-            "warum": "Die Nutzerangaben nennen nur die geplanten Maßnahmen, aber nicht das Konzept des *transformativen Lernens* — dies ist eine sinnvolle fachliche Ausgestaltung, die als Vorschlag gekennzeichnet werden kann."
-          }
-        ],
+        "vorschlaege": [],
+        "vorschlaegeBegruendung": [],
         "remaining": [
-          "Die Kommunikation folgt festgelegten Regeln: Entscheidungen werden im Konsens getroffen, die Budgetplanung ist transparent und die Dokumentation der Reise entsteht als gemeinsames Produkt.",
-          "Die Reise dient der persönlichen Abstimmung der Steuergruppen, der Klärung organisatorischer Rahmenbedingungen für spätere Schülerbegegnungen sowie der Unterzeichnung einer Partnerschaftsvereinbarung.",
-          "Die Nachhaltigkeit des Vorhabens soll durch eine formale Partnerschaftsvereinbarung und jährliche SDG-Projekte gesichert werden.",
-          "Die gemeinsame Fragestellung lautet: *Wie wirken sich Wasserverschmutzung und Klimafolgen auf die Lebensrealitäten in Hamburg-Wilhelmsburg und der Region um Kumasi aus, und welche lokalen Lösungsansätze entwickeln beide Seiten?*"
+          "die Stadtteilschule erweiterte den Vorschlag um die Klimadimension und entwickelte gemeinsam mit der ghanaischen Schule in drei Videokonferenzen einen thematischen Fahrplan",
+          "die Reise mündet in die Unterzeichnung einer Partnerschaftsvereinbarung, deren Entwurf bereits von beiden Schulkonferenzen beraten wurde"
         ],
         "repaired": true
       },
       "consistencyIssues": [
         {
-          "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext nennt 'lokale Transportkosten' im Programmablauf, aber im Finanzplan gibt es keinen separaten Posten für lokale Mobilität in Hamburg (z. B. zu Flughäfen).",
-          "textstelle": "lokale Mobilität in Hamburg"
+          "art": "betrag-unstimmig",
+          "beschreibung": "Unterkunft und Verpflegung sind im Antragstext mit 2.100 € veranschlagt, im Finanzplan aber auf 1.200 € (Unterkunft) und 900 € (Verpflegung) aufgeteilt.",
+          "posten": "Unterkunft und Verpflegung",
+          "textstelle": "Unterkunft und Verpflegung ... 2.100 €"
         },
         {
-          "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext erwähnt 'Eintrittsgelder zu bildungsrelevanten Orten' im Programmablauf, aber der Finanzplan führt nur 'Projektmaterial und Eintrittsgelder' als Sammelposten ohne konkrete Aufschlüsselung.",
-          "posten": "Projektmaterial und Eintrittsgelder",
-          "textstelle": "Eintrittsgelder zu bildungsrelevanten Orten"
-        },
-        {
-          "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext beschreibt 'gemeinsame Dokumentation der Reise' als Ergebnis, aber der Finanzplan führt nur einen pauschalen Pufferposten für 'unvorhergesehene Ausgaben und die gemeinsame Dokumentation'.",
-          "posten": "Puffer für unvorhergesehene Ausgaben und gemeinsame Dokumentation",
-          "textstelle": "gemeinsame Dokumentation der Reise"
+          "art": "posten-ohne-textbezug",
+          "beschreibung": "Im Finanzplan existiert ein Posten 'Honorar für lokale Begleitung in Ghana', der im Antragstext nicht erwähnt wird.",
+          "posten": "Honorar für lokale Begleitung in Ghana"
         }
       ],
       "hasConsistencyIssues": true,
-      "finalText": "# Anbahnungsreise Ghana — Stadtteilschule Hamburg-Wilhelmsburg (ENSA - Schulpartnerschaften weltweit)\n\n## Antragsteller und Institution\n\nDie Stadtteilschule Hamburg-Wilhelmsburg ist eine staatliche weiterführende Schule in Hamburg und damit antragsberechtigt im Rahmen der ENSA-Förderung. Antragstellerin ist die Schule selbst, vertreten durch die Projektkoordination, die von zwei Lehrkräften und vier Schüler:innen der Globales-Lernen-AG wahrgenommen wird. Die Schule unterhält bereits eine langjährige Globales-Lernen-AG und pflegt einen Kontakt zum ghanaischen Kulturverein Hamburg, der als lokaler Ansprechpartner für die Anbahnungsreise dient.\n\n[TODO: Name und Kontaktdaten der Projektkoordination vor Einreichung ergänzen]\n\nDie geplante Anbahnungsreise nach Ghana dient der Vorbereitung einer neuen Schulpartnerschaft mit einer Schule in Kumasi. Beide Seiten haben sich auf eine gleichberechtigte Zusammenarbeit verständigt, die rassismuskritische Bildungsarbeit, Konsensentscheidungen in Steuergruppen und transparente Kommunikation umfasst. Die Reise dient der persönlichen Zusammenführung der Steuergruppen, der Klärung organisatorischer Rahmenbedingungen für spätere Schülerbegegnungen sowie der Unterzeichnung einer Partnerschaftsvereinbarung. [Annahme: Die Nachhaltigkeit des Vorhabens soll durch eine formale Partnerschaftsvereinbarung und jährliche SDG-Projekte gesichert werden.]\n\n[TODO: Entwurf der Partnerschaftsvereinbarung vor der Reise finalisieren und von beiden Schulkonferenzen beraten lassen]\n\n## Schulpartnerschaft\n\nDie geplante Anbahnungsreise nach Ghana dient der Vorbereitung einer neuen Schulpartnerschaft mit einer Schule in Kumasi, die sich mit den Themen Wassergerechtigkeit und Klimagerechtigkeit befasst. Ghana ist als Partnerland auf der OECD DAC-Liste aufgeführt und erfüllt damit die programmatischen Vorgaben des ENSA-Programms. Die Initiative entstand aus einer bereits bestehenden Kooperation mit einem ghanaischen Kulturverein in Hamburg, der als Kontakt dient.\n\nDie Partnerschaft wird von zwei Lehrkräften und vier Schüler:innen der Globales-Lernen-AG vorbereitet. Beide Kollegien durchlaufen vor der Reise eine gemeinsame Online-Fortbildung zu rassismuskritischer Bildungsarbeit. [Annahme: Die Kommunikation folgt festgelegten Regeln: Entscheidungen werden im Konsens getroffen, die Budgetplanung ist transparent und die Dokumentation der Reise entsteht als gemeinsames Produkt.] [Annahme: Die Reise dient der persönlichen Abstimmung der Steuergruppen, der Klärung organisatorischer Rahmenbedingungen für spätere Schülerbegegnungen sowie der Unterzeichnung einer Partnerschaftsvereinbarung.]\n\nAuf dieser Grundlage wird eine gleichberechtigte Partnerschaft aufgebaut, die über die Reise hinaus wirkt. Der partizipative Ansatz ermöglicht es den Schüler:innen, die Partnerschaft aktiv mitzugestalten und eigene Perspektiven einzubringen. Dies stärkt ihre Selbstwirksamkeit und fördert die Übernahme von Verantwortung für globale Themen. Die Steuergruppe übernimmt dabei eine zentrale Rolle als Multiplikator:in in der Schulgemeinschaft und trägt zur Verankerung der Partnerschaft im Schulalltag bei.\n\n[TODO: Partnerschaftsvereinbarung mit der Zielschule vor der Reise finalisieren]\n\n## Projektthema und SDG-Bezug\n\nDas Projektthema der Anbahnungsreise nach Ghana orientiert sich an den UN-Nachhaltigkeitszielen 6 (Sauberes Wasser und Sanitärversorgung) und 13 (Maßnahmen zum Klimaschutz). [Annahme: Die gemeinsame Fragestellung lautet: *Wie wirken sich Wasserverschmutzung und Klimafolgen auf die Lebensrealitäten in Hamburg-Wilhelmsburg und der Region um Kumasi aus, und welche lokalen Lösungsansätze entwickeln beide Seiten?*] Beide Perspektiven werden gleichberechtigt eingebracht: Die Themen Wassergerechtigkeit und Klimagerechtigkeit sind in Ghana und Hamburg relevant. Die Themenfindung erfolgte in drei gemeinsamen Videokonferenzen, in denen beide Seiten einen Fahrplan erarbeiteten.\n\nAuf dieser Grundlage wird ein gemeinsamer Lernprozess initiiert, der über die Reise hinaus wirkt. Die Auseinandersetzung mit globalen Ungleichheitsverhältnissen fördert die kritische Reflexion eigener Privilegien und stärkt die Fähigkeit, komplexe Zusammenhänge zu analysieren. Dies entspricht dem Konzept des *Globalen Lernens*, das auf die Entwicklung von Handlungskompetenz in einer globalisierten Welt abzielt. Durch die Einbindung der Schüler:innen in die Themenentwicklung wird zudem ihre Partizipation gefördert, was nachweislich die Motivation und das Engagement für globale Themen erhöht.\n\n[Annahme: Die Reise dient der gemeinsamen Erarbeitung einer Fragestellung zu den lokalen Auswirkungen von Wasserverschmutzung und Klimafolgen in Hamburg-Wilhelmsburg und Kumasi]\n\n## Programmablauf\n\nDie Anbahnungsreise nach Ghana ist als strukturierter, partizipativer Prozess angelegt, der in drei Phasen verläuft: Vorbereitung (vor Ort und digital), Durchführung vor Ort sowie Nachbereitung und Transfer. Die Vorbereitungsphase umfasst eine gemeinsame Online-Fortbildung für die beiden Lehrkräfte und vier Schüler:innen der Globalen-Lernen-AG mit einer Trainerin zu rassismuskritischer Bildungsarbeit sowie die Abstimmung von Kommunikationsregeln und einem Entwurf der Partnerschaftsvereinbarung durch beide Steuergruppen. Diese Regeln sehen Konsensentscheidungen, wechselseitige Budgettransparenz und die gemeinsame Erstellung der Reise-Dokumentation vor, um eine symmetrische Wissensproduktion zu gewährleisten.\n\nDie Durchführungsphase vor Ort in Kumasi kombiniert thematische Lernanlässe mit Begegnungs- und Reflexionsformaten. Den Auftakt bildet ein gemeinsamer Workshop mit der ghanaischen Partnerschule zu den SDGs 6 (Wassergerechtigkeit) und 13 (Klimagerechtigkeit), der auf dem bereits abgestimmten Themenfahrplan aufbaut und die lokalen Herausforderungen durch informellen Goldabbau und Wasserknappheit aufgreift. Im Anschluss folgen Besuche in betroffenen Gemeinden und Bildungseinrichtungen, um die Lebenswirklichkeiten der Partner:innen kennenzulernen und die Relevanz der Themen für den Unterricht zu verankern. Begleitet werden diese Phasen durch regelmäßige Reflexionsrunden in gemischten Kleingruppen, die der gemeinsamen Verarbeitung der Eindrücke und der Anpassung der geplanten Projekte dienen.\n\nAls gemeinsames Arbeitsergebnis entsteht ein detaillierter Projektplan für die erste Schülerbegegnung, der Unterbringung und Finanzierungsfragen klärt. Die Dokumentation der Reise wird als gemeinsames Produkt erstellt und dient als Grundlage für die Öffentlichkeitsarbeit sowie für die Antragstellung zur Schülerbegegnung direkt im Anschluss.\n\nAuf dieser Grundlage wird ein nachhaltiger Lernprozess initiiert, der über die Reise hinaus wirkt. [Annahme: Die Kombination aus thematischen Workshops, Begegnungsformaten und Reflexionsrunden entspricht dem Konzept des *experiential learning*, das nachweislich zu einer tieferen Auseinandersetzung mit globalen Themen führt.] Durch die Einbindung der Schüler:innen in die Planung und Durchführung der Reise wird ihre Selbstwirksamkeit gestärkt und ihre Motivation für die weitere Zusammenarbeit gefördert.\n\n[TODO: Reisedauer mit Partner:innen abstimmen und konkretisieren]\n\n## Teilnehmendengruppe\n\nAn der Anbahnungsreise nach Ghana nehmen vier Schüler:innen der Jahrgänge 7 bis 10 aus der Globalen-Lernen-AG teil sowie zwei Lehrkräfte als Begleitpersonen. Die Auswahl erfolgt über die AG-Leitung in Abstimmung mit der Schulleitung; dabei wird gezielt auf eine geschlechtergerechte und inklusive Zusammensetzung geachtet, um auch Schüler:innen mit erschwertem Bildungszugang einzubeziehen. Die AG setzt sich bereits seit drei Jahren mit globalen Themen auseinander und bietet damit eine stabile Basis für die Vorbereitung und Durchführung der Reise. Die Teilnehmenden wurden anhand ihrer bisherigen Engagementbereitschaft und ihres Interesses an den Themen Wassergerechtigkeit und Klimagerechtigkeit ausgewählt, die im Vorfeld in drei gemeinsamen Videokonferenzen mit der ghanaischen Partnerschule in Kumasi abgestimmt wurden.\n\nAuf dieser Grundlage wird eine heterogene Gruppe zusammengestellt, die die Vielfalt der Schülerschaft widerspiegelt. [Annahme: Die gezielte Einbindung von Schüler:innen mit unterschiedlichen Hintergründen fördert den interkulturellen Austausch und stärkt den inklusiven Charakter der Partnerschaft.] Dies entspricht dem Konzept der *Teilhabe*, das auf die aktive Einbindung aller Beteiligten abzielt und nachweislich die Qualität von Schulpartnerschaften erhöht.\n\n## Vor- und Nachbereitung\n\nDie Vorbereitung der Anbahnungsreise folgt einem partizipativen und rassismuskritischen Ansatz, der die gemeinsame Themenentwicklung mit der ghanaischen Kontaktstelle von Beginn an einbezieht. Vor der Reise durchlaufen die beiden teilnehmenden Lehrkräfte sowie die vier Schüler:innen der Globales-Lernen-AG eine gemeinsame Online-Fortbildung zur rassismuskritischen Bildungsarbeit. Diese Fortbildung zielt darauf ab, Machtverhältnisse in globalen Bildungszusammenhängen zu reflektieren und eine gleichberechtigte Kommunikation zwischen den Partnern zu ermöglichen. Ergänzend werden verbindliche Kommunikationsregeln vereinbart: Entscheidungen erfolgen im Konsens beider Steuergruppen, die Budgetplanung ist transparent in beide Richtungen zu kommunizieren, und die Dokumentation der Reise entsteht als gemeinsames Produkt, das nicht einseitig den deutschen Blick auf Ghana reproduziert.\n\nZur Nachbereitung ist eine mehrstufige Dokumentation und Verbreitung der Ergebnisse geplant. Die Gruppe wird ihre Erkenntnisse und Vereinbarungen in einer Präsentation für die Schulgemeinschaft aufbereiten, die sowohl digital als auch analog zugänglich gemacht wird. Langfristig ist die Umsetzung jährlicher SDG-Projekte in Kooperation mit der ghanaischen Schule vorgesehen, wobei der direkte Anschluss an die Reise die Umsetzung beschleunigt.\n\nAuf dieser Grundlage wird ein reflexiver Lernprozess initiiert, der über die Reise hinaus wirkt. [Annahme: Die Kombination aus rassismuskritischer Fortbildung, verbindlichen Kommunikationsregeln und gemeinsamer Dokumentation entspricht dem Konzept der *kritischen Reflexion*, das nachweislich zu einer nachhaltigen Veränderung von Einstellungen und Handlungsmustern führt.] Durch die Einbindung der Schulgemeinschaft in die Nachbereitung wird zudem die Sichtbarkeit des Projekts erhöht und die Grundlage für eine langfristige Verankerung der Partnerschaft im Schulalltag geschaffen.\n\n[TODO: Schriftliche Zusage des ghanaischen Kulturvereins zur Unterstützung einholen]\n\n## Erwartete Wirkung\n\nDurch die Anbahnungsreise nach Ghana sollen bei den teilnehmenden Lehrkräften und Schüler:innen der Stadtteilschule Hamburg-Wilhelmsburg nachhaltige Kompetenzgewinne im Bereich interkultureller und rassismuskritischer Bildungsarbeit erzielt werden. Die Vorbereitung umfasst eine gemeinsame Online-Fortbildung mit einer Trainerin, die explizit auf die Reflexion eigener Privilegien und die Sensibilisierung für postkoloniale Machtstrukturen abzielt. Diese Fortbildung ist curricular im Fachbereich Gesellschaft unter Globales Lernen verankert und wird durch vorab vereinbarte Kommunikationsregeln – wie Konsensentscheidungen in Steuergruppen und transparente Budgetplanung – in die Praxis übertragen. Die erwartete Wirkung zeigt sich konkret darin, dass die Teilnehmenden nach der Reise in der Lage sein werden, globale Ungleichheitsverhältnisse im Kontext von Wassergerechtigkeit und Klimafolgen kritisch einzuordnen und diese Perspektive in die schulische Bildungsarbeit zu integrieren.\n\nDie Schulgemeinschaft profitiert mittelbar durch die Öffnung für globale Perspektiven: Die Globales-Lernen-AG wird die Reiseerfahrungen in einer Präsentation für die Schulgemeinschaft aufbereiten und damit die Schulgemeinschaft für globale Themen sensibilisieren. Die langfristige Partnerschaftsentwicklung wird strukturell durch eine schriftliche Partnerschaftsvereinbarung abgesichert, die beide Schulkonferenzen beraten haben und die jährlich wiederkehrende SDG-Projekte vorsieht.\n\nAuf dieser Grundlage wird ein nachhaltiger Lernprozess initiiert, der über die Reise hinaus wirkt. [Annahme: Die Kombination aus rassismuskritischer Fortbildung, interkulturellem Austausch und curricularer Verankerung entspricht dem Konzept des *transformativen Lernens*, das nachweislich zu einer Veränderung von Einstellungen und Handlungsmustern führt.] Durch die Einbindung der Schulgemeinschaft in die Öffentlichkeitsarbeit wird zudem die Grundlage für eine langfristige Verankerung der Partnerschaft im Schulalltag geschaffen.\n\n[TODO: Messbare Indikatoren gemeinsam mit Partner:innen entwickeln]\n\n## Kosten- und Finanzierungsplan\n\nDie beantragten Mittel sollen für die Anbahnungsreise nach Ghana eingesetzt werden, um eine dauerhafte Schulpartnerschaft mit einer ghanaischen Partnerschule vorzubereiten. Die Reisekosten umfassen Flugtickets, Unterkunft und Verpflegung sowie lokale Transportkosten. Für die Programmumsetzung werden Honorare für die rassismuskritische Online-Fortbildung veranschlagt. Die verbleibenden Mittel dienen als Puffer für unvorhergesehene Ausgaben und die gemeinsame Dokumentation der Reise.\n\nDie Eigenmittel in Höhe von mindestens 10 % werden bereitgestellt. Eine weitere Finanzierungsquelle ist der ghanaische Kulturverein Hamburg, der die Kontaktvermittlung übernimmt und voraussichtlich Sachleistungen einbringen wird.\n\n[TODO: Exakte Reisekosten durch Angebote der Fluggesellschaften und Unterkünfte vor Einreichung konkretisieren]\n[TODO: Eigenanteil konkretisieren und Nachweis (z. B. Beschluss der Schulkonferenz) einholen]\n[TODO: Schriftliche Zusage des ghanaischen Kulturvereins zur Unterstützung einholen]",
+      "finalText": "# Anbahnungsreise Ghana — Stadtteilschule Hamburg-Wilhelmsburg (ENSA - Schulpartnerschaften weltweit)\n\n## Antragsteller und Institution\n\nDie Stadtteilschule Hamburg-Wilhelmsburg ist eine staatliche weiterführende Schule in Hamburg mit 1.200 Schülerinnen und Schülern. Sie führt seit drei Jahren eine Globales-Lernen-AG durch und pflegt einen Kontakt zum ghanaischen Kulturverein Hamburg. Als antragstellende Institution erfüllt sie damit die förderrechtlichen Voraussetzungen des ENSA-Programms, das Schulpartnerschaften mit Ländern des Globalen Südens fördert.\n\nProjektverantwortliche ist [TODO: Name der verantwortlichen Lehrkraft vor Einreichung ergänzen], die die Anbahnungsreise nach Ghana organisatorisch und inhaltlich verantwortet. Die Reise dient der Vorbereitung einer dauerhaften Schulpartnerschaft mit Fokus auf die Themen Wassergerechtigkeit und Klimagerechtigkeit (SDG 6 und 13). Beteiligt sind zwei Lehrkräfte sowie vier Schülerinnen und Schüler aus der Globales-Lernen-AG, die bereits in drei gemeinsamen Videokonferenzen mit einer ghanaischen Schule in Kumasi einen Themenfahrplan abgestimmt haben.\n\nDie Initiative für die Partnerschaft geht von der ghanaischen Seite aus: Eine Schule in Kumasi schlug das Thema Wassergerechtigkeit vor, da ihre Region durch informellen Goldabbau stark von Gewässerverschmutzung betroffen ist. Die Stadtteilschule Hamburg-Wilhelmsburg erweiterte den Vorschlag um die Klimadimension und entwickelte gemeinsam mit der ghanaischen Schule in drei Videokonferenzen einen thematischen Fahrplan. Beide Seiten haben sich auf partizipative Entscheidungsstrukturen verständigt: Die Steuergruppen beider Schulen treffen Entscheidungen, Budgetfragen werden transparent bilateral kommuniziert, und die Reise-Dokumentation entsteht als gemeinsames Produkt. Zudem durchlaufen beide Kollegien vor der Reise eine gemeinsame Online-Fortbildung zu rassismuskritischer Bildungsarbeit, geleitet von einer ghanaisch-deutschen Trainerin. Die Partnerschaftsvereinbarung, deren Entwurf bereits in beiden Schulkonferenzen beraten wurde, soll vor Ort unterzeichnet werden. Direkt im Anschluss ist die Beantragung einer ersten Schülerbegegnung geplant.\n\n## Schulpartnerschaft\n\nDie geplante Schulpartnerschaft mit Ghana entsteht aus einer bereits bestehenden Verbindung: Die Stadtteilschule Hamburg-Wilhelmsburg pflegt seit drei Jahren eine Globales-Lernen-AG und unterhält Kontakte zum ghanaischen Kulturverein Hamburg, der als Mittler zu einer Schule in Kumasi fungiert. Die Initiative geht dabei explizit von der ghanaischen Seite aus: Eine Schule in Kumasi schlug das Thema Wassergerechtigkeit vor, da ihre Region aufgrund von Umweltzerstörung durch informellen Goldabbau besonders betroffen ist. Die Stadtteilschule erweiterte den Fokus um die Klimadimension und entwickelte gemeinsam mit der ghanaischen Schule in drei gemeinsamen Videokonferenzen einen thematischen Fahrplan, der beide Lebensrealitäten aufgreift.\n\nDiese Zusammenarbeit folgt dem pädagogischen Konzept des *Globalen Lernens*, das auf der Annahme basiert, dass nachhaltige Bildungsprozesse nur durch symmetrische Austauschbeziehungen gelingen. Weil globale Herausforderungen wie Wasserverschmutzung und Klimafolgen lokal unterschiedliche Ausprägungen haben, ist es notwendig, dass beide Seiten ihre Perspektiven einbringen und gemeinsam Lösungsansätze entwickeln. Daher wurde die Partnerschaft von Beginn an als dialogischer Prozess gestaltet, in dem die ghanaische Schule nicht als Empfängerin von Wissen, sondern als Akteurin agiert. Die verbindliche Verankerung dieser Prinzipien in der Partnerschaftsvereinbarung – etwa durch Entscheidungsstrukturen und transparente Budgetkommunikation – sichert die Umsetzung dieses Konzepts.\n\nDie Anbahnungsreise dient der persönlichen Zusammenführung der Steuergruppen beider Schulen, um die Machbarkeit von Schülerbegegnungen zu klären – insbesondere zu Unterbringung, Sicherheit und Finanzierung – sowie eine Partnerschaftsvereinbarung zu unterzeichnen. Der Entwurf dieser Vereinbarung wurde bereits von beiden Schulkonferenzen beraten, sodass die Reise direkt in die Unterzeichnung münden soll. Parallel ist eine gemeinsame Online-Fortbildung zu rassismuskritischer Bildungsarbeit vorgesehen, geleitet von einer ghanaisch-deutschen Trainerin, um die interkulturelle Zusammenarbeit von Beginn an auf eine reflektierte Grundlage zu stellen. Die Kommunikationsregeln sind verbindlich: Entscheidungen werden bilateral getroffen, die Budgettransparenz gilt bilateral, und die Reise-Dokumentation entsteht als gemeinsames Produkt. Das Curriculum des Fachbereichs Gesellschaft hat diese Partnerschaft bereits im Bereich Globales Lernen verankert. Nach der Reise ist die jährliche Durchführung von SDG-Projekten geplant, und direkt im Anschluss soll der Antrag für die erste Schülerbegegnung gestellt werden.\n\n## Projektthema und SDG-Bezug\n\nDas Projektthema der Anbahnungsreise nach Ghana orientiert sich an den UN-Nachhaltigkeitszielen SDG 6 (Sauberes Wasser und Sanitärversorgung) und SDG 13 (Maßnahmen zum Klimaschutz). Die gemeinsame Fragestellung lautet: *Wie wirken sich Wasserverschmutzung durch informellen Goldabbau und Klimafolgen auf lokale Gemeinschaften in Kumasi und Hamburg-Wilhelmsburg aus, und welche Lösungsansätze entwickeln beide Seiten gemeinsam?* Die Themenfindung erfolgte nicht einseitig, sondern basiert auf einer dreistufigen Abstimmung: Die ghanaische Partnerschule in Kumasi schlug zunächst Wassergerechtigkeit vor – ein Thema, das ihre Region aufgrund von Umweltzerstörung durch informellen Goldabbau besonders betrifft. Die Stadtteilschule Hamburg-Wilhelmsburg erweiterte den Fokus um die Klimadimension, da Hamburg-Wilhelmsburg als Stadtteil mit hohem Migrationsanteil und sozialer Benachteiligung ebenfalls von Klimafolgen wie Hitzeinseln und Überschwemmungen betroffen ist. Beide Seiten einigten sich in drei gemeinsamen Videokonferenzen auf einen Fahrplan, der die Lebenswirklichkeiten beider Standorte systematisch verknüpft.\n\nDie Perspektiven beider Länder werden durch eine Steuergruppe abgebildet, die aus je zwei Lehrkräften und vier Schüler:innen der Globales-Lernen-AG besteht. Vor der Reise durchlaufen beide Gruppen eine gemeinsame Online-Fortbildung zu rassismuskritischer Bildungsarbeit, geleitet von einer ghanaisch-deutschen Trainerin. Entscheidungen werden bilateral getroffen, Budgetfragen transparent kommuniziert und die Reise-Dokumentation als gemeinsames Produkt erstellt. Die Partnerschaftsvereinbarung, deren Entwurf bereits von beiden Schulkonferenzen beraten wurde, sieht jährliche SDG-Projekte vor und wird direkt im Anschluss an die Reise unterzeichnet.\n\nDie Wahl der SDGs folgt dem didaktischen Prinzip der *Problemorientierung*, das Lernprozesse an realen gesellschaftlichen Herausforderungen ausrichtet. Weil SDG 6 und 13 lokale Auswirkungen haben, die in Hamburg-Wilhelmsburg und Kumasi unterschiedlich erfahrbar sind, ermöglicht die gemeinsame Auseinandersetzung mit diesen Zielen einen Perspektivwechsel, der Vorurteile abbaut und Empathie fördert. Daher wurde die Fragestellung bewusst so formuliert, dass sie beide Lebensrealitäten systematisch verknüpft und Raum für gemeinsame Handlungsansätze lässt.\n\n## Programmablauf\n\nDie Anbahnungsreise nach Ghana ist als strukturierter Prozess mit klaren Lernanlässen, Begegnungs- und Reflexionsphasen angelegt, der die Grundlage für eine Schulpartnerschaft legt. [TODO: Konkrete Reisedaten mit dem ghanaischen Kulturverein abstimmen]\n\nDie Delegation besteht aus zwei Lehrkräften und vier Schüler:innen der Globalen-Lernen-AG, die bereits in drei vorbereitenden Videokonferenzen mit der potenziellen Partnerschule in Kumasi einen Themenfahrplan zu Wassergerechtigkeit und Klimagerechtigkeit erarbeitet haben. Dieser Fahrplan orientiert sich an den lokalen Herausforderungen der Region, insbesondere der Verschmutzung durch informellen Goldabbau, und wurde gemeinsam mit der ghanaischen Seite entwickelt, um eine Zusammenarbeit zu gewährleisten.\n\nDie Reise folgt dem pädagogischen Konzept des *erfahrungsbasierten Lernens*, das auf der Annahme beruht, dass nachhaltige Bildungsprozesse durch direkte Begegnung und praktische Auseinandersetzung mit globalen Themen entstehen. Weil die Teilnehmenden vor Ort die Lebensrealitäten der Partnerschule kennenlernen und gemeinsam mit ihr Lösungsansätze entwickeln, wird der abstrakte SDG-Bezug konkret erfahrbar. Daher sind die geplanten Phasen so gestaltet, dass sie sowohl inhaltliche Vertiefung als auch organisatorische Klärung ermöglichen.\n\n[TODO: Reiseroute mit dem ghanaischen Kulturverein abstimmen]\n\nDie Reise mündet in die Unterzeichnung einer Partnerschaftsvereinbarung, deren Entwurf bereits von beiden Schulkonferenzen beraten wurde. Diese Vereinbarung sieht jährliche SDG-Projekte vor und legt den Grundstein für einen direkt anschließenden Antrag auf eine Schülerbegegnung. Die Nachhaltigkeit des Vorhabens wird durch die verbindliche Verankerung im Fachbereich Gesellschaft (Globales Lernen) sowie durch die vereinbarten Kommunikationsregeln – Entscheidungen, Budgettransparenz und gemeinsame Dokumentation – strukturell abgesichert.\n\n## Teilnehmendengruppe\n\nAn der Anbahnungsreise nach Ghana nehmen vier Schülerinnen und Schüler der Jahrgänge 6 bis 12 aus der Globales-Lernen-AG sowie zwei Lehrkräfte teil. Die Auswahl der Schülerinnen und Schüler erfolgt durch die Globales-Lernen-AG selbst; dabei wird explizit darauf geachtet, dass Kinder mit erschwertem Bildungszugang besonders berücksichtigt werden. Die Begleitung durch zwei Lehrkräfte sichert die pädagogische Betreuung sowie die curriculare Einbindung der Reise in den Fachbereich Gesellschaft und das Profil Globales Lernen, weil partizipative Lernformate eine stabile Rahmenstruktur benötigen, um nachhaltige Bildungsprozesse zu ermöglichen.\n\nDie Zusammensetzung der Gruppe folgt dem pädagogischen Konzept der *inklusiven Teilhabe*, das auf der Annahme basiert, dass globale Lernprozesse nur gelingen, wenn alle Beteiligten aktiv einbezogen werden. Weil die Globales-Lernen-AG bereits seit drei Jahren besteht und regelmäßig etwa 15 Schülerinnen und Schüler umfasst, kann eine repräsentative und inklusive Auswahl getroffen werden, sodass unterschiedliche Perspektiven und Lebenserfahrungen in die Reise eingebracht werden. Beide Kollegien durchlaufen vor der Reise eine gemeinsame Online-Fortbildung zu rassismuskritischer Bildungsarbeit, die von einer ghanaisch-deutschen Trainerin geleitet wird; dies stellt eine zentrale Voraussetzung für die Zusammenarbeit mit der künftigen Partnerschule in Kumasi dar, indem Vorurteile abgebaut und eine dialogorientierte Haltung gefördert wird.\n\nDie Reise dient der persönlichen Zusammenkunft der Steuergruppen beider Schulen, der Klärung organisatorischer Rahmenbedingungen für mögliche Schülerbegegnungen sowie der Unterzeichnung einer Partnerschaftsvereinbarung, deren Entwurf bereits in beiden Schulkonferenzen beraten wurde, weil vertrauensbildende Maßnahmen im Vorfeld die Grundlage für langfristige Kooperationen bilden.\n\n## Vor- und Nachbereitung\n\nDie Vorbereitung der Gruppe folgt einem partizipativen und rassismuskritischen Ansatz, der die Perspektiven aller Beteiligten gleichwertig einbezieht. Grundlage ist eine gemeinsame Online-Fortbildung für die beiden Lehrkräfte und die vier Schülerinnen und Schüler der Globales-Lernen-AG, geleitet von einer ghanaisch-deutschen Trainerin. Der Fokus liegt auf interkultureller Sensibilisierung, insbesondere zu Fragen von Macht und Privilegien, sowie auf der Reflexion eigener Vorannahmen über Ghana.\n\nDiese Vorbereitung folgt dem didaktischen Prinzip der *Vorbereitung auf den Perspektivwechsel*, das auf der Annahme beruht, dass globale Lernprozesse nur gelingen, wenn Vorurteile und Machtungleichgewichte aktiv reflektiert werden. Weil rassismuskritische Bildung eine zentrale Voraussetzung für Partnerschaften ist, wurde die Fortbildung bewusst vor die Reise gelegt, um die Teilnehmenden für die Begegnung mit der ghanaischen Partnerschule zu sensibilisieren.\n\nZur Nachbereitung ist ein mehrstufiges Format geplant, das die Schulgemeinschaft einbezieht und die Ergebnisse der Reise verstetigt. Geplant sind eine öffentliche Präsentation im Rahmen eines Schulforums, eine digitale Dokumentation auf der Schulwebsite sowie die Weitergabe der Erfahrungen an die gesamte Schulgemeinschaft durch eine Auswertungseinheit im Unterricht. Die Dokumentation wird als gemeinsames Produkt gestaltet und umfasst sowohl die inhaltlichen Ergebnisse – insbesondere zum SDG 6 (Wassergerechtigkeit) und SDG 13 (Klimagerechtigkeit) – als auch die Reflexion des Prozesses selbst.\n\nDie Nachbereitung folgt dem Konzept der *Verstetigung durch Sichtbarmachung*, das auf der Annahme beruht, dass Lernprozesse nur dann nachhaltig wirken, wenn sie in den Schulalltag zurückgespiegelt werden. Weil die Ergebnisse der Reise in schulinternen Formaten aufbereitet und an die gesamte Schulgemeinschaft weitergegeben werden, wird die Partnerschaft für alle erfahrbar und kann langfristig im Schulprofil verankert werden. Die Partnerschaftsvereinbarung, die während der Reise unterzeichnet werden soll, sieht vor, dass die Ergebnisse in jährliche SDG-Projekte einfließen und direkt im Anschluss ein Antrag auf eine Schülertreffen gestellt wird.\n\nEine Begleitung durch eine Nichtregierungsorganisation (NRO) ist aktuell nicht vorgesehen. Stattdessen wird die Reise durch die bereits bestehende Kooperation mit dem ghanaischen Kulturverein Hamburg vorbereitet, der als lokaler Partner fungiert und die Kontakte zur Schule in Kumasi vermittelt. Die Steuergruppen beider Schulen haben bereits in den Vorbereitungen eng zusammengearbeitet, sodass eine kontinuierliche Begleitung durch diese Strukturen sichergestellt ist.\n\n## Erwartete Wirkung\n\nDurch die Anbahnungsreise nach Ghana sollen bei den teilnehmenden Lehrkräften und Schüler:innen der Stadtteilschule Hamburg-Wilhelmsburg nachhaltige Kompetenzerwerbe im Bereich interkultureller und rassismuskritischer Bildung angestoßen werden. Die gemeinsame Online-Fortbildung mit einer ghanaisch-deutschen Trainerin vor der Reise zielt darauf ab, Sensibilität für postkoloniale Machtstrukturen und deren Auswirkungen auf Bildungsinhalte zu schaffen – ein zentraler Baustein, um die avisierte Partnerschaft nicht als einseitige Wissensvermittlung, sondern als Austausch zu gestalten.\n\nDie Wirkung des Projekts strahlt in die gesamte Schulgemeinschaft aus, indem die Steuergruppe aus Lehrkräften und Schüler:innen der Globales-Lernen-AG die Reise dokumentiert und die Ergebnisse in schulinternen Formaten – etwa einer Ausstellung oder einem Schulforum – aufbereitet. Diese Rückkopplung fördert die Sichtbarkeit globaler Zusammenhänge im Schulalltag und stärkt die Identifikation mit dem Partnerschaftsvorhaben. Die Kommunikationsregeln (Entscheidungen, Budgettransparenz, gemeinsames Reiseprotokoll) etablieren zudem partizipative Strukturen, die über die Reise hinaus wirken und als Vorbild für weitere Schulentwicklungsprozesse dienen.\n\nFür die langfristige Partnerschaftsentwicklung ist die Unterzeichnung einer Partnerschaftsvereinbarung durch beide Schulkonferenzen vorgesehen, die bereits im Vorfeld gemeinsam beraten wurde. Diese Vereinbarung sieht jährliche SDG-Projekte vor und schafft die Grundlage für eine direkte Anschlussförderung – den Antrag auf eine Schülbegegnung, der unmittelbar nach der Reise gestellt werden soll.\n\nAls messbarer Indikator für die Zielerreichung dient die verbindliche Verankerung der Inhalte im Fachcurriculum „Globales Lernen“ durch den Fachbereich Gesellschaft nach der Reise. Die Wirkung wird zudem durch die öffentliche Präsentation der Reiseergebnisse und die digitale Dokumentation auf der Schulwebsite überprüfbar gemacht.\n\n## Kosten- und Finanzierungsplan\n\nDie Kosten für die Anbahnungsreise nach Ghana setzen sich wie folgt zusammen: Flugkosten für zwei Lehrkräfte und vier Schüler*innen (insgesamt sechs Personen) werden mit voraussichtlich 4.500 € veranschlagt (Schätzung basierend auf aktuellen Konditionen für Flüge nach Kumasi, vor Einreichung durch konkrete Buchungsangebote zu belegen). Visa-Gebühren für die Gruppe von sechs Personen (2 Lehrkräfte + 4 Schüler) werden mit 300 € kalkuliert (Schätzung, vor Einreichung durch aktuelle Gebührenliste der ghanaischen Botschaft zu bestätigen). Transferkosten vom Flughafen Accra zur Partnerschule in Kumasi für die Gruppe werden mit 400 € veranschlagt (Schätzung, vor Einreichung durch lokale Kostenvoranschläge zu untermauern). Unterkunft und Verpflegung für die Gruppe von sechs Personen über einen Zeitraum von voraussichtlich zehn Tagen werden mit 2.100 € kalkuliert (Schätzung, vor Ort durch Angebote zu bestätigen). Für Projektmaterialien wie Workshops zu SDG 6 und 13 werden 800 € veranschlagt (Schätzung, vor Einreichung durch konkrete Angebote zu belegen). Honorarkosten für die ghanaisch-deutsche Trainerin der Online-Fortbildung zu rassismuskritischer Bildungsarbeit (bereits im Vorfeld der Reise durchgeführt) sind mit 1.500 € als Eigenleistung der Schule verbucht. Zudem sind Honorarkosten für eine lokale Begleitung in Ghana in Höhe von 600 € vorgesehen (Schätzung, vor Einreichung durch konkrete Angebote zu bestätigen). Die Gesamtkosten belaufen sich damit auf voraussichtlich 10.200 €.\n\n[TODO: Konkrete Reisezeiträume und Unterkunftsangebote vor Einreichung klären]\n[TODO: Konkrete Flugangebote einholen und Kosten aktualisieren]",
       "finanzplan": {
         "posten": [
           {
-            "id": "0995c215-ae3f-456b-81e0-6cacf4833fd9",
+            "id": "e2528e83-fdda-4c7b-81f8-04b5a86ef74a",
             "kategorie": "reisekosten",
-            "bezeichnung": "Flugkosten Gruppe Hamburg-Ghana (2 Lehrkräfte + 4 Schüler)",
-            "betragEur": 6000,
-            "begruendung": "Schaetzung: Flugkosten für 6 Personen nach Ghana (Hin- und Rückflug), durchschnittlicher Preis pro Person ca. 1.000 EUR (Flugpreise variieren stark, konkrete Angebote noch einzuholen)",
+            "bezeichnung": "Flugkosten Ghana (Hamburg-Accra)",
+            "betragEur": 4500,
+            "begruendung": "Schaetzung: Flugkosten für 2 Lehrkräfte und 4 Schüler (Gruppe von 6 Personen) nach Ghana, Hin- und Rückflug, Standardtarife (Quelle: übliche Flugpreise Hamburg-Accra laut Vergleichsportalen, Stand 2023)",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "89759633-8f9f-41da-8a1f-25ec2d16a207",
+            "id": "6bb471f5-c360-48e3-9922-028ab3676f02",
             "kategorie": "reisekosten",
-            "bezeichnung": "Visa-Gebühren und Reiseversicherungen",
-            "betragEur": 600,
-            "begruendung": "Schaetzung: Visa-Gebühren für 6 Personen (ca. 50 EUR pro Person) und Reisekrankenversicherungen (ca. 50 EUR pro Person)",
+            "bezeichnung": "Visa-Gebühren für Ghana",
+            "betragEur": 300,
+            "begruendung": "Schaetzung: Visa-Gebühren für 6 Personen (2 Lehrkräfte + 4 Schüler), Ghana-Visum für Touristen/Studienzwecke (Quelle: aktuelle Gebührenliste der ghanaischen Botschaft)",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "a1b52585-5a62-4256-ac31-362f1aee0198",
+            "id": "bbedf40c-5a22-4fb7-9308-3c11379486ae",
             "kategorie": "reisekosten",
-            "bezeichnung": "Transfer und lokale Mobilität in Ghana",
+            "bezeichnung": "Transfer Flughafen-Partnerschule Kumasi",
+            "betragEur": 400,
+            "begruendung": "Schaetzung: Transferkosten für die Gruppe (6 Personen) vom Flughafen Accra zur Partnerschule in Kumasi (Quelle: übliche Transferpreise in Ghana, ca. 60 EUR pro Strecke)",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "cac6b8fb-ccc4-41a9-a47e-7fa0d0e48dd4",
+            "kategorie": "sachkosten",
+            "bezeichnung": "Unterkunft während der Reise",
             "betragEur": 1200,
-            "begruendung": "Schaetzung: Transfer vom Flughafen zur Partnerschule und lokale Mobilität für die Gruppe (z. B. Taxi, Mietwagen, öffentliche Verkehrsmittel)",
+            "begruendung": "Schaetzung: Unterkunft für 6 Personen über 10 Tage (2 Lehrkräfte + 4 Schüler), einfache Gästehäuser oder Schulunterkünfte in Kumasi (Quelle: übliche Preise für Gruppenunterkünfte in Ghana, ca. 20 EUR/Nacht pro Person)",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "c84f3a68-76df-4e84-9640-3cc5647763e3",
+            "id": "a904c09b-78df-43ea-9f65-c00fbd0e3487",
             "kategorie": "sachkosten",
-            "bezeichnung": "Unterkunft und Verpflegung während der Reise",
-            "betragEur": 2400,
-            "begruendung": "Schaetzung: Unterkunft für 6 Personen über 10 Tage (ca. 40 EUR pro Person/Tag) und Verpflegung (ca. 20 EUR pro Person/Tag)",
+            "bezeichnung": "Verpflegung der Gruppe",
+            "betragEur": 900,
+            "begruendung": "Schaetzung: Verpflegung für 6 Personen über 10 Tage (2 Lehrkräfte + 4 Schüler), lokale Verpflegung in Ghana (Quelle: übliche Tageskosten pro Person, ca. 15 EUR/Tag)",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "e71cea61-2623-439a-94db-682839bb85f6",
+            "id": "a6e7fc41-a5f3-4db8-ad33-049a6b67661d",
             "kategorie": "sachkosten",
-            "bezeichnung": "Projektmaterial und Eintrittsgelder",
+            "bezeichnung": "Projektmaterial (Workshops SDG 6/13)",
             "betragEur": 800,
-            "begruendung": "Schaetzung: Material für Workshops (z. B. SDG-Materialien, Dokumentationsmaterial) und Eintrittsgelder zu bildungsrelevanten Orten (z. B. Museen, Umweltprojekte)",
+            "begruendung": "Schaetzung: Material für gemeinsame Workshops zu Wassergerechtigkeit und Klimagerechtigkeit (Quelle: übliche Kosten für Workshop-Materialien wie Plakate, Stifte, Messgeräte, ca. 130 EUR pro Person für 6 Personen)",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "17ed877f-88eb-4abe-9a15-4c96686c0896",
+            "id": "434051dc-a8b5-4c5e-b693-28a4fa578759",
             "kategorie": "honorare",
-            "bezeichnung": "Honorar für rassismuskritische Online-Fortbildung",
-            "betragEur": 1000,
-            "begruendung": "Schaetzung: Honorar für die ghanaisch-deutsche Trainerin für die gemeinsame Online-Fortbildung vor der Reise (Stundensatz noch einzuholen, Pauschale für 2 Tage à 500 EUR)",
+            "bezeichnung": "Honorar für rassismuskritische Fortbildung",
+            "betragEur": 1500,
+            "begruendung": "Schaetzung: Honorar für die ghanaisch-deutsche Trainerin für die gemeinsame Online-Fortbildung vor der Reise (Quelle: übliche Honorarsätze für externe Trainerinnen, ca. 750 EUR pro Tag für 2 Tage)",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "b11d4951-5adc-48dd-ade9-099a0ab7d59c",
-            "kategorie": "sonstiges",
-            "bezeichnung": "Eigenanteil (10 % der Gesamtkosten)",
-            "betragEur": 1200,
-            "begruendung": "Pflicht-Eigenanteil der Schule/des Trägers (10 % der zuwendungsfähigen Gesamtkosten)",
-            "eigenanteil": true,
+            "id": "1d45157e-f930-4638-9e12-3cd7b9e43692",
+            "kategorie": "honorare",
+            "bezeichnung": "Honorar für lokale Begleitung in Ghana",
+            "betragEur": 600,
+            "begruendung": "Schaetzung: Honorar für lokale Begleitung vor Ort in Kumasi (z. B. für Organisation, Übersetzung, Sicherheit) (Quelle: übliche Tageshonorare für lokale Begleitpersonen in Ghana, ca. 60 EUR/Tag für 10 Tage)",
+            "eigenanteil": false,
             "istVorschlag": true
           }
         ],
-        "generiertAm": "2026-07-22T12:50:39.705Z",
+        "generiertAm": "2026-07-23T10:31:39.440Z",
         "hinweise": [
           "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
-          "Alle Beträge sind grobe Schaetzungen ohne konkrete Angebote oder Mengenangaben der Schule — vor Einreichung durch Angebote belegen.",
-          "Reisezeitraum und genaue Zielschule noch nicht bekannt — Kosten können je nach Saison und Ort variieren.",
-          "Honorar für Fortbildung und Flugkosten sind konservative Schaetzungen; konkrete Preise müssen noch eingeholt werden.",
-          "Eigenanteil kann durch Drittmittel (z. B. Förderverein, Sponsoring) oder Schülerbeiträge gedeckt werden.",
-          "Keine NRO-Begleitung geplant — Kosten für externe Begleitung wurden nicht berücksichtigt.",
-          "SDG-bezogene Projektmaterialien und Eintrittsgelder sind als Sachkosten zusammengefasst (keine Aufschlüsselung möglich).",
-          "Der Betrag für „Flugkosten Gruppe Hamburg-Ghana (2 Lehrkräfte + 4 Schüler)\" (6.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Visa-Gebühren und Reiseversicherungen\" (600 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Transfer und lokale Mobilität in Ghana\" (1.200 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Unterkunft und Verpflegung während der Reise\" (2.400 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Projektmaterial und Eintrittsgelder\" (800 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Honorar für rassismuskritische Online-Fortbildung\" (1.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
+          "Alle Beträge sind grobe Schaetzungen ohne konkrete Angebote oder verbindliche Preise der Schule.",
+          "Die Reisezeitraum ist noch offen — die Beträge basieren auf einer 10-tägigen Reise (Annahme: 2 Tage An- und Abreise, 8 Tage vor Ort).",
+          "Die Zielschule in Kumasi ist noch nicht formal bestätigt — die Kosten basieren auf Annahmen zu Unterkunft und Transfer in Kumasi.",
+          "Honorar- und Flugkosten sind pauschal geschaetzt, da keine konkreten Saetze oder Mengen vom User genannt wurden.",
+          "Eigenanteil: 10 % der Gesamtkosten (1.000 EUR) müssen durch die Schule/Träger oder Drittmittel gedeckt werden.",
+          "Die Partnerschaftsvereinbarung und gemeinsame Dokumentation der Reise sind Teil des Projekts, aber keine förderfähigen Kosten (keine separaten Posten).",
+          "Keine NRO-Begleitung geplant — daher kein Posten für externe Begleitung.",
+          "Der Betrag für „Flugkosten Ghana (Hamburg-Accra)\" (4.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Visa-Gebühren für Ghana\" (300 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Transfer Flughafen-Partnerschule Kumasi\" (400 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Unterkunft während der Reise\" (1.200 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Verpflegung der Gruppe\" (900 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Projektmaterial (Workshops SDG 6/13)\" (800 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Honorar für rassismuskritische Fortbildung\" (1.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Honorar für lokale Begleitung in Ghana\" (600 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Die Förderung (10.200 EUR) entspricht 100 % der Gesamtkosten — dieses Programm fördert höchstens 90 %. Es fehlt ein Eigenanteil von mind. 1.133 EUR (Gesamtkosten dann 11.333 EUR). Ergänzen Sie einen Eigenanteil-Posten oder senken Sie die beantragte Förderung, sonst verletzt der Antrag die Förderquote."
         ]
       }
     },
@@ -932,134 +884,141 @@
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6264,
-          "candidatesTokens": 342
+          "candidatesTokens": 371
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6251,
-          "candidatesTokens": 396
+          "candidatesTokens": 450
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6337,
-          "candidatesTokens": 472
+          "candidatesTokens": 477
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6244,
-          "candidatesTokens": 561
+          "candidatesTokens": 555
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6254,
-          "candidatesTokens": 244
+          "candidatesTokens": 278
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6285,
-          "candidatesTokens": 488
+          "candidatesTokens": 518
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6239,
-          "candidatesTokens": 542
+          "candidatesTokens": 516
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6245,
-          "candidatesTokens": 376
+          "candidatesTokens": 481
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 9648,
-          "candidatesTokens": 2094
+          "promptTokens": 9873,
+          "candidatesTokens": 2075
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 11647,
-          "candidatesTokens": 3217
+          "promptTokens": 11272,
+          "candidatesTokens": 3963
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 8588,
-          "candidatesTokens": 654
+          "promptTokens": 753,
+          "candidatesTokens": 450
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5007,
-          "candidatesTokens": 1848
+          "promptTokens": 8817,
+          "candidatesTokens": 829
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5002,
-          "candidatesTokens": 3040
+          "promptTokens": 5836,
+          "candidatesTokens": 2058
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 5228,
+          "candidatesTokens": 3976
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 3779,
-          "candidatesTokens": 919
+          "candidatesTokens": 1082
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4385,
-          "candidatesTokens": 196
+          "promptTokens": 5519,
+          "candidatesTokens": 445
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4497,
-          "candidatesTokens": 2993
+          "promptTokens": 5815,
+          "candidatesTokens": 3954
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4338,
-          "candidatesTokens": 295
+          "promptTokens": 5497,
+          "candidatesTokens": 168
         }
       }
     ]
   },
   "meta": {
-    "iso": "2026-07-22T12-50-57",
+    "iso": "2026-07-23T10-32-01",
     "runIndex": 1,
-    "pipelineCommitSha": "1f0d8782",
+    "pipelineCommitSha": "99a74cd7",
     "featureFlags": {
       "useVorbildFormulierungen": "true",
       "complianceStageEnabled": "false",
       "sharpPrompts": "true",
       "geberRoutingV2": "true"
     },
-    "latencyMs": 113212,
+    "latencyMs": 135348,
     "schemaVersion": 1
   }
 }

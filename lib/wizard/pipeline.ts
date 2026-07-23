@@ -50,7 +50,8 @@ import { ensureSectionsPresent } from "./struktur-guard";
 import { buildFallbackTitle } from "./title-fallback";
 import { buildFallbackOutline } from "./outline-fallback";
 import { PIPELINE_CONFIG } from "./config";
-import { substanzFindings } from "./substanz";
+import { substanzFindings, pruefeSubstanz, splitFinalText } from "./substanz";
+import { substanzNachbesserung } from "./substanz-nachbesserung";
 
 const SCHWERE_VALID: readonly CritiqueSchwere[] = ["hoch", "mittel", "niedrig"];
 const KATEGORIE_VALID: readonly CritiqueKategorie[] = [
@@ -105,11 +106,21 @@ function renderCritique(c: Critique): string {
     return lines.join("\n");
   }
   c.findings.forEach((f, i) => {
+    // Revisions-Konsistenz (pv-011): substanz-Findings sind deterministisch
+    // belegt und werden nach der Revision nachgemessen — das Revisionsmodell
+    // darf sie nicht zugunsten anderer Findings zurueckstellen.
+    const pflicht = f.kategorie === "substanz" ? "PFLICHT · " : "";
     lines.push(
-      `${i + 1}. [${f.schwere.toUpperCase()} · ${f.kategorie} · ${f.abschnitt}] "${f.zitat}"`
+      `${i + 1}. [${pflicht}${f.schwere.toUpperCase()} · ${f.kategorie} · ${f.abschnitt}] "${f.zitat}"`
     );
     lines.push(`   → ${f.vorschlag}`);
   });
+  if (c.findings.some((f) => f.kategorie === "substanz")) {
+    lines.push("");
+    lines.push(
+      "HINWEIS: Die mit PFLICHT markierten substanz-Findings werden nach deiner Ueberarbeitung maschinell nachgemessen. Setze sie ZUERST um — sie duerfen nicht zugunsten anderer Findings entfallen."
+    );
+  }
   return lines.join("\n");
 }
 
@@ -450,6 +461,43 @@ export async function runPipeline(
     }
   }
 
+  // =========================================================================
+  // Substanz-Nachbesserung (Revisions-Konsistenz-Hebel, 23.07.2026)
+  // pv-011-Befund: Bei vollem Findings-Stapel triagiert das Revisionsmodell und
+  // laesst die substanz-Findings "offen". Hier wird die finale Fassung
+  // deterministisch nachgemessen; nur durchgefallene Abschnitte gehen in EINEN
+  // gezielten Zweitpass ohne konkurrierende Findings. Uebernahme nur bei
+  // messbarer Verbesserung (Never-Worse). Platziert VOR Recheck (die
+  // Resolutions sehen die nachgebesserte Fassung) und VOR dem
+  // Halluzinations-Diff-Gate (nachgelieferter Text durchlaeuft dieselben
+  // Ehrlichkeitspruefungen wie regulaerer).
+  // =========================================================================
+  let substanzNachbesserungArtefakt: GenerationArtefacts["substanzNachbesserung"];
+  try {
+    const nb = await substanzNachbesserung(finalRes.value ?? "", richtlinie, {
+      generate: async (system, user) => {
+        await emit({ stage: "revision", message: "Begründung nachschärfen" });
+        const r = await generateJson<unknown>(MODEL_PRO, system, user, { maxTokens: 6000 });
+        usages.push({ model: MODEL_PRO, usage: r.usage });
+        return r;
+      },
+    });
+    if (nb) {
+      finalRes = { value: nb.finalText, usage: finalRes.usage };
+      substanzNachbesserungArtefakt = {
+        kandidaten: nb.kandidaten,
+        verbessert: nb.verbessert,
+        verbleibend: nb.verbleibend,
+      };
+      console.log(
+        `[pipeline] Substanz-Nachbesserung: ${nb.kandidaten.length} Kandidat(en) → ${nb.verbessert.length} verbessert, ${nb.verbleibend.length} verbleibend`
+      );
+    }
+  } catch (nbErr) {
+    // Ein bezahlter Antrag muss durchlaufen — der Pass ist Verbesserung, kein Gate.
+    console.error("[pipeline] Substanz-Nachbesserung fehlgeschlagen:", nbErr);
+  }
+
   let resolutions: FindingResolution[] = [];
   let hasOpenHigh = false;
   if (critique.findings.length > 0) {
@@ -727,6 +775,26 @@ export async function runPipeline(
 
   await emit({ stage: "done", message: "Fertig" });
 
+  // Substanz-Resolutions deterministisch nachziehen: Fuer substanz-Findings
+  // entscheidet die Messung der ALLERLETZTEN Fassung (nach Nachbesserung,
+  // Gates, Konsistenz-Revision), nicht die Einschaetzung des Recheck-LLM —
+  // sonst zeigt die UI "offen" fuer nachweislich Repariertes (und umgekehrt).
+  {
+    const finaleAbschnitte = new Map(
+      splitFinalText(finalRes.value ?? "").map((s) => [s.name.trim().toLowerCase(), s.text])
+    );
+    critique.findings.forEach((f, i) => {
+      if (f.kategorie !== "substanz") return;
+      const text = finaleAbschnitte.get(f.abschnitt.trim().toLowerCase());
+      if (text === undefined) return;
+      const status = pruefeSubstanz(f.abschnitt, text).hatSubstanz ? "geschlossen" : "offen";
+      const idx = resolutions.findIndex((r) => r.index === i + 1);
+      const kommentar = "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)";
+      if (idx >= 0) resolutions[idx] = { index: i + 1, status, kommentar };
+      else resolutions.push({ index: i + 1, status, kommentar });
+    });
+  }
+
   return {
     artefacts: {
       outline,
@@ -735,6 +803,7 @@ export async function runPipeline(
       critiqueFindings: critique.findings,
       critiqueResolutions: resolutions.length ? resolutions : undefined,
       hasOpenHighFindings: hasOpenHigh || undefined,
+      substanzNachbesserung: substanzNachbesserungArtefakt,
       hallucinationGate,
       factVerification,
       consistencyIssues: consistencyIssues.length ? consistencyIssues : undefined,

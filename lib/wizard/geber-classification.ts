@@ -46,6 +46,8 @@ export type GeberGruppe =
  * - ferry-porsche-challenge-2025:  wirtschaftspreis → wirtschaftspreis
  * - ferry-porsche-challenge:       wirtschaftspreis (Legacy-Version) → wirtschaftspreis
  * - kultur-macht-stark:            verband → verband-uni
+ * - hessen-esf-praxis:             Land Hessen + ESF-Kofinanzierung → oeffentlich
+ * - berliner-projektfonds-kulturelle-bildung: Landesfonds Berlin (Kulturprojekte Berlin GmbH) → oeffentlich
  */
 const MAPPING: Readonly<Record<string, GeberGruppe>> = Object.freeze({
   "bmbf-digitalpakt-2": "oeffentlich",
@@ -60,6 +62,8 @@ const MAPPING: Readonly<Record<string, GeberGruppe>> = Object.freeze({
   "ferry-porsche-challenge-2025": "wirtschaftspreis",
   "ferry-porsche-challenge": "wirtschaftspreis",
   "kultur-macht-stark": "verband-uni",
+  "hessen-esf-praxis": "oeffentlich",
+  "berliner-projektfonds-kulturelle-bildung": "oeffentlich",
 });
 
 /**

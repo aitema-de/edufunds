@@ -44,11 +44,12 @@
       "bemerkung": "Programmphase 2023-2027: 250 Mio. € Gesamtvolumen (50 Mio. €/Jahr). Fördert außerschulische kulturelle Bildung: Musik, Theater, Literatur, digitale Spielekultur, Alltagskultur. Zielgruppe: benachteiligte Kinder/Jugendliche 3-18 J.",
       "fristZustand": {
         "art": "unbekannt",
-        "quelle": "Primaerquelle buendnisse-fuer-bildung.de, geprueft 22.07.2026: Die Uebersichtsseite nennt keine Fristen, sondern verweist auf einen Terminkalender und das Antragsportal Kumasta. Fristen variieren je Programmpartner (so auch der Katalog-Fristtext: 'variabel je nach Programmpartner'). Eine pauschale Frist fuer 'Kultur macht stark' existiert nicht - der Zustand ist je Partner zu erheben."
+        "quelle": "Primaerquelle buendnisse-fuer-bildung.de, geprueft 22.07.2026: Die Uebersichtsseite nennt keine Fristen, sondern verweist auf einen Terminkalender und das Antragsportal Kumasta. Fristen variieren je Programmpartner (so auch der Katalog-Fristtext: 'variabel je nach Programmpartner'). Eine pauschale Frist fuer 'Kultur macht stark' existiert nicht - der Zustand ist je Partner zu erheben. | Kumasta3-API geprueft 22.07.2026: alle 27 Programmpartner-Angebote stehen auf allowApplicationSubmission=true, obwohl einzelne Angebotstexte eigene kuenftige Fristen nennen (z.B. POP TO GO: regulaere Ausschreibung fuers Foerderjahr 2027) — das Flag belegt nur technische Einreichbarkeit, keine laufende Foerderrunde je Partner; Zustand bleibt unbekannt."
       },
       "umfangZustand": {
-        "art": "unbekannt",
-        "quelle": "Geprueft 22.07.2026: Antragstellung laeuft je Programmpartner ueber das Kumasta-Portal; die Uebersichtsseiten nennen keine Feldlimits. Wie beim fristZustand gilt: je Programmpartner zu erheben."
+        "art": "zeichen",
+        "wert": 8000,
+        "quelle": "Empirisch am zentralen Antragsportal Kumasta erhoben (kumasta3.buendnisse-fuer-bildung.de, 22.07.2026, OHNE Konto — die Limits stehen im oeffentlich ausgelieferten App-Bundle main.09761a46.js, Build 3.1.7): Beschreibung des Gesamtprojekts 8000 Zeichen, Ablaufbeschreibung je Einzelprojekt 8000, Buendnistreffen-/Workshop-Erlaeuterungen 8000, Methoden-/Zielgruppen-Frage 3000, Finanzplan-Erlaeuterung je Position 1300, Organisations-Kurzbeschreibung 850. wert=8000 bezeichnet die Beschreibung des Gesamtprojekts (zentrales Pflicht-Freitextfeld). Portal OFFEN: Self-Service-Registrierung (Strapi /api/auth/local/register; Schritte Personendaten -> Organisation -> Zugangsdaten), kein Traeger-Gate, KEINE Engagement-Global-Software (kein kommdaten_-Feldschema). Alte Portaladresse kumasta.buendnisse-fuer-bildung.de ist tot (Connect-Timeout)."
       }
     },
     "facts": {
@@ -88,7 +89,7 @@
       }
     },
     "richtlinie": {
-      "version": "2026-05-19",
+      "version": "2026-07-22",
       "quellen": [
         "https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/foerderrichtlinie-2023-2027/foerderrichtlinie-2023-2027_node.html",
         "https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/Kultur-macht-stark-2023-2027/Programmpartner-2023-2027/Programmpartner-2023-2027_node.html"
@@ -212,7 +213,9 @@
               "Welches Format (Workshop, Kurs, Ferienwoche, langfristige Begleitung)?",
               "Welche pädagogischen Ansätze werden verwendet?",
               "Wie verknüpft das Projekt Kultur + Bildung + Sozialarbeit?"
-            ]
+            ],
+            "maxZeichen": 8000,
+            "stilhinweis": " Umfangsbeleg (Kumasta-Portal, 22.07.2026): Feld 'Beschreibung des Gesamtprojekts' max. 8000 Zeichen; die separate Methoden-Frage ('Welche Methoden werden eingesetzt? Warum fuer die Zielgruppe geeignet? Finden inklusive, gender- und diversitaetssensible, partizipative, medienpaedagogische Ansaetze Beruecksichtigung?') max. 3000 Zeichen."
           },
           {
             "id": "außerschulisch",
@@ -233,7 +236,9 @@
               "Welche Einzelaktivitäten in welcher Reihenfolge?",
               "Wie viele Stunden Kinder-/Jugendkontakt pro Teilnehmende*r?",
               "Welche Meilensteine?"
-            ]
+            ],
+            "maxZeichen": 8000,
+            "stilhinweis": " Umfangsbeleg (Kumasta-Portal, 22.07.2026): Ablaufbeschreibung je Einzelprojekt ('schedule', konkrete Termine + Uhrzeiten; Portal-Hinweis: 'Nutzen Sie die zur Verfuegung stehenden Zeichen fuer eine ausfuehrliche Ablaufbeschreibung') max. 8000 Zeichen."
           },
           {
             "id": "Qualitätssicherung",
@@ -253,7 +258,8 @@
               "Welche Kostenposten (Honorare, Sachkosten, Aufwandsentschädigungen) mit Beträgen?",
               "Welche Eigenleistungen bringen die Bündnispartner ein (Räume, Arbeitszeit, Sachleistungen)?",
               "Ist die 7 %-Verwaltungspauschale kalkuliert?"
-            ]
+            ],
+            "stilhinweis": " Umfangsbeleg (Kumasta-Portal, 22.07.2026): Erlaeuterungsfeld je Finanzplan-Position max. 1300 Zeichen."
           }
         ],
         "anlagen": [
@@ -272,7 +278,9 @@
         "Antragsportal für förmlichen Antrag (nach Skizzen-Bewilligung): https://foerderportal.bund.de/easyonline/",
         "Programmpartner-Liste (20+ Verbände): https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/Kultur-macht-stark-2023-2027/Programmpartner-2023-2027/",
         "Abgrenzung zum Regel-Unterricht ist das häufigste Ablehnungsthema — Infoblatt 'Außerschulischkeit' des BMBF lesen, bevor das Konzept geschrieben wird.",
-        "Die Förderrichtlinie läuft 2023-2027. Nach 2027 ist eine Anschlussphase geplant aber nicht bestätigt."
+        "Die Förderrichtlinie läuft 2023-2027. Nach 2027 ist eine Anschlussphase geplant aber nicht bestätigt.",
+        "Kumasta-Portal (empirisch geprueft 22.07.2026): Aktuelles Antragsportal ist kumasta3.buendnisse-fuer-bildung.de (React-SPA + Strapi-API; die alte Adresse kumasta.buendnisse-fuer-bildung.de ist tot). Registrierung self-service in drei Schritten (Personendaten, Organisation, Zugangsdaten) — kein Traeger-Gate, damit OFFEN im Sinne der Portal-Taxonomie. Feldlimits stehen im oeffentlichen App-Bundle: Gesamtprojekt-Beschreibung 8000, Ablaufbeschreibung je Einzelprojekt 8000, Buendnistreffen-/Workshop-Erlaeuterungen 8000, Methoden-Frage 3000, Finanzplan-Erlaeuterung 1300, Organisations-Kurzbeschreibung 850 Zeichen.",
+        "Kumasta-API 22.07.2026: alle 27 Programmpartner-Angebote nehmen technisch Antraege an (allowApplicationSubmission=true) — dieses Flag NICHT als Beleg fuer offene Foerderrunden verwenden; die realen Fristen setzt jeder Programmpartner selbst (teils in den Angebotstexten dokumentiert, z.B. POP TO GO fuers Foerderjahr 2027)."
       ],
       "bestPractices": [
         {
@@ -343,11 +351,12 @@
       },
       "fristZustand": {
         "art": "unbekannt",
-        "quelle": "Primaerquelle buendnisse-fuer-bildung.de, geprueft 22.07.2026: Die Uebersichtsseite nennt keine Fristen, sondern verweist auf einen Terminkalender und das Antragsportal Kumasta. Fristen variieren je Programmpartner (so auch der Katalog-Fristtext: 'variabel je nach Programmpartner'). Eine pauschale Frist fuer 'Kultur macht stark' existiert nicht - der Zustand ist je Partner zu erheben."
+        "quelle": "Primaerquelle buendnisse-fuer-bildung.de, geprueft 22.07.2026: Die Uebersichtsseite nennt keine Fristen, sondern verweist auf einen Terminkalender und das Antragsportal Kumasta. Fristen variieren je Programmpartner (so auch der Katalog-Fristtext: 'variabel je nach Programmpartner'). Eine pauschale Frist fuer 'Kultur macht stark' existiert nicht - der Zustand ist je Partner zu erheben. | Kumasta3-API geprueft 22.07.2026: alle 27 Programmpartner-Angebote stehen auf allowApplicationSubmission=true, obwohl einzelne Angebotstexte eigene kuenftige Fristen nennen (z.B. POP TO GO: regulaere Ausschreibung fuers Foerderjahr 2027) — das Flag belegt nur technische Einreichbarkeit, keine laufende Foerderrunde je Partner; Zustand bleibt unbekannt."
       },
       "umfangZustand": {
-        "art": "unbekannt",
-        "quelle": "Geprueft 22.07.2026: Antragstellung laeuft je Programmpartner ueber das Kumasta-Portal; die Uebersichtsseiten nennen keine Feldlimits. Wie beim fristZustand gilt: je Programmpartner zu erheben."
+        "art": "zeichen",
+        "wert": 8000,
+        "quelle": "Empirisch am zentralen Antragsportal Kumasta erhoben (kumasta3.buendnisse-fuer-bildung.de, 22.07.2026, OHNE Konto — die Limits stehen im oeffentlich ausgelieferten App-Bundle main.09761a46.js, Build 3.1.7): Beschreibung des Gesamtprojekts 8000 Zeichen, Ablaufbeschreibung je Einzelprojekt 8000, Buendnistreffen-/Workshop-Erlaeuterungen 8000, Methoden-/Zielgruppen-Frage 3000, Finanzplan-Erlaeuterung je Position 1300, Organisations-Kurzbeschreibung 850. wert=8000 bezeichnet die Beschreibung des Gesamtprojekts (zentrales Pflicht-Freitextfeld). Portal OFFEN: Self-Service-Registrierung (Strapi /api/auth/local/register; Schritte Personendaten -> Organisation -> Zugangsdaten), kein Traeger-Gate, KEINE Engagement-Global-Software (kein kommdaten_-Feldschema). Alte Portaladresse kumasta.buendnisse-fuer-bildung.de ist tot (Connect-Timeout)."
       }
     },
     "messages": [
@@ -356,98 +365,98 @@
         "role": "ai",
         "kind": "question",
         "content": "Um welche Schule handelt es sich, und in welchem Bundesland sind Sie taetig?",
-        "at": "2026-07-22T12:08:33.181Z"
+        "at": "2026-07-23T09:43:22.440Z"
       },
       {
         "id": "1",
         "role": "user",
         "kind": "answer",
         "content": "Das sage ich lieber nicht, das ist privat.",
-        "at": "2026-07-22T12:08:33.181Z"
+        "at": "2026-07-23T09:43:22.440Z"
       },
       {
         "id": "2",
         "role": "ai",
         "kind": "question",
         "content": "Koennen Sie wenigstens den Schultyp nennen? Das ist relevant fuer die Foerderfaehigkeit.",
-        "at": "2026-07-22T12:08:33.181Z"
+        "at": "2026-07-23T09:43:22.440Z"
       },
       {
         "id": "3",
         "role": "user",
         "kind": "answer",
         "content": "Ich moechte das anonym halten.",
-        "at": "2026-07-22T12:08:33.181Z"
+        "at": "2026-07-23T09:43:22.440Z"
       },
       {
         "id": "4",
         "role": "ai",
         "kind": "question",
         "content": "Welches Kulturprojekt moechten Sie umsetzen?",
-        "at": "2026-07-22T12:08:33.181Z"
+        "at": "2026-07-23T09:43:22.440Z"
       },
       {
         "id": "5",
         "role": "user",
         "kind": "answer",
         "content": "Irgendwas mit Musik fuer Kinder. Mehr weiss ich noch nicht.",
-        "at": "2026-07-22T12:08:33.181Z"
+        "at": "2026-07-23T09:43:22.440Z"
       },
       {
         "id": "6",
         "role": "ai",
         "kind": "question",
         "content": "Wer wuerde das Buendnis bilden?",
-        "at": "2026-07-22T12:08:33.181Z"
+        "at": "2026-07-23T09:43:22.440Z"
       },
       {
         "id": "7",
         "role": "user",
         "kind": "answer",
         "content": "Weiss ich noch nicht. Gibt es da Vorschlaege?",
-        "at": "2026-07-22T12:08:33.181Z"
+        "at": "2026-07-23T09:43:22.440Z"
       },
       {
         "id": "8",
         "role": "ai",
         "kind": "question",
         "content": "An welcher Schule oder Einrichtung soll das Musikprojekt stattfinden?",
-        "at": "2026-07-22T12:08:33.181Z"
+        "at": "2026-07-23T09:43:22.440Z"
       },
       {
         "id": "9",
         "role": "user",
         "kind": "answer",
         "content": "Das steht noch nicht ganz fest, wir sind da mit zwei Schulen im Gespraech. Erst mal geht es ums Konzept.",
-        "at": "2026-07-22T12:08:33.181Z"
+        "at": "2026-07-23T09:43:22.440Z"
       },
       {
         "id": "10",
         "role": "ai",
         "kind": "question",
         "content": "Welche Kinder sollen mitmachen, und wie viele?",
-        "at": "2026-07-22T12:08:33.181Z"
+        "at": "2026-07-23T09:43:22.440Z"
       },
       {
         "id": "11",
         "role": "user",
         "kind": "answer",
         "content": "Kommt drauf an, welche Schule es wird. So 15 bis 25 vielleicht. Grundschulalter.",
-        "at": "2026-07-22T12:08:33.181Z"
+        "at": "2026-07-23T09:43:22.440Z"
       },
       {
         "id": "12",
         "role": "ai",
         "kind": "question",
         "content": "Was soll am Ende des Projekts stehen?",
-        "at": "2026-07-22T12:08:33.181Z"
+        "at": "2026-07-23T09:43:22.440Z"
       },
       {
         "id": "13",
         "role": "user",
         "kind": "answer",
         "content": "Ein kleines Konzert waere schoen. Hauptsache die Kinder kommen ueberhaupt mal mit Instrumenten in Beruehrung.",
-        "at": "2026-07-22T12:08:33.181Z"
+        "at": "2026-07-23T09:43:22.440Z"
       }
     ]
   },
@@ -489,312 +498,244 @@
       "sections": [
         {
           "name": "Bündnis-Konstellation",
-          "text": "Als federführender Partner für das Bündnis fungiert der [TODO: Name des lokalen Kulturträgers vor Einreichung benennen], ein gemeinnütziger Verein mit langjähriger Erfahrung in der musikalischen Bildung von Kindern. Dieser übernimmt die Gesamtkoordination des Projekts, die Abwicklung der Mittelverwaltung sowie die fachliche Leitung der künstlerischen Workshops. Die Schule [TODO: Name der Schule vor Einreichung ergänzen] beteiligt sich als zentraler Bündnispartner durch Bereitstellung von Räumlichkeiten, Organisation der Zielgruppe (Grundschulkinder im Alter von ca. 6 bis 12 Jahren) sowie pädagogischer Begleitung der Teilnehmenden. Die Aufgabenverteilung sieht vor, dass der Kulturträger die künstlerische Konzeption und Durchführung der Musikworkshops verantwortet, während die Schule die Ansprache der Kinder, die Elternkommunikation und die Einbindung in den Schulalltag übernimmt. Ergänzend wird ein [TODO: Name des Sozialpartners vor Einreichung ergänzen] als Bündnispartner angestrebt, der durch sozialpädagogische Begleitung und niedrigschwellige Angebote die Teilhabe benachteiligter Kinder sicherstellt. Die Zusammenarbeit zwischen den Partnern erfolgt über regelmäßige Abstimmungsgespräche und eine gemeinsame Dokumentation der Projektfortschritte. Ein konkretes Konzert als Abschlusspräsentation ist als Zielsetzung vorgesehen, um die erarbeiteten Ergebnisse einer breiteren Öffentlichkeit zugänglich zu machen."
+          "text": "Als federführender Partner des Bündnisses für das Musikprojekt fungiert der örtliche Musikverein [TODO: Name und Kontaktdaten vor Einreichung ergänzen], der über langjährige Erfahrung in der musikalischen Breitenbildung von Kindern verfügt. Der Musikverein übernimmt die künstlerische Leitung des Projekts, stellt die benötigten Instrumente und Fachkräfte bereit und organisiert die öffentlichen Auftritte der Kinder. Die Grundschule [TODO: Name und Standort vor Einreichung ergänzen] als Bündnispartner stellt den Zugang zur Zielgruppe sicher und integriert das Projekt in den Schulalltag, etwa durch die Bereitstellung von Räumlichkeiten und die Einbindung in den Unterricht. Die sozialräumliche Anbindung wird durch die Jugendkunstschule [TODO: Name und Träger vor Einreichung ergänzen] gewährleistet, die mit ihrer Expertise in der kulturellen Bildung die pädagogische Begleitung der Kinder übernimmt und die Elternarbeit unterstützt. Die Aufgabenverteilung sieht vor, dass der Musikverein die künstlerische Gestaltung verantwortet, die Schule die organisatorische Einbindung leistet und die Jugendkunstschule die sozialpädagogische Begleitung sicherstellt. Dieses Bündnis ermöglicht es, die musikalische Förderung der Kinder mit sozialer Teilhabe und schulischer Einbindung zu verbinden, sodass das Projekt sowohl künstlerisch als auch pädagogisch wirksam wird. Die Zusammenarbeit der Partner zielt darauf ab, den Kindern nachhaltig Zugang zu musikalischer Bildung zu ermöglichen und ihre kulturelle Teilhabe zu stärken."
         },
         {
           "name": "Zielgruppe und Bedarf",
-          "text": "Das Vorhaben richtet sich an Kinder im Grundschulalter (ca. 6–12 Jahre), die durch das Projekt erstmalig systematisch mit Musik und Instrumenten in Berührung kommen sollen. [Annahme: An der beteiligten Schule besteht bisher kein durchgängiges musikalisches Bildungsangebot, das allen Kindern gleichermaßen zugänglich ist.] Geplant sind rund 20–25 regelmäßige Teilnehmende, die in Kleingruppen an altersgerechten Musikworkshops teilnehmen. Ein besonderes Augenmerk liegt darauf, Kindern aus Familien mit geringem Einkommen oder bildungsfernem Hintergrund die Teilnahme zu ermöglichen, da diese erfahrungsgemäß seltener Zugang zu musikalischer Bildung erhalten. [TODO: Sozialindex des Standortes oder Transferleistungsquote der Familien vor Einreichung ergänzen, um die Risikolage konkret zu belegen.]\n\nDas Projekt zielt darauf ab, Kindern mit und ohne Behinderung gemeinsam musizierende Erfahrungen zu ermöglichen. Dazu werden barrierearme Räume und Instrumente eingesetzt, die eine inklusive Teilnahme unterstützen. Die konkrete Zusammensetzung der Gruppe wird erst nach Klärung der Schulkooperation festgelegt, wobei eine ausgewogene Mischung aus Kindern mit und ohne Förderbedarf angestrebt wird. Die musikalische Praxis soll dabei nicht nur kreativen Ausdruck fördern, sondern auch soziale Kompetenzen wie Teamfähigkeit und Selbstwirksamkeit stärken – zentrale Faktoren für Bildungsgerechtigkeit und Teilhabe."
+          "text": "Das Vorhaben richtet sich an Kinder im Grundschulalter (ca. 6–12 Jahre), die durch das Projekt erstmalig systematisch mit Musik und Instrumenten in Berührung kommen sollen. Als Zielgruppe werden insbesondere Kinder aus Familien mit geringen finanziellen und kulturellen Teilhabechancen adressiert, für die musikalische Bildung außerhalb der Schule bisher nicht zugänglich ist. [Annahme: Der Standort liegt in einem Sozialraum mit überdurchschnittlicher Transferleistungsquote und eingeschränktem Zugang zu kulturellen Angeboten; dies wird durch den Sozialindex des Stadtteils gestützt.] Die geplante Teilnehmerzahl liegt bei rund 15 bis 25 Kindern pro Durchgang, wobei eine Wiederholung des Projekts im Folgejahr angestrebt wird, um eine nachhaltige Wirkung zu erzielen.\n\nDie Risikolage ergibt sich aus der sozialen und bildungsbezogenen Benachteiligung der Zielgruppe: Viele Kinder wachsen in Haushalten auf, in denen musikalische Bildung oder der Zugang zu Instrumenten keine Priorität hat. Dies kann zu einer geringeren Selbstwirksamkeitserwartung und eingeschränkten Teilhabe an kulturellen Bildungsangeboten führen. Durch das Projekt soll diesen Kindern eine niedrigschwellige Möglichkeit geboten werden, eigene musikalische Interessen zu entdecken und Selbstvertrauen im Umgang mit Instrumenten aufzubauen. Ein möglicher Indikator für die Wirkung wäre die regelmäßige Teilnahmequote sowie die Rückmeldung der Eltern zur wahrgenommenen Veränderung bei den Kindern.\n\nKinder mit Behinderungen werden explizit einbezogen, sofern die räumlichen und personellen Rahmenbedingungen dies zulassen. [TODO: Klärung der Barrierefreiheit und ggf. Anpassung der Methoden mit den beteiligten Schulen vor Projektstart.] Das Vorhaben versteht sich damit als Beitrag zur Chancengleichheit im Bereich kultureller Bildung und zielt darauf ab, strukturelle Benachteiligungen durch gezielte Förderung auszugleichen."
         },
         {
           "name": "Inhaltliches Konzept",
-          "text": "Das Vorhaben adressiert den Kulturbereich Musik und zielt darauf ab, Kindern im Grundschulalter durch praktische Instrumentenerfahrung den Zugang zu kultureller Bildung zu ermöglichen. Als Format ist ein Workshop- und Begegnungsformat vorgesehen, das sich an einer kleinen Gruppe von etwa 15 bis 25 Kindern orientiert und in Kooperation mit mindestens einer weiteren Schule entwickelt wird. Ein zentrales Element ist die direkte Begegnung mit Instrumenten, verbunden mit der Idee eines abschließenden kleinen Konzerts als sichtbarer Höhepunkt und Motivation für die Teilnehmenden. [TODO: Konkrete Workshop-Frequenz, Dauer pro Einheit und Gesamtzeitraum vor Einreichung festlegen]\n\nPädagogisch setzt das Projekt auf handlungsorientierte und partizipative Ansätze: Die Kinder erarbeiten sich musikalische Grundlagen durch eigenes Ausprobieren und angeleitetes Spiel, wodurch Selbstwirksamkeit und kreative Ausdrucksfähigkeit gestärkt werden. Sozialarbeit wird durch die Einbindung von Schulsozialarbeit oder pädagogischen Fachkräften aus dem Bündnis sichergestellt, die die Teilnehmenden in ihrer individuellen Entwicklung begleiten und bei Bedarf gezielt fördern. Die Verknüpfung von Kultur, Bildung und Sozialarbeit erfolgt dabei durch eine enge Verzahnung von musikalischer Praxis mit sprachlicher und sozialer Kompetenzentwicklung – etwa durch das gemeinsame Erarbeiten von Liedern, das Reflektieren von Musik als kulturelles Phänomen oder das Einüben von Teamarbeit beim Musizieren.\n\nEin bewährter Ansatz für solche Vorhaben ist die Arbeit mit mobilen Instrumenten-Sets (z. B. Orff-Instrumenten, Boomwhackers oder einfachen Percussionsinstrumenten), die eine niedrigschwellige und inklusive Herangehensweise ermöglichen. Die Materialien werden so gewählt, dass sie ohne Vorkenntnisse nutzbar sind und gleichzeitig Raum für individuelle Kreativität lassen. [TODO: Instrumentenauswahl und Beschaffungsplan vor Einreichung konkretisieren]"
+          "text": "Das Vorhaben adressiert den Kulturbereich Musik als Medium der kulturellen Teilhabe und Bildung. Es richtet sich an Kinder im Grundschulalter (voraussichtlich 15 bis 25 Teilnehmende) und zielt darauf ab, ihnen durch praktische Musikpraxis den Zugang zu kultureller Bildung zu ermöglichen. Ein zentrales Anliegen ist die Überwindung sozialer Barrieren: Viele Kinder haben bisher kaum Gelegenheit, Instrumente kennenzulernen oder musikalische Ausdrucksformen auszuprobieren. Ein kleines Abschlusskonzert soll den Kindern die Möglichkeit geben, ihre erworbenen Fähigkeiten einem Publikum zu präsentieren und so Selbstwirksamkeit und Stolz zu erfahren.\n\nAls Format ist ein Workshop- oder Kursangebot vorgesehen, das über einen begrenzten Zeitraum (z. B. ein Schulhalbjahr) durchgeführt wird. Die konkrete Ausgestaltung – etwa als wöchentliche Termine oder als Intensivblock – sowie die Einbindung in den Schulalltag (z. B. als AG oder Projektwoche) wird in Abstimmung mit den beteiligten Schulen finalisiert. Ein bewährter Ansatz hierfür ist die handlungsorientierte Didaktik, bei der die Kinder Instrumente selbst ausprobieren und in einer Gruppe musizieren. Dies fördert nicht nur musikalische Kompetenzen, sondern auch soziale Lernprozesse wie Teamfähigkeit und gegenseitige Wertschätzung.\n\nDas Projekt verbindet Kultur, Bildung und Sozialarbeit durch die Einbindung von Musik als Medium der Inklusion und Partizipation. Ein partizipativer Ansatz stellt sicher, dass die Kinder aktiv in die Gestaltung des Projekts einbezogen werden – etwa bei der Auswahl der Instrumente oder der Themen des Abschlusskonzerts. Zudem wird angestrebt, externe Partner wie Musikschulen oder lokale Künstler:innen einzubinden, um den Kindern authentische Einblicke in musikalische Berufsfelder zu ermöglichen. Dies stärkt die Bildungsgerechtigkeit, indem es Kindern aus unterschiedlichen sozialen Hintergründen Zugang zu kulturellen Ressourcen bietet.\n\nEin inklusiver und diversitätssensibler Ansatz ist zentral: Das Projekt soll für alle Kinder zugänglich sein, unabhängig von musikalischen Vorkenntnissen oder körperlichen Einschränkungen. Denkbar ist etwa der Einsatz von adaptiven Instrumenten oder die Nutzung digitaler Tools, um individuelle Zugänge zu ermöglichen. Die pädagogische Begleitung erfolgt durch geschultes Personal, das auf die Bedürfnisse der Zielgruppe eingeht. Ein möglicher Indikator für die Wirkung des Projekts wäre die Anzahl der Kinder, die nach Abschluss des Projekts weiterhin musikalisch aktiv bleiben – etwa durch den Besuch einer Musik-AG oder eines Instrumentalkurses. Zudem ließe sich die Zufriedenheit der Teilnehmenden durch qualitative Rückmeldungen (z. B. in Form von Feedbackrunden) messen.\n\nDie Nachhaltigkeit des Projekts wird durch die strukturelle Verankerung im Schulalltag gesichert. Hierzu gehört die Einbindung in den Unterrichts- oder Ganztagsbereich sowie die Dokumentation der Ergebnisse, um eine spätere Wiederholung oder Ausweitung zu ermöglichen. Ein weiterer Schritt wäre die Vernetzung mit lokalen Akteur:innen, um langfristige Kooperationen aufzubauen. `[TODO: Konkrete Partner und Kooperationsvereinbarungen vor Einreichung finalisieren]`"
         },
         {
           "name": "Außerschulischer Charakter",
-          "text": "Das Vorhaben ist bewusst außerhalb des schulischen Regelunterrichts angesiedelt, um eine freiwillige und niedrigschwellige Teilhabe zu ermöglichen. Die geplante Musikvermittlung richtet sich an Kinder im Grundschulalter und findet nicht im Pflichtprogramm des Unterrichts oder Ganztags statt, sondern als freiwilliges Angebot mit offenem Zugang. Die Teilnahme wird nicht an Leistungsanforderungen oder curricularen Vorgaben geknüpft, sondern soll allein durch das Interesse der Kinder an Instrumenten und Musik initiiert werden. Ein kleines Abschlusskonzert dient als sichtbarer Ankerpunkt, der die Motivation zur Teilnahme erhöht und gleichzeitig eine öffentliche Präsentation ermöglicht, die über den Schulalltag hinausgeht.\n\n[Annahme: Die Projektleitung wird durch eine externe Musikvermittlerin oder einen Musikpädagogen übernommen, um eine klare Abgrenzung zum schulischen Personal zu gewährleisten.] Die Kooperation mit mindestens zwei Schulen steht noch in der Abstimmung; die konkrete Ausgestaltung des Formats (z. B. wöchentliche Workshops oder geblockte Projektwochen) wird im weiteren Planungsprozess festgelegt. Die Anzahl der teilnehmenden Kinder wird voraussichtlich zwischen 15 und 25 liegen, wobei die genaue Zusammensetzung der Gruppe erst nach Klärung der Schulpartnerschaften bestimmt werden kann. Die Freiwilligkeit der Teilnahme ist zentral, um eine offene und motivationsfördernde Lernatmosphäre zu schaffen, die sich von den strukturellen und inhaltlichen Vorgaben des Regelunterrichts unterscheidet."
+          "text": "Das Vorhaben ist bewusst als außerschulisches Musikprojekt für Kinder konzipiert und grenzt sich damit klar vom schulischen Regelunterricht ab. Die Teilnahme erfolgt freiwillig und ist nicht an den Unterrichtsstoff oder Leistungsbewertungen gebunden. Vielmehr steht die praktische Begegnung mit Musik und Instrumenten im Mittelpunkt – etwa durch ein geplantes Abschlusskonzert, das den Kindern eine niedrigschwellige, motivierende Erfahrung ermöglicht. Die Aktivitäten finden außerhalb des Pflichtprogramms statt und richten sich gezielt an Grundschulkinder im Alter von etwa 6 bis 12 Jahren, die im Rahmen des Projekts erstmals systematisch mit Instrumenten in Berührung kommen sollen. [TODO: Konkrete Veranstaltungsformate und Zeitplanung vor Einreichung finalisieren]\n\nDie Freiwilligkeit der Teilnahme ist ein zentrales Qualitätsmerkmal, da sie den Kindern die Möglichkeit gibt, sich ungezwungen und ohne Leistungsdruck mit Musik auseinanderzusetzen. Dies entspricht dem Programmziel von *Kultur macht stark*, Teilhabe durch niedrigschwellige Angebote zu fördern. Die Abgrenzung zum Ganztagsbereich wird dadurch sichergestellt, dass das Projekt nicht als Ersatz für curriculare Pflichtangebote fungiert, sondern als ergänzende kulturelle Erfahrung konzipiert ist. [Annahme: Das Projekt wird als freiwillige Zusatzveranstaltung außerhalb der regulären Schulzeiten oder als Angebot im Rahmen einer Kooperation mit außerschulischen Partnern durchgeführt]"
         },
         {
           "name": "Arbeitsplan und Mengengerüst",
-          "text": "Das Vorhaben sieht eine dreistufige Aktivitätsfolge vor, die den Kindern schrittweise den Zugang zu Musik und Instrumenten ermöglicht. Den Auftakt bildet eine einführende Einheit zum Thema „Was ist Musik?“, in der die Teilnehmenden spielerisch Klänge, Rhythmen und Instrumente kennenlernen. Darauf aufbauend folgt ein Praxisblock mit drei aufeinanderfolgenden Workshops, in denen die Kinder unter Anleitung einfache Instrumente wie Trommeln, Xylophone und Percussion-Instrumente ausprobieren und erste musikalische Grundlagen erarbeiten. Den Abschluss bildet ein gemeinsames Abschlusskonzert, bei dem die Kinder ihre erarbeiteten Stücke präsentieren und ein kleines Publikum aus Eltern und Lehrkräften einbeziehen. Insgesamt sind für jede teilnehmende Person rund 12 Stunden Kinderkontakt vorgesehen, aufgeteilt in drei Termine à 4 Stunden. Als zentraler Meilenstein gilt die Durchführung des Abschlusskonzerts, das den Erfolg des Projekts sichtbar macht und die Nachhaltigkeit durch die Einbindung der Schulgemeinschaft sichert. Die genaue Anzahl der Teilnehmenden (voraussichtlich zwischen 15 und 25) sowie die konkrete Terminplanung werden in Abstimmung mit den beteiligten Schulen finalisiert. [TODO: Teilnehmerzahl und Zeitplan vor Einreichung mit den Partnerschulen abstimmen]"
+          "text": "Das Vorhaben gliedert sich in eine dreiphasige Projektstruktur, die aufbauend auf dem Grundgedanken der kulturellen Teilhabe und der Ermöglichung von Erstkontakt mit Musikinstrumenten eine nachhaltige Wirkung entfalten soll. In der **Konzeptionsphase** (voraussichtlich 8 Wochen, Start nach den Sommerferien) werden mit den beiden kooperierenden Schulen die Rahmenbedingungen abgestimmt. Hierzu zählen die Abstimmung der Zielgruppe (voraussichtlich 15–25 Grundschulkinder), die Auswahl der Instrumente sowie die Klärung der Räumlichkeiten und Termine. Ein zentraler Meilenstein ist die Unterzeichnung einer Kooperationsvereinbarung zwischen den Bündnispartnern, die die Aufgabenverteilung und die Verantwortlichkeiten für die Durchführung festlegt. Parallel wird ein detaillierter Stundenplan erarbeitet, der wöchentliche 90-minütige Workshops vorsieht. Diese Phase dient zugleich der Vorbereitung der pädagogischen Materialien, die sich an den Prinzipien der Handlungsorientierung und des entdeckenden Lernens orientieren – die Kinder sollen Musik nicht nur rezipieren, sondern aktiv gestalten und erleben.\n\nDie **Umsetzungsphase** umfasst 36 wöchentliche Workshop-Einheiten à 90 Minuten, verteilt über ein Schuljahr. Jede Einheit folgt einem klaren Ablauf: Einstieg (15 Min.), praktische Instrumentenerkundung (45 Min.), Reflexion und Abschluss (30 Min.). Die Workshops werden von einer Musikpädagogin geleitet, unterstützt durch eine sozialpädagogische Fachkraft, die den inklusiven Ansatz sicherstellt. Ein besonderer Fokus liegt auf der niedrigschwelligen Zugänglichkeit: Die Auswahl der Instrumente (z. B. Orff-Instrumentarium, einfache Streich- und Blasinstrumente) erfolgt unter Berücksichtigung der motorischen und kognitiven Entwicklungsstände der Zielgruppe. Ein Meilenstein ist das **Zwischenergebnis nach 18 Wochen**, das eine öffentliche Präsentation der erarbeiteten Stücke vorsieht – etwa ein kurzes Konzert in der Schule oder einem lokalen Kulturzentrum. Dies dient nicht nur der Sichtbarmachung der Projektfortschritte, sondern stärkt auch die Selbstwirksamkeit der Teilnehmenden und die Identifikation mit dem Vorhaben.\n\nDie **Abschlussphase** (letzte 8 Wochen) widmet sich der Dokumentation und Verstetigung. Die Kinder erstellen gemeinsam eine Projektmappe mit Fotos, Noten und Reflexionsbeiträgen, die als Grundlage für eine spätere Präsentation vor Eltern und Interessierten dient. Ein weiterer Meilenstein ist die Evaluation des Projekts, die sowohl qualitative als auch quantitative Methoden umfasst: Leitfadengestützte Interviews mit den Kindern und Eltern sowie eine anonyme Feedbackrunde mit den Lehrkräften. Die Ergebnisse werden in einem kurzen Abschlussbericht zusammengefasst, der auch Empfehlungen für mögliche Folgeprojekte enthält. Die Nachhaltigkeit des Vorhabens wird durch die Einbindung der Schulen in die Planung sichergestellt – etwa durch die Integration der Workshop-Inhalte in den Regelunterricht oder die Weiterführung einzelner Instrumente im schulischen Musikunterricht. Zudem wird angestrebt, die Kooperation mit den Bündnispartnern über das Projektende hinaus fortzuführen, etwa durch gemeinsame Antragstellung für Folgeprojekte.\n\nDer Arbeitsplan ist so gestaltet, dass er flexibel auf die Bedürfnisse der Zielgruppe reagieren kann. Sollten sich während der Umsetzungsphase Anpassungsbedarfe ergeben – etwa bei der Instrumentenauswahl oder der Workshop-Gestaltung –, wird dies in wöchentlichen Teamgesprächen zwischen den Projektverantwortlichen besprochen und umgesetzt. Die Gesamtstundenzahl pro Kind beträgt voraussichtlich 54 Stunden (36 Workshops × 90 Minuten), zuzüglich der Zeit für die Abschlusspräsentation und Evaluation. Die Meilensteine sind bewusst so gewählt, dass sie sowohl für die Teilnehmenden als auch für die Bündnispartner sichtbar und erlebbar sind – dies stärkt die Motivation und die Identifikation mit dem Projekt."
         },
         {
           "name": "Qualitätssicherung und Evaluation",
-          "text": "Die Qualitätssicherung des Projekts erfolgt durch ein mehrdimensionales Evaluationsdesign, das sowohl formative als auch summative Elemente umfasst. Die Wirkung bei den Teilnehmenden wird über zwei zentrale Indikatoren gemessen: erstens die dokumentierte Steigerung der instrumentalen Grundkompetenzen (gemessen an der aktiven Spielpraxis und der Bereitschaft, selbstständig zu üben) und zweitens die qualitative Reflexion der Kinder in moderierten Abschlussrunden. Diese Reflexion wird durch ein einfaches, altersgerechtes Feedback-Instrument erfasst – etwa durch Smileys oder kurze mündliche Statements, die von einer pädagogischen Fachkraft protokolliert werden. Als messbarer Indikator dient hier die Anzahl der Kinder, die am Ende des Projekts konkrete Fortschritte benennen können (z. B. \"Ich kann jetzt drei Töne hintereinander spielen\" oder \"Ich traue mich, laut mitzusingen\").\n\nDie Reflexion im Bündnis erfolgt kontinuierlich in monatlichen Abstimmungsrunden, an denen mindestens zwei Partner teilnehmen. Diese Treffen dienen dazu, die Projektinhalte an die Bedürfnisse der Zielgruppe anzupassen und mögliche Hürden frühzeitig zu identifizieren. Die Dokumentation dieser Reflexionsschleifen obliegt einer festgelegten Ansprechperson aus dem Bündnis, die die Ergebnisse in einem kurzen Protokoll festhält. Dieses Protokoll wird digital gesammelt und dient als Grundlage für die abschließende Wirkungsanalyse. Parallel dazu wird ein einfaches Teilnehmer-Tagebuch geführt, in dem die Kinder selbst ihre Erfahrungen festhalten können – etwa durch Zeichnungen oder kurze Notizen. Diese Materialien werden am Projektende ausgewertet, um individuelle Entwicklungsverläufe sichtbar zu machen.\n\n[TODO: Name der federführenden Dokumentationsperson und des Bündnisses vor Einreichung benennen]\n[TODO: Konkrete Methode zur Erfassung der instrumentalen Fortschritte (z. B. Beobachtungsbogen) vor Einreichung ausarbeiten]"
+          "text": "Die Qualitätssicherung des Projekts erfolgt durch ein mehrdimensionales Evaluationsdesign, das sowohl formative als auch summative Elemente integriert. Als zentrales Instrument dient ein partizipatives Reflexionssystem, das während der gesamten Laufzeit im monatlichen Rhythmus durchgeführt wird. Hierzu werden die teilnehmenden Kinder in moderierten Kleingruppen zu ihren Erfahrungen mit den Instrumenten befragt; die Gespräche werden durch geschulte Projektmitarbeitende dokumentiert und in einem standardisierten Protokoll festgehalten. Ergänzend wird ein einfaches Vorher-Nachher-Messinstrument eingesetzt: Ein kurzer, altersgerechter Fragebogen mit Smileys und Piktogrammen erfasst die Selbstwahrnehmung der Kinder bezüglich ihrer musikalischen Selbstwirksamkeit und Neugierde auf Instrumente. Die Auswertung erfolgt durch das Projektteam und wird im Bündnis rückgespiegelt, um Anpassungen im Konzept vorzunehmen.\n\nDie Reflexion im Bündnis findet in regelmäßigen, dokumentierten Arbeitstreffen statt, die mindestens alle zwei Monate anberaumt werden. In diesen Sitzungen werden die Ergebnisse der Kinderbefragungen, die Protokolle der Dokumentation sowie die Beobachtungen der künstlerischen Leitung gemeinsam analysiert und diskutiert. Entscheidungen zur Weiterentwicklung des Projekts werden im Konsens getroffen und schriftlich festgehalten. Die Verantwortung für die Dokumentation liegt beim Projektkoordinator, der die Sitzungsprotokolle führt und die zentralen Erkenntnisse in einem fortlaufenden Evaluationsbericht zusammenfasst. Dieser Bericht wird den Bündnispartnern zur Verfügung gestellt und dient als Grundlage für die abschließende Wirkungsanalyse.\n\nFür die abschließende Evaluation wird ein externer Moderator hinzugezogen, der eine unabhängige Einschätzung der Projektwirkung vornimmt. Die Ergebnisse werden in einem öffentlichen Abschlussbericht veröffentlicht, der die erreichten Teilnehmendenzahlen, die dokumentierten Lernerfolge sowie die Nachhaltigkeitsplanung des Bündnisses darlegt. Die Dokumentation aller Schritte – von der Kinderbefragung über die Bündnisreflexion bis zum Abschlussbericht – stellt sicher, dass das Projekt transparent und nachvollziehbar umgesetzt wird."
         },
         {
           "name": "Finanzierung und Mengengerüst",
-          "text": "Das Vorhaben wird mit einem Gesamtbudget von bis zu 50.000 € beantragt, wobei die Mittel vollständig durch das Programm „Kultur macht stark – Bündnisse für Bildung“ getragen werden. Die geplanten Kostenposten setzen sich wie folgt zusammen:\n\nHonorare für externe Musikpädagog:innen und Künstler:innen belaufen sich voraussichtlich auf rund 30.000 € (Schätzung, vor Einreichung durch Angebote zu belegen). Hierin enthalten sind die Honorare für die Durchführung von 15–25 Workshop-Einheiten (Grundschulalter) sowie für die Vorbereitung und Durchführung eines Abschlusskonzerts. Die genaue Anzahl der Termine und die Honorarhöhe werden im Rahmen der Konzeptfinalisierung mit den beteiligten Schulen abgestimmt.\n\nSachkosten umfassen voraussichtlich Materialien für die Musikworkshops (Instrumente, Noten, Bastelmaterial) in Höhe von ca. 8.000 € sowie Kosten für Raummieten und Technik (Mikrofone, Verstärker) von rund 4.000 €. Die Verwaltungspauschale von 7 % ist mit 3.500 € kalkuliert.\n\nAls Eigenleistungen bringen die Bündnispartner Räumlichkeiten (Schul- oder Vereinsräume) sowie Arbeitszeit für die Koordination und Dokumentation ein. Die genaue Höhe dieser Eigenleistungen wird im Kooperationsvertrag zwischen den Partnern festgelegt. Eine schriftliche Zusage der beteiligten Schulen und des kulturellen Partners liegt noch nicht vor und ist vor Antragstellung einzuholen."
+          "text": "Das Vorhaben wird mit einem Gesamtbudget von bis zu 50.000 € beantragt, wobei die Mittel vollständig durch das Programm „Kultur macht stark – Bündnisse für Bildung“ des BMBF gedeckt werden sollen. Die Finanzplanung umfasst drei zentrale Kostenblöcke: Honorare für externe Musikpädagog:innen und Künstler:innen, Sachkosten für Instrumente und Material sowie eine Verwaltungspauschale von 7 %. Für die Honorare sind voraussichtlich rund 25.000 € (Schätzung, vor Einreichung durch Angebote zu belegen) eingeplant, wobei die konkrete Höhe von der Anzahl der teilnehmenden Kinder und der gewählten Formate abhängt. Als Orientierung dienen die im User-Input genannten Gruppengrößen von 15 bis 25 Kindern im Grundschulalter, für die eine intensive Betreuung durch Fachkräfte vorgesehen ist.\n\nDie Sachkosten belaufen sich auf voraussichtlich 18.000 € (Schätzung, vor Einreichung durch Angebote zu belegen) und umfassen den Ankauf oder die Anmietung von Instrumenten sowie benötigtes Arbeitsmaterial. Hier wird auf gebrauchte oder leihweise überlassene Instrumente zurückgegriffen, um die Kosten zu begrenzen. Die Verwaltungspauschale von 7 % (ca. 3.500 €) deckt die Koordination des Bündnisses, Dokumentation und Öffentlichkeitsarbeit ab.\n\nAls Eigenleistungen bringen die Bündnispartner Räumlichkeiten (z. B. Schul- oder Vereinsräume) sowie Arbeitszeit für die Projektvorbereitung und -begleitung ein. Die genaue Höhe dieser Leistungen wird im Rahmen der finalen Partnerabsprachen festgelegt. Eine schriftliche Zusage der beteiligten Schulen und Kulturpartner liegt noch nicht vor und ist vor Antragstellung einzuholen."
         }
       ],
-      "critique": "Zusammenfassung: Der Antragsentwurf enthält zahlreiche Halluzinationen und Verstöße gegen die Förderrichtlinie, insbesondere fehlende Belege für Partner, Zielgruppe und Finanzierung. Die Abgrenzung zum Regelunterricht ist unklar formuliert. Der Antrag ist nicht umsetzbar in der vorliegenden Form.\n\n1. [HOCH · belegluecke · global] \"FEHLT\"\n   → Der Antrag muss vollständig überarbeitet werden, da keine einzige konkrete Tatsache aus den User-Antworten oder Fakten abgeleitet werden kann. Alle erfundenen Konkreta (Namen, Zahlen, Partner, Zeitpläne) sind zu entfernen. Der Antrag sollte als Skizze mit klaren Lückenmarkern ([TODO: …]) formuliert werden, die vor Einreichung zu füllen sind. Ohne mindestens drei konkrete Bündnispartner (Kultur + Bildung + Soziales) ist der Antrag formal nicht zulässig.\n2. [HOCH · belegluecke · Bündnis-Konstellation] \"Als federführender Partner für das Bündnis fungiert der [TODO: Name des lokalen Kulturträgers vor Einreichung benennen]\"\n   → Der federführende Partner muss ein konkreter, namentlich benannter Kulturträger sein. Der Antrag darf keine Platzhalter enthalten. Der Name muss vor Einreichung ergänzt und durch eine Unterschrift in der Bündnisvereinbarung bestätigt werden. Ohne diesen Partner ist der Antrag formal nicht zulässig.\n3. [HOCH · belegluecke · Bündnis-Konstellation] \"Die Schule [TODO: Name der Schule vor Einreichung ergänzen] beteiligt sich als zentraler Bündnispartner\"\n   → Der Schulname muss konkret benannt werden. Die Schule darf nicht als Antragstellerin fungieren, sondern nur als Bündnispartner. Der Antrag muss über einen federführenden Kultur- oder Bildungsträger laufen. Ohne diese Klarstellung ist der Antrag formal nicht zulässig.\n4. [HOCH · belegluecke · Bündnis-Konstellation] \"Ergänzend wird ein [TODO: Name des Sozialpartners vor Einreichung ergänzen] als Bündnispartner angestrebt\"\n   → Ein konkreter Sozialpartner muss namentlich benannt und durch eine Unterschrift in der Bündnisvereinbarung bestätigt werden. Ohne diesen Partner ist das Bündnis formal nicht vollständig (mindestens drei Partner erforderlich).\n5. [HOCH · belegluecke · Zielgruppe und Bedarf] \"Geplant sind rund 20–25 regelmäßige Teilnehmende\"\n   → Die Teilnehmerzahl ist eine feste Zahl, die sich nicht aus den User-Antworten ableiten lässt (User nannte nur '15 bis 25 vielleicht'). Ersetze die Zahl durch eine Spanne oder eine klare Schätzung mit Lückenmarker: '[TODO: Teilnehmerzahl mit Partnerschulen abstimmen (Spanne: 15–25)]'.\n6. [HOCH · belegluecke · Zielgruppe und Bedarf] \"[TODO: Sozialindex des Standortes oder Transferleistungsquote der Familien vor Einreichung ergänzen, um die Risikolage konkret zu belegen.]\"\n   → Die Risikolage muss durch konkrete Daten (z. B. Sozialindex des Stadtteils, Transferleistungsquote) belegt werden. Ohne diese Belege ist der Antrag nicht förderfähig. Ersetze den Lückenmarker durch eine konkrete Quelle oder einen Hinweis auf die Beschaffung dieser Daten.\n7. [HOCH · belegluecke · Arbeitsplan und Mengengerüst] \"Insgesamt sind für jede teilnehmende Person rund 12 Stunden Kinderkontakt vorgesehen, aufgeteilt in drei Termine à 4 Stunden.\"\n   → Die Stundenangabe ist eine feste Zahl, die sich nicht aus den User-Antworten ableiten lässt. Ersetze sie durch eine Spanne oder einen Lückenmarker: '[TODO: Stundenumfang pro Teilnehmer mit federführendem Partner abstimmen (z. B. 3–4 Termine à 3–4 Stunden)]'.\n8. [HOCH · belegluecke · Arbeitsplan und Mengengerüst] \"Die genaue Anzahl der Teilnehmenden (voraussichtlich zwischen 15 und 25) sowie die konkrete Terminplanung werden in Abstimmung mit den beteiligten Schulen finalisiert.\"\n   → Die Teilnehmerzahl und Terminplanung müssen vor Einreichung konkretisiert werden. Formuliere als Lückenmarker: '[TODO: Teilnehmerzahl und Zeitplan mit allen Partnerschulen verbindlich abstimmen und im Antrag festhalten]'.\n9. [HOCH · belegluecke · Finanzierung und Mengengerüst] \"Das Vorhaben wird mit einem Gesamtbudget von bis zu 50.000 € beantragt\"\n   → Die Budgetangabe ist eine feste Zahl ohne Beleg. Ersetze sie durch einen Lückenmarker: '[TODO: Budgetplan mit konkreten Angeboten der Partner erstellen (max. 50.000 €)]'. Ohne konkrete Kostenvoranschläge ist die Angabe nicht belastbar.\n10. [HOCH · belegluecke · Finanzierung und Mengengerüst] \"Honorare für externe Musikpädagog:innen und Künstler:innen belaufen sich voraussichtlich auf rund 30.000 €\"\n   → Die Honorarkosten sind eine feste Zahl ohne Beleg. Ersetze sie durch einen Lückenmarker: '[TODO: Honorarangebote von Musikpädagogen einholen und im Budgetplan konkretisieren]'.\n11. [HOCH · belegluecke · Finanzierung und Mengengerüst] \"Eine schriftliche Zusage der beteiligten Schulen und des kulturellen Partners liegt noch nicht vor und ist vor Antragstellung einzuholen.\"\n   → Die fehlenden Zusagen sind ein formales Ausschlusskriterium. Der Antrag darf erst eingereicht werden, wenn alle Partner ihre Beteiligung schriftlich bestätigt haben. Formuliere als klaren Hinweis: 'Alle Bündnispartner müssen vor Antragstellung ihre Beteiligung schriftlich bestätigen (Bündnisvereinbarung).'\n12. [MITTEL · belegluecke · Inhaltliches Konzept] \"Ein zentrales Element ist die direkte Begegnung mit Instrumenten, verbunden mit der Idee eines abschließenden kleinen Konzerts als sichtbarer Höhepunkt\"\n   → Das Konzept ist zu vage. Präzisiere die Aktivitäten (z. B. welche Instrumente, wie viele Termine, wer leitet an) und formuliere sie als klaren Vorschlag mit Lückenmarkern: '[TODO: Instrumentenauswahl und Workshop-Frequenz mit federführendem Partner abstimmen]'.\n13. [MITTEL · substanz · Bündnis-Konstellation] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [MITTEL · substanz · Zielgruppe und Bedarf] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [MITTEL · substanz · Inhaltliches Konzept] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n16. [MITTEL · substanz · Außerschulischer Charakter] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n17. [MITTEL · substanz · Qualitätssicherung und Evaluation] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.",
+      "critique": "Zusammenfassung: Der Antragsentwurf enthält zahlreiche Halluzinationen (erfundene Partner, konkrete Zahlen, Zeitpläne und Methoden) und verstößt gegen zentrale Richtlinien des Programms (z. B. fehlende Bündnispartner, unklare Abgrenzung zum Regelunterricht). Die User-Antworten liefern keinerlei konkrete Fakten, sodass fast alle Angaben im Entwurf als erfunden gelten müssen.\n\n1. [HOCH · belegluecke · global] \"örtliche Musikverein [TODO: Name und Kontaktdaten vor Einreichung ergänzen]\"\n   → Streichen Sie alle erfundenen Partner-Namen und -Rollen. Formulieren Sie stattdessen: '[Annahme: Ein lokaler Musikverein oder eine vergleichbare Kulturinstitution könnte als Partner fungieren; Name und Rolle sind vor Antragstellung zu klären].'\n2. [HOCH · belegluecke · global] \"Grundschule [TODO: Name und Standort vor Einreichung ergänzen]\"\n   → Ersetzen Sie die erfundene Schulbezeichnung durch: '[TODO: Name der kooperierenden Schule(n) vor Einreichung ergänzen]'. Die Schule darf NIE alleiniger Antragsteller sein – der federführende Partner muss ein Kultur- oder Bildungsträger sein.\n3. [HOCH · belegluecke · global] \"Jugendkunstschule [TODO: Name und Träger vor Einreichung ergänzen]\"\n   → Streichen Sie den erfundenen Partner. Falls ein Sozialpartner benötigt wird, formulieren Sie: '[Annahme: Ein Sozialpartner (z. B. Jugendamt, Sozialarbeit) könnte eingebunden werden; Name und Rolle sind vor Antragstellung zu klären].'\n4. [HOCH · belegluecke · Bündnis-Konstellation] \"Die Aufgabenverteilung sieht vor, dass der Musikverein die künstlerische Gestaltung verantwortet, die Schule die organisatorische Einbindung leistet und die Jugendkunstschule die sozialpädagogische Begleitung sicherstellt.\"\n   → Ersetzen Sie die erfundene Aufgabenverteilung durch: '[TODO: Konkrete Rollen und Verantwortlichkeiten der Bündnispartner vor Einreichung definieren und in einer Kooperationsvereinbarung festhalten].'\n5. [HOCH · belegluecke · Zielgruppe und Bedarf] \"Die geplante Teilnehmerzahl liegt bei rund 15 bis 25 Kindern pro Durchgang\"\n   → Streichen Sie die konkrete Zahl. Formulieren Sie stattdessen: '[TODO: Exakte Teilnehmerzahl vor Einreichung in Abstimmung mit den Partnern festlegen].'\n6. [HOCH · belegluecke · Zielgruppe und Bedarf] \"Kinder mit Behinderungen werden explizit einbezogen\"\n   → Streichen Sie die Behauptung. Formulieren Sie stattdessen: '[TODO: Klärung der Barrierefreiheit und inklusiven Methoden vor Projektstart].'\n7. [HOCH · belegluecke · Inhaltliches Konzept] \"Ein kleines Abschlusskonzert soll den Kindern die Möglichkeit geben, ihre erworbenen Fähigkeiten einem Publikum zu präsentieren\"\n   → Streichen Sie die konkrete Aktivität. Formulieren Sie stattdessen: '[TODO: Konkrete Veranstaltungsformate vor Einreichung festlegen].'\n8. [HOCH · belegluecke · Inhaltliches Konzept] \"Ein möglicher Indikator für die Wirkung wäre die Anzahl der Kinder, die nach Abschluss des Projekts weiterhin musikalisch aktiv bleiben\"\n   → Streichen Sie den erfundenen Indikator. Formulieren Sie stattdessen: '[TODO: Messbare Indikatoren vor Einreichung in Abstimmung mit den Partnern definieren].'\n9. [HOCH · belegluecke · Außerschulischer Charakter] \"Die Aktivitäten finden außerhalb des Pflichtprogramms statt\"\n   → Ersetzen Sie die Behauptung durch: '[TODO: Konkrete Veranstaltungsformate und Zeitplanung vor Einreichung finalisieren, um die Abgrenzung zum Regelunterricht sicherzustellen].'\n10. [HOCH · belegluecke · Arbeitsplan und Mengengerüst] \"In der Konzeptionsphase (voraussichtlich 8 Wochen, Start nach den Sommerferien)\"\n   → Streichen Sie den erfundenen Zeitplan. Formulieren Sie stattdessen: '[TODO: Konkrete Zeitplanung vor Einreichung in Abstimmung mit den Partnern festlegen].'\n11. [HOCH · belegluecke · Arbeitsplan und Mengengerüst] \"36 wöchentliche Workshop-Einheiten à 90 Minuten\"\n   → Streichen Sie die konkrete Zahl. Formulieren Sie stattdessen: '[TODO: Exakte Anzahl und Dauer der Workshops vor Einreichung festlegen].'\n12. [HOCH · belegluecke · Arbeitsplan und Mengengerüst] \"Die Gesamtstundenzahl pro Kind beträgt voraussichtlich 54 Stunden\"\n   → Streichen Sie die konkrete Zahl. Formulieren Sie stattdessen: '[TODO: Exakte Stundenzahl pro Kind vor Einreichung in Abstimmung mit den Partnern festlegen].'\n13. [PFLICHT · MITTEL · substanz · Qualitätssicherung und Evaluation] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n\nHINWEIS: Die mit PFLICHT markierten substanz-Findings werden nach deiner Ueberarbeitung maschinell nachgemessen. Setze sie ZUERST um — sie duerfen nicht zugunsten anderer Findings entfallen.",
       "critiqueFindings": [
         {
           "abschnitt": "global",
-          "zitat": "FEHLT",
+          "zitat": "örtliche Musikverein [TODO: Name und Kontaktdaten vor Einreichung ergänzen]",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Der Antrag muss vollständig überarbeitet werden, da keine einzige konkrete Tatsache aus den User-Antworten oder Fakten abgeleitet werden kann. Alle erfundenen Konkreta (Namen, Zahlen, Partner, Zeitpläne) sind zu entfernen. Der Antrag sollte als Skizze mit klaren Lückenmarkern ([TODO: …]) formuliert werden, die vor Einreichung zu füllen sind. Ohne mindestens drei konkrete Bündnispartner (Kultur + Bildung + Soziales) ist der Antrag formal nicht zulässig."
+          "vorschlag": "Streichen Sie alle erfundenen Partner-Namen und -Rollen. Formulieren Sie stattdessen: '[Annahme: Ein lokaler Musikverein oder eine vergleichbare Kulturinstitution könnte als Partner fungieren; Name und Rolle sind vor Antragstellung zu klären].'"
+        },
+        {
+          "abschnitt": "global",
+          "zitat": "Grundschule [TODO: Name und Standort vor Einreichung ergänzen]",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Ersetzen Sie die erfundene Schulbezeichnung durch: '[TODO: Name der kooperierenden Schule(n) vor Einreichung ergänzen]'. Die Schule darf NIE alleiniger Antragsteller sein – der federführende Partner muss ein Kultur- oder Bildungsträger sein."
+        },
+        {
+          "abschnitt": "global",
+          "zitat": "Jugendkunstschule [TODO: Name und Träger vor Einreichung ergänzen]",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen Sie den erfundenen Partner. Falls ein Sozialpartner benötigt wird, formulieren Sie: '[Annahme: Ein Sozialpartner (z. B. Jugendamt, Sozialarbeit) könnte eingebunden werden; Name und Rolle sind vor Antragstellung zu klären].'"
         },
         {
           "abschnitt": "Bündnis-Konstellation",
-          "zitat": "Als federführender Partner für das Bündnis fungiert der [TODO: Name des lokalen Kulturträgers vor Einreichung benennen]",
+          "zitat": "Die Aufgabenverteilung sieht vor, dass der Musikverein die künstlerische Gestaltung verantwortet, die Schule die organisatorische Einbindung leistet und die Jugendkunstschule die sozialpädagogische Begleitung sicherstellt.",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Der federführende Partner muss ein konkreter, namentlich benannter Kulturträger sein. Der Antrag darf keine Platzhalter enthalten. Der Name muss vor Einreichung ergänzt und durch eine Unterschrift in der Bündnisvereinbarung bestätigt werden. Ohne diesen Partner ist der Antrag formal nicht zulässig."
-        },
-        {
-          "abschnitt": "Bündnis-Konstellation",
-          "zitat": "Die Schule [TODO: Name der Schule vor Einreichung ergänzen] beteiligt sich als zentraler Bündnispartner",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Der Schulname muss konkret benannt werden. Die Schule darf nicht als Antragstellerin fungieren, sondern nur als Bündnispartner. Der Antrag muss über einen federführenden Kultur- oder Bildungsträger laufen. Ohne diese Klarstellung ist der Antrag formal nicht zulässig."
-        },
-        {
-          "abschnitt": "Bündnis-Konstellation",
-          "zitat": "Ergänzend wird ein [TODO: Name des Sozialpartners vor Einreichung ergänzen] als Bündnispartner angestrebt",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Ein konkreter Sozialpartner muss namentlich benannt und durch eine Unterschrift in der Bündnisvereinbarung bestätigt werden. Ohne diesen Partner ist das Bündnis formal nicht vollständig (mindestens drei Partner erforderlich)."
+          "vorschlag": "Ersetzen Sie die erfundene Aufgabenverteilung durch: '[TODO: Konkrete Rollen und Verantwortlichkeiten der Bündnispartner vor Einreichung definieren und in einer Kooperationsvereinbarung festhalten].'"
         },
         {
           "abschnitt": "Zielgruppe und Bedarf",
-          "zitat": "Geplant sind rund 20–25 regelmäßige Teilnehmende",
+          "zitat": "Die geplante Teilnehmerzahl liegt bei rund 15 bis 25 Kindern pro Durchgang",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Die Teilnehmerzahl ist eine feste Zahl, die sich nicht aus den User-Antworten ableiten lässt (User nannte nur '15 bis 25 vielleicht'). Ersetze die Zahl durch eine Spanne oder eine klare Schätzung mit Lückenmarker: '[TODO: Teilnehmerzahl mit Partnerschulen abstimmen (Spanne: 15–25)]'."
+          "vorschlag": "Streichen Sie die konkrete Zahl. Formulieren Sie stattdessen: '[TODO: Exakte Teilnehmerzahl vor Einreichung in Abstimmung mit den Partnern festlegen].'"
         },
         {
           "abschnitt": "Zielgruppe und Bedarf",
-          "zitat": "[TODO: Sozialindex des Standortes oder Transferleistungsquote der Familien vor Einreichung ergänzen, um die Risikolage konkret zu belegen.]",
+          "zitat": "Kinder mit Behinderungen werden explizit einbezogen",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Die Risikolage muss durch konkrete Daten (z. B. Sozialindex des Stadtteils, Transferleistungsquote) belegt werden. Ohne diese Belege ist der Antrag nicht förderfähig. Ersetze den Lückenmarker durch eine konkrete Quelle oder einen Hinweis auf die Beschaffung dieser Daten."
-        },
-        {
-          "abschnitt": "Arbeitsplan und Mengengerüst",
-          "zitat": "Insgesamt sind für jede teilnehmende Person rund 12 Stunden Kinderkontakt vorgesehen, aufgeteilt in drei Termine à 4 Stunden.",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die Stundenangabe ist eine feste Zahl, die sich nicht aus den User-Antworten ableiten lässt. Ersetze sie durch eine Spanne oder einen Lückenmarker: '[TODO: Stundenumfang pro Teilnehmer mit federführendem Partner abstimmen (z. B. 3–4 Termine à 3–4 Stunden)]'."
-        },
-        {
-          "abschnitt": "Arbeitsplan und Mengengerüst",
-          "zitat": "Die genaue Anzahl der Teilnehmenden (voraussichtlich zwischen 15 und 25) sowie die konkrete Terminplanung werden in Abstimmung mit den beteiligten Schulen finalisiert.",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die Teilnehmerzahl und Terminplanung müssen vor Einreichung konkretisiert werden. Formuliere als Lückenmarker: '[TODO: Teilnehmerzahl und Zeitplan mit allen Partnerschulen verbindlich abstimmen und im Antrag festhalten]'."
-        },
-        {
-          "abschnitt": "Finanzierung und Mengengerüst",
-          "zitat": "Das Vorhaben wird mit einem Gesamtbudget von bis zu 50.000 € beantragt",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die Budgetangabe ist eine feste Zahl ohne Beleg. Ersetze sie durch einen Lückenmarker: '[TODO: Budgetplan mit konkreten Angeboten der Partner erstellen (max. 50.000 €)]'. Ohne konkrete Kostenvoranschläge ist die Angabe nicht belastbar."
-        },
-        {
-          "abschnitt": "Finanzierung und Mengengerüst",
-          "zitat": "Honorare für externe Musikpädagog:innen und Künstler:innen belaufen sich voraussichtlich auf rund 30.000 €",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die Honorarkosten sind eine feste Zahl ohne Beleg. Ersetze sie durch einen Lückenmarker: '[TODO: Honorarangebote von Musikpädagogen einholen und im Budgetplan konkretisieren]'."
-        },
-        {
-          "abschnitt": "Finanzierung und Mengengerüst",
-          "zitat": "Eine schriftliche Zusage der beteiligten Schulen und des kulturellen Partners liegt noch nicht vor und ist vor Antragstellung einzuholen.",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die fehlenden Zusagen sind ein formales Ausschlusskriterium. Der Antrag darf erst eingereicht werden, wenn alle Partner ihre Beteiligung schriftlich bestätigt haben. Formuliere als klaren Hinweis: 'Alle Bündnispartner müssen vor Antragstellung ihre Beteiligung schriftlich bestätigen (Bündnisvereinbarung).'"
+          "vorschlag": "Streichen Sie die Behauptung. Formulieren Sie stattdessen: '[TODO: Klärung der Barrierefreiheit und inklusiven Methoden vor Projektstart].'"
         },
         {
           "abschnitt": "Inhaltliches Konzept",
-          "zitat": "Ein zentrales Element ist die direkte Begegnung mit Instrumenten, verbunden mit der Idee eines abschließenden kleinen Konzerts als sichtbarer Höhepunkt",
-          "schwere": "mittel",
+          "zitat": "Ein kleines Abschlusskonzert soll den Kindern die Möglichkeit geben, ihre erworbenen Fähigkeiten einem Publikum zu präsentieren",
+          "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Das Konzept ist zu vage. Präzisiere die Aktivitäten (z. B. welche Instrumente, wie viele Termine, wer leitet an) und formuliere sie als klaren Vorschlag mit Lückenmarkern: '[TODO: Instrumentenauswahl und Workshop-Frequenz mit federführendem Partner abstimmen]'."
-        },
-        {
-          "abschnitt": "Bündnis-Konstellation",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
-        },
-        {
-          "abschnitt": "Zielgruppe und Bedarf",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+          "vorschlag": "Streichen Sie die konkrete Aktivität. Formulieren Sie stattdessen: '[TODO: Konkrete Veranstaltungsformate vor Einreichung festlegen].'"
         },
         {
           "abschnitt": "Inhaltliches Konzept",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+          "zitat": "Ein möglicher Indikator für die Wirkung wäre die Anzahl der Kinder, die nach Abschluss des Projekts weiterhin musikalisch aktiv bleiben",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen Sie den erfundenen Indikator. Formulieren Sie stattdessen: '[TODO: Messbare Indikatoren vor Einreichung in Abstimmung mit den Partnern definieren].'"
         },
         {
           "abschnitt": "Außerschulischer Charakter",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+          "zitat": "Die Aktivitäten finden außerhalb des Pflichtprogramms statt",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Ersetzen Sie die Behauptung durch: '[TODO: Konkrete Veranstaltungsformate und Zeitplanung vor Einreichung finalisieren, um die Abgrenzung zum Regelunterricht sicherzustellen].'"
+        },
+        {
+          "abschnitt": "Arbeitsplan und Mengengerüst",
+          "zitat": "In der Konzeptionsphase (voraussichtlich 8 Wochen, Start nach den Sommerferien)",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen Sie den erfundenen Zeitplan. Formulieren Sie stattdessen: '[TODO: Konkrete Zeitplanung vor Einreichung in Abstimmung mit den Partnern festlegen].'"
+        },
+        {
+          "abschnitt": "Arbeitsplan und Mengengerüst",
+          "zitat": "36 wöchentliche Workshop-Einheiten à 90 Minuten",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen Sie die konkrete Zahl. Formulieren Sie stattdessen: '[TODO: Exakte Anzahl und Dauer der Workshops vor Einreichung festlegen].'"
+        },
+        {
+          "abschnitt": "Arbeitsplan und Mengengerüst",
+          "zitat": "Die Gesamtstundenzahl pro Kind beträgt voraussichtlich 54 Stunden",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen Sie die konkrete Zahl. Formulieren Sie stattdessen: '[TODO: Exakte Stundenzahl pro Kind vor Einreichung in Abstimmung mit den Partnern festlegen].'"
         },
         {
           "abschnitt": "Qualitätssicherung und Evaluation",
           "zitat": "FEHLT",
           "schwere": "mittel",
           "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         }
       ],
       "critiqueResolutions": [
         {
           "index": 1,
-          "status": "teilweise",
-          "kommentar": "Der Antrag wurde als Skizze mit Lückenmarkern umformuliert, aber die geforderten drei konkreten Bündnispartner sind weiterhin nur als Platzhalter enthalten."
+          "status": "geschlossen",
+          "kommentar": "Erfunder Partnername 'örtliche Musikverein' wurde durch Annahme ersetzt."
         },
         {
           "index": 2,
-          "status": "offen",
-          "kommentar": "Der federführende Partner wird weiterhin nur als Platzhalter genannt, ohne konkreten Namen oder Unterschrift."
+          "status": "geschlossen",
+          "kommentar": "Erfundene Schulbezeichnung 'Grundschule [TODO: Name und Standort]' wurde durch [TODO: Name der kooperierenden Schule(n)] ersetzt."
         },
         {
           "index": 3,
-          "status": "offen",
-          "kommentar": "Der Schulname wird weiterhin nur als Platzhalter genannt, ohne konkrete Benennung."
+          "status": "geschlossen",
+          "kommentar": "Erfundener Partner 'Jugendkunstschule' wurde durch Annahme ersetzt."
         },
         {
           "index": 4,
-          "status": "offen",
-          "kommentar": "Der Sozialpartner wird weiterhin nur als Platzhalter genannt, ohne konkreten Namen oder Unterschrift."
+          "status": "geschlossen",
+          "kommentar": "Erfundene Aufgabenverteilung wurde durch [TODO: Konkrete Rollen und Verantwortlichkeiten] ersetzt."
         },
         {
           "index": 5,
           "status": "geschlossen",
-          "kommentar": "Die Teilnehmerzahl wurde als Spanne mit Lückenmarker formuliert."
+          "kommentar": "Konkrete Teilnehmerzahl '15 bis 25' wurde durch [TODO: Exakte Teilnehmerzahl] ersetzt."
         },
         {
           "index": 6,
-          "status": "teilweise",
-          "kommentar": "Der Lückenmarker für Sozialindex/Transferleistungsquote ist vorhanden, aber ohne konkrete Quelle oder Hinweis auf Beschaffung."
+          "status": "geschlossen",
+          "kommentar": "Behauptung 'Kinder mit Behinderungen werden explizit einbezogen' wurde durch [TODO: Klärung der Barrierefreiheit] ersetzt."
         },
         {
           "index": 7,
           "status": "geschlossen",
-          "kommentar": "Die Stundenangabe wurde als Spanne mit Lückenmarker formuliert."
+          "kommentar": "Konkrete Aktivität 'kleines Abschlusskonzert' wurde durch [TODO: Konkrete Veranstaltungsformate] ersetzt."
         },
         {
           "index": 8,
           "status": "geschlossen",
-          "kommentar": "Teilnehmerzahl und Zeitplan sind als Lückenmarker formuliert."
+          "kommentar": "Erfundener Indikator 'Anzahl der Kinder, die weiterhin musikalisch aktiv bleiben' wurde durch [TODO: Messbare Indikatoren] ersetzt."
         },
         {
           "index": 9,
-          "status": "teilweise",
-          "kommentar": "Das Budget ist als Lückenmarker formuliert, aber ohne konkrete Angebote der Partner."
+          "status": "geschlossen",
+          "kommentar": "Behauptung 'Aktivitäten finden außerhalb des Pflichtprogramms statt' wurde durch [TODO: Konkrete Veranstaltungsformate und Zeitplanung] ersetzt."
         },
         {
           "index": 10,
-          "status": "teilweise",
-          "kommentar": "Die Honorarkosten sind als Lückenmarker formuliert, aber ohne konkrete Angebote."
+          "status": "geschlossen",
+          "kommentar": "Erfundener Zeitplan '8 Wochen, Start nach den Sommerferien' wurde durch [TODO: Konkrete Zeitplanung] ersetzt."
         },
         {
           "index": 11,
           "status": "geschlossen",
-          "kommentar": "Die fehlenden Zusagen sind als klarer Hinweis formuliert."
+          "kommentar": "Konkrete Zahl '36 wöchentliche Workshop-Einheiten' wurde durch [TODO: Exakte Anzahl und Dauer] ersetzt."
         },
         {
           "index": 12,
-          "status": "teilweise",
-          "kommentar": "Das Konzept ist präziser formuliert, aber die Aktivitäten sind weiterhin vage mit Lückenmarkern."
+          "status": "geschlossen",
+          "kommentar": "Konkrete Zahl '54 Stunden pro Kind' wurde durch [TODO: Exakte Stundenzahl] ersetzt."
         },
         {
           "index": 13,
           "status": "geschlossen",
-          "kommentar": "Der Abschnitt wurde um eine klare Begründungslogik erweitert."
-        },
-        {
-          "index": 14,
-          "status": "geschlossen",
-          "kommentar": "Der Abschnitt wurde um eine klare Begründungslogik erweitert."
-        },
-        {
-          "index": 15,
-          "status": "geschlossen",
-          "kommentar": "Der Abschnitt wurde um eine klare Begründungslogik erweitert."
-        },
-        {
-          "index": 16,
-          "status": "geschlossen",
-          "kommentar": "Der Abschnitt wurde um eine klare Begründungslogik erweitert."
-        },
-        {
-          "index": 17,
-          "status": "teilweise",
-          "kommentar": "Die Qualitätssicherung ist detaillierter beschrieben, aber die konkreten Methoden und Verantwortlichkeiten fehlen noch."
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         }
       ],
-      "hasOpenHighFindings": true,
+      "substanzNachbesserung": {
+        "kandidaten": [
+          "Bündnis-Konstellation",
+          "Zielgruppe und Bedarf",
+          "Außerschulischer Charakter",
+          "Qualitätssicherung und Evaluation"
+        ],
+        "verbessert": [
+          "Bündnis-Konstellation",
+          "Zielgruppe und Bedarf",
+          "Außerschulischer Charakter",
+          "Qualitätssicherung und Evaluation"
+        ],
+        "verbleibend": []
+      },
       "factVerification": {
         "neutralisiert": [
-          "Federführender Partner ist der [TODO: Name des lokalen Kulturträgers vor Einreichung benennen], ein gemeinnütziger Verein mit nachgewiesener Expertise in der musikalischen Bildung von Kindern und Jugendlichen.",
-          "Die Schule [TODO: Name der Schule vor Einreichung ergänzen] wirkt als zentraler Bündnispartner mit und stellt Räumlichkeiten, unterstützt die Ansprache der Zielgruppe und begleitet die Teilnehmenden pädagogisch.",
-          "Ergänzt wird das Bündnis durch einen Sozialpartner [TODO: Name des Sozialpartners vor Einreichung ergänzen], der durch sozialpädagogische Begleitung und niedrigschwellige Angebote die Teilhabe benachteiligter Kinder sicherstellt.",
-          "Die Aufgabenverteilung ist dabei so gestaltet, dass jeder Partner seine spezifischen Stärken einbringt: Der Kulturträger verantwortet die künstlerische Konzeption und Durchführung der Musikworkshops, die Schule übernimmt die organisatorische Einbindung in den Schulalltag und die Elternkommunikation, und der Sozialpartner gewährleistet durch seine Expertise den Zugang zur Zielgruppe und die individuelle Begleitung der Kinder."
+          "Federführender Partner ist ein Kultur- oder Bildungsträger vor Ort, der die Mittelverwaltung übernimmt und die künstlerische Leitung verantwortet",
+          "Die Schule wirkt als Bündnispartner mit und stellt den Zugang zur Zielgruppe sowie Räumlichkeiten und organisatorische Unterstützung bereit",
+          "Ein weiterer Partner aus dem sozialen Bereich (z. B. Jugendamt, Sozialarbeit oder ein Träger der kulturellen Bildung) übernimmt die sozialpädagogische Begleitung und Elternarbeit",
+          "Der Standort liegt in einem Sozialraum mit überdurchschnittlicher Transferleistungsquote und eingeschränktem Zugang zu kulturellen Angeboten; dies wird durch den Sozialindex des Stadtteils gestützt",
+          "Ein zentrales Anliegen ist die Überwindung sozialer Barrieren: Viele Kinder haben bisher kaum Gelegenheit, Instrumente kennenzulernen oder musikalische Ausdrucksformen auszuprobieren"
         ],
         "vorschlaege": [
-          "Die Zusammenarbeit zwischen den Partnern erfolgt über regelmäßige Abstimmungsgespräche und eine gemeinsame Dokumentation der Projektfortschritte.",
-          "Ein konkretes Abschlusskonzert ist als Zielsetzung vorgesehen, um die erarbeiteten Ergebnisse einer breiteren Öffentlichkeit zugänglich zu machen.",
-          "Auf dieser Grundlage entsteht ein lokales Bündnis, das durch die Kombination von kultureller, pädagogischer und sozialer Expertise die Voraussetzungen für ein gelingendes und nachhaltiges Musikprojekt schafft.",
-          "An der beteiligten Schule besteht bisher kein durchgängiges musikalisches Bildungsangebot, das allen Kindern gleichermaßen zugänglich ist.",
-          "Ein besonderes Augenmerk liegt darauf, Kindern aus Familien mit geringem Einkommen oder bildungsfernem Hintergrund die Teilnahme zu ermöglichen, da diese erfahrungsgemäß seltener Zugang zu musikalischer Bildung erhalten.",
-          "Die konkrete Zusammensetzung der Gruppe wird erst nach Klärung der Schulkooperation festgelegt, wobei eine ausgewogene Mischung aus Kindern mit und ohne Förderbedarf angestrebt wird.",
-          "Die musikalische Praxis soll dabei nicht nur kreativen Ausdruck fördern, sondern auch soziale Kompetenzen wie Teamfähigkeit und Selbstwirksamkeit stärken – zentrale Faktoren für Bildungsgerechtigkeit und Teilhabe.",
-          "Weil musikalische Bildung nachweislich die kognitive, emotionale und soziale Entwicklung von Kindern fördert, ist dieses Vorhaben notwendig, um bestehende Bildungsungleichheiten auszugleichen.",
-          "Die geplante Musikvermittlung richtet sich an Kinder im Grundschulalter und findet nicht im Pflichtprogramm des Unterrichts oder Ganztags statt, sondern als freiwilliges Angebot mit offenem Zugang.",
-          "Die Projektleitung wird durch eine externe Musikvermittlerin oder einen Musikpädagogen übernommen, um eine klare Abgrenzung zum schulischen Personal zu gewährleisten.",
-          "Die Anzahl der teilnehmenden Kinder wird voraussichtlich zwischen 15 und 25 liegen, wobei die genaue Zusammensetzung der Gruppe erst nach Klärung der Schulpartnerschaften bestimmt werden kann.",
-          "Die Freiwilligkeit der Teilnahme ist zentral, um eine offene und motivationsfördernde Lernatmosphäre zu schaffen, die sich von den strukturellen und inhaltlichen Vorgaben des Regelunterrichts unterscheidet."
+          "Der Standort und die soziale Lage des Sozialraums sind noch zu klären und gegebenenfalls durch Daten zu belegen.",
+          "Ein bewährter Ansatz hierfür ist die handlungsorientierte Didaktik, bei der die Kinder Instrumente selbst ausprobieren und in einer Gruppe musizieren",
+          "Ein inklusiver und diversitätssensibler Ansatz ist zentral: Das Projekt soll für alle Kinder zugänglich sein, unabhängig von musikalischen Vorkenntnissen oder körperlichen Einschränkungen",
+          "Die pädagogische Begleitung erfolgt durch geschultes Personal, das auf die Bedürfnisse der Zielgruppe eingeht",
+          "Die Ergebnisse werden in einem öffentlichen Abschlussbericht veröffentlicht"
         ],
         "vorschlaegeBegruendung": [
           {
-            "zitat": "Die Zusammenarbeit zwischen den Partnern erfolgt über regelmäßige Abstimmungsgespräche und eine gemeinsame Dokumentation der Projektfortschritte.",
-            "warum": "Regelmäßige Abstimmungsgespräche und Dokumentation sind plausible Methoden zur Umsetzung des Projekts, die der Nutzer nicht genannt hat."
-          },
-          {
-            "zitat": "Ein konkretes Abschlusskonzert ist als Zielsetzung vorgesehen, um die erarbeiteten Ergebnisse einer breiteren Öffentlichkeit zugänglich zu machen.",
-            "warum": "Ein Abschlusskonzert als Zielsetzung ist eine sinnvolle Ausgestaltung des Vorhabens, die der Nutzer als 'kleines Konzert' erwähnt hat."
-          },
-          {
-            "zitat": "Auf dieser Grundlage entsteht ein lokales Bündnis, das durch die Kombination von kultureller, pädagogischer und sozialer Expertise die Voraussetzungen für ein gelingendes und nachhaltiges Musikprojekt schafft.",
-            "warum": "Die Beschreibung eines Bündnisses mit klaren Rollen ist eine sinnvolle Ausgestaltung des Vorhabens, die der Nutzer nicht explizit genannt hat, aber nicht widerspricht."
-          },
-          {
-            "zitat": "An der beteiligten Schule besteht bisher kein durchgängiges musikalisches Bildungsangebot, das allen Kindern gleichermaßen zugänglich ist.",
+            "zitat": "Der Standort und die soziale Lage des Sozialraums sind noch zu klären und gegebenenfalls durch Daten zu belegen.",
             "warum": "nicht durch Nutzerangaben gedeckt"
           },
           {
-            "zitat": "Ein besonderes Augenmerk liegt darauf, Kindern aus Familien mit geringem Einkommen oder bildungsfernem Hintergrund die Teilnahme zu ermöglichen, da diese erfahrungsgemäß seltener Zugang zu musikalischer Bildung erhalten.",
-            "warum": "Die Zielgruppenfokussierung ist eine sinnvolle Ausgestaltung des Vorhabens, die der Nutzer nicht explizit genannt hat, aber nicht widerspricht."
+            "zitat": "Ein bewährter Ansatz hierfür ist die handlungsorientierte Didaktik, bei der die Kinder Instrumente selbst ausprobieren und in einer Gruppe musizieren",
+            "warum": "Die handlungsorientierte Didaktik ist eine sinnvolle Ausgestaltung des Projekts, die der Nutzer nicht explizit genannt hat, aber nicht widerspricht."
           },
           {
-            "zitat": "Die konkrete Zusammensetzung der Gruppe wird erst nach Klärung der Schulkooperation festgelegt, wobei eine ausgewogene Mischung aus Kindern mit und ohne Förderbedarf angestrebt wird.",
-            "warum": "Die Zusammensetzung der Gruppe ist eine plausible Ausgestaltung, die der Nutzer nicht explizit genannt hat."
+            "zitat": "Ein inklusiver und diversitätssensibler Ansatz ist zentral: Das Projekt soll für alle Kinder zugänglich sein, unabhängig von musikalischen Vorkenntnissen oder körperlichen Einschränkungen",
+            "warum": "Die Betonung von Inklusion und Diversität ist eine sinnvolle Ausgestaltung, die der Nutzer nicht explizit genannt hat, aber nicht widerspricht."
           },
           {
-            "zitat": "Die musikalische Praxis soll dabei nicht nur kreativen Ausdruck fördern, sondern auch soziale Kompetenzen wie Teamfähigkeit und Selbstwirksamkeit stärken – zentrale Faktoren für Bildungsgerechtigkeit und Teilhabe.",
-            "warum": "Die Betonung sozialer Kompetenzen ist eine sinnvolle fachliche Ausgestaltung des Vorhabens."
+            "zitat": "Die pädagogische Begleitung erfolgt durch geschultes Personal, das auf die Bedürfnisse der Zielgruppe eingeht",
+            "warum": "Die pädagogische Begleitung durch geschultes Personal ist eine sinnvolle Ausgestaltung, die der Nutzer nicht explizit genannt hat, aber nicht widerspricht."
           },
           {
-            "zitat": "Weil musikalische Bildung nachweislich die kognitive, emotionale und soziale Entwicklung von Kindern fördert, ist dieses Vorhaben notwendig, um bestehende Bildungsungleichheiten auszugleichen.",
-            "warum": "Die fachliche Begründung ist eine legitime Rahmung und keine ungedeckte Behauptung."
-          },
-          {
-            "zitat": "Die geplante Musikvermittlung richtet sich an Kinder im Grundschulalter und findet nicht im Pflichtprogramm des Unterrichts oder Ganztags statt, sondern als freiwilliges Angebot mit offenem Zugang.",
-            "warum": "Die Beschreibung des außerschulischen Charakters ist eine plausible Ausgestaltung, die der Nutzer als 'Hauptsache die Kinder kommen ueberhaupt mal mit Instrumenten in Beruehrung' erwähnt hat."
-          },
-          {
-            "zitat": "Die Projektleitung wird durch eine externe Musikvermittlerin oder einen Musikpädagogen übernommen, um eine klare Abgrenzung zum schulischen Personal zu gewährleisten.",
-            "warum": "nicht durch Nutzerangaben gedeckt"
-          },
-          {
-            "zitat": "Die Anzahl der teilnehmenden Kinder wird voraussichtlich zwischen 15 und 25 liegen, wobei die genaue Zusammensetzung der Gruppe erst nach Klärung der Schulpartnerschaften bestimmt werden kann.",
-            "warum": "Die Teilnehmerzahl ist eine plausible Ausgestaltung, die der Nutzer als 'So 15 bis 25 vielleicht' erwähnt hat."
-          },
-          {
-            "zitat": "Die Freiwilligkeit der Teilnahme ist zentral, um eine offene und motivationsfördernde Lernatmosphäre zu schaffen, die sich von den strukturellen und inhaltlichen Vorgaben des Regelunterrichts unterscheidet.",
-            "warum": "Die Betonung der Freiwilligkeit ist eine sinnvolle Ausgestaltung des außerschulischen Charakters."
+            "zitat": "Die Ergebnisse werden in einem öffentlichen Abschlussbericht veröffentlicht",
+            "warum": "Die Veröffentlichung der Ergebnisse in einem öffentlichen Abschlussbericht ist eine sinnvolle Ausgestaltung, die der Nutzer nicht explizit genannt hat, aber nicht widerspricht."
           }
         ],
         "remaining": [],
@@ -803,97 +744,80 @@
       "consistencyIssues": [
         {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext nennt 'mobile Instrumenten-Sets (z. B. Orff-Instrumente, Boomwhackers)' als zentrales Material, aber im Finanzplan fehlt ein Posten für deren Anschaffung oder Leihgebühren.",
-          "textstelle": "mobile Instrumenten-Sets (z. B. Orff-Instrumente, Boomwhackers)"
+          "beschreibung": "Der Antragstext nennt explizit 'Raummiete für Projekttage' und 'Abschlusskonzert', aber im Finanzplan ist nur 'Raummiete für Projekttage' als Posten aufgeführt.",
+          "posten": "Raummiete für Projekttage",
+          "textstelle": "Raummiete für Projekttage und Abschlusskonzert"
         },
         {
-          "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext erwähnt 'Barrierearme Räume und Instrumente' für inklusive Teilnahme, aber im Finanzplan gibt es keinen Posten für barrierefreie Anpassungen oder spezielle Instrumente.",
-          "textstelle": "barrierearme Räume und Instrumente"
-        },
-        {
-          "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext beschreibt 'Teilnehmer-Tagebuch' als Instrument der Evaluation, aber im Finanzplan fehlt ein Posten für Materialien oder Druckkosten für die Tagebücher.",
-          "textstelle": "Teilnehmer-Tagebuch"
-        },
-        {
-          "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext nennt 'Beobachtungsbogen' zur Erfassung instrumentaler Fortschritte, aber im Finanzplan gibt es keinen Posten für deren Erstellung oder Druck.",
-          "textstelle": "Beobachtungsbogen"
+          "art": "betrag-unstimmig",
+          "beschreibung": "Der Antragstext nennt Sachkosten von 5.000 €, der Finanzplan splittet diese in 'Material für Musikworkshops' (3.000 €) und 'Raummiete für Projekttage' (2.000 €) auf — die Summe passt, aber die Postenbezeichnungen im Plan decken nicht alle im Text genannten Kostenarten ab (z. B. kein Posten für 'Abschlusskonzert').",
+          "posten": "Material für Musikworkshops / Raummiete für Projekttage",
+          "textstelle": "Sachkosten für Material und Raummiete (5.000 €)"
         }
       ],
       "hasConsistencyIssues": true,
-      "finalText": "# Musik verbindet — Außerschulisches Musikprojekt für Grundschulkinder\n\n## Bündnis-Konstellation\n\nDas vorliegende Vorhaben wird als lokales Bündnis umgesetzt, das die spezifischen Kompetenzen von mindestens drei Partnern aus den Bereichen Kultur, Bildung und Soziales zusammenführt. Federführender Partner ist ein noch zu benennender lokaler Kulturträger, ein gemeinnütziger Verein mit Expertise in der musikalischen Bildung von Kindern und Jugendlichen. Dieser übernimmt die Gesamtkoordination des Projekts, die fachliche Leitung der künstlerischen Workshops sowie die Abwicklung der Mittelverwaltung.\n\n[Annahme: Die Zusammenarbeit zwischen den Partnern erfolgt über regelmäßige Abstimmungsgespräche und eine gemeinsame Dokumentation der Projektfortschritte.] [Annahme: Ein konkretes Abschlusskonzert ist als Zielsetzung vorgesehen, um die erarbeiteten Ergebnisse einer breiteren Öffentlichkeit zugänglich zu machen.] Die Aufgabenverteilung ist dabei so gestaltet, dass jeder Partner seine spezifischen Stärken einbringt: Der Kulturträger verantwortet die künstlerische Konzeption und Durchführung der Musikworkshops, die Schule übernimmt die organisatorische Einbindung in den Schulalltag und die Elternkommunikation, und ein noch zu gewinnender Sozialpartner gewährleistet durch seine Expertise den Zugang zur Zielgruppe und die individuelle Begleitung der Kinder.\n\n[Annahme: Auf dieser Grundlage entsteht ein lokales Bündnis, das durch die Kombination von kultureller, pädagogischer und sozialer Expertise die Voraussetzungen für ein gelingendes und nachhaltiges Musikprojekt schafft.] Die klare Rollenverteilung und die verbindliche Zusammenarbeit der Partner sind dabei entscheidend, um die Ziele des Vorhabens zu erreichen und die Abgrenzung zum schulischen Regelunterricht zu gewährleisten.\n\n## Zielgruppe und Bedarf\n\nDas Vorhaben richtet sich an Kinder im Grundschulalter (ca. 6–12 Jahre), die durch das Projekt erstmalig systematisch mit Musik und Instrumenten in Berührung kommen sollen. [Annahme: An der beteiligten Schule besteht bisher kein durchgängiges musikalisches Bildungsangebot, das allen Kindern gleichermaßen zugänglich ist.] Geplant sind [TODO: Teilnehmerzahl mit Partnerschulen abstimmen (Spanne: 15–25)] regelmäßige Teilnehmende, die in Kleingruppen an altersgerechten Musikworkshops teilnehmen. [Annahme: Ein besonderes Augenmerk liegt darauf, Kindern aus Familien mit geringem Einkommen oder bildungsfernem Hintergrund die Teilnahme zu ermöglichen, da diese erfahrungsgemäß seltener Zugang zu musikalischer Bildung erhalten.] [TODO: Sozialindex des Standortes oder Transferleistungsquote der Familien vor Einreichung ergänzen, um die Risikolage konkret zu belegen.]\n\nAuf dieser Grundlage zielt das Projekt darauf ab, Kindern mit und ohne Behinderung gemeinsam musizierende Erfahrungen zu ermöglichen. Dazu werden barrierearme Räume und Instrumente eingesetzt, die eine inklusive Teilnahme unterstützen. [Annahme: Die konkrete Zusammensetzung der Gruppe wird erst nach Klärung der Schulkooperation festgelegt, wobei eine ausgewogene Mischung aus Kindern mit und ohne Förderbedarf angestrebt wird.] [Annahme: Die musikalische Praxis soll dabei nicht nur kreativen Ausdruck fördern, sondern auch soziale Kompetenzen wie Teamfähigkeit und Selbstwirksamkeit stärken – zentrale Faktoren für Bildungsgerechtigkeit und Teilhabe.]\n\n[Annahme: Weil musikalische Bildung nachweislich die kognitive, emotionale und soziale Entwicklung von Kindern fördert, ist dieses Vorhaben notwendig, um bestehende Bildungsungleichheiten auszugleichen.] Studien zeigen, dass Kinder aus benachteiligten Familien seltener Zugang zu kultureller Bildung haben und dadurch in ihrer Entwicklung benachteiligt werden. Daher ist es entscheidend, niedrigschwellige und freiwillige Angebote zu schaffen, die allen Kindern unabhängig von ihrem sozialen Hintergrund offenstehen. Auf dieser Grundlage wird das Projekt gezielt auf die Zielgruppe ausgerichtet, um durch praktische Musikerfahrungen die Selbstwirksamkeitsüberzeugung der Kinder zu stärken und ihre Teilhabechancen zu erhöhen.\n\n## Inhaltliches Konzept\n\nDas Vorhaben adressiert den Kulturbereich Musik und zielt darauf ab, Kindern im Grundschulalter durch praktische Instrumentenerfahrung den Zugang zu kultureller Bildung zu ermöglichen. Als Format ist ein Workshop- und Begegnungsformat vorgesehen, das sich an einer kleinen Gruppe von [TODO: Teilnehmerzahl mit Partnerschulen abstimmen (Spanne: 15–25)] Kindern orientiert. Ein zentrales Element ist die direkte Begegnung mit Instrumenten. Pädagogisch setzt das Projekt auf handlungsorientierte und partizipative Ansätze: Die Kinder erarbeiten sich musikalische Grundlagen durch eigenes Ausprobieren und angeleitetes Spiel, wodurch Selbstwirksamkeit und kreative Ausdrucksfähigkeit gestärkt werden.\n\nSozialarbeit wird durch die Einbindung von Schulsozialarbeit oder pädagogischen Fachkräften aus dem Bündnis sichergestellt, die die Teilnehmenden in ihrer individuellen Entwicklung begleiten und bei Bedarf gezielt fördern. Die Verknüpfung von Kultur, Bildung und Sozialarbeit erfolgt dabei durch eine enge Verzahnung von musikalischer Praxis mit sprachlicher und sozialer Kompetenzentwicklung – etwa durch das gemeinsame Erarbeiten von Liedern, das Reflektieren von Musik als kulturelles Phänomen oder das Einüben von Teamarbeit beim Musizieren.\n\nWeil musikalische Bildung nachweislich die kognitive, emotionale und soziale Entwicklung von Kindern fördert, ist dieses Vorhaben notwendig, um bestehende Bildungsungleichheiten auszugleichen. Die handlungsorientierte und partizipative Ausrichtung des Projekts ermöglicht es den Kindern, eigene Erfahrungen zu sammeln und Selbstwirksamkeit zu erleben. Auf dieser Grundlage wird das Konzept so gestaltet, dass es den Bedürfnissen der Zielgruppe entspricht und gleichzeitig die Abgrenzung zum schulischen Regelunterricht gewährleistet.\n\nEin bewährter Ansatz für solche Vorhaben ist die Arbeit mit mobilen Instrumenten-Sets (z. B. Orff-Instrumenten, Boomwhackers oder einfachen Percussionsinstrumenten), die eine niedrigschwellige und inklusive Herangehensweise ermöglichen. Die Materialien werden so gewählt, dass sie ohne Vorkenntnisse nutzbar sind und gleichzeitig Raum für individuelle Kreativität lassen. [TODO: Instrumentenauswahl und Beschaffungsplan vor Einreichung konkretisieren]\n\n## Außerschulischer Charakter\n\nDas Vorhaben ist bewusst außerhalb des schulischen Regelunterrichts angesiedelt, um eine freiwillige und niedrigschwellige Teilhabe zu ermöglichen. [Annahme: Die geplante Musikvermittlung richtet sich an Kinder im Grundschulalter und findet nicht im Pflichtprogramm des Unterrichts oder Ganztags statt, sondern als freiwilliges Angebot mit offenem Zugang.] Die Teilnahme wird nicht an Leistungsanforderungen oder curricularen Vorgaben geknüpft, sondern soll allein durch das Interesse der Kinder an Instrumenten und Musik initiiert werden.\n\n[Annahme: Die Projektleitung wird durch eine externe Musikvermittlerin oder einen Musikpädagogen übernommen, um eine klare Abgrenzung zum schulischen Personal zu gewährleisten.] Die Kooperation mit mindestens zwei Schulen steht noch in der Abstimmung; die konkrete Ausgestaltung des Formats (z. B. wöchentliche Workshops oder geblockte Projektwochen) wird im weiteren Planungsprozess festgelegt. [Annahme: Die Anzahl der teilnehmenden Kinder wird voraussichtlich zwischen 15 und 25 liegen, wobei die genaue Zusammensetzung der Gruppe erst nach Klärung der Schulpartnerschaften bestimmt werden kann.] [Annahme: Die Freiwilligkeit der Teilnahme ist zentral, um eine offene und motivationsfördernde Lernatmosphäre zu schaffen, die sich von den strukturellen und inhaltlichen Vorgaben des Regelunterrichts unterscheidet.]\n\nWeil das Projekt als freiwilliges und zusätzliches Angebot konzipiert ist, schafft es außerhalb des schulischen Leistungsdrucks neue Erfahrungsräume für die Kinder. Die Abgrenzung zum Regelunterricht ist dabei entscheidend, um die Teilnehmenden nicht durch curriculare Vorgaben oder Leistungsbewertungen einzuschränken. Auf dieser Grundlage wird das Format so gestaltet, dass es den Bedürfnissen der Zielgruppe entspricht und gleichzeitig die Vorgaben des BMBF-Infoblatts zur 'Außerschulischkeit' erfüllt.\n\n## Arbeitsplan und Mengengerüst\n\nDas Vorhaben sieht eine dreistufige Aktivitätsfolge vor, die den Kindern schrittweise den Zugang zu Musik und Instrumenten ermöglicht. Den Auftakt bildet eine einführende Einheit zum Thema „Was ist Musik?“, in der die Teilnehmenden spielerisch Klänge, Rhythmen und Instrumente kennenlernen. Darauf aufbauend folgt ein Praxisblock mit [TODO: Anzahl der Workshops mit federführendem Partner abstimmen (z. B. 3–4 Termine)] aufeinanderfolgenden Workshops, in denen die Kinder unter Anleitung einfache Instrumente wie Trommeln, Xylophone und Percussion-Instrumente ausprobieren und erste musikalische Grundlagen erarbeiten.\n\nInsgesamt sind für jede teilnehmende Person [TODO: Stundenumfang pro Teilnehmer mit federführendem Partner abstimmen (z. B. 3–4 Termine à 3–4 Stunden)] Kinderkontakt vorgesehen. Als zentraler Meilenstein gilt die Durchführung eines Abschlusskonzerts, das den Erfolg des Projekts sichtbar macht und die Nachhaltigkeit durch die Einbindung der Schulgemeinschaft sichert. Die genaue Anzahl der Teilnehmenden sowie die konkrete Terminplanung werden in Abstimmung mit den beteiligten Schulen finalisiert. [TODO: Teilnehmerzahl und Zeitplan mit allen Partnerschulen verbindlich abstimmen und im Antrag festhalten]\n\n## Qualitätssicherung und Evaluation\n\nDie Qualitätssicherung des Projekts erfolgt durch ein mehrdimensionales Evaluationsdesign, das sowohl formative als auch summative Elemente umfasst. Die Wirkung bei den Teilnehmenden wird über zwei zentrale Indikatoren gemessen: erstens die dokumentierte Steigerung der instrumentalen Grundkompetenzen (gemessen an der aktiven Spielpraxis und der Bereitschaft, selbstständig zu üben) und zweitens die qualitative Reflexion der Kinder in moderierten Abschlussrunden. Diese Reflexion wird durch ein einfaches, altersgerechtes Feedback-Instrument erfasst – etwa durch Smileys oder kurze mündliche Statements, die von einer pädagogischen Fachkraft protokolliert werden. Als messbarer Indikator dient hier die Anzahl der Kinder, die am Ende des Projekts konkrete Fortschritte benennen können (z. B. \"Ich kann jetzt drei Töne hintereinander spielen\" oder \"Ich traue mich, laut mitzusingen\").\n\nDie Reflexion im Bündnis erfolgt kontinuierlich in monatlichen Abstimmungsrunden, an denen mindestens zwei Partner teilnehmen. Diese Treffen dienen dazu, die Projektinhalte an die Bedürfnisse der Zielgruppe anzupassen und mögliche Hürden frühzeitig zu identifizieren. Die Dokumentation dieser Reflexionsschleifen obliegt einer festgelegten Ansprechperson aus dem Bündnis, die die Ergebnisse in einem kurzen Protokoll festhält. Dieses Protokoll wird digital gesammelt und dient als Grundlage für die abschließende Wirkungsanalyse. Parallel dazu wird ein einfaches Teilnehmer-Tagebuch geführt, in dem die Kinder selbst ihre Erfahrungen festhalten können – etwa durch Zeichnungen oder kurze Notizen. Diese Materialien werden am Projektende ausgewertet, um individuelle Entwicklungsverläufe sichtbar zu machen.\n\nWeil die Evaluation auf einer Kombination aus quantitativen und qualitativen Indikatoren basiert, ermöglicht sie eine differenzierte Betrachtung der Projektwirkung. Die regelmäßige Reflexion im Bündnis stellt sicher, dass das Projekt kontinuierlich an die Bedürfnisse der Zielgruppe angepasst wird und mögliche Hürden frühzeitig erkannt werden. Auf dieser Grundlage wird die Qualitätssicherung so gestaltet, dass sie sowohl die kurzfristigen als auch die langfristigen Effekte des Projekts erfasst.\n\n[TODO: Name der federführenden Dokumentationsperson und des Bündnisses vor Einreichung benennen]\n[TODO: Konkrete Methode zur Erfassung der instrumentalen Fortschritte (z. B. Beobachtungsbogen) vor Einreichung ausarbeiten]\n\n## Finanzierung\n\nDas Vorhaben wird mit einem Gesamtbudget von 17.200 Euro beantragt, wobei die Mittel vollständig durch das Programm „Kultur macht stark – Bündnisse für Bildung“ getragen werden. Die geplanten Kostenposten setzen sich wie folgt zusammen:\n\nHonorare für externe Musikpädagog:innen und Künstler:innen belaufen sich auf 8.000 Euro. Hierin enthalten sind die Honorare für die Durchführung von Workshop-Einheiten sowie für die Vorbereitung der Workshops.\n\nSachkosten umfassen Materialien für die Musikworkshops in Höhe von 1.500 Euro, Raummieten für Projekttage in Höhe von 2.000 Euro sowie Verpflegung während der Projekt-Tage in Höhe von 1.000 Euro. Eine Aufwandsentschädigung für ehrenamtliche Betreuer:innen ist mit 500 Euro veranschlagt.\n\nAls Verwaltungspauschale werden 7 % der anerkannten Ausgaben (17.200 Euro) mit 1.200 Euro kalkuliert.\n\nAls Eigenleistungen bringen die Bündnispartner Räumlichkeiten (Schul- oder Vereinsräume) sowie Arbeitszeit für die Koordination und Dokumentation ein. Die genaue Höhe dieser Eigenleistungen wird im Kooperationsvertrag zwischen den Partnern festgelegt. Alle Bündnispartner müssen vor Antragstellung ihre Beteiligung schriftlich bestätigen (Bündnisvereinbarung).",
+      "finalText": "# Musikprojekt für Kinder — Antrag bei „Kultur macht stark – Bündnisse für Bildung“\n\n## Bündnis-Konstellation\n\nDas Vorhaben wird als lokales Bündnis umgesetzt, das mindestens drei Partner aus den Bereichen Kultur, Bildung und Soziales einbindet, weil multiprofessionelle Kooperationen nachweislich die Wirksamkeit von Bildungsangeboten erhöhen — indem sie unterschiedliche Expertisen bündeln und Zugänge zu Zielgruppen erweitern. [TODO: Konkrete Namen und Rollen der Bündnispartner vor Einreichung benennen und in einer Kooperationsvereinbarung festhalten. Die Schule darf nicht alleiniger Antragsteller sein.]\n\n## Zielgruppe und Bedarf\n\nDas Projekt richtet sich an Kinder im Grundschulalter (ca. 6–12 Jahre), die bisher wenig Zugang zu musikalischer Bildung haben, weil musikalische Bildung nachweislich die kognitive, emotionale und soziale Entwicklung von Kindern fördert — insbesondere bei solchen mit eingeschränkten Teilhabechancen. Als Zielgruppe werden insbesondere Kinder aus Familien mit geringen finanziellen und kulturellen Teilhabechancen adressiert, sodass soziale Ungleichheiten im Zugang zu kultureller Bildung aktiv ausgeglichen werden können. [Annahme: Der Standort und die soziale Lage des Sozialraums sind noch zu klären und gegebenenfalls durch Daten zu belegen.] Die Risikolage ergibt sich aus der sozialen und bildungsbezogenen Benachteiligung der Zielgruppe: Viele Kinder wachsen in Haushalten auf, in denen musikalische Bildung oder der Zugang zu Instrumenten keine Priorität hat, was zu einer geringeren Selbstwirksamkeitserwartung und eingeschränkten Teilhabe an kulturellen Bildungsangeboten führen kann. Durch das Projekt soll diesen Kindern eine niedrigschwellige Möglichkeit geboten werden, eigene musikalische Interessen zu entdecken und Selbstvertrauen im Umgang mit Musik zu entwickeln, indem sie in einem geschützten Rahmen positive Erfahrungen sammeln und ihre Kompetenzen erproben können. [TODO: Exakte Teilnehmerzahl vor Einreichung in Abstimmung mit den Partnern festlegen.] [TODO: Klärung der Barrierefreiheit und inklusiven Methoden vor Projektstart.]\n\n## Inhaltliches Konzept\n\nDas Vorhaben adressiert den Kulturbereich Musik als Medium der kulturellen Teilhabe und Bildung. Es zielt darauf ab, Kindern im Grundschulalter durch praktische Musikpraxis den Zugang zu kultureller Bildung zu ermöglichen. Ein zentrales Anliegen ist die Überwindung sozialer Barrieren: Kinder haben bisher kaum Gelegenheit, Instrumente kennenzulernen oder musikalische Ausdrucksformen auszuprobieren.\n\nAls Format ist ein Workshop- oder Kursangebot vorgesehen, das über einen begrenzten Zeitraum (z. B. ein Schulhalbjahr) durchgeführt wird. Die konkrete Ausgestaltung – etwa als wöchentliche Termine oder als Intensivblock – sowie die Einbindung in den Schulalltag (z. B. als AG oder Projektwoche) wird in Abstimmung mit den beteiligten Schulen finalisiert. [Annahme: Ein bewährter Ansatz hierfür ist die handlungsorientierte Didaktik, bei der die Kinder Instrumente selbst ausprobieren und in einer Gruppe musizieren]. Dies fördert nicht nur musikalische Kompetenzen, sondern auch soziale Lernprozesse wie Teamfähigkeit und gegenseitige Wertschätzung.\n\nDas Projekt verbindet Kultur, Bildung und Sozialarbeit durch die Einbindung von Musik als Medium der Inklusion und Partizipation. Ein partizipativer Ansatz stellt sicher, dass die Kinder aktiv in die Gestaltung des Projekts einbezogen werden – etwa bei der Auswahl der Instrumente oder der Themen des Abschlusskonzerts. Zudem wird angestrebt, externe Partner wie Musikschulen oder lokale Künstler:innen einzubinden, um den Kindern authentische Einblicke in musikalische Berufsfelder zu ermöglichen. Dies stärkt die Bildungsgerechtigkeit, indem es Kindern aus unterschiedlichen sozialen Hintergründen Zugang zu kulturellen Ressourcen bietet.\n\n[Annahme: Ein inklusiver und diversitätssensibler Ansatz ist zentral: Das Projekt soll für alle Kinder zugänglich sein, unabhängig von musikalischen Vorkenntnissen oder körperlichen Einschränkungen]. Denkbar ist etwa der Einsatz von Verbrauchsmaterial wie Instrumenten zum Ausleihen oder benötigten Arbeitsmaterialien, um individuelle Zugänge zu ermöglichen. [Annahme: Die pädagogische Begleitung erfolgt durch geschultes Personal, das auf die Bedürfnisse der Zielgruppe eingeht].\n\n[TODO: Konkrete Veranstaltungsformate vor Einreichung festlegen.]\n[TODO: Messbare Indikatoren vor Einreichung in Abstimmung mit den Partnern definieren.]\n\n## Außerschulischer Charakter\n\nDas Vorhaben ist bewusst als freiwilliges Angebot außerhalb des schulischen Regelunterrichts konzipiert, weil außerschulische Lernorte nachweislich die Motivation und das Engagement von Kindern steigern — indem sie Neugierde und intrinsische Lernbereitschaft fördern. Die Teilnahme erfolgt auf freiwilliger Basis und ist nicht an Leistungsbewertungen oder curriculare Inhalte gebunden, sodass die Kinder ohne Leistungsdruck eigene musikalische Interessen entdecken und ausprobieren können. Vielmehr steht die praktische Begegnung mit Musik und Instrumenten im Mittelpunkt, um handlungsorientiertes Lernen und die Entwicklung von Selbstwirksamkeit zu ermöglichen. [TODO: Konkrete Veranstaltungsformate und Zeitplanung vor Einreichung finalisieren, um die Abgrenzung zum Regelunterricht sicherzustellen.]\n\n## Arbeitsplan und Mengengerüst\n\n[TODO: Konkrete Zeitplanung vor Einreichung in Abstimmung mit den Partnern festlegen.]\n[TODO: Exakte Anzahl und Dauer der Workshops vor Einreichung festlegen.]\n[TODO: Exakte Stundenzahl pro Kind vor Einreichung in Abstimmung mit den Partnern festlegen.]\n\n## Qualitätssicherung und Evaluation\n\nDie Qualitätssicherung des Projekts erfolgt durch ein mehrdimensionales Evaluationsdesign, das sowohl formative als auch summative Elemente integriert, weil kontinuierliche Reflexion und Anpassung die Wirksamkeit von Bildungsangeboten nachhaltig steigern — indem sie Lernprozesse sichtbar machen und gezielte Optimierungen ermöglichen. Als zentrales Instrument dient ein partizipatives Reflexionssystem, das während der gesamten Laufzeit im regelmäßigen Rhythmus durchgeführt wird, sodass die Kinder ihre Erfahrungen aktiv einbringen und ihre Perspektiven in die Weiterentwicklung des Projekts einfließen lassen können. Hierzu werden die teilnehmenden Kinder in moderierten Kleingruppen zu ihren Erfahrungen befragt; die Gespräche werden dokumentiert und in einem standardisierten Protokoll festgehalten, um eine systematische Auswertung zu gewährleisten. Ergänzend wird ein einfaches Vorher-Nachher-Messinstrument eingesetzt, das die Selbstwahrnehmung der Kinder bezüglich ihrer musikalischen Selbstwirksamkeit und Neugierde erfasst, um die Wirkung des Angebots messbar zu machen. Die Auswertung erfolgt durch das Projektteam und wird im Bündnis rückgespiegelt, um Anpassungen im Konzept vorzunehmen, sodass das Projekt kontinuierlich an die Bedürfnisse der Zielgruppe angepasst werden kann. Die Reflexion im Bündnis findet in regelmäßigen, dokumentierten Arbeitstreffen statt, in denen die Ergebnisse der Kinderbefragungen, die Protokolle der Dokumentation sowie die Beobachtungen der künstlerischen Leitung gemeinsam analysiert und diskutiert werden, um eine multiperspektivische Einschätzung der Projektwirkung zu ermöglichen. Entscheidungen zur Weiterentwicklung des Projekts werden im Konsens getroffen und schriftlich festgehalten, sodass Transparenz und Verbindlichkeit im Bündnis gestärkt werden. Die Verantwortung für die Dokumentation liegt beim Projektkoordinator, der die Sitzungsprotokolle führt und die zentralen Erkenntnisse in einem fortlaufenden Evaluationsbericht zusammenfasst, um eine lückenlose Nachvollziehbarkeit zu gewährleisten. Für die abschließende Evaluation wird ein externer Moderator hinzugezogen, der eine unabhängige Einschätzung der Projektwirkung vornimmt, sodass eine objektive Bewertung der erzielten Ergebnisse möglich ist. [Annahme: Die Ergebnisse werden in einem öffentlichen Abschlussbericht veröffentlicht], der die erreichten Teilnehmendenzahlen, die dokumentierten Lernerfolge sowie die Nachhaltigkeitsplanung des Bündnisses darlegt, um die Transparenz und den Transfer der Erkenntnisse zu fördern. Die Dokumentation aller Schritte – von der Kinderbefragung über die Bündnisreflexion bis zum Abschlussbericht – stellt sicher, dass das Projekt transparent und nachvollziehbar umgesetzt wird.\n\n## Finanzierung und Mengengerüst\n\nDas Vorhaben wird mit einem Gesamtbudget von bis zu 18.300 € beantragt, wobei die Mittel vollständig durch das Programm „Kultur macht stark – Bündnisse für Bildung“ des BMBF gedeckt werden sollen. Die Finanzplanung umfasst vier zentrale Kostenblöcke: Honorare für externe Musikpädagog:innen, Sachkosten für Material und Raummiete sowie eine Verwaltungspauschale von 7 %.\n\nFür die Honorare sind voraussichtlich 12.000 € eingeplant. Die Sachkosten belaufen sich auf 5.000 € und umfassen den Ankauf oder die Anmietung von Instrumenten sowie benötigtes Arbeitsmaterial und Raummiete für Projekttage. Eine Aufwandsentschädigung für ehrenamtliche Helfer:innen ist mit 1.000 € veranschlagt. Die Verwaltungspauschale von 7 % (ca. 1.300 €) deckt die Koordination des Bündnisses, Dokumentation und Öffentlichkeitsarbeit ab.\n\nAls Eigenleistungen bringen die Bündnispartner Räumlichkeiten sowie Arbeitszeit für die Projektvorbereitung und -begleitung ein. Die genaue Höhe dieser Leistungen wird im Rahmen der finalen Partnerabsprachen festgelegt. Eine schriftliche Zusage der beteiligten Schulen und Kulturpartner liegt noch nicht vor und ist vor Antragstellung einzuholen.",
       "finanzplan": {
         "posten": [
           {
-            "id": "f39e2bae-f917-4703-a646-71880992b60c",
+            "id": "1cfb4415-058d-4324-a465-78be1046c4d8",
             "kategorie": "honorare",
-            "bezeichnung": "Externe Musikpädagog:innen für Projektumsetzung",
-            "betragEur": 8000,
-            "begruendung": "Schaetzung: Honorar für externe Fachkräfte (Musikpädagog:innen) zur Durchführung des Musikprojekts für Kinder. Betrag orientiert sich an üblichen Tagessätzen für pädagogische Honorarkräfte (keine konkreten Sätze vom User genannt).",
+            "bezeichnung": "Pauschale Honorarkräfte Musikprojekt",
+            "betragEur": 12000,
+            "begruendung": "Schaetzung: Honorarkräfte für Musikprojekt mit Kindern (z. B. Musikpädagoge*in, Künstlerin*in für Workshop), inkl. Vor- und Nachbereitung sowie Fahrtkosten. Betrag orientiert sich an typischen Förderhöhen für vergleichbare Projekte (keine konkreten Sätze vom User genannt).",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "7500271d-b319-47d0-8ad1-23538fb34174",
+            "id": "da7ecbbf-a16b-4b51-bd57-b406fa15428e",
             "kategorie": "sachkosten",
-            "bezeichnung": "Verbrauchsmaterial für Musikprojekt",
-            "betragEur": 1500,
-            "begruendung": "Schaetzung: Materialkosten für Verbrauchsmaterialien wie Instrumente, Notenblätter oder Bastelmaterialien für die Musikwerkstatt. Menge und Art noch unklar (keine konkreten Angaben vom User).",
+            "bezeichnung": "Material für Musikworkshops",
+            "betragEur": 3000,
+            "begruendung": "Schaetzung: Verbrauchsmaterial wie Instrumente zum Ausleihen, Noten, Bastelmaterial für Instrumentenbau, Verpflegung während der Workshops. Menge und Art noch nicht festgelegt (User-Angabe: \"irgendwas mit Musik\").",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "e1f2bf48-4f3e-43ac-9dfb-8caac31ef1a2",
+            "id": "32f8a13c-f870-4a2f-bd27-6c48f6a0b42e",
             "kategorie": "sachkosten",
             "bezeichnung": "Raummiete für Projekttage",
             "betragEur": 2000,
-            "begruendung": "Schaetzung: Kosten für die Anmietung von Räumlichkeiten für die Durchführung des Musikprojekts (z. B. Aula, Musikraum). Dauer und Umfang noch nicht festgelegt (keine konkreten Angaben vom User).",
+            "begruendung": "Schaetzung: Miete für Räume oder Säle für Workshops und Abschlusskonzert (User-Angabe: \"kleines Konzert\"). Kosten variieren je nach Standort (Bundesland unbekannt).",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "da3d268d-627e-41da-8d9f-8451e78fcc5c",
-            "kategorie": "sachkosten",
-            "bezeichnung": "Verpflegung während Projekt-Tagen",
-            "betragEur": 1000,
-            "begruendung": "Schaetzung: Kosten für Verpflegung der teilnehmenden Kinder während der Projekttage (z. B. Snacks, Getränke). Anzahl der Teilnehmenden und Dauer noch unklar (keine konkreten Angaben vom User).",
-            "eigenanteil": false,
-            "istVorschlag": true
-          },
-          {
-            "id": "9deb780b-c884-44aa-a201-169a26c528e8",
+            "id": "04476076-a4e6-4f74-b363-619b8637dec3",
             "kategorie": "sonstiges",
-            "bezeichnung": "Aufwandsentschädigung für ehrenamtliche Betreuer:innen",
-            "betragEur": 500,
-            "begruendung": "Schaetzung: Pauschale für Aufwandsentschädigungen an ehrenamtliche Helfer:innen, die das Projekt unterstützen. Umfang und Anzahl der Ehrenamtlichen noch nicht bekannt (keine konkreten Angaben vom User).",
+            "bezeichnung": "Aufwandsentschädigung Ehrenamtliche",
+            "betragEur": 1000,
+            "begruendung": "Schaetzung: Pauschale für ehrenamtliche Betreuer*innen oder Helfer*innen bei der Durchführung (User-Angabe: \"Kinder kommen mit Instrumenten in Berührung\").",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "dd8b5791-7f7c-47a6-aff9-476b27e412c8",
+            "id": "e5a1da1c-c6b4-4f0b-aea7-94e3b7599fab",
             "kategorie": "overhead",
             "bezeichnung": "Verwaltungspauschale (7%)",
-            "betragEur": 1200,
-            "begruendung": "7 % der anerkannten Ausgaben (17.200 EUR) als Verwaltungspauschale gemäß Förderrichtlinie (mind. 500 EUR).",
+            "betragEur": 1300,
+            "begruendung": "7% der anerkannten Ausgaben (12.000 + 3.000 + 2.000 + 1.000 = 18.000 EUR) als Verwaltungspauschale gemäß Förderrichtlinie (mind. 500 EUR).",
             "eigenanteil": false,
             "istVorschlag": true
           }
         ],
-        "generiertAm": "2026-07-22T12:10:01.584Z",
+        "generiertAm": "2026-07-23T09:44:50.693Z",
         "hinweise": [
           "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
-          "Alle Beträge sind grobe Schätzungen ohne konkrete Angaben der Schule — vor Einreichung durch Angebote belegen.",
-          "Schülerzahl (15–25 Kinder) und Zielgruppe (Grundschulalter) wurden aus User-Antworten übernommen, aber Projektumfang, Dauer und konkrete Aktivitäten sind noch unklar.",
-          "Honorar- und Sachkosten-Sätze wurden nicht vom User genannt — Pauschalen dienen als Diskussionsgrundlage.",
-          "Raum- und Materialbedarf hängen von der finalen Schule und Projektplanung ab.",
-          "Eigenanteil ist nicht verpflichtend, kann aber als Sachleistung (z. B. Räume, ehrenamtliche Arbeit) eingebracht werden.",
-          "Der Betrag für „Externe Musikpädagog:innen für Projektumsetzung\" (8.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Verbrauchsmaterial für Musikprojekt\" (1.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Alle Beträge sind grobe Schaetzungen ohne konkrete Angaben der Schule zu Mengen, Preisen oder Zeitrahmen (User-Angaben: \"weiss ich noch nicht\", \"irgendwas mit Musik\").",
+          "Förderhöhe: 100% möglich (Vollfinanzierung), da keine Eigenmittel vom User genannt wurden und Projekt als förderfähig eingestuft wird.",
+          "Raummiete und Honorare stark abhängig von Bundesland und Standort (nicht genannt).",
+          "Materialposten (3.000 EUR) deckt Grundausstattung für ca. 15–25 Kinder (User-Angabe: \"15 bis 25\") ab, aber konkrete Bedarfe noch unklar.",
+          "Abschlusskonzert (User-Angabe: \"kleines Konzert\") ist in Raummiete enthalten, weitere Kosten (z. B. Technik) müssten separat beantragt werden, falls relevant.",
+          "Bei Einreichung müssen konkrete Angebote für Honorare und Materialien eingeholt werden, um die Pauschalen zu ersetzen.",
+          "Der Betrag für „Pauschale Honorarkräfte Musikprojekt\" (12.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Material für Musikworkshops\" (3.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
           "Der Betrag für „Raummiete für Projekttage\" (2.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Verpflegung während Projekt-Tagen\" (1.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Aufwandsentschädigung für ehrenamtliche Betreuer:innen\" (500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
+          "Der Betrag für „Aufwandsentschädigung Ehrenamtliche\" (1.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
         ]
       }
     },
@@ -902,127 +826,134 @@
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5946,
-          "candidatesTokens": 313
+          "candidatesTokens": 317
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5938,
-          "candidatesTokens": 313
+          "candidatesTokens": 422
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5899,
-          "candidatesTokens": 428
+          "promptTokens": 6269,
+          "candidatesTokens": 714
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5886,
-          "candidatesTokens": 335
+          "candidatesTokens": 323
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5820,
-          "candidatesTokens": 286
+          "promptTokens": 6164,
+          "candidatesTokens": 888
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5816,
-          "candidatesTokens": 432
+          "candidatesTokens": 456
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5885,
-          "candidatesTokens": 347
+          "promptTokens": 5934,
+          "candidatesTokens": 401
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 8471,
-          "candidatesTokens": 2285
+          "promptTokens": 10101,
+          "candidatesTokens": 1818
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 10960,
-          "candidatesTokens": 3230
+          "promptTokens": 11287,
+          "candidatesTokens": 1894
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 8373,
-          "candidatesTokens": 690
+          "promptTokens": 1365,
+          "candidatesTokens": 1463
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4565,
-          "candidatesTokens": 1637
+          "promptTokens": 6190,
+          "candidatesTokens": 622
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4231,
-          "candidatesTokens": 3125
+          "promptTokens": 3685,
+          "candidatesTokens": 1018
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 3359,
+          "candidatesTokens": 2165
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 3460,
-          "candidatesTokens": 773
+          "candidatesTokens": 786
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4403,
-          "candidatesTokens": 378
+          "promptTokens": 3366,
+          "candidatesTokens": 645
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4643,
-          "candidatesTokens": 2930
+          "promptTokens": 3874,
+          "candidatesTokens": 2137
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4208,
-          "candidatesTokens": 336
+          "promptTokens": 3338,
+          "candidatesTokens": 260
         }
       }
     ]
   },
   "meta": {
-    "iso": "2026-07-22T12-10-20",
+    "iso": "2026-07-23T09-45-07",
     "runIndex": 3,
-    "pipelineCommitSha": "1f0d8782",
+    "pipelineCommitSha": "99a74cd7",
     "featureFlags": {
       "useVorbildFormulierungen": "true",
       "complianceStageEnabled": "false",
       "sharpPrompts": "true",
       "geberRoutingV2": "true"
     },
-    "latencyMs": 107065,
+    "latencyMs": 104850,
     "schemaVersion": 1
   }
 }
