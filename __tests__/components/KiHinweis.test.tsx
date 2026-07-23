@@ -24,3 +24,30 @@ describe("KiHinweis — AI-Act Art. 50 Transparenz", () => {
     expect(KI_EXPORT_HINWEIS).toMatch(/vor der Einreichung/);
   });
 });
+
+/**
+ * Verdrahtungs-Wächter: Die Komponente allein erfüllt Art. 50 nicht — sie muss
+ * an JEDEM Einstieg bzw. Auslieferungspunkt gerendert werden. Deep-Links
+ * (Programm-Detailseite, Karten, Kumulierungs-Warnung, „Meine Anträge")
+ * führen direkt auf /antrag/[programmId]/wizard, OHNE /antrag/start zu passieren.
+ */
+describe("KiHinweis — Verdrahtung an den Pflichtstellen", () => {
+  const { readFileSync } = jest.requireActual<typeof import("fs")>("fs");
+  const src = (p: string) => readFileSync(`${process.cwd()}/${p}`, "utf8");
+
+  it("Wizard-Start (/antrag/start) legt die Interaktion offen (Art. 50(1))", () => {
+    expect(src("app/antrag/start/page.tsx")).toMatch(/<KiHinweis variant="interaktion"/);
+  });
+
+  it("Wizard-Seite (Deep-Link-Einstieg) legt die Interaktion offen (Art. 50(1))", () => {
+    expect(src("app/antrag/[programmId]/wizard/page.tsx")).toMatch(
+      /<KiHinweis variant="interaktion"/
+    );
+  });
+
+  it("Ergebnis kennzeichnet KI + Export-Footer wandert mit (Art. 50(2))", () => {
+    const antragResult = src("components/Wizard/AntragResult.tsx");
+    expect(antragResult).toMatch(/<KiHinweis variant="ergebnis"/);
+    expect(antragResult).toMatch(/KI_EXPORT_HINWEIS/);
+  });
+});

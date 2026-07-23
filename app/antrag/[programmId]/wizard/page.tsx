@@ -8,6 +8,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { WizardShell } from "@/components/Wizard";
+import { KiHinweis } from "@/components/KiHinweis";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
 import { getEinreichung } from "@/lib/wizard/einreichung";
 
@@ -107,6 +108,10 @@ export default async function WizardPage({ params }: Props) {
         style={{ backgroundColor: "#fdfdfc" }}
       >
         <div className="container mx-auto px-4">
+          {/* AI-Act Art. 50(1): Interaktions-Offenlegung auch fuer Deep-Links —
+              Programm-Detailseite, Karten und Kumulierungs-Warnung verlinken
+              direkt hierher, ohne den Hinweis auf /antrag/start zu passieren. */}
+          <KiHinweis variant="interaktion" className="mx-auto mb-6 max-w-3xl" />
           <WizardShell
             programm={programm}
             einreichung={einreichung}

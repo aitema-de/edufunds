@@ -48,4 +48,23 @@ describe("markdownToRtf", () => {
     expect(() => markdownToRtf("")).not.toThrow();
     expect(markdownToRtf("").startsWith("{\\rtf1")).toBe(true);
   });
+
+  // AI-Act Art. 50(2): Die maschinenlesbare Kennzeichnung muss im RTF-\info-Block
+  // stehen (Dokumenteigenschaften), nicht nur als sichtbarer Text im Dokument.
+  it("traegt die KI-Kennzeichnung maschinenlesbar im \\info-Block (Art. 50(2))", () => {
+    const rtf = markdownToRtf("Inhalt", "Mein Antrag");
+    expect(rtf).toContain("{\\info");
+    expect(rtf).toContain("{\\subject KI-generierter Antragsentwurf (AI-generated content)}");
+    expect(rtf).toContain("AI-generated");
+    expect(rtf).toContain("EU-AI-Act-Art-50");
+    // Titel wandert in die Dokumenteigenschaften
+    expect(rtf).toContain("{\\title Mein Antrag}");
+  });
+
+  it("laesst den \\info-Titel bei fehlendem Titel weg, Kennzeichnung bleibt", () => {
+    const rtf = markdownToRtf("Inhalt");
+    expect(rtf).not.toContain("{\\title");
+    expect(rtf).toContain("{\\info");
+    expect(rtf).toContain("EU-AI-Act-Art-50");
+  });
 });
