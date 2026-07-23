@@ -187,6 +187,11 @@
       font-size: 12px;
       color: var(--ink-55);
     }
+    .foot a {
+      color: var(--ink-55);
+      text-decoration: underline;
+    }
+    .foot a:hover { color: var(--evergreen); }
     @media (max-width: 480px) {
       .card { padding: 40px 28px; }
       h1 { font-size: 31px; }
@@ -235,7 +240,14 @@
       Fragen oder Interesse am Pilotzugang?<br />
       <a href="mailto:office@edufunds.org">office@edufunds.org</a>
     </div>
-    <div class="foot">EduFunds — ein Produkt der aitema GmbH</div>
+    <!-- § 5 DDG / Art. 13 DSGVO: Anbieterkennzeichnung + Datenschutz muessen auch auf der
+         Warteseite erreichbar sein (sie sammelt Newsletter-Anmeldungen). Die App-eigenen
+         Seiten liegen hinter der IP-Freischaltung, daher bis zum Go-Live auf aitema.de. -->
+    <div class="foot">
+      EduFunds — ein Produkt der aitema GmbH ·
+      <a href="https://aitema.de/impressum" rel="noopener">Impressum</a> ·
+      <a href="https://aitema.de/datenschutz" rel="noopener">Datenschutz</a>
+    </div>
   </main>
 
   <script>
