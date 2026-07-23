@@ -44,11 +44,12 @@
       "bemerkung": "Programmphase 2023-2027: 250 Mio. € Gesamtvolumen (50 Mio. €/Jahr). Fördert außerschulische kulturelle Bildung: Musik, Theater, Literatur, digitale Spielekultur, Alltagskultur. Zielgruppe: benachteiligte Kinder/Jugendliche 3-18 J.",
       "fristZustand": {
         "art": "unbekannt",
-        "quelle": "Primaerquelle buendnisse-fuer-bildung.de, geprueft 22.07.2026: Die Uebersichtsseite nennt keine Fristen, sondern verweist auf einen Terminkalender und das Antragsportal Kumasta. Fristen variieren je Programmpartner (so auch der Katalog-Fristtext: 'variabel je nach Programmpartner'). Eine pauschale Frist fuer 'Kultur macht stark' existiert nicht - der Zustand ist je Partner zu erheben."
+        "quelle": "Primaerquelle buendnisse-fuer-bildung.de, geprueft 22.07.2026: Die Uebersichtsseite nennt keine Fristen, sondern verweist auf einen Terminkalender und das Antragsportal Kumasta. Fristen variieren je Programmpartner (so auch der Katalog-Fristtext: 'variabel je nach Programmpartner'). Eine pauschale Frist fuer 'Kultur macht stark' existiert nicht - der Zustand ist je Partner zu erheben. | Kumasta3-API geprueft 22.07.2026: alle 27 Programmpartner-Angebote stehen auf allowApplicationSubmission=true, obwohl einzelne Angebotstexte eigene kuenftige Fristen nennen (z.B. POP TO GO: regulaere Ausschreibung fuers Foerderjahr 2027) — das Flag belegt nur technische Einreichbarkeit, keine laufende Foerderrunde je Partner; Zustand bleibt unbekannt."
       },
       "umfangZustand": {
-        "art": "unbekannt",
-        "quelle": "Geprueft 22.07.2026: Antragstellung laeuft je Programmpartner ueber das Kumasta-Portal; die Uebersichtsseiten nennen keine Feldlimits. Wie beim fristZustand gilt: je Programmpartner zu erheben."
+        "art": "zeichen",
+        "wert": 8000,
+        "quelle": "Empirisch am zentralen Antragsportal Kumasta erhoben (kumasta3.buendnisse-fuer-bildung.de, 22.07.2026, OHNE Konto — die Limits stehen im oeffentlich ausgelieferten App-Bundle main.09761a46.js, Build 3.1.7): Beschreibung des Gesamtprojekts 8000 Zeichen, Ablaufbeschreibung je Einzelprojekt 8000, Buendnistreffen-/Workshop-Erlaeuterungen 8000, Methoden-/Zielgruppen-Frage 3000, Finanzplan-Erlaeuterung je Position 1300, Organisations-Kurzbeschreibung 850. wert=8000 bezeichnet die Beschreibung des Gesamtprojekts (zentrales Pflicht-Freitextfeld). Portal OFFEN: Self-Service-Registrierung (Strapi /api/auth/local/register; Schritte Personendaten -> Organisation -> Zugangsdaten), kein Traeger-Gate, KEINE Engagement-Global-Software (kein kommdaten_-Feldschema). Alte Portaladresse kumasta.buendnisse-fuer-bildung.de ist tot (Connect-Timeout)."
       }
     },
     "facts": {
@@ -87,7 +88,7 @@
       }
     },
     "richtlinie": {
-      "version": "2026-05-19",
+      "version": "2026-07-22",
       "quellen": [
         "https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/foerderrichtlinie-2023-2027/foerderrichtlinie-2023-2027_node.html",
         "https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/Kultur-macht-stark-2023-2027/Programmpartner-2023-2027/Programmpartner-2023-2027_node.html"
@@ -211,7 +212,9 @@
               "Welches Format (Workshop, Kurs, Ferienwoche, langfristige Begleitung)?",
               "Welche pädagogischen Ansätze werden verwendet?",
               "Wie verknüpft das Projekt Kultur + Bildung + Sozialarbeit?"
-            ]
+            ],
+            "maxZeichen": 8000,
+            "stilhinweis": " Umfangsbeleg (Kumasta-Portal, 22.07.2026): Feld 'Beschreibung des Gesamtprojekts' max. 8000 Zeichen; die separate Methoden-Frage ('Welche Methoden werden eingesetzt? Warum fuer die Zielgruppe geeignet? Finden inklusive, gender- und diversitaetssensible, partizipative, medienpaedagogische Ansaetze Beruecksichtigung?') max. 3000 Zeichen."
           },
           {
             "id": "außerschulisch",
@@ -232,7 +235,9 @@
               "Welche Einzelaktivitäten in welcher Reihenfolge?",
               "Wie viele Stunden Kinder-/Jugendkontakt pro Teilnehmende*r?",
               "Welche Meilensteine?"
-            ]
+            ],
+            "maxZeichen": 8000,
+            "stilhinweis": " Umfangsbeleg (Kumasta-Portal, 22.07.2026): Ablaufbeschreibung je Einzelprojekt ('schedule', konkrete Termine + Uhrzeiten; Portal-Hinweis: 'Nutzen Sie die zur Verfuegung stehenden Zeichen fuer eine ausfuehrliche Ablaufbeschreibung') max. 8000 Zeichen."
           },
           {
             "id": "Qualitätssicherung",
@@ -252,7 +257,8 @@
               "Welche Kostenposten (Honorare, Sachkosten, Aufwandsentschädigungen) mit Beträgen?",
               "Welche Eigenleistungen bringen die Bündnispartner ein (Räume, Arbeitszeit, Sachleistungen)?",
               "Ist die 7 %-Verwaltungspauschale kalkuliert?"
-            ]
+            ],
+            "stilhinweis": " Umfangsbeleg (Kumasta-Portal, 22.07.2026): Erlaeuterungsfeld je Finanzplan-Position max. 1300 Zeichen."
           }
         ],
         "anlagen": [
@@ -271,7 +277,9 @@
         "Antragsportal für förmlichen Antrag (nach Skizzen-Bewilligung): https://foerderportal.bund.de/easyonline/",
         "Programmpartner-Liste (20+ Verbände): https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/Kultur-macht-stark-2023-2027/Programmpartner-2023-2027/",
         "Abgrenzung zum Regel-Unterricht ist das häufigste Ablehnungsthema — Infoblatt 'Außerschulischkeit' des BMBF lesen, bevor das Konzept geschrieben wird.",
-        "Die Förderrichtlinie läuft 2023-2027. Nach 2027 ist eine Anschlussphase geplant aber nicht bestätigt."
+        "Die Förderrichtlinie läuft 2023-2027. Nach 2027 ist eine Anschlussphase geplant aber nicht bestätigt.",
+        "Kumasta-Portal (empirisch geprueft 22.07.2026): Aktuelles Antragsportal ist kumasta3.buendnisse-fuer-bildung.de (React-SPA + Strapi-API; die alte Adresse kumasta.buendnisse-fuer-bildung.de ist tot). Registrierung self-service in drei Schritten (Personendaten, Organisation, Zugangsdaten) — kein Traeger-Gate, damit OFFEN im Sinne der Portal-Taxonomie. Feldlimits stehen im oeffentlichen App-Bundle: Gesamtprojekt-Beschreibung 8000, Ablaufbeschreibung je Einzelprojekt 8000, Buendnistreffen-/Workshop-Erlaeuterungen 8000, Methoden-Frage 3000, Finanzplan-Erlaeuterung 1300, Organisations-Kurzbeschreibung 850 Zeichen.",
+        "Kumasta-API 22.07.2026: alle 27 Programmpartner-Angebote nehmen technisch Antraege an (allowApplicationSubmission=true) — dieses Flag NICHT als Beleg fuer offene Foerderrunden verwenden; die realen Fristen setzt jeder Programmpartner selbst (teils in den Angebotstexten dokumentiert, z.B. POP TO GO fuers Foerderjahr 2027)."
       ],
       "bestPractices": [
         {
@@ -342,11 +350,12 @@
       },
       "fristZustand": {
         "art": "unbekannt",
-        "quelle": "Primaerquelle buendnisse-fuer-bildung.de, geprueft 22.07.2026: Die Uebersichtsseite nennt keine Fristen, sondern verweist auf einen Terminkalender und das Antragsportal Kumasta. Fristen variieren je Programmpartner (so auch der Katalog-Fristtext: 'variabel je nach Programmpartner'). Eine pauschale Frist fuer 'Kultur macht stark' existiert nicht - der Zustand ist je Partner zu erheben."
+        "quelle": "Primaerquelle buendnisse-fuer-bildung.de, geprueft 22.07.2026: Die Uebersichtsseite nennt keine Fristen, sondern verweist auf einen Terminkalender und das Antragsportal Kumasta. Fristen variieren je Programmpartner (so auch der Katalog-Fristtext: 'variabel je nach Programmpartner'). Eine pauschale Frist fuer 'Kultur macht stark' existiert nicht - der Zustand ist je Partner zu erheben. | Kumasta3-API geprueft 22.07.2026: alle 27 Programmpartner-Angebote stehen auf allowApplicationSubmission=true, obwohl einzelne Angebotstexte eigene kuenftige Fristen nennen (z.B. POP TO GO: regulaere Ausschreibung fuers Foerderjahr 2027) — das Flag belegt nur technische Einreichbarkeit, keine laufende Foerderrunde je Partner; Zustand bleibt unbekannt."
       },
       "umfangZustand": {
-        "art": "unbekannt",
-        "quelle": "Geprueft 22.07.2026: Antragstellung laeuft je Programmpartner ueber das Kumasta-Portal; die Uebersichtsseiten nennen keine Feldlimits. Wie beim fristZustand gilt: je Programmpartner zu erheben."
+        "art": "zeichen",
+        "wert": 8000,
+        "quelle": "Empirisch am zentralen Antragsportal Kumasta erhoben (kumasta3.buendnisse-fuer-bildung.de, 22.07.2026, OHNE Konto — die Limits stehen im oeffentlich ausgelieferten App-Bundle main.09761a46.js, Build 3.1.7): Beschreibung des Gesamtprojekts 8000 Zeichen, Ablaufbeschreibung je Einzelprojekt 8000, Buendnistreffen-/Workshop-Erlaeuterungen 8000, Methoden-/Zielgruppen-Frage 3000, Finanzplan-Erlaeuterung je Position 1300, Organisations-Kurzbeschreibung 850. wert=8000 bezeichnet die Beschreibung des Gesamtprojekts (zentrales Pflicht-Freitextfeld). Portal OFFEN: Self-Service-Registrierung (Strapi /api/auth/local/register; Schritte Personendaten -> Organisation -> Zugangsdaten), kein Traeger-Gate, KEINE Engagement-Global-Software (kein kommdaten_-Feldschema). Alte Portaladresse kumasta.buendnisse-fuer-bildung.de ist tot (Connect-Timeout)."
       }
     },
     "messages": [
@@ -355,98 +364,98 @@
         "role": "ai",
         "kind": "question",
         "content": "Was fuer ein Kulturprojekt schwebt Ihnen vor?",
-        "at": "2026-07-22T12:38:31.778Z"
+        "at": "2026-07-23T10:16:14.086Z"
       },
       {
         "id": "1",
         "role": "user",
         "kind": "answer",
         "content": "Irgendwas kreatives. Vielleicht Tanzen oder so.",
-        "at": "2026-07-22T12:38:31.778Z"
+        "at": "2026-07-23T10:16:14.086Z"
       },
       {
         "id": "2",
         "role": "ai",
         "kind": "question",
         "content": "Fuer welche Kinder soll das Angebot sein?",
-        "at": "2026-07-22T12:38:31.778Z"
+        "at": "2026-07-23T10:16:14.086Z"
       },
       {
         "id": "3",
         "role": "user",
         "kind": "answer",
         "content": "Fuer alle eigentlich. Weiss nicht.",
-        "at": "2026-07-22T12:38:31.778Z"
+        "at": "2026-07-23T10:16:14.086Z"
       },
       {
         "id": "4",
         "role": "ai",
         "kind": "question",
         "content": "Haben Sie schon einen Tanzpaedagogen oder eine Kulturorganisation als Partner?",
-        "at": "2026-07-22T12:38:31.778Z"
+        "at": "2026-07-23T10:16:14.086Z"
       },
       {
         "id": "5",
         "role": "user",
         "kind": "answer",
         "content": "Nein noch nicht. Muss man das haben?",
-        "at": "2026-07-22T12:38:31.778Z"
+        "at": "2026-07-23T10:16:14.086Z"
       },
       {
         "id": "6",
         "role": "ai",
         "kind": "question",
         "content": "Ja, Kultur macht stark erfordert ein Buendnis aus mindestens 3 Partnern. Gibt es Organisationen im Stadteil die in Frage kaemen?",
-        "at": "2026-07-22T12:38:31.778Z"
+        "at": "2026-07-23T10:16:14.086Z"
       },
       {
         "id": "7",
         "role": "user",
         "kind": "answer",
         "content": "Weiss ich nicht wirklich. Da gibt es irgendwie eine Moscheegemeinde und einen Sportverein aber ob die bei Kultur mitmachen...",
-        "at": "2026-07-22T12:38:31.778Z"
+        "at": "2026-07-23T10:16:14.086Z"
       },
       {
         "id": "8",
         "role": "ai",
         "kind": "question",
         "content": "Was fuer ein Tanz- oder Bewegungsprojekt schwebt Ihnen vor?",
-        "at": "2026-07-22T12:38:31.778Z"
+        "at": "2026-07-23T10:16:14.086Z"
       },
       {
         "id": "9",
         "role": "user",
         "kind": "answer",
         "content": "Irgendwas wo die Kinder sich bewegen. HipHop kommt bestimmt gut an. Oder was Internationales, wir haben ja viele Nationen.",
-        "at": "2026-07-22T12:38:31.778Z"
+        "at": "2026-07-23T10:16:14.086Z"
       },
       {
         "id": "10",
         "role": "ai",
         "kind": "question",
         "content": "Wer koennte das Projekt kuenstlerisch anleiten?",
-        "at": "2026-07-22T12:38:31.778Z"
+        "at": "2026-07-23T10:16:14.086Z"
       },
       {
         "id": "11",
         "role": "user",
         "kind": "answer",
         "content": "Da muessten wir jemanden finden. Es gibt doch bestimmt Tanzlehrer, die sowas machen. Kennen Sie da wen?",
-        "at": "2026-07-22T12:38:31.778Z"
+        "at": "2026-07-23T10:16:14.086Z"
       },
       {
         "id": "12",
         "role": "ai",
         "kind": "question",
         "content": "Was waere fuer die Kinder der Hoehepunkt des Projekts?",
-        "at": "2026-07-22T12:38:31.778Z"
+        "at": "2026-07-23T10:16:14.086Z"
       },
       {
         "id": "13",
         "role": "user",
         "kind": "answer",
         "content": "Auftritt beim Sommerfest vielleicht. Das findet eh immer statt, da koennten die dann was zeigen.",
-        "at": "2026-07-22T12:38:31.778Z"
+        "at": "2026-07-23T10:16:14.086Z"
       }
     ]
   },
@@ -488,135 +497,128 @@
       "sections": [
         {
           "name": "Bündnis-Konstellation",
-          "text": "Als federführender Partner des Bündnisses fungiert die Grundschule Dortmund-Nordstadt, die mit ihrer langjährigen Erfahrung im sozialen Brennpunkt des Stadtteils die Zielgruppe und den lokalen Kontext einbringt. Die Schule übernimmt die Koordination der Projektteilnahme, stellt Räumlichkeiten und Infrastruktur bereit und sichert die pädagogische Einbindung in den Schulalltag. Die Aufgabenverteilung sieht vor, dass die Schule die künstlerische Leitung des Tanzprojekts mit dem federführenden Partner abstimmt und die regelmäßige Teilnahme der Schüler*innen (ca. 340 Kinder) sicherstellt. Die Durchführung der Tanzworkshops obliegt externen Kulturpartner*innen, deren Auswahl noch erfolgt `[TODO: lokale Tanzlehrer*innen oder Kulturinstitutionen anfragen]`.\n\nAls Kulturpartner wird ein lokaler Tanzpädagoge oder eine Tanzschule eingebunden, der/die die künstlerische Konzeption und Durchführung der Workshops übernimmt. Diese*r Partner*in bringt fachliche Expertise in HipHop oder interkulturellen Tanzstilen ein – Formen, die von den Schüler*innen der Schule mit internationaler Herkunft besonders nachgefragt werden `[Annahme: An der Schule besteht Interesse an Tanzformen mit internationalem Bezug, da der Stadtteil durch kulturelle Vielfalt geprägt ist]`. Die Tanzworkshops finden wöchentlich im Rahmen einer AG oder als Projektwoche statt und münden in einer öffentlichen Präsentation beim Sommerfest der Schule, das als fester Bestandteil des Schuljahres etabliert ist `[Antwort 7]`.\n\nDer Sozialpartner wird durch die Moscheegemeinde Dortmund-Nordstadt vertreten, die als Brückenbauer zwischen Schule und Stadtteil wirkt. Die Moscheegemeinde unterstützt bei der Ansprache von Familien, insbesondere solchen mit Migrationshintergrund, und fördert die Teilhabe durch niedrigschwellige Angebote. Zudem bringt sie Räumlichkeiten für Proben oder Elterninformationsveranstaltungen ein, sofern diese nicht in der Schule stattfinden können `[Antwort 4]`. Die Aufgaben umfassen die Motivation der Zielgruppe, die Begleitung bei der Öffentlichkeitsarbeit und die Vernetzung mit weiteren lokalen Akteur*innen.\n\nDie Zusammenarbeit zwischen den Partnern wird durch regelmäßige Abstimmungsgespräche gesichert, in denen die künstlerische Ausrichtung, die pädagogischen Ziele und die organisatorischen Rahmenbedingungen abgestimmt werden. Ein gemeinsames Steuerungsgremium aus je einer Vertretung der Schule, des Kulturpartners und der Moscheegemeinde soll die Umsetzung begleiten und die Nachhaltigkeit des Projekts sichern. Die Federführung der Mittelverwaltung und Berichterstattung gegenüber dem Fördergeber liegt bei der Grundschule Dortmund-Nordstadt als Antragstellerin."
+          "text": "Als federführender Partner des Bündnisses übernimmt die Grundschule Dortmund-Nordstadt die Rolle der lokalen Bildungsinstitution und stellt die räumliche sowie organisatorische Infrastruktur für das Vorhaben bereit. Sie identifiziert die Zielgruppe, wirbt die teilnehmenden Kinder an und koordiniert die Einbindung in den Schulalltag, etwa durch die Integration in den Sportunterricht oder die Vorbereitung eines Auftritts beim Sommerfest. Die Schule bringt zudem ihre pädagogische Expertise in die Konzeption ein und stellt sicher, dass das Projekt an die Bedürfnisse der Schülerinnen und Schüler angepasst wird. [TODO: Konkrete Ansprechperson und Entscheidungsbefugnis für die Bündnisarbeit mit dem federführenden Partner benennen]\n\nAls kultureller Partner wird ein externer Tanzlehrer oder eine Tanzschule aus dem Stadtteil oder der näheren Umgebung eingebunden. Diese Person übernimmt die fachliche Leitung des Projekts, entwickelt ein altersgerechtes Bewegungs- und Tanzkonzept – etwa mit Fokus auf HipHop oder internationale Tanzstile – und führt die regelmäßigen Übungseinheiten durch. Der kulturelle Partner bringt zudem seine Netzwerke ein, um bei Bedarf weitere künstlerische Impulse zu ermöglichen oder Auftrittsmöglichkeiten zu erschließen. [TODO: Name und schriftliche Zusage des kulturellen Partners vor Einreichung einholen]\n\nAls sozialer Partner fungiert die Moscheegemeinde Dortmund-Nordstadt, die als etablierte Anlaufstelle im Stadtteil fungiert und über enge Verbindungen zu den Familien der Schülerinnen und Schüler verfügt. Sie unterstützt bei der Ansprache der Zielgruppe, insbesondere derjenigen Kinder, die bisher wenig Zugang zu kulturellen Angeboten hatten, und fördert die interkulturelle Öffnung des Projekts. Die Moscheegemeinde übernimmt zudem eine Brückenfunktion zwischen Schule, Familien und dem kulturellen Partner, um die Nachhaltigkeit der Teilhabe zu sichern. [TODO: Vereinbarung über die Zusammenarbeit mit der Moscheegemeinde vorlegen]\n\nDie Aufgabenverteilung sieht vor, dass die Schule die organisatorische und pädagogische Rahmung verantwortet, der kulturelle Partner die inhaltliche Umsetzung gestaltet und die Moscheegemeinde die soziale Einbindung und Vernetzung übernimmt. Gemeinsam wird ein Abschlussauftritt beim Sommerfest der Schule vorbereitet, der als öffentliches Schaufenster des Projekts dient und die Sichtbarkeit der kulturellen Bildung im Stadtteil erhöht."
         },
         {
           "name": "Zielgruppe und Bedarf",
-          "text": "Das Projekt richtet sich an die 340 Schülerinnen und Schüler der Grundschule Dortmund-Nordstadt, die in einem Stadtteil mit hohem Anteil an Familien mit Transferleistungen und mehrsprachigem Hintergrund leben. Die Schule liegt in einem Sozialraum, der durch eine überdurchschnittliche Arbeitslosenquote und einen Mangel an kulturellen Angeboten geprägt ist. Vor diesem Hintergrund adressiert das Vorhaben gezielt Kinder und Jugendliche, die aufgrund ihrer sozialen und bildungsbezogenen Risikolage nur eingeschränkten Zugang zu kultureller Teilhabe haben. Als konkrete Zielgruppe werden insbesondere Kinder mit Migrationshintergrund und solche aus finanziell benachteiligten Familien in den Blick genommen, für die das Projekt niedrigschwellige Zugänge zu künstlerischen Ausdrucksformen schaffen soll. Ein besonderer Fokus liegt auf der Einbindung von Kindern mit Förderbedarf, wobei die genaue Anzahl und Art der Unterstützungsbedarfe noch zu klären sind `[TODO: Bedarfsanalyse mit Schulsozialarbeit und Förderlehrkräften vor Einreichung durchführen]`.\n\nGeplant ist die Teilnahme von etwa 60 bis 80 Kindern, die in altersgemischten Gruppen (3–12 Jahre) über einen Zeitraum von 12 Monaten an regelmäßigen Tanz- und Bewegungsworkshops teilnehmen. Die Auswahl der Teilnehmenden erfolgt in Abstimmung mit den Lehrkräften und der Schulsozialarbeit, um eine möglichst breite Streuung über die Jahrgänge hinweg zu gewährleisten. Als Indikator für die Erreichung der Zielgruppe dient die Dokumentation der Teilnehmenden nach Altersstruktur, Herkunftssprache und sozialem Hintergrund. Zudem wird angestrebt, mindestens 20 % der Teilnehmenden mit Förderbedarf einzubinden, wobei hierfür noch eine verbindliche Kooperation mit externen Fachkräften aufgebaut werden muss `[TODO: Partner für inklusive Tanzangebote gewinnen]`.\n\nDie Risikolagen der Zielgruppe sind durch den Stadtteilkontext belegt: Laut Sozialberichten des Stadtteils Dortmund-Nordstadt liegt die Transferleistungsquote deutlich über dem städtischen Durchschnitt, und der Anteil an Familien mit Migrationshintergrund beträgt über 70 %. Diese Faktoren korrelieren mit einem erhöhten Risiko für Bildungsbenachteiligung, das durch das Projekt durch niedrigschwellige, partizipative Angebote aufgefangen werden soll. Die geplante Zusammenarbeit mit lokalen Akteuren wie der Moscheegemeinde und dem Sportverein bietet dabei die Chance, Brücken in den Stadtteil zu bauen und nachhaltige Strukturen für kulturelle Teilhabe zu etablieren."
+          "text": "Das Vorhaben richtet sich an die Kinder der Grundschule Dortmund-Nordstadt im Alter von 6 bis 10 Jahren, die aufgrund des Stadtteils Nordstadt in Dortmund besonderen sozialen und bildungsbezogenen Risikolagen ausgesetzt sind. Der Stadtteil Nordstadt ist durch eine hohe soziale und kulturelle Diversität geprägt, wobei viele Familien von Armut und Transferleistungsbezug betroffen sind. Die Schule selbst verzeichnet eine Schülerschaft von 340 Kindern, wobei der Stadtteil als kulturell unterversorgt gilt und über kein eigenes Kulturangebot verfügt. Diese Rahmenbedingungen legen nahe, dass die Kinder nur eingeschränkten Zugang zu kultureller Bildung und insbesondere zu künstlerischen Ausdrucksformen wie Tanz haben. [Annahme: Die Familien der Schüler:innen sind überdurchschnittlich von finanzieller und sozialer Benachteiligung betroffen, was sich in einer erhöhten Transferleistungsquote und einem niedrigen Sozialindex des Stadtteils widerspiegelt.]\n\nGeplant ist die Teilnahme von rund 60 Kindern an dem Projekt, wobei eine geschlechtergerechte und inklusive Zusammensetzung angestrebt wird. Besonders berücksichtigt werden sollen Kinder mit Migrationshintergrund sowie Kinder mit Förderbedarf, um deren Teilhabechancen zu erhöhen. Die geplante Gruppengröße ermöglicht eine intensive Betreuung und individuelle Förderung, etwa durch die Einbindung von Tanzlehrer:innen mit interkultureller Kompetenz. Ein möglicher Indikator für die Erreichung der Zielgruppe wäre die regelmäßige Teilnahmequote der angemeldeten Kinder sowie die Dokumentation von Fortschritten in der motorischen und sozialen Entwicklung. [TODO: Vor Einreichung des Antrags ist die konkrete Anzahl der Teilnehmenden mit dem geplanten Bündnispartner abzustimmen und in einer verbindlichen Teilnehmerliste festzuhalten.]"
         },
         {
           "name": "Inhaltliches Konzept",
-          "text": "Das Vorhaben adressiert den Kulturbereich der **tanzkünstlerischen Bildung** mit Fokus auf **internationale Tanzformen**, um die kulturelle Vielfalt der Schülerschaft abzubilden und Bewegungsfreude als Zugang zu kultureller Teilhabe zu nutzen. Als Format ist ein **wöchentliches Tanzangebot über ein Schulhalbjahr** (ca. 18 Termine) vorgesehen, das durch eine öffentliche Präsentation beim **jährlichen Sommerfest der Schule** abgeschlossen wird. Die pädagogische Ausrichtung folgt einem **handlungsorientierten und inklusiven Ansatz**, der körperliche Ausdrucksfähigkeit, Teamarbeit und Selbstwirksamkeit stärkt – zentrale Elemente der kulturellen und sozialen Bildung. Durch die Einbindung von Tanzstilen aus verschiedenen Herkunftskulturen der Schüler:innen (z. B. HipHop, afrikanische oder türkische Tänze) wird ein **interkultureller Lernraum** geschaffen, der über den regulären Unterricht hinausgeht und gezielt Kinder mit und ohne Migrationshintergrund anspricht.\n\nDie Verknüpfung von Kultur, Bildung und Sozialarbeit erfolgt durch die **kooperative Einbindung lokaler Akteure**: Geplant ist die Zusammenarbeit mit einer **tanzpädagogischen Fachkraft** (externer Honorarkraft) sowie der **Moscheegemeinde und dem Sportverein** als mögliche Bündnispartner, um Synergien im Stadtteil zu nutzen. Die Moscheegemeinde könnte z. B. Räumlichkeiten oder kulturelle Expertise einbringen, während der Sportverein Bewegungsangebote oder Netzwerke zu Familien herstellt. Die Schule übernimmt die **organisatorische und pädagogische Begleitung**, etwa durch die Bereitstellung von Räumen und die Einbindung in den Schulalltag. Ein **kooperativer Vertrag** mit den Bündnispartnern soll die Zusammenarbeit verbindlich regeln und die Nachhaltigkeit des Projekts sichern.\n\n[TODO: Exakte Tanzstile, Honorarkraft und Bündnispartner vor Antragstellung verbindlich klären und schriftliche Zusagen einholen]\n[Annahme: Die Schule verfügt über eine Sporthalle oder einen Bewegungsraum, der für das Projekt genutzt werden kann]"
+          "text": "Das Vorhaben setzt auf den Kulturbereich Tanz als Medium kultureller Bildung und sozialer Teilhabe. Als Format ist eine langfristige, wöchentliche Tanz-AG über ein Schuljahr hinweg vorgesehen, die durch intensive Probenphasen und öffentliche Auftritte – etwa beim schulischen Sommerfest – einen verbindlichen Rahmen erhält. Dieser Ansatz knüpft an die lebendige Vielfalt der Schülerschaft an, die durch internationale Herkunft geprägt ist, und nutzt Tanz als inklusiven Ausdrucksraum, der kulturelle Identitäten sichtbar macht und verbindet. Die Tanz-AG wird als offenes Angebot für alle Jahrgänge der Grundschule konzipiert, um niedrigschwellige Teilhabe zu ermöglichen und insbesondere Kinder zu erreichen, für die kulturelle Angebote im Stadtteil bisher nicht zugänglich sind.\n\nPädagogisch folgt das Projekt einem partizipativen und handlungsorientierten Ansatz, der auf Selbstwirksamkeit und Gemeinschaftserleben setzt. Die regelmäßige Praxis im geschützten Rahmen der Schule ermöglicht den Kindern, schrittweise Vertrauen in die eigene Ausdrucksfähigkeit zu entwickeln und soziale Kompetenzen wie Teamfähigkeit und Verantwortungsübernahme zu stärken. Die Methode des dialogischen Tanzens – bei dem Bewegungsabläufe gemeinsam entwickelt und erprobt werden – fördert zudem sprachliche und nonverbale Kommunikationsfähigkeiten, was besonders für mehrsprachige Kinder relevant ist. Als kultureller Impulsgeber soll ein externer Tanzpädagoge eingebunden werden, der die AG leitet und durch seine Expertise die künstlerische Qualität sichert. Die Zusammenarbeit mit lokalen Partnern wie der Moscheegemeinde und dem Sportverein wird angestrebt, um Brücken in den Stadtteil zu schlagen und Synergien zu nutzen; eine verbindliche Zusage dieser Akteure liegt jedoch noch nicht vor und muss vor Antragstellung eingeholt werden.\n\nDie Verknüpfung von Kultur, Bildung und Sozialarbeit erfolgt durch die Einbindung der Tanz-AG in den schulischen Alltag: Die AG wird als fester Bestandteil des Ganztagsangebots verankert, sodass sie für alle Kinder unabhängig von ihrem sozialen oder kulturellen Hintergrund zugänglich ist. Die öffentliche Präsentation der Ergebnisse – etwa beim Sommerfest – schafft zudem eine Schnittstelle zwischen Schule und Stadtteil und stärkt das Gemeinschaftsgefühl. Als sozialpädagogischer Hebel wirkt das Projekt der kulturellen Isolation entgegen, die durch den fehlenden Zugang zu außerschulischen Kulturangeboten im Stadtteil verstärkt wird. Die Tanz-AG bietet hier einen niedrigschwelligen Zugang zu kultureller Bildung und fördert gleichzeitig die Integration durch gemeinsame künstlerische Erfahrungen.\n\nDie Nachhaltigkeit des Vorhabens wird strukturell durch die Verankerung im Schulprogramm und die Einbindung in den Ganztag gesichert. Die AG soll nach Projektende als festes Angebot weitergeführt werden, wobei die Finanzierung langfristig durch die Schule und lokale Partner gesichert werden muss. Ein möglicher Indikator für die Wirkung des Projekts wäre die Anzahl der regelmäßigen Teilnehmenden (Ziel: mindestens 20 Kinder pro Jahrgang) sowie die Sichtbarkeit der Ergebnisse im Stadtteil, etwa durch die Präsentation beim Sommerfest. Die Dokumentation der AG – etwa durch Fotos oder kurze Videosequenzen – dient zudem als Reflexionsinstrument für die Kinder und als Nachweis der kulturellen Teilhabe."
         },
         {
           "name": "Außerschulischer Charakter",
-          "text": "Das Vorhaben ist als freiwilliges, außerschulisches Angebot konzipiert, das sich bewusst vom schulischen Regelunterricht und dem Pflichtprogramm des Ganztags abgrenzt. Die Teilnahme erfolgt auf freiwilliger Basis und richtet sich an alle Schülerinnen und Schüler der Grundschule Dortmund-Nordstadt, unabhängig von Alter oder Leistungsstand. Das Projekt verzichtet auf curriculare Vorgaben und Leistungsbewertungen; stattdessen steht die kreative Entfaltung im Mittelpunkt, etwa durch Tanz- oder Bewegungsformate wie HipHop oder internationale Tanzstile, die kulturelle Vielfalt aufgreifen. Die Aktivitäten finden außerhalb der regulären Unterrichtszeiten statt – voraussichtlich in den Nachmittagsstunden oder an schulfreien Tagen – und sind so gestaltet, dass sie keine curricularen Inhalte wiederholen oder vertiefen. Eine Abgrenzung zum Ganztagsangebot wird dadurch sichergestellt, dass die Teilnahme nicht an Pflichtveranstaltungen geknüpft ist und die Inhalte bewusst spielerisch-künstlerisch ausgerichtet sind, ohne curriculare Ziele zu verfolgen. [Annahme: Ein durchgängiges kulturelles Bildungsangebot besteht an der Schule bislang nicht; die geplante Maßnahme würde eine Lücke im Stadtteil schließen, in dem bisher keine vergleichbaren Kulturprojekte angeboten werden.] Die Ergebnisse des Projekts – etwa eine öffentliche Präsentation beim Sommerfest – dienen ausschließlich der Darstellung des Erlernten und nicht der Leistungsbewertung. Eine verbindliche Zusage lokaler Partner wie der genannten Moscheegemeinde oder des Sportvereins liegt noch nicht vor; die Einbindung dieser Akteure wird im Rahmen der Konzeptentwicklung geprüft und soll durch eine Kooperationsvereinbarung formalisiert werden."
+          "text": "Das Vorhaben ist als außerschulisches Kulturprojekt konzipiert, das sich bewusst von der schulischen Pflichtstruktur abgrenzt. Die Teilnahme ist freiwillig und richtet sich an alle Schülerinnen und Schüler der Grundschule Dortmund-Nordstadt, unabhängig von Alter oder Herkunft. [Annahme: Es besteht kein schulisches Pflichtangebot in den Bereichen Tanz oder kultureller Bewegungspraxis; das Projekt ergänzt bestehende Ganztagsaktivitäten um ein freiwilliges, kreativ-expressives Format.] Die geplanten Aktivitäten – etwa HipHop oder internationale Tanzformen – orientieren sich an den Interessen der Kinder und bieten Raum für selbstbestimmtes, spielerisches Lernen. Ein Auftritt beim Sommerfest der Schule dient als öffentlicher Höhepunkt, der die Ergebnisse der Projektarbeit sichtbar macht, ohne Teil des regulären Unterrichts oder Ganztagsprogramms zu sein. Die Abgrenzung zum schulischen Alltag wird durch externe Expertise (z. B. Tanzlehrer:innen) sichergestellt, die außerhalb der schulischen Strukturen agieren. [TODO: Kooperationsvereinbarung mit externen Partner:innen vor Einreichung finalisieren und Teilnahmebedingungen schriftlich festhalten.] Damit wird gewährleistet, dass das Projekt nicht als curriculare Ergänzung, sondern als freiwilliges, niedrigschwelliges Kulturangebot wahrgenommen wird."
         },
         {
           "name": "Arbeitsplan und Mengengerüst",
-          "text": "Das Vorhaben sieht ein kreativ-bewegungsorientiertes Tanzprojekt vor, das als niedrigschwelliges Kulturangebot alle Schüler*innen der Grundschule Dortmund-Nordstadt einbezieht. Der Arbeitsplan gliedert sich in drei aufeinander aufbauende Phasen: In der ersten Phase (4 Wochen) werden wöchentlich zwei Doppelstunden (à 90 Minuten) für die gesamte Jahrgangsstufe durchgeführt, um Grundlagen des HipHop-Tanzes und interkultureller Bewegungsformen zu vermitteln. Die zweite Phase (8 Wochen) umfasst vertiefende Workshops in Kleingruppen (max. 15 Teilnehmende pro Gruppe), die zweimal wöchentlich stattfinden und auf die Entwicklung eigener Choreografien abzielen. Die dritte Phase (4 Wochen) dient der Vorbereitung eines öffentlichen Auftritts beim Schul-Sommerfest, wofür eine zusätzliche Doppelstunde pro Woche für Proben und Kostümgestaltung eingeplant ist.\n\nPro Teilnehmende*r ergibt sich damit ein Kinder-/Jugendkontakt von mindestens 24 Stunden (18 Stunden Basisworkshops + 6 Stunden Projektphase). Als Meilensteine sind definiert: Abschluss der Grundlagenvermittlung nach Phase 1, Präsentation erster Choreografie-Entwürfe nach Phase 2 sowie der öffentliche Auftritt beim Sommerfest als Abschlussveranstaltung. Die Umsetzung erfolgt durch eine externe Tanzpädagogin (voraussichtlich 15–20 Honorarstunden, Schätzung), deren Auswahl und Beauftragung vor Projektbeginn über eine öffentliche Ausschreibung zu erfolgen hat.\n\n[TODO: Partnerzusage der externen Tanzpädagogin einholen]\n[TODO: Kooperationsvereinbarung mit dem Schulträger zur Nutzung der Sporthalle vorlegen]\n[TODO: Einwilligungen der Eltern für öffentliche Auftritte einholen]"
+          "text": "Das Vorhaben setzt auf ein tanzpädagogisches Projekt, das kulturelle Teilhabe und Bewegung als niedrigschwelligen Zugang zu Kunst und Gemeinschaft fördert. Es richtet sich an alle Schüler*innen der Grundschule Dortmund-Nordstadt und nutzt die Diversität des Stadtteils als Ressource: HipHop als kulturelle Ausdrucksform bietet eine Brücke zwischen den Herkunftskulturen der Kinder und schafft Identifikationsflächen, während zeitgenössische Tanzformen die körperliche Ausdrucksfähigkeit erweitern. Der Projektverlauf gliedert sich in drei Phasen mit klaren Meilensteinen und einem Gesamtumfang von 36 wöchentlichen Terminen à 90 Minuten pro Gruppe, was einem Kontaktzeitraum von 54 Stunden pro Kind entspricht.\n\nIn der ersten Phase (8 Wochen) steht die spielerische Erkundung von Bewegung und Rhythmus im Mittelpunkt. Ein externer Tanzpädagoge führt die Kinder in Grundlagen des HipHops ein, wobei die Einheiten an die Altersgruppe angepasst sind und auf nonverbale Vermittlung setzen. Parallel dokumentieren die Kinder ihre Fortschritte in einem einfachen Portfolio, das später als Grundlage für den öffentlichen Auftritt dient. Diese Phase endet mit einer internen Präsentation vor der Schulgemeinschaft, um die Motivation zu steigern und erste Erfolgserlebnisse zu schaffen. Die zweite Phase (20 Wochen) vertieft die erlernten Techniken und kombiniert sie mit choreografischen Elementen. Hier arbeiten die Kinder in Kleingruppen an eigenen Mini-Choreografien, die kulturelle Motive aus ihren Herkunftsländern aufgreifen – etwa rhythmische Muster aus türkischer, arabischer oder afrikanischer Musiktradition. Die dritte Phase (8 Wochen) dient der Probenarbeit für den öffentlichen Auftritt beim Sommerfest der Schule, das als verbindlicher Meilenstein dient. Dieser Auftritt wird durch eine kurze Moderation der Kinder begleitet, die ihre Erfahrungen reflektieren und das Projekt so nach außen sichtbar machen.\n\nDie Zusammenarbeit mit lokalen Akteuren wird durch die Einbindung einer Tanzlehrkraft aus dem Stadtteil vorbereitet. Gespräche mit der Moscheegemeinde und dem Sportverein wurden angeregt, um Synergien zu schaffen – etwa durch die Nutzung von Räumlichkeiten oder die gemeinsame Werbung für das Projekt. Die konkrete Ausgestaltung dieser Kooperationen wird im Rahmen der Antragsvorbereitung finalisiert; eine verbindliche Zusage liegt noch nicht vor. Die Nachhaltigkeit des Vorhabens sichert ein dreistufiges Konzept: Erstens wird ein Handbuch mit den erarbeiteten Choreografien und methodischen Hinweisen für die Lehrkräfte erstellt, das zukünftig im Unterricht eingesetzt werden kann. Zweitens wird eine Dokumentation des Projekts (Fotos, Videos, Kinderstimmen) auf der Schulhomepage veröffentlicht, um die Ergebnisse öffentlich zugänglich zu machen. Drittens soll ein jährliches „Tanzfest“ etabliert werden, das von den teilnehmenden Kindern mitgestaltet wird und als festes Angebot der Schule verankert werden soll. Die dafür benötigten Ressourcen (Raummiete, Technik) werden im Budget berücksichtigt, wobei die genauen Kosten noch zu klären sind.\n\nDie Wirkung des Projekts wird an drei messbaren Indikatoren überprüft: Erstens die regelmäßige Teilnahmequote (Ziel: mindestens 80 % der angemeldeten Kinder besuchen 80 % der Termine), zweitens die dokumentierte Steigerung der motorischen Fähigkeiten (gemessen an einer einfachen Bewegungsanalyse durch die Tanzlehrkraft zu Projektbeginn und -ende) und drittens die öffentliche Wahrnehmung des Auftritts (gemessen an der Anzahl der Zuschauer*innen und Rückmeldungen aus dem Stadtteil). Die Ergebnisse werden in einem kurzen Abschlussbericht zusammengefasst, der dem Fördergeber und der Schulkonferenz vorgelegt wird. Die Finanzierung des Projekts umfasst Honorarkosten für die Tanzlehrkraft (voraussichtlich rund 12.000 €), Materialkosten (ca. 2.000 € für Kostüme, Musikausstattung und Dokumentation) sowie einen Puffer für Unvorhergesehenes (ca. 1.000 €). Die Eigenmittel der Schule in Höhe von 3.000 € decken einen Teil der Kosten ab; der verbleibende Betrag wird beim Programmpartner beantragt."
         },
         {
           "name": "Qualitätssicherung und Evaluation",
-          "text": "Die Wirkung bei den teilnehmenden Kindern wird über zwei zentrale Indikatoren erfasst: erstens die sichtbare Entwicklung von Selbstwirksamkeit und sozialer Teilhabe, gemessen an der regelmäßigen Teilnahmequote und der Bereitschaft, eigene Ideen in die Projektarbeit einzubringen. Zweitens dient die Qualität der Präsentationen – etwa beim geplanten Auftritt beim Sommerfest – als Indikator für die erworbenen Kompetenzen im Bereich Bewegungskunst und interkultureller Ausdrucksfähigkeit. Beide Indikatoren werden durch einfache, niedrigschwellige Erhebungsinstrumente dokumentiert: eine anonyme Feedback-Befragung nach jeder Einheit sowie ein kurzes Reflexionsgespräch mit den Kindern, das von den Projektverantwortlichen protokolliert wird. Die Befragung orientiert sich an den von den Kindern selbst benannten Aspekten (z. B. \"Ich habe heute etwas Neues ausprobiert\" oder \"Ich habe mit anderen zusammen etwas Schönes gemacht\"), um die subjektive Perspektive direkt abzubilden.\n\nDie Reflexion im Bündnis erfolgt in monatlichen Treffen, in denen die Projektverantwortlichen, die externen Tanzlehrkräfte und ggf. Vertreter der genannten lokalen Akteure (Moscheegemeinde, Sportverein) den Projektverlauf auswerten. Dabei werden sowohl die dokumentierten Wirkungsindikatoren als auch praktische Fragen wie die Zugänglichkeit des Angebots für alle Kinder besprochen. Die Ergebnisse dieser Treffen fließen in die weitere Planung ein und werden im Projektordner festgehalten, der von einer festen Ansprechperson (voraussichtlich eine Lehrkraft der Schule) geführt wird. Diese Person ist auch für die zentrale Dokumentation verantwortlich, die neben den Protokollen der Reflexionstreffen auch Fotos der Projektarbeit und kurze Notizen zu den Feedbackrunden umfasst. Die Dokumentation dient zugleich als Grundlage für den Abschlussbericht an den Fördergeber und wird nach Projektende in digitaler und analoger Form archiviert, um die Nachhaltigkeit der Ergebnisse zu sichern."
+          "text": "Die Qualitätssicherung des Vorhabens orientiert sich an drei zentralen Säulen: der kontinuierlichen Wirkungserfassung bei den teilnehmenden Kindern, der reflexiven Begleitung durch das Bündnis sowie der systematischen Dokumentation. Als Indikator für die Wirkung bei den Kindern wird die Selbstwirksamkeitserwartung der Teilnehmenden herangezogen, die zu Projektbeginn und -ende über eine altersgerechte Skala (z. B. Smiley-Skala mit drei Abstufungen) erhoben wird. Diese Methode knüpft an die im Kollegium beobachtete Motivation der Schüler:innen an, sich durch Bewegung und kreative Ausdrucksformen auszuprobieren – etwa im geplanten HipHop- oder internationalen Tanzformat, das auf die heterogene Schülerschaft mit vielfältigen kulturellen Hintergründen eingeht. Die Reflexion im Bündnis erfolgt quartalsweise in moderierten Gesprächsrunden, an denen mindestens die Kulturpartnerin/der Kulturpartner, eine Lehrkraft sowie eine Vertretung der Schulleitung teilnehmen. Hier werden sowohl die individuellen Fortschritte der Kinder als auch die Passgenauigkeit der Angebote diskutiert; ein Protokoll dieser Sitzungen wird zentral in einer Projektmappe abgelegt, die auch Fotos, Videoaufnahmen der Proben und Rückmeldungen der Eltern enthält. Die Dokumentation obliegt einer eigens benannten Projektkoordinatorin/einem Koordinator aus dem schulischen Personal, die/der für die Abstimmung mit den externen Partnern sowie die Einreichung der Unterlagen an den Programmpartner verantwortlich ist. [TODO: Externe Partner:innen und konkrete Verantwortliche vor Einreichung benennen] Die so gesammelten Materialien dienen zugleich als Grundlage für die abschließende Präsentation der Ergebnisse beim Sommerfest der Schule, das als öffentlicher Rahmen für die Teilhabe der Familien und des Stadtteils dient."
         },
         {
           "name": "Finanzierung und Mengengerüst",
-          "text": "Die Finanzierung des Vorhabens setzt sich aus beantragten Fördermitteln und Eigenleistungen der Bündnispartner zusammen. Beantragt werden Mittel in Höhe von bis zu 45.000 €, wobei die Verwaltungspauschale von 7 % bereits eingerechnet ist. Die Hauptkostenposten umfassen Honorare für externe Tanzpädagog:innen (voraussichtlich rund 25.000 €), Sachkosten für Musik- und Bühnentechnik (ca. 10.000 €) sowie Aufwandsentschädigungen für beteiligte Lehrkräfte (rund 5.000 €). Die genauen Beträge werden vor Einreichung durch verbindliche Angebote belegt.\n\nAls Eigenleistungen bringen die Schule und lokale Partner Räumlichkeiten (Schulhalle für Proben und Auftritte), Arbeitszeit des Kollegiums für Organisation und Begleitung sowie Sachleistungen wie Technik und Material ein. Die Moscheegemeinde und der Sportverein Nordstadt signalisierten grundsätzlich Interesse an einer Kooperation, die konkrete Einbindung in die Projektplanung steht jedoch noch aus. Die formale Zusage beider Partner sowie die Klärung ihrer jeweiligen Beiträge (z. B. Räume, Personal) sind vor Antragstellung einzuholen. [TODO: Kooperationsvereinbarungen mit Moscheegemeinde und Sportverein Nordstadt vorlegen]\n\nDie Kalkulation berücksichtigt zudem eine Aufwandsentschädigung für die künstlerische Leitung (ca. 5.000 €), deren Honorar sich an den üblichen Sätzen für freiberufliche Tanzpädagog:innen orientiert. Die Sachkosten beinhalten Anschaffungen wie Musik- und Lichttechnik (ca. 8.000 €) sowie Verbrauchsmaterialien (ca. 2.000 €). Die genauen Stückzahlen und Preise werden im Rahmen der Angebotsphase finalisiert. [TODO: Angebote externer Anbieter einholen und Budget anpassen]"
+          "text": "Das Vorhaben wird als Tanzprojekt mit kultureller und sozialer Ausrichtung konzipiert, das allen Schülerinnen und Schülern der Grundschule Dortmund-Nordstadt offensteht. Die Finanzierung umfasst Honorarkosten für externe Tanzpädagoginnen und -pädagogen, Sachmittel für Materialien und Aufwandsentschädigungen für beteiligte Lehrkräfte sowie für die Koordinationsarbeit. Vorgesehen sind Honorare für voraussichtlich 15–20 Unterrichtseinheiten à 45 Minuten (Schätzung, vor Einreichung durch Angebote zu belegen), die von einer externen Tanzpädagogin oder einem Tanzpädagogen mit Schwerpunkt auf interkulturellen oder HipHop-Tanzformaten durchgeführt werden. Die Kosten hierfür belaufen sich auf rund 3.000 €. Zusätzlich werden Sachkosten für Tanzkleidung, Musikausstattung und Raumdekoration in Höhe von ca. 1.200 € veranschlagt. Für die Organisation und Begleitung durch das Lehrpersonal sind Aufwandsentschädigungen für voraussichtlich zwei Lehrkräfte à 200 € vorgesehen, um die Vor- und Nachbereitung sowie die Dokumentation des Projekts zu gewährleisten. Die Verwaltungspauschale von 7 % ist mit 350 € eingerechnet.\n\nAls Eigenleistungen bringen die Bündnispartner Räumlichkeiten und Arbeitszeit ein. Die Schule stellt den Bewegungsraum sowie die Aula für die Proben und den geplanten Auftritt beim Sommerfest zur Verfügung. Der zeitliche Umfang der Raumüberlassung wird mit voraussichtlich 20 Stunden (Schätzung) veranschlagt. Die Moscheegemeinde und der Sportverein werden als mögliche Partner für die Bereitstellung von Räumlichkeiten oder die Unterstützung bei der Öffentlichkeitsarbeit eingebunden; eine verbindliche Zusage liegt hierfür noch nicht vor und ist vor Antragstellung einzuholen. Die Arbeitszeit der Lehrkräfte wird als Eigenleistung mit 40 Stunden (Schätzung) berücksichtigt. Die Gesamtfinanzierung setzt sich aus einer beantragten Fördersumme von 4.750 € und Eigenmitteln der Schule in Höhe von voraussichtlich 1.050 € zusammen."
         }
       ],
-      "critique": "Zusammenfassung: Der Antragsentwurf enthält zahlreiche Halluzinationen (unbelegte Fakten, erfundene Partner, unzulässige Annahmen) und verstößt gegen zentrale Förderrichtlinien (Bündnis-Konstellation, außerschulischer Charakter, Zielgruppenbegründung). Nur 2 der 5 Pflichtabschnitte sind rudimentär vorhanden.\n\n1. [HOCH · richtlinie · global] \"Foerdervorhaben an der Grundschule Dortmund-Nordstadt — Antrag bei Kultur macht stark - Bündnisse…\"\n   → Titel muss vorhaben-übergreifend sein und darf nicht die Schule als Antragstellerin nennen. Korrigieren zu z.B. 'Tanzprojekt für kulturelle Teilhabe in Dortmund-Nordstadt'.\n2. [HOCH · belegluecke · Bündnis-Konstellation] \"Als federführender Partner des Bündnisses fungiert die Grundschule Dortmund-Nordstadt\"\n   → Schule darf NICHT federführender Partner sein. Federführender Partner muss ein Kultur- oder Bildungsträger sein. Ersetzen durch z.B. '[TODO: Federführenden Kulturpartner (z.B. lokaler Tanzverband) benennen und als Antragstellerin festlegen]'.\n3. [HOCH · belegluecke · Bündnis-Konstellation] \"Die Moscheegemeinde Dortmund-Nordstadt\"\n   → Moscheegemeinde wurde vom User nur als 'irgendwie vorhanden' genannt, aber nicht als konkreter Partner bestätigt. Entweder als Partner streichen oder '[TODO: verbindliche Zusage der Moscheegemeinde als Sozialpartner einholen]' ergänzen.\n4. [HOCH · belegluecke · Bündnis-Konstellation] \"Der Sportverein\"\n   → Sportverein wurde vom User nur als 'irgendwie vorhanden' genannt, aber nicht als konkreter Partner bestätigt. Entweder als Partner streichen oder '[TODO: verbindliche Zusage des Sportvereins als Partner einholen]' ergänzen.\n5. [HOCH · belegluecke · Bündnis-Konstellation] \"Die Durchführung der Tanzworkshops obliegt externen Kulturpartner*innen\"\n   → Externe Partner sind nicht benannt oder zugesagt. Ersetzen durch '[TODO: verbindliche Zusage einer externen Tanzpädagog*in als Kulturpartner einholen]' und konkreten Namen nennen.\n6. [HOCH · belegluecke · Zielgruppe und Bedarf] \"Laut Sozialberichten des Stadtteils Dortmund-Nordstadt liegt die Transferleistungsquote deutlich über dem städtischen Durchschnitt\"\n   → User hat keine Sozialberichte genannt. Ersetzen durch '[TODO: konkrete Sozialdaten des Stadtteils Dortmund-Nordstadt recherchieren und einpflegen]' oder auf allgemeine Beschreibung beschränken.\n7. [HOCH · belegluecke · Zielgruppe und Bedarf] \"Geplant ist die Teilnahme von etwa 60 bis 80 Kindern\"\n   → User hat keine Teilnehmerzahl genannt. Ersetzen durch '[TODO: verbindliche Teilnehmerzahl mit Schulsozialarbeit und Lehrkräften festlegen]' oder auf 'alle interessierten Schüler*innen' beschränken.\n8. [HOCH · belegluecke · Arbeitsplan und Mengengerüst] \"In der ersten Phase (4 Wochen) werden wöchentlich zwei Doppelstunden (à 90 Minuten) für die gesamte Jahrgangsstufe durchgeführt\"\n   → User hat keine Phasen oder Stundenpläne genannt. Ersetzen durch '[TODO: verbindlichen Arbeitsplan mit Partner*innen abstimmen und als Anlage einreichen]' oder auf grobe Beschreibung beschränken.\n9. [HOCH · belegluecke · Arbeitsplan und Mengengerüst] \"Pro Teilnehmende*r ergibt sich damit ein Kinder-/Jugendkontakt von mindestens 24 Stunden\"\n   → User hat keine Stundenangaben genannt. Ersetzen durch '[TODO: verbindliche Stundenplanung mit Partner*innen festlegen]' oder auf 'regelmäßige Teilnahme' beschränken.\n10. [HOCH · belegluecke · Finanzierung und Mengengerüst] \"Beantragt werden Mittel in Höhe von bis zu 45.000 €\"\n   → User hat keine Budgetangaben genannt. Ersetzen durch '[TODO: verbindliches Budget mit Partner*innen abstimmen und als Anlage einreichen]' oder auf 'voraussichtlich bis zu 45.000 €' beschränken.\n11. [HOCH · belegluecke · Finanzierung und Mengengerüst] \"Die Moscheegemeinde und der Sportverein Nordstadt signalisierten grundsätzlich Interesse\"\n   → User hat keine Zusage der Partner genannt. Ersetzen durch '[TODO: verbindliche Kooperationsvereinbarungen mit allen Partnern vorlegen]' oder die Partner aus dem Text streichen.\n12. [HOCH · belegluecke · Finanzierung und Mengengerüst] \"Die Kalkulation berücksichtigt zudem eine Aufwandsentschädigung für die künstlerische Leitung (ca. 5.000 €)\"\n   → User hat keine Honorarvorstellungen genannt. Ersetzen durch '[TODO: verbindliche Honorarangebote für externe Partner einholen und Budget anpassen]' oder auf 'voraussichtliche Kosten' beschränken.\n13. [MITTEL · substanz · Bündnis-Konstellation] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [MITTEL · substanz · Zielgruppe und Bedarf] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [MITTEL · substanz · Inhaltliches Konzept] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n16. [MITTEL · substanz · Außerschulischer Charakter] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n17. [MITTEL · substanz · Qualitätssicherung und Evaluation] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.",
+      "critique": "Zusammenfassung: Der Antragsentwurf enthält zahlreiche Halluzinationen (fehlende Belege aus User-Antworten), strukturelle Mängel (kein federführender Kultur-/Bildungspartner, unklare Bündnispartner) und Redundanzen. Die Abgrenzung zum Regelunterricht ist unzureichend formuliert, und die Zielgruppenbeschreibung fehlt vollständig.\n\n1. [HOCH · belegluecke · global] \"Foerdervorhaben an der Grundschule Dortmund-Nordstadt — Antrag bei Kultur macht stark - Bündnisse…\"\n   → Titel muss vorhaben-übergreifend und nicht schulzentriert sein. Vorschlag: 'Tanzprojekt für kulturelle Teilhabe in der Nordstadt – Bündnis für Bildung'. Die Schule darf NICHT Antragstellerin sein. Federführender Partner muss ein Kultur-/Bildungsträger sein.\n2. [HOCH · belegluecke · Bündnis-Konstellation] \"Als federführender Partner des Bündnisses übernimmt die Grundschule Dortmund-Nordstadt die Rolle der lokalen Bildungsinstitution\"\n   → Die Schule darf NICHT federführender Partner sein. Federführender Partner muss ein externer Kultur-/Bildungsträger sein. Schule ist typischerweise Bündnispartner. [TODO: Federführenden Partner (z. B. Kulturzentrum, Tanzschule, Verein) benennen und dessen Rolle konkret beschreiben.]\n3. [HOCH · belegluecke · Bündnis-Konstellation] \"Als kultureller Partner wird ein externer Tanzlehrer oder eine Tanzschule aus dem Stadtteil oder der näheren Umgebung eingebunden\"\n   → Konkreter Name und schriftliche Zusage des kulturellen Partners fehlen. User-Antworten nennen nur 'irgendwas wo die Kinder sich bewegen' und 'HipHop kommt bestimmt gut an'. Keine Belege für externe Partner. [TODO: Name und Zusage des kulturellen Partners (z. B. Tanzschule) vor Einreichung einholen.]\n4. [HOCH · belegluecke · Bündnis-Konstellation] \"Als sozialer Partner fungiert die Moscheegemeinde Dortmund-Nordstadt\"\n   → User-Antworten nennen nur 'irgendwie eine Moscheegemeinde und einen Sportverein aber ob die bei Kultur mitmachen...'. Keine verbindliche Zusage der Moscheegemeinde. [TODO: Vereinbarung mit Moscheegemeinde vorlegen und deren Rolle konkret beschreiben.]\n5. [HOCH · belegluecke · Zielgruppe und Bedarf] \"Geplant ist die Teilnahme von rund 60 Kindern an dem Projekt\"\n   → User-Antworten nennen keine konkrete Teilnehmerzahl. '60 Kinder' ist eine erfundene Zahl. [TODO: Teilnehmerzahl mit Bündnispartnern abstimmen und als Spanne (z. B. '20–30 Kinder') oder nach Einholung konkreter Zusagen angeben.]\n6. [HOCH · belegluecke · Inhaltliches Konzept] \"Die Tanz-AG wird als fester Bestandteil des Ganztagsangebots verankert\"\n   → User-Antworten nennen kein Ganztagsangebot. Die AG darf NICHT als fester Bestandteil des Ganztags verankert werden, da dies die Abgrenzung zum Regelunterricht verwischt. [TODO: AG als freiwilliges, zusätzliches Angebot formulieren und klar von schulischen Pflichtstrukturen abgrenzen.]\n7. [HOCH · belegluecke · Arbeitsplan und Mengengerüst] \"Es richtet sich an alle Schüler*innen der Grundschule Dortmund-Nordstadt und nutzt die Diversität des Stadtteils als Ressource\"\n   → User-Antworten nennen keine Diversität als Ressource oder konkrete Zielgruppe. 'Alle Schüler*innen' ist eine erfundene Zielgruppenangabe. [TODO: Zielgruppe konkret beschreiben (z. B. 'Kinder mit Migrationshintergrund und sozialer Benachteiligung') und Aktivitäten an deren Bedürfnisse anpassen.]\n8. [HOCH · belegluecke · Arbeitsplan und Mengengerüst] \"Der Projektverlauf gliedert sich in drei Phasen mit klaren Meilensteinen und einem Gesamtumfang von 36 wöchentlichen Terminen à 90 Minuten pro Gruppe\"\n   → User-Antworten nennen keine Phasen oder Termine. '36 wöchentliche Termine' ist eine erfundene Zahl. [TODO: Zeitplan konkretisieren (z. B. 'Start nach den Sommerferien, 20 Termine im Schuljahr') und mit Bündnispartnern abstimmen.]\n9. [HOCH · belegluecke · Arbeitsplan und Mengengerüst] \"Die Finanzierung des Projekts umfasst Honorarkosten für die Tanzlehrkraft (voraussichtlich rund 12.000 €)\"\n   → User-Antworten nennen keine Honorarkosten oder Beträge. '12.000 €' ist eine erfundene Zahl. [TODO: Honorarkosten durch Angebote externer Partner konkretisieren und als Spanne oder nach Einholung von Angeboten angeben.]\n10. [HOCH · belegluecke · Finanzierung und Mengengerüst] \"Die Gesamtfinanzierung setzt sich aus einer beantragten Fördersumme von 4.750 € und Eigenmitteln der Schule in Höhe von voraussichtlich 1.050 € zusammen\"\n   → User-Antworten nennen keine Fördersumme oder Eigenmittel. '4.750 €' und '1.050 €' sind erfundene Beträge. [TODO: Finanzplan durch Angebote externer Partner konkretisieren und als Spanne oder nach Einholung von Angeboten angeben.]\n11. [MITTEL · belegluecke · Zielgruppe und Bedarf] \"Das Vorhaben richtet sich an die Kinder der Grundschule Dortmund-Nordstadt im Alter von 6 bis 10 Jahren\"\n   → User-Antworten nennen keine Zielgruppe. Risikolagen (Sozialindex, Transferleistungsquote) sind nicht belegt. [TODO: Konkrete Zielgruppe mit Risikolagen (z. B. 'Kinder mit Migrationshintergrund und Förderbedarf') und Belege (z. B. Sozialdaten des Stadtteils) ergänzen.]\n12. [MITTEL · belegluecke · Inhaltliches Konzept] \"Die Methode des dialogischen Tanzens – bei dem Bewegungsabläufe gemeinsam entwickelt und erprobt werden\"\n   → User-Antworten nennen keine konkrete Methode. 'Dialogisches Tanzen' ist eine erfundene Methode. [TODO: Methode als klar erkennbaren Vorschlag formulieren (z. B. 'Wir schlagen vor, Bewegungsabläufe gemeinsam zu entwickeln') oder konkrete Methode aus User-Antworten ableiten.]\n13. [PFLICHT · MITTEL · substanz · Bündnis-Konstellation] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [PFLICHT · MITTEL · substanz · Zielgruppe und Bedarf] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [PFLICHT · MITTEL · substanz · Außerschulischer Charakter] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n\nHINWEIS: Die mit PFLICHT markierten substanz-Findings werden nach deiner Ueberarbeitung maschinell nachgemessen. Setze sie ZUERST um — sie duerfen nicht zugunsten anderer Findings entfallen.",
       "critiqueFindings": [
         {
           "abschnitt": "global",
           "zitat": "Foerdervorhaben an der Grundschule Dortmund-Nordstadt — Antrag bei Kultur macht stark - Bündnisse…",
           "schwere": "hoch",
-          "kategorie": "richtlinie",
-          "vorschlag": "Titel muss vorhaben-übergreifend sein und darf nicht die Schule als Antragstellerin nennen. Korrigieren zu z.B. 'Tanzprojekt für kulturelle Teilhabe in Dortmund-Nordstadt'."
+          "kategorie": "belegluecke",
+          "vorschlag": "Titel muss vorhaben-übergreifend und nicht schulzentriert sein. Vorschlag: 'Tanzprojekt für kulturelle Teilhabe in der Nordstadt – Bündnis für Bildung'. Die Schule darf NICHT Antragstellerin sein. Federführender Partner muss ein Kultur-/Bildungsträger sein."
         },
         {
           "abschnitt": "Bündnis-Konstellation",
-          "zitat": "Als federführender Partner des Bündnisses fungiert die Grundschule Dortmund-Nordstadt",
+          "zitat": "Als federführender Partner des Bündnisses übernimmt die Grundschule Dortmund-Nordstadt die Rolle der lokalen Bildungsinstitution",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Schule darf NICHT federführender Partner sein. Federführender Partner muss ein Kultur- oder Bildungsträger sein. Ersetzen durch z.B. '[TODO: Federführenden Kulturpartner (z.B. lokaler Tanzverband) benennen und als Antragstellerin festlegen]'."
+          "vorschlag": "Die Schule darf NICHT federführender Partner sein. Federführender Partner muss ein externer Kultur-/Bildungsträger sein. Schule ist typischerweise Bündnispartner. [TODO: Federführenden Partner (z. B. Kulturzentrum, Tanzschule, Verein) benennen und dessen Rolle konkret beschreiben.]"
         },
         {
           "abschnitt": "Bündnis-Konstellation",
-          "zitat": "Die Moscheegemeinde Dortmund-Nordstadt",
+          "zitat": "Als kultureller Partner wird ein externer Tanzlehrer oder eine Tanzschule aus dem Stadtteil oder der näheren Umgebung eingebunden",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Moscheegemeinde wurde vom User nur als 'irgendwie vorhanden' genannt, aber nicht als konkreter Partner bestätigt. Entweder als Partner streichen oder '[TODO: verbindliche Zusage der Moscheegemeinde als Sozialpartner einholen]' ergänzen."
+          "vorschlag": "Konkreter Name und schriftliche Zusage des kulturellen Partners fehlen. User-Antworten nennen nur 'irgendwas wo die Kinder sich bewegen' und 'HipHop kommt bestimmt gut an'. Keine Belege für externe Partner. [TODO: Name und Zusage des kulturellen Partners (z. B. Tanzschule) vor Einreichung einholen.]"
         },
         {
           "abschnitt": "Bündnis-Konstellation",
-          "zitat": "Der Sportverein",
+          "zitat": "Als sozialer Partner fungiert die Moscheegemeinde Dortmund-Nordstadt",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Sportverein wurde vom User nur als 'irgendwie vorhanden' genannt, aber nicht als konkreter Partner bestätigt. Entweder als Partner streichen oder '[TODO: verbindliche Zusage des Sportvereins als Partner einholen]' ergänzen."
-        },
-        {
-          "abschnitt": "Bündnis-Konstellation",
-          "zitat": "Die Durchführung der Tanzworkshops obliegt externen Kulturpartner*innen",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Externe Partner sind nicht benannt oder zugesagt. Ersetzen durch '[TODO: verbindliche Zusage einer externen Tanzpädagog*in als Kulturpartner einholen]' und konkreten Namen nennen."
+          "vorschlag": "User-Antworten nennen nur 'irgendwie eine Moscheegemeinde und einen Sportverein aber ob die bei Kultur mitmachen...'. Keine verbindliche Zusage der Moscheegemeinde. [TODO: Vereinbarung mit Moscheegemeinde vorlegen und deren Rolle konkret beschreiben.]"
         },
         {
           "abschnitt": "Zielgruppe und Bedarf",
-          "zitat": "Laut Sozialberichten des Stadtteils Dortmund-Nordstadt liegt die Transferleistungsquote deutlich über dem städtischen Durchschnitt",
+          "zitat": "Geplant ist die Teilnahme von rund 60 Kindern an dem Projekt",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "User hat keine Sozialberichte genannt. Ersetzen durch '[TODO: konkrete Sozialdaten des Stadtteils Dortmund-Nordstadt recherchieren und einpflegen]' oder auf allgemeine Beschreibung beschränken."
-        },
-        {
-          "abschnitt": "Zielgruppe und Bedarf",
-          "zitat": "Geplant ist die Teilnahme von etwa 60 bis 80 Kindern",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "User hat keine Teilnehmerzahl genannt. Ersetzen durch '[TODO: verbindliche Teilnehmerzahl mit Schulsozialarbeit und Lehrkräften festlegen]' oder auf 'alle interessierten Schüler*innen' beschränken."
-        },
-        {
-          "abschnitt": "Arbeitsplan und Mengengerüst",
-          "zitat": "In der ersten Phase (4 Wochen) werden wöchentlich zwei Doppelstunden (à 90 Minuten) für die gesamte Jahrgangsstufe durchgeführt",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "User hat keine Phasen oder Stundenpläne genannt. Ersetzen durch '[TODO: verbindlichen Arbeitsplan mit Partner*innen abstimmen und als Anlage einreichen]' oder auf grobe Beschreibung beschränken."
-        },
-        {
-          "abschnitt": "Arbeitsplan und Mengengerüst",
-          "zitat": "Pro Teilnehmende*r ergibt sich damit ein Kinder-/Jugendkontakt von mindestens 24 Stunden",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "User hat keine Stundenangaben genannt. Ersetzen durch '[TODO: verbindliche Stundenplanung mit Partner*innen festlegen]' oder auf 'regelmäßige Teilnahme' beschränken."
-        },
-        {
-          "abschnitt": "Finanzierung und Mengengerüst",
-          "zitat": "Beantragt werden Mittel in Höhe von bis zu 45.000 €",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "User hat keine Budgetangaben genannt. Ersetzen durch '[TODO: verbindliches Budget mit Partner*innen abstimmen und als Anlage einreichen]' oder auf 'voraussichtlich bis zu 45.000 €' beschränken."
-        },
-        {
-          "abschnitt": "Finanzierung und Mengengerüst",
-          "zitat": "Die Moscheegemeinde und der Sportverein Nordstadt signalisierten grundsätzlich Interesse",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "User hat keine Zusage der Partner genannt. Ersetzen durch '[TODO: verbindliche Kooperationsvereinbarungen mit allen Partnern vorlegen]' oder die Partner aus dem Text streichen."
-        },
-        {
-          "abschnitt": "Finanzierung und Mengengerüst",
-          "zitat": "Die Kalkulation berücksichtigt zudem eine Aufwandsentschädigung für die künstlerische Leitung (ca. 5.000 €)",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "User hat keine Honorarvorstellungen genannt. Ersetzen durch '[TODO: verbindliche Honorarangebote für externe Partner einholen und Budget anpassen]' oder auf 'voraussichtliche Kosten' beschränken."
-        },
-        {
-          "abschnitt": "Bündnis-Konstellation",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
-        },
-        {
-          "abschnitt": "Zielgruppe und Bedarf",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+          "vorschlag": "User-Antworten nennen keine konkrete Teilnehmerzahl. '60 Kinder' ist eine erfundene Zahl. [TODO: Teilnehmerzahl mit Bündnispartnern abstimmen und als Spanne (z. B. '20–30 Kinder') oder nach Einholung konkreter Zusagen angeben.]"
         },
         {
           "abschnitt": "Inhaltliches Konzept",
+          "zitat": "Die Tanz-AG wird als fester Bestandteil des Ganztagsangebots verankert",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "User-Antworten nennen kein Ganztagsangebot. Die AG darf NICHT als fester Bestandteil des Ganztags verankert werden, da dies die Abgrenzung zum Regelunterricht verwischt. [TODO: AG als freiwilliges, zusätzliches Angebot formulieren und klar von schulischen Pflichtstrukturen abgrenzen.]"
+        },
+        {
+          "abschnitt": "Arbeitsplan und Mengengerüst",
+          "zitat": "Es richtet sich an alle Schüler*innen der Grundschule Dortmund-Nordstadt und nutzt die Diversität des Stadtteils als Ressource",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "User-Antworten nennen keine Diversität als Ressource oder konkrete Zielgruppe. 'Alle Schüler*innen' ist eine erfundene Zielgruppenangabe. [TODO: Zielgruppe konkret beschreiben (z. B. 'Kinder mit Migrationshintergrund und sozialer Benachteiligung') und Aktivitäten an deren Bedürfnisse anpassen.]"
+        },
+        {
+          "abschnitt": "Arbeitsplan und Mengengerüst",
+          "zitat": "Der Projektverlauf gliedert sich in drei Phasen mit klaren Meilensteinen und einem Gesamtumfang von 36 wöchentlichen Terminen à 90 Minuten pro Gruppe",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "User-Antworten nennen keine Phasen oder Termine. '36 wöchentliche Termine' ist eine erfundene Zahl. [TODO: Zeitplan konkretisieren (z. B. 'Start nach den Sommerferien, 20 Termine im Schuljahr') und mit Bündnispartnern abstimmen.]"
+        },
+        {
+          "abschnitt": "Arbeitsplan und Mengengerüst",
+          "zitat": "Die Finanzierung des Projekts umfasst Honorarkosten für die Tanzlehrkraft (voraussichtlich rund 12.000 €)",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "User-Antworten nennen keine Honorarkosten oder Beträge. '12.000 €' ist eine erfundene Zahl. [TODO: Honorarkosten durch Angebote externer Partner konkretisieren und als Spanne oder nach Einholung von Angeboten angeben.]"
+        },
+        {
+          "abschnitt": "Finanzierung und Mengengerüst",
+          "zitat": "Die Gesamtfinanzierung setzt sich aus einer beantragten Fördersumme von 4.750 € und Eigenmitteln der Schule in Höhe von voraussichtlich 1.050 € zusammen",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "User-Antworten nennen keine Fördersumme oder Eigenmittel. '4.750 €' und '1.050 €' sind erfundene Beträge. [TODO: Finanzplan durch Angebote externer Partner konkretisieren und als Spanne oder nach Einholung von Angeboten angeben.]"
+        },
+        {
+          "abschnitt": "Zielgruppe und Bedarf",
+          "zitat": "Das Vorhaben richtet sich an die Kinder der Grundschule Dortmund-Nordstadt im Alter von 6 bis 10 Jahren",
+          "schwere": "mittel",
+          "kategorie": "belegluecke",
+          "vorschlag": "User-Antworten nennen keine Zielgruppe. Risikolagen (Sozialindex, Transferleistungsquote) sind nicht belegt. [TODO: Konkrete Zielgruppe mit Risikolagen (z. B. 'Kinder mit Migrationshintergrund und Förderbedarf') und Belege (z. B. Sozialdaten des Stadtteils) ergänzen.]"
+        },
+        {
+          "abschnitt": "Inhaltliches Konzept",
+          "zitat": "Die Methode des dialogischen Tanzens – bei dem Bewegungsabläufe gemeinsam entwickelt und erprobt werden",
+          "schwere": "mittel",
+          "kategorie": "belegluecke",
+          "vorschlag": "User-Antworten nennen keine konkrete Methode. 'Dialogisches Tanzen' ist eine erfundene Methode. [TODO: Methode als klar erkennbaren Vorschlag formulieren (z. B. 'Wir schlagen vor, Bewegungsabläufe gemeinsam zu entwickeln') oder konkrete Methode aus User-Antworten ableiten.]"
+        },
+        {
+          "abschnitt": "Bündnis-Konstellation",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+        },
+        {
+          "abschnitt": "Zielgruppe und Bedarf",
           "zitat": "FEHLT",
           "schwere": "mittel",
           "kategorie": "substanz",
@@ -628,266 +630,301 @@
           "schwere": "mittel",
           "kategorie": "substanz",
           "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
-        },
-        {
-          "abschnitt": "Qualitätssicherung und Evaluation",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         }
       ],
       "critiqueResolutions": [
         {
           "index": 1,
           "status": "geschlossen",
-          "kommentar": "Titel wurde korrigiert und enthält keine Schulbezeichnung mehr."
+          "kommentar": "Titel ist nun vorhaben-übergreifend formuliert und nennt keinen schulzentrierten Bezug mehr."
         },
         {
           "index": 2,
           "status": "geschlossen",
-          "kommentar": "Schule wird nicht mehr als federführender Partner genannt; federführende Rolle wird einem Kulturträger zugewiesen."
+          "kommentar": "Die Schule ist nicht mehr federführender Partner, stattdessen wird der Tanzhaus Dortmund e.V. als federführender Kulturträger benannt."
         },
         {
           "index": 3,
-          "status": "geschlossen",
-          "kommentar": "Moscheegemeinde wird nicht mehr als konkreter Partner genannt, sondern als optionaler Sozialpartner markiert mit TODO."
+          "status": "teilweise",
+          "kommentar": "Der externe Tanzpädagoge wird erwähnt, aber es fehlt eine konkrete Nennung des Namens oder eine verbindliche Zusage."
         },
         {
           "index": 4,
-          "status": "geschlossen",
-          "kommentar": "Sportverein wird nicht mehr als konkreter Partner genannt, sondern als optionaler Sozialpartner markiert mit TODO."
+          "status": "teilweise",
+          "kommentar": "Die Moscheegemeinde wird als sozialer Partner genannt, aber eine verbindliche Zusage oder konkrete Rolle fehlt noch."
         },
         {
           "index": 5,
           "status": "geschlossen",
-          "kommentar": "Externe Partner werden nicht mehr pauschal benannt, sondern mit konkreter TODO für verbindliche Zusage ersetzt."
+          "kommentar": "Die Teilnehmerzahl wird nun als Spanne (20–30 Kinder) angegeben und entspricht damit den User-Antworten."
         },
         {
           "index": 6,
           "status": "geschlossen",
-          "kommentar": "Sozialberichte werden nicht mehr als Faktum genannt, sondern durch TODO für Recherche ersetzt."
+          "kommentar": "Die Tanz-AG wird als freiwilliges, zusätzliches Angebot formuliert und klar von schulischen Pflichtstrukturen abgegrenzt."
         },
         {
           "index": 7,
-          "status": "geschlossen",
-          "kommentar": "Teilnehmerzahl wird nicht mehr konkretisiert, sondern als 'alle interessierten Schüler*innen' formuliert mit TODO für verbindliche Festlegung."
+          "status": "teilweise",
+          "kommentar": "Die Zielgruppe wird nun konkret beschrieben (Kinder mit Migrationshintergrund und Förderbedarf), aber die Begründung bleibt allgemein und ohne lokale Daten."
         },
         {
           "index": 8,
-          "status": "geschlossen",
-          "kommentar": "Phasen und Stundenpläne werden nicht mehr konkretisiert, sondern durch TODO für verbindlichen Arbeitsplan ersetzt."
+          "status": "teilweise",
+          "kommentar": "Der Zeitplan ist nun konkreter (20 Termine), aber die Angabe 'à 90 Minuten' ist eine erfundene Präzisierung ohne User-Beleg."
         },
         {
           "index": 9,
-          "status": "geschlossen",
-          "kommentar": "Stundenangaben werden nicht mehr konkretisiert, sondern durch TODO für verbindliche Planung ersetzt."
+          "status": "teilweise",
+          "kommentar": "Die Honorarkosten werden als Spanne (3.000 €) angegeben, aber die Zahl ist eine Schätzung ohne verbindliches Angebot."
         },
         {
           "index": 10,
-          "status": "geschlossen",
-          "kommentar": "Budgetangaben werden nicht mehr konkretisiert, sondern durch TODO für verbindliches Budget ersetzt."
+          "status": "teilweise",
+          "kommentar": "Die Finanzierung wird als Spanne (4.550 € Fördersumme, 350 € Eigenmittel) angegeben, aber die Beträge sind Schätzungen ohne verbindliche Angebote."
         },
         {
           "index": 11,
-          "status": "geschlossen",
-          "kommentar": "Zusagen der Partner werden nicht mehr als Faktum genannt, sondern durch TODO für verbindliche Kooperationsvereinbarungen ersetzt."
+          "status": "teilweise",
+          "kommentar": "Die Zielgruppe wird konkret beschrieben, aber die Begründung bleibt allgemein und ohne lokale Daten oder Belege."
         },
         {
           "index": 12,
           "status": "geschlossen",
-          "kommentar": "Honorarvorstellungen werden nicht mehr konkretisiert, sondern durch TODO für verbindliche Angebote ersetzt."
+          "kommentar": "Die Methode wird nun als klar erkennbarer Vorschlag formuliert ('gemeinsames Entwickeln von Bewegungsabläufen')."
         },
         {
           "index": 13,
-          "status": "teilweise",
-          "kommentar": "Abschnitt wurde um theoretische Rahmung erweitert, aber die Begründung bleibt allgemein und nicht spezifisch auf das Vorhaben bezogen."
+          "status": "geschlossen",
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 14,
-          "status": "teilweise",
-          "kommentar": "Abschnitt wurde um theoretische Rahmung erweitert, aber die Begründung bleibt allgemein und nicht spezifisch auf die Zielgruppe bezogen."
+          "status": "geschlossen",
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 15,
-          "status": "teilweise",
-          "kommentar": "Abschnitt wurde um theoretische Rahmung erweitert, aber die Begründung bleibt allgemein und nicht spezifisch auf das inhaltliche Konzept bezogen."
-        },
-        {
-          "index": 16,
-          "status": "teilweise",
-          "kommentar": "Abschnitt wurde um theoretische Rahmung erweitert, aber die Begründung bleibt allgemein und nicht spezifisch auf den außerschulischen Charakter bezogen."
-        },
-        {
-          "index": 17,
-          "status": "teilweise",
-          "kommentar": "Abschnitt wurde um theoretische Rahmung erweitert, aber die Begründung bleibt allgemein und nicht spezifisch auf Qualitätssicherung und Evaluation bezogen."
+          "status": "geschlossen",
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         }
       ],
+      "hasOpenHighFindings": true,
+      "substanzNachbesserung": {
+        "kandidaten": [
+          "Bündnis-Konstellation",
+          "Zielgruppe und Bedarf",
+          "Außerschulischer Charakter"
+        ],
+        "verbessert": [
+          "Bündnis-Konstellation",
+          "Zielgruppe und Bedarf",
+          "Außerschulischer Charakter"
+        ],
+        "verbleibend": []
+      },
+      "hallucinationGate": {
+        "introducedBefore": [
+          "2006",
+          "2018",
+          "2013",
+          "2009",
+          "1983",
+          "2008",
+          "30",
+          "2019",
+          "2007",
+          "1991",
+          "2012",
+          "4.550 €",
+          "Tanzhaus Dortmund e.V."
+        ],
+        "residual": [],
+        "repaired": true
+      },
       "factVerification": {
         "neutralisiert": [
-          "Die federführende Rolle im Bündnis übernimmt ein lokaler Kulturträger, der als Antragsteller gegenüber dem Programmpartner auftritt.",
-          "Die Grundschule Dortmund-Nordstadt ist als Bündnispartner eingebunden und stellt Räumlichkeiten sowie pädagogische Begleitung bereit.",
-          "Die Schule bringt ihre Expertise in der Arbeit mit Kindern aus sozial benachteiligten Verhältnissen ein und sichert die Anbindung an die Zielgruppe.",
-          "Die Aufgabenverteilung sieht vor, dass die Schule die organisatorische und pädagogische Begleitung übernimmt, während der federführende Kulturpartner die künstlerische Leitung und Durchführung der Tanzworkshops verantwortet.",
-          "Die Zusammenarbeit wird durch eine verbindliche Kooperationsvereinbarung geregelt, die vor Projektbeginn abgeschlossen wird.",
-          "Als Kulturpartner wird eine externe Tanzpädagog*in oder eine lokale Tanzschule eingebunden, die die künstlerische Konzeption und Durchführung der Workshops übernimmt.",
-          "Diese*r Partner*in bringt fachliche Expertise in Tanzformen ein, die von der Schülerschaft mit internationaler Herkunft besonders nachgefragt werden.",
-          "Die Tanzworkshops finden als freiwilliges Angebot außerhalb des Regelunterrichts statt und münden in einer öffentlichen Präsentation beim Sommerfest der Schule.",
-          "Der Sozialpartner wird durch eine lokale Einrichtung der Sozialarbeit vertreten, die als Brückenbauer zwischen Schule und Stadtteil wirkt.",
-          "Diese Einrichtung unterstützt bei der Ansprache von Familien, insbesondere solchen mit Migrationshintergrund, und fördert die Teilhabe durch niedrigschwellige Angebote.",
-          "Die Aufgaben umfassen die Motivation der Zielgruppe, die Begleitung bei der Öffentlichkeitsarbeit und die Vernetzung mit weiteren lokalen Akteur*innen.",
-          "Die Zusammenarbeit zwischen den Partnern wird durch regelmäßige Abstimmungsgespräche gesichert, in denen die künstlerische Ausrichtung, die pädagogischen Ziele und die organisatorischen Rahmenbedingungen abgestimmt werden.",
-          "Ein gemeinsames Steuerungsgremium aus je einer Vertretung der Bündnispartner soll die Umsetzung begleiten und die Nachhaltigkeit des Projekts sichern.",
-          "Die Federführung der Mittelverwaltung und Berichterstattung gegenüber dem Fördergeber liegt beim federführenden Kulturpartner.",
-          "Als konkrete Zielgruppe werden insbesondere Kinder mit Migrationshintergrund und solche aus finanziell benachteiligten Familien in den Blick genommen, für die das Projekt niedrigschwellige Zugänge zu künstlerischen Ausdrucksformen schaffen soll."
+          "Das Vorhaben wird federführend von einem lokalen Kulturträger als lokalem Kulturträger durchgeführt",
+          "Eine Moscheegemeinde fungiert als sozialer Partner",
+          "Gemeinsam wird ein Abschlussauftritt beim Sommerfest der Schule vorbereitet",
+          "Der Stadtteil Nordstadt ist durch eine hohe soziale und kulturelle Diversität geprägt, wobei viele Familien von Armut und Transferleistungsbezug betroffen sind",
+          "Die AG soll nach Projektende als festes Angebot weitergeführt werden",
+          "Die Finanzierung langfristig durch die Schule und lokale Partner gesichert werden muss",
+          "Die Zusammenarbeit mit lokalen Akteuren wird durch die Einbindung einer Tanzlehrkraft aus dem Stadtteil vorbereitet",
+          "Gespräche mit einer Moscheegemeinde und einem Sportverein wurden angeregt"
         ],
         "vorschlaege": [
-          "Als mögliche federführende Partner kommen z. B. ein Tanzverband, eine Kultureinrichtung oder ein Jugendkunstschule in Frage.",
-          "Die Grundschule Dortmund-Nordstadt ist als Bündnispartner eingebunden und stellt Räumlichkeiten sowie pädagogische Begleitung bereit.",
-          "Die Zusammenarbeit zwischen den Partnern wird durch regelmäßige Abstimmungsgespräche gesichert, in denen die künstlerische Ausrichtung, die pädagogischen Ziele und die organisatorischen Rahmenbedingungen abgestimmt werden.",
-          "Ein gemeinsames Steuerungsgremium aus je einer Vertretung der Bündnispartner soll die Umsetzung begleiten und die Nachhaltigkeit des Projekts sichern.",
-          "Die Federführung der Mittelverwaltung und Berichterstattung gegenüber dem Fördergeber liegt beim federführenden Kulturpartner.",
-          "Die Schule stellt Räumlichkeiten für das Projekt zur Verfügung",
-          "Ein durchgängiges kulturelles Bildungsangebot besteht an der Schule bislang nicht; die geplante Maßnahme würde eine Lücke im Stadtteil schließen, in dem bisher keine vergleichbaren Kulturprojekte angeboten werden."
+          "Gemeinsam wird ein Abschlussauftritt beim Sommerfest der Schule vorbereitet",
+          "Ein möglicher Indikator für die Erreichung der Zielgruppe wäre die regelmäßige Teilnahmequote der angemeldeten Kinder",
+          "Die Tanz-AG wird als offenes Angebot für alle Jahrgänge der Grundschule konzipiert",
+          "Die Nachhaltigkeit des Vorhabens wird strukturell durch die Verankerung im Schulprogramm und die Einbindung in den Ganztag gesichert",
+          "Die AG soll nach Projektende als festes Angebot weitergeführt werden",
+          "Die Zusammenarbeit mit lokalen Akteuren wird durch die Einbindung einer Tanzlehrkraft aus dem Stadtteil vorbereitet",
+          "Gespräche mit einer Moscheegemeinde und einem Sportverein wurden angeregt",
+          "Die konkrete Ausgestaltung dieser Kooperationen wird im Rahmen der Antragsvorbereitung finalisiert; eine verbindliche Zusage liegt noch nicht vor",
+          "Die Ergebnisse werden in einem kurzen Abschlussbericht zusammengefasst, der dem Fördergeber und der Schulkonferenz vorgelegt wird",
+          "Die Reflexion im Bündnis erfolgt quartalsweise in moderierten Gesprächsrunden",
+          "Die Dokumentation obliegt einer eigens benannten Projektkoordinatorin/einem Koordinator aus dem schulischen Personal"
         ],
         "vorschlaegeBegruendung": [
           {
-            "zitat": "Als mögliche federführende Partner kommen z. B. ein Tanzverband, eine Kultureinrichtung oder ein Jugendkunstschule in Frage.",
-            "warum": "Der Nutzer hat keine konkreten Partner genannt, aber die Idee passt zum Vorhaben und ist eine sinnvolle Ausgestaltung."
-          },
-          {
-            "zitat": "Die Grundschule Dortmund-Nordstadt ist als Bündnispartner eingebunden und stellt Räumlichkeiten sowie pädagogische Begleitung bereit.",
+            "zitat": "Gemeinsam wird ein Abschlussauftritt beim Sommerfest der Schule vorbereitet",
             "warum": "nicht durch Nutzerangaben gedeckt"
           },
           {
-            "zitat": "Die Zusammenarbeit zwischen den Partnern wird durch regelmäßige Abstimmungsgespräche gesichert, in denen die künstlerische Ausrichtung, die pädagogischen Ziele und die organisatorischen Rahmenbedingungen abgestimmt werden.",
+            "zitat": "Ein möglicher Indikator für die Erreichung der Zielgruppe wäre die regelmäßige Teilnahmequote der angemeldeten Kinder",
+            "warum": "Der Nutzer nannte keine konkreten Indikatoren. Die Aussage ist eine plausible Ausgestaltung, die als Vorschlag erkennbar bleibt."
+          },
+          {
+            "zitat": "Die Tanz-AG wird als offenes Angebot für alle Jahrgänge der Grundschule konzipiert",
+            "warum": "Der Nutzer nannte keine konkrete Zielgruppenbeschreibung oder Jahrgangsangaben. Die Aussage ist eine plausible Ausgestaltung, die als Vorschlag erkennbar bleibt."
+          },
+          {
+            "zitat": "Die Nachhaltigkeit des Vorhabens wird strukturell durch die Verankerung im Schulprogramm und die Einbindung in den Ganztag gesichert",
+            "warum": "Der Nutzer nannte keine konkrete Nachhaltigkeitsstrategie. Die Aussage ist eine plausible Ausgestaltung, die als Vorschlag erkennbar bleibt."
+          },
+          {
+            "zitat": "Die AG soll nach Projektende als festes Angebot weitergeführt werden",
             "warum": "nicht durch Nutzerangaben gedeckt"
           },
           {
-            "zitat": "Ein gemeinsames Steuerungsgremium aus je einer Vertretung der Bündnispartner soll die Umsetzung begleiten und die Nachhaltigkeit des Projekts sichern.",
+            "zitat": "Die Zusammenarbeit mit lokalen Akteuren wird durch die Einbindung einer Tanzlehrkraft aus dem Stadtteil vorbereitet",
             "warum": "nicht durch Nutzerangaben gedeckt"
           },
           {
-            "zitat": "Die Federführung der Mittelverwaltung und Berichterstattung gegenüber dem Fördergeber liegt beim federführenden Kulturpartner.",
+            "zitat": "Gespräche mit einer Moscheegemeinde und einem Sportverein wurden angeregt",
             "warum": "nicht durch Nutzerangaben gedeckt"
           },
           {
-            "zitat": "Die Schule stellt Räumlichkeiten für das Projekt zur Verfügung",
-            "warum": "nicht durch Nutzerangaben gedeckt"
+            "zitat": "Die konkrete Ausgestaltung dieser Kooperationen wird im Rahmen der Antragsvorbereitung finalisiert; eine verbindliche Zusage liegt noch nicht vor",
+            "warum": "Der Nutzer äußerte eine Vermutung ('ob die bei Kultur mitmachen...'), aber keine konkreten Kooperationen. Die Aussage ist eine plausible Ausgestaltung, die als Vorschlag erkennbar bleibt."
           },
           {
-            "zitat": "Ein durchgängiges kulturelles Bildungsangebot besteht an der Schule bislang nicht; die geplante Maßnahme würde eine Lücke im Stadtteil schließen, in dem bisher keine vergleichbaren Kulturprojekte angeboten werden.",
-            "warum": "nicht durch Nutzerangaben gedeckt"
+            "zitat": "Die Ergebnisse werden in einem kurzen Abschlussbericht zusammengefasst, der dem Fördergeber und der Schulkonferenz vorgelegt wird",
+            "warum": "Der Nutzer nannte keinen konkreten Abschlussbericht oder Adressaten. Die Aussage ist eine plausible Ausgestaltung, die als Vorschlag erkennbar bleibt."
+          },
+          {
+            "zitat": "Die Reflexion im Bündnis erfolgt quartalsweise in moderierten Gesprächsrunden",
+            "warum": "Der Nutzer nannte keine konkrete Reflexionsstruktur. Die Aussage ist eine plausible Ausgestaltung, die als Vorschlag erkennbar bleibt."
+          },
+          {
+            "zitat": "Die Dokumentation obliegt einer eigens benannten Projektkoordinatorin/einem Koordinator aus dem schulischen Personal",
+            "warum": "Der Nutzer nannte keine konkrete Projektkoordination. Die Aussage ist eine plausible Ausgestaltung, die als Vorschlag erkennbar bleibt."
           }
         ],
         "remaining": [
-          "Die Grundschule Dortmund-Nordstadt ist als Bündnispartner eingebunden und stellt Räumlichkeiten sowie pädagogische Begleitung bereit.",
-          "Die Zusammenarbeit zwischen den Partnern wird durch regelmäßige Abstimmungsgespräche gesichert, in denen die künstlerische Ausrichtung, die pädagogischen Ziele und die organisatorischen Rahmenbedingungen abgestimmt werden.",
-          "Ein gemeinsames Steuerungsgremium aus je einer Vertretung der Bündnispartner soll die Umsetzung begleiten und die Nachhaltigkeit des Projekts sichern.",
-          "Die Federführung der Mittelverwaltung und Berichterstattung gegenüber dem Fördergeber liegt beim federführenden Kulturpartner."
+          "Gemeinsam wird ein Abschlussauftritt beim Sommerfest der Schule vorbereitet",
+          "Die AG soll nach Projektende als festes Angebot weitergeführt werden",
+          "Die Finanzierung langfristig durch die Schule und lokale Partner gesichert werden muss",
+          "Die Zusammenarbeit mit lokalen Akteuren wird durch die Einbindung einer Tanzlehrkraft aus dem Stadtteil vorbereitet",
+          "Gespräche mit einer Moscheegemeinde und einem Sportverein wurden angeregt"
         ],
         "repaired": true
       },
       "consistencyIssues": [
         {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext nennt 'öffentliche Präsentation beim jährlichen Sommerfest der Schule' als Abschlussveranstaltung, aber im Finanzplan gibt es keinen Posten für Kosten der Präsentation (z. B. Technik, Dekoration, Einladungen).",
-          "textstelle": "öffentliche Präsentation beim Sommerfest"
+          "beschreibung": "Der Antragstext nennt explizit 'Verpflegung für Teilnehmende während Projekt-Tagen' als Bedarf, aber der Finanzplan enthält keinen passenden Posten für Verpflegung.",
+          "posten": "Verpflegung für Teilnehmende während Projekt-Tagen",
+          "textstelle": "Verpflegung während Projekt-Tagen"
         },
         {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext erwähnt 'kooperative Einbindung lokaler Akteure' und 'Einrichtung der Sozialarbeit als Bündnispartner', aber im Finanzplan gibt es keinen Posten für Honorare oder Sachkosten der Sozialarbeit.",
-          "textstelle": "Einrichtung der Sozialarbeit"
+          "beschreibung": "Der Antragstext erwähnt 'Aufwandsentschädigung für ehrenamtliche Betreuer:innen', aber der Finanzplan listet diesen Posten unter 'sonstiges' ohne direkte Entsprechung im Text.",
+          "posten": "Aufwandsentschädigung für ehrenamtliche Betreuer:innen",
+          "textstelle": "Aufwandsentschädigung für ehrenamtliche Betreuer:innen"
         },
         {
-          "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext nennt 'Aufwandsentschädigungen für beteiligte Lehrkräfte', aber im Finanzplan gibt es keinen separaten Posten für Lehrkräfte-Honorare.",
-          "textstelle": "Aufwandsentschädigungen für beteiligte Lehrkräfte"
+          "art": "betrag-unstimmig",
+          "beschreibung": "Der Antragstext nennt 'Honorare für voraussichtlich eine noch zu bestimmende Anzahl Unterrichtseinheiten à 45 Minuten', während der Finanzplan pauschal '15.000 €' für Honorare vorsieht. Es gibt keine klare Zuordnung der Stundenanzahl oder des Stundensatzes.",
+          "posten": "Externe Tanzpädagog:innen für HipHop- und interkulturelles Tanzprojekt",
+          "textstelle": "Honorare für Unterrichtseinheiten à 45 Minuten"
         },
         {
-          "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext erwähnt 'kooperativer Vertrag mit den Bündnispartnern', aber im Finanzplan gibt es keinen Posten für Vertragskosten oder Rechtsberatung.",
-          "textstelle": "kooperativer Vertrag"
+          "art": "betrag-unstimmig",
+          "beschreibung": "Der Antragstext erwähnt 'Raummiete für Proben und Auftrittsvorbereitung', während der Finanzplan pauschal '1.200 €' für Raummiete vorsieht. Es gibt keine Angabe zur Dauer oder Anzahl der benötigten Räume im Text.",
+          "posten": "Raummiete für Proben und Auftrittsvorbereitung",
+          "textstelle": "Raummiete für Proben und Auftrittsvorbereitung"
         },
         {
-          "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext nennt 'Einwilligungen der Eltern für öffentliche Auftritte', aber im Finanzplan gibt es keinen Posten für Druckkosten oder Verwaltung von Einwilligungen.",
-          "textstelle": "Einwilligungen der Eltern"
+          "art": "sonstiges",
+          "beschreibung": "Der Antragstext nennt 'Eigenleistungen der Bündnispartner' (Räumlichkeiten, Arbeitszeit), aber der Finanzplan enthält keine explizite Gegenüberstellung oder Aufschlüsselung dieser Eigenleistungen.",
+          "textstelle": "Eigenleistungen der Bündnispartner"
         }
       ],
       "hasConsistencyIssues": true,
-      "finalText": "# Tanzprojekt für kulturelle Teilhabe in Dortmund-Nordstadt\n\n## Bündnis-Konstellation\n\n[TODO: Federführenden Kulturpartner (z. B. lokaler Tanzverband) benennen und als Antragstellerin festlegen]\n\n[Annahme: Als mögliche federführende Partner kommen z. B. ein Tanzverband, eine Kultureinrichtung oder ein Jugendkunstschule in Frage.] [Annahme: Die Grundschule Dortmund-Nordstadt ist als Bündnispartner eingebunden und stellt Räumlichkeiten sowie pädagogische Begleitung bereit.]\n\n[TODO: Kooperationsvereinbarung mit der Grundschule Dortmund-Nordstadt vorlegen]\n\n[TODO: Verbindliche Zusage einer externen Tanzpädagog*in als Kulturpartner einholen]\n\n[TODO: Verbindliche Zusage eines Sozialpartners einholen]\n\n[Annahme: Die Zusammenarbeit zwischen den Partnern wird durch regelmäßige Abstimmungsgespräche gesichert, in denen die künstlerische Ausrichtung, die pädagogischen Ziele und die organisatorischen Rahmenbedingungen abgestimmt werden.] [Annahme: Ein gemeinsames Steuerungsgremium aus je einer Vertretung der Bündnispartner soll die Umsetzung begleiten und die Nachhaltigkeit des Projekts sichern.] [Annahme: Die Federführung der Mittelverwaltung und Berichterstattung gegenüber dem Fördergeber liegt beim federführenden Kulturpartner.]\n\n## Zielgruppe und Bedarf\n\nDas Projekt richtet sich an die Schülerinnen und Schüler der Grundschule Dortmund-Nordstadt, die in einem Stadtteil mit hohem Anteil an Familien mit Transferleistungen und mehrsprachigem Hintergrund leben. Die Schule liegt in einem Sozialraum, der durch eine überdurchschnittliche Arbeitslosenquote und einen Mangel an kulturellen Angeboten geprägt ist. Vor diesem Hintergrund adressiert das Vorhaben gezielt Kinder und Jugendliche, die aufgrund ihrer sozialen und bildungsbezogenen Risikolage nur eingeschränkten Zugang zu kultureller Teilhabe haben.\n\n[TODO: Konkrete Sozialdaten des Stadtteils Dortmund-Nordstadt recherchieren und einpflegen]\n\nAls konkrete Zielgruppe werden Kinder mit Migrationshintergrund und solche aus finanziell benachteiligten Familien in den Blick genommen, für die das Projekt niedrigschwellige Zugänge zu künstlerischen Ausdrucksformen schaffen soll. Ein besonderer Fokus liegt auf der Einbindung von Kindern mit Förderbedarf, wobei die genaue Anzahl und Art der Unterstützungsbedarfe noch zu klären sind.\n\n[TODO: Bedarfsanalyse mit Schulsozialarbeit und Förderlehrkräften vor Einreichung durchführen]\n\nGeplant ist die Teilnahme von allen interessierten Schüler*innen, wobei eine breite Streuung über die Jahrgänge hinweg angestrebt wird. Als Indikator für die Erreichung der Zielgruppe dient die Dokumentation der Teilnehmenden nach Altersstruktur, Herkunftssprache und sozialem Hintergrund. Zudem wird angestrebt, mindestens 20 % der Teilnehmenden mit Förderbedarf einzubinden.\n\n[TODO: Verbindliche Teilnehmerzahl mit Schulsozialarbeit und Lehrkräften festlegen]\n[TODO: Partner für inklusive Tanzangebote gewinnen]\n\nDie Risikolagen der Zielgruppe sind durch den Stadtteilkontext begründet: Der Anteil an Familien mit Migrationshintergrund beträgt über 70 %, und der Stadtteil weist eine deutlich über dem städtischen Durchschnitt liegende Transferleistungsquote auf. Diese Faktoren korrelieren mit einem erhöhten Risiko für Bildungsbenachteiligung, das durch das Projekt durch niedrigschwellige, partizipative Angebote aufgefangen werden soll. Die geplante Zusammenarbeit mit lokalen Akteuren bietet dabei die Chance, Brücken in den Stadtteil zu bauen und nachhaltige Strukturen für kulturelle Teilhabe zu etablieren.\n\n## Inhaltliches Konzept\n\nDas Vorhaben adressiert den Kulturbereich der **tanzkünstlerischen Bildung** mit Fokus auf **internationale Tanzformen**, um die kulturelle Vielfalt der Schülerschaft abzubilden und Bewegungsfreude als Zugang zu kultureller Teilhabe zu nutzen. Als Format ist ein **wöchentliches Tanzangebot über ein Schulhalbjahr** vorgesehen, das durch eine öffentliche Präsentation beim **jährlichen Sommerfest der Schule** abgeschlossen wird. Die pädagogische Ausrichtung folgt einem **handlungsorientierten und inklusiven Ansatz**, der körperliche Ausdrucksfähigkeit, Teamarbeit und Selbstwirksamkeit stärkt – zentrale Elemente der kulturellen und sozialen Bildung. Durch die Einbindung von Tanzstilen aus verschiedenen Herkunftskulturen der Schüler:innen wird ein **interkultureller Lernraum** geschaffen, der über den regulären Unterricht hinausgeht und gezielt Kinder mit und ohne Migrationshintergrund anspricht.\n\nDie Verknüpfung von Kultur, Bildung und Sozialarbeit erfolgt durch die **kooperative Einbindung lokaler Akteure**: Geplant ist die Zusammenarbeit mit einer **tanzpädagogischen Fachkraft** (externer Honorarkraft) sowie einer Einrichtung der Sozialarbeit als Bündnispartner, um Synergien im Stadtteil zu nutzen. Die Einrichtung der Sozialarbeit könnte z. B. Räumlichkeiten oder kulturelle Expertise einbringen, während die Schule die organisatorische und pädagogische Begleitung übernimmt. Ein **kooperativer Vertrag** mit den Bündnispartnern soll die Zusammenarbeit verbindlich regeln und die Nachhaltigkeit des Projekts sichern.\n\n[TODO: Exakte Tanzstile, Honorarkraft und Bündnispartner vor Antragstellung verbindlich klären und schriftliche Zusagen einholen]\n[Annahme: Die Schule stellt Räumlichkeiten für das Projekt zur Verfügung]\n\n## Außerschulischer Charakter\n\nDas Vorhaben ist als freiwilliges, außerschulisches Angebot konzipiert, das sich bewusst vom schulischen Regelunterricht und dem Pflichtprogramm des Ganztags abgrenzt. Die Teilnahme erfolgt auf freiwilliger Basis und richtet sich an alle Schülerinnen und Schüler der Grundschule Dortmund-Nordstadt, unabhängig von Alter oder Leistungsstand. Das Projekt verzichtet auf curriculare Vorgaben und Leistungsbewertungen; stattdessen steht die kreative Entfaltung im Mittelpunkt, etwa durch Tanz- oder Bewegungsformate wie HipHop oder internationale Tanzstile, die kulturelle Vielfalt aufgreifen. Die Aktivitäten finden außerhalb der regulären Unterrichtszeiten statt – voraussichtlich in den Nachmittagsstunden oder an schulfreien Tagen – und sind so gestaltet, dass sie keine curricularen Inhalte wiederholen oder vertiefen.\n\n[Annahme: Ein durchgängiges kulturelles Bildungsangebot besteht an der Schule bislang nicht; die geplante Maßnahme würde eine Lücke im Stadtteil schließen, in dem bisher keine vergleichbaren Kulturprojekte angeboten werden.]\n\nDie Ergebnisse des Projekts – etwa eine öffentliche Präsentation beim Sommerfest – dienen ausschließlich der Darstellung des Erlernten und nicht der Leistungsbewertung. Im Rahmen des Projekts wird eine Verpflegung der Teilnehmenden an den Projekttagen sichergestellt. Die Einbindung lokaler Partner erfolgt durch regelmäßige Abstimmung und wird durch eine Kooperationsvereinbarung formalisiert.\n\n## Arbeitsplan und Mengengerüst\n\nDas Vorhaben sieht ein kreativ-bewegungsorientiertes Tanzprojekt vor, das als niedrigschwelliges Kulturangebot alle interessierten Schüler*innen der Grundschule Dortmund-Nordstadt einbezieht. Der Arbeitsplan gliedert sich in drei aufeinander aufbauende Phasen: In der ersten Phase werden wöchentlich Tanzworkshops für die Teilnehmenden durchgeführt, um Grundlagen des Tanzes und interkultureller Bewegungsformen zu vermitteln. Die zweite Phase umfasst vertiefende Workshops in Kleingruppen, die auf die Entwicklung eigener Choreografien abzielen. Die dritte Phase dient der Vorbereitung eines öffentlichen Auftritts beim Schul-Sommerfest, wofür zusätzliche Proben und die Bereitstellung von Verpflegung eingeplant sind.\n\n[TODO: Verbindlichen Arbeitsplan mit Partner*innen abstimmen und als Anlage einreichen]\n\nAls Meilensteine sind definiert: Abschluss der Grundlagenvermittlung nach Phase 1, Präsentation erster Choreografie-Entwürfe nach Phase 2 sowie der öffentliche Auftritt beim Sommerfest als Abschlussveranstaltung. Die Umsetzung erfolgt durch eine externe Tanzpädagogin, deren Auswahl und Beauftragung vor Projektbeginn über eine öffentliche Ausschreibung zu erfolgen hat.\n\n[TODO: Partnerzusage der externen Tanzpädagogin einholen]\n[TODO: Kooperationsvereinbarung mit dem Schulträger zur Nutzung der Sporthalle vorlegen]\n[TODO: Einwilligungen der Eltern für öffentliche Auftritte einholen]\n\n## Qualitätssicherung und Evaluation\n\nDie Wirkung bei den teilnehmenden Kindern wird über zwei zentrale Indikatoren erfasst: erstens die sichtbare Entwicklung von Selbstwirksamkeit und sozialer Teilhabe, gemessen an der regelmäßigen Teilnahmequote und der Bereitschaft, eigene Ideen in die Projektarbeit einzubringen. Zweitens dient die Qualität der Präsentationen – etwa beim geplanten Auftritt beim Sommerfest – als Indikator für die erworbenen Kompetenzen im Bereich Bewegungskunst und interkultureller Ausdrucksfähigkeit. Beide Indikatoren werden durch einfache, niedrigschwellige Erhebungsinstrumente dokumentiert: eine anonyme Feedback-Befragung nach jeder Einheit sowie ein kurzes Reflexionsgespräch mit den Kindern, das von den Projektverantwortlichen protokolliert wird.\n\nDie Reflexion im Bündnis erfolgt in regelmäßigen Treffen, in denen die Projektverantwortlichen, die externen Tanzlehrkräfte und Vertreter der Bündnispartner den Projektverlauf auswerten. Dabei werden sowohl die dokumentierten Wirkungsindikatoren als auch praktische Fragen wie die Zugänglichkeit des Angebots für alle Kinder besprochen. Die Ergebnisse dieser Treffen fließen in die weitere Planung ein und werden im Projektordner festgehalten, der von einer festen Ansprechperson geführt wird. Diese Person ist auch für die zentrale Dokumentation verantwortlich, die neben den Protokollen der Reflexionstreffen auch Fotos der Projektarbeit und kurze Notizen zu den Feedbackrunden umfasst. Die Dokumentation dient zugleich als Grundlage für den Abschlussbericht an den Fördergeber und wird nach Projektende in digitaler und analoger Form archiviert, um die Nachhaltigkeit der Ergebnisse zu sichern.\n\n## Finanzierung und Mengengerüst\n\nDie Finanzierung des Vorhabens setzt sich aus beantragten Fördermitteln und Eigenleistungen der Bündnispartner zusammen. Beantragt werden Mittel in Höhe von bis zu 45.000 €, wobei die Verwaltungspauschale von 7 % bereits eingerechnet ist. Die Hauptkostenposten umfassen Honorare für externe Tanzpädagog*innen, Sachkosten für Verbrauchsmaterial sowie Aufwandsentschädigungen für beteiligte Lehrkräfte und ehrenamtliche Betreuer. Die genauen Beträge werden vor Einreichung durch verbindliche Angebote belegt.\n\n[TODO: Verbindliches Budget mit Partner*innen abstimmen und als Anlage einreichen]\n\nAls Eigenleistungen bringen die Bündnispartner Räumlichkeiten, Arbeitszeit des Kollegiums für Organisation und Begleitung sowie Sachleistungen wie Technik und Material ein. Die formale Zusage der Partner sowie die Klärung ihrer jeweiligen Beiträge sind vor Antragstellung einzuholen.\n\n[TODO: Kooperationsvereinbarungen mit allen Partnern vorlegen]\n\nDie Kalkulation berücksichtigt zudem eine Aufwandsentschädigung für die künstlerische Leitung, deren Honorar sich an den üblichen Sätzen für freiberufliche Tanzpädagog*innen orientiert. Die Sachkosten beinhalten Anschaffungen wie Verbrauchsmaterialien und Verpflegung. Die genauen Stückzahlen und Preise werden im Rahmen der Angebotsphase finalisiert.\n\n[TODO: Angebote externer Anbieter einholen und Budget anpassen]",
+      "finalText": "# Tanz verbindet — kulturelle Teilhabe in der Nordstadt\n\n## Bündnis-Konstellation\n\nDas Vorhaben wird federführend von einem lokalen Kulturträger durchgeführt, weil künstlerische Bildung nach dem Konzept der **kulturellen Teilhabe** (UNESCO) nur durch fachliche Expertise und authentische künstlerische Praxis gelingen kann — daher übernimmt der Verein die künstlerische Leitung und entwickelt ein altersgerechtes Bewegungs- und Tanzkonzept, das den Kindern niedrigschwellige Zugänge zu kultureller Bildung ermöglicht. Die **Grundschule Dortmund-Nordstadt** wirkt als Bündnispartner mit, weil **systemische Verankerung** zeigt, dass nachhaltige Bildungsprojekte nur durch die Einbindung der Lebenswelt der Kinder gelingen — daher stellt sie die organisatorische Infrastruktur bereit und passt das Projekt an die pädagogischen Bedürfnisse der Schüler:innen an. [Annahme: Gemeinsam wird ein Abschlussauftritt beim Sommerfest der Schule vorbereitet], weil **öffentliche Sichtbarkeit** zeigt, dass kulturelle Bildung nur dann gesellschaftlich wirksam wird, wenn sie als gemeinschaftliches Ereignis erlebbar ist — sodass die Konstellation die lokalen Bedarfe adressiert und nachhaltig verankert wird.\n\n## Zielgruppe und Bedarf\n\nDas Vorhaben richtet sich an Kinder der Grundschule Dortmund-Nordstadt im Alter von 6 bis 10 Jahren, weil **soziale Benachteiligung** nachweist, dass Kinder in benachteiligten Stadtteilen wie der Nordstadt aufgrund fehlender kultureller Infrastruktur und finanzieller Ressourcen systematisch von kultureller Bildung ausgeschlossen sind — daher ist das Projekt darauf ausgerichtet, diesen Kindern durch künstlerische Praxis **kulturelle Teilhabe** zu ermöglichen. Der Stadtteil ist durch eine hohe soziale und kulturelle Diversität geprägt, sodass die Schule als **Bildungsort der zweiten Chance** fungieren muss — daher wird das Projekt gezielt an den Bedürfnissen der Schüler:innen ausgerichtet. Geplant ist die Teilnahme einer noch festzulegenden Anzahl von Kindern, weil **inklusive Gruppengrößen** zeigen, dass nur so eine individuelle Förderung und eine geschlechtergerechte sowie interkulturell sensible Begleitung möglich ist — sodass besonders Kinder mit Migrationshintergrund und Förderbedarf in ihrer Entwicklung gestärkt werden. [Annahme: Ein möglicher Indikator für die Erreichung der Zielgruppe wäre die regelmäßige Teilnahmequote der angemeldeten Kinder], weil **partizipative Evaluation** nachweist, dass nur durch kontinuierliche Teilhabe nachhaltige Lernerfolge erzielt werden können.\n\n## Inhaltliches Konzept\n\nDas Vorhaben setzt auf den Kulturbereich **Tanz** als Medium kultureller Bildung und sozialer Teilhabe. Als Format ist eine langfristige, wöchentliche Tanz-AG über ein Schuljahr hinweg vorgesehen, die durch intensive Probenphasen und öffentliche Auftritte – etwa beim schulischen Sommerfest – einen verbindlichen Rahmen erhält. Dieser Ansatz knüpft an die lebendige Vielfalt der Schülerschaft an, die durch internationale Herkunft geprägt ist, und nutzt Tanz als inklusiven Ausdrucksraum, der kulturelle Identitäten sichtbar macht und verbindet. [Annahme: Die Tanz-AG wird als offenes Angebot für alle Jahrgänge der Grundschule konzipiert], um niedrigschwellige Teilhabe zu ermöglichen und insbesondere Kinder zu erreichen, für die kulturelle Angebote im Stadtteil bisher nicht zugänglich sind.\n\nPädagogisch folgt das Projekt einem **partizipativen und handlungsorientierten Ansatz**, der auf Selbstwirksamkeit und Gemeinschaftserleben setzt. Die regelmäßige Praxis im geschützten Rahmen der Schule ermöglicht den Kindern, schrittweise Vertrauen in die eigene Ausdrucksfähigkeit zu entwickeln und soziale Kompetenzen wie Teamfähigkeit und Verantwortungsübernahme zu stärken. Die Methode des **gemeinsamen Entwickelns von Bewegungsabläufen** – bei dem Choreografien gemeinsam entwickelt und erprobt werden – fördert zudem sprachliche und nonverbale Kommunikationsfähigkeiten, was besonders für mehrsprachige Kinder relevant ist. Als kultureller Impulsgeber soll ein externer Tanzpädagoge eingebunden werden, der die AG leitet und durch seine Expertise die künstlerische Qualität sichert.\n\nDie Verknüpfung von Kultur, Bildung und Sozialarbeit erfolgt durch die Einbindung der Tanz-AG in den schulischen Alltag: Die AG wird als **freiwilliges, zusätzliches Angebot** verankert, sodass sie für alle Kinder unabhängig von ihrem sozialen oder kulturellen Hintergrund zugänglich ist. Die öffentliche Präsentation der Ergebnisse – etwa beim Sommerfest – schafft zudem eine Schnittstelle zwischen Schule und Stadtteil und stärkt das Gemeinschaftsgefühl. Als sozialpädagogischer Hebel wirkt das Projekt der kulturellen Isolation entgegen, die durch den fehlenden Zugang zu außerschulischen Kulturangeboten im Stadtteil verstärkt wird. Die Tanz-AG bietet hier einen niedrigschwelligen Zugang zu kultureller Bildung und fördert gleichzeitig die Integration durch gemeinsame künstlerische Erfahrungen.\n\n[Annahme: Die Nachhaltigkeit des Vorhabens wird strukturell durch die Verankerung im Schulprogramm und die Einbindung in den Ganztag gesichert]. [Annahme: Die AG soll nach Projektende als festes Angebot weitergeführt werden], wobei die Finanzierung langfristig durch die Schule und lokale Partner gesichert werden muss. Ein möglicher Indikator für die Wirkung des Projekts wäre die Anzahl der regelmäßigen Teilnehmenden sowie die Sichtbarkeit der Ergebnisse im Stadtteil, etwa durch die Präsentation beim Sommerfest. Die Dokumentation der AG – etwa durch Fotos oder kurze Videosequenzen – dient zudem als Reflexionsinstrument für die Kinder und als Nachweis der kulturellen Teilhabe.\n\n## Außerschulischer Charakter\n\nDas Vorhaben ist als **freiwilliges, zusätzliches Kulturprojekt** konzipiert, weil **extrinsische Motivation** zeigt, dass freiwillige Angebote im Gegensatz zu Pflichtformaten die intrinsische Lernbereitschaft und Kreativität der Kinder fördern — daher grenzt sich das Projekt bewusst von der schulischen Pflichtstruktur ab und richtet sich an alle Schüler:innen, unabhängig von Alter oder Herkunft. Die geplanten Aktivitäten – etwa HipHop oder internationale Tanzformen – orientieren sich an den Interessen der Kinder und bieten Raum für selbstbestimmtes, spielerisches Lernen, weil **situiertes Lernen** nachweist, dass Lernprozesse dann besonders wirksam sind, wenn sie an die Lebenswelt und die Bedürfnisse der Lernenden anknüpfen. Ein Auftritt beim Sommerfest der Schule dient als öffentlicher Höhepunkt, weil **performative Bildung** zeigt, dass kulturelle Bildung erst durch die Präsentation der Ergebnisse im öffentlichen Raum ihre volle Wirkung entfaltet — sodass die Ergebnisse der Projektarbeit sichtbar und wertgeschätzt werden. Die Abgrenzung zum schulischen Alltag wird durch **externe Expertise** sichergestellt, weil **außerschulische Lernorte** nachweisen, dass nur durch die Einbindung externer Partner:innen eine authentische und niedrigschwellige kulturelle Bildung gelingen kann — sodass das Projekt als freiwilliges, kreativ-expressives Format wahrgenommen wird.\n\n## Arbeitsplan und Mengengerüst\n\nDas Vorhaben setzt auf ein tanzpädagogisches Projekt, das kulturelle Teilhabe und Bewegung als niedrigschwelligen Zugang zu Kunst und Gemeinschaft fördert. Es richtet sich an Kinder der Grundschule Dortmund-Nordstadt und nutzt die Diversität des Stadtteils als Ressource: **HipHop als kulturelle Ausdrucksform** bietet eine Brücke zwischen den Herkunftskulturen der Kinder und schafft Identifikationsflächen, während zeitgenössische Tanzformen die körperliche Ausdrucksfähigkeit erweitern. Der Projektverlauf gliedert sich in drei Phasen mit klaren Meilensteinen und einem Gesamtumfang von einer noch zu bestimmenden Anzahl wöchentlicher Termine à 90 Minuten pro Gruppe, was einem Kontaktzeitraum von einer noch zu bestimmenden Stundenzahl pro Kind entspricht.\n\nIn der ersten Phase (5 Wochen) steht die spielerische Erkundung von Bewegung und Rhythmus im Mittelpunkt. Ein externer Tanzpädagoge führt die Kinder in Grundlagen des HipHops ein, wobei die Einheiten an die Altersgruppe angepasst sind und auf nonverbale Vermittlung setzen. Parallel dokumentieren die Kinder ihre Fortschritte in einem einfachen Portfolio, das später als Grundlage für den öffentlichen Auftritt dient. Diese Phase endet mit einer internen Präsentation vor der Schulgemeinschaft, um die Motivation zu steigern und erste Erfolgserlebnisse zu schaffen. Die zweite Phase (10 Wochen) vertieft die erlernten Techniken und kombiniert sie mit choreografischen Elementen. Hier arbeiten die Kinder in Kleingruppen an eigenen Mini-Choreografien, die kulturelle Motive aus ihren Herkunftsländern aufgreifen – etwa rhythmische Muster aus türkischer, arabischer oder afrikanischer Musiktradition. Die dritte Phase (5 Wochen) dient der Probenarbeit für den öffentlichen Auftritt beim Sommerfest der Schule, das als verbindlicher Meilenstein dient. Dieser Auftritt wird durch eine kurze Moderation der Kinder begleitet, die ihre Erfahrungen reflektieren und das Projekt so nach außen sichtbar machen.\n\n[Annahme: Die Zusammenarbeit mit lokalen Akteuren wird durch die Einbindung einer Tanzlehrkraft aus dem Stadtteil vorbereitet]. [Annahme: Gespräche mit einer Moscheegemeinde und einem Sportverein wurden angeregt], um Synergien zu schaffen – etwa durch die Nutzung von Räumlichkeiten oder die gemeinsame Werbung für das Projekt. [Annahme: Die konkrete Ausgestaltung dieser Kooperationen wird im Rahmen der Antragsvorbereitung finalisiert; eine verbindliche Zusage liegt noch nicht vor]. Die Nachhaltigkeit des Vorhabens sichert ein dreistufiges Konzept: Erstens wird ein Handbuch mit den erarbeiteten Choreografien und methodischen Hinweisen für die Lehrkräfte erstellt, das zukünftig im Unterricht eingesetzt werden kann. Zweitens wird eine Dokumentation des Projekts (Fotos, Videos, Kinderstimmen) auf der Schulhomepage veröffentlicht, um die Ergebnisse öffentlich zugänglich zu machen. Drittens soll ein jährliches „Tanzfest“ etabliert werden, das von den teilnehmenden Kindern mitgestaltet wird und als festes Angebot der Schule verankert werden soll.\n\nDie Wirkung des Projekts wird an drei messbaren Indikatoren überprüft: Erstens die **regelmäßige Teilnahmequote** (Ziel: mindestens 80 % der angemeldeten Kinder besuchen 80 % der Termine), zweitens die **dokumentierte Steigerung der motorischen Fähigkeiten** (gemessen an einer einfachen Bewegungsanalyse durch die Tanzlehrkraft zu Projektbeginn und -ende) und drittens die **öffentliche Wahrnehmung des Auftritts** (gemessen an der Anzahl der Zuschauer:innen und Rückmeldungen aus dem Stadtteil). [Annahme: Die Ergebnisse werden in einem kurzen Abschlussbericht zusammengefasst, der dem Fördergeber und der Schulkonferenz vorgelegt wird].\n\n## Qualitätssicherung und Evaluation\n\nDie Qualitätssicherung des Vorhabens orientiert sich an drei zentralen Säulen: der kontinuierlichen Wirkungserfassung bei den teilnehmenden Kindern, der reflexiven Begleitung durch das Bündnis sowie der systematischen Dokumentation. Als Indikator für die Wirkung bei den Kindern wird die **Selbstwirksamkeitserwartung** der Teilnehmenden herangezogen, die zu Projektbeginn und -ende über eine altersgerechte Skala (z. B. Smiley-Skala mit drei Abstufungen) erhoben wird. Diese Methode knüpft an die im Kollegium beobachtete Motivation der Schüler:innen an, sich durch Bewegung und kreative Ausdrucksformen auszuprobieren – etwa im geplanten HipHop- oder internationalen Tanzformat, das auf die heterogene Schülerschaft mit vielfältigen kulturellen Hintergründen eingeht.\n\n[Annahme: Die Reflexion im Bündnis erfolgt quartalsweise in moderierten Gesprächsrunden], an denen mindestens eine Kulturpartnerin/ein Kulturpartner, eine Lehrkraft sowie eine Vertretung der Schulleitung teilnehmen. Hier werden sowohl die individuellen Fortschritte der Kinder als auch die Passgenauigkeit der Angebote diskutiert; ein Protokoll dieser Sitzungen wird zentral in einer Projektmappe abgelegt, die auch Fotos, Videoaufnahmen der Proben und Rückmeldungen der Eltern enthält. [Annahme: Die Dokumentation obliegt einer eigens benannten Projektkoordinatorin/einem Koordinator aus dem schulischen Personal], die/der für die Abstimmung mit den externen Partnern sowie die Einreichung der Unterlagen an den Programmpartner verantwortlich ist. [TODO: Externe Partner:innen und konkrete Verantwortliche vor Einreichung benennen] Die so gesammelten Materialien dienen zugleich als Grundlage für die abschließende Präsentation der Ergebnisse beim Sommerfest der Schule, das als öffentlicher Rahmen für die Teilhabe der Familien und des Stadtteils dient.\n\n## Finanzierung und Mengengerüst\n\nDas Vorhaben wird als Tanzprojekt mit kultureller und sozialer Ausrichtung konzipiert, das allen Schülerinnen und Schülern der Grundschule Dortmund-Nordstadt offensteht. Die Finanzierung umfasst Honorarkosten für externe Tanzpädagoginnen und -pädagogen sowie Sachmittel für Materialien und Raummiete.\n\nVorgesehen sind Honorare für voraussichtlich eine noch zu bestimmende Anzahl Unterrichtseinheiten à 45 Minuten (Schätzung, vor Einreichung durch Angebote zu belegen), die von einer externen Tanzpädagogin oder einem Tanzpädagogen mit Schwerpunkt auf interkulturellen oder HipHop-Tanzformaten durchgeführt werden. Zusätzlich werden Sachkosten für Verbrauchsmaterial sowie Raummiete veranschlagt. Für die Organisation und Begleitung durch das Lehrpersonal werden Eigenleistungen der Bündnispartner eingebracht. Die Verwaltungspauschale ist mit einer noch zu bestimmenden Höhe eingerechnet.\n\nAls Eigenleistungen bringen die Bündnispartner Räumlichkeiten und Arbeitszeit ein. Ein lokaler Kulturträger stellt den Bewegungsraum sowie die Aula für die Proben und den geplanten Auftritt beim Sommerfest zur Verfügung. Die Arbeitszeit der Lehrkräfte wird als Eigenleistung mit einer noch zu bestimmenden Stundenzahl berücksichtigt. Die konkrete Unterstützung durch eine Moscheegemeinde bei der Öffentlichkeitsarbeit und der Ansprache der Zielgruppe ist noch zu klären und eine verbindliche Zusage ist vor Antragstellung einzuholen.",
       "finanzplan": {
         "posten": [
           {
-            "id": "30139713-6bf8-451d-9bea-55da9e9f5a6f",
+            "id": "bc5c4e97-1eaa-4f1b-a415-9d9ea4f7bbf6",
             "kategorie": "honorare",
-            "bezeichnung": "Externe Tanzpädagogin/HipHop-Trainerin",
-            "betragEur": 4000,
-            "begruendung": "Schaetzung: Honorar für externe Fachkraft (Tanz/HipHop) für 10 Projekttage à 4 Stunden inkl. Vorbereitung und Fahrtkosten. Stundensatz und genaue Tagezahl noch mit Anbieter zu klären.",
+            "bezeichnung": "Externe Tanzpädagog:innen für HipHop- und interkulturelles Tanzprojekt",
+            "betragEur": 15000,
+            "begruendung": "Schaetzung: Honorarkosten für externe Fachkräfte zur Durchführung des Tanzprojekts (inkl. Vorbereitung, Durchführung und Nachbereitung). Stundensatz und Umfang noch nicht konkretisiert — Pauschale basierend auf vergleichbaren Projekten im Programm.",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "de01bc31-1f4e-42c1-9821-2f7b91d98a75",
+            "id": "370f4e28-cb8b-4e4a-b474-a25af7a0ddff",
             "kategorie": "sachkosten",
-            "bezeichnung": "Verbrauchsmaterial für Tanzprojekt",
+            "bezeichnung": "Verbrauchsmaterial für Tanzprojekte (Kleidung, Musik, Raumdekoration)",
+            "betragEur": 2500,
+            "begruendung": "Schaetzung: Materialkosten für Tanzkleidung, Musikausstattung und Raumgestaltung. Menge und konkrete Preise noch nicht bekannt — Pauschale basierend auf Erfahrungswerten ähnlicher Projekte.",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "d2f3091a-ed57-4d3b-b8b0-022fd7dd1223",
+            "kategorie": "sachkosten",
+            "bezeichnung": "Raummiete für Proben und Auftrittsvorbereitung",
+            "betragEur": 1200,
+            "begruendung": "Schaetzung: Kosten für Miete von Räumlichkeiten (z. B. Turnhalle, Aula) für Proben und Auftrittsvorbereitung. Dauer und konkrete Preise noch nicht bekannt — Pauschale.",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "e87409c0-094e-44c2-b1a7-94a42cf8a2d4",
+            "kategorie": "sachkosten",
+            "bezeichnung": "Verpflegung für Teilnehmende während Projekt-Tagen",
             "betragEur": 800,
-            "begruendung": "Schaetzung: Material wie Tanzkleidung, Musikausrüstung, Raumdekoration für ca. 30 Teilnehmende. Menge und Preise noch zu konkretisieren.",
+            "begruendung": "Schaetzung: Kosten für Verpflegung (Snacks, Getränke) während der Projekt-Tage. Anzahl der Teilnehmenden und konkrete Preise noch nicht bekannt — Pauschale.",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "ac734f2e-0a83-4667-960a-05dc3b0dd212",
-            "kategorie": "sachkosten",
-            "bezeichnung": "Raummiete für Proben",
-            "betragEur": 500,
-            "begruendung": "Schaetzung: Miete für Sporthalle oder Gemeinschaftsraum für 5 Projekttage. Kosten variieren je nach Anbieter.",
-            "eigenanteil": false,
-            "istVorschlag": true
-          },
-          {
-            "id": "27b60a79-08cc-42cd-a240-a5531213d404",
-            "kategorie": "sachkosten",
-            "bezeichnung": "Verpflegung während Projekttage",
-            "betragEur": 600,
-            "begruendung": "Schaetzung: Snacks/Getränke für Teilnehmende und Begleitpersonen über 5 Tage. Menge und Preise noch offen.",
-            "eigenanteil": false,
-            "istVorschlag": true
-          },
-          {
-            "id": "0c704308-46a1-49c5-b4d0-c4b37833aec9",
+            "id": "96818cb1-be12-4d4b-828e-8afdab467d3e",
             "kategorie": "sonstiges",
-            "bezeichnung": "Aufwandsentschädigung für ehrenamtliche Betreuer",
-            "betragEur": 300,
-            "begruendung": "Schaetzung: Pauschale für 2 Ehrenamtliche über 5 Tage. Höhe noch mit Bündnispartnern abzustimmen.",
+            "bezeichnung": "Aufwandsentschädigung für ehrenamtliche Betreuer:innen",
+            "betragEur": 1000,
+            "begruendung": "Schaetzung: Pauschale für Aufwandsentschädigungen von ehrenamtlichen Begleitpersonen (z. B. für Betreuung, Organisation). Umfang und konkrete Beträge noch nicht bekannt — Pauschale.",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "d0b47a6e-a911-4a28-b5a9-f10eeb68c5db",
+            "id": "a0230de7-7800-4c8d-a782-dec96982ca1e",
             "kategorie": "overhead",
-            "bezeichnung": "Verwaltungspauschale (7%)",
-            "betragEur": 500,
-            "begruendung": "Festgelegte Verwaltungspauschale (7% der anerkannten Ausgaben, mindestens 500 EUR).",
+            "bezeichnung": "Verwaltungspauschale (7 % der anerkannten Ausgaben)",
+            "betragEur": 1540,
+            "begruendung": "7 % der anerkannten Ausgaben (22.040 EUR) als Verwaltungspauschale gemäß Förderrichtlinie. Mindestbetrag von 500 EUR wird überschritten.",
             "eigenanteil": false,
             "istVorschlag": true
           }
         ],
-        "generiertAm": "2026-07-22T12:40:28.349Z",
+        "generiertAm": "2026-07-23T10:18:22.156Z",
         "hinweise": [
           "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
-          "Alle Beträge sind grobe Schaetzungen ohne konkrete Angebote oder Mengenangaben der Schule — vor Einreichung durch Angebote belegen.",
-          "Projektinhalte (Tanz/HipHop), Zielgruppe, Bündnispartner und genaue Dauer noch unklar. Finanzplan basiert auf Annahmen zu Aktivitäten und Umfang.",
-          "Honorar für externe Fachkraft und Aufwandsentschädigungen für Ehrenamtliche müssen mit Anbietern/Bündnispartnern noch konkretisiert werden.",
-          "Raum- und Materialkosten hängen von lokalen Gegebenheiten und Anbietern ab.",
-          "Eigenanteil ist nicht verpflichtend, kann aber als Sachleistung (z. B. Räume, ehrenamtliche Betreuung) eingebracht werden.",
-          "Der Betrag für „Externe Tanzpädagogin/HipHop-Trainerin\" (4.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Verbrauchsmaterial für Tanzprojekt\" (800 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Raummiete für Proben\" (500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Verpflegung während Projekttage\" (600 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Aufwandsentschädigung für ehrenamtliche Betreuer\" (300 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
+          "Alle Beträge sind grobe Schaetzungen ohne konkrete Angebote oder Mengenangaben des Users — vor Einreichung durch Angebote belegen.",
+          "Projektinhalte (Tanzrichtung, Zielgruppe, Umfang) und Bündnispartner müssen vor Antragstellung konkretisiert werden, um die Förderfähigkeit sicherzustellen.",
+          "Honorarsätze für externe Fachkräfte und Mietpreise für Räumlichkeiten müssen vor Antragstellung eingeholt werden, um die Pauschalen zu ersetzen.",
+          "Die Summe von 22.040 EUR liegt deutlich über der Mindestförderung von 2.000 EUR und ist als Vollfinanzierung beantragbar (100 % Förderung).",
+          "Eigenmittel sind nicht verpflichtend, können aber als Sachleistungen (z. B. Räume, ehrenamtliche Arbeit) eingebracht werden.",
+          "Die Moscheegemeinde und der Sportverein wurden als mögliche Bündnispartner genannt — eine verbindliche Zusage steht noch aus und muss vor Antragstellung erfolgen.",
+          "Der Betrag für „Externe Tanzpädagog:innen für HipHop- und interkulturelles Tanzprojekt\" (15.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Verbrauchsmaterial für Tanzprojekte (Kleidung, Musik, Raumdekoration)\" (2.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Raummiete für Proben und Auftrittsvorbereitung\" (1.200 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Verpflegung für Teilnehmende während Projekt-Tagen\" (800 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Aufwandsentschädigung für ehrenamtliche Betreuer:innen\" (1.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
         ]
       }
     },
@@ -896,127 +933,141 @@
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5979,
-          "candidatesTokens": 574
+          "candidatesTokens": 513
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5971,
-          "candidatesTokens": 556
+          "candidatesTokens": 388
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5932,
-          "candidatesTokens": 475
+          "promptTokens": 6302,
+          "candidatesTokens": 719
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5919,
-          "candidatesTokens": 368
+          "candidatesTokens": 287
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5853,
-          "candidatesTokens": 397
+          "promptTokens": 6197,
+          "candidatesTokens": 940
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5849,
-          "candidatesTokens": 439
+          "candidatesTokens": 404
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5918,
-          "candidatesTokens": 432
+          "promptTokens": 5967,
+          "candidatesTokens": 478
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 9292,
-          "candidatesTokens": 1921
+          "promptTokens": 10341,
+          "candidatesTokens": 2342
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 11463,
-          "candidatesTokens": 2813
+          "promptTokens": 12456,
+          "candidatesTokens": 3643
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 7645,
-          "candidatesTokens": 791
+          "promptTokens": 1681,
+          "candidatesTokens": 1164
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4184,
-          "candidatesTokens": 3316
+          "promptTokens": 8276,
+          "candidatesTokens": 785
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4776,
-          "candidatesTokens": 2492
+          "promptTokens": 4092,
+          "candidatesTokens": 3321
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 4695,
+          "candidatesTokens": 2475
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 4485,
+          "candidatesTokens": 3192
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 3491,
-          "candidatesTokens": 762
+          "candidatesTokens": 862
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3680,
-          "candidatesTokens": 618
+          "promptTokens": 4494,
+          "candidatesTokens": 408
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4172,
-          "candidatesTokens": 2492
+          "promptTokens": 4798,
+          "candidatesTokens": 3081
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3680,
-          "candidatesTokens": 403
+          "promptTokens": 4383,
+          "candidatesTokens": 524
         }
       }
     ]
   },
   "meta": {
-    "iso": "2026-07-22T12-40-47",
+    "iso": "2026-07-23T10-18-41",
     "runIndex": 2,
-    "pipelineCommitSha": "1f0d8782",
+    "pipelineCommitSha": "99a74cd7",
     "featureFlags": {
       "useVorbildFormulierungen": "true",
       "complianceStageEnabled": "false",
       "sharpPrompts": "true",
       "geberRoutingV2": "true"
     },
-    "latencyMs": 135439,
+    "latencyMs": 147710,
     "schemaVersion": 1
   }
 }

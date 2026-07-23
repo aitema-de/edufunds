@@ -40,8 +40,12 @@
       "verifiziertVon": "Web-Recherche Aktion Mensch",
       "bemerkung": "Laufzeit bis zu 5 Jahre. Beispiele: Theaterprojekte (248.000€), Schulstart-Hilfen (125.760€). Antragstellung über aktion-mensch.de/förderung/antrag",
       "fristZustand": {
-        "art": "unbekannt",
-        "quelle": "Primaerquelle aktion-mensch.de/inklusion/bildung/foerderung/schul-kooperationen, geprueft 22.07.2026: Nennt Zuschusshoehe (max. 350.000 EUR) und Laufzeit (bis 5 Jahre), aber keine Frist und keinen Hinweis, ob die Foerderung offen ist."
+        "art": "stichtag",
+        "stichtage": [
+          "2026-10-15"
+        ],
+        "jaehrlichWiederkehrend": true,
+        "quelle": "Primaerquelle aktion-mensch.de/foerderung/foerderangebote/junge-menschen, geprueft 22.07.2026, woertlich: 'Eine Antragstellung ist nur innerhalb unserer Antragszyklen moeglich.' Drei feste Antragszyklen pro Jahr (wiederkehrend), naechstes Fenster 01.09.-15.10.2026. Korrigiert das alte 'laufend'."
       },
       "umfangZustand": {
         "art": "unbekannt",
@@ -84,7 +88,7 @@
       }
     },
     "richtlinie": {
-      "version": "2026-05-19",
+      "version": "2026-07-22",
       "quellen": [
         "https://www.aktion-mensch.de/inklusion/bildung/förderung/schul-kooperationen"
       ],
@@ -333,12 +337,16 @@
         "typ": "rolling"
       },
       "fristZustand": {
-        "art": "unbekannt",
-        "quelle": "Primaerquelle aktion-mensch.de/inklusion/bildung/foerderung/schul-kooperationen, geprueft 22.07.2026: Nennt Zuschusshoehe (max. 350.000 EUR) und Laufzeit (bis 5 Jahre), aber keine Frist und keinen Hinweis, ob die Foerderung offen ist."
+        "art": "stichtag",
+        "stichtage": [
+          "2026-10-15"
+        ],
+        "jaehrlichWiederkehrend": true,
+        "quelle": "Primaerquelle aktion-mensch.de/foerderung/foerderangebote/junge-menschen, geprueft 22.07.2026, woertlich: 'Eine Antragstellung ist nur innerhalb unserer Antragszyklen moeglich.' Drei feste Antragszyklen pro Jahr (wiederkehrend), naechstes Fenster 01.09.-15.10.2026. Korrigiert das alte 'laufend'."
       },
       "umfangZustand": {
         "art": "unbekannt",
-        "quelle": "Geprueft 22.07.2026: Die oeffentliche Seite nennt keine Feld-/Zeichenlimits; der Antrag laeuft ueber das Login-Portal antrag.aktion-mensch.de. Limits sind dort zu erheben (Portal-Zugang noetig)."
+        "quelle": "Portal antrag.aktion-mensch.de am 22.07.2026 betreten: Laeuft nachweislich auf DERSELBEN Antragssoftware wie die FoePro-Foerderprojektsoftware von Engagement Global — die Registrierungs-Formularfelder sind bit-identisch (u.a. dieselbe Feld-UUID 'kommdaten_255ee9e6-e26a-7544-e053-0fd5a8c09460', identische IDs n_loginname/n_vorname/n_nachname/datenschutzfrage1-1). Daraus folgt strukturell dasselbe Gating: die inhaltlichen Antragsfelder sind erst nach Konto-Anlage, Zwei-Faktor-Auth und Antragsteller-/Traegeranlage zugaenglich, nicht per blosser Selbstregistrierung. Feld-Limits daher nur mit vollem Antragszugang messbar; Vorgehen und Referenzwerte siehe umfangZustand im FoePro-Dossier feb-foerderprogramm-entwicklungspolitische-bildung. Voller Registrier-/Traeger-Marathon hier bewusst nicht wiederholt (identische Software, vorhersehbares Ergebnis)."
       }
     },
     "messages": [
@@ -347,98 +355,98 @@
         "role": "ai",
         "kind": "question",
         "content": "Wie viele Schuelerinnen und Schueler hat Ihre Schule?",
-        "at": "2026-07-22T12:18:01.590Z"
+        "at": "2026-07-23T09:54:17.060Z"
       },
       {
         "id": "1",
         "role": "user",
         "kind": "answer",
         "content": "Wir haben ungefaehr 200 Schueler, so um die 200.",
-        "at": "2026-07-22T12:18:01.590Z"
+        "at": "2026-07-23T09:54:17.060Z"
       },
       {
         "id": "2",
         "role": "ai",
         "kind": "question",
         "content": "Welche Schule soll Kooperationspartner sein?",
-        "at": "2026-07-22T12:18:01.590Z"
+        "at": "2026-07-23T09:54:17.060Z"
       },
       {
         "id": "3",
         "role": "user",
         "kind": "answer",
         "content": "Die Grundschule Huckarder Strasse, die ist gleich nebenan.",
-        "at": "2026-07-22T12:18:01.590Z"
+        "at": "2026-07-23T09:54:17.060Z"
       },
       {
         "id": "4",
         "role": "ai",
         "kind": "question",
         "content": "Wie lange besteht der Kontakt mit der Kooperationsschule bereits?",
-        "at": "2026-07-22T12:18:01.590Z"
+        "at": "2026-07-23T09:54:17.060Z"
       },
       {
         "id": "5",
         "role": "user",
         "kind": "answer",
         "content": "Mit der Realschule? Die kennen wir seit 3 Jahren.",
-        "at": "2026-07-22T12:18:01.590Z"
+        "at": "2026-07-23T09:54:17.060Z"
       },
       {
         "id": "6",
         "role": "ai",
         "kind": "question",
         "content": "Sie nannten vorhin die Grundschule Huckarder Strasse als Partner, jetzt sprechen Sie von einer Realschule. Welche Schule ist der Kooperationspartner?",
-        "at": "2026-07-22T12:18:01.590Z"
+        "at": "2026-07-23T09:54:17.060Z"
       },
       {
         "id": "7",
         "role": "user",
         "kind": "answer",
         "content": "Oh sorry. Die Grundschule. Nein warte, eigentlich arbeiten wir mit beiden zusammen. Und wir sind nicht 200 Schueler, ich glaube eher 150.",
-        "at": "2026-07-22T12:18:01.590Z"
+        "at": "2026-07-23T09:54:17.060Z"
       },
       {
         "id": "8",
         "role": "ai",
         "kind": "question",
         "content": "Mit welcher Schule genau soll die Kooperation laufen?",
-        "at": "2026-07-22T12:18:01.590Z"
+        "at": "2026-07-23T09:54:17.060Z"
       },
       {
         "id": "9",
         "role": "user",
         "kind": "answer",
         "content": "Mit der Grundschule am Park. Also eigentlich sind es zwei Schulen, die Realschule auch noch. Hauptsaechlich aber die Grundschule, denke ich.",
-        "at": "2026-07-22T12:18:01.590Z"
+        "at": "2026-07-23T09:54:17.060Z"
       },
       {
         "id": "10",
         "role": "ai",
         "kind": "question",
         "content": "Wie viele Schuelerinnen und Schueler sollen insgesamt teilnehmen?",
-        "at": "2026-07-22T12:18:01.590Z"
+        "at": "2026-07-23T09:54:17.060Z"
       },
       {
         "id": "11",
         "role": "user",
         "kind": "answer",
         "content": "So 40 von uns. Also von beiden Schulen zusammen 40. Oder von jeder 40? Ich muesste nochmal nachsehen, was wir da aufgeschrieben haben.",
-        "at": "2026-07-22T12:18:01.590Z"
+        "at": "2026-07-23T09:54:17.060Z"
       },
       {
         "id": "12",
         "role": "ai",
         "kind": "question",
         "content": "Was ist das gemeinsame Thema der Kooperation?",
-        "at": "2026-07-22T12:18:01.590Z"
+        "at": "2026-07-23T09:54:17.060Z"
       },
       {
         "id": "13",
         "role": "user",
         "kind": "answer",
         "content": "Sport und Bewegung. Beziehungsweise eigentlich Musik, das war der neue Stand nach der letzten Sitzung. Wir sind da flexibel.",
-        "at": "2026-07-22T12:18:01.590Z"
+        "at": "2026-07-23T09:54:17.060Z"
       }
     ]
   },
@@ -480,125 +488,125 @@
       "sections": [
         {
           "name": "Träger- und Kooperationsstruktur",
-          "text": "Als Antragstellerin beantragt der gemeinnützige *Förderkreis Inklusion Dortmund-Huckarde e.V.* die Förderung des Projekts „Gemeinsam mehr erleben – Musik und Bewegung als Brückenbauer“ bei der Aktion Mensch im Programm *Junge Menschen stärken*. Der Verein ist seit 2020 als gemeinnützig anerkannt und führt regelmäßig inklusive Projekte mit Schulen in Dortmund-Huckarde durch. Die formale Kooperation besteht mit der *Grundschule am Park* und der *Realschule Huckarde*, wie durch eine gemeinsame Absichtserklärung vom [TODO: Datum der letzten Abstimmung ergänzen] dokumentiert. Der Förderkreis übernimmt die Projektleitung, Mittelverwaltung und Öffentlichkeitsarbeit, während die Schulen die Räumlichkeiten, Lehrkräfte und Schüler:innen einbringen. Die Grundschule am Park ist mit etwa 120 Schüler:innen die größere Partnerschule, die Realschule Huckarde mit rund 80 Schüler:innen. Gemeinsam nehmen voraussichtlich ca. 40 Kinder und Jugendliche aus beiden Schulen teil, wobei die genaue Zusammensetzung der Gruppe noch finalisiert wird.\n\nDie Rollenverteilung ist klar geregelt: Der Förderkreis verantwortet die Konzeption, Finanzplanung und Evaluation, während die Schulen die pädagogische Umsetzung in den Bereichen Musik und Bewegung sicherstellen. Die Lehrkräfte der Schulen wirken als Multiplikator:innen, indem sie die Inhalte in den Schulalltag übertragen und nach Projektende eigenständig weiterführen. Der Förderkreis bringt seine Expertise in der inklusiven Projektarbeit ein und stellt die Vernetzung mit weiteren Akteur:innen im Stadtteil her. Diese Struktur ermöglicht es, dass die Schulen ihre Ressourcen gezielt für die direkte Arbeit mit den Kindern einsetzen können, während der Verein die übergreifende Koordination und Qualitätssicherung übernimmt."
+          "text": "Als gemeinnütziger Antragsteller fungiert der Förderverein der Förderschule Dortmund-Huckarde e.V., der seit 2018 als eingetragener Verein mit Sitz in Dortmund-Huckarde geführt wird. Der Verein ist berechtigt, Mittel der Aktion Mensch entgegenzunehmen und für gemeinnützige Zwecke einzusetzen, wobei die formale Anerkennung als gemeinnützig vorliegt. Die Kooperation besteht mit der Grundschule am Park Dortmund-Huckarde und der Realschule Dortmund-Huckarde, wobei die Zusammenarbeit mit beiden Schulen durch informelle Absprachen und gemeinsame Planungsgespräche dokumentiert ist. Die Grundschule am Park ist dabei der primäre Partner, während die Realschule Dortmund-Huckarde als sekundärer Kooperationspartner eingebunden wird.\n\nDie Rollenverteilung sieht vor, dass der Förderverein die finanzielle und organisatorische Verantwortung für das Projekt trägt, während die beiden Schulen die inhaltliche Umsetzung und pädagogische Begleitung übernehmen. Konkrete Aufgaben der Schulen umfassen die Bereitstellung von Räumlichkeiten, die Einbindung des Projekts in den Schulalltag sowie die direkte Arbeit mit den Schüler:innen. Der Förderverein stellt sicher, dass die Mittel der Aktion Mensch zielgerichtet eingesetzt werden und die administrativen Anforderungen des Förderprogramms erfüllt sind. Die Zusammenarbeit basiert auf einer vertrauensvollen Partnerschaft, die durch regelmäßige Abstimmungen zwischen den Beteiligten gestärkt wird.\n\n[TODO: Formale Kooperationsvereinbarung zwischen Förderverein und beiden Schulen vor Einreichung des Antrags schriftlich festhalten und als Anlage beifügen]"
         },
         {
           "name": "Bedarf und Zielgruppe",
-          "text": "An unserer Schule lernen rund 150 Kinder und Jugendliche mit sehr unterschiedlichen Lernvoraussetzungen. Viele von ihnen kommen aus Familien, in denen Deutsch nicht die erste Sprache ist, oder deren Eltern selbst nur geringe Bildungsabschlüsse haben. Im Schulalltag zeigt sich das etwa, wenn Kinder aus der benachbarten Grundschule Huckarder Straße oder der Realschule am Park zu uns wechseln und plötzlich mit Förderschwerpunkten wie Sprache oder emotionaler Entwicklung konfrontiert sind, für die wir hier zwar Expertise haben, die aber im Regelunterricht oft nicht aufgefangen werden. Eine konkrete Szene: Ein Mädchen aus der Grundschule, das bisher problemlos mitkam, wirkt plötzlich überfordert, als es in unserer Klasse mit Kindern mit Förderbedarf im Bereich geistige Entwicklung sitzt. Sie sagt: „Ich verstehe nicht, warum die so langsam sind.“ Hier wird greifbar, wie wenig die Kinder auf die Unterschiedlichkeit in einer inklusiven Umgebung vorbereitet sind – und wie sehr sie eine Begleitung brauchen, die nicht nur fachlich, sondern auch emotional trägt.\n\nDas Projekt richtet sich an diese Kinder und Jugendlichen, die zwischen den Schulformen wechseln oder in gemischten Gruppen lernen. Geplant ist, dass etwa 40 von ihnen direkt teilnehmen – die genaue Aufteilung zwischen den Schulen wird noch geklärt `[TODO: Teilnehmerzahl und -verteilung vor Einreichung konkretisieren]`. Entscheidend ist, dass wir nicht nur diejenigen im Blick haben, die bereits eine Behinderung haben, sondern alle, die in der neuen Umgebung an Grenzen stoßen. Denn Inklusion gelingt nur, wenn wir die Hürden benennen, die für benachteiligte Gruppen unsichtbar bleiben – sei es durch Sprache, Herkunft oder einfach durch das Gefühl, nicht dazuzugehören."
+          "text": "An unserer Schule besteht ein konkreter Bedarf an inklusiven Begegnungsformaten zwischen den Schüler:innen unserer Förderschule und denen der benachbarten Grundschule am Park sowie der Realschule. Die Zusammenarbeit mit beiden Schulen ist seit drei Jahren etabliert, wobei der Schwerpunkt auf der Grundschule liegt. Aktuell nehmen etwa 40 Schüler:innen aus beiden Schulen gemeinsam an den Angeboten teil – die genaue Aufteilung (ob 40 von jeder Schule oder insgesamt 40) wird vor Projektstart noch geklärt. [TODO: Teilnehmerzahl pro Schule vor Einreichung präzisieren]\n\nDie soziale Herausforderung zeigt sich im Schulalltag, wenn Schüler:innen mit und ohne Förderbedarf im Unterricht oder in den Pausen aufeinandertreffen, ohne dass gemeinsame Aktivitäten oder ein verbindlicher Rahmen für den Austausch bestehen. Ein Beispiel aus dem letzten Schuljahr: Zwei Mädchen aus der Grundschule und ein Junge aus unserer Förderschule wollten gemeinsam Musik machen, fanden aber keinen Raum, in dem sie ohne Barrieren üben konnten. Die Musiklehrerin musste improvisieren – ein Zeichen dafür, dass solche spontanen Ideen zwar willkommen sind, aber strukturelle Hürden den Alltag prägen.\n\nUnser Projekt zielt darauf ab, genau diese Lücken zu schließen: durch regelmäßige, niedrigschwellige Begegnungen, die nicht nur Sport und Bewegung, sondern auch Musik und kreative Formate einbeziehen. So können Schüler:innen mit und ohne Behinderung im geschützten Rahmen voneinander lernen und gemeinsam wachsen – ganz praktisch und ohne großen Aufwand."
         },
         {
           "name": "Projektidee und Aktivitäten",
-          "text": "Im Zentrum des Vorhabens steht eine inklusive Kooperation zwischen der Förderschule Dortmund-Huckarde und den benachbarten Schulen – konkret der Grundschule Huckarder Straße und der Realschule am Park. Ziel ist es, durch regelmäßige gemeinsame Aktivitäten die Teilhabe aller Kinder zu stärken und Begegnungen jenseits des klassischen Unterrichts zu ermöglichen. Ein bewährter Ansatz hierfür ist die Einrichtung fester wöchentlicher Begegnungsstunden, in denen Schüler:innen beider Schulen in altersgemischten Gruppen musisch-sportliche Projekte umsetzen. Die Formate wechseln dabei zwischen rhythmischen Einheiten, einfachen Tanzchoreografien und kooperativen Bewegungsspielen, die auf Inklusion und gemeinsame Freude am Tun setzen. `[Annahme: Die Gruppengröße liegt bei etwa 20 Kindern pro Treffen, zusammengesetzt aus je 10 Kindern der Förderschule und der Partnerschulen.]` Diese Begegnungen finden im wöchentlichen Rhythmus statt und sind als feste Rituale im Schulalltag verankert – etwa immer dienstags in der 5. Stunde im Musikraum der Förderschule, der als neutraler Begegnungsort dient.\n\nParallel dazu planen wir zwei größere gemeinsame Events pro Schuljahr: ein inklusives Sportfest im Herbst und ein gemeinsames Musikprojekt im Frühjahr, das mit einer öffentlichen Präsentation endet. Diese Höhepunkte schaffen sichtbare Erfolge und stärken die Identifikation mit der Kooperation über die Schule hinaus. `[TODO: Exakte Termine und Verantwortlichkeiten für die Großveranstaltungen vor Einreichung mit den Partnerschulen abstimmen.]` Die Aktivitäten sind bewusst niedrigschwellig gestaltet, um allen Kindern – unabhängig von ihren Fähigkeiten – Zugang zu ermöglichen. So werden etwa bei den Musikprojekten Instrumente eingesetzt, die auch ohne Vorkenntnisse spielbar sind, während die Sportangebote auf inklusive Spielformen wie Parcours oder Teamwettbewerbe setzen. Die Auswahl der Formate orientiert sich dabei an den bereits bestehenden Schwerpunkten der Schulen: Während die Förderschule Bewegung und Musik als zentrale Elemente der Inklusion sieht, bringen die Partnerschulen ihre Expertise in altersgerechter Didaktik ein. Die Kooperation lebt von dieser Flexibilität – die Inhalte werden gemeinsam weiterentwickelt und an die Bedürfnisse der Gruppen angepasst."
+          "text": "An unserer Schule besteht seit drei Jahren eine Kooperation mit der Grundschule am Park und der Realschule in Dortmund-Huckarde, die wir im Rahmen dieses Antrags zu einer verbindlichen Inklusionskooperation ausbauen möchten. Im Zentrum stehen dabei gemeinsame Musik- und Bewegungsprojekte, die wir als wiederkehrende Rituale in den Schulalltag beider Schulen integrieren. Einmal wöchentlich finden an beiden Standorten klassenübergreifende Einheiten statt, an denen jeweils etwa 40 Schülerinnen und Schüler teilnehmen – die genaue Verteilung zwischen den Schulen wird im Rahmen der detaillierten Planung noch finalisiert. Diese Treffen wechseln zwischen den Standorten, sodass die Kinder und Jugendlichen beider Schulen regelmäßig in den Räumen der jeweils anderen lernen und arbeiten.\n\nDie Projekte folgen einem klaren Rhythmus: Nach einer gemeinsamen Auftaktphase von vier Wochen, in der die Gruppen sich kennenlernen und erste musikalische oder sportliche Grundlagen erarbeiten, wechseln sich Projektwochen mit Präsentationen und Reflexionsrunden ab. Ein Höhepunkt ist das jährliche Abschlusskonzert oder Sportfest, zu dem auch Eltern und Anwohnerinnen eingeladen werden. Die Formate sind bewusst niedrigschwellig gestaltet – etwa durch den Einsatz einfacher Instrumente oder Bewegungsparcours, die ohne aufwendige Technik auskommen. So wird sichergestellt, dass alle Kinder, unabhängig von ihren Fähigkeiten, aktiv teilnehmen können.\n\nEin bewährter Ansatz hierfür ist das Konzept des „inklusiven Klassenmusizierens“, bei dem Schülerinnen und Schüler mit und ohne Förderbedarf gemeinsam musizieren und dabei ihre Stärken einbringen. Die Musikprojekte werden durch Bewegungsangebote ergänzt, die auf den inklusiven Sportansatz „Bewegung verbindet“ zurückgreifen – ein Format, das bereits in anderen Kooperationen unserer Schule positive Resonanz erfahren hat. Die Aktivitäten sind so angelegt, dass sie nicht nur fachliche Ziele verfolgen, sondern auch soziale Kompetenzen wie Teamfähigkeit und Empathie stärken. Die regelmäßige Zusammenarbeit der Lehrkräfte beider Schulen in vorbereitenden Teamsitzungen stellt dabei sicher, dass die Inhalte auf die Bedürfnisse aller Kinder abgestimmt werden."
         },
         {
           "name": "Teilhabe und Partizipation",
-          "text": "An unserer Schule besteht bereits eine enge räumliche und inhaltliche Anbindung an die Grundschule Huckarder Straße und die Realschule in Dortmund-Huckarde. Diese Kooperationen nutzen wir als Ausgangspunkt für eine echte Teilhabe der jungen Menschen: Statt sie nur als Zielgruppe zu adressieren, werden sie von Anfang an in die Planung und Gestaltung der gemeinsamen Aktivitäten einbezogen. So haben die Schüler:innen der Förderschule etwa bei der Auswahl der Schwerpunkte mitgewirkt – zunächst stand Sport und Bewegung im Raum, nach einer Abstimmung wurde daraus ein Musikprojekt. Diese Flexibilität zeigt, dass ihre Stimmen gehört und ernst genommen werden.\n\nDie Mitbestimmung geht über die Themenwahl hinaus: In regelmäßigen Runden tauschen sich Vertreter:innen aller beteiligten Schulen aus, um Bedarfe zu besprechen und Ideen zu entwickeln. Hier übernehmen die Schüler:innen konkrete Rollen – etwa als Moderator:innen von Arbeitsgruppen oder als Ideengeber:innen für die Gestaltung von Projekttagen. [TODO: Konkrete Beteiligungsformate wie z. B. Schüler:innenräte oder Projektteams mit definierten Entscheidungsbefugnissen vor Einreichung ausarbeiten und benennen] Besonders wichtig ist uns, dass die Teilhabe nicht nur symbolisch ist, sondern echte Gestaltungsmacht bedeutet. So werden etwa die Themen der gemeinsamen Veranstaltungen nicht von den Lehrkräften vorgegeben, sondern gemeinsam mit den Kindern und Jugendlichen entwickelt.\n\nEin Beispiel für diese Praxis ist die Planung eines inklusiven Musikfestivals, bei dem die Schüler:innen nicht nur als Zuschauer:innen oder Mitwirkende, sondern als Mitgestalter:innen der Abläufe, der Programmfolge und der Öffentlichkeitsarbeit fungieren. [TODO: Anzahl der beteiligten Schüler:innen und konkrete Entscheidungsbefugnisse vor Einreichung präzisieren] Diese Form der Partizipation stärkt nicht nur das Selbstvertrauen der jungen Menschen, sondern fördert auch ihre Fähigkeit, Verantwortung zu übernehmen – ein zentrales Ziel unserer Inklusionskooperation."
+          "text": "An unserer Schule arbeiten wir seit drei Jahren mit der Realschule und der Grundschule am Park zusammen – zwei Schulen, die direkt in unserer Nachbarschaft liegen. Diese Kooperation ist für uns kein abstraktes Projekt, sondern gelebte Alltagspraxis: Gemeinsam nutzen wir Räume, organisieren Feste und führen Projekte durch, die ohne diese Partnerschaft nicht möglich wären. Besonders wichtig ist uns dabei, dass die jungen Menschen aus beiden Schulen nicht nur teilnehmen, sondern aktiv mitgestalten. So haben wir in den letzten Monaten erlebt, wie Schüler:innen aus den dritten und vierten Klassen unserer Schule und der Grundschule am Park gemeinsam ein Musikprojekt entwickelt haben – von der Themenfindung bis zur Aufführung. Sie entschieden selbst über die Lieder, die sie einstudieren wollten, und übernahmen Verantwortung für die Vorbereitung und Durchführung. Diese Erfahrung zeigt uns, dass echte Teilhabe entsteht, wenn junge Menschen nicht nur als Adressat:innen von Angeboten, sondern als Gestalter:innen ihrer eigenen Lernerfahrungen wahrgenommen werden.\n\nFür die Zukunft planen wir, diese Mitbestimmung systematisch auszubauen. Denkbar ist ein regelmäßiger „Ideen-Rat“, in dem Schüler:innen aus allen beteiligten Schulen Vorschläge für gemeinsame Projekte einbringen und über deren Umsetzung entscheiden. Ein erster Schritt könnte ein moderierter Workshop sein, in dem die Jugendlichen ihre Wünsche und Ideen sammeln – etwa zu Themen wie Sport, Musik oder sozialem Engagement. Die Ergebnisse würden dann in die Jahresplanung der Schulen einfließen. So wird Teilhabe nicht nur symbolisch, sondern konkret erlebbar: Die jungen Menschen erleben, dass ihre Stimme Gewicht hat und ihre Ideen die Gestaltung ihres schulischen Umfelds prägen. [TODO: Zusammensetzung und Entscheidungswege des Ideen-Rats vor Einreichung konkretisieren]"
         },
         {
           "name": "Barrierefreiheit",
-          "text": "Das Vorhaben zielt darauf ab, die kommunikativen und sozialen Barrieren zwischen den beiden benachbarten Schulen – der Förderschule Dortmund-Huckarde und der Grundschule am Park – nachhaltig abzubauen. Aktuell erschweren unterschiedliche pädagogische Konzepte und unklare Absprachen den Austausch zwischen den Lehrkräften sowie die gemeinsame Gestaltung von Lernsettings. Um dies zu ändern, werden regelmäßige Koordinationsrunden eingeführt, in denen Lehrkräfte beider Schulen konkrete Projekte wie Musik- oder Sporteinheiten gemeinsam planen. Diese Treffen finden zunächst monatlich statt und werden durch eine moderierte Gesprächsführung begleitet, um eine gleichberechtigte Teilhabe aller Beteiligten zu gewährleisten. [TODO: Häufigkeit und Dauer der Koordinationsrunden vor Einreichung präzisieren]\n\nFür die Durchführung der gemeinsamen Aktivitäten werden assistive Technologien wie digitale Whiteboards und Lautstärkeregler angeschafft, die sowohl den Schüler:innen mit Hörbeeinträchtigungen als auch jenen mit kognitiven Herausforderungen den Zugang zu den Inhalten erleichtern. Zudem ist die Finanzierung einer Begleitperson vorgesehen, die bei der Umsetzung der Projekte unterstützt und sicherstellt, dass alle Kinder – unabhängig von ihren individuellen Bedürfnissen – aktiv teilnehmen können. Die Auswahl der Technologien erfolgt in Abstimmung mit den Förderzentren vor Ort, um eine bedarfsgerechte Ausstattung zu gewährleisten. [TODO: Konkrete Geräte und Begleitpersonenbedarf vor Einreichung mit Kostenvoranschlag unterlegen]"
+          "text": "Unser Vorhaben setzt genau dort an, wo die täglichen Wege zwischen den beiden Schulen und die unterschiedlichen Bedarfe der Schüler*innen zu unsichtbaren Mauern werden. Die Grundschule am Park und die Realschule Huckarde liegen zwar nur wenige Gehminuten auseinander, doch die fehlende Abstimmung zwischen den Häusern und den Förderplänen der Kinder schafft Barrieren, die besonders diejenigen treffen, die ohnehin schon an den Rändern stehen. Kinder mit Förderbedarf – etwa diejenigen, die im Sport- oder Musikunterricht auf individuelle Unterstützung angewiesen sind – müssen sich jedes Mal neu erklären, wenn sie zwischen den Schulen wechseln. Hier fehlt es nicht nur an gemeinsamen Absprachen, sondern auch an einer Infrastruktur, die solche Übergänge reibungslos ermöglicht. Wir beobachten, dass Schüler*innen mit Unterstützungsbedarf oft zögern, an gemeinsamen Aktivitäten teilzunehmen, weil sie unsicher sind, ob ihre Bedürfnisse in der neuen Umgebung verstanden werden. Diese soziale Hürde verstärkt sich, wenn keine verlässlichen Begleitpersonen oder klare Ansprechpartner*innen vor Ort sind.\n\nUm diese Barrieren abzubauen, planen wir, eine feste Koordinationsstelle einzurichten, die als Brücke zwischen den Schulen fungiert. Diese Person wird nicht nur die Kommunikation zwischen den Lehrkräften und den Förderplänen der Kinder organisieren, sondern auch sicherstellen, dass assistive Technologien – etwa Hörgeräte mit Bluetooth-Übertragung für den Musikunterricht oder taktile Materialien für den Sportunterricht – dort eingesetzt werden, wo sie gebraucht werden. Zudem sollen zwei mobile Begleitpersonen finanziert werden, die Schüler*innen mit hohem Unterstützungsbedarf bei gemeinsamen Aktivitäten begleiten. Diese Begleitung ist keine punktuelle Lösung, sondern soll kontinuierlich angeboten werden, um den Kindern Sicherheit zu geben und ihre Teilhabe zu stärken. Die Technologien und die Begleitpersonen sind dabei keine einmalige Anschaffung, sondern werden so ausgewählt, dass sie langfristig in den Schulalltag integriert werden können – etwa durch Schulungen der Lehrkräfte im Umgang mit den Geräten oder durch feste Ansprechzeiten der Koordinationsstelle."
         },
         {
           "name": "Wirkung und Nachhaltigkeit",
-          "text": "Die angestrebte Wirkung dieses Vorhabens lässt sich an zwei Ebenen festmachen: der individuellen Teilhabe der Schüler:innen und der strukturellen Öffnung unserer Schule hin zu einer kooperativen Bildungslandschaft. Für die 40 Kinder und Jugendlichen, die an der geplanten Inklusionskooperation mit der Grundschule am Park und der Realschule teilnehmen, wird sich messbar zeigen, ob sie im gemeinsamen Sport- und Musikunterricht ihre Stärken einbringen können – etwa durch die Präsentation eines Abschlusskonzerts oder die Teilnahme an einem inklusiven Sportfest. Diese öffentlichen Momente der Anerkennung (z. B. durch Einladung von Eltern und lokalen Akteur:innen) sollen Selbstwirksamkeit stärken und Brücken zwischen den Schulformen bauen. Die Schule selbst wird nach Förderende über das Projekt hinaus eine verbindliche Kooperationsvereinbarung mit beiden Partnerschulen etablieren, die mindestens zwei weitere Schuljahre umfasst. Hierfür planen wir, die Erfahrungen in einem einfachen Handbuch festzuhalten – mit konkreten Ablaufplänen, Materiallisten und Reflexionsfragen für Lehrkräfte. `[TODO: Kooperationsvereinbarung vor Einreichung mit beiden Partnerschulen abstimmen]` Die Nachhaltigkeit sichern wir durch die Einbindung der Ergebnisse in die schulinterne Fortbildung, wo das Kollegium die Methoden erprobt und weiterentwickelt. So wird aus der befristeten Initiative eine dauerhafte Praxis, die den Gedanken der inklusiven Bildung im Schulprogramm verankert."
+          "text": "Die angestrebte Wirkung dieses Vorhabens zeigt sich auf zwei Ebenen: bei den teilnehmenden Kindern und in der institutionellen Zusammenarbeit. Für die Schülerinnen und Schüler erwarten wir eine messbare Stärkung ihrer sozialen Teilhabe und Selbstwirksamkeit im schulischen Alltag. Konkrete Ankerpunkte hierfür sind die gemeinsame Musik- und Sportpraxis mit den Partnerschulen, die den Kindern regelmäßige Gelegenheiten bietet, sich über Fächergrenzen hinweg als kompetent und eingebunden zu erleben. Die Zusammenarbeit mit der Grundschule am Park und der Realschule – mit der seit drei Jahren eine vertrauensvolle Kooperation besteht – wird dabei gezielt genutzt, um Brücken zwischen den Schulformen zu bauen. Als messbarer Indikator schlagen wir vor, die Anzahl der gemeinsamen Aktivitäten pro Schulhalbjahr zu dokumentieren und durch kurze Feedbackrunden mit den Kindern zu evaluieren. So lässt sich nachvollziehen, ob die Angebote tatsächlich als bereichernd wahrgenommen werden und ob sich die Kinder zunehmend trauen, sich aktiv einzubringen.\n\nFür die Institution Schule streben wir eine Verstetigung der Kooperation über das Projektende hinaus an. Derzeit besteht zwar eine lose Zusammenarbeit, doch fehlt es an verbindlichen Strukturen, die den Austausch und die gemeinsame Planung langfristig tragen. Hier setzen wir an: Durch regelmäßige Treffen der Lehrkräfte und die Einrichtung eines gemeinsamen Projektordners soll die Praxis der Zusammenarbeit dokumentiert und für neue Kolleg:innen zugänglich gemacht werden. Die Grundschule am Park und die Realschule haben bereits ihr Interesse an einer Fortführung signalisiert – eine schriftliche Absichtserklärung liegt jedoch noch nicht vor und wird vor Einreichung eingeholt. So entsteht eine tragfähige Basis, auf der die Kooperation auch nach Projektende weitergeführt werden kann. Die Nachhaltigkeit sichern wir zudem durch die Einbindung der Ergebnisse in die schulinternen Konzepte, etwa durch die Verankerung der gemeinsamen Aktivitäten in den Jahresplanungen beider Schulen."
         },
         {
           "name": "Finanzierungs- und Kostenplan",
-          "text": "Der Finanzierungs- und Kostenplan für das Vorhaben an der Förderschule Dortmund-Huckarde orientiert sich an den konkreten Kooperationspartnern und den geplanten Aktivitäten. Als Hauptposten beantragen wir Mittel für Honorarkräfte, die die inklusive Musik- und Sportkooperation mit der Grundschule am Park und der Realschule Huckarde durchführen. Hierfür kalkulieren wir Honorarkosten von rund 12.000 € ein (ca. 30 Termine à 400 €), wobei die genaue Anzahl der Teilnehmenden noch finalisiert wird. [TODO: Teilnehmerzahl und Honorarverträge vor Einreichung konkretisieren]\n\nFür die Anschaffung von Musikinstrumenten und Sportmaterialien beantragen wir 8.000 €, um den gemeinsamen Unterricht zu ermöglichen. Die Geräte werden nach Projektende in den Schulen verbleiben und so die Nachhaltigkeit sichern. [TODO: Instrumentenliste und Kostenvoranschlag einholen] Zusätzlich fallen Sachkosten für Materialien wie Notenblätter oder Bälle in Höhe von 2.000 € an.\n\nAls Eigenanteil bringen wir 10 % der Gesamtkosten ein, was einer Summe von rund 2.200 € entspricht. Dieser wird durch die Bereitstellung von Räumlichkeiten und Infrastruktur seitens der Förderschule sowie durch Eigenmittel des Fördervereins aufgebracht. [TODO: formale Zusage des Fördervereins einholen] Reisekosten entstehen nicht, da die Kooperation vor Ort stattfindet. Ein Overhead-Anteil von 5 % (ca. 1.100 €) deckt Verwaltungskosten wie Versicherungen und Projektkommunikation ab.\n\nDie Gesamtkosten belaufen sich damit auf voraussichtlich 22.000 €, wobei die finale Höhe von den eingereichten Angeboten abhängt. Die Mittelverwendung wird transparent über eine separate Abrechnung nachgewiesen."
+          "text": "Der Finanzierungs- und Kostenplan für das Vorhaben an der Förderschule Dortmund-Huckarde orientiert sich an den konkreten Kooperationspartnern und den geplanten Aktivitäten. Für die Inklusionskooperation mit der Grundschule am Park und der Realschule werden zunächst Honorarkräfte für die Durchführung von Musik- und Sportangeboten eingeplant. Hierfür beantragen wir Mittel in Höhe von rund 12.000 €, die sich auf zwei Honorarkräfte mit je 6.000 € aufteilen (jeweils 30 Termine à 90 Minuten, Honorarsatz 45 €/h). Die genaue Anzahl der teilnehmenden Schüler:innen wird aktuell noch geklärt; geplant sind etwa 40 Kinder aus beiden Schulen gemeinsam, wobei die finale Teilnehmerzahl mit den Kooperationspartnern abgestimmt wird.\n\nFür die Anschaffung von Materialien wie Instrumenten und Sportgeräten beantragen wir 8.500 €. Dazu gehören unter anderem Keyboards, Percussion-Instrumente und Bewegungsmaterialien, die sowohl im Unterricht als auch in den gemeinsamen Projekten eingesetzt werden. Die Geräte werden nach Projektende dauerhaft in den Schulen verbleiben, um die Nachhaltigkeit zu sichern.\n\nSachmittel für die Organisation und Durchführung der Termine – etwa Druckkosten für Einladungen, Versicherungen und Verbrauchsmaterialien – sind mit 1.500 € veranschlagt. Reisekosten für die Koordination zwischen den Schulen fallen voraussichtlich in Höhe von 500 € an, wobei hier noch zu klären ist, ob die Wege zwischen den Standorten mit öffentlichen Verkehrsmitteln oder eigenem Fahrzeug zurückgelegt werden.\n\nDer Eigenanteil von mindestens 10 % wird durch die Schule selbst aufgebracht. Hierfür werden Mittel aus dem Schulbudget in Höhe von 2.250 € eingesetzt, die für schulische Projekte zur Verfügung stehen. Die genaue Aufteilung der Eigenmittel auf die einzelnen Posten wird im Rahmen der finalen Budgetplanung vorgenommen.\n\n[TODO: Eigenanteil: konkrete Aufteilung der 2.250 € auf Personal-, Sach- und Reisekosten vor Einreichung finalisieren]\n[TODO: Honorarsätze und Terminzahlen mit den Kooperationspartnern verbindlich abstimmen]\n[TODO: Materialliste mit konkreten Geräten und Stückzahlen vorlegen]"
         }
       ],
-      "critique": "Zusammenfassung: Der Antragsentwurf enthält mehrere schwerwiegende Halluzinationen (fehlende Traegerstruktur, erfundene Partner, widerspruechliche Zahlen) und verstößt gegen zentrale Fördervoraussetzungen der Aktion Mensch (Antragsberechtigung, Eigenanteil, Kooperationsstruktur). Zudem starke Redundanzen und generische Formulierungen.\n\n1. [HOCH · belegluecke · global] \"Als Antragstellerin beantragt der gemeinnützige *Förderkreis Inklusion Dortmund-Huckarde e.V.*\"\n   → Der Antragsteller muss ein gemeinnütziger Träger sein, der vom User explizit genannt wurde. Prüfe, ob der 'Förderkreis Inklusion Dortmund-Huckarde e.V.' tatsächlich existiert und gemeinnützig anerkannt ist. Falls nicht: [TODO: Passenden Trägerpartner suchen und Kooperationsvereinbarung vorlegen].\n2. [HOCH · belegluecke · global] \"Die formale Kooperation besteht mit der *Grundschule am Park* und der *Realschule Huckarde*\"\n   → Die User-Antworten nennen nur 'Grundschule Huckarder Strasse' und 'Realschule Huckarde' als mögliche Partner. 'Grundschule am Park' und 'Realschule am Park' sind erfunden. Prüfe die korrekten Schulnamen und passe die Kooperationsstruktur an. [TODO: Korrekte Partnerschulen bestätigen].\n3. [HOCH · belegluecke · global] \"Die Grundschule am Park ist mit etwa 120 Schüler:innen die größere Partnerschule, die Realschule Huckarde mit rund 80 Schüler:innen\"\n   → Die User-Antworten enthalten keine konkreten Schülerzahlen für die Partnerschulen. Die Zahlen 120 und 80 sind erfunden. Streiche die Zahlen oder ersetze sie durch [TODO: Schülerzahlen der Partnerschulen einholen].\n4. [HOCH · belegluecke · global] \"Gemeinsam nehmen voraussichtlich ca. 40 Kinder und Jugendliche aus beiden Schulen teil\"\n   → Die User-Antworten nennen widersprüchliche Angaben zur Teilnehmerzahl ('40 von uns', 'von jeder 40'). Die Zahl 40 ist nicht belastbar. Formuliere stattdessen: [TODO: Teilnehmerzahl und -verteilung mit Partnerschulen abstimmen].\n5. [HOCH · belegluecke · Bedarf und Zielgruppe] \"An unserer Schule lernen rund 150 Kinder und Jugendliche\"\n   → Die User-Antworten enthalten widersprüchliche Angaben zur Schülerzahl (200 vs. 150). Die Zahl 150 ist nicht belastbar. Streiche die Zahl oder formuliere: [TODO: Exakte Schülerzahl der Förderschule Dortmund-Huckarde einholen].\n6. [HOCH · belegluecke · Teilhabe und Partizipation] \"die Schüler:innen der Förderschule etwa bei der Auswahl der Schwerpunkte mitgewirkt – zunächst stand Sport und Bewegung im Raum, nach einer Abstimmung wurde daraus ein Musikprojekt\"\n   → Die User-Antworten nennen nur 'Sport und Bewegung' bzw. 'Musik' als flexible Schwerpunkte, aber keine konkrete Abstimmung. Streiche die Szene oder formuliere: [TODO: Dokumentation der Schüler:innen-Mitwirkung einholen].\n7. [HOCH · belegluecke · Barrierefreiheit] \"Für die Durchführung der gemeinsamen Aktivitäten werden assistive Technologien wie digitale Whiteboards und Lautstärkeregler angeschafft\"\n   → Die User-Antworten enthalten keine konkreten Angaben zu assistiven Technologien. Die Geräte sind erfunden. Streiche die Aufzählung oder formuliere: [TODO: Bedarf an assistiven Technologien mit Förderzentren und Partnerschulen klären].\n8. [HOCH · belegluecke · Finanzierungs- und Kostenplan] \"Für die Anschaffung von Musikinstrumenten und Sportmaterialien beantragen wir 8.000 €\"\n   → Die User-Antworten enthalten keine konkreten Angaben zu Kosten für Instrumente oder Materialien. Die 8.000 € sind erfunden. Streiche die Summe oder formuliere: [TODO: Kostenvoranschlag für Instrumente und Materialien einholen].\n9. [HOCH · belegluecke · Finanzierungs- und Kostenplan] \"Als Eigenanteil bringen wir 10 % der Gesamtkosten ein, was einer Summe von rund 2.200 € entspricht\"\n   → Die User-Antworten enthalten keine Bestätigung für den Eigenanteil. Die 2.200 € sind erfunden. Formuliere: [TODO: Nachweis über Eigenanteil (z. B. Zusage Förderverein) vor Einreichung einholen].\n10. [MITTEL · belegluecke · Träger- und Kooperationsstruktur] \"wie durch eine gemeinsame Absichtserklärung vom [TODO: Datum der letzten Abstimmung ergänzen] dokumentiert\"\n   → Eine Absichtserklärung ohne konkretes Datum ist wertlos. Füge ein konkretes Datum hinzu oder formuliere: [TODO: Kooperationsvereinbarung mit Partnerschulen vor Einreichung formalisieren und als Anlage beifügen].\n11. [MITTEL · floskel · Projektidee und Aktivitäten] \"Ein bewährter Ansatz hierfür ist die Einrichtung fester wöchentlicher Begegnungsstunden\"\n   → Der Begriff 'bewährter Ansatz' ist ohne Beleg eine Floskel. Formuliere stattdessen: [TODO: Konkrete Beschreibung der wöchentlichen Begegnungsstunden mit Partnerschulen abstimmen].\n12. [MITTEL · floskel · Wirkung und Nachhaltigkeit] \"Die angestrebte Wirkung dieses Vorhabens lässt sich an zwei Ebenen festmachen: der individuellen Teilhabe der Schüler:innen und der strukturellen Öffnung unserer Schule\"\n   → Die Formulierung ist generisch und wirkt wie Marketing-Sprache. Formuliere konkrete, messbare Wirkungsziele, z. B.: 'Nach 12 Monaten können 80 % der teilnehmenden Schüler:innen mindestens eine Stärke in Musik oder Bewegung benennen'.\n13. [MITTEL · substanz · Träger- und Kooperationsstruktur] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [MITTEL · substanz · Bedarf und Zielgruppe] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [MITTEL · substanz · Projektidee und Aktivitäten] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n16. [MITTEL · substanz · Teilhabe und Partizipation] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n17. [MITTEL · substanz · Barrierefreiheit] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n18. [MITTEL · substanz · Wirkung und Nachhaltigkeit] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.",
+      "critique": "Zusammenfassung: Der Antragsentwurf enthält mehrere Halluzinationen (u.a. erfundene Kooperationspartner, unklare Zahlenangaben) und verstößt gegen zentrale Förderrichtlinien der Aktion Mensch (kein gemeinnütziger Träger als Antragsteller, fehlende formale Kooperationsvereinbarung, pauschale Zielgruppenbeschreibung). Zudem fehlen konkrete Nachweise zur Barrierefreiheit und echte Partizipationsbeispiele.\n\n1. [HOCH · belegluecke · global] \"FEHLT\"\n   → Antragsteller muss ein gemeinnütziger Träger sein (Aktion Mensch fordert dies explizit). Der Förderverein der Förderschule Dortmund-Huckarde e.V. ist kein ausreichender Träger, da er keine formale Kooperationsstruktur mit einem sozialen Träger nachweist. Klären: Gibt es einen Wohlfahrtsverband oder Verein als Antragsteller? Falls nein, ist das Programm nicht zugänglich.\n2. [HOCH · belegluecke · Träger- und Kooperationsstruktur] \"Die Kooperation besteht mit der Grundschule am Park Dortmund-Huckarde und der Realschule Dortmund-Huckarde\"\n   → Die Realschule wurde von den Usern nicht als Kooperationspartner genannt. Streichen oder durch formale Bestätigung der Realschule belegen. Die Grundschule am Park wurde nur als 'Grundschule Huckarder Strasse' oder 'Grundschule' erwähnt – 'Grundschule am Park' ist eine Halluzination. Korrigieren oder durch Nutzer bestätigen lassen.\n3. [HOCH · belegluecke · Bedarf und Zielgruppe] \"Aktuell nehmen etwa 40 Schüler:innen aus beiden Schulen gemeinsam an den Angeboten teil\"\n   → Die User-Antworten nennen widersprüchliche Angaben zur Teilnehmerzahl (40 insgesamt vs. 40 pro Schule). Klären: Wie viele Schüler:innen nehmen tatsächlich teil? Die Angabe muss präzise und konsistent sein. Zudem fehlt eine klare Zielgruppe (Alter, Förderbedarf, soziale Herausforderung).\n4. [HOCH · belegluecke · Projektidee und Aktivitäten] \"Einmal wöchentlich finden an beiden Standorten klassenübergreifende Einheiten statt, an denen jeweils etwa 40 Schülerinnen und Schüler teilnehmen\"\n   → Die Teilnehmerzahl von 40 pro Schule ist nicht durch User-Antworten gedeckt. Die User nannten '40 von beiden Schulen zusammen' oder 'von jeder 40?'. Klären: Wie viele Schüler:innen nehmen tatsächlich teil? Die Angabe muss konsistent und belegt sein.\n5. [HOCH · belegluecke · Teilhabe und Partizipation] \"So haben wir in den letzten Monaten erlebt, wie Schüler:innen aus den dritten und vierten Klassen unserer Schule und der Grundschule am Park gemeinsam ein Musikprojekt entwickelt haben\"\n   → Die 'Grundschule am Park' wurde von den Usern nicht genannt. Korrigieren oder durch Nutzer bestätigen lassen. Zudem fehlt ein konkretes Beispiel für echte Partizipation (z.B. 'Schüler:innen entschieden über Liedauswahl und präsentierten das Ergebnis vor Eltern').\n6. [HOCH · belegluecke · Wirkung und Nachhaltigkeit] \"Die Grundschule am Park und die Realschule haben bereits ihr Interesse an einer Fortführung signalisiert – eine schriftliche Absichtserklärung liegt jedoch noch nicht vor\"\n   → Die 'Grundschule am Park' und die 'Realschule' wurden von den Usern nicht als Partner bestätigt. Zudem fehlt eine schriftliche Absichtserklärung der Schulen für die Nachhaltigkeit. Einholen und als Anlage beifügen. Ohne diese ist die Nachhaltigkeit nicht glaubhaft.\n7. [HOCH · belegluecke · Finanzierungs- und Kostenplan] \"Für die Inklusionskooperation mit der Grundschule am Park und der Realschule werden zunächst Honorarkräfte für die Durchführung von Musik- und Sportangeboten eingeplant\"\n   → Die 'Realschule' wurde von den Usern nicht als Kooperationspartner genannt. Streichen oder durch formale Bestätigung belegen. Zudem fehlt die Angabe, ob die Honorarkräfte von einem sozialen Träger oder der Schule gestellt werden – Aktion Mensch erwartet eine Kooperation mit einem sozialen Träger.\n8. [HOCH · richtlinie · global] \"FEHLT\"\n   → Der Antrag muss eine formale Kooperationsvereinbarung zwischen dem Antragsteller (gemeinnütziger Träger) und den Schulen als Anlage enthalten. Ohne diese ist der Antrag nicht vollständig. Zudem muss der Antragsteller nachweisen, dass er gemeinnützig und förderfähig ist (z.B. durch Satzung oder Bescheid).\n9. [MITTEL · belegluecke · Bedarf und Zielgruppe] \"Ein Beispiel aus dem letzten Schuljahr: Zwei Mädchen aus der Grundschule und ein Junge aus unserer Förderschule wollten gemeinsam Musik machen\"\n   → Das Beispiel ist plausibel, aber die 'Grundschule' wurde von den Usern nicht konkret benannt. Präzisieren: Welche Schule? Zudem fehlt eine klare Zielgruppenbeschreibung (z.B. 'Schüler:innen mit und ohne Förderbedarf im Alter von 8–12 Jahren').\n10. [MITTEL · floskel · Projektidee und Aktivitäten] \"Die Formate sind bewusst niedrigschwellig gestaltet – etwa durch den Einsatz einfacher Instrumente oder Bewegungsparcours, die ohne aufwendige Technik auskommen\"\n   → Die Aussage ist zu generisch. Konkreter beschreiben: Welche Instrumente/Parcours? Wie wird Barrierefreiheit technisch umgesetzt? Beispiel: 'Einsatz von taktilen Instrumenten (z.B. Rasseln mit Griffen) und einfachen Bewegungsparcours (z.B. Parcours mit taktilen Markierungen).'\n11. [MITTEL · belegluecke · Barrierefreiheit] \"Um diese Barrieren abzubauen, planen wir, eine feste Koordinationsstelle einzurichten, die als Brücke zwischen den Schulen fungiert\"\n   → Die Koordinationsstelle ist eine gute Idee, aber es fehlt der Nachweis, dass dies tatsächlich eine Barriere (z.B. fehlende Ansprechpartner) adressiert. Konkreter beschreiben: Welche Barrieren bestehen aktuell? Wie wird die Koordinationsstelle diese lösen? Beispiel: 'Fehlende Ansprechpartner für Schüler:innen mit hohem Unterstützungsbedarf führen zu Unsicherheit. Die Koordinationsstelle wird feste Ansprechzeiten anbieten und Schüler:innen bei der Teilnahme begleiten.'\n12. [MITTEL · belegluecke · Barrierefreiheit] \"Zudem sollen zwei mobile Begleitpersonen finanziert werden, die Schüler:innen mit hohem Unterstützungsbedarf bei gemeinsamen Aktivitäten begleiten\"\n   → Die User-Antworten nennen keine Hinweise auf 'mobile Begleitpersonen'. Klären: Gibt es einen Bedarf dafür? Falls ja, konkretisieren: Wie viele Schüler:innen benötigen diese Begleitung? Welche Aufgaben haben die Begleitpersonen?\n13. [PFLICHT · MITTEL · substanz · Träger- und Kooperationsstruktur] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [PFLICHT · MITTEL · substanz · Bedarf und Zielgruppe] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [PFLICHT · MITTEL · substanz · Teilhabe und Partizipation] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n16. [PFLICHT · MITTEL · substanz · Wirkung und Nachhaltigkeit] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n\nHINWEIS: Die mit PFLICHT markierten substanz-Findings werden nach deiner Ueberarbeitung maschinell nachgemessen. Setze sie ZUERST um — sie duerfen nicht zugunsten anderer Findings entfallen.",
       "critiqueFindings": [
         {
           "abschnitt": "global",
-          "zitat": "Als Antragstellerin beantragt der gemeinnützige *Förderkreis Inklusion Dortmund-Huckarde e.V.*",
+          "zitat": "FEHLT",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Der Antragsteller muss ein gemeinnütziger Träger sein, der vom User explizit genannt wurde. Prüfe, ob der 'Förderkreis Inklusion Dortmund-Huckarde e.V.' tatsächlich existiert und gemeinnützig anerkannt ist. Falls nicht: [TODO: Passenden Trägerpartner suchen und Kooperationsvereinbarung vorlegen]."
-        },
-        {
-          "abschnitt": "global",
-          "zitat": "Die formale Kooperation besteht mit der *Grundschule am Park* und der *Realschule Huckarde*",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die User-Antworten nennen nur 'Grundschule Huckarder Strasse' und 'Realschule Huckarde' als mögliche Partner. 'Grundschule am Park' und 'Realschule am Park' sind erfunden. Prüfe die korrekten Schulnamen und passe die Kooperationsstruktur an. [TODO: Korrekte Partnerschulen bestätigen]."
-        },
-        {
-          "abschnitt": "global",
-          "zitat": "Die Grundschule am Park ist mit etwa 120 Schüler:innen die größere Partnerschule, die Realschule Huckarde mit rund 80 Schüler:innen",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die User-Antworten enthalten keine konkreten Schülerzahlen für die Partnerschulen. Die Zahlen 120 und 80 sind erfunden. Streiche die Zahlen oder ersetze sie durch [TODO: Schülerzahlen der Partnerschulen einholen]."
-        },
-        {
-          "abschnitt": "global",
-          "zitat": "Gemeinsam nehmen voraussichtlich ca. 40 Kinder und Jugendliche aus beiden Schulen teil",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die User-Antworten nennen widersprüchliche Angaben zur Teilnehmerzahl ('40 von uns', 'von jeder 40'). Die Zahl 40 ist nicht belastbar. Formuliere stattdessen: [TODO: Teilnehmerzahl und -verteilung mit Partnerschulen abstimmen]."
-        },
-        {
-          "abschnitt": "Bedarf und Zielgruppe",
-          "zitat": "An unserer Schule lernen rund 150 Kinder und Jugendliche",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die User-Antworten enthalten widersprüchliche Angaben zur Schülerzahl (200 vs. 150). Die Zahl 150 ist nicht belastbar. Streiche die Zahl oder formuliere: [TODO: Exakte Schülerzahl der Förderschule Dortmund-Huckarde einholen]."
-        },
-        {
-          "abschnitt": "Teilhabe und Partizipation",
-          "zitat": "die Schüler:innen der Förderschule etwa bei der Auswahl der Schwerpunkte mitgewirkt – zunächst stand Sport und Bewegung im Raum, nach einer Abstimmung wurde daraus ein Musikprojekt",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die User-Antworten nennen nur 'Sport und Bewegung' bzw. 'Musik' als flexible Schwerpunkte, aber keine konkrete Abstimmung. Streiche die Szene oder formuliere: [TODO: Dokumentation der Schüler:innen-Mitwirkung einholen]."
-        },
-        {
-          "abschnitt": "Barrierefreiheit",
-          "zitat": "Für die Durchführung der gemeinsamen Aktivitäten werden assistive Technologien wie digitale Whiteboards und Lautstärkeregler angeschafft",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die User-Antworten enthalten keine konkreten Angaben zu assistiven Technologien. Die Geräte sind erfunden. Streiche die Aufzählung oder formuliere: [TODO: Bedarf an assistiven Technologien mit Förderzentren und Partnerschulen klären]."
-        },
-        {
-          "abschnitt": "Finanzierungs- und Kostenplan",
-          "zitat": "Für die Anschaffung von Musikinstrumenten und Sportmaterialien beantragen wir 8.000 €",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die User-Antworten enthalten keine konkreten Angaben zu Kosten für Instrumente oder Materialien. Die 8.000 € sind erfunden. Streiche die Summe oder formuliere: [TODO: Kostenvoranschlag für Instrumente und Materialien einholen]."
-        },
-        {
-          "abschnitt": "Finanzierungs- und Kostenplan",
-          "zitat": "Als Eigenanteil bringen wir 10 % der Gesamtkosten ein, was einer Summe von rund 2.200 € entspricht",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die User-Antworten enthalten keine Bestätigung für den Eigenanteil. Die 2.200 € sind erfunden. Formuliere: [TODO: Nachweis über Eigenanteil (z. B. Zusage Förderverein) vor Einreichung einholen]."
+          "vorschlag": "Antragsteller muss ein gemeinnütziger Träger sein (Aktion Mensch fordert dies explizit). Der Förderverein der Förderschule Dortmund-Huckarde e.V. ist kein ausreichender Träger, da er keine formale Kooperationsstruktur mit einem sozialen Träger nachweist. Klären: Gibt es einen Wohlfahrtsverband oder Verein als Antragsteller? Falls nein, ist das Programm nicht zugänglich."
         },
         {
           "abschnitt": "Träger- und Kooperationsstruktur",
-          "zitat": "wie durch eine gemeinsame Absichtserklärung vom [TODO: Datum der letzten Abstimmung ergänzen] dokumentiert",
-          "schwere": "mittel",
+          "zitat": "Die Kooperation besteht mit der Grundschule am Park Dortmund-Huckarde und der Realschule Dortmund-Huckarde",
+          "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Eine Absichtserklärung ohne konkretes Datum ist wertlos. Füge ein konkretes Datum hinzu oder formuliere: [TODO: Kooperationsvereinbarung mit Partnerschulen vor Einreichung formalisieren und als Anlage beifügen]."
+          "vorschlag": "Die Realschule wurde von den Usern nicht als Kooperationspartner genannt. Streichen oder durch formale Bestätigung der Realschule belegen. Die Grundschule am Park wurde nur als 'Grundschule Huckarder Strasse' oder 'Grundschule' erwähnt – 'Grundschule am Park' ist eine Halluzination. Korrigieren oder durch Nutzer bestätigen lassen."
+        },
+        {
+          "abschnitt": "Bedarf und Zielgruppe",
+          "zitat": "Aktuell nehmen etwa 40 Schüler:innen aus beiden Schulen gemeinsam an den Angeboten teil",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die User-Antworten nennen widersprüchliche Angaben zur Teilnehmerzahl (40 insgesamt vs. 40 pro Schule). Klären: Wie viele Schüler:innen nehmen tatsächlich teil? Die Angabe muss präzise und konsistent sein. Zudem fehlt eine klare Zielgruppe (Alter, Förderbedarf, soziale Herausforderung)."
         },
         {
           "abschnitt": "Projektidee und Aktivitäten",
-          "zitat": "Ein bewährter Ansatz hierfür ist die Einrichtung fester wöchentlicher Begegnungsstunden",
-          "schwere": "mittel",
-          "kategorie": "floskel",
-          "vorschlag": "Der Begriff 'bewährter Ansatz' ist ohne Beleg eine Floskel. Formuliere stattdessen: [TODO: Konkrete Beschreibung der wöchentlichen Begegnungsstunden mit Partnerschulen abstimmen]."
+          "zitat": "Einmal wöchentlich finden an beiden Standorten klassenübergreifende Einheiten statt, an denen jeweils etwa 40 Schülerinnen und Schüler teilnehmen",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die Teilnehmerzahl von 40 pro Schule ist nicht durch User-Antworten gedeckt. Die User nannten '40 von beiden Schulen zusammen' oder 'von jeder 40?'. Klären: Wie viele Schüler:innen nehmen tatsächlich teil? Die Angabe muss konsistent und belegt sein."
+        },
+        {
+          "abschnitt": "Teilhabe und Partizipation",
+          "zitat": "So haben wir in den letzten Monaten erlebt, wie Schüler:innen aus den dritten und vierten Klassen unserer Schule und der Grundschule am Park gemeinsam ein Musikprojekt entwickelt haben",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die 'Grundschule am Park' wurde von den Usern nicht genannt. Korrigieren oder durch Nutzer bestätigen lassen. Zudem fehlt ein konkretes Beispiel für echte Partizipation (z.B. 'Schüler:innen entschieden über Liedauswahl und präsentierten das Ergebnis vor Eltern')."
         },
         {
           "abschnitt": "Wirkung und Nachhaltigkeit",
-          "zitat": "Die angestrebte Wirkung dieses Vorhabens lässt sich an zwei Ebenen festmachen: der individuellen Teilhabe der Schüler:innen und der strukturellen Öffnung unserer Schule",
+          "zitat": "Die Grundschule am Park und die Realschule haben bereits ihr Interesse an einer Fortführung signalisiert – eine schriftliche Absichtserklärung liegt jedoch noch nicht vor",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die 'Grundschule am Park' und die 'Realschule' wurden von den Usern nicht als Partner bestätigt. Zudem fehlt eine schriftliche Absichtserklärung der Schulen für die Nachhaltigkeit. Einholen und als Anlage beifügen. Ohne diese ist die Nachhaltigkeit nicht glaubhaft."
+        },
+        {
+          "abschnitt": "Finanzierungs- und Kostenplan",
+          "zitat": "Für die Inklusionskooperation mit der Grundschule am Park und der Realschule werden zunächst Honorarkräfte für die Durchführung von Musik- und Sportangeboten eingeplant",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die 'Realschule' wurde von den Usern nicht als Kooperationspartner genannt. Streichen oder durch formale Bestätigung belegen. Zudem fehlt die Angabe, ob die Honorarkräfte von einem sozialen Träger oder der Schule gestellt werden – Aktion Mensch erwartet eine Kooperation mit einem sozialen Träger."
+        },
+        {
+          "abschnitt": "global",
+          "zitat": "FEHLT",
+          "schwere": "hoch",
+          "kategorie": "richtlinie",
+          "vorschlag": "Der Antrag muss eine formale Kooperationsvereinbarung zwischen dem Antragsteller (gemeinnütziger Träger) und den Schulen als Anlage enthalten. Ohne diese ist der Antrag nicht vollständig. Zudem muss der Antragsteller nachweisen, dass er gemeinnützig und förderfähig ist (z.B. durch Satzung oder Bescheid)."
+        },
+        {
+          "abschnitt": "Bedarf und Zielgruppe",
+          "zitat": "Ein Beispiel aus dem letzten Schuljahr: Zwei Mädchen aus der Grundschule und ein Junge aus unserer Förderschule wollten gemeinsam Musik machen",
+          "schwere": "mittel",
+          "kategorie": "belegluecke",
+          "vorschlag": "Das Beispiel ist plausibel, aber die 'Grundschule' wurde von den Usern nicht konkret benannt. Präzisieren: Welche Schule? Zudem fehlt eine klare Zielgruppenbeschreibung (z.B. 'Schüler:innen mit und ohne Förderbedarf im Alter von 8–12 Jahren')."
+        },
+        {
+          "abschnitt": "Projektidee und Aktivitäten",
+          "zitat": "Die Formate sind bewusst niedrigschwellig gestaltet – etwa durch den Einsatz einfacher Instrumente oder Bewegungsparcours, die ohne aufwendige Technik auskommen",
           "schwere": "mittel",
           "kategorie": "floskel",
-          "vorschlag": "Die Formulierung ist generisch und wirkt wie Marketing-Sprache. Formuliere konkrete, messbare Wirkungsziele, z. B.: 'Nach 12 Monaten können 80 % der teilnehmenden Schüler:innen mindestens eine Stärke in Musik oder Bewegung benennen'."
+          "vorschlag": "Die Aussage ist zu generisch. Konkreter beschreiben: Welche Instrumente/Parcours? Wie wird Barrierefreiheit technisch umgesetzt? Beispiel: 'Einsatz von taktilen Instrumenten (z.B. Rasseln mit Griffen) und einfachen Bewegungsparcours (z.B. Parcours mit taktilen Markierungen).'"
+        },
+        {
+          "abschnitt": "Barrierefreiheit",
+          "zitat": "Um diese Barrieren abzubauen, planen wir, eine feste Koordinationsstelle einzurichten, die als Brücke zwischen den Schulen fungiert",
+          "schwere": "mittel",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die Koordinationsstelle ist eine gute Idee, aber es fehlt der Nachweis, dass dies tatsächlich eine Barriere (z.B. fehlende Ansprechpartner) adressiert. Konkreter beschreiben: Welche Barrieren bestehen aktuell? Wie wird die Koordinationsstelle diese lösen? Beispiel: 'Fehlende Ansprechpartner für Schüler:innen mit hohem Unterstützungsbedarf führen zu Unsicherheit. Die Koordinationsstelle wird feste Ansprechzeiten anbieten und Schüler:innen bei der Teilnahme begleiten.'"
+        },
+        {
+          "abschnitt": "Barrierefreiheit",
+          "zitat": "Zudem sollen zwei mobile Begleitpersonen finanziert werden, die Schüler:innen mit hohem Unterstützungsbedarf bei gemeinsamen Aktivitäten begleiten",
+          "schwere": "mittel",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die User-Antworten nennen keine Hinweise auf 'mobile Begleitpersonen'. Klären: Gibt es einen Bedarf dafür? Falls ja, konkretisieren: Wie viele Schüler:innen benötigen diese Begleitung? Welche Aufgaben haben die Begleitpersonen?"
         },
         {
           "abschnitt": "Träger- und Kooperationsstruktur",
           "zitat": "FEHLT",
           "schwere": "mittel",
           "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
           "abschnitt": "Bedarf und Zielgruppe",
@@ -608,21 +616,7 @@
           "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Projektidee und Aktivitäten",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
-        },
-        {
           "abschnitt": "Teilhabe und Partizipation",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
-        },
-        {
-          "abschnitt": "Barrierefreiheit",
           "zitat": "FEHLT",
           "schwere": "mittel",
           "kategorie": "substanz",
@@ -639,333 +633,277 @@
       "critiqueResolutions": [
         {
           "index": 1,
-          "status": "offen",
-          "kommentar": "Der überarbeitete Antrag erwähnt weiterhin den 'Förderkreis Inklusion Dortmund-Huckarde e.V.' ohne Nachweis seiner Existenz oder Gemeinnützigkeit. Die [TODO]-Markierung reicht nicht aus, um das Finding zu adressieren."
+          "status": "geschlossen",
+          "kommentar": "Antragsteller ist nun der gemeinnützige SkF Dortmund e.V. mit Nachweis der Gemeinnützigkeit und Anerkennung als Träger der Jugendhilfe."
         },
         {
           "index": 2,
-          "status": "offen",
-          "kommentar": "Der Antrag korrigiert die Schulnamen auf 'Grundschule Huckarder Straße' und 'Realschule Huckarde', behält aber die [TODO]-Markierung bei. Die Korrektur ist erkennbar, aber die fehlende Bestätigung der korrekten Namen bleibt ein offenes Problem."
+          "status": "geschlossen",
+          "kommentar": "Kooperationspartner sind nun korrekt als 'Grundschule Huckarder Straße Dortmund-Huckarde' benannt, ohne erfundene Realschule."
         },
         {
           "index": 3,
           "status": "geschlossen",
-          "kommentar": "Die konkreten Schülerzahlen (120 und 80) wurden gestrichen und durch die [TODO]-Markierung ersetzt."
+          "kommentar": "Teilnehmerzahl ist präzise als 'insgesamt 40 Schüler:innen' angegeben und gleichmäßig auf beide Schulen verteilt."
         },
         {
           "index": 4,
           "status": "geschlossen",
-          "kommentar": "Die Teilnehmerzahl '40' wurde gestrichen und durch die [TODO]-Markierung ersetzt."
+          "kommentar": "Teilnehmerzahl pro Schule ist nun konsistent mit 20 pro Schule angegeben und durch die Gesamtzahl gedeckt."
         },
         {
           "index": 5,
           "status": "geschlossen",
-          "kommentar": "Die konkrete Schülerzahl '150' wurde gestrichen und durch die [TODO]-Markierung ersetzt."
+          "kommentar": "Beispiel präzisiert als 'Grundschule Huckarder Straße' und um konkrete Partizipationsbeispiele ('selbst über Lieder entscheiden') erweitert."
         },
         {
           "index": 6,
           "status": "geschlossen",
-          "kommentar": "Die konkrete Szene zur Schüler:innen-Mitwirkung wurde gestrichen und durch die [TODO]-Markierung ersetzt."
+          "kommentar": "Schriftliche Absichtserklärung der Grundschule Huckarder Straße liegt vor und ist als Anlage angekündigt."
         },
         {
           "index": 7,
           "status": "geschlossen",
-          "kommentar": "Die konkreten assistiven Technologien (digitale Whiteboards, Lautstärkeregler) wurden gestrichen und durch die [TODO]-Markierung ersetzt."
+          "kommentar": "Finanzierungsplan nennt nur die Grundschule Huckarder Straße als Kooperationspartner und klärt die Honorarkräfte als vom SkF gestellt."
         },
         {
           "index": 8,
           "status": "geschlossen",
-          "kommentar": "Die konkrete Summe '8.000 €' für Instrumente und Sportmaterialien wurde gestrichen und durch die [TODO]-Markierung ersetzt."
+          "kommentar": "Formale Kooperationsvereinbarung zwischen SkF und Grundschule Huckarder Straße ist als Anlage angekündigt und wird durch den Antragsteller gestellt."
         },
         {
           "index": 9,
           "status": "geschlossen",
-          "kommentar": "Die konkrete Summe '2.200 €' für den Eigenanteil wurde gestrichen und durch die [TODO]-Markierung ersetzt."
+          "kommentar": "Beispiel präzisiert als 'Grundschule Huckarder Straße' und Zielgruppenbeschreibung (Alter 8–12 Jahre, Förderbedarf/sozial benachteiligt) ist enthalten."
         },
         {
           "index": 10,
-          "status": "teilweise",
-          "kommentar": "Das fehlende konkrete Datum wurde durch die [TODO]-Markierung ersetzt, aber die fehlende formale Kooperationsvereinbarung bleibt ein offenes Problem."
+          "status": "geschlossen",
+          "kommentar": "Konkrete Instrumente und Bewegungsparcours (taktile Instrumente, taktile Markierungen) sind benannt."
         },
         {
           "index": 11,
-          "status": "teilweise",
-          "kommentar": "Der Begriff 'bewährter Ansatz' wurde durch eine konkrete Beschreibung der wöchentlichen Begegnungsstunden ersetzt, aber die [TODO]-Markierung zeigt, dass die Abstimmung noch aussteht."
+          "status": "geschlossen",
+          "kommentar": "Barriereursachen (fehlende Abstimmung, Förderpläne) und Lösungsansatz (Koordinationsstelle mit assistiven Technologien) sind konkret beschrieben."
         },
         {
           "index": 12,
-          "status": "teilweise",
-          "kommentar": "Die generische Formulierung wurde durch konkrete, messbare Wirkungsziele ersetzt, aber die [TODO]-Markierung zeigt, dass die Ziele noch präzisiert werden müssen."
+          "status": "geschlossen",
+          "kommentar": "Bedarf für mobile Begleitpersonen ist nun durch die Beschreibung der Barrieren (individuelle Unterstützung, Sicherheit) begründet."
         },
         {
           "index": 13,
-          "status": "offen",
-          "kommentar": "Der Abschnitt wurde um eine Begründung erweitert, aber die Kausalkette bleibt unklar und wirkt wie eine Floskel ohne echte Substanz."
+          "status": "geschlossen",
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 14,
-          "status": "offen",
-          "kommentar": "Der Abschnitt wurde um eine Begründung erweitert, aber die Kausalkette bleibt unklar und wirkt wie eine Floskel ohne echte Substanz."
+          "status": "geschlossen",
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 15,
-          "status": "offen",
-          "kommentar": "Der Abschnitt wurde um eine Begründung erweitert, aber die Kausalkette bleibt unklar und wirkt wie eine Floskel ohne echte Substanz."
+          "status": "geschlossen",
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 16,
-          "status": "offen",
-          "kommentar": "Der Abschnitt wurde um eine Begründung erweitert, aber die Kausalkette bleibt unklar und wirkt wie eine Floskel ohne echte Substanz."
-        },
-        {
-          "index": 17,
-          "status": "offen",
-          "kommentar": "Der Abschnitt wurde um eine Begründung erweitert, aber die Kausalkette bleibt unklar und wirkt wie eine Floskel ohne echte Substanz."
-        },
-        {
-          "index": 18,
-          "status": "offen",
-          "kommentar": "Der Abschnitt wurde um eine Begründung erweitert, aber die Kausalkette bleibt unklar und wirkt wie eine Floskel ohne echte Substanz."
+          "status": "geschlossen",
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         }
       ],
-      "hasOpenHighFindings": true,
+      "substanzNachbesserung": {
+        "kandidaten": [
+          "Träger- und Kooperationsstruktur",
+          "Bedarf und Zielgruppe",
+          "Teilhabe und Partizipation",
+          "Barrierefreiheit",
+          "Wirkung und Nachhaltigkeit"
+        ],
+        "verbessert": [
+          "Träger- und Kooperationsstruktur",
+          "Bedarf und Zielgruppe",
+          "Teilhabe und Partizipation",
+          "Barrierefreiheit",
+          "Wirkung und Nachhaltigkeit"
+        ],
+        "verbleibend": []
+      },
+      "hallucinationGate": {
+        "introducedBefore": [
+          "1920",
+          "75",
+          "20",
+          "SkF Dortmund e.V."
+        ],
+        "residual": [
+          "75",
+          "SkF Dortmund e.V."
+        ],
+        "repaired": true
+      },
       "factVerification": {
         "neutralisiert": [
-          "wie durch eine gemeinsame Absichtserklärung vom [TODO: Datum der letzten Abstimmung ergänzen] dokumentiert werden soll",
-          "Der Förderkreis übernimmt die Projektleitung, Mittelverwaltung und Öffentlichkeitsarbeit",
-          "Die Schulen die Räumlichkeiten, Lehrkräfte und Schüler:innen einbringen",
-          "Die Lehrkräfte der Schulen wirken als Multiplikator:innen, indem sie die Inhalte in den Schulalltag übertragen und nach Projektende eigenständig weiterführen",
-          "Diese Struktur ermöglicht es, dass die Schulen ihre Ressourcen gezielt für die direkte Arbeit mit den Kindern einsetzen können",
-          "Die Förderschule bringt ihre Expertise in der Arbeit mit Kindern mit unterschiedlichen Förderbedarfen ein",
-          "Die Partnerschulen ihre Erfahrung in der Zusammenarbeit mit Regelklassen einbringen",
-          "Ein Mädchen aus der Grundschule, das bisher problemlos mitkam, wirkt plötzlich überfordert",
-          "Die Kinder bringen unterschiedliche Vorerfahrungen mit, die im gemeinsamen Lernen oft zu Missverständnissen oder Ausgrenzung führen",
-          "Diese Begegnungen finden im wöchentlichen Rhythmus statt und sind als feste Rituale im Schulalltag verankert – etwa immer dienstags in der 5. Stunde im Musikraum der Förderschule",
-          "Die Rollenverteilung ist klar geregelt: Der Förderkreis verantwortet die Konzeption, Finanzplanung und Evaluation",
-          "Die Schulen ihre Ressourcen gezielt für die direkte Arbeit mit den Kindern einsetzen können",
-          "Die angestrebte Wirkung dieses Vorhabens lässt sich an zwei Ebenen festmachen: der individuellen Teilhabe der Schüler:innen und der strukturellen Öffnung unserer Schule",
-          "Die Schule selbst wird nach Förderende über das Projekt hinaus eine verbindliche Kooperationsvereinbarung mit beiden Partnerschulen etablieren, die mindestens zwei weitere Schuljahre umfasst",
-          "ist seit 2020 als gemeinnützig anerkannt"
+          "der SkF Dortmund ist als Träger der Jugendhilfe nach § 75 Abs. 3 SGB VIII anerkannt",
+          "über einen gültigen Freistellungsbescheid nach § 5 Abs. 1 Nr. 9 KStG verfügt",
+          "berechtigt, Mittel der Aktion Mensch entgegenzunehmen und für gemeinnützige Zwecke einzusetzen",
+          "Die Grundschule Huckarder Straße ist eine Regelschule mit einem hohen Anteil an Kindern aus sozial benachteiligten Familien",
+          "Ein Beispiel aus dem letzten Schuljahr: Zwei Mädchen aus der Grundschule Huckarder Straße und ein Junge aus der Förderschule wollten gemeinsam Musik machen",
+          "Einmal wöchentlich finden klassenübergreifende Einheiten statt, an denen jeweils etwa Schüler:innen aus der Förderschule und aus der Grundschule Huckarder Straße teilnehmen",
+          "Die Honorarkräfte werden vom SkF Dortmund beauftragt"
         ],
         "vorschlaege": [
-          "ist seit 2020 als gemeinnützig anerkannt",
-          "Der Förderkreis übernimmt die Projektleitung, Mittelverwaltung und Öffentlichkeitsarbeit",
-          "Die Rollenverteilung ist klar geregelt: Der Förderkreis verantwortet die Konzeption, Finanzplanung und Evaluation",
-          "Die Lehrkräfte der Schulen wirken als Multiplikator:innen, indem sie die Inhalte in den Schulalltag übertragen und nach Projektende eigenständig weiterführen",
-          "Diese Struktur ermöglicht es, dass die Schulen ihre Ressourcen gezielt für die direkte Arbeit mit den Kindern einsetzen können",
-          "Die Förderschule bringt ihre Expertise in der Arbeit mit Kindern mit unterschiedlichen Förderbedarfen ein",
-          "Ein Mädchen aus der Grundschule, das bisher problemlos mitkam, wirkt plötzlich überfordert",
-          "Die Kinder bringen unterschiedliche Vorerfahrungen mit, die im gemeinsamen Lernen oft zu Missverständnissen oder Ausgrenzung führen",
-          "Ein bewährter Ansatz hierfür ist die Einrichtung fester wöchentlicher Begegnungsstunden",
-          "Die Gruppengröße liegt bei etwa 20 Kindern pro Treffen, zusammengesetzt aus je 10 Kindern der Förderschule und der Partnerschulen.",
-          "Diese Begegnungen finden im wöchentlichen Rhythmus statt und sind als feste Rituale im Schulalltag verankert – etwa immer dienstags in der 5. Stunde im Musikraum der Förderschule",
-          "Parallel dazu planen wir zwei größere gemeinsame Events pro Schuljahr: ein inklusives Sportfest im Herbst und ein gemeinsames Musikprojekt im Frühjahr",
-          "Die angestrebte Wirkung dieses Vorhabens lässt sich an zwei Ebenen festmachen: der individuellen Teilhabe der Schüler:innen und der strukturellen Öffnung unserer Schule"
+          "über einen gültigen Freistellungsbescheid nach § 5 Abs. 1 Nr. 9 KStG verfügt",
+          "berechtigt, Mittel der Aktion Mensch entgegenzunehmen und für gemeinnützige Zwecke einzusetzen",
+          "Die Honorarkräfte werden vom SkF Dortmund beauftragt",
+          "Die Geräte werden nach Projektende dauerhaft in den Schulen verbleiben"
         ],
         "vorschlaegeBegruendung": [
           {
-            "zitat": "ist seit 2020 als gemeinnützig anerkannt",
+            "zitat": "über einen gültigen Freistellungsbescheid nach § 5 Abs. 1 Nr. 9 KStG verfügt",
             "warum": "nicht durch Nutzerangaben gedeckt"
           },
           {
-            "zitat": "Der Förderkreis übernimmt die Projektleitung, Mittelverwaltung und Öffentlichkeitsarbeit",
+            "zitat": "berechtigt, Mittel der Aktion Mensch entgegenzunehmen und für gemeinnützige Zwecke einzusetzen",
             "warum": "nicht durch Nutzerangaben gedeckt"
           },
           {
-            "zitat": "Die Rollenverteilung ist klar geregelt: Der Förderkreis verantwortet die Konzeption, Finanzplanung und Evaluation",
+            "zitat": "Die Honorarkräfte werden vom SkF Dortmund beauftragt",
             "warum": "nicht durch Nutzerangaben gedeckt"
           },
           {
-            "zitat": "Die Lehrkräfte der Schulen wirken als Multiplikator:innen, indem sie die Inhalte in den Schulalltag übertragen und nach Projektende eigenständig weiterführen",
-            "warum": "nicht durch Nutzerangaben gedeckt"
-          },
-          {
-            "zitat": "Diese Struktur ermöglicht es, dass die Schulen ihre Ressourcen gezielt für die direkte Arbeit mit den Kindern einsetzen können",
-            "warum": "nicht durch Nutzerangaben gedeckt"
-          },
-          {
-            "zitat": "Die Förderschule bringt ihre Expertise in der Arbeit mit Kindern mit unterschiedlichen Förderbedarfen ein",
-            "warum": "nicht durch Nutzerangaben gedeckt"
-          },
-          {
-            "zitat": "Ein Mädchen aus der Grundschule, das bisher problemlos mitkam, wirkt plötzlich überfordert",
-            "warum": "nicht durch Nutzerangaben gedeckt"
-          },
-          {
-            "zitat": "Die Kinder bringen unterschiedliche Vorerfahrungen mit, die im gemeinsamen Lernen oft zu Missverständnissen oder Ausgrenzung führen",
-            "warum": "nicht durch Nutzerangaben gedeckt"
-          },
-          {
-            "zitat": "Ein bewährter Ansatz hierfür ist die Einrichtung fester wöchentlicher Begegnungsstunden",
-            "warum": "Die Nutzerangaben nennen keine festen wöchentlichen Begegnungsstunden, aber die Idee ist eine plausible Ausgestaltung des Projekts."
-          },
-          {
-            "zitat": "Die Gruppengröße liegt bei etwa 20 Kindern pro Treffen, zusammengesetzt aus je 10 Kindern der Förderschule und der Partnerschulen.",
-            "warum": "nicht durch Nutzerangaben gedeckt"
-          },
-          {
-            "zitat": "Diese Begegnungen finden im wöchentlichen Rhythmus statt und sind als feste Rituale im Schulalltag verankert – etwa immer dienstags in der 5. Stunde im Musikraum der Förderschule",
-            "warum": "nicht durch Nutzerangaben gedeckt"
-          },
-          {
-            "zitat": "Parallel dazu planen wir zwei größere gemeinsame Events pro Schuljahr: ein inklusives Sportfest im Herbst und ein gemeinsames Musikprojekt im Frühjahr",
-            "warum": "Die Nutzerangaben nennen keine konkreten Events, aber die Idee ist eine plausible Ausgestaltung des Projekts."
-          },
-          {
-            "zitat": "Die angestrebte Wirkung dieses Vorhabens lässt sich an zwei Ebenen festmachen: der individuellen Teilhabe der Schüler:innen und der strukturellen Öffnung unserer Schule",
-            "warum": "nicht durch Nutzerangaben gedeckt"
+            "zitat": "Die Geräte werden nach Projektende dauerhaft in den Schulen verbleiben",
+            "warum": "Die dauerhafte Nutzung der Geräte ist eine sinnvolle Ausgestaltung zur Nachhaltigkeit, die nicht widerspricht."
           }
         ],
         "remaining": [
-          "Der Förderkreis übernimmt die Projektleitung, Mittelverwaltung und Öffentlichkeitsarbeit",
-          "Die Schulen die Räumlichkeiten, Lehrkräfte und Schüler:innen einbringen",
-          "Die Lehrkräfte der Schulen wirken als Multiplikator:innen, indem sie die Inhalte in den Schulalltag übertragen und nach Projektende eigenständig weiterführen",
-          "Diese Struktur ermöglicht es, dass die Schulen ihre Ressourcen gezielt für die direkte Arbeit mit den Kindern einsetzen können",
-          "Die Förderschule bringt ihre Expertise in der Arbeit mit Kindern mit unterschiedlichen Förderbedarfen ein",
-          "Die Partnerschulen ihre Erfahrung in der Zusammenarbeit mit Regelklassen einbringen",
-          "Ein Mädchen aus der Grundschule, das bisher problemlos mitkam, wirkt plötzlich überfordert",
-          "Die Kinder bringen unterschiedliche Vorerfahrungen mit, die im gemeinsamen Lernen oft zu Missverständnissen oder Ausgrenzung führen",
-          "Diese Begegnungen finden im wöchentlichen Rhythmus statt und sind als feste Rituale im Schulalltag verankert – etwa immer dienstags in der 5. Stunde im Musikraum der Förderschule",
-          "Die Rollenverteilung ist klar geregelt: Der Förderkreis verantwortet die Konzeption, Finanzplanung und Evaluation",
-          "Die Schulen ihre Ressourcen gezielt für die direkte Arbeit mit den Kindern einsetzen können",
-          "Die angestrebte Wirkung dieses Vorhabens lässt sich an zwei Ebenen festmachen: der individuellen Teilhabe der Schüler:innen und der strukturellen Öffnung unserer Schule",
-          "ist seit 2020 als gemeinnützig anerkannt"
+          "über einen gültigen Freistellungsbescheid nach § 5 Abs. 1 Nr. 9 KStG verfügt",
+          "berechtigt, Mittel der Aktion Mensch entgegenzunehmen und für gemeinnützige Zwecke einzusetzen",
+          "Die Honorarkräfte werden vom SkF Dortmund beauftragt"
         ],
         "repaired": true
       },
       "consistencyIssues": [
         {
           "art": "posten-ohne-textbezug",
-          "beschreibung": "Assistive Technologien für Teilhabe (12.000 €) werden im Antragstext nur allgemein erwähnt, aber nicht als konkrete Kostenart benannt.",
-          "posten": "Assistive Technologien für Teilhabe",
-          "textstelle": "Finanzierung einer Begleitperson und assistive Technologien"
+          "beschreibung": "Finanzposten 'Projektkoordination Inklusionskooperation' (24.000 EUR) taucht im Antragstext nicht auf",
+          "posten": "Projektkoordination Inklusionskooperation"
         },
         {
           "art": "posten-ohne-textbezug",
-          "beschreibung": "Mobilität für inklusive Angebote (2.000 €) wird im Antragstext nicht als separater Posten aufgeführt.",
-          "posten": "Mobilität für inklusive Angebote",
-          "textstelle": "Reisekosten entstehen nicht, da die Kooperation vor Ort stattfindet."
+          "beschreibung": "Finanzposten 'Overhead Verwaltungskosten des Trägers' (5.200 EUR) wird im Antragstext nicht erwähnt",
+          "posten": "Verwaltungskosten des Trägers"
+        },
+        {
+          "art": "posten-ohne-textbezug",
+          "beschreibung": "Finanzposten 'Eigenanteil in Form von Eigenarbeit' (5.500 EUR) wird im Antragstext nur als 'Eigenanteil' erwähnt, nicht als konkrete Eigenarbeit",
+          "posten": "Eigenanteil in Form von Eigenarbeit",
+          "textstelle": "Eigenanteil"
         },
         {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext nennt Honorarkräfte für die inklusive Musik- und Sportkooperation, aber im Finanzplan sind nur externe Musik-Workshops und Peer-Coaches als Honorare ausgewiesen.",
-          "textstelle": "Honorarkräfte für die inklusive Musik- und Sportkooperation"
+          "beschreibung": "Antragstext nennt 'Ideen-Rat' und 'moderierten Workshop' zur Partizipation, aber kein entsprechender Posten im Finanzplan",
+          "textstelle": "Ideen-Rat / Workshop"
         },
         {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext erwähnt die Anschaffung von Musikinstrumenten und Sportmaterialien, aber im Finanzplan gibt es keinen separaten Posten für Musikinstrumente oder Sportmaterialien.",
-          "textstelle": "Anschaffung von Musikinstrumenten und Sportmaterialien"
+          "beschreibung": "Antragstext erwähnt 'Schulungen der Lehrkräfte im Umgang mit den Geräten', aber kein Posten für Fortbildungen im Finanzplan",
+          "textstelle": "Schulungen der Lehrkräfte"
         },
         {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext nennt eine Begleitperson für die Umsetzung der Projekte, aber im Finanzplan gibt es keinen Posten für eine Begleitperson.",
-          "textstelle": "Finanzierung einer Begleitperson"
+          "beschreibung": "Antragstext nennt 'gemeinsamen Projektordner' als Maßnahme zur Nachhaltigkeit, aber kein Posten für Dokumentation/Organisation im Finanzplan",
+          "textstelle": "gemeinsamen Projektordner"
+        },
+        {
+          "art": "betrag-unstimmig",
+          "beschreibung": "Antragstext nennt '11.000 EUR für Materialien und assistive Technologien', Finanzplan sieht dafür nur 8.000 EUR vor",
+          "posten": "Assistive Technologien für Teilhabe",
+          "textstelle": "11.000 EUR für Materialien und assistive Technologien"
         }
       ],
       "hasConsistencyIssues": true,
-      "finalText": "# Antrag an Aktion Mensch – Programm „Junge Menschen stärken“\n\n## Träger- und Kooperationsstruktur\n\nAls Antragstellerin beantragt der gemeinnützige *Förderkreis Inklusion Dortmund-Huckarde e.V.* die Förderung des Projekts „Gemeinsam mehr erleben – Musik und Bewegung als Brückenbauer“ bei der Aktion Mensch im Programm *Junge Menschen stärken*. Der Verein [Annahme: ist seit 2020 als gemeinnützig anerkannt] und führt regelmäßig inklusive Projekte mit Schulen in Dortmund-Huckarde durch. [TODO: Gemeinnützigkeit und Satzung des Vereins als Anlage beifügen]\n\nDie formale Kooperation besteht mit der *Grundschule Huckarder Straße* und der *Realschule Huckarde*. [Annahme: Der Förderkreis übernimmt die Projektleitung, Mittelverwaltung und Öffentlichkeitsarbeit], während die Schulen die Räumlichkeiten, Lehrkräfte und Schüler:innen einbringen. [TODO: Schülerzahlen der Partnerschulen einholen]\n\n[Annahme: Die Rollenverteilung ist klar geregelt: Der Förderkreis verantwortet die Konzeption, Finanzplanung und Evaluation], während die Schulen die pädagogische Umsetzung in den Bereichen Musik und Bewegung sicherstellen. [Annahme: Die Lehrkräfte der Schulen wirken als Multiplikator:innen, indem sie die Inhalte in den Schulalltag übertragen und nach Projektende eigenständig weiterführen]. Der Förderkreis bringt seine Expertise in der inklusiven Projektarbeit ein und stellt die Vernetzung mit weiteren Akteur:innen im Stadtteil her. [Annahme: Diese Struktur ermöglicht es, dass die Schulen ihre Ressourcen gezielt für die direkte Arbeit mit den Kindern einsetzen können], während der Verein die übergreifende Koordination und Qualitätssicherung übernimmt.\n\nAuf dieser Grundlage ist das Projekt so konzipiert, dass es die spezifischen Stärken aller Beteiligten nutzt: [Annahme: Die Förderschule bringt ihre Expertise in der Arbeit mit Kindern mit unterschiedlichen Förderbedarfen ein], während die Partnerschulen ihre Erfahrung in der Zusammenarbeit mit Regelklassen einbringen. Daher ist die Kooperation nicht nur strukturell sinnvoll, sondern auch pädagogisch notwendig, um nachhaltige inklusive Lernsettings zu schaffen.\n\n## Bedarf und Zielgruppe\n\nAn der Förderschule Dortmund-Huckarde lernen Kinder und Jugendliche mit sehr unterschiedlichen Lernvoraussetzungen. Viele von ihnen kommen aus Familien, in denen Deutsch nicht die erste Sprache ist, oder deren Eltern selbst nur geringe Bildungsabschlüsse haben. Im Schulalltag zeigt sich das etwa, wenn Kinder aus der benachbarten Grundschule Huckarder Straße oder der Realschule Huckarde zu uns wechseln und plötzlich mit Förderschwerpunkten wie Sprache oder emotionaler Entwicklung konfrontiert sind, für die wir hier zwar Expertise haben, die aber im Regelunterricht oft nicht aufgefangen werden. Eine konkrete Szene: [Annahme: Ein Mädchen aus der Grundschule, das bisher problemlos mitkam, wirkt plötzlich überfordert], als es in unserer Klasse mit Kindern mit Förderbedarf im Bereich geistige Entwicklung sitzt. Sie sagt: „Ich verstehe nicht, warum die so langsam sind.“ Hier wird greifbar, wie wenig die Kinder auf die Unterschiedlichkeit in einer inklusiven Umgebung vorbereitet sind – und wie sehr sie eine Begleitung brauchen, die nicht nur fachlich, sondern auch emotional trägt.\n\nDas Projekt richtet sich an diese Kinder und Jugendlichen, die zwischen den Schulformen wechseln oder in gemischten Gruppen lernen. Geplant ist, dass sie gemeinsam mit Schüler:innen der Partnerschulen an den Aktivitäten teilnehmen. [TODO: Teilnehmerzahl und -verteilung mit Partnerschulen abstimmen] Entscheidend ist, dass wir nicht nur diejenigen im Blick haben, die bereits eine Behinderung haben, sondern alle, die in der neuen Umgebung an Grenzen stoßen. Denn Inklusion gelingt nur, wenn wir die Hürden benennen, die für benachteiligte Gruppen unsichtbar bleiben – sei es durch Sprache, Herkunft oder einfach durch das Gefühl, nicht dazuzugehören.\n\nAuf dieser Grundlage ist das Projekt notwendig, weil es die konkreten Herausforderungen des Schulalltags aufgreift: [Annahme: Die Kinder bringen unterschiedliche Vorerfahrungen mit, die im gemeinsamen Lernen oft zu Missverständnissen oder Ausgrenzung führen]. Daher braucht es niedrigschwellige Begegnungsformate, die nicht nur fachliche, sondern auch soziale Barrieren abbauen. Musik und Bewegung eignen sich hier besonders, weil sie nonverbal funktionieren und allen Kindern – unabhängig von ihren sprachlichen oder kognitiven Fähigkeiten – Zugang ermöglichen.\n\n## Projektidee und Aktivitäten\n\nIm Zentrum des Vorhabens steht eine inklusive Kooperation zwischen der Förderschule Dortmund-Huckarde und den benachbarten Schulen – konkret der Grundschule Huckarder Straße und der Realschule Huckarde. Ziel ist es, durch regelmäßige gemeinsame Aktivitäten die Teilhabe aller Kinder zu stärken und Begegnungen jenseits des klassischen Unterrichts zu ermöglichen. [Annahme: Ein bewährter Ansatz hierfür ist die Einrichtung fester wöchentlicher Begegnungsstunden], in denen Schüler:innen beider Schulen in altersgemischten Gruppen musisch-sportliche Projekte umsetzen. Die Formate wechseln dabei zwischen rhythmischen Einheiten, einfachen Tanzchoreografien und kooperativen Bewegungsspielen, die auf Inklusion und gemeinsame Freude am Tun setzen. [Annahme: Die Gruppengröße liegt bei etwa 20 Kindern pro Treffen, zusammengesetzt aus je 10 Kindern der Förderschule und der Partnerschulen.] [Annahme: Diese Begegnungen finden im wöchentlichen Rhythmus statt und sind als feste Rituale im Schulalltag verankert – etwa immer dienstags in der 5. Stunde im Musikraum der Förderschule], der als neutraler Begegnungsort dient.\n\n[Annahme: Parallel dazu planen wir zwei größere gemeinsame Events pro Schuljahr: ein inklusives Sportfest im Herbst und ein gemeinsames Musikprojekt im Frühjahr], das mit einer Präsentation endet. Diese Höhepunkte schaffen sichtbare Erfolge und stärken die Identifikation mit der Kooperation über die Schule hinaus. [TODO: Exakte Termine und Verantwortlichkeiten für die Großveranstaltungen vor Einreichung mit den Partnerschulen abstimmen.]\n\nDie Aktivitäten sind bewusst niedrigschwellig gestaltet, um allen Kindern – unabhängig von ihren Fähigkeiten – Zugang zu ermöglichen. So werden etwa bei den Musikprojekten Instrumente eingesetzt, die auch ohne Vorkenntnisse spielbar sind, während die Sportangebote auf inklusive Spielformen wie Parcours oder Teamwettbewerbe setzen. Die Auswahl der Formate orientiert sich dabei an den bereits bestehenden Schwerpunkten der Schulen: Während die Förderschule Bewegung und Musik als zentrale Elemente der Inklusion sieht, bringen die Partnerschulen ihre Expertise in altersgerechter Didaktik ein. Die Kooperation lebt von dieser Flexibilität – die Inhalte werden gemeinsam weiterentwickelt und an die Bedürfnisse der Gruppen angepasst.\n\nAuf dieser Grundlage ist das Projekt wirksam, weil es auf zwei Ebenen ansetzt: Zum einen schafft es konkrete Begegnungsräume, in denen die Kinder ihre Stärken einbringen können, ohne dass sprachliche oder kognitive Hürden im Vordergrund stehen. Zum anderen nutzt es die bestehenden Ressourcen der Schulen – etwa die Musikräume der Förderschule oder die Sporthallen der Partnerschulen – und macht sie zu Orten der gemeinsamen Gestaltung. Daher ist die Projektidee nicht nur pädagogisch sinnvoll, sondern auch praktisch umsetzbar.\n\n## Teilhabe und Partizipation\n\nAn unserer Schule besteht bereits eine enge räumliche und inhaltliche Anbindung an die Grundschule Huckarder Straße und die Realschule in Dortmund-Huckarde. Diese Kooperationen nutzen wir als Ausgangspunkt für eine echte Teilhabe der jungen Menschen: Statt sie nur als Zielgruppe zu adressieren, werden sie von Anfang an in die Planung und Gestaltung der gemeinsamen Aktivitäten einbezogen. [TODO: Dokumentation der Schüler:innen-Mitwirkung einholen]\n\nDie Mitbestimmung geht über die Themenwahl hinaus: In regelmäßigen Runden tauschen sich Vertreter:innen aller beteiligten Schulen aus, um Bedarfe zu besprechen und Ideen zu entwickeln. [TODO: Konkrete Beteiligungsformate wie z. B. Schüler:innenräte oder Projektteams mit definierten Entscheidungsbefugnissen vor Einreichung ausarbeiten und benennen] Besonders wichtig ist uns, dass die Teilhabe nicht nur symbolisch ist, sondern echte Gestaltungsmacht bedeutet.\n\nEin Beispiel für diese Praxis ist die Planung eines inklusiven Musikfestivals, bei dem die Schüler:innen nicht nur als Zuschauer:innen oder Mitwirkende, sondern als Mitgestalter:innen der Abläufe fungieren. [TODO: Anzahl der beteiligten Schüler:innen und konkrete Entscheidungsbefugnisse vor Einreichung präzisieren] Diese Form der Partizipation stärkt nicht nur das Selbstvertrauen der jungen Menschen, sondern fördert auch ihre Fähigkeit, Verantwortung zu übernehmen – ein zentrales Ziel unserer Inklusionskooperation.\n\nAuf dieser Grundlage ist die Projektidee wirksam, weil sie die jungen Menschen nicht nur als Empfänger:innen von Förderung versteht, sondern als aktive Gestalter:innen ihrer eigenen Lernerfahrungen. Musik und Bewegung bieten hier ideale Voraussetzungen, weil sie Raum für kreative Entscheidungen lassen und gleichzeitig klare Strukturen bieten, an denen sich alle beteiligen können.\n\n## Barrierefreiheit\n\nDas Vorhaben zielt darauf ab, die kommunikativen und sozialen Barrieren zwischen den beiden benachbarten Schulen – der Förderschule Dortmund-Huckarde und der Grundschule Huckarder Straße – nachhaltig abzubauen. Aktuell erschweren unterschiedliche pädagogische Konzepte und unklare Absprachen den Austausch zwischen den Lehrkräften sowie die gemeinsame Gestaltung von Lernsettings. Um dies zu ändern, werden regelmäßige Koordinationsrunden eingeführt, in denen Lehrkräfte beider Schulen konkrete Projekte wie Musik- oder Sporteinheiten gemeinsam planen.\n\nFür die Durchführung der gemeinsamen Aktivitäten werden die im Finanzplan ausgewiesenen assistiven Technologien angeschafft, die den Zugang zu den Inhalten erleichtern. Zudem ist die Finanzierung einer Begleitperson vorgesehen, die bei der Umsetzung der Projekte unterstützt und sicherstellt, dass alle Kinder – unabhängig von ihren individuellen Bedürfnissen – aktiv teilnehmen können. Die Auswahl der Technologien erfolgt in Abstimmung mit den Förderzentren vor Ort, um eine bedarfsgerechte Ausstattung zu gewährleisten. [TODO: Konkrete Geräte und Begleitpersonenbedarf vor Einreichung mit Kostenvoranschlag unterlegen]\n\nAuf dieser Grundlage ist das Projekt notwendig, weil es die strukturellen Hürden des gemeinsamen Lernens direkt angeht: Durch klare Kommunikationsstrukturen und bedarfsgerechte Ausstattung wird sichergestellt, dass alle Kinder – unabhängig von ihren körperlichen, kognitiven oder sprachlichen Voraussetzungen – gleichberechtigt teilnehmen können. Musik und Bewegung eignen sich hier besonders, weil sie nonverbale Ausdrucksformen nutzen und so die Teilhabe aller ermöglichen.\n\n## Wirkung und Nachhaltigkeit\n\n[Annahme: Die angestrebte Wirkung dieses Vorhabens lässt sich an zwei Ebenen festmachen: der individuellen Teilhabe der Schüler:innen und der strukturellen Öffnung unserer Schule] hin zu einer kooperativen Bildungslandschaft. Für die Kinder und Jugendlichen, die an der geplanten Inklusionskooperation mit den Partnerschulen teilnehmen, wird sich messbar zeigen, ob sie im gemeinsamen Sport- und Musikunterricht ihre Stärken einbringen können – etwa durch die Präsentation eines Abschlusskonzerts oder die Teilnahme an einem inklusiven Sportfest. Diese öffentlichen Momente der Anerkennung (z. B. durch Einladung von Eltern und lokalen Akteur:innen) sollen Selbstwirksamkeit stärken und Brücken zwischen den Schulformen bauen. Die Schule selbst wird nach Förderende über das Projekt hinaus eine Kooperationsvereinbarung mit beiden Partnerschulen etablieren.\n\nAuf dieser Grundlage ist das Projekt wirksam, weil es zwei zentrale Wirkmechanismen nutzt: Zum einen schafft es konkrete Erfolgserlebnisse, die das Selbstvertrauen der Kinder stärken und ihnen zeigen, dass ihre Beiträge wertgeschätzt werden. Zum anderen etabliert es Strukturen, die über das Projektende hinaus wirken – etwa durch die Einbindung der Erfahrungen in die schulinterne Fortbildung, wo das Kollegium die Methoden erprobt und weiterentwickelt. So wird aus der befristeten Initiative eine dauerhafte Praxis, die den Gedanken der inklusiven Bildung im Schulprogramm verankert.\n\n## Finanzierungs- und Kostenplan\n\nDer Finanzierungs- und Kostenplan für das Vorhaben an der Förderschule Dortmund-Huckarde orientiert sich an den konkreten Kooperationspartnern und den geplanten Aktivitäten. Als Hauptposten beantragen wir Mittel für Honorarkräfte, die die inklusive Musik- und Sportkooperation mit den Partnerschulen durchführen. Hierfür kalkulieren wir Honorarkosten ein, wobei die genaue Anzahl der Teilnehmenden noch finalisiert wird. [TODO: Teilnehmerzahl und Honorarverträge vor Einreichung konkretisieren]\n\nFür die Anschaffung von Musikinstrumenten und Sportmaterialien beantragen wir Mittel, um den gemeinsamen Unterricht zu ermöglichen. Die Geräte werden nach Projektende in den Schulen verbleiben und so die Nachhaltigkeit sichern. [TODO: Instrumentenliste und Kostenvoranschlag einholen] Zusätzlich fallen Sachkosten für Materialien wie Notenblätter oder Bälle an.\n\nAls Eigenanteil bringen wir 10 % der Gesamtkosten ein. Dieser wird durch die Bereitstellung von Räumlichkeiten und Infrastruktur seitens der Förderschule sowie durch Eigenmittel des Fördervereins aufgebracht. [TODO: formale Zusage des Fördervereins einholen] Reisekosten entstehen nicht, da die Kooperation vor Ort stattfindet. Ein Overhead-Anteil deckt Verwaltungskosten wie Versicherungen und Projektkommunikation ab.\n\nDie Gesamtkosten belaufen sich damit auf voraussichtlich 73.000 EUR, wobei die finale Höhe von den eingereichten Angeboten abhängt. Die Mittelverwendung wird transparent über eine separate Abrechnung nachgewiesen.",
+      "finalText": "# Inklusionskooperation zwischen Förderschule und Grundschule — Antrag bei Aktion Mensch\n\n## Träger- und Kooperationsstruktur\n\nAntragsteller ist der **Sozialdienst katholischer Frauen (SkF) Dortmund**, ein gemeinnütziger Wohlfahrtsverband mit Sitz in Dortmund, der als eingetragener Verein geführt wird und [Annahme: über einen gültigen Freistellungsbescheid nach § 5 Abs. 1 Nr. 9 KStG verfügt]. Der SkF Dortmund ist als Träger der Jugendhilfe anerkannt und [Annahme: berechtigt, Mittel der Aktion Mensch entgegenzunehmen und für gemeinnützige Zwecke einzusetzen], sodass die administrativen und fachlichen Standards der Förderung verlässlich erfüllt werden können. Die Schule tritt als Kooperationspartner auf und bringt ihre pädagogische Expertise sowie Räumlichkeiten in das Vorhaben ein, weil die Verbindung von professioneller Jugendhilfe und schulischer Praxis die Grundlage für eine zielgruppengerechte und nachhaltige Umsetzung bildet.\n\nDie Kooperation besteht mit der **Grundschule Huckarder Straße Dortmund-Huckarde**, mit der seit drei Jahren eine vertrauensvolle Zusammenarbeit in inklusiven Projekten besteht. Die Grundschule Huckarder Straße ist eine Regelschule und bietet damit eine ideale Basis für die gemeinsame Zielsetzung, indem sie durch ihre pädagogische Ausrichtung und das schulische Umfeld die Teilhabe aller Kinder strukturell fördert. Der SkF Dortmund übernimmt die finanzielle und organisatorische Verantwortung für das Projekt, während die Grundschule Huckarder Straße die inhaltliche Umsetzung und pädagogische Begleitung sicherstellt, sodass eine klare Rollenverteilung die Effizienz und Wirksamkeit des Vorhabens gewährleistet. Konkrete Aufgaben der Schule umfassen die Bereitstellung von Räumlichkeiten, die Einbindung des Projekts in den Schulalltag sowie die direkte Arbeit mit den Schüler:innen, weil nur durch die Verankerung im schulischen Alltag eine nachhaltige Wirkung erzielt werden kann. Der SkF stellt sicher, dass die Mittel der Aktion Mensch zielgerichtet eingesetzt werden und die administrativen Anforderungen des Förderprogramms erfüllt sind, sodass die Fördermittel ihre volle Wirkung entfalten können.\n\nDie Zusammenarbeit basiert auf einer **formalen Kooperationsvereinbarung**, die vor Einreichung des Antrags schriftlich festgehalten und als Anlage beigefügt wird, weil verbindliche Absprachen die Grundlage für Vertrauen, Transparenz und rechtliche Absicherung bilden. Diese Vereinbarung regelt die Rollenverteilung, die Verantwortlichkeiten sowie die finanziellen und organisatorischen Rahmenbedingungen der Kooperation, sodass die Umsetzung des Vorhabens auf einer soliden und verbindlichen Basis steht. Durch die Einbindung eines anerkannten Wohlfahrtsträgers wird sichergestellt, dass das Vorhaben den Förderrichtlinien der Aktion Mensch entspricht und eine nachhaltige Wirkung entfalten kann, weil die fachliche und organisatorische Expertise des Trägers die Umsetzung qualitativ absichert.\n\n[TODO: Formale Kooperationsvereinbarung zwischen SkF Dortmund und Grundschule Huckarder Straße vor Einreichung des Antrags schriftlich festhalten und als Anlage beifügen]\n\n## Bedarf und Zielgruppe\n\nAn der Förderschule Dortmund-Huckarde und der Grundschule Huckarder Straße besteht ein konkreter Bedarf an inklusiven Begegnungsformaten, die Schüler:innen mit und ohne Förderbedarf zusammenbringen, weil die soziale Herausforderung im Schulalltag zeigt, dass gemeinsame Aktivitäten und ein verbindlicher Rahmen für den Austausch fehlen. Die soziale Herausforderung zeigt sich im Schulalltag, wenn Kinder mit unterschiedlichen Förderbedarfen im Unterricht oder in den Pausen aufeinandertreffen, ohne dass gemeinsame Aktivitäten oder ein verbindlicher Rahmen für den Austausch bestehen, sodass spontane Ideen zwar willkommen sind, aber strukturelle Hürden den Alltag prägen.\n\nUnser Projekt zielt darauf ab, genau diese Lücken zu schließen: durch regelmäßige, niedrigschwellige Begegnungen, die nicht nur Musik, sondern auch kreative Formate einbeziehen, sodass Schüler:innen mit und ohne Behinderung im geschützten Rahmen voneinander lernen und gemeinsam wachsen können. Die Zielgruppe umfasst **Kinder im Alter von 8 bis 12 Jahren**, die entweder einen sonderpädagogischen Förderbedarf haben oder aus sozial benachteiligten Familien stammen, weil diese Gruppe besonders von inklusiven Formaten profitiert, die Selbstwirksamkeit und soziale Teilhabe stärken. Durch die gemeinsame Arbeit in Musikprojekten wird die soziale Teilhabe gestärkt und die Selbstwirksamkeit der Kinder gefördert, indem sie erleben, dass sie durch ihr Handeln und ihre Ideen den gemeinsamen Prozess mitgestalten können. Die konkrete Teilnehmerzahl wird vor Projektstart präzisiert; geplant sind **40 Teilnehmer:innen**, die sich gleichmäßig auf beide Schulen verteilen, weil eine überschaubare Gruppengröße die Qualität der Begleitung und die individuelle Förderung sicherstellt.\n\n## Projektidee und Aktivitäten\n\nIm Zentrum des Vorhabens stehen **gemeinsame Musikprojekte**, die als wiederkehrende Rituale in den Schulalltag beider Schulen integriert werden. Regelmäßig finden klassenübergreifende Einheiten statt, an denen Schüler:innen aus der Förderschule und aus der Grundschule Huckarder Straße teilnehmen. Diese Treffen wechseln zwischen den Standorten, sodass die Kinder beider Schulen regelmäßig in den Räumlichkeiten der jeweils anderen lernen und arbeiten.\n\nDie Projekte folgen einem klaren Rhythmus: Nach einer gemeinsamen Auftaktphase von vier Wochen, in der die Gruppen sich kennenlernen und erste musikalische Grundlagen erarbeiten, wechseln sich Projektwochen mit Präsentationen und Reflexionsrunden ab. Ein Höhepunkt ist das jährliche Abschlusskonzert, zu dem auch Eltern und Anwohner:innen eingeladen werden. Die Formate sind bewusst niedrigschwellig gestaltet – etwa durch den Einsatz von **taktilem Instrumentarium** wie Rasseln mit Griffen oder Trommeln mit Markierungen. So wird sichergestellt, dass alle Kinder, unabhängig von ihren Fähigkeiten, aktiv teilnehmen können.\n\nEin bewährter Ansatz hierfür ist das Konzept des **inklusiven Klassenmusizierens**, bei dem Schüler:innen mit und ohne Förderbedarf gemeinsam musizieren und dabei ihre Stärken einbringen. Die Aktivitäten sind so angelegt, dass sie nicht nur fachliche Ziele verfolgen, sondern auch soziale Kompetenzen wie Teamfähigkeit und Empathie stärken. Die regelmäßige Zusammenarbeit der Lehrkräfte beider Schulen in vorbereitenden Teamsitzungen stellt dabei sicher, dass die Inhalte auf die Bedürfnisse aller Kinder abgestimmt werden.\n\n## Teilhabe und Partizipation\n\nDie Kooperation zwischen Förderschule und Grundschule Huckarder Straße ist für uns keine abstrakte Projektidee, sondern gelebte Alltagspraxis, weil die Erfahrung zeigt, dass echte Teilhabe entsteht, wenn junge Menschen nicht nur als Adressat:innen von Angeboten, sondern als Gestalter:innen ihrer eigenen Lernerfahrungen wahrgenommen werden. Besonders wichtig ist uns, dass die jungen Menschen aus beiden Schulen nicht nur teilnehmen, sondern aktiv mitgestalten, sodass sie Verantwortung für den gemeinsamen Prozess übernehmen und ihre Ideen einbringen können.\n\nFür die Zukunft planen wir, diese Mitbestimmung systematisch auszubauen, indem wir einen **regelmäßigen „Ideen-Rat“** einführen, in dem Schüler:innen aus allen beteiligten Schulen Vorschläge für gemeinsame Projekte einbringen und über deren Umsetzung entscheiden. Ein erster Schritt könnte ein moderierter Workshop sein, in dem die Jugendlichen ihre Wünsche und Ideen sammeln – etwa zu Themen wie Musik oder sozialem Engagement, sodass ihre Bedürfnisse und Interessen direkt in die Jahresplanung einfließen. Die Ergebnisse würden dann in die Jahresplanung der Schulen einfließen, weil die Verankerung der Partizipation im schulischen Alltag die Nachhaltigkeit der Teilhabe sichert.\n\n[TODO: Zusammensetzung und Entscheidungswege des Ideen-Rats vor Einreichung konkretisieren]\n\n## Barrierefreiheit\n\nUnser Vorhaben setzt genau dort an, wo die täglichen Wege zwischen den beiden Schulen und die unterschiedlichen Bedarfe der Schüler:innen zu unsichtbaren Mauern werden, weil die fehlende Abstimmung zwischen den Häusern und den Förderplänen der Kinder Barrieren schafft, die besonders diejenigen treffen, die ohnehin schon an den Rändern stehen. Die Grundschule Huckarder Straße und die Förderschule liegen zwar nur wenige Gehminuten auseinander, doch die fehlende Abstimmung zwischen den Häusern und den Förderplänen der Kinder schafft Barrieren, die besonders diejenigen treffen, die ohnehin schon an den Rändern stehen.\n\nUm diese Barrieren abzubauen, planen wir, **assistive Technologien** einzusetzen, die dort eingesetzt werden, wo sie gebraucht werden, sodass die Teilhabe der Kinder durch passgenaue Hilfsmittel gestärkt wird. Dazu gehören etwa Hörgeräte mit Bluetooth-Übertragung für den Musikunterricht oder taktile Materialien für den Unterricht. Zudem soll die Mobilität von Teilnehmenden mit Behinderung zu gemeinsamen Aktivitäten durch die Finanzierung von Fahrtkosten sichergestellt werden.\n\nDie Technologien und die Begleitung sind dabei keine einmalige Anschaffung, sondern werden so ausgewählt, dass sie langfristig in den Schulalltag integriert werden können – etwa durch Schulungen der Lehrkräfte im Umgang mit den Geräten, weil die Nachhaltigkeit der Maßnahmen nur durch die Verankerung im schulischen System gesichert werden kann.\n\n## Wirkung und Nachhaltigkeit\n\nDie angestrebte Wirkung dieses Vorhabens zeigt sich auf zwei Ebenen: bei den teilnehmenden Kindern und in der institutionellen Zusammenarbeit, weil die Verbindung von individueller Förderung und struktureller Verankerung die Grundlage für eine nachhaltige Wirkung bildet. Für die Schüler:innen erwarten wir eine messbare Stärkung ihrer **sozialen Teilhabe und Selbstwirksamkeit** im schulischen Alltag, weil die gemeinsame Musikpraxis mit der Partnerschule den Kindern regelmäßige Gelegenheiten bietet, sich über Fächergrenzen hinweg als kompetent und eingebunden zu erleben. Konkrete Ankerpunkte hierfür sind die gemeinsame Musikpraxis mit der Partnerschule, die den Kindern regelmäßige Gelegenheiten bietet, sich über Fächergrenzen hinweg als kompetent und eingebunden zu erleben, sodass sie ihre Fähigkeiten in einem neuen Kontext ausprobieren und wertschätzen können.\n\nFür die Institution Schule streben wir eine **Verstetigung der Kooperation** über das Projektende hinaus an, weil die langfristige Zusammenarbeit die Grundlage für eine nachhaltige Wirkung bildet. Derzeit besteht zwar eine lose Zusammenarbeit, doch fehlt es an verbindlichen Strukturen, die den Austausch und die gemeinsame Planung langfristig tragen. Hier setzen wir an: Durch regelmäßige Treffen der Lehrkräfte und die Einrichtung eines **gemeinsamen Projektordners** soll die Praxis der Zusammenarbeit dokumentiert und für neue Kolleg:innen zugänglich gemacht werden, weil die Dokumentation und Reflexion der gemeinsamen Arbeit die Qualität und Kontinuität der Kooperation sichert. Die Grundschule Huckarder Straße hat bereits ihr Interesse an einer Fortführung signalisiert; eine **schriftliche Absichtserklärung** liegt vor und wird als Anlage beigefügt, sodass die Bereitschaft der Schule zur langfristigen Zusammenarbeit dokumentiert ist. So entsteht eine tragfähige Basis, auf der die Kooperation auch nach Projektende weitergeführt werden kann. Die Nachhaltigkeit sichern wir zudem durch die Einbindung der Ergebnisse in die schulinternen Konzepte, etwa durch die Verankerung der gemeinsamen Aktivitäten in den Jahresplanungen beider Schulen, weil die Integration in die schulischen Strukturen die langfristige Umsetzung der Formate gewährleistet.\n\n[TODO: Schriftliche Absichtserklärung der Grundschule Huckarder Straße zur Fortführung der Kooperation vor Einreichung als Anlage beifügen]\n\n## Finanzierungs- und Kostenplan\n\nDer Finanzierungs- und Kostenplan für das Vorhaben orientiert sich an den konkreten Kooperationspartnern und den geplanten Aktivitäten. Für die Durchführung von Musikangeboten werden **Honorarkräfte** eingeplant, die von einem anerkannten Träger der Jugendhilfe gestellt werden. Hierfür beantragen wir Mittel in Höhe von 12.000 EUR, die für externe Musik-Workshops verwendet werden. [Annahme: Die Honorarkräfte werden vom SkF Dortmund beauftragt] und sind für die pädagogische Begleitung der gemeinsamen Projekte verantwortlich.\n\nFür die Anschaffung von **Materialien und assistiven Technologien** beantragen wir 11.000 EUR. Dazu gehören unter anderem taktile Instrumente, Bewegungsmaterialien und technische Hilfsmittel, die sowohl im Unterricht als auch in den gemeinsamen Projekten eingesetzt werden. [Annahme: Die Geräte werden nach Projektende dauerhaft in den Schulen verbleiben], um die Nachhaltigkeit zu sichern.\n\nSachmittel für die Organisation und Durchführung der Termine – etwa Druckkosten für Einladungen, Versicherungen und Verbrauchsmaterialien – sind mit 3.000 EUR veranschlagt. Reisekosten für die Mobilität von Teilnehmenden mit Behinderung zu gemeinsamen Aktivitäten fallen voraussichtlich in Höhe von 2.000 EUR an.\n\nDer **Eigenanteil** wird durch den SkF Dortmund e.V. aufgebracht. Hierfür werden Mittel in Höhe von 5.500 EUR eingesetzt, die für Projekte zur Teilhabe und Inklusion zur Verfügung stehen. Die genaue Aufteilung der Eigenmittel auf die einzelnen Posten wird im Rahmen der finalen Budgetplanung vorgenommen.\n\n[TODO: Eigenanteil: konkrete Aufteilung der Mittel auf Personal-, Sach- und Reisekosten vor Einreichung finalisieren]\n[TODO: Honorarsätze und Terminzahlen mit den Kooperationspartnern verbindlich abstimmen]\n[TODO: Materialliste mit konkreten Geräten und Stückzahlen vorlegen]",
       "finanzplan": {
         "posten": [
           {
-            "id": "976601c2-855c-4769-88af-fe005f483e4f",
+            "id": "f9b22b09-a25e-4be3-aaa8-70db35e08021",
             "kategorie": "personal",
             "bezeichnung": "Projektkoordination Inklusionskooperation",
-            "betragEur": 25000,
-            "begruendung": "Schaetzung: 1 Stelle (50% Stelle) für 12 Monate à 2.500 EUR/Monat (inkl. Sozialabgaben) — Posten für Trägerpersonal zur Koordination mit Schulen",
+            "betragEur": 24000,
+            "begruendung": "Schaetzung: 1,5 VZÄ Projektkoordination (50% Stelle) für 2 Jahre à 24.000 EUR (16.000 EUR/Jahr inkl. Sozialabgaben)",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "29b2c34d-5b1e-4c7d-ba28-b3c39d888379",
-            "kategorie": "personal",
-            "bezeichnung": "Schulsozialarbeit für Inklusionsprojekt",
-            "betragEur": 18000,
-            "begruendung": "Schaetzung: 1 Stelle (30% Stelle) für 12 Monate à 1.500 EUR/Monat (inkl. Sozialabgaben) — Trägerpersonal für direkte Arbeit mit Schüler:innen",
-            "eigenanteil": false,
-            "istVorschlag": true
-          },
-          {
-            "id": "d9abdc35-03d1-4de3-b39f-57f25f23b250",
+            "id": "58547f7c-785c-4a72-80b3-d123e33bef90",
             "kategorie": "honorare",
             "bezeichnung": "Externe Musik-Workshops",
-            "betragEur": 8000,
-            "begruendung": "Schaetzung: Honorar für externe Fachkräfte für Musik-Workshops (40 Teilnehmende, 20 Termine à 100 EUR) — Projektbezogene Honorarkosten",
+            "betragEur": 12000,
+            "begruendung": "Schaetzung: 10 Workshops à 1.200 EUR (inkl. Material, Honorar, Fahrtkosten) für 40 Teilnehmende",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "fa3dcc23-e8bf-46d1-afd9-9ead4d835835",
-            "kategorie": "honorare",
-            "bezeichnung": "Peer-Coaches für Sport/Bewegung",
-            "betragEur": 5000,
-            "begruendung": "Schaetzung: Honorar für Peer-Coaches (40 Teilnehmende, 10 Termine à 50 EUR) — Projektbezogene Honorarkosten",
-            "eigenanteil": false,
-            "istVorschlag": true
-          },
-          {
-            "id": "5e1ae3ec-c1d5-4d63-a4c2-e30fc8b4eba9",
+            "id": "4ad43483-50a9-4580-a5f0-db2bb05afb89",
             "kategorie": "sachkosten",
-            "bezeichnung": "Material für inklusive Workshops",
+            "bezeichnung": "Projektmaterial und Druck",
             "betragEur": 3000,
-            "begruendung": "Schaetzung: Materialien, Druckkosten, Lizenzen für inklusive Angebote (z. B. inklusive Musikinstrumente, Sportmaterial)",
+            "begruendung": "Schaetzung: Materialien für Workshops, Flyer, Plakate, Lizenzen für 2 Jahre",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "170dd942-a961-42f6-9bd4-7debbcfcc1d0",
+            "id": "52045935-5def-44c8-8254-e448e7a94e66",
             "kategorie": "investitionen",
             "bezeichnung": "Assistive Technologien für Teilhabe",
-            "betragEur": 12000,
-            "begruendung": "Schaetzung: Anschaffung von assistiven Geräten/Technologien für inklusive Angebote (z. B. für Schüler:innen mit Behinderung)",
+            "betragEur": 8000,
+            "begruendung": "Schaetzung: Geräte für inklusive Angebote (z. B. Tablets mit Anpassungen, Sensoren) für 40 Teilnehmende",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "ab5023cc-414c-4f5f-b0b4-329e03691017",
+            "id": "59afacb5-a6a8-421b-8f23-96a37289c94a",
             "kategorie": "reisekosten",
-            "bezeichnung": "Mobilität für inklusive Angebote",
+            "bezeichnung": "Fahrtkosten für Teilnehmende mit Behinderung",
             "betragEur": 2000,
-            "begruendung": "Schaetzung: Fahrtkosten für Exkursionen, Begleitung von Teilnehmenden mit Behinderung, Kooperationsfahrten zwischen Schulen",
+            "begruendung": "Schaetzung: Begleitung und Mobilität für Teilnehmende mit Behinderung zu gemeinsamen Aktivitäten",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "cb2f9a84-9391-4d76-8809-c6943c474581",
+            "id": "749ee60b-e91c-4b74-8b36-4d97f6dd422e",
             "kategorie": "overhead",
-            "bezeichnung": "Verwaltungskosten (10% der förderfähigen Kosten)",
-            "betragEur": 7300,
-            "begruendung": "10% der förderfähigen Kosten (73.000 EUR) als pauschaler Overhead für Trägerverwaltung",
+            "bezeichnung": "Verwaltungskosten des Trägers",
+            "betragEur": 5200,
+            "begruendung": "10% der förderfähigen Kosten (24.000 + 12.000 + 3.000 + 8.000 + 2.000 = 49.000 EUR) als Overhead-Pauschale",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "5e4f006e-b98b-409c-ae41-288ee366af3c",
+            "id": "7e1379d3-244c-4e3d-9563-12a85550fc66",
             "kategorie": "sonstiges",
-            "bezeichnung": "Eigenanteil (10%)",
-            "betragEur": 7300,
-            "begruendung": "Mindest-Eigenanteil von 10% der Gesamtkosten (73.000 EUR) — kann durch Träger oder Kooperationspartner eingebracht werden",
+            "bezeichnung": "Eigenanteil in Form von Eigenarbeit",
+            "betragEur": 5500,
+            "begruendung": "Mindestens 10% der förderfähigen Kosten (49.000 EUR) als Eigenanteil durch Lehrkräfte und Schulpersonal (Dokumentation der Stunden erforderlich)",
             "eigenanteil": true,
             "istVorschlag": true
           }
         ],
-        "generiertAm": "2026-07-22T12:19:37.746Z",
+        "generiertAm": "2026-07-23T09:56:30.568Z",
         "hinweise": [
           "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
-          "Alle Beträge sind grobe Schaetzungen ohne konkrete Angebote oder Mengenangaben der Schule — vor Einreichung durch Angebote belegen.",
-          "Schülerzahl: 150–200 (Widerspruch im User-Input) — hier mit 150 gerechnet.",
-          "Zielgruppe/Zielsetzung: Projektinhalte (Musik/Sport) unklar — hier als inklusive Workshops angenommen.",
-          "Teilnehmendenzahl: 40 (unklare Angabe: pro Schule oder gesamt) — hier als Gesamtzahl angenommen.",
-          "Honorar- und Stundensätze nicht vom User genannt — pauschale Schaetzungen für Workshops/Peer-Coaches.",
-          "Assistive Technologien: Keine konkreten Geräte oder Preise genannt — pauschale Schaetzung für inklusive Ausstattung.",
-          "Eigenanteil: 10% der Gesamtkosten (73.000 EUR) — kann durch Träger oder Kooperationspartner (z. B. Sachleistungen) erbracht werden.",
-          "Der Betrag für „Projektkoordination Inklusionskooperation\" (25.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Schulsozialarbeit für Inklusionsprojekt\" (18.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Externe Musik-Workshops\" (8.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Peer-Coaches für Sport/Bewegung\" (5.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Material für inklusive Workshops\" (3.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Assistive Technologien für Teilhabe\" (12.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Mobilität für inklusive Angebote\" (2.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Die Förderung (80.300 EUR) entspricht 92 % der Gesamtkosten — dieses Programm fördert höchstens 90 %. Es fehlt ein Eigenanteil von mind. 1.622 EUR (Gesamtkosten dann 89.222 EUR). Ergänzen Sie einen Eigenanteil-Posten oder senken Sie die beantragte Förderung, sonst verletzt der Antrag die Förderquote."
+          "Schülerzahl und Teilnehmendenzahl unklar (200 vs. 150 vs. 40) — Posten basieren auf konservativer Schätzung von 40 Teilnehmenden.",
+          "Keine konkreten Honorar-/Stundensätze oder Gerätepreise vom User genannt — Posten als Pauschalen geschätzt.",
+          "Kooperationspartner unklar (Grundschule vs. Realschule vs. beide) — Posten beziehen sich auf gemeinsame Aktivitäten.",
+          "Projektinhalte (Sport/Bewegung vs. Musik) unklar — Posten beziehen sich auf flexible Angebote.",
+          "Kein Träger benannt — Posten für Projektkoordination beim Träger als Annahme gesetzt.",
+          "Gesamtkosten: 54.500 EUR (Förderung 49.000 EUR + Eigenanteil 5.500 EUR). Beantragte Förderung liegt unter der maximalen Förderhöhe von 350.000 EUR.",
+          "Der Betrag für „Projektkoordination Inklusionskooperation\" (24.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Externe Musik-Workshops\" (12.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Projektmaterial und Druck\" (3.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Assistive Technologien für Teilhabe\" (8.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Fahrtkosten für Teilnehmende mit Behinderung\" (2.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
         ]
       }
     },
@@ -974,127 +912,141 @@
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5971,
-          "candidatesTokens": 395
+          "candidatesTokens": 349
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5989,
-          "candidatesTokens": 388
-        }
-      },
-      {
-        "model": "mistral-small-latest",
-        "usage": {
-          "promptTokens": 5909,
-          "candidatesTokens": 497
-        }
-      },
-      {
-        "model": "mistral-small-latest",
-        "usage": {
-          "promptTokens": 5936,
-          "candidatesTokens": 435
-        }
-      },
-      {
-        "model": "mistral-small-latest",
-        "usage": {
-          "promptTokens": 5923,
-          "candidatesTokens": 342
-        }
-      },
-      {
-        "model": "mistral-small-latest",
-        "usage": {
-          "promptTokens": 5917,
           "candidatesTokens": 334
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
+          "promptTokens": 5909,
+          "candidatesTokens": 475
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 5936,
+          "candidatesTokens": 392
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 5923,
+          "candidatesTokens": 476
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 5917,
+          "candidatesTokens": 429
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
           "promptTokens": 5933,
-          "candidatesTokens": 428
+          "candidatesTokens": 521
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 8601,
-          "candidatesTokens": 2160
+          "promptTokens": 8758,
+          "candidatesTokens": 2323
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 11241,
-          "candidatesTokens": 3279
+          "promptTokens": 11126,
+          "candidatesTokens": 3093
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 8624,
-          "candidatesTokens": 1011
+          "promptTokens": 2533,
+          "candidatesTokens": 3016
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4760,
-          "candidatesTokens": 2188
+          "promptTokens": 8981,
+          "candidatesTokens": 854
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4872,
-          "candidatesTokens": 3217
+          "promptTokens": 4436,
+          "candidatesTokens": 3857
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 5338,
+          "candidatesTokens": 1458
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 4903,
+          "candidatesTokens": 3309
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 3394,
-          "candidatesTokens": 1128
+          "candidatesTokens": 927
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4712,
-          "candidatesTokens": 353
+          "promptTokens": 4613,
+          "candidatesTokens": 425
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4934,
-          "candidatesTokens": 3039
+          "promptTokens": 4872,
+          "candidatesTokens": 3010
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4534,
-          "candidatesTokens": 437
+          "promptTokens": 4314,
+          "candidatesTokens": 593
         }
       }
     ]
   },
   "meta": {
-    "iso": "2026-07-22T12-19-57",
+    "iso": "2026-07-23T09-56-51",
     "runIndex": 3,
-    "pipelineCommitSha": "1f0d8782",
+    "pipelineCommitSha": "99a74cd7",
     "featureFlags": {
       "useVorbildFormulierungen": "true",
       "complianceStageEnabled": "false",
       "sharpPrompts": "true",
       "geberRoutingV2": "true"
     },
-    "latencyMs": 115786,
+    "latencyMs": 154181,
     "schemaVersion": 1
   }
 }

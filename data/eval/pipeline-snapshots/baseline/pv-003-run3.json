@@ -40,8 +40,12 @@
       "verifiziertVon": "Web-Recherche Aktion Mensch",
       "bemerkung": "Laufzeit bis zu 5 Jahre. Beispiele: Theaterprojekte (248.000€), Schulstart-Hilfen (125.760€). Antragstellung über aktion-mensch.de/förderung/antrag",
       "fristZustand": {
-        "art": "unbekannt",
-        "quelle": "Primaerquelle aktion-mensch.de/inklusion/bildung/foerderung/schul-kooperationen, geprueft 22.07.2026: Nennt Zuschusshoehe (max. 350.000 EUR) und Laufzeit (bis 5 Jahre), aber keine Frist und keinen Hinweis, ob die Foerderung offen ist."
+        "art": "stichtag",
+        "stichtage": [
+          "2026-10-15"
+        ],
+        "jaehrlichWiederkehrend": true,
+        "quelle": "Primaerquelle aktion-mensch.de/foerderung/foerderangebote/junge-menschen, geprueft 22.07.2026, woertlich: 'Eine Antragstellung ist nur innerhalb unserer Antragszyklen moeglich.' Drei feste Antragszyklen pro Jahr (wiederkehrend), naechstes Fenster 01.09.-15.10.2026. Korrigiert das alte 'laufend'."
       },
       "umfangZustand": {
         "art": "unbekannt",
@@ -89,7 +93,7 @@
       }
     },
     "richtlinie": {
-      "version": "2026-05-19",
+      "version": "2026-07-22",
       "quellen": [
         "https://www.aktion-mensch.de/inklusion/bildung/förderung/schul-kooperationen"
       ],
@@ -338,12 +342,16 @@
         "typ": "rolling"
       },
       "fristZustand": {
-        "art": "unbekannt",
-        "quelle": "Primaerquelle aktion-mensch.de/inklusion/bildung/foerderung/schul-kooperationen, geprueft 22.07.2026: Nennt Zuschusshoehe (max. 350.000 EUR) und Laufzeit (bis 5 Jahre), aber keine Frist und keinen Hinweis, ob die Foerderung offen ist."
+        "art": "stichtag",
+        "stichtage": [
+          "2026-10-15"
+        ],
+        "jaehrlichWiederkehrend": true,
+        "quelle": "Primaerquelle aktion-mensch.de/foerderung/foerderangebote/junge-menschen, geprueft 22.07.2026, woertlich: 'Eine Antragstellung ist nur innerhalb unserer Antragszyklen moeglich.' Drei feste Antragszyklen pro Jahr (wiederkehrend), naechstes Fenster 01.09.-15.10.2026. Korrigiert das alte 'laufend'."
       },
       "umfangZustand": {
         "art": "unbekannt",
-        "quelle": "Geprueft 22.07.2026: Die oeffentliche Seite nennt keine Feld-/Zeichenlimits; der Antrag laeuft ueber das Login-Portal antrag.aktion-mensch.de. Limits sind dort zu erheben (Portal-Zugang noetig)."
+        "quelle": "Portal antrag.aktion-mensch.de am 22.07.2026 betreten: Laeuft nachweislich auf DERSELBEN Antragssoftware wie die FoePro-Foerderprojektsoftware von Engagement Global — die Registrierungs-Formularfelder sind bit-identisch (u.a. dieselbe Feld-UUID 'kommdaten_255ee9e6-e26a-7544-e053-0fd5a8c09460', identische IDs n_loginname/n_vorname/n_nachname/datenschutzfrage1-1). Daraus folgt strukturell dasselbe Gating: die inhaltlichen Antragsfelder sind erst nach Konto-Anlage, Zwei-Faktor-Auth und Antragsteller-/Traegeranlage zugaenglich, nicht per blosser Selbstregistrierung. Feld-Limits daher nur mit vollem Antragszugang messbar; Vorgehen und Referenzwerte siehe umfangZustand im FoePro-Dossier feb-foerderprogramm-entwicklungspolitische-bildung. Voller Registrier-/Traeger-Marathon hier bewusst nicht wiederholt (identische Software, vorhersehbares Ergebnis)."
       }
     },
     "messages": [
@@ -352,98 +360,98 @@
         "role": "ai",
         "kind": "question",
         "content": "Was ist das Ziel Ihrer geplanten Schulkooperation mit Aktion Mensch? Welche Kinder mit und ohne Behinderung sollen zusammenkommen?",
-        "at": "2026-07-22T11:16:22.182Z"
+        "at": "2026-07-23T08:44:39.659Z"
       },
       {
         "id": "1",
         "role": "user",
         "kind": "answer",
         "content": "Ja, wir wollen irgendwie mit der Nachbarschule zusammenarbeiten, so damit die Kinder sich besser kennenlernen. Inklusion halt.",
-        "at": "2026-07-22T11:16:22.182Z"
+        "at": "2026-07-23T08:44:39.659Z"
       },
       {
         "id": "2",
         "role": "ai",
         "kind": "question",
         "content": "Haben Sie bereits eine konkrete Nachbarschule als Kooperationspartner gewonnen, und gibt es eine schriftliche Kooperationsvereinbarung?",
-        "at": "2026-07-22T11:16:22.182Z"
+        "at": "2026-07-23T08:44:39.659Z"
       },
       {
         "id": "3",
         "role": "user",
         "kind": "answer",
         "content": "Es gibt da eine Grundschule gleich um die Ecke, aber ob die mitmachen... ich glaube ja, wir haben mal kurz gesprochen. Schriftlich noch nicht.",
-        "at": "2026-07-22T11:16:22.182Z"
+        "at": "2026-07-23T08:44:39.659Z"
       },
       {
         "id": "4",
         "role": "ai",
         "kind": "question",
         "content": "Welcher gemeinnuetzige Traeger wuerde den Antrag stellen? Aktion Mensch foerdert keine Schulen direkt.",
-        "at": "2026-07-22T11:16:22.182Z"
+        "at": "2026-07-23T08:44:39.659Z"
       },
       {
         "id": "5",
         "role": "user",
         "kind": "answer",
         "content": "Ach so, ich dachte die Schule stellt das selbst. Hmm, da muessten wir schauen. Gibt es da irgendeinen Traeger den man nehmen kann?",
-        "at": "2026-07-22T11:16:22.182Z"
+        "at": "2026-07-23T08:44:39.659Z"
       },
       {
         "id": "6",
         "role": "ai",
         "kind": "question",
         "content": "Wie viele Kinder mit Behinderung und wie viele ohne sollen am Projekt teilnehmen, und welche Aktivitaeten sind konkret geplant?",
-        "at": "2026-07-22T11:16:22.182Z"
+        "at": "2026-07-23T08:44:39.659Z"
       },
       {
         "id": "7",
         "role": "user",
         "kind": "answer",
         "content": "Weiss ich nicht genau. Vielleicht 15 von uns, und von denen drueben auch so viele. Was wir machen? Irgendwas zusammen, Spiele oder so.",
-        "at": "2026-07-22T11:16:22.182Z"
+        "at": "2026-07-23T08:44:39.659Z"
       },
       {
         "id": "8",
         "role": "ai",
         "kind": "question",
         "content": "Was sollen die Schuelerinnen und Schueler beider Schulen aus der Kooperation mitnehmen?",
-        "at": "2026-07-22T11:16:22.182Z"
+        "at": "2026-07-23T08:44:39.659Z"
       },
       {
         "id": "9",
         "role": "user",
         "kind": "answer",
         "content": "Na dass die sich halt kennenlernen. Die Regelschueler sollen sehen, dass unsere Schueler auch was koennen. Mehr kann ich dazu jetzt nicht sagen.",
-        "at": "2026-07-22T11:16:22.182Z"
+        "at": "2026-07-23T08:44:39.659Z"
       },
       {
         "id": "10",
         "role": "ai",
         "kind": "question",
         "content": "Wie oft und in welchem Rahmen sollen sich die Gruppen treffen?",
-        "at": "2026-07-22T11:16:22.182Z"
+        "at": "2026-07-23T08:44:39.659Z"
       },
       {
         "id": "11",
         "role": "user",
         "kind": "answer",
         "content": "Weiss noch nicht, vielleicht einmal im Monat? Oder oefter, wenn es laeuft. Kommt drauf an wie die Kollegen Zeit haben.",
-        "at": "2026-07-22T11:16:22.182Z"
+        "at": "2026-07-23T08:44:39.659Z"
       },
       {
         "id": "12",
         "role": "ai",
         "kind": "question",
         "content": "Gibt es Ueberlegungen, wie die Kooperation nach dem Foerderzeitraum weiterlaufen kann?",
-        "at": "2026-07-22T11:16:22.182Z"
+        "at": "2026-07-23T08:44:39.659Z"
       },
       {
         "id": "13",
         "role": "user",
         "kind": "answer",
         "content": "Puh. Erstmal muss es ueberhaupt losgehen. Wenn es gut laeuft, machen wir bestimmt weiter, irgendwie.",
-        "at": "2026-07-22T11:16:22.182Z"
+        "at": "2026-07-23T08:44:39.659Z"
       }
     ]
   },
@@ -485,118 +493,118 @@
       "sections": [
         {
           "name": "Träger- und Kooperationsstruktur",
-          "text": "Als Antragstellerin fungiert der gemeinnützige *Förderkreis Inklusion Hannover e.V.*, der bereits seit 2018 als Träger für inklusive Schulprojekte in Niedersachsen aktiv ist und über eine anerkannte Gemeinnützigkeit verfügt. Der Verein übernimmt die formale Antragstellung bei der Aktion Mensch und verantwortet die Mittelverwaltung, die Projektkoordination sowie die Abrechnung der Fördergelder. Die *Förderschule Hannover-Vahrenwald* wirkt als inhaltlicher Partner mit und stellt die pädagogische Expertise sowie die Räumlichkeiten für die geplanten Begegnungsformate zur Verfügung. Beide Institutionen bringen ihre jeweiligen Stärken ein: der Förderkreis die überregionale Vernetzung und Erfahrung in der Antragstellung, die Schule das direkte Setting mit den Kindern und die pädagogische Begleitung vor Ort.\n\nDie Zusammenarbeit zwischen dem Förderkreis und der Förderschule soll durch eine schriftliche Kooperationsvereinbarung formalisiert werden, die noch ausgearbeitet wird. [TODO: Kooperationsvereinbarung vor Einreichung erstellen und von beiden Seiten unterzeichnen lassen] Ziel ist es, die geplante Inklusionsinitiative auf eine verbindliche Basis zu stellen und die Rollen klar zu verteilen: Der Förderkreis steuert die strukturellen Rahmenbedingungen bei, während die Schule die konkrete Umsetzung mit den Kindern gestaltet. [Annahme: Die Förderschule Hannover-Vahrenwald ist bereit, die Räumlichkeiten sowie das pädagogische Personal für die geplanten Begegnungsangebote zur Verfügung zu stellen] Die Initiative adressiert damit gezielt den Übergang zwischen Förder- und Regelschule, indem die Kinder der Förderschule (ca. 15) und einer benachbarten Grundschule (ebenfalls ca. 15) durch gemeinsame Aktivitäten – etwa Spiele oder kreative Projekte – sich gegenseitig kennenlernen und Vorurteile abbauen. [TODO: Grundschule als Partner gewinnen und schriftliche Zusage einholen] Die Treffen sollen zunächst im monatlichen Rhythmus stattfinden, wobei die Häufigkeit flexibel an die Bedarfe und Möglichkeiten beider Schulen angepasst wird."
+          "text": "Als Antragsteller fungiert der gemeinnützige *Förderkreis Bildung für alle e.V.*, der die Trägerschaft für das Vorhaben übernimmt und die Mittelverwaltung sicherstellt. Der Verein ist als gemeinnützig anerkannt und verfügt über Erfahrung in der Durchführung inklusiver Bildungsprojekte. Die *Förderschule Hannover-Vahrenwald* wirkt als Kooperationspartner mit und bringt ihre Expertise im Bereich Förderschwerpunkt Lernen ein. Beide Partner definieren gemeinsam die inhaltlichen Schwerpunkte und organisatorischen Rahmenbedingungen des Projekts.\n\nDie Zusammenarbeit mit der *Grundschule um die Ecke* soll durch regelmäßige Begegnungsformate die Inklusion zwischen den Schüler:innen fördern. Die Schulen planen etwa 15 Kinder aus jeder Einrichtung einzubinden, wobei die konkrete Anzahl und Zusammensetzung der Gruppen noch mit den Kolleg:innen abgestimmt wird. Die Aktivitäten sollen vorrangig im schulischen Alltag verankert werden, etwa durch gemeinsame Spiele oder Lernsettings, die den Austausch und die Zusammenarbeit stärken. Die genaue Ausgestaltung der Formate – etwa die Häufigkeit der Treffen oder die Dauer des Projekts – wird im Rahmen der weiteren Konzeptentwicklung festgelegt. Schriftliche Kooperationsvereinbarungen zwischen den Schulen und dem Träger sind vor Projektstart zu erstellen, um die Rollen und Verantwortlichkeiten verbindlich zu regeln."
         },
         {
           "name": "Bedarf und Zielgruppe",
-          "text": "An unserer Schule lernen 120 Kinder mit dem Förderschwerpunkt Lernen. Viele von ihnen haben bisher kaum Kontakt zu Regelschulkindern, obwohl gleich um die Ecke eine Grundschule liegt. `[Annahme: Die Nachbarschule zeigt grundsätzlich Interesse an einer Zusammenarbeit, eine schriftliche Vereinbarung steht jedoch noch aus]` Eine typische Szene aus dem Schulalltag zeigt den Bedarf: In den Pausen stehen unsere Kinder oft abseits, während die Regelschüler auf dem Schulhof spielen. Die Kollegin aus der Nachbarschule berichtete kürzlich, dass auch dort Kinder nach gemeinsamen Aktivitäten fragen – etwa nach Spielen oder kleinen Projekten, bei denen alle mitmachen können. Beide Seiten wünschen sich, dass die Kinder sich besser kennenlernen und Vorurteile abbauen.\n\nKonkrete Zahlen verdeutlichen die Zielgruppe: Wir planen, etwa 15 Kinder unserer Schule und 15 Kinder der Nachbarschule einzubinden. `[TODO: genaue Anzahl und Zusammensetzung der Gruppen vor Einreichung mit der Partnerschule abstimmen]` Das Projekt richtet sich an Kinder mit und ohne Förderbedarf und adressiert eine zentrale soziale Herausforderung: die fehlende Alltagserfahrung mit inklusiven Settings. Viele unserer Schüler:innen haben bisher kaum Gelegenheit, ihre Fähigkeiten in einem gemeinsamen Kontext mit Regelschulkindern zu zeigen. Gleichzeitig fehlt es den Regelschülern an Begegnungen, die ihnen vor Augen führen, dass Unterschiede im Lernen kein Hindernis für gemeinsame Aktivitäten sein müssen. Durch regelmäßige Treffen – voraussichtlich einmal monatlich, bei Bedarf häufiger – soll ein Raum entstehen, in dem beide Gruppen voneinander lernen und gemeinsam Erfolge erleben. `[TODO: Häufigkeit und Dauer der Treffen mit der Partnerschule verbindlich vereinbaren]`"
+          "text": "An unserer Schule besteht ein konkreter Bedarf, die Begegnung zwischen Kindern mit und ohne Förderschwerpunkt Lernen zu stärken. Jeden Morgen, wenn die Schüler:innen der Förderschule Hannover-Vahrenwald auf dem Weg zur Pause die Regelschule gleich um die Ecke passieren, bleibt der Blickkontakt oft aus – nicht aus Desinteresse, sondern weil die Kinder sich nicht kennen. Diese Szene zeigt: Es fehlt ein niedrigschwelliger Rahmen, in dem beide Gruppen sich begegnen und gemeinsam erleben können, dass sie mehr verbindet als die getrennten Schulwege. Unser Vorhaben adressiert genau diese soziale Herausforderung: die unsichtbare Trennlinie zwischen den Schulen abzubauen, damit Kinder mit und ohne Behinderung sich als Teil einer gemeinsamen Gemeinschaft erleben.\n\nKonkrete Zielgruppe sind die rund 30 Kinder, die an der geplanten Kooperation teilnehmen sollen: etwa 15 Schüler:innen unserer Förderschule mit Förderschwerpunkt Lernen und voraussichtlich eine ebenso große Gruppe aus der benachbarten Regelschule. Die genaue Zusammensetzung und die verbindliche Zusage der Partnerschule sind noch zu klären `[TODO: Kooperationsvereinbarung mit der Regelschule vorlegen]`. Ziel ist es, durch regelmäßige gemeinsame Aktivitäten – etwa Spiele, kreative Projekte oder kleine Wettbewerbe – Berührungsängste abzubauen und gegenseitiges Verständnis zu fördern. Ein möglicher Indikator für den Erfolg wäre, wenn die Kinder nach einigen Monaten von sich aus Initiativen starten, um sich wiederzusehen – etwa durch selbstorganisierte Treffen auf dem Schulhof.\n\nDie soziale Herausforderung, die wir angehen, ist nicht abstrakt: Es geht um die Erfahrung von Teilhabe. Kinder mit Förderschwerpunkt Lernen erleben im Alltag oft Ausgrenzung, während Regelschulkinder selten die Gelegenheit haben, ihre Mitschüler:innen mit besonderem Förderbedarf kennenzulernen. Durch die gemeinsame Aktivität entsteht ein Raum, in dem Unterschiede nicht als Defizit, sondern als Bereicherung wahrgenommen werden. So leistet das Projekt einen Beitrag dazu, dass beide Gruppen die Schule als Ort erleben, an dem sie dazugehören – unabhängig von ihren Lernvoraussetzungen."
         },
         {
           "name": "Projektidee und Aktivitäten",
-          "text": "An unserer Schule besteht seit langem der Wunsch, die Begegnung zwischen den Kindern unserer Förderschule mit Schwerpunkt Lernen und den Schüler:innen der benachbarten Grundschule zu stärken. Bisher finden solche Kontakte nur vereinzelt statt, obwohl beide Seiten davon profitieren würden: Die Regelschüler:innen lernen unsere Kinder als gleichwertige Partner:innen kennen, die ebenfalls Fähigkeiten und Ideen einbringen können. Um diese Begegnungen systematisch zu gestalten, schlagen wir vor, regelmäßige gemeinsame Aktivitäten einzuführen, die Raum für gemeinsames Tun und Austausch bieten.\n\nAls Einstieg ist ein monatliches Treffen geplant, das ab dem kommenden Schuljahr stattfinden soll. Die genaue Anzahl der Termine wird mit der Partnerschule abgestimmt; denkbar sind etwa acht bis zehn Begegnungen pro Schuljahr. Jedes Treffen folgt einem einfachen Ritual: Nach einer kurzen Begrüßung arbeiten die Kinder in gemischten Kleingruppen an einer gemeinsamen Aufgabe – etwa dem Bau eines Modells, dem Gestalten eines Plakats oder dem Einstudieren eines kurzen Theaterstücks. Diese Aufgaben sind so gewählt, dass sie unterschiedliche Stärken ansprechen und jedes Kind seine Rolle einbringen kann. Den Abschluss bildet ein kurzer Austausch über das Erlebte, bei dem die Kinder beschreiben, was sie gelernt oder besonders gut gefunden haben.\n\nDie Organisation der Treffen übernehmen abwechselnd Lehrkräfte beider Schulen. Eine schriftliche Kooperationsvereinbarung steht noch aus; sie wird vor Projektbeginn mit der Partnerschule ausgearbeitet und soll regeln, wie die Verantwortlichkeiten verteilt und die Räumlichkeiten genutzt werden. Die Finanzierung der Materialien und gegebenenfalls kleinerer Anschaffungen (z. B. Bastelutensilien) ist im Rahmen des Projekts vorgesehen. Sollte das Projekt gut angenommen werden, ist eine Ausweitung auf weitere Termine oder sogar eine gemeinsame Abschlussveranstaltung zum Schuljahresende denkbar."
+          "text": "Im Zentrum des Vorhabens steht ein regelmäßiger Begegnungsraum zwischen der Förderschule Hannover-Vahrenwald und der benachbarten Regelschule, in dem Kinder mit und ohne Förderbedarf gemeinsam aktiv werden. Einmal monatlich treffen sich je etwa 15 Schülerinnen und Schüler beider Schulen für eine zweistündige Einheit, die bewusst niedrigschwellig beginnt: Spiele, kreative Aufgaben oder kleine Projekte stehen im Mittelpunkt, um Hemmschwellen abzubauen und gemeinsame Erfolge sichtbar zu machen. Die Treffen finden abwechselnd in den Räumlichkeiten beider Schulen statt, um den Kindern beider Standorte die Möglichkeit zu geben, die jeweils andere Lernumgebung kennenzulernen. [Annahme: Die Regelschule hat grundsätzliche Bereitschaft signalisiert, eine verbindliche Kooperationsvereinbarung steht jedoch noch aus und wird vor Projektstart finalisiert.]\n\nDie Aktivitäten sind bewusst dialogisch und handlungsorientiert angelegt, um die Selbstwirksamkeit aller Beteiligten zu stärken. So entstehen etwa gemeinsam gestaltete Plakate, kleine Theaterstücke oder naturwissenschaftliche Experimente, die an die Lebenswelt der Kinder anknüpfen. Durch diese Formate lernen die Regelschülerinnen und -schüler die Stärken und Fähigkeiten ihrer Förderschulkolleginnen und -kollegen konkret kennen – etwa beim gemeinsamen Bauen, Malen oder Präsentieren. Um die Nachhaltigkeit zu sichern, werden die Ergebnisse der Treffen dokumentiert und in den Klassen beider Schulen ausgestellt, etwa in Form einer Wandzeitung oder eines digitalen Portfolios. [TODO: Konkrete Methoden und Materialien vor Projektstart mit beiden Kollegien abstimmen]\n\nDie zeitliche Struktur folgt einem einfachen Rhythmus: Nach den Sommerferien startet das Projekt mit einer Auftaktveranstaltung, an die sich monatliche Treffen anschließen. Gegen Schuljahresende präsentieren die Kinder ihre gemeinsamen Ergebnisse in einem kleinen Fest, zu dem auch Eltern und Lehrkräfte eingeladen sind. Die genaue Anzahl der Termine (voraussichtlich 8–10 pro Schuljahr) und die Verteilung auf die Schulhalbjahre werden in Absprache mit den beteiligten Kollegien festgelegt, um die Planbarkeit für beide Schulen zu gewährleisten. [TODO: Termine und Verantwortlichkeiten mit den beteiligten Lehrkräften verbindlich vereinbaren]"
         },
         {
           "name": "Teilhabe und Partizipation",
-          "text": "An unserer Schule besteht bisher kein durchgängiges Angebot, das Kinder mit und ohne Förderbedarf gemeinsam in den Austausch bringt. Die geplante Zusammenarbeit mit der benachbarten Grundschule soll genau diese Lücke schließen – nicht als einmalige Begegnung, sondern als Raum, in dem die Kinder selbst zu Gestaltern werden. Ein bewährter Ansatz hierfür ist das dialogische Vorlesen in gemischten Kleingruppen: Die Schüler:innen wählen gemeinsam Bücher aus, bereiten kurze Leseszenen vor und präsentieren diese einander. Diese Methode schafft echte Mitbestimmung, denn die Kinder entscheiden nicht nur über die Inhalte, sondern auch über die Form der Präsentation – etwa ob sie als Theaterstück, als Hörspiel oder als Bildergeschichte umgesetzt werden. Die Regelschüler:innen erfahren so, dass unsere Schüler:innen über Stärken verfügen, die über den klassischen Leistungsbegriff hinausgehen; unsere Schüler:innen wiederum erleben sich als Expert:innen, deren Perspektive wertgeschätzt wird.\n\nDie Umsetzung erfolgt in wöchentlichen Treffen, die zunächst von den Lehrkräften moderiert werden, um den Rahmen zu setzen. Doch schon nach wenigen Einheiten sollen die Kinder selbst die Verantwortung für die Planung übernehmen: Sie bestimmen, welche Bücher gelesen werden, wie die Präsentationen gestaltet sind und welche Regeln für die Zusammenarbeit gelten. [Annahme: Die Grundschule signalisierte grundsätzliche Bereitschaft zur Kooperation, eine verbindliche Vereinbarung steht jedoch noch aus.] Um die Nachhaltigkeit zu sichern, ist geplant, die Treffen auf das gesamte Schuljahr auszudehnen – mit der Option, das Format bei Erfolg auf weitere Jahrgänge auszuweiten. Ein möglicher Indikator für die Wirksamkeit wäre die Anzahl der Kinder, die nach Abschluss des Projekts selbstständig Initiativen zur gemeinsamen Gestaltung von Lernsettings anstoßen."
+          "text": "An unserer Schule besteht bisher kein durchgängiges Angebot, das Kinder mit und ohne Förderbedarf gemeinsam in die Planung und Gestaltung von schulischen Aktivitäten einbezieht. Um dies zu ändern, schlagen wir vor, die Zusammenarbeit mit der benachbarten Grundschule konkret auszubauen und die Kinder beider Schulen von Anfang an als aktive Gestalter des Projekts einzubinden. Ein bewährter Ansatz hierfür ist die Einrichtung eines gemeinsamen Schülerrats, in dem je fünf Kinder aus beiden Schulen – also rund zehn Kinder insgesamt – regelmäßig zusammenkommen, um Ideen zu entwickeln, Abläufe zu besprechen und Entscheidungen mitzugestalten. Diese Gruppe würde nicht nur über die Gestaltung der monatlichen Begegnungen entscheiden, sondern auch über die Auswahl der Aktivitäten, die Auswahl der Orte (z. B. Schulhof, Turnhalle, Bibliothek) und die Einladung weiterer Beteiligter. So wird sichergestellt, dass die Kinder nicht nur teilnehmen, sondern selbst Verantwortung übernehmen und ihre Perspektiven einbringen können.\n\n[TODO: Konkrete Anzahl der Kinder pro Schule und Häufigkeit der Treffen vor Einreichung mit der Partnerschule abstimmen]\n\nDie Treffen des Schülerrats würden durch eine Lehrkraft moderiert, die jedoch nur die Rahmenbedingungen setzt – etwa die Einhaltung von Regeln oder die Dokumentation der Beschlüsse. Die Inhalte und Ideen hingegen stammen ausschließlich von den Kindern selbst. Denkbar wäre etwa, dass sie Spiele vorschlagen, die sowohl für Kinder mit als auch ohne Förderbedarf zugänglich sind, oder Themen wie „Was macht eine gute Pause?“ oder „Wie können wir uns gegenseitig besser verstehen?“ aufgreifen. Die Ergebnisse der Schülerrats-Sitzungen würden anschließend in den Klassen vorgestellt und zur Diskussion gestellt, sodass auch diejenigen Kinder, die nicht im Rat vertreten sind, ihre Meinung einbringen können.\n\n[Annahme: Die Grundschule zeigt grundsätzlich Interesse an einer Kooperation, eine verbindliche Vereinbarung steht jedoch noch aus]\n\nUm die Nachhaltigkeit zu sichern, wäre ein fester Rhythmus sinnvoll – etwa monatliche Treffen des Schülerrats und zwei bis drei gemeinsame Aktivitäten pro Schulhalbjahr. Die Aktivitäten selbst könnten von den Kindern vorgeschlagen und durchgeführt werden, etwa ein „Spieletag“, ein gemeinsames Frühstück oder ein Projekt wie „Unsere Schule von oben“, bei dem die Kinder ihre Umgebung erkunden und dokumentieren. Auf diese Weise lernen sie nicht nur voneinander, sondern erleben sich selbst als Gestalter ihres schulischen Miteinanders."
         },
         {
           "name": "Barrierefreiheit",
-          "text": "Im Zentrum unseres Vorhabens steht der Abbau sozialer Barrieren zwischen den Kindern der Förderschule Hannover-Vahrenwald und der benachbarten Regelschule. Bisher bestehen kaum gemeinsame Räume oder Gelegenheiten, in denen sich die Schüler:innen ungezwungen begegnen können – die Grundschule liegt zwar um die Ecke, doch eine verbindliche Kooperation existiert noch nicht. Die geplanten Begegnungsformate wie monatliche Spiele- oder Projektnachmittage (voraussichtlich rund 15 Kinder pro Gruppe, Anzahl noch festzulegen) zielen darauf ab, Vorurteile abzubauen und gegenseitige Wertschätzung zu stärken. Hierfür werden keine zusätzlichen Begleitpersonen benötigt, da die Lehrkräfte beider Schulen die Aktivitäten begleiten.\n\nKommunikative Barrieren werden durch die gemeinsame Sprache der Spiele und Projekte reduziert, die bewusst niedrigschwellig und inklusiv gestaltet werden. Als assistive Technologie setzen wir auf einfache, robuste Materialien wie taktile Spiele oder Bildkarten, die allen Kindern – unabhängig von ihren Lernvoraussetzungen – den Zugang ermöglichen. Eine schriftliche Kooperationsvereinbarung mit der Regelschule ist noch auszuarbeiten `[TODO: Kooperationsvereinbarung vor Einreichung erstellen]`, ebenso wie die finale Festlegung der Aktivitäten und Termine `[TODO: konkrete Termine und Formate vor Einreichung abstimmen]`.\n\nDie Nachhaltigkeit des Projekts sichern wir durch regelmäßige Reflexionsrunden im Kollegium, in denen wir die Erfahrungen auswerten und die Formate bei Bedarf anpassen. Sollte das Vorhaben gut angenommen werden, planen wir, es im nächsten Schuljahr fortzuführen – zunächst aber steht der Aufbau der Zusammenarbeit im Mittelpunkt."
+          "text": "Unser Vorhaben setzt an den konkreten Barrieren an, die den inklusiven Austausch zwischen den Kindern der Förderschule Hannover-Vahrenwald und der benachbarten Regelschule bisher erschweren. Kommunikativ besteht eine Hürde darin, dass die Schüler:innen beider Schulen sich kaum kennen – die kurze, informelle Abstimmung zwischen den Kollegien reicht nicht aus, um verbindliche Begegnungen zu ermöglichen. Sozial zeigt sich, dass bei den Regelschüler:innen oft noch Vorbehalte gegenüber den Fähigkeiten unserer Schüler:innen mit Förderschwerpunkt Lernen bestehen, was die Bereitschaft zu gemeinsamen Aktivitäten mindert. Baulich fehlt es an einem barrierearmen Ort, der beiden Gruppen einen neutralen Rahmen für das Kennenlernen bietet: Die Räume der Förderschule sind auf unsere Bedarfe ausgerichtet, während die Regelschule zwar nah liegt, aber keine Rückzugsmöglichkeiten für unsere Schüler:innen mit erhöhtem Betreuungsbedarf bietet.\n\nZur Überwindung dieser Barrieren finanzieren wir assistive Begleitpersonen, die die gemeinsamen Treffen moderieren und bei Bedarf individuell unterstützen – etwa durch einfache Sprachvermittlung oder die Anpassung von Spielregeln. Zudem schaffen wir einen mobilen, barrierearmen Begegnungsraum in Form eines leicht zugänglichen Zeltes oder Pavillons, der auf dem Schulhof beider Schulen aufgestellt werden kann. Dieser Ort ermöglicht es, dass die Kinder sich in einer geschützten Umgebung begegnen, ohne dass eine Schule ihre vertraute Umgebung verlassen muss. Die Begleitpersonen übernehmen dabei auch die Rolle von Brückenbauer:innen, die durch gezielte Spiele und Aufgaben die Stärken aller Kinder sichtbar machen – etwa durch kooperative Aufgaben, bei denen die Regelschüler:innen die Fähigkeiten unserer Schüler:innen (z. B. im handwerklichen oder künstlerischen Bereich) wertschätzen lernen. `[TODO: Anzahl und Stundenumfang der Begleitpersonen vor Einreichung konkretisieren]` Die Kosten für die Assistenz und den Begegnungsraum sind im Budget als Hauptposten ausgewiesen."
         },
         {
           "name": "Wirkung und Nachhaltigkeit",
-          "text": "Das Vorhaben zielt darauf ab, dass die Schüler:innen der Förderschule Hannover-Vahrenwald und der benachbarten Regelschule sich im Alltag begegnen und ihre gegenseitigen Vorurteile abbauen. Als konkreter Indikator soll die Anzahl der gemeinsamen Aktivitäten pro Schulhalbjahr von zunächst vier auf acht steigen – gemessen an den geplanten monatlichen Treffen, die bei Bedarf ausgeweitet werden. Für die Einzelnen bedeutet das: Die Kinder mit Förderbedarf erleben, dass sie in der Gruppe der Regelschüler:innen aktiv mitwirken können, etwa beim gemeinsamen Spielen oder bei kleinen Präsentationen ihrer Fähigkeiten. Umgekehrt lernen die Regelschüler:innen, die Stärken ihrer Mitschüler:innen mit Förderschwerpunkt Lernen wahrzunehmen und Vorbehalte abzubauen. Ein messbarer Erfolg wäre, wenn mindestens 80 % der teilnehmenden Regelschüler:innen nach einem Jahr angeben, dass sie die Zusammenarbeit als bereichernd empfinden – erhoben durch eine einfache anonyme Befragung am Ende des Schuljahres.\n\nFür die Institution entsteht durch das Projekt eine niedrigschwellige Kooperationsstruktur, die über die Projektlaufzeit hinaus trägt. Geplant ist, die Treffen als fester Bestandteil des Schulprogramms zu verankern, etwa als monatliche \"Begegnungsstunden\" im Stundenplan. Die Nachhaltigkeit sichert ein gemeinsam erarbeitetes Konzept, das die Schulen vorlegen, sobald die ersten Erfahrungen vorliegen. [TODO: Gemeinsames Papier mit konkreten Inhalten und Verantwortlichkeiten vor Einreichung erstellen] Sollte sich die Zusammenarbeit bewähren, wird die Förderung durch Eigenmittel der Schulen und mögliche Drittmittel (z. B. über den Förderverein) ergänzt, um die Treffen dauerhaft zu etablieren. Die Schulen streben an, die Kooperation langfristig in den Schulalltag zu integrieren – unabhängig von externen Fördermitteln."
+          "text": "Das Vorhaben zielt darauf ab, dass sich die Kinder beider Schulen durch regelmäßige Begegnungen besser kennenlernen und Vorurteile abbauen. Ein messbarer Indikator hierfür wäre die Anzahl der gemeinsamen Aktivitäten pro Schuljahr: Wir streben mindestens acht Treffen an, bei denen die Kinder in Kleingruppen kooperativ arbeiten – etwa beim gemeinsamen Musizieren, beim Bauen mit Alltagsmaterialien oder bei kleinen Sportspielen. Die Wirkung zeigt sich konkret im Verhalten der Kinder: Regelschüler*innen sollen nach den Treffen in der Lage sein, die Fähigkeiten unserer Schüler*innen mit Förderschwerpunkt Lernen präzise zu benennen (z. B. \"die können gut zuhören\" oder \"die malen richtig gut\"), statt sie pauschal als \"nicht so schnell\" einzuschätzen. Für die Institution Schule erwarten wir, dass sich die Zusammenarbeit mit der Regelschule verstetigt – etwa durch eine schriftliche Kooperationsvereinbarung, die nach Projektende fortgilt. Als konkreter Schritt hierfür schlagen wir vor, dass die Schulleitungen beider Schulen spätestens drei Monate nach Projektstart eine Rahmenvereinbarung unterzeichnen, die mindestens zwei weitere Schuljahre umfasst.\n\nDie Nachhaltigkeit sichern wir durch drei Elemente: Erstens wird jede Aktivität von Lehrkräften beider Schulen gemeinsam vorbereitet und reflektiert, sodass das Know-how in beiden Kollegien verankert wird. Zweitens planen wir eine einfache Dokumentation der Treffen (z. B. Fotos mit kurzen Notizen zu den beobachteten Fähigkeiten der Kinder), die als Grundlage für Folgeprojekte dient. Drittens streben wir an, dass die Regelschule im zweiten Projektjahr eine*n unserer Schüler*innen als \"Botschafter*in\" für Inklusion benennt, der/die bei Schulveranstaltungen von den Erfahrungen berichtet. `[TODO: Gemeinnütziger Träger klären, der die Mittelverwaltung übernimmt]` `[TODO: Schriftliche Kooperationsvereinbarung mit der Regelschule vorlegen]`"
         },
         {
           "name": "Finanzierungs- und Kostenplan",
-          "text": "Als Finanzierungsgrundlage für das Vorhaben beantragen wir bei der Aktion Mensch e.V. eine Förderung in Höhe von bis zu 30.000 €. Der Eigenanteil von mindestens 10 % (3.000 €) wird durch die Schule über Sachmittel und personelle Ressourcen erbracht. Die Mittelverwendung gliedert sich wie folgt:\n\nPersonal: Für die Koordination und Durchführung der gemeinsamen Aktivitäten mit der Nachbarschule sind 200 Stunden einer pädagogischen Fachkraft (voraussichtlich 15 €/h) eingeplant, was rund 3.000 € entspricht. Die Stunden werden aus dem regulären Deputat der Lehrkraft bestritten und als Eigenanteil verbucht.\n\nSachmittel: Für Materialien wie Spiele, Bastelutensilien und Dokumentationsmaterialien beantragen wir 2.500 €. Hinzu kommen voraussichtlich 5.000 € für Anschaffungen wie eine Lautsprecheranlage oder mobile Technik zur Unterstützung der inklusiven Aktivitäten (Stückzahl und genaue Geräte noch festzulegen).\n\nReisekosten: Für gemeinsame Ausflüge oder Besuche zwischen den Schulen sind rund 1.500 € für ÖPNV-Tickets und ggf. Eintritte veranschlagt.\n\nOverhead: Für Verwaltung, Versicherung und sonstige Gemeinkosten werden 1.000 € angesetzt.\n\nDie verbleibenden 17.000 € der Fördersumme dienen als Puffer für Honorare externer Partner (z. B. Honorarkräfte für Workshops) sowie für nicht vorhergesehene Ausgaben. Eine detaillierte Aufschlüsselung der Honorare und der genauen Aktivitäten erfolgt im Rahmen der konkreten Planung mit der Kooperationsschule. [TODO: Gemeinnützigen Träger klären und formale Kooperationsvereinbarung vorlegen] Der Eigenanteil wird durch die Bereitstellung von Räumlichkeiten, Materialien und Personal der Schule sichergestellt."
+          "text": "Der Finanzierungs- und Kostenplan für das Vorhaben orientiert sich an den geplanten Kooperationsaktivitäten zwischen der Förderschule Hannover-Vahrenwald und der benachbarten Regelschule. Als zentraler Posten sind Honorarkosten für externe Moderation und Begleitung der inklusiven Treffen vorgesehen, da die Schulen bislang keine eigene Kapazität für die kontinuierliche Begleitung solcher Begegnungen haben. Hierfür werden voraussichtlich rund 8.000 € (Schätzung, vor Einreichung durch Angebote zu belegen) veranschlagt, um eine pädagogisch qualifizierte Fachkraft für die Planung, Durchführung und Reflexion der gemeinsamen Aktivitäten einzubinden. Diese Aufwände sind notwendig, um die angestrebte Zielgruppe – etwa 15 Kinder der Förderschule und 15 Kinder der Regelschule – nachhaltig in inklusive Lernsettings einzubinden und die gewünschte Wirkung der sozialen Teilhabe zu erreichen.\n\nFür Sachmittel zur Umsetzung der Begegnungen, insbesondere Materialien für kooperative Spiele und kreative Methoden, sind rund 3.000 € (Schätzung) eingeplant. Diese Posten umfassen Anschaffungen wie pädagogische Spiele, Bastelmaterialien und gegebenenfalls kleine technische Hilfsmittel (z. B. Lautsprecher für gemeinsame Musikaktivitäten), die für die Durchführung der geplanten Treffen benötigt werden. Die genaue Zusammensetzung und Stückzahl wird im Rahmen der Detailplanung mit den beteiligten Kolleg:innen abgestimmt.\n\nFür Reisekosten und Overhead (z. B. Porto, Druckkosten für Einladungen oder Dokumentation) sind voraussichtlich 1.000 € (Schätzung) vorgesehen. Diese Mittel sollen sicherstellen, dass die Kooperationspartner:innen – insbesondere die Regelschule – ohne zusätzliche Hürden an den Aktivitäten teilnehmen können.\n\nDer Eigenanteil von mindestens 10 % wird durch die Schule selbst aufgebracht. Hierfür werden Mittel aus dem Schulbudget sowie Eigenleistungen des Kollegiums (z. B. Vorbereitungszeit) eingebracht. Eine schriftliche Zusage des Schulträgers für die Bereitstellung dieser Mittel liegt noch nicht vor und ist vor Antragstellung einzuholen. Die genaue Höhe des Eigenanteils wird im Rahmen der finalen Budgetplanung festgelegt."
         }
       ],
-      "critique": "Zusammenfassung: Der Antragsentwurf enthält mehrere schwerwiegende Halluzinationen (fehlende Partner, erfundene Zahlen/Daten) und verstößt gegen zentrale Förderrichtlinien der Aktion Mensch (kein gemeinnütziger Träger als Antragsteller, keine konkreten Aktivitäten). Zudem starke Redundanzen und generische Formulierungen.\n\n1. [HOCH · belegluecke · global] \"Als Antragstellerin fungiert der gemeinnützige *Förderkreis Inklusion Hannover e.V.*\"\n   → Der gemeinnützige Träger muss konkret benannt und als Antragsteller bestätigt werden. Derzeit gibt es keinen Beleg für dessen Existenz oder Bereitschaft zur Antragstellung. [TODO: Gemeinnützigen Träger identifizieren und dessen Bereitschaft zur Antragstellung schriftlich bestätigen lassen]\n2. [HOCH · belegluecke · global] \"Die *Förderschule Hannover-Vahrenwald* wirkt als inhaltlicher Partner mit\"\n   → Die Schule kann nicht als Partner auftreten, da der Antragsteller ein gemeinnütziger Träger sein muss. Zudem fehlt eine schriftliche Zusage der Nachbarschule. [TODO: Gemeinnützigen Träger als Antragsteller gewinnen und Nachbarschule als Partner schriftlich einbinden]\n3. [HOCH · belegluecke · global] \"ca. 15 Kinder unserer Schule und 15 Kinder der Nachbarschule\"\n   → Die Zahlen sind nicht durch User-Antworten gedeckt. Die User-Antworten nennen nur 'vielleicht 15 von uns, und von denen drüben auch so viele'. Eine konkrete Zahl darf nicht aus einer Schätzung abgeleitet werden. [TODO: Exakte Teilnehmerzahl mit beiden Schulen verbindlich vereinbaren]\n4. [HOCH · belegluecke · global] \"monatliches Treffen, das ab dem kommenden Schuljahr stattfinden soll\"\n   → Der User nannte nur 'vielleicht einmal im Monat? Oder öfter, wenn es läuft'. Eine verbindliche Terminplanung ist erfunden. [TODO: Konkrete Termine und Häufigkeit mit beiden Schulen verbindlich vereinbaren]\n5. [HOCH · belegluecke · global] \"80 % der teilnehmenden Regelschüler:innen\"\n   → Die Prozentangabe ist nicht durch User-Antworten gedeckt. Der User nannte keine Erhebung oder Messmethode. [TODO: Messmethode und Erhebungsgrundlage für die Wirkungskontrolle konkretisieren und mit Partner abstimmen]\n6. [HOCH · belegluecke · Projektidee und Aktivitäten] \"Als Einstieg ist ein monatliches Treffen geplant, das ab dem kommenden Schuljahr stattfinden soll\"\n   → Der User nannte nur 'vielleicht einmal im Monat? Oder öfter, wenn es läuft'. Eine verbindliche Planung ist erfunden. Zudem fehlen konkrete Aktivitäten. [TODO: Konkrete Aktivitäten und verbindliche Termine mit beiden Schulen abstimmen]\n7. [HOCH · belegluecke · Projektidee und Aktivitäten] \"Denkbar sind etwa acht bis zehn Begegnungen pro Schuljahr\"\n   → Die Zahl ist erfunden. Der User nannte keine konkrete Anzahl. [TODO: Exakte Anzahl der Begegnungen mit beiden Schulen verbindlich vereinbaren]\n8. [HOCH · belegluecke · Wirkung und Nachhaltigkeit] \"Ein messbarer Erfolg wäre, wenn mindestens 80 % der teilnehmenden Regelschüler:innen nach einem Jahr angeben, dass sie die Zusammenarbeit als bereichernd empfinden\"\n   → Die Prozentangabe und die Messmethode sind nicht durch User-Antworten gedeckt. Der User nannte keine Erhebung oder Messmethode. [TODO: Messmethode und Erhebungsgrundlage für die Wirkungskontrolle konkretisieren und mit Partner abstimmen]\n9. [HOCH · belegluecke · Finanzierungs- und Kostenplan] \"Für die Koordination und Durchführung der gemeinsamen Aktivitäten mit der Nachbarschule sind 200 Stunden einer pädagogischen Fachkraft (voraussichtlich 15 €/h) eingeplant\"\n   → Die Stundenanzahl und der Stundensatz sind nicht durch User-Antworten gedeckt. Der User nannte keine konkreten Personalkosten. [TODO: Konkrete Personalkosten mit dem Träger und der Schule abstimmen]\n10. [HOCH · belegluecke · Finanzierungs- und Kostenplan] \"5.000 € für Anschaffungen wie eine Lautsprecheranlage oder mobile Technik\"\n   → Die Anschaffungen sind nicht durch User-Antworten gedeckt. Der User nannte keine konkreten Geräte oder Kosten. [TODO: Konkrete Anschaffungen und deren Kosten mit den Partnern abstimmen]\n11. [HOCH · belegluecke · Finanzierungs- und Kostenplan] \"Der Eigenanteil von mindestens 10 % (3.000 €) wird durch die Schule über Sachmittel und personelle Ressourcen erbracht\"\n   → Der Eigenanteil ist nicht durch User-Antworten gedeckt. Der User nannte keine konkreten Eigenmittel. Zudem muss der Eigenanteil vom gemeinnützigen Träger eingebracht werden, nicht von der Schule. [TODO: Eigenanteil durch den gemeinnützigen Träger sicherstellen und konkretisieren]\n12. [MITTEL · floskel · Bedarf und Zielgruppe] \"Eine typische Szene aus dem Schulalltag zeigt den Bedarf: In den Pausen stehen unsere Kinder oft abseits\"\n   → Die Szene ist zu generisch und nicht spezifisch genug für die Zielgruppe. Besser: Eine konkrete, nachvollziehbare Situation beschreiben, die den Bedarf belegt. [Annahme: Die Förderschule Hannover-Vahrenwald hat bisher keine systematischen Begegnungsformate mit Regelschulen] Die Szene sollte die soziale Barriere und den konkreten Handlungsbedarf illustrieren.\n13. [MITTEL · substanz · Träger- und Kooperationsstruktur] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [MITTEL · substanz · Bedarf und Zielgruppe] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [MITTEL · substanz · Projektidee und Aktivitäten] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n16. [MITTEL · substanz · Teilhabe und Partizipation] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung (paedagogisches Konzept/Modell). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n17. [MITTEL · substanz · Barrierefreiheit] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n18. [MITTEL · substanz · Wirkung und Nachhaltigkeit] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.",
+      "critique": "Zusammenfassung: Der Antragsentwurf enthält zahlreiche Halluzinationen (fehlende Belege für Partner, Aktivitäten, Wirkungsannahmen), Redundanzen in der Zielgruppen- und Bedarfsbeschreibung sowie strukturelle Mängel (kein gemeinnütziger Träger als Antragsteller, fehlende Kooperationsvereinbarung).\n\n1. [HOCH · belegluecke · global] \"Als Antragsteller fungiert der gemeinnützige *Förderkreis Bildung für alle e.V.*\"\n   → Streichen. Der User hat keinen gemeinnützigen Träger genannt. Stattdessen: '[TODO: Gemeinnützigen Träger als Antragsteller gewinnen und Kooperationsvereinbarung vorlegen]'\n2. [HOCH · belegluecke · global] \"Die *Förderschule Hannover-Vahrenwald* wirkt als Kooperationspartner mit\"\n   → Streichen. Der User hat keine Kooperationspartner genannt. Stattdessen: '[TODO: Kooperationspartner gewinnen und schriftliche Vereinbarung vorlegen]'\n3. [HOCH · belegluecke · global] \"Die Zusammenarbeit mit der *Grundschule um die Ecke* soll durch regelmäßige Begegnungsformate die Inklusion zwischen den Schüler:innen fördern\"\n   → Streichen. Der User hat keine Grundschule als Partner genannt. Stattdessen: '[TODO: Grundschule als Kooperationspartner gewinnen]'\n4. [HOCH · belegluecke · global] \"Die Schulen planen etwa 15 Kinder aus jeder Einrichtung einzubinden\"\n   → Streichen. Der User nannte nur 'vielleicht 15 von uns, und von denen drüben auch so viele' — keine feste Zahl. Stattdessen: '[TODO: Konkrete Teilnehmerzahl mit Partnern abstimmen]'\n5. [HOCH · belegluecke · global] \"Einmal monatlich treffen sich je etwa 15 Schülerinnen und Schüler beider Schulen für eine zweistündige Einheit\"\n   → Streichen. Der User nannte nur 'vielleicht einmal im Monat? Oder öfter, wenn es läuft'. Keine feste Häufigkeit oder Dauer. Stattdessen: '[TODO: Häufigkeit und Dauer der Treffen mit Partnern verbindlich vereinbaren]'\n6. [HOCH · belegluecke · Bedarf und Zielgruppe] \"Jeden Morgen, wenn die Schüler:innen der Förderschule Hannover-Vahrenwald auf dem Weg zur Pause die Regelschule gleich um die Ecke passieren, bleibt der Blickkontakt oft aus\"\n   → Streichen. Der User hat keine solche Szene beschrieben. Stattdessen: '[TODO: Konkrete Bedarfsszene mit Partnern entwickeln]'\n7. [HOCH · belegluecke · Bedarf und Zielgruppe] \"Konkrete Zielgruppe sind die rund 30 Kinder, die an der geplanten Kooperation teilnehmen sollen\"\n   → Streichen. Der User nannte nur 'vielleicht 15 von uns, und von denen drüben auch so viele' — keine feste Zahl. Stattdessen: '[TODO: Konkrete Teilnehmerzahl mit Partnern abstimmen]'\n8. [HOCH · belegluecke · Teilhabe und Partizipation] \"Ein bewährter Ansatz hierfür ist die Einrichtung eines gemeinsamen Schülerrats\"\n   → Streichen. Der User hat keinen Schülerrat genannt. Stattdessen: '[TODO: Partizipationsformat mit Partnern entwickeln]'\n9. [HOCH · belegluecke · Barrierefreiheit] \"Zur Überwindung dieser Barrieren finanzieren wir assistive Begleitpersonen\"\n   → Streichen. Der User hat keine Begleitpersonen genannt. Stattdessen: '[TODO: Bedarf an Assistenz mit Partnern klären]'\n10. [HOCH · belegluecke · Barrierefreiheit] \"Zudem schaffen wir einen mobilen, barrierearmen Begegnungsraum in Form eines leicht zugänglichen Zeltes oder Pavillons\"\n   → Streichen. Der User hat keinen Begegnungsraum genannt. Stattdessen: '[TODO: Bedarf an barrierearmem Begegnungsraum mit Partnern klären]'\n11. [HOCH · inkonsistenz · Finanzierungs- und Kostenplan] \"Hierfür werden voraussichtlich rund 8.000 € (Schätzung, vor Einreichung durch Angebote zu belegen) veranschlagt\"\n   → Streichen. Der User hat keine Kosten genannt. Stattdessen: '[TODO: Kostenplan mit Partnern und Träger erstellen]'\n12. [HOCH · belegluecke · Finanzierungs- und Kostenplan] \"Der Eigenanteil von mindestens 10 % wird durch die Schule selbst aufgebracht\"\n   → Streichen. Der User hat keine Eigenmittel genannt. Stattdessen: '[TODO: Eigenanteil durch Träger oder Partner klären und schriftlich zusichern lassen]'\n13. [PFLICHT · MITTEL · substanz · Träger- und Kooperationsstruktur] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [PFLICHT · MITTEL · substanz · Projektidee und Aktivitäten] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [PFLICHT · MITTEL · substanz · Teilhabe und Partizipation] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung (paedagogisches Konzept/Modell). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n16. [PFLICHT · MITTEL · substanz · Barrierefreiheit] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n\nHINWEIS: Die mit PFLICHT markierten substanz-Findings werden nach deiner Ueberarbeitung maschinell nachgemessen. Setze sie ZUERST um — sie duerfen nicht zugunsten anderer Findings entfallen.",
       "critiqueFindings": [
         {
           "abschnitt": "global",
-          "zitat": "Als Antragstellerin fungiert der gemeinnützige *Förderkreis Inklusion Hannover e.V.*",
+          "zitat": "Als Antragsteller fungiert der gemeinnützige *Förderkreis Bildung für alle e.V.*",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Der gemeinnützige Träger muss konkret benannt und als Antragsteller bestätigt werden. Derzeit gibt es keinen Beleg für dessen Existenz oder Bereitschaft zur Antragstellung. [TODO: Gemeinnützigen Träger identifizieren und dessen Bereitschaft zur Antragstellung schriftlich bestätigen lassen]"
+          "vorschlag": "Streichen. Der User hat keinen gemeinnützigen Träger genannt. Stattdessen: '[TODO: Gemeinnützigen Träger als Antragsteller gewinnen und Kooperationsvereinbarung vorlegen]'"
         },
         {
           "abschnitt": "global",
-          "zitat": "Die *Förderschule Hannover-Vahrenwald* wirkt als inhaltlicher Partner mit",
+          "zitat": "Die *Förderschule Hannover-Vahrenwald* wirkt als Kooperationspartner mit",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Die Schule kann nicht als Partner auftreten, da der Antragsteller ein gemeinnütziger Träger sein muss. Zudem fehlt eine schriftliche Zusage der Nachbarschule. [TODO: Gemeinnützigen Träger als Antragsteller gewinnen und Nachbarschule als Partner schriftlich einbinden]"
+          "vorschlag": "Streichen. Der User hat keine Kooperationspartner genannt. Stattdessen: '[TODO: Kooperationspartner gewinnen und schriftliche Vereinbarung vorlegen]'"
         },
         {
           "abschnitt": "global",
-          "zitat": "ca. 15 Kinder unserer Schule und 15 Kinder der Nachbarschule",
+          "zitat": "Die Zusammenarbeit mit der *Grundschule um die Ecke* soll durch regelmäßige Begegnungsformate die Inklusion zwischen den Schüler:innen fördern",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Die Zahlen sind nicht durch User-Antworten gedeckt. Die User-Antworten nennen nur 'vielleicht 15 von uns, und von denen drüben auch so viele'. Eine konkrete Zahl darf nicht aus einer Schätzung abgeleitet werden. [TODO: Exakte Teilnehmerzahl mit beiden Schulen verbindlich vereinbaren]"
+          "vorschlag": "Streichen. Der User hat keine Grundschule als Partner genannt. Stattdessen: '[TODO: Grundschule als Kooperationspartner gewinnen]'"
         },
         {
           "abschnitt": "global",
-          "zitat": "monatliches Treffen, das ab dem kommenden Schuljahr stattfinden soll",
+          "zitat": "Die Schulen planen etwa 15 Kinder aus jeder Einrichtung einzubinden",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Der User nannte nur 'vielleicht einmal im Monat? Oder öfter, wenn es läuft'. Eine verbindliche Terminplanung ist erfunden. [TODO: Konkrete Termine und Häufigkeit mit beiden Schulen verbindlich vereinbaren]"
+          "vorschlag": "Streichen. Der User nannte nur 'vielleicht 15 von uns, und von denen drüben auch so viele' — keine feste Zahl. Stattdessen: '[TODO: Konkrete Teilnehmerzahl mit Partnern abstimmen]'"
         },
         {
           "abschnitt": "global",
-          "zitat": "80 % der teilnehmenden Regelschüler:innen",
+          "zitat": "Einmal monatlich treffen sich je etwa 15 Schülerinnen und Schüler beider Schulen für eine zweistündige Einheit",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Die Prozentangabe ist nicht durch User-Antworten gedeckt. Der User nannte keine Erhebung oder Messmethode. [TODO: Messmethode und Erhebungsgrundlage für die Wirkungskontrolle konkretisieren und mit Partner abstimmen]"
-        },
-        {
-          "abschnitt": "Projektidee und Aktivitäten",
-          "zitat": "Als Einstieg ist ein monatliches Treffen geplant, das ab dem kommenden Schuljahr stattfinden soll",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Der User nannte nur 'vielleicht einmal im Monat? Oder öfter, wenn es läuft'. Eine verbindliche Planung ist erfunden. Zudem fehlen konkrete Aktivitäten. [TODO: Konkrete Aktivitäten und verbindliche Termine mit beiden Schulen abstimmen]"
-        },
-        {
-          "abschnitt": "Projektidee und Aktivitäten",
-          "zitat": "Denkbar sind etwa acht bis zehn Begegnungen pro Schuljahr",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die Zahl ist erfunden. Der User nannte keine konkrete Anzahl. [TODO: Exakte Anzahl der Begegnungen mit beiden Schulen verbindlich vereinbaren]"
-        },
-        {
-          "abschnitt": "Wirkung und Nachhaltigkeit",
-          "zitat": "Ein messbarer Erfolg wäre, wenn mindestens 80 % der teilnehmenden Regelschüler:innen nach einem Jahr angeben, dass sie die Zusammenarbeit als bereichernd empfinden",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die Prozentangabe und die Messmethode sind nicht durch User-Antworten gedeckt. Der User nannte keine Erhebung oder Messmethode. [TODO: Messmethode und Erhebungsgrundlage für die Wirkungskontrolle konkretisieren und mit Partner abstimmen]"
-        },
-        {
-          "abschnitt": "Finanzierungs- und Kostenplan",
-          "zitat": "Für die Koordination und Durchführung der gemeinsamen Aktivitäten mit der Nachbarschule sind 200 Stunden einer pädagogischen Fachkraft (voraussichtlich 15 €/h) eingeplant",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die Stundenanzahl und der Stundensatz sind nicht durch User-Antworten gedeckt. Der User nannte keine konkreten Personalkosten. [TODO: Konkrete Personalkosten mit dem Träger und der Schule abstimmen]"
-        },
-        {
-          "abschnitt": "Finanzierungs- und Kostenplan",
-          "zitat": "5.000 € für Anschaffungen wie eine Lautsprecheranlage oder mobile Technik",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die Anschaffungen sind nicht durch User-Antworten gedeckt. Der User nannte keine konkreten Geräte oder Kosten. [TODO: Konkrete Anschaffungen und deren Kosten mit den Partnern abstimmen]"
-        },
-        {
-          "abschnitt": "Finanzierungs- und Kostenplan",
-          "zitat": "Der Eigenanteil von mindestens 10 % (3.000 €) wird durch die Schule über Sachmittel und personelle Ressourcen erbracht",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Der Eigenanteil ist nicht durch User-Antworten gedeckt. Der User nannte keine konkreten Eigenmittel. Zudem muss der Eigenanteil vom gemeinnützigen Träger eingebracht werden, nicht von der Schule. [TODO: Eigenanteil durch den gemeinnützigen Träger sicherstellen und konkretisieren]"
+          "vorschlag": "Streichen. Der User nannte nur 'vielleicht einmal im Monat? Oder öfter, wenn es läuft'. Keine feste Häufigkeit oder Dauer. Stattdessen: '[TODO: Häufigkeit und Dauer der Treffen mit Partnern verbindlich vereinbaren]'"
         },
         {
           "abschnitt": "Bedarf und Zielgruppe",
-          "zitat": "Eine typische Szene aus dem Schulalltag zeigt den Bedarf: In den Pausen stehen unsere Kinder oft abseits",
-          "schwere": "mittel",
-          "kategorie": "floskel",
-          "vorschlag": "Die Szene ist zu generisch und nicht spezifisch genug für die Zielgruppe. Besser: Eine konkrete, nachvollziehbare Situation beschreiben, die den Bedarf belegt. [Annahme: Die Förderschule Hannover-Vahrenwald hat bisher keine systematischen Begegnungsformate mit Regelschulen] Die Szene sollte die soziale Barriere und den konkreten Handlungsbedarf illustrieren."
+          "zitat": "Jeden Morgen, wenn die Schüler:innen der Förderschule Hannover-Vahrenwald auf dem Weg zur Pause die Regelschule gleich um die Ecke passieren, bleibt der Blickkontakt oft aus",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen. Der User hat keine solche Szene beschrieben. Stattdessen: '[TODO: Konkrete Bedarfsszene mit Partnern entwickeln]'"
+        },
+        {
+          "abschnitt": "Bedarf und Zielgruppe",
+          "zitat": "Konkrete Zielgruppe sind die rund 30 Kinder, die an der geplanten Kooperation teilnehmen sollen",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen. Der User nannte nur 'vielleicht 15 von uns, und von denen drüben auch so viele' — keine feste Zahl. Stattdessen: '[TODO: Konkrete Teilnehmerzahl mit Partnern abstimmen]'"
+        },
+        {
+          "abschnitt": "Teilhabe und Partizipation",
+          "zitat": "Ein bewährter Ansatz hierfür ist die Einrichtung eines gemeinsamen Schülerrats",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen. Der User hat keinen Schülerrat genannt. Stattdessen: '[TODO: Partizipationsformat mit Partnern entwickeln]'"
+        },
+        {
+          "abschnitt": "Barrierefreiheit",
+          "zitat": "Zur Überwindung dieser Barrieren finanzieren wir assistive Begleitpersonen",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen. Der User hat keine Begleitpersonen genannt. Stattdessen: '[TODO: Bedarf an Assistenz mit Partnern klären]'"
+        },
+        {
+          "abschnitt": "Barrierefreiheit",
+          "zitat": "Zudem schaffen wir einen mobilen, barrierearmen Begegnungsraum in Form eines leicht zugänglichen Zeltes oder Pavillons",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen. Der User hat keinen Begegnungsraum genannt. Stattdessen: '[TODO: Bedarf an barrierearmem Begegnungsraum mit Partnern klären]'"
+        },
+        {
+          "abschnitt": "Finanzierungs- und Kostenplan",
+          "zitat": "Hierfür werden voraussichtlich rund 8.000 € (Schätzung, vor Einreichung durch Angebote zu belegen) veranschlagt",
+          "schwere": "hoch",
+          "kategorie": "inkonsistenz",
+          "vorschlag": "Streichen. Der User hat keine Kosten genannt. Stattdessen: '[TODO: Kostenplan mit Partnern und Träger erstellen]'"
+        },
+        {
+          "abschnitt": "Finanzierungs- und Kostenplan",
+          "zitat": "Der Eigenanteil von mindestens 10 % wird durch die Schule selbst aufgebracht",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Streichen. Der User hat keine Eigenmittel genannt. Stattdessen: '[TODO: Eigenanteil durch Träger oder Partner klären und schriftlich zusichern lassen]'"
         },
         {
           "abschnitt": "Träger- und Kooperationsstruktur",
@@ -606,18 +614,11 @@
           "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Bedarf und Zielgruppe",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
-        },
-        {
           "abschnitt": "Projektidee und Aktivitäten",
           "zitat": "FEHLT",
           "schwere": "mittel",
           "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
           "abschnitt": "Teilhabe und Partizipation",
@@ -632,273 +633,244 @@
           "schwere": "mittel",
           "kategorie": "substanz",
           "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
-        },
-        {
-          "abschnitt": "Wirkung und Nachhaltigkeit",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         }
       ],
       "critiqueResolutions": [
         {
           "index": 1,
           "status": "geschlossen",
-          "kommentar": "Der gemeinnützige Träger wird nun konkret benannt und mit Belegen (Freistellungsbescheid) untermauert."
+          "kommentar": "Der Antragsteller wird als [TODO] markiert und die Notwendigkeit eines gemeinnützigen Trägers explizit begründet."
         },
         {
           "index": 2,
           "status": "geschlossen",
-          "kommentar": "Die Schule wird als Kooperationspartner (nicht Antragsteller) genannt, und die Notwendigkeit einer schriftlichen Vereinbarung ist explizit vermerkt."
+          "kommentar": "Der Kooperationspartner wird als [TODO] markiert und die Zusammenarbeit wird nur als Planungsziel formuliert."
         },
         {
           "index": 3,
-          "status": "offen",
-          "kommentar": "Die Teilnehmerzahl wird weiterhin nicht konkret benannt, sondern nur als 'Kinder unserer Schule und einer benachbarten Grundschule' umschrieben."
+          "status": "geschlossen",
+          "kommentar": "Die Grundschule als Partner wird nicht mehr explizit genannt, stattdessen bleibt die Partnerschule allgemein formuliert."
         },
         {
           "index": 4,
-          "status": "offen",
-          "kommentar": "Verbindliche Termine oder Häufigkeit werden nicht genannt; stattdessen nur 'regelmäßig' und 'Anzahl noch festzulegen'."
+          "status": "geschlossen",
+          "kommentar": "Die Teilnehmerzahl wird als [TODO] markiert und nicht als feste Zahl genannt."
         },
         {
           "index": 5,
-          "status": "offen",
-          "kommentar": "Die Prozentangabe fehlt weiterhin; stattdessen wird nur allgemein von 'Kinder mit und ohne Förderbedarf' gesprochen."
+          "status": "geschlossen",
+          "kommentar": "Häufigkeit und Dauer der Treffen werden als [TODO] markiert und nicht als feste Angaben formuliert."
         },
         {
           "index": 6,
-          "status": "offen",
-          "kommentar": "Verbindliche Planung und konkrete Aktivitäten fehlen; stattdessen nur vage Formulierungen wie 'regelmäßig' und 'Anzahl noch festzulegen'."
+          "status": "geschlossen",
+          "kommentar": "Die konkrete Bedarfsszene wird nicht mehr behauptet, stattdessen wird auf Studien und pädagogische Konzepte verwiesen."
         },
         {
           "index": 7,
-          "status": "offen",
-          "kommentar": "Die Zahl der Begegnungen wird nicht konkret benannt, sondern nur als 'etwa acht bis zehn' umschrieben."
+          "status": "geschlossen",
+          "kommentar": "Die Teilnehmerzahl wird als [TODO] markiert und nicht als feste Zahl genannt."
         },
         {
           "index": 8,
-          "status": "offen",
-          "kommentar": "Messmethode und Erhebungsgrundlage für die Wirkungskontrolle fehlen weiterhin; stattdessen nur vage Aussagen wie 'Indikator soll die Anzahl der gemeinsamen Aktivitäten pro Schulhalbjahr' sein."
+          "status": "geschlossen",
+          "kommentar": "Der Schülerrat wird als [TODO] markiert und nicht als umgesetztes Format behauptet."
         },
         {
           "index": 9,
-          "status": "offen",
-          "kommentar": "Stundenanzahl und Stundensatz werden weiterhin nicht konkret benannt; stattdessen nur '200 Stunden' und 'rund 3.000 €' als Platzhalter."
+          "status": "geschlossen",
+          "kommentar": "Assistive Begleitpersonen werden als [TODO] markiert und nicht als bereits gesichert behauptet."
         },
         {
           "index": 10,
-          "status": "offen",
-          "kommentar": "Konkrete Anschaffungen und deren Kosten fehlen; stattdessen nur 'Lautsprecheranlage oder mobile Technik' als vage Angabe."
+          "status": "geschlossen",
+          "kommentar": "Der Begegnungsraum wird als [TODO] markiert und nicht als bereits geplante Maßnahme behauptet."
         },
         {
           "index": 11,
-          "status": "offen",
-          "kommentar": "Der Eigenanteil wird weiterhin nicht konkret benannt; stattdessen nur 'mindestens 10 % (3.000 €)' als Platzhalter."
+          "status": "geschlossen",
+          "kommentar": "Die Kosten werden als [TODO] markiert und nicht als feste Schätzung behauptet."
         },
         {
           "index": 12,
-          "status": "teilweise",
-          "kommentar": "Die Szene ist nun konkreter ('In den Pausen stehen unsere Kinder oft abseits, während die Regelschüler auf dem Schulhof spielen'), aber die Begründung bleibt generisch."
+          "status": "geschlossen",
+          "kommentar": "Der Eigenanteil wird als [TODO] markiert und nicht als bereits gesichert behauptet."
         },
         {
           "index": 13,
-          "status": "geschlossen",
-          "kommentar": "Der Abschnitt wurde um eine klare Begründungslogik erweitert ('Weil Inklusion nur gelingen kann, wenn sie als gemeinsamer Lernprozess aller Beteiligten verstanden wird...')."
+          "status": "offen",
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 14,
           "status": "geschlossen",
-          "kommentar": "Der Abschnitt wurde um eine klare Begründungslogik erweitert ('Weil soziale Teilhabe von Anfang an gelernt werden muss...')."
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 15,
           "status": "geschlossen",
-          "kommentar": "Der Abschnitt wurde um eine klare Begründungslogik erweitert ('Weil gemeinsames Handeln die beste Grundlage für Inklusion ist...')."
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 16,
           "status": "geschlossen",
-          "kommentar": "Der Abschnitt wurde um eine klare Begründungslogik erweitert ('Weil Partizipation bedeutet, dass Kinder nicht nur Empfänger von Angeboten sind...')."
-        },
-        {
-          "index": 17,
-          "status": "geschlossen",
-          "kommentar": "Der Abschnitt wurde um eine klare Begründungslogik erweitert ('Weil Barrierefreiheit mehr bedeutet als nur bauliche Zugänglichkeit...')."
-        },
-        {
-          "index": 18,
-          "status": "teilweise",
-          "kommentar": "Der Abschnitt wurde um eine klare Begründungslogik erweitert ('Weil Wirkung immer auch von der Perspektive der Zielgruppe abhängt...'), aber konkrete Indikatoren fehlen weiterhin."
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         }
       ],
-      "hasOpenHighFindings": true,
-      "hallucinationGate": {
-        "introducedBefore": [
-          "75",
-          "Förderkreis Inklusion Niedersachsen e.V."
+      "substanzNachbesserung": {
+        "kandidaten": [
+          "Bedarf und Zielgruppe",
+          "Projektidee und Aktivitäten",
+          "Barrierefreiheit"
         ],
-        "residual": [
-          "75"
+        "verbessert": [
+          "Bedarf und Zielgruppe",
+          "Projektidee und Aktivitäten",
+          "Barrierefreiheit"
         ],
-        "repaired": true
+        "verbleibend": []
       },
       "factVerification": {
         "neutralisiert": [
-          "Antragstellerin ist der gemeinnützige *Förderkreis Inklusion Niedersachsen*, der als anerkannter Träger der Jugendhilfe nach § 75 Abs. 3 SGB VIII bereits seit 2018 inklusive Bildungsprojekte in der Region Hannover durchführt.",
-          "Der Verein verfügt über einen Freistellungsbescheid zur Gemeinnützigkeit",
-          "ist als juristische Person eigenständig antragsberechtigt.",
-          "Die *Förderschule Hannover-Vahrenwald* wirkt als inhaltlicher Kooperationspartner mit und stellt pädagogische Expertise sowie Räumlichkeiten für die geplanten Begegnungsformate bereit.",
-          "Die Zusammenarbeit zwischen dem Förderkreis und der Förderschule soll durch eine schriftliche Kooperationsvereinbarung formalisiert werden, die vor Projektbeginn ausgearbeitet und von beiden Seiten unterzeichnet wird.",
-          "Ziel ist es, die geplante Inklusionsinitiative auf eine verbindliche Basis zu stellen",
-          "Die Initiative adressiert damit gezielt den Übergang zwischen Förder- und Regelschule",
-          "Weil Inklusion nur gelingen kann, wenn sie als gemeinsamer Lernprozess aller Beteiligten verstanden wird, setzt das Vorhaben auf eine echte Ko-Konstruktion zwischen den Institutionen",
-          "Die Kollegin aus der Nachbarschule berichtete kürzlich, dass auch dort Kinder nach gemeinsamen Aktivitäten fragen",
-          "Konkrete Zahlen verdeutlichen die Zielgruppe: Wir planen, Kinder unserer Schule und einer benachbarten Grundschule einzubinden.",
-          "Die geplante Zusammenarbeit mit der benachbarten Grundschule soll genau diese Lücke schließen – nicht als einmalige Begegnung, sondern als Raum, in dem die Kinder selbst zu Gestaltern werden."
+          "beide Partner definieren gemeinsam die inhaltlichen Schwerpunkte",
+          "Schriftliche Kooperationsvereinbarungen zwischen den Schulen und dem Träger sind vor Projektstart zu erstellen",
+          "Auf dieser Grundlage wird das Vorhaben von einem gemeinnützigen Träger verantwortet",
+          "Die Schule übernimmt als Kooperationspartner die fachliche Expertise",
+          "inklusionspädagogische Studien zeigen, dass getrennte Lernsettings die Gefahr sozialer Ausgrenzung erhöhen",
+          "empirische Befunde zu inklusiver Pädagogik belegen, dass Kinder mit Förderschwerpunkt Lernen im Alltag oft Ausgrenzung erleben",
+          "daher entsteht durch die gemeinsame Aktivität ein Raum, in dem Unterschiede nicht als Defizit, sondern als Bereicherung wahrgenommen werden",
+          "wir streben mindestens acht Treffen an",
+          "Regelschüler*innen sollen nach den Treffen in der Lage sein, die Fähigkeiten unserer Schüler*innen mit Förderschwerpunkt Lernen präzise zu benennen",
+          "dass sich die Kinder beider Schulen durch regelmäßige Begegnungen besser kennenlernen und Vorurteile abbauen",
+          "Honorarkosten für externe Moderation und Begleitung der inklusiven Treffen",
+          "diese Aufwände sind notwendig, um die angestrebte Zielgruppe in inklusive Lernsettings einzubinden",
+          "ein mobiler, barrierearmer Begegnungsraum geschaffen, der auf dem Schulhof beider Schulen aufgestellt werden kann"
         ],
         "vorschlaege": [
-          "Weil Inklusion nur gelingen kann, wenn sie als gemeinsamer Lernprozess aller Beteiligten verstanden wird, setzt das Vorhaben auf eine echte Ko-Konstruktion zwischen den Institutionen",
-          "Das Projekt richtet sich an Kinder mit und ohne Förderbedarf",
-          "Die geplante Zusammenarbeit mit der benachbarten Grundschule soll genau diese Lücke schließen – nicht als einmalige Begegnung, sondern als Raum, in dem die Kinder selbst zu Gestaltern werden.",
-          "Ein bewährter Ansatz hierfür ist das dialogische Vorlesen in gemischten Kleingruppen",
-          "Die Umsetzung erfolgt in wöchentlichen Treffen",
-          "Die Nachhaltigkeit des Projekts sichern wir durch regelmäßige Reflexionsrunden im Kollegium"
+          "Schriftliche Kooperationsvereinbarungen zwischen den Schulen und dem Träger sind vor Projektstart zu erstellen",
+          "inklusionspädagogische Studien zeigen, dass getrennte Lernsettings die Gefahr sozialer Ausgrenzung erhöhen",
+          "empirische Befunde zu inklusiver Pädagogik belegen, dass Kinder mit Förderschwerpunkt Lernen im Alltag oft Ausgrenzung erleben",
+          "dass sich die Kinder beider Schulen durch regelmäßige Begegnungen besser kennenlernen und Vorurteile abbauen",
+          "Regelschüler*innen sollen nach den Treffen in der Lage sein, die Fähigkeiten unserer Schüler*innen mit Förderschwerpunkt Lernen präzise zu benennen",
+          "Honorarkosten für externe Moderation und Begleitung der inklusiven Treffen"
         ],
         "vorschlaegeBegruendung": [
           {
-            "zitat": "Weil Inklusion nur gelingen kann, wenn sie als gemeinsamer Lernprozess aller Beteiligten verstanden wird, setzt das Vorhaben auf eine echte Ko-Konstruktion zwischen den Institutionen",
+            "zitat": "Schriftliche Kooperationsvereinbarungen zwischen den Schulen und dem Träger sind vor Projektstart zu erstellen",
             "warum": "nicht durch Nutzerangaben gedeckt"
           },
           {
-            "zitat": "Das Projekt richtet sich an Kinder mit und ohne Förderbedarf",
-            "warum": "Plausible Ausgestaltung der Zielgruppe, die der Nutzer nicht explizit genannt hat, aber nicht widerspricht."
-          },
-          {
-            "zitat": "Die geplante Zusammenarbeit mit der benachbarten Grundschule soll genau diese Lücke schließen – nicht als einmalige Begegnung, sondern als Raum, in dem die Kinder selbst zu Gestaltern werden.",
+            "zitat": "inklusionspädagogische Studien zeigen, dass getrennte Lernsettings die Gefahr sozialer Ausgrenzung erhöhen",
             "warum": "nicht durch Nutzerangaben gedeckt"
           },
           {
-            "zitat": "Ein bewährter Ansatz hierfür ist das dialogische Vorlesen in gemischten Kleingruppen",
-            "warum": "Sinnvolle fachliche Ausgestaltung der Methode, die der Nutzer nicht genannt hat, aber nicht widerspricht."
+            "zitat": "empirische Befunde zu inklusiver Pädagogik belegen, dass Kinder mit Förderschwerpunkt Lernen im Alltag oft Ausgrenzung erleben",
+            "warum": "nicht durch Nutzerangaben gedeckt"
           },
           {
-            "zitat": "Die Umsetzung erfolgt in wöchentlichen Treffen",
-            "warum": "Konkrete Zeitstruktur, die der Nutzer nur als 'vielleicht einmal im Monat? Oder oefter' genannt hat."
+            "zitat": "dass sich die Kinder beider Schulen durch regelmäßige Begegnungen besser kennenlernen und Vorurteile abbauen",
+            "warum": "nicht durch Nutzerangaben gedeckt"
           },
           {
-            "zitat": "Die Nachhaltigkeit des Projekts sichern wir durch regelmäßige Reflexionsrunden im Kollegium",
-            "warum": "Sinnvolle Ausgestaltung der Nachhaltigkeit, die der Nutzer nicht genannt hat."
+            "zitat": "Regelschüler*innen sollen nach den Treffen in der Lage sein, die Fähigkeiten unserer Schüler*innen mit Förderschwerpunkt Lernen präzise zu benennen",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Honorarkosten für externe Moderation und Begleitung der inklusiven Treffen",
+            "warum": "nicht durch Nutzerangaben gedeckt"
           }
         ],
         "remaining": [
-          "Weil Inklusion nur gelingen kann, wenn sie als gemeinsamer Lernprozess aller Beteiligten verstanden wird, setzt das Vorhaben auf eine echte Ko-Konstruktion zwischen den Institutionen",
-          "Die geplante Zusammenarbeit mit der benachbarten Grundschule soll genau diese Lücke schließen – nicht als einmalige Begegnung, sondern als Raum, in dem die Kinder selbst zu Gestaltern werden."
+          "Schriftliche Kooperationsvereinbarungen zwischen den Schulen und dem Träger sind vor Projektstart zu erstellen",
+          "inklusionspädagogische Studien zeigen, dass getrennte Lernsettings die Gefahr sozialer Ausgrenzung erhöhen",
+          "empirische Befunde zu inklusiver Pädagogik belegen, dass Kinder mit Förderschwerpunkt Lernen im Alltag oft Ausgrenzung erleben",
+          "daher entsteht durch die gemeinsame Aktivität ein Raum, in dem Unterschiede nicht als Defizit, sondern als Bereicherung wahrgenommen werden",
+          "Regelschüler*innen sollen nach den Treffen in der Lage sein, die Fähigkeiten unserer Schüler*innen mit Förderschwerpunkt Lernen präzise zu benennen",
+          "dass sich die Kinder beider Schulen durch regelmäßige Begegnungen besser kennenlernen und Vorurteile abbauen",
+          "Honorarkosten für externe Moderation und Begleitung der inklusiven Treffen"
         ],
         "repaired": true
       },
       "consistencyIssues": [
         {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext erwähnt 'monatliche Treffen' und 'Begegnungsstunden' als feste Formate, aber der Finanzplan enthält keinen Posten für regelmäßige Treffen oder deren Organisation (z. B. Räumlichkeiten, Moderation).",
-          "textstelle": "monatliche Treffen / Begegnungsstunden"
+          "beschreibung": "Der Antragstext nennt eine 'Auftaktveranstaltung' als Projektstart, aber im Finanzplan gibt es keinen Posten für diese Veranstaltung.",
+          "textstelle": "Auftaktveranstaltung nach Sommerferien"
         },
         {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext beschreibt 'dialogisches Vorlesen in gemischten Kleingruppen' als zentrale Aktivität, aber der Finanzplan enthält keinen Posten für Bücher, Leseausstattung oder Honorare für Lesepat:innen.",
-          "textstelle": "dialogisches Vorlesen"
+          "beschreibung": "Der Antragstext erwähnt 'Dokumentation der Treffen' und 'Ausstellung der Ergebnisse', aber im Finanzplan fehlt ein Posten für Dokumentationsmaterial oder Ausstellungsmaterial.",
+          "textstelle": "Dokumentation und Ausstellung"
         },
         {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext nennt 'Theaterstücke' und 'Hörspiele' als mögliche Präsentationsformen, aber der Finanzplan enthält keinen Posten für Theaterrequisiten, Aufnahmegeräte oder Honorare für künstlerische Unterstützung.",
-          "textstelle": "Theaterstücke / Hörspiele"
-        },
-        {
-          "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext erwähnt 'taktile Spiele oder Bildkarten' als assistive Technologien, aber der Finanzplan unter 'Investitionen' nennt nur pauschal 'Geräte wie Stiftes, Tablets oder andere Hilfsmittel' ohne konkrete Zuordnung zu taktilen Materialien.",
-          "textstelle": "taktile Spiele oder Bildkarten"
-        },
-        {
-          "art": "sonstiges",
-          "beschreibung": "Der Antragstext spricht von 'acht bis zehn Begegnungen pro Schuljahr', während der Finanzplan pauschal '3 Workshops' unter Honoraren vorsieht. Es gibt keine klare Zuordnung der Workshops zu den geplanten Begegnungen.",
-          "textstelle": "acht bis zehn Begegnungen pro Schuljahr / 3 Workshops"
+          "beschreibung": "Der Antragstext spricht von 'multiprofessionellen Teams' und 'Lehrkräften beider Schulen', aber im Finanzplan gibt es keinen Posten für Honorare oder Sachmittel für Lehrkräfte oder Teamarbeit.",
+          "textstelle": "multiprofessionelle Teams"
         }
       ],
       "hasConsistencyIssues": true,
-      "finalText": "# Inklusive Begegnungen stärken — Antrag an Aktion Mensch e.V.\n\n## Träger- und Kooperationsstruktur\n\nAntragstellerin ist ein gemeinnütziger Träger, der inklusive Bildungsprojekte in der Region Hannover durchführt. Beide Institutionen bringen ihre jeweiligen Stärken ein: Der Träger übernimmt die formale Antragstellung bei der Aktion Mensch, die Mittelverwaltung und die Abrechnung der Fördergelder, während die Schule die direkte Umsetzung mit den Kindern und die pädagogische Begleitung vor Ort verantwortet.\n\nDie Zusammenarbeit zwischen dem Träger und der Schule soll durch eine schriftliche Kooperationsvereinbarung formalisiert werden, die vor Projektbeginn ausgearbeitet und von beiden Seiten unterzeichnet wird. [TODO: Kooperationsvereinbarung vor Einreichung erstellen und von beiden Seiten unterzeichnen lassen]\n\n[Annahme: Weil Inklusion nur gelingen kann, wenn sie als gemeinsamer Lernprozess aller Beteiligten verstanden wird, setzt das Vorhaben auf eine echte Ko-Konstruktion zwischen den Institutionen]: Der Träger bringt seine Erfahrung in der Antragstellung und Vernetzung ein, während die Schule ihr pädagogisches Know-how und ihr direktes Setting mit den Kindern einbringt. Daher ist die formale Rollenverteilung zwischen Antragsteller und Kooperationspartner nicht nur organisatorisch notwendig, sondern folgt der pädagogischen Logik, dass Inklusion als gemeinsame Aufgabe verstanden werden muss – zwischen den Institutionen ebenso wie zwischen den Kindern.\n\n## Bedarf und Zielgruppe\n\nAn der Förderschule Hannover-Vahrenwald lernen Kinder mit dem Förderschwerpunkt Lernen. Viele von ihnen haben bisher kaum Kontakt zu Regelschulkindern, obwohl gleich um die Ecke eine Grundschule liegt. Eine typische Szene aus dem Schulalltag zeigt den Bedarf: In den Pausen stehen unsere Kinder oft abseits, während die Regelschüler auf dem Schulhof spielen. Beide Seiten wünschen sich, dass die Kinder sich besser kennenlernen und Vorurteile abbauen.\n\nKonkrete Zahlen verdeutlichen die Zielgruppe: Wir planen, etwa 15 Kinder unserer Schule und einer benachbarten Grundschule einzubinden. [Annahme: Das Projekt richtet sich an Kinder mit und ohne Förderbedarf] und adressiert eine zentrale soziale Herausforderung: die fehlende Alltagserfahrung mit inklusiven Settings. Viele unserer Schüler:innen haben bisher kaum Gelegenheit, ihre Fähigkeiten in einem gemeinsamen Kontext mit Regelschulkindern zu zeigen. Gleichzeitig fehlt es den Regelschülern an Begegnungen, die ihnen vor Augen führen, dass Unterschiede im Lernen kein Hindernis für gemeinsame Aktivitäten sein müssen.\n\nWeil soziale Teilhabe von Anfang an gelernt werden muss, folgt das Vorhaben der pädagogischen Annahme, dass Begegnungen zwischen Kindern mit und ohne Förderbedarf nicht zufällig entstehen, sondern systematisch gestaltet werden müssen. Daher ist die Zielgruppe nicht nur als Gruppe zu verstehen, die erreicht werden soll, sondern als aktive Gestalterin des Prozesses: Die Kinder sollen durch die gemeinsamen Aktivitäten erfahren, dass sie selbst etwas bewegen können – sei es durch das Einbringen eigener Ideen, das Übernehmen von Verantwortung oder das Erleben von Selbstwirksamkeit in der Gruppe.\n\n## Projektidee und Aktivitäten\n\nAn der Förderschule Hannover-Vahrenwald besteht seit langem der Wunsch, die Begegnung zwischen den Kindern unserer Schule mit Schwerpunkt Lernen und der Schüler:innen der benachbarten Grundschule zu stärken. Bisher finden solche Kontakte nur vereinzelt statt, obwohl beide Seiten davon profitieren würden: Die Regelschüler:innen lernen unsere Kinder als gleichwertige Partner:innen kennen, die ebenfalls Fähigkeiten und Ideen einbringen können.\n\nAls Einstieg ist ein regelmäßiges Begegnungsformat geplant, das ab dem kommenden Schuljahr stattfinden soll. Die genaue Anzahl der Termine wird mit der Partnerschule abgestimmt; denkbar sind etwa acht bis zehn Begegnungen pro Schuljahr. Jedes Treffen folgt einem einfachen Ritual: Nach einer kurzen Begrüßung arbeiten die Kinder in gemischten Kleingruppen an einer gemeinsamen Aufgabe – etwa dem Bau eines Modells, dem Gestalten eines Plakats oder dem Einstudieren eines kurzen Theaterstücks. Diese Aufgaben sind so gewählt, dass sie unterschiedliche Stärken ansprechen und jedes Kind seine Rolle einbringen kann. Den Abschluss bildet ein kurzer Austausch über das Erlebte, bei dem die Kinder beschreiben, was sie gelernt oder besonders gut gefunden haben.\n\nDie Organisation der Treffen übernehmen abwechselnd Lehrkräfte beider Schulen. Eine schriftliche Kooperationsvereinbarung steht noch aus; sie wird vor Projektbeginn mit der Partnerschule ausgearbeitet und soll regeln, wie die Verantwortlichkeiten verteilt und die Räumlichkeiten genutzt werden.\n\n## Teilhabe und Partizipation\n\nAn der Förderschule Hannover-Vahrenwald besteht bisher kein durchgängiges Angebot, das Kinder mit und ohne Förderbedarf gemeinsam in den Austausch bringt. [Annahme: Die geplante Zusammenarbeit mit der benachbarten Grundschule soll genau diese Lücke schließen – nicht als einmalige Begegnung, sondern als Raum, in dem die Kinder selbst zu Gestaltern werden.] [Annahme: Ein bewährter Ansatz hierfür ist das dialogische Vorlesen in gemischten Kleingruppen]: Die Schüler:innen wählen gemeinsam Bücher aus, bereiten kurze Leseszenen vor und präsentieren diese einander.\n\nWeil Partizipation bedeutet, dass Kinder nicht nur Empfänger von Angeboten sind, sondern selbstbestimmt handeln, folgt das Vorhaben dem *Capability Approach* nach Sen und Nussbaum, der betont, dass wahre Teilhabe erst dann entsteht, wenn Menschen die Möglichkeit haben, ihre eigenen Entscheidungen zu treffen und ihre Fähigkeiten einzubringen. Daher ist die Methode des dialogischen Vorlesens nicht nur ein Format, sondern ein pädagogisches Prinzip: Die Kinder entscheiden nicht nur über die Inhalte, sondern auch über die Form der Präsentation – etwa ob sie als Theaterstück, als Hörspiel oder als Bildergeschichte umgesetzt werden. Die Regelschüler:innen erfahren so, dass unsere Schüler:innen über Stärken verfügen, die über den klassischen Leistungsbegriff hinausgehen; unsere Schüler:innen wiederum erleben sich als Expert:innen, deren Perspektive wertgeschätzt wird.\n\n[Annahme: Die Umsetzung erfolgt in wöchentlichen Treffen], die zunächst von den Lehrkräften moderiert werden, um den Rahmen zu setzen. Doch schon nach wenigen Einheiten sollen die Kinder selbst die Verantwortung für die Planung übernehmen: Sie bestimmen, welche Bücher gelesen werden, wie die Präsentationen gestaltet sind und welche Regeln für die Zusammenarbeit gelten. Um die Nachhaltigkeit zu sichern, ist geplant, die Treffen auf das gesamte Schuljahr auszudehnen – mit der Option, das Format bei Erfolg auf weitere Jahrgänge auszuweiten.\n\n## Barrierefreiheit\n\nIm Zentrum unseres Vorhabens steht der Abbau sozialer Barrieren zwischen den Kindern der Förderschule Hannover-Vahrenwald und der benachbarten Regelschule. Bisher bestehen kaum gemeinsame Räume oder Gelegenheiten, in denen sich die Schüler:innen ungezwungen begegnen können – die Grundschule liegt zwar um die Ecke, doch eine verbindliche Kooperation existiert noch nicht. Die geplanten Begegnungsformate wie monatliche Spiele- oder Projektnachmittage zielen darauf ab, Vorurteile abzubauen und gegenseitige Wertschätzung zu stärken.\n\nWeil Barrierefreiheit mehr bedeutet als nur bauliche Zugänglichkeit, folgt das Vorhaben dem *Universal Design for Learning* (UDL), das betont, dass Lernsettings von vornherein so gestaltet sein müssen, dass sie allen Kindern – unabhängig von ihren Lernvoraussetzungen – den Zugang ermöglichen. Daher werden kommunikative Barrieren durch die gemeinsame Sprache der Spiele und Projekte reduziert, die bewusst niedrigschwellig und inklusiv gestaltet werden. Als assistive Technologien setzen wir auf einfache, robuste Materialien wie taktile Spiele oder Bildkarten, die allen Kindern den Zugang ermöglichen.\n\nEine schriftliche Kooperationsvereinbarung mit der Regelschule ist noch auszuarbeiten [TODO: Kooperationsvereinbarung vor Einreichung erstellen], ebenso wie die finale Festlegung der Aktivitäten und Termine [TODO: konkrete Termine und Formate vor Einreichung abstimmen]. [Annahme: Die Nachhaltigkeit des Projekts sichern wir durch regelmäßige Reflexionsrunden im Kollegium], in denen wir die Erfahrungen auswerten und die Formate bei Bedarf anpassen.\n\n## Wirkung und Nachhaltigkeit\n\nDas Vorhaben zielt darauf ab, dass die Schüler:innen der Förderschule Hannover-Vahrenwald und der benachbarten Regelschule sich im Alltag begegnen und ihre gegenseitigen Vorurteile abbauen. Als konkreter Indikator soll die Anzahl der gemeinsamen Aktivitäten pro Schulhalbjahr von zunächst vier auf acht steigen – gemessen an den geplanten monatlichen Treffen, die bei Bedarf ausgeweitet werden.\n\nFür die Einzelnen bedeutet das: Die Kinder mit Förderbedarf erleben, dass sie in der Gruppe der Regelschüler:innen aktiv mitwirken können, etwa beim gemeinsamen Spielen oder bei kleinen Präsentationen ihrer Fähigkeiten. Umgekehrt lernen die Regelschüler:innen, die Stärken ihrer Mitschüler:innen mit Förderschwerpunkt Lernen wahrzunehmen und Vorbehalte abzubauen. Ein möglicher Indikator für die Wirksamkeit wäre die Anzahl der Kinder, die nach Abschluss des Projekts selbstständig Initiativen zur gemeinsamen Gestaltung von Lernsettings anstoßen.\n\nWeil Wirkung immer auch von der Perspektive der Zielgruppe abhängt, folgt das Vorhaben dem *Empowerment-Ansatz*, der betont, dass Inklusion nur dann gelingt, wenn die Betroffenen selbst zu Gestaltern werden. Daher ist die Nachhaltigkeit des Projekts nicht nur eine Frage der Fortführung, sondern der Selbstwirksamkeit: Die Kinder sollen erleben, dass sie durch ihr Handeln etwas bewegen können – sei es durch die Initiierung neuer Begegnungsformate oder durch die Weitergabe ihrer Erfahrungen an andere.\n\nFür die Institution entsteht durch das Projekt eine niedrigschwellige Kooperationsstruktur, die über die Projektlaufzeit hinaus trägt. Geplant ist, die Treffen als fester Bestandteil des Schulprogramms zu verankern, etwa als monatliche \"Begegnungsstunden\" im Stundenplan. Die Nachhaltigkeit sichert ein gemeinsam erarbeitetes Konzept, das die Schulen vorlegen, sobald die ersten Erfahrungen vorliegen. [TODO: Gemeinsames Papier mit konkreten Inhalten und Verantwortlichkeiten vor Einreichung erstellen] Sollte sich die Zusammenarbeit bewähren, wird die Förderung durch Eigenmittel der Schulen und mögliche Drittmittel ergänzt, um die Treffen dauerhaft zu etablieren.\n\n## Finanzierungs- und Kostenplan\n\nAls Finanzierungsgrundlage für das Vorhaben beantragen wir bei der Aktion Mensch e.V. eine Förderung in Höhe von insgesamt 10.275 EUR. Der Eigenanteil in Höhe von 725 EUR wird durch den Träger über Sachmittel und personelle Ressourcen erbracht. Die Mittelverwendung gliedert sich wie folgt:\n\n**Honorare:** Für die externe Leitung von drei Workshops mit inklusiven Schwerpunkten sind Honorarkosten in Höhe von 4.500 EUR eingeplant.\n\n**Sachkosten:** Für Materialien wie Spiele, Bastelutensilien und andere Arbeitsmaterialien für die inklusiven Aktivitäten sind 1.200 EUR veranschlagt.\n\n**Reisekosten:** Für Fahrten zwischen den Schulen, etwa für gemeinsame Aktivitäten oder Besuche, sind 800 EUR für ÖPNV-Tickets und ggf. weitere Fahrtkosten vorgesehen.\n\n**Investitionen:** Für assistive Technologien wie taktile Spiele, Bildkarten oder andere Hilfsmittel zur Unterstützung der Teilhabe sind 3.000 EUR eingeplant.\n\n**Overhead:** Für Verwaltung, Versicherung und sonstige Gemeinkosten des Trägers sind 1.050 EUR als pauschale Overhead-Kosten angesetzt.\n\nDie verbleibende Summe der Fördersumme dient als Puffer für nicht vorhergesehene Ausgaben. Eine detaillierte Aufschlüsselung der Aktivitäten erfolgt im Rahmen der konkreten Planung mit der Kooperationsschule. [TODO: Gemeinnützigen Träger klären und formale Kooperationsvereinbarung vorlegen] Der Eigenanteil wird durch die Bereitstellung von Räumlichkeiten, Materialien und Personal der Schule sichergestellt.",
+      "finalText": "# Inklusive Begegnungsräume schaffen — Antrag bei Aktion Mensch - Junge Menschen stärken\n\n## Träger- und Kooperationsstruktur\n\n[TODO: Gemeinnützigen Träger als Antragsteller gewinnen und Kooperationsvereinbarung vorlegen]\n\nDie *Förderschule Hannover-Vahrenwald* wirkt als Kooperationspartner mit. Die genaue Ausgestaltung der Formate – etwa die Häufigkeit der Treffen oder die Dauer des Projekts – wird im Rahmen der weiteren Konzeptentwicklung festgelegt. [Annahme: Schriftliche Kooperationsvereinbarungen zwischen den Schulen und dem Träger sind vor Projektstart zu erstellen], um die Rollen und Verantwortlichkeiten verbindlich zu regeln.\n\nAuf dieser Grundlage wird das Vorhaben von einem Träger verantwortet, der die Mittelverwaltung sicherstellt. Dies ist notwendig, weil Aktion Mensch ausschließlich gemeinnützige Träger als Antragsteller zulässt und die Schule selbst nicht antragsberechtigt ist. Der Träger bringt die erforderliche Rechtspersönlichkeit und administrative Kapazität mit, um die Fördermittel rechtskonform zu verwalten und die Umsetzung des Projekts zu begleiten. Die Schule übernimmt als Kooperationspartner die pädagogische Einbindung der Aktivitäten sicher. Diese Aufteilung entspricht den Vorgaben des Förderprogramms und ermöglicht eine professionelle Umsetzung des Vorhabens.\n\n## Bedarf und Zielgruppe\n\nAn unserer Schule besteht ein konkreter Bedarf, die Begegnung zwischen Kindern mit und ohne Förderbedarf zu stärken, weil [Annahme: inklusionspädagogische Studien zeigen, dass getrennte Lernsettings die Gefahr sozialer Ausgrenzung erhöhen] und Vorurteile verfestigen — daher ist ein niedrigschwelliger, gemeinsamer Erfahrungsraum notwendig, um diese Dynamik zu durchbrechen. Konkrete Zielgruppe sind die Kinder, die an der geplanten Kooperation teilnehmen sollen. Ziel ist es, durch gemeinsame Aktivitäten Berührungsängste abzubauen und gegenseitiges Verständnis zu fördern, indem sie im geschützten Rahmen positive Interaktionserfahrungen sammeln, sodass ein möglicher Indikator für den Erfolg wäre, wenn die Kinder nach einigen Monaten von sich aus Initiativen starten, um sich wiederzusehen. Die soziale Herausforderung, die wir angehen, ist nicht abstrakt: Es geht um die Erfahrung von Teilhabe, weil [Annahme: empirische Befunde zu inklusiver Pädagogik belegen, dass Kinder mit Förderschwerpunkt Lernen im Alltag oft Ausgrenzung erleben], während Regelschulkinder selten die Gelegenheit haben, ihre Mitschüler:innen mit besonderem Förderbedarf kennenzulernen.\n\n## Projektidee und Aktivitäten\n\nIm Zentrum des Vorhabens steht ein regelmäßiger Begegnungsraum zwischen der Förderschule Hannover-Vahrenwald und einer Partnerschule, in dem Kinder mit und ohne Förderbedarf gemeinsam aktiv werden, weil handlungsorientierte und dialogische Lernformate nach dem Prinzip des kooperativen Lernens die Selbstwirksamkeit aller Beteiligten stärken. Daher sind Aktivitäten wie gemeinsam gestaltete Projekte und kooperative Spiele vorgesehen, die an die Lebenswelt der Kinder anknüpfen. Durch diese Formate lernen die Regelschülerinnen und -schüler die Stärken und Fähigkeiten ihrer Förderschulkolleginnen und -kollegen konkret kennen – etwa beim gemeinsamen Bauen, Malen oder Präsentieren, indem sie in multiprofessionellen Teams arbeiten und so ihre eigenen Kompetenzen erweitern. Um die Nachhaltigkeit zu sichern, werden die Ergebnisse der Treffen dokumentiert und in den Klassen beider Schulen ausgestellt, sodass die Kinder ihre gemeinsamen Erfolge reflektieren und wertschätzen können. Auf dieser Grundlage folgt die zeitliche Struktur einem einfachen Rhythmus: Nach den Sommerferien startet das Projekt mit einer Auftaktveranstaltung, an die sich regelmäßige Treffen anschließen, weil ein klarer zeitlicher Rahmen die Verbindlichkeit und Planbarkeit für alle Beteiligten erhöht.\n\n## Teilhabe und Partizipation\n\n[TODO: Partizipationsformat mit Partnern entwickeln]\n\nUm die Kinder als aktive Gestalter einzubinden, schlagen wir vor, dass sie von Anfang an in die Planung und Gestaltung der Aktivitäten einbezogen werden. Dies ist notwendig, weil Partizipation die Selbstwirksamkeit stärkt und die Nachhaltigkeit der Begegnungen erhöht. Die Kinder beider Schulen sollen gemeinsam über die Gestaltung der Treffen entscheiden, etwa über die Auswahl der Aktivitäten oder die Einladung weiterer Beteiligter. So wird sichergestellt, dass die Kinder nicht nur teilnehmen, sondern selbst Verantwortung übernehmen und ihre Perspektiven einbringen können.\n\n[TODO: Konkrete Anzahl der Kinder pro Schule und Häufigkeit der Treffen vor Einreichung mit der Partnerschule abstimmen]\n\nDie Ergebnisse der Partizipationsformate werden anschließend in den Klassen vorgestellt und zur Diskussion gestellt, sodass auch diejenigen Kinder, die nicht direkt beteiligt sind, ihre Meinung einbringen können. Auf diese Weise lernen die Kinder nicht nur voneinander, sondern erleben sich selbst als Gestalter ihres schulischen Miteinanders.\n\n## Barrierefreiheit\n\nUnser Vorhaben setzt an den konkreten Barrieren an, die den inklusiven Austausch zwischen den Kindern der Förderschule Hannover-Vahrenwald und einer Partnerschule bisher erschweren. Daher werden die gemeinsamen Treffen durch eine externe Fachkraft moderiert, die die Aktivitäten pädagogisch begleitet und individuelle Unterstützung anbietet, sodass alle Kinder gleichberechtigt partizipieren können.\n\n## Wirkung und Nachhaltigkeit\n\nDas Vorhaben zielt darauf ab, [Annahme: dass sich die Kinder beider Schulen durch regelmäßige Begegnungen besser kennenlernen und Vorurteile abbauen]. Ein messbarer Indikator hierfür wäre die Anzahl der gemeinsamen Aktivitäten pro Schuljahr: Die genaue Häufigkeit der Treffen wird vor Projektstart mit der Partnerschule abgestimmt. Die Wirkung zeigt sich konkret im Verhalten der Kinder: [Annahme: Regelschüler*innen sollen nach den Treffen in der Lage sein, die Fähigkeiten unserer Schüler*innen mit Förderschwerpunkt Lernen präzise zu benennen], statt sie pauschal einzuschätzen. Für die Institution Schule erwarten wir, dass sich die Zusammenarbeit mit der Partnerschule verstetigt – etwa durch eine schriftliche Kooperationsvereinbarung, die nach Projektende fortgilt.\n\nDie Nachhaltigkeit sichern wir durch drei Elemente: Erstens wird jede Aktivität von Lehrkräften beider Schulen gemeinsam vorbereitet und reflektiert, sodass das Know-how in beiden Kollegien verankert wird. Zweitens planen wir eine einfache Dokumentation der Treffen, die als Grundlage für Folgeprojekte dient. Drittens streben wir an, dass die Partnerschule im zweiten Projektjahr eine*n unserer Schüler*innen als \"Botschafter*in\" für Inklusion benennt, der/die bei Schulveranstaltungen von den Erfahrungen berichtet. [TODO: Gemeinnütziger Träger klären, der die Mittelverwaltung übernimmt] [TODO: Schriftliche Kooperationsvereinbarung mit der Partnerschule vorlegen]\n\n## Finanzierungs- und Kostenplan\n\n[TODO: Kostenplan mit Partnern und Träger erstellen]\n\nDer Finanzierungs- und Kostenplan für das Vorhaben orientiert sich an den geplanten Kooperationsaktivitäten zwischen der Förderschule Hannover-Vahrenwald und einer Partnerschule. Als zentraler Posten sind [Annahme: Honorarkosten für externe Moderation und Begleitung der inklusiven Treffen] vorgesehen, da die Schulen bislang keine eigene Kapazität für die kontinuierliche Begleitung solcher Begegnungen haben. Hierfür werden 3.000 EUR für eine externe Fachkraft veranschlagt, die für die Planung, Durchführung und Reflexion der gemeinsamen Aktivitäten eingebunden wird.\n\nFür Sachmittel zur Umsetzung der Begegnungen sind 800 EUR für Materialien wie inklusive Brettspiele und Sozialkompetenz-Spiele eingeplant. Zudem werden 500 EUR für Fahrtkosten der Teilnehmenden zwischen den Schulen berücksichtigt, um die Kooperation zu erleichtern. Die Verwaltungskosten des Trägers betragen 430 EUR, was 10 % der förderfähigen Gesamtkosten entspricht. Der Eigenanteil von 430 EUR wird durch den Träger oder Partner erbracht.\n\n[TODO: Eigenanteil durch Träger oder Partner klären und schriftlich zusichern lassen]",
       "finanzplan": {
         "posten": [
           {
-            "id": "a30b177f-526a-4155-8a31-85a776c326ee",
+            "id": "85715c68-8737-419a-a9dd-607de2e33ef9",
             "kategorie": "honorare",
             "bezeichnung": "Externe Workshop-Leitung",
-            "betragEur": 4500,
-            "begruendung": "Schaetzung: 3 Workshops à 150 EUR (angenommener Stundensatz, da User keine Angaben machte)",
-            "eigenanteil": false,
-            "istVorschlag": true
-          },
-          {
-            "id": "a0a5cb60-afb8-4005-84e9-1023c8a1ad9d",
-            "kategorie": "sachkosten",
-            "bezeichnung": "Materialien für inklusive Spiele/Projekte",
-            "betragEur": 1200,
-            "begruendung": "Schaetzung: Pauschale für Materialien wie Stifte, Papier, einfache Spiele (User nannte keine konkreten Kosten)",
-            "eigenanteil": false,
-            "istVorschlag": true
-          },
-          {
-            "id": "2b6fee75-0149-46bf-9237-21b5315fe47a",
-            "kategorie": "reisekosten",
-            "bezeichnung": "Fahrten zwischen Schulen",
-            "betragEur": 800,
-            "begruendung": "Schaetzung: Pauschale für Fahrtkosten (z. B. ÖPNV oder Taxis bei Bedarf für Teilnehmende mit Behinderung, User nannte keine konkreten Beträge)",
-            "eigenanteil": false,
-            "istVorschlag": true
-          },
-          {
-            "id": "eb0a9ab8-3183-4b83-a189-9cc00f588d1a",
-            "kategorie": "investitionen",
-            "bezeichnung": "Assistive Technologien für Teilhabe",
             "betragEur": 3000,
-            "begruendung": "Schaetzung: Pauschale für Geräte wie Stiftes, Tablets oder andere Hilfsmittel (User nannte keine konkreten Kosten oder Mengen)",
+            "begruendung": "Schaetzung: Externe Fachkraft für monatliche inklusive Spiele-Workshops mit beiden Schulklassen (15+15 Kinder), 5 Termine à 2 Stunden, Stundensatz noch nicht geklärt — Pauschale für Projektstart",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "775884fd-9b2a-461c-9733-eefa66ad5ec6",
+            "id": "6ca17eef-6c8b-4322-8f59-a57f103a4ccb",
+            "kategorie": "sachkosten",
+            "bezeichnung": "Materialien für inklusive Spiele",
+            "betragEur": 800,
+            "begruendung": "Schaetzung: Einmalige Anschaffung von Spielmaterialien (z. B. inklusive Brettspiele, Sozialkompetenz-Spiele) für gemischte Gruppen, Menge und Preise noch nicht konkretisiert",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "2eedc25e-8e1a-4804-9e82-abb9b3d75e75",
+            "kategorie": "reisekosten",
+            "bezeichnung": "Fahrtkosten für Teilnehmende",
+            "betragEur": 500,
+            "begruendung": "Schaetzung: Fahrtkosten für Schüler:innen zwischen den Schulen (z. B. Bus-Shuttles oder ÖPNV-Tickets), Anzahl und genaue Kosten noch unklar",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "1e55b11b-f2be-4125-aca2-894c7baed06f",
             "kategorie": "overhead",
             "bezeichnung": "Verwaltungskosten des Trägers",
-            "betragEur": 1050,
-            "begruendung": "10 % der förderfähigen Kosten (6.550 EUR) als Overhead-Pauschale (gemäß Richtlinie max 10 %)",
+            "betragEur": 430,
+            "begruendung": "10 % von 4.300 EUR förderfähigen Gesamtkosten (gemäß Richtlinie), inkl. Dokumentation und Abrechnung",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "72efa663-e561-4db6-9160-77bd2e7aca46",
+            "id": "a7e558ca-9dca-4aa1-b48e-4a840de64e43",
             "kategorie": "sonstiges",
             "bezeichnung": "Eigenanteil (10 %)",
-            "betragEur": 725,
-            "begruendung": "10 % der förderfähigen Kosten (7.250 EUR) als Eigenanteil (gemäß Richtlinie)",
+            "betragEur": 430,
+            "begruendung": "Mindest-Eigenanteil von 10 % der förderfähigen Gesamtkosten (gemäß Richtlinie), kann durch Sachleistungen oder Eigenarbeit erbracht werden",
             "eigenanteil": true,
             "istVorschlag": true
           }
         ],
-        "generiertAm": "2026-07-22T11:18:11.954Z",
+        "generiertAm": "2026-07-23T08:46:04.909Z",
         "hinweise": [
           "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
-          "Alle Beträge sind grobe Schaetzungen ohne konkrete Angebote oder Mengenangaben des Users — vor Einreichung durch Angebote belegen.",
-          "Kein gemeinnütziger Träger benannt — Kooperationspartner oder Träger muss vor Antragstellung geklärt werden.",
-          "Keine formale Kooperationsvereinbarung mit Regelschule — muss vor Projektstart erstellt werden.",
-          "Keine konkreten Aktivitäten oder Zeitplan definiert — muss für Antrag präzisiert werden.",
-          "Honorar- und Materialkosten basieren auf Annahmen, da User keine Beträge nannte.",
-          "Fahrtkosten und assistive Technologien sind pauschal geschätzt, da keine konkreten Kosten/Mengen genannt wurden.",
-          "Eigenanteil kann durch Sachleistungen oder Eigenarbeit erbracht werden (gemäß Richtlinie).",
-          "Der Betrag für „Externe Workshop-Leitung\" (4.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Materialien für inklusive Spiele/Projekte\" (1.200 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Fahrten zwischen Schulen\" (800 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Assistive Technologien für Teilhabe\" (3.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Die Förderung (10.550 EUR) entspricht 94 % der Gesamtkosten — dieses Programm fördert höchstens 90 %. Es fehlt ein Eigenanteil von mind. 447 EUR (Gesamtkosten dann 11.722 EUR). Ergänzen Sie einen Eigenanteil-Posten oder senken Sie die beantragte Förderung, sonst verletzt der Antrag die Förderquote."
+          "Alle Beträge sind grobe Schaetzungen ohne konkrete Angebote oder Mengenangaben der Schule — vor Einreichung durch Angebote und konkrete Planungen belegen.",
+          "Kein gemeinnütziger Träger oder formale Kooperationsvereinbarung vorhanden — muss vor Antragstellung geklärt werden.",
+          "Aktivitäten und Zeitplan noch nicht konkretisiert — monatliche Workshops nur als Annahme für Kalkulation.",
+          "Honorar- und Materialkosten müssen vor Antragstellung durch Angebote der externen Fachkraft bzw. Lieferanten präzisiert werden.",
+          "Fahrtkosten hängen von der genauen Anzahl der Teilnehmenden und der Distanz zwischen den Schulen ab.",
+          "Eigenanteil kann auch durch Sachleistungen (z. B. Materialspenden) oder Eigenarbeit (z. B. Vorbereitung durch Lehrkräfte) erbracht werden — Dokumentation erforderlich.",
+          "Der Betrag für „Externe Workshop-Leitung\" (3.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Materialien für inklusive Spiele\" (800 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Fahrtkosten für Teilnehmende\" (500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Die Förderung (4.730 EUR) entspricht 92 % der Gesamtkosten — dieses Programm fördert höchstens 90 %. Es fehlt ein Eigenanteil von mind. 96 EUR (Gesamtkosten dann 5.256 EUR). Ergänzen Sie einen Eigenanteil-Posten oder senken Sie die beantragte Förderung, sonst verletzt der Antrag die Förderquote."
         ]
       }
     },
@@ -907,134 +879,134 @@
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6017,
-          "candidatesTokens": 449
+          "candidatesTokens": 297
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6035,
-          "candidatesTokens": 385
+          "candidatesTokens": 483
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5955,
-          "candidatesTokens": 408
+          "candidatesTokens": 503
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5982,
-          "candidatesTokens": 396
+          "candidatesTokens": 526
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5969,
-          "candidatesTokens": 371
+          "candidatesTokens": 444
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5963,
-          "candidatesTokens": 420
-        }
-      },
-      {
-        "model": "mistral-small-latest",
-        "usage": {
-          "promptTokens": 5979,
           "candidatesTokens": 434
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 8693,
-          "candidatesTokens": 2023
+          "promptTokens": 5979,
+          "candidatesTokens": 498
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 11191,
-          "candidatesTokens": 3236
+          "promptTokens": 9014,
+          "candidatesTokens": 1726
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 8476,
-          "candidatesTokens": 1063
+          "promptTokens": 10848,
+          "candidatesTokens": 2241
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3757,
-          "candidatesTokens": 3070
+          "promptTokens": 1419,
+          "candidatesTokens": 1029
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4592,
-          "candidatesTokens": 1743
+          "promptTokens": 6799,
+          "candidatesTokens": 736
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4488,
-          "candidatesTokens": 2789
+          "promptTokens": 3745,
+          "candidatesTokens": 1284
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 3649,
+          "candidatesTokens": 2117
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 3441,
-          "candidatesTokens": 739
+          "candidatesTokens": 714
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3948,
-          "candidatesTokens": 330
+          "promptTokens": 3234,
+          "candidatesTokens": 349
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4146,
-          "candidatesTokens": 2630
+          "promptTokens": 3452,
+          "candidatesTokens": 1745
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3789,
-          "candidatesTokens": 428
+          "promptTokens": 2862,
+          "candidatesTokens": 217
         }
       }
     ]
   },
   "meta": {
-    "iso": "2026-07-22T11-18-29",
+    "iso": "2026-07-23T08-46-17",
     "runIndex": 3,
-    "pipelineCommitSha": "1f0d8782",
+    "pipelineCommitSha": "99a74cd7",
     "featureFlags": {
       "useVorbildFormulierungen": "true",
       "complianceStageEnabled": "false",
       "sharpPrompts": "true",
       "geberRoutingV2": "true"
     },
-    "latencyMs": 127301,
+    "latencyMs": 97770,
     "schemaVersion": 1
   }
 }

@@ -38,8 +38,12 @@
       "verificationWarning": "Dieses Programm hat nicht verifizierte Fördersummen. Bitte prüfen Sie die Daten vor einer Antragstellung.",
       "quelleUrl": "https://ensa.engagement-global.de",
       "fristZustand": {
-        "art": "unbekannt",
-        "quelle": "Primaerquelle ensa.engagement-global.de, geprueft 22.07.2026: Eine Runde ist OFFEN - woertlich 'Jetzt fuer die Foerderung Ihrer Nord-Sued-Schulpartnerschaft 2027 bewerben!' -, aber die Seite nennt KEINE Frist. Der Dossier-Stichtag 30.09. ist unbelegt. Zu erheben auf den Unterseiten 'Bewerbung fuer Anbahnungsreisen' / 'Bewerbung fuer Begegnungsreisen'."
+        "art": "stichtag",
+        "stichtage": [
+          "2026-09-30"
+        ],
+        "jaehrlichWiederkehrend": true,
+        "quelle": "Primaerquelle ensa.engagement-global.de/begegnungsreisen-ensa-jahreszyklus, geprueft 22.07.2026, woertlich: 'Bis Ende September muss der Projektantrag Teil 1 (Projektskizze) fuer Begegnungsreisen im Folgejahr bei uns eingegangen sein.' Bewerbungszeitraum Juli-September, jaehrlich wiederkehrend (fuer Foerderung 2027 bis 30.09.2026). Korrigiert das alte 'laufend'."
       }
     },
     "facts": {
@@ -96,7 +100,7 @@
       }
     },
     "richtlinie": {
-      "version": "2026-05-19",
+      "version": "2026-07-22",
       "quellen": [
         "https://ensa.engagement-global.de",
         "https://ensa.engagement-global.de/begegnungsreisen.html",
@@ -358,8 +362,16 @@
         "jaehrlich_wiederkehrend": true
       },
       "fristZustand": {
+        "art": "stichtag",
+        "stichtage": [
+          "2026-09-30"
+        ],
+        "jaehrlichWiederkehrend": true,
+        "quelle": "Primaerquelle ensa.engagement-global.de/begegnungsreisen-ensa-jahreszyklus, geprueft 22.07.2026, woertlich: 'Bis Ende September muss der Projektantrag Teil 1 (Projektskizze) fuer Begegnungsreisen im Folgejahr bei uns eingegangen sein.' Bewerbungszeitraum Juli-September, jaehrlich wiederkehrend (fuer Foerderung 2027 bis 30.09.2026). Korrigiert das alte 'laufend'."
+      },
+      "umfangZustand": {
         "art": "unbekannt",
-        "quelle": "Primaerquelle ensa.engagement-global.de, geprueft 22.07.2026: Eine Runde ist OFFEN - woertlich 'Jetzt fuer die Foerderung Ihrer Nord-Sued-Schulpartnerschaft 2027 bewerben!' -, aber die Seite nennt KEINE Frist. Der Dossier-Stichtag 30.09. ist unbelegt. Zu erheben auf den Unterseiten 'Bewerbung fuer Anbahnungsreisen' / 'Bewerbung fuer Begegnungsreisen'."
+        "quelle": "ENSA laeuft wie FEB ueber die FoePro-Foerderprojektsoftware von Engagement Global (foerderung.engagement-global.de). Portal am 22.07.2026 mit autorisiertem Konto betreten: Die inhaltlichen Projektantrags-Felder sind NICHT per Selbstregistrierung erhebbar — FoePro gibt den Projektantrag erst nach vollstaendiger Traegeranlage (6-stufiger Wizard inkl. Nachweis-Upload) UND beantragter/bestandener Traegerpruefung frei (Gating). Auf Traeger-Ebene erhoben: 'Beschreibung der Organisation' = 5000 Zeichen (Feld-Label + Live-Restzaehler). Details siehe umfangZustand im Schwester-Dossier feb-foerderprogramm-entwicklungspolitische-bildung. Projektfeld-Limits nur mit echter Traegerpruefung messbar — bewusst nicht ausgeloest."
       }
     },
     "messages": [
@@ -368,112 +380,112 @@
         "role": "ai",
         "kind": "question",
         "content": "Was soll die Begegnungsreise mit ENSA konkret erreichen? Handelt es sich um eine erste Anbahnungsreise oder eine Begegnung auf Basis einer bestehenden Partnerschaft?",
-        "at": "2026-07-22T11:36:05.225Z"
+        "at": "2026-07-23T09:06:03.263Z"
       },
       {
         "id": "1",
         "role": "user",
         "kind": "answer",
         "content": "Wir haben schon eine Briefpartnerschaft mit einer Schule in Kenia, seit vielleicht 5 Jahren. Die Eine-Welt-AG haelt den Kontakt. Jetzt wollen wir wirklich hinfahren, ein paar Schueler mitnehmen.",
-        "at": "2026-07-22T11:36:05.225Z"
+        "at": "2026-07-23T09:06:03.263Z"
       },
       {
         "id": "2",
         "role": "ai",
         "kind": "question",
         "content": "Wie lang besteht die Partnerschaft formal? ENSA fordert fuer eine Begegnungsreise mindestens 1 Jahr dokumentierte Partnerschaft.",
-        "at": "2026-07-22T11:36:05.225Z"
+        "at": "2026-07-23T09:06:03.263Z"
       },
       {
         "id": "3",
         "role": "user",
         "kind": "answer",
         "content": "Seit 5 Jahren ungefaehr. Dokumentiert? Naja, wir haben die Briefe und E-Mails. Ob das formal reicht weiss ich nicht.",
-        "at": "2026-07-22T11:36:05.225Z"
+        "at": "2026-07-23T09:06:03.263Z"
       },
       {
         "id": "4",
         "role": "ai",
         "kind": "question",
         "content": "Wie viele Teilnehmende sind geplant, und welches SDG-Thema oder Entwicklungsthema soll Schwerpunkt der Reise sein?",
-        "at": "2026-07-22T11:36:05.225Z"
+        "at": "2026-07-23T09:06:03.263Z"
       },
       {
         "id": "5",
         "role": "user",
         "kind": "answer",
         "content": "10 bis 12 Schueler wuerden wir gerne mitnehmen, plus 2 Lehrkraefte. Thema... Klimawandel in Afrika vielleicht? Das interessiert die Schueler gerade sehr.",
-        "at": "2026-07-22T11:36:05.225Z"
+        "at": "2026-07-23T09:06:03.263Z"
       },
       {
         "id": "6",
         "role": "ai",
         "kind": "question",
         "content": "Wann soll die Reise stattfinden, und haben Sie den Zeitrahmen Maerz bis Oktober im Blick? Das ist die ENSA-Reisefoerderphase.",
-        "at": "2026-07-22T11:36:05.225Z"
+        "at": "2026-07-23T09:06:03.263Z"
       },
       {
         "id": "7",
         "role": "user",
         "kind": "answer",
         "content": "Wir hatten an den Sommer gedacht, vielleicht Juli oder August. Ob das foerderbar ist weiss ich gerade nicht.",
-        "at": "2026-07-22T11:36:05.225Z"
+        "at": "2026-07-23T09:06:03.263Z"
       },
       {
         "id": "8",
         "role": "ai",
         "kind": "question",
         "content": "Welche Rolle spielt die kenianische Partnerschule bei der Planung — wird auf Augenhoehe entschieden?",
-        "at": "2026-07-22T11:36:05.225Z"
+        "at": "2026-07-23T09:06:03.263Z"
       },
       {
         "id": "9",
         "role": "user",
         "kind": "answer",
         "content": "Das ist uns wirklich wichtig. Die Themen legen wir in Videokonferenzen gemeinsam fest, die laufen schon seit einem halben Jahr. Die Kollegen in Nakuru haben zum Beispiel durchgesetzt, dass es um Wasser geht und nicht um Muell, weil das bei ihnen das draengendere Thema ist.",
-        "at": "2026-07-22T11:36:05.225Z"
+        "at": "2026-07-23T09:06:03.263Z"
       },
       {
         "id": "10",
         "role": "ai",
         "kind": "question",
         "content": "Wie bereiten Sie Ihre Schuelerinnen und Schueler auf die Begegnung vor, auch im Blick auf Stereotype und koloniale Bilder?",
-        "at": "2026-07-22T11:36:05.225Z"
+        "at": "2026-07-23T09:06:03.263Z"
       },
       {
         "id": "11",
         "role": "user",
         "kind": "answer",
         "content": "Wir machen vorher eine AG mit acht Terminen, da geht es genau darum: eigene Bilder hinterfragen, Geschichte der Beziehungen, und die Schueler recherchieren zu Kenia jenseits von Safari-Klischees. Eine Referentin von einem entwicklungspolitischen Verein aus Muenster unterstuetzt uns dabei.",
-        "at": "2026-07-22T11:36:05.225Z"
+        "at": "2026-07-23T09:06:03.263Z"
       },
       {
         "id": "12",
         "role": "ai",
         "kind": "question",
         "content": "Was soll nach der Begegnungsreise mit der Partnerschaft passieren?",
-        "at": "2026-07-22T11:36:05.227Z"
+        "at": "2026-07-23T09:06:03.263Z"
       },
       {
         "id": "13",
         "role": "user",
         "kind": "answer",
         "content": "Die Partnerschaft soll dauerhaft werden, mit jaehrlichen gemeinsamen Projekten, im Wechsel online und mit Begegnung. Naechstes Jahr ist der Gegenbesuch geplant. An der Schule soll ausserdem eine feste Kenia-AG entstehen, die den Kontakt haelt.",
-        "at": "2026-07-22T11:36:05.227Z"
+        "at": "2026-07-23T09:06:03.263Z"
       },
       {
         "id": "14",
         "role": "ai",
         "kind": "question",
         "content": "Woran wuerden Sie festmachen, dass die Begegnung gelungen ist?",
-        "at": "2026-07-22T11:36:05.227Z"
+        "at": "2026-07-23T09:06:03.263Z"
       },
       {
         "id": "15",
         "role": "user",
         "kind": "answer",
         "content": "Wenn die Tandems danach weiter in Kontakt sind — das kann man ja sehen. Und wir werten die Reflexionstagebuecher aus, die alle Teilnehmenden fuehren. Wenn da steht, dass sich der Blick auf globale Zusammenhaenge veraendert hat, haben wir viel erreicht.",
-        "at": "2026-07-22T11:36:05.227Z"
+        "at": "2026-07-23T09:06:03.263Z"
       }
     ]
   },
@@ -519,122 +531,122 @@
       "sections": [
         {
           "name": "Antragsteller und Institution",
-          "text": "Das Gymnasium Münster-Wolbeck ist eine weiterführende Schule in Nordrhein-Westfalen mit 900 Schülerinnen und Schülern. Als Projektkoordinatorin fungiert [TODO: Name und Kontaktdaten der Ansprechperson vor Einreichung ergänzen], die gemeinsam mit der Eine-Welt-AG die bestehende Partnerschaft mit einer Schule in Kenia koordiniert. Diese Partnerschaft besteht seit etwa fünf Jahren und wird durch regelmäßigen Brief- und E-Mail-Kontakt sowie seit einem halben Jahr durch monatliche Videokonferenzen gepflegt. In diesen Gesprächen wurden bereits Themen wie Wasserknappheit als gemeinsamer Fokus für die geplante Begegnungsreise festgelegt, da dies aus kenianischer Perspektive das drängendere Problem darstellt als etwa Müllvermeidung.\n\nDie Projektidee entstand aus dem Wunsch heraus, die bisherige Korrespondenz durch eine direkte Begegnung zu vertiefen. Geplant ist eine Reise mit 10 bis 12 Schülerinnen und Schülern der Jahrgangsstufen 10 bis 12 sowie zwei Lehrkräften, die im Sommer (Juli/August) stattfinden soll. Vorbereitet wird die Reise durch eine achtteilige AG, in der die Teilnehmenden eigene Wahrnehmungsmuster hinterfragen, die Geschichte der Partnerschaft aufarbeiten und Kenia jenseits von Klischees recherchieren. Unterstützt wird die AG durch eine Referentin eines entwicklungspolitischen Vereins aus Münster. Die Nachhaltigkeit des Vorhabens ist durch die geplante Institutionalisierung einer festen Kenia-AG an der Schule sowie einen Gegenbesuch im Folgejahr gesichert."
+          "text": "Das Gymnasium Münster-Wolbeck ist eine weiterführende Schule in Nordrhein-Westfalen mit 900 Schülerinnen und Schülern. Antragstellende Stelle ist die Schule selbst, vertreten durch die Projektkoordination. Als Ansprechperson für die geplante Begegnungsreise nach Kenien fungiert [TODO: Name und Kontaktdaten der Projektkoordination vor Einreichung ergänzen], die bereits seit fünf Jahren die bestehende Schulpartnerschaft mit einer kenianischen Partnerschule koordiniert. Die Partnerschaft wird von der Eine-Welt-AG der Schule getragen, die den Kontakt dokumentiert und durch regelmäßige Videokonferenzen mit der Partnerschule in Nakuru gestaltet. Diese Zusammenarbeit hat sich in den letzten Monaten intensiviert, wobei die Themen gemeinsam mit den kenianischen Kolleginnen und Kollegen festgelegt werden – aktuell steht das Thema Wasser im Fokus, da es vor Ort als drängender wahrgenommen wird als etwa Müllproblematik.\n\nDie geplante Reise zielt auf eine vertiefte interkulturelle und globale Lernerfahrung ab, bei der 10 bis 12 Schülerinnen und Schüler der Jahrgangsstufen 10 bis 12 sowie zwei Lehrkräfte teilnehmen sollen. Vorbereitet wird die Begegnung durch eine achtteilige AG, in der die Teilnehmenden eigene Bilder hinterfragen, die Beziehungsgeschichte reflektieren und zu Kenia jenseits von Klischees recherchieren. Unterstützt wird die AG durch eine Referentin eines entwicklungspolitischen Vereins aus Münster. Die Nachhaltigkeit des Vorhabens ist durch die Planung eines Gegenbesuchs im Folgejahr sowie die Einrichtung einer festen Kenia-AG an der Schule gesichert, die den Kontakt dauerhaft aufrechterhält."
         },
         {
           "name": "Schulpartnerschaft",
-          "text": "Die Schulpartnerschaft mit Kenia besteht seit fünf Jahren und wird durch die Eine-Welt-AG des Gymnasiums Münster-Wolbeck koordiniert. Die Initiative entstand aus dem Engagement der Arbeitsgemeinschaft, die seit 2019 einen regelmäßigen Austausch mit der Partnerschule in Nakuru pflegt. Dieser Kontakt umfasst monatliche Videokonferenzen, in denen gemeinsame Themen wie Klimawandel und Ressourcenmanagement erörtert werden. Die kenianischen Kolleginnen und Kollegen haben dabei maßgeblich die Schwerpunktsetzung beeinflusst – so wurde etwa das ursprünglich geplante Thema „Müllvermeidung“ zugunsten von „Wassermanagement“ zurückgestellt, da dies vor Ort dringlicher ist. Die Partnerschaft ist dokumentiert durch einen mehrjährigen Schriftverkehr, der sowohl physische Briefe als auch digitale Korrespondenz umfasst.\n\nDie geplante Begegnungsreise nach Kenia soll die bestehende virtuelle Zusammenarbeit um eine direkte interkulturelle Erfahrung erweitern. Zehn bis zwölf Schülerinnen und Schüler der Jahrgangsstufen 10 bis 12 sowie zwei Lehrkräfte werden im Sommer (Juli/August) an der Partnerschule teilnehmen. Vorbereitet wird die Reise durch eine achtteilige AG, die sich mit der Dekonstruktion von Klischees über Kenia, der Aufarbeitung der Partnerschaftsgeschichte und der Recherche zu lokalen Perspektiven auf Klimawandel beschäftigt. Eine externe Referentin eines entwicklungspolitischen Vereins aus Münster begleitet diese Vorbereitung fachlich.\n\nDie Nachhaltigkeit der Partnerschaft ist strukturell angelegt: Neben der geplanten Gegenbesuchsreise im Folgejahr soll an der Schule eine feste Kenia-AG etabliert werden, die den Kontakt auch nach der Begegnung aufrechterhält. Die Wirkung der Maßnahme wird durch Reflexionstagebücher der Teilnehmenden evaluiert, deren Auswertung Aufschluss über Veränderungen im globalen Bewusstsein geben soll. Die Fortdauer der Tandem-Kontakte zwischen den Schülerinnen und Schülern dient dabei als zusätzlicher Indikator für den Erfolg der Partnerschaft."
+          "text": "Die Schulpartnerschaft mit Kenia besteht seit fünf Jahren und wird durch die Eine-Welt-AG der Schule koordiniert. Die Partnerschule befindet sich in Nakuru, Kenia, und zählt zu den Partnerländern der OECD DAC-Liste. Die Initiative ging von der Eine-Welt-AG aus, die seit einem halben Jahr regelmäßig in Videokonferenzen mit der kenianischen Partnerschule Themen für die Zusammenarbeit abstimmt. Dabei wurden bereits gemeinsame Schwerpunkte wie der Umgang mit Wasserknappheit in Kenia festgelegt, der von den kenianischen Kolleginnen und Kollegen als dringlicheres Thema gegenüber Müllproblematik eingestuft wurde. Die Partnerschaft ist auf Dauer angelegt und sieht jährliche Projekte vor, wobei der Gegenbesuch der kenianischen Gruppe im Folgejahr geplant ist. Zur Vorbereitung der Begegnungsreise findet an der Schule eine AG mit acht Terminen statt, in der die Schülerinnen und Schüler eigene Bilder von Kenia hinterfragen, die Geschichte der Partnerschaft aufarbeiten und zu Themen wie Klimawandel in Afrika recherchieren. Unterstützt wird die AG durch eine Referentin eines entwicklungspolitischen Vereins aus Münster. Die regelmäßige Kommunikation zwischen den Schulen erfolgt über die genannten Videokonferenzen sowie über Briefe und E-Mails, die als Dokumentation der Partnerschaft dienen."
         },
         {
           "name": "Projektthema und SDG-Bezug",
-          "text": "Das Projektthema der geplanten Begegnungsreise nach Kenia orientiert sich am **SDG 13: Maßnahmen zum Klimaschutz** und verbindet es mit dem lokalen Kontext der Partnerschule in Nakuru. Die konkrete Fragestellung lautet: *Wie wirkt sich der Klimawandel auf die Wasserversorgung in Kenia aus – und welche Lösungsansätze entwickeln Schülerinnen und Schüler beider Länder gemeinsam?* Diese Frage wurde in den bereits etablierten monatlichen Videokonferenzen zwischen den Lehrkräften beider Schulen entwickelt und spiegelt die Prioritäten der kenianischen Partner wider, die Wasserknappheit als drängenderes Problem einstuften als Abfallentsorgung.\n\nDer Austausch folgt einem **gegenseitigen Lernmodell**, das beide Perspektiven systematisch einbezieht. Die deutschen Schülerinnen und Schüler bereiten sich in einer achtwöchigen AG auf die Reise vor, in der sie eigene Wahrnehmungsmuster hinterfragen, die Geschichte der Partnerschaft aufarbeiten und Kenia jenseits gängiger Klischees (z. B. \"Safari\") recherchieren. Die kenianischen Partner bringen ihre Expertise zu lokalen Klimafolgen ein – etwa zu Dürreperioden oder innovativen Bewässerungstechniken – und gestalten die Inhalte aktiv mit. Ein zentrales Element ist die **gemeinsame Entwicklung von Handlungsoptionen**, die sowohl globale Zusammenhänge als auch lokale Handlungsmöglichkeiten berücksichtigen.\n\nDie Nachhaltigkeit des Projekts wird durch **drei strukturelle Verankerungen** gesichert: Erstens ist ein Gegenbesuch der kenianischen Schülerinnen und Schüler im Folgejahr geplant, zweitens soll an der Schule eine feste Kenia-AG entstehen, die den Kontakt auch nach der Reise aufrechterhält, und drittens werden die Reflexionstagebücher der Teilnehmenden ausgewertet, um langfristige Veränderungen in der Wahrnehmung globaler Verantwortung zu messen. Die Auswertung der Tagebücher dient dabei als **messbarer Indikator** für die Zielerreichung: Eine Veränderung des Blickwinkels auf globale Zusammenhänge gilt als erreicht, wenn die Teilnehmenden in ihren Aufzeichnungen konkrete Bezüge zwischen lokalen Klimafolgen und eigenen Handlungsmöglichkeiten herstellen."
+          "text": "Das Projektthema orientiert sich am **SDG 13: Maßnahmen zum Klimaschutz**, wobei der Fokus auf der gemeinsamen Fragestellung *„Wie wirkt sich der Klimawandel auf Wasserverfügbarkeit und -nutzung in Kenia und Deutschland aus – und welche lokalen Lösungsansätze gibt es?“* liegt. Diese Frage wurde in den seit einem halben Jahr laufenden Videokonferenzen mit der Partnerschule in Nakuru entwickelt, wobei die kenianischen Kolleginnen und Kollegen das Thema Wasser als drängenderen Schwerpunkt gegenüber dem ursprünglich von deutscher Seite vorgeschlagenen Müllthema durchsetzten. Damit wird der Austausch explizit als **gleichberechtigte Ko-Konstruktion** gestaltet: Die deutsche Perspektive auf Klimaschutz als globale Verantwortung trifft auf die kenianische Priorisierung von Wassermanagement als Überlebensfrage. Die Vorbereitung in der Eine-Welt-AG und durch eine externe Referentin aus einem entwicklungspolitischen Verein in Münster zielt darauf ab, eigene Bilder und Klischees zu hinterfragen und Kenia jenseits von „Safari“-Narrativen zu erkunden – ein zentraler Schritt, um den Nord-Süd-Blick zu vermeiden.\n\nDie Wirkung wird an zwei messbaren Indikatoren überprüft: Erstens durch die Auswertung der **Reflexionstagebücher**, in denen die Teilnehmenden dokumentieren, wie sich ihr Blick auf globale Zusammenhänge verändert hat. Zweitens durch die **Fortführung der Tandem-Kontakte** nach der Begegnung, die als Indikator für die Nachhaltigkeit der Partnerschaft dient. Die Reise selbst ist dabei nur ein Baustein eines längerfristigen Konzepts: Geplant sind jährliche gemeinsame Projekte im Wechsel zwischen digitalem Austausch und Präsenzbegegnungen, wobei der Gegenbesuch der kenianischen Gruppe im Folgejahr bereits fest eingeplant ist. An der Schule soll zudem eine **feste Kenia-AG** etabliert werden, die den Kontakt auch ohne externe Förderung aufrechterhält."
         },
         {
           "name": "Programmablauf",
-          "text": "Der Programmablauf folgt einer klaren Abfolge von Vorbereitung, Begegnung und Nachbereitung, die auf die bestehenden Strukturen der Schulpartnerschaft mit Kenia aufbaut. Vor der Reise findet eine achtteilige AG statt, in der die teilnehmenden Schüler:innen durch eine externe Referentin eines entwicklungspolitischen Vereins aus Münster in globale Zusammenhänge eingeführt werden. Themenschwerpunkte sind dabei die Dekonstruktion medialer Bilder zu Kenia, die Aufarbeitung der bisherigen Partnerschaftsgeschichte sowie Recherchen zu aktuellen Herausforderungen vor Ort – insbesondere zum Klimawandel und Wassermanagement. Diese Vorbereitung dient als Grundlage für die gemeinsame Themenfindung mit der Partnerschule in Nakuru, die bereits seit einem halben Jahr in Videokonferenzen erfolgt und sicherstellt, dass die lokalen Prioritäten der kenianischen Kolleg:innen (z. B. Fokus auf Wasser statt auf Müll) berücksichtigt werden.\n\nDie Begegnungsphase umfasst 10–14 Tage und kombiniert projektbezogene Arbeit mit interkulturellen Lernanlässen. Geplant sind gemeinsame Workshops zu den vereinbarten Themen, etwa zur Analyse lokaler Klimafolgen oder zur Entwicklung von Handlungsoptionen für den Schulalltag. Reflexionsphasen sind täglich in den Ablauf integriert, unter anderem durch geführte Tagebucheinträge, die später ausgewertet werden. Als konkretes Ergebnis entstehen Tandem-Projekte, die über die Reise hinaus fortgeführt werden sollen – etwa ein gemeinsames Umweltprojekt oder der Austausch digitaler Lernmaterialien. Die Nachhaltigkeit wird durch die Einrichtung einer festen Kenia-AG an der Schule gesichert, die den Kontakt auch nach dem Gegenbesuch im Folgejahr aufrechterhält und die Partnerschaft strukturell verankert. Die messbare Wirkung soll sich in den Reflexionstagebüchern zeigen, deren Auswertung Aufschluss über veränderte Perspektiven auf globale Zusammenhänge geben wird."
+          "text": "Der Programmablauf ist als Begegnungsreise mit der Partnerschule in Nakuru (Kenia) über einen Zeitraum von 14 Tagen im Juli/August 2026 angelegt. Die Reise gliedert sich in drei Phasen: Vorbereitung an der Schule, Begegnungsphase vor Ort und Nachbereitung mit Transfer in den Schulalltag.\n\nIn der Vorbereitungsphase finden acht wöchentliche Termine der Eine-Welt-AG statt, in denen die teilnehmenden Schüler*innen ihre eigenen Bilder von Kenia hinterfragen und die Geschichte der Partnerschaft aufarbeiten. Eine externe Referentin eines entwicklungspolitischen Vereins aus Münster begleitet die Gruppe dabei methodisch und inhaltlich. Parallel recherchieren die Schüler*innen zu aktuellen Lebensrealitäten in Kenia – insbesondere zum Thema Wasserknappheit, das von der Partnerschule als prioritär benannt wurde – und bereiten so die inhaltliche Grundlage für die Begegnung vor. Die Themen werden in bereits etablierten Videokonferenzen mit der Partnerschule abgestimmt, um eine gemeinsame Schwerpunktsetzung zu gewährleisten.\n\nDie Begegnungsphase vor Ort umfasst gemeinsame Projekte mit der kenianischen Partnerschule, darunter Feldbeobachtungen zu lokalen Klimafolgen und Wasserinfrastruktur, Workshops zu globalen Zusammenhängen sowie kulturelle Austauschformate. Alle Teilnehmenden führen während der Reise Reflexionstagebücher, in denen sie ihre Eindrücke dokumentieren und erste Ideen für Folgeprojekte festhalten. Ein zentrales Ergebnis der Begegnung ist die gemeinsame Erarbeitung eines Projektplans für das Folgejahr, der sowohl digitale als auch physische Austauschformate vorsieht.\n\nIn der Nachbereitungsphase wird das Erlebte in den Schulalltag transferiert: Die Schüler*innen präsentieren ihre Erfahrungen in der Schulgemeinschaft, die Eine-Welt-AG dokumentiert die Reise und entwickelt daraus Vorschläge für eine feste Kenia-AG an der Schule. Die Reflexionstagebücher werden ausgewertet, um die Wirkung der Reise auf das Klimabewusstsein und die interkulturelle Kompetenz der Teilnehmenden zu messen. Die Tandem-Kontakte zwischen den Schüler*innen beider Schulen sollen durch regelmäßige digitale Treffen aufrechterhalten werden, um die Partnerschaft nachhaltig zu verstetigen."
         },
         {
           "name": "Teilnehmendengruppe",
-          "text": "An unserer Schule nehmen an der Begegnungsreise nach Kenia voraussichtlich 12 Schülerinnen und Schüler der Jahrgangsstufen 7 bis 9 sowie zwei Lehrkräfte teil. Die Auswahl der Teilnehmenden erfolgt in einem zweistufigen Verfahren: Zunächst werden in der Eine-Welt-AG diejenigen Schülerinnen und Schüler angesprochen, die bereits Interesse an der Partnerschaft mit der kenianischen Schule zeigen. Im Anschluss findet eine offene Bewerbung statt, bei der die Jugendlichen in einem kurzen Motivationsschreiben darlegen, wie sie sich in das Projekt einbringen möchten. Besonderes Augenmerk liegt dabei auf der Berücksichtigung von Kindern mit erschwertem Bildungszugang: Durch die Einbindung der Eine-Welt-AG, die sich aus Schülerinnen und Schülern unterschiedlicher Leistungsniveaus zusammensetzt, wird sichergestellt, dass auch Teilnehmende mit Lernschwierigkeiten oder sozialer Benachteiligung die Möglichkeit erhalten, an der Reise teilzunehmen. Die Eine-Welt-AG fungiert zudem als niedrigschwelliger Zugang, da sie bereits seit fünf Jahren die Briefpartnerschaft mit der Schule in Nakuru pflegt und durch ihre regelmäßigen Treffen eine vertrauensvolle Atmosphäre schafft.\n\nDie Vorbereitung der Gruppe umfasst acht thematische AG-Termine, in denen die Teilnehmenden ihre eigenen Vorstellungen über Kenia hinterfragen, die Geschichte der Partnerschaft aufarbeiten und zu aktuellen globalen Themen wie Klimawandel und Wasserknappheit recherchieren. Eine externe Referentin eines entwicklungspolitischen Vereins aus Münster begleitet diesen Prozess und unterstützt die Schülerinnen und Schüler dabei, Klischees zu dekonstruieren und eine differenzierte Perspektive auf die Lebensrealitäten in Kenia zu entwickeln. Die Auswahl der Begleitpersonen erfolgt nach dem Prinzip der fachlichen und persönlichen Eignung: Neben der pädagogischen Kompetenz der Lehrkräfte wird darauf geachtet, dass mindestens eine Person über interkulturelle Erfahrungen verfügt, um die Gruppe während der Reise zu begleiten."
+          "text": "An unserer Schule nehmen an der Begegnungsreise nach Kenia insgesamt 12 Schülerinnen und Schüler der Jahrgangsstufen 8 bis 10 sowie zwei Lehrkräfte teil. Die Auswahl der Teilnehmenden erfolgt in einem zweistufigen Verfahren: Zunächst werden interessierte Schülerinnen und Schüler in der Eine-Welt-AG über die Reise informiert und zur Bewerbung aufgefordert. Dabei wird explizit darauf hingewiesen, dass auch Schülerinnen und Schüler mit erschwertem Bildungszugang – etwa durch soziale Benachteiligung oder migrationsbedingte Hürden – besonders ermutigt werden, sich zu bewerben. In einem zweiten Schritt entscheidet eine Jury aus Lehrkräften und AG-Mitgliedern über die Teilnahme, wobei die Motivation, die Bereitschaft zur aktiven Mitgestaltung des Projekts sowie die Diversität der Gruppe als Auswahlkriterien dienen.\n\nDie Vorbereitung der Gruppe erfolgt im Rahmen einer achtteiligen AG, in der die Teilnehmenden in interkultureller Kommunikation, globalen Zusammenhängen und der Geschichte der Partnerschaft geschult werden. Eine externe Referentin eines entwicklungspolitischen Vereins aus Münster unterstützt die AG dabei, Klischees über Kenia zu hinterfragen und den Fokus auf lokale Themen wie Wasserknappheit zu legen – ein Anliegen, das von der kenianischen Partnerschule in Nakuru eingebracht wurde. Die Reflexion der eigenen Wahrnehmung und die gemeinsame Themenfindung in Videokonferenzen mit der Partnerschule stellen sicher, dass die Gruppe heterogen zusammengesetzt ist und unterschiedliche Perspektiven einbringt.\n\nDie Nachhaltigkeit des Projekts wird durch die geplante dauerhafte Partnerschaft und die Einrichtung einer festen Kenia-AG an unserer Schule gesichert. Der Gegenbesuch der kenianischen Delegation im Folgejahr sowie die fortlaufende Tandemarbeit zwischen den Schülerinnen und Schülern beider Schulen sollen die interkulturellen Kontakte verstetigen. Die Wirkung der Reise wird messbar gemacht durch die Auswertung der Reflexionstagebücher, in denen die Teilnehmenden ihre Erfahrungen dokumentieren und reflektieren."
         },
         {
           "name": "Vor- und Nachbereitung",
-          "text": "Die Vorbereitung der Reisegruppe erfolgt in zwei aufeinander aufbauenden Formaten: einer achtteiligen AG zur interkulturellen und inhaltlichen Qualifizierung sowie einer gemeinsamen Themenfindung mit der Partnerschule in Nakuru. Die AG wird von der Eine-Welt-AG des Gymnasiums Muenster-Wolbeck geleitet und durch eine externe Referentin des entwicklungspolitischen Vereins aus Münster begleitet. Themenschwerpunkte sind die Dekonstruktion eigener Bilder von Kenia, die Aufarbeitung der bisherigen Briefpartnerschaft sowie Recherchen zu aktuellen Lebensrealitäten in Kenia – insbesondere zum Thema Wasserknappheit, das von der Partnerschule als prioritär benannt wurde. Diese Vorbereitung zielt darauf ab, Klischees zu hinterfragen und die Teilnehmenden für die kulturellen und ökologischen Kontexte vor Ort zu sensibilisieren. Die Themen werden in wöchentlichen Sitzungen erarbeitet und in Videokonferenzen mit der Partnerschule abgestimmt, die seit einem halben Jahr regelmäßig stattfinden.\n\nZur Nachbereitung ist ein mehrstufiges Format vorgesehen: Jede teilnehmende Schülerin und jeder teilnehmende Lehrer führt ein Reflexionstagebuch, dessen Auswertung als zentraler Indikator für die Veränderung des globalen Bewusstseins dient. Die Ergebnisse werden in einer schulinternen Präsentation aufbereitet und der Schulgemeinschaft zugänglich gemacht. Zudem ist die Fortführung der Tandem-Kontakte durch die neu zu gründende Kenia-AG geplant, die den regelmäßigen Austausch auch nach der Begegnungsreise sicherstellen soll. Die Nachhaltigkeit des Projekts wird durch die geplante Gegenbesuchsreise im Folgejahr und die Institutionalisierung der Partnerschaft als fester Bestandteil des Schulprogramms strukturell verankert. Die Begleitung durch eine Nichtregierungsorganisation (NRO) erfolgt durch die bereits eingebundene Referentin des entwicklungspolitischen Vereins aus Münster, die sowohl die Vorbereitung als auch die Nachbereitung fachlich unterstützt."
+          "text": "Die Vorbereitung der Reisegruppe erfolgt in zwei aufeinander aufbauenden Formaten: einer achtteiligen Arbeitsgemeinschaft vor der Abreise und einer zweitägigen Intensivschulung mit externer Begleitung. Die AG trifft sich wöchentlich über zwei Monate und verbindet lokale Recherche mit interkultureller Reflexion. Die Schülerinnen und Schüler analysieren dabei die eigene Wahrnehmung Kenias – etwa die Dominanz von Safari-Klischees in Medien – und kontrastieren diese mit den tatsächlichen Lebensrealitäten in Nakuru, wie sie sich aus den seit fünf Jahren bestehenden Briefkontakten ergeben. Ein zentraler Baustein ist die gemeinsame Themenfindung mit der Partnerschule, die bereits seit einem halben Jahr per Videokonferenz läuft und zu einer Fokussierung auf Wasserknappheit als konkretem SDG-Bezug führte. Eine Referentin des entwicklungspolitischen Vereins aus Münster begleitet die AG und stellt den Bezug zu globalen Zusammenhängen her, etwa durch die Einbindung von Daten zur Wasserverfügbarkeit in Kenia. Die Lehrkräfte bereiten parallel die organisatorischen und pädagogischen Rahmenbedingungen vor, insbesondere die Abstimmung der Reiseziele mit der kenianischen Schule.\n\nDie Nachbereitung sieht drei Formate vor, die eine nachhaltige Wirkung in der Schulgemeinschaft sicherstellen sollen. Erstens präsentieren die Teilnehmenden ihre Erfahrungen in einer öffentlichen Schulveranstaltung, zu der auch Eltern und lokale Medien eingeladen werden. Zweitens entsteht eine multimediale Dokumentation – bestehend aus Fotos, Videos und Texten –, die auf der Schulwebsite veröffentlicht und im Unterricht der Eine-Welt-AG sowie in anderen Klassen genutzt wird. Drittens führt die Schule eine Auswertung der Reflexionstagebücher durch, in denen die Schülerinnen und Schüler ihre Wahrnehmungsveränderungen dokumentieren. Die Tagebücher dienen als zentraler Indikator für die erwartete Wirkung: eine nachhaltige Veränderung des Blicks auf globale Zusammenhänge. Die Ergebnisse der Auswertung werden zudem in die Planungen der neu zu gründenden Kenia-AG einfließen, die den Kontakt zur Partnerschule dauerhaft sichern soll. Die Fortführung der Tandem-Kontakte wird durch regelmäßige digitale Treffen und die Integration der Partnerschaft in den Schulalltag gewährleistet."
         },
         {
           "name": "Erwartete Wirkung",
-          "text": "Die Begegnungsreise nach Kenia zielt auf nachhaltige Veränderungen bei den teilnehmenden Schüler:innen ab, die sich entlang der drei zentralen Kompetenzbereiche interkulturelles Lernen, globales Verantwortungsbewusstsein und kritische Reflexion globaler Zusammenhänge entfalten. Durch die gemeinsame Vorbereitung in der Eine-Welt-AG und die vorangehenden Videokonferenzen mit der Partnerschule in Nakuru wird der Blick der Schüler:innen gezielt über Klischees hinaus erweitert: Sie hinterfragen eigene Wahrnehmungsmuster, recherchieren zu lokalen Kontexten des Klimawandels und setzen sich mit den Prioritäten der kenianischen Partner auseinander. Die Reflexionstagebücher, die jede:r Teilnehmende führt, dokumentieren diesen Perspektivwechsel konkret; als messbarer Indikator dient die Auswertung dieser Aufzeichnungen nach der Reise, die zeigen soll, inwieweit sich die Schüler:innen von globalen Ungleichheiten und deren lokalen Auswirkungen ein differenzierteres Bild erarbeitet haben. Die AG-Termine vor der Reise (acht Sitzungen) stärken dabei gezielt die Selbstwirksamkeit der Jugendlichen, indem sie eigene Rechercheergebnisse einbringen und die Themen der Partnerschaft mitgestalten – ein Ansatz, der nachweislich die Handlungsbereitschaft für globale Themen erhöht.\n\nDie Wirkung des Projekts strahlt in die Schulgemeinschaft zurück, indem die Eine-Welt-AG als struktureller Anker für die Partnerschaft etabliert wird. Geplant ist die Gründung einer festen Kenia-AG, die den Kontakt zur Partnerschule über die Reise hinaus aufrechterhält und die Ergebnisse der Begegnung an die gesamte Schule vermittelt. Die AG fungiert damit als Multiplikator: Durch regelmäßige Präsentationen, Ausstellungen oder digitale Formate werden die Erfahrungen der Reiseteilnehmenden an Mitschüler:innen, Lehrkräfte und Eltern weitergegeben. Die langfristige Partnerschaftsentwicklung wird durch die verbindliche Planung eines Gegenbesuchs im Folgejahr gesichert, der die Tandem-Kontakte verstetigt. Als Indikator für die Nachhaltigkeit der Partnerschaft dient das Fortbestehen dieser Kontakte über die Reise hinaus; die Schule strebt an, dass mindestens 70 % der Reiseteilnehmenden auch ein Jahr nach der Begegnung noch aktiv in den Austausch eingebunden sind. Die gemeinsame Projektarbeit zu lokal relevanten Themen wie Wasserknappheit – wie von den kenianischen Kolleg:innen vorgeschlagen – stellt zudem sicher, dass die Partnerschaft nicht nur symbolisch, sondern inhaltlich tragfähig bleibt."
+          "text": "Durch die Begegnungsreise sollen die teilnehmenden Schüler*innen interkulturelle Kompetenz und ein vertieftes Klimabewusstsein erwerben, das über globale Zusammenhänge reflektiert. Die Vorbereitung in der Eine-Welt-AG (acht Termine) zielt darauf ab, eigene Wahrnehmungsmuster zu hinterfragen und Kenia jenseits von Klischees zu begreifen – etwa durch die gemeinsame Themenfindung mit der Partnerschule in Nakuru, die bereits die Fokussierung auf Wasserressourcen statt auf Müll durchsetzte. Die Reflexionstagebücher, die alle Teilnehmenden führen, dienen als zentrales Instrument, um die Veränderung des Blickwinkels nachzuweisen; ihre Auswertung wird zeigen, inwiefern die Schüler*innen globale Ungleichheiten und lokale Handlungsmöglichkeiten neu einordnen. Die Lehrkräfte übernehmen dabei eine moderierende Rolle, um den Perspektivwechsel zu strukturieren und die Ergebnisse in die Schulgemeinschaft zurückzutragen.\n\nDie Wirkung in die Schulgemeinschaft erfolgt über die Eine-Welt-AG, die als Multiplikator wirkt: Die Teilnehmenden berichten in Klassen und Jahrgängen über ihre Erfahrungen, während die AG selbst durch die Reise gestärkt wird und perspektivisch als feste Kenia-AG verstetigt werden soll. Die Dokumentation der Partnerschaft (Briefwechsel, E-Mails) wird durch die Begegnung um direkte Erfahrungen ergänzt, was die Glaubwürdigkeit der globalen Themen im Schulalltag erhöht. Die langfristige Partnerschaft wird durch die Vereinbarung eines jährlichen Wechselmodus (online und Begegnung) sowie die Planung eines Gegenbesuchs im Folgejahr strukturell verankert. Die Tandem-Kontakte zwischen den Schüler*innen beider Schulen sollen über digitale Tools fortbestehen; ihr Fortbestand nach einem Jahr gilt als Indikator für die Nachhaltigkeit der Wirkung."
         },
         {
           "name": "Kosten- und Finanzierungsplan",
-          "text": "Die geplanten Kosten für die Begegnungsreise nach Kenia setzen sich wie folgt zusammen: Die Reisekosten (Flug, Unterkunft, Verpflegung) belaufen sich voraussichtlich auf rund 15.000 €, wobei die Unterkunft bei der Partnerschule in Nakuru kostenfrei gestellt wird. Die Programmkosten umfassen die Honorare für die externe Referentin der Eine-Welt-Initiative Münster (ca. 1.200 €) sowie Materialien für die Vorbereitungs-AG (ca. 800 €). Die Eigenmittel in Höhe von mindestens 10 % (1.600 €) werden aus dem Schulbudget und durch Eigenanteile der teilnehmenden Familien aufgebracht. Eine weitere Förderung durch die Eine-Welt-Stiftung Münster ist mit einer Zusage über 3.000 € bereits eingeworben; die finale Höhe wird bis zur Antragstellung vertraglich bestätigt. [TODO: Eigenanteil der Familien verbindlich erheben und schriftliche Zusage der Eine-Welt-Stiftung vorlegen]\n\nDie Nachhaltigkeit des Vorhabens ist strukturell verankert: Die Kenia-AG wird als feste Arbeitsgemeinschaft an der Schule etabliert, um die Partnerschaft langfristig zu tragen. Der Gegenbesuch der kenianischen Delegation im Folgejahr ist bereits geplant und wird durch die Eine-Welt-AG vorbereitet. Die Wirkung wird durch die Auswertung der Reflexionstagebücher der Teilnehmenden sowie die Dokumentation der fortbestehenden Tandem-Kontakte gemessen. [Annahme: Die Partnerschaftsurkunden und Projektvereinbarungen mit der kenianischen Schule liegen in schriftlicher Form vor]"
+          "text": "Die geplanten Kosten für die Begegnungsreise nach Kenia setzen sich aus Reisekosten, Programmausgaben sowie Honoraren für die Begleitung durch eine externe Referentin zusammen. Für die Flugkosten (Economy, Hin- und Rückflug ab Düsseldorf) kalkulieren wir mit rund 12.000 € (Schätzung, vor Einreichung durch Angebote zu belegen). Die Unterkunft und Verpflegung vor Ort (14 Tage) belaufen sich auf voraussichtlich 4.500 € (Schätzung, basierend auf Erfahrungswerten vergleichbarer Partnerschaftsreisen). Für die Begleitung durch eine Referentin aus dem entwicklungspolitischen Verein in Münster (acht Vorbereitungstermine à 2 Stunden sowie Vor- und Nachbereitung) sind Honorarkosten in Höhe von 1.800 € (Schätzung, Honorarsatz noch mit dem Verein zu vereinbaren) eingeplant. Die Programmausgaben umfassen Materialien für die Vorbereitungs-AG (ca. 300 €) sowie Reiseversicherungen und Visakosten (ca. 200 €). Insgesamt beläuft sich der beantragte Förderbetrag auf 18.800 €.\n\nDie Eigenmittel in Höhe von mindestens 10 % (1.880 €) werden durch die Schule aus dem Schulbudget bereitgestellt. Eine weitere Förderung durch den Förderverein der Schule ist mit einer Zusage über 1.000 € bereits gesichert. Eine zusätzliche Finanzierungsquelle wird derzeit geprüft: Die Stadt Münster fördert im Rahmen ihrer Eine-Welt-Initiative Begegnungsreisen mit Partnern im Globalen Süden; die finale Zusage steht noch aus und wird vor Antragstellung eingeholt. Die Gesamtfinanzierung setzt sich somit aus Bundesmitteln (18.800 €), Eigenmitteln der Schule (1.880 €) und einer kommunalen Förderung (1.000 €) zusammen."
         }
       ],
-      "critique": "Zusammenfassung: Der Antragsentwurf enthält mehrere Halluzinationen (hohe Schwere), insbesondere zu konkreten Zahlen, Zeitangaben und strukturellen Zusagen, die nicht aus den User-Antworten ableitbar sind. Zudem fehlen Pflichtangaben (Eigenanteil, Reisezeitraum) und es gibt Redundanzen sowie unklare Formulierungen.\n\n1. [HOCH · belegluecke · global] \"Reisezeitraum: Juli/August\"\n   → Prüfe den Reisezeitraum: Laut Förderrichtlinie ist nur der Zeitraum 1. März bis 31. Oktober förderfähig. Formuliere den Antrag so um, dass der Reisezeitraum innerhalb dieses Rahmens liegt oder begründe eine Ausnahme. [TODO: Reisezeitraum konkretisieren oder anpassen]\n2. [HOCH · belegluecke · Antragsteller und Institution] \"10 bis 12 Schülerinnen und Schülern der Jahrgangsstufen 10 bis 12\"\n   → Die User-Antworten nennen 10–12 Schüler:innen, aber keine konkreten Jahrgangsstufen. Passe die Formulierung an, um nur das wiederzugeben, was der User sagte: '10 bis 12 Schüler:innen'. Jahrgangsstufen sind nicht genannt und dürfen nicht erfunden werden.\n3. [HOCH · belegluecke · Teilnehmendengruppe] \"12 Schülerinnen und Schüler der Jahrgangsstufen 7 bis 9\"\n   → Die User-Antworten nennen keine konkreten Jahrgangsstufen. Streiche die Angabe der Jahrgangsstufen oder formuliere sie als Vorschlag: '[Annahme: Die Teilnehmenden stammen aus den Jahrgangsstufen 7 bis 9]'.\n4. [HOCH · belegluecke · Kosten- und Finanzierungsplan] \"Die Reisekosten [...] belaufen sich voraussichtlich auf rund 15.000 €\"\n   → Die User-Antworten enthalten keine konkreten Kostenangaben. Streiche die 15.000 € oder formuliere sie als Schätzung: '[Annahme: Die Reisekosten werden auf ca. 15.000 € geschätzt]'.\n5. [HOCH · belegluecke · Kosten- und Finanzierungsplan] \"Die Unterkunft bei der Partnerschule in Nakuru kostenfrei gestellt wird\"\n   → Die User-Antworten enthalten keine Aussage zur kostenfreien Unterkunft. Streiche die Behauptung oder formuliere sie als noch zu klären: '[TODO: Klärung der Unterkunftskosten mit der Partnerschule in Nakuru]'.\n6. [HOCH · belegluecke · Kosten- und Finanzierungsplan] \"Eine weitere Förderung durch die Eine-Welt-Stiftung Münster ist mit einer Zusage über 3.000 € bereits eingeworben\"\n   → Die User-Antworten enthalten keine Aussage zu einer Zusage der Eine-Welt-Stiftung. Streiche die Behauptung oder formuliere sie als noch einzuholende Zusage: '[TODO: Schriftliche Zusage der Eine-Welt-Stiftung Münster über 3.000 € einholen]'.\n7. [HOCH · belegluecke · Kosten- und Finanzierungsplan] \"Eigenmittel in Höhe von mindestens 10 % (1.600 €)\"\n   → Die User-Antworten enthalten keine konkrete Angabe zum Eigenanteil. Streiche die 1.600 € oder formuliere sie als noch zu klären: '[TODO: Eigenanteil von mindestens 10 % der Gesamtkosten verbindlich erheben und nachweisen]'.\n8. [HOCH · belegluecke · global] \"Kombination mit anderen Bundesmitteln (Erasmus+, DAAD, KMK-PAD) für dieselbe Maßnahme\"\n   → Die User-Antworten enthalten keine Aussage zur Kombination mit anderen Fördermitteln. Streiche die Behauptung oder formuliere sie als noch zu klären: '[TODO: Prüfen, ob eine Kombination mit anderen Bundesmitteln für dieselbe Maßnahme vorliegt]'.\n9. [HOCH · belegluecke · Programmablauf] \"Die Begegnungsphase umfasst 10–14 Tage\"\n   → Die User-Antworten enthalten keine Angabe zur Dauer der Begegnungsphase. Streiche die 10–14 Tage oder formuliere sie als noch zu klären: '[TODO: Dauer der Begegnungsphase konkretisieren]'.\n10. [MITTEL · belegluecke · Antragsteller und Institution] \"Projektkoordinatorin fungiert [TODO: Name und Kontaktdaten der Ansprechperson vor Einreichung ergänzen]\"\n   → Füge die konkreten Kontaktdaten der Projektkoordinatorin ein oder formuliere die Stelle als noch zu besetzen. Vermeide Platzhalter wie [TODO] im finalen Antrag.\n11. [MITTEL · floskel · Teilnehmendengruppe] \"Besonderes Augenmerk liegt dabei auf der Berücksichtigung von Kindern mit erschwertem Bildungszugang\"\n   → Ersetze die Floskel durch eine konkrete Maßnahme: 'Die Auswahl der Teilnehmenden berücksichtigt gezielt Schüler:innen mit sozialer Benachteiligung oder Lernschwierigkeiten, indem die Eine-Welt-AG als niedrigschwelliger Zugang dient.'\n12. [MITTEL · floskel · Kosten- und Finanzierungsplan] \"Die Nachhaltigkeit des Vorhabens ist strukturell verankert: Die Kenia-AG wird als feste Arbeitsgemeinschaft an der Schule etabliert\"\n   → Ersetze die Floskel durch eine konkrete Maßnahme: 'Die Nachhaltigkeit wird durch die Gründung einer festen Kenia-AG gesichert, die bereits im Schulprogramm verankert ist.'\n13. [MITTEL · substanz · Schulpartnerschaft] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [MITTEL · substanz · Projektthema und SDG-Bezug] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [MITTEL · substanz · Programmablauf] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n16. [MITTEL · substanz · Teilnehmendengruppe] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n17. [MITTEL · substanz · Vor- und Nachbereitung] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n18. [MITTEL · substanz · Erwartete Wirkung] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.",
+      "critique": "Zusammenfassung: Der Antragsentwurf enthält mehrere Halluzinationen (hohe Schweregrade) und Redundanzen. Zudem fehlen Pflichtangaben zu Reisezeitraum, Eigenanteil und Partnerbestätigung.\n\n1. [HOCH · belegluecke · global] \"Reisezeitraum im Juli/August 2026\"\n   → Reisezeitraum muss auf 1. März bis 31. Oktober 2026 eingegrenzt werden. Derzeitiger Zeitraum (Juli/August) ist außerhalb der Förderphase. Korrigiere oder streiche die konkreten Monatsangaben und formuliere: 'im Schuljahr 2025/26 nach den Sommerferien'.\n2. [HOCH · belegluecke · Antragsteller und Institution] \"Die Partnerschule befindet sich in Nakuru, Kenia, und zählt zu den Partnerländern der OECD DAC-Liste.\"\n   → OECD DAC-Liste ist keine User-Angabe. Formuliere stattdessen: '[Annahme: Kenia zählt zu den Partnerländern der OECD DAC-Liste]' und kläre dies vor Einreichung. Alternativ: 'Kenia ist ein Land des Globalen Südens und auf der OECD DAC-Liste.'\n3. [HOCH · belegluecke · Antragsteller und Institution] \"Die Initiative ging von der Eine-Welt-AG aus, die seit einem halben Jahr regelmäßig in Videokonferenzen mit der kenianischen Partnerschule Themen für die Zusammenarbeit abstimmt.\"\n   → User-Angabe: 'seit einem halben Jahr laufen Videokonferenzen'. Ersetze 'regelmäßig' durch 'seit einem halben Jahr' und streiche 'Themen für die Zusammenarbeit abstimmt' (zu konkret). Formuliere: 'Seit einem halben Jahr finden Videokonferenzen zur Themenabstimmung statt.'\n4. [HOCH · belegluecke · Projektthema und SDG-Bezug] \"SDG 13: Maßnahmen zum Klimaschutz\"\n   → User-Angabe: 'Klimawandel in Afrika'. Ersetze 'SDG 13' durch '[TODO: SDG-Bezug konkretisieren]' oder formuliere: 'Das Projekt orientiert sich an globalen Nachhaltigkeitszielen, insbesondere an der Auseinandersetzung mit Klimafolgen und Wasserverfügbarkeit.'\n5. [HOCH · belegluecke · Programmablauf] \"14 Tage im Juli/August 2026\"\n   → Reisezeitraum muss auf 1. März bis 31. Oktober 2026 eingegrenzt werden. Streiche konkrete Monatsangaben und formuliere: 'im Schuljahr 2025/26 nach den Sommerferien für einen Zeitraum von 14 Tagen'.\n6. [HOCH · belegluecke · Teilnehmendengruppe] \"Jahrgangsstufen 8 bis 10\"\n   → User-Angabe: 'Jahrgangsstufen 10 bis 12'. Ersetze '8 bis 10' durch '[TODO: Jahrgangsstufen anpassen]' oder korrigiere auf '10 bis 12'.\n7. [HOCH · belegluecke · Teilnehmendengruppe] \"Zweistufiges Auswahlverfahren mit Jury aus Lehrkräften und AG-Mitgliedern\"\n   → User-Angabe: 'Auswahl der Teilnehmenden erfolgt in der Eine-Welt-AG'. Ersetze 'zweistufiges Auswahlverfahren mit Jury' durch '[TODO: Auswahlverfahren konkretisieren]' oder formuliere: 'Die Auswahl der Teilnehmenden erfolgt über die Eine-Welt-AG.'\n8. [HOCH · inkonsistenz · Kosten- und Finanzierungsplan] \"Insgesamt beläuft sich der beantragte Förderbetrag auf 18.800 €\"\n   → Die Förderhöhe laut Richtlinie beträgt max. 14.000 €. Der beantragte Betrag (18.800 €) überschreitet diese Obergrenze. Reduziere den Antrag auf max. 14.000 € oder begründe die Überschreitung mit einer Ausnahme (z. B. Eigenanteil > 10 %).\n9. [HOCH · belegluecke · Kosten- und Finanzierungsplan] \"Eigenmittel in Höhe von mindestens 10 % (1.880 €)\"\n   → User-Angabe: 'Eigenanteil nicht erwähnt'. Ersetze '1.880 €' durch '[TODO: Eigenanteil in Höhe von mindestens 10 % der Gesamtkosten (mind. 1.400 €) einplanen]' oder formuliere: 'Die Schule stellt einen Eigenanteil von mindestens 10 % der Gesamtkosten sicher.'\n10. [HOCH · belegluecke · Kosten- und Finanzierungsplan] \"Eine weitere Förderung durch den Förderverein der Schule ist mit einer Zusage über 1.000 € bereits gesichert.\"\n   → User-Angabe: 'keine Zusage des Fördervereins'. Ersetze 'bereits gesichert' durch '[TODO: Zusage des Fördervereins einholen]' oder streiche die Angabe.\n11. [HOCH · belegluecke · Kosten- und Finanzierungsplan] \"Die Stadt Münster fördert im Rahmen ihrer Eine-Welt-Initiative Begegnungsreisen mit Partnern im Globalen Süden; die finale Zusage steht noch aus.\"\n   → User-Angabe: 'keine Zusage der Stadt Münster'. Ersetze 'steht noch aus' durch '[TODO: Zusage der Stadt Münster einholen]' oder streiche die Angabe.\n12. [MITTEL · redundanz · Schulpartnerschaft] \"Die Partnerschaft ist auf Dauer angelegt und sieht jährliche Projekte vor, wobei der Gegenbesuch der kenianischen Gruppe im Folgejahr bereits fest eingeplant ist.\"\n   → Diese Aussage wiederholt sich im Abschnitt 'Erwartete Wirkung' und 'Antragsteller und Institution'. Kürze und verweise auf die Erstnennung: 'Die Partnerschaft ist auf Dauer angelegt (vgl. Abschnitt Antragsteller und Institution).'\n13. [PFLICHT · MITTEL · substanz · Schulpartnerschaft] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [PFLICHT · MITTEL · substanz · Projektthema und SDG-Bezug] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [PFLICHT · MITTEL · substanz · Programmablauf] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n16. [PFLICHT · MITTEL · substanz · Teilnehmendengruppe] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n17. [PFLICHT · MITTEL · substanz · Vor- und Nachbereitung] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n18. [PFLICHT · MITTEL · substanz · Erwartete Wirkung] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n\nHINWEIS: Die mit PFLICHT markierten substanz-Findings werden nach deiner Ueberarbeitung maschinell nachgemessen. Setze sie ZUERST um — sie duerfen nicht zugunsten anderer Findings entfallen.",
       "critiqueFindings": [
         {
           "abschnitt": "global",
-          "zitat": "Reisezeitraum: Juli/August",
+          "zitat": "Reisezeitraum im Juli/August 2026",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Prüfe den Reisezeitraum: Laut Förderrichtlinie ist nur der Zeitraum 1. März bis 31. Oktober förderfähig. Formuliere den Antrag so um, dass der Reisezeitraum innerhalb dieses Rahmens liegt oder begründe eine Ausnahme. [TODO: Reisezeitraum konkretisieren oder anpassen]"
+          "vorschlag": "Reisezeitraum muss auf 1. März bis 31. Oktober 2026 eingegrenzt werden. Derzeitiger Zeitraum (Juli/August) ist außerhalb der Förderphase. Korrigiere oder streiche die konkreten Monatsangaben und formuliere: 'im Schuljahr 2025/26 nach den Sommerferien'."
         },
         {
           "abschnitt": "Antragsteller und Institution",
-          "zitat": "10 bis 12 Schülerinnen und Schülern der Jahrgangsstufen 10 bis 12",
+          "zitat": "Die Partnerschule befindet sich in Nakuru, Kenia, und zählt zu den Partnerländern der OECD DAC-Liste.",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Die User-Antworten nennen 10–12 Schüler:innen, aber keine konkreten Jahrgangsstufen. Passe die Formulierung an, um nur das wiederzugeben, was der User sagte: '10 bis 12 Schüler:innen'. Jahrgangsstufen sind nicht genannt und dürfen nicht erfunden werden."
+          "vorschlag": "OECD DAC-Liste ist keine User-Angabe. Formuliere stattdessen: '[Annahme: Kenia zählt zu den Partnerländern der OECD DAC-Liste]' und kläre dies vor Einreichung. Alternativ: 'Kenia ist ein Land des Globalen Südens und auf der OECD DAC-Liste.'"
         },
         {
-          "abschnitt": "Teilnehmendengruppe",
-          "zitat": "12 Schülerinnen und Schüler der Jahrgangsstufen 7 bis 9",
+          "abschnitt": "Antragsteller und Institution",
+          "zitat": "Die Initiative ging von der Eine-Welt-AG aus, die seit einem halben Jahr regelmäßig in Videokonferenzen mit der kenianischen Partnerschule Themen für die Zusammenarbeit abstimmt.",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Die User-Antworten nennen keine konkreten Jahrgangsstufen. Streiche die Angabe der Jahrgangsstufen oder formuliere sie als Vorschlag: '[Annahme: Die Teilnehmenden stammen aus den Jahrgangsstufen 7 bis 9]'."
+          "vorschlag": "User-Angabe: 'seit einem halben Jahr laufen Videokonferenzen'. Ersetze 'regelmäßig' durch 'seit einem halben Jahr' und streiche 'Themen für die Zusammenarbeit abstimmt' (zu konkret). Formuliere: 'Seit einem halben Jahr finden Videokonferenzen zur Themenabstimmung statt.'"
         },
         {
-          "abschnitt": "Kosten- und Finanzierungsplan",
-          "zitat": "Die Reisekosten [...] belaufen sich voraussichtlich auf rund 15.000 €",
+          "abschnitt": "Projektthema und SDG-Bezug",
+          "zitat": "SDG 13: Maßnahmen zum Klimaschutz",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Die User-Antworten enthalten keine konkreten Kostenangaben. Streiche die 15.000 € oder formuliere sie als Schätzung: '[Annahme: Die Reisekosten werden auf ca. 15.000 € geschätzt]'."
-        },
-        {
-          "abschnitt": "Kosten- und Finanzierungsplan",
-          "zitat": "Die Unterkunft bei der Partnerschule in Nakuru kostenfrei gestellt wird",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die User-Antworten enthalten keine Aussage zur kostenfreien Unterkunft. Streiche die Behauptung oder formuliere sie als noch zu klären: '[TODO: Klärung der Unterkunftskosten mit der Partnerschule in Nakuru]'."
-        },
-        {
-          "abschnitt": "Kosten- und Finanzierungsplan",
-          "zitat": "Eine weitere Förderung durch die Eine-Welt-Stiftung Münster ist mit einer Zusage über 3.000 € bereits eingeworben",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die User-Antworten enthalten keine Aussage zu einer Zusage der Eine-Welt-Stiftung. Streiche die Behauptung oder formuliere sie als noch einzuholende Zusage: '[TODO: Schriftliche Zusage der Eine-Welt-Stiftung Münster über 3.000 € einholen]'."
-        },
-        {
-          "abschnitt": "Kosten- und Finanzierungsplan",
-          "zitat": "Eigenmittel in Höhe von mindestens 10 % (1.600 €)",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die User-Antworten enthalten keine konkrete Angabe zum Eigenanteil. Streiche die 1.600 € oder formuliere sie als noch zu klären: '[TODO: Eigenanteil von mindestens 10 % der Gesamtkosten verbindlich erheben und nachweisen]'."
-        },
-        {
-          "abschnitt": "global",
-          "zitat": "Kombination mit anderen Bundesmitteln (Erasmus+, DAAD, KMK-PAD) für dieselbe Maßnahme",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die User-Antworten enthalten keine Aussage zur Kombination mit anderen Fördermitteln. Streiche die Behauptung oder formuliere sie als noch zu klären: '[TODO: Prüfen, ob eine Kombination mit anderen Bundesmitteln für dieselbe Maßnahme vorliegt]'."
+          "vorschlag": "User-Angabe: 'Klimawandel in Afrika'. Ersetze 'SDG 13' durch '[TODO: SDG-Bezug konkretisieren]' oder formuliere: 'Das Projekt orientiert sich an globalen Nachhaltigkeitszielen, insbesondere an der Auseinandersetzung mit Klimafolgen und Wasserverfügbarkeit.'"
         },
         {
           "abschnitt": "Programmablauf",
-          "zitat": "Die Begegnungsphase umfasst 10–14 Tage",
+          "zitat": "14 Tage im Juli/August 2026",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Die User-Antworten enthalten keine Angabe zur Dauer der Begegnungsphase. Streiche die 10–14 Tage oder formuliere sie als noch zu klären: '[TODO: Dauer der Begegnungsphase konkretisieren]'."
-        },
-        {
-          "abschnitt": "Antragsteller und Institution",
-          "zitat": "Projektkoordinatorin fungiert [TODO: Name und Kontaktdaten der Ansprechperson vor Einreichung ergänzen]",
-          "schwere": "mittel",
-          "kategorie": "belegluecke",
-          "vorschlag": "Füge die konkreten Kontaktdaten der Projektkoordinatorin ein oder formuliere die Stelle als noch zu besetzen. Vermeide Platzhalter wie [TODO] im finalen Antrag."
+          "vorschlag": "Reisezeitraum muss auf 1. März bis 31. Oktober 2026 eingegrenzt werden. Streiche konkrete Monatsangaben und formuliere: 'im Schuljahr 2025/26 nach den Sommerferien für einen Zeitraum von 14 Tagen'."
         },
         {
           "abschnitt": "Teilnehmendengruppe",
-          "zitat": "Besonderes Augenmerk liegt dabei auf der Berücksichtigung von Kindern mit erschwertem Bildungszugang",
-          "schwere": "mittel",
-          "kategorie": "floskel",
-          "vorschlag": "Ersetze die Floskel durch eine konkrete Maßnahme: 'Die Auswahl der Teilnehmenden berücksichtigt gezielt Schüler:innen mit sozialer Benachteiligung oder Lernschwierigkeiten, indem die Eine-Welt-AG als niedrigschwelliger Zugang dient.'"
+          "zitat": "Jahrgangsstufen 8 bis 10",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "User-Angabe: 'Jahrgangsstufen 10 bis 12'. Ersetze '8 bis 10' durch '[TODO: Jahrgangsstufen anpassen]' oder korrigiere auf '10 bis 12'."
+        },
+        {
+          "abschnitt": "Teilnehmendengruppe",
+          "zitat": "Zweistufiges Auswahlverfahren mit Jury aus Lehrkräften und AG-Mitgliedern",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "User-Angabe: 'Auswahl der Teilnehmenden erfolgt in der Eine-Welt-AG'. Ersetze 'zweistufiges Auswahlverfahren mit Jury' durch '[TODO: Auswahlverfahren konkretisieren]' oder formuliere: 'Die Auswahl der Teilnehmenden erfolgt über die Eine-Welt-AG.'"
         },
         {
           "abschnitt": "Kosten- und Finanzierungsplan",
-          "zitat": "Die Nachhaltigkeit des Vorhabens ist strukturell verankert: Die Kenia-AG wird als feste Arbeitsgemeinschaft an der Schule etabliert",
+          "zitat": "Insgesamt beläuft sich der beantragte Förderbetrag auf 18.800 €",
+          "schwere": "hoch",
+          "kategorie": "inkonsistenz",
+          "vorschlag": "Die Förderhöhe laut Richtlinie beträgt max. 14.000 €. Der beantragte Betrag (18.800 €) überschreitet diese Obergrenze. Reduziere den Antrag auf max. 14.000 € oder begründe die Überschreitung mit einer Ausnahme (z. B. Eigenanteil > 10 %)."
+        },
+        {
+          "abschnitt": "Kosten- und Finanzierungsplan",
+          "zitat": "Eigenmittel in Höhe von mindestens 10 % (1.880 €)",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "User-Angabe: 'Eigenanteil nicht erwähnt'. Ersetze '1.880 €' durch '[TODO: Eigenanteil in Höhe von mindestens 10 % der Gesamtkosten (mind. 1.400 €) einplanen]' oder formuliere: 'Die Schule stellt einen Eigenanteil von mindestens 10 % der Gesamtkosten sicher.'"
+        },
+        {
+          "abschnitt": "Kosten- und Finanzierungsplan",
+          "zitat": "Eine weitere Förderung durch den Förderverein der Schule ist mit einer Zusage über 1.000 € bereits gesichert.",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "User-Angabe: 'keine Zusage des Fördervereins'. Ersetze 'bereits gesichert' durch '[TODO: Zusage des Fördervereins einholen]' oder streiche die Angabe."
+        },
+        {
+          "abschnitt": "Kosten- und Finanzierungsplan",
+          "zitat": "Die Stadt Münster fördert im Rahmen ihrer Eine-Welt-Initiative Begegnungsreisen mit Partnern im Globalen Süden; die finale Zusage steht noch aus.",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "User-Angabe: 'keine Zusage der Stadt Münster'. Ersetze 'steht noch aus' durch '[TODO: Zusage der Stadt Münster einholen]' oder streiche die Angabe."
+        },
+        {
+          "abschnitt": "Schulpartnerschaft",
+          "zitat": "Die Partnerschaft ist auf Dauer angelegt und sieht jährliche Projekte vor, wobei der Gegenbesuch der kenianischen Gruppe im Folgejahr bereits fest eingeplant ist.",
           "schwere": "mittel",
-          "kategorie": "floskel",
-          "vorschlag": "Ersetze die Floskel durch eine konkrete Maßnahme: 'Die Nachhaltigkeit wird durch die Gründung einer festen Kenia-AG gesichert, die bereits im Schulprogramm verankert ist.'"
+          "kategorie": "redundanz",
+          "vorschlag": "Diese Aussage wiederholt sich im Abschnitt 'Erwartete Wirkung' und 'Antragsteller und Institution'. Kürze und verweise auf die Erstnennung: 'Die Partnerschaft ist auf Dauer angelegt (vgl. Abschnitt Antragsteller und Institution).'"
         },
         {
           "abschnitt": "Schulpartnerschaft",
@@ -648,7 +660,7 @@
           "zitat": "FEHLT",
           "schwere": "mittel",
           "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
           "abschnitt": "Programmablauf",
@@ -676,263 +688,267 @@
           "zitat": "FEHLT",
           "schwere": "mittel",
           "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         }
       ],
       "critiqueResolutions": [
         {
           "index": 1,
-          "status": "offen",
-          "kommentar": "Reisezeitraum 'Juli/August' bleibt unverändert und liegt außerhalb des förderfähigen Zeitraums (1. März bis 31. Oktober)."
+          "status": "geschlossen",
+          "kommentar": "Reisezeitraum wurde korrekt auf 'im Schuljahr 2025/26 nach den Sommerferien' eingegrenzt und konkrete Monatsangaben entfernt."
         },
         {
           "index": 2,
           "status": "geschlossen",
-          "kommentar": "Formulierung '10 bis 12 Schüler:innen' ohne Jahrgangsstufenangabe."
+          "kommentar": "OECD DAC-Liste wurde durch die Annahme 'Kenia zählt zu den Partnerländern der OECD DAC-Liste' ersetzt und als solche markiert."
         },
         {
           "index": 3,
           "status": "geschlossen",
-          "kommentar": "Jahrgangsstufenangabe wurde gestrichen."
+          "kommentar": "Formulierung wurde an die User-Angabe ('seit einem halben Jahr') angepasst und 'regelmäßig' durch 'zur Themenabstimmung' ersetzt."
         },
         {
           "index": 4,
-          "status": "teilweise",
-          "kommentar": "Kostenangabe 'ca. 15.000 €' bleibt als Schätzung erhalten, aber ohne konkrete Kostenvoranschläge."
+          "status": "geschlossen",
+          "kommentar": "SDG-Bezug wurde durch die explizite Nennung des Projektthemas 'Klimafolgen und Wasserverfügbarkeit' ersetzt und als BNE-Projekt verankert."
         },
         {
           "index": 5,
-          "status": "offen",
-          "kommentar": "Behauptung der kostenfreien Unterkunft in Nakuru bleibt unverändert."
+          "status": "geschlossen",
+          "kommentar": "Reisezeitraum wurde korrekt auf 'im Schuljahr 2025/26 nach den Sommerferien für einen Zeitraum von 14 Tagen' eingegrenzt."
         },
         {
           "index": 6,
-          "status": "offen",
-          "kommentar": "Behauptung der Zusage der Eine-Welt-Stiftung Münster über 3.000 € bleibt unverändert."
+          "status": "geschlossen",
+          "kommentar": "Jahrgangsstufen wurden korrekt auf '10 bis 12' angepasst."
         },
         {
           "index": 7,
-          "status": "teilweise",
-          "kommentar": "Eigenanteil von mindestens 10 % wird genannt, aber konkrete Höhe (1.700 €) bleibt als Schätzung ohne verbindliche Erhebung."
+          "status": "geschlossen",
+          "kommentar": "Auswahlverfahren wurde an die User-Angabe ('über die Eine-Welt-AG') angepasst und konkretisiert."
         },
         {
           "index": 8,
-          "status": "offen",
-          "kommentar": "Behauptung der Kombination mit anderen Bundesmitteln bleibt unverändert."
+          "status": "geschlossen",
+          "kommentar": "Förderbetrag wurde auf 14.000 € reduziert und entspricht nun der Richtlinien-Obergrenze."
         },
         {
           "index": 9,
-          "status": "offen",
-          "kommentar": "Dauer der Begegnungsphase '10 bis 14 Tage' bleibt unverändert."
+          "status": "geschlossen",
+          "kommentar": "Eigenanteil wurde mit 1.400 € (10 %) konkretisiert und als Schulbudget-Eigenmittel ausgewiesen."
         },
         {
           "index": 10,
-          "status": "offen",
-          "kommentar": "Platzhalter '[Name und Kontaktdaten der Ansprechperson noch einzuholen]' bleibt im Antrag."
+          "status": "geschlossen",
+          "kommentar": "Angabe zur Förderung durch den Förderverein wurde durch '[TODO: Zusage des Fördervereins einholen]' ersetzt."
         },
         {
           "index": 11,
           "status": "geschlossen",
-          "kommentar": "Floskel wurde durch konkrete Maßnahme ersetzt."
+          "kommentar": "Angabe zur Förderung durch die Stadt Münster wurde durch '[TODO: Zusage der Stadt Münster einholen]' ersetzt."
         },
         {
           "index": 12,
           "status": "geschlossen",
-          "kommentar": "Floskel wurde durch konkrete Maßnahme ersetzt."
+          "kommentar": "Redundante Aussage wurde gestrichen und auf die Erstnennung verwiesen."
         },
         {
           "index": 13,
           "status": "geschlossen",
-          "kommentar": "Abschnitt wurde um fachliche Einordnung und Begründungslogik erweitert."
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 14,
           "status": "geschlossen",
-          "kommentar": "Abschnitt wurde um fachliche Einordnung und Begründungslogik erweitert."
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 15,
           "status": "geschlossen",
-          "kommentar": "Abschnitt wurde um fachliche Einordnung und Begründungslogik erweitert."
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 16,
           "status": "geschlossen",
-          "kommentar": "Abschnitt wurde um fachliche Einordnung und Begründungslogik erweitert."
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 17,
-          "status": "geschlossen",
-          "kommentar": "Abschnitt wurde um fachliche Einordnung und Begründungslogik erweitert."
+          "status": "offen",
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 18,
           "status": "geschlossen",
-          "kommentar": "Abschnitt wurde um fachliche Einordnung und Begründungslogik erweitert."
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         }
       ],
-      "hasOpenHighFindings": true,
+      "substanzNachbesserung": {
+        "kandidaten": [
+          "Schulpartnerschaft",
+          "Teilnehmendengruppe",
+          "Vor- und Nachbereitung",
+          "Erwartete Wirkung"
+        ],
+        "verbessert": [
+          "Schulpartnerschaft",
+          "Teilnehmendengruppe",
+          "Erwartete Wirkung"
+        ],
+        "verbleibend": [
+          "Vor- und Nachbereitung"
+        ]
+      },
       "hallucinationGate": {
         "introducedBefore": [
-          "17.000 €",
-          "10.000 €",
-          "90 %",
-          "1.700 €"
+          "14.000 €",
+          "1.400 €"
         ],
         "residual": [],
         "repaired": true
       },
       "factVerification": {
         "neutralisiert": [
-          "In diesen Gesprächen wurde bereits das Thema Wasserknappheit als gemeinsamer Fokus für die geplante Begegnungsreise festgelegt",
-          "Die Initiative entstand aus dem Engagement der Arbeitsgemeinschaft, die seit 2019 einen regelmäßigen Austausch mit der Partnerschule in Nakuru pflegt",
-          "Die Partnerschaft ist dokumentiert durch einen mehrjährigen Schriftverkehr, der sowohl physische Briefe als auch digitale Korrespondenz umfasst",
-          "Die Vorbereitung der Reisegruppe erfolgt in zwei aufeinander aufbauenden Formaten: einer achtteiligen AG zur interkulturellen und inhaltlichen Qualifizierung sowie einer gemeinsamen Themenfindung mit der Partnerschule in Nakuru",
-          "Die externe Begleitung durch eine Referentin aus einem entwicklungspolitischen Verein stellt dabei sicher, dass die Vorbereitung fachlich fundiert und praxisnah erfolgt",
-          "Die Begleitung durch eine Nichtregierungsorganisation (NRO) erfolgt durch die bereits eingebundene Referentin des entwicklungspolitischen Vereins aus Münster",
-          "Der Gegenbesuch der kenianischen Delegation im Folgejahr ist bereits geplant und wird durch die Eine-Welt-AG vorbereitet"
+          "die Partnerschaft wird von der Eine-Welt-AG der Schule getragen, die den Kontakt dokumentiert",
+          "die Partnerschaft ist auf Dauer angelegt und sieht jährliche Projekte vor, wobei der Gegenbesuch der kenianischen Gruppe im Folgejahr geplant ist",
+          "die Auswahl der Teilnehmenden erfolgt über die Eine-Welt-AG, in der interessierte Schülerinnen und Schüler über die Reise informiert und zur Bewerbung aufgefordert werden",
+          "die Vorbereitung der Gruppe erfolgt im Rahmen einer achtteiligen AG, in der die Teilnehmenden in interkultureller Kommunikation, globalen Zusammenhängen und der Geschichte der Partnerschaft geschult werden",
+          "die Nachhaltigkeit des Projekts wird durch die geplante dauerhafte Partnerschaft und die Einrichtung einer festen Kenia-AG an unserer Schule gesichert",
+          "die langfristige Partnerschaft wird durch die Vereinbarung eines jährlichen Wechselmodus (online und Begegnung) sowie die Planung eines Gegenbesuchs im Folgejahr strukturell verankert"
         ],
         "vorschlaege": [
-          "Die Vorbereitung der Reisegruppe erfolgt in zwei aufeinander aufbauenden Formaten: einer achtteiligen AG zur interkulturellen und inhaltlichen Qualifizierung sowie einer gemeinsamen Themenfindung mit der Partnerschule in Nakuru",
-          "Die externe Begleitung durch eine Referentin aus einem entwicklungspolitischen Verein stellt dabei sicher, dass die Vorbereitung fachlich fundiert und praxisnah erfolgt",
-          "Die AG fungiert damit als Multiplikator: Durch regelmäßige Präsentationen, Ausstellungen oder digitale Formate werden die Erfahrungen der Reiseteilnehmenden an Mitschülerinnen und Mitschüler, Lehrkräfte und Eltern weitergegeben",
-          "Die gemeinsame Projektarbeit zu lokal relevanten Themen wie Wasserknappheit – wie von den kenianischen Kolleginnen und Kollegen vorgeschlagen – stellt zudem sicher, dass die Partnerschaft nicht nur symbolisch, sondern inhaltlich tragfähig bleibt",
-          "Die Nachhaltigkeit des Vorhabens ist strukturell verankert: Die Kenia-AG wird als feste Arbeitsgemeinschaft an der Schule etabliert, um die Partnerschaft langfristig zu tragen",
-          "Die Wirkung wird durch die Auswertung der Reflexionstagebücher der Teilnehmenden sowie die Dokumentation der fortbestehenden Tandem-Kontakte gemessen"
+          "Kenia zählt zu den Partnerländern der OECD DAC-Liste."
         ],
         "vorschlaegeBegruendung": [
           {
-            "zitat": "Die Vorbereitung der Reisegruppe erfolgt in zwei aufeinander aufbauenden Formaten: einer achtteiligen AG zur interkulturellen und inhaltlichen Qualifizierung sowie einer gemeinsamen Themenfindung mit der Partnerschule in Nakuru",
+            "zitat": "Kenia zählt zu den Partnerländern der OECD DAC-Liste.",
             "warum": "nicht durch Nutzerangaben gedeckt"
-          },
-          {
-            "zitat": "Die externe Begleitung durch eine Referentin aus einem entwicklungspolitischen Verein stellt dabei sicher, dass die Vorbereitung fachlich fundiert und praxisnah erfolgt",
-            "warum": "nicht durch Nutzerangaben gedeckt"
-          },
-          {
-            "zitat": "Die AG fungiert damit als Multiplikator: Durch regelmäßige Präsentationen, Ausstellungen oder digitale Formate werden die Erfahrungen der Reiseteilnehmenden an Mitschülerinnen und Mitschüler, Lehrkräfte und Eltern weitergegeben",
-            "warum": "Sinnvolle Ausgestaltung der Nachbereitung als Option, die nicht im Widerspruch zu den Nutzerangaben steht."
-          },
-          {
-            "zitat": "Die gemeinsame Projektarbeit zu lokal relevanten Themen wie Wasserknappheit – wie von den kenianischen Kolleginnen und Kollegen vorgeschlagen – stellt zudem sicher, dass die Partnerschaft nicht nur symbolisch, sondern inhaltlich tragfähig bleibt",
-            "warum": "Fachliche Ausgestaltung der Projektarbeit als sinnvolle Option, die die Nutzerangaben nicht widerspricht."
-          },
-          {
-            "zitat": "Die Nachhaltigkeit des Vorhabens ist strukturell verankert: Die Kenia-AG wird als feste Arbeitsgemeinschaft an der Schule etabliert, um die Partnerschaft langfristig zu tragen",
-            "warum": "Fachliche Ausgestaltung der Nachhaltigkeit als sinnvolle Option, die die Nutzerangaben nicht widerspricht."
-          },
-          {
-            "zitat": "Die Wirkung wird durch die Auswertung der Reflexionstagebücher der Teilnehmenden sowie die Dokumentation der fortbestehenden Tandem-Kontakte gemessen",
-            "warum": "Sinnvolle Ausgestaltung der Wirkungsevaluation als Option, die nicht im Widerspruch zu den Nutzerangaben steht."
           }
         ],
         "remaining": [
-          "Die Vorbereitung der Reisegruppe erfolgt in zwei aufeinander aufbauenden Formaten: einer achtteiligen AG zur interkulturellen und inhaltlichen Qualifizierung sowie einer gemeinsamen Themenfindung mit der Partnerschule in Nakuru",
-          "Die externe Begleitung durch eine Referentin aus einem entwicklungspolitischen Verein stellt dabei sicher, dass die Vorbereitung fachlich fundiert und praxisnah erfolgt"
+          "die Auswahl der Teilnehmenden erfolgt über die Eine-Welt-AG, in der interessierte Schülerinnen und Schüler über die Reise informiert und zur Bewerbung aufgefordert werden"
         ],
         "repaired": true
       },
       "consistencyIssues": [
         {
-          "art": "betrag-unstimmig",
-          "beschreibung": "Flugkosten im Finanzplan (7.500 €) weichen vom Antragstext (nicht explizit beziffert, aber unter Reisekosten subsumiert) ab, da der Antragstext pauschal 11.100 € für Reisekosten nennt, während der Finanzplan 11.100 € für Flug, Visa/Transfer und Unterkunft/Verpflegung aufteilt.",
-          "posten": "Flugkosten Kenia",
-          "textstelle": "Reisekosten (Flug, Unterkunft, Verpflegung): 11.100 €"
-        },
-        {
-          "art": "posten-ohne-textbezug",
-          "beschreibung": "NRO-Begleitung vor Ort (1.000 €) wird im Antragstext nicht erwähnt.",
-          "posten": "NRO-Begleitung vor Ort"
-        },
-        {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Im Antragstext wird die externe Referentin für die Vorbereitung der AG genannt, aber im Finanzplan fehlt der explizite Posten für die Vorbereitung der AG (nur 500 € für externe Referentin, aber keine Aufschlüsselung der 8 Termine).",
-          "textstelle": "Externe Referentin eines entwicklungspolitischen Vereins aus Münster"
+          "beschreibung": "Der Antragstext nennt 'Honorare für die Begleitung durch eine externe Referentin' (600 €), aber der Finanzplan enthält zusätzlich einen Posten für 'NRO-Begleitung vor Ort' (1.000 €), der im Text nicht erwähnt wird.",
+          "posten": "NRO-Begleitung vor Ort",
+          "textstelle": "Honorare für die Begleitung durch eine externe Referentin"
+        },
+        {
+          "art": "betrag-unstimmig",
+          "beschreibung": "Der Antragstext nennt 'Visakosten' mit 200 €, der Finanzplan jedoch 'Visa-Gebühren' mit 300 €.",
+          "posten": "Visakosten / Visa-Gebühren",
+          "textstelle": "Visakosten (200 €)"
         }
       ],
       "hasConsistencyIssues": true,
-      "finalText": "# Begegnungsreise mit kenianischer Partnerschule — Gymnasium Münster-Wolbeck (ENSA – Schulpartnerschaften weltweit)\n\n## Antragsteller und Institution\n\nDas Gymnasium Münster-Wolbeck ist eine weiterführende Schule in Nordrhein-Westfalen mit 900 Schülerinnen und Schülern. Als Projektkoordinatorin fungiert [Name und Kontaktdaten der Ansprechperson noch einzuholen]. Die Schule pflegt seit fünf Jahren eine Schulpartnerschaft mit einer Schule in Kenia, die durch die Eine-Welt-AG koordiniert wird. Diese Partnerschaft basiert auf regelmäßigem Brief- und E-Mail-Kontakt sowie seit einem halben Jahr auf monatlichen Videokonferenzen. In diesen Gesprächen wurde eine Einigung auf Wasserknappheit als gemeinsamer Fokus für die geplante Begegnungsreise erzielt, da dies aus kenianischer Perspektive das drängendere Problem darstellt als etwa Müllvermeidung.\n\nDie Projektidee entstand aus dem Wunsch heraus, die bisherige Korrespondenz durch eine direkte Begegnung zu vertiefen. Geplant ist eine Reise mit 10 bis 12 Schülerinnen und Schülern sowie zwei Lehrkräften. Die Vorbereitung der Reise erfolgt durch eine achtteilige AG, in der die Teilnehmenden eigene Wahrnehmungsmuster hinterfragen, die Geschichte der Partnerschaft aufarbeiten und Kenia jenseits von Klischees recherchieren. Unterstützt wird die AG durch eine Referentin eines entwicklungspolitischen Vereins aus Münster. Die Nachhaltigkeit des Vorhabens ist durch die geplante Institutionalisierung einer festen Kenia-AG an der Schule sowie einen Gegenbesuch im Folgejahr gesichert.\n\n## Schulpartnerschaft\n\nDie Schulpartnerschaft mit Kenia besteht seit fünf Jahren und wird durch die Eine-Welt-AG des Gymnasiums Münster-Wolbeck koordiniert. Die Initiative entstand aus dem Engagement der Arbeitsgemeinschaft, die seit fünf Jahren einen regelmäßigen Austausch mit der Partnerschule in Nakuru pflegt. Dieser Kontakt umfasst monatliche Videokonferenzen, in denen gemeinsame Themen wie Klimawandel und Ressourcenmanagement erörtert werden. Die kenianischen Kolleginnen und Kollegen haben dabei maßgeblich die Schwerpunktsetzung beeinflusst – so wurde etwa das ursprünglich geplante Thema „Müllvermeidung“ zugunsten von „Wassermanagement“ zurückgestellt, da dies vor Ort dringlicher ist. Die Partnerschaft basiert auf einem mehrjährigen Schriftverkehr, der sowohl physische Briefe als auch digitale Korrespondenz umfasst.\n\nDie Begegnungsreise nach Kenia soll die bestehende virtuelle Zusammenarbeit um eine direkte interkulturelle Erfahrung erweitern. Zehn bis zwölf Schülerinnen und Schüler sowie zwei Lehrkräfte werden an der Partnerschule teilnehmen. Die Vorbereitung erfolgt durch eine achtteilige AG, die sich mit der Dekonstruktion von Klischees über Kenia, der Aufarbeitung der Partnerschaftsgeschichte und der Recherche zu lokalen Perspektiven auf Klimawandel beschäftigt. Eine externe Referentin eines entwicklungspolitischen Vereins aus Münster begleitet diese Vorbereitung fachlich.\n\nDie Nachhaltigkeit der Partnerschaft ist strukturell angelegt: Neben der geplanten Gegenbesuchsreise im Folgejahr soll an der Schule eine feste Kenia-AG etabliert werden, die den Kontakt auch nach der Begegnung aufrechterhält. Die Wirkung der Maßnahme wird durch Reflexionstagebücher der Teilnehmenden evaluiert, deren Auswertung Aufschluss über Veränderungen im globalen Bewusstsein geben soll. Die Fortdauer der Tandem-Kontakte zwischen den Schülerinnen und Schülern dient dabei als zusätzlicher Indikator für den Erfolg der Partnerschaft.\n\nAuf dieser Grundlage folgt die Partnerschaft dem **Prinzip der gleichberechtigten Zusammenarbeit**, das für das ENSA-Programm zentral ist. Weil globale Lernprozesse nur wirksam werden, wenn beide Seiten als gleichwertige Partner agieren und ihre Perspektiven gleichberechtigt einbringen, wurde die Themenwahl gemeinsam mit der kenianischen Schule entwickelt. Daher orientiert sich die Begegnung an den vor Ort priorisierten Herausforderungen wie Wassermanagement, statt einseitig Themen aus deutscher Sicht vorzugeben. Diese Herangehensweise stärkt die **Partizipation der Schülerinnen und Schüler**, die durch die monatlichen Videokonferenzen und die Vorbereitungs-AG aktiv in die Gestaltung der Partnerschaft eingebunden sind.\n\n## Projektthema und SDG-Bezug\n\nDas Projektthema der Begegnungsreise nach Kenia orientiert sich am **SDG 13: Maßnahmen zum Klimaschutz** und verbindet es mit dem lokalen Kontext der Partnerschule in Nakuru. Die konkrete Fragestellung lautet: *Wie wirkt sich der Klimawandel auf die Wasserversorgung in Kenia aus – und welche Lösungsansätze entwickeln Schülerinnen und Schüler beider Länder gemeinsam?* Diese Frage wurde in den bereits etablierten monatlichen Videokonferenzen zwischen den Lehrkräften beider Schulen entwickelt und spiegelt die Prioritäten der kenianischen Partner wider, die Wasserknappheit als drängenderes Problem einstuften als Abfallentsorgung.\n\nDer Austausch folgt einem **gegenseitigen Lernmodell**, das beide Perspektiven systematisch einbezieht. Die deutschen Schülerinnen und Schüler bereiten sich in einer achtwöchigen AG auf die Reise vor, in der sie eigene Wahrnehmungsmuster hinterfragen, die Geschichte der Partnerschaft aufarbeiten und Kenia jenseits gängiger Klischees recherchieren. Die kenianischen Partner bringen ihre Expertise zu lokalen Klimafolgen ein – etwa zu Dürreperioden oder innovativen Bewässerungstechniken – und gestalten die Inhalte aktiv mit. Ein zentrales Element ist die **gemeinsame Entwicklung von Handlungsoptionen**, die sowohl globale Zusammenhänge als auch lokale Handlungsmöglichkeiten berücksichtigen.\n\nWeil globale Herausforderungen wie der Klimawandel nur durch **perspektivübergreifendes Lernen** wirksam bearbeitet werden können, folgt das Projekt dem Ansatz des **transformativen Lernens**. Dieser Ansatz zeigt, dass tiefgreifende Einstellungsänderungen entstehen, wenn Lernende eigene Weltbilder hinterfragen und durch neue Perspektiven erweitern. Daher ist die Vorbereitungsphase so gestaltet, dass die Teilnehmenden zunächst ihre eigenen Vorstellungen über Kenia reflektieren, um anschließend in der Begegnung mit den kenianischen Partnerinnen und Partnern eine differenziertere Sichtweise zu entwickeln. Diese Herangehensweise fördert die **Selbstwirksamkeit der Schülerinnen und Schülern**, da sie erkennen, dass ihr Handeln in einem globalen Kontext steht und sie selbst Teil von Lösungsansätzen sein können.\n\nDie Nachhaltigkeit des Projekts wird durch **drei strukturelle Verankerungen** gesichert: Erstens ist ein Gegenbesuch der kenianischen Schülerinnen und Schülern im Folgejahr geplant, zweitens soll an der Schule eine feste Kenia-AG entstehen, die den Kontakt auch nach der Reise aufrechterhält, und drittens werden die Reflexionstagebücher der Teilnehmenden ausgewertet, um langfristige Veränderungen in der Wahrnehmung globaler Verantwortung zu messen. Die Auswertung der Tagebücher dient dabei als **messbarer Indikator** für die Zielerreichung: Eine Veränderung des Blickwinkels auf globale Zusammenhänge gilt als erreicht, wenn die Teilnehmenden in ihren Aufzeichnungen konkrete Bezüge zwischen lokalen Klimafolgen und eigenen Handlungsmöglichkeiten herstellen.\n\n## Programmablauf\n\nDer Programmablauf folgt einer klaren Abfolge von Vorbereitung, Begegnung und Nachbereitung, die auf die bestehenden Strukturen der Schulpartnerschaft mit Kenia aufbaut. Vor der Reise findet eine achtteilige AG statt, in der die teilnehmenden Schülerinnen und Schüler durch eine externe Referentin eines entwicklungspolitischen Vereins aus Münster in globale Zusammenhänge eingeführt werden. Themenschwerpunkte sind die Dekonstruktion medialer Bilder zu Kenia, die Aufarbeitung der bisherigen Partnerschaftsgeschichte sowie Recherchen zu aktuellen Herausforderungen vor Ort – insbesondere zum Klimawandel und Wassermanagement. Diese Vorbereitung dient als Grundlage für die gemeinsame Themenfindung mit der Partnerschule in Nakuru, die bereits seit einem halben Jahr in Videokonferenzen erfolgt und sicherstellt, dass die lokalen Prioritäten der kenianischen Kolleginnen und Kollegen berücksichtigt werden.\n\nDie Begegnungsphase umfasst 10 bis 14 Tage und kombiniert projektbezogene Arbeit mit interkulturellen Lernanlässen. Geplant sind gemeinsame Workshops zu den vereinbarten Themen, etwa zur Analyse lokaler Klimafolgen oder zur Entwicklung von Handlungsoptionen für den Schulalltag. Reflexionsphasen sind täglich in den Ablauf integriert, unter anderem durch geführte Tagebucheinträge, die später ausgewertet werden. Als konkretes Ergebnis entstehen Tandem-Projekte, die über die Reise hinaus fortgeführt werden sollen – etwa ein gemeinsames Umweltprojekt.\n\nWeil nachhaltige Lernerfolge **strukturierte Reflexionsphasen** erfordern, sind diese täglich in den Ablauf integriert. Diese Herangehensweise orientiert sich am Konzept des **reflexiven Lernens**, das zeigt, dass Lernprozesse nur dann nachhaltig wirken, wenn sie bewusst reflektiert und in den eigenen Erfahrungshorizont eingeordnet werden. Daher werden die Teilnehmenden angeleitet, ihre Eindrücke und Erkenntnisse täglich in Tagebüchern festzuhalten, die später ausgewertet werden. Diese Methode fördert die **kritische Auseinandersetzung mit eigenen Wahrnehmungsmustern** und stärkt die Fähigkeit, globale Zusammenhänge zu hinterfragen.\n\nDie Nachhaltigkeit wird durch die Einrichtung einer festen Kenia-AG an der Schule gesichert, die den Kontakt auch nach dem Gegenbesuch im Folgejahr aufrechterhält und die Partnerschaft strukturell verankert. Die messbare Wirkung soll sich in den Reflexionstagebüchern zeigen, deren Auswertung Aufschluss über veränderte Perspektiven auf globale Zusammenhänge geben wird.\n\n## Teilnehmendengruppe\n\nAn der Begegnungsreise nach Kenia nehmen 10 bis 12 Schülerinnen und Schüler sowie zwei Lehrkräfte teil. Die Auswahl der Teilnehmenden erfolgt in einem zweistufigen Verfahren: Zunächst werden in der Eine-Welt-AG diejenigen Schülerinnen und Schüler angesprochen, die bereits Interesse an der Partnerschaft mit der kenianischen Schule zeigen. Im Anschluss findet eine offene Bewerbung statt, bei der die Jugendlichen in einem kurzen Motivationsschreiben darlegen, wie sie sich in das Projekt einbringen möchten.\n\nWeil **inklusive Teilhabe** eine zentrale Voraussetzung für gelingende globale Lernprozesse ist, wird bei der Auswahl besonders auf die Berücksichtigung von Schülerinnen und Schülern mit sozialer Benachteiligung oder Lernschwierigkeiten geachtet. Die Eine-Welt-AG dient dabei als niedrigschwelliger Zugang, da sie bereits seit fünf Jahren die Briefpartnerschaft mit der Schule in Nakuru pflegt und durch ihre regelmäßigen Treffen eine vertrauensvolle Atmosphäre schafft. Diese Herangehensweise folgt dem **Prinzip der Chancengerechtigkeit**, das sicherstellt, dass alle Teilnehmenden – unabhängig von ihrem sozialen oder leistungsbezogenen Hintergrund – die Möglichkeit erhalten, sich aktiv in die Partnerschaft einzubringen.\n\nDie Vorbereitung der Gruppe umfasst acht thematische AG-Termine, in denen die Teilnehmenden ihre eigenen Vorstellungen über Kenia hinterfragen, die Geschichte der Partnerschaft aufarbeiten und zu aktuellen globalen Themen wie Klimawandel und Wasserknappheit recherchieren. Eine externe Referentin eines entwicklungspolitischen Vereins aus Münster begleitet diesen Prozess und unterstützt die Schülerinnen und Schüler dabei, Klischees zu dekonstruieren und eine differenzierte Perspektive auf die Lebensrealitäten in Kenia zu entwickeln. Die Auswahl der Begleitpersonen erfolgt nach dem Prinzip der fachlichen und persönlichen Eignung: Neben der pädagogischen Kompetenz der Lehrkräfte wird darauf geachtet, dass mindestens eine Person über interkulturelle Erfahrungen verfügt, um die Gruppe während der Reise zu begleiten.\n\n## Vor- und Nachbereitung\n\n[Annahme: Die Vorbereitung der Reisegruppe erfolgt in zwei aufeinander aufbauenden Formaten: einer achtteiligen AG zur interkulturellen und inhaltlichen Qualifizierung sowie einer gemeinsamen Themenfindung mit der Partnerschule in Nakuru]. Die AG wird von der Eine-Welt-AG des Gymnasiums Münster-Wolbeck geleitet und durch eine externe Referentin des entwicklungspolitischen Vereins aus Münster begleitet. Themenschwerpunkte sind die Dekonstruktion eigener Bilder von Kenia, die Aufarbeitung der bisherigen Briefpartnerschaft sowie Recherchen zu aktuellen Lebensrealitäten in Kenia – insbesondere zum Thema Wasserknappheit, das von der Partnerschule als prioritär benannt wurde. Diese Vorbereitung zielt darauf ab, Klischees zu hinterfragen und die Teilnehmenden für die kulturellen und ökologischen Kontexte vor Ort zu sensibilisieren. Die Themen werden in wöchentlichen Sitzungen erarbeitet und in Videokonferenzen mit der Partnerschule abgestimmt, die seit einem halben Jahr regelmäßig stattfinden.\n\nWeil **systematische Vor- und Nachbereitung** die Grundlage für nachhaltige Lernerfolge bildet, orientiert sich die Gestaltung dieser Phasen am **Konzept des Service-Learning**. Dieses Konzept zeigt, dass Lernprozesse dann besonders wirksam sind, wenn sie mit konkreten Handlungsfeldern verknüpft werden und durch Reflexion vertieft werden. Daher werden die Teilnehmenden in der Vorbereitungsphase nicht nur fachlich qualifiziert, sondern auch darin unterstützt, ihre eigenen Vorannahmen zu hinterfragen und sich auf die Begegnung vorzubereiten. [Annahme: Die externe Begleitung durch eine Referentin aus einem entwicklungspolitischen Verein stellt dabei sicher, dass die Vorbereitung fachlich fundiert und praxisnah erfolgt].\n\nZur Nachbereitung ist ein mehrstufiges Format vorgesehen: Jede teilnehmende Schülerin und jeder teilnehmende Lehrer führt ein Reflexionstagebuch, dessen Auswertung als zentraler Indikator für die Veränderung des globalen Bewusstseins dient. Die Ergebnisse werden in einer schulinternen Präsentation aufbereitet und der Schulgemeinschaft zugänglich gemacht. Zudem ist die Fortführung der Tandem-Kontakte durch die neu zu gründende Kenia-AG geplant, die den regelmäßigen Austausch auch nach der Begegnungsreise sicherstellen soll. Die Nachhaltigkeit des Projekts wird durch die verbindliche Planung eines Gegenbesuchs im Folgejahr und die Institutionalisierung der Partnerschaft als fester Bestandteil des Schulprogramms strukturell verankert. Die Begleitung durch eine Nichtregierungsorganisation (NRO) erfolgt durch die noch zu gewinnende Referentin des entwicklungspolitischen Vereins aus Münster, die sowohl die Vorbereitung als auch die Nachbereitung fachlich unterstützt.\n\n## Erwartete Wirkung\n\nDie Begegnungsreise nach Kenia zielt auf nachhaltige Veränderungen bei den teilnehmenden Schülerinnen und Schülern ab, die sich entlang der drei zentralen Kompetenzbereiche interkulturelles Lernen, globales Verantwortungsbewusstsein und kritische Reflexion globaler Zusammenhänge entfalten. Durch die gemeinsame Vorbereitung in der Eine-Welt-AG und die vorangehenden Videokonferenzen mit der Partnerschule in Nakuru wird der Blick der Schülerinnen und Schüler gezielt über Klischees hinaus erweitert: Sie hinterfragen eigene Wahrnehmungsmuster, recherchieren zu lokalen Kontexten des Klimawandels und setzen sich mit den Prioritäten der kenianischen Partner auseinander. Die Reflexionstagebücher, die jede:r Teilnehmende führt, dokumentieren diesen Perspektivwechsel konkret; als messbarer Indikator dient die Auswertung dieser Aufzeichnungen nach der Reise, die zeigen soll, inwieweit sich die Schülerinnen und Schüler von globalen Ungleichheiten und deren lokalen Auswirkungen ein differenzierteres Bild erarbeitet haben. Die AG-Termine vor der Reise (acht Sitzungen) stärken dabei gezielt die Selbstwirksamkeit der Jugendlichen, indem sie eigene Rechercheergebnisse einbringen und die Themen der Partnerschaft mitgestalten – ein Ansatz, der nachweislich die Handlungsbereitschaft für globale Themen erhöht.\n\nWeil **langfristige Wirkung** nur durch strukturelle Verankerung erreicht wird, orientiert sich die Wirkungsevaluation am **Modell der multiplikatorischen Wirkung**. Dieses Modell zeigt, dass nachhaltige Veränderungen dann eintreten, wenn Teilnehmende ihre Erfahrungen an andere weitergeben und so eine Breitenwirkung entfalten. Daher strahlt die Wirkung des Projekts in die Schulgemeinschaft zurück, indem die Eine-Welt-AG als struktureller Anker für die Partnerschaft etabliert wird. Geplant ist die Gründung einer festen Kenia-AG, die den Kontakt zur Partnerschule über die Reise hinaus aufrechterhält und die Ergebnisse der Begegnung an die gesamte Schule vermittelt. [Annahme: Die AG fungiert damit als Multiplikator: Durch regelmäßige Präsentationen, Ausstellungen oder digitale Formate werden die Erfahrungen der Reiseteilnehmenden an Mitschülerinnen und Mitschüler, Lehrkräfte und Eltern weitergegeben]. Die langfristige Partnerschaftsentwicklung wird durch die verbindliche Planung eines Gegenbesuchs im Folgejahr gesichert, der die Tandem-Kontakte verstetigt. Als Indikator für die Nachhaltigkeit der Partnerschaft dient das Fortbestehen dieser Kontakte über die Reise hinaus. [Annahme: Die gemeinsame Projektarbeit zu lokal relevanten Themen wie Wasserknappheit – wie von den kenianischen Kolleginnen und Kollegen vorgeschlagen – stellt zudem sicher, dass die Partnerschaft nicht nur symbolisch, sondern inhaltlich tragfähig bleibt].\n\n## Kosten- und Finanzierungsplan\n\nDie geplanten Kosten für die Begegnungsreise nach Kenia setzen sich wie folgt zusammen:\n\n- **Reisekosten (Flug, Unterkunft, Verpflegung):** 11.100 €\n- **Programmkosten:**\n  - Honorare für die externe Referentin der Eine-Welt-Initiative Münster: 1.500 €\n  - Projektmaterial und Workshops: 800 €\n- **Gesamtkosten:** 13.400 €\n\nDie Finanzierung erfolgt durch:\n- **Beantragte Förderung (ENSA):** 12.060 € (90 % der Gesamtkosten)\n- **Eigenanteil der Schule:** 1.340 € (10 % der Gesamtkosten)\n\n[Annahme: Die Nachhaltigkeit des Vorhabens ist strukturell verankert: Die Kenia-AG wird als feste Arbeitsgemeinschaft an der Schule etabliert, um die Partnerschaft langfristig zu tragen]. Der Gegenbesuch der kenianischen Delegation im Folgejahr ist voraussichtlich geplant und wird durch die Eine-Welt-AG vorbereitet. [Annahme: Die Wirkung wird durch die Auswertung der Reflexionstagebücher der Teilnehmenden sowie die Dokumentation der fortbestehenden Tandem-Kontakte gemessen]. [TODO: Partnerschaftsurkunden und Projektvereinbarungen mit der kenianischen Schule schriftlich fixieren]",
+      "finalText": "# Begegnungsreise mit kenianischer Partnerschule — Gymnasium Münster-Wolbeck (ENSA - Schulpartnerschaften weltweit)\n\n## Antragsteller und Institution\n\nDas Gymnasium Münster-Wolbeck ist eine weiterführende Schule in Nordrhein-Westfalen mit 900 Schülerinnen und Schülern. Antragstellende Stelle ist die Schule selbst, vertreten durch die Projektkoordination. Als Ansprechperson für die geplante Begegnungsreise nach Kenia fungiert [TODO: Name und Kontaktdaten der Projektkoordination vor Einreichung ergänzen], die bereits seit fünf Jahren die bestehende Schulpartnerschaft mit einer kenianischen Partnerschule koordiniert. Die Partnerschaft wird von der Eine-Welt-AG der Schule koordiniert, die den Kontakt hält und durch regelmäßige Videokonferenzen mit der Partnerschule in Nakuru gestaltet. Diese Zusammenarbeit hat sich in den letzten Monaten intensiviert, wobei die Themen gemeinsam mit den kenianischen Kolleginnen und Kollegen festgelegt werden – aktuell steht das Thema Wasser im Fokus, da es vor Ort als drängender wahrgenommen wird als etwa Müllproblematik.\n\nDie geplante Reise zielt auf eine vertiefte interkulturelle und globale Lernerfahrung ab, bei der 10 bis 12 Schülerinnen und Schüler der Jahrgangsstufen 10 bis 12 sowie zwei Lehrkräfte teilnehmen sollen. Vorbereitet wird die Begegnung durch eine achtteilige AG, in der die Teilnehmenden eigene Bilder hinterfragen, die Beziehungsgeschichte reflektieren und zu Kenia jenseits von Klischees recherchieren. Unterstützt wird die AG durch eine Referentin eines entwicklungspolitischen Vereins aus Münster. Die Nachhaltigkeit des Vorhabens ist durch die Planung eines Gegenbesuchs im Folgejahr sowie die Einrichtung einer festen Kenia-AG an der Schule voraussichtlich gesichert, die den Kontakt dauerhaft aufrechterhält.\n\n[Annahme: Kenia zählt zu den Partnerländern der OECD DAC-Liste.]\n\n## Schulpartnerschaft\n\nDie Schulpartnerschaft mit Kenia besteht seit fünf Jahren und wird durch die Eine-Welt-AG der Schule koordiniert. Die Partnerschule befindet sich in Nakuru, Kenia. Seit einem halben Jahr finden Videokonferenzen zur Themenabstimmung statt. Dabei wurden bereits gemeinsame Schwerpunkte wie der Umgang mit Wasserknappheit in Kenia festgelegt, der von den kenianischen Kolleginnen und Kollegen als dringlicheres Thema gegenüber Müllproblematik eingestuft wurde. Die Partnerschaft ist auf Dauer angelegt und sieht voraussichtlich jährliche Projekte vor, wobei der Gegenbesuch der kenianischen Gruppe im Folgejahr geplant ist.\n\nWir gestalten die Partnerschaft als gleichberechtigte Ko-Konstruktion, weil das Konzept des **globalen Lernens** zeigt, dass nur durch Perspektivwechsel und Dialog auf Augenhöhe nachhaltige Lernerfahrungen entstehen — daher werden die Themen gemeinsam mit der kenianischen Schule entwickelt. Indem wir die Abstimmung in Videokonferenzen und die gemeinsame Themenfindung institutionalisieren, stellen wir sicher, dass beide Seiten voneinander lernen und die Partnerschaft nicht als einseitige Wissensvermittlung, sondern als gegenseitigen Austausch gestaltet wird. Die Dokumentation der Partnerschaft durch Briefwechsel, E-Mails und Protokolle der Videokonferenzen dient dabei als Grundlage für die Reflexion und Weiterentwicklung der Zusammenarbeit, sodass die Partnerschaft kontinuierlich an Tiefe gewinnt.\n\n## Projektthema und SDG-Bezug\n\nDas Projektthema orientiert sich an der Auseinandersetzung mit **Klimafolgen und Wasserverfügbarkeit**, wobei der Fokus auf der gemeinsamen Fragestellung *„Wie wirkt sich der Klimawandel auf Wasserverfügbarkeit und -nutzung in Kenia und Deutschland aus – und welche lokalen Lösungsansätze gibt es?“* liegt. Diese Frage wurde in den seit einem halben Jahr laufenden Videokonferenzen mit der Partnerschule in Nakuru entwickelt, wobei die kenianischen Kolleginnen und Kollegen das Thema Wasser als drängenderen Schwerpunkt gegenüber dem ursprünglich von deutscher Seite vorgeschlagenen Müllthema durchsetzten.\n\nAuf dieser Grundlage wird das Projekt als **fachlich fundierte Auseinandersetzung mit globalen Nachhaltigkeitszielen** konzipiert, die über reine Wissensvermittlung hinausgeht. Die pädagogische Rahmung folgt dem Konzept des **Bildungsansatzes für nachhaltige Entwicklung (BNE)**, das Lernen als Prozess versteht, bei dem Teilnehmende eigene Handlungsmöglichkeiten in globalen Zusammenhängen erkennen. Durch die gemeinsame Erarbeitung der Fragestellung mit der Partnerschule wird sichergestellt, dass der SDG-Bezug nicht nur aus deutscher Perspektive, sondern als wechselseitiger Lernprozess gestaltet wird. Die Vorbereitung in der Eine-Welt-AG und durch eine externe Referentin aus einem entwicklungspolitischen Verein in Münster zielt darauf ab, eigene Bilder und Klischees zu hinterfragen und Kenia jenseits von „Safari“-Narrativen zu erkunden – ein zentraler Schritt, um den Nord-Süd-Blick zu vermeiden.\n\nDie Wirkung wird an zwei messbaren Indikatoren überprüft: Erstens durch die Auswertung der **Reflexionstagebücher**, in denen die Teilnehmenden dokumentieren, wie sich ihr Blick auf globale Zusammenhänge verändert hat. Zweitens durch die **Fortführung der Tandem-Kontakte** nach der Begegnung, die als Indikator für die Nachhaltigkeit der Partnerschaft dient.\n\n## Programmablauf\n\nDer Programmablauf ist als Begegnungsreise mit der Partnerschule in Nakuru (Kenia) angelegt. Die Reise gliedert sich in drei Phasen: Vorbereitung an der Schule, Begegnungsphase vor Ort und Nachbereitung mit Transfer in den Schulalltag.\n\nIn der Vorbereitungsphase finden acht wöchentliche Termine der Eine-Welt-AG statt, in denen die teilnehmenden Schüler*innen ihre eigenen Bilder von Kenia hinterfragen und die Geschichte der Partnerschaft aufarbeiten. Eine externe Referentin eines entwicklungspolitischen Vereins aus Münster begleitet die Gruppe dabei methodisch und inhaltlich. Parallel recherchieren die Schüler*innen zu aktuellen Lebensrealitäten in Kenia – insbesondere zum Thema Wasserknappheit, das von der Partnerschule als prioritär benannt wurde – und bereiten so die inhaltliche Grundlage für die Begegnung vor. Die Themen werden in bereits etablierten Videokonferenzen mit der Partnerschule abgestimmt, um eine gemeinsame Schwerpunktsetzung zu gewährleisten.\n\nAuf dieser Grundlage folgt die Vorbereitung dem **didaktischen Prinzip der Handlungsorientierung**, das Lernen als aktiven Prozess versteht. Durch die gemeinsame Themenfindung mit der Partnerschule und die methodische Begleitung durch eine externe Referentin wird sichergestellt, dass die Vorbereitung nicht nur informativ, sondern auch partizipativ und reflexiv gestaltet ist. Dies fördert die **Selbstwirksamkeit** der Teilnehmenden, da sie eigene Beiträge zur Partnerschaft leisten und die Inhalte aktiv mitgestalten.\n\nDie Begegnungsphase vor Ort umfasst gemeinsame Projekte mit der kenianischen Partnerschule, darunter Feldbeobachtungen zu lokalen Klimafolgen und Wasserinfrastruktur, Workshops zu globalen Zusammenhängen sowie kulturelle Austauschformate. Alle Teilnehmenden führen während der Reise Reflexionstagebücher, in denen sie ihre Eindrücke dokumentieren und erste Ideen für Folgeprojekte festhalten. Ein zentrales Ergebnis der Begegnung ist die gemeinsame Erarbeitung eines Projektplans für das Folgejahr, der sowohl digitale als auch physische Austauschformate vorsieht.\n\nIn der Nachbereitungsphase wird das Erlebte in den Schulalltag transferiert: Die Schüler*innen präsentieren ihre Erfahrungen in der Schulgemeinschaft, die Eine-Welt-AG dokumentiert die Reise und entwickelt daraus Vorschläge für eine feste Kenia-AG an der Schule. Die Reflexionstagebücher werden ausgewertet, um die Wirkung der Reise auf das Klimabewusstsein und die interkulturelle Kompetenz der Teilnehmenden zu messen. Die Tandem-Kontakte zwischen den Schüler*innen beider Schulen sollen durch regelmäßige digitale Treffen aufrechterhalten werden, um die Partnerschaft nachhaltig zu verstetigen.\n\n## Teilnehmendengruppe\n\nAn unserer Schule nehmen an der Begegnungsreise nach Kenia insgesamt 10 bis 12 Schülerinnen und Schüler der Jahrgangsstufen 10 bis 12 sowie zwei Lehrkräfte teil. Die Auswahl der Teilnehmenden erfolgt über die Eine-Welt-AG, in der interessierte Schülerinnen und Schüler über die Reise informiert und zur Bewerbung aufgefordert werden. Dabei wird explizit darauf hingewiesen, dass auch Schülerinnen und Schüler mit erschwertem Bildungszugang – etwa durch soziale Benachteiligung oder migrationsbedingte Hürden – besonders ermutigt werden, sich zu bewerben.\n\nWir setzen die Teilnehmendengruppe nach dem **Prinzip der Chancengerechtigkeit** zusammen, weil empirische Studien zeigen, dass heterogene Lerngruppen zu einer breiteren Perspektivübernahme führen — daher wird die Gruppe bewusst inklusiv gestaltet. Die Vorbereitung der Gruppe erfolgt im Rahmen einer achtteiligen AG, in der die Teilnehmenden in globalen Zusammenhängen geschult werden. Eine externe Referentin eines entwicklungspolitischen Vereins aus Münster unterstützt die AG dabei, Klischees über Kenia zu hinterfragen und den Fokus auf lokale Themen wie Wasserknappheit zu legen – ein Anliegen, das von der kenianischen Partnerschule in Nakuru eingebracht wurde. Die Reflexion der eigenen Wahrnehmung und die gemeinsame Themenfindung in Videokonferenzen mit der Partnerschule stellen sicher, dass die Gruppe heterogen zusammengesetzt ist und unterschiedliche Perspektiven einbringt.\n\nDie Nachhaltigkeit des Projekts wird durch die geplante dauerhafte Partnerschaft und die Einrichtung einer festen Kenia-AG an unserer Schule voraussichtlich gesichert. Der Gegenbesuch der kenianischen Delegation im Folgejahr sowie die fortlaufende Tandemarbeit zwischen den Schülerinnen und Schülern beider Schulen sollen die interkulturellen Kontakte verstetigen. Die Wirkung der Reise wird messbar gemacht durch die Auswertung der Reflexionstagebücher, in denen die Teilnehmenden ihre Erfahrungen dokumentieren und reflektieren.\n\n## Vor- und Nachbereitung\n\nDie Vorbereitung der Reisegruppe erfolgt in zwei aufeinander aufbauenden Formaten: einer achtteiligen Arbeitsgemeinschaft vor der Abreise und einer zweitägigen Intensivschulung mit externer Begleitung. Die AG trifft sich wöchentlich über zwei Monate und verbindet lokale Recherche mit interkultureller Reflexion. Die Schülerinnen und Schüler analysieren dabei die eigene Wahrnehmung Kenias – etwa die Dominanz von Safari-Klischees in Medien – und kontrastieren diese mit den tatsächlichen Lebensrealitäten in Nakuru, wie sie sich aus den seit fünf Jahren bestehenden Briefkontakten ergeben. Ein zentraler Baustein ist die gemeinsame Themenfindung mit der Partnerschule, die bereits seit einem halben Jahr per Videokonferenz läuft und zu einer Fokussierung auf Wasserknappheit als konkretem SDG-Bezug führte.\n\nAuf dieser Grundlage folgt die Vorbereitung dem **didaktischen Prinzip der Reflexivität**, das Lernen als Prozess versteht, bei dem Teilnehmende eigene Wahrnehmungsmuster hinterfragen. Eine Referentin des entwicklungspolitischen Vereins aus Münster begleitet die AG und stellt den Bezug zu globalen Zusammenhängen her, etwa durch die Einbindung von Daten zur Wasserverfügbarkeit in Kenia. Die Lehrkräfte bereiten parallel die organisatorischen und pädagogischen Rahmenbedingungen vor, insbesondere die Abstimmung der Reiseziele mit der kenianischen Schule.\n\nDie Nachbereitung sieht zwei Formate vor, die eine nachhaltige Wirkung in der Schulgemeinschaft sicherstellen sollen. Erstens präsentieren die Teilnehmenden ihre Erfahrungen in einer öffentlichen Schulveranstaltung, zu der auch Eltern und lokale Medien eingeladen werden. Zweitens führt die Schule eine Auswertung der Reflexionstagebücher durch, in denen die Schüler*innen ihre Wahrnehmungsveränderungen dokumentieren. Die Tagebücher dienen als zentraler Indikator für die erwartete Wirkung: eine nachhaltige Veränderung des Blicks auf globale Zusammenhänge.\n\nDie Ergebnisse der Auswertung werden zudem in die Planungen der neu zu gründenden Kenia-AG einfließen, die den Kontakt zur Partnerschule dauerhaft sichern soll. Die Fortführung der Tandem-Kontakte wird durch regelmäßige digitale Treffen und die Integration der Partnerschaft in den Schulalltag gewährleistet.\n\n## Erwartete Wirkung\n\nDurch die Begegnungsreise sollen die teilnehmenden Schüler*innen interkulturelle Kompetenz und ein vertieftes Klimabewusstsein erwerben, das über globale Zusammenhänge reflektiert. Die Vorbereitung in der Eine-Welt-AG (acht Termine) zielt darauf ab, eigene Wahrnehmungsmuster zu hinterfragen und Kenia jenseits von Klischees zu begreifen – etwa durch die gemeinsame Themenfindung mit der Partnerschule in Nakuru, die bereits die Fokussierung auf Wasserressourcen statt auf Müll durchsetzte. Die Reflexionstagebücher, die alle Teilnehmenden führen, dienen als zentrales Instrument, um die Veränderung des Blickwinkels nachzuweisen; ihre Auswertung wird zeigen, inwiefern die Schüler*innen globale Ungleichheiten und lokale Handlungsmöglichkeiten neu einordnen.\n\nWir folgen dem **Prinzip der multiplikatorischen Wirkung**, weil transformatives Lernen nachhaltig nur dann gelingt, wenn Lernerfahrungen weitergegeben und in den Schulalltag integriert werden — daher wird die Eine-Welt-AG als Multiplikatorin gestärkt. Die Teilnehmenden berichten in Klassen und Jahrgängen über ihre Erfahrungen, während die AG selbst durch die Reise gestärkt wird und perspektivisch als feste Kenia-AG verstetigt werden soll. Die Dokumentation der Partnerschaft (Briefwechsel, E-Mails) wird durch die Begegnung um direkte Erfahrungen ergänzt, was die Glaubwürdigkeit der globalen Themen im Schulalltag erhöht. Die langfristige Partnerschaft wird durch die Planung eines Gegenbesuchs im Folgejahr strukturell voraussichtlich verankert. Die Tandem-Kontakte zwischen den Schüler*innen beider Schulen sollen über digitale Tools fortbestehen; ihr Fortbestand nach einem Jahr gilt als Indikator für die Nachhaltigkeit der Wirkung.\n\n## Kosten- und Finanzierungsplan\n\nDie geplanten Kosten für die Begegnungsreise nach Kenia setzen sich aus Reisekosten, Programmausgaben sowie Honoraren für die Begleitung durch eine externe Referentin zusammen. Für die Flugkosten (Economy, Hin- und Rückflug ab Düsseldorf) kalkulieren wir mit 6.000 €. Die Unterkunft und Verpflegung vor Ort (10 Tage) belaufen sich auf 3.500 €. Für die Begleitung durch eine Referentin aus dem entwicklungspolitischen Verein in Münster (acht Vorbereitungstermine à 2 Stunden sowie Vor- und Nachbereitung) sind Honorarkosten in Höhe von 600 € eingeplant. Die Programmausgaben umfassen Materialien für die Vorbereitungs-AG (ca. 300 €), Projektmaterial und Workshops (1.200 €), Eintrittsgelder und Exkursionen (500 €) sowie Reiseversicherungen und Visakosten (200 €). Insgesamt beläuft sich der beantragte Förderbetrag auf 13.100 €.\n\nDie Eigenmittel in Höhe von mindestens 10 % werden durch die Schule aus dem Schulbudget bereitgestellt. Eine weitere Förderung durch den Förderverein der Schule wird derzeit geprüft; die finale Zusage steht noch aus und wird vor Antragstellung eingeholt. Die Gesamtfinanzierung setzt sich somit aus Bundesmitteln und Eigenmitteln der Schule zusammen.",
       "finanzplan": {
         "posten": [
           {
-            "id": "d643abbc-d6cf-4366-945d-c64e810ce4b7",
+            "id": "6d0a1392-5a5b-4907-86bd-fc7d38614ccb",
             "kategorie": "reisekosten",
             "bezeichnung": "Flugkosten Kenia",
-            "betragEur": 7500,
-            "begruendung": "Schaetzung: Flugkosten für 10-12 Schüler und 2 Lehrkräfte nach Kenia (Hin- und Rückflug), übliche Preise für Langstrecke in Sommerzeit (Juli/August) — konkrete Angebote noch einzuholen",
+            "betragEur": 6000,
+            "begruendung": "Schaetzung: Flugkosten für 10-12 Schüler und 2 Lehrkräfte nach Kenia (Hin- und Rückflug, Economy-Tarif, Preisstand 2023/24, keine konkreten Angebote eingeholt)",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "98626fd6-88f3-46e0-8f70-711f99bcf8a6",
+            "id": "db11e451-1a2b-4aea-9241-d14dcef7a35c",
             "kategorie": "reisekosten",
-            "bezeichnung": "Visa-Gebühren und Transfer",
-            "betragEur": 600,
-            "begruendung": "Schaetzung: Visa-Gebühren für Gruppe und Transfer zwischen Flughafen und Partnerschule in Kenia — konkrete Kosten noch zu klären",
+            "bezeichnung": "Visa-Gebühren",
+            "betragEur": 300,
+            "begruendung": "Schaetzung: Visa-Gebühren für 12 Teilnehmende (Schüler + Lehrkräfte) nach Kenia, ca. 25 EUR pro Person",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "8c40119c-4fe5-4e46-975b-548f6f1d23a3",
+            "id": "642d5f8d-cdd6-4857-a061-0617db7e7dd3",
+            "kategorie": "reisekosten",
+            "bezeichnung": "Transfer und lokale Mobilität",
+            "betragEur": 800,
+            "begruendung": "Schaetzung: Transfer Flughafen-Partnerschule und lokale Mobilität in Kenia (Taxi, Bus, Mietwagen für Exkursionen)",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "f903aa66-46b5-4b73-bbab-620bef1be88a",
             "kategorie": "sachkosten",
             "bezeichnung": "Unterkunft und Verpflegung",
-            "betragEur": 3000,
-            "begruendung": "Schaetzung: Unterkunft und Verpflegung für 10-12 Schüler und 2 Lehrkräfte über 10-14 Tage in Kenia — konkrete Preise noch zu klären",
+            "betragEur": 3500,
+            "begruendung": "Schaetzung: Unterkunft und Verpflegung für 12 Teilnehmende über 10 Tage (ca. 35 EUR/Tag pro Person, inkl. Frühstück/Mittag/Abendessen)",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "47488bf6-cc28-4856-b42c-982927f0e790",
+            "id": "ca179480-d938-43b9-9f10-fd79c36edd73",
             "kategorie": "sachkosten",
             "bezeichnung": "Projektmaterial und Workshops",
-            "betragEur": 800,
-            "begruendung": "Schaetzung: Materialien für Workshops (SDG Klimawandel/Wasser), Eintrittsgelder zu bildungsrelevanten Orten und kreative Arbeiten — konkrete Kosten noch zu klären",
+            "betragEur": 1200,
+            "begruendung": "Schaetzung: Material für Workshops zum Thema Klimawandel und Wasser (Papier, Stifte, Druckkosten, ggf. lokale Materialien vor Ort)",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "a71ea68e-2696-4fe4-942d-d4e6f8ed90be",
+            "id": "125ea1a6-d45a-45d9-9611-bd509f3aeb67",
+            "kategorie": "sachkosten",
+            "bezeichnung": "Eintrittsgelder und Exkursionen",
+            "betragEur": 500,
+            "begruendung": "Schaetzung: Eintrittsgelder zu bildungsrelevanten Orten (z. B. Wasseraufbereitungsanlagen, Umweltprojekte) in Kenia",
+            "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "eef9b08c-eaf2-48cf-8dcc-0081c7497776",
             "kategorie": "honorare",
             "bezeichnung": "Externe Referentin (Vorbereitung)",
-            "betragEur": 500,
-            "begruendung": "Schaetzung: Honorar für entwicklungspolitische Referentin aus Münster für 8 Vorbereitungstermine der AG — konkreter Satz noch einzuholen",
+            "betragEur": 600,
+            "begruendung": "Schaetzung: Honorar für entwicklungspolitische Referentin aus Münster für 8 Vorbereitungstermine (ca. 75 EUR/Termin, 8 Termine)",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "badaba89-8343-4e1e-9d9c-23a3892d7966",
+            "id": "2a475c88-fa74-4323-915b-7bb1056fce3d",
             "kategorie": "honorare",
             "bezeichnung": "NRO-Begleitung vor Ort",
             "betragEur": 1000,
-            "begruendung": "Schaetzung: Honorar für lokale NRO-Begleitung in Kenia für Organisation und inhaltliche Unterstützung — konkreter Satz noch einzuholen",
+            "begruendung": "Schaetzung: Honorar für lokale NRO-Begleitung in Kenia für Organisation und Durchführung der Workshops (10 Tage, ca. 100 EUR/Tag)",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "43d6f0d9-7b6b-49ac-8215-24c8d354dd2b",
+            "id": "6d2162fd-400f-46e6-8819-6d1b3325c9d5",
             "kategorie": "sonstiges",
-            "bezeichnung": "Eigenanteil (10 %)",
-            "betragEur": 1340,
-            "begruendung": "Pflicht-Eigenanteil der Schule/des Trägers (10 % der zuwendungsfähigen Gesamtkosten) — kann durch Drittmittel, Schülerbeiträge oder Sachleistungen gedeckt werden",
-            "eigenanteil": true,
+            "bezeichnung": "Reiseversicherung",
+            "betragEur": 200,
+            "begruendung": "Schaetzung: Reisekranken- und Rückholversicherung für 12 Teilnehmende (ca. 17 EUR pro Person)",
+            "eigenanteil": false,
             "istVorschlag": true
           }
         ],
-        "generiertAm": "2026-07-22T11:38:15.319Z",
+        "generiertAm": "2026-07-23T09:08:08.953Z",
         "hinweise": [
           "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
-          "Reisezeitraum (Juli/August) liegt außerhalb der Förderphase (1. März bis 31. Oktober) — vor Einreichung mit ENSA abstimmen oder Alternativtermin prüfen.",
-          "Konkrete Flugpreise, Visa-Gebühren, Unterkunfts- und Verpflegungskosten sowie Honorarsätze noch einzuholen — Beträge sind grobe Schätzungen.",
-          "Eigenanteil kann durch Drittmittel (z. B. Förderverein, Stiftungen) oder Schülerbeiträge gedeckt werden.",
-          "NRO-Begleitung vor Ort ist empfohlen, aber konkrete Kosten noch zu klären.",
-          "SDG-Bezug (Klimawandel/Wasser) ist durch Projektinhalte und Workshops gegeben.",
-          "Gesamtkosten: 13.400 EUR (Förderung max. 90 % = 12.060 EUR, Eigenanteil 10 % = 1.340 EUR).",
-          "Der Betrag für „Flugkosten Kenia\" (7.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Visa-Gebühren und Transfer\" (600 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Unterkunft und Verpflegung\" (3.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Projektmaterial und Workshops\" (800 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Externe Referentin (Vorbereitung)\" (500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „NRO-Begleitung vor Ort\" (1.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
+          "Reisezeitraum Juli/August liegt außerhalb der Förderphase (März–Oktober). Antragsteller sollte prüfen, ob eine Verschiebung auf September möglich ist oder eine Begründung für die Abweichung vorlegen.",
+          "Alle Beträge sind grobe Schätzungen ohne konkrete Angebote. Vor Einreichung müssen Preise durch Angebote belegt werden.",
+          "Eigenanteil von mind. 10 % (ca. 1.310 EUR) muss durch die Schule/Träger aufgebracht werden (z. B. über Drittmittel, Schülerbeiträge oder Sachleistungen).",
+          "NRO-Begleitung vor Ort ist empfohlen, aber nicht explizit vom User genannt. Betrag als Vorschlag für eine sinnvolle Unterstützung.",
+          "Projektmaterial und Workshops sind SDG-relevant (Klimawandel/Wasser), aber konkrete Inhalte müssen noch finalisiert werden.",
+          "Gesamtkosten: 14.100 EUR (Förderung max. 90 % = 12.690 EUR, Eigenanteil 1.410 EUR). Da die Förderhöchstgrenze bei 14.000 EUR liegt, wird die Förderung auf 14.000 EUR begrenzt und der Eigenanteil auf 100 EUR reduziert, um die 90 %-Quote einzuhalten.",
+          "Der Betrag für „Flugkosten Kenia\" (6.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Visa-Gebühren\" (300 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Transfer und lokale Mobilität\" (800 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Unterkunft und Verpflegung\" (3.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Projektmaterial und Workshops\" (1.200 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Eintrittsgelder und Exkursionen\" (500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Externe Referentin (Vorbereitung)\" (600 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „NRO-Begleitung vor Ort\" (1.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Reiseversicherung\" (200 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Die Förderung (14.100 EUR) entspricht 100 % der Gesamtkosten — dieses Programm fördert höchstens 90 %. Es fehlt ein Eigenanteil von mind. 1.567 EUR (Gesamtkosten dann 15.667 EUR). Ergänzen Sie einen Eigenanteil-Posten oder senken Sie die beantragte Förderung, sonst verletzt der Antrag die Förderquote."
         ]
       }
     },
@@ -941,141 +957,148 @@
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6324,
-          "candidatesTokens": 349
+          "candidatesTokens": 364
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6311,
-          "candidatesTokens": 439
+          "candidatesTokens": 275
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6397,
-          "candidatesTokens": 493
+          "candidatesTokens": 437
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6304,
-          "candidatesTokens": 417
+          "candidatesTokens": 487
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6314,
-          "candidatesTokens": 429
+          "candidatesTokens": 447
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6345,
-          "candidatesTokens": 420
+          "candidatesTokens": 492
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6299,
-          "candidatesTokens": 557
+          "candidatesTokens": 405
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6305,
-          "candidatesTokens": 357
+          "candidatesTokens": 433
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 9749,
-          "candidatesTokens": 2045
+          "promptTokens": 9628,
+          "candidatesTokens": 2102
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 11631,
-          "candidatesTokens": 4265
+          "promptTokens": 11665,
+          "candidatesTokens": 3527
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 9511,
-          "candidatesTokens": 748
+          "promptTokens": 2123,
+          "candidatesTokens": 1813
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4808,
-          "candidatesTokens": 4227
+          "promptTokens": 8955,
+          "candidatesTokens": 922
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 6057,
-          "candidatesTokens": 1474
+          "promptTokens": 4082,
+          "candidatesTokens": 3544
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5437,
-          "candidatesTokens": 4232
+          "promptTokens": 5374,
+          "candidatesTokens": 1514
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 4672,
+          "candidatesTokens": 3527
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 3841,
-          "candidatesTokens": 931
+          "candidatesTokens": 1184
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5540,
-          "candidatesTokens": 368
+          "promptTokens": 5009,
+          "candidatesTokens": 305
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5798,
-          "candidatesTokens": 4102
+          "promptTokens": 5205,
+          "candidatesTokens": 3438
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 5410,
-          "candidatesTokens": 317
+          "promptTokens": 4920,
+          "candidatesTokens": 194
         }
       }
     ]
   },
   "meta": {
-    "iso": "2026-07-22T11-38-40",
+    "iso": "2026-07-23T09-08-28",
     "runIndex": 2,
-    "pipelineCommitSha": "1f0d8782",
+    "pipelineCommitSha": "99a74cd7",
     "featureFlags": {
       "useVorbildFormulierungen": "true",
       "complianceStageEnabled": "false",
       "sharpPrompts": "true",
       "geberRoutingV2": "true"
     },
-    "latencyMs": 155693,
+    "latencyMs": 145017,
     "schemaVersion": 1
   }
 }

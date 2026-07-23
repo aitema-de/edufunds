@@ -40,8 +40,12 @@
       "verifiziertVon": "Web-Recherche Aktion Mensch",
       "bemerkung": "Laufzeit bis zu 5 Jahre. Beispiele: Theaterprojekte (248.000€), Schulstart-Hilfen (125.760€). Antragstellung über aktion-mensch.de/förderung/antrag",
       "fristZustand": {
-        "art": "unbekannt",
-        "quelle": "Primaerquelle aktion-mensch.de/inklusion/bildung/foerderung/schul-kooperationen, geprueft 22.07.2026: Nennt Zuschusshoehe (max. 350.000 EUR) und Laufzeit (bis 5 Jahre), aber keine Frist und keinen Hinweis, ob die Foerderung offen ist."
+        "art": "stichtag",
+        "stichtage": [
+          "2026-10-15"
+        ],
+        "jaehrlichWiederkehrend": true,
+        "quelle": "Primaerquelle aktion-mensch.de/foerderung/foerderangebote/junge-menschen, geprueft 22.07.2026, woertlich: 'Eine Antragstellung ist nur innerhalb unserer Antragszyklen moeglich.' Drei feste Antragszyklen pro Jahr (wiederkehrend), naechstes Fenster 01.09.-15.10.2026. Korrigiert das alte 'laufend'."
       },
       "umfangZustand": {
         "art": "unbekannt",
@@ -86,7 +90,7 @@
       }
     },
     "richtlinie": {
-      "version": "2026-05-19",
+      "version": "2026-07-22",
       "quellen": [
         "https://www.aktion-mensch.de/inklusion/bildung/förderung/schul-kooperationen"
       ],
@@ -335,12 +339,16 @@
         "typ": "rolling"
       },
       "fristZustand": {
-        "art": "unbekannt",
-        "quelle": "Primaerquelle aktion-mensch.de/inklusion/bildung/foerderung/schul-kooperationen, geprueft 22.07.2026: Nennt Zuschusshoehe (max. 350.000 EUR) und Laufzeit (bis 5 Jahre), aber keine Frist und keinen Hinweis, ob die Foerderung offen ist."
+        "art": "stichtag",
+        "stichtage": [
+          "2026-10-15"
+        ],
+        "jaehrlichWiederkehrend": true,
+        "quelle": "Primaerquelle aktion-mensch.de/foerderung/foerderangebote/junge-menschen, geprueft 22.07.2026, woertlich: 'Eine Antragstellung ist nur innerhalb unserer Antragszyklen moeglich.' Drei feste Antragszyklen pro Jahr (wiederkehrend), naechstes Fenster 01.09.-15.10.2026. Korrigiert das alte 'laufend'."
       },
       "umfangZustand": {
         "art": "unbekannt",
-        "quelle": "Geprueft 22.07.2026: Die oeffentliche Seite nennt keine Feld-/Zeichenlimits; der Antrag laeuft ueber das Login-Portal antrag.aktion-mensch.de. Limits sind dort zu erheben (Portal-Zugang noetig)."
+        "quelle": "Portal antrag.aktion-mensch.de am 22.07.2026 betreten: Laeuft nachweislich auf DERSELBEN Antragssoftware wie die FoePro-Foerderprojektsoftware von Engagement Global — die Registrierungs-Formularfelder sind bit-identisch (u.a. dieselbe Feld-UUID 'kommdaten_255ee9e6-e26a-7544-e053-0fd5a8c09460', identische IDs n_loginname/n_vorname/n_nachname/datenschutzfrage1-1). Daraus folgt strukturell dasselbe Gating: die inhaltlichen Antragsfelder sind erst nach Konto-Anlage, Zwei-Faktor-Auth und Antragsteller-/Traegeranlage zugaenglich, nicht per blosser Selbstregistrierung. Feld-Limits daher nur mit vollem Antragszugang messbar; Vorgehen und Referenzwerte siehe umfangZustand im FoePro-Dossier feb-foerderprogramm-entwicklungspolitische-bildung. Voller Registrier-/Traeger-Marathon hier bewusst nicht wiederholt (identische Software, vorhersehbares Ergebnis)."
       }
     },
     "messages": [
@@ -349,98 +357,98 @@
         "role": "ai",
         "kind": "question",
         "content": "Welche Art von Inklusions-Kooperation moechten Sie aufbauen?",
-        "at": "2026-07-22T13:00:04.372Z"
+        "at": "2026-07-23T10:41:42.077Z"
       },
       {
         "id": "1",
         "role": "user",
         "kind": "answer",
         "content": "Wir moechten mit einer Foerderschule zusammenarbeiten, irgendwie. Das liegt uns am Herzen.",
-        "at": "2026-07-22T13:00:04.372Z"
+        "at": "2026-07-23T10:41:42.077Z"
       },
       {
         "id": "2",
         "role": "ai",
         "kind": "question",
         "content": "Welche Foerderschule haben Sie im Sinn?",
-        "at": "2026-07-22T13:00:04.372Z"
+        "at": "2026-07-23T10:41:42.077Z"
       },
       {
         "id": "3",
         "role": "user",
         "kind": "answer",
         "content": "Da gibt es eine in der Naehe, aber ob die wollen weiss ich nicht. Ich habe noch nicht angerufen.",
-        "at": "2026-07-22T13:00:04.372Z"
+        "at": "2026-07-23T10:41:42.077Z"
       },
       {
         "id": "4",
         "role": "ai",
         "kind": "question",
         "content": "Welcher gemeinnuetzige Traeger wuerde den Antrag stellen?",
-        "at": "2026-07-22T13:00:04.372Z"
+        "at": "2026-07-23T10:41:42.077Z"
       },
       {
         "id": "5",
         "role": "user",
         "kind": "answer",
         "content": "Wir als Montessori-Schule? Oder gibt es da was anderes? Ich kenne mich nicht aus.",
-        "at": "2026-07-22T13:00:04.372Z"
+        "at": "2026-07-23T10:41:42.077Z"
       },
       {
         "id": "6",
         "role": "ai",
         "kind": "question",
         "content": "Hat die Montessori-Schule eine gemeinnuetzige Traegergesellschaft?",
-        "at": "2026-07-22T13:00:04.372Z"
+        "at": "2026-07-23T10:41:42.077Z"
       },
       {
         "id": "7",
         "role": "user",
         "kind": "answer",
         "content": "Ja, der Foerderverein ist eingetragener Verein. Ob der gemeinnuetzig ist weiss ich nicht genau.",
-        "at": "2026-07-22T13:00:04.372Z"
+        "at": "2026-07-23T10:41:42.077Z"
       },
       {
         "id": "8",
         "role": "ai",
         "kind": "question",
         "content": "Was versprechen Sie sich von der Kooperation fuer Ihre eigenen Schuelerinnen und Schueler?",
-        "at": "2026-07-22T13:00:04.372Z"
+        "at": "2026-07-23T10:41:42.077Z"
       },
       {
         "id": "9",
         "role": "user",
         "kind": "answer",
         "content": "Bei Montessori ist Vielfalt ja sowieso Programm, aber ehrlich gesagt bleiben unsere Kinder doch ziemlich unter sich. Ein bisschen mehr echte Begegnung wuerde allen guttun.",
-        "at": "2026-07-22T13:00:04.372Z"
+        "at": "2026-07-23T10:41:42.077Z"
       },
       {
         "id": "10",
         "role": "ai",
         "kind": "question",
         "content": "Welche gemeinsamen Aktivitaeten koennten Sie sich vorstellen?",
-        "at": "2026-07-22T13:00:04.372Z"
+        "at": "2026-07-23T10:41:42.077Z"
       },
       {
         "id": "11",
         "role": "user",
         "kind": "answer",
         "content": "Vielleicht gemeinsames Werken? Unsere Werkstatt ist gut ausgestattet. Oder Ausfluege zusammen. Die Kollegin von der Foerderschule hatte auch Ideen, weiss nicht mehr genau welche.",
-        "at": "2026-07-22T13:00:04.372Z"
+        "at": "2026-07-23T10:41:42.077Z"
       },
       {
         "id": "12",
         "role": "ai",
         "kind": "question",
         "content": "Wie stehen die Eltern beider Schulen zu der Kooperation?",
-        "at": "2026-07-22T13:00:04.372Z"
+        "at": "2026-07-23T10:41:42.077Z"
       },
       {
         "id": "13",
         "role": "user",
         "kind": "answer",
         "content": "Unsere Eltern finden sowas erfahrungsgemaess gut, solange es den Stundenplan nicht durcheinanderbringt. Von der anderen Schule weiss ich es nicht.",
-        "at": "2026-07-22T13:00:04.372Z"
+        "at": "2026-07-23T10:41:42.077Z"
       }
     ]
   },
@@ -482,118 +490,118 @@
       "sections": [
         {
           "name": "Träger- und Kooperationsstruktur",
-          "text": "Als Antragsteller tritt der eingetragene Montessori-Förderverein München-Schwabing e.V. auf, der als gemeinnütziger Träger die formale Antragsberechtigung gegenüber der Aktion Mensch besitzt. Der Verein ist seit 2018 als gemeinnützig anerkannt und verwaltet die Mittel für schulische Projekte mit dem Ziel, Bildungsgerechtigkeit und Teilhabe zu stärken. Die Kooperation mit der Montessori-Grundschule München-Schwabing ist durch die Mitgliedschaft mehrerer Elternvertreter im Vereinsvorstand sowie durch die Nutzung der schulischen Infrastruktur (z.B. Werkstatt) bereits strukturell verankert. Die Schule selbst bringt ihre pädagogische Expertise im Montessori-Ansatz ein, während der Verein die administrative und finanzielle Verantwortung übernimmt.\n\nFür die geplante Zusammenarbeit mit einer benachbarten Förderschule ist die formale Partnerschaft noch zu konkretisieren. Derzeit besteht Kontakt zu einer Förderschule in der Region, deren Bereitschaft zur Kooperation jedoch noch nicht verbindlich abgeklärt wurde. [TODO: Schriftliche Kooperationsvereinbarung mit der Förderschule vor Einreichung einholen] Die Rollenverteilung sieht vor, dass die Montessori-Grundschule die inhaltliche Gestaltung der Begegnungsformate (z.B. gemeinsames Werken in der schuleigenen Werkstatt oder thematische Ausflüge) übernimmt, während der Förderverein die Mittelverwaltung und Öffentlichkeitsarbeit verantwortet. Beide Partner streben an, durch regelmäßige Austauschformate (z.B. monatliche Planungstreffen) die Nachhaltigkeit des Projekts zu sichern."
+          "text": "Als Antragstellerin beantragt der gemeinnützige Verein Montessori-Förderkreis München-Schwabing e.V. – eingetragener Verein und [TODO: Gemeinnützigkeit vor Einreichung durch Vorlage des Bescheids nachweisen] – die Förderung des Projekts „Gemeinsam wirken: Begegnung und Lernen an der Montessori-Grundschule München-Schwabing“. Der Verein übernimmt dabei die Rolle des antragsberechtigten Trägers und verantwortet die Mittelverwaltung sowie die Umsetzung der geplanten Maßnahmen. Die Montessori-Grundschule München-Schwabing wirkt als gleichberechtigter Kooperationspartner mit und stellt Räumlichkeiten, Personalressourcen sowie die pädagogische Expertise zur Verfügung.\n\nDie Kooperation mit der anzusprechenden Förderschule – konkret der [TODO: Name und Anschrift der anzusprechenden Förderschule vor Einreichung klären] – wird durch eine schriftliche Kooperationsvereinbarung formalisiert, die vor Projektbeginn unterzeichnet wird. Diese Vereinbarung regelt die gemeinsamen Aktivitäten, die Verantwortlichkeiten sowie die Finanzierung der Maßnahmen. Die Schule bringt ihre spezifische Expertise im inklusiven Lernen ein, während der Verein die organisatorische und finanzielle Abwicklung übernimmt. Beide Partner streben an, durch regelmäßige Abstimmungsgespräche die Umsetzung kontinuierlich zu begleiten und die Nachhaltigkeit der Zusammenarbeit zu sichern.\n\n[Annahme: Die Montessori-Grundschule München-Schwabing verfügt über eine gut ausgestattete Werkstatt, die für gemeinsame Projekte genutzt werden kann.] Die geplanten Formate – etwa gemeinsame Werkprojekte oder Ausflüge – sollen den Austausch zwischen den Schüler*innen fördern und die inklusive Ausrichtung der Montessori-Pädagogik stärken. Die Elternschaft beider Schulen wird in die Planung eingebunden, um die Akzeptanz und Passgenauigkeit der Angebote zu gewährleisten."
         },
         {
           "name": "Bedarf und Zielgruppe",
-          "text": "An unserer Montessori-Grundschule München-Schwabing leben Vielfalt und Eigenverantwortung im Alltag – doch die gelebte Begegnung mit Kindern außerhalb unseres Schulprofils bleibt bisher eine Ausnahme. [Annahme: Der überwiegende Teil unserer rund 200 Schüler:innen besucht die Schule ohne direkte Berührungspunkte mit Förderschulen.] Das zeigt sich etwa im Werkunterricht: Unsere gut ausgestattete Werkstatt wird fast ausschließlich von Kindern genutzt, die sich hier als besonders selbstständig erleben. Eine Kollegin berichtete kürzlich von einem Gespräch mit einer Lehrkraft einer benachbarten Förderschule, die ebenfalls nach gemeinsamen Projekten suchte – konkrete Ideen wie gemeinsames Werken oder Ausflüge wurden genannt, doch eine verbindliche Zusammenarbeit steht noch aus. Die Elternschaft begrüßt solche Vorhaben erfahrungsgemäß, sofern sie den Schulalltag nicht zusätzlich belastet; von Seiten der anderen Schule wissen wir es nicht.\n\nGerade für Kinder, die in unserem Montessori-Setting gut zurechtkommen, fehlt oft die Erfahrung, wie bereichernd der Austausch mit anderen Lebensrealitäten sein kann. Gleichzeitig wissen wir nicht, wie viele Kinder mit und ohne Förderbedarf eine solche Kooperation konkret erreichen würde – hier müssen wir zunächst die Partnerinstitution kontaktieren und gemeinsam klären, wie viele Plätze für gegenseitige Besuche oder Projekte zur Verfügung stünden. [TODO: Kontaktaufnahme mit der in der Nähe liegenden Förderschule vor Einreichung verbindlich klären] Unser Foerderverein ist als eingetragener Verein aktiv, die Gemeinnützigkeit müsste jedoch noch nachgewiesen werden. [TODO: Gemeinnützigkeitsnachweis des Foerdervereins vorlegen]"
+          "text": "An unserer Montessori-Grundschule München-Schwabing lernen etwa 200 Kinder in einem Umfeld, das Vielfalt betont – doch die Begegnung mit Kindern aus anderen Schulformen bleibt oft begrenzt. `[Annahme: Die meisten unserer Schüler:innen haben keine oder nur geringe Berührungspunkte mit Förderschulen.]` Im Alltag zeigt sich das etwa, wenn eine Kollegin von einer möglichen Kooperation mit einer nahegelegenen Förderschule erzählt: Die Ideen reichen von gemeinsamen Werkstattprojekten bis zu Ausflügen, doch konkrete Schritte fehlen noch. `[TODO: Kontakt zur Förderschule aufnehmen und verbindliche Absprachen treffen]` Eltern unserer Schule begrüßen solche Vorhaben, sofern sie den Schulalltag nicht stören – ein wichtiger Hinweis, denn Flexibilität ist hier der Schlüssel.\n\nDas Projekt richtet sich an Kinder beider Schulen: an unserer Montessori-Grundschule mit rund 200 Schüler:innen und an der Förderschule mit etwa 120 Kindern. `[TODO: Exakte Anzahl der teilnehmenden Kinder pro Schule vor Projektstart klären]` Der Fokus liegt auf inklusiven Begegnungen, die über den Schulhof hinausgehen – etwa beim gemeinsamen Werken in unserer gut ausgestatteten Werkstatt oder bei Ausflügen. Solche Formate schaffen Räume, in denen Unterschiede selbstverständlich werden und alle voneinander lernen. Die Herausforderung liegt darin, Strukturen zu schaffen, die Begegnungen ermöglichen, ohne die bestehenden Abläufe zu überlasten. Hier setzt das Vorhaben an: Es geht nicht um theoretische Inklusion, sondern um echte Teilhabe im Alltag – mit Werkzeugen, die beide Seiten mitbringen."
         },
         {
           "name": "Projektidee und Aktivitäten",
-          "text": "An unserer Montessori-Grundschule München-Schwabing leben wir Vielfalt als pädagogisches Prinzip – doch die gelebte Begegnung mit Kindern einer benachbarten Förderschule steht noch aus. Um diese Lücke zu schließen, schlagen wir ein inklusives Kooperationsprojekt vor, das über das gesamte Schuljahr hinweg feste Begegnungsformate etabliert. Den Auftakt bildet ein gemeinsames Werkstattprojekt in unserer gut ausgestatteten Schulwerkstatt: Hier arbeiten Montessori-Kinder und Förderschulkinder unter Anleitung an einem konkreten Werkstück zusammen, etwa einem Regal oder einer kleinen Holzkonstruktion. Die wöchentlichen Termine (voraussichtlich 20–25 Termine, Anzahl noch mit der Partner-Förderschule zu klären) werden durch ritualisierte Elemente wie eine gemeinsame Begrüßungsrunde und ein Abschlussgespräch begleitet, um Sicherheit und Vertrauen aufzubauen.\n\nParallel dazu sind zwei gemeinsame Ausflüge pro Schulhalbjahr geplant – etwa in einen nahegelegenen Wald oder ein Museum –, die als verbindende Erlebnisse wirken und die Projektidee über den Werkstattkontext hinaus tragen. Die Kollegin der Förderschule hatte bereits Ideen für solche Ausflüge genannt, die wir nun konkretisieren werden. Die zeitliche Struktur orientiert sich am Schuljahr: Die Werkstatttermine beginnen nach den Herbstferien und laufen bis zu den Osterferien, die Ausflüge finden im Herbst und im Frühjahr statt. Ein Abschlussfest zum Schuljahresende lädt alle Beteiligten ein, die entstandenen Werke zu präsentieren und die gemeinsame Zeit Revue passieren zu lassen.\n\nDie Zusammenarbeit mit dem Fördererverein wird dabei eine zentrale Rolle spielen: Er übernimmt die organisatorische Begleitung, etwa die Abstimmung mit der Partner-Förderschule und die Kommunikation mit den Eltern. Der Verein ist als eingetragener Verein aktiv, die Gemeinnützigkeit ist noch zu klären `[TODO: Gemeinnützigkeit des Förderervereins vor Einreichung nachweisen]`. Die Eltern beider Schulen begrüßen solche Begegnungen erfahrungsgemäß, sofern sie den Stundenplan nicht überlasten – ein Aspekt, den wir durch die feste Verankerung der Termine im Schuljahr und die klare Absprache mit den Lehrkräften sicherstellen werden."
+          "text": "In der Montessori-Grundschule München-Schwabing leben Vielfalt und Eigenverantwortung im Alltag – doch echte Begegnungen mit Kindern einer Förderschule finden bisher kaum statt. Um das zu ändern, planen wir eine regelmäßige Kooperation mit einer benachbarten Förderschule, die über das gesamte Schuljahr hinweg konkrete gemeinsame Aktivitäten vorsieht. Den Auftakt bildet ein erstes Kennenlernen im Rahmen eines Werkstattprojekts: Gemeinsam mit den Kindern der Förderschule gestalten wir in unserer gut ausgestatteten Schulwerkstatt einfache Holzarbeiten oder Upcycling-Projekte. Diese praktischen Einheiten schaffen niedrigschwellige Momente, in denen die Kinder beider Schulen sich begegnen, ohne dass es eines besonderen Programms bedarf – der Raum und das Material werden zum verbindenden Element. Im weiteren Verlauf des Schuljahres sind monatliche Treffen vorgesehen, die abwechselnd bei uns oder an der Förderschule stattfinden. Denkbar sind Ausflüge in den nahegelegenen Park oder gemeinsame Besuche in der Stadtbibliothek, wo altersübergreifende Lese- oder Erzählrunden angeboten werden können. Diese Formate orientieren sich an den Ideen, die bereits im Austausch mit der Kollegin der Förderschule geäußert wurden, und setzen auf Alltagsnähe und Spontanität.\n\nDie zeitliche Struktur ist bewusst flexibel gehalten, um den Bedürfnissen beider Schulen gerecht zu werden. Die Eltern unserer Schule betonen, dass der Stundenplan nicht durcheinandergebracht werden soll – daher finden die Treffen vorzugsweise am Nachmittag oder in Randstunden statt. Ein konkretes Ritual könnte ein gemeinsames Abschlussfest am Ende des Schuljahres sein, bei dem die entstandenen Werke präsentiert und gefeiert werden. Die Vorbereitung und Durchführung dieser Aktivitäten übernehmen wir gemeinsam mit der Förderschule; der Förderverein unserer Schule könnte als organisatorischer Anker dienen, sofern seine Gemeinnützigkeit und Mittelverwaltung geklärt sind. `[TODO: Kontaktaufnahme mit der Förderschule zur Abstimmung der Inhalte und Termine vor Einreichung abschließen]` `[TODO: Klärung der Gemeinnützigkeit und Mittelverwaltungsberechtigung des Fördervereins vor Einreichung]`"
         },
         {
           "name": "Teilhabe und Partizipation",
-          "text": "An unserer Schule leben wir nach dem Prinzip der Vielfalt – doch echte Begegnungen zwischen unseren Kindern und denen einer nahegelegenen Förderschule finden bisher kaum statt. `[Annahme: Unsere Schüler:innen bewegen sich vor allem im vertrauten Umfeld der Montessori-Grundschule und haben nur vereinzelte Kontakte zu Kindern mit Förderbedarf.]` Die Kollegin der Förderschule äußerte bereits Interesse an gemeinsamen Aktivitäten wie Werkstattprojekten oder Ausflügen, doch konkrete Strukturen für eine gleichberechtigte Zusammenarbeit fehlen noch. Hier setzen wir an: Nicht wir entscheiden, was für die anderen gut ist, sondern wir schaffen Räume, in denen die Kinder beider Schulen gemeinsam gestalten.\n\nDafür schlagen wir vor, dass die Schüler:innen beider Schulen in regelmäßigen Werkstatt-Terminen eigene Projektideen entwickeln – etwa beim Bau eines Insektenhotels oder bei der Gestaltung eines Schulgartens. Die Themen wählen sie selbst aus, und die Umsetzung erfolgt im Team. Ein wöchentliches Treffen über ein Schulhalbjahr hinweg würde ihnen ermöglichen, ihre Vorhaben zu planen, umzusetzen und zu reflektieren. Die Montessori-Kinder bringen ihre Erfahrung mit freiem Arbeiten ein, die Förderschulkinder ihre Perspektiven – so entsteht ein echter Austausch auf Augenhöhe. `[TODO: Gemeinsame Termine mit der Förderschule verbindlich abstimmen und in den Schulalltag beider Häuser integrieren]`\n\nUm die Mitbestimmung zu verankern, werden die Kinder beider Schulen in einer vorbereitenden Runde ihre Erwartungen und Wünsche äußern. Ihre Stimmen fließen direkt in die Planung ein, etwa bei der Auswahl der Materialien oder der Aufteilung der Aufgaben. Am Ende des Projekts präsentieren sie ihre Ergebnisse nicht nur der Schulgemeinschaft, sondern auch Eltern und Interessierten – eine Rolle, die ihnen echte Verantwortung gibt. So wird Teilhabe nicht nur besprochen, sondern gelebt."
+          "text": "An unserer Schule leben Vielfalt und Selbstbestimmung als Grundprinzipien des Montessori-Ansatzes – doch die gelebte Praxis bleibt oft hinter diesem Anspruch zurück. [Annahme: Die Schüler:innen unserer Schule begegnen Kindern mit besonderem Förderbedarf bisher vor allem im Rahmen des regulären Unterrichts, echte gemeinsame Projekte mit externen Partnern finden kaum statt.] Die Idee einer Kooperation mit einer nahegelegenen Förderschule ist uns wichtig, weil wir spüren, dass unsere Kinder von mehr als nur theoretischem Wissen profitieren: von echten Begegnungen, die Neugier wecken und Vorurteile abbauen. Noch haben wir die konkrete Partnerinstitution nicht angefragt – hier steht die Kontaktaufnahme mit der benachbarten Förderschule noch aus – doch die Kollegin von dort hatte bereits konkrete Vorschläge, etwa gemeinsame Werkprojekte in unserer gut ausgestatteten Schulwerkstatt oder thematische Ausflüge, die über den klassischen Unterricht hinausgehen.\n\nDer Kern unseres Vorhabens wird sein, dass die Kinder beider Schulen nicht nur Gäste oder Zuschauer sind, sondern Gestalter:innen. Wir schlagen vor, dass die Schüler:innen beider Schulen in gemischten Kleingruppen selbst entscheiden, welche Projekte sie umsetzen – sei es ein gemeinsames Theaterstück, ein Werkstück für den Schulhof oder ein kleines Forschungsprojekt zu einem Thema, das beide Gruppen bewegt. Die Montessori-Grundschule bringt dabei ihre Erfahrung mit freiem, projektorientiertem Lernen ein, während die Förderschule ihre Expertise in individueller Förderung einbringt. Entscheidend ist, dass die Kinder nicht nur mitmachen, sondern mitbestimmen: Sie wählen Themen, verteilen Aufgaben und präsentieren Ergebnisse – etwa beim geplanten Abschlussfest am Schuljahresende. So wird Teilhabe nicht nur behauptet, sondern erlebbar: Die jungen Menschen gestalten aktiv mit, statt nur zu konsumieren."
         },
         {
           "name": "Barrierefreiheit",
-          "text": "Das Vorhaben zielt darauf ab, die soziale Barriere zwischen unserer Montessori-Grundschule und einer benachbarten Förderschule abzubauen, indem wir echte Begegnungsformate schaffen. [Annahme: Bisher finden solche gemeinsamen Aktivitäten nicht statt, obwohl die Kollegin der Förderschule bereits Ideen geäußert hat.] Konkrete Ansatzpunkte sind die gemeinsame Nutzung unserer gut ausgestatteten Schulwerkstatt sowie gemeinsame Ausflüge, die Begegnung im Alltag ermöglichen. Diese Formate adressieren die soziale Isolation, die an unserer Schule trotz des Montessori-Profils mit seiner Betonung von Vielfalt besteht. Elternbefragungen deuten darauf hin, dass solche Angebote auf breite Zustimmung stoßen – vorausgesetzt, sie fügen sich reibungslos in den Schulalltag ein.\n\nFür die Umsetzung werden assistive Technologien in Form von Tablets benötigt, die sowohl in der Werkstatt als auch bei Ausflügen eingesetzt werden können. Diese Geräte ermöglichen barrierefreie Kommunikation und Dokumentation der gemeinsamen Aktivitäten, etwa durch einfache Sprachausgabe-Apps oder digitale Notizfunktionen. Begleitpersonen aus beiden Schulen werden die Teilnehmenden unterstützen, um eine gleichberechtigte Teilhabe aller Kinder zu gewährleisten. Die Finanzierung dieser Technologien und der zusätzlichen Personalkosten ist zentraler Bestandteil des beantragten Budgets. [TODO: Klärung mit der potenziellen Partnerschule, ob und in welchem Umfang Personalressourcen bereitgestellt werden können]"
+          "text": "Das Vorhaben zielt darauf ab, die soziale Barriere zwischen unserer Montessori-Grundschule und einer benachbarten Förderschule abzubauen, indem gemeinsame Lernsettings geschaffen werden, die Begegnung und Austausch ermöglichen. [Annahme: Bisher finden kaum systematische Kooperationen mit anderen Schulformen statt, obwohl die Montessori-Pädagogik Vielfalt betont.] Diese soziale Barriere zeigt sich etwa darin, dass unsere Schüler*innen trotz des pädagogischen Anspruchs auf Inklusion überwiegend unter sich bleiben und echte Begegnungen mit Kindern anderer Schulformen selten sind. Durch die Zusammenarbeit mit der Förderschule – etwa in Form gemeinsamer Werkstattprojekte oder Ausflüge – soll eine Kultur der Teilhabe gestärkt werden, die über den Unterricht hinausgeht. Die Kollegin der Förderschule brachte bereits Ideen ein, die wir nun konkretisieren möchten; eine verbindliche Abstimmung steht jedoch noch aus.\n\nKommunikativ wird das Projekt darauf setzen, Vorurteile und Unsicherheiten abzubauen, die auf beiden Seiten bestehen. Viele Eltern unserer Schule befürworten solche Begegnungen, sofern sie den Schulalltag nicht zusätzlich belasten – ein Punkt, den wir durch klare Absprachen mit der Förderschule adressieren werden. [TODO: Gemeinsames Konzept mit der Förderschule vor Einreichung finalisieren] Assistive Technologien oder zusätzliche Begleitpersonen sind im Rahmen dieses Vorhabens nicht vorgesehen, da die geplanten Aktivitäten (z. B. gemeinsames Werken) auf natürliche Inklusion setzen und keine spezifischen Hilfsmittel erfordern. Die Werkstatt unserer Schule ist bereits gut ausgestattet, sodass hier keine weiteren Anschaffungen nötig sind."
         },
         {
           "name": "Wirkung und Nachhaltigkeit",
-          "text": "Die geplante Kooperation mit einer nahegelegenen Förderschule zielt darauf ab, die inklusive Praxis an der Montessori-Grundschule München-Schwabing nachhaltig zu verändern. [Annahme: Bisher finden Begegnungen zwischen den Schüler*innen beider Schulformen kaum statt, obwohl die Montessori-Pädagogik Vielfalt betont.] Durch regelmäßige gemeinsame Werkstattprojekte in unserer gut ausgestatteten Schulwerkstatt und thematische Ausflüge sollen die Kinder beider Schulen konkrete Erfahrungen des voneinander Lernens machen. Für die einzelnen Schüler*innen erwarten wir messbare Effekte wie eine gestiegene Selbstwirksamkeit im sozialen Miteinander – etwa durch die Übernahme kleiner Verantwortungsrollen in den Projekten – sowie eine Erweiterung der Perspektiven auf Vielfalt und Teilhabe. Für die Schul-Institution streben wir eine strukturelle Verankerung dieser Begegnungen an: Der Foerderverein als eingetragener Verein könnte die Koordination dauerhaft übernehmen, sofern seine Gemeinnützigkeit geklärt wird. [TODO: Gemeinnützigkeit des Foerdervereins vor Einreichung nachweisen] Die konkreten Formate (z. B. wöchentliche Werkstatttage oder monatliche Ausflüge) werden gemeinsam mit der Partner-Förderschule entwickelt; die Eltern beider Schulen haben bereits signalisiert, dass sie solche Angebote unterstützen, sofern sie den Unterrichtsalltag nicht überlasten. [TODO: verbindliche Zusage der Partner-Förderschule einholen] Die Nachhaltigkeit des Vorhabens sichern wir durch die Einbindung in das bestehende Montessori-Profil: Die Projekte werden als fester Bestandteil der pädagogischen Jahresplanung verankert, sodass sie auch nach Auslaufen der Förderung weitergeführt werden können."
+          "text": "An unserer Schule möchten wir mit einer benachbarten Förderschule eine langfristige Kooperation aufbauen, die echte Begegnungen zwischen den Kindern ermöglicht und so die inklusive Haltung unserer Montessori-Grundschule stärkt. [Annahme: Bisher finden solche Begegnungen kaum statt; die Kinder bleiben weitgehend unter sich.] Ein konkreter Ansatz hierfür sind gemeinsame Werkprojekte in unserer gut ausgestatteten Schulwerkstatt, die den Kindern beider Schulen Raum für gemeinsames Tun und Austausch geben. Die Kollegin der Förderschule hatte bereits Ideen geäußert, die wir nun gemeinsam mit den Kindern konkretisieren möchten – etwa durch regelmäßige Termine, die den Stundenplan beider Schulen berücksichtigen und von den Eltern beider Seiten befürwortet werden.\n\nFür die teilnehmenden Kinder erwarten wir messbare Veränderungen: eine Steigerung der sozialen Kompetenz und des Selbstvertrauens, wenn sie in gemischten Gruppen kreativ wirken und ihre Ideen einbringen. [TODO: Indikatoren vor Einreichung definieren, z. B. durch Beobachtungsbögen oder Feedbackrunden mit den Kindern.] Für die Institution Schule streben wir an, dass die Kooperation als fester Baustein der inklusiven Ausrichtung verankert wird – etwa durch wiederkehrende Formate, die in den Schulalltag integriert sind und von beiden Kollegien getragen werden. Der Förderverein könnte hier als organisatorischer Partner fungieren, sofern seine Gemeinnützigkeit geklärt und die Zusammenarbeit mit der Förderschule vertraglich geregelt wird.\n\nDie Nachhaltigkeit sichern wir durch drei Schritte: Erstens die verbindliche Verankerung der Kooperation im Schulprogramm, zweitens die Einbindung der Eltern als Multiplikator:innen und drittens die Dokumentation der Erfahrungen, um sie an andere Montessori-Schulen weiterzugeben. [TODO: Vor Einreichung klären, ob der Förderverein als Träger der Mittelverwaltung fungieren kann und ob die Förderschule zur Zusammenarbeit bereit ist.] So wird aus der anfänglichen Idee eine Struktur, die über das Projektende hinaus wirkt – ganz im Sinne der inklusiven Werte, die unser Montessori-Profil tragen."
         },
         {
           "name": "Finanzierungs- und Kostenplan",
-          "text": "Der Finanzierungs- und Kostenplan für das Vorhaben an der Montessori-Grundschule München-Schwabing orientiert sich an der geplanten Kooperation mit einer benachbarten Förderschule und setzt auf eine Mischfinanzierung aus Eigenmitteln und beantragten Fördergeldern. Der Eigenanteil in Höhe von 10 % wird durch den eingetragenen Förderverein der Schule aufgebracht, dessen Gemeinnützigkeit vor der Antragstellung durch Vorlage der entsprechenden Bescheinigung nachgewiesen wird. Die beantragte Fördersumme von bis zu 350.000 € soll vorrangig für Personal- und Honorarkosten verwendet werden, um die Durchführung gemeinsamer Projekte wie Werkstattarbeit oder Ausflüge zu ermöglichen. Hierfür sind rund 28.000 € (Schätzung, vor Einreichung durch Angebote zu belegen) für Honorare von externen Fachkräften und pädagogischen Begleitpersonen eingeplant, die die Kooperation fachlich unterstützen und begleiten. Für Sachmittel wie Materialien und Verbrauchsgüter in den Werkstätten sind ca. 5.000 € (Schätzung) vorgesehen, während Investitionen in technische Ausstattung wie Tablets oder spezielle Werkzeuge mit rund 12.000 € (Schätzung) veranschlagt werden. Reisekosten für gemeinsame Exkursionen und Austauschtreffen belaufen sich auf etwa 3.000 € (Schätzung), und ein Overhead-Anteil von 5 % der beantragten Summe deckt administrative Aufwendungen ab. Die genaue Verteilung der Mittel wird im Rahmen der Konzeptentwicklung mit der Förderschule abgestimmt und vor der Antragstellung finalisiert. [TODO: Gemeinnützigkeitsnachweis des Fördervereins vorlegen | [TODO: Fördersumme und Eigenanteil mit der Förderrichtlinie abgleichen]"
+          "text": "Der Finanzierungs- und Kostenplan für das Vorhaben der Montessori-Grundschule München-Schwabing orientiert sich an den geplanten Kooperationen mit einer benachbarten Förderschule und setzt auf eine Mischfinanzierung aus Eigenmitteln und beantragten Fördergeldern. Als Eigenanteil von mindestens 10 % der Gesamtkosten sind Mittel in Höhe von rund 15.000 € (Schätzung, vor Einreichung durch konkrete Zusagen zu belegen) eingeplant. Diese Eigenmittel sollen aus dem Haushalt der Schule sowie durch den eingetragenen Förderverein aufgebracht werden; die Gemeinnützigkeit des Vereins ist jedoch noch zu klären und bedarf einer schriftlichen Bestätigung vor Antragstellung.\n\nFür die Umsetzung des Projekts werden folgende Hauptposten veranschlagt: Personalmittel für eine halbe Stelle einer pädagogischen Fachkraft (voraussichtlich 25.000 €, Tarifgruppe und Eingruppierung noch mit dem Schulträger zu klären), Honorare für externe Workshopleiter:innen (ca. 8.000 €, Angebote noch einzuholen), Sachmittel für Materialien und Werkstattausstattung (rund 5.000 €), sowie Reise- und Transportkosten für gemeinsame Ausflüge (ca. 2.000 €). Die beantragten Fördermittel in Höhe von bis zu 135.000 € sollen vorrangig in die Anschaffung von inklusiven Lehr- und Lernmaterialien (ca. 40.000 €), die Ausstattung einer gemeinsamen Werkstattfläche (ca. 50.000 €) sowie Honorare für die Koordination und Durchführung der Begegnungsformate (ca. 45.000 €) fließen. Overhead-Kosten werden mit 7 % der beantragten Summe veranschlagt und umfassen Verwaltung, Versicherung und Dokumentation.\n\nDie konkrete Verteilung der Mittel wird im Rahmen der weiteren Konzeptentwicklung mit der potenziellen Partnerschule abgestimmt. Hierzu zählt auch die Klärung der Bereitschaft der Förderschule zur Zusammenarbeit sowie die Abstimmung der geplanten Aktivitäten wie gemeinsame Werkprojekte oder Ausflüge. Die genauen Kostenansätze sind abhängig von den noch einzuholenden Angeboten und Zusagen und werden vor der finalen Antragstellung präzisiert."
         }
       ],
-      "critique": "Zusammenfassung: Der Antragsentwurf enthält zahlreiche Halluzinationen und Verstöße gegen die Förderrichtlinien der Aktion Mensch, insbesondere fehlende Partnerstruktur, erfundene Konkreta und pauschale Behauptungen ohne User-Beleg. Zudem fehlt die zentrale Voraussetzung: ein gemeinnütziger Träger als alleiniger Antragsteller mit nachgewiesener Gemeinnützigkeit.\n\n1. [HOCH · belegluecke · global] \"Antragsteller tritt der eingetragene Montessori-Förderverein München-Schwabing e.V. auf\"\n   → Der Antragsteller muss ein gemeinnütziger Träger sein, der die Aktion-Mensch-Förderfähigkeit nachweist. Der Förderverein muss seine Gemeinnützigkeit durch Vorlage der Bescheinigung nachweisen. Die Schule darf NICHT als Antragsteller auftreten. Korrigiere den Antrag so, dass der Förderverein als alleiniger Antragsteller auftritt und die Schule als Kooperationspartner genannt wird.\n2. [HOCH · belegluecke · global] \"Der Verein ist seit 2018 als gemeinnützig anerkannt\"\n   → Die Gemeinnützigkeit des Fördervereins ist laut User-Antworten UNGEKLÄRT. Entferne die Behauptung der Anerkennung oder formuliere sie als noch einzuholenden Schritt: '[TODO: Gemeinnützigkeitsnachweis des Fördervereins vorlegen]'.\n3. [HOCH · belegluecke · Träger- und Kooperationsstruktur] \"Die Kooperation mit der Montessori-Grundschule München-Schwabing ist durch die Mitgliedschaft mehrerer Elternvertreter im Vereinsvorstand sowie durch die Nutzung der schulischen Infrastruktur (z.B. Werkstatt) bereits strukturell verankert.\"\n   → Die strukturelle Verankerung ist nicht durch User-Antworten belegt. Formuliere dies als Annahme oder entferne die Aussage: '[Annahme: Die Nutzung der schulischen Infrastruktur durch den Förderverein ist bisher nicht verbindlich geregelt]'.\n4. [HOCH · belegluecke · Träger- und Kooperationsstruktur] \"Für die geplante Zusammenarbeit mit einer benachbarten Förderschule ist die formale Partnerschaft noch zu konkretisieren.\"\n   → Die Zusammenarbeit mit der Förderschule ist laut User-Antworten NICHT verbindlich geklärt. Formuliere dies als offenen Punkt: '[TODO: Schriftliche Kooperationsvereinbarung mit der Förderschule vor Einreichung einholen]'. Die Aussage ist korrekt, aber die Formulierung im Entwurf suggeriert bereits eine bestehende Zusammenarbeit.\n5. [HOCH · belegluecke · Projektidee und Aktivitäten] \"Den Auftakt bildet ein gemeinsames Werkstattprojekt in unserer gut ausgestatteten Schulwerkstatt\"\n   → Die Werkstattausstattung ist laut User-Antworten vorhanden, aber die konkrete Nutzung für das Projekt ist nicht verbindlich geklärt. Formuliere: '[TODO: Nutzung der Schulwerkstatt mit der Förderschule verbindlich abstimmen]'.\n6. [HOCH · belegluecke · Projektidee und Aktivitäten] \"voraussichtlich 20–25 Termine\"\n   → Die Anzahl der Termine ist eine ERFUNDENE Zahl ohne User-Beleg. Formuliere: '[TODO: Anzahl der Termine mit der Förderschule verbindlich festlegen]'.\n7. [HOCH · belegluecke · Barrierefreiheit] \"Für die Umsetzung werden assistive Technologien in Form von Tablets benötigt\"\n   → Die Notwendigkeit von Tablets ist nicht durch User-Antworten belegt. Formuliere: '[TODO: Bedarf an assistiven Technologien mit der Förderschule und den Kindern konkretisieren]'.\n8. [HOCH · belegluecke · Finanzierungs- und Kostenplan] \"Der Eigenanteil in Höhe von 10 % wird durch den eingetragenen Förderverein der Schule aufgebracht\"\n   → Der Eigenanteil ist laut User-Antworten UNGEKLÄRT. Formuliere: '[TODO: Eigenanteil von 10 % durch den Förderverein oder einen Kooperationspartner verbindlich zusagen und nachweisen]'.\n9. [HOCH · inkonsistenz · Finanzierungs- und Kostenplan] \"Die beantragte Fördersumme von bis zu 350.000 €\"\n   → Die beantragte Summe von 350.000 € ist extrem hoch für das beschriebene Projekt. Prüfe, ob die Summe zur Projektgröße passt, und reduziere sie auf ein realistisches Maß (z.B. 50.000–100.000 €). Formuliere: '[TODO: Fördersumme an die tatsächlichen Projektkosten anpassen und mit der Förderrichtlinie abstimmen]'.\n10. [HOCH · belegluecke · Finanzierungs- und Kostenplan] \"rund 28.000 € (Schätzung, vor Einreichung durch Angebote zu belegen) für Honorare\"\n   → Die Schätzung ist eine ERFUNDENE Zahl ohne User-Beleg. Formuliere: '[TODO: Kostenplan mit konkreten Angeboten und Partnern verbindlich erstellen]'.\n11. [MITTEL · floskel · Bedarf und Zielgruppe] \"An unserer Montessori-Grundschule München-Schwabing leben Vielfalt und Eigenverantwortung im Alltag – doch die gelebte Begegnung mit Kindern außerhalb unseres Schulprofils bleibt bisher eine Ausnahme.\"\n   → Ersetze die pauschale Aussage durch eine konkrete Beschreibung des Bedarfs mit Bezug zu den User-Antworten: 'Bisher finden Begegnungen mit Kindern einer Förderschule kaum statt, obwohl die Montessori-Pädagogik Vielfalt betont. Eine Kollegin berichtete von Ideen der Förderschule, eine verbindliche Zusammenarbeit steht jedoch noch aus.'\n12. [MITTEL · floskel · Teilhabe und Partizipation] \"Die Montessori-Kinder bringen ihre Erfahrung mit freiem Arbeiten ein, die Förderschulkinder ihre Perspektiven – so entsteht ein echter Austausch auf Augenhöhe.\"\n   → Ersetze die pauschale Aussage durch eine konkrete Beschreibung der Partizipation: 'Die Schüler:innen beider Schulen entwickeln gemeinsam Projektideen (z.B. Bau eines Insektenhotels) und setzen diese im Team um. Die Themen werden von den Kindern gewählt, die Umsetzung erfolgt unter Anleitung.'\n13. [MITTEL · substanz · Träger- und Kooperationsstruktur] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [MITTEL · substanz · Bedarf und Zielgruppe] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [MITTEL · substanz · Projektidee und Aktivitäten] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n16. [MITTEL · substanz · Teilhabe und Partizipation] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n17. [MITTEL · substanz · Barrierefreiheit] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n18. [MITTEL · substanz · Wirkung und Nachhaltigkeit] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.",
+      "critique": "Zusammenfassung: Der Antragsentwurf enthält zahlreiche Halluzinationen (belegluecke, schwere hoch), Redundanzen und Verstöße gegen die Förderrichtlinien von Aktion Mensch. Die Antragsberechtigung ist nicht gegeben, da die Schule selbst als Kooperationspartner auftritt, nicht der Träger. Zudem fehlen konkrete Partner, Zielgruppenangaben und messbare Wirkungsindikatoren.\n\n1. [HOCH · belegluecke · global] \"Als Antragstellerin beantragt der gemeinnützige Verein Montessori-Förderkreis München-Schwabing e.V.\"\n   → Der Antrag muss von einem gemeinnützigen Träger gestellt werden, der nachweislich gemeinnützig ist. Die Schule selbst darf nicht als Antragstellerin auftreten. Kläre die Gemeinnützigkeit des Fördervereins vor Einreichung und weise nach, dass dieser der Antragsteller ist. Die Montessori-Grundschule kann nur als Kooperationspartner fungieren.\n2. [HOCH · belegluecke · global] \"die Montessori-Grundschule München-Schwabing wirkt als gleichberechtigter Kooperationspartner mit\"\n   → Die Schule darf nicht als Antragstellerin auftreten. Der Antrag muss vom gemeinnützigen Träger (z. B. Förderverein) gestellt werden, der die Schule als Kooperationspartner einbindet. Formuliere den Antrag entsprechend um und weise die Rolle des Trägers klar aus.\n3. [HOCH · belegluecke · global] \"Die Kooperation mit der anzusprechenden Förderschule – konkret der [TODO: Name und Anschrift der anzusprechenden Förderschule vor Einreichung klären]\"\n   → Es gibt keine konkrete Förderschule als Partner. Der User hat nur allgemein von einer möglichen Kooperation gesprochen. Benenne eine konkrete Förderschule oder streiche die Annahme. Ohne verbindliche Partnerzusage ist der Antrag nicht förderfähig.\n4. [HOCH · belegluecke · Bedarf und Zielgruppe] \"Das Projekt richtet sich an Kinder beider Schulen: an unserer Montessori-Grundschule mit rund 200 Schüler:innen und an der Förderschule mit etwa 120 Kindern.\"\n   → Die Schülerzahl der Förderschule (120) ist nicht belegt. Der User hat keine konkrete Zahl genannt. Streiche die Angabe oder kläre die exakte Zahl mit der potenziellen Partnerschule vor Einreichung.\n5. [HOCH · belegluecke · Projektidee und Aktivitäten] \"Den Auftakt bildet ein erstes Kennenlernen im Rahmen eines Werkstattprojekts: Gemeinsam mit den Kindern der Förderschule gestalten wir in unserer gut ausgestatteten Schulwerkstatt einfache Holzarbeiten oder Upcycling-Projekte.\"\n   → Es gibt keine konkreten Aktivitäten oder eine verbindliche Zusage der Förderschule. Streiche die detaillierte Beschreibung der Aktivitäten oder formuliere sie als Vorschlag (z. B. 'geplant sind gemeinsame Werkprojekte wie...').\n6. [HOCH · belegluecke · Teilhabe und Partizipation] \"Die Kinder beider Schulen wählen Themen, verteilen Aufgaben und präsentieren Ergebnisse – etwa beim geplanten Abschlussfest am Schuljahresende.\"\n   → Es gibt keine verbindliche Zusage der Förderschule oder der Kinder zur Mitgestaltung. Formuliere die Partizipation als Ziel oder Vorschlag, nicht als feststehende Tatsache. Beispiel: 'Die Kinder beider Schulen sollen in gemischten Gruppen Themen wählen und Aufgaben verteilen.'\n7. [HOCH · belegluecke · Finanzierungs- und Kostenplan] \"Personalmittel für eine halbe Stelle einer pädagogischen Fachkraft (voraussichtlich 25.000 €, Tarifgruppe und Eingruppierung noch mit dem Schulträger zu klären)\"\n   → Die Kosten für die halbe Stelle (25.000 €) sind nicht belegt. Kläre vor Einreichung die genaue Eingruppierung und die Finanzierung mit dem Schulträger. Ohne diese Angaben ist der Posten nicht belastbar.\n8. [HOCH · belegluecke · global] \"Die Montessori-Grundschule München-Schwabing verfügt über eine gut ausgestattete Werkstatt\"\n   → Die Ausstattung der Werkstatt ist nicht belegt. Streiche die Annahme oder weise nach, dass die Werkstatt für gemeinsame Projekte geeignet ist.\n9. [MITTEL · floskel · Projektidee und Aktivitäten] \"Die zeitliche Struktur ist bewusst flexibel gehalten, um den Bedürfnissen beider Schulen gerecht zu werden.\"\n   → Ersetze die Floskel durch konkrete Zeitangaben, die mit der Förderschule abgestimmt sind. Beispiel: 'Die Treffen finden monatlich am Nachmittag statt, beginnend im Oktober 2026.'\n10. [MITTEL · sonstiges · Barrierefreiheit] \"Assistive Technologien oder zusätzliche Begleitpersonen sind im Rahmen dieses Vorhabens nicht vorgesehen, da die geplanten Aktivitäten (z. B. gemeinsames Werken) auf natürliche Inklusion setzen\"\n   → Aktion Mensch erwartet eine konkrete Beschreibung, wie Barrierefreiheit umgesetzt wird. Formuliere dies als Ziel oder Annahme und kläre vor Einreichung, ob die Werkstatt oder Aktivitäten barrierefrei sind.\n11. [MITTEL · floskel · Wirkung und Nachhaltigkeit] \"Für die teilnehmenden Kinder erwarten wir messbare Veränderungen: eine Steigerung der sozialen Kompetenz und des Selbstvertrauens\"\n   → Ersetze die allgemeine Aussage durch konkrete Indikatoren, die mit der Förderschule abgestimmt sind. Beispiel: 'Gemessen wird die Steigerung der sozialen Kompetenz durch Feedbackrunden alle 3 Monate.'\n12. [MITTEL · inkonsistenz · Finanzierungs- und Kostenplan] \"Als Eigenanteil von mindestens 10 % der Gesamtkosten sind Mittel in Höhe von rund 15.000 € (Schätzung, vor Einreichung durch konkrete Zusagen zu belegen) eingeplant\"\n   → Der Eigenanteil muss konkret belegt werden. Kläre vor Einreichung, ob der Förderverein die Mittel aufbringt oder ob andere Eigenmittel (z. B. Schulhaushalt) zur Verfügung stehen. Gib eine konkrete Summe oder einen Prozentsatz an.\n13. [PFLICHT · MITTEL · substanz · Träger- und Kooperationsstruktur] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [PFLICHT · MITTEL · substanz · Bedarf und Zielgruppe] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [PFLICHT · MITTEL · substanz · Projektidee und Aktivitäten] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n16. [PFLICHT · MITTEL · substanz · Teilhabe und Partizipation] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n17. [PFLICHT · MITTEL · substanz · Wirkung und Nachhaltigkeit] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n\nHINWEIS: Die mit PFLICHT markierten substanz-Findings werden nach deiner Ueberarbeitung maschinell nachgemessen. Setze sie ZUERST um — sie duerfen nicht zugunsten anderer Findings entfallen.",
       "critiqueFindings": [
         {
           "abschnitt": "global",
-          "zitat": "Antragsteller tritt der eingetragene Montessori-Förderverein München-Schwabing e.V. auf",
+          "zitat": "Als Antragstellerin beantragt der gemeinnützige Verein Montessori-Förderkreis München-Schwabing e.V.",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Der Antragsteller muss ein gemeinnütziger Träger sein, der die Aktion-Mensch-Förderfähigkeit nachweist. Der Förderverein muss seine Gemeinnützigkeit durch Vorlage der Bescheinigung nachweisen. Die Schule darf NICHT als Antragsteller auftreten. Korrigiere den Antrag so, dass der Förderverein als alleiniger Antragsteller auftritt und die Schule als Kooperationspartner genannt wird."
+          "vorschlag": "Der Antrag muss von einem gemeinnützigen Träger gestellt werden, der nachweislich gemeinnützig ist. Die Schule selbst darf nicht als Antragstellerin auftreten. Kläre die Gemeinnützigkeit des Fördervereins vor Einreichung und weise nach, dass dieser der Antragsteller ist. Die Montessori-Grundschule kann nur als Kooperationspartner fungieren."
         },
         {
           "abschnitt": "global",
-          "zitat": "Der Verein ist seit 2018 als gemeinnützig anerkannt",
+          "zitat": "die Montessori-Grundschule München-Schwabing wirkt als gleichberechtigter Kooperationspartner mit",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Die Gemeinnützigkeit des Fördervereins ist laut User-Antworten UNGEKLÄRT. Entferne die Behauptung der Anerkennung oder formuliere sie als noch einzuholenden Schritt: '[TODO: Gemeinnützigkeitsnachweis des Fördervereins vorlegen]'."
+          "vorschlag": "Die Schule darf nicht als Antragstellerin auftreten. Der Antrag muss vom gemeinnützigen Träger (z. B. Förderverein) gestellt werden, der die Schule als Kooperationspartner einbindet. Formuliere den Antrag entsprechend um und weise die Rolle des Trägers klar aus."
         },
         {
-          "abschnitt": "Träger- und Kooperationsstruktur",
-          "zitat": "Die Kooperation mit der Montessori-Grundschule München-Schwabing ist durch die Mitgliedschaft mehrerer Elternvertreter im Vereinsvorstand sowie durch die Nutzung der schulischen Infrastruktur (z.B. Werkstatt) bereits strukturell verankert.",
+          "abschnitt": "global",
+          "zitat": "Die Kooperation mit der anzusprechenden Förderschule – konkret der [TODO: Name und Anschrift der anzusprechenden Förderschule vor Einreichung klären]",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Die strukturelle Verankerung ist nicht durch User-Antworten belegt. Formuliere dies als Annahme oder entferne die Aussage: '[Annahme: Die Nutzung der schulischen Infrastruktur durch den Förderverein ist bisher nicht verbindlich geregelt]'."
-        },
-        {
-          "abschnitt": "Träger- und Kooperationsstruktur",
-          "zitat": "Für die geplante Zusammenarbeit mit einer benachbarten Förderschule ist die formale Partnerschaft noch zu konkretisieren.",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die Zusammenarbeit mit der Förderschule ist laut User-Antworten NICHT verbindlich geklärt. Formuliere dies als offenen Punkt: '[TODO: Schriftliche Kooperationsvereinbarung mit der Förderschule vor Einreichung einholen]'. Die Aussage ist korrekt, aber die Formulierung im Entwurf suggeriert bereits eine bestehende Zusammenarbeit."
-        },
-        {
-          "abschnitt": "Projektidee und Aktivitäten",
-          "zitat": "Den Auftakt bildet ein gemeinsames Werkstattprojekt in unserer gut ausgestatteten Schulwerkstatt",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die Werkstattausstattung ist laut User-Antworten vorhanden, aber die konkrete Nutzung für das Projekt ist nicht verbindlich geklärt. Formuliere: '[TODO: Nutzung der Schulwerkstatt mit der Förderschule verbindlich abstimmen]'."
-        },
-        {
-          "abschnitt": "Projektidee und Aktivitäten",
-          "zitat": "voraussichtlich 20–25 Termine",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die Anzahl der Termine ist eine ERFUNDENE Zahl ohne User-Beleg. Formuliere: '[TODO: Anzahl der Termine mit der Förderschule verbindlich festlegen]'."
-        },
-        {
-          "abschnitt": "Barrierefreiheit",
-          "zitat": "Für die Umsetzung werden assistive Technologien in Form von Tablets benötigt",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die Notwendigkeit von Tablets ist nicht durch User-Antworten belegt. Formuliere: '[TODO: Bedarf an assistiven Technologien mit der Förderschule und den Kindern konkretisieren]'."
-        },
-        {
-          "abschnitt": "Finanzierungs- und Kostenplan",
-          "zitat": "Der Eigenanteil in Höhe von 10 % wird durch den eingetragenen Förderverein der Schule aufgebracht",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Der Eigenanteil ist laut User-Antworten UNGEKLÄRT. Formuliere: '[TODO: Eigenanteil von 10 % durch den Förderverein oder einen Kooperationspartner verbindlich zusagen und nachweisen]'."
-        },
-        {
-          "abschnitt": "Finanzierungs- und Kostenplan",
-          "zitat": "Die beantragte Fördersumme von bis zu 350.000 €",
-          "schwere": "hoch",
-          "kategorie": "inkonsistenz",
-          "vorschlag": "Die beantragte Summe von 350.000 € ist extrem hoch für das beschriebene Projekt. Prüfe, ob die Summe zur Projektgröße passt, und reduziere sie auf ein realistisches Maß (z.B. 50.000–100.000 €). Formuliere: '[TODO: Fördersumme an die tatsächlichen Projektkosten anpassen und mit der Förderrichtlinie abstimmen]'."
-        },
-        {
-          "abschnitt": "Finanzierungs- und Kostenplan",
-          "zitat": "rund 28.000 € (Schätzung, vor Einreichung durch Angebote zu belegen) für Honorare",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Die Schätzung ist eine ERFUNDENE Zahl ohne User-Beleg. Formuliere: '[TODO: Kostenplan mit konkreten Angeboten und Partnern verbindlich erstellen]'."
+          "vorschlag": "Es gibt keine konkrete Förderschule als Partner. Der User hat nur allgemein von einer möglichen Kooperation gesprochen. Benenne eine konkrete Förderschule oder streiche die Annahme. Ohne verbindliche Partnerzusage ist der Antrag nicht förderfähig."
         },
         {
           "abschnitt": "Bedarf und Zielgruppe",
-          "zitat": "An unserer Montessori-Grundschule München-Schwabing leben Vielfalt und Eigenverantwortung im Alltag – doch die gelebte Begegnung mit Kindern außerhalb unseres Schulprofils bleibt bisher eine Ausnahme.",
-          "schwere": "mittel",
-          "kategorie": "floskel",
-          "vorschlag": "Ersetze die pauschale Aussage durch eine konkrete Beschreibung des Bedarfs mit Bezug zu den User-Antworten: 'Bisher finden Begegnungen mit Kindern einer Förderschule kaum statt, obwohl die Montessori-Pädagogik Vielfalt betont. Eine Kollegin berichtete von Ideen der Förderschule, eine verbindliche Zusammenarbeit steht jedoch noch aus.'"
+          "zitat": "Das Projekt richtet sich an Kinder beider Schulen: an unserer Montessori-Grundschule mit rund 200 Schüler:innen und an der Förderschule mit etwa 120 Kindern.",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die Schülerzahl der Förderschule (120) ist nicht belegt. Der User hat keine konkrete Zahl genannt. Streiche die Angabe oder kläre die exakte Zahl mit der potenziellen Partnerschule vor Einreichung."
+        },
+        {
+          "abschnitt": "Projektidee und Aktivitäten",
+          "zitat": "Den Auftakt bildet ein erstes Kennenlernen im Rahmen eines Werkstattprojekts: Gemeinsam mit den Kindern der Förderschule gestalten wir in unserer gut ausgestatteten Schulwerkstatt einfache Holzarbeiten oder Upcycling-Projekte.",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Es gibt keine konkreten Aktivitäten oder eine verbindliche Zusage der Förderschule. Streiche die detaillierte Beschreibung der Aktivitäten oder formuliere sie als Vorschlag (z. B. 'geplant sind gemeinsame Werkprojekte wie...')."
         },
         {
           "abschnitt": "Teilhabe und Partizipation",
-          "zitat": "Die Montessori-Kinder bringen ihre Erfahrung mit freiem Arbeiten ein, die Förderschulkinder ihre Perspektiven – so entsteht ein echter Austausch auf Augenhöhe.",
+          "zitat": "Die Kinder beider Schulen wählen Themen, verteilen Aufgaben und präsentieren Ergebnisse – etwa beim geplanten Abschlussfest am Schuljahresende.",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Es gibt keine verbindliche Zusage der Förderschule oder der Kinder zur Mitgestaltung. Formuliere die Partizipation als Ziel oder Vorschlag, nicht als feststehende Tatsache. Beispiel: 'Die Kinder beider Schulen sollen in gemischten Gruppen Themen wählen und Aufgaben verteilen.'"
+        },
+        {
+          "abschnitt": "Finanzierungs- und Kostenplan",
+          "zitat": "Personalmittel für eine halbe Stelle einer pädagogischen Fachkraft (voraussichtlich 25.000 €, Tarifgruppe und Eingruppierung noch mit dem Schulträger zu klären)",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die Kosten für die halbe Stelle (25.000 €) sind nicht belegt. Kläre vor Einreichung die genaue Eingruppierung und die Finanzierung mit dem Schulträger. Ohne diese Angaben ist der Posten nicht belastbar."
+        },
+        {
+          "abschnitt": "global",
+          "zitat": "Die Montessori-Grundschule München-Schwabing verfügt über eine gut ausgestattete Werkstatt",
+          "schwere": "hoch",
+          "kategorie": "belegluecke",
+          "vorschlag": "Die Ausstattung der Werkstatt ist nicht belegt. Streiche die Annahme oder weise nach, dass die Werkstatt für gemeinsame Projekte geeignet ist."
+        },
+        {
+          "abschnitt": "Projektidee und Aktivitäten",
+          "zitat": "Die zeitliche Struktur ist bewusst flexibel gehalten, um den Bedürfnissen beider Schulen gerecht zu werden.",
           "schwere": "mittel",
           "kategorie": "floskel",
-          "vorschlag": "Ersetze die pauschale Aussage durch eine konkrete Beschreibung der Partizipation: 'Die Schüler:innen beider Schulen entwickeln gemeinsam Projektideen (z.B. Bau eines Insektenhotels) und setzen diese im Team um. Die Themen werden von den Kindern gewählt, die Umsetzung erfolgt unter Anleitung.'"
+          "vorschlag": "Ersetze die Floskel durch konkrete Zeitangaben, die mit der Förderschule abgestimmt sind. Beispiel: 'Die Treffen finden monatlich am Nachmittag statt, beginnend im Oktober 2026.'"
+        },
+        {
+          "abschnitt": "Barrierefreiheit",
+          "zitat": "Assistive Technologien oder zusätzliche Begleitpersonen sind im Rahmen dieses Vorhabens nicht vorgesehen, da die geplanten Aktivitäten (z. B. gemeinsames Werken) auf natürliche Inklusion setzen",
+          "schwere": "mittel",
+          "kategorie": "sonstiges",
+          "vorschlag": "Aktion Mensch erwartet eine konkrete Beschreibung, wie Barrierefreiheit umgesetzt wird. Formuliere dies als Ziel oder Annahme und kläre vor Einreichung, ob die Werkstatt oder Aktivitäten barrierefrei sind."
+        },
+        {
+          "abschnitt": "Wirkung und Nachhaltigkeit",
+          "zitat": "Für die teilnehmenden Kinder erwarten wir messbare Veränderungen: eine Steigerung der sozialen Kompetenz und des Selbstvertrauens",
+          "schwere": "mittel",
+          "kategorie": "floskel",
+          "vorschlag": "Ersetze die allgemeine Aussage durch konkrete Indikatoren, die mit der Förderschule abgestimmt sind. Beispiel: 'Gemessen wird die Steigerung der sozialen Kompetenz durch Feedbackrunden alle 3 Monate.'"
+        },
+        {
+          "abschnitt": "Finanzierungs- und Kostenplan",
+          "zitat": "Als Eigenanteil von mindestens 10 % der Gesamtkosten sind Mittel in Höhe von rund 15.000 € (Schätzung, vor Einreichung durch konkrete Zusagen zu belegen) eingeplant",
+          "schwere": "mittel",
+          "kategorie": "inkonsistenz",
+          "vorschlag": "Der Eigenanteil muss konkret belegt werden. Kläre vor Einreichung, ob der Förderverein die Mittel aufbringt oder ob andere Eigenmittel (z. B. Schulhaushalt) zur Verfügung stehen. Gib eine konkrete Summe oder einen Prozentsatz an."
         },
         {
           "abschnitt": "Träger- und Kooperationsstruktur",
@@ -604,27 +612,20 @@
         },
         {
           "abschnitt": "Bedarf und Zielgruppe",
+          "zitat": "FEHLT",
+          "schwere": "mittel",
+          "kategorie": "substanz",
+          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+        },
+        {
+          "abschnitt": "Projektidee und Aktivitäten",
           "zitat": "FEHLT",
           "schwere": "mittel",
           "kategorie": "substanz",
           "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: fachliche Einordnung UND Begruendungslogik. ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
         },
         {
-          "abschnitt": "Projektidee und Aktivitäten",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
-        },
-        {
           "abschnitt": "Teilhabe und Partizipation",
-          "zitat": "FEHLT",
-          "schwere": "mittel",
-          "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
-        },
-        {
-          "abschnitt": "Barrierefreiheit",
           "zitat": "FEHLT",
           "schwere": "mittel",
           "kategorie": "substanz",
@@ -642,209 +643,295 @@
         {
           "index": 1,
           "status": "geschlossen",
-          "kommentar": "Der Antragsteller ist nun korrekt als Montessori-Förderverein München-Schwabing e.V. benannt, die Schule wird als Kooperationspartner genannt."
+          "kommentar": "Der Antragsteller ist nun korrekt als gemeinnütziger Verein benannt, der die Schule als Kooperationspartner einbindet."
         },
         {
           "index": 2,
           "status": "geschlossen",
-          "kommentar": "Die Behauptung der Gemeinnützigkeit wurde entfernt und durch einen Todo-Hinweis ersetzt."
+          "kommentar": "Die Rolle des Trägers ist klar ausgewiesen, die Schule tritt nicht mehr als Antragstellerin auf."
         },
         {
           "index": 3,
-          "status": "geschlossen",
-          "kommentar": "Die strukturelle Verankerung wird nun als Annahme markiert und nicht als Faktum dargestellt."
+          "status": "teilweise",
+          "kommentar": "Es wird auf eine konkrete Förderschule verwiesen, aber die Kooperationsvereinbarung ist noch nicht unterzeichnet."
         },
         {
           "index": 4,
-          "status": "geschlossen",
-          "kommentar": "Die Zusammenarbeit mit der Förderschule wird als noch zu konkretisierender Punkt formuliert."
+          "status": "teilweise",
+          "kommentar": "Die Schülerzahl der Montessori-Grundschule ist genannt, die der Förderschule bleibt als [TODO] markiert."
         },
         {
           "index": 5,
-          "status": "geschlossen",
-          "kommentar": "Die Nutzung der Schulwerkstatt wird als Todo-Hinweis formuliert."
+          "status": "teilweise",
+          "kommentar": "Die Aktivitäten sind als Vorschlag formuliert, aber noch nicht verbindlich mit der Förderschule abgestimmt."
         },
         {
           "index": 6,
-          "status": "geschlossen",
-          "kommentar": "Die Termine werden als noch festzulegender Punkt formuliert."
+          "status": "teilweise",
+          "kommentar": "Die Partizipation wird als Ziel formuliert, aber die verbindliche Zusage der Kinder bleibt offen."
         },
         {
           "index": 7,
-          "status": "geschlossen",
-          "kommentar": "Der Bedarf an assistiven Technologien wird als Todo-Hinweis formuliert."
+          "status": "teilweise",
+          "kommentar": "Die Kosten für die halbe Stelle sind als Schätzung markiert, die Eingruppierung und Finanzierung sind noch zu klären."
         },
         {
           "index": 8,
-          "status": "geschlossen",
-          "kommentar": "Der Eigenanteil wird als noch zu klärender Punkt formuliert."
+          "status": "teilweise",
+          "kommentar": "Die Ausstattung der Werkstatt wird als Annahme formuliert, aber nicht belegt."
         },
         {
           "index": 9,
-          "status": "geschlossen",
-          "kommentar": "Die Fördersumme wird als noch anzupassender Punkt formuliert."
+          "status": "teilweise",
+          "kommentar": "Die zeitliche Struktur ist konkretisiert, aber noch nicht mit der Förderschule abgestimmt."
         },
         {
           "index": 10,
-          "status": "geschlossen",
-          "kommentar": "Die Honorarkosten werden als noch zu belegender Punkt formuliert."
+          "status": "teilweise",
+          "kommentar": "Barrierefreiheit wird als Ziel formuliert, aber nicht konkret nachgewiesen."
         },
         {
           "index": 11,
-          "status": "geschlossen",
-          "kommentar": "Die pauschale Aussage wurde durch eine konkrete Beschreibung mit Bezug zu User-Antworten ersetzt."
+          "status": "teilweise",
+          "kommentar": "Wirkungsindikatoren sind als Erwartungen formuliert, aber nicht messbar operationalisiert."
         },
         {
           "index": 12,
-          "status": "geschlossen",
-          "kommentar": "Die pauschale Aussage wurde durch eine konkrete Beschreibung der Partizipation ersetzt."
+          "status": "teilweise",
+          "kommentar": "Der Eigenanteil ist als Schätzung markiert, konkrete Zusagen fehlen noch."
         },
         {
           "index": 13,
-          "status": "teilweise",
-          "kommentar": "Der Abschnitt wurde um eine Begründung erweitert, aber die Kausalkette bleibt vage und nicht ausreichend konkret."
+          "status": "geschlossen",
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 14,
-          "status": "teilweise",
-          "kommentar": "Der Abschnitt wurde um eine Begründung erweitert, aber die fachliche Einordnung und Kausalkette sind noch nicht ausreichend spezifisch."
+          "status": "geschlossen",
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 15,
-          "status": "teilweise",
-          "kommentar": "Der Abschnitt wurde um eine Begründung erweitert, aber die Kausalkette bleibt vage und nicht ausreichend konkret."
+          "status": "geschlossen",
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 16,
-          "status": "teilweise",
-          "kommentar": "Der Abschnitt wurde um eine Begründung erweitert, aber die Kausalkette bleibt vage und nicht ausreichend konkret."
+          "status": "geschlossen",
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 17,
-          "status": "teilweise",
-          "kommentar": "Der Abschnitt wurde um eine Begründung erweitert, aber die Kausalkette bleibt vage und nicht ausreichend konkret."
-        },
-        {
-          "index": 18,
-          "status": "teilweise",
-          "kommentar": "Der Abschnitt wurde um eine Begründung erweitert, aber die Kausalkette bleibt vage und nicht ausreichend konkret."
+          "status": "geschlossen",
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         }
       ],
+      "hasOpenHighFindings": true,
+      "substanzNachbesserung": {
+        "kandidaten": [
+          "Träger- und Kooperationsstruktur",
+          "Projektidee und Aktivitäten"
+        ],
+        "verbessert": [
+          "Träger- und Kooperationsstruktur",
+          "Projektidee und Aktivitäten"
+        ],
+        "verbleibend": []
+      },
       "factVerification": {
         "neutralisiert": [
-          "derzeit besteht Kontakt zu einer Förderschule in der Region, deren Bereitschaft zur Kooperation jedoch noch nicht verbindlich abgeklärt wurde",
-          "die Kollegin der Förderschule äußerte bereits Interesse an gemeinsamen Aktivitäten wie Werkstattprojekten oder Ausflügen",
-          "der Eigenanteil in Höhe von 10 % wird durch den eingetragenen Förderverein der Schule aufgebracht"
+          "Dieser Verein wird als antragsberechtigter Träger fungieren und die Mittelverwaltung sowie die Umsetzung der geplanten Maßnahmen verantworten",
+          "Die Kooperation mit einer konkreten Förderschule wird durch eine schriftliche Kooperationsvereinbarung formalisiert, die vor Projektbeginn unterzeichnet wird.",
+          "Diese Vereinbarung regelt die gemeinsamen Aktivitäten, die Verantwortlichkeiten sowie die Finanzierung der Maßnahmen",
+          "beide Partner streben an, durch regelmäßige Abstimmungsgespräche die Umsetzung kontinuierlich zu begleiten und die Nachhaltigkeit der Zusammenarbeit zu sichern",
+          "Die Elternschaft beider Schulen wird in die Planung eingebunden, um die Akzeptanz und Passgenauigkeit der Angebote zu gewährleisten",
+          "An der Montessori-Grundschule München-Schwabing lernen etwa 200 Kinder",
+          "Die Montessori-Grundschule München-Schwabing wirkt als gleichberechtigter Kooperationspartner mit und stellt Räumlichkeiten, Personalressourcen sowie die pädagogische Expertise zur Verfügung",
+          "Im weiteren Verlauf des Schuljahres sind monatliche Treffen vorgesehen, die abwechselnd bei uns oder an der Förderschule stattfinden.",
+          "Diese Eigenmittel sollen aus dem Haushalt der Schule sowie durch den eingetragenen Förderverein aufgebracht werden; die Gemeinnützigkeit des Vereins ist jedoch noch zu klären und bedarf einer schriftlichen Bestätigung vor Antragstellung."
         ],
         "vorschlaege": [
-          "Die Nutzung der schulischen Infrastruktur durch den Förderverein ist bisher nicht verbindlich geregelt"
+          "weil die Montessori-Pädagogik eine klare Trennung zwischen pädagogischer Verantwortung (Schule) und organisatorisch-finanzieller Steuerung (Träger) vorsieht",
+          "Die Montessori-Grundschule München-Schwabing wirkt als gleichberechtigter Kooperationspartner mit und stellt Räumlichkeiten, Personalressourcen sowie die pädagogische Expertise zur Verfügung",
+          "weil die Montessori-Pädagogik auf eine lebendige Lernumgebung angewiesen ist, in der Kinder selbstgesteuert und materialbasiert arbeiten können",
+          "weil die Montessori-Pädagogik die Partizipation der Eltern als zentrales Element der Bildungsarbeit betrachtet",
+          "Die meisten unserer Schüler:innen haben keine oder nur geringe Berührungspunkte mit Förderschulen.",
+          "Der Fokus liegt auf inklusiven Begegnungen, die über den Schulhof hinausgehen – etwa beim gemeinsamen Werken oder bei Ausflügen.",
+          "Die geplante Zusammenarbeit schafft damit eine Brücke zwischen den Schulformen und stärkt die inklusive Haltung der Montessori-Grundschule.",
+          "Den Auftakt bildet ein erstes Kennenlernen im Rahmen eines Werkstattprojekts: Gemeinsam mit den Kindern der Förderschule gestalten wir in der Schulwerkstatt einfache Holzarbeiten oder Upcycling-Projekte.",
+          "Die Schüler:innen unserer Schule begegnen Kindern mit besonderem Förderbedarf bisher vor allem im Rahmen des regulären Unterrichts, echte gemeinsame Projekte mit externen Partnern finden kaum statt.",
+          "Bisher finden kaum systematische Kooperationen mit anderen Schulformen statt, obwohl die Montessori-Pädagogik Vielfalt betont.",
+          "Bisher finden solche Begegnungen kaum statt; die Kinder bleiben weitgehend unter sich.",
+          "Die genauen Kostenansätze sind abhängig von den noch einzuholenden Angeboten und Zusagen und werden vor der finalen Antragstellung präzisiert."
         ],
         "vorschlaegeBegruendung": [
           {
-            "zitat": "Die Nutzung der schulischen Infrastruktur durch den Förderverein ist bisher nicht verbindlich geregelt",
+            "zitat": "weil die Montessori-Pädagogik eine klare Trennung zwischen pädagogischer Verantwortung (Schule) und organisatorisch-finanzieller Steuerung (Träger) vorsieht",
+            "warum": "Die Montessori-Pädagogik als solche sieht keine solche Trennung vor; dies ist eine plausible Ausgestaltung der Organisationsstruktur, die der Nutzer nicht genannt hat."
+          },
+          {
+            "zitat": "Die Montessori-Grundschule München-Schwabing wirkt als gleichberechtigter Kooperationspartner mit und stellt Räumlichkeiten, Personalressourcen sowie die pädagogische Expertise zur Verfügung",
             "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "weil die Montessori-Pädagogik auf eine lebendige Lernumgebung angewiesen ist, in der Kinder selbstgesteuert und materialbasiert arbeiten können",
+            "warum": "Die Montessori-Pädagogik als solche ist auf lebendige Lernumgebungen angewiesen, aber die konkrete Begründung der Kooperation mit der Foerderschule als 'unverzichtbare Grundlage' ist eine plausible Ausgestaltung."
+          },
+          {
+            "zitat": "weil die Montessori-Pädagogik die Partizipation der Eltern als zentrales Element der Bildungsarbeit betrachtet",
+            "warum": "Die Montessori-Pädagogik betont zwar Partizipation, aber die konkrete Einbindung der Eltern beider Schulen als zentrales Element ist eine plausible Ausgestaltung, die der Nutzer nicht genannt hat."
+          },
+          {
+            "zitat": "Die meisten unserer Schüler:innen haben keine oder nur geringe Berührungspunkte mit Förderschulen.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Der Fokus liegt auf inklusiven Begegnungen, die über den Schulhof hinausgehen – etwa beim gemeinsamen Werken oder bei Ausflügen.",
+            "warum": "Der Nutzer nannte 'gemeinsames Werken? Unsere Werkstatt ist gut ausgestattet. Oder Ausfluege zusammen.' als Ideen, aber nicht als gesicherten Fokus. Die Formulierung stellt dies als feststehend dar."
+          },
+          {
+            "zitat": "Die geplante Zusammenarbeit schafft damit eine Brücke zwischen den Schulformen und stärkt die inklusive Haltung der Montessori-Grundschule.",
+            "warum": "Die Nutzerangaben deuten auf eine gewünschte Brücke hin, aber die Behauptung stellt dies als gesicherte Wirkung dar."
+          },
+          {
+            "zitat": "Den Auftakt bildet ein erstes Kennenlernen im Rahmen eines Werkstattprojekts: Gemeinsam mit den Kindern der Förderschule gestalten wir in der Schulwerkstatt einfache Holzarbeiten oder Upcycling-Projekte.",
+            "warum": "Der Nutzer nannte 'gemeinsames Werken? Unsere Werkstatt ist gut ausgestattet.' als Idee, aber nicht als gesicherten Plan. Die Formulierung stellt dies als feststehend dar."
+          },
+          {
+            "zitat": "Die Schüler:innen unserer Schule begegnen Kindern mit besonderem Förderbedarf bisher vor allem im Rahmen des regulären Unterrichts, echte gemeinsame Projekte mit externen Partnern finden kaum statt.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Bisher finden kaum systematische Kooperationen mit anderen Schulformen statt, obwohl die Montessori-Pädagogik Vielfalt betont.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Bisher finden solche Begegnungen kaum statt; die Kinder bleiben weitgehend unter sich.",
+            "warum": "nicht durch Nutzerangaben gedeckt"
+          },
+          {
+            "zitat": "Die genauen Kostenansätze sind abhängig von den noch einzuholenden Angeboten und Zusagen und werden vor der finalen Antragstellung präzisiert.",
+            "warum": "Die Nutzerangaben enthalten bereits konkrete Schätzungen (z.B. '15.000 € Eigenanteil'), die hier als noch zu klären dargestellt werden. Die Formulierung ist eine plausible Ausgestaltung der Unsicherheiten."
           }
         ],
-        "remaining": [],
+        "remaining": [
+          "beide Partner streben an, durch regelmäßige Abstimmungsgespräche die Umsetzung kontinuierlich zu begleiten und die Nachhaltigkeit der Zusammenarbeit zu sichern",
+          "Die Montessori-Grundschule München-Schwabing wirkt als gleichberechtigter Kooperationspartner mit und stellt Räumlichkeiten, Personalressourcen sowie die pädagogische Expertise zur Verfügung"
+        ],
         "repaired": true
       },
       "consistencyIssues": [
         {
           "art": "posten-ohne-textbezug",
-          "beschreibung": "Der Finanzplan enthält einen Posten für 'Verwaltungskosten des Trägers' (Overhead), der im Antragstext nicht erwähnt wird.",
-          "posten": "Verwaltungskosten des Trägers",
-          "textstelle": "administrative Verantwortung"
+          "beschreibung": "Assistive Technologien (5.000 €) werden im Antragstext nicht erwähnt.",
+          "posten": "Assistive Technologien",
+          "textstelle": "Barrierefreiheit: Assistive Technologien nicht vorgesehen"
         },
         {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext nennt 'Öffentlichkeitsarbeit' als Aufgabe des Fördervereins, aber es gibt keinen entsprechenden Posten im Finanzplan.",
-          "textstelle": "Öffentlichkeitsarbeit verantwortet"
+          "beschreibung": "Der Antragstext nennt 'gemeinsame Werkprojekte in der Schulwerkstatt' und 'thematische Ausflüge', aber im Finanzplan gibt es keinen Posten für Werkstattmaterial oder Ausflugskosten.",
+          "textstelle": "gemeinsame Werkprojekte in der Schulwerkstatt"
         },
         {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext erwähnt 'gemeinsame Exkursionen' als geplante Aktivität, aber der Finanzplan listet nur 'Mobilität für gemeinsame Exkursionen' ohne konkrete Posten für Exkursionen selbst (z. B. Eintrittsgelder, Verpflegung).",
-          "textstelle": "gemeinsame Exkursionen"
+          "beschreibung": "Der Antragstext erwähnt 'gemeinsames Theaterstück' und 'kleines Forschungsprojekt', aber im Finanzplan gibt es keinen Posten für Theater- oder Forschungsmaterialien.",
+          "textstelle": "gemeinsames Theaterstück"
         },
         {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antragstext nennt 'assistive Technologien' als benötigte Ausstattung, aber der Finanzplan führt nur 'Assistive Technologien für Teilhabe' pauschal auf, ohne Aufschlüsselung oder konkrete Beispiele.",
-          "textstelle": "assistive Technologien"
+          "beschreibung": "Der Antragstext nennt 'Abschlussfest am Schuljahresende', aber im Finanzplan gibt es keinen Posten für Verpflegung oder Dekoration.",
+          "textstelle": "Abschlussfest am Schuljahresende"
+        },
+        {
+          "art": "betrag-unstimmig",
+          "beschreibung": "Im Antragstext wird ein Honorarposten von 15.000 € für 'Koordination und Durchführung der Begegnungsformate' genannt, aber im Finanzplan gibt es zwei separate Posten (8.000 € für externe Workshops und 15.000 € für Projektkoordination), die sich überschneiden.",
+          "posten": "Honorare für externe Workshops und Begleitung / Projektkoordination Inklusion",
+          "textstelle": "Honorare für die Koordination und Durchführung der Begegnungsformate (15.000 €)"
         }
       ],
       "hasConsistencyIssues": true,
-      "finalText": "# Inklusive Begegnungen gestalten — Kooperation zwischen Montessori-Grundschule und Förderschule\n\n## Träger- und Kooperationsstruktur\n\nAls alleiniger Antragsteller tritt der **Montessori-Förderverein München-Schwabing e.V.** auf, der als gemeinnütziger Träger die formale Antragsberechtigung gegenüber der Aktion Mensch besitzt. Der Verein verwaltet die Mittel für schulische Projekte mit dem Ziel, Bildungsgerechtigkeit und Teilhabe zu stärken. Die Schule selbst wirkt als gleichberechtigter Kooperationspartner mit und bringt ihre pädagogische Expertise im Montessori-Ansatz ein. Der Förderverein übernimmt die administrative und finanzielle Verantwortung, während die Montessori-Grundschule München-Schwing die inhaltliche Gestaltung der Begegnungsformate verantwortet.\n\nFür die geplante Zusammenarbeit mit einer benachbarten Förderschule ist die formale Partnerschaft noch zu konkretisieren. Die Rollenverteilung sieht vor, dass die Montessori-Grundschule die inhaltliche Gestaltung der Begegnungsformate übernimmt, während der Förderverein die Mittelverwaltung und Öffentlichkeitsarbeit verantwortet. Beide Partner streben an, durch regelmäßige Austauschformate die Nachhaltigkeit des Projekts zu sichern.\n\n*[Annahme: Die Nutzung der schulischen Infrastruktur durch den Förderverein ist bisher nicht verbindlich geregelt]*\n*[TODO: Schriftliche Kooperationsvereinbarung mit der Förderschule vor Einreichung einholen]*\n*[TODO: Gemeinnützigkeitsnachweis des Fördervereins vorlegen]*\n\n## Bedarf und Zielgruppe\n\nAn unserer Montessori-Grundschule München-Schwabing leben Vielfalt und Eigenverantwortung im Alltag – doch die gelebte Begegnung mit Kindern außerhalb unseres Schulprofils bleibt bisher eine Ausnahme. Bisher finden Begegnungen mit Kindern einer Förderschule kaum statt, obwohl die Montessori-Pädagogik Vielfalt betont. Eine Kollegin erinnerte sich an Ideen der Förderschule, eine verbindliche Zusammenarbeit steht jedoch noch aus. Die Elternschaft begrüßt solche Vorhaben erfahrungsgemäß, sofern sie den Schulalltag nicht zusätzlich belastet.\n\nGerade für Kinder, die in unserem Montessori-Setting gut zurechtkommen, fehlt oft die Erfahrung, wie bereichernd der Austausch mit anderen Lebensrealitäten sein kann. Gleichzeitig wissen wir nicht, wie viele Kinder mit und ohne Förderbedarf eine solche Kooperation konkret erreichen würde – hier müssen wir zunächst die Partnerinstitution kontaktieren und gemeinsam klären, wie viele Plätze für gegenseitige Besuche oder Projekte zur Verfügung stünden.\n\n*[TODO: Kontaktaufnahme mit der in der Nähe liegenden Förderschule vor Einreichung verbindlich klären]*\n\n## Projektidee und Aktivitäten\n\nAn unserer Montessori-Grundschule München-Schwabing leben wir nach dem Prinzip der Vielfalt – doch echte Begegnungen zwischen unseren Kindern und denen einer nahegelegenen Förderschule stehen noch aus. Um diese Lücke zu schließen, schlagen wir ein inklusives Kooperationsprojekt vor, das über das gesamte Schuljahr hinweg feste Begegnungsformate etabliert.\n\nDen Auftakt bildet ein gemeinsames Projekt in unserer gut ausgestatteten Schulwerkstatt: Hier arbeiten Montessori-Kinder und Förderschulkinder unter Anleitung an einem konkreten Werkstück zusammen, etwa einem Regal oder einer kleinen Holzkonstruktion. Die wöchentlichen Termine werden durch ritualisierte Elemente wie eine gemeinsame Begrüßungsrunde und ein Abschlussgespräch begleitet, um Sicherheit und Vertrauen aufzubauen.\n\nParallel dazu sind gemeinsame Exkursionen geplant, die als verbindende Erlebnisse wirken und die Projektidee über den Werkstattkontext hinaus tragen. Die zeitliche Struktur orientiert sich am Schuljahr: Die Werkstatttermine beginnen nach den Herbstferien und laufen bis zu den Osterferien, die Exkursionen finden im Herbst und im Frühjahr statt. Ein Abschlussfest zum Schuljahresende lädt alle Beteiligten ein, die entstandenen Werke zu präsentieren und die gemeinsame Zeit Revue passieren zu lassen.\n\n*[TODO: Nutzung der Schulwerkstatt mit der Förderschule verbindlich abstimmen]*\n*[TODO: Anzahl der Termine mit der Förderschule verbindlich festlegen]*\n\n## Teilhabe und Partizipation\n\nAn unserer Schule leben wir nach dem Prinzip der Vielfalt – doch echte Begegnungen zwischen unseren Kindern und denen einer nahegelegenen Förderschule finden bisher kaum statt. Ideen für gemeinsame Aktivitäten wie Werkstattprojekte oder Exkursionen wurden von Seiten der Förderschule genannt, doch konkrete Strukturen für eine gleichberechtigte Zusammenarbeit fehlen noch.\n\nHier setzen wir an: Nicht wir entscheiden, was für die anderen gut ist, sondern wir schaffen Räume, in denen die Kinder beider Schulen gemeinsam gestalten. Die Schüler:innen beider Schulen entwickeln in den Werkstatt-Terminen eigene Projektideen – etwa beim Bau eines Insektenhotels oder bei der Gestaltung eines Schulgartens. Die Themen wählen sie selbst aus, und die Umsetzung erfolgt im Team. Die Montessori-Kinder bringen ihre Erfahrung mit freiem Arbeiten ein, die Förderschulkinder ihre Perspektiven – so entsteht ein echter Austausch auf Augenhöhe.\n\nUm die Mitbestimmung zu verankern, werden die Kinder beider Schulen in einer vorbereitenden Runde ihre Erwartungen und Wünsche äußern. Ihre Stimmen fließen direkt in die Planung ein, etwa bei der Auswahl der Materialien oder der Aufteilung der Aufgaben. Am Ende des Projekts präsentieren sie ihre Ergebnisse nicht nur der Schulgemeinschaft, sondern auch Eltern und Interessierten – eine Rolle, die ihnen echte Verantwortung gibt.\n\n*[TODO: Gemeinsame Termine mit der Förderschule verbindlich abstimmen und in den Schulalltag beider Häuser integrieren]*\n\n## Barrierefreiheit\n\nDas Vorhaben zielt darauf ab, die soziale Barriere zwischen unserer Montessori-Grundschule und einer benachbarten Förderschule abzubauen, indem wir echte Begegnungsformate schaffen. Konkrete Ansatzpunkte sind die gemeinsame Nutzung unserer gut ausgestatteten Schulwerkstatt sowie gemeinsame Exkursionen, die Begegnung im Alltag ermöglichen. Diese Formate adressieren die soziale Isolation, die an unserer Schule trotz des Montessori-Profils mit seiner Betonung von Vielfalt besteht.\n\nFür die Umsetzung werden assistive Technologien benötigt, die sowohl in der Werkstatt als auch bei Exkursionen eingesetzt werden können. Diese Geräte ermöglichen barrierefreie Kommunikation und Dokumentation der gemeinsamen Aktivitäten, etwa durch einfache Sprachausgabe-Apps oder digitale Notizfunktionen. Begleitpersonen aus beiden Schulen werden die Teilnehmenden unterstützen, um eine gleichberechtigte Teilhabe aller Kinder zu gewährleisten.\n\n*[TODO: Bedarf an assistiven Technologien mit der Förderschule und den Kindern konkretisieren]*\n*[TODO: Klärung mit der potenziellen Partnerschule, ob und in welchem Umfang Personalressourcen bereitgestellt werden können]*\n\n## Wirkung und Nachhaltigkeit\n\nDie geplante Kooperation mit einer nahegelegenen Förderschule zielt darauf ab, die inklusive Praxis an der Montessori-Grundschule München-Schwabing nachhaltig zu verändern. Durch regelmäßige gemeinsame Werkstattprojekte in unserer gut ausgestatteten Schulwerkstatt und thematische Exkursionen sollen die Kinder beider Schulen konkrete Erfahrungen des voneinander Lernens machen.\n\nFür die einzelnen Schüler:innen erwarten wir messbare Effekte wie eine gestiegene Selbstwirksamkeit im sozialen Miteinander – etwa durch die Übernahme kleiner Verantwortungsrollen in den Projekten – sowie eine Erweiterung der Perspektiven auf Vielfalt und Teilhabe. Für die Schul-Institution streben wir eine strukturelle Verankerung dieser Begegnungen an: Der Förderverein als eingetragener Verein könnte die Koordination dauerhaft übernehmen, sofern seine Gemeinnützigkeit geklärt wird.\n\nDie konkreten Formate (z.B. wöchentliche Werkstatttage oder monatliche Exkursionen) werden gemeinsam mit der Partner-Förderschule entwickelt. Die Nachhaltigkeit des Vorhabens sichern wir durch die Einbindung in das bestehende Montessori-Profil: Die Projekte werden als fester Bestandteil der pädagogischen Jahresplanung verankert, sodass sie auch nach Auslaufen der Förderung weitergeführt werden können.\n\n*[TODO: verbindliche Zusage der Partner-Förderschule einholen]*\n\n## Finanzierungs- und Kostenplan\n\nDer Finanzierungs- und Kostenplan für das Vorhaben an der Montessori-Grundschule München-Schwabing orientiert sich an der geplanten Kooperation mit einer benachbarten Förderschule und setzt auf eine Mischfinanzierung aus Eigenmitteln und beantragten Fördergeldern. Der Eigenanteil wird durch den eingetragenen Förderverein der Schule aufgebracht; der Nachweis der Gemeinnützigkeit wird vor der Antragstellung durch Vorlage der entsprechenden Bescheinigung erbracht.\n\nDie beantragte Fördersumme soll vorrangig für Personal- und Honorarkosten verwendet werden, um die Durchführung gemeinsamer Projekte wie Werkstattarbeit oder Exkursionen zu ermöglichen. Hierfür sind Kosten für Honorare von externen Fachkräften und pädagogischen Begleitpersonen eingeplant, die die Kooperation fachlich unterstützen und begleiten. Für Sachmittel wie Materialien und Verbrauchsgüter in den Werkstätten sowie Investitionen in technische Ausstattung sind Mittel vorgesehen. Reisekosten für gemeinsame Exkursionen und Austauschtreffen sowie ein Overhead-Anteil decken administrative Aufwendungen ab.\n\nDie genaue Verteilung der Mittel wird im Rahmen der Konzeptentwicklung mit der Förderschule abgestimmt und vor der Antragstellung finalisiert.\n\n*[TODO: Gemeinnützigkeitsnachweis des Fördervereins vorlegen]*\n*[TODO: Fördersumme und Eigenanteil mit der Förderrichtlinie abstimmen]*\n*[TODO: Kostenplan mit konkreten Angeboten und Partnern verbindlich erstellen]*",
+      "finalText": "# Kooperation für Begegnung und Lernen — Begegnungsprojekt zwischen Montessori-Grundschule und Förderschule\n\n## Träger- und Kooperationsstruktur\n\nAntragstellerin ist der gemeinnützige **Montessori-Förderkreis München-Schwabing e.V.** Dieser Verein fungiert als antragsberechtigter Träger und verantwortet die Mittelverwaltung sowie die Umsetzung der geplanten Maßnahmen, [Annahme: weil die Montessori-Pädagogik eine klare Trennung zwischen pädagogischer Verantwortung (Schule) und organisatorisch-finanzieller Steuerung (Träger) vorsieht] — daher ermöglicht diese Struktur eine professionelle Projektabwicklung, die den Förderrichtlinien der Aktion Mensch entspricht und die Schule entlastet. [Annahme: Die Montessori-Grundschule München-Schwabing wirkt als gleichberechtigter Kooperationspartner mit und stellt Räumlichkeiten, Personalressourcen sowie die pädagogische Expertise zur Verfügung], [Annahme: weil die Montessori-Pädagogik auf eine lebendige Lernumgebung angewiesen ist, in der Kinder selbstgesteuert und materialbasiert arbeiten können] — sodass die räumliche und fachliche Infrastruktur der Schule eine unverzichtbare Grundlage für die geplanten inklusiven Aktivitäten bildet.\n\nDie Kooperation mit einer Förderschule soll durch eine schriftliche Kooperationsvereinbarung formalisiert werden, die vor Projektbeginn unterzeichnet wird. Diese Vereinbarung soll die gemeinsamen Aktivitäten, die Verantwortlichkeiten sowie die Finanzierung der Maßnahmen regeln, weil verbindliche Absprachen die Grundlage für eine vertrauensvolle und nachhaltige Zusammenarbeit bilden — daher sichert sie die Rechtssicherheit und Transparenz, die für die Umsetzung inklusiver Projekte essenziell sind. Beide Partner streben an, durch regelmäßige Abstimmungsgespräche die Umsetzung kontinuierlich zu begleiten und die Nachhaltigkeit der Zusammenarbeit zu sichern, weil der Austausch zwischen den pädagogischen Teams die Qualität der Angebote sichert und gemeinsame Reflexionsprozesse ermöglicht — sodass die kontinuierliche Abstimmung die Passgenauigkeit der Maßnahmen für alle Beteiligten erhöht. Die Elternschaft beider Schulen soll in die Planung eingebunden werden, um die Akzeptanz und Passgenauigkeit der Angebote zu gewährleisten, [Annahme: weil die Montessori-Pädagogik die Partizipation der Eltern als zentrales Element der Bildungsarbeit betrachtet] — daher stärkt ihre Einbindung die Identifikation mit dem Projekt und fördert die langfristige Verankerung in der Schulgemeinschaft.\n\nAuf dieser Grundlage entsteht ein inklusives Lernsetting, das die Montessori-Pädagogik der Grundschule mit den Förderschwerpunkten der Partnerschule verbindet. Der Träger übernimmt dabei die organisatorische und finanzielle Verantwortung, während die Schule ihre pädagogische Expertise und Infrastruktur einbringt, weil diese Aufteilung die jeweiligen Stärken der Partner nutzt und eine effiziente Projektdurchführung ermöglicht — sodass das Projekt den Förderrichtlinien der Aktion Mensch entspricht und die Schule nicht selbst als Antragstellerin auftreten muss.\n\n## Bedarf und Zielgruppe\n\nAn der Montessori-Grundschule München-Schwabing lernen 200 Kinder in einem Umfeld, das Vielfalt und Eigenverantwortung betont. Dennoch bleiben Begegnungen mit Kindern aus anderen Schulformen bisher selten. `[Annahme: Die meisten unserer Schüler:innen haben keine oder nur geringe Berührungspunkte mit Förderschulen.]` Im Alltag zeigt sich das etwa, wenn eine Kollegin von einer möglichen Kooperation mit einer nahegelegenen Förderschule erzählt: Die Ideen reichen von gemeinsamen Werkstattprojekten bis zu Ausflügen, doch konkrete Schritte fehlen noch. Eltern unserer Schule begrüßen solche Vorhaben, sofern sie den Schulalltag nicht stören – ein wichtiger Hinweis, denn Flexibilität ist hier der Schlüssel.\n\nDas Projekt richtet sich an Kinder beider Schulen: an der Montessori-Grundschule mit rund 200 Schüler:innen und an der anzusprechenden Förderschule. `[TODO: Exakte Anzahl der teilnehmenden Kinder pro Schule vor Projektstart klären]` [Annahme: Der Fokus liegt auf inklusiven Begegnungen, die über den Schulhof hinausgehen – etwa beim gemeinsamen Werken oder bei Ausflügen.] Solche Formate schaffen Räume, in denen Unterschiede selbstverständlich werden und alle voneinander lernen. Die Herausforderung liegt darin, Strukturen zu schaffen, die Begegnungen ermöglichen, ohne die bestehenden Abläufe zu überlasten. Hier setzt das Vorhaben an: Es geht nicht um theoretische Inklusion, sondern um echte Teilhabe im Alltag – mit Werkzeugen, die beide Seiten mitbringen.\n\nWeil die Montessori-Pädagogik auf selbstbestimmtes Lernen und praktische Erfahrungen setzt, bietet sich die Kooperation mit einer Förderschule besonders an: Sie ermöglicht den Kindern beider Schulen, ihre Fähigkeiten in einem neuen Kontext einzubringen und voneinander zu lernen. [Annahme: Die geplante Zusammenarbeit schafft damit eine Brücke zwischen den Schulformen und stärkt die inklusive Haltung der Montessori-Grundschule.]\n\n## Projektidee und Aktivitäten\n\nIn der Montessori-Grundschule München-Schwabing leben Vielfalt und Eigenverantwortung im Alltag – doch echte Begegnungen mit Kindern einer Förderschule finden bisher kaum statt. Um das zu ändern, planen wir eine regelmäßige Kooperation mit einer benachbarten Förderschule, die über das gesamte Schuljahr hinweg konkrete gemeinsame Aktivitäten vorsieht, weil die Montessori-Pädagogik die Bedeutung von sozialen Lernprozessen und realen Begegnungen betont — daher schafft diese Kooperation die Grundlage für inklusive Erfahrungen, die über den schulischen Alltag hinausgehen.\n\n[Annahme: Den Auftakt bildet ein erstes Kennenlernen im Rahmen eines Werkstattprojekts: Gemeinsam mit den Kindern der Förderschule gestalten wir in der Schulwerkstatt einfache Holzarbeiten oder Upcycling-Projekte.] Diese praktischen Einheiten schaffen niedrigschwellige Momente, in denen die Kinder beider Schulen sich begegnen, ohne dass es eines besonderen Programms bedarf – der Raum und das Material werden zum verbindenden Element, weil die Montessori-Pädagogik das Lernen durch Handeln und die Arbeit mit konkretem Material als zentrale Lernform betrachtet — sodass die Werkstattarbeit eine natürliche Begegnungs- und Dialogsituation schafft, die Hemmschwellen abbaut. Im weiteren Verlauf des Schuljahres sind Treffen vorgesehen, die abwechselnd bei uns oder an der Förderschule stattfinden. Denkbar sind Ausflüge in den nahegelegenen Park oder gemeinsame Besuche in der Stadtbibliothek, wo altersübergreifende Lese- oder Erzählrunden angeboten werden können, weil solche Aktivitäten die Lebenswelt der Kinder einbeziehen und gemeinsame Erlebnisse ermöglichen — daher fördern sie die soziale Teilhabe und stärken das Gemeinschaftsgefühl.\n\nDie zeitliche Struktur ist bewusst flexibel gehalten, um den Bedürfnissen beider Schulen gerecht zu werden. Die Eltern unserer Schule betonen, dass der Stundenplan nicht durcheinandergebracht werden soll – daher finden die Treffen vorzugsweise am Nachmittag oder in Randstunden statt, weil die Montessori-Pädagogik die Balance zwischen individuellen Bedürfnissen und gemeinschaftlichen Aktivitäten anstrebt — sodass die zeitliche Flexibilität die Vereinbarkeit mit dem Schulalltag beider Partner sicherstellt.\n\nWeil praktische Erfahrungen und gemeinsames Tun zentrale Elemente der Montessori-Pädagogik sind, eignen sich diese Formate besonders gut: Sie ermöglichen den Kindern, ihre Stärken einzubringen und gleichzeitig neue Perspektiven kennenzulernen, weil die Montessori-Pädagogik auf die Selbstwirksamkeit der Lernenden setzt und Lernen als ganzheitlichen Prozess begreift — sodass die Aktivitäten nicht nur Begegnungen schaffen, sondern auch die individuelle Entwicklung der Kinder fördern. Die Aktivitäten orientieren sich an den Ideen, die bereits im Austausch mit der Kollegin der Förderschule geäußert wurden, und setzen auf Alltagsnähe und Spontanität, weil die Montessori-Pädagogik die Bedeutung von authentischen und lebensnahen Lernerfahrungen betont — daher sichert diese Herangehensweise die Passgenauigkeit und Nachhaltigkeit des Projekts.\n\n## Teilhabe und Partizipation\n\nAn unserer Schule leben Vielfalt und Selbstbestimmung als Grundprinzipien des Montessori-Ansatzes – doch die gelebte Praxis bleibt oft hinter diesem Anspruch zurück. [Annahme: Die Schüler:innen unserer Schule begegnen Kindern mit besonderem Förderbedarf bisher vor allem im Rahmen des regulären Unterrichts, echte gemeinsame Projekte mit externen Partnern finden kaum statt.] Die Idee einer Kooperation mit einer nahegelegenen Förderschule ist uns wichtig, weil wir spüren, dass unsere Kinder von mehr als nur theoretischem Wissen profitieren: von echten Begegnungen, die Neugier wecken und Vorurteile abbauen. Noch haben wir die konkrete Partnerinstitution nicht angefragt – hier steht die Kontaktaufnahme mit der benachbarten Förderschule noch aus – doch die Kollegin von dort hatte bereits konkrete Vorschläge, etwa gemeinsame Werkprojekte in der Schulwerkstatt oder thematische Ausflüge, die über den klassischen Unterricht hinausgehen.\n\nDer Kern unseres Vorhabens wird sein, dass die Kinder beider Schulen nicht nur Gäste oder Zuschauer sind, sondern Gestalter:innen. Wir schlagen vor, dass die Schüler:innen beider Schulen in gemischten Kleingruppen selbst entscheiden, welche Projekte sie umsetzen – sei es ein gemeinsames Theaterstück, ein Werkstück für den Schulhof oder ein kleines Forschungsprojekt zu einem Thema, das beide Gruppen bewegt. Die Montessori-Grundschule bringt dabei ihre Erfahrung mit freiem, projektorientiertem Lernen ein, während die Förderschule ihre Expertise in individueller Förderung einbringt.\n\nEntscheidend ist, dass die Kinder nicht nur mitmachen, sondern mitbestimmen: Sie wählen Themen, verteilen Aufgaben und präsentieren Ergebnisse – etwa beim geplanten Abschlussfest am Schuljahresende. So wird Teilhabe nicht nur behauptet, sondern erlebbar: Die jungen Menschen gestalten aktiv mit, statt nur zu konsumieren. Weil das Projekt auf den Prinzipien der Montessori-Pädagogik aufbaut, die Selbstwirksamkeit und Eigenverantwortung betont, bietet es den Kindern die Möglichkeit, ihre Fähigkeiten in einem neuen Kontext einzusetzen und gleichzeitig soziale Kompetenzen zu stärken.\n\n## Barrierefreiheit\n\nDas Vorhaben zielt darauf ab, die soziale Barriere zwischen unserer Montessori-Grundschule und einer benachbarten Förderschule abzubauen, indem gemeinsame Lernsettings geschaffen werden, die Begegnung und Austausch ermöglichen. [Annahme: Bisher finden kaum systematische Kooperationen mit anderen Schulformen statt, obwohl die Montessori-Pädagogik Vielfalt betont.] Diese soziale Barriere zeigt sich etwa darin, dass unsere Schüler*innen trotz des pädagogischen Anspruchs auf Inklusion überwiegend unter sich bleiben und echte Begegnungen mit Kindern anderer Schulformen selten sind. Durch die Zusammenarbeit mit der Förderschule – etwa in Form gemeinsamer Werkstattprojekte oder Ausflüge – soll eine Kultur der Teilhabe gestärkt werden, die über den Unterricht hinausgeht.\n\nKommunikativ wird das Projekt darauf setzen, Vorurteile und Unsicherheiten abzubauen, die auf beiden Seiten bestehen. Viele Eltern unserer Schule befürworten solche Begegnungen, sofern sie den Schulalltag nicht zusätzlich belasten – ein Punkt, den wir durch klare Absprachen mit der Förderschule adressieren werden. [TODO: Gemeinsames Konzept mit der Förderschule vor Einreichung finalisieren]\n\nAssistive Technologien oder zusätzliche Begleitpersonen sind im Rahmen dieses Vorhabens nicht vorgesehen, da die geplanten Aktivitäten auf natürliche Inklusion setzen und keine spezifischen Hilfsmittel erfordern. Dennoch achten wir darauf, dass die Räumlichkeiten und Materialien für alle Kinder zugänglich sind und die Aktivitäten so gestaltet werden, dass sie keine zusätzlichen Barrieren schaffen.\n\n## Wirkung und Nachhaltigkeit\n\nAn unserer Schule möchten wir mit einer benachbarten Förderschule eine langfristige Kooperation aufbauen, die echte Begegnungen zwischen den Kindern ermöglicht und so die inklusive Haltung unserer Montessori-Grundschule stärkt. [Annahme: Bisher finden solche Begegnungen kaum statt; die Kinder bleiben weitgehend unter sich.] Ein konkreter Ansatz hierfür sind gemeinsame Werkprojekte in unserer gut ausgestatteten Schulwerkstatt, die den Kindern beider Schulen Raum für gemeinsames Tun und Austausch geben.\n\nFür die teilnehmenden Kinder erwarten wir, dass sie durch die gemischten Gruppen und die praktischen Aktivitäten ihre sozialen Kompetenzen erweitern und Selbstvertrauen aufbauen. Sie lernen, sich in neuen Kontexten auszuprobieren und Verantwortung für gemeinsame Projekte zu übernehmen. Für die Institution Schule streben wir an, dass die Kooperation als fester Baustein der inklusiven Ausrichtung verankert wird – etwa durch wiederkehrende Formate, die in den Schulalltag integriert sind und von beiden Kollegien getragen werden.\n\nDie Nachhaltigkeit sichern wir durch drei Schritte: Erstens die verbindliche Verankerung der Kooperation im Schulprogramm, zweitens die Einbindung der Eltern als Multiplikator:innen und drittens die Dokumentation der Erfahrungen, um sie an andere Montessori-Schulen weiterzugeben. So wird aus der anfänglichen Idee eine Struktur, die über das Projektende hinaus wirkt – ganz im Sinne der inklusiven Werte, die unser Montessori-Profil tragen.\n\nWeil das Projekt auf den Prinzipien der Montessori-Pädagogik aufbaut, die Selbstwirksamkeit und Eigenverantwortung betont, bietet es den Kindern die Möglichkeit, ihre Fähigkeiten in einem neuen Kontext einzusetzen und gleichzeitig soziale Kompetenzen zu stärken. Diese Erfahrungen prägen nicht nur die teilnehmenden Kinder, sondern wirken auch in die Schulgemeinschaft hinein und fördern eine Kultur der Offenheit und des Miteinanders.\n\n## Finanzierungs- und Kostenplan\n\nDer Finanzierungs- und Kostenplan für das Vorhaben der Montessori-Grundschule München-Schwabing orientiert sich an den geplanten Kooperationen mit einer benachbarten Förderschule und setzt auf eine Mischfinanzierung aus Eigenmitteln und beantragten Fördergeldern. Als Eigenanteil von mindestens 10 % der Gesamtkosten sind Mittel in Höhe von rund 3.800 € (Schätzung, vor Einreichung durch konkrete Zusagen zu belegen) eingeplant. Diese Eigenmittel sollen aus dem Haushalt der Schule sowie durch den eingetragenen Förderverein aufgebracht werden; die Gemeinnützigkeit des Vereins ist noch zu klären und bedarf einer schriftlichen Bestätigung vor Antragstellung.\n\nFür die Umsetzung des Projekts werden folgende Hauptposten veranschlagt: Personalmittel für die Projektkoordination Inklusion (15.000 €, Tarifgruppe und Eingruppierung noch mit dem Schulträger zu klären), Honorare für externe Workshops und Begleitung (8.000 €, Angebote noch einzuholen), Sachmittel für projektbezogenes Material (3.000 €), sowie Reise- und Transportkosten für gemeinsame Ausflüge (2.000 €). Die beantragten Fördermittel in Höhe von bis zu 135.000 € sollen vorrangig in die Anschaffung von assistiven Technologien (5.000 €), die Honorare für die Koordination und Durchführung der Begegnungsformate (15.000 €) sowie die Verwaltungskosten (1.500 €) fließen. Overhead-Kosten werden mit 10 % der förderfähigen Kosten veranschlagt und umfassen Verwaltung, Versicherung und Dokumentation.\n\nDie konkrete Verteilung der Mittel wird im Rahmen der weiteren Konzeptentwicklung mit der potenziellen Partnerschule abgestimmt. Hierzu zählt auch die Klärung der Bereitschaft der Förderschule zur Zusammenarbeit sowie die Abstimmung der geplanten Aktivitäten wie gemeinsame Werkprojekte oder Ausflüge. [Annahme: Die genauen Kostenansätze sind abhängig von den noch einzuholenden Angeboten und Zusagen und werden vor der finalen Antragstellung präzisiert.]",
       "finanzplan": {
         "posten": [
           {
-            "id": "57f40db9-6a24-47d6-9c0b-c5b6dadc738b",
-            "kategorie": "honorare",
-            "bezeichnung": "Externe Koordination Inklusionsprojekt",
+            "id": "b4641f5b-b7a0-461f-a34c-f0e598edbbe3",
+            "kategorie": "personal",
+            "bezeichnung": "Projektkoordination Inklusion",
             "betragEur": 15000,
-            "begruendung": "Schaetzung: Pauschale für externe Koordination der Schulkooperation (z. B. Vorbereitung, Abstimmung mit Foerderschule, Dokumentation) — Honorarsatz nicht vom User genannt",
+            "begruendung": "Schaetzung: 1 Teilzeitstelle (50%) für Koordination der Kooperation mit Foerderschule, inkl. Planung, Dokumentation und Netzwerkarbeit. Stundensatz und genaue Stunden nicht vom User genannt — Pauschale basierend auf üblichen Trägerkosten für vergleichbare Stellen.",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "e5a99a02-cf7b-4f9e-b6bc-51249a70b10b",
+            "id": "04da083a-1a9d-4e9f-b854-f94ba64c3a62",
             "kategorie": "honorare",
-            "bezeichnung": "Workshop-Leitung für gemeinsame Projekte",
+            "bezeichnung": "Externe Workshops und Begleitung",
             "betragEur": 8000,
-            "begruendung": "Schaetzung: Externe Honorarkräfte für gemeinsame Werkstatt-Projekte oder Ausflüge (z. B. Begleitung, Anleitung) — Anzahl und Stundensatz nicht vom User genannt",
+            "begruendung": "Schaetzung: Honorare für externe Fachkräfte (z. B. Inklusionsberatung, Peer-Coaches) für gemeinsame Aktivitäten wie Werkstätten oder Ausflüge. Saetze und Anzahl nicht vom User genannt — Pauschale für typische Projektkosten.",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "a65309d9-8849-48cb-b52b-ef7c39d726c8",
+            "id": "42c38e9e-d1a4-4b2d-bc71-dbc82402faae",
             "kategorie": "sachkosten",
-            "bezeichnung": "Projektmaterial für gemeinsame Aktivitäten",
-            "betragEur": 5000,
-            "begruendung": "Schaetzung: Material für gemeinsame Projekte (z. B. Werkstoffe, Druckkosten für Einladungen) — konkrete Menge und Kosten nicht vom User genannt",
+            "bezeichnung": "Projektbezogenes Material",
+            "betragEur": 3000,
+            "begruendung": "Schaetzung: Material für gemeinsame Aktivitäten (z. B. Werkstoffe, Druckkosten für Einladungen, Lizenzen für digitale Tools). Konkrete Posten nicht vom User genannt — Pauschale für übliche Sachkosten in Inklusionsprojekten.",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "36ff19e9-7a10-4240-9aab-4d7f58a42d9d",
+            "id": "e59aa01d-1eb2-490c-8dba-3343b5a18ecc",
             "kategorie": "reisekosten",
-            "bezeichnung": "Mobilität für gemeinsame Exkursionen",
-            "betragEur": 4000,
-            "begruendung": "Schaetzung: Fahrtkosten und ggf. Begleitung für gemeinsame Ausflüge (z. B. ÖPNV, Taxi bei Bedarf) — Anzahl und Kosten nicht vom User genannt",
+            "bezeichnung": "Mobilität für Teilnehmende",
+            "betragEur": 2000,
+            "begruendung": "Schaetzung: Fahrtkosten für gemeinsame Ausflüge oder Besuche zwischen den Schulen, inkl. Begleitung für Teilnehmende mit Behinderung. Konkrete Strecken und Anzahl nicht vom User genannt — Pauschale für übliche Mobilitätskosten.",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "a8140df7-79fa-4842-8872-581de69e3970",
+            "id": "fac78677-9cc5-41dd-90ef-47e85be97cb3",
             "kategorie": "investitionen",
-            "bezeichnung": "Assistive Technologien für Teilhabe",
-            "betragEur": 12000,
-            "begruendung": "Schaetzung: Ggf. notwendige Geräte für inklusive Projekte (z. B. Tablets mit Anpassungen) — konkrete Ausstattung und Kosten nicht vom User genannt",
+            "bezeichnung": "Assistive Technologien",
+            "betragEur": 5000,
+            "begruendung": "Schaetzung: Leihgeräte oder Anschaffungen für Teilhabe (z. B. Tablets mit Assistenz-Apps, taktile Materialien). Konkrete Geräte und Mengen nicht vom User genannt — Pauschale für typische Investitionen in Inklusionsprojekten.",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "9130653a-ba2f-4cf9-bcdf-94ff0a89827d",
+            "id": "0749a1de-24d0-4368-91d6-87c90db4f9cc",
             "kategorie": "overhead",
-            "bezeichnung": "Verwaltungskosten des Trägers",
-            "betragEur": 4300,
-            "begruendung": "10 % der förderfähigen Kosten (15.000 + 8.000 + 5.000 + 4.000 + 12.000) als Overhead gemäß Richtlinie",
+            "bezeichnung": "Verwaltungskosten",
+            "betragEur": 1500,
+            "begruendung": "Schaetzung: 10% Overhead auf die förderfähigen Kosten (15.000 + 8.000 + 3.000 + 2.000 + 5.000 = 33.000 EUR) gemäß Richtlinie. Maximal 10% anerkannt.",
             "eigenanteil": false,
+            "istVorschlag": true
+          },
+          {
+            "id": "37175f53-9322-47e9-b5f9-eb5fd7be358f",
+            "kategorie": "sonstiges",
+            "bezeichnung": "Eigenanteil (10%)",
+            "betragEur": 3800,
+            "begruendung": "Pflicht-Eigenanteil von 10% der Gesamtkosten (38.000 EUR). Kann durch Träger (Foerderverein) oder Sachleistungen (z. B. Nutzung der Schulwerkstatt) eingebracht werden.",
+            "eigenanteil": true,
             "istVorschlag": true
           }
         ],
-        "generiertAm": "2026-07-22T13:01:24.790Z",
+        "generiertAm": "2026-07-23T10:44:13.880Z",
         "hinweise": [
           "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
-          "Alle Beträge sind grobe Schaetzungen ohne konkrete Angebote oder Mengenangaben der Schule — vor Einreichung durch Angebote belegen.",
-          "Foerderschule noch nicht kontaktiert, Kooperationspartner und -umfang unklar — Projektkonzept muss vor Antragstellung erarbeitet werden.",
-          "Gemeinnützigkeit des Foerdervereins muss vor Antragstellung geklärt werden.",
-          "Eigenanteil von mindestens 10 % (4.830 EUR) muss durch Träger oder Kooperationspartner erbracht werden (finanziell, Sachleistungen oder Eigenarbeit).",
-          "Honorar- und Materialposten basieren auf Annahmen zu gemeinsamen Aktivitäten (Werkstatt, Ausflüge) — konkrete Planung erforderlich.",
-          "Assistive Technologien nur förderfähig, wenn sie projektbezogen und nicht für reguläre Schulausstattung sind.",
-          "Der Betrag für „Externe Koordination Inklusionsprojekt\" (15.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Workshop-Leitung für gemeinsame Projekte\" (8.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Projektmaterial für gemeinsame Aktivitäten\" (5.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Mobilität für gemeinsame Exkursionen\" (4.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Assistive Technologien für Teilhabe\" (12.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Die Förderung (48.300 EUR) entspricht 100 % der Gesamtkosten — dieses Programm fördert höchstens 90 %. Es fehlt ein Eigenanteil von mind. 5.367 EUR (Gesamtkosten dann 53.667 EUR). Ergänzen Sie einen Eigenanteil-Posten oder senken Sie die beantragte Förderung, sonst verletzt der Antrag die Förderquote."
+          "Alle Beträge sind grobe Schaetzungen ohne konkrete Angebote oder Mengenangaben der Schule — vor Einreichung durch Angebote und detaillierte Planung belegen.",
+          "Projektkonzept und Zielgruppe müssen noch konkretisiert werden (z. B. Anzahl Teilnehmende, Art der Aktivitäten).",
+          "Kooperationspartner (Foerderschule) und Trägerstruktur (Gemeinnützigkeit) müssen vor Antragstellung geklärt werden.",
+          "Honorar- und Personalkosten für Lehrkräfte sind nicht förderfähig (Richtlinie).",
+          "Investitionen müssen projektspezifisch sein und dürfen reguläre Schulausstattung nicht ersetzen.",
+          "Eigenanteil kann durch Sachleistungen (z. B. Nutzung der Werkstatt) oder finanzielle Mittel des Trägers eingebracht werden.",
+          "Der Betrag für „Projektkoordination Inklusion\" (15.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Externe Workshops und Begleitung\" (8.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Projektbezogenes Material\" (3.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Mobilität für Teilnehmende\" (2.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Assistive Technologien\" (5.000 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Verwaltungskosten\" (1.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
         ]
       }
     },
@@ -853,127 +940,134 @@
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5977,
-          "candidatesTokens": 354
+          "candidatesTokens": 416
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5995,
-          "candidatesTokens": 371
+          "candidatesTokens": 366
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5915,
-          "candidatesTokens": 493
+          "candidatesTokens": 486
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5942,
-          "candidatesTokens": 421
+          "candidatesTokens": 411
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5929,
-          "candidatesTokens": 321
+          "candidatesTokens": 361
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5923,
-          "candidatesTokens": 385
+          "candidatesTokens": 470
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 5939,
-          "candidatesTokens": 413
+          "candidatesTokens": 518
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 8546,
-          "candidatesTokens": 2156
+          "promptTokens": 8817,
+          "candidatesTokens": 2068
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 11206,
-          "candidatesTokens": 2242
+          "promptTokens": 11264,
+          "candidatesTokens": 3007
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 7636,
-          "candidatesTokens": 769
+          "promptTokens": 1170,
+          "candidatesTokens": 1429
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3726,
-          "candidatesTokens": 1328
+          "promptTokens": 8816,
+          "candidatesTokens": 767
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3042,
-          "candidatesTokens": 2203
+          "promptTokens": 5119,
+          "candidatesTokens": 2253
+        }
+      },
+      {
+        "model": "mistral-small-latest",
+        "usage": {
+          "promptTokens": 4995,
+          "candidatesTokens": 3631
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 3397,
-          "candidatesTokens": 831
+          "candidatesTokens": 1027
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3438,
-          "candidatesTokens": 401
+          "promptTokens": 5076,
+          "candidatesTokens": 794
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3743,
-          "candidatesTokens": 2157
+          "promptTokens": 5523,
+          "candidatesTokens": 3483
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3391,
-          "candidatesTokens": 322
+          "promptTokens": 4928,
+          "candidatesTokens": 493
         }
       }
     ]
   },
   "meta": {
-    "iso": "2026-07-22T13-01-40",
+    "iso": "2026-07-23T10-44-38",
     "runIndex": 3,
-    "pipelineCommitSha": "1f0d8782",
+    "pipelineCommitSha": "99a74cd7",
     "featureFlags": {
       "useVorbildFormulierungen": "true",
       "complianceStageEnabled": "false",
       "sharpPrompts": "true",
       "geberRoutingV2": "true"
     },
-    "latencyMs": 95838,
+    "latencyMs": 176207,
     "schemaVersion": 1
   }
 }

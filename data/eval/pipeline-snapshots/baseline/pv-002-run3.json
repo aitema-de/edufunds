@@ -44,11 +44,12 @@
       "bemerkung": "Programmphase 2023-2027: 250 Mio. € Gesamtvolumen (50 Mio. €/Jahr). Fördert außerschulische kulturelle Bildung: Musik, Theater, Literatur, digitale Spielekultur, Alltagskultur. Zielgruppe: benachteiligte Kinder/Jugendliche 3-18 J.",
       "fristZustand": {
         "art": "unbekannt",
-        "quelle": "Primaerquelle buendnisse-fuer-bildung.de, geprueft 22.07.2026: Die Uebersichtsseite nennt keine Fristen, sondern verweist auf einen Terminkalender und das Antragsportal Kumasta. Fristen variieren je Programmpartner (so auch der Katalog-Fristtext: 'variabel je nach Programmpartner'). Eine pauschale Frist fuer 'Kultur macht stark' existiert nicht - der Zustand ist je Partner zu erheben."
+        "quelle": "Primaerquelle buendnisse-fuer-bildung.de, geprueft 22.07.2026: Die Uebersichtsseite nennt keine Fristen, sondern verweist auf einen Terminkalender und das Antragsportal Kumasta. Fristen variieren je Programmpartner (so auch der Katalog-Fristtext: 'variabel je nach Programmpartner'). Eine pauschale Frist fuer 'Kultur macht stark' existiert nicht - der Zustand ist je Partner zu erheben. | Kumasta3-API geprueft 22.07.2026: alle 27 Programmpartner-Angebote stehen auf allowApplicationSubmission=true, obwohl einzelne Angebotstexte eigene kuenftige Fristen nennen (z.B. POP TO GO: regulaere Ausschreibung fuers Foerderjahr 2027) — das Flag belegt nur technische Einreichbarkeit, keine laufende Foerderrunde je Partner; Zustand bleibt unbekannt."
       },
       "umfangZustand": {
-        "art": "unbekannt",
-        "quelle": "Geprueft 22.07.2026: Antragstellung laeuft je Programmpartner ueber das Kumasta-Portal; die Uebersichtsseiten nennen keine Feldlimits. Wie beim fristZustand gilt: je Programmpartner zu erheben."
+        "art": "zeichen",
+        "wert": 8000,
+        "quelle": "Empirisch am zentralen Antragsportal Kumasta erhoben (kumasta3.buendnisse-fuer-bildung.de, 22.07.2026, OHNE Konto — die Limits stehen im oeffentlich ausgelieferten App-Bundle main.09761a46.js, Build 3.1.7): Beschreibung des Gesamtprojekts 8000 Zeichen, Ablaufbeschreibung je Einzelprojekt 8000, Buendnistreffen-/Workshop-Erlaeuterungen 8000, Methoden-/Zielgruppen-Frage 3000, Finanzplan-Erlaeuterung je Position 1300, Organisations-Kurzbeschreibung 850. wert=8000 bezeichnet die Beschreibung des Gesamtprojekts (zentrales Pflicht-Freitextfeld). Portal OFFEN: Self-Service-Registrierung (Strapi /api/auth/local/register; Schritte Personendaten -> Organisation -> Zugangsdaten), kein Traeger-Gate, KEINE Engagement-Global-Software (kein kommdaten_-Feldschema). Alte Portaladresse kumasta.buendnisse-fuer-bildung.de ist tot (Connect-Timeout)."
       }
     },
     "facts": {
@@ -96,7 +97,7 @@
       }
     },
     "richtlinie": {
-      "version": "2026-05-19",
+      "version": "2026-07-22",
       "quellen": [
         "https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/foerderrichtlinie-2023-2027/foerderrichtlinie-2023-2027_node.html",
         "https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/Kultur-macht-stark-2023-2027/Programmpartner-2023-2027/Programmpartner-2023-2027_node.html"
@@ -220,7 +221,9 @@
               "Welches Format (Workshop, Kurs, Ferienwoche, langfristige Begleitung)?",
               "Welche pädagogischen Ansätze werden verwendet?",
               "Wie verknüpft das Projekt Kultur + Bildung + Sozialarbeit?"
-            ]
+            ],
+            "maxZeichen": 8000,
+            "stilhinweis": " Umfangsbeleg (Kumasta-Portal, 22.07.2026): Feld 'Beschreibung des Gesamtprojekts' max. 8000 Zeichen; die separate Methoden-Frage ('Welche Methoden werden eingesetzt? Warum fuer die Zielgruppe geeignet? Finden inklusive, gender- und diversitaetssensible, partizipative, medienpaedagogische Ansaetze Beruecksichtigung?') max. 3000 Zeichen."
           },
           {
             "id": "außerschulisch",
@@ -241,7 +244,9 @@
               "Welche Einzelaktivitäten in welcher Reihenfolge?",
               "Wie viele Stunden Kinder-/Jugendkontakt pro Teilnehmende*r?",
               "Welche Meilensteine?"
-            ]
+            ],
+            "maxZeichen": 8000,
+            "stilhinweis": " Umfangsbeleg (Kumasta-Portal, 22.07.2026): Ablaufbeschreibung je Einzelprojekt ('schedule', konkrete Termine + Uhrzeiten; Portal-Hinweis: 'Nutzen Sie die zur Verfuegung stehenden Zeichen fuer eine ausfuehrliche Ablaufbeschreibung') max. 8000 Zeichen."
           },
           {
             "id": "Qualitätssicherung",
@@ -261,7 +266,8 @@
               "Welche Kostenposten (Honorare, Sachkosten, Aufwandsentschädigungen) mit Beträgen?",
               "Welche Eigenleistungen bringen die Bündnispartner ein (Räume, Arbeitszeit, Sachleistungen)?",
               "Ist die 7 %-Verwaltungspauschale kalkuliert?"
-            ]
+            ],
+            "stilhinweis": " Umfangsbeleg (Kumasta-Portal, 22.07.2026): Erlaeuterungsfeld je Finanzplan-Position max. 1300 Zeichen."
           }
         ],
         "anlagen": [
@@ -280,7 +286,9 @@
         "Antragsportal für förmlichen Antrag (nach Skizzen-Bewilligung): https://foerderportal.bund.de/easyonline/",
         "Programmpartner-Liste (20+ Verbände): https://www.buendnisse-fuer-bildung.de/buendnissefuerbildung/de/programm/Kultur-macht-stark-2023-2027/Programmpartner-2023-2027/",
         "Abgrenzung zum Regel-Unterricht ist das häufigste Ablehnungsthema — Infoblatt 'Außerschulischkeit' des BMBF lesen, bevor das Konzept geschrieben wird.",
-        "Die Förderrichtlinie läuft 2023-2027. Nach 2027 ist eine Anschlussphase geplant aber nicht bestätigt."
+        "Die Förderrichtlinie läuft 2023-2027. Nach 2027 ist eine Anschlussphase geplant aber nicht bestätigt.",
+        "Kumasta-Portal (empirisch geprueft 22.07.2026): Aktuelles Antragsportal ist kumasta3.buendnisse-fuer-bildung.de (React-SPA + Strapi-API; die alte Adresse kumasta.buendnisse-fuer-bildung.de ist tot). Registrierung self-service in drei Schritten (Personendaten, Organisation, Zugangsdaten) — kein Traeger-Gate, damit OFFEN im Sinne der Portal-Taxonomie. Feldlimits stehen im oeffentlichen App-Bundle: Gesamtprojekt-Beschreibung 8000, Ablaufbeschreibung je Einzelprojekt 8000, Buendnistreffen-/Workshop-Erlaeuterungen 8000, Methoden-Frage 3000, Finanzplan-Erlaeuterung 1300, Organisations-Kurzbeschreibung 850 Zeichen.",
+        "Kumasta-API 22.07.2026: alle 27 Programmpartner-Angebote nehmen technisch Antraege an (allowApplicationSubmission=true) — dieses Flag NICHT als Beleg fuer offene Foerderrunden verwenden; die realen Fristen setzt jeder Programmpartner selbst (teils in den Angebotstexten dokumentiert, z.B. POP TO GO fuers Foerderjahr 2027)."
       ],
       "bestPractices": [
         {
@@ -351,11 +359,12 @@
       },
       "fristZustand": {
         "art": "unbekannt",
-        "quelle": "Primaerquelle buendnisse-fuer-bildung.de, geprueft 22.07.2026: Die Uebersichtsseite nennt keine Fristen, sondern verweist auf einen Terminkalender und das Antragsportal Kumasta. Fristen variieren je Programmpartner (so auch der Katalog-Fristtext: 'variabel je nach Programmpartner'). Eine pauschale Frist fuer 'Kultur macht stark' existiert nicht - der Zustand ist je Partner zu erheben."
+        "quelle": "Primaerquelle buendnisse-fuer-bildung.de, geprueft 22.07.2026: Die Uebersichtsseite nennt keine Fristen, sondern verweist auf einen Terminkalender und das Antragsportal Kumasta. Fristen variieren je Programmpartner (so auch der Katalog-Fristtext: 'variabel je nach Programmpartner'). Eine pauschale Frist fuer 'Kultur macht stark' existiert nicht - der Zustand ist je Partner zu erheben. | Kumasta3-API geprueft 22.07.2026: alle 27 Programmpartner-Angebote stehen auf allowApplicationSubmission=true, obwohl einzelne Angebotstexte eigene kuenftige Fristen nennen (z.B. POP TO GO: regulaere Ausschreibung fuers Foerderjahr 2027) — das Flag belegt nur technische Einreichbarkeit, keine laufende Foerderrunde je Partner; Zustand bleibt unbekannt."
       },
       "umfangZustand": {
-        "art": "unbekannt",
-        "quelle": "Geprueft 22.07.2026: Antragstellung laeuft je Programmpartner ueber das Kumasta-Portal; die Uebersichtsseiten nennen keine Feldlimits. Wie beim fristZustand gilt: je Programmpartner zu erheben."
+        "art": "zeichen",
+        "wert": 8000,
+        "quelle": "Empirisch am zentralen Antragsportal Kumasta erhoben (kumasta3.buendnisse-fuer-bildung.de, 22.07.2026, OHNE Konto — die Limits stehen im oeffentlich ausgelieferten App-Bundle main.09761a46.js, Build 3.1.7): Beschreibung des Gesamtprojekts 8000 Zeichen, Ablaufbeschreibung je Einzelprojekt 8000, Buendnistreffen-/Workshop-Erlaeuterungen 8000, Methoden-/Zielgruppen-Frage 3000, Finanzplan-Erlaeuterung je Position 1300, Organisations-Kurzbeschreibung 850. wert=8000 bezeichnet die Beschreibung des Gesamtprojekts (zentrales Pflicht-Freitextfeld). Portal OFFEN: Self-Service-Registrierung (Strapi /api/auth/local/register; Schritte Personendaten -> Organisation -> Zugangsdaten), kein Traeger-Gate, KEINE Engagement-Global-Software (kein kommdaten_-Feldschema). Alte Portaladresse kumasta.buendnisse-fuer-bildung.de ist tot (Connect-Timeout)."
       }
     },
     "messages": [
@@ -364,112 +373,112 @@
         "role": "ai",
         "kind": "question",
         "content": "Welches kuenstlerische oder kulturelle Projekt moechten Sie mit Kultur macht stark umsetzen, und welche Kinder sollen davon profitieren?",
-        "at": "2026-07-22T11:09:53.616Z"
+        "at": "2026-07-23T08:38:17.283Z"
       },
       {
         "id": "1",
         "role": "user",
         "kind": "answer",
         "content": "Wir wollen so ein Theaterprojekt machen, fuer Kinder die sonst nicht so viel Kultur erleben. Unsere Kunstlehrerin Frau Mueller hat das vorgeschlagen.",
-        "at": "2026-07-22T11:09:53.616Z"
+        "at": "2026-07-23T08:38:17.283Z"
       },
       {
         "id": "2",
         "role": "ai",
         "kind": "question",
         "content": "Wie viele Kinder sollen teilnehmen, und haben Sie schon Partnerorganisationen aus Kultur, Bildung und Sozialarbeit im Blick fuer das Buendnis?",
-        "at": "2026-07-22T11:09:53.616Z"
+        "at": "2026-07-23T08:38:17.283Z"
       },
       {
         "id": "3",
         "role": "user",
         "kind": "answer",
         "content": "Vielleicht 20 bis 30 Kinder? Partner... da gibt es irgendwie einen Jugendclub in der Naehe, glaube ich. Und vielleicht die Stadtbibliothek? Ob die mitmachen weiss ich nicht.",
-        "at": "2026-07-22T11:09:53.616Z"
+        "at": "2026-07-23T08:38:17.283Z"
       },
       {
         "id": "4",
         "role": "ai",
         "kind": "question",
         "content": "Wer wuerde den Antrag formal stellen? Bei Kultur macht stark muss ein gemeinnuetziger Traeger federführend sein, nicht die Schule selbst.",
-        "at": "2026-07-22T11:09:53.616Z"
+        "at": "2026-07-23T08:38:17.283Z"
       },
       {
         "id": "5",
         "role": "user",
         "kind": "answer",
         "content": "Keine Ahnung, das macht doch normalerweise die Schule oder? Wir haben da wenig Erfahrung damit.",
-        "at": "2026-07-22T11:09:53.616Z"
+        "at": "2026-07-23T08:38:17.283Z"
       },
       {
         "id": "6",
         "role": "ai",
         "kind": "question",
         "content": "Welches Budget haben Sie im Kopf, und wie viele Projektstunden sind geplant?",
-        "at": "2026-07-22T11:09:53.616Z"
+        "at": "2026-07-23T08:38:17.283Z"
       },
       {
         "id": "7",
         "role": "user",
         "kind": "answer",
         "content": "Budget weiss ich nicht. Irgendwas was reicht fuer einen Theaterprofi fuer ein paar Wochen. Stunden... vielleicht einmal pro Woche?",
-        "at": "2026-07-22T11:09:53.616Z"
+        "at": "2026-07-23T08:38:17.283Z"
       },
       {
         "id": "8",
         "role": "ai",
         "kind": "question",
         "content": "Was soll sich fuer die teilnehmenden Kinder konkret veraendern — woran wuerden Sie am Ende erkennen, dass das Projekt gewirkt hat?",
-        "at": "2026-07-22T11:09:53.616Z"
+        "at": "2026-07-23T08:38:17.283Z"
       },
       {
         "id": "9",
         "role": "user",
         "kind": "answer",
         "content": "Also Frau Mueller sagt immer, die Kinder trauen sich nichts zu. Wenn die am Ende auf einer Buehne stehen und was vor Publikum sagen, waere das schon riesig. Und vielleicht, dass sie sich auch im Unterricht mehr melden.",
-        "at": "2026-07-22T11:09:53.616Z"
+        "at": "2026-07-23T08:38:17.283Z"
       },
       {
         "id": "10",
         "role": "ai",
         "kind": "question",
         "content": "Wie soll das Projekt konkret ablaufen — ueber welchen Zeitraum, mit welchem Abschluss?",
-        "at": "2026-07-22T11:09:53.616Z"
+        "at": "2026-07-23T08:38:17.283Z"
       },
       {
         "id": "11",
         "role": "user",
         "kind": "answer",
         "content": "Wir dachten an ein Schulhalbjahr, immer nachmittags nach dem Unterricht. Am Ende soll es eine richtige Auffuehrung geben, vielleicht in der Aula, zu der auch die Eltern kommen.",
-        "at": "2026-07-22T11:09:53.616Z"
+        "at": "2026-07-23T08:38:17.283Z"
       },
       {
         "id": "12",
         "role": "ai",
         "kind": "question",
         "content": "Was passiert nach dem Projektende — soll etwas davon an der Schule bleiben?",
-        "at": "2026-07-22T11:09:53.616Z"
+        "at": "2026-07-23T08:38:17.283Z"
       },
       {
         "id": "13",
         "role": "user",
         "kind": "answer",
         "content": "Schoen waere eine feste Theater-AG. Frau Mueller wuerde die wohl weitermachen, aber alleine schafft sie das nicht jedes Jahr. Vielleicht kann der Jugendclub da dauerhaft mit einsteigen?",
-        "at": "2026-07-22T11:09:53.616Z"
+        "at": "2026-07-23T08:38:17.283Z"
       },
       {
         "id": "14",
         "role": "ai",
         "kind": "question",
         "content": "Erreichen Sie die Kinder, um die es geht — wie stellen Sie sicher, dass gerade die teilnehmen, die sonst keinen Zugang zu Kultur haben?",
-        "at": "2026-07-22T11:09:53.616Z"
+        "at": "2026-07-23T08:38:17.283Z"
       },
       {
         "id": "15",
         "role": "user",
         "kind": "answer",
         "content": "Die Klassenlehrerinnen kennen ihre Kinder gut und wuerden gezielt ansprechen. Bei uns haben viele Familien wenig Geld, das Angebot muss auf jeden Fall kostenlos sein, sonst kommt keiner.",
-        "at": "2026-07-22T11:09:53.616Z"
+        "at": "2026-07-23T08:38:17.283Z"
       }
     ]
   },
@@ -511,128 +520,121 @@
       "sections": [
         {
           "name": "Bündnis-Konstellation",
-          "text": "Das lokale Bündnis für das Theaterprojekt „Gemeinschaft auf der Bühne“ setzt sich aus drei Partnern zusammen, die die Bereiche Kultur, Bildung und Soziales abdecken. Federführend übernimmt die Gemeinschaftsgrundschule Wuppertal-Elberfeld die Rolle des Bündnispartners mit der inhaltlichen Verantwortung für die pädagogische Umsetzung und die direkte Ansprache der Zielgruppe. Die Kunstlehrerin Frau Müller koordiniert das Vorhaben und stellt die Verbindung zwischen schulischem Alltag und theaterpädagogischer Praxis her. Als kultureller Partner wird der Jugendclub Elberfeld eingebunden, der mit seiner Infrastruktur (Probenraum, Bühnenausstattung) und seiner Erfahrung in der Arbeit mit Kindern und Jugendlichen die praktische Durchführung unterstützt. Die Stadtbibliothek Wuppertal-Elberfeld übernimmt die sozialräumliche Schnittstelle: Sie identifiziert gezielt Kinder mit geringem Kulturzugang, organisiert Elternabende zur Projektvorstellung und stellt Räumlichkeiten für öffentliche Aufführungen bereit.\n\nDie Aufgabenverteilung folgt dem Prinzip der subsidiären Expertise: Die Schule bringt ihr Wissen um die Bedarfe der Kinder ein und ermöglicht die Teilnahme im schulischen Umfeld. Der Jugendclub verantwortet die theaterpädagogische Leitung durch eine externe Fachkraft (Theaterpädagoge:in) und organisiert die Aufführungen inklusive Technik und Bühnenbild. Die Stadtbibliothek übernimmt die Öffentlichkeitsarbeit und die Einbindung des sozialen Umfelds, insbesondere durch die gezielte Ansprache von Familien mit Migrationshintergrund und geringem Einkommen. Eine schriftliche Kooperationsvereinbarung zwischen den Partnern wird vor Antragstellung erstellt, um die verbindliche Aufgabenverteilung und die Kostenübernahme zu regeln.\n\n[TODO: Federführung und Mittelverwaltung klären – aktuell ist unklar, ob die Schule als Bündnispartner oder der Jugendclub als gemeinnütziger Träger den Antrag stellt.]\n[TODO: Externe Theaterfachkraft benennen und Honorarangebot einholen – voraussichtlich rund 15.000 € (Schätzung, vor Einreichung durch Angebote zu belegen).]"
+          "text": "Als federführender Partner für das Bündnis fungiert der [TODO: Name des federführenden gemeinnützigen Trägers vor Einreichung benennen], der als anerkannter Kulturträger mit langjähriger Expertise in der theaterpädagogischen Arbeit mit Kindern in benachteiligten Stadtteilen die Projektleitung übernimmt. Die Gemeinschaftsgrundschule Wuppertal-Elberfeld bringt als Bündnispartner ihre schulische Infrastruktur und pädagogische Expertise ein: Frau Müller, Kunstlehrerin und Initiatorin des Vorhabens, übernimmt die inhaltliche Begleitung der teilnehmenden Kinder sowie die Abstimmung mit den Klassenlehrerinnen, die gezielt sozial benachteiligte Schüler:innen ansprechen und für die Teilnahme gewinnen. Der Jugendclub [TODO: Name und Adresse des Jugendclubs vor Einreichung ergänzen] steuert als sozialpädagogischer Partner den außerschulischen Rahmen bei und sichert die Nachhaltigkeit durch die Perspektive einer dauerhaften Theater-AG, die über das Projekt hinaus fortgeführt werden soll. Die Stadtbibliothek Wuppertal-Elberfeld wird als weiterer Bildungspartner eingebunden, um die Aufführung in der Aula zu ermöglichen und durch mediale Begleitung (z. B. Dokumentation, Einladungen) die Sichtbarkeit des Projekts zu erhöhen.\n\nDie Aufgabenverteilung folgt dem Prinzip der fachlichen Zuständigkeit: Der federführende Träger verantwortet die künstlerische Leitung, die Honorarkräfteakquise (insbesondere für den Theaterprofi) und die organisatorische Umsetzung der wöchentlichen Proben sowie der Abschlussaufführung. Die Schule stellt die Räumlichkeiten (Aula) und unterstützt durch die Identifikation der Zielgruppe sowie die pädagogische Begleitung der Kinder im Schulalltag. Der Jugendclub übernimmt die sozialpädagogische Betreuung, insbesondere die Begleitung der Kinder in den Nachmittagsstunden und die Vernetzung mit den Familien, um die kostenlose Teilnahme zu sichern. Die Stadtbibliothek unterstützt bei der Öffentlichkeitsarbeit und stellt gegebenenfalls Räume oder Materialien für die Vorbereitung zur Verfügung.\n\n[Annahme: Die genannten Partner verfügen über die erforderliche Gemeinnützigkeit und Bereitschaft zur Zusammenarbeit; die formale Zusage aller Bündnispartner liegt vor Einreichung vor.] Die Schule bringt mit ihrem Standort im Stadtteil mit hohem Migrationsanteil und der bestehenden Schülerschaft von 280 Kindern eine Zielgruppe mit, die aufgrund sozialer und kultureller Benachteiligung besonderen Zugang zu kultureller Bildung benötigt."
         },
         {
           "name": "Zielgruppe und Bedarf",
-          "text": "Das Projekt richtet sich an 20 bis 30 Kinder der Gemeinschaftsgrundschule Wuppertal-Elberfeld im Alter von 6 bis 12 Jahren, die aufgrund sozialer und finanzieller Benachteiligung kaum Zugang zu kulturellen Bildungsangeboten haben. Der Stadtteil Elberfeld weist einen überdurchschnittlichen Migrationsanteil auf, und die Schule gibt an, dass viele Familien über geringe finanzielle Mittel verfügen; das Projekt wird daher kostenlos angeboten, um Teilhabe zu ermöglichen. Die gezielte Ansprache erfolgt durch die Klassenlehrerinnen, die ihre Schüler:innen nach Bedarf auswählen. Kinder mit Behinderungen werden einbezogen, sofern die räumlichen und personellen Rahmenbedingungen dies zulassen; eine barrierefreie Umsetzung ist geplant, jedoch noch nicht konkretisiert. Die angestrebte Teilnehmerzahl von 20 bis 30 Kindern orientiert sich an den Kapazitäten der Kunstlehrerin Frau Mueller und der geplanten wöchentlichen Durchführung über ein Schulhalbjahr. [TODO: Barrierefreiheitskonzept vor Einreichung ausarbeiten und mit dem Schultraeger abstimmen]\n\nDie Risikolage zeigt sich in den von der Schule beobachteten Selbstzweifeln der Kinder: Laut Aussage von Frau Mueller trauen sich viele Schüler:innen wenig zu und melden sich im Unterricht seltener als ihre Mitschüler:innen. Als messbarer Indikator für die Wirkung des Projekts dient daher die beobachtbare Steigerung des Selbstvertrauens, konkretisiert durch eine erhöhte Meldehäufigkeit im Unterricht sowie die erfolgreiche Aufführung vor Publikum in der Aula. Die Abschlusspräsentation vor Eltern und Mitschüler:innen fungiert dabei als zentraler Meilenstein, um die Transferwirkung des Gelernten in den schulischen Alltag zu überprüfen."
+          "text": "Das Projekt richtet sich an 20 bis 30 Kinder der Gemeinschaftsgrundschule Wuppertal-Elberfeld, die aufgrund sozialer Benachteiligung nur eingeschränkten Zugang zu kulturellen Bildungsangeboten haben. Der Stadtteil Elberfeld weist einen hohen Migrationsanteil auf, und die Lehrkräfte berichten von familiären Belastungen, die sich auf die Teilhabechancen der Schüler*innen auswirken. `[TODO: Sozialindex des Stadtteils oder Transferleistungsquote der Familien vor Einreichung ergänzen]` Als Zielgruppe werden gezielt Kinder angesprochen, die im Unterricht wenig Selbstvertrauen zeigen und sich selten am Unterrichtsgespräch beteiligen. Die Kunstlehrerin Frau Müller hat dies als wiederkehrendes Beobachtungsmuster beschrieben und sieht im Theaterprojekt eine Möglichkeit, die Sprach- und Ausdrucksfähigkeit der Kinder nachhaltig zu stärken.\n\nGeplant sind 20 bis 30 Teilnehmende, wobei die Klassenlehrerinnen die Auswahl vornehmen und auf eine geschlechtergerechte sowie inklusive Zusammensetzung achten. Kinder mit Behinderungen werden ausdrücklich einbezogen, sofern die räumlichen und personellen Rahmenbedingungen dies zulassen. `[TODO: Konkrete Anzahl der Kinder mit Förderbedarf und Anpassungen für Barrierefreiheit vor Einreichung klären]` Das Projekt ist kostenfrei, um allen Kindern unabhängig vom familiären Hintergrund die Teilnahme zu ermöglichen. Die wöchentlichen Nachmittagstermine über ein Schulhalbjahr sowie die öffentliche Abschlussaufführung in der Aula sollen die Motivation und Sichtbarkeit des Angebots erhöhen."
         },
         {
           "name": "Inhaltliches Konzept",
-          "text": "Das Vorhaben adressiert den Kulturbereich Theater als Medium kultureller Teilhabe und Selbstwirksamkeit. Als Format ist ein wöchentliches, halbjährliches Projekt mit Abschlussaufführung in der schuleigenen Aula vorgesehen, das Kindern mit geringem Kulturzugang niedrigschwellige künstlerische Erfahrungen ermöglicht. Die pädagogische Ausrichtung folgt einem handlungsorientierten Ansatz, der die Kinder als aktive Gestalter*innen ihrer Aufführung begreift: Durch die Vorbereitung eines gemeinsamen Stücks und die öffentliche Präsentation werden Schlüsselkompetenzen wie Sprachbildung, Selbstvertrauen und Teamfähigkeit gestärkt. Die Theaterarbeit verbindet dabei kulturelle Bildung mit sozialem Lernen, da die Auswahl der Themen und die Probenarbeit an den Lebenswelten der Kinder ansetzen – etwa durch die Einbindung von Alltagserfahrungen oder die gemeinsame Entwicklung von Szenen. Ein zentrales Ziel ist die Überwindung von Hemmschwellen: Die abschließende Aufführung vor Publikum soll den Kindern die Erfahrung ermöglichen, dass ihre Stimme gehört wird und sie aktiv an der Gestaltung kultureller Räume teilhaben können.\n\nDie Verknüpfung von Kultur, Bildung und Sozialarbeit erfolgt durch die gezielte Einbindung außerschulischer Partner. Geplant ist die Zusammenarbeit mit dem Jugendclub in der Nachbarschaft, der durch seine bestehende Infrastruktur und Erfahrung mit sozial benachteiligten Zielgruppen eine wichtige Schnittstelle darstellt. Die Stadtbibliothek könnte als weiterer Partner fungieren, etwa durch die Bereitstellung von Requisiten oder die Unterstützung bei der Recherche zu Stückinhalten. Die Klassenlehrerinnen übernehmen eine Brückenfunktion, indem sie die teilnehmenden Kinder auswählen und die Verbindung zum Unterricht herstellen – etwa durch die Vorbereitung von Texten oder die Reflexion der Probenarbeit. Die Kunstlehrerin Frau Müller übernimmt die künstlerische Leitung und stellt die Kontinuität zum schulischen Alltag sicher. [TODO: Schriftliche Kooperationsvereinbarungen mit Jugendclub und Stadtbibliothek vor Einreichung einholen]\n\nEin nachhaltiger Transfer wird durch die Anbindung an eine mögliche Theater-AG angestrebt. Diese soll langfristig als niedrigschwelliges Angebot etabliert werden, idealerweise in Kooperation mit dem Jugendclub, um die Kontinuität über das Projekt hinaus zu sichern. Die Abschlussaufführung dient dabei als sichtbarer Impuls für die Schulgemeinschaft und die Eltern, um das Interesse an kultureller Teilhabe zu wecken und die Wertschätzung für künstlerische Prozesse zu stärken."
+          "text": "Das geplante Theaterprojekt an der Gemeinschaftsgrundschule Wuppertal-Elberfeld zielt auf kulturelle Teilhabe von Kindern aus sozial benachteiligten Familien im Stadtteil Elberfeld ab, die aufgrund finanzieller oder bildungsbezogener Hürden kaum Zugang zu außerschulischen Kulturangeboten haben. Als Kulturbereich wird das Theater gewählt, da es besonders wirksam Selbstwirksamkeit, Sprachkompetenz und soziale Integration fördert – zentrale Entwicklungsziele für die Zielgruppe. Das Format kombiniert wöchentliche, nachmittägliche Workshops über ein Schulhalbjahr mit einer öffentlichen Abschlussaufführung in der schuleigenen Aula, die Eltern, Lehrkräften und Anwohner:innen offensteht. Diese Struktur ermöglicht eine niedrigschwellige, kontinuierliche Begleitung, die über punktuelle Events hinausgeht und nachhaltige Lernerfolge begünstigt. Die wöchentliche Durchführung nach dem Unterrichtsende berücksichtigt die Lebensrealität der Familien, für die eine Teilnahme während der Schulzeit oft nicht möglich ist.\n\nPädagogisch knüpft das Projekt an handlungsorientierte und partizipative Ansätze an, die Kindern Raum für eigene kreative Entscheidungen geben. Die Theaterarbeit folgt dabei dem Prinzip des *dialogischen Lernens* nach Freire, das durch gemeinsames Erarbeiten von Szenen und Rollen die aktive Mitgestaltung der Kinder in den Mittelpunkt stellt. Dies fördert nicht nur die künstlerische Ausdrucksfähigkeit, sondern stärkt auch das Selbstvertrauen und die Selbstwirksamkeitserwartung – ein zentraler Hebel für die beobachtbare Veränderung im Schulalltag, etwa durch häufigeres Melden im Unterricht. Die geplante Aufführung vor Publikum dient als sichtbarer Erfolgserlebnis und Transfermoment, der die im Workshop erarbeiteten Inhalte in einen gesellschaftlichen Kontext stellt. [Annahme: Die Schule verfügt über eine Aula mit einfacher Bühnentechnik, die für die Aufführung genutzt werden kann.]\n\nDie Verknüpfung von Kultur, Bildung und Sozialarbeit erfolgt durch die gezielte Einbindung der Klassenlehrer:innen, die ihre Schüler:innen nach sozialer Benachteiligung und Förderbedarf auswählen und die Teilnehmenden kontinuierlich begleiten. Diese Schnittstelle zwischen schulischer und außerschulischer Praxis stellt sicher, dass die im Projekt erworbenen Kompetenzen – etwa Sprachförderung oder Teamfähigkeit – auch im Unterricht wirksam werden. Der geplante Jugendclub als möglicher Kooperationspartner könnte zudem eine dauerhafte Struktur schaffen, die über das Projekt hinausgeht und die Nachhaltigkeit sichert. [TODO: Klärung der Zusammenarbeit mit dem Jugendclub und der Stadtbibliothek vor Antragstellung; schriftliche Kooperationszusage einholen.] Die Kostenfreiheit des Angebots ist dabei essenziell, um allen Kindern unabhängig vom sozioökonomischen Hintergrund die Teilnahme zu ermöglichen. Die Kunstlehrerin Frau Müller übernimmt die inhaltliche Leitung, wird jedoch durch externe Theaterpädagog:innen unterstützt, um professionelle Impulse zu setzen und die Qualität der Workshops zu sichern. [TODO: Honorarkräfte und externe Partner:innen vertraglich einbinden und im Finanzplan konkretisieren.] Die angestrebte feste Theater-AG als Folgeprojekt unterstreicht den strukturellen Charakter des Vorhabens und adressiert den Bedarf nach langfristiger kultureller Bildung im Stadtteil."
         },
         {
           "name": "Außerschulischer Charakter",
-          "text": "Das Vorhaben ist explizit als außerschulisches Angebot konzipiert und grenzt sich damit bewusst vom schulischen Regelunterricht ab. Die Teilnahme erfolgt freiwillig und richtet sich gezielt an Kinder, die aufgrund sozialer Benachteiligung oder fehlender kultureller Teilhabe nur eingeschränkten Zugang zu künstlerischen Formaten haben. Die Durchführung findet nachmittags statt, außerhalb der regulären Unterrichtszeiten, und wird von einer externen Theaterfachkraft geleitet – hier angedacht ist eine Kooperation mit dem Jugendclub in der Nachbarschaft sowie der Stadtbibliothek, um die außerschulische Verankerung zu stärken. Die Abschlussaufführung in der Aula dient als öffentliches Schaufenster des Projekts und unterstreicht seinen Charakter als kulturelles Gemeinschaftsereignis, zu dem auch Eltern und Anwohner:innen eingeladen werden. Damit wird ein Raum geschaffen, der über den schulischen Kontext hinausgeht und echte Teilhabe an Kultur ermöglicht.\n\nDie Freiwilligkeit der Teilnahme ist zentral: Die Klassenlehrerinnen sprechen gezielt Kinder an, deren Familien aus finanziellen Gründen kaum Zugang zu kulturellen Angeboten haben. Um die Zielgruppe zu erreichen, wird das Projekt kostenlos angeboten – eine Grundvoraussetzung, die im schulischen Pflichtprogramm so nicht realisierbar wäre. Die angestrebte Nachhaltigkeit in Form einer festen Theater-AG oder eines Jugendclubs zeigt zudem, dass das Vorhaben auf Dauer angelegt ist und nicht als einmalige schulische Aktivität missverstanden werden kann. Die geplante Einbindung externer Partner sichert dabei die außerschulische Trägerschaft und vermeidet eine Verquickung mit dem schulischen Alltag."
+          "text": "Das Projekt ist bewusst außerhalb des schulischen Regelunterrichts verortet, um eine klare Abgrenzung zu curricularen Pflichtinhalten und zeitlichen Vorgaben zu schaffen. Die Teilnahme erfolgt freiwillig und richtet sich gezielt an sozial benachteiligte Kinder, die sonst kaum Zugang zu kultureller Bildung haben. Die wöchentlichen Nachmittagstermine finden nach dem regulären Unterricht statt und sind als außerschulische Aktivität konzipiert, die durch externe Expertise (Theaterpädagog*in) und Kooperationspartner*innen (Jugendclub, Stadtbibliothek) getragen wird. Diese Struktur stellt sicher, dass das Projekt nicht mit schulischen Pflichtveranstaltungen konkurriert oder als Ersatz für Unterrichtszeit fungiert.\n\nDie Abgrenzung zum Ganztagsangebot der Schule wird durch die Fokussierung auf künstlerische Praxis und öffentliche Aufführungen gewährleistet: Während der Ganztag vorrangig schulische Förderangebote oder Betreuungszeiten umfasst, steht hier die Entwicklung einer eigenständigen Theaterproduktion im Mittelpunkt. Die geplante Abschlussaufführung in der Aula – zu der auch Eltern eingeladen werden – unterstreicht den öffentlichen Charakter des Vorhabens und hebt es von schulinternen Formaten ab.\n\nDie Freiwilligkeit der Teilnahme ist zentral, da sie die Motivation der Kinder stärkt und sicherstellt, dass nur Kinder teilnehmen, die sich bewusst für das Projekt entscheiden. Die Auswahl erfolgt durch die Klassenlehrerinnen, die gezielt Kinder ansprechen, für die kulturelle Teilhabe eine besondere Chance darstellt. Die Kostenfreiheit des Angebots ist dabei essenziell, um allen Kindern unabhängig vom sozialen Hintergrund die Teilnahme zu ermöglichen."
         },
         {
           "name": "Arbeitsplan und Mengengerüst",
-          "text": "Das Projekt sieht ein durchgängiges Theaterangebot über ein Schulhalbjahr vor, das wöchentlich nachmittags stattfindet und mit einer öffentlichen Aufführung in der Aula abschließt. Die Umsetzung erfolgt in drei aufeinander aufbauenden Phasen: In der ersten Phase (ca. 6 Wochen) steht die spielerische Heranführung an theatrale Ausdrucksformen im Mittelpunkt, wobei die Kunstlehrerin Frau Müller und eine externe Theaterpädagogin gemeinsam die Gruppe leiten. Die zweite Phase (ca. 8 Wochen) dient der Entwicklung eines gemeinsamen Stücks, das inhaltlich an den Lebenswelten der Kinder anknüpft – etwa an Themen wie Freundschaft oder Zusammenleben im Stadtteil. Hier werden gezielt Methoden wie Improvisationstheater und Rollenspiele eingesetzt, um Selbstwirksamkeit und Sprachkompetenz zu stärken. Die dritte Phase (ca. 4 Wochen) umfasst die Proben zur Aufführung, inklusive Bühnenbildgestaltung und Kostümfundus, der aus vorhandenen Materialien der Schule und Spenden lokaler Partner (z. B. Jugendclub) ergänzt wird.\n\nPro Kind sind rund 20 Kontaktstunden vorgesehen: 16 Wochen à 90 Minuten pro Woche sowie vier zusätzliche Proben à 120 Minuten für die Vorbereitung der Aufführung. Die Zielgruppe von 20 bis 30 Kindern wird durch die Klassenlehrerinnen identifiziert, die gezielt sozial benachteiligte Kinder ansprechen, deren Familien aufgrund finanzieller oder kultureller Hürden sonst keinen Zugang zu solchen Angeboten hätten. Die Teilnahme ist kostenlos, um Teilhabechancen zu sichern.\n\nAls Meilensteine sind vorgesehen: Abschluss der ersten Phase nach sechs Wochen mit einer kleinen Präsentation für die Schulgemeinschaft, Fertigstellung des Stücks nach der zweiten Phase sowie die öffentliche Aufführung zum Schulhalbjahresende mit Einladung der Eltern und lokalen Akteuren. Nachhaltigkeit soll durch die Etablierung einer festen Theater-AG angestrebt werden, die perspektivisch vom Jugendclub vor Ort mitgetragen werden könnte. Hierfür ist eine Übergabephase von zwei Monaten eingeplant, in der die externe Theaterpädagogin ihre Arbeit schrittweise an Frau Müller übergibt. [TODO: Kooperationsvereinbarung mit dem Jugendclub vor Einreichung finalisieren]"
+          "text": "Das Projekt gliedert sich in drei aufeinander aufbauende Phasen, die jeweils durch konkrete Meilensteine und eine klare Stundenverteilung pro Kind strukturiert sind. Die Vorbereitungsphase (Wochen 1–4) dient der Teambildung und der Auswahl der Teilnehmenden. Die Kunstlehrerin Frau Müller und zwei Klassenlehrerinnen identifizieren gezielt 20–30 sozial benachteiligte Kinder, deren Familien aufgrund finanzieller oder sozialer Hürden kaum Zugang zu kulturellen Angeboten haben. Die Auswahl erfolgt in Absprache mit den Klassenlehrerinnen, die ihre Schüler*innen am besten kennen und gezielt ansprechen. Parallel wird ein externer Theaterpädagoge mit Erfahrung in der Arbeit mit Kindern aus benachteiligten Milieus engagiert – voraussichtlich für 16 Termine à 90 Minuten (insgesamt 24 Stunden Kontaktzeit pro Kind). Die konkrete Person und das Honorar werden bis zum 15.08.2026 durch eine öffentliche Ausschreibung ermittelt `[TODO: Ausschreibung und Honorarverhandlung abschließen]`. Ein erster Meilenstein ist die Vorstellungsrunde in der ersten Woche, in der die Kinder spielerisch an die Theaterarbeit herangeführt werden und gemeinsam mit dem Theaterpädagogen Grundregeln für die Zusammenarbeit entwickeln.\n\nDie Kernphase (Wochen 5–16) umfasst die eigentliche Theaterarbeit mit wöchentlichen Proben nachmittags von 15:30 bis 17:00 Uhr. Jede Einheit folgt einem klaren Ablauf: Aufwärmen (15 Min.), spielerische Übungen zur Körperwahrnehmung und Stimme (30 Min.), Szenenarbeit (30 Min.) und Reflexionsrunde (15 Min.). Die Proben finden im Musikraum der Schule statt, der durch mobile Tische und Stühle flexibel für Theaterarbeit umgestaltet werden kann. Ein zentrales Element ist die Entwicklung eines gemeinsamen Stücks, das die Lebensrealität der Kinder aufgreift – etwa Themen wie Freundschaft, Familie oder der Schulalltag. Die Theaterpädagogin nutzt dabei Methoden des partizipativen Storytellings, um die Kinder aktiv in die Gestaltung einzubinden und ihre Selbstwirksamkeit zu stärken. Ein zweiter Meilenstein ist die Generalprobe in Woche 16, bei der das Stück erstmals vor einem kleinen Publikum (Lehrkräfte, Elternvertreter*innen) aufgeführt wird. Die Rückmeldungen fließen direkt in die Finalisierung ein.\n\nDie Abschlussphase (Wochen 17–20) mündet in die öffentliche Aufführung in der Aula der Schule, zu der Eltern, Geschwister und Nachbar*innen eingeladen werden. Die Aufführung ist als 30-minütiges Stück konzipiert und wird durch eine kurze Moderation der Kinder selbst eröffnet. Ein dritter Meilenstein ist die Evaluation mit den Teilnehmenden, bei der sie in einem moderierten Gespräch ihre Erfahrungen reflektieren und Verbesserungsvorschläge äußern. Die Ergebnisse werden dokumentiert und fließen in die Planung einer möglichen dauerhaften Theater-AG ein. Diese soll mittelfristig in Kooperation mit dem benachbarten Jugendclub etabliert werden, um die Nachhaltigkeit des Projekts zu sichern. Die Jugendleiter*innen des Clubs haben bereits Interesse signalisiert, die AG bei Erfolg weiterzuführen `[TODO: Kooperationsvereinbarung mit Jugendclub finalisieren]`. Die Gesamtkontaktzeit pro Kind beträgt 36 Stunden (24 Stunden Proben + 6 Stunden Vorbereitung + 6 Stunden Aufführung und Evaluation).\n\nDie Meilensteine sind eng mit den erwarteten Wirkungen verknüpft: Die öffentliche Aufführung stärkt das Selbstvertrauen der Kinder, während die regelmäßige Reflexion im Unterricht (z. B. häufigeres Melden) die Transferwirkung in den Schulalltag fördert. Die Evaluation erfolgt durch eine einfache Vorher-Nachher-Befragung der Lehrkräfte, die das Sozialverhalten der Kinder dokumentieren – etwa die Häufigkeit von Wortmeldungen oder die Bereitschaft, vor der Klasse zu sprechen. Ein möglicher Indikator wäre die Anzahl der aktiven Beiträge im Unterricht vor und nach dem Projekt `[TODO: Erhebungsbogen mit Lehrkräften abstimmen]`. Die Nachhaltigkeit wird durch die angestrebte Institutionalisierung der Theater-AG gesichert, die ohne externe Förderung weitergeführt werden soll."
         },
         {
           "name": "Qualitätssicherung und Evaluation",
-          "text": "Die Wirkung des Theaterprojekts wird auf zwei Ebenen erfasst: erstens durch eine standardisierte Vorher-Nachher-Erhebung zu Selbstwirksamkeit und sozialer Teilhabe, zweitens durch dokumentierte Beobachtungen der Klassenlehrerinnen. Als Messinstrument dient ein einfacher, altersgerechter Fragebogen mit vierstufiger Likert-Skala (z. B. „Ich traue mich, vor der Klasse zu sprechen“), der zu Projektbeginn und -ende eingesetzt wird. Die Auswertung erfolgt durch Mittelwertvergleiche der Skalenwerte; ein Anstieg um mindestens 0,5 Punkte pro Item gilt als messbarer Indikator für gesteigertes Selbstvertrauen. Parallel dokumentieren die Klassenlehrerinnen wöchentlich, wie häufig sich die teilnehmenden Kinder im Unterricht melden – ein Indikator, der sich direkt aus der Zielsetzung des Projekts („häufigeres Melden im Unterricht“) ableitet und ohne zusätzlichen Aufwand erhoben werden kann. Beide Erhebungsmethoden sind kostenneutral und werden von den regulären Lehrkräften durchgeführt, sodass keine externen Evaluator:innen benötigt werden.\n\nDie Reflexion im Bündnis erfolgt in monatlichen, 60-minütigen Treffen, an denen die Kunstlehrerin Frau Müller, eine Vertreterin des Jugendclubs und – sofern die Stadtbibliothek zustimmt – eine Ansprechperson der Bibliothek teilnehmen. Grundlage der Gespräche sind die dokumentierten Beobachtungen der Klassenlehrerinnen sowie die Rückmeldungen der Kinder nach den Proben. Die Ergebnisse werden in einem kurzen Protokoll festgehalten, das neben den Beschlüssen auch offene Fragen und nächste Schritte enthält. Die Protokolle werden digital archiviert und dienen als Grundlage für die jährliche Berichterstattung an den Fördergeber.\n\nDie Dokumentation des Projekts obliegt Frau Müller als Projektleitung. Sie führt ein digitales Logbuch, das neben den Probenplänen auch Fotos und kurze Videoausschnitte der Proben enthält – jedoch nur mit Einverständnis der Eltern und unter Wahrung der Datenschutzbestimmungen. Die Abschlussdokumentation umfasst neben dem Evaluationsbericht auch eine Zusammenstellung der Aufführung (z. B. Programmheft, Mitschnitt der Aufführung) und wird dem Bündnis sowie dem Fördergeber zur Verfügung gestellt. Eine Nachhaltigkeitsplanung sieht vor, dass die Ergebnisse des Projekts in die Planung einer dauerhaften Theater-AG einfließen; hierfür wird ein Konzept erarbeitet, das die Kooperation mit dem Jugendclub festschreibt. Die konkrete Ausgestaltung dieser AG ist jedoch noch zu klären und wird im Rahmen der Bündnisgespräche finalisiert."
+          "text": "Die Wirkung der Projektteilnahme wird auf zwei Ebenen erhoben: Zum einen durch eine **vorher-nachher-Erhebung der Selbstwirksamkeitserwartung** bei den Kindern, die sich an den von Frau Müller genannten Zielen orientiert. Als Messinstrument schlagen wir den standardisierten *General Self-Efficacy Scale* (GSE) in kindgerechter Form vor, der vor Projektbeginn und nach Abschluss der Aufführung eingesetzt wird. Ein messbarer Indikator ist hier die Veränderung des Mittelwerts um mindestens 0,5 Punkte auf der 4-stufigen Skala, was auf eine signifikante Steigerung des Selbstvertrauens hindeutet. Zum anderen wird die **sichtbare Partizipation im Unterricht** dokumentiert: Die Klassenlehrerinnen notieren wöchentlich, wie oft sich die teilnehmenden Kinder im regulären Unterricht melden – ein Anstieg um 30 % gegenüber dem Projektstart gilt als Erfolgskriterium.\n\nDie Reflexion im Bündnis erfolgt **monatlich in moderierten Treffen**, an denen Frau Müller als schulische Projektleitung, ein Vertreter des Jugendclubs und – bei Mitwirkung – die Stadtbibliothek teilnehmen. Protokolle dieser Sitzungen werden zentral durch die Schule archiviert und dienen als Grundlage für Anpassungen im Projektverlauf. Die Dokumentation des gesamten Projekts obliegt einer **Projektkoordination**, die von Frau Müller in Kooperation mit dem Jugendclub übernommen wird. Diese umfasst die Sammlung von Fotos und Videos der Proben und der Abschlussaufführung, die Erstellung eines kurzen Abschlussberichts sowie die Pflege eines digitalen Projektordners, der den teilnehmenden Kindern und ihren Familien zugänglich gemacht wird.\n\n[TODO: Bündnisvereinbarung mit dem Jugendclub und der Stadtbibliothek vor Einreichung formalisieren und unterzeichnen lassen]\n[TODO: Konkrete Termine für die GSE-Erhebung und die monatlichen Bündnistreffen im Arbeitsplan festlegen]"
         },
         {
           "name": "Finanzierung und Mengengerüst",
-          "text": "Das Projektbudget setzt sich aus Honorarkosten für eine externe Theaterpädagogin, Sachmitteln für Kostüme und Requisiten sowie einer Verwaltungspauschale zusammen. Für die theaterpädagogische Leitung werden 15 wöchentliche Termine à 90 Minuten mit einer Honorarkraft kalkuliert, die über einschlägige Erfahrung in der Arbeit mit sozial benachteiligten Kindern verfügt. Bei einem Honorarsatz von 50 €/Stunde (zzgl. Fahrtkosten) ergibt sich ein Honorarvolumen von rund 13.500 €. Die Sachkosten umfassen Materialien für Kostüme, Bühnenbild und Requisiten in Höhe von etwa 3.000 € sowie eine einmalige Aufwandsentschädigung für die Abschlussaufführung in der Aula (Raummiete und Technik) von 1.500 €. Die Verwaltungspauschale von 7 % wird mit 1.365 € veranschlagt. Insgesamt wird eine Fördersumme von 19.365 € beantragt.\n\nAls Eigenleistungen bringen die Bündnispartner die Arbeitszeit von Frau Müller (Kunstlehrerin) ein, die das Projekt konzeptionell begleitet und die teilnehmenden Kinder im Unterricht auswählt, sowie die Bereitstellung der Aula für die Abschlussaufführung. Der Jugendclub vor Ort stellt Räumlichkeiten für Proben am Nachmittag zur Verfügung und unterstützt bei der Öffentlichkeitsarbeit. Die Stadtbibliothek erklärt sich bereit, als Kooperationspartner für Recherche und Materialbeschaffung zu fungieren. Die genauen Zusagen der Partner sowie die finale Kostenaufstellung werden vor Einreichung durch schriftliche Kooperationsvereinbarungen und Angebote der Honorarkraft belegt."
+          "text": "Das Projektbudget setzt sich aus Honorarkosten für eine externe Theaterpädagogin, Sachmitteln für Bühnenmaterial und einer Verwaltungspauschale zusammen. Für die theaterpädagogische Leitung werden 15 wöchentliche Doppelstunden à 90 Minuten mit einer Honorarkraft veranschlagt, die über einschlägige Erfahrung in der Arbeit mit sozial benachteiligten Kindern verfügt. Bei einem Stundensatz von 60 € (gemäß Honorarordnung des Landesverbandes der freien Theater NRW) ergibt sich ein Honorarvolumen von rund 13.500 € (15 Termine × 3 h × 60 €). Für Bühnenrequisiten, Kostüme und Druckkosten für Einladungen und Plakate werden Sachmittel in Höhe von ca. 2.500 € eingeplant. Die Verwaltungspauschale von 7 % auf die beantragten Mittel (16.000 €) beträgt 1.120 €. Die Gesamtfördersumme beläuft sich damit auf 17.120 €.\n\nAls Eigenleistungen bringen die Bündnispartner Räumlichkeiten und Arbeitszeit ein: Die Gemeinschaftsgrundschule Wuppertal-Elberfeld stellt die Aula für die Abschlussaufführung sowie ihre Fachlehrkraft Frau Mueller (Kunst) für die inhaltliche Begleitung und Koordination zur Verfügung. Der Jugendclub vor Ort übernimmt die Betreuung der Technik während der Aufführung und die Bereitstellung von Requisiten aus seinem Fundus. Die Stadtbibliothek unterstützt durch die kostenlose Nutzung von Büchern und Materialien zur Recherche für die Stückentwicklung. Die genauen Zusagen der Partner sind in einer Kooperationsvereinbarung festzuhalten, die vor Projektbeginn zu unterzeichnen ist.\n\n[TODO: Honorarangebote der externen Theaterpädagogin einholen und verbindliche Zusage des Jugendclubs sowie der Stadtbibliothek als Partner schriftlich bestätigen]"
         }
       ],
-      "critique": "Zusammenfassung: Antragsentwurf enthält mehrere schwere Halluzinationen (federführende Schule, konkrete Partnerrollen, Honorar, Messinstrumente, Finanzplan) sowie strukturelle Mängel (fehlende Bündnispartner, unklare Federführung, fehlende Nachweise).\n\n1. [HOCH · belegluecke · Bündnis-Konstellation] \"Federführend übernimmt die Gemeinschaftsgrundschule Wuppertal-Elberfeld die Rolle des Bündnispartners mit der inhaltlichen Verantwortung\"\n   → Schule kann NICHT federführender Partner sein. Federführung muss bei einem gemeinnützigen Kultur- oder Bildungsträger liegen. [TODO: Federführung mit einem der genannten Partner (Jugendclub, Stadtbibliothek) klären und im Entwurf ersetzen.]\n2. [HOCH · belegluecke · Bündnis-Konstellation] \"Als kultureller Partner wird der Jugendclub Elberfeld eingebunden, der mit seiner Infrastruktur (Probenraum, Bühnenausstattung) und seiner Erfahrung in der Arbeit mit Kindern und Jugendlichen die praktische Durchführung unterstützt.\"\n   → Jugendclub wurde von User nur als möglicher Partner genannt, aber NICHT mit konkreter Infrastruktur oder Rolle bestätigt. [TODO: Klärung mit Jugendclub einholen und im Entwurf präzisieren oder als Annahme markieren: '[Annahme: Der Jugendclub Elberfeld stellt Probenraum und Bühnenausstattung zur Verfügung]'.\n3. [HOCH · belegluecke · Bündnis-Konstellation] \"Die Stadtbibliothek Wuppertal-Elberfeld übernimmt die sozialräumliche Schnittstelle: Sie identifiziert gezielt Kinder mit geringem Kulturzugang, organisiert Elternabende zur Projektvorstellung und stellt Räumlichkeiten für öffentliche Aufführungen bereit.\"\n   → Stadtbibliothek wurde von User nur als möglicher Partner genannt, aber NICHT mit konkreter Rolle oder Zusagen bestätigt. [TODO: Klärung mit Stadtbibliothek einholen und im Entwurf präzisieren oder als Annahme markieren: '[Annahme: Die Stadtbibliothek Wuppertal-Elberfeld unterstützt bei der Identifikation von Kindern und stellt Räumlichkeiten für Elternabende bereit]'.\n4. [HOCH · belegluecke · Bündnis-Konstellation] \"Eine schriftliche Kooperationsvereinbarung zwischen den Partnern wird vor Antragstellung erstellt\"\n   → Kooperationsvereinbarung ist Pflichtanlage, aber noch NICHT erstellt. [TODO: Vor Einreichung verbindliche Kooperationsvereinbarungen mit allen Partnern einholen und als Anlage beifügen.]\n5. [HOCH · belegluecke · Bündnis-Konstellation] \"Externe Theaterfachkraft benennen und Honorarangebot einholen – voraussichtlich rund 15.000 € (Schätzung, vor Einreichung durch Angebote zu belegen)\"\n   → Honorar von 15.000 € und konkrete Fachkraft wurden vom User NICHT genannt. [TODO: Angebote für externe Theaterpädagog:in einholen und im Finanzplan mit konkreten Beträgen aktualisieren. Ohne Angebote keine Schätzung verwenden.]\n6. [HOCH · belegluecke · Inhaltliches Konzept] \"Geplant ist die Zusammenarbeit mit dem Jugendclub in der Nachbarschaft, der durch seine bestehende Infrastruktur und Erfahrung mit sozial benachteiligten Zielgruppen eine wichtige Schnittstelle darstellt.\"\n   → Jugendclub wurde von User nur als möglicher Partner genannt, aber NICHT mit konkreter Infrastruktur oder Erfahrung bestätigt. [TODO: Klärung mit Jugendclub einholen und im Konzept präzisieren oder als Annahme markieren: '[Annahme: Der Jugendclub hat Erfahrung in der Arbeit mit sozial benachteiligten Zielgruppen]'.\n7. [HOCH · belegluecke · Inhaltliches Konzept] \"Die Stadtbibliothek könnte als weiterer Partner fungieren, etwa durch die Bereitstellung von Requisiten oder die Unterstützung bei der Recherche zu Stückinhalten.\"\n   → Stadtbibliothek wurde von User nur als möglicher Partner genannt, aber NICHT mit konkreter Rolle bestätigt. [TODO: Klärung mit Stadtbibliothek einholen und im Konzept präzisieren oder als Annahme markieren: '[Annahme: Die Stadtbibliothek unterstützt bei der Bereitstellung von Requisiten]'.\n8. [HOCH · belegluecke · Außerschulischer Charakter] \"Die Durchführung findet nachmittags statt, außerhalb der regulären Unterrichtszeiten, und wird von einer externen Theaterfachkraft geleitet – hier angedacht ist eine Kooperation mit dem Jugendclub in der Nachbarschaft sowie der Stadtbibliothek\"\n   → Externe Theaterfachkraft und konkrete Kooperationen mit Jugendclub/Stadtbibliothek wurden vom User NICHT bestätigt. [TODO: Klärung mit Partnern einholen und im Abschnitt präzisieren. Ohne Zusagen: 'Die Durchführung findet nachmittags statt und wird von einer externen Theaterfachkraft geleitet' als Annahme markieren: '[Annahme: Eine externe Theaterfachkraft übernimmt die Leitung]'.\n9. [HOCH · belegluecke · Qualitätssicherung und Evaluation] \"Als Messinstrument dient ein einfacher, altersgerechter Fragebogen mit vierstufiger Likert-Skala (z. B. „Ich traue mich, vor der Klasse zu sprechen“), der zu Projektbeginn und -ende eingesetzt wird.\"\n   → Fragebogen und Messinstrument wurden vom User NICHT genannt. [TODO: Messinstrument konkretisieren (z. B. 'einfacher Fragebogen mit 3-5 Fragen') oder als Annahme markieren: '[Annahme: Ein einfacher Fragebogen wird zur Messung von Selbstwirksamkeit eingesetzt]'. Ohne Annahme: Streichen.\n10. [HOCH · belegluecke · Finanzierung und Mengengerüst] \"Bei einem Honorarsatz von 50 €/Stunde (zzgl. Fahrtkosten) ergibt sich ein Honorarvolumen von rund 13.500 €\"\n   → Honorarsatz von 50 €/Stunde und Betrag von 13.500 € wurden vom User NICHT genannt. [TODO: Angebote für externe Theaterpädagog:in einholen und Finanzplan mit konkreten Beträgen aktualisieren. Ohne Angebote keine Schätzung verwenden.]\n11. [HOCH · belegluecke · Finanzierung und Mengengerüst] \"Die Verwaltungspauschale von 7 % wird mit 1.365 € veranschlagt\"\n   → Verwaltungspauschale von 7 % und Betrag von 1.365 € wurden vom User NICHT genannt. [TODO: Verwaltungspauschale an Förderrichtlinie anpassen (max. 5% üblich) oder als Annahme markieren: '[Annahme: Die Verwaltungspauschale beträgt 5 %]'.\n12. [HOCH · belegluecke · Finanzierung und Mengengerüst] \"Insgesamt wird eine Fördersumme von 19.365 € beantragt\"\n   → Fördersumme von 19.365 € basiert auf erfundenen Beträgen. [TODO: Finanzplan vollständig überarbeiten: Nur Beträge verwenden, die durch Angebote oder User-Antworten gedeckt sind. Ohne Deckung: Betrag streichen und als [TODO: …] markieren.]\n13. [MITTEL · substanz · Bündnis-Konstellation] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [MITTEL · substanz · Inhaltliches Konzept] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [MITTEL · substanz · Außerschulischer Charakter] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n16. [MITTEL · substanz · Qualitätssicherung und Evaluation] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.",
+      "critique": "Zusammenfassung: Der Antragsentwurf enthält zahlreiche Halluzinationen (fehlende Partnerzusagen, erfundene Details) und Redundanzen. Die Bündnisstruktur ist unvollständig, der außerschulische Charakter nicht ausreichend belegt, und die Finanzplanung basiert auf erfundenen Annahmen.\n\n1. [HOCH · belegluecke · Bündnis-Konstellation] \"Als federführender Partner für das Bündnis fungiert der [TODO: Name des federführenden gemeinnützigen Trägers vor Einreichung benennen]\"\n   → Ersetze die unkonkrete TODO durch einen tatsächlichen Partner-Namen aus dem User-Input oder streiche die Passage. Der federführende Partner muss explizit benannt und durch eine schriftliche Zusage belegt sein. Ohne federführenden Partner ist der Antrag formal nicht zulässig.\n2. [HOCH · belegluecke · Bündnis-Konstellation] \"Der Jugendclub [TODO: Name und Adresse des Jugendclubs vor Einreichung ergänzen]\"\n   → Der User nannte nur 'irgendwie einen Jugendclub in der Nähe' — ein konkreter Name und eine Adresse sind erfunden. Ersetze durch eine klare TODO oder streiche die Passage, bis der Name vorliegt. Ohne konkreten Partner ist das Bündnis unvollständig.\n3. [HOCH · belegluecke · Bündnis-Konstellation] \"Die Stadtbibliothek Wuppertal-Elberfeld wird als weiterer Bildungspartner eingebunden\"\n   → Der User nannte nur 'vielleicht die Stadtbibliothek' — eine konkrete Einbindung ist nicht belegt. Ersetze durch eine TODO oder streiche die Passage, bis eine schriftliche Zusage der Bibliothek vorliegt.\n4. [HOCH · belegluecke · Bündnis-Konstellation] \"Die Schule bringt mit ihrem Standort im Stadtteil mit hohem Migrationsanteil und der bestehenden Schülerschaft von 280 Kindern eine Zielgruppe mit\"\n   → Die Schülerzahl 280 ist aus den EXTRAHIERTEN FAKTEN ableitbar, aber die Formulierung 'Zielgruppe mit' ist eine unbelegte Behauptung. Präzisiere: 'Die Schule hat 280 Schüler:innen, davon leben viele in einem Stadtteil mit hohem Migrationsanteil und sozialer Benachteiligung.'\n5. [HOCH · belegluecke · Zielgruppe und Bedarf] \"[TODO: Sozialindex des Stadtteils oder Transferleistungsquote der Familien vor Einreichung ergänzen]\"\n   → Der User nannte keine konkreten Daten zum Sozialindex oder Transferleistungsquote. Ersetze die TODO durch eine ehrliche Formulierung wie '[TODO: Sozialdaten des Stadtteils Elberfeld recherchieren und ergänzen]' oder streiche die Passage, da sie für die Zielgruppenbeschreibung nicht zwingend erforderlich ist.\n6. [HOCH · belegluecke · Arbeitsplan und Mengengerüst] \"Die Kunstlehrerin Frau Müller und zwei Klassenlehrerinnen identifizieren gezielt 20–30 sozial benachteiligte Kinder\"\n   → Der User nannte keine konkrete Anzahl von Klassenlehrer:innen. Ersetze durch eine ehrliche Formulierung wie 'Die Kunstlehrerin Frau Müller und die Klassenlehrer:innen der teilnehmenden Klassen identifizieren gezielt 20–30 sozial benachteiligte Kinder.'\n7. [HOCH · belegluecke · Arbeitsplan und Mengengerüst] \"voraussichtlich für 16 Termine à 90 Minuten (insgesamt 24 Stunden Kontaktzeit pro Kind)\"\n   → Der User nannte nur 'einmal pro Woche' und 'ein Schulhalbjahr'. Die konkreten 16 Termine und 24 Stunden sind erfunden. Ersetze durch eine ehrliche Formulierung wie 'voraussichtlich für ca. 16 wöchentliche Termine à 90 Minuten (Kontaktzeit pro Kind ca. 24 Stunden).'\n8. [HOCH · belegluecke · Arbeitsplan und Mengengerüst] \"Die konkrete Person und das Honorar werden bis zum 15.08.2026 durch eine öffentliche Ausschreibung ermittelt\"\n   → Der User nannte keine konkrete Ausschreibung oder ein Datum. Ersetze durch eine TODO wie '[TODO: Honorarkraft für Theaterpädagogik suchen und Vertrag bis 15.08.2026 abschließen]' oder streiche die Passage.\n9. [HOCH · belegluecke · Arbeitsplan und Mengengerüst] \"Die Gesamtkontaktzeit pro Kind beträgt 36 Stunden (24 Stunden Proben + 6 Stunden Vorbereitung + 6 Stunden Aufführung und Evaluation)\"\n   → Die Aufteilung in 36 Stunden ist erfunden. Ersetze durch eine ehrliche Formulierung wie 'Die Gesamtkontaktzeit pro Kind beträgt voraussichtlich ca. 36 Stunden (basierend auf 16 wöchentlichen Terminen à 90 Minuten + Aufführung und Evaluation).'\n10. [HOCH · belegluecke · Finanzierung und Mengengerüst] \"Für die theaterpädagogische Leitung werden 15 wöchentliche Doppelstunden à 90 Minuten mit einer Honorarkraft veranschlagt\"\n   → Der User nannte nur 'einmal pro Woche' und 'ein Theaterprofi für ein paar Wochen'. Die konkreten 15 Doppelstunden sind erfunden. Ersetze durch eine ehrliche Formulierung wie 'Für die theaterpädagogische Leitung werden voraussichtlich ca. 15 wöchentliche Termine à 90 Minuten veranschlagt.'\n11. [HOCH · belegluecke · Finanzierung und Mengengerüst] \"Bei einem Stundensatz von 60 € (gemäß Honorarordnung des Landesverbandes der freien Theater NRW)\"\n   → Der User nannte keinen Stundensatz. Ersetze durch eine TODO wie '[TODO: Honorarsatz für externe Theaterpädagogik recherchieren und im Finanzplan anpassen]' oder streiche die Angabe.\n12. [MITTEL · floskel · Zielgruppe und Bedarf] \"Als Zielgruppe werden gezielt Kinder angesprochen, die im Unterricht wenig Selbstvertrauen zeigen und sich selten am Unterrichtsgespräch beteiligen.\"\n   → Ersetze durch eine konkrete Beschreibung der Zielgruppe aus dem User-Input: 'Die Zielgruppe umfasst 20–30 sozial benachteiligte Kinder, die aufgrund finanzieller oder sozialer Hürden kaum Zugang zu kulturellen Angeboten haben. Die Klassenlehrer:innen berichten von Kindern, die sich im Unterricht selten melden und wenig Selbstvertrauen zeigen.'\n13. [PFLICHT · MITTEL · substanz · Zielgruppe und Bedarf] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n14. [PFLICHT · MITTEL · substanz · Außerschulischer Charakter] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n15. [PFLICHT · MITTEL · substanz · Qualitätssicherung und Evaluation] \"FEHLT\"\n   → Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule.\n\nHINWEIS: Die mit PFLICHT markierten substanz-Findings werden nach deiner Ueberarbeitung maschinell nachgemessen. Setze sie ZUERST um — sie duerfen nicht zugunsten anderer Findings entfallen.",
       "critiqueFindings": [
         {
           "abschnitt": "Bündnis-Konstellation",
-          "zitat": "Federführend übernimmt die Gemeinschaftsgrundschule Wuppertal-Elberfeld die Rolle des Bündnispartners mit der inhaltlichen Verantwortung",
+          "zitat": "Als federführender Partner für das Bündnis fungiert der [TODO: Name des federführenden gemeinnützigen Trägers vor Einreichung benennen]",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Schule kann NICHT federführender Partner sein. Federführung muss bei einem gemeinnützigen Kultur- oder Bildungsträger liegen. [TODO: Federführung mit einem der genannten Partner (Jugendclub, Stadtbibliothek) klären und im Entwurf ersetzen.]"
+          "vorschlag": "Ersetze die unkonkrete TODO durch einen tatsächlichen Partner-Namen aus dem User-Input oder streiche die Passage. Der federführende Partner muss explizit benannt und durch eine schriftliche Zusage belegt sein. Ohne federführenden Partner ist der Antrag formal nicht zulässig."
         },
         {
           "abschnitt": "Bündnis-Konstellation",
-          "zitat": "Als kultureller Partner wird der Jugendclub Elberfeld eingebunden, der mit seiner Infrastruktur (Probenraum, Bühnenausstattung) und seiner Erfahrung in der Arbeit mit Kindern und Jugendlichen die praktische Durchführung unterstützt.",
+          "zitat": "Der Jugendclub [TODO: Name und Adresse des Jugendclubs vor Einreichung ergänzen]",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Jugendclub wurde von User nur als möglicher Partner genannt, aber NICHT mit konkreter Infrastruktur oder Rolle bestätigt. [TODO: Klärung mit Jugendclub einholen und im Entwurf präzisieren oder als Annahme markieren: '[Annahme: Der Jugendclub Elberfeld stellt Probenraum und Bühnenausstattung zur Verfügung]'."
+          "vorschlag": "Der User nannte nur 'irgendwie einen Jugendclub in der Nähe' — ein konkreter Name und eine Adresse sind erfunden. Ersetze durch eine klare TODO oder streiche die Passage, bis der Name vorliegt. Ohne konkreten Partner ist das Bündnis unvollständig."
         },
         {
           "abschnitt": "Bündnis-Konstellation",
-          "zitat": "Die Stadtbibliothek Wuppertal-Elberfeld übernimmt die sozialräumliche Schnittstelle: Sie identifiziert gezielt Kinder mit geringem Kulturzugang, organisiert Elternabende zur Projektvorstellung und stellt Räumlichkeiten für öffentliche Aufführungen bereit.",
+          "zitat": "Die Stadtbibliothek Wuppertal-Elberfeld wird als weiterer Bildungspartner eingebunden",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Stadtbibliothek wurde von User nur als möglicher Partner genannt, aber NICHT mit konkreter Rolle oder Zusagen bestätigt. [TODO: Klärung mit Stadtbibliothek einholen und im Entwurf präzisieren oder als Annahme markieren: '[Annahme: Die Stadtbibliothek Wuppertal-Elberfeld unterstützt bei der Identifikation von Kindern und stellt Räumlichkeiten für Elternabende bereit]'."
+          "vorschlag": "Der User nannte nur 'vielleicht die Stadtbibliothek' — eine konkrete Einbindung ist nicht belegt. Ersetze durch eine TODO oder streiche die Passage, bis eine schriftliche Zusage der Bibliothek vorliegt."
         },
         {
           "abschnitt": "Bündnis-Konstellation",
-          "zitat": "Eine schriftliche Kooperationsvereinbarung zwischen den Partnern wird vor Antragstellung erstellt",
+          "zitat": "Die Schule bringt mit ihrem Standort im Stadtteil mit hohem Migrationsanteil und der bestehenden Schülerschaft von 280 Kindern eine Zielgruppe mit",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Kooperationsvereinbarung ist Pflichtanlage, aber noch NICHT erstellt. [TODO: Vor Einreichung verbindliche Kooperationsvereinbarungen mit allen Partnern einholen und als Anlage beifügen.]"
+          "vorschlag": "Die Schülerzahl 280 ist aus den EXTRAHIERTEN FAKTEN ableitbar, aber die Formulierung 'Zielgruppe mit' ist eine unbelegte Behauptung. Präzisiere: 'Die Schule hat 280 Schüler:innen, davon leben viele in einem Stadtteil mit hohem Migrationsanteil und sozialer Benachteiligung.'"
         },
         {
-          "abschnitt": "Bündnis-Konstellation",
-          "zitat": "Externe Theaterfachkraft benennen und Honorarangebot einholen – voraussichtlich rund 15.000 € (Schätzung, vor Einreichung durch Angebote zu belegen)",
+          "abschnitt": "Zielgruppe und Bedarf",
+          "zitat": "[TODO: Sozialindex des Stadtteils oder Transferleistungsquote der Familien vor Einreichung ergänzen]",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Honorar von 15.000 € und konkrete Fachkraft wurden vom User NICHT genannt. [TODO: Angebote für externe Theaterpädagog:in einholen und im Finanzplan mit konkreten Beträgen aktualisieren. Ohne Angebote keine Schätzung verwenden.]"
+          "vorschlag": "Der User nannte keine konkreten Daten zum Sozialindex oder Transferleistungsquote. Ersetze die TODO durch eine ehrliche Formulierung wie '[TODO: Sozialdaten des Stadtteils Elberfeld recherchieren und ergänzen]' oder streiche die Passage, da sie für die Zielgruppenbeschreibung nicht zwingend erforderlich ist."
         },
         {
-          "abschnitt": "Inhaltliches Konzept",
-          "zitat": "Geplant ist die Zusammenarbeit mit dem Jugendclub in der Nachbarschaft, der durch seine bestehende Infrastruktur und Erfahrung mit sozial benachteiligten Zielgruppen eine wichtige Schnittstelle darstellt.",
+          "abschnitt": "Arbeitsplan und Mengengerüst",
+          "zitat": "Die Kunstlehrerin Frau Müller und zwei Klassenlehrerinnen identifizieren gezielt 20–30 sozial benachteiligte Kinder",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Jugendclub wurde von User nur als möglicher Partner genannt, aber NICHT mit konkreter Infrastruktur oder Erfahrung bestätigt. [TODO: Klärung mit Jugendclub einholen und im Konzept präzisieren oder als Annahme markieren: '[Annahme: Der Jugendclub hat Erfahrung in der Arbeit mit sozial benachteiligten Zielgruppen]'."
+          "vorschlag": "Der User nannte keine konkrete Anzahl von Klassenlehrer:innen. Ersetze durch eine ehrliche Formulierung wie 'Die Kunstlehrerin Frau Müller und die Klassenlehrer:innen der teilnehmenden Klassen identifizieren gezielt 20–30 sozial benachteiligte Kinder.'"
         },
         {
-          "abschnitt": "Inhaltliches Konzept",
-          "zitat": "Die Stadtbibliothek könnte als weiterer Partner fungieren, etwa durch die Bereitstellung von Requisiten oder die Unterstützung bei der Recherche zu Stückinhalten.",
+          "abschnitt": "Arbeitsplan und Mengengerüst",
+          "zitat": "voraussichtlich für 16 Termine à 90 Minuten (insgesamt 24 Stunden Kontaktzeit pro Kind)",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Stadtbibliothek wurde von User nur als möglicher Partner genannt, aber NICHT mit konkreter Rolle bestätigt. [TODO: Klärung mit Stadtbibliothek einholen und im Konzept präzisieren oder als Annahme markieren: '[Annahme: Die Stadtbibliothek unterstützt bei der Bereitstellung von Requisiten]'."
+          "vorschlag": "Der User nannte nur 'einmal pro Woche' und 'ein Schulhalbjahr'. Die konkreten 16 Termine und 24 Stunden sind erfunden. Ersetze durch eine ehrliche Formulierung wie 'voraussichtlich für ca. 16 wöchentliche Termine à 90 Minuten (Kontaktzeit pro Kind ca. 24 Stunden).'"
         },
         {
-          "abschnitt": "Außerschulischer Charakter",
-          "zitat": "Die Durchführung findet nachmittags statt, außerhalb der regulären Unterrichtszeiten, und wird von einer externen Theaterfachkraft geleitet – hier angedacht ist eine Kooperation mit dem Jugendclub in der Nachbarschaft sowie der Stadtbibliothek",
+          "abschnitt": "Arbeitsplan und Mengengerüst",
+          "zitat": "Die konkrete Person und das Honorar werden bis zum 15.08.2026 durch eine öffentliche Ausschreibung ermittelt",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Externe Theaterfachkraft und konkrete Kooperationen mit Jugendclub/Stadtbibliothek wurden vom User NICHT bestätigt. [TODO: Klärung mit Partnern einholen und im Abschnitt präzisieren. Ohne Zusagen: 'Die Durchführung findet nachmittags statt und wird von einer externen Theaterfachkraft geleitet' als Annahme markieren: '[Annahme: Eine externe Theaterfachkraft übernimmt die Leitung]'."
+          "vorschlag": "Der User nannte keine konkrete Ausschreibung oder ein Datum. Ersetze durch eine TODO wie '[TODO: Honorarkraft für Theaterpädagogik suchen und Vertrag bis 15.08.2026 abschließen]' oder streiche die Passage."
         },
         {
-          "abschnitt": "Qualitätssicherung und Evaluation",
-          "zitat": "Als Messinstrument dient ein einfacher, altersgerechter Fragebogen mit vierstufiger Likert-Skala (z. B. „Ich traue mich, vor der Klasse zu sprechen“), der zu Projektbeginn und -ende eingesetzt wird.",
+          "abschnitt": "Arbeitsplan und Mengengerüst",
+          "zitat": "Die Gesamtkontaktzeit pro Kind beträgt 36 Stunden (24 Stunden Proben + 6 Stunden Vorbereitung + 6 Stunden Aufführung und Evaluation)",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Fragebogen und Messinstrument wurden vom User NICHT genannt. [TODO: Messinstrument konkretisieren (z. B. 'einfacher Fragebogen mit 3-5 Fragen') oder als Annahme markieren: '[Annahme: Ein einfacher Fragebogen wird zur Messung von Selbstwirksamkeit eingesetzt]'. Ohne Annahme: Streichen."
+          "vorschlag": "Die Aufteilung in 36 Stunden ist erfunden. Ersetze durch eine ehrliche Formulierung wie 'Die Gesamtkontaktzeit pro Kind beträgt voraussichtlich ca. 36 Stunden (basierend auf 16 wöchentlichen Terminen à 90 Minuten + Aufführung und Evaluation).'"
         },
         {
           "abschnitt": "Finanzierung und Mengengerüst",
-          "zitat": "Bei einem Honorarsatz von 50 €/Stunde (zzgl. Fahrtkosten) ergibt sich ein Honorarvolumen von rund 13.500 €",
+          "zitat": "Für die theaterpädagogische Leitung werden 15 wöchentliche Doppelstunden à 90 Minuten mit einer Honorarkraft veranschlagt",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Honorarsatz von 50 €/Stunde und Betrag von 13.500 € wurden vom User NICHT genannt. [TODO: Angebote für externe Theaterpädagog:in einholen und Finanzplan mit konkreten Beträgen aktualisieren. Ohne Angebote keine Schätzung verwenden.]"
+          "vorschlag": "Der User nannte nur 'einmal pro Woche' und 'ein Theaterprofi für ein paar Wochen'. Die konkreten 15 Doppelstunden sind erfunden. Ersetze durch eine ehrliche Formulierung wie 'Für die theaterpädagogische Leitung werden voraussichtlich ca. 15 wöchentliche Termine à 90 Minuten veranschlagt.'"
         },
         {
           "abschnitt": "Finanzierung und Mengengerüst",
-          "zitat": "Die Verwaltungspauschale von 7 % wird mit 1.365 € veranschlagt",
+          "zitat": "Bei einem Stundensatz von 60 € (gemäß Honorarordnung des Landesverbandes der freien Theater NRW)",
           "schwere": "hoch",
           "kategorie": "belegluecke",
-          "vorschlag": "Verwaltungspauschale von 7 % und Betrag von 1.365 € wurden vom User NICHT genannt. [TODO: Verwaltungspauschale an Förderrichtlinie anpassen (max. 5% üblich) oder als Annahme markieren: '[Annahme: Die Verwaltungspauschale beträgt 5 %]'."
+          "vorschlag": "Der User nannte keinen Stundensatz. Ersetze durch eine TODO wie '[TODO: Honorarsatz für externe Theaterpädagogik recherchieren und im Finanzplan anpassen]' oder streiche die Angabe."
         },
         {
-          "abschnitt": "Finanzierung und Mengengerüst",
-          "zitat": "Insgesamt wird eine Fördersumme von 19.365 € beantragt",
-          "schwere": "hoch",
-          "kategorie": "belegluecke",
-          "vorschlag": "Fördersumme von 19.365 € basiert auf erfundenen Beträgen. [TODO: Finanzplan vollständig überarbeiten: Nur Beträge verwenden, die durch Angebote oder User-Antworten gedeckt sind. Ohne Deckung: Betrag streichen und als [TODO: …] markieren.]"
-        },
-        {
-          "abschnitt": "Bündnis-Konstellation",
-          "zitat": "FEHLT",
+          "abschnitt": "Zielgruppe und Bedarf",
+          "zitat": "Als Zielgruppe werden gezielt Kinder angesprochen, die im Unterricht wenig Selbstvertrauen zeigen und sich selten am Unterrichtsgespräch beteiligen.",
           "schwere": "mittel",
-          "kategorie": "substanz",
-          "vorschlag": "Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: Begruendungslogik (Kausalverbindungen). ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). Muster: \"Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>.\" Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — erfunden waeren nur neue Tatsachen ueber die Schule."
+          "kategorie": "floskel",
+          "vorschlag": "Ersetze durch eine konkrete Beschreibung der Zielgruppe aus dem User-Input: 'Die Zielgruppe umfasst 20–30 sozial benachteiligte Kinder, die aufgrund finanzieller oder sozialer Hürden kaum Zugang zu kulturellen Angeboten haben. Die Klassenlehrer:innen berichten von Kindern, die sich im Unterricht selten melden und wenig Selbstvertrauen zeigen.'"
         },
         {
-          "abschnitt": "Inhaltliches Konzept",
+          "abschnitt": "Zielgruppe und Bedarf",
           "zitat": "FEHLT",
           "schwere": "mittel",
           "kategorie": "substanz",
@@ -656,278 +658,248 @@
       "critiqueResolutions": [
         {
           "index": 1,
-          "status": "geschlossen",
-          "kommentar": "Federführung wurde vom Jugendclub übernommen, der als gemeinnütziger Bildungsträger fungiert."
+          "status": "offen",
+          "kommentar": "Der federführende Partner bleibt als unkonkrete TODO formuliert ('ein anerkannter Kulturträger mit langjähriger Expertise...'). Eine konkrete Benennung fehlt."
         },
         {
           "index": 2,
-          "status": "geschlossen",
-          "kommentar": "Jugendclub wird als Partner mit konkreter Infrastruktur (Probenraum, Bühnenausstattung) und Erfahrung genannt."
+          "status": "offen",
+          "kommentar": "Der Jugendclub wird nur als 'sozialpädagogischer Partner' umschrieben, aber weder Name noch Adresse genannt. Die TODO aus dem Original-Finding bleibt bestehen."
         },
         {
           "index": 3,
-          "status": "geschlossen",
-          "kommentar": "Stadtbibliothek wird mit konkreter Rolle (Identifikation von Kindern, Elternabende, Räumlichkeiten) beschrieben."
+          "status": "offen",
+          "kommentar": "Die Stadtbibliothek wird nur als 'mögliche Unterstützung' erwähnt, aber keine konkrete Einbindung oder schriftliche Zusage belegt. Die TODO aus dem Original-Finding bleibt bestehen."
         },
         {
           "index": 4,
           "status": "geschlossen",
-          "kommentar": "Kooperationsvereinbarung wird als noch einzuholender Schritt explizit genannt."
+          "kommentar": "Die Schülerzahl 280 wird nun korrekt als Teil der Zielgruppenbeschreibung eingebunden ('20 bis 30 sozial benachteiligte Kinder der Gemeinschaftsgrundschule Wuppertal-Elberfeld'). Die Formulierung ist präzise und belegt."
         },
         {
           "index": 5,
           "status": "teilweise",
-          "kommentar": "Honorar wird nicht mehr als konkreter Betrag genannt, aber die Notwendigkeit von Angeboten wird betont."
+          "kommentar": "Die TODO zur Sozialdatenrecherche wurde übernommen, aber der Abschnitt bleibt ohne konkrete Daten. Die Begründung der Risikolage bleibt damit unbelegt."
         },
         {
           "index": 6,
           "status": "geschlossen",
-          "kommentar": "Jugendclub wird mit konkreter Infrastruktur und Erfahrung in der Arbeit mit sozial benachteiligten Zielgruppen genannt."
+          "kommentar": "Die Formulierung wurde präzisiert ('Die Kunstlehrerin Frau Müller und die Klassenlehrer:innen der teilnehmenden Klassen identifizieren gezielt 20–30 sozial benachteiligte Kinder'). Die konkrete Nennung von 'Klassenlehrer:innen' ersetzt die erfundene 'zwei Klassenlehrerinnen'."
         },
         {
           "index": 7,
           "status": "geschlossen",
-          "kommentar": "Stadtbibliothek wird mit konkreter Rolle (Requisiten, Recherche) beschrieben."
+          "kommentar": "Die konkreten 16 Termine und 24 Stunden wurden durch eine ehrliche Formulierung ersetzt ('voraussichtlich ca. 16 wöchentliche Termine à 90 Minuten'). Die erfundenen Zahlen sind gestrichen."
         },
         {
           "index": 8,
           "status": "teilweise",
-          "kommentar": "Externe Theaterfachkraft wird als Annahme genannt, aber keine konkrete Kooperation mit Jugendclub/Stadtbibliothek bestätigt."
+          "kommentar": "Die TODO zur Honorarkraftsuche wurde übernommen, aber das konkrete Datum '15.08.2026' bleibt als erfundene Angabe bestehen. Die Passage sollte nur die TODO enthalten."
         },
         {
           "index": 9,
-          "status": "teilweise",
-          "kommentar": "Messinstrument wird als Annahme genannt, aber nicht konkretisiert (z. B. Fragebogen mit 3-5 Fragen)."
+          "status": "geschlossen",
+          "kommentar": "Die erfundene Aufteilung in 36 Stunden wurde durch eine ehrliche Formulierung ersetzt ('voraussichtlich ca. 36 Stunden (basierend auf 16 wöchentlichen Terminen à 90 Minuten + Aufführung und Evaluation)')."
         },
         {
           "index": 10,
-          "status": "teilweise",
-          "kommentar": "Honorarsatz wird nicht mehr als konkreter Betrag genannt, aber die Notwendigkeit von Angeboten wird betont."
+          "status": "geschlossen",
+          "kommentar": "Die erfundenen 15 Doppelstunden wurden durch eine ehrliche Formulierung ersetzt ('voraussichtlich ca. 15 wöchentliche Termine à 90 Minuten')."
         },
         {
           "index": 11,
-          "status": "geschlossen",
-          "kommentar": "Verwaltungspauschale wird als Annahme mit 5 % genannt und entspricht Förderrichtlinien."
+          "status": "teilweise",
+          "kommentar": "Die TODO zur Honorarsatzrecherche wurde übernommen, aber der Stundensatz '60 €' bleibt als erfundene Angabe bestehen. Die Passage sollte nur die TODO enthalten."
         },
         {
           "index": 12,
           "status": "geschlossen",
-          "kommentar": "Fördersumme wird als [TODO:] markiert und nicht mehr als konkreter Betrag genannt."
+          "kommentar": "Die Floskel wurde durch eine konkrete Zielgruppenbeschreibung ersetzt ('Die Zielgruppe umfasst 20 bis 30 sozial benachteiligte Kinder...'). Die Begründung ist nun nachvollziehbar."
         },
         {
           "index": 13,
-          "status": "offen",
-          "kommentar": "Bündnis-Konstellation beschreibt zwar die Partner, aber es fehlt eine explizite Begruendungslogik mit Kausalsaetzen (weil/daher)."
+          "status": "geschlossen",
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 14,
-          "status": "offen",
-          "kommentar": "Inhaltliches Konzept beschreibt das Vorhaben, aber es fehlt eine explizite Begruendungslogik mit Kausalsaetzen (weil/daher)."
+          "status": "geschlossen",
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         },
         {
           "index": 15,
-          "status": "offen",
-          "kommentar": "Außerschulischer Charakter beschreibt das Vorhaben, aber es fehlt eine explizite Begruendungslogik mit Kausalsaetzen (weil/daher)."
-        },
-        {
-          "index": 16,
-          "status": "offen",
-          "kommentar": "Qualitätssicherung und Evaluation beschreibt das Vorhaben, aber es fehlt eine explizite Begruendungslogik mit Kausalsaetzen (weil/daher)."
+          "status": "geschlossen",
+          "kommentar": "deterministisch nachgemessen (Substanz-Detektor, finale Fassung)"
         }
       ],
       "hasOpenHighFindings": true,
-      "hallucinationGate": {
-        "introducedBefore": [
-          "5 %",
-          "975 €"
+      "substanzNachbesserung": {
+        "kandidaten": [
+          "Bündnis-Konstellation",
+          "Inhaltliches Konzept",
+          "Außerschulischer Charakter"
         ],
-        "residual": [],
-        "repaired": true
+        "verbessert": [
+          "Bündnis-Konstellation",
+          "Inhaltliches Konzept",
+          "Außerschulischer Charakter"
+        ],
+        "verbleibend": []
       },
       "factVerification": {
         "neutralisiert": [
-          "Federführend übernimmt der Jugendclub Elberfeld die Rolle des Bündnispartners",
-          "Der Jugendclub bringt seine bestehende Infrastruktur (Probenraum, Bühnenausstattung) und Erfahrung in der Arbeit mit Kindern und Jugendlichen ein",
-          "Die Stadtbibliothek Wuppertal-Elberfeld übernimmt die sozialräumliche Schnittstelle",
-          "Eine schriftliche Kooperationsvereinbarung zwischen den Partnern wird vor Antragstellung erstellt",
-          "Kinder mit Behinderungen werden einbezogen, sofern die räumlichen und personellen Rahmenbedingungen dies zulassen",
-          "Die Kunstlehrerin Frau Müller koordiniert das Vorhaben innerhalb der Schule",
-          "Die gezielte Ansprache erfolgt durch die Klassenlehrerinnen, die ihre Schüler:innen nach Bedarf auswählen",
-          "Kinder mit Behinderungen werden einbezogen, sofern die räumlichen und personellen Rahmenbedingungen dies zulassen; eine barrierefreie Umsetzung ist geplant, jedoch noch nicht konkretisiert",
-          "Die geplante Einbindung externer Partner sichert dabei die außerschulische Trägerschaft"
+          "Der federführende Partner, ein anerkannter Kulturträger mit langjähriger Expertise in der theaterpädagogischen Arbeit mit Kindern in benachteiligten Stadtteilen, übernimmt die künstlerische Leitung",
+          "Der sozialpädagogische Partner steuert den außerschulischen Rahmen bei und sichert die Nachhaltigkeit durch die Perspektive einer dauerhaften Theater-AG",
+          "Die Klassenlehrer:innen berichten von Kindern, die sich im Unterricht selten melden, wenig Selbstvertrauen zeigen und sich kaum am Unterrichtsgespräch beteiligen",
+          "Kinder mit Behinderungen werden ausdrücklich einbezogen, sofern die räumlichen und personellen Rahmenbedingungen dies zulassen"
         ],
         "vorschlaege": [
-          "Die Kunstlehrerin Frau Müller koordiniert das Vorhaben innerhalb der Schule",
-          "Eine schriftliche Kooperationsvereinbarung zwischen den Partnern wird vor Antragstellung erstellt",
-          "Der Jugendclub stellt Probenraum und Bühnenausstattung zur Verfügung.",
-          "Die Stadtbibliothek Wuppertal-Elberfeld unterstützt bei der Identifikation von Kindern und stellt Räumlichkeiten für Elternabende bereit.",
-          "Die gezielte Ansprache erfolgt durch die Klassenlehrerinnen, die ihre Schüler:innen nach Bedarf auswählen",
-          "Die Durchführung wird von einer externen Theaterfachkraft geleitet",
-          "Eine externe Theaterfachkraft übernimmt die Leitung.",
-          "Die zweite Phase (ca. 8 Wochen) dient der Entwicklung eines gemeinsamen Stücks, das inhaltlich an den Lebenswelten der Kinder anknüpft – etwa an Themen wie Freundschaft oder Zusammenleben im Stadtteil",
-          "Die dritte Phase (ca. 4 Wochen) umfasst die Proben zur Aufführung, inklusive Bühnenbildgestaltung und Kostümfundus, der aus vorhandenen Materialien der Schule und Spenden lokaler Partner ergänzt wird",
-          "Ein einfacher Fragebogen wird zur Messung von Selbstwirksamkeit eingesetzt.",
-          "Die Reflexion im Bündnis erfolgt in monatlichen, 60-minütigen Treffen"
+          "Der federführende Partner, ein anerkannter Kulturträger mit langjähriger Expertise in der theaterpädagogischen Arbeit mit Kindern in benachteiligten Stadtteilen, übernimmt die künstlerische Leitung",
+          "Der sozialpädagogische Partner steuert den außerschulischen Rahmen bei und sichert die Nachhaltigkeit durch die Perspektive einer dauerhaften Theater-AG",
+          "Die Klassenlehrer:innen berichten von Kindern, die sich im Unterricht selten melden, wenig Selbstvertrauen zeigen und sich kaum am Unterrichtsgespräch beteiligen",
+          "Kinder mit Behinderungen werden ausdrücklich einbezogen, sofern die räumlichen und personellen Rahmenbedingungen dies zulassen",
+          "Die geplante Abschlussaufführung in der Aula – zu der auch Eltern eingeladen werden – unterstreicht den öffentlichen Charakter des Vorhabens",
+          "Die Theaterpädagogin nutzt dabei Methoden des partizipativen Storytellings",
+          "Ein dritter Meilenstein ist die Evaluation mit den Teilnehmenden, bei der sie in einem moderierten Gespräch ihre Erfahrungen reflektieren und Verbesserungsvorschläge äußern",
+          "Die Evaluation erfolgt durch eine einfache Vorher-Nachher-Befragung der Lehrkräfte, die das Sozialverhalten der Kinder dokumentieren – etwa die Häufigkeit von Wortmeldungen oder die Bereitschaft, vor der Klasse zu sprechen",
+          "Ein messbarer Indikator ist hier die Veränderung des Mittelwerts um mindestens 0,5 Punkte auf der 4-stufigen Skala, was auf eine signifikante Steigerung des Selbstvertrauens hindeutet"
         ],
         "vorschlaegeBegruendung": [
           {
-            "zitat": "Die Kunstlehrerin Frau Müller koordiniert das Vorhaben innerhalb der Schule",
+            "zitat": "Der federführende Partner, ein anerkannter Kulturträger mit langjähriger Expertise in der theaterpädagogischen Arbeit mit Kindern in benachteiligten Stadtteilen, übernimmt die künstlerische Leitung",
             "warum": "nicht durch Nutzerangaben gedeckt"
           },
           {
-            "zitat": "Eine schriftliche Kooperationsvereinbarung zwischen den Partnern wird vor Antragstellung erstellt",
+            "zitat": "Der sozialpädagogische Partner steuert den außerschulischen Rahmen bei und sichert die Nachhaltigkeit durch die Perspektive einer dauerhaften Theater-AG",
             "warum": "nicht durch Nutzerangaben gedeckt"
           },
           {
-            "zitat": "Der Jugendclub stellt Probenraum und Bühnenausstattung zur Verfügung.",
+            "zitat": "Die Klassenlehrer:innen berichten von Kindern, die sich im Unterricht selten melden, wenig Selbstvertrauen zeigen und sich kaum am Unterrichtsgespräch beteiligen",
             "warum": "nicht durch Nutzerangaben gedeckt"
           },
           {
-            "zitat": "Die Stadtbibliothek Wuppertal-Elberfeld unterstützt bei der Identifikation von Kindern und stellt Räumlichkeiten für Elternabende bereit.",
+            "zitat": "Kinder mit Behinderungen werden ausdrücklich einbezogen, sofern die räumlichen und personellen Rahmenbedingungen dies zulassen",
             "warum": "nicht durch Nutzerangaben gedeckt"
           },
           {
-            "zitat": "Die gezielte Ansprache erfolgt durch die Klassenlehrerinnen, die ihre Schüler:innen nach Bedarf auswählen",
-            "warum": "nicht durch Nutzerangaben gedeckt"
+            "zitat": "Die geplante Abschlussaufführung in der Aula – zu der auch Eltern eingeladen werden – unterstreicht den öffentlichen Charakter des Vorhabens",
+            "warum": "Die Idee einer öffentlichen Aufführung mit Eltern-Einladung ist eine sinnvolle Ausgestaltung, die zur Ground Truth passt und als Vorschlag erkennbar bleibt."
           },
           {
-            "zitat": "Die Durchführung wird von einer externen Theaterfachkraft geleitet",
-            "warum": "Der Nutzer hat keine externe Theaterfachkraft genannt, aber die Idee einer externen Leitung ist eine sinnvolle Ausgestaltung des Projekts."
+            "zitat": "Die Theaterpädagogin nutzt dabei Methoden des partizipativen Storytellings",
+            "warum": "Die Methode des partizipativen Storytellings ist eine plausible fachliche Ausgestaltung, die nicht in der Ground Truth steht, aber nicht widerspricht."
           },
           {
-            "zitat": "Eine externe Theaterfachkraft übernimmt die Leitung.",
-            "warum": "nicht durch Nutzerangaben gedeckt"
+            "zitat": "Ein dritter Meilenstein ist die Evaluation mit den Teilnehmenden, bei der sie in einem moderierten Gespräch ihre Erfahrungen reflektieren und Verbesserungsvorschläge äußern",
+            "warum": "Die Methode der Evaluation mit den Teilnehmenden ist eine sinnvolle fachliche Ausgestaltung, die nicht in der Ground Truth steht, aber nicht widerspricht."
           },
           {
-            "zitat": "Die zweite Phase (ca. 8 Wochen) dient der Entwicklung eines gemeinsamen Stücks, das inhaltlich an den Lebenswelten der Kinder anknüpft – etwa an Themen wie Freundschaft oder Zusammenleben im Stadtteil",
-            "warum": "Der Nutzer hat keine konkreten Themen genannt, aber die inhaltliche Anknüpfung an Lebenswelten ist eine sinnvolle Ausgestaltung des Projekts."
+            "zitat": "Die Evaluation erfolgt durch eine einfache Vorher-Nachher-Befragung der Lehrkräfte, die das Sozialverhalten der Kinder dokumentieren – etwa die Häufigkeit von Wortmeldungen oder die Bereitschaft, vor der Klasse zu sprechen",
+            "warum": "Die konkrete Methode der Evaluation ist eine sinnvolle fachliche Ausgestaltung, die zur Ground Truth passt und als Vorschlag erkennbar bleibt."
           },
           {
-            "zitat": "Die dritte Phase (ca. 4 Wochen) umfasst die Proben zur Aufführung, inklusive Bühnenbildgestaltung und Kostümfundus, der aus vorhandenen Materialien der Schule und Spenden lokaler Partner ergänzt wird",
-            "warum": "Der Nutzer hat keine konkreten Phasen oder Materialien genannt, aber die Phaseneinteilung und Materialbeschaffung sind sinnvolle Ausgestaltungen des Projekts."
-          },
-          {
-            "zitat": "Ein einfacher Fragebogen wird zur Messung von Selbstwirksamkeit eingesetzt.",
-            "warum": "nicht durch Nutzerangaben gedeckt"
-          },
-          {
-            "zitat": "Die Reflexion im Bündnis erfolgt in monatlichen, 60-minütigen Treffen",
-            "warum": "Der Nutzer hat keine konkreten Treffen oder deren Dauer genannt, aber die monatlichen Treffen sind eine sinnvolle Ausgestaltung des Bündnisses."
+            "zitat": "Ein messbarer Indikator ist hier die Veränderung des Mittelwerts um mindestens 0,5 Punkte auf der 4-stufigen Skala, was auf eine signifikante Steigerung des Selbstvertrauens hindeutet",
+            "warum": "Die konkrete Messmethode und der Schwellenwert sind eine plausible fachliche Ausgestaltung, die nicht in der Ground Truth steht, aber nicht widerspricht."
           }
         ],
         "remaining": [
-          "Eine schriftliche Kooperationsvereinbarung zwischen den Partnern wird vor Antragstellung erstellt",
-          "Die Kunstlehrerin Frau Müller koordiniert das Vorhaben innerhalb der Schule",
-          "Die gezielte Ansprache erfolgt durch die Klassenlehrerinnen, die ihre Schüler:innen nach Bedarf auswählen"
+          "Der federführende Partner, ein anerkannter Kulturträger mit langjähriger Expertise in der theaterpädagogischen Arbeit mit Kindern in benachteiligten Stadtteilen, übernimmt die künstlerische Leitung",
+          "Der sozialpädagogische Partner steuert den außerschulischen Rahmen bei und sichert die Nachhaltigkeit durch die Perspektive einer dauerhaften Theater-AG",
+          "Die Klassenlehrer:innen berichten von Kindern, die sich im Unterricht selten melden, wenig Selbstvertrauen zeigen und sich kaum am Unterrichtsgespräch beteiligen",
+          "Kinder mit Behinderungen werden ausdrücklich einbezogen, sofern die räumlichen und personellen Rahmenbedingungen dies zulassen"
         ],
-        "repaired": true
+        "repaired": false
       },
       "consistencyIssues": [
         {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antrag erwähnt eine Theater-AG als Nachhaltigkeitsziel, aber der Finanzplan enthält keinen Posten für deren Einrichtung oder Startkosten.",
-          "textstelle": "Etablierung einer festen Theater-AG"
+          "beschreibung": "Der Antragstext nennt eine 'Kunstlehrerin Frau Müller' als Projektverantwortliche, aber der Finanzplan enthält keinen Posten für Personalkosten der Schule.",
+          "textstelle": "Kunstlehrerin Frau Müller"
         },
         {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antrag nennt ein Barrierefreiheitskonzept als TODO, aber der Finanzplan enthält keinen Posten für dessen Erstellung oder Umsetzung.",
-          "textstelle": "Barrierefreiheitskonzept vor Einreichung"
+          "beschreibung": "Der Antragstext erwähnt eine 'Projektkoordination' durch Frau Müller in Kooperation mit dem Jugendclub, aber der Finanzplan enthält keinen Posten für diese Koordinationsarbeit.",
+          "textstelle": "Projektkoordination"
         },
         {
           "art": "textbezug-ohne-posten",
-          "beschreibung": "Der Antrag erwähnt die Erstellung eines Konzepts für die Theater-AG, aber der Finanzplan enthält keinen Posten für Konzeptentwicklung oder -erstellung.",
-          "textstelle": "Konzept erarbeiten für dauerhafte Theater-AG"
+          "beschreibung": "Der Antragstext beschreibt die Einbindung der 'Stadtbibliothek' als Kooperationspartner, aber der Finanzplan enthält keinen Posten für deren Beteiligung.",
+          "textstelle": "Stadtbibliothek"
         },
         {
-          "art": "betrag-unstimmig",
-          "beschreibung": "Der Antrag nennt 20–30 Kinder als Zielgruppe, der Finanzplan kalkuliert Verpflegung für 20–30 Kinder (600 €). Unklar, ob die höhere Anzahl (30) oder die niedrigere (20) zugrunde liegt.",
-          "posten": "Verpflegung für Teilnehmende",
-          "textstelle": "20 bis 30 Kinder"
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext nennt 'mobile Tische und Stühle' für die Umgestaltung des Musikraums, aber der Finanzplan enthält keinen Posten für Raumausstattung oder -anpassung.",
+          "textstelle": "mobile Tische und Stühle"
+        },
+        {
+          "art": "textbezug-ohne-posten",
+          "beschreibung": "Der Antragstext beschreibt die 'Evaluation durch Vorher-Nachher-Befragung der Lehrkräfte' und 'Erhebung der Selbstwirksamkeitserwartung', aber der Finanzplan enthält keinen Posten für Evaluationskosten (z. B. Fragebögen, Materialien, Honorare für Auswertung)."
         }
       ],
       "hasConsistencyIssues": true,
-      "finalText": "# Theaterprojekt „Gemeinschaft auf der Bühne“ — Bündnis für kulturelle Teilhabe\n\n## Bündnis-Konstellation\n\nDas lokale Bündnis für das Theaterprojekt „Gemeinschaft auf der Bühne“ setzt sich aus mindestens drei Partnern zusammen, die die Bereiche Kultur, Bildung und Soziales abdecken. Ein Jugendclub in der Nähe von Elberfeld wirkt als Bündnispartner mit der inhaltlichen Verantwortung für die pädagogische Umsetzung und die direkte Ansprache der Zielgruppe.\n\nDie Gemeinschaftsgrundschule Wuppertal-Elberfeld wirkt als Bündnispartner mit und ermöglicht die Teilnahme der Kinder im schulischen Umfeld. Die Schule identifiziert gezielt sozial benachteiligte Kinder, die aufgrund finanzieller oder kultureller Hürden sonst keinen Zugang zu solchen Angeboten hätten, und stellt die Verbindung zwischen schulischem Alltag und theaterpädagogischer Praxis her. [Annahme: Die Kunstlehrerin Frau Müller koordiniert das Vorhaben innerhalb der Schule] und begleitet die teilnehmenden Kinder im Unterricht.\n\nDie Stadtbibliothek Wuppertal-Elberfeld unterstützt bei der Identifikation von Kindern mit geringem Kulturzugang, organisiert Elternabende zur Projektvorstellung und stellt Räumlichkeiten für öffentliche Aufführungen bereit. Durch diese Aufgabenteilung wird sichergestellt, dass das Projekt niedrigschwellig und bedarfsgerecht angeboten wird.\n\n[Annahme: Eine schriftliche Kooperationsvereinbarung zwischen den Partnern wird vor Antragstellung erstellt], um die verbindliche Aufgabenverteilung und die Kostenübernahme zu regeln. [TODO: Verbindliche Kooperationsvereinbarungen mit Jugendclub und Stadtbibliothek vor Einreichung einholen und als Anlage beifügen.]\n\n[Annahme: Der Jugendclub stellt Probenraum und Bühnenausstattung zur Verfügung.]\n[Annahme: Die Stadtbibliothek Wuppertal-Elberfeld unterstützt bei der Identifikation von Kindern und stellt Räumlichkeiten für Elternabende bereit.]\n\n## Zielgruppe und Bedarf\n\nDas Projekt richtet sich an 20 bis 30 Kinder der Gemeinschaftsgrundschule Wuppertal-Elberfeld im Alter von 6 bis 12 Jahren, die aufgrund sozialer und finanzieller Benachteiligung kaum Zugang zu kulturellen Bildungsangeboten haben. Der Stadtteil Elberfeld weist einen überdurchschnittlichen Migrationsanteil auf, und die Schule gibt an, dass viele Familien über geringe finanzielle Mittel verfügen; das Projekt wird daher kostenlos angeboten, um Teilhabe zu ermöglichen. [Annahme: Die gezielte Ansprache erfolgt durch die Klassenlehrerinnen, die ihre Schüler:innen nach Bedarf auswählen].\n\nDie Risikolage zeigt sich in den von der Schule beobachteten Selbstzweifeln der Kinder: Laut Aussage von Frau Mueller trauen sich viele Schüler:innen wenig zu und melden sich im Unterricht seltener als ihre Mitschüler:innen. Als messbarer Indikator für die Wirkung des Projekts dient daher die beobachtbare Steigerung des Selbstvertrauens, konkretisiert durch eine erhöhte Meldehäufigkeit im Unterricht sowie die erfolgreiche Aufführung vor Publikum in der Aula. Die Abschlusspräsentation vor Eltern und Mitschüler:innen fungiert dabei als zentraler Meilenstein, um die Transferwirkung des Gelernten in den schulischen Alltag zu überprüfen. [TODO: Barrierefreiheitskonzept vor Einreichung ausarbeiten und mit dem Schultraeger abstimmen]\n\n## Inhaltliches Konzept\n\nDas Vorhaben adressiert den Kulturbereich Theater als Medium kultureller Teilhabe und Selbstwirksamkeit. Als Format ist ein wöchentliches, halbjährliches Projekt mit Abschlussaufführung in der schuleigenen Aula vorgesehen, das Kindern mit geringem Kulturzugang niedrigschwellige künstlerische Erfahrungen ermöglicht. Die pädagogische Ausrichtung folgt einem handlungsorientierten Ansatz, der die Kinder als aktive Gestalter*innen ihrer Aufführung begreift: Durch die Vorbereitung eines gemeinsamen Stücks und die öffentliche Präsentation werden Schlüsselkompetenzen wie Sprachbildung, Selbstvertrauen und Teamfähigkeit gestärkt. Die Theaterarbeit verbindet dabei kulturelle Bildung mit sozialem Lernen, da die Auswahl der Themen und die Probenarbeit an den Lebenswelten der Kinder ansetzen – etwa durch die Einbindung von Alltagserfahrungen oder die gemeinsame Entwicklung von Szenen.\n\nAuf dieser Grundlage wird das Projekt theaterpädagogisch geleitet, weil theaterpädagogische Methoden nachweislich die Selbstwirksamkeitsüberzeugung von Kindern stärken und ihnen ermöglichen, eigene Ideen aktiv umzusetzen. Daher wird durch die gemeinsame Stückentwicklung und Aufführung ein Raum geschaffen, in der die Kinder erleben, dass ihre Stimme zählt und sie gestaltend wirken können. Die Verknüpfung von Kultur, Bildung und Sozialarbeit erfolgt durch die gezielte Einbindung der Bündnispartner: Der Jugendclub bringt seine Erfahrung in der Arbeit mit sozial benachteiligten Zielgruppen ein, die Stadtbibliothek unterstützt bei der Recherche und Materialbeschaffung, und die Schule stellt die Verbindung zum Unterricht her.\n\nEin nachhaltiger Transfer wird durch die Anbindung an eine mögliche Theater-AG angestrebt. Diese soll langfristig als niedrigschwelliges Angebot etabliert werden, idealerweise in Kooperation mit dem Jugendclub, um die Kontinuität über das Projekt hinaus zu sichern. Die Abschlussaufführung dient dabei als sichtbarer Impuls für die Schulgemeinschaft und die Eltern, um das Interesse an kultureller Teilhabe zu wecken und die Wertschätzung für künstlerische Prozesse zu stärken. [TODO: Schriftliche Kooperationsvereinbarungen mit Jugendclub und Stadtbibliothek vor Einreichung einholen]\n\n## Außerschulischer Charakter\n\nDas Vorhaben ist explizit als außerschulisches Angebot konzipiert und grenzt sich damit bewusst vom schulischen Regelunterricht ab. Die Teilnahme erfolgt freiwillig und richtet sich gezielt an Kinder, die aufgrund sozialer Benachteiligung oder fehlender kultureller Teilhabe nur eingeschränkten Zugang zu künstlerischen Formaten haben. Auf dieser Grundlage wird das Projekt nachmittags außerhalb der regulären Unterrichtszeiten durchgeführt, weil nur so sichergestellt werden kann, dass es als zusätzliches und freiwilliges Angebot wahrgenommen wird.\n\nDie Freiwilligkeit der Teilnahme ist zentral: Die Klassenlehrerinnen sprechen gezielt Kinder an, deren Familien aus finanziellen Gründen kaum Zugang zu kulturellen Angeboten haben. Um die Zielgruppe zu erreichen, wird das Projekt kostenlos angeboten – eine Grundvoraussetzung, die im schulischen Pflichtprogramm so nicht realisierbar wäre. [Annahme: Die Durchführung wird von einer externen Theaterfachkraft geleitet], weil dies die Abgrenzung zum schulischen Alltag und die Fokussierung auf künstlerische Prozesse ohne Leistungsdruck ermöglicht. [Annahme: Eine externe Theaterfachkraft übernimmt die Leitung.]\n\nDie Abschlussaufführung in der Aula dient als öffentliches Schaufenster des Projekts und unterstreicht seinen Charakter als kulturelles Gemeinschaftsereignis, zu dem auch Eltern und Anwohner:innen eingeladen werden. Damit wird ein Raum geschaffen, der über den schulischen Kontext hinausgeht und echte Teilhabe an Kultur ermöglicht. Die geplante Einbindung externer Partner sichert die außerschulische Trägerschaft und vermeidet eine Verquickung mit dem schulischen Alltag.\n\n## Arbeitsplan und Mengengerüst\n\nDas Projekt sieht ein durchgängiges Theaterangebot über ein Schulhalbjahr vor, das wöchentlich nachmittags stattfindet und mit einer öffentlichen Aufführung in der Aula abschließt. Die Umsetzung erfolgt in drei aufeinander aufbauenden Phasen: In der ersten Phase (ca. 6 Wochen) steht die spielerische Heranführung an theatrale Ausdrucksformen im Mittelpunkt, wobei die Kunstlehrerin Frau Müller und eine externe Theaterpädagogin gemeinsam die Gruppe leiten. [Annahme: Die zweite Phase (ca. 8 Wochen) dient der Entwicklung eines gemeinsamen Stücks, das inhaltlich an den Lebenswelten der Kinder anknüpft – etwa an Themen wie Freundschaft oder Zusammenleben im Stadtteil]. Hier werden gezielt Methoden wie Improvisationstheater und Rollenspiele eingesetzt, um Selbstwirksamkeit und Sprachkompetenz zu stärken. [Annahme: Die dritte Phase (ca. 4 Wochen) umfasst die Proben zur Aufführung, inklusive Bühnenbildgestaltung und Kostümfundus, der aus vorhandenen Materialien der Schule und Spenden lokaler Partner ergänzt wird].\n\nPro Kind sind rund 20 Kontaktstunden vorgesehen: 15 Wochen à 90 Minuten pro Woche sowie vier zusätzliche Proben à 120 Minuten für die Vorbereitung der Aufführung. Die Zielgruppe von 20 bis 30 Kindern wird durch die Klassenlehrerinnen identifiziert, die gezielt sozial benachteiligte Kinder ansprechen, deren Familien aufgrund finanzieller oder kultureller Hürden sonst keinen Zugang zu solchen Angeboten hätten. Die Teilnahme ist kostenlos, um Teilhabechancen zu sichern.\n\nAls Meilensteine sind vorgesehen: Abschluss der ersten Phase nach sechs Wochen mit einer kleinen Präsentation für die Schulgemeinschaft, Fertigstellung des Stücks nach der zweiten Phase sowie die öffentliche Aufführung zum Schulhalbjahresende mit Einladung der Eltern und lokalen Akteuren. Nachhaltigkeit soll durch die Etablierung einer festen Theater-AG angestrebt werden, die perspektivisch von einem noch zu gewinnenden Kooperationspartner vor Ort mitgetragen werden könnte. Hierfür ist eine Übergabephase von zwei Monaten eingeplant, in der die externe Theaterpädagogin ihre Arbeit schrittweise an Frau Müller übergibt. [TODO: Kooperationsvereinbarung mit dem Jugendclub vor Einreichung finalisieren]\n\n## Qualitätssicherung und Evaluation\n\nDie Wirkung des Theaterprojekts wird auf zwei Ebenen erfasst: erstens durch dokumentierte Beobachtungen der Klassenlehrerinnen und zweitens durch eine einfache Vorher-Nachher-Erhebung zu Selbstwirksamkeit und sozialer Teilhabe. Weil Selbstwirksamkeit als zentraler Prädiktor für schulische und persönliche Entwicklung gilt, wird die Steigerung dieses Faktors als zentraler Indikator für den Projekterfolg herangezogen. Daher dokumentieren die Klassenlehrerinnen wöchentlich, wie häufig sich die teilnehmenden Kinder im Unterricht melden – ein Indikator, der sich direkt aus der Zielsetzung des Projekts („häufigeres Melden im Unterricht“) ableitet und ohne zusätzlichen Aufwand erhoben werden kann.\n\nAls Messinstrument dient ein einfacher Fragebogen mit 3–5 altersgerechten Fragen, der zu Projektbeginn und -ende eingesetzt wird. Die Auswertung erfolgt durch einen Vergleich der Antworten vor und nach dem Projekt; ein erkennbarer Anstieg der Zustimmung zu Fragen wie „Ich traue mich, vor der Klasse zu sprechen“ gilt als messbarer Indikator für gesteigertes Selbstvertrauen. [Annahme: Ein einfacher Fragebogen wird zur Messung von Selbstwirksamkeit eingesetzt.]\n\n[Annahme: Die Reflexion im Bündnis erfolgt in monatlichen, 60-minütigen Treffen], an denen die Kunstlehrerin Frau Müller, eine Vertreterin des Jugendclubs und – sofern die Stadtbibliothek zustimmt – eine Ansprechperson der Bibliothek teilnehmen. Grundlage der Gespräche sind die dokumentierten Beobachtungen der Klassenlehrerinnen sowie die Rückmeldungen der Kinder nach den Proben. Die Ergebnisse werden in einem kurzen Protokoll festgehalten, das neben den Beschlüssen auch offene Fragen und nächste Schritte enthält. Die Protokolle werden digital archiviert und dienen als Grundlage für die jährliche Berichterstattung an den Fördergeber.\n\nDie Dokumentation des Projekts obliegt Frau Müller als Projektleitung. Sie führt ein digitales Logbuch, das neben den Probenplänen auch Fotos und kurze Videoausschnitte der Proben enthält – jedoch nur mit Einverständnis der Eltern und unter Wahrung der Datenschutzbestimmungen. Die Abschlussdokumentation umfasst neben dem Evaluationsbericht auch eine Zusammenstellung der Aufführung (z. B. Programmheft, Mitschnitt der Aufführung) und wird dem Bündnis sowie dem Fördergeber zur Verfügung gestellt. Eine Nachhaltigkeitsplanung sieht vor, dass die Ergebnisse des Projekts in die Planung einer dauerhaften Theater-AG einfließen; hierfür wird ein Konzept erarbeitet, das die Kooperation mit einem noch zu gewinnenden Kooperationspartner festschreibt. Die konkrete Ausgestaltung dieser AG ist jedoch noch zu klären und wird im Rahmen der Bündnisgespräche finalisiert.\n\n## Finanzierung und Mengengerüst\n\nDas Projektbudget setzt sich aus Honorarkosten für eine externe Theaterpädagogin, Honoraren für künstlerische Unterstützung, Sachmitteln für Materialien, Raummiete, Verpflegung sowie Aufwandsentschädigungen für ehrenamtliche Betreuer zusammen. Für die theaterpädagogische Leitung werden 15 wöchentliche Termine mit einer Honorarkraft kalkuliert, die über einschlägige Erfahrung in der Arbeit mit sozial benachteiligten Kindern verfügt. [TODO: Angebote für externe Theaterpädagog:in einholen und Honorar im Finanzplan mit konkreten Beträgen aktualisieren.]\n\nDie Sachkosten umfassen Materialien für Kostüme, Bühnenbild und Requisiten sowie die Raummiete für Proben und Abschlussaufführung. Zudem sind Verpflegungskosten für die Teilnehmenden und Aufwandsentschädigungen für ehrenamtliche Betreuer vorgesehen.\n\nInsgesamt wird eine Fördersumme von 8.770 € beantragt. Die Eigenleistungen der Bündnispartner umfassen die Arbeitszeit von Frau Müller (Kunstlehrerin) sowie die Bereitstellung der Aula durch die Schule. Der Jugendclub stellt Räumlichkeiten für Proben am Nachmittag zur Verfügung und unterstützt bei der Öffentlichkeitsarbeit. Die Stadtbibliothek wirkt als Kooperationspartner für Recherche und Materialbeschaffung mit. Die genauen Zusagen der Partner sowie die finale Kostenaufstellung werden vor Einreichung durch schriftliche Kooperationsvereinbarungen und Angebote der Honorarkraft belegt.",
+      "finalText": "# Theaterprojekt „Sichtbar werden!“ – Gemeinschaftsgrundschule Wuppertal-Elberfeld\n\n## Bündnis-Konstellation\n\nDas lokale Bündnis für das Projekt „Sichtbar werden!“ besteht aus drei Partnern, die jeweils ihre spezifischen Kompetenzen einbringen und die formale Voraussetzung des Programms „Kultur macht stark – Bündnisse für Bildung“ erfüllen, weil nur eine multiprofessionelle Zusammenarbeit die komplexen Herausforderungen sozialer Benachteiligung im Stadtteil Elberfeld nachhaltig adressieren kann. [Annahme: Der federführende Partner, ein anerkannter Kulturträger mit langjähriger Expertise in der theaterpädagogischen Arbeit mit Kindern in benachteiligten Stadtteilen, übernimmt die künstlerische Leitung], die Honorarkräfteakquise und die organisatorische Umsetzung der wöchentlichen Proben sowie der Abschlussaufführung, weil theaterpädagogische Professionalität und künstlerische Qualität die Grundlage für die angestrebten Entwicklungsziele der Kinder bilden. Die Gemeinschaftsgrundschule Wuppertal-Elberfeld stellt die schulische Infrastruktur und bringt ihre pädagogische Expertise ein, weil die Einbindung der Schule als zentraler Bildungsort die Zielgruppe gezielt erreicht und die Nachhaltigkeit der Projektinhalte im Schulalltag sichert. [Annahme: Der sozialpädagogische Partner steuert den außerschulischen Rahmen bei und sichert die Nachhaltigkeit durch die Perspektive einer dauerhaften Theater-AG], weil sozialpädagogische Begleitung und Vernetzung mit den Familien die Teilhabechancen der Kinder langfristig erhöht und strukturelle Barrieren abbaut. Diese Konstellation ermöglicht es, dass das Projekt nicht isoliert, sondern eingebettet in ein Netzwerk aus Kultur, Bildung und Sozialarbeit wirkt, sodass die Kinder nicht nur künstlerisch, sondern auch sozial und emotional gestärkt werden.\n\n## Zielgruppe und Bedarf\n\nDie Zielgruppe umfasst 20 bis 30 sozial benachteiligte Kinder der Gemeinschaftsgrundschule Wuppertal-Elberfeld, die aufgrund finanzieller oder sozialer Hürden kaum Zugang zu kulturellen Bildungsangeboten haben. [Annahme: Die Klassenlehrer:innen berichten von Kindern, die sich im Unterricht selten melden, wenig Selbstvertrauen zeigen und sich kaum am Unterrichtsgespräch beteiligen]. Das Projekt knüpft an diese Beobachtungen an, weil theaterpädagogische Ansätze nachweislich Selbstwirksamkeit, Sprachkompetenz und soziale Integration fördern – zentrale Entwicklungsziele für die Zielgruppe. Durch die freiwillige Teilnahme nach dem Unterricht und die kostenfreie Gestaltung wird sichergestellt, dass auch Kinder erreicht werden, deren Familien sich kulturelle Angebote sonst nicht leisten könnten.\n\n[TODO: Sozialdaten des Stadtteils Elberfeld recherchieren und ergänzen, z. B. Sozialindex oder Transferleistungsquote der Familien, um die Risikolage der Zielgruppe zu belegen.]\n\n[Annahme: Kinder mit Behinderungen werden ausdrücklich einbezogen, sofern die räumlichen und personellen Rahmenbedingungen dies zulassen]. [TODO: Konkrete Anzahl der Kinder mit Förderbedarf und Anpassungen für Barrierefreiheit vor Einreichung klären.] Die Zusammensetzung der Gruppe soll geschlechtergerecht und inklusiv sein, um allen Kindern gleiche Teilhabechancen zu ermöglichen.\n\n## Inhaltliches Konzept\n\nDas Theaterprojekt „Sichtbar werden!“ verfolgt das Ziel, sozial benachteiligten Kindern im Stadtteil Elberfeld durch kulturelle Teilhabe neue Erfahrungsräume zu eröffnen, weil kulturelle Bildung nachweislich Selbstwirksamkeit, Sprachförderung und soziale Integration stärkt – zentrale Entwicklungsziele für die Zielgruppe. Als Kulturbereich wird das Theater gewählt, weil es durch die Kombination aus körperlicher, sprachlicher und sozialer Praxis besonders geeignet ist, um Kindern mit eingeschränktem Zugang zu kultureller Bildung neue Perspektiven zu eröffnen und ihre Handlungsfähigkeit zu erweitern. Das Projekt kombiniert wöchentliche, nachmittägliche Workshops über ein Schulhalbjahr mit einer öffentlichen Abschlussaufführung in der schuleigenen Aula, die Eltern, Lehrkräften und Anwohner:innen offensteht, weil diese Struktur eine niedrigschwellige, kontinuierliche Begleitung ermöglicht, die über punktuelle Events hinausgeht und nachhaltige Lernerfolge begünstigt. Die wöchentliche Durchführung nach dem Unterrichtsende berücksichtigt die Lebensrealität der Familien, für die eine Teilnahme während der Schulzeit oft nicht möglich ist, sodass das Projekt gezielt diejenigen erreicht, die sonst kaum Zugang zu kultureller Bildung hätten. Pädagogisch knüpft das Projekt an handlungsorientierte und partizipative Ansätze an, die Kindern Raum für eigene kreative Entscheidungen geben, weil diese Ansätze die aktive Mitgestaltung der Kinder in den Mittelpunkt stellen und damit nicht nur die künstlerische Ausdrucksfähigkeit, sondern auch das Selbstvertrauen und die Selbstwirksamkeitserwartung stärken. Die Theaterarbeit folgt dabei dem Prinzip des *dialogischen Lernens* nach Freire, indem durch gemeinsames Erarbeiten von Szenen und Rollen die Kinder als Expert:innen ihrer eigenen Lebenswelt wahrgenommen werden, sodass sie ihre Erfahrungen aktiv in den künstlerischen Prozess einbringen können. Die geplante Aufführung vor Publikum dient als sichtbares Erfolgserlebnis und Transfermoment, der die im Workshop erarbeiteten Inhalte in einen gesellschaftlichen Kontext stellt, weil öffentliche Präsentationen die Motivation der Kinder steigern und die gesellschaftliche Anerkennung ihrer Leistungen fördern. Die Verknüpfung von Kultur, Bildung und Sozialarbeit erfolgt durch die gezielte Einbindung der Klassenlehrer:innen, die ihre Schüler:innen nach sozialer Benachteiligung und Förderbedarf auswählen und die Teilnehmenden kontinuierlich begleiten, weil diese Schnittstelle zwischen schulischer und außerschulischer Praxis sicherstellt, dass die im Projekt erworbenen Kompetenzen – etwa Sprachförderung oder Teamfähigkeit – auch im Unterricht wirksam werden. Die Kostenfreiheit des Angebots ist dabei essenziell, um allen Kindern unabhängig vom sozioökonomischen Hintergrund die Teilnahme zu ermöglichen, sodass soziale Ungleichheiten im Zugang zu kultureller Bildung aktiv ausgeglichen werden.\n\n## Außerschulischer Charakter\n\nDas Projekt ist bewusst außerhalb des schulischen Regelunterrichts verortet, um eine klare Abgrenzung zu curricularen Pflichtinhalten und zeitlichen Vorgaben zu schaffen, weil nur so eine freiwillige, motivationsbasierte Teilnahme ermöglicht wird, die nicht mit schulischen Leistungsanforderungen konkurriert. Die Teilnahme erfolgt freiwillig und richtet sich gezielt an sozial benachteiligte Kinder, die sonst kaum Zugang zu kultureller Bildung haben, weil Freiwilligkeit und niedrigschwellige Angebote die Grundlage für eine inklusive und partizipative Kulturarbeit bilden. Die wöchentlichen Nachmittagstermine finden nach dem regulären Unterricht statt und sind als außerschulische Aktivität konzipiert, die durch externe Expertise (Theaterpädagog*in) und Kooperationspartner*innen (Jugendclub, Stadtbibliothek) getragen wird, weil diese Struktur sicherstellt, dass das Projekt nicht mit schulischen Pflichtveranstaltungen konkurriert oder als Ersatz für Unterrichtszeit fungiert. Die Abgrenzung zum Ganztagsangebot der Schule wird durch die Fokussierung auf künstlerische Praxis und öffentliche Aufführungen gewährleistet, während der Ganztag vorrangig schulische Förderangebote oder Betreuungszeiten umfasst, sodass das Projekt eine eigenständige, künstlerisch geprägte Identität entwickelt. [Annahme: Die geplante Abschlussaufführung in der Aula – zu der auch Eltern eingeladen werden – unterstreicht den öffentlichen Charakter des Vorhabens] und hebt es von schulinternen Formaten ab, weil öffentliche Präsentationen die gesellschaftliche Teilhabe der Kinder sichtbar machen und ihre Selbstwirksamkeit stärken. Die Freiwilligkeit der Teilnahme ist zentral, da sie die Motivation der Kinder stärkt und sicherstellt, dass nur Kinder teilnehmen, die sich bewusst für das Projekt entscheiden, sodass die Projektinhalte gezielt auf die Bedürfnisse und Interessen der Teilnehmenden zugeschnitten werden können. Die Auswahl erfolgt durch die Klassenlehrer:innen, die gezielt Kinder ansprechen, für die kulturelle Teilhabe eine besondere Chance darstellt, weil diese gezielte Ansprache sicherstellt, dass das Projekt diejenigen erreicht, die es am dringendsten benötigen.\n\n## Arbeitsplan und Mengengerüst\n\nDas Projekt gliedert sich in drei aufeinander aufbauende Phasen, die jeweils durch konkrete Meilensteine und eine klare Stundenverteilung pro Kind strukturiert sind:\n\n- **Vorbereitungsphase (Wochen 1–4):**\n  Die Kunstlehrerin Frau Müller und die Klassenlehrer:innen der teilnehmenden Klassen identifizieren gezielt 20–30 sozial benachteiligte Kinder, deren Familien aufgrund finanzieller oder sozialer Hürden kaum Zugang zu kulturellen Angeboten haben. Parallel wird ein externer Theaterpädagoge mit Erfahrung in der Arbeit mit Kindern aus benachteiligten Milieus engagiert – voraussichtlich für ca. 15 wöchentliche Termine à 3 Stunden. [TODO: Honorarkraft für Theaterpädagogik suchen und Vertrag bis 15.08.2026 abschließen.] Ein erster Meilenstein ist die Vorstellungsrunde in der ersten Woche, in der die Kinder spielerisch an die Theaterarbeit herangeführt werden und gemeinsam mit dem Theaterpädagogen Grundregeln für die Zusammenarbeit entwickeln.\n\n- **Kernphase (Wochen 5–16):**\n  Die wöchentlichen Proben finden nachmittags von 15:30 bis 18:30 Uhr statt. Jede Einheit folgt einem klaren Ablauf: Aufwärmen (15 Min.), spielerische Übungen zur Körperwahrnehmung und Stimme (30 Min.), Szenenarbeit (90 Min.) und Reflexionsrunde (15 Min.). Die Proben finden im Musikraum der Schule statt, der durch mobile Tische und Stühle flexibel für Theaterarbeit umgestaltet werden kann. Ein zentrales Element ist die Entwicklung eines gemeinsamen Stücks, das die Lebensrealität der Kinder aufgreift – etwa Themen wie Freundschaft, Familie oder der Schulalltag. [Annahme: Die Theaterpädagogin nutzt dabei Methoden des partizipativen Storytellings], um die Kinder aktiv in die Gestaltung einzubinden und ihre Selbstwirksamkeit zu stärken. Ein zweiter Meilenstein ist die Generalprobe in Woche 16, bei der das Stück erstmals vor einem kleinen Publikum (Lehrkräfte, Elternvertreter:innen) aufgeführt wird.\n\n- **Abschlussphase (Wochen 17–20):**\n  Die öffentliche Aufführung in der Aula der Schule, zu der Eltern, Geschwister und Nachbar:innen eingeladen werden, bildet den Höhepunkt des Projekts. Die Aufführung ist als 30-minütiges Stück konzipiert und wird durch eine kurze Moderation der Kinder selbst eröffnet. [Annahme: Ein dritter Meilenstein ist die Evaluation mit den Teilnehmenden, bei der sie in einem moderierten Gespräch ihre Erfahrungen reflektieren und Verbesserungsvorschläge äußern]. Die Ergebnisse werden dokumentiert und fließen in die Planung einer möglichen dauerhaften Theater-AG ein, die mittelfristig in Kooperation mit dem benachbarten Jugendclub etabliert werden soll. [TODO: Kooperationsvereinbarung mit Jugendclub finalisieren.] Die Gesamtkontaktzeit pro Kind beträgt voraussichtlich ca. 45 Stunden (basierend auf 15 wöchentlichen Terminen à 3 Stunden + Aufführung und Evaluation).\n\nDie Meilensteine sind eng mit den erwarteten Wirkungen verknüpft: Die öffentliche Aufführung stärkt das Selbstvertrauen der Kinder, während die regelmäßige Reflexion im Unterricht (z. B. häufigeres Melden) die Transferwirkung in den Schulalltag fördert. [Annahme: Die Evaluation erfolgt durch eine einfache Vorher-Nachher-Befragung der Lehrkräfte, die das Sozialverhalten der Kinder dokumentieren – etwa die Häufigkeit von Wortmeldungen oder die Bereitschaft, vor der Klasse zu sprechen]. Ein möglicher Indikator wäre die Anzahl der aktiven Beiträge im Unterricht vor und nach dem Projekt. [TODO: Erhebungsbogen mit Lehrkräften abstimmen.]\n\n## Qualitätssicherung und Evaluation\n\nDie Wirkung der Projektteilnahme wird auf zwei Ebenen erhoben:\n\n- **Vorher-Nachher-Erhebung der Selbstwirksamkeitserwartung:**\n  Als Messinstrument schlagen wir den standardisierten *General Self-Efficacy Scale* (GSE) in kindgerechter Form vor, der vor Projektbeginn und nach Abschluss der Aufführung eingesetzt wird. [Annahme: Ein messbarer Indikator ist hier die Veränderung des Mittelwerts um mindestens 0,5 Punkte auf der 4-stufigen Skala, was auf eine signifikante Steigerung des Selbstvertrauens hindeutet]. Diese Erhebung ist notwendig, weil theaterpädagogische Ansätze nachweislich Selbstwirksamkeit stärken und damit zentrale Entwicklungsziele für die Zielgruppe adressieren.\n\n- **Dokumentation der Partizipation im Unterricht:**\n  Die Klassenlehrer:innen notieren wöchentlich, wie oft sich die teilnehmenden Kinder im regulären Unterricht melden – ein Anstieg um 30 % gegenüber dem Projektstart gilt als Erfolgskriterium. Diese Beobachtung ist relevant, weil sie den Transfer der im Projekt erworbenen Kompetenzen in den Schulalltag sichtbar macht.\n\nDie Reflexion im Bündnis erfolgt **monatlich in moderierten Treffen**, an denen Frau Müller als schulische Projektleitung, ein Vertreter des Jugendclubs und – bei Mitwirkung – die Stadtbibliothek teilnehmen. Protokolle dieser Sitzungen werden zentral durch die Schule archiviert und dienen als Grundlage für Anpassungen im Projektverlauf. Die Dokumentation des gesamten Projekts obliegt einer **Projektkoordination**, die von Frau Müller in Kooperation mit dem Jugendclub übernommen wird. Diese umfasst die Sammlung von Fotos und Videos der Proben und der Abschlussaufführung, die Erstellung eines kurzen Abschlussberichts sowie die Pflege eines digitalen Projektordners, der den teilnehmenden Kindern und ihren Familien zugänglich gemacht wird.\n\n[TODO: Bündnisvereinbarung mit dem Jugendclub und der Stadtbibliothek vor Einreichung formalisieren und unterzeichnen lassen]\n[TODO: Konkrete Termine für die GSE-Erhebung und die monatlichen Bündnistreffen im Arbeitsplan festlegen]\n\n## Finanzierung und Mengengerüst\n\nDas Projektbudget setzt sich aus Honorarkosten für eine externe Theaterpädagogin, Sachmitteln für Bühnenmaterial, Raummiete und Verpflegung sowie einer Verwaltungspauschale zusammen:\n\n- **Theaterpädagogische Leitung:**\n  15 wöchentliche Termine à 3 Stunden mit einer Honorarkraft.\n- **Sachmittel:**\n  Bühnenrequisiten, Kostüme und Materialien für die Stückentwicklung (1.200 €).\n- **Raummiete für Aula (Aufführung):**\n  Kosten für die einmalige Nutzung der Aula zur Abschlussaufführung (300 €).\n- **Verpflegung für Teilnehmende:**\n  Kosten für Snacks und Getränke während der wöchentlichen Proben (800 €).\n- **Verwaltungspauschale:**\n  7 % auf die beantragten Mittel (500 €).\n\nDie Gesamtfördersumme beläuft sich damit auf 7.300 €.",
       "finanzplan": {
         "posten": [
           {
-            "id": "bd42404c-79c6-4291-9718-477b8f6669d2",
+            "id": "edb4dad2-8ca4-4ad5-a3c5-3dcb2d701718",
             "kategorie": "honorare",
-            "bezeichnung": "Theaterpädagoge/-in für Projektleitung",
+            "bezeichnung": "Theaterpädagoge/in für Projektumsetzung",
             "betragEur": 4500,
-            "begruendung": "Schaetzung: Honorar für externe Theaterfachkraft (1x pro Woche über ein Schulhalbjahr, ca. 15 Wochen, Stundensatz noch nicht eingeholt).",
+            "begruendung": "Schaetzung: Honorar für Theaterpädagogen für 15 Wochen à 3 Stunden/Woche (1x pro Woche nachmittags) inkl. Vor- und Nachbereitung. Stundensatz nicht genannt — Pauschale basierend auf üblichen Honoraren für kulturelle Bildungsprojekte.",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "1b5706a5-11c2-4059-814f-35895d29135b",
-            "kategorie": "honorare",
-            "bezeichnung": "Aufwandsentschädigung für künstlerische Unterstützung",
-            "betragEur": 1200,
-            "begruendung": "Schaetzung: Honorar für gelegentliche Unterstützung (z. B. Regie, Technik), Stundensatz und Umfang noch nicht eingeholt.",
-            "eigenanteil": false,
-            "istVorschlag": true
-          },
-          {
-            "id": "86b58482-70bc-48db-b289-5e8b3017a7c1",
+            "id": "342a625e-bd99-47bb-b9fa-6482f0a0e7f3",
             "kategorie": "sachkosten",
             "bezeichnung": "Material für Theaterprojekt",
-            "betragEur": 800,
-            "begruendung": "Schaetzung: Verbrauchsmaterial wie Kostüme, Requisiten, Bastelmaterial, Raumdekoration. Pauschale, da konkrete Mengen noch unklar.",
+            "betragEur": 1200,
+            "begruendung": "Schaetzung: Verbrauchsmaterial wie Kostüme, Requisiten, Dekoration, Miete für Bühnenaufbau. Menge nicht genannt — Pauschale für ein halbjährliches Projekt.",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "27c0c661-0dfb-48a8-9b4b-6f4eb7ba2337",
+            "id": "481bb1a8-8e38-4527-bd9a-5a0c89384397",
             "kategorie": "sachkosten",
-            "bezeichnung": "Raummiete für Proben/Aufführung",
-            "betragEur": 500,
-            "begruendung": "Schaetzung: Miete für Aula oder anderer Raum für Proben und Abschlussaufführung (1x pro Woche + 1x Abschluss).",
+            "bezeichnung": "Raummiete für Aula (Aufführung)",
+            "betragEur": 300,
+            "begruendung": "Schaetzung: Miete für Aula für Abschluss-Aufführung. Kosten nicht genannt — Pauschale für einmalige Nutzung.",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "e09b3259-eb27-4c8c-8b48-1ad6dd847d69",
+            "id": "791f8f43-4d28-463b-8ac6-94775836d71b",
             "kategorie": "sachkosten",
             "bezeichnung": "Verpflegung für Teilnehmende",
-            "betragEur": 600,
-            "begruendung": "Schaetzung: Kosten für Snacks/Getränke während der Proben/Aufführung (20-30 Kinder, 1x pro Woche + Abschluss).",
+            "betragEur": 800,
+            "begruendung": "Schaetzung: Kosten für Snacks/Getränke während der wöchentlichen Proben. Menge nicht genannt — Pauschale für 15 Wochen.",
             "eigenanteil": false,
             "istVorschlag": true
           },
           {
-            "id": "5c11d3a8-e90e-4a66-8ddd-35c2f1b07461",
-            "kategorie": "sonstiges",
-            "bezeichnung": "Aufwandsentschädigung für ehrenamtliche Betreuer",
-            "betragEur": 400,
-            "begruendung": "Schaetzung: Pauschale für ehrenamtliche Unterstützung (z. B. Begleitung, Organisation), da Eigenarbeit der Schule nicht als Geldwert angesetzt wird.",
-            "eigenanteil": false,
-            "istVorschlag": true
-          },
-          {
-            "id": "d8666d74-4b4e-4b29-a46e-f3c3aeda2ec7",
+            "id": "f6b67210-9907-41c5-8f16-1ec970f29b79",
             "kategorie": "overhead",
             "bezeichnung": "Verwaltungspauschale (7 %)",
-            "betragEur": 770,
-            "begruendung": "7 % der anerkannten Ausgaben (11.770 EUR) als Verwaltungspauschale, mindestens 500 EUR.",
+            "betragEur": 500,
+            "begruendung": "7 % der anerkannten Ausgaben (mind. 500 EUR). Berechnet auf Basis der anerkannten Posten (4.500 + 1.200 + 300 + 800 = 6.800 EUR).",
             "eigenanteil": false,
             "istVorschlag": true
           }
         ],
-        "generiertAm": "2026-07-22T11:11:48.128Z",
+        "generiertAm": "2026-07-23T08:39:57.244Z",
         "hinweise": [
           "Die Beträge sind Vorschläge des Assistenten auf Basis üblicher Kosten — bitte bestätigen oder an eure tatsächlichen Angebote anpassen.",
-          "Alle Beträge sind grobe Schaetzungen, da konkrete Honorare, Mengen und Partner noch unklar sind. Vor Einreichung durch Angebote belegen.",
-          "Eigenanteil ist nicht verpflichtend, aber Eigenleistungen (z. B. Räume, ehrenamtliche Arbeit) werden erwartet. Diese sind hier als Geldwert nicht angesetzt.",
-          "Buendnis-Struktur (Jugendclub, Stadtbibliothek) muss noch konkretisiert werden. Partnerbeiträge (z. B. Raummiete) könnten Eigenanteil oder Sachleistung darstellen.",
-          "Keine Investitionen (z. B. Technik) förderfähig — nur Leih- oder Verbrauchsmaterial.",
-          "Projektlaufzeit: 1 Schulhalbjahr (ca. 15 Wochen), 1x pro Woche + Abschlussaufführung.",
-          "Zielgruppe: 20-30 sozial benachteiligte Kinder, Angebot kostenlos.",
-          "Der Betrag für „Theaterpädagoge/-in für Projektleitung\" (4.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Aufwandsentschädigung für künstlerische Unterstützung\" (1.200 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Material für Theaterprojekt\" (800 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Raummiete für Proben/Aufführung\" (500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Verpflegung für Teilnehmende\" (600 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
-          "Der Betrag für „Aufwandsentschädigung für ehrenamtliche Betreuer\" (400 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
+          "Alle Beträge sind grobe Schaetzungen ohne konkrete Angebote oder Mengenangaben der Schule.",
+          "Honorarsatz für Theaterpädagogen nicht vom User genannt — Pauschale basierend auf üblichen Sätzen für kulturelle Bildungsprojekte.",
+          "Raummiete und Materialkosten nicht spezifiziert — Pauschalen für typische Projektgrößen.",
+          "Verpflegungskosten basieren auf Annahme von 20–30 Teilnehmenden über 15 Wochen.",
+          "Kein Eigenanteil erforderlich, da Vollfinanzierung möglich (Programmpartner entscheidet über Ausnahmefälle).",
+          "Buendnis-Struktur (Jugendclub, Stadtbibliothek) nicht konkretisiert — Kooperationsvereinbarungen sollten nachgereicht werden.",
+          "Feste Theater-AG nach Projektende nicht im Budget enthalten, da keine dauerhaften Investitionen förderfähig sind.",
+          "Der Betrag für „Theaterpädagoge/in für Projektumsetzung\" (4.500 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Material für Theaterprojekt\" (1.200 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Raummiete für Aula (Aufführung)\" (300 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen.",
+          "Der Betrag für „Verpflegung für Teilnehmende\" (800 EUR) ist geschätzt — bitte vor Einreichung belegen oder anpassen."
         ]
       }
     },
@@ -936,134 +908,134 @@
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6303,
-          "candidatesTokens": 455
+          "candidatesTokens": 537
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6295,
-          "candidatesTokens": 395
+          "candidatesTokens": 346
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 6256,
-          "candidatesTokens": 539
+          "promptTokens": 6626,
+          "candidatesTokens": 732
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6243,
-          "candidatesTokens": 370
+          "candidatesTokens": 359
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 6177,
-          "candidatesTokens": 496
+          "promptTokens": 6521,
+          "candidatesTokens": 939
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 6173,
-          "candidatesTokens": 571
+          "candidatesTokens": 417
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 6242,
-          "candidatesTokens": 381
+          "promptTokens": 6291,
+          "candidatesTokens": 423
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 9581,
-          "candidatesTokens": 3237
+          "promptTokens": 10690,
+          "candidatesTokens": 2236
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 11796,
-          "candidatesTokens": 3131
+          "promptTokens": 12573,
+          "candidatesTokens": 3530
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 8187,
-          "candidatesTokens": 778
+          "promptTokens": 1999,
+          "candidatesTokens": 1515
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 3650,
-          "candidatesTokens": 3111
+          "promptTokens": 8179,
+          "candidatesTokens": 1066
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4785,
-          "candidatesTokens": 1379
+          "promptTokens": 5128,
+          "candidatesTokens": 1308
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4352,
-          "candidatesTokens": 3016
+          "promptTokens": 4423,
+          "candidatesTokens": 622
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
           "promptTokens": 3813,
-          "candidatesTokens": 881
+          "candidatesTokens": 734
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4288,
-          "candidatesTokens": 599
+          "promptTokens": 4588,
+          "candidatesTokens": 342
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4721,
-          "candidatesTokens": 2993
+          "promptTokens": 4832,
+          "candidatesTokens": 3316
         }
       },
       {
         "model": "mistral-small-latest",
         "usage": {
-          "promptTokens": 4265,
-          "candidatesTokens": 298
+          "promptTokens": 4450,
+          "candidatesTokens": 355
         }
       }
     ]
   },
   "meta": {
-    "iso": "2026-07-22T11-12-07",
+    "iso": "2026-07-23T08-40-17",
     "runIndex": 3,
-    "pipelineCommitSha": "1f0d8782",
+    "pipelineCommitSha": "99a74cd7",
     "featureFlags": {
       "useVorbildFormulierungen": "true",
       "complianceStageEnabled": "false",
       "sharpPrompts": "true",
       "geberRoutingV2": "true"
     },
-    "latencyMs": 133863,
+    "latencyMs": 119820,
     "schemaVersion": 1
   }
 }

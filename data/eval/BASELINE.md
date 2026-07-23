@@ -12,6 +12,55 @@
 > WIZ-03 (Tonalitaets-Passung via LLM-as-Judge), WIZ-04 (Begruendungs-Substanz, deterministisch),
 > Finanzplan-Validity (Sub). Format analog Phase-1 (append-only, neueste Eintraege oben).
 
+## 2026-07-23 — Re-Baseline: Substanz-Nachbesserung (Revisions-Konsistenz) + Portal-Limit-Korpus (n=25)
+
+- **Anlass:** Zwei Aenderungen zusammen verankert — (1) **Substanz-Nachbesserung**
+  (`lib/wizard/substanz-nachbesserung.ts`): Nach der Revision misst der Detektor die finale
+  Fassung; durchgefallene Abschnitte gehen in EINEN gezielten Zweitpass ohne konkurrierende
+  Findings, Uebernahme nur bei messbarer Substanz + Limit-Treue + Nicht-Degeneration
+  (Never-Worse). Dazu PFLICHT-Markierung der substanz-Findings im Critique-Rendering und
+  deterministische substanz-Resolutions (Messung der allerletzten Fassung statt Recheck-LLM).
+  Antwort auf den pv-011-Befund "Revision triagiert bei vollem Findings-Stapel".
+  (2) **Korpus 23 → 25**: pv-012 (hessen-esf-praxis, grosszuegiges Limit-Profil 2500-5000 —
+  misst Umfangs-Direktive/Ziel-Korridor) und pv-013 (berliner-projektfonds-kulturelle-bildung,
+  enges Formularabzug-Profil 300/500/3000 aus Portal 5/#108 — misst Verdichtung unter harten
+  Feldlimits). Geber-Mapping um beide IDs ergaenzt (oeffentlich).
+- **Run-Konfiguration:** N=3 × 25 = 75 Runs, 0 Fehler, Wallclock 9346 s (~2h36),
+  `LLM_PROVIDER=mistral` (mistral-small, wie Prod), Flags wie Prod.
+
+### Haupt-Scores (mean ± stddev ueber N=3 × 25)
+
+| Achse | Mean | Stddev | 2σ-Band | Schwellwert (D-19) | Status |
+|-------|------|--------|---------|--------------------|--------|
+| WIZ-01 (Pflichtabschnitte) | 100.0 | 0.0 | 100.0 – 100.0 | ≥ 80 % | ✓ PASS |
+| WIZ-02 (Halluzinations-Detection) | 98.9 | 2.4 | 94.1 – 103.7 | kein Drop > 2σ+10 % | ✓ (vorher 99.0 — die Nachbesserung erzeugt KEINE Halluzinationen) |
+| WIZ-03 (Tonalitaets-Passung) | 64.6 | 16.5 | 31.6 – 97.6 | warning-only | stabil (vorher 63.7) |
+| WIZ-04 (Begruendungs-Substanz) | 85.6 | 14.3 | 57.0 – 114.2 | kein Drop > max(2σ, 5) | **+29.7 ggue. 55.9**; 2σ=28.6 — Gate deutlich schaerfer (vorher 38.4) |
+| Finanzplan-Validity (Sub) | 89.6 | 14.5 | 60.6 – 118.6 | — | ✓ stabil (vorher 89.0) |
+
+- **Befund pv-011 (der Ausloeser):** 3×0 % (urspruenglich) → **88.9 %** (100/100/67, N=3-Einzellauf
+  vor der Re-Baseline). Der 67er-Run zeigt das Restmuster: Substanz kann in SPAETEREN Stufen
+  (Fakt-Verifikation/Konsistenz-Revision) wieder erodieren — die deterministischen Resolutions
+  messen deshalb die allerletzte Fassung. Naechster Hebel, falls noetig: Nachbesserung nach
+  der Konsistenz-Revision wiederholen.
+- **Befund pv-012:** Der neue Eintrag fing im ersten Live-Lauf eine ECHTE Halluzination
+  (erfundene "Abstimmung mit der Handwerkskammer Kassel", foundIn=section — am Diff-Gate
+  vorbei, weil schon im Entwurf). Genau dafuer sind die programmspezifischen Marker da.
+- **Befund pv-013 (enge Felder):** 25/100/100 — Verdichtung unter 300er-/500er-Limits ist
+  erreichbar, aber volatil (run1: 4 Kandidaten → 1 uebernommen, 3 von der Never-Worse-Schranke
+  verworfen). Bewusst NICHT die Metrik aufgeweicht: Der Anker dokumentiert den Ist-Stand;
+  eine etwaige Kleinfeld-Sonderregel waere ein eigener, trennschaerfe-belegter Schritt.
+- **Replay-Gegenprobe:** `--replay data/eval/pipeline-snapshots/baseline --N=3` reproduziert
+  exakt (WIZ-03 offline = 0, bekanntes Replay-Verhalten).
+
+### Reports / Snapshots
+
+- JSON/MD: `data/eval/pipeline-reports/2026-07-23T08-25-26.{json,md}`
+- **Baseline-Anker:** `data/eval/pipeline-snapshots/baseline/` = Kopie von
+  `2026-07-23T08-25-26/` (75 Snapshots; ersetzt den 69er-Anker vom 22.07.)
+
+---
+
 ## 2026-07-22 (abends) — WIZ-04-Metrik-Update: Konnektiv-Lexikon erweitert (pv-011-Analyse)
 
 - **Anlass:** Einzelfall-Analyse pv-011 (3× 0 % WIZ-04 trotz hochwertiger Inputs). Befund
