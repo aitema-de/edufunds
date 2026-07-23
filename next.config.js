@@ -58,6 +58,16 @@ const nextConfig = {
       { source: '/agb.html', destination: '/agb', permanent: true },
     ];
   },
+  // Der Förderlücken-Rechner (Sommer-Kampagne, beworben als /foerderrechner/ in
+  // OG-Tags und Bio-Links) liegt als statisches Bundle unter public/foerderrechner/.
+  // Next serviert public-Verzeichnisse NICHT als Index: /foerderrechner/ wird per
+  // 308 auf /foerderrechner normalisiert, und das war ein 404. Der Rewrite biegt
+  // den Pfad auf die index.html um (Asset-Referenzen im Bundle sind absolut).
+  async rewrites() {
+    return [
+      { source: '/foerderrechner', destination: '/foerderrechner/index.html' },
+    ];
+  },
   async headers() {
     return [
       // Statische Assets mit langem Cache
