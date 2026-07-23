@@ -22,7 +22,10 @@
  * primaerquellen-geprueft, 4 weitere ohne Antragsweg als geschlossen belegt
  * (hector = nur Nominierung, heinz-nixdorf = 'bittet von Foerderantraegen
  * abzusehen', ideeninitiative = letzte Runde 2023, saechs. Schulgarten-
- * wettbewerb = 12. Runde seit 05/2024 beendet) -> Finder-sichtbar 129 -> "120+").
+ * wettbewerb = 12. Runde seit 05/2024 beendet) -> Finder-sichtbar 129 -> "120+";
+ * 23.07.2026: hopp-foundation-schulpreis geschlossen (Bestaetigung: verliehener
+ * Preis bei Jugend-forscht-Landeswettbewerben, kein Bewerbungsverfahren) ->
+ * Finder-sichtbar 128 -> "120+" unveraendert).
  *
  * WICHTIG: Bewusst KEIN Import von data/foerderprogramme.json hier — diese
  * Konstante wird auch in Client-Komponenten (Header, Footer, Hero) genutzt,
