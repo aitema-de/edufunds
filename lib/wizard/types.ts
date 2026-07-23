@@ -186,6 +186,13 @@ export interface GenerationArtefacts {
   /** True, wenn mind. ein Finding mit schwere=hoch nicht abschliessend geschlossen ist. */
   hasOpenHighFindings?: boolean;
   /**
+   * Substanz-Nachbesserung (Revisions-Konsistenz-Hebel, 23.07.2026): Abschnitte,
+   * die nach der Revision messbar ohne Begruendung waren (`kandidaten`), davon
+   * im gezielten Zweitpass repariert (`verbessert`) bzw. weiterhin ohne
+   * Substanz (`verbleibend`). Nur gesetzt, wenn der Pass lief.
+   */
+  substanzNachbesserung?: { kandidaten: string[]; verbessert: string[]; verbleibend: string[] };
+  /**
    * Halluzinations-Diff-Gate (Probe 09.06., Hebel 1): in der Revisions-Stufe NEU
    * eingefuehrte Zahlen/Eigennamen, die in keiner Quelle (Entwurf/Facts/Antworten)
    * stehen. `introducedBefore` = vor dem Repair erkannt, `residual` = danach noch

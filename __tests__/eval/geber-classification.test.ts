@@ -76,6 +76,8 @@ describe("Geber-Klassifikation 11-Dossier-Mapping (D-28)", () => {
     "ferry-porsche-challenge",
     "kultur-macht-stark",
     "heinz-nixdorf-stiftung-projektfoerderung-mint",
+    "hessen-esf-praxis",
+    "berliner-projektfonds-kulturelle-bildung",
   ];
 
   it("die gemappten Stamm-Dossier-IDs resolven zu einer bekannten Geber-Gruppe", () => {
