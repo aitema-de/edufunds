@@ -9,11 +9,42 @@ export const metadata = {
   description: "Die gesuchte Seite existiert nicht. Entdecken Sie Förderprogramme für Schulen.",
 };
 
+/**
+ * Vorschläge auf der 404-Seite.
+ *
+ * Hier stand bis zum 30.07.2026:
+ *
+ *     foerderprogrammeData.sort(() => 0.5 - Math.random()).slice(0, 3)
+ *
+ * Zwei Fehler in einer Zeile, beide mit Wirkung weit außerhalb dieser Seite:
+ *
+ * 1. `.sort()` arbeitet IN PLACE — und zwar auf dem importierten Katalog-Array
+ *    selbst, nicht auf einer Kopie. Im Server-Prozess teilen sich ALLE Module
+ *    dasselbe Objekt. Ein einziger 404-Aufruf hat damit die Reihenfolge des
+ *    Katalogs für den restlichen Lebenszyklus des Containers zufällig
+ *    durcheinandergeworfen — für die Programmliste, das Archiv und jede andere
+ *    Stelle, die sich auf die Katalog-Reihenfolge stützt. Nachgewiesen über die
+ *    Archiv-Seite: nach einem 404-Aufruf wich die serverseitig gerenderte
+ *    Reihenfolge von der clientseitigen ab, was React beim Hydrieren mit
+ *    Fehler #418 abbrechen ließ.
+ *
+ * 2. `() => 0.5 - Math.random()` ist kein gültiger Vergleicher (nicht
+ *    transitiv, nicht reproduzierbar) und liefert ohnehin keine gleichverteilte
+ *    Mischung. Zusätzlich läuft `Math.random()` beim Server-Rendern und beim
+ *    Hydrieren getrennt — dieselbe Zeile hätte also auch auf der 404-Seite
+ *    selbst einen Hydration-Mismatch erzeugt.
+ *
+ * Ersatz: eine stabile, deterministische Auswahl. Sie ist bei jedem Aufruf
+ * gleich, mutiert nichts und kann serverseitig wie clientseitig nur dasselbe
+ * Ergebnis haben. Für eine Vorschlagsliste auf einer Fehlerseite ist Zufall
+ * ohnehin kein Wert an sich — Verlässlichkeit schon.
+ */
+const VORSCHLAEGE = foerderprogrammeData
+  .filter((p) => p.status === "aktiv" && p.kiAntragGeeignet)
+  .slice(0, 3);
+
 export default function NotFound() {
-  // Zufällige Programme für Vorschläge
-  const randomPrograms = foerderprogrammeData
-    .sort(() => 0.5 - Math.random())
-    .slice(0, 3);
+  const randomPrograms = VORSCHLAEGE;
 
   return (
     <>

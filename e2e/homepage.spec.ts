@@ -33,8 +33,12 @@ test.describe('Startseite', () => {
   test('Navigation enthält alle Hauptlinks', async ({ page }) => {
     const nav = page.locator('nav');
 
-    // Logo/Brand liegt im Header-Logo-Link ausserhalb von <nav>
-    await expect(page.locator('header').getByText(/EduFunds/i).first()).toBeVisible();
+    // Logo/Brand liegt im Header-Logo-Link ausserhalb von <nav>. Die Marke steht
+    // NICHT als Textknoten da, sondern als SVG-Logo mit alt="EduFunds" in einem
+    // Link mit aria-label — `getByText` findet Attribute nicht und war deshalb
+    // dauerhaft rot. Ueber die Rolle geprueft, ist zugleich belegt, dass das Logo
+    // einen zugaenglichen Namen hat.
+    await expect(page.locator('header').getByRole('link', { name: /EduFunds/i }).first()).toBeVisible();
     
     // Hauptnavigationslinks
     const expectedLinks = ['Programme', 'Preise', 'Über uns', 'Kontakt'];

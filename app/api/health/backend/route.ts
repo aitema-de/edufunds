@@ -11,7 +11,11 @@ import { query } from '@/lib/db';
 import { isRedisAvailable, getRateLimitStatus } from '@/lib/rate-limit';
 import { apiLogger } from '@/lib/logger';
 
-export const dynamic = 'force-static';
+// Wie /api/health: ein Health-Check, der zur Build-Zeit erstarrt, prueft nichts.
+// Belegt 30.07.2026 — die Antwort lag als Datei unter
+// .next/server/app/api/health/backend.body und meldete "healthy" bei toter DB.
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 interface HealthCheck {
   name: string;
@@ -102,7 +106,11 @@ export async function GET(request: NextRequest) {
   const hasDegraded = checks.some(c => c.status === 'degraded');
   const overallStatus = hasUnhealthy ? 'unhealthy' : hasDegraded ? 'degraded' : 'healthy';
   
-  const duration = Math.round(performance.now() - startTime);
+  // Einheiten nicht mischen: `startTime` kommt von Date.now() (Epoch-Millisekunden),
+  // performance.now() zaehlt ab Prozessstart. Die Differenz ergab deshalb eine
+  // Dauer von rund -56 Jahren ("duration":"-1785415285926ms" im ausgelieferten
+  // Health-Body vom 30.07.2026).
+  const duration = Math.max(0, Date.now() - startTime);
   
   // Log Result
   apiLogger.info('Backend health check', {

@@ -29,20 +29,72 @@ const ERROR_MARKERS = [
 ];
 
 // --- Testfälle -------------------------------------------------------------
+
+/**
+ * Die Seitenliste kommt aus dem BUILD-MANIFEST, nicht aus einer Handliste.
+ *
+ * Grund (Befund 30.07.2026): Die frueher hier fest eingetragenen 15 Seiten waren
+ * veraltet. Neun echte Seiten wurden nie gesweept — darunter der komplette
+ * Kontingent-Kaufbereich (/kontingent, /kontingent/uebersicht), alle drei
+ * Admin-Seiten, /avv, der Wizard-Einstieg /antrag/[programmId] und die
+ * Download-Seite. Umgekehrt standen zwei Seiten drin, die es nicht mehr gibt
+ * (/checkout/einzel, /checkout/jahresabo) — die haben als "unerwartetes 404"
+ * Rauschen erzeugt. Eine Handliste veraltet lautlos; ein Manifest nicht.
+ *
+ * Voraussetzung: `next build` muss gelaufen sein (.next/server/app-paths-manifest.json).
+ * Fehlt das Manifest, faellt der Sweeper auf eine Minimalliste zurueck und meldet das.
+ */
+const PARAM_BEISPIELE = {
+  '[id]': PROG,
+  '[programmId]': PROG,
+  // Bewusst ein zufaelliges Token: hier wird geprueft, dass die Seite ohne
+  // gueltige Zahlung NICHTS ausliefert — nicht, dass sie ein Dokument zeigt.
+  '[token]': '00000000-0000-4000-8000-000000000000',
+};
+
+function seitenAusManifest() {
+  try {
+    const manifest = JSON.parse(
+      readFileSync(new URL('../.next/server/app-paths-manifest.json', import.meta.url), 'utf8')
+    );
+    const seiten = Object.keys(manifest)
+      .filter((k) => k.endsWith('/page'))
+      .map((k) => k.slice(0, -'/page'.length) || '/')
+      // interne Next-Sonderrouten
+      .filter((p) => !p.startsWith('/_'))
+      .map((p) => p.replace(/\[[^\]]+\]/g, (m) => PARAM_BEISPIELE[m] ?? 'beispiel'))
+      .sort();
+    return { seiten, ausManifest: true };
+  } catch {
+    return {
+      seiten: ['/', '/foerderprogramme', `/foerderprogramme/${PROG}`, '/preise', '/kontakt', '/antrag/start'],
+      ausManifest: false,
+    };
+  }
+}
+
+const { seiten: MANIFEST_SEITEN, ausManifest: SEITEN_AUS_MANIFEST } = seitenAusManifest();
+
 const PAGES = [
-  '/', '/foerderprogramme', `/foerderprogramme/${PROG}`,
-  '/preise', '/ueber-uns', '/kontakt', '/registrieren', '/archiv',
-  '/impressum', '/datenschutz', '/agb',
-  '/antrag/start', '/antrag/meine',
-  '/checkout/einzel', '/checkout/jahresabo',
-  '/admin/dashboard',
+  ...MANIFEST_SEITEN,
   // bewusst nicht-existente ID → erwartet sauberes 404/Not-Found, kein 500
   '/foerderprogramme/diese-id-gibt-es-nicht-xyz',
 ];
 
+/** Seiten, auf denen ein 404 bei Beispiel-Parametern korrekt ist. */
+const VIERNULLVIER_OK = new Set([
+  `/antrag/download/${PARAM_BEISPIELE['[token]']}`,
+  '/foerderprogramme/diese-id-gibt-es-nicht-xyz',
+]);
+
+// GET-APIs: { path, okStatuses } — okStatuses = zusaetzlich akzeptierte 4xx.
 const GET_APIS = [
-  '/api/health', '/api/health/backend', '/api/health/dashboard',
-  '/api/foerderprogramme',
+  { path: '/api/health' },
+  { path: '/api/health/backend' },
+  // Admin-only seit der Haertung (System-Metriken, Fehlerlogs, Client-IPs).
+  // 401 ohne Anmeldung ist hier das RICHTIGE Verhalten, kein Fund.
+  { path: '/api/health/dashboard', okStatuses: [401] },
+  { path: '/api/foerderprogramme' },
 ];
 
 // POST-Fälle: { path, body, expectMax } — expectMax = höchster akzeptabler Status.
@@ -80,10 +132,27 @@ function bug(area, severity, route, detail, evidence) {
   findings.push({ area, severity, route, detail, evidence });
 }
 
+/**
+ * Eigene Client-Kennung fuer den Sweep.
+ *
+ * Lokal laeuft kein Reverse-Proxy davor, der X-Forwarded-For anhaengt — der Header
+ * ist hier also frei setzbar und landet als Rate-Limit-Schluessel im Server. Genau
+ * das nutzt der Sweep: ohne eigene Kennung teilt er das Budget mit allem anderen,
+ * was von 127.0.0.1 kommt (etwa einem direkt davor gelaufenen Pentest), und
+ * meldet dann 429 als "Client-Error" — ein Fund, der nur ein Nachbar-Effekt ist.
+ * In Produktion greift das nicht: dort haengt Traefik die echte Peer-IP RECHTS an,
+ * und lib/rate-limit.ts liest von rechts.
+ */
+const SWEEP_XFF = process.env.SWEEP_XFF ?? '203.0.113.201';
+
 async function fetchSafe(url, opts) {
   const t0 = Date.now();
   try {
-    const res = await fetch(url, { ...opts, signal: AbortSignal.timeout(20000) });
+    const res = await fetch(url, {
+      ...opts,
+      headers: { ...(opts?.headers ?? {}), 'X-Forwarded-For': SWEEP_XFF },
+      signal: AbortSignal.timeout(20000),
+    });
     const text = await res.text().catch(() => '');
     return { status: res.status, text, ms: Date.now() - t0 };
   } catch (e) {
@@ -99,9 +168,18 @@ async function run() {
   const logBefore = devlogTail().length;
 
   // --- Pages ---
+  if (!SEITEN_AUS_MANIFEST) {
+    bug(
+      'setup',
+      'medium',
+      'app-paths-manifest',
+      'Kein .next/server/app-paths-manifest.json — Sweep laeuft auf Minimalliste. Erst `next build` ausfuehren.',
+      ''
+    );
+  }
   for (const p of PAGES) {
     const r = await fetchSafe(BASE + p);
-    const is404Expected = p.includes('gibt-es-nicht');
+    const is404Expected = VIERNULLVIER_OK.has(p) || p.includes('gibt-es-nicht');
     if (r.status === 0) { bug('pages', 'high', `GET ${p}`, `Request fehlgeschlagen: ${r.err}`, ''); continue; }
     if (r.status >= 500) { bug('pages', 'high', `GET ${p}`, `Server-Error ${r.status}`, r.text.slice(0, 300)); continue; }
     if (r.status === 404 && !is404Expected) { bug('pages', 'medium', `GET ${p}`, `Unerwartetes 404`, ''); continue; }
@@ -111,11 +189,13 @@ async function run() {
   }
 
   // --- GET APIs ---
-  for (const a of GET_APIS) {
+  for (const eintrag of GET_APIS) {
+    const a = eintrag.path;
     const r = await fetchSafe(BASE + a);
     if (r.status === 0) bug('api', 'high', `GET ${a}`, `Request fehlgeschlagen: ${r.err}`, '');
     else if (r.status >= 500) bug('api', 'high', `GET ${a}`, `Server-Error ${r.status}`, r.text.slice(0, 300));
-    else if (r.status >= 400) bug('api', 'medium', `GET ${a}`, `Client-Error ${r.status} auf GET`, r.text.slice(0, 200));
+    else if (r.status >= 400 && !eintrag.okStatuses?.includes(r.status))
+      bug('api', 'medium', `GET ${a}`, `Client-Error ${r.status} auf GET`, r.text.slice(0, 200));
   }
 
   // --- POST APIs ---
@@ -140,11 +220,16 @@ async function run() {
   const out = {
     base: BASE,
     ranAt: new Date().toISOString(),
+    seitenQuelle: SEITEN_AUS_MANIFEST ? 'build-manifest' : 'fallback-minimalliste',
+    gesweepteSeiten: PAGES,
     counts: { pages: PAGES.length, getApis: GET_APIS.length, postApis: POST_APIS.length, findings: findings.length },
     findings,
   };
   writeFileSync(new URL('../.planning/test-fix/sweep-results.json', import.meta.url), JSON.stringify(out, null, 2));
-  console.log(`Sweep fertig: ${findings.length} Findung(en).`);
+  console.log(
+    `Sweep fertig: ${PAGES.length} Seiten (${SEITEN_AUS_MANIFEST ? 'aus Build-Manifest' : 'FALLBACK-Liste'}), ` +
+      `${GET_APIS.length} GET-APIs, ${POST_APIS.length} POST-Faelle -> ${findings.length} Findung(en).`
+  );
   for (const f of findings) console.log(`  [${f.severity}] ${f.route} — ${f.detail}`);
 }
 run();

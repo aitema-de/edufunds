@@ -216,11 +216,17 @@ export default function RegistrierenPage() {
                 </Button>
               </form>
 
-              {/* Login Link */}
+              {/*
+                Zielte bis zum 30.07.2026 auf /login — diese Seite existiert nicht
+                (HTTP 404). EduFunds kennt keine Passwort-Anmeldung: Wer seine
+                Anträge wiederfinden will, fordert unter „Meine Anträge" einen
+                Magic-Link per E-Mail an (/api/antrag/magic-link). Genau dorthin
+                führt der Link jetzt.
+              */}
               <p className="mt-6 text-center text-sm" style={{ color: "#a8a29e" }}>
-                Bereits registriert?{" "}
-                <Link href="/login" className="text-[#d4af37] hover:underline font-medium">
-                  Hier anmelden
+                Schon Anträge begonnen?{" "}
+                <Link href="/antrag/meine" className="text-[#d4af37] hover:underline font-medium">
+                  Per E-Mail-Link wiederfinden
                 </Link>
               </p>
             </motion.div>

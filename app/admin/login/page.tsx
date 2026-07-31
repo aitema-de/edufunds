@@ -67,13 +67,20 @@ function LoginForm() {
     >
       <div className="w-full max-w-sm bg-[#fffdf7] border border-[#e4d9bf] shadow-[0_2px_28px_rgba(60,50,30,0.12)] rounded-lg p-8">
         <div className="text-center mb-7">
-          <div
+          {/*
+            Als <h1> statt <div>: Die Seite hatte gar keine Überschrift-Ebene
+            (visueller Sweep 30.07.2026, h1=0). Screenreader-Nutzende springen
+            über Überschriften — ohne h1 fehlt der Einstiegspunkt. Rein
+            semantisch, das Aussehen bleibt identisch.
+          */}
+          <h1
             className="text-3xl font-bold tracking-tight text-[#23201b]"
             style={{ fontFamily: 'Georgia, serif' }}
           >
             EduFunds<span className="text-[#c2772b]">.</span>
-          </div>
-          <div className="mt-2 text-[11px] tracking-[3px] uppercase text-[#8a8175]">
+            <span className="sr-only"> — Admin-Bereich, Anmeldung</span>
+          </h1>
+          <div className="mt-2 text-[11px] tracking-[3px] uppercase text-[#8a8175]" aria-hidden="true">
             Admin-Bereich
           </div>
         </div>
