@@ -68,6 +68,7 @@ import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import OpenAI from "openai";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { bereinigeAntragstext, sammleOffenePunkte } from "../lib/wizard/offene-punkte";
 
 // ============================================================================
 // GATE — was "gut genug" heisst
@@ -339,21 +340,23 @@ export interface EintragErgebnis {
 }
 
 /**
- * Entfernt die Arbeitsmarker deterministisch. Kein LLM, keine Erfindung:
- * `[TODO: …]` fliegt raus (samt evtl. doppelten Leerzeichen), `[Annahme: X]`
- * wird auf X reduziert. Exportiert fuer Tests.
+ * Entfernt die Arbeitsmarker deterministisch — ueber GENAU dieselbe Funktion, die
+ * auch der Export benutzt (`lib/wizard/offene-punkte.ts`). Das ist Absicht: Wuerde
+ * die Eval hier eigenen Code fuehren, misse sie einen Text, den es im Produkt so
+ * nie gibt (die Falle aus feedback-eval-muss-user-artefakt-messen).
+ *
+ * Kleine Folge der Umstellung: gezaehlt werden jetzt VERSCHIEDENE offene Punkte
+ * (dedupliziert), vorher alle Vorkommen. Die Spalte "Ø TODO-Marker" im Report
+ * faellt dadurch etwas niedriger aus als im Baseline-Eintrag vom 30.07.; die
+ * Bewertungen selbst sind davon nicht beruehrt.
  */
 export function markerEntfernen(text: string): { text: string; todo: number; annahme: number } {
-  const todo = (text.match(/\[TODO:[^\]]*\]/g) ?? []).length;
-  const annahme = (text.match(/\[Annahme:[^\]]*\]/g) ?? []).length;
-  const bereinigt = text
-    .replace(/\s*\[TODO:[^\]]*\]/g, "")
-    .replace(/\[Annahme:\s*([^\]]*?)\s*\]/g, "$1")
-    // Doppelte Leerzeichen und leer gewordene Klammerreste einsammeln.
-    .replace(/[ \t]{2,}/g, " ")
-    .replace(/\(\s*\)/g, "")
-    .replace(/\n{3,}/g, "\n\n");
-  return { text: bereinigt, todo, annahme };
+  const punkte = sammleOffenePunkte(text);
+  return {
+    text: bereinigeAntragstext(text),
+    todo: punkte.todos.length,
+    annahme: punkte.annahmen.length,
+  };
 }
 
 // ============================================================================

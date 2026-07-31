@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { Check, CreditCard, FileText, Loader2, Lock, RefreshCw, ShieldCheck, Sparkles, Ticket } from "lucide-react";
+import { useEffect, useState } from "react";
+import { AlertTriangle, Check, CreditCard, FileText, Loader2, Lock, RefreshCw, ShieldCheck, Sparkles, Ticket } from "lucide-react";
 import { dokumentLabels, type DokumentLabels } from "@/lib/wizard/dokument-label";
+import type { ReadinessIssue } from "@/lib/wizard/facts-readiness";
 
 interface Props {
   sessionToken: string;
@@ -33,6 +34,39 @@ interface ErrorState {
 export function PaywallGate({ sessionToken, priceEur, tierLabel, labels }: Props) {
   const l = labels ?? dokumentLabels();
   const BENEFITS = buildBenefits(l.text);
+
+  /**
+   * Fehlende Pflichtangaben fuer die Qualitaetsschranke (Entscheidung 3C).
+   * Serverseitig ausgewertet ueber /api/wizard/readiness — dieselbe Bewertung,
+   * die auch die Ampel vor der Generierung benutzt (lib/wizard/facts-readiness.ts).
+   * Faellt der Abruf aus, bleibt die Schranke einfach leer: eine kaputte
+   * Nebenpruefung darf den Bezahlweg nie blockieren.
+   */
+  const [luecken, setLuecken] = useState<ReadinessIssue[]>([]);
+  useEffect(() => {
+    if (!sessionToken) return;
+    let abgebrochen = false;
+    (async () => {
+      try {
+        const res = await fetch("/api/wizard/readiness", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ sessionToken }),
+        });
+        if (!res.ok) return;
+        const report = (await res.json()) as { issues?: ReadinessIssue[] };
+        if (abgebrochen) return;
+        // Nur was der Nutzer wirklich noch liefern kann und was zaehlt —
+        // "niedrig" waere Rauschen an der teuersten Stelle der Reise.
+        setLuecken((report.issues ?? []).filter((i) => i.schwere !== "niedrig"));
+      } catch {
+        /* still: siehe Kommentar oben */
+      }
+    })();
+    return () => {
+      abgebrochen = true;
+    };
+  }, [sessionToken]);
   const [busy, setBusy] = useState(false);
   const [errorState, setErrorState] = useState<ErrorState | null>(null);
   const [showRedeem, setShowRedeem] = useState(false);
@@ -224,6 +258,53 @@ export function PaywallGate({ sessionToken, priceEur, tierLabel, labels }: Props
               </li>
             ))}
           </ul>
+
+          {/*
+            Entscheidung 3C (31.07.2026): Qualitaetsschranke VOR der Zahlung.
+
+            Anlass ist nicht der Durchschnitt, sondern der Rand. Die
+            Gutachter-Messung vom 30.07. zeigt: Bei belastbaren Angaben liegt die
+            Bewertung bei 4,13 von 5, bei duennen Angaben bei 3,00 — der
+            schwaechste gemessene Antrag lag bei 2,06. Wer mit duenner Faktenlage
+            zahlt, bekommt genau den. Das ist kein Fehler der Pipeline: Zahlen,
+            die der Nutzer nicht genannt hat, DARF sie nicht erfinden.
+
+            Also sagen wir es vorher statt hinterher zu erstatten. Bewusst KEINE
+            Sperre — der Kunde entscheidet, er soll nur informiert entscheiden.
+          */}
+          {luecken.length > 0 && (
+            <div className="mb-6 rounded-lg border border-amber-300 bg-amber-50 p-4 text-left">
+              <div className="flex items-start gap-2.5">
+                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
+                <div>
+                  {/* Ein zusammenhaengender String statt verschachtelter Ausdruecke:
+                      sonst zerfaellt der Satz im DOM in mehrere Textknoten und ist
+                      weder gut vorlesbar noch pruefbar. */}
+                  <div className="text-sm font-semibold text-amber-900">
+                    {luecken.length === 1
+                      ? "Vor dem Kauf: 1 Angabe fehlt noch"
+                      : `Vor dem Kauf: ${luecken.length} Angaben fehlen noch`}
+                  </div>
+                  <ul className="mt-1.5 space-y-1 text-xs text-amber-900/90">
+                    {luecken.slice(0, 5).map((i) => (
+                      <li key={i.feld} className="leading-relaxed">
+                        <strong>{i.label}</strong>
+                        {i.hinweis ? ` — ${i.hinweis}` : ""}
+                      </li>
+                    ))}
+                    {luecken.length > 5 && (
+                      <li className="text-amber-800/80">und {luecken.length - 5} weitere.</li>
+                    )}
+                  </ul>
+                  <p className="mt-2 text-xs leading-relaxed text-amber-800/90">
+                    Diese Angaben kann der Assistent nicht erfinden — an den betroffenen Stellen
+                    steht deshalb ein Platzhalter, den Sie nach dem Kauf im Editor ersetzen. Wer
+                    sie mitliefert, bekommt einen deutlich tragfähigeren {l.text}.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
 
           <div className="mb-6 flex items-baseline justify-center gap-2">
             <span className="text-4xl font-bold text-[#1c1917]">{priceEur.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €</span>
