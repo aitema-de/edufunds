@@ -11,6 +11,7 @@ import type { PipelineStage } from "@/lib/wizard/types";
 import { addUsage, emptyLedger } from "@/lib/wizard/pricing";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
 import { query } from "@/lib/db";
+import { readJsonBody } from "@/lib/json-body";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
 
@@ -18,7 +19,9 @@ export const maxDuration = 300; // bis zu 5 Minuten für die gesamte Pipeline
 
 export async function POST(req: NextRequest) {
   try {
-    const body = (await req.json()) as { sessionToken?: string; texttiefe?: string };
+    const gelesen = await readJsonBody<{ sessionToken?: string; texttiefe?: string }>(req);
+    if (!gelesen.ok) return gelesen.response;
+    const body = gelesen.body;
     const { sessionToken } = body;
     if (!sessionToken) {
       return NextResponse.json({ error: "sessionToken fehlt" }, { status: 400 });

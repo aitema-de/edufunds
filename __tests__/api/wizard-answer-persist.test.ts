@@ -39,8 +39,19 @@ function baseSession(messages: unknown[]) {
   };
 }
 
+/**
+ * Bewusst ein Objekt mit `text()`, nicht nur `json()`: Die Route liest den Body
+ * seit 30.07.2026 ueber `readJsonBody` (lib/json-body.ts), damit ein leerer oder
+ * kaputter Body 400 statt 500 ergibt. Ein Mock mit nur `json()` wuerde eine
+ * Schnittstelle nachbilden, die es so nicht gibt — ein echtes `Request` hat immer
+ * beides.
+ */
 function req(answer: string) {
-  return { json: async () => ({ sessionToken: "tok", answer }) } as never;
+  const body = JSON.stringify({ sessionToken: "tok", answer });
+  return {
+    text: async () => body,
+    json: async () => JSON.parse(body),
+  } as never;
 }
 
 const lastMsgOf = (calls: unknown[][]) => {

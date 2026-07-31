@@ -1,12 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { runMatch, type MatchInput } from "@/lib/wizard/matcher";
 import { brauchtFristHinweis, naechsteFrist } from "@/lib/foerder-zustaende";
+import { readJsonBody } from "@/lib/json-body";
 
 export const maxDuration = 60;
 
 export async function POST(req: NextRequest) {
   try {
-    const body = (await req.json()) as Partial<MatchInput>;
+    const gelesen = await readJsonBody<Partial<MatchInput>>(req);
+    if (!gelesen.ok) return gelesen.response;
+    const body = gelesen.body;
     if (!body.anliegen || typeof body.anliegen !== "string") {
       return NextResponse.json({ error: "anliegen (string) erforderlich" }, { status: 400 });
     }

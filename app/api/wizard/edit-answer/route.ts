@@ -11,16 +11,15 @@ import { nextStep } from "@/lib/wizard/interviewer";
 import { extractFacts } from "@/lib/wizard/facts-extractor";
 import { addUsage, emptyLedger } from "@/lib/wizard/pricing";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
+import { readJsonBody } from "@/lib/json-body";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
 
 export async function POST(req: NextRequest) {
   try {
-    const { sessionToken, messageId, newAnswer } = (await req.json()) as {
-      sessionToken?: string;
-      messageId?: string;
-      newAnswer?: string;
-    };
+    const gelesen = await readJsonBody<{ sessionToken?: string; messageId?: string; newAnswer?: string }>(req);
+    if (!gelesen.ok) return gelesen.response;
+    const { sessionToken, messageId, newAnswer } = gelesen.body;
     if (!sessionToken || !messageId || typeof newAnswer !== "string") {
       return NextResponse.json(
         { error: "sessionToken, messageId und newAnswer (string) erforderlich" },

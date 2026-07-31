@@ -1,6 +1,7 @@
 export const dynamic = 'force-static';
 
 import { NextRequest, NextResponse } from "next/server";
+import { readJsonBody } from "@/lib/json-body";
 
 // In-Memory Speicher für Vitals (in Production: Datenbank)
 const vitalsBuffer: any[] = [];
@@ -8,7 +9,9 @@ const MAX_BUFFER_SIZE = 1000;
 
 export async function POST(request: NextRequest) {
   try {
-    const data = await request.json();
+    const gelesen = await readJsonBody<any>(request);
+    if (!gelesen.ok) return gelesen.response;
+    const data = gelesen.body;
     
     // Daten validieren
     if (!data.name || typeof data.value !== "number") {

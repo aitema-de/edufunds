@@ -5,12 +5,15 @@ import { getWizardSession, updateWizardSession } from "@/lib/wizard/session";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
 import { validateFinanzplan } from "@/lib/wizard/finanzplan-validator";
 import { confirmAllVorschlaege } from "@/lib/wizard/finanzplan-generator";
+import { readJsonBody } from "@/lib/json-body";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
 
 export async function POST(req: NextRequest) {
   try {
-    const { sessionToken } = (await req.json()) as { sessionToken?: string };
+    const gelesen = await readJsonBody<{ sessionToken?: string }>(req);
+    if (!gelesen.ok) return gelesen.response;
+    const { sessionToken } = gelesen.body;
     if (!sessionToken) {
       return NextResponse.json({ error: "sessionToken erforderlich" }, { status: 400 });
     }

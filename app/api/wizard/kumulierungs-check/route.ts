@@ -10,6 +10,7 @@ import {
   OVERLAP_SOFT,
   projektUeberlappung,
 } from "@/lib/wizard/projekt-overlap";
+import { readJsonBody } from "@/lib/json-body";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
 
@@ -24,12 +25,14 @@ interface Conflict {
 
 export async function POST(req: NextRequest) {
   try {
-    const body = (await req.json()) as {
+    const gelesen = await readJsonBody<{
       programmId?: string;
       otherSessionTokens?: string[];
       currentSessionToken?: string;
       currentFacts?: WizardFacts;
-    };
+    }>(req);
+    if (!gelesen.ok) return gelesen.response;
+    const body = gelesen.body;
     const { programmId, otherSessionTokens, currentSessionToken, currentFacts } = body;
 
     if (!programmId) {

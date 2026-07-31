@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { markSessionPaid } from "@/lib/wizard/session";
+import { readJsonBody } from "@/lib/json-body";
 
 /**
  * Dev-Only: markiert eine Session als bezahlt, ohne Stripe zu kontaktieren.
@@ -11,10 +12,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "dev-mock nicht aktiviert" }, { status: 403 });
   }
   try {
-    const { sessionToken, tier } = (await req.json()) as {
-      sessionToken?: string;
-      tier?: string;
-    };
+    const gelesen = await readJsonBody<{ sessionToken?: string; tier?: string }>(req);
+    if (!gelesen.ok) return gelesen.response;
+    const { sessionToken, tier } = gelesen.body;
     if (!sessionToken) {
       return NextResponse.json({ error: "sessionToken erforderlich" }, { status: 400 });
     }

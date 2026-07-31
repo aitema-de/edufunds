@@ -12,6 +12,8 @@ import type { WizardFacts } from "@/lib/wizard/types";
 import { addUsage, emptyLedger } from "@/lib/wizard/pricing";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
 import type { Richtlinie } from "@/lib/wizard/richtlinien-schema";
+import { readJsonBody } from "@/lib/json-body";
+import { getClientIP } from "@/lib/rate-limit";
 
 function richtlinieStatus(r: Richtlinie | null): {
   available: boolean;
@@ -27,10 +29,9 @@ const programme = foerderprogrammeData as Foerderprogramm[];
 
 export async function POST(req: NextRequest) {
   try {
-    const { programmId, seedFacts } = (await req.json()) as {
-      programmId?: string;
-      seedFacts?: Partial<WizardFacts>;
-    };
+    const gelesen = await readJsonBody<{ programmId?: string; seedFacts?: Partial<WizardFacts> }>(req);
+    if (!gelesen.ok) return gelesen.response;
+    const { programmId, seedFacts } = gelesen.body;
     if (!programmId) {
       return NextResponse.json({ error: "programmId fehlt" }, { status: 400 });
     }
@@ -39,10 +40,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Programm nicht gefunden" }, { status: 404 });
     }
 
-    const ip =
-      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-      req.headers.get("x-real-ip") ??
-      undefined;
+    // Gemeinsame IP-Ermittlung (lib/rate-limit.ts): liest den X-Forwarded-For von
+    // RECHTS. Vorher stand hier `split(",")[0]` — der erste Eintrag ist vom Client
+    // frei erfindbar, die auf der Session gespeicherte Herkunfts-IP war damit
+    // beliebig faelschbar (Selbst-Pentest 30.07.2026).
+    const ermittelt = getClientIP(req);
+    const ip = ermittelt === "unknown" ? undefined : ermittelt;
 
     const session = await createWizardSession(programm.id, programm.name, ip);
 

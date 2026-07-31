@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getWizardSession, updateWizardSession } from "@/lib/wizard/session";
+import { readJsonBody } from "@/lib/json-body";
 
 /**
  * Produktvision 2026-06-10 — #4: Text-Vorschläge interaktiv.
@@ -17,11 +18,9 @@ const MAX_VORSCHLAEGE = 100;
 
 export async function POST(req: NextRequest) {
   try {
-    const { sessionToken, finalText, vorschlaege } = (await req.json()) as {
-      sessionToken?: string;
-      finalText?: unknown;
-      vorschlaege?: unknown;
-    };
+    const gelesen = await readJsonBody<{ sessionToken?: string; finalText?: unknown; vorschlaege?: unknown }>(req);
+    if (!gelesen.ok) return gelesen.response;
+    const { sessionToken, finalText, vorschlaege } = gelesen.body;
     if (!sessionToken) {
       return NextResponse.json({ error: "sessionToken erforderlich" }, { status: 400 });
     }

@@ -11,6 +11,8 @@ import {
   confirmNewsletterEntry,
   generateToken,
 } from '@/lib/db';
+import { readJsonBody } from "@/lib/json-body";
+import { getClientIP } from "@/lib/rate-limit";
 
 // E-Mail Validation Schema
 const newsletterSchema = z.object({
@@ -67,21 +69,11 @@ function checkRateLimit(ip: string): { allowed: boolean; remaining: number; rese
   return { allowed: true, remaining: RATE_LIMIT_MAX_REQUESTS - entry.count, resetIn: RATE_LIMIT_WINDOW - (now - entry.firstRequest) };
 }
 
-function getClientIP(request: Request): string {
-  const forwarded = request.headers.get('x-forwarded-for');
-  const realIP = request.headers.get('x-real-ip');
-  
-  if (forwarded) {
-    return forwarded.split(',')[0].trim();
-  }
-  
-  if (realIP) {
-    return realIP;
-  }
-  
-  // Fallback - in production use a proper IP detection
-  return 'unknown';
-}
+// IP-Ermittlung kommt aus lib/rate-limit.ts (liest X-Forwarded-For von RECHTS).
+// Hier stand eine vierte Kopie mit `split(',')[0]` — dem client-kontrollierten
+// ersten Eintrag. Damit war das Anmelde-Limit dieser Route pro Anfrage
+// zuruecksetzbar, also der Spam-Schutz der oeffentlichen Newsletter-Anmeldung
+// wirkungslos. Selbst-Pentest 30.07.2026.
 
 // Mock email sender (replace with Resend when API key is available)
 async function sendConfirmationEmail(email: string, token: string): Promise<boolean> {
@@ -230,8 +222,10 @@ export async function POST(request: Request) {
       );
     }
 
-    // Parse and validate request body
-    const body = await request.json();
+    // Parse and validate request body — leerer/kaputter Body -> 400 statt 500.
+    const gelesen = await readJsonBody<unknown>(request);
+    if (!gelesen.ok) return gelesen.response;
+    const body = gelesen.body;
     const result = newsletterSchema.safeParse(body);
 
     if (!result.success) {
