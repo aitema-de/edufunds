@@ -12,6 +12,242 @@
 > WIZ-03 (Tonalitaets-Passung via LLM-as-Judge), WIZ-04 (Begruendungs-Substanz, deterministisch),
 > Finanzplan-Validity (Sub). Format analog Phase-1 (append-only, neueste Eintraege oben).
 
+## 2026-07-31 (b) — Fakten-Extraktion repariert; Hebel 5 faellt damit durch
+
+Nachtrag zum Eintrag darunter. Der dort beschriebene Hauptbefund ist behoben, und die
+Reparatur dreht die Bewertung von Hebel 5 um.
+
+### Ursache
+
+Zwei Fehler in `FACTS_EXTRACTOR_SYSTEM` (`lib/wizard/prompts.ts`):
+
+1. **Widerspruch zur Merge-Semantik.** Die Regel „Wenn ein Slot bereits gefuellt ist … lasse
+   den Slot weg" stand gegen den Kommentar in `mergeFacts`, der die Liste des Extraktors
+   ausdruecklich als *autoritativ* bezeichnet (Arrays werden ERSETZT, nicht ergaenzt). Da die
+   Stage nach JEDER Antwort erneut laeuft, las das Modell „nichts Neues seit dem letzten Lauf"
+   und gab `{}` zurueck — womit alles verschwand, was es nicht wiederholte.
+2. **Verbotslastigkeit.** Sieben Halluzinations-Regeln, zwei NEGATIVBEISPIEL-Bloecke,
+   „Im Zweifel: Slot leer lassen", „Bei NICHTS gefunden: `{}`" — und kein einziges
+   Positivbeispiel. `mistral-small` loeste das zur sichersten Handlung auf.
+
+Dazu lief die Stage ohne gesetzte Temperatur auf dem Anbieter-Default und lieferte fuer
+denselben Verlauf mal Fakten, mal nichts.
+
+### Behoben
+
+- Der Prompt sagt jetzt ausdruecklich, dass die Ausgabe der **vollstaendige Stand** ist und
+  die Tabelle „BISHER ERFASSTE FAKTEN" nur Kontext, kein Grund zum Weglassen.
+- Das Halluzinations-Verbot gilt ausdruecklich fuer den **Wert**, nicht fuer die Aussage:
+  eine wacklige Zahl faellt weg, der Rest derselben Antwort wird extrahiert.
+- Ein vollstaendiges Positivbeispiel mit realistisch zoegernder Sprache („eigentlich",
+  „so etwa", „denke ich") — plus eine Pflicht-Selbstpruefung vor jedem `{}`.
+- `temperature: 0` in `facts-extractor.ts`.
+
+| Probe (`scripts/probe-facts-extractor.ts`) | vorher | nachher |
+|---|---|---|
+| Interviews mit mindestens einem Slot | 2/25 | **23/25** |
+| davon `hochwertig` | 0/5 | **5/5** |
+| davon `mittel` | 0/9 | **9/9** |
+| Interviews mit **erfundenen** Zahlen | — | **0/25** |
+
+Die Treue-Spalte ist die Gegenprobe: Abdeckung ohne sie waere auch mit Halluzinationen zu
+erreichen. Die Probe faellt bei einer einzigen ungedeckten Zahl durch.
+
+### Wirkung Ende-zu-Ende (simulierter Nutzer, n=25, gleicher Interviewer)
+
+| Kennzahl | Extraktion defekt | repariert |
+|---|---|---|
+| Interviews **ganz ohne Ertrag** | 16 | **1** |
+| Runden ohne Faktenzuwachs | 87 % | **43 %** |
+| Zahlangaben in der Faktentabelle | 3,3 | **4,4** |
+| Tiefen-Quote | 22 % | **26 %** |
+| — Kategorie `vag` | 3 % | **11 %** |
+
+### 🔴 Folge: Hebel 5 auf Default OFF — er schadet
+
+Der Tiefen-Block sah nur unter der defekten Extraktion gut aus. **Sauberer A/B** (reparierte
+Extraktion, Schalter bewegt Block UND die zugehoerigen Interviewer-Regeln, n=25):
+
+| | AUS | AN |
+|---|---|---|
+| Fragen je Interview | 10,7 | **8,3** |
+| Tiefen-Quote | **36 %** | 26 % |
+| — `hochwertig` | **61 %** | 48 % |
+| — `mittel` | **52 %** | 31 % |
+| — `vag` | 11 % | 11 % |
+| Zahlangaben in Antworten | **4,8** | 3,6 |
+| Zahlangaben in Fakten | **5,9** | 4,4 |
+
+Der Hebel verkuerzt das Interview um 2,4 Fragen und sammelt dabei **durchgehend weniger** —
+auch dort, wo der Nutzer Substanz hat. Wirkmechanismus: „AUSREICHEND TIEF (nicht nachbohren)",
+„BEREITS VERNEINT" und „akzeptiere das und geh weiter" geben dem Modell zusaetzliche Gruende,
+frueh abzuschliessen. Genau die Angaben, an denen es dem Finanzplan fehlt (2,54), kommen
+dadurch seltener zustande.
+
+Der Code bleibt: `lib/wizard/facts-tiefe.ts` ist zugleich die Messgrundlage der
+Ausbeute-Metrik, und ein anderer Zuschnitt der Regeln koennte anders ausgehen.
+
+⚠️ **Zwei Messfehler auf dem Weg dorthin** — beide zeigten den Hebel faelschlich positiv:
+(1) unter der defekten Extraktion sah er nach +4 Punkten aus; (2) die zugehoerigen Regeln in
+`INTERVIEWER_SYSTEM` hingen zunaechst nicht am Schalter und waren in BEIDEN Armen aktiv, sodass
+nur der Block im User-Prompt verglichen wurde. Beides behoben; Test „Schalter
+WIZARD_FACTS_TIEFE" prueft jetzt, dass Block und Regeln gemeinsam schalten und der
+System-Prompt nie auf einen fehlenden Abschnitt verweist.
+
+### WIZ-05 auf echten Sessions: die Note bewegt sich NICHT
+
+Pipeline live (N=1) plus Gutachterurteil auf zwei Korpora aus echten Interview-Sessions —
+`korpus-vorher` (Sessions vor der Extraktions-Reparatur) gegen `korpus-ohne-tiefe` (Sessions
+mit der aktuellen Auslieferungskonfiguration). Judges wie am 30.07.: gemini-2.5-pro +
+mistral-large, Arm `ki`, kein Paarvergleich.
+
+| | vor der Reparatur | danach |
+|---|---|---|
+| **Gutachterurteil (1-5)** | **3,38** | **3,26** |
+| — `hochwertig` | 4,32 | 3,93 |
+| — `mittel` | 3,42 | 3,25 |
+| — `vag` | 2,91 | 2,96 |
+| WIZ-01 Pflichtabschnitte | 100,0 | 100,0 |
+| **WIZ-02 Halluzination** | **98,4** | **92,4** |
+| WIZ-03 Tonalitaet | 64,6 | 63,8 |
+| **WIZ-04 Begruendungs-Substanz** | 79,7 | **91,9** |
+| Finanzplan-Validitaet | 88,0 | 88,8 |
+
+Pro Kriterium faellt auf: **Finanzplan 2,76 -> 2,39** und Sprache/formale Reife 3,18 -> 2,90,
+waehrend Ziele/Wirkungslogik und Passung unveraendert bleiben.
+
+**Deutung:** Die Reparatur hat getan, was sie sollte — die Begruendungs-Substanz steigt
+deutlich (WIZ-04 +12,2), weil die Pipeline endlich geordnete Fakten bekommt. Aber mit der
+volleren Faktentabelle wird der Text auch SPEZIFISCHER, und ein Teil dieser Spezifitaet ist
+erfunden. Die drei Ausreisser sind mechanisch belegbar, nicht statistisches Rauschen:
+
+- `pv-005`: „2 Lehrkraefte × 2 Projekttage × 8 Std/Tag × 56 EUR/Std (**TV-L E11**, Mittelwert)"
+  — eine erfundene Tarifgruppe samt Rechnung. Genau das verbietet SECTION_SYSTEM ausdruecklich.
+- `pv-res-002`: „**01.01.2025–31.12.2025**" — erfundene tagesgenaue Zeitraeume (WIZ-02 = 0).
+- `pv-001`: sieben Treffer auf das KMK-Zitat-Muster, obwohl der Nutzer „KMK kenne ich nicht"
+  gesagt hatte. Die Stellen negieren zwar („ein Beschluss existiert nicht"), erwaehnen den
+  Rahmen aber ueberhaupt erst.
+
+Ein Gutachter, der eine erfundene Tarifgruppe im Kostenteil sieht, wertet den Finanzplan ab —
+das erklaert, warum ausgerechnet das schwaechste Kriterium weiter faellt.
+
+**Folge: Die Extraktions-Reparatur ist notwendig, aber nicht hinreichend.** Sie behebt einen
+echten Defekt (leere Faktentabelle trifft auch Interviewer-Steuerung, Bezahl-Schranke und die
+Fakten-Kacheln in der UI) und hebt die Substanz. Bevor sie sich in der NOTE niederschlaegt,
+muessen die Halluzinations-Schranken unter einer volleren Faktentabelle halten. Das ist der
+naechste Arbeitsschritt, und er hat jetzt eine Messung.
+
+⚠️ **Grenze dieses Vergleichs:** Die beiden Korpora bestehen aus VERSCHIEDENEN Interviews —
+die Sessions unterscheiden sich nicht nur in der Vollstaendigkeit der Fakten, sondern auch im
+Gespraechsverlauf. Die Richtung ist ueber mehrere Achsen konsistent (WIZ-04 hoch, WIZ-02
+runter, Finanzplan runter) und die Einzeltreffer sind mechanisch belegt; die Punktdifferenz
+von 0,12 liegt aber deutlich innerhalb der Streuung (Stdabw 0,74 bzw. 0,59) und ist FUER SICH
+kein Beleg fuer eine Verschlechterung.
+
+Reports: `data/eval/gutachter-reports/simuser-{vor,nach}-fix.{json,md}`,
+Snapshots `pipeline-snapshots/2026-07-31T17-52-18` (vor) und `2026-07-31T18-49-50` (nach).
+
+### Verbleibende Schwaechen
+
+- 2 von 25 liefern weiterhin nichts: `pv-edge-001` und `pv-edge-002` — die beiden extremsten
+  `vag`-Faelle (309 bzw. 469 Zeichen Antworttext insgesamt). Dort ist `{}` vertretbar.
+- Der simulierte Nutzer erfindet in 3 von 25 Interviews noch Zahlen, meist als Hochrechnung
+  („die doppelte Teilnehmerzahl, also so 30 bis 40"). Die Korrekturschleife druckt das von
+  17/25 auf 3/25; der Rest bleibt als bekannte Restgroesse.
+- WIZ-05 auf den neuen Sessions steht weiterhin aus — jetzt aber sinnvoll durchfuehrbar,
+  weil die Kette nicht mehr vor der Messstelle reisst.
+
+---
+
+## 2026-07-31 — NEUE ACHSE WIZ-06: simulierter Nutzer + Tiefen-Block im Interviewer (n=25)
+
+- **Anlass:** Der Baseline-Eintrag vom 30.07. endet mit der Messgrenze „Diese Eval kann
+  Aenderungen am INTERVIEW nicht messen". Der Korpus spielt fixe Frage-Antwort-Paare ab;
+  ein geschaerfter Interviewer stellt andere Fragen und bekommt dieselben vorkonservierten
+  Antworten. Neues Skript `scripts/eval-simuser.ts`: ein Modell spielt die Schule, antwortet
+  aus einem **eingefrorenen** Personenprofil (`data/eval/simuser-profile.json`, im Repo
+  versioniert) und laeuft gegen die echten Routen `/api/wizard/start` + `/api/wizard/answer`.
+- **Warum die Profile mehr enthalten als der Korpus:** Eine Schulleitung weiss Dinge ueber
+  ihre Schule, die im urspruenglichen Interview nie erfragt wurden. Ohne dieses Zusatzwissen
+  waere die Messung nach oben gedeckelt — eine bessere Frage koennte per Konstruktion nichts
+  zutage foerdern. Gegengewicht ist eine harte Regel: Zusatzwissen darf keinem Nichtwissen
+  aus dem Korpus widersprechen („keine Ahnung, was das kostet" → keine Kostenschaetzung im
+  Profil). Deterministisch geprueft beim Profilbau und erneut vor jedem Lauf.
+
+### 🔴 Hauptbefund: die Fakten-Extraktion liefert nichts — und stand nie unter Messung
+
+`data/eval/pipeline-korpus.json` uebergibt der Pipeline **handgeschriebene** Fakten.
+`extractFacts` lag damit ausserhalb jeder Eval. Der simulierte Nutzer hat es als Erstes in
+den gemessenen Pfad geholt, `scripts/probe-facts-extractor.ts` hat es bestaetigt:
+
+| Quelle | Interviews mit mindestens einem gefuellten Slot |
+|---|---|
+| handautorisierte Korpus-Antworten | **2 von 25** |
+| davon Kategorie `hochwertig` (konkrete Zahlen, Namen, Daten) | **0 von 5** |
+
+Kein Anbieter-Fehler: 0 Eintraege „facts-extractor" im Server-Log, die Aufrufe gelingen und
+liefern `{}`. In den Live-Laeufen enden 16–18 von 25 Interviews mit einer Tabelle, die ausser
+dem eingespeisten Schulprofil nichts enthaelt — nach zehn und mehr beantworteten Fragen.
+`facts` speist den Interviewer-Block, die Bezahl-Schranke (`facts-readiness.ts`) und die
+Generierung. **Das gehoert vor jede weitere Interviewer-Arbeit.**
+
+### Hebel 5 — Tiefen-Block im Interviewer (`WIZARD_FACTS_TIEFE`, Default AN)
+
+`factsCoverageBlock()` meldet nicht mehr nur, welche Themencluster leer sind, sondern wo die
+Angaben zu duenn sind: die fuenf Luecken der Gutachter-Messung (Ist-Zahlen zum Bedarf, Kosten
+je Posten, Wer/Wann, Ausgangs- und Zielwert je Indikator, Traeger-Zusagen) — deterministisch
+aus `lib/wizard/facts-tiefe.ts`. Vorher/Nachher aus EINEM Build ueber den Env-Schalter.
+
+| Kennzahl | vorher | nachher |
+|---|---|---|
+| Fragen je Interview | 9,9 | **8,5** |
+| Tiefen-Quote gesamt | 18 % | **22 %** |
+| — Kategorie `hochwertig` | 38 % | **53 %** (bei 11,6 → 10,0 Fragen) |
+| — Kategorie `mittel` | 27 % | 27 % |
+| — Kategorie `vag` | 2 % | 3 % (bei 9,7 → 6,6 Fragen) |
+| Kriterium „Kosten je Posten" erfuellt | 1/25 | **5/25** |
+| Interviews ganz ohne Ertrag | 18 | 16 |
+| Zahlangaben in den Antworten | 4,4 | 4,0 |
+
+**Ehrliche Lesart:** Der Hebel wirkt dort, wo der Nutzer Substanz hat — `hochwertig` gewinnt
+15 Punkte mit 1,6 Fragen WENIGER, und das schwaechste Gutachter-Kriterium (Finanzplan 2,54)
+verfuenffacht seine Treffer. Gesamt bleiben es 4 Punkte, und die Zahl der Angaben in den
+Antworten steigt nicht. Der Grund steht oben: 87 % der Antwort-Runden veraendern die
+Faktentabelle ueberhaupt nicht. Der Interviewer steuert nach einer Tabelle, die leer bleibt.
+Mehr ist an dieser Stelle nicht zu holen, bevor die Extraktion repariert ist.
+
+### Messgrenzen dieser Achse
+
+- **Nahziel-Kopplung:** Tiefen-Quote und Interviewer-Prompt teilen sich `facts-tiefe.ts`.
+  Die Quote belegt, dass mehr pruefbare Angaben erhoben werden — nicht, dass der Antrag
+  besser wird. Das entscheidet WIZ-05 auf frisch erzeugten Sessions; dieser Lauf steht noch
+  aus und ist erst nach der Extraktor-Reparatur aussagekraeftig.
+- **Zwei Schutzmechanismen mussten scharf gestellt werden, bevor eine Zahl galt:**
+  (1) Der Simulant erfand Zahlen („28 der 45 Lehrkraefte", „Luecke von 25.000 EUR") — 17 von
+  25 Interviews betroffen. Eine Korrekturschleife benennt die ungedeckte Zahl und laesst neu
+  formulieren: jetzt 0 von 25. (2) Ein erster Lauf mit `--parallel=4` lief in Mistral-429er;
+  `extractFacts` faengt die selbst ab und behaelt kommentarlos den alten Stand — 23 stille
+  Ausfaelle. Seither zaehlt der Lauf „Runden ohne Faktenzuwachs" mit und bricht ab.
+- **Rate-Limit:** 25 Interviews aus einer IP sprengen den `wizard`-Bucket (200/h). Jede
+  simulierte Schule bekommt eine eigene Adresse aus 203.0.113.0/24 (RFC 5737) — 25 Schulen
+  sind eben 25 Clients.
+- Die Pipeline ist von Hebel 5 nicht beruehrt: `factsCoverageBlock` haengt allein an
+  `buildInterviewerUserPrompt` → `interviewer.ts`. Pipeline-Gate im Replay: **PASSED**
+  (WIZ-01 100,0 · WIZ-02 98,8 · WIZ-04 81,4).
+
+### Run-Befehle
+
+```bash
+npx tsx --env-file=.env.local scripts/eval-simuser.ts profil
+npx tsx --env-file=.env.local scripts/eval-simuser.ts lauf --label <name> --base http://localhost:3199 --parallel=2
+npx tsx --env-file=.env.local scripts/eval-simuser.ts bericht --label nachher --vergleich vorher
+npx tsx --env-file=.env.local scripts/probe-facts-extractor.ts
+```
+
+⚠️ `--parallel` nicht ueber 2 — darueber drosselt Mistral und die Extraktion faellt still aus.
+
+---
+
 ## 2026-07-30 — NEUE ACHSE WIZ-05: Gutachterurteil 1-5 + Vergleichsarm "ungeuebter Mensch" (n=25)
 
 - **Anlass:** WIZ-01..04 messen Teilaspekte in Prozent. Keine Achse beantwortete die zwei

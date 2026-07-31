@@ -230,6 +230,13 @@ export interface Flags {
   proJudge: boolean;
   mdSummary: boolean;
   single: string | null;
+  /**
+   * Abweichender Korpus-Pfad. null = `data/eval/pipeline-korpus.json`.
+   * Gebraucht fuer die Korpora, die `scripts/eval-simuser.ts` aus echten
+   * Interview-Sessions erzeugt — ohne diesen Schalter liesse sich eine
+   * Interview-Aenderung nicht durch die Pipeline messen.
+   */
+  korpus: string | null;
 }
 
 // ============================================================================

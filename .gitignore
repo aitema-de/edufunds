@@ -49,6 +49,15 @@ data/eval/snapshots/
 # waere sonst bei jeder Neugenerierung ein anderer Massstab.
 /data/eval/gutachter-reports/
 
+# WIZ-06 simulierter Nutzer: die Laeufe sind transient (je Lauf neu erzeugt), der
+# `baseline/`-Lauf ist force-committed als Vergleichsanker — analog zu
+# pipeline-snapshots/baseline/. Die Personenprofile (data/eval/simuser-profile.json)
+# sind dagegen VERSIONIERT: sie sind der Massstab selbst. Wuerden sie bei jedem Lauf
+# neu erzeugt, vergliche man hinterher zwei verschiedene Personen miteinander.
+/data/eval/simuser-runs/*
+!/data/eval/simuser-runs/baseline/
+!/data/eval/simuser-runs/korpus-baseline.json
+
 # Claude Code local settings (personal allowlist)
 .claude/settings.local.json
 .claude/worktrees/

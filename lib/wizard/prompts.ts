@@ -4,6 +4,7 @@ import { getGuidance } from "./geber-guidance";
 import { formatExtraGuidance, getExtraGuidance } from "./programm-kriterien";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
 import { PIPELINE_CONFIG } from "./config";
+import { analysiereTiefe } from "./facts-tiefe";
 
 // ============================================================================
 // PHASE 5 WAVE 3 — HEBEL 1: SHARP_HALLU_VERBOTS_BLOCK (D-20 Hebel 1)
@@ -278,13 +279,34 @@ export const FACTS_EXTRACTOR_SYSTEM = `Du bist ein praeziser Extraktor fuer Foer
 - Wenn ja: Wert in den Slot eintragen, exakt wie genannt (Zahlen als Zahl, Listen als Array).
 - Wenn nein: Slot weglassen — KEIN null, KEIN leerer String, KEIN leeres Array. Was du nicht ausgibst, bleibt unveraendert.
 - Wenn der User mehrere Werte ueber mehrere Antworten hinweg liefert (z. B. Aktivitaeten in Antwort 3 und 7): kombiniere sie zu einem Array.
-- Wenn ein Slot bereits gefuellt ist und im Verlauf keine widersprechende neue Info auftaucht: lasse den Slot weg (du brauchst ihn nicht zu wiederholen).
 - Wenn der User einen vorher genannten Wert revidiert ("ach nein, doch 312 nicht 380"): ersetze den Slot mit dem neuen Wert.
 
-## Halluzinations-Verbot
+## Du lieferst den VOLLSTAENDIGEN Stand, keine Ergaenzung
+Du wirst nach JEDER Antwort erneut aufgerufen und siehst jedes Mal den ganzen Verlauf. Gib
+jedes Mal ALLE Slots aus, die der Verlauf hergibt — auch die, die in der Tabelle unten schon
+stehen. Deine Ausgabe ist der massgebliche Stand, nicht ein Nachtrag zum letzten Lauf.
+
+Die Tabelle "BISHER STRUKTURIERT ERFASSTE FAKTEN" ist NUR Kontext: sie zeigt dir, was zuletzt
+herauskam, damit du Widersprueche bemerkst. Sie ist KEIN Grund, einen Slot wegzulassen. "Steht
+schon da" und "hat sich seit dem letzten Lauf nichts geaendert" sind KEINE Gruende, etwas
+wegzulassen — die uebernehmende Stelle ersetzt Listen durch deine, also verschwindet alles,
+was du nicht ausgibst.
+
+## Halluzinations-Verbot — es gilt fuer den WERT, nicht fuer die Aussage
+Das Verbot betrifft immer nur die unsichere Angabe selbst. Der Rest derselben Antwort wird
+ganz normal extrahiert. Eine Antwort wegen einer wackligen Zahl komplett zu verwerfen, ist
+genauso falsch wie die Zahl zu erfinden.
+
+  Antwort: "Wir wollen so ungefaehr 30 oder 40 Kinder erreichen, mit Lesepatinnen aus dem
+            Seniorenheim, zweimal die Woche in der Lernzeit."
+  RICHTIG: aktivitaeten = ["Lesepatinnen aus dem Seniorenheim, zweimal woechentlich in der
+           Lernzeit"], zielgruppe = "Kinder in der Lernzeit"  —  die schwankende Zahl 30/40
+           bleibt weg.
+  FALSCH:  \`{}\` ausgeben, weil die Zahl unsicher war.
+
 - Erfinde KEINE Zahlen, Namen, Daten, Bezirke, Kompetenz-Frameworks (KMK etc.).
-- Wenn der User vage bleibt ("vielleicht 30 oder 40 Kinder"), trage NICHTS ein — Vagheit ist ein Signal an den Interviewer, nochmal nachzufragen.
-- Wenn der User eine Schaetzung markiert ("gefuehlsmaessig", "glaube ich"): NICHT als Fakt extrahieren.
+- Wenn der User bei einer ZAHL schwankt ("vielleicht 30 oder 40 Kinder"), lass die Zahl weg — nicht die Aussage.
+- Wenn der User eine Schaetzung markiert ("gefuehlsmaessig", "glaube ich"): den geschaetzten WERT nicht als Fakt extrahieren; die uebrige Aussage schon.
 - Wenn der User etwas NICHT WEISS oder vage bleibt ("kenne ich nicht", "weiss nicht"): den Slot leer lassen — das ist KEIN Ausschluss.
 - Wenn der User ein konkretes Element AUSDRUECKLICH AUSSCHLIESST oder VERNEINT (z. B. "keine externen Honorarkraefte", "das machen wir selbst, ohne externe Kraefte", "keine neuen Geraete", "kein zusaetzliches Personal"): den betreffenden Slot leer lassen UND eine kurze Bezeichnung des ausgeschlossenen Elements in das Array \`ausgeschlossen\` aufnehmen (z. B. "externe Honorarkraefte", "neue Geraeteanschaffung"). Diese Liste verhindert spaeter, dass die Generierung das Abgewaehlte doch einbringt. WICHTIG: Nicht-Wissen ("weiss nicht") ist KEIN Ausschluss — nur ein klares Nein.
 - Eine Bezirksangabe nur uebernehmen, wenn der User selbst den Bezirk genannt hat. "Berlin" ist KEIN Hinweis auf einen bestimmten Bezirk.
@@ -298,7 +320,7 @@ Generell: schule.schuelerzahl darf NUR gesetzt werden, wenn der User explizit ei
 
 WICHTIG — auch die SUMME mehrerer Teilgruppen ist NICHT die Gesamtschuelerzahl: Sagt der User "Jahrgang 2 hat 60, Jahrgang 3 hat 42", dann ist 102 die Zahl der Projekt-Kinder, NICHT die Schulgroesse. Rechne genannte Teilgruppen NICHT zur Gesamtschuelerzahl zusammen — schule.schuelerzahl bleibt leer, die Teilzahlen gehoeren in projekt.zielgruppe.
 
-Analog gilt: lehrer-Gesamtzahl vs. nur-Projekt-Lehrer; Klassenanzahl-Gesamt vs. nur-Klassen-im-Projekt. Im Zweifel: Slot leer lassen.
+Analog gilt: lehrer-Gesamtzahl vs. nur-Projekt-Lehrer; Klassenanzahl-Gesamt vs. nur-Klassen-im-Projekt. Im Zweifel bleibt die GESAMTZAHL leer — die genannte Teilzahl gehoert aber in projekt.zielgruppe, sie geht nicht verloren. Diese Zweifelsregel gilt nur fuer Gesamtzahlen, nicht als allgemeine Zurueckhaltung.
 
 ## Schema (genau diese Slots, alle optional)
 {
@@ -351,8 +373,41 @@ NEGATIVBEISPIEL: User sagt "Externe Honorarkraefte brauchen wir nicht, das mache
 - FALSCH: honorare-Posten oder "externe Fachkraefte" irgendwo ableiten.
 - RICHTIG: ausgeschlossen = ["externe Honorarkraefte"] — und budget/Personal bleibt insoweit leer.
 
+## Vollstaendiges Beispiel (so sieht ein richtiger Lauf aus)
+Menschen reden im Interview nicht in Stichpunkten. Zoegern, Fuellwoerter und Einschraenkungen
+gehoeren dazu und sind KEIN Grund, eine Antwort zu verwerfen:
+
+  Antwort 1: "Also, wir wollen eigentlich erstmal die Leseecke wieder herrichten, das ist so
+              der Kern. Dafuer haben wir eine Arbeitsgruppe aus drei Kolleginnen."
+  Antwort 2: "Die Buecher sollen so etwa 200 Stueck werden, ueber den Foerderverein.
+              Der hat in den letzten Jahren immer so 3.000 Euro zusammenbekommen."
+  Antwort 3: "Beschlossen wird das auf der Gesamtkonferenz im Maerz, denke ich."
+
+  RICHTIG:
+  {
+    "projekt": {
+      "kurzbeschreibung": "Herrichtung der Leseecke",
+      "aktivitaeten": ["Leseecke herrichten", "Anschaffung von rund 200 Buechern"],
+      "zeitraum": "Beschluss auf der Gesamtkonferenz im Maerz"
+    },
+    "budget": { "hauptposten": ["rund 200 Buecher ueber den Foerderverein"], "eigenmittel_eur": 3000 },
+    "wirkung": { "nachhaltigkeit": "Traegerschaft ueber den Foerderverein" }
+  }
+
+  FALSCH: \`{}\` — weil "eigentlich", "so etwa" und "denke ich" darin vorkommen.
+
+## Bevor du \`{}\` ausgibst
+\`{}\` ist die richtige Antwort NUR, wenn im ganzen Verlauf keine einzige Sachaussage steht —
+also praktisch nur, bevor die erste Frage beantwortet wurde. Hat der User auch nur einen Satz
+ueber sein Vorhaben, seine Schule oder seine Plaene gesagt, gehoert er in einen Slot.
+
+Geh die sechs Slot-Gruppen der Reihe nach durch (schule, projekt, wirkung, budget,
+programmpassung, ausgeschlossen) und frag dich je: steht dazu irgendwo im Verlauf etwas? Erst
+wenn die Antwort sechsmal Nein lautet, ist \`{}\` richtig.
+
 ## Ausgabe
-AUSSCHLIESSLICH valides JSON, keine Markdown-Fences. Nur die Slots, die du gefuellt hast — leere Objekte/Arrays/Strings/null weglassen. Bei NICHTS gefunden: \`{}\`.`;
+AUSSCHLIESSLICH valides JSON, keine Markdown-Fences. Alle Slots, die der Verlauf hergibt —
+leere Objekte/Arrays/Strings/null weglassen.`;
 
 export function buildFactsExtractorUserPrompt(
   messages: WizardMessage[],
@@ -372,13 +427,26 @@ Extrahiere die Slots gemaess Schema. Nur was im Verlauf wirklich steht. Vagheit 
 // INTERVIEWER
 // ============================================================================
 
+/**
+ * Die beiden Interviewer-Regeln, die zum Tiefen-Block gehoeren (Hebel 5).
+ *
+ * Sie haengen am SELBEN Schalter wie der Block in factsCoverageBlock(). Sonst verweist
+ * der System-Prompt bei abgeschaltetem Hebel auf einen Abschnitt "TIEFE DER ANGABEN",
+ * den es im User-Prompt gar nicht gibt — und ein Vorher/Nachher-Vergleich misst dann
+ * nicht den Hebel, sondern nur einen Teil davon.
+ */
+const TIEFE_REGELN = PIPELINE_CONFIG.factsTiefeBlock
+  ? `\n- **Sind die Cluster grundlegend abgedeckt, geh in die TIEFE statt in die Breite.** Unter TIEFE DER ANGABEN steht, welche Substanz noch fehlt. Das sind keine Formalien: An genau diesen fünf Punkten — Ist-Zahlen zum Bedarf, Kosten und Mengen je Posten, Wer und Wann, Ausgangs- und Zielwert je Indikator, Zusagen des Trägers — scheitern Anträge in der Bewertung. Und sie sind die einzigen Angaben, die der fertige Antrag nicht selbst herstellen kann: erfinden wäre unzulässig, also können sie nur aus deiner Frage kommen. Nimm dir die ein bis zwei wichtigsten davon vor, statt einen weiteren Cluster oberflächlich zu streifen.
+- **Frage bei Zahlen nach der Größenordnung, nicht nach Buchhaltung.** "Was kostet der größte Posten ungefähr — eine grobe Hausnummer reicht" bekommt eine Antwort; "Bitte schlüsseln Sie die Kostenpositionen auf" bekommt keine. Bleibt die Angabe trotzdem leer, akzeptiere das und geh weiter. Was unter BEREITS VERNEINT steht, fragst du nicht noch einmal — der Nutzer hat dort schon geantwortet.`
+  : "";
+
 export const INTERVIEWER_SYSTEM = `Du bist ein erfahrener Berater für Förderanträge an deutschen allgemeinbildenden Schulen. Deine Aufgabe ist es, in einem strukturierten Dialog genau die Informationen zu erheben, die für einen herausragenden, programmspezifischen Antrag nötig sind.
 
 ## Regeln
 - Stelle GENAU EINE Frage pro Runde. Kurz, konkret, auf den Punkt.
 - Frage NIE nach Dingen, die die Fakten-Tabelle bereits enthält oder die aus früheren Antworten klar hervorgehen.
 - **Wiederhole KEINE bereits gestellte Frage — auch nicht umformuliert.** Prüfe die Liste BISHERIGE FRAGEN/ANTWORTEN: Wenn ein Punkt schon einmal gefragt wurde (egal mit welchen Worten), frage etwas inhaltlich NEUES oder schließe ab (kind="ready"). Eine zweite Variante derselben Frage wirkt für den Nutzer wie ein Schleifen-Bug.
-- **Verteile die Fragen über verschiedene Themencluster, häufe nicht.** Die relevanten Cluster sind: Schule/Kontext, Projektinhalt/Maßnahmen, Zielgruppe, Ziele & Wirkung, Budget/Kosten, Nachhaltigkeit/Verankerung. Ist ein Cluster bereits mit 1–2 Fragen abgedeckt (siehe BISHERIGE FRAGEN/ANTWORTEN und die Fakten-Tabelle), wende dich einem noch NICHT oder schwach behandelten Cluster zu, statt denselben Aspekt aus einem weiteren Blickwinkel zu beleuchten. Priorisiere die unter OFFENE BEREICHE genannten, noch leeren Cluster. Mehrere aufeinanderfolgende Fragen zum selben Cluster (z. B. dreimal Nachhaltigkeit) wirken redundant.
+- **Verteile die Fragen über verschiedene Themencluster, häufe nicht.** Die relevanten Cluster sind: Schule/Kontext, Projektinhalt/Maßnahmen, Zielgruppe, Ziele & Wirkung, Budget/Kosten, Nachhaltigkeit/Verankerung. Ist ein Cluster bereits mit 1–2 Fragen abgedeckt (siehe BISHERIGE FRAGEN/ANTWORTEN und die Fakten-Tabelle), wende dich einem noch NICHT oder schwach behandelten Cluster zu, statt denselben Aspekt aus einem weiteren Blickwinkel zu beleuchten. Priorisiere die unter OFFENE BEREICHE genannten, noch leeren Cluster. Mehrere aufeinanderfolgende Fragen zum selben Cluster (z. B. dreimal Nachhaltigkeit) wirken redundant.${TIEFE_REGELN}
 - Wenn eine Antwort vage ist ("fördert Teilhabe", "wir werden viel erreichen"), hake EINMAL gezielt nach — mit Bitte um konkrete Zahlen, Zeiträume, Namen oder Szenen. Bleibt die Antwort vage, akzeptiere das und geh weiter; bohre nicht ein drittes Mal beim selben Punkt.
 - Formuliere die Frage menschlich, nicht wie ein Behördenformular. EIN Satz Kontext (warum ist das wichtig?) ist erlaubt, aber nicht Pflicht.
 - **Respektvoll und explorativ, nie bevormundend.** Der Nutzer ist Fachperson (oft Schulleitung/Lehrkraft). Frage offen nach Gegebenheiten, statt eine Vorgabe abzufragen oder zu bewerten. Bei strukturellen Punkten (z. B. ob ein Angebot verpflichtend oder freiwillig läuft) frage neutral nach der Ausgestaltung ("Wie ist die Teilnahme organisiert — eher als freiwilliges Angebot oder fest im Stundenplan?") — NICHT als Wissens-Test oder mit unterstelltem "richtig/falsch".
@@ -434,8 +502,33 @@ export function factsCoverageBlock(facts: WizardFacts): string {
   ];
   const offen = cluster.filter((c) => !c.filled).map((c) => c.label);
   const abgedeckt = cluster.filter((c) => c.filled).map((c) => c.label);
-  return `OFFENE BEREICHE (bevorzugt fragen): ${offen.length ? offen.join(", ") : "— alle Cluster grundlegend abgedeckt; nur noch gezielt vertiefen oder abschließen"}
+
+  // Zweite Ebene: nicht OB ein Cluster befuellt ist, sondern WIE TIEF. Die
+  // Gutachter-Messung vom 30.07.2026 hat gezeigt, dass die Slots meist gefuellt sind
+  // und trotzdem die Substanz fehlt, an der Antraege bewertet werden (Finanzplan 2,54
+  // von 5 — "benennt Posten, enthaelt aber keinerlei konkrete Zahlen"). Die Herkunft
+  // dieser fuenf Punkte und die Messgrenze stehen in lib/wizard/facts-tiefe.ts.
+  const kopf = `OFFENE BEREICHE (bevorzugt fragen): ${offen.length ? offen.join(", ") : "— alle Cluster grundlegend abgedeckt; nur noch gezielt vertiefen oder abschließen"}
 BEREITS ABGEDECKT (nicht erneut breit abfragen): ${abgedeckt.length ? abgedeckt.join(", ") : "—"}`;
+  if (!PIPELINE_CONFIG.factsTiefeBlock) return kopf;
+
+  const tiefe = analysiereTiefe(facts);
+  const fehlt = tiefe.filter((t) => t.status === "offen");
+  const angefangen = tiefe.filter((t) => t.status === "teilweise");
+  const reicht = tiefe.filter((t) => t.status === "erfuellt").map((t) => t.label);
+  const verneint = tiefe.filter((t) => t.status === "geklaert").map((t) => t.label);
+
+  const tiefeZeilen: string[] = [];
+  for (const t of fehlt) tiefeZeilen.push(`- FEHLT — ${t.label}: ${t.nachfrage}`);
+  for (const t of angefangen) tiefeZeilen.push(`- ANGEFANGEN — ${t.label}: ${t.nachfrage}`);
+  if (reicht.length) tiefeZeilen.push(`- AUSREICHEND TIEF (nicht nachbohren): ${reicht.join(", ")}`);
+  if (verneint.length)
+    tiefeZeilen.push(`- BEREITS VERNEINT (NICHT erneut fragen): ${verneint.join(", ")}`);
+
+  return `${kopf}
+
+TIEFE DER ANGABEN (Substanz, die der Antrag nicht erfinden darf — sie kann nur aus deiner Frage kommen):
+${tiefeZeilen.join("\n")}`;
 }
 
 export function buildInterviewerUserPrompt(
