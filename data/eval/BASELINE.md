@@ -12,6 +12,94 @@
 > WIZ-03 (Tonalitaets-Passung via LLM-as-Judge), WIZ-04 (Begruendungs-Substanz, deterministisch),
 > Finanzplan-Validity (Sub). Format analog Phase-1 (append-only, neueste Eintraege oben).
 
+## 2026-07-30 — NEUE ACHSE WIZ-05: Gutachterurteil 1-5 + Vergleichsarm "ungeuebter Mensch" (n=25)
+
+- **Anlass:** WIZ-01..04 messen Teilaspekte in Prozent. Keine Achse beantwortete die zwei
+  Fragen, an denen der Go-Live haengt: Welche Note von 5 gaebe ein Gutachter? Und ist das
+  mindestens so gut wie ein selbst geschriebener Antrag? Neues Skript
+  `scripts/eval-gutachter.ts` — laeuft gegen die vorhandenen Snapshots (KEIN Pipeline-Lauf,
+  keine Generierungskosten) und bewertet `finalText`, also das Kundenartefakt
+  (Lehre aus feedback-eval-muss-user-artefakt-messen).
+- **Rubrik:** 7 gewichtete Kriterien (bedarf 15, wirkungslogik 20, umsetzung 15, passung 20,
+  finanzen 15, nachhaltigkeit 10, form 5) mit ENTSCHEIDUNGS-Ankern fuer 1/3/5
+  (5 = bewilligungsfaehig ohne Nachfragen ... 1 = Ablehnung). Der gewichtete Mittelwert wird
+  in CODE gerechnet, nicht vom Modell — das freie `gesamturteil` laeuft nur als Kontrollwert mit.
+- **Bias-Kontrollen:** blind (kein Arm-Label) · Judge-Panel aus ZWEI Anbietern
+  (`gemini-2.5-pro` als Referenz, weil anderer Anbieter als der Generator `mistral-small`;
+  `mistral-large` als Gegenprobe) · Laengen-Neutralisierung im Prompt · Positions-Bias ueber
+  BEIDE Reihenfolgen aufgeloest (nur beidseitig gleiches Urteil zaehlt als Sieg) ·
+  jedes Kriterium darf "nicht_bewertbar" sein.
+- **Vergleichsarm `laie`:** SIMULATION, ehrlich so benannt. Bekommt exakt dieselben
+  Interview-Antworten, aber KEIN Richtlinien-Dossier, einen Durchgang, keine Revision,
+  laienuebliche Laenge. Der gemessene Abstand ist damit der Beitrag der Plattform, nicht
+  der des Modells. Texte versioniert unter `data/eval/laien-antraege/`.
+- **Run-Konfiguration:** 25 Eintraege x 2 Judges = 50 Einzelurteile + 50 Paarurteile.
+
+### Haupt-Scores
+
+| Arm | Mean | Stddev | Min | Max | Ø Zeichen |
+|-----|------|--------|-----|-----|-----------|
+| ki (EduFunds) | **3.30** | 0.65 | 2.06 | 5.00 | 12.661 |
+| laie (simuliert) | 2.41 | 1.00 | 1.00 | 4.55 | 2.036 |
+
+Pro Judge: ki gemini 3.11 / mistral-large 3.48 · laie 2.29 / 2.53 — Rangfolge bei beiden gleich.
+**Gepaarter Blindvergleich: ki 46/50 (92 %) · laie 0 (0 %) · unentschieden 4.**
+
+### 🔑 Aufschluesselung nach Input-Qualitaet (der eigentliche Befund)
+
+| Kategorie | n | ki | ki-ohne-marker | Ø TODO-Marker |
+|-----------|---|-----|----------------|---------------|
+| hochwertig | 5 | **4.13** | **4.37** | 2.0 |
+| mittel | 9 | 3.28 | 3.54 | 3.6 |
+| vag | 11 | 3.00 | 3.36 | 6.4 |
+
+**Bei belastbaren Nutzerangaben liegt das Produkt bereits im Zielkorridor 4-5.** Der
+Gesamtmittelwert 3.30 entsteht durch den Korpus-Mix (11 von 25 Eintraegen sind bewusst
+Faelle, in denen der Nutzer auf fast alles "weiss nicht" antwortet — dort liegt auch der
+Laien-Arm bei 1.0-2.4).
+
+### Pro Kriterium (ki / ki-ohne-marker)
+
+| Kriterium | ki | ohne Marker |
+|-----------|-----|-------------|
+| Bedarfs- und Problemdarstellung | 3.32 | 3.66 |
+| Ziele, Indikatoren, Wirkungslogik | 3.68 | 3.88 |
+| Umsetzung und Arbeitsplan | 3.36 | 3.78 |
+| Passung zum Programm | 3.32 | 3.66 |
+| **Finanzplan und Mittelbegruendung** | **2.54** | **2.64** |
+| Verstetigung | 3.66 | 3.98 |
+| Sprache und formale Reife | 3.00 | 3.62 |
+
+- **Diagnose-Arm `ki-ohne-marker`** (deterministisch `[TODO: …]` entfernt, `[Annahme: X]` auf X
+  reduziert — es wird NICHTS erfunden): **Formabzug durch Arbeitsmarker = 0.31 Punkte**
+  (3.32 -> 3.63). Beide Judges nennen unabhaengig denselben Satz: "durch zahlreiche
+  TODO-Vermerke klar als unfertiger Entwurf erkennbar und nicht einreichungsreif".
+- **Finanzplan bleibt auch ohne Marker das schwaechste Kriterium** (39 von 50 Urteilen <= 3):
+  "benennt zwar Posten, enthaelt aber keinerlei konkrete Zahlen ... nicht pruefbar". Die
+  Zahlen DARF die Pipeline nicht erfinden (WIZ-02 steht bei 98.9) — sie koennen nur vom
+  Nutzer kommen. Daraus abgeleitet: zwei neue Pre-Flight-Regeln in
+  `lib/wizard/facts-readiness.ts` (beantragte Foerdersumme, Schuelerzahl).
+
+### ⚠️ Messgrenze (vor jedem Interview-Umbau beachten)
+
+Diese Eval kann Aenderungen am INTERVIEW nicht messen: Der Korpus spielt fixe
+Frage-Antwort-Paare ab — andere Fragen erzeugen dort keine anderen Antworten. Wer den
+Interviewer schaerft (z. B. `factsCoverageBlock` in `lib/wizard/prompts.ts`), braucht
+vorher einen simulierten Nutzer, sonst misst man nach der Aenderung dasselbe wie vorher.
+
+### Run-Befehle
+
+```bash
+npx tsx --env-file=.env.local scripts/eval-gutachter.ts --judges=gemini,mistral-large --arms=ki,laie
+npx tsx --env-file=.env.local scripts/eval-gutachter.ts --judges=gemini,mistral-large --arms=ki,ki-ohne-marker --no-pairwise
+```
+
+Gate (`GATE` im Skript): ki-Mittel >= 4.0 · schwaechster Eintrag >= 3.5 · Abstand zum
+Laien-Arm >= 0.5 · Laien-Siegquote <= 10 %. Stand 30.07.: die letzten beiden erfuellt,
+die ersten beiden nicht (siehe Aufschluesselung oben).
+
+---
+
 ## 2026-07-23 — Re-Baseline: Substanz-Nachbesserung (Revisions-Konsistenz) + Portal-Limit-Korpus (n=25)
 
 - **Anlass:** Zwei Aenderungen zusammen verankert — (1) **Substanz-Nachbesserung**

@@ -134,6 +134,49 @@ const REGELN: Regel[] = [
     schwere: "mittel",
     isMissing: (f) => isEmptyArray(get(f, "budget.hauptposten")),
   },
+  /**
+   * Die beiden folgenden Regeln kommen aus der Gutachter-Messung vom 30.07.2026
+   * (scripts/eval-gutachter.ts, n=25, zwei unabhaengige Judge-Modelle). Dort sind
+   * genau diese zwei fehlenden Angaben die meistgenannten Maengel:
+   *
+   *   Finanzplan  — schwaechstes Kriterium ueberhaupt (2,42 von 5; 39 von 50
+   *                 Einzelurteilen mit Note <= 3). Woertlich wiederkehrend:
+   *                 "benennt zwar Posten, enthaelt aber keinerlei konkrete Zahlen
+   *                 ... und ist somit nicht pruefbar".
+   *   Bedarf      — 3,38 von 5, 33 Urteile <= 3, wiederkehrend: "plausibel
+   *                 behauptet, aber nicht mit konkreten Zahlen aus der Schule belegt".
+   *
+   * Die Pipeline darf beides NICHT erfinden (das waere Halluzination, vgl.
+   * lib/wizard/fact-verification.ts) — die Angaben koennen nur vom Nutzer kommen.
+   * Deshalb gehoeren sie in den Pre-Flight-Check, wo der Nutzer sie noch
+   * nachliefern kann, statt spaeter im Antrag als Luecke aufzutauchen.
+   *
+   * Bewusst "mittel", nicht "hoch": die Ampel soll den Punkt sichtbar machen, aber
+   * nicht ganze Sitzungen auf "kritisch" kippen. Ein Hochstufen auf "hoch" ist eine
+   * Produktentscheidung, keine technische.
+   */
+  {
+    feld: "budget.beantragt_eur",
+    label: "Beantragte Fördersumme",
+    schwere: "mittel",
+    hinweis:
+      "Ohne Betrag bleibt der Finanzplan unbeziffert — Gutachter bewerten ihn dann als nicht prüfbar.",
+    isMissing: (f) => {
+      const v = get(f, "budget.beantragt_eur");
+      return typeof v !== "number" || !Number.isFinite(v) || v <= 0;
+    },
+  },
+  {
+    feld: "schule.schuelerzahl",
+    label: "Schülerzahl",
+    schwere: "mittel",
+    hinweis:
+      "Eine konkrete Zahl macht aus einem behaupteten Bedarf einen belegten — sie taucht in Bedarfs- und Wirkungsteil auf.",
+    isMissing: (f) => {
+      const v = get(f, "schule.schuelerzahl");
+      return typeof v !== "number" || !Number.isFinite(v) || v <= 0;
+    },
+  },
 ];
 
 /**

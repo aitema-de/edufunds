@@ -43,6 +43,12 @@ data/eval/snapshots/
 !/data/eval/pipeline-snapshots/baseline/
 /data/eval/pipeline-reports/
 
+# WIZ-05 Gutachter-Eval: Berichte sind generiert (wie pipeline-reports/), die
+# Baseline-Zahlen stehen in BASELINE.md. Der Laien-Vergleichsarm
+# (data/eval/laien-antraege/) ist dagegen VERSIONIERT — er ist LLM-erzeugt und
+# waere sonst bei jeder Neugenerierung ein anderer Massstab.
+/data/eval/gutachter-reports/
+
 # Claude Code local settings (personal allowlist)
 .claude/settings.local.json
 .claude/worktrees/
