@@ -213,9 +213,14 @@ sie braucht das Wissen, das eine Schulleitung ueber die eigene Schule nun einmal
    "keine Ahnung, was das kostet", bekommt KEINE Kostenschaetzung ins Hintergrundwissen — auch keine
    vage. Das ist die wichtigste Regel hier: sie unterscheidet eine realistische Testperson von einem
    Automaten, der auf jede Frage brav eine Zahl liefert.
-2. "nichtWissen" muss JEDE Nichtwissens-Aeusserung des Datensatzes abbilden ("weiss ich nicht",
+2. "nichtWissen" bildet GENAU die Nichtwissens-Aeusserungen des Datensatzes ab ("weiss ich nicht",
    "keine Ahnung", "muesste ich nachfragen", "haben wir noch nicht drueber nachgedacht", "glaub ich
-   nicht"). Formuliere sie als Sachaussage: "Weiss nicht, ob es ein Medienkonzept gibt."
+   nicht") — jede davon, aber KEINE darueber hinaus. Formuliere sie als Sachaussage:
+   "Weiss nicht, ob es ein Medienkonzept gibt."
+   SCHWEIGEN IST KEIN NICHTWISSEN. Wurde ein Thema im Datensatz nie angesprochen, gehoert dazu
+   NICHTS in "nichtWissen" — weder "weiss nicht, wie hoch das Budget ist" noch aehnliches. Sonst
+   verweigert die Testperson spaeter eine Auskunft, die sie nie verweigert hat, und keine noch so
+   gute Frage koennte sie je zutage foerdern. Lieber eine kurze Liste als eine erfundene.
 3. Erfinde nichts, was der Datensatz ausschliesst. Wer sagt "kein Beschluss vorhanden", hat keinen.
 4. Zahlen im Hintergrundwissen muessen zum Schulprofil passen (eine Schule mit 312 Kindern hat keine
    40 Klassen und kein Budget von 2 Millionen).
@@ -247,8 +252,14 @@ keine Objekte:
  * Wuerde die vage Person ploetzlich zu allem Auskunft geben, verschwaende der Unterschied
  * — und mit ihm die Aussage, dass das Produkt bei guter Faktenlage im Zielkorridor liegt.
  *
- * Die Untergrenze bei nichtWissen sichert die Gegenrichtung: eine Person, die im Korpus
- * auf fast alles "weiss nicht" antwortet, muss diese Luecken behalten.
+ * ENTFERNT am 03.08.2026: die fruehere Untergrenze bei nichtWissen. Sie sollte sichern,
+ * dass eine Person ihre Luecken behaelt — erzwang aber Erfindungen, sobald ein Interview
+ * weniger echte "weiss nicht"-Aeusserungen enthielt als gefordert. 11 von 25 Profilen
+ * trugen dadurch ein "kennt die Foerdersumme nicht", obwohl der Korpus Geld mit keinem
+ * Wort erwaehnt — und machten die Messung fuer genau die Interviewer-Verbesserung blind,
+ * auf die die Gutachter-Evidenz zeigt. Die Vollstaendigkeit sichert stattdessen
+ * `fehlendeNichtwissen` in pruefeProfil (jede Korpus-Aeusserung muss vorkommen), die
+ * Gegenrichtung `unbelegteNichtwissen` (keine darf erfunden sein).
  *
  * Warum "vag" trotzdem 5 statt 0 Hintergrundpunkte bekommt: Auch wer nichts ueber
  * Foerderverfahren weiss, kennt die eigene Schule — Klassenzahl, ungefaehre Groessen,
@@ -256,12 +267,12 @@ keine Objekte:
  * es waere die Messung nach oben gedeckelt und eine schaerfere Frage koennte per
  * Konstruktion nichts zutage foerdern.
  */
-const UMFANG: Record<string, { hg: number; nw: number }> = {
-  vag: { hg: 5, nw: 5 },
-  mittel: { hg: 9, nw: 3 },
-  hochwertig: { hg: 14, nw: 1 },
+const UMFANG: Record<string, { hg: number }> = {
+  vag: { hg: 5 },
+  mittel: { hg: 9 },
+  hochwertig: { hg: 14 },
 };
-const UMFANG_DEFAULT = { hg: 14, nw: 1 };
+const UMFANG_DEFAULT = { hg: 14 };
 
 function buildProfilPrompt(e: KorpusEintrag): string {
   const dialog = e.userAnswers
@@ -269,7 +280,7 @@ function buildProfilPrompt(e: KorpusEintrag): string {
     .join("\n");
   const g = UMFANG[e.category] ?? UMFANG_DEFAULT;
   return `KATEGORIE DES DATENSATZES: ${e.category}
-UMFANGSGRENZE FUER DIESEN FALL: hoechstens ${g.hg} Punkte in "hintergrund", mindestens ${g.nw} Punkte in "nichtWissen".
+UMFANGSGRENZE FUER DIESEN FALL: hoechstens ${g.hg} Punkte in "hintergrund". Fuer "nichtWissen" gibt es KEINE Mindestzahl — es sind genau so viele, wie der Datensatz hergibt.
 
 SCHULPROFIL (unveraenderlich, so uebernehmen):
 ${JSON.stringify(e.schulProfil, null, 1)}
@@ -369,6 +380,11 @@ interface ProfilPruefung {
   id: string;
   widersprueche: Array<{ hintergrund: string; nichtWissen: string }>;
   fehlendeNichtwissen: string[];
+  /**
+   * Nichtwissen im Profil, dessen Thema der Korpus ueberhaupt nicht beruehrt —
+   * also aus Schweigen erfundene Verweigerung. Siehe Befund 03.08.2026 unten.
+   */
+  unbelegteNichtwissen: string[];
   budgetVerletzung: string | null;
 }
 
@@ -405,15 +421,41 @@ export function pruefeProfil(p: SimProfil, e: KorpusEintrag): ProfilPruefung {
     if (!gedeckt) fehlendeNichtwissen.push(frage.content.slice(0, 90));
   }
 
+  /**
+   * GEGENRICHTUNG (Befund 03.08.2026): Kein Nichtwissen darf ERFUNDEN sein.
+   *
+   * Die Messung des Abschluss-Gates lief ins Leere, weil 11 von 25 Profilen ein
+   * "Weiss nicht, wie hoch das Budget ist" fuehrten, obwohl der zugehoerige Korpus
+   * Geld mit KEINEM Wort erwaehnt. Ursache war die fruehere Mindestquote
+   * (`nw` in UMFANG): hatte ein Interview weniger echte Nichtwissens-Aeusserungen
+   * als gefordert, musste das Modell welche erfinden — und Geld lag am naechsten,
+   * weil der alte Interviewer es kaum ansprach.
+   *
+   * Damit war die Messung fuer jede Interviewer-Verbesserung, die auf Kostenangaben
+   * zielt, in 44 % der Faelle per Konstruktion blind: der simulierte Nutzer
+   * verweigerte eine Auskunft, die er im Korpus nie verweigert hatte.
+   *
+   * Das ist dieselbe Klasse wie "Zwangswahl-Schema erzeugt Fakten" — eine
+   * Mengenvorgabe fabriziert Inhalt. Die Vollstaendigkeit sichert bereits
+   * `fehlendeNichtwissen`; die Quote war ein grober Ersatz dafuer und ist raus.
+   */
+  // Schwelle 1, nicht 2: `stichwoerter` hat Stoppwoerter bereits entfernt, uebrig
+  // bleiben Themenwoerter. Ein einziges davon ("budget") belegt, dass der Korpus das
+  // Thema beruehrt. Zwei zu verlangen erzeugte Fehlalarme auf kurzen, voellig
+  // legitimen Saetzen ("Weiss nicht, wie hoch das Budget waere.") — und dieser Check
+  // ist ein HARTES Gate, das den Profilbau abbricht.
+  const dialogWoerter = stichwoerter(e.userAnswers.map((m) => m.content).join(" "));
+  const unbelegteNichtwissen = p.nichtWissen.filter(
+    (nw) => ueberschneidung(stichwoerter(nw), dialogWoerter) < 1
+  );
+
   const g = UMFANG[e.category] ?? UMFANG_DEFAULT;
   let budgetVerletzung: string | null = null;
   if (p.hintergrund.length > g.hg) {
     budgetVerletzung = `${p.hintergrund.length} Hintergrund-Punkte (max ${g.hg} fuer "${e.category}")`;
-  } else if (p.nichtWissen.length < g.nw) {
-    budgetVerletzung = `${p.nichtWissen.length} nichtWissen-Punkte (min ${g.nw} fuer "${e.category}")`;
   }
 
-  return { id: p.id, widersprueche, fehlendeNichtwissen, budgetVerletzung };
+  return { id: p.id, widersprueche, fehlendeNichtwissen, unbelegteNichtwissen, budgetVerletzung };
 }
 
 async function befehlProfil(flags: Flags): Promise<number> {
@@ -520,11 +562,13 @@ async function befehlProfil(flags: Flags): Promise<number> {
 
   const mitWiderspruch = pruefungen.filter((x) => x.widersprueche.length > 0);
   const mitLuecke = pruefungen.filter((x) => x.fehlendeNichtwissen.length > 0);
+  const mitErfundenem = pruefungen.filter((x) => x.unbelegteNichtwissen.length > 0);
   const mitBudget = pruefungen.filter((x) => x.budgetVerletzung);
 
   console.log(`\n${LOG} ===== Profil-Pruefung =====`);
   console.log(`${LOG}   Profile: ${pruefungen.length}`);
   console.log(`${LOG}   Widerspruch Hintergrund vs. nichtWissen: ${mitWiderspruch.length}  (HART)`);
+  console.log(`${LOG}   ERFUNDENES Nichtwissen (Korpus schweigt): ${mitErfundenem.length}  (HART)`);
   console.log(`${LOG}   Korpus-Nichtwissen ohne Entsprechung:    ${mitLuecke.length}  (Hinweis)`);
   console.log(`${LOG}   Umfangsgrenze verletzt:                  ${mitBudget.length}  (Hinweis)`);
 
@@ -539,13 +583,20 @@ async function befehlProfil(flags: Flags): Promise<number> {
     console.warn(`${LOG}   ⚠️  ${x.id}: ${x.fehlendeNichtwissen.length} Nichtwissen ohne Entsprechung`);
     for (const f of x.fehlendeNichtwissen.slice(0, 3)) console.warn(`${LOG}        zur Frage: ${f}`);
   }
+  for (const x of mitErfundenem) {
+    console.error(`${LOG}   ❌ ${x.id}: ${x.unbelegteNichtwissen.length} erfundenes Nichtwissen`);
+    for (const f of x.unbelegteNichtwissen.slice(0, 3)) console.error(`${LOG}        ${f}`);
+  }
   for (const x of mitBudget) console.warn(`${LOG}   ⚠️  ${x.id}: ${x.budgetVerletzung}`);
 
-  if (mitWiderspruch.length > 0) {
+  if (mitWiderspruch.length > 0 || mitErfundenem.length > 0) {
     console.error(
-      `\n${LOG} ABBRUCH: Hintergrundwissen widerspricht dem Nichtwissen. Diese Profile wuerden` +
-        ` messen, dass ein williger Automat Zahlen nachliefert — nicht, dass das Interview besser fragt.` +
-        ` Betroffene Eintraege von Hand korrigieren oder mit --refresh --only=<id> neu bauen.`
+      `\n${LOG} ABBRUCH: Das Profil bildet den Korpus nicht treu ab.` +
+        `\n${LOG}   Widerspruch  = ein williger Automat liefert Zahlen nach, die die Person nicht hat.` +
+        `\n${LOG}   Erfundenes Nichtwissen = die Person verweigert eine Auskunft, die sie im Korpus nie` +
+        ` verweigert hat — dann kann KEINE Interviewer-Verbesserung sie je zutage foerdern und die` +
+        ` Messung ist an dieser Stelle blind (Befund 03.08.2026: 11 von 25 Profilen betroffen).` +
+        `\n${LOG}   Betroffene Eintraege von Hand korrigieren oder mit --refresh --only=<id> neu bauen.`
     );
     return 1;
   }
