@@ -34,6 +34,19 @@ interface Regel {
   schwere: ReadinessSchwere;
   hinweis?: string;
   isMissing: Checker;
+  /**
+   * Gutachter-Gewicht 1-3: wie teuer diese Luecke in der WIZ-05-Messung ist.
+   * Steuert die Reihenfolge der Nachfassfragen (lib/wizard/interview-abschluss.ts).
+   * Nur Regeln MIT `nachfrage` werden nachgefasst.
+   */
+  gewicht?: 1 | 2 | 3;
+  /**
+   * Woertliche Nachfassfrage, wenn der Interviewer abschliessen will, obwohl diese
+   * Angabe fehlt. Bewusst deterministisch statt LLM-formuliert: die Frage muss
+   * wiedererkennbar sein, damit sie GENAU EINMAL gestellt wird ("Fehlendes Feld ist
+   * keine Tatsache" — wer nicht antworten kann, wird nicht bedraengt).
+   */
+  nachfrage?: string;
 }
 
 function get<T = unknown>(obj: unknown, path: string): T | undefined {
@@ -159,25 +172,108 @@ const REGELN: Regel[] = [
     feld: "budget.beantragt_eur",
     label: "Beantragte Fördersumme",
     schwere: "mittel",
+    gewicht: 3,
     hinweis:
       "Ohne Betrag bleibt der Finanzplan unbeziffert — Gutachter bewerten ihn dann als nicht prüfbar.",
+    nachfrage:
+      "Eine letzte wichtige Sache, bevor ich schreibe: Welche Summe wollt ihr ungefähr beantragen? " +
+      "Eine grobe Hausnummer reicht völlig — auch \"so um die 5.000 Euro\" hilft mehr als gar keine Zahl. " +
+      "Falls ihr das wirklich noch nicht wisst, schreib einfach \"weiß ich nicht\", dann lasse ich es offen.",
     isMissing: (f) => {
       const v = get(f, "budget.beantragt_eur");
       return typeof v !== "number" || !Number.isFinite(v) || v <= 0;
     },
   },
   {
+    feld: "budget.hauptposten",
+    label: "Wofür das Geld ausgegeben wird",
+    schwere: "mittel",
+    gewicht: 2,
+    hinweis: "Gutachter bemängeln Posten, die nicht aus dem Vorhaben abgeleitet sind.",
+    nachfrage:
+      "Wofür genau würdet ihr das Geld ausgeben? Zwei oder drei Stichworte reichen — " +
+      "also z. B. \"Tablets, Honorar für eine Referentin, Material\". Wenn ihr zu einem Posten " +
+      "schon einen Preis kennt oder ein Angebot habt, nenn ihn gern mit.",
+    isMissing: (f) => isEmptyArray(get(f, "budget.hauptposten")),
+  },
+  {
     feld: "schule.schuelerzahl",
     label: "Schülerzahl",
     schwere: "mittel",
+    gewicht: 2,
     hinweis:
       "Eine konkrete Zahl macht aus einem behaupteten Bedarf einen belegten — sie taucht in Bedarfs- und Wirkungsteil auf.",
+    nachfrage:
+      "Zwei Zahlen fehlen mir noch für den Bedarfsteil: Wie viele Schülerinnen und Schüler hat eure Schule " +
+      "insgesamt, und wie viele sind es beim geplanten Vorhaben? Ungefähre Zahlen sind in Ordnung.",
     isMissing: (f) => {
       const v = get(f, "schule.schuelerzahl");
       return typeof v !== "number" || !Number.isFinite(v) || v <= 0;
     },
   },
 ];
+
+/**
+ * Nachfass-faehige Luecken, absteigend nach Gutachter-Gewicht.
+ *
+ * WARUM DAS HIER LIEGT (Architektur-Befund 03.08.2026)
+ * ---------------------------------------------------
+ * Dieses Modul kannte die punktekostenden Luecken schon — es durfte sie nur
+ * ANZEIGEN. `evaluateFactsReadiness` wurde ausschliesslich von
+ * `app/api/wizard/readiness/route.ts` gerufen, einer passiven Ampel. Ueber das
+ * Ende des Interviews entschied `nextStep()`, das die Regeln nicht kennt.
+ *
+ * Die Komponente mit dem Wissen hatte keine Autoritaet, die Komponente mit der
+ * Autoritaet kein Wissen. Ergebnis: Das Interview endete, bevor Kosten- und
+ * Mengenangaben erhoben waren, und der Generator konnte die Luecke nur noch als
+ * `[TODO: …]` markieren — was der Gutachter mit 25× "Schaetzung" und 9×
+ * "Platzhalter" abstraft (WIZ-05, n=25, zwei Judges).
+ *
+ * Diese Funktion gibt dem Regelwerk eine Stimme; die Autoritaet baut
+ * `lib/wizard/interview-abschluss.ts` darauf.
+ */
+export interface NachfassLuecke {
+  feld: Pfad;
+  label: string;
+  gewicht: number;
+  nachfrage: string;
+}
+
+export function offeneNachfassLuecken(
+  facts: WizardFacts,
+  richtlinie?: Richtlinie | null,
+  userAnswers?: string[]
+): NachfassLuecke[] {
+  const report = evaluateFactsReadiness(facts, richtlinie, userAnswers);
+  const offen = new Set(report.issues.map((i) => i.feld));
+  const aus = REGELN.filter(
+    (r): r is Regel & { nachfrage: string } =>
+      typeof r.nachfrage === "string" && offen.has(r.feld)
+  ).map((r) => ({
+    feld: r.feld,
+    label: r.label,
+    gewicht: r.gewicht ?? 1,
+    nachfrage: r.nachfrage,
+  }));
+
+  // Eigenanteil ist keine feste Regel, sondern haengt an der Richtlinie — die
+  // Judges nennen ihn in 8 von 50 Urteilen ausdruecklich ("Eigenmittel/Folgekosten
+  // nicht adressiert"). Wird nur nachgefasst, wenn die Richtlinie ihn verlangt.
+  if (offen.has("budget.eigenmittel_eur")) {
+    const mp = richtlinie?.eigenmittel?.mindestProzent;
+    aus.push({
+      feld: "budget.eigenmittel_eur",
+      label: "Eigenanteil",
+      gewicht: 2,
+      nachfrage:
+        `Diese Förderung verlangt einen Eigenanteil${mp ? ` von mindestens ${mp} %` : ""}. ` +
+        "Was kann eure Schule selbst beisteuern — Geld aus dem Förderverein, Eigenleistung, " +
+        "Sachmittel? Auch \"noch offen\" ist eine brauchbare Antwort, dann schreibe ich es so.",
+    });
+  }
+
+  return aus.sort((a, b) => b.gewicht - a.gewicht);
+}
 
 /**
  * Prüft, ob eine vorhandene Richtlinie Zusatz-Pflichten auferlegt (Eigenanteil,

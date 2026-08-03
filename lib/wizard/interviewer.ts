@@ -11,6 +11,7 @@ import { MODEL_FLASH, generateJson } from "./llm";
 import type { Usage } from "./pricing";
 import type { Richtlinie } from "./richtlinien-schema";
 import { mergeFacts } from "./facts-extractor";
+import { MAX_NACHFASSEN, beurteileAbschluss } from "./interview-abschluss";
 
 interface RawModelResponse {
   kind: "question" | "ready";
@@ -115,30 +116,61 @@ export async function nextStep(
   );
 
   const merged = mergeFacts(facts, raw.facts_update);
+  const askedQuestions = messages
+    .filter((m) => m.role === "ai" && m.kind === "question")
+    .map((m) => m.content);
+
+  /**
+   * Abschluss-Autoritaet (Architektur-Umbau 03.08.2026, s. interview-abschluss.ts).
+   *
+   * Frueher endete das Interview allein auf Zuruf des Modells. Das deterministische
+   * Regelwerk in facts-readiness.ts wusste zwar, welche Angaben ein bewertbarer
+   * Antrag braucht, durfte das aber nur in einer passiven Ampel anzeigen — und
+   * danach war es zu spaet, die Zahl noch zu erfragen.
+   *
+   * Jeder Weg zu "ready" laeuft jetzt durch dieses Gate. Es hebt maxQuestions NICHT
+   * an; es verschiebt nur das Ende, solange Budget da ist und eine punktekostende
+   * Luecke offen steht.
+   */
+  const alsAbschluss = (summary: string): NextStepWithUsage => {
+    const urteil = beurteileAbschluss(
+      merged,
+      richtlinie,
+      messages.filter((m) => m.role === "user").map((m) => m.content),
+      askedQuestions,
+      totalQuestions,
+      maxQuestions
+    );
+    if (urteil.darfEnden || !urteil.nachfrage) {
+      const step: NextStepReady = { kind: "ready", summary, updatedFacts: merged };
+      return { step, usage: { model: MODEL_FLASH, usage } };
+    }
+    console.log(
+      `[interviewer] Abschluss verweigert — Luecke "${urteil.nachfrage.feld}" offen ` +
+        `(${urteil.bereitsGefragt}/${MAX_NACHFASSEN} Nachfragen gestellt)`
+    );
+    const step: NextStepQuestion = {
+      kind: "question",
+      question: urteil.nachfrage.nachfrage,
+      rationale: `Ohne ${urteil.nachfrage.label} bewerten Gutachter den Antrag an dieser Stelle als nicht prüfbar.`,
+      updatedFacts: merged,
+    };
+    return { step, usage: { model: MODEL_FLASH, usage } };
+  };
 
   // Anti-Wiederholungs-Guard: Schlaegt das Modell eine Frage vor, die einer
   // bereits gestellten stark aehnelt, wuerde es in eine Schleife laufen (im
   // schlimmsten Fall bis maxQuestions dieselbe Frage). Statt erneut zu fragen,
   // schliessen wir die Befragung ab — was nicht praezisiert werden konnte, wird
   // mit den vorhandenen Angaben generiert (offene Stellen sind nachher editierbar).
-  if (raw.kind === "question") {
-    const askedQuestions = messages
-      .filter((m) => m.role === "ai" && m.kind === "question")
-      .map((m) => m.content);
-    if (countSimilarQuestions(askedQuestions, raw.content) >= 1) {
-      const step: NextStepReady = {
-        kind: "ready",
-        summary:
-          "Einige Punkte liessen sich trotz Nachfrage nicht weiter praezisieren — der Antrag wird mit den vorhandenen Angaben erstellt. Offene Stellen kannst du anschliessend ergaenzen.",
-        updatedFacts: merged,
-      };
-      return { step, usage: { model: MODEL_FLASH, usage } };
-    }
+  if (raw.kind === "question" && countSimilarQuestions(askedQuestions, raw.content) >= 1) {
+    return alsAbschluss(
+      "Einige Punkte liessen sich trotz Nachfrage nicht weiter praezisieren — der Antrag wird mit den vorhandenen Angaben erstellt. Offene Stellen kannst du anschliessend ergaenzen."
+    );
   }
 
   if (raw.kind === "ready") {
-    const step: NextStepReady = { kind: "ready", summary: raw.content, updatedFacts: merged };
-    return { step, usage: { model: MODEL_FLASH, usage } };
+    return alsAbschluss(raw.content);
   }
 
   // #005: "Warum?"-Dopplung unterdruecken — ist die neue Begruendung nahezu identisch

@@ -46,6 +46,7 @@ import {
   bereinigeFinanzplanBegruendungen,
   FINANZPLAN_BEREINIGT_HINWEIS,
 } from "./verbots-gate";
+import { bestimmeAntragsart } from "./antragsart";
 import { extractAnnahmen, wrapAnnahmen } from "./annahme-marker";
 import type { Usage } from "./pricing";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
@@ -656,9 +657,26 @@ export async function runPipeline(
     }
   }
 
-  await emit({ stage: "finanzplan", message: "Finanzplan-Entwurf" });
-  const finanzRes = await generateFinanzplan(programm, facts, richtlinie, userAnswers);
-  usages.push(finanzRes.usage);
+  // =========================================================================
+  // Antragsart entscheidet, welche Artefakte entstehen (Architektur-Umbau 03.08.2026)
+  // Bisher erzeugte die Pipeline bedingungslos einen Finanzplan. Bei einer
+  // PREIS-Bewerbung gehoert dort keiner hin — und der Kunde laedt ihn trotzdem
+  // herunter, weil AntragResult.tsx den gerenderten Plan an den Export haengt.
+  // Gemessen an pv-004 (Deutscher Schulpreis, gepaarter WIZ-05-Lauf): ohne Plan
+  // 4,18 bei gemini ("enthaelt korrekterweise keinen Finanzplan"), mit Plan 2,40.
+  // Details + Risiko-Asymmetrie: lib/wizard/antragsart.ts
+  // =========================================================================
+  const antragsart = bestimmeAntragsart(programm, richtlinie);
+  let finanzRes: Awaited<ReturnType<typeof generateFinanzplan>> | null = null;
+  if (antragsart.brauchtFinanzplan) {
+    await emit({ stage: "finanzplan", message: "Finanzplan-Entwurf" });
+    finanzRes = await generateFinanzplan(programm, facts, richtlinie, userAnswers);
+    usages.push(finanzRes.usage);
+  } else {
+    console.log(
+      `[pipeline] Kein Finanzplan — Antragsart "${antragsart.art}" (${antragsart.grund})`
+    );
+  }
 
   // =========================================================================
   // Verbots-Gate Finanzplan (WIZ-05-Befund 31.07.2026)
@@ -676,7 +694,7 @@ export async function runPipeline(
   // Konsistenzpruefung, damit die Konsistenz-Revision die erfundene Herleitung
   // nicht aus dem Plan in den Antragstext zieht.
   // =========================================================================
-  {
+  if (finanzRes) {
     const ber = bereinigeFinanzplanBegruendungen(finanzRes.plan.posten, verbotsQuellen);
     if (ber.entfernt.length > 0) {
       finanzRes.plan.posten = ber.posten;
@@ -693,7 +711,7 @@ export async function runPipeline(
   }
 
   let consistencyIssues: ConsistencyIssue[] = [];
-  if (finanzRes.plan.posten.length > 0) {
+  if (finanzRes && finanzRes.plan.posten.length > 0) {
     await emit({ stage: "consistency", message: "Antragstext × Finanzplan prüfen" });
     const finanzplanJson = JSON.stringify(
       finanzRes.plan.posten.map((p) => ({
@@ -859,7 +877,7 @@ export async function runPipeline(
       consistencyIssues: consistencyIssues.length ? consistencyIssues : undefined,
       hasConsistencyIssues: consistencyIssues.length > 0 || undefined,
       finalText: finalRes.value,
-      finanzplan: finanzRes.plan,
+      finanzplan: finanzRes?.plan,
     },
     usages,
   };

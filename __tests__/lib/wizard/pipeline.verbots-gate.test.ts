@@ -93,6 +93,39 @@ describe("Pipeline — Verbots-Gate auf dem Finanzplan", () => {
     expect((plan.hinweise ?? []).join(" ")).toMatch(/nicht aus Ihren Angaben/);
   });
 
+  it("erzeugt fuer eine Preis-Bewerbung GAR KEINEN Finanzplan", async () => {
+    // Architektur-Umbau 03.08.2026: Die Antragsart entscheidet ueber die Artefakte.
+    // Belegt an pv-004 (Deutscher Schulpreis): mit angehaengtem Finanzplan faellt
+    // das Gutachterurteil bei gemini von 4,18 auf 2,40.
+    const { runPipeline } = require("@/lib/wizard/pipeline");
+    mockLlm(POSTEN_MIT_TARIF);
+
+    const preis = {
+      ...programm,
+      name: "Deutscher Schulpreis",
+    } as unknown as Foerderprogramm;
+    const richtlinie = {
+      version: "1.0",
+      antragsstruktur: {
+        abschnitte: [
+          { id: "q1", name: "Qualitätsbereich 1: Leistung" },
+          { id: "q2", name: "Qualitätsbereich 2: Umgang mit Vielfalt" },
+        ],
+      },
+      foerderhoehe: {},
+      eigenmittel: {},
+      kumulierung: {},
+    } as never;
+
+    const res = await runPipeline(preis, { projekt: { titel: "Schulentwicklung" } }, richtlinie, () => {}, [
+      "Wir arbeiten seit Jahren an unserem Schulklima.",
+    ]);
+
+    expect(res.artefacts.finanzplan).toBeUndefined();
+    // Der Antragstext entsteht trotzdem vollstaendig.
+    expect(res.artefacts.finalText).toBeTruthy();
+  });
+
   it("laesst einen sauberen Finanzplan unveraendert und setzt keinen Hinweis", async () => {
     const { runPipeline } = require("@/lib/wizard/pipeline");
     mockLlm([
