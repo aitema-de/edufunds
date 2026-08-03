@@ -15,9 +15,13 @@
  *
  * DIE ZWEI ARME
  * -------------
- *   ki    — `result.artefacts.finalText` aus den Pipeline-Snapshots. Das ist genau das
- *           Artefakt, das der zahlende Kunde herunterlaedt (Lehre aus
+ *   ki    — Das Dokument, das der zahlende Kunde herunterlaedt: `artefacts.finalText`
+ *           PLUS die gerenderte Finanzplan-Tabelle, zusammengesetzt wie in
+ *           `components/Wizard/AntragResult.tsx` (Lehre aus
  *           feedback-eval-muss-user-artefakt-messen: nicht den Entwurf messen).
+ *           ⚠️ Bis 03.08.2026 wurde nur `finalText` bewertet — der Finanzteil fehlte
+ *           dem Judge komplett. Siehe `baueAntragsDokument` weiter unten; die Noten
+ *           bis dahin (3,38 · 3,26 · 3,25) sind mit spaeteren nicht vergleichbar.
  *   laie  — SIMULIERTER Antrag einer ungeuebten Person. Ehrliche Bezeichnung: das ist
  *           kein echter Mensch. Die Simulation ist aber strukturell fair gebaut:
  *             * Sie bekommt EXAKT dieselben Interview-Antworten (die im Korpus von Hand
@@ -56,6 +60,8 @@
  *   --limit=<n>        nur die ersten n Eintraege
  *   --only=<id,id>     nur diese Korpus-IDs
  *   --no-pairwise      gepaarten Vergleich auslassen
+ *   --ohne-finanzplan  ALT-Verhalten: nur finalText bewerten (ohne Finanzplan-Tabelle).
+ *                      Nur zur Reproduktion der Laeufe bis 03.08.2026 — siehe unten.
  *   --laie-model=<id>  Modell fuer den Laien-Arm (default mistral-small-latest = Prod-Modell)
  *   --refresh-laie     Laien-Cache verwerfen und neu generieren
  *   --out <pfad>       Report-Basispfad ohne Endung (default data/eval/gutachter-reports/<ISO>)
@@ -69,6 +75,7 @@ import { resolve } from "node:path";
 import OpenAI from "openai";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { bereinigeAntragstext, sammleOffenePunkte } from "../lib/wizard/offene-punkte";
+import { renderFinanzplanMarkdown } from "../lib/wizard/finanzplan-markdown";
 
 // ============================================================================
 // GATE — was "gut genug" heisst
@@ -624,6 +631,8 @@ interface CliFlags {
   laieModel: string;
   refreshLaie: boolean;
   out: string | null;
+  /** Alt-Verhalten: nur finalText bewerten (ohne den Finanzplan, den der Kunde bekommt). */
+  ohneFinanzplan: boolean;
 }
 
 export function parseFlags(argv: string[]): CliFlags {
@@ -638,6 +647,7 @@ export function parseFlags(argv: string[]): CliFlags {
     laieModel: "mistral-small-latest",
     refreshLaie: false,
     out: null,
+    ohneFinanzplan: false,
   };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
@@ -651,8 +661,42 @@ export function parseFlags(argv: string[]): CliFlags {
     else if (a.startsWith("--laie-model=")) f.laieModel = a.slice(13);
     else if (a === "--refresh-laie") f.refreshLaie = true;
     else if (a === "--out") f.out = argv[++i];
+    else if (a === "--ohne-finanzplan") f.ohneFinanzplan = true;
   }
   return f;
+}
+
+/**
+ * Das Dokument, das der Kunde tatsaechlich herunterlaedt (Befund 03.08.2026)
+ * ---------------------------------------------------------------------------
+ * Bis 03.08.2026 bekam der Judge nur `artefacts.finalText`. Der Kunde bekommt
+ * aber `finalText` PLUS die gerenderte Finanzplan-Tabelle — siehe
+ * `components/Wizard/AntragResult.tsx`:
+ *
+ *     const baseExport = finanzplanMarkdown ? `${text}\n${finanzplanMarkdown}\n` : text;
+ *
+ * Der Judge urteilte deshalb ueber ein Dokument, dem der komplette Finanzteil
+ * fehlte — und bewertete darin das Kriterium "Finanzplan und Mittelbegruendung"
+ * (15 % Gewicht) mit 2,30. In 15 von 50 Einzelurteilen lautete die Begruendung
+ * woertlich "fehlt vollstaendig" / "leere Huelle" / "nur Platzhalter", obwohl
+ * ALLE 25 Snapshots einen renderbaren Plan mit im Schnitt 1681 Zeichen tragen
+ * (pv-res-002 z. B. Posten ueber 8.000 und 12.000 EUR).
+ *
+ * Das ist genau der Fehler aus feedback-eval-muss-user-artefakt-messen. Deshalb
+ * ist das Export-treue Dokument jetzt der Standard.
+ *
+ * ⚠️ BRUCH IN DER ZEITREIHE: Gutachter-Noten bis einschliesslich 03.08.2026
+ * (3,38 · 3,26 · 3,25) haben ein ANDERES Dokument bewertet und sind mit spaeteren
+ * Laeufen nicht vergleichbar. `--ohne-finanzplan` stellt das Alt-Verhalten her,
+ * falls ein Anschluss an die alten Zahlen gebraucht wird.
+ */
+export function baueAntragsDokument(snap: Snapshot, ohneFinanzplan: boolean): string {
+  const text = snap.result?.artefacts?.finalText ?? "";
+  if (!text || ohneFinanzplan) return text;
+  const plan = snap.result?.artefacts?.finanzplan;
+  if (!plan) return text;
+  const md = renderFinanzplanMarkdown(plan as Parameters<typeof renderFinanzplanMarkdown>[0]);
+  return md?.trim() ? `${text}\n${md}\n` : text;
 }
 
 const LAIE_CACHE = "data/eval/laien-antraege";
@@ -925,7 +969,7 @@ async function main() {
   const t0 = Date.now();
 
   for (const [i, snap] of snaps.entries()) {
-    const kiText = snap.result?.artefacts?.finalText ?? "";
+    const kiText = baueAntragsDokument(snap, flags.ohneFinanzplan);
     if (!kiText) {
       console.warn(`[gutachter] ${snap.korpus_id}: kein finalText im Snapshot — uebersprungen`);
       continue;
