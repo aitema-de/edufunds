@@ -74,6 +74,10 @@ GUT: "Beschafft werden Tablets (Stueckzahl im Rahmen von 20-30, exakte Zahl noch
 SCHLECHT: "Der Foerderverein hat die Mittelverwaltung muendlich zugesagt und ist als gemeinnuetzig anerkannt."
 GUT: "Als Mittelverwalter kommt der Foerderverein in Frage; die formale Zusage und der Gemeinnuetzigkeits-Nachweis sind vor Antragstellung einzuholen."
 
+SCHLECHT (erfundene Laufzeit): "1. Netzwerkinfrastruktur und Server (kurzfristig, 01.01.2025-31.12.2025)"
+GUT: "1. Netzwerkinfrastruktur und Server (kurzfristig; Zeitraum noch mit dem Schultraeger abzustimmen)"
+Ein tagesgenauer Zeitraum ist AUCH DANN erfunden, wenn er nur als Klammerzusatz oder Spiegelstrich-Marginalie erscheint. Kalendarische Von-Bis-Spannen (\`01.01.JJJJ-31.12.JJJJ\`) entstehen praktisch immer aus dem Modell, nie aus einer Schule — nenne den Zeithorizont so grob, wie der User ihn nannte ("kurzfristig", "im ersten Schuljahr", "nach den Sommerferien").
+
 **Grundregel:** Lieber kuerzer und ehrlich als erfunden. Wo eine konkrete Angabe fehlt, setze einen sichtbaren
 Luecken-Marker \`[TODO: … einholen]\` in den Text — NICHT eine plausibel klingende Erfindung und NICHT eine
 nichtssagende Floskel. Eine echte, vom User genannte Angabe ist mehr wert als zehn erfundene.
@@ -886,6 +890,10 @@ NIEMALS in Bezeichnung oder Begruendung erfinden:
 - **Marken-/Modellnamen** ("Apple Pencil", "Microsoft Surface") — wenn der User nur "Stifte" oder "Tablets" sagte: nicht spezifizieren.
 - **Erfundene Mengen-Aufschluesselungen** ("16 pro Klasse", "2 Lehrkraefte freigestellt") — nur wenn der User konkrete Mengen genannt hat.
 - **Bildungsrabatt-Annahmen** ("ca. 90 EUR in Bildungstarifen plus Versand") — wenn der User nur einen Endpreis nannte: diesen verwenden.
+- **Erfundene Kalkulations-HERLEITUNGEN** — eine Rechenkette aus Saetzen, die der User nie nannte. Das "Schaetzung:"-Praefix macht sie NICHT zulaessig: es kennzeichnet, dass der BETRAG geschaetzt ist, es erlaubt nicht, eine Herleitung zu erfinden.
+  SCHLECHT: "Schaetzung: 2 Lehrkraefte × 2 Projekttage × 8 Std/Tag × 56 EUR/Std (TV-L E11, Mittelwert)"
+  GUT: "Schaetzung: Vertretungs-/Freistellungskosten fuer die Projekttage; Stundensatz und Eingruppierung sind beim Schultraeger noch zu erfragen."
+  Merke: Eine ehrliche Pauschale mit einem Satz "Grundlage noch einzuholen" ist besser als eine Rechnung, die belegt aussieht und es nicht ist.
 - **Erfundene Personal-/Partner-Posten, die der User-Aussage widersprechen** — sagte der User z. B. "macht eine Kollegin nebenher / nicht offiziell", darf daraus KEIN bezahlter Personalposten werden. Sagte er "erstmal nur die Lehrkraefte", keine externe Honorarkraft erfinden.
 
 ## Schaetz-Ehrlichkeit (HART — wichtigster Punkt bei vagem Input)

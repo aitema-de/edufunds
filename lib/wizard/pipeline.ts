@@ -42,6 +42,10 @@ import {
   buildProgrammKontext,
   verifyFacts,
 } from "./fact-verification";
+import {
+  bereinigeFinanzplanBegruendungen,
+  FINANZPLAN_BEREINIGT_HINWEIS,
+} from "./verbots-gate";
 import { extractAnnahmen, wrapAnnahmen } from "./annahme-marker";
 import type { Usage } from "./pricing";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
@@ -573,6 +577,19 @@ export async function runPipeline(
   // deterministisch nachgewiesener Verbesserung (Never-Worse, wie das Zahlen-Gate).
   // Laeuft NACH dem Zahlen-Gate (Zahlen/Namen schon bereinigt) und VOR finanzplan.
   // =========================================================================
+  // Erlaubte Quellen fuer den deterministischen Verbots-Detektor: Nutzerangaben
+  // PLUS Programm und Richtlinie. Bewusst weiter als die Ground Truth — eine
+  // Antragsfrist oder ein Bewilligungszeitraum aus der Foerderrichtlinie ist ein
+  // legitimes tagesgenaues Datum und darf nicht als Erfindung neutralisiert werden.
+  const verbotsQuellen = [
+    buildGroundTruth(facts, userAnswers),
+    buildProgrammKontext(programm),
+    JSON.stringify(programm ?? {}),
+    richtlinie ? JSON.stringify(richtlinie) : "",
+  ]
+    .filter((s) => s.trim())
+    .join("\n");
+
   let factVerification: GenerationArtefacts["factVerification"];
   {
     const groundTruth = buildGroundTruth(facts, userAnswers);
@@ -590,7 +607,8 @@ export async function runPipeline(
             detect: (system, user) => generateJson<unknown>(MODEL_FLASH, system, user, { maxTokens: 4000 }),
             revise: (system, user) => generateText(MODEL_PRO, system, user),
             models: { detect: MODEL_FLASH, revise: MODEL_PRO },
-          }
+          },
+          verbotsQuellen
         );
         finalRes = { value: fv.finalText, usage: finalRes.usage };
         usages.push(...fv.usages);
@@ -641,6 +659,38 @@ export async function runPipeline(
   await emit({ stage: "finanzplan", message: "Finanzplan-Entwurf" });
   const finanzRes = await generateFinanzplan(programm, facts, richtlinie, userAnswers);
   usages.push(finanzRes.usage);
+
+  // =========================================================================
+  // Verbots-Gate Finanzplan (WIZ-05-Befund 31.07.2026)
+  // Der Finanzplan wird NACH dem Halluzinations-Diff-Gate und NACH der
+  // Fakt-Verifikation erzeugt und lief damit durch keine einzige
+  // Ehrlichkeitspruefung. pv-005 zeigte die Folge: "Schaetzung: 2 Lehrkraefte ×
+  // 2 Projekttage × 8 Std/Tag × 56 EUR/Std (TV-L E11, Mittelwert)" — das Modell
+  // setzt das vorgeschriebene "Schaetzung:"-Praefix korrekt UND liefert danach
+  // die in FINANZPLAN_SYSTEM woertlich verbotene Tarif-Splittung. Es erfuellt die
+  // pruefbare Regel und verletzt die inhaltliche.
+  //
+  // Rein deterministisch und nur auf `begruendung`: betragEur, kategorie und
+  // eigenanteil bleiben unberuehrt, damit Summenlogik, Foerderquote und der
+  // Deckungsabgleich weiter unten unveraendert aufgehen. HIER platziert — vor der
+  // Konsistenzpruefung, damit die Konsistenz-Revision die erfundene Herleitung
+  // nicht aus dem Plan in den Antragstext zieht.
+  // =========================================================================
+  {
+    const ber = bereinigeFinanzplanBegruendungen(finanzRes.plan.posten, verbotsQuellen);
+    if (ber.entfernt.length > 0) {
+      finanzRes.plan.posten = ber.posten;
+      const hinweise = finanzRes.plan.hinweise ?? [];
+      if (!hinweise.includes(FINANZPLAN_BEREINIGT_HINWEIS)) {
+        finanzRes.plan.hinweise = [...hinweise, FINANZPLAN_BEREINIGT_HINWEIS];
+      }
+      console.log(
+        `[pipeline] Verbots-Gate Finanzplan: ${ber.entfernt.length} Fundstelle(n) in ${ber.betroffen.length} Posten entfernt (${[
+          ...new Set(ber.entfernt.map((t) => t.klasse)),
+        ].join(", ")})`
+      );
+    }
+  }
 
   let consistencyIssues: ConsistencyIssue[] = [];
   if (finanzRes.plan.posten.length > 0) {

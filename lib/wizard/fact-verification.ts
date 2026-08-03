@@ -2,6 +2,7 @@ import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type { WizardFacts } from "./types";
 import type { Usage } from "./pricing";
 import { detectIntroduced } from "./hallucination-gate";
+import { detectVerbote } from "./verbots-gate";
 import {
   FACT_VERIFICATION_DETECT_SYSTEM,
   FACT_VERIFICATION_REPAIR_SYSTEM,
@@ -285,7 +286,14 @@ export async function verifyFacts(
   finalText: string,
   groundTruth: string,
   programmKontext: string,
-  deps: FactVerificationDeps
+  deps: FactVerificationDeps,
+  /**
+   * Erlaubte Quellen fuer den deterministischen Verbots-Detektor. Bewusst WEITER
+   * als die Ground Truth: Programm und Richtlinie gehoeren dazu, denn eine
+   * Antragsfrist aus der Foerderrichtlinie ist ein legitimes tagesgenaues Datum.
+   * Default: Ground Truth + Programm-Kontext.
+   */
+  verbotsQuellen?: string
 ): Promise<FactVerificationResult> {
   const usages: Array<{ model: string; usage: Usage }> = [];
 
@@ -298,11 +306,36 @@ export async function verifyFacts(
   const llmClaims = anchorClaims(det.value, finalText);
   // Deterministische Rechtsfolgen-Treffer ergaenzen (LLM-Detektor uebersieht sie
   // wiederholt); Dubletten gegen die LLM-Claims per normalisiertem Zitat vermeiden.
-  const llmKeys = new Set(llmClaims.map((c) => normalizeWs(c.zitat)));
+  const belegt = new Set(llmClaims.map((c) => normalizeWs(c.zitat)));
   const rechtsfolgen = detectRechtsfolgen(finalText, groundTruth).filter(
-    (c) => !llmKeys.has(normalizeWs(c.zitat))
+    (c) => !belegt.has(normalizeWs(c.zitat))
   );
-  const claims = [...llmClaims, ...rechtsfolgen];
+  for (const c of rechtsfolgen) belegt.add(normalizeWs(c.zitat));
+  // Verbots-Klassen (Tarif-Codes, tagesgenaue Daten, Aktenzeichen,
+  // Haushaltsstellen). WIZ-05-Befund 31.07.2026: Sie stehen in SECTION_SYSTEM und
+  // im SHARP_HALLU_VERBOTS_BLOCK ausdruecklich auf der Verbotsliste und kommen
+  // trotzdem durch — der LLM-Detektor oben meldet sie nicht, und das Zahlen-Gate
+  // ist fuer sie blind, weil es den Entwurf als erlaubte Quelle fuehrt. Immer
+  // "tatsache": bei diesen Klassen gibt es keine legitime Ausgestaltung.
+  const verbote: FactClaim[] = [];
+  for (const v of detectVerbote(
+    finalText,
+    verbotsQuellen ?? `${groundTruth}\n${programmKontext}`
+  )) {
+    const key = normalizeWs(v.zitat);
+    // Mehrere Fundstellen im selben Satz → ein Claim, Begruendungen gebuendelt.
+    if (belegt.has(key)) {
+      const vorhanden = verbote.find((c) => normalizeWs(c.zitat) === key);
+      if (vorhanden && !vorhanden.warum.includes(v.warum)) {
+        vorhanden.warum = `${vorhanden.warum} ${v.warum}`;
+      }
+      continue;
+    }
+    if (!quotePresent(finalText, v.zitat)) continue;
+    belegt.add(key);
+    verbote.push({ zitat: v.zitat, art: "tatsache", warum: v.warum });
+  }
+  const claims = [...llmClaims, ...rechtsfolgen, ...verbote];
   const zuNeutralisieren = claims.filter((c) => NEUTRALISIEREN.includes(c.art));
   const vorschlagClaims = claims.filter((c) => c.art === "vorschlag");
   const vorschlaege = vorschlagClaims.map((c) => c.zitat);
