@@ -296,7 +296,7 @@ Baue das Personenprofil gemaess Schema.`;
 }
 
 /** Zweiter Anlauf: die Befunde der Pruefung zurueckgeben und gezielt korrigieren lassen. */
-function buildReparaturPrompt(e: KorpusEintrag, p: SimProfil, pr: ProfilPruefung): string {
+export function buildReparaturPrompt(e: KorpusEintrag, p: SimProfil, pr: ProfilPruefung): string {
   const g = UMFANG[e.category] ?? UMFANG_DEFAULT;
   const zeilen: string[] = [];
   if (pr.widersprueche.length) {
@@ -315,6 +315,18 @@ function buildReparaturPrompt(e: KorpusEintrag, p: SimProfil, pr: ProfilPruefung
         ` und streiche zuerst alles Rechnerische und Verfahrenskundliche.`
     );
   }
+  if (pr.unbelegteNichtwissen.length) {
+    zeilen.push(
+      `ERFUNDENES NICHTWISSEN (streiche jeden dieser nichtWissen-Punkte ersatzlos —` +
+        ` der Datensatz spricht das Thema mit keinem Wort an, die Person hat diese` +
+        ` Auskunft also nie verweigert):`
+    );
+    for (const nw of pr.unbelegteNichtwissen) zeilen.push(`  - "${nw}"`);
+    zeilen.push(
+      `  Ersetze sie NICHT durch Hintergrundwissen. Wer zu einem Thema nichts gesagt hat,` +
+        ` weiss darueber weder etwas noch nichts — beides zu behaupten waere erfunden.`
+    );
+  }
   return `Du hast fuer diesen Testfall bereits ein Profil gebaut. Die maschinelle Pruefung hat Fehler gefunden.
 
 BISHERIGES PROFIL:
@@ -323,8 +335,12 @@ ${JSON.stringify({ rolle: p.rolle, stil: p.stil, belegt: p.belegt, hintergrund: 
 BEFUNDE:
 ${zeilen.join("\n")}
 
-Gib das KORRIGIERTE Profil im selben JSON-Schema aus. "belegt" und "nichtWissen" bleiben unveraendert,
-ausser ein Punkt steht doppelt drin. Aendere nur, was die Befunde verlangen.`;
+Gib das KORRIGIERTE Profil im selben JSON-Schema aus. "belegt" bleibt unveraendert, ebenso
+${
+  pr.unbelegteNichtwissen.length
+    ? `"nichtWissen" — mit Ausnahme der oben aufgefuehrten erfundenen Punkte, die ersatzlos entfallen.`
+    : `"nichtWissen", ausser ein Punkt steht doppelt drin.`
+} Aendere nur, was die Befunde verlangen.`;
 }
 
 /** Bedeutungstragende Wortstaemme — fuer den Widerspruchs-Abgleich. */
@@ -458,6 +474,24 @@ export function pruefeProfil(p: SimProfil, e: KorpusEintrag): ProfilPruefung {
   return { id: p.id, widersprueche, fehlendeNichtwissen, unbelegteNichtwissen, budgetVerletzung };
 }
 
+/**
+ * Maengel, die die Nachbesserung beheben soll — deckungsgleich mit dem, worauf
+ * der Profilbau am Ende abbricht.
+ *
+ * Vorher lief die Schleife nur auf `widersprueche` und `budgetVerletzung`, waehrend
+ * der Abbruch zusaetzlich auf `unbelegteNichtwissen` blockierte (eingefuehrt am
+ * 03.08.2026). Der Reparatur-Prompt wies das Modell sogar ausdruecklich an,
+ * "nichtWissen" unveraendert zu lassen. Damit war die einzige Fehlerklasse, die der
+ * Profilbau nicht selbst beheben konnte, genau die, die ihn zum Abbruch brachte:
+ * jeder `--refresh` endete zwangslaeufig mit Exit 1 und Handarbeit.
+ *
+ * Gate und Selbstheilung muessen dieselbe Liste kennen, sonst ist das Gate kein
+ * Gate, sondern eine Sackgasse.
+ */
+export function offeneMaengel(pr: ProfilPruefung): number {
+  return pr.widersprueche.length + pr.unbelegteNichtwissen.length + (pr.budgetVerletzung ? 1 : 0);
+}
+
 async function befehlProfil(flags: Flags): Promise<number> {
   const korpus = JSON.parse(await readFile(KORPUS_PATH, "utf8")) as KorpusEintrag[];
   const auswahl = filterKorpus(korpus, flags);
@@ -513,20 +547,23 @@ async function befehlProfil(flags: Flags): Promise<number> {
     // mit den konkreten Befunden im Prompt raeumt es das zuverlaessig auf.
     let p = await baue(buildProfilPrompt(e));
     let pr = pruefeProfil(p, e);
-    for (let versuch = 1; versuch <= 2 && (pr.widersprueche.length || pr.budgetVerletzung); versuch++) {
+    for (let versuch = 1; versuch <= 2 && offeneMaengel(pr) > 0; versuch++) {
       console.log(
         `${LOG}   ${e.id}: Nachbesserung ${versuch} — ${pr.widersprueche.length} Widerspruch/Widersprueche` +
+          `${pr.unbelegteNichtwissen.length ? `, ${pr.unbelegteNichtwissen.length} erfundenes Nichtwissen` : ""}` +
           `${pr.budgetVerletzung ? `, ${pr.budgetVerletzung}` : ""}`
       );
       const korrigiert = await baue(buildReparaturPrompt(e, p, pr));
       const prNeu = pruefeProfil(korrigiert, e);
       // Nur uebernehmen, wenn es wirklich besser wird — sonst haette eine misslungene
-      // Nachbesserung ein brauchbares Profil verschlechtert.
+      // Nachbesserung ein brauchbares Profil verschlechtert. Keine der beiden harten
+      // Klassen darf dabei zunehmen, auch wenn die Summe faellt: ein Profil, das einen
+      // erfundenen Punkt loswird und dafuer einen Widerspruch einhandelt, ist kein
+      // Fortschritt.
       const besser =
-        prNeu.widersprueche.length < pr.widersprueche.length ||
-        (prNeu.widersprueche.length === pr.widersprueche.length &&
-          !prNeu.budgetVerletzung &&
-          !!pr.budgetVerletzung);
+        offeneMaengel(prNeu) < offeneMaengel(pr) &&
+        prNeu.widersprueche.length <= pr.widersprueche.length &&
+        prNeu.unbelegteNichtwissen.length <= pr.unbelegteNichtwissen.length;
       if (!besser) break;
       p = korrigiert;
       pr = prNeu;
