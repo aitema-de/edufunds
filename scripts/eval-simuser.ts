@@ -1184,7 +1184,31 @@ interface Ausbeute {
   stagnationsquote: number;
   /** Interviews, die ausser dem eingespeisten Schulprofil NICHTS erbracht haben. */
   ohneErtrag: number;
+  /** Wie oft die drei nachgefassten Zielfelder belegt sind (absolut, von n). */
+  fuellgrad: Record<ZielfeldId, number>;
 }
+
+/**
+ * Fuellgrad der drei Felder, auf die das Abschluss-Gate nachfasst.
+ * -----------------------------------------------------------------
+ * Die aggregierte Kennzahl "Zahlangaben in Fakten" taugt als Erfolgsmass fuer
+ * das Gate NICHT: sie zaehlt jede Zahl irgendwo in der Faktentabelle, auch
+ * Jahreszahlen und Klassenstufen. Sie kann steigen, waehrend genau die Felder
+ * leer bleiben, an denen der Finanzplan scheitert — und sie kann fallen, waehrend
+ * sie sich fuellen (Messung 03.08.: −0,6 bei gleichzeitig gehaltener Note).
+ *
+ * Diese drei Felder sind der Gegenstand der Nachfragen in `facts-readiness.ts`
+ * und damit das, was das Gate ueberhaupt bewirken KANN. Steigt der Fuellgrad
+ * nicht, hat der Umbau sein Ziel verfehlt — unabhaengig davon, was die
+ * aggregierte Zahl macht.
+ */
+type ZielfeldId = "budget.beantragt_eur" | "budget.hauptposten" | "schule.schuelerzahl";
+
+const ZIELFELDER: { id: ZielfeldId; belegt: (f: WizardFacts) => boolean }[] = [
+  { id: "budget.beantragt_eur", belegt: (f) => typeof f?.budget?.beantragt_eur === "number" && f.budget.beantragt_eur > 0 },
+  { id: "budget.hauptposten", belegt: (f) => (f?.budget?.hauptposten?.length ?? 0) > 0 },
+  { id: "schule.schuelerzahl", belegt: (f) => typeof f?.schule?.schuelerzahl === "number" && f.schule.schuelerzahl > 0 },
+];
 
 const TIEFE_IDS: TiefeId[] = [
   "bedarf-ist-zahlen",
@@ -1271,6 +1295,9 @@ export function berechneAusbeute(eintraege: LaufEintrag[]): Ausbeute {
       : NaN,
     proKategorie,
     lecks: gute.filter((e) => e.zahlenLeck.length > 0).length,
+    fuellgrad: Object.fromEntries(
+      ZIELFELDER.map((z) => [z.id, gute.filter((e) => z.belegt(e.facts)).length])
+    ) as Record<ZielfeldId, number>,
   };
 }
 
@@ -1308,6 +1335,22 @@ function berichteAus(eintraege: LaufEintrag[], label: string, vergleich?: { labe
       `   <- was davon in der Faktentabelle ankommt`
   );
   console.log(`${LOG}   Interviews mit Zahlen-Leck: ${a.lecks}`);
+  console.log(`${LOG}`);
+  console.log(
+    `${LOG}   Fuellgrad der nachgefassten Zielfelder (von ${a.n})` +
+      `   <- Erfolgsmass des Abschluss-Gates`
+  );
+  for (const z of ZIELFELDER) {
+    const t = a.fuellgrad[z.id];
+    const alt = v?.fuellgrad?.[z.id];
+    const d =
+      typeof alt === "number" && v
+        ? `   (vorher ${alt}/${v.n}${t - alt === 0 ? ", ±0" : t - alt > 0 ? `, +${t - alt}` : `, ${t - alt}`})`
+        : "";
+    console.log(
+      `${LOG}     ${z.id.padEnd(22)} ${String(t).padStart(2)}/${a.n}  ${proz(a.n ? t / a.n : NaN)}${d}`
+    );
+  }
   console.log(
     `${LOG}   Runden ohne Faktenzuwachs: ${proz(a.stagnationsquote)}${v ? diff(a.stagnationsquote, v.stagnationsquote, "proz") : ""}` +
       `   ⚠️ hoch = Extraktion faellt aus (Anbieter-429), nicht schlechte Fragen`
