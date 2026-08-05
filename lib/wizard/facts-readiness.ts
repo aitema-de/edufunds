@@ -239,6 +239,65 @@ export interface NachfassLuecke {
   nachfrage: string;
 }
 
+/**
+ * Schon verneint? Dann nicht noch einmal fragen.
+ * ----------------------------------------------
+ * Das Gate fragt jede Luecke hoechstens einmal — aber nur bezogen auf die EIGENE
+ * deterministische Nachfrage. Hat der Nutzer dasselbe Thema bereits auf eine freie
+ * Interviewer-Frage hin verneint, merkt es das nicht und fragt trotzdem.
+ *
+ * Beobachtet am 05.08.2026 (gepaarter Lauf, n=25): In pv-res-004 hatte der Nutzer
+ * VIER Mal zu Geld verneint ("wie hoch der Betrag waere, das haben wir noch
+ * nicht ...") — das Gate fragte bei Frage 11 erneut nach der Foerdersumme und
+ * erhielt erwartungsgemaess wieder ein "weiss ich nicht". Eine verbrannte Frage
+ * aus einem Kontingent von drei. Das ist "Fehlendes Feld ist keine Tatsache" in
+ * der zweiten Instanz: aus einem leeren Feld folgt nicht, dass die Angabe noch
+ * zu holen ist.
+ *
+ * BEWUSST ENG GEHALTEN. Eine zu breite Regel waere schaedlicher als der Defekt,
+ * den sie behebt: sie wuerde legitime Erstfragen unterdruecken und den Fuellgrad
+ * senken. Deshalb muessen Verneinung UND ein feldspezifisches Themenwort in
+ * DERSELBEN Antwort stehen, und die Themenwoerter sind absichtlich schmal.
+ *
+ * Zwei Faelle aus demselben Lauf, an denen die Enge geprueft ist:
+ *   - pv-edge-003 sprach von "Bewegungsfoerderung" — ein Stamm `foerder` haette
+ *     hier unterdrueckt. Die Frage wurde gestellt und brachte "zwischen 25.000
+ *     und 30.000 Euro". Deshalb nur `foerdersumme|foerderhoehe|foerderbetrag`.
+ *   - pv-edge-004 verneinte "noch nicht alles durchgerechnet" ohne Summenwort.
+ *     Die Frage wurde gestellt und brachte immerhin Materialkosten von
+ *     1.500–2.000 EUR. Deshalb gehoert `kosten` NICHT zu den Themenwoertern der
+ *     Foerdersumme.
+ *
+ * Greift nur auf die Nachfrage. Die passive Ampel meldet das Feld weiter als
+ * offen — es fehlt ja tatsaechlich.
+ */
+/**
+ * Zwischen "weiss" und "nicht" stehen im echten Sprachgebrauch Woerter — "weiss
+ * ICH nicht", "weiss ich EHRLICH GESAGT nicht". Ein Muster, das die beiden direkt
+ * nebeneinander verlangt, findet fast keine echte Verneinung (Fehler beim ersten
+ * Entwurf am 05.08.2026: es griff bei keinem einzigen Satz aus dem Lauf).
+ *
+ * Die Luecke ist auf drei Woerter begrenzt und darf KEIN Satzzeichen enthalten.
+ * Das trennt "weiss ich nicht" von "Ich weiss, das ist nicht viel" — dort folgt
+ * auf "weiss" ein Komma, und die Verneinung gehoert zu einem anderen Satzteil.
+ */
+const VERNEINUNG =
+  /(wei(?:ß|ss)(?:\s+[^\s.,;:!?]+){0,3}\s+nicht|nicht\s+(?:genau\s+)?wei(?:ß|ss)|wissen wir (?:noch )?nicht|keine ahnung|keine (?:genaue )?vorstellung|m(?:ü|ue)ss?te ich (?:erst )?(?:noch )?(?:mal )?(?:nach)?(?:fragen|schauen|sehen|kl(?:ä|ae)ren)|noch nicht (?:durchgerechnet|festgelegt|gekl(?:ä|ae)rt|entschieden|besprochen|ausgerechnet|final)|(?:haben|hab|hatten) wir (?:noch )?nicht|kann (?:ich|man)(?:\s+[^\s.,;:!?]+){0,3}\s+nicht sagen|k(?:ö|oe)nnen wir (?:noch )?nicht sagen|schwer zu sagen)/i;
+
+const NACHFASS_THEMA: Partial<Record<Pfad, RegExp>> = {
+  "budget.beantragt_eur":
+    /(f(?:ö|oe)rdersumme|f(?:ö|oe)rderh(?:ö|oe)he|f(?:ö|oe)rderbetrag|antragssumme|\bsumme\b|\bbetrag\b|wie ?viel geld)/i,
+  "budget.hauptposten": /(kostenposten|hauptposten|\bposten\b|wof(?:ü|ue)r.*(geld|mittel))/i,
+  "schule.schuelerzahl": /(sch(?:ü|ue)lerzahl|wie viele (sch(?:ü|ue)ler|kinder))/i,
+  "budget.eigenmittel_eur": /(eigenanteil|eigenmittel|eigenleistung|selbst beisteuern)/i,
+};
+
+function bereitsVerneint(feld: Pfad, userAnswers?: string[]): boolean {
+  const thema = NACHFASS_THEMA[feld];
+  if (!thema || !userAnswers?.length) return false;
+  return userAnswers.some((a) => VERNEINUNG.test(a) && thema.test(a));
+}
+
 export function offeneNachfassLuecken(
   facts: WizardFacts,
   richtlinie?: Richtlinie | null,
@@ -272,7 +331,9 @@ export function offeneNachfassLuecken(
     });
   }
 
-  return aus.sort((a, b) => b.gewicht - a.gewicht);
+  return aus
+    .filter((l) => !bereitsVerneint(l.feld, userAnswers))
+    .sort((a, b) => b.gewicht - a.gewicht);
 }
 
 /**
