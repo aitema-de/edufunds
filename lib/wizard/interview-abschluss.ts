@@ -82,7 +82,38 @@ export type AbschlussGrund =
   /** Alle offenen Luecken wurden bereits einmal erfragt. */
   | "bereits-gefragt"
   /** Luecke offen und Nachfrage moeglich — Abschluss wird verweigert. */
-  | "nachfassen";
+  | "nachfassen"
+  /** Nur Messbetrieb: Gate per `EDUFUNDS_EVAL_ABSCHLUSS_GATE=aus` stillgelegt. */
+  | "eval-abgeschaltet";
+
+/**
+ * Vergleichsarm fuer die Wirkungsmessung — ausschliesslich fuer die Eval.
+ * ---------------------------------------------------------------------
+ * Ob dieses Gate den Fuellgrad der Faktentabelle hebt, laesst sich nur an einem
+ * gepaarten Lauf ablesen: dieselben simulierten Personen einmal mit und einmal
+ * ohne Gate. Ohne den Schalter bliebe als Vergleich nur ein aelterer Lauf gegen
+ * ANDERE Personen — und dann erklaert "die neue Besetzung verweigert seltener"
+ * jeden Anstieg genauso gut wie das Gate.
+ *
+ * Richtung der Vorgabe ist bewusst gewaehlt: Der Schalter kann nur ABschalten,
+ * und nur bei exakt einem Wert. Fehlt die Variable oder steht etwas anderes
+ * darin — der Normalfall in jeder Deployment-Umgebung — ist das Gate aktiv.
+ * Ein Tippfehler kann es also nicht versehentlich stilllegen.
+ */
+const EVAL_ABSCHALT_WERT = "aus";
+let abschaltungGemeldet = false;
+
+function gateAbgeschaltet(): boolean {
+  const aus = process.env.EDUFUNDS_EVAL_ABSCHLUSS_GATE === EVAL_ABSCHALT_WERT;
+  if (aus && !abschaltungGemeldet) {
+    abschaltungGemeldet = true;
+    console.warn(
+      "[interviewer] ⚠️  Abschluss-Gate per EDUFUNDS_EVAL_ABSCHLUSS_GATE=aus stillgelegt — " +
+        "Vergleichsarm der Eval. In einer Nutzer-Umgebung ist das ein Defekt."
+    );
+  }
+  return aus;
+}
 
 export interface AbschlussUrteil {
   darfEnden: boolean;
@@ -146,8 +177,15 @@ export function beurteileAbschluss(
   totalQuestions: number,
   maxQuestions: number
 ): AbschlussUrteil {
-  const luecken = offeneNachfassLuecken(facts, richtlinie, userAnswers);
   const bereits = zaehleNachfragen(gestellteFragen);
+
+  // Vergleichsarm: stellt den Zustand vor dem Umbau bitgenau her — jeder Weg zu
+  // "ready" endet sofort, das Regelwerk wird nicht einmal befragt.
+  if (gateAbgeschaltet()) {
+    return { darfEnden: true, grund: "eval-abgeschaltet", bereitsGefragt: bereits };
+  }
+
+  const luecken = offeneNachfassLuecken(facts, richtlinie, userAnswers);
 
   if (totalQuestions >= maxQuestions) {
     return { darfEnden: true, grund: "fragenbudget", bereitsGefragt: bereits };

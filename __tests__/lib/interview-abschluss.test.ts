@@ -133,6 +133,41 @@ describe("beurteileAbschluss", () => {
     expect(u.darfEnden).toBe(false);
   });
 
+  describe("Vergleichsarm EDUFUNDS_EVAL_ABSCHLUSS_GATE", () => {
+    const vorher = process.env.EDUFUNDS_EVAL_ABSCHLUSS_GATE;
+    afterEach(() => {
+      if (vorher === undefined) delete process.env.EDUFUNDS_EVAL_ABSCHLUSS_GATE;
+      else process.env.EDUFUNDS_EVAL_ABSCHLUSS_GATE = vorher;
+    });
+
+    it("laesst mit \"aus\" auch bei offener Luecke enden", () => {
+      process.env.EDUFUNDS_EVAL_ABSCHLUSS_GATE = "aus";
+      const u = beurteileAbschluss(OHNE_SUMME, null, [], [], 6, 12);
+      expect(u.darfEnden).toBe(true);
+      expect(u.grund).toBe("eval-abgeschaltet");
+      expect(u.nachfrage).toBeUndefined();
+    });
+
+    // Die Richtung der Vorgabe ist die eigentliche Sicherung: nur ein einziger
+    // Wert schaltet ab. Alles andere — auch ein Tippfehler — laesst das Gate an.
+    it.each(["an", "0", "false", "AUS", " aus", ""])(
+      "laesst das Gate bei %p aktiv",
+      (wert) => {
+        process.env.EDUFUNDS_EVAL_ABSCHLUSS_GATE = wert;
+        const u = beurteileAbschluss(OHNE_SUMME, null, [], [], 6, 12);
+        expect(u.darfEnden).toBe(false);
+        expect(u.nachfrage?.feld).toBe("budget.beantragt_eur");
+      }
+    );
+
+    it("laesst das Gate aktiv, wenn die Variable fehlt", () => {
+      delete process.env.EDUFUNDS_EVAL_ABSCHLUSS_GATE;
+      const u = beurteileAbschluss(OHNE_SUMME, null, [], [], 6, 12);
+      expect(u.darfEnden).toBe(false);
+      expect(u.grund).toBe("nachfassen");
+    });
+  });
+
   it("fasst den Eigenanteil nur nach, wenn die Richtlinie ihn verlangt", () => {
     const ohne = beurteileAbschluss(VOLL, null, [], [], 6, 12);
     expect(ohne.darfEnden).toBe(true);
