@@ -177,6 +177,36 @@ export function checkFoerderquote(
 }
 
 /**
+ * Befund 17.08.2026 (Lauf 2026-08-05T08-42-29): pv-001 summierte 24.500 EUR Förderposten
+ * bei einem Programm-Minimum von 50.000 EUR (DigitalPakt 2.0) — und ein LLM-Hinweis
+ * behauptete zugleich, die Summe liege "im Rahmen". 3 von 25 Plänen lagen unter dem
+ * Minimum. Rein arithmetischer Abgleich der Förderposten-Summe gegen die
+ * Programm-Spanne (foerdersummeMin/Max). Exportiert für Tests.
+ */
+export function checkFoerdersummenRahmen(
+  foerderposten: Finanzposten[],
+  programm: Foerderprogramm,
+  hinweise: string[]
+): void {
+  const summe = Math.round(foerderposten.reduce((s, p) => s + p.betragEur, 0));
+  if (summe <= 0) return;
+  const min = programm.foerdersummeMin;
+  const max = programm.foerdersummeMax;
+  const f = (n: number) => n.toLocaleString("de-DE");
+  if (typeof min === "number" && min > 0 && summe < min) {
+    hinweise.push(
+      `Die Förderposten summieren auf ${f(summe)} EUR — dieses Programm fördert erst ab ${f(min)} EUR. ` +
+        `Unterhalb der Mindestfördersumme ist der Antrag nicht förderfähig: Vorhaben aufstocken, bündeln oder ein passenderes Programm wählen.`
+    );
+  } else if (typeof max === "number" && max > 0 && summe > max) {
+    hinweise.push(
+      `Die Förderposten summieren auf ${f(summe)} EUR und überschreiten die maximale Fördersumme des Programms (${f(max)} EUR). ` +
+        `Beträge senken oder Posten in den Eigenanteil verschieben, sonst wird der Antrag gekürzt oder abgelehnt.`
+    );
+  }
+}
+
+/**
  * Begründungs-Sprache, die eingesteht, dass ein Betrag geschätzt/angenommen ist
  * (statt aus Nutzerangaben belegt). QA-02: solche Posten enthalten erfundene
  * Beträge, die der Nutzer leicht ungeprüft übernimmt.
@@ -579,6 +609,8 @@ export async function generateFinanzplan(
   checkBeantragtDeckung(foerderposten, facts, hinweise);
   // H-V-2: Förderquoten-Check gegen die Richtlinie (max Förderquote / Pflicht-Eigenanteil).
   checkFoerderquote(foerderposten, eigenposten, richtlinie, hinweise);
+  // Befund 17.08.: Förderposten-Summe gegen die Programm-Spanne (Min/Max) abgleichen.
+  checkFoerdersummenRahmen(foerderposten, programm, hinweise);
   // P1-B (Feedback 24.06.): Transparenz, wenn ein frei genannter Betrag aufgeteilt/angepasst wurde.
   checkStatedAmountAdjusted(foerderposten, eigenposten, facts, userAnswers, hinweise);
   // P1-A Backstop (Feedback 24.06.): warnt, falls ein ausgeschlossenes Element als Posten durchrutscht.
