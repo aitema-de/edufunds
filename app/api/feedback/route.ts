@@ -17,6 +17,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { query } from "@/lib/db";
+import { getClientIP } from "@/lib/rate-limit";
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || "";
 const GITHUB_REPO = process.env.GITHUB_REPO || "Aitema-gmbh/edufunds";
@@ -360,10 +361,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;l
 }
 
 export async function POST(req: NextRequest) {
-  const clientIp =
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    req.headers.get("cf-connecting-ip") ||
-    "unknown";
+  // Gemeinsame IP-Ermittlung (lib/rate-limit.ts): liest den X-Forwarded-For von
+  // RECHTS. Vorher `split(",")[0]` — damit liess sich das Feedback-Rate-Limit
+  // dieser Route mit einem mitgeschickten X-Forwarded-For pro Anfrage
+  // zuruecksetzen (Selbst-Pentest 30.07.2026).
+  const clientIp = getClientIP(req) || req.headers.get("cf-connecting-ip") || "unknown";
 
   if (isRateLimited(clientIp)) {
     return NextResponse.json(

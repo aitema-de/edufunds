@@ -177,6 +177,36 @@ export function checkFoerderquote(
 }
 
 /**
+ * Befund 17.08.2026 (Lauf 2026-08-05T08-42-29): pv-001 summierte 24.500 EUR Förderposten
+ * bei einem Programm-Minimum von 50.000 EUR (DigitalPakt 2.0) — und ein LLM-Hinweis
+ * behauptete zugleich, die Summe liege "im Rahmen". 3 von 25 Plänen lagen unter dem
+ * Minimum. Rein arithmetischer Abgleich der Förderposten-Summe gegen die
+ * Programm-Spanne (foerdersummeMin/Max). Exportiert für Tests.
+ */
+export function checkFoerdersummenRahmen(
+  foerderposten: Finanzposten[],
+  programm: Foerderprogramm,
+  hinweise: string[]
+): void {
+  const summe = Math.round(foerderposten.reduce((s, p) => s + p.betragEur, 0));
+  if (summe <= 0) return;
+  const min = programm.foerdersummeMin;
+  const max = programm.foerdersummeMax;
+  const f = (n: number) => n.toLocaleString("de-DE");
+  if (typeof min === "number" && min > 0 && summe < min) {
+    hinweise.push(
+      `Die Förderposten summieren auf ${f(summe)} EUR — dieses Programm fördert erst ab ${f(min)} EUR. ` +
+        `Unterhalb der Mindestfördersumme ist der Antrag nicht förderfähig: Vorhaben aufstocken, bündeln oder ein passenderes Programm wählen.`
+    );
+  } else if (typeof max === "number" && max > 0 && summe > max) {
+    hinweise.push(
+      `Die Förderposten summieren auf ${f(summe)} EUR und überschreiten die maximale Fördersumme des Programms (${f(max)} EUR). ` +
+        `Beträge senken oder Posten in den Eigenanteil verschieben, sonst wird der Antrag gekürzt oder abgelehnt.`
+    );
+  }
+}
+
+/**
  * Begründungs-Sprache, die eingesteht, dass ein Betrag geschätzt/angenommen ist
  * (statt aus Nutzerangaben belegt). QA-02: solche Posten enthalten erfundene
  * Beträge, die der Nutzer leicht ungeprüft übernimmt.
@@ -430,6 +460,63 @@ export function checkAusschlussLeak(
 }
 
 /**
+ * Ergebnis-Beträge einer Rechenkette aus einer Begründung ziehen: jedes
+ * „= <Betrag> EUR" bzw. „= <Betrag> €". Deutsche Schreibweise (Punkt =
+ * Tausender, Komma = Dezimal). Prozente und einheitenlose Ergebnisse werden
+ * NICHT erfasst — nur bezifferte Euro-Ergebnisse sind gegen `betragEur`
+ * prüfbar. Exportiert für Tests.
+ */
+export function extractRechenergebnisse(begruendung: string): number[] {
+  const out: number[] = [];
+  for (const m of begruendung.matchAll(/=\s*(?:ca\.\s*|rund\s*|etwa\s*)?([\d.\s]+(?:,\d+)?)\s*(?:EUR|€)/gi)) {
+    const wert = parseGermanAmount(m[1]);
+    if (wert !== null) out.push(wert);
+  }
+  return out;
+}
+
+/**
+ * Befund 17.08.2026 (Lauf `2026-08-17T07-59-25`): Seit `dc8d6d1` fordert
+ * FINANZPLAN_SYSTEM statt des Pauschalverbots ein Mengengerüst mit Rechnung,
+ * die zu `betragEur` aufgeht. Sie geht oft nicht auf — von 21 Posten mit
+ * ausgewiesenem Ergebnis wichen 11 ab, 6 davon hart: pv-003 „= 30 EUR" bei
+ * betragEur 300, pv-002 „= 18.000 EUR" bei 6.000, pv-006 „= 50.000 EUR" bei
+ * 100.000, pv-007 „= 125 EUR" bei 1.500. Vor dem Umbau war diese Fehlerklasse
+ * unmöglich, weil es keine Rechenketten gab.
+ *
+ * Rein arithmetisch (kein LLM). Nicht-destruktiv und das mit Absicht: ob der
+ * Betrag oder der Rechenweg falsch ist, kann der Code NICHT wissen — nur der
+ * Antragsteller. Die Rechnung still zu löschen würde einen echten Fehler
+ * verstecken und ggf. einen falschen `betragEur` unwidersprochen lassen.
+ *
+ * 🚫 Toleranz nicht enger stellen: `max(100 EUR, 5 %)` deckt das Runden auf
+ * glatte Beträge ab (1.560 → 1.500, 480 → 500, 293 → 323). Enger, und der
+ * Hinweis feuert gegen legitim gerundete Vorschläge.
+ * Ein Zwischenergebnis, das `betragEur` trifft, gilt als aufgehend (pv-001:
+ * „… = 16.000 EUR/Jahr; … = 8.000 EUR Förderanteil" bei betragEur 8.000).
+ * Exportiert für Tests.
+ */
+export function checkRechnungGehtAuf(posten: Finanzposten[], hinweise: string[]): void {
+  for (const p of posten) {
+    if (!p.begruendung || !Number.isFinite(p.betragEur) || p.betragEur <= 0) continue;
+    const ergebnisse = extractRechenergebnisse(p.begruendung);
+    if (ergebnisse.length === 0) continue; // Mengengerüst ohne Endsumme ist erlaubt
+
+    const toleranz = Math.max(100, p.betragEur * 0.05);
+    if (ergebnisse.some((w) => Math.abs(w - p.betragEur) <= toleranz)) continue;
+
+    const naechst = ergebnisse.reduce((a, c) =>
+      Math.abs(c - p.betragEur) < Math.abs(a - p.betragEur) ? c : a
+    );
+    const f = (n: number) => n.toLocaleString("de-DE");
+    hinweise.push(
+      `Die Rechnung im Posten „${p.bezeichnung}" ergibt ${f(naechst)} EUR, ausgewiesen sind ${f(p.betragEur)} EUR. ` +
+        `Bitte den Rechenweg oder den Betrag korrigieren — ein Finanzplan, dessen Kalkulation nicht aufgeht, wird beim Geber beanstandet.`
+    );
+  }
+}
+
+/**
  * Produktvision 2026-06-10 (Markierungs-Modell statt Löschen): Markiert jeden
  * Posten, dessen Betrag NICHT am Nutzerinput verankert ist, als `istVorschlag`
  * — ein bestätigbarer Assistenten-Vorschlag (z. B. Ausgestaltung einer genannten
@@ -579,10 +666,16 @@ export async function generateFinanzplan(
   checkBeantragtDeckung(foerderposten, facts, hinweise);
   // H-V-2: Förderquoten-Check gegen die Richtlinie (max Förderquote / Pflicht-Eigenanteil).
   checkFoerderquote(foerderposten, eigenposten, richtlinie, hinweise);
+  // Befund 17.08.: Förderposten-Summe gegen die Programm-Spanne (Min/Max) abgleichen.
+  checkFoerdersummenRahmen(foerderposten, programm, hinweise);
   // P1-B (Feedback 24.06.): Transparenz, wenn ein frei genannter Betrag aufgeteilt/angepasst wurde.
   checkStatedAmountAdjusted(foerderposten, eigenposten, facts, userAnswers, hinweise);
   // P1-A Backstop (Feedback 24.06.): warnt, falls ein ausgeschlossenes Element als Posten durchrutscht.
   checkAusschlussLeak(postenMarkiert, facts, hinweise);
+  // Befund 17.08.: Rechenkette in der Begründung gegen betragEur abgleichen —
+  // Gegengewicht zum Herleitungs-Gebot aus dc8d6d1 (siehe checkRechnungGehtAuf).
+  // Alle Posten, auch Eigenanteil (pv-003 traf einen Eigenanteil-Posten).
+  checkRechnungGehtAuf(postenMarkiert, hinweise);
   const vorschlaege = foerderposten.filter((p) => p.istVorschlag);
   if (vorschlaege.length > 0 && !hinweise.some((h) => h.includes("Vorschläge des Assistenten") || h.includes("Vorschlag des Assistenten"))) {
     const alle = vorschlaege.length === foerderposten.length && foerderposten.length > 0;

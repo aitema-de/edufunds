@@ -1,6 +1,8 @@
 export const dynamic = 'force-static';
 
 import { MetadataRoute } from 'next';
+import type { Foerderprogramm } from '@/lib/foerderSchema';
+import { isStatusNichtAnbietbar } from '@/lib/programm-status';
 import foerderprogrammeData from '@/data/foerderprogramme.json';
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -19,13 +21,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/impressum', priority: 0.3, changeFrequency: 'yearly' as const },
   ];
 
-  // Förderprogramme-Seiten
-  const programmPages = foerderprogrammeData.map((programm) => ({
-    url: `${baseUrl}/foerderprogramme/${programm.id}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.7,
-  }));
+  // Förderprogramme-Seiten — nur der anbietbare Katalog (gleiche Allowlist wie
+  // Finder/Matcher): archivierte/review_needed-Programme gehoeren nicht ins
+  // Google-Inhaltsverzeichnis. lastModified aus den Katalogdaten, damit Google
+  // echte Aenderungen sieht statt bei jedem Build ein neues Datum.
+  const programmPages = (foerderprogrammeData as Foerderprogramm[])
+    .filter((programm) => !isStatusNichtAnbietbar(programm))
+    .map((programm) => ({
+      url: `${baseUrl}/foerderprogramme/${programm.id}`,
+      lastModified: new Date(programm.updatedAt),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    }));
 
   // Alle Seiten kombinieren
   const allPages = [

@@ -10,7 +10,7 @@
  *
  * Liest die Basis-DATABASE_URL aus .env.local (zeigt auf .../edufunds via 5433).
  */
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { Client } from 'pg';
 
 const TEST_DB = 'edufunds_test';
@@ -56,11 +56,17 @@ async function create(url) {
   const t = new Client({ connectionString: withDb(url, TEST_DB) });
   await t.connect();
   try {
-    const files = [
-      '../scripts/init-db.sql',
-      '../db/migrations/002_wizard_session.sql',
-      '../db/migrations/003_paywall.sql',
-    ];
+    // ALLE Migrationen, numerisch sortiert. Vorher standen hier nur 002 und 003
+    // fest verdrahtet — die Wegwerf-DB lag damit 12 Migrationen hinter dem Repo
+    // (004 credit_codes ... 015 settlement fehlten komplett). Jeder Test gegen
+    // diese DB hat ein Schema geprueft, das es in Produktion nicht gibt; Routen,
+    // die auf den fehlenden Tabellen arbeiten, konnten hier gar nicht scheitern.
+    const migrationsDir = new URL('../db/migrations/', import.meta.url);
+    const migrationen = readdirSync(migrationsDir)
+      .filter((f) => f.endsWith('.sql'))
+      .sort((a, b) => a.localeCompare(b, 'en', { numeric: true }))
+      .map((f) => `../db/migrations/${f}`);
+    const files = ['../scripts/init-db.sql', ...migrationen];
     for (const f of files) {
       const sql = readFileSync(new URL(f, import.meta.url), 'utf8');
       await t.query(sql);

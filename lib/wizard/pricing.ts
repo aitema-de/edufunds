@@ -7,8 +7,11 @@
  * nachziehen — wir berechnen eine Schaetzung, keine Abrechnung.
  *
  * Gemini Paid Tier:
- *   - gemini-2.0-flash: $0.075 / $0.30
+ *   - gemini-2.5-flash: $0.30 / $2.50
  *   - gemini-2.5-pro:   $1.25 / $10
+ *   - gemini-2.0-flash: $0.075 / $0.30 — Modell von Google ABGESCHALTET (404
+ *     "no longer available", geprueft 30.07.2026). Preiszeile bleibt nur stehen,
+ *     damit Alt-Ledger aus Snapshots weiter berechenbar sind.
  *
  * DeepSeek API (cache-miss-Preise, ohne Promo):
  *   - deepseek-chat:     $0.14  / $0.28  (= v4-flash ohne Reasoning)
@@ -28,7 +31,9 @@ export interface ModelPrice {
 }
 
 const USD_PER_M_TOKENS: Record<string, ModelPrice> = {
+  // Nur noch fuer Alt-Ledger aus Snapshots — Modell ist abgeschaltet (s. Kopf).
   "gemini-2.0-flash": { inputPerMTokens: 0.075, outputPerMTokens: 0.3 },
+  "gemini-2.5-flash": { inputPerMTokens: 0.3, outputPerMTokens: 2.5 },
   "gemini-2.5-pro": { inputPerMTokens: 1.25, outputPerMTokens: 10 },
   "deepseek-chat": { inputPerMTokens: 0.14, outputPerMTokens: 0.28 },
   "deepseek-v4-flash": { inputPerMTokens: 0.14, outputPerMTokens: 0.28 },

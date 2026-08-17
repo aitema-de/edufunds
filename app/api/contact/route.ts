@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { Resend } from 'resend';
 import fs from 'fs';
 import path from 'path';
+import { readJsonBody } from "@/lib/json-body";
 
 // Resend API Key aus Umgebungsvariablen
 const resendApiKey = process.env.RESEND_API_KEY;
@@ -268,8 +269,10 @@ function isSpam(timestamp: number | undefined): boolean {
 // POST Handler
 export async function POST(request: Request) {
   try {
-    // Parse JSON Body
-    const body = await request.json();
+    // Parse JSON Body — leerer/kaputter Body ist ein Client-Fehler (400), nicht 500.
+    const gelesen = await readJsonBody<any>(request);
+    if (!gelesen.ok) return gelesen.response;
+    const body = gelesen.body;
 
     // Spam-Schutz: Honeypot-Feld prüfen
     if (body.website && body.website.trim() !== '') {

@@ -68,6 +68,14 @@ export function renderFinanzplanMarkdown(plan: Finanzplan): string {
       `_⟨Vorschlag⟩ = vom Assistenten vorgeschlagener Betrag — bitte bestätigen oder anpassen._  `
     );
   }
+  // Befund 17.08.2026: Die Hinweise (Eigenanteil-Sicherung, Förderquoten-/Deckungs-Checks,
+  // bewusste Nicht-Beantragung ausgeschlossener Elemente) standen bisher nur in der UI
+  // (FinanzplanView) — der Download verlor sie, obwohl genau dort steht, wie Eigenanteil
+  // und Programm-Rahmen adressiert sind. Rendering wie im unbezifferten Zweig oben.
+  if (plan.hinweise?.length) {
+    lines.push("");
+    for (const h of plan.hinweise) lines.push(`> ${h}`);
+  }
   if (plan.legitimiertAm) {
     lines.push("");
     lines.push(`_Finanzplan freigegeben am ${new Date(plan.legitimiertAm).toLocaleDateString("de-DE")}._`);

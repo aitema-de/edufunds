@@ -218,3 +218,57 @@ describe("detectRechtsfolgen — Rechtsfolgen-Behauptungen deterministisch fange
     expect(claims[0].zitat.toLowerCase()).toContain("mündliche zusage");
   });
 });
+
+/**
+ * Verbots-Klassen im Fakt-Verifikations-Pass (WIZ-05-Befund 31.07.2026).
+ * Der LLM-Detektor hat die belegten Faelle nicht gemeldet — der deterministische
+ * Detektor muss sie unabhaengig davon in den chirurgischen Repair bringen.
+ */
+describe("verifyFacts — deterministische Verbots-Treffer", () => {
+  const groundTruth =
+    "Schule: Astrid-Lindgren-Grundschule. Tablets anschaffen, 20 bis 30 vielleicht. Start nach den Sommerferien.";
+  const kontext = "Digitalisierung — Grundschulen";
+  const finalText =
+    "# Medienkonzept\n\nDie Netzwerkinfrastruktur wird kurzfristig aufgebaut, Laufzeit 01.01.2025 bis 31.12.2025. " +
+    "So schaffen wir eine tragfaehige Grundlage fuer den Fachunterricht in allen Jahrgaengen.";
+
+  it("neutralisiert ein erfundenes Datum, obwohl der LLM-Detektor nichts meldet", async () => {
+    const cleaned =
+      "# Medienkonzept\n\nDie Netzwerkinfrastruktur wird kurzfristig aufgebaut; der genaue Zeitraum ist noch festzulegen. " +
+      "So schaffen wir eine tragfaehige Grundlage fuer den Fachunterricht in allen Jahrgaengen.";
+    const revise = jest.fn().mockResolvedValue({ value: cleaned, usage: U });
+    const res = await verifyFacts(
+      finalText,
+      groundTruth,
+      kontext,
+      {
+        detect: async () => ({ value: { claims: [] }, usage: U }),
+        revise,
+        models: { detect: "d", revise: "r" },
+      }
+    );
+    expect(revise).toHaveBeenCalled();
+    expect(res.repaired).toBe(true);
+    expect(res.finalText).toBe(cleaned);
+    // Der Repair-Prompt muss die Reparatur-Anweisung mitbekommen.
+    expect(revise.mock.calls[0][1]).toContain("Tagesgenaues Datum");
+  });
+
+  it("laesst ein Datum in Ruhe, das ueber die weiteren Quellen gedeckt ist", async () => {
+    const revise = jest.fn();
+    const res = await verifyFacts(
+      finalText,
+      groundTruth,
+      kontext,
+      {
+        detect: async () => ({ value: { claims: [] }, usage: U }),
+        revise,
+        models: { detect: "d", revise: "r" },
+      },
+      // Programm/Richtlinie als erlaubte Quelle — z. B. rueckwirkende Foerderung.
+      `${groundTruth}\n{"bewerbungsfristText":"ab 2026 (rueckwirkend ab 01.01.2025)","laufzeitEnde":"31.12.2025"}`
+    );
+    expect(revise).not.toHaveBeenCalled();
+    expect(res.neutralisiert).toHaveLength(0);
+  });
+});

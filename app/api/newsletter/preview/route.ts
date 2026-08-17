@@ -1,17 +1,30 @@
-export const dynamic = 'force-static';
+// Kein force-static mehr: die Route prueft jetzt pro Request die Admin-Berechtigung.
+export const dynamic = 'force-dynamic';
 
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { generateNewsletter } from '@/lib/newsletter';
 import { testNewsletterData } from '@/lib/newsletter-test-content';
 import { publicAppUrl } from '@/lib/app-url';
+import { requireAdmin } from '@/lib/admin-auth';
 
 /**
  * GET /api/newsletter/preview
- * 
- * Returns a preview of the newsletter HTML.
- * For testing and review purposes.
+ *
+ * Interne Vorschau des Newsletter-HTML fuer Review vor dem Versand.
+ *
+ * ADMIN-ONLY. Vorher war die Route offen (Selbst-Pentest 30.07.2026: HTTP 200
+ * ohne jede Authentifizierung) — als einzige der vier Newsletter-Routen. Sie
+ * rendert zwar nur `testNewsletterData` und keine Abonnentendaten, hat also
+ * nichts Personenbezogenes preisgegeben; oeffentlich war damit aber eine interne
+ * Redaktionsansicht inklusive Ausgabennummer, Betreffzeile, dem Vermerk
+ * "Empfaenger: Alle bestaetigten Abonnenten" und einem Link in die
+ * Versand-Administration. Sobald dort echte Ausgabeninhalte stehen, waere das ein
+ * Vorab-Leak. Gleiche Schranke wie /api/newsletter/issues und /send.
  */
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const auth = await requireAdmin(request);
+  if (!auth.success) return auth.response;
+
   try {
     // Static export - always return HTML format
     const format = 'html';

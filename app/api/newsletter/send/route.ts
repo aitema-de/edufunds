@@ -13,6 +13,8 @@ import {
   sampleNewsletterData 
 } from '@/lib/newsletter';
 import { publicAppUrl } from '@/lib/app-url';
+import { readJsonBody } from "@/lib/json-body";
+import { getClientIP } from "@/lib/rate-limit";
 
 /**
  * Newsletter Send API
@@ -75,20 +77,10 @@ function checkRateLimit(ip: string): { allowed: boolean; remaining: number; rese
   return { allowed: true, remaining: SEND_RATE_LIMIT_MAX - entry.count, resetIn: SEND_RATE_LIMIT_WINDOW - (now - entry.firstRequest) };
 }
 
-function getClientIP(request: Request): string {
-  const forwarded = request.headers.get('x-forwarded-for');
-  const realIP = request.headers.get('x-real-ip');
-  
-  if (forwarded) {
-    return forwarded.split(',')[0].trim();
-  }
-  
-  if (realIP) {
-    return realIP;
-  }
-  
-  return 'unknown';
-}
+// IP-Ermittlung kommt aus lib/rate-limit.ts (liest X-Forwarded-For von RECHTS).
+// Hier stand eine dritte Kopie mit `split(',')[0]`, also dem client-kontrollierten
+// ersten Eintrag — das Sende-Limit dieser Route (10/h) war damit pro Anfrage
+// zuruecksetzbar. Selbst-Pentest 30.07.2026.
 
 function verifyAdminKey(request: Request): boolean {
   const adminKey = request.headers.get('x-admin-key');
@@ -136,9 +128,11 @@ export async function POST(request: Request) {
       );
     }
 
-    // Parse request body
-    const body = await request.json();
-    const { 
+    // Parse request body — leerer/kaputter Body ist 400, nicht 500.
+    const gelesen = await readJsonBody<any>(request);
+    if (!gelesen.ok) return gelesen.response;
+    const body = gelesen.body;
+    const {
       subject: customSubject, 
       data: customData,
       test = false,

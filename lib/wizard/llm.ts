@@ -5,7 +5,7 @@
  * Unterstuetzt:
  *   - `mistral`  → Mistral API (OpenAI-kompatibel, EU-gehostet) mit mistral-small-latest (DEFAULT)
  *   - `deepseek` → DeepSeek API (OpenAI-kompatibel) mit deepseek-chat
- *   - `gemini`   → Google Gemini API mit gemini-2.0-flash + gemini-2.5-pro
+ *   - `gemini`   → Google Gemini API mit gemini-2.5-flash
  *
  * Exports `generateJson`, `generateText`, `MODEL_INTERVIEW`, `MODEL_PIPELINE`.
  * `MODEL_INTERVIEW` und `MODEL_PIPELINE` sind die Modell-IDs, die in
@@ -50,17 +50,18 @@ const PROVIDER: LlmProvider = resolveProvider();
  * `deepseek-chat` route intern auf v4-flash OHNE Reasoning — `deepseek-v4-flash`
  * direkt waere ein Reasoning-Modell mit ~80 Tokens internem Denken pro Call,
  * daher massiv schneller mit `deepseek-chat`. */
-const MODELS: Record<LlmProvider, { interview: string; pipeline: string }> = {
+export const PROVIDER_MODELS: Record<LlmProvider, { interview: string; pipeline: string }> = {
   deepseek: {
     interview: "deepseek-chat",
     pipeline: "deepseek-chat", // bewusst gleich — Flash fuer alles, kostengetrieben
   },
   gemini: {
-    interview: "gemini-2.0-flash",
-    // gemini-2.5-pro auf gemini-2.0-flash herabgestuft fuer Baseline-Eval-Run:
-    // 2026-05-20 503 Service Unavailable wegen hoher Nachfrage auf gemini-2.5-pro.
-    // Wave-3-Tuning-Iterationen werden mit identischer Konfiguration verglichen.
-    pipeline: "gemini-2.0-flash",
+    // 30.07.2026: `gemini-2.0-flash` von Google abgeschaltet — die API antwortet
+    // 404 "This model is no longer available". Der dokumentierte Gemini-Fallback
+    // war damit tot; er faellt nur nicht auf, weil Prod auf mistral festgenagelt
+    // ist. Auf gemini-2.5-flash gezogen (verfuegbar geprueft, Preise in pricing.ts).
+    interview: "gemini-2.5-flash",
+    pipeline: "gemini-2.5-flash",
   },
   mistral: {
     // EU-gehosteter Provider (Frankreich), OpenAI-kompatible API. Small 4 ist der
@@ -72,8 +73,8 @@ const MODELS: Record<LlmProvider, { interview: string; pipeline: string }> = {
   },
 };
 
-export const MODEL_INTERVIEW = MODELS[PROVIDER].interview;
-export const MODEL_PIPELINE = MODELS[PROVIDER].pipeline;
+export const MODEL_INTERVIEW = PROVIDER_MODELS[PROVIDER].interview;
+export const MODEL_PIPELINE = PROVIDER_MODELS[PROVIDER].pipeline;
 /** @deprecated kompat-Re-Export — neuer Name `MODEL_INTERVIEW`. */
 export const MODEL_FLASH = MODEL_INTERVIEW;
 /** @deprecated kompat-Re-Export — neuer Name `MODEL_PIPELINE`. */

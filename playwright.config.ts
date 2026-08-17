@@ -29,6 +29,18 @@ const CACHED_CHROME = cachedChrome();
 
 export default defineConfig({
   testDir: './e2e',
+  /**
+   * `kaufpfad.spec.ts` gehoert NICHT in diesen Lauf. Die Datei laeuft nur ueber
+   * `npm run test:e2e:kaufpfad`, weil ihr Orchestrator (scripts/e2e-kaufpfad.mjs)
+   * erst eine eigene Postgres-Instanz bootet und die Session-Tokens per Env
+   * hereinreicht — siehe playwright.kaufpfad.config.ts.
+   *
+   * Ohne diesen Ausschluss zog `npx playwright test` die Datei mit und lieferte
+   * dauerhaft 7 rote Tests, die gar nicht gruen werden KOENNEN. Eine Suite mit
+   * permanent roten Tests erzieht dazu, Rot zu ignorieren — und dann faellt der
+   * echte Fehlschlag nicht mehr auf. (Befund 30.07.2026.)
+   */
+  testIgnore: ['**/kaufpfad.spec.ts'],
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: 1,

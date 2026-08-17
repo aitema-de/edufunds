@@ -10,15 +10,15 @@ import { nextStep } from "@/lib/wizard/interviewer";
 import { extractFacts } from "@/lib/wizard/facts-extractor";
 import { addUsage, emptyLedger } from "@/lib/wizard/pricing";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
+import { readJsonBody } from "@/lib/json-body";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
 
 export async function POST(req: NextRequest) {
   try {
-    const { sessionToken, answer } = (await req.json()) as {
-      sessionToken?: string;
-      answer?: string;
-    };
+    const gelesen = await readJsonBody<{ sessionToken?: string; answer?: string }>(req);
+    if (!gelesen.ok) return gelesen.response;
+    const { sessionToken, answer } = gelesen.body;
     if (!sessionToken || typeof answer !== "string") {
       return NextResponse.json(
         { error: "sessionToken und answer (string) erforderlich" },

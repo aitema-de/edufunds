@@ -6,6 +6,7 @@ import type { Finanzplan, Finanzposten } from "@/lib/wizard/types";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
 import { validateFinanzplan } from "@/lib/wizard/finanzplan-validator";
 import { computeAutofixes, toMeta } from "@/lib/wizard/finanzplan-autofix";
+import { readJsonBody } from "@/lib/json-body";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
 
@@ -31,11 +32,9 @@ function sanitizePosten(raw: unknown): Finanzposten | null {
 
 export async function POST(req: NextRequest) {
   try {
-    const { sessionToken, posten, hinweise } = (await req.json()) as {
-      sessionToken?: string;
-      posten?: unknown[];
-      hinweise?: string[];
-    };
+    const gelesen = await readJsonBody<{ sessionToken?: string; posten?: unknown[]; hinweise?: string[] }>(req);
+    if (!gelesen.ok) return gelesen.response;
+    const { sessionToken, posten, hinweise } = gelesen.body;
     if (!sessionToken || !Array.isArray(posten)) {
       return NextResponse.json(
         { error: "sessionToken und posten[] erforderlich" },

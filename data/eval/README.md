@@ -10,7 +10,9 @@
 | Matcher-Korpus | `matcher-korpus.json` | Phase 1+2, Top-Level-Array, 29 Schul-Anliegen mit expected_top3 + expected_clarification |
 | Matcher-Snapshots | `snapshots/<ISO>/<id>.json` | Phase 1+2, .gitignore'd ausser baseline |
 | Matcher-Reports | `reports/<ISO>.json` + `.md` | Phase 1+2, .gitignore'd |
-| Pipeline-Korpus | `pipeline-korpus.json` | Phase 5, Top-Level-Array, 22 Eintraege mit programmId + facts + expected_forbidden_markers + expected_geber_gruppe |
+| Pipeline-Korpus | `pipeline-korpus.json` | Phase 5, Top-Level-Array, 25 Eintraege mit programmId + facts + expected_forbidden_markers + expected_geber_gruppe |
+| Sim-Nutzer-Profile | `simuser-profile.json` | Eingefrorene Personenprofile fuer den simulierten Nutzer (WIZ-06) — versioniert, weil ein Profilwechsel jeden Vorher/Nachher-Vergleich entwertet |
+| Sim-Nutzer-Laeufe | `simuser-runs/<label>/<id>.json` | Echte Interview-Sessions je Lauf + `korpus-<label>.json` im pipeline-korpus-Format |
 | Pipeline-Snapshots | `pipeline-snapshots/<ISO>/<id>-run<N>.json` | Phase 5, .gitignore'd ausser baseline |
 | Pipeline-Reports | `pipeline-reports/<ISO>.json` + `.md` | Phase 5, .gitignore'd |
 | BASELINE | `BASELINE.md` | Append-only History, beide Phasen, manuelle Pflege (Skripte schreiben NICHT in diese Datei) |
@@ -47,6 +49,65 @@ npx tsx scripts/eval-pipeline.ts --live --deep --N=3 --snapshot
 # Mit env-File (empfohlen lokal):
 npx tsx --env-file=.env.local scripts/eval-pipeline.ts --replay data/eval/pipeline-snapshots/baseline --md-summary
 ```
+
+### Simulierter Nutzer (WIZ-06) — fuer Aenderungen AM INTERVIEW
+
+Der Pipeline-Korpus spielt **fixe** Frage-Antwort-Paare ab. Fuer alles nach dem Interview ist
+das genau richtig. Fuer Aenderungen am Interviewer ist es wertlos: andere Fragen bekommen
+dieselben vorkonservierten Antworten, die Messung danach zeigt dasselbe wie vorher — ein Gate,
+das gruen luegt (BASELINE.md, Eintrag 30.07., Abschnitt „Messgrenze").
+
+`scripts/eval-simuser.ts` schliesst die Luecke: ein Modell spielt die Schule, antwortet aus
+einem **eingefrorenen** Personenprofil und laeuft gegen die echten Routen
+`/api/wizard/start` + `/api/wizard/answer`.
+
+```bash
+# 0. Voraussetzung: laufende App + DB. Wegwerf-DB genuegt.
+ssh -fN -L 5433:127.0.0.1:15432 -o ExitOnForwardFailure=yes \
+    -o ServerAliveInterval=15 -o ServerAliveCountMax=3 root@49.13.15.44
+node scripts/test-db-setup.mjs
+npx next build && NODE_ENV=production DATABASE_URL=<edufunds_test> npx next start -p 3199
+
+# 1. Profile bauen (einmalig; danach eingefroren und im Repo versioniert)
+npx tsx --env-file=.env.local scripts/eval-simuser.ts profil
+
+# 2. Vor der Aenderung messen
+npx tsx --env-file=.env.local scripts/eval-simuser.ts lauf --label vorher \
+    --base http://localhost:3199 --parallel=2   # NIE hoeher, s. unten
+
+# 3. Aenderung an lib/wizard/prompts.ts, neu bauen, erneut messen
+npx tsx --env-file=.env.local scripts/eval-simuser.ts lauf --label nachher --base http://localhost:3199
+
+# 4. Diff
+npx tsx --env-file=.env.local scripts/eval-simuser.ts bericht --label nachher --vergleich vorher
+
+# 5. Wirkung auf den fertigen Antrag — auf DEN Sessions, nicht auf dem alten Korpus
+npx tsx --env-file=.env.local scripts/eval-pipeline.ts --live --N=1 --snapshot \
+    --korpus data/eval/simuser-runs/korpus-nachher.json
+npx tsx --env-file=.env.local scripts/eval-gutachter.ts --snapshots <neues-snapshot-verzeichnis> --arms=ki
+```
+
+**Zwei eingebaute Schutzmechanismen** — beide brechen den Lauf ab, statt zu warnen:
+
+- *Profil-Widerspruch*: Ein Hintergrundfakt, der dem Nichtwissen derselben Person widerspricht
+  („weiss nicht, wie viele Tablets" + „etwa 30 Stueck"), macht aus der Testperson einen
+  Automaten. Dann misst der Lauf Auskunftsfreude statt Fragenqualitaet. Geprueft beim
+  Profilbau **und** erneut vor jedem Lauf, weil die Datei von Hand editierbar ist.
+- *Zahlen-Leck*: Zahlangaben in den Antworten des Simulanten ohne Deckung im Profil.
+  Eine Korrekturschleife benennt die ungedeckte Zahl und laesst neu formulieren (druckt sie
+  von 17/25 auf ~3/25); ab 20 % betroffener Interviews bricht der Lauf ab.
+- *Runden ohne Faktenzuwachs*: Bleibt die Faktentabelle nach einer Antwort unveraendert,
+  ist entweder die Extraktion ausgefallen oder sie liefert nichts. Beides deckelt jede
+  faktenbasierte Kennzahl; ab 40 % bricht der Lauf ab und nennt beide Ursachen.
+
+⚠️ **`--parallel` nie ueber 2.** Darueber drosselt Mistral, und `extractFacts` faengt den 429
+selbst ab und behaelt kommentarlos den alten Stand — ein gedrosselter Lauf sieht dann aus wie
+einer mit schlechten Fragen (23 stille Ausfaelle im ersten Versuch).
+
+⚠️ **Messgrenze der Ausbeute-Metrik:** Die Tiefen-Quote kommt aus `lib/wizard/facts-tiefe.ts` —
+demselben Modul, das den Interviewer-Prompt speist. Sie belegt, dass mehr pruefbare Angaben ins
+Interview kommen; sie belegt **nicht**, dass der Antrag dadurch besser wird. Das entscheiden
+WIZ-01/02 und WIZ-05 auf den frisch erzeugten Sessions (Schritt 5).
 
 ## Threshold-Gate (PR-Pflicht)
 
@@ -87,6 +148,29 @@ Phase-5-Tuning-Hebel sind Env-Var-gesteuert (D-22). Defaults in `lib/wizard/conf
 | `PIPELINE_COMPLIANCE_STAGE=1` | 2: Compliance-Check-Stage zwischen recheck und finanzplan | false |
 | `PIPELINE_USE_VORBILD_FORMULIERUNGEN=1` | 3: Dossier-Daten-Injection in SECTION/REVISION | true |
 | `PIPELINE_GEBER_ROUTING_V2=1` | 4: GUIDANCE_V2 in geber-guidance.ts | true |
+| `WIZARD_FACTS_TIEFE=1` | 5: Tiefen-Abschnitt + zugehoerige Regeln im Interviewer-Prompt | **false** |
+
+Hebel 5 ist bewusst ein Schalter und keine feste Aenderung: Der Vorher/Nachher-Vergleich mit
+dem simulierten Nutzer braucht **beide Zustaende aus einem Build**. Sonst vergleicht man zwei
+Uebersetzungen des Quelltextes miteinander statt zwei Interviewer — und misst Build-Rauschen
+als Wirkung mit. Nebeneffekt, der ihn auch danach rechtfertigt: Ruecknahme ohne Deploy.
+
+**Default OFF, weil der Nutzen nicht belegt ist** (BASELINE.md, Eintrag 31.07. (b)): Unter der
+defekten Fakten-Extraktion sah der Hebel nach +4 Punkten Tiefe aus, nach ihrer Reparatur kehrt
+sich das um. Der Schalter bewegt Block UND System-Regeln gemeinsam — waeren sie getrennt,
+verwiese der System-Prompt auf einen Abschnitt, den es nicht gibt, und ein A/B misst nur die
+Haelfte des Hebels.
+
+### Fakten-Extraktion pruefen
+
+```bash
+npx tsx --env-file=.env.local scripts/probe-facts-extractor.ts            # Korpus-Antworten
+npx tsx --env-file=.env.local scripts/probe-facts-extractor.ts --lauf <label>  # echte Sessions
+```
+
+Zwei Bedingungen, beide muessen halten: **ueber 50 % der Interviews liefern Slots** UND
+**keine erfundenen Zahlen**. Abdeckung allein waere auch mit Halluzinationen zu erreichen.
+Stand 31.07.2026 nach der Reparatur: 23/25 Slots, 0/25 Erfindungen (vorher 2/25 und ungeprueft).
 
 Aktuelle Production-Defaults: siehe `lib/wizard/config.ts`.
 Default-Entscheidungs-Begruendung: siehe `data/eval/TUNING.md` (letzter Block).

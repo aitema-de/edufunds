@@ -16,6 +16,9 @@
  *   --deep            — aktiviert WIZ-02 Layer 3 LLM-Judge (teurer!)
  *   --pro-judge       — schaltet WIZ-03-Judge auf deepseek-v4-pro
  *   --single <id>     — evaluiert nur diesen Korpus-Eintrag (Pre-Closure-Smoke)
+ *   --korpus <pfad>   — anderer Korpus statt data/eval/pipeline-korpus.json
+ *                       (z. B. aus scripts/eval-simuser.ts). Schaltet das
+ *                       Threshold-Gate auf warning-only, siehe unten.
  *
  * Run: `npx tsx --env-file=.env.local scripts/eval-pipeline.ts [flags]`
  *
@@ -95,6 +98,7 @@ import {
   aggregateNRuns,
   passesThreshold,
   normalizeAbschnittName,
+  istWiz03Skip,
 } from "./eval-pipeline-internals";
 import type {
   PipelineKorpusEntry,
@@ -112,7 +116,7 @@ import type {
 // ============================================================================
 
 const REPO = resolve(__dirname, "..");
-const KORPUS_PATH = resolve(REPO, "data/eval/pipeline-korpus.json");
+const KORPUS_DEFAULT = resolve(REPO, "data/eval/pipeline-korpus.json");
 const REPORTS_DIR = resolve(REPO, "data/eval/pipeline-reports");
 const SNAPSHOTS_DIR_BASE = resolve(REPO, "data/eval/pipeline-snapshots");
 const RICHTLINIEN_DIR = resolve(REPO, "data/richtlinien");
@@ -137,6 +141,7 @@ Flags:
   --deep                    aktiviert WIZ-02 Layer 3 LLM-Judge
   --pro-judge               schaltet WIZ-03-Judge auf deepseek-v4-pro
   --single <entry-id>       evaluiert nur diesen Korpus-Eintrag
+  --korpus <pfad>           anderer Korpus (Gate wird dann warning-only)
 
 Konflikt: --snapshot und --replay koennen nicht gleichzeitig verwendet werden.
 
@@ -157,6 +162,7 @@ export function parseFlags(argv: string[]): Flags {
     proJudge: false,
     mdSummary: false,
     single: null,
+    korpus: null,
   };
 
   for (let i = 0; i < argv.length; i++) {
@@ -189,6 +195,15 @@ export function parseFlags(argv: string[]): Flags {
       }
       flags.single = next;
       i++;
+    } else if (a === "--korpus") {
+      const next = argv[i + 1];
+      if (!next || next.startsWith("--")) {
+        console.error(`${LOG_PREFIX} --korpus benoetigt einen Pfad als Argument.`);
+        printUsage();
+        process.exit(2);
+      }
+      flags.korpus = next;
+      i++;
     } else if (a.startsWith("--N=")) {
       const val = parseInt(a.slice(4), 10);
       if (isNaN(val) || val < 1 || val > 5) {
@@ -220,13 +235,17 @@ export function parseFlags(argv: string[]): Flags {
 // Korpus laden + validieren
 // ============================================================================
 
-async function loadKorpusAndValidate(single?: string | null): Promise<PipelineKorpusEntry[]> {
+async function loadKorpusAndValidate(
+  single?: string | null,
+  korpusPfad?: string | null
+): Promise<PipelineKorpusEntry[]> {
+  const pfad = korpusPfad ? resolve(REPO, korpusPfad) : KORPUS_DEFAULT;
   let korpusRaw: string;
   try {
-    korpusRaw = await readFile(KORPUS_PATH, "utf-8");
+    korpusRaw = await readFile(pfad, "utf-8");
   } catch (err) {
     console.error(
-      `${LOG_PREFIX} Korpus-Datei nicht gefunden: ${KORPUS_PATH}`
+      `${LOG_PREFIX} Korpus-Datei nicht gefunden: ${pfad}`
     );
     process.exit(2);
   }
@@ -235,12 +254,12 @@ async function loadKorpusAndValidate(single?: string | null): Promise<PipelineKo
   try {
     korpus = JSON.parse(korpusRaw) as PipelineKorpusEntry[];
   } catch {
-    console.error(`${LOG_PREFIX} pipeline-korpus.json ist kein valides JSON.`);
+    console.error(`${LOG_PREFIX} ${pfad} ist kein valides JSON.`);
     process.exit(2);
   }
 
   if (!Array.isArray(korpus)) {
-    console.error(`${LOG_PREFIX} pipeline-korpus.json ist kein JSON-Array auf Top-Ebene.`);
+    console.error(`${LOG_PREFIX} ${pfad} ist kein JSON-Array auf Top-Ebene.`);
     process.exit(2);
   }
 
@@ -589,6 +608,9 @@ export function aggregate(
   const wiz04Scores: number[] = [];
   const finanzplanScores: number[] = [];
   let nErrored = 0;
+  let wiz03JudgeFehler = 0;
+  let wiz03Uebersprungen = 0;
+  let wiz03Bewertet = 0;
 
   const geberGruppeMap = new Map<GeberGruppe, { wiz01: number[]; wiz02: number[]; wiz03: number[] }>();
   const dossierMap = new Map<string, { wiz01: number[]; wiz02: number[] }>();
@@ -599,6 +621,14 @@ export function aggregate(
 
     const validScores = scores.filter((s) => !s.error);
     if (validScores.length === 0) continue;
+
+    // WIZ-03-Judge-Fehler zaehlen, BEVOR die Nullen ins Mittel wandern.
+    for (const s of validScores) {
+      wiz03Bewertet++;
+      if (!s.wiz03.error) continue;
+      if (istWiz03Skip(s.wiz03.error)) wiz03Uebersprungen++;
+      else wiz03JudgeFehler++;
+    }
 
     // Mean ueber N Runs pro Eintrag
     const entryWiz01Mean =
@@ -681,7 +711,60 @@ export function aggregate(
     finanzplan: aggregateNRuns(finanzplanScores),
     perGeberGruppe,
     perDossier,
+    wiz03JudgeFehler,
+    wiz03Uebersprungen,
+    wiz03Bewertet,
   };
+}
+
+/**
+ * Messgeraet-Pruefung (Befund 17.08.2026). Der CI-Eval lief nach dem Wechsel auf
+ * Mistral mit WIZ-03 = 0,0 (σ 0,0) ueber ALLE 25 Eintraege durch und meldete
+ * GATE PASSED — der Workflow gab `MISTRAL_API_KEY` nicht weiter, `scoreWiz03`
+ * verschluckte jeden 401 und lieferte `score: 0`. Weil WIZ-03 warning-only ist,
+ * winkte das Gate eine totgelegte Metrik durch (drop=64,60).
+ *
+ * Ein defektes Messgeraet ist kein schlechtes Messergebnis. Deshalb hart, und
+ * ausdruecklich UNABHAENGIG von warning-only:
+ *  - Judge-Fehler in mehr als 10 % der bewerteten Runs → Abbruch (Exit 2, Setup).
+ *  - jede Metrik mit mean 0,0 UND stddev 0,0 bei n > 1 → Abbruch (Backstop, falls
+ *    eine kuenftige Score-Funktion ihre Fehler anders verschluckt).
+ * Einzelne transiente Fehler (≤ 10 %) sind nur eine Warnung mit Zahl — ein
+ * Netzhaenger soll die Batterie nicht rot machen, aber auch nicht unsichtbar sein.
+ * Exportiert fuer Tests.
+ */
+export function pruefeMessgeraet(metrics: AggregateMetrics): string[] {
+  const befunde: string[] = [];
+
+  if (metrics.wiz03Bewertet > 0 && metrics.wiz03JudgeFehler > 0) {
+    const anteil = metrics.wiz03JudgeFehler / metrics.wiz03Bewertet;
+    if (anteil > 0.1) {
+      befunde.push(
+        `WIZ-03-Judge antwortete in ${metrics.wiz03JudgeFehler} von ${metrics.wiz03Bewertet} Runs nicht ` +
+          `(${(anteil * 100).toFixed(0)} %). Die betroffenen Runs stehen als 0 im Mittel — die Zahl ist ` +
+          `KEIN Qualitaetsurteil. Ursache pruefen (API-Key des Judge-Modells, Netz, Modell-ID); ` +
+          `in CI: gibt der Workflow den Key des Judge-Providers weiter?`
+      );
+    }
+  }
+
+  const metrikPaare: Array<[string, ScoreStat]> = [
+    ["WIZ-01", metrics.wiz01],
+    ["WIZ-02", metrics.wiz02],
+    ["WIZ-03", metrics.wiz03],
+    ["WIZ-04", metrics.wiz04],
+    ["Finanzplan", metrics.finanzplan],
+  ];
+  for (const [name, stat] of metrikPaare) {
+    if (stat.runs.length > 1 && stat.mean === 0 && stat.stddev === 0) {
+      befunde.push(
+        `${name} ist ueber alle ${stat.runs.length} Eintraege exakt 0,0 bei σ 0,0. Eine Metrik ohne ` +
+          `jede Streuung ist ein defektes Messgeraet, kein Ergebnis.`
+      );
+    }
+  }
+
+  return befunde;
 }
 
 // ============================================================================
@@ -815,7 +898,10 @@ function printConsoleTable(metrics: AggregateMetrics): void {
     `${LOG_PREFIX}   WIZ-02:  mean=${metrics.wiz02.mean.toFixed(1)}  stddev=${metrics.wiz02.stddev.toFixed(1)}`
   );
   console.log(
-    `${LOG_PREFIX}   WIZ-03:  mean=${metrics.wiz03.mean.toFixed(1)}  stddev=${metrics.wiz03.stddev.toFixed(1)}`
+    `${LOG_PREFIX}   WIZ-03:  mean=${metrics.wiz03.mean.toFixed(1)}  stddev=${metrics.wiz03.stddev.toFixed(1)}` +
+      (metrics.wiz03JudgeFehler > 0 || metrics.wiz03Uebersprungen > 0
+        ? `  [Judge-Fehler ${metrics.wiz03JudgeFehler}, uebersprungen ${metrics.wiz03Uebersprungen} von ${metrics.wiz03Bewertet}]`
+        : "")
   );
   console.log(
     `${LOG_PREFIX}   WIZ-04:  mean=${metrics.wiz04.mean.toFixed(1)}  stddev=${metrics.wiz04.stddev.toFixed(1)}  (Begruendungs-Substanz)`
@@ -864,7 +950,7 @@ async function main() {
   }
 
   // Korpus laden + validieren
-  const korpus = await loadKorpusAndValidate(flags.single);
+  const korpus = await loadKorpusAndValidate(flags.single, flags.korpus);
   console.log(`${LOG_PREFIX} Korpus geladen: ${korpus.length} Eintraege`);
 
   // Programme laden (fuer Live-Modus)
@@ -903,6 +989,19 @@ async function main() {
   // Reports schreiben
   await writeReport(iso, metrics, allResults, flags);
 
+  // Messgeraet-Pruefung VOR dem Gate: ein defektes Messgeraet darf nicht als
+  // Ergebnis durchgewinkt werden (Befund 17.08.2026, siehe pruefeMessgeraet).
+  const messgeraetBefunde = pruefeMessgeraet(metrics);
+  if (messgeraetBefunde.length > 0) {
+    console.error(`${LOG_PREFIX}`);
+    console.error(`${LOG_PREFIX} ===== MESSGERAET DEFEKT =====`);
+    for (const b of messgeraetBefunde) console.error(`${LOG_PREFIX}   ✗ ${b}`);
+    console.error(
+      `${LOG_PREFIX} Abbruch ohne Gate-Urteil — die Zahlen dieses Laufs sind nicht auswertbar.`
+    );
+    process.exit(2);
+  }
+
   // Threshold-Gate (D-25)
   const baseline = await loadBaselineFromMd();
   if (baseline) {
@@ -937,11 +1036,26 @@ async function main() {
       );
     }
 
-    if (!gateW01.passed || !gateW02.passed || (gateW04 !== null && !gateW04.passed)) {
+    const verletzt = !gateW01.passed || !gateW02.passed || (gateW04 !== null && !gateW04.passed);
+
+    if (flags.korpus) {
+      // Die Schwellwerte in BASELINE.md stammen aus dem handautorisierten Korpus.
+      // Ein anderer Korpus hat andere Antworten und damit eine andere natuerliche
+      // Hoehe — ein hartes Gate wuerde hier nicht Regression messen, sondern den
+      // Korpuswechsel. Also melden statt blockieren; die Zahlen sind trotzdem
+      // aussagekraeftig, aber nur GEGEN EINEN LAUF DESSELBEN KORPUS.
+      console.log(
+        `${LOG_PREFIX}   ⚠️  --korpus gesetzt (${flags.korpus}) — Gate ist warning-only.` +
+          ` Die Baseline-Schwellwerte gelten fuer data/eval/pipeline-korpus.json;` +
+          ` vergleiche diesen Lauf nur mit einem anderen Lauf DESSELBEN Korpus.`
+      );
+      console.log(`${LOG_PREFIX} [GATE ${verletzt ? "WARN" : "OK"} — nicht blockierend]`);
+    } else if (verletzt) {
       console.error(`${LOG_PREFIX} [GATE FAILED] Regression unter Baseline-2σ erkannt.`);
       process.exit(1);
+    } else {
+      console.log(`${LOG_PREFIX} [GATE PASSED]`);
     }
-    console.log(`${LOG_PREFIX} [GATE PASSED]`);
   } else {
     console.log(
       `${LOG_PREFIX} Kein Phase-5-Baseline-Eintrag in BASELINE.md gefunden — Gate-Check uebersprungen.`

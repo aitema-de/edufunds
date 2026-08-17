@@ -7,6 +7,7 @@ import {
   MAX_PASSAGE_LEN,
   type ReformulierDirektive,
 } from "@/lib/reformulierung";
+import { readJsonBody } from "@/lib/json-body";
 
 /**
  * P4-A Teil 1 (Pilot-Feedback 24.06.) — On-Demand-Passagen-Reformulierung.
@@ -22,11 +23,9 @@ import {
 
 export async function POST(req: NextRequest) {
   try {
-    const { sessionToken, passage, direktive } = (await req.json()) as {
-      sessionToken?: string;
-      passage?: unknown;
-      direktive?: unknown;
-    };
+    const gelesen = await readJsonBody<{ sessionToken?: string; passage?: unknown; direktive?: unknown }>(req);
+    if (!gelesen.ok) return gelesen.response;
+    const { sessionToken, passage, direktive } = gelesen.body;
 
     if (!sessionToken) {
       return NextResponse.json({ error: "sessionToken erforderlich" }, { status: 400 });

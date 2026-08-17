@@ -219,6 +219,28 @@ export interface AggregateMetrics {
   finanzplan: ScoreStat;
   perGeberGruppe: PerGeberGruppeStats[];
   perDossier: PerDossierStats[];
+  /**
+   * Befund 17.08.2026: `scoreWiz03` fängt jeden Judge-Fehler ab und gibt
+   * `score: 0` zurück — ein fehlender API-Key sieht damit aus wie ein Antrag mit
+   * miserabler Tonalitaet. Diese Zaehler machen den Unterschied sichtbar:
+   * `wiz03JudgeFehler` = echte Judge-Fehler (Key, Netz, Modell),
+   * `wiz03Uebersprungen` = legitime Skips (leerer Text, Geber-Gruppe unbekannt).
+   */
+  wiz03JudgeFehler: number;
+  wiz03Uebersprungen: number;
+  /** Bewertete Runs insgesamt (Bezugsgroesse fuer die beiden Zaehler). */
+  wiz03Bewertet: number;
+}
+
+/**
+ * Fehlertexte aus `scoreWiz03`, die KEIN Judge-Fehler sind, sondern ein
+ * beabsichtigtes Auslassen. Alles andere zaehlt als Judge-Fehler.
+ */
+export const WIZ03_SKIP_GRUENDE = ["leerer finalText", "Geber-Gruppe unbekannt"] as const;
+
+export function istWiz03Skip(error: string | undefined): boolean {
+  if (!error) return false;
+  return WIZ03_SKIP_GRUENDE.some((g) => error.includes(g));
 }
 
 export interface Flags {
@@ -230,6 +252,13 @@ export interface Flags {
   proJudge: boolean;
   mdSummary: boolean;
   single: string | null;
+  /**
+   * Abweichender Korpus-Pfad. null = `data/eval/pipeline-korpus.json`.
+   * Gebraucht fuer die Korpora, die `scripts/eval-simuser.ts` aus echten
+   * Interview-Sessions erzeugt — ohne diesen Schalter liesse sich eine
+   * Interview-Aenderung nicht durch die Pipeline messen.
+   */
+  korpus: string | null;
 }
 
 // ============================================================================

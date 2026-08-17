@@ -34,10 +34,16 @@ export async function extractFacts(
 
   const user = buildFactsExtractorUserPrompt(messages, currentFacts);
   try {
+    // temperature 0: Die Extraktion ist eine Lese-Aufgabe, kein Formulieren. Ohne
+    // gesetzten Wert laeuft sie auf dem Anbieter-Default und liefert fuer denselben
+    // Verlauf mal Fakten, mal `{}` (gemessen 31.07.2026). Fuer eine Stufe, deren
+    // Ergebnis Interviewer-Steuerung, Bezahl-Schranke und Generierung speist, ist
+    // dieser Zufall nicht hinnehmbar.
     const { value, usage } = await generateJson<Partial<WizardFacts>>(
       MODEL_INTERVIEW,
       FACTS_EXTRACTOR_SYSTEM,
-      user
+      user,
+      { temperature: 0 }
     );
     const merged = mergeFacts(currentFacts, value);
     return { facts: merged, usage: { model: MODEL_INTERVIEW, usage } };

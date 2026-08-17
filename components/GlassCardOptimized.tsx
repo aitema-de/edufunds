@@ -115,22 +115,31 @@ export const GlassCard = memo(function GlassCard({ programm }: GlassCardProps) {
           </p>
 
           {/* Details */}
+          {/*
+            `min-w-0 max-w-full` an den Flex-Kindern ist hier nicht Kosmetik:
+            Ein Flex-Item hat standardmaessig `min-width: auto` und schrumpft
+            deshalb nicht unter seine Inhaltsbreite — `truncate` am Kind lief damit
+            ins Leere. Lange Werte in `foerdersummeText` (z. B. "bis zu 50.000 EUR
+            pro Schule und Schuljahr") haben die Karte auf 696 px aufgezogen und die
+            gesamte Programmliste auf dem Telefon querscrollen lassen (gemessen bei
+            390 px Viewport, scripts/visual-sweep.mjs, 30.07.2026).
+          */}
           <div className="flex flex-wrap gap-4 text-sm text-[#57534e] mb-4">
             {programm.foerdersummeText && (
-              <span className="flex items-center gap-1">
+              <span className="flex min-w-0 max-w-full items-center gap-1">
                 <Euro className="h-4 w-4 text-[#1e3d32] flex-shrink-0" />
                 <span className="truncate font-medium text-[#1e3d32]">{programm.foerdersummeText}</span>
               </span>
             )}
             {programm.bewerbungsfristText && (
-              <span className="flex items-center gap-1">
+              <span className="flex min-w-0 max-w-full items-center gap-1">
                 <Calendar className="h-4 w-4 text-[#57534e]/50 flex-shrink-0" />
                 <span className="truncate">{programm.bewerbungsfristText}</span>
               </span>
             )}
-            <span className="flex items-center gap-1">
+            <span className="flex min-w-0 max-w-full items-center gap-1">
               <MapPin className="h-4 w-4 text-[#57534e]/50 flex-shrink-0" />
-              {bundeslandText}
+              <span className="truncate">{bundeslandText}</span>
             </span>
           </div>
 

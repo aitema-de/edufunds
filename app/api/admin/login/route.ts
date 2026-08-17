@@ -19,6 +19,17 @@ import {
   setAdminSession 
 } from '@/lib/admin-auth';
 import { getCorsHeaders, isOriginAllowed } from '@/lib/cors';
+/**
+ * Die IP-Ermittlung liegt zentral in lib/rate-limit.ts und liest den
+ * X-Forwarded-For von RECHTS (der aeusserste vertrauenswuerdige Proxy haengt die
+ * echte Peer-IP an). Hier stand vorher eine eigene Kopie, die `split(',')[0]`
+ * nahm — also den vom Client frei erfindbaren ERSTEN Eintrag. Damit liess sich der
+ * strengere Login-Zaehler dieser Route (5 Versuche/15 min) mit einem
+ * mitgeschickten `X-Forwarded-For: <zufall>` pro Versuch zuruecksetzen; gebremst
+ * hat dann nur noch das Middleware-Limit (auth-Bucket). Selbst-Pentest 30.07.2026.
+ */
+import { getClientIP } from '@/lib/rate-limit';
+import { readJsonBody } from '@/lib/json-body';
 
 // Rate Limiting für Login
 const loginAttempts = new Map<string, { count: number; resetTime: number }>();
@@ -42,12 +53,6 @@ function checkRateLimit(ip: string): { allowed: boolean; waitMinutes: number } {
   
   entry.count++;
   return { allowed: true, waitMinutes: 0 };
-}
-
-function getClientIP(request: NextRequest): string {
-  const forwarded = request.headers.get('x-forwarded-for');
-  const realIP = request.headers.get('x-real-ip');
-  return forwarded?.split(',')[0].trim() || realIP || 'unknown';
 }
 
 export async function OPTIONS(request: NextRequest) {
@@ -89,8 +94,9 @@ export async function POST(request: NextRequest) {
   }
   
   try {
-    const body = await request.json();
-    const { email, password } = body;
+    const gelesen = await readJsonBody<{ email?: string; password?: string }>(request);
+    if (!gelesen.ok) return gelesen.response;
+    const { email, password } = gelesen.body;
     
     // Validierung
     if (!email || !password) {

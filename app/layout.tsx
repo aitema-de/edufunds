@@ -139,9 +139,28 @@ export default async function RootLayout({
   return (
     <html lang="de" className={`${fontSerif.variable} ${fontSans.variable} ${fontMono.variable} ${fontDisplay.variable} ${fontHand.variable}`}>
       <head>
+        {/*
+          suppressHydrationWarning ist hier PFLICHT, nicht Kosmetik.
+
+          React blendet das nonce-Attribut auf der Client-Seite aus Sicherheits-
+          gruenden aus (es liest `element.nonce` als leeren String). Der Server
+          liefert aber `nonce="<zufall>"` — beim Hydrieren prallt beides
+          aufeinander. In der Entwicklung ist das eine Warnung, im
+          Produktions-Build wirft React Fehler #418 als uncaught pageerror; auf
+          /archiv (Client-Component-Seite) ist die Hydration dadurch messbar
+          abgebrochen. Belegt am 30.07.2026 ueber den Dev-Overlay-Diff:
+              + nonce="j3RB47sx3jAKSFWgA054xA=="   (Server)
+              - nonce=""                            (Client)
+
+          Der Nonce MUSS serverseitig bleiben: ohne ihn blockiert die
+          nonce-basierte CSP aus middleware.ts das Inline-Script. Wir
+          unterdruecken deshalb gezielt den Abgleich fuer genau dieses Element —
+          der Inhalt ist statisches JSON-LD und aendert sich nie.
+        */}
         <script
           type="application/ld+json"
           nonce={nonce}
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrgData) }}
         />
       </head>

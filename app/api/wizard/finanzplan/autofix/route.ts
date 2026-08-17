@@ -6,15 +6,15 @@ import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
 import { validateFinanzplan } from "@/lib/wizard/finanzplan-validator";
 import { computeAutofixes, toMeta } from "@/lib/wizard/finanzplan-autofix";
 import type { Finanzplan } from "@/lib/wizard/types";
+import { readJsonBody } from "@/lib/json-body";
 
 const programme = foerderprogrammeData as Foerderprogramm[];
 
 export async function POST(req: NextRequest) {
   try {
-    const { sessionToken, actionId } = (await req.json()) as {
-      sessionToken?: string;
-      actionId?: string;
-    };
+    const gelesen = await readJsonBody<{ sessionToken?: string; actionId?: string }>(req);
+    if (!gelesen.ok) return gelesen.response;
+    const { sessionToken, actionId } = gelesen.body;
     if (!sessionToken || !actionId) {
       return NextResponse.json(
         { error: "sessionToken und actionId erforderlich" },

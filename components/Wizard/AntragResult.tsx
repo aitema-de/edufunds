@@ -23,6 +23,7 @@ import { PaywallGate } from "./PaywallGate";
 import { AntragSectionNav, slugifyHeading } from "./AntragSectionNav";
 import { KiHinweis, KI_EXPORT_HINWEIS } from "@/components/KiHinweis";
 import { markdownToRtf } from "@/lib/export/rtf";
+import { baueExportText, sammleOffenePunkte } from "@/lib/wizard/offene-punkte";
 import { EinreichungInfo } from "./EinreichungInfo";
 import type { EinreichungInfo as EinreichungInfoData } from "@/lib/wizard/einreichung";
 
@@ -316,7 +317,24 @@ export function AntragResult({
   // on-screen trägt das die <KiHinweis variant="ergebnis"/>-Leiste.
   const exportFooter = `\n\n---\n${KI_EXPORT_HINWEIS}\n`;
   const baseExport = finanzplanMarkdown ? `${text}\n${finanzplanMarkdown}\n` : text;
-  const combinedText = baseExport + exportFooter;
+
+  /**
+   * Entscheidung 1C (31.07.2026): Die Arbeitsmarker bleiben on-screen sichtbar
+   * (MarkerHighlight), wandern im EXPORT aber geschlossen nach vorne — als
+   * Arbeitsliste vor dem Antrag, ausdruecklich nicht zum Einreichen.
+   *
+   * Grund: Beide Judges der Gutachter-Messung vom 30.07. nennen unabhaengig
+   * denselben Hauptmangel ("durch zahlreiche TODO-Vermerke klar als unfertiger
+   * Entwurf erkennbar"). Gemessener Abzug 0,31 Punkte auf der 5er-Skala. Die
+   * Marker einfach zu loeschen war bewusst NICHT die Wahl — dann reicht jemand
+   * unbemerkt Luecken ein. Details in lib/wizard/offene-punkte.ts.
+   */
+  const offenePunkte = sammleOffenePunkte(baseExport);
+  const offenePunkteAnzahl = offenePunkte.todos.length + offenePunkte.annahmen.length;
+  const combinedText = baueExportText(baseExport, {
+    dokumentLabel: l.text,
+    footer: exportFooter,
+  });
 
   // Hebel 2 (E2E-Probe 09.06.) — Auslieferungs-Block: Ein nicht abschliessend
   // adressiertes hoch-Finding des KI-Gutachters ist ein echtes Qualitaetsrisiko.
@@ -510,6 +528,43 @@ export function AntragResult({
               markiert und bleiben auch im Export sichtbar gekennzeichnet, bis Sie sie{" "}
               {sessionToken ? "unten bestätigen, anpassen oder streichen" : "geprüft haben"}.
             </p>
+          </div>
+        </div>
+      )}
+      {/*
+        Entscheidung 1C (31.07.2026): Hinweis auf die Arbeitsliste im Export.
+        Der Export sperrt hier NICHT — er warnt. Die offenen Punkte gehen nicht
+        verloren, sie stehen im heruntergeladenen Dokument ganz vorne. Wer den
+        Antrag ungeprueft einreicht, hat sie also gelesen oder ueberblaettert;
+        beides ist seine Entscheidung, nicht unsere stille Auslassung.
+      */}
+      {paid && offenePunkteAnzahl > 0 && (
+        <div className="mb-5 rounded-lg border border-[#1e3d32]/30 bg-[#1e3d32]/[0.06] p-4 text-sm text-[#1c1917]">
+          <div className="flex items-start gap-3">
+            <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#1e3d32]" />
+            <div>
+              <div className="font-semibold">
+                {offenePunkteAnzahl} offene{offenePunkteAnzahl === 1 ? "r" : ""} Punkt
+                {offenePunkteAnzahl === 1 ? "" : "e"} vor dem Einreichen
+              </div>
+              <p className="mt-1 text-xs leading-relaxed text-[#57534e]">
+                {offenePunkte.todos.length > 0 && (
+                  <>
+                    <strong>{offenePunkte.todos.length}</strong> fehlende Angabe
+                    {offenePunkte.todos.length === 1 ? "" : "n"}
+                    {offenePunkte.annahmen.length > 0 && ", "}
+                  </>
+                )}
+                {offenePunkte.annahmen.length > 0 && (
+                  <>
+                    <strong>{offenePunkte.annahmen.length}</strong> zu prüfende Annahme
+                    {offenePunkte.annahmen.length === 1 ? "" : "n"}
+                  </>
+                )}
+                . Im Download stehen sie als Arbeitsliste <strong>vor</strong> dem {l.text} — der{" "}
+                {l.text} selbst liest sich fertig. Die Liste gehört nicht in die Einreichung.
+              </p>
+            </div>
           </div>
         </div>
       )}
