@@ -888,18 +888,26 @@ NIEMALS in Bezeichnung oder Begruendung erfinden:
 - **Tarif-Stufen** (TV-L E9, EG10, A12, …) — wenn der User keine Eingruppierung nannte: weglassen.
 - **Konkrete Honorar-/Stundensaetze** ("180 EUR Honorar", "60 EUR/Std", "75 EUR Vertretungskosten") — nur wenn der User selbst Saetze nannte. Sonst: in "hinweise" notieren, dass Saetze noch einzuholen sind, und Posten als Pauschale ohne erfundene Splittung anlegen.
 - **Marken-/Modellnamen** ("Apple Pencil", "Microsoft Surface") — wenn der User nur "Stifte" oder "Tablets" sagte: nicht spezifizieren.
-- **Erfundene Mengen-Aufschluesselungen** ("16 pro Klasse", "2 Lehrkraefte freigestellt") — nur wenn der User konkrete Mengen genannt hat.
+- **Erfundene Mengen-Aufschluesselungen** ("16 pro Klasse", "2 Lehrkraefte freigestellt") — verboten, wenn die Menge weder vom User genannt noch aus belegten Fakten ABLEITBAR ist. Eine aus belegten Fakten abgeleitete Menge (z. B. Geraetezahl aus der belegten Schuelerzahl) ist erlaubt und erwuenscht, wenn die Ableitung im Satz steht und die Annahme gekennzeichnet ist (s. Herleitungs-Gebot).
 - **Bildungsrabatt-Annahmen** ("ca. 90 EUR in Bildungstarifen plus Versand") — wenn der User nur einen Endpreis nannte: diesen verwenden.
-- **Erfundene Kalkulations-HERLEITUNGEN** — eine Rechenkette aus Saetzen, die der User nie nannte. Das "Schaetzung:"-Praefix macht sie NICHT zulaessig: es kennzeichnet, dass der BETRAG geschaetzt ist, es erlaubt nicht, eine Herleitung zu erfinden.
-  SCHLECHT: "Schaetzung: 2 Lehrkraefte × 2 Projekttage × 8 Std/Tag × 56 EUR/Std (TV-L E11, Mittelwert)"
-  GUT: "Schaetzung: Vertretungs-/Freistellungskosten fuer die Projekttage; Stundensatz und Eingruppierung sind beim Schultraeger noch zu erfragen."
-  Merke: Eine ehrliche Pauschale mit einem Satz "Grundlage noch einzuholen" ist besser als eine Rechnung, die belegt aussieht und es nicht ist.
+- **Kalkulations-Herleitungen mit erfundener GRUNDLAGE** — eine Rechenkette, die eine ueberpruefbare externe Grundlage (Tarifgruppe, konkreter Stunden-/Tagessatz, amtliche Pauschale) als Tatsache behauptet, die der User nie nannte. Das "Schaetzung:"-Praefix macht das NICHT zulaessig: es kennzeichnet, dass der BETRAG geschaetzt ist, es erlaubt nicht, eine Grundlage zu erfinden.
+  SCHLECHT: "Schaetzung: 2 Lehrkraefte × 2 Projekttage × 8 Std/Tag × 56 EUR/Std (TV-L E11, Mittelwert)" — Tarif und Satz sind als Fakt behauptet.
+  GUT (Grundlage fehlt): "Schaetzung: Vertretungs-/Freistellungskosten fuer die Projekttage; Stundensatz und Eingruppierung sind beim Schultraeger noch zu erfragen."
+  GUT (Menge ableitbar): "Schaetzung: ca. 30 Tablets fuer den Klassensatz (belegt: 312 Schueler:innen; Annahme: 1 Geraet je 2 Kinder einer Lerngruppe) × marktueblich ca. 400 EUR je Geraet = 12.000 EUR; Stueckzahl und Preis vor Einreichung durch Angebote belegen."
+  Merke: Falsch ist die behauptete externe Grundlage, nicht die Rechnung. Eine transparente Rechnung aus belegten Fakten und offen gekennzeichneten Annahmen ist besser als eine nackte Pauschale — eine Pauschale ist besser als eine Rechnung, die belegt aussieht und es nicht ist.
+
+## Herleitungs-Gebot (Gutachter-Anker: "Posten aus dem Vorhaben abgeleitet")
+Ein Gutachter bewertet nicht nur, OB Posten dastehen, sondern ob sie sichtbar aus dem Vorhaben folgen. Deshalb fuer JEDEN Posten:
+- Die \`begruendung\` verankert den Posten im Vorhaben (welche genannte Aktivitaet/welches Ziel braucht ihn) UND zeigt, wie der Betrag zustande kommt.
+- Laesst sich die MENGE aus belegten Fakten ableiten (Schuelerzahl, Klassen-/Gruppengroesse, Projektdauer, Zahl der Termine/Teilnehmenden), dann als Mengengeruest schreiben: Menge (mit Ableitung und "Annahme:"-Kennzeichnung fuer jeden nicht belegten Schritt) × Einzelbetrag ("marktueblich ca. …", "Schaetzung") = betragEur. Die Rechnung MUSS zum \`betragEur\` aufgehen.
+- Jede Zahl der Kette ist entweder belegt (FAKTEN, USER-ANTWORTEN, RICHTLINIE — Bezug nennen) oder einzeln als Annahme/ca. gekennzeichnet. Unmarkierte Zwischenwerte sind verboten.
+- Ist keine Menge ableitbar und keine Grundlage belegt: ehrliche Pauschale mit "Grundlage noch einzuholen" (wie bisher).
 - **Erfundene Personal-/Partner-Posten, die der User-Aussage widersprechen** — sagte der User z. B. "macht eine Kollegin nebenher / nicht offiziell", darf daraus KEIN bezahlter Personalposten werden. Sagte er "erstmal nur die Lehrkraefte", keine externe Honorarkraft erfinden.
 
 ## Schaetz-Ehrlichkeit (HART — wichtigster Punkt bei vagem Input)
 Ein Finanzplan MUSS Betraege enthalten — aber er darf erfundene Betraege nicht als belegte Kalkulation tarnen.
 - Hat der User fuer einen Posten KEINEN Betrag/Preis/keine Menge genannt, ist der Betrag eine **Schaetzung**. Beginne die \`begruendung\` solcher Posten dann mit dem Wort **"Schaetzung:"** (z. B. "Schaetzung: Klassensatz Tablets, ueblicher Geraetepreis, Stueckzahl noch festzulegen").
-- Schaetzbetraege: konservativ und **rund** halten (z. B. 3.000, nicht 3.140). Keine erfundene Splittung ("25 × 540 EUR"), wenn der User die Menge nicht nannte — dann eine ehrliche Pauschale.
+- Schaetzbetraege: konservativ und **rund** halten (z. B. 3.000, nicht 3.140). Eine Splittung ("25 × 540 EUR") nur, wenn die Menge vom User genannt oder aus belegten Fakten abgeleitet ist (Ableitung nennen, s. Herleitungs-Gebot) — sonst eine ehrliche Pauschale.
 - Hat der User INSGESAMT keine einzige Geldangabe gemacht, setze in \`hinweise\` als ERSTEN Eintrag: "Alle Betraege sind grobe Schaetzungen ohne Angaben der Schule — vor Einreichung durch Angebote belegen."
 - Erfinde keine Posten fuer Leistungen, die der User nicht erwaehnt hat, nur um den Plan "vollstaendig" wirken zu lassen.
 - KEIN erfundener Pauschal-"Puffer"/"Reserve"/"Sonstiges Material und Versand"-Posten (z. B. "Puffer 150 EUR"), den der User nicht genannt hat — solche Fuell-Posten taeuschen eine Kalkulation vor und passen die Summe kuenstlich an. Wenn ein Sicherheitsaufschlag fachlich sinnvoll ist, nur als klar mit "Schaetzung:" markierter Vorschlag und nur, wenn er die beantragte Gesamtsumme nicht ueberschreitet.
@@ -913,7 +921,7 @@ Ein Finanzplan MUSS Betraege enthalten — aber er darf erfundene Betraege nicht
 ## Regeln
 - Nutze NUR Kostenkategorien und Obergrenzen, die in der mitgelieferten Richtlinie als foerderfaehig markiert sind.
 - Beziehe dich auf die tatsaechlich genannten Projektinhalte (Fakten) — keine generischen Posten wie "diverses Material".
-- Jede Position muss eine kurze Begruendung haben: warum dieser Posten, wie kommt der Betrag zustande (z. B. "15 Tablets à 450 EUR" — wenn der User 450 EUR genannt hat).
+- Jede Position muss eine kurze Begruendung haben: warum folgt dieser Posten aus dem Vorhaben, wie kommt der Betrag zustande (Herleitungs-Gebot oben — Mengengeruest, wo ableitbar; sonst Pauschale mit offener Grundlage).
 - Wenn die Richtlinie einen Eigenanteil vorschreibt, fuege eigens markierte Posten hinzu, die diesen Eigenanteil abdecken (eigenanteil: true). Eigenanteil darf nicht aus anderen oeffentlichen Foerdermitteln kommen.
 - Halte dich an plausible Einzelbetraege. KEINE suspekt runden Millionenbetraege.
 - Wenn kritische Info fehlt, nenne das in "hinweise" (z. B. "Schuelerzahl unklar, Tablet-Anzahl geschaetzt", "Honorar-Saetze nicht vom User genannt — Pauschale geschaetzt").
@@ -970,7 +978,7 @@ ${rlBlock}
 PROJEKTFAKTEN:
 ${JSON.stringify(facts, null, 2)}${userAnswersBlock}${buildAusschlussBlock(facts)}
 
-Erstelle den Finanzplan. Erfinde keine Tarif-Stufen, Honorarsaetze, Marken-/Modellnamen oder Mengen-Aufschluesselungen, die nicht im User-Input belegt sind. Lieber Pauschalen mit "in hinweise erlaeutert" als erfundene Splittungen.`;
+Erstelle den Finanzplan. Erfinde keine Tarif-Stufen, Honorarsaetze oder Marken-/Modellnamen, die nicht im User-Input belegt sind. Leite Mengen sichtbar aus den belegten Fakten ab (Herleitungs-Gebot) und kennzeichne jede Annahme; wo keine Ableitung moeglich ist, ehrliche Pauschale statt erfundener Splittung.`;
 }
 
 // ============================================================================
