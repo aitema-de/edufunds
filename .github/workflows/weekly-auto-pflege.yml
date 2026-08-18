@@ -137,7 +137,7 @@ jobs:
         id: diff
         run: |
           set -euo pipefail
-          if git diff --quiet data/richtlinien data/richtlinien-prioritaeten.json data/foerderprogramme.json; then
+          if git diff --quiet data/richtlinien data/richtlinien-prioritaeten.json data/foerderprogramme.json data/scan-state; then
             echo "changed=false" >> "${GITHUB_OUTPUT}"
             echo "Keine Aenderungen in data/ — kein PR notwendig."
           else

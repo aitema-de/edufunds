@@ -40,7 +40,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { generateJson, MODEL_INTERVIEW } from "../lib/wizard/llm";
 import { ladeRobots, istErlaubt, pfadMitQuery, type RobotsRegeln } from "../lib/scan/robots";
-import { holeSeiteMitBrowser, bewerteSeite } from "../lib/scan/browser-scan";
+import { holeSeiteMitBrowser, bewerteSeite, pfadPasst, nameAusLink } from "../lib/scan/browser-scan";
+import { ladeBestand, speichereBestand, vergleicheBestand } from "../lib/scan/bestand";
 import { runExtraction } from "./extract-richtlinie";
 import { loadQueue, saveQueue, type QueueItem } from "../lib/wizard/queue";
 
@@ -50,6 +51,7 @@ import { loadQueue, saveQueue, type QueueItem } from "../lib/wizard/queue";
 
 const SOURCES_PATH = path.join(process.cwd(), "data", "program-sources.json");
 const PROGRAMS_PATH = path.join(process.cwd(), "data", "foerderprogramme.json");
+const BESTAND_DIR = path.join(process.cwd(), "data", "scan-state");
 const MAX_HTML_CHARS = 80000;
 
 const TYP_BONUS: Record<string, number> = {
@@ -95,6 +97,12 @@ interface Source {
    * lieferte 58 Zeichen ("Keine Datenbank gewaehlt!") und der Lauf meldete "0 gefunden".
    */
   mindestTextZeichen?: number;
+  /**
+   * Bestandsvergleich abschalten (Default: an). Mit Vergleich liefert die Quelle nur, was seit
+   * dem letzten Lauf NEU ist — das ist der Regelfall und der Grund, warum grosse Sitemaps
+   * ueberhaupt handhabbar sind. Ohne ihn kaeme jede Woche der volle Bestand.
+   */
+  ohneBestandsvergleich?: boolean;
   /** Optional deaktiviert, mit Begruendung im Feld `grund`. */
   aktiv?: boolean;
   grund?: string;
@@ -158,7 +166,7 @@ interface CliOpts {
   nurQuelle?: string;
 }
 
-function parseArgs(argv: string[]): CliOpts {
+export function parseArgs(argv: string[]): CliOpts {
   const o: CliOpts = {
     dryRun: false,
     maxPrograms: 5,
@@ -168,7 +176,13 @@ function parseArgs(argv: string[]): CliOpts {
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--dry-run") o.dryRun = true;
-    else if (a === "--max-programs") o.maxPrograms = parseInt(argv[++i] ?? "5", 10) || 5;
+    else if (a === "--max-programs") {
+      // NICHT `|| 5`: --max-programs 0 ist ein legitimer Wert ("nur scannen, nichts extrahieren")
+      // und wurde davon still zu 5 gemacht — der Lauf extrahierte dann Programme, obwohl er
+      // ausdruecklich keine extrahieren sollte, und schrieb Stubs in den Katalog.
+      const wert = parseInt(argv[++i] ?? "", 10);
+      o.maxPrograms = Number.isFinite(wert) && wert >= 0 ? wert : 5;
+    }
     else if (a === "--logs-dir") o.logsDir = argv[++i] ?? o.logsDir;
     else if (a === "--failure-report") o.failureReport = argv[++i] ?? o.failureReport;
     else if (a === "--quelle") o.nurQuelle = argv[++i];
@@ -275,16 +289,6 @@ interface ScanSourceResult {
   fehler?: string;
 }
 
-/** Slug -> lesbarer Name: "finanz-doppelstunde" -> "Finanz Doppelstunde". */
-function nameAusSlug(url: string): string {
-  const slug = url.replace(/\/+$/, "").split("/").pop() ?? "";
-  return slug
-    .split("-")
-    .filter(Boolean)
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(" ");
-}
-
 /** Sekunden warten — fuer die Crawl-delay-Angabe einer robots.txt. */
 function warte(sekunden: number): Promise<void> {
   return new Promise((r) => setTimeout(r, sekunden * 1000));
@@ -307,9 +311,11 @@ async function scanSitemap(src: Source, crawlDelay: number | null): Promise<Scan
       xml = teile.join("\n");
     }
     const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-    const treffer = locs.filter((u) => u.includes(filter));
+    const treffer = locs.filter((u) => pfadPasst(u, filter));
     return {
-      candidates: treffer.map((u) => ({ name: nameAusSlug(u), detailUrl: u })),
+      // nameAusLink statt der frueheren Slug-Formel: strippt Dateiendungen (".html" stand sonst
+      // im Programmnamen) und stellt eindeutige Umlaute wieder her.
+      candidates: treffer.map((u) => ({ name: nameAusLink("", u), detailUrl: u })),
     };
   } catch (err) {
     const msg = (err as Error).message;
@@ -376,7 +382,10 @@ async function scanSource(src: Source, erzwungen = false): Promise<ScanSourceRes
   console.log(`  Scan ${src.id} (${src.url})`);
   if (src.aktiv === false) {
     if (!erzwungen) {
-      console.log(`    ${src.id}: deaktiviert — ${src.grund ?? "ohne Begruendung"}`);
+      const kurz = (src.grund ?? "ohne Begruendung").replace(/\s+/g, " ");
+      console.log(
+        `    ${src.id}: deaktiviert — ${kurz.length > 140 ? kurz.slice(0, 140) + " […]" : kurz}`
+      );
       return { candidates: [] };
     }
     console.log(
@@ -614,13 +623,62 @@ async function main(): Promise<void> {
   const allCandidates: Array<{ candidate: ScanCandidate; sourceId: string }> = [];
   const quellenFehler: Array<{ id: string; fehler: string }> = [];
   let quellenMitTreffern = 0;
+  const jetzt = new Date().toISOString();
+  const bestandsBerichte: string[] = [];
   for (const src of zuScannen) {
     const { candidates: found, fehler } = await scanSource(src, Boolean(opts.nurQuelle));
     if (fehler) quellenFehler.push({ id: src.id, fehler });
+    // WICHTIG: Diese Zaehlung passiert VOR dem Bestandsvergleich und muss das auch bleiben.
+    // Die Schranke fragt „liefert die Quelle noch?", nicht „gab es diese Woche etwas Neues".
+    // Eine Quelle, die brav ihre 144 bekannten Programme zeigt, ist gesund — wuerde man erst
+    // nach dem Vergleich zaehlen, meldete der Wochenlauf ab dem zweiten Mal „alle Quellen leer".
     if (found.length > 0) quellenMitTreffern++;
-    const unknown = filterUnknown(found, knownNames, knownUrls);
-    console.log(`    ${src.id}: ${found.length} gefunden, ${unknown.length} neu`);
+
+    let seitLetztemLauf = found;
+    if (found.length > 0 && !src.ohneBestandsvergleich) {
+      const alt = await ladeBestand(BESTAND_DIR, src.id);
+      const diff = vergleicheBestand(
+        alt,
+        found.map((c) => c.detailUrl)
+      );
+      if (diff.fehler) {
+        quellenFehler.push({ id: src.id, fehler: diff.fehler });
+        seitLetztemLauf = [];
+      } else if (diff.erstlauf) {
+        console.log(
+          `    ${src.id}: Erstlauf — ${found.length} URLs als Bestand aufgenommen, keine Kandidaten.`
+        );
+        bestandsBerichte.push(`${src.id}: Erstlauf, Bestand ${found.length}`);
+        seitLetztemLauf = [];
+      } else {
+        const neuMenge = new Set(diff.neu);
+        seitLetztemLauf = found.filter((c) => neuMenge.has(c.detailUrl));
+        if (diff.entfallen.length > 0) {
+          console.log(`    ${src.id}: ${diff.entfallen.length} URLs entfallen (Seite entfernt?).`);
+          bestandsBerichte.push(`${src.id}: ${diff.entfallen.length} entfallen`);
+        }
+      }
+      // Bestand auch dann fortschreiben, wenn nichts Neues dabei war — sonst gilt naechste
+      // Woche wieder alles als neu.
+      if (!opts.dryRun && !diff.fehler) {
+        await speichereBestand(
+          BESTAND_DIR,
+          src.id,
+          found.map((c) => c.detailUrl),
+          jetzt
+        );
+      }
+    }
+
+    const unknown = filterUnknown(seitLetztemLauf, knownNames, knownUrls);
+    console.log(
+      `    ${src.id}: ${found.length} in der Quelle, ${seitLetztemLauf.length} seit letztem Lauf neu, ` +
+        `${unknown.length} noch nicht im Katalog`
+    );
     for (const c of unknown) allCandidates.push({ candidate: c, sourceId: src.id });
+  }
+  if (bestandsBerichte.length > 0) {
+    console.log(`==> Bestand: ${bestandsBerichte.join(" · ")}`);
   }
 
   // Befund 18.08.2026: Der Wochenlauf meldete monatelang "0 gefunden, 0 neu" und
@@ -723,7 +781,16 @@ async function main(): Promise<void> {
   }
 }
 
-main().catch((err) => {
-  console.error("FATAL:", err);
-  process.exit(1);
-});
+// Entry-Point-Guard nach dem Muster von scripts/extract-richtlinie.ts: nur ausfuehren, wenn
+// dieses Skript direkt aufgerufen wurde. Ohne den Guard startet schon ein `import` aus einem
+// Test den kompletten Wochenlauf samt Netzabrufen.
+const isEntryPoint = (() => {
+  const arg1 = process.argv[1] ?? "";
+  return arg1.endsWith("auto-pflege-step.ts") || arg1.endsWith("auto-pflege-step.js");
+})();
+if (isEntryPoint) {
+  main().catch((err) => {
+    console.error("FATAL:", err);
+    process.exit(1);
+  });
+}

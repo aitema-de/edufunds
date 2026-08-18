@@ -118,6 +118,35 @@ export function nameAusLink(linkText: string, url: string): string {
 }
 
 /**
+ * Passt eine URL zum konfigurierten Pfadfilter?
+ *
+ * Beide Seiten werden dekodiert verglichen. Ohne das findet der lesbar hinterlegte Filter
+ * "/Förderprogramme/Aktuelle-Förderprogramme" seine eigenen Seiten nicht, weil die im
+ * Sitemap-XML als "/F%C3%B6rderprogramme/Aktuelle-F%C3%B6rderprogramme" stehen — bei der
+ * NBank betrifft das 144 Programmseiten, die sonst allesamt unsichtbar blieben.
+ *
+ * Die Uebersichtsseite selbst (Pfad == Filter) ist kein Programm und faellt raus.
+ */
+export function pfadPasst(url: string, filter: string): boolean {
+  const dekodiert = (s: string) => {
+    try {
+      return decodeURIComponent(s);
+    } catch {
+      return s;
+    }
+  };
+  let pfad = url;
+  try {
+    pfad = new URL(url).pathname;
+  } catch {
+    /* kein absoluter URL-String — dann direkt vergleichen */
+  }
+  const f = dekodiert(filter).replace(/\/+$/, "");
+  const p = dekodiert(pfad).replace(/\/+$/, "");
+  return p !== f && p.includes(f);
+}
+
+/**
  * Aus den Rohlinks der Seite die Programm-Detailseiten sieben.
  *
  * Verworfen werden Anker auf dieselbe Seite, Nicht-HTTP-Schemata und Dubletten.
@@ -137,10 +166,7 @@ export function filtereProgrammLinks(links: RohLink[], pfadFilter: string): Link
       continue;
     }
     u.hash = "";
-    const pfad = u.pathname.replace(/\/+$/, "");
-    if (!pfad.includes(pfadFilter.replace(/\/+$/, ""))) continue;
-    // Die Übersichtsseite selbst ist kein Programm.
-    if (pfad === pfadFilter.replace(/\/+$/, "")) continue;
+    if (!pfadPasst(u.toString(), pfadFilter)) continue;
     const norm = u.toString().replace(/\/$/, "");
     if (gesehen.has(norm)) continue;
     gesehen.add(norm);
