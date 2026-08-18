@@ -65,6 +65,19 @@ interface Source {
   name: string;
   url: string;
   fokus?: string;
+  /**
+   * "seite"   — HTML holen, Text an das LLM, Programme extrahieren (Urspruengliches Verfahren).
+   * "sitemap" — XML holen, URLs nach `pfadFilter` sieben, Namen aus dem Slug bilden.
+   *             Deterministisch, ohne LLM. Noetig, weil Uebersichtsseiten heute
+   *             clientseitig gerendert werden: der Fetch liefert 200 und Navigation,
+   *             die Liste selbst steht nicht im HTML (Befund 18.08.2026).
+   */
+  typ?: "seite" | "sitemap";
+  /** Nur fuer typ="sitemap": Pfad-Praefix der Angebotsseiten, z. B. "/foerderangebote/". */
+  pfadFilter?: string;
+  /** Optional deaktiviert, mit Begruendung im Feld `grund`. */
+  aktiv?: boolean;
+  grund?: string;
 }
 
 interface Foerderprogramm {
@@ -233,8 +246,51 @@ Regeln
 // Scan: pro Source generateJson + Filter gegen bekannte
 // ---------------------------------------------------------------------------
 
-async function scanSource(src: Source): Promise<ScanCandidate[]> {
+interface ScanSourceResult {
+  candidates: ScanCandidate[];
+  /** Gesetzt, wenn die Quelle NICHT ausgewertet werden konnte (Fetch, HTTP, LLM). */
+  fehler?: string;
+}
+
+/** Slug -> lesbarer Name: "finanz-doppelstunde" -> "Finanz Doppelstunde". */
+function nameAusSlug(url: string): string {
+  const slug = url.replace(/\/+$/, "").split("/").pop() ?? "";
+  return slug
+    .split("-")
+    .filter(Boolean)
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+}
+
+/** Sitemap-Quelle: deterministisch, kein LLM. Folgt Sitemap-Index-Verweisen eine Ebene. */
+async function scanSitemap(src: Source): Promise<ScanSourceResult> {
+  const filter = src.pfadFilter ?? "/";
+  try {
+    let xml = await fetchHtml(src.url);
+    const kinder = [...xml.matchAll(/<sitemap>[\s\S]*?<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+    if (kinder.length > 0) {
+      const teile = await Promise.all(kinder.slice(0, 10).map((u) => fetchHtml(u).catch(() => "")));
+      xml = teile.join("\n");
+    }
+    const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+    const treffer = locs.filter((u) => u.includes(filter));
+    return {
+      candidates: treffer.map((u) => ({ name: nameAusSlug(u), detailUrl: u })),
+    };
+  } catch (err) {
+    const msg = (err as Error).message;
+    console.warn(`  Source ${src.id} fehlgeschlagen: ${msg}`);
+    return { candidates: [], fehler: msg };
+  }
+}
+
+async function scanSource(src: Source): Promise<ScanSourceResult> {
   console.log(`  Scan ${src.id} (${src.url})`);
+  if (src.aktiv === false) {
+    console.log(`    ${src.id}: deaktiviert — ${src.grund ?? "ohne Begruendung"}`);
+    return { candidates: [] };
+  }
+  if (src.typ === "sitemap") return scanSitemap(src);
   try {
     const html = await fetchHtml(src.url);
     const text = stripHtml(html).slice(0, MAX_HTML_CHARS);
@@ -249,10 +305,11 @@ Liefere die Liste neuer Programme als JSON-Objekt zurueck.`;
     const result = await generateJson<ScanResult>(MODEL_INTERVIEW, SCAN_SYSTEM, userPrompt, {
       maxTokens: 4000,
     });
-    return result.value.programme ?? [];
+    return { candidates: result.value.programme ?? [] };
   } catch (err) {
-    console.warn(`  Source ${src.id} fehlgeschlagen: ${(err as Error).message}`);
-    return [];
+    const msg = (err as Error).message;
+    console.warn(`  Source ${src.id} fehlgeschlagen: ${msg}`);
+    return { candidates: [], fehler: msg };
   }
 }
 
@@ -429,12 +486,63 @@ async function main(): Promise<void> {
   // Phase 1: Scan
   console.log(`==> Phase 1: Scan (${sources.sources.length} Quellen)`);
   const allCandidates: Array<{ candidate: ScanCandidate; sourceId: string }> = [];
+  const quellenFehler: Array<{ id: string; fehler: string }> = [];
+  let quellenMitTreffern = 0;
   for (const src of sources.sources) {
-    const found = await scanSource(src);
+    const { candidates: found, fehler } = await scanSource(src);
+    if (fehler) quellenFehler.push({ id: src.id, fehler });
+    if (found.length > 0) quellenMitTreffern++;
     const unknown = filterUnknown(found, knownNames, knownUrls);
     console.log(`    ${src.id}: ${found.length} gefunden, ${unknown.length} neu`);
     for (const c of unknown) allCandidates.push({ candidate: c, sourceId: src.id });
   }
+
+  // Befund 18.08.2026: Der Wochenlauf meldete monatelang "0 gefunden, 0 neu" und
+  // wurde gruen — dahinter steckten drei verschiedene Defekte (Fetch-Fehler,
+  // toter LLM-Key, HTTP 404 nach Portal-Umbau). "Nichts gefunden" und "Quelle
+  // kaputt" sahen im Log identisch aus. Ein Scanner, der auf KEINER Quelle etwas
+  // findet, ist ein defektes Werkzeug und kein Beleg dafuer, dass es nichts gibt.
+  const aktiveQuellen = sources.sources.filter((q) => q.aktiv !== false).length;
+  const alleQuellenLeer = quellenMitTreffern === 0 && aktiveQuellen > 0;
+  // Ein Scanner ohne aktive Quelle laeuft woechentlich, tut nichts und meldet Erfolg —
+  // genau die Stille, die diesen Befund sechs Wochen lang verdeckt hat. Deshalb laut.
+  const keineQuelleAktiv = aktiveQuellen === 0;
+  if (quellenFehler.length > 0 || alleQuellenLeer || keineQuelleAktiv) {
+    console.error("");
+    console.error("==> QUELLEN-SCAN DEFEKT");
+    for (const q of quellenFehler) console.error(`    ✗ ${q.id}: ${q.fehler}`);
+    if (keineQuelleAktiv) {
+      console.error(
+        `    ✗ KEINE aktive Quelle konfiguriert (${sources.sources.length} eingetragen, alle deaktiviert). ` +
+          `Die Programm-Suche findet damit strukturell nichts — neue Quellen eintragen, ` +
+          `Begruendungen je Quelle stehen in data/program-sources.json.`
+      );
+    }
+    if (alleQuellenLeer) {
+      console.error(
+        `    ✗ Keine einzige der ${aktiveQuellen} aktiven Quellen lieferte einen Treffer — ` +
+          `URLs gegen die Portale pruefen (Deep-Links werden umgebaut) und LLM-Key verifizieren.`
+      );
+    }
+    if (process.env.GITHUB_OUTPUT) {
+      await fs.appendFile(
+        process.env.GITHUB_OUTPUT,
+        `has_failures=true\nnew_count=0\nskip_count=0\nfailure_count=${Math.max(quellenFehler.length, 1)}\n`
+      );
+    }
+    if (opts.failureReport) {
+      const zeilen = [
+        "# Auto-Pflege: Quellen-Scan defekt",
+        "",
+        ...quellenFehler.map((q) => `- **${q.id}**: ${q.fehler}`),
+        ...(alleQuellenLeer ? ["- **Alle Quellen ohne Treffer** — siehe Log."] : []),
+      ];
+      await fs.writeFile(opts.failureReport, zeilen.join("\n") + "\n", "utf-8");
+    }
+    process.exitCode = 1;
+    return;
+  }
+
   if (allCandidates.length === 0) {
     console.log("==> Keine neuen Programme. Done.");
     if (process.env.GITHUB_OUTPUT) {

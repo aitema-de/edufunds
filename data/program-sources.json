@@ -1,23 +1,31 @@
 {
-  "description": "Quellen fuer den wöchentlichen Scanner scripts/scan-new-programs.ts. Jede Source ist eine oeffentliche Uebersichtsseite, von der Gemini Flash Programm-Einträge (Name + Detail-URL) extrahiert. Danach wird abgeglichen mit foerderprogramme.json, neue Treffer landen in data/program-candidates.json fuer manuelles Review.",
+  "description": "Quellen fuer den woechentlichen Scanner (scripts/auto-pflege-step.ts). typ='sitemap': XML holen, URLs nach pfadFilter sieben, Namen aus dem Slug — deterministisch, ohne LLM. typ='seite': HTML holen, Text an das LLM. Neue Treffer werden gegen foerderprogramme.json gefiltert. Befund 18.08.2026: Uebersichtsseiten werden heute clientseitig gerendert, ein statischer Fetch liefert nur Navigation — deshalb wo immer moeglich die Sitemap nehmen.",
   "sources": [
     {
       "id": "bildungsserver-foerderung",
       "name": "Deutscher Bildungsserver — Fördermittel fuer Schulen",
       "url": "https://www.bildungsserver.de/fachportal_suche.html?suchbegriff=schulfoerderung",
-      "fokus": "Bund, Laender, oeffentliche und private Traeger"
+      "fokus": "Bund, Laender, oeffentliche und private Traeger",
+      "aktiv": false,
+      "grund": "Deep-Link seit spaetestens 06/2026 HTTP 404; die Nachfolge-Metasuche (/metasuche/metasuche.html?alle=...) rendert die Trefferliste clientseitig — ein statischer Fetch liefert 58 Zeichen Text. Braucht Playwright oder eine andere Quelle. Geprueft 18.08.2026."
     },
     {
       "id": "foerderdatenbank-schule",
       "name": "Foerderdatenbank des Bundes — Schulische Bildung",
       "url": "https://www.foerderdatenbank.de/SiteGlobals/FDB/Forms/Suche/Foerderfinder/Foerderfinder_Formular.html?lv2=8970232&submit=Suchen",
-      "fokus": "Bundes- und EU-Programme, verifiziert"
+      "fokus": "Bundes- und EU-Programme, verifiziert",
+      "aktiv": false,
+      "grund": "Portal steht hinter Radware Bot Manager: 302 auf validate.perfdrive.com. robots.txt setzt Crawl-delay 30 — automatisierter Abruf ist unerwuenscht und wird NICHT umgangen. Wenn die Quelle gebraucht wird: offiziellen Export/API beim BMWK erfragen. Geprueft 18.08.2026."
     },
     {
       "id": "begabungslotse",
-      "name": "Begabungslotse — Foerderangebote fuer Schulen",
-      "url": "https://www.begabungslotse.de/foerderangebote",
-      "fokus": "Begabtenfoerderung, Stiftungen, bundesweit"
+      "name": "Begabungslotse — Foerderangebote",
+      "url": "https://www.begabungslotse.de/sitemap.xml",
+      "fokus": "Begabtenfoerderung, Stiftungen, bundesweit",
+      "typ": "sitemap",
+      "pfadFilter": "/foerderangebote/",
+      "aktiv": false,
+      "grund": "Sitemap liefert 1.099 URLs unter /foerderangebote/ — inhaltlich sind das aber KURSANGEBOTE (Seminare, Workshops, Bibliotheksfuehrungen), kein Foerdergeld: auf den Detailseiten kein einziges Geld-Signal (Euro/Zuschuss/Foerderhoehe). 'Foerderangebot' meint dort Begabungsfoerderung, nicht Finanzierung. Fuer diesen Katalog semantisch falsch — wuerde 1.098 Fehleintraege erzeugen. Geprueft 18.08.2026."
     }
   ]
 }

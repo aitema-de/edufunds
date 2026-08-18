@@ -29,13 +29,18 @@ on:
         type: string
         default: "5"
       llm_provider:
-        description: "LLM-Provider override (deepseek default, gemini fuer Fallback)"
+        # Bis 18.08.2026 stand hier deepseek als Default — der Key ist seit Wochen
+        # tot ("401 ... api key is invalid"), was im Log als "0 gefunden" endete.
+        # mistral ist der Prod-Provider (lib/wizard/llm.ts laesst in Produktion
+        # ohnehin NUR mistral zu und wirft bei allem anderen).
+        description: "LLM-Provider (mistral = Default und Prod-Provider; gemini als Fallback)"
         required: false
         type: choice
         options:
-          - deepseek
+          - mistral
           - gemini
-        default: deepseek
+          - deepseek
+        default: mistral
       dry_run:
         description: "Dry-Run (keine Schreiboperationen)"
         required: false
@@ -68,7 +73,8 @@ jobs:
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          LLM_PROVIDER: ${{ github.event.inputs.llm_provider || 'deepseek' }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          LLM_PROVIDER: ${{ github.event.inputs.llm_provider || 'mistral' }}
           MAX_PROGRAMS_INPUT: ${{ github.event.inputs.max_programs || '5' }}
           DRY_RUN_INPUT: ${{ github.event.inputs.dry_run || 'false' }}
         run: |
@@ -79,6 +85,10 @@ jobs:
           fi
           if [ -z "${GEMINI_API_KEY}" ] && [ "${LLM_PROVIDER}" = "gemini" ]; then
             echo "::error::GEMINI_API_KEY Secret fehlt fuer LLM_PROVIDER=gemini-Override."
+            exit 1
+          fi
+          if [ -z "${MISTRAL_API_KEY}" ] && [ "${LLM_PROVIDER}" = "mistral" ]; then
+            echo "::error::MISTRAL_API_KEY Secret fehlt — ohne Key endet jeder Quellen-Scan in einem 401, das frueher als '0 gefunden' durchging."
             exit 1
           fi
           ARGS=(--max-programs "${MAX_PROGRAMS_INPUT}")
@@ -184,7 +194,12 @@ jobs:
           fi
 
       - name: Open failure issue
-        if: steps.pflege.outputs.has_failures == 'true' && github.event.inputs.dry_run != 'true'
+        # always() ist noetig, seit der Step bei defekten Quellen mit Exit 1 abbricht
+        # (Befund 18.08.2026) — ohne das liefe der Issue-Step nie, und der einzige
+        # Hinweis waere ein rotes Haekchen, das niemand oeffnet.
+        if: >-
+          always() && github.event.inputs.dry_run != 'true' &&
+          (steps.pflege.outputs.has_failures == 'true' || steps.pflege.outcome == 'failure')
         uses: actions/github-script@v7
         env:
           RUN_ID: ${{ github.run_id }}
@@ -232,7 +247,10 @@ jobs:
             }
 
       - name: Close stale failure issues on green run
-        if: steps.pflege.outputs.has_failures == 'false' && github.event.inputs.dry_run != 'true'
+        # Nur bei WIRKLICH gruenem Lauf: outcome success UND keine Failures.
+        if: >-
+          steps.pflege.outcome == 'success' && steps.pflege.outputs.has_failures == 'false' &&
+          github.event.inputs.dry_run != 'true'
         uses: actions/github-script@v7
         env:
           RUN_ID: ${{ github.run_id }}
