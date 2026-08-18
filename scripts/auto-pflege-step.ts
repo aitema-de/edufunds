@@ -10,6 +10,7 @@
  *   --max-programs <N>      maximal N neue Programme pro Lauf extrahieren (Default 5)
  *   --logs-dir <dir>        Verzeichnis fuer Per-Programm-JSON-Logs (Default logs/auto-pflege-<datum>/)
  *   --failure-report <pfad> Pfad fuer das aggregierte Failure-Report-Markdown (Default failure-report.md)
+ *   --quelle <id>           nur diese eine Quelle scannen (Pruefen einer neuen Quelle, mit --dry-run)
  *
  * VORGEHEN:
  *   1. Scan: data/program-sources.json lesen, pro Source generateJson<ScanResult> auf
@@ -38,6 +39,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { generateJson, MODEL_INTERVIEW } from "../lib/wizard/llm";
+import { ladeRobots, istErlaubt, pfadMitQuery, type RobotsRegeln } from "../lib/scan/robots";
+import { holeSeiteMitBrowser, bewerteSeite } from "../lib/scan/browser-scan";
 import { runExtraction } from "./extract-richtlinie";
 import { loadQueue, saveQueue, type QueueItem } from "../lib/wizard/queue";
 
@@ -72,9 +75,26 @@ interface Source {
    *             clientseitig gerendert werden: der Fetch liefert 200 und Navigation,
    *             die Liste selbst steht nicht im HTML (Befund 18.08.2026).
    */
-  typ?: "seite" | "sitemap";
-  /** Nur fuer typ="sitemap": Pfad-Praefix der Angebotsseiten, z. B. "/foerderangebote/". */
+  /**
+   * "browser" — Seite im echten Browser rendern (Playwright), dann wie oben:
+   *             mit `pfadFilter` deterministische Link-Ernte, ohne ihn Text an das LLM.
+   *             Noetig fuer Portale, die ihre Liste erst clientseitig zusammenbauen —
+   *             ein statischer Fetch sieht dort nur Navigation. Loest KEINEN Bot-Schutz,
+   *             siehe lib/scan/browser-scan.ts.
+   */
+  typ?: "seite" | "sitemap" | "browser";
+  /** Fuer typ="sitemap" und typ="browser": Pfad-Praefix der Angebotsseiten, z. B. "/foerderangebote/". */
   pfadFilter?: string;
+  /** Nur typ="browser": Selektor, auf den vor dem Auslesen gewartet wird. */
+  warteAufSelektor?: string;
+  /** Nur typ="browser": Cookie-Hinweis, der die Liste verdeckt, wegklicken. */
+  cookieBannerSelektor?: string;
+  /**
+   * Nur typ="browser": Mindestlaenge des gerenderten Textes (Default 500). Darunter gilt die
+   * Quelle als defekt. Genau das hat 2026 sechs Wochen gefehlt: die Bildungsserver-Suche
+   * lieferte 58 Zeichen ("Keine Datenbank gewaehlt!") und der Lauf meldete "0 gefunden".
+   */
+  mindestTextZeichen?: number;
   /** Optional deaktiviert, mit Begruendung im Feld `grund`. */
   aktiv?: boolean;
   grund?: string;
@@ -134,6 +154,8 @@ interface CliOpts {
   maxPrograms: number;
   logsDir: string;
   failureReport: string;
+  /** Nur diese eine Quelle scannen — zum Pruefen einer neuen Quelle vor dem Aktivieren. */
+  nurQuelle?: string;
 }
 
 function parseArgs(argv: string[]): CliOpts {
@@ -149,6 +171,7 @@ function parseArgs(argv: string[]): CliOpts {
     else if (a === "--max-programs") o.maxPrograms = parseInt(argv[++i] ?? "5", 10) || 5;
     else if (a === "--logs-dir") o.logsDir = argv[++i] ?? o.logsDir;
     else if (a === "--failure-report") o.failureReport = argv[++i] ?? o.failureReport;
+    else if (a === "--quelle") o.nurQuelle = argv[++i];
   }
   return o;
 }
@@ -262,14 +285,25 @@ function nameAusSlug(url: string): string {
     .join(" ");
 }
 
+/** Sekunden warten — fuer die Crawl-delay-Angabe einer robots.txt. */
+function warte(sekunden: number): Promise<void> {
+  return new Promise((r) => setTimeout(r, sekunden * 1000));
+}
+
 /** Sitemap-Quelle: deterministisch, kein LLM. Folgt Sitemap-Index-Verweisen eine Ebene. */
-async function scanSitemap(src: Source): Promise<ScanSourceResult> {
+async function scanSitemap(src: Source, crawlDelay: number | null): Promise<ScanSourceResult> {
   const filter = src.pfadFilter ?? "/";
   try {
     let xml = await fetchHtml(src.url);
     const kinder = [...xml.matchAll(/<sitemap>[\s\S]*?<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
     if (kinder.length > 0) {
-      const teile = await Promise.all(kinder.slice(0, 10).map((u) => fetchHtml(u).catch(() => "")));
+      // Sequenziell statt parallel, sobald die Quelle ein Crawl-delay angibt: zehn
+      // gleichzeitige Abrufe sind genau das, was die Angabe verhindern soll.
+      const teile: string[] = [];
+      for (const u of kinder.slice(0, 10)) {
+        teile.push(await fetchHtml(u).catch(() => ""));
+        if (crawlDelay) await warte(crawlDelay);
+      }
       xml = teile.join("\n");
     }
     const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
@@ -284,13 +318,82 @@ async function scanSitemap(src: Source): Promise<ScanSourceResult> {
   }
 }
 
+/**
+ * Browser-Quelle: Seite mit Playwright rendern, dann Links ernten oder Text an das LLM.
+ *
+ * Jede Abbruchstelle liefert einen konkreten Grund statt einer leeren Liste. Der Befund
+ * vom 18.08.2026 hing genau daran: "0 gefunden" sah bei einer kaputten Quelle exakt so
+ * aus wie bei einer Quelle ohne Neuigkeiten.
+ */
+async function scanBrowser(src: Source): Promise<ScanSourceResult> {
+  try {
+    const seite = await holeSeiteMitBrowser({
+      url: src.url,
+      warteAufSelektor: src.warteAufSelektor,
+      cookieBannerSelektor: src.cookieBannerSelektor,
+      userAgent: BROWSER_HEADERS["User-Agent"],
+    });
+    const befund = bewerteSeite(seite, {
+      quellUrl: src.url,
+      pfadFilter: src.pfadFilter,
+      mindestTextZeichen: src.mindestTextZeichen,
+    });
+    if (befund.fehler) return { candidates: [], fehler: befund.fehler };
+    if (befund.candidates) {
+      console.log(
+        `    ${src.id}: gerendert ${seite.text.length} Zeichen, ` +
+          `${befund.candidates.length} Links unter ${src.pfadFilter}`
+      );
+      return { candidates: befund.candidates };
+    }
+
+    const userPrompt = `QUELLE: ${src.name}
+URL: ${src.url}
+FOKUS: ${src.fokus ?? ""}
+
+VOLLTEXT (im Browser gerendert, gekuerzt):
+${(befund.textFuerLlm ?? "").slice(0, MAX_HTML_CHARS)}
+
+Liefere die Liste neuer Programme als JSON-Objekt zurueck.`;
+    const result = await generateJson<ScanResult>(MODEL_INTERVIEW, SCAN_SYSTEM, userPrompt, {
+      maxTokens: 4000,
+    });
+    return { candidates: result.value.programme ?? [] };
+  } catch (err) {
+    const msg = (err as Error).message;
+    console.warn(`  Source ${src.id} fehlgeschlagen: ${msg}`);
+    return { candidates: [], fehler: msg };
+  }
+}
+
 async function scanSource(src: Source): Promise<ScanSourceResult> {
   console.log(`  Scan ${src.id} (${src.url})`);
   if (src.aktiv === false) {
     console.log(`    ${src.id}: deaktiviert — ${src.grund ?? "ohne Begruendung"}`);
     return { candidates: [] };
   }
-  if (src.typ === "sitemap") return scanSitemap(src);
+
+  // robots.txt zuerst — und zwar fuer jeden Quellentyp. Ein Crawler, der woechentlich
+  // unbeaufsichtigt laeuft, muss die Hausordnung der Quelle im Code haben, nicht in der Doku.
+  let regeln: RobotsRegeln;
+  try {
+    regeln = await ladeRobots(src.url);
+  } catch (err) {
+    return { candidates: [], fehler: `robots.txt-Pruefung fehlgeschlagen: ${(err as Error).message}` };
+  }
+  if (!istErlaubt(pfadMitQuery(src.url), regeln)) {
+    const grund =
+      regeln.herkunft === "unerreichbar"
+        ? `${regeln.fehler} — ohne lesbare robots.txt wird nicht abgerufen (fail-closed).`
+        : `robots.txt der Domain sperrt ${pfadMitQuery(src.url)}.`;
+    return { candidates: [], fehler: `Nicht abgerufen: ${grund}` };
+  }
+  if (regeln.crawlDelaySekunden) {
+    console.log(`    ${src.id}: robots.txt setzt Crawl-delay ${regeln.crawlDelaySekunden}s — wird eingehalten.`);
+  }
+
+  if (src.typ === "sitemap") return scanSitemap(src, regeln.crawlDelaySekunden);
+  if (src.typ === "browser") return scanBrowser(src);
   try {
     const html = await fetchHtml(src.url);
     const text = stripHtml(html).slice(0, MAX_HTML_CHARS);
@@ -484,11 +587,22 @@ async function main(): Promise<void> {
   }
 
   // Phase 1: Scan
-  console.log(`==> Phase 1: Scan (${sources.sources.length} Quellen)`);
+  const zuScannen = opts.nurQuelle
+    ? sources.sources.filter((q) => q.id === opts.nurQuelle)
+    : sources.sources;
+  if (opts.nurQuelle && zuScannen.length === 0) {
+    console.error(`==> Quelle "${opts.nurQuelle}" steht nicht in data/program-sources.json.`);
+    process.exitCode = 1;
+    return;
+  }
+  if (opts.nurQuelle) {
+    console.log(`==> Einzelquelle: ${opts.nurQuelle} (--quelle)`);
+  }
+  console.log(`==> Phase 1: Scan (${zuScannen.length} Quellen)`);
   const allCandidates: Array<{ candidate: ScanCandidate; sourceId: string }> = [];
   const quellenFehler: Array<{ id: string; fehler: string }> = [];
   let quellenMitTreffern = 0;
-  for (const src of sources.sources) {
+  for (const src of zuScannen) {
     const { candidates: found, fehler } = await scanSource(src);
     if (fehler) quellenFehler.push({ id: src.id, fehler });
     if (found.length > 0) quellenMitTreffern++;
@@ -502,7 +616,7 @@ async function main(): Promise<void> {
   // toter LLM-Key, HTTP 404 nach Portal-Umbau). "Nichts gefunden" und "Quelle
   // kaputt" sahen im Log identisch aus. Ein Scanner, der auf KEINER Quelle etwas
   // findet, ist ein defektes Werkzeug und kein Beleg dafuer, dass es nichts gibt.
-  const aktiveQuellen = sources.sources.filter((q) => q.aktiv !== false).length;
+  const aktiveQuellen = zuScannen.filter((q) => q.aktiv !== false).length;
   const alleQuellenLeer = quellenMitTreffern === 0 && aktiveQuellen > 0;
   // Ein Scanner ohne aktive Quelle laeuft woechentlich, tut nichts und meldet Erfolg —
   // genau die Stille, die diesen Befund sechs Wochen lang verdeckt hat. Deshalb laut.
@@ -513,7 +627,7 @@ async function main(): Promise<void> {
     for (const q of quellenFehler) console.error(`    ✗ ${q.id}: ${q.fehler}`);
     if (keineQuelleAktiv) {
       console.error(
-        `    ✗ KEINE aktive Quelle konfiguriert (${sources.sources.length} eingetragen, alle deaktiviert). ` +
+        `    ✗ KEINE aktive Quelle konfiguriert (${zuScannen.length} eingetragen, alle deaktiviert). ` +
           `Die Programm-Suche findet damit strukturell nichts — neue Quellen eintragen, ` +
           `Begruendungen je Quelle stehen in data/program-sources.json.`
       );
@@ -530,7 +644,7 @@ async function main(): Promise<void> {
         `has_failures=true\nnew_count=0\nskip_count=0\nfailure_count=${Math.max(quellenFehler.length, 1)}\n`
       );
     }
-    if (opts.failureReport) {
+    if (opts.failureReport && !opts.dryRun) {
       const zeilen = [
         "# Auto-Pflege: Quellen-Scan defekt",
         "",
@@ -551,10 +665,18 @@ async function main(): Promise<void> {
     return;
   }
 
+  if (opts.dryRun) {
+    console.log(`==> Gefundene Kandidaten (${allCandidates.length}):`);
+    for (const { candidate, sourceId } of allCandidates) {
+      console.log(`    [${sourceId}] ${candidate.name}`);
+      console.log(`        ${candidate.detailUrl}`);
+    }
+  }
+
   // Phase 2: Per-Programm-Loop (max N)
   const toProcess = allCandidates.slice(0, opts.maxPrograms);
   console.log(`==> Phase 2: ${toProcess.length} Programme verarbeiten (Limit ${opts.maxPrograms})`);
-  await fs.mkdir(opts.logsDir, { recursive: true });
+  if (!opts.dryRun) await fs.mkdir(opts.logsDir, { recursive: true });
   const results: ProgrammResult[] = [];
   for (const { candidate, sourceId } of toProcess) {
     console.log(`  -> ${candidate.name}`);

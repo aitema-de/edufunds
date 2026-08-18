@@ -1,13 +1,13 @@
 {
-  "description": "Quellen fuer den woechentlichen Scanner (scripts/auto-pflege-step.ts). typ='sitemap': XML holen, URLs nach pfadFilter sieben, Namen aus dem Slug — deterministisch, ohne LLM. typ='seite': HTML holen, Text an das LLM. Neue Treffer werden gegen foerderprogramme.json gefiltert. Befund 18.08.2026: Uebersichtsseiten werden heute clientseitig gerendert, ein statischer Fetch liefert nur Navigation — deshalb wo immer moeglich die Sitemap nehmen.",
+  "description": "Quellen fuer den woechentlichen Scanner (scripts/auto-pflege-step.ts). typ='sitemap': XML holen, URLs nach pfadFilter sieben, Namen aus dem Slug — deterministisch, ohne LLM. typ='seite': HTML holen, Text an das LLM. typ='browser': Seite mit Playwright rendern, dann mit pfadFilter Links ernten (ohne LLM) oder den gerenderten Text an das LLM geben — noetig, weil viele Portale ihre Trefferliste erst clientseitig zusammenbauen. Vor jedem Abruf prueft der Scanner die robots.txt der Domain und haelt ein angegebenes Crawl-delay ein; eine gesperrte Quelle wird NICHT abgerufen, sondern als Fehler gemeldet. Neue Treffer werden gegen foerderprogramme.json gefiltert. Neue Quelle pruefen, bevor sie aktiv gesetzt wird: npx tsx scripts/auto-pflege-step.ts --dry-run --quelle <id>",
   "sources": [
     {
       "id": "bildungsserver-foerderung",
       "name": "Deutscher Bildungsserver — Fördermittel fuer Schulen",
-      "url": "https://www.bildungsserver.de/fachportal_suche.html?suchbegriff=schulfoerderung",
+      "url": "https://www.bildungsserver.de/metasuche/metasuche.html",
       "fokus": "Bund, Laender, oeffentliche und private Traeger",
       "aktiv": false,
-      "grund": "Deep-Link seit spaetestens 06/2026 HTTP 404; die Nachfolge-Metasuche (/metasuche/metasuche.html?alle=...) rendert die Trefferliste clientseitig — ein statischer Fetch liefert 58 Zeichen Text. Braucht Playwright oder eine andere Quelle. Geprueft 18.08.2026."
+      "grund": "KORREKTUR 18.08.2026: Die frueher notierten „58 Zeichen Text“ waren kein Render-Problem, sondern eine Fehlerseite — die Metasuche antwortet auf die hinterlegten Parameter mit „Keine Datenbank gewaehlt! Kein Suchbegriff gewaehlt!“, im Browser identisch wie im statischen Fetch. Playwright aendert daran nichts. Offen ist die richtige Parameterkombination der Metasuche (Datenbank-Auswahl + Suchbegriff); die alte Deep-Link-Form ist seit spaetestens 06/2026 weg. Erst wieder aktivieren, wenn eine URL gefunden ist, die im Browser eine echte Trefferliste zeigt."
     },
     {
       "id": "foerderdatenbank-schule",
@@ -15,7 +15,7 @@
       "url": "https://www.foerderdatenbank.de/SiteGlobals/FDB/Forms/Suche/Foerderfinder/Foerderfinder_Formular.html?lv2=8970232&submit=Suchen",
       "fokus": "Bundes- und EU-Programme, verifiziert",
       "aktiv": false,
-      "grund": "Portal steht hinter Radware Bot Manager: 302 auf validate.perfdrive.com. robots.txt setzt Crawl-delay 30 — automatisierter Abruf ist unerwuenscht und wird NICHT umgangen. Wenn die Quelle gebraucht wird: offiziellen Export/API beim BMWK erfragen. Geprueft 18.08.2026."
+      "grund": "Portal steht hinter Radware Bot Manager: 302 auf validate.perfdrive.com. GEGENPROBE MIT PLAYWRIGHT 18.08.2026: auch der echte Browser wird abgewiesen und landet auf der CAPTCHA-Seite („your activity and behavior on this site made us think that you are a bot“). Der Playwright-Crawler loest diese Quelle also NICHT — sie zu oeffnen wuerde bedeuten, den Browser zu verschleiern, und das ist bewusstes Umgehen einer fremden Schutzmassnahme. Einziger tragfaehiger Weg: offiziellen Export/API beim BMWK erfragen. robots.txt setzt zusaetzlich Crawl-delay 30."
     },
     {
       "id": "begabungslotse",
@@ -25,7 +25,17 @@
       "typ": "sitemap",
       "pfadFilter": "/foerderangebote/",
       "aktiv": false,
-      "grund": "Sitemap liefert 1.099 URLs unter /foerderangebote/ — inhaltlich sind das aber KURSANGEBOTE (Seminare, Workshops, Bibliotheksfuehrungen), kein Foerdergeld: auf den Detailseiten kein einziges Geld-Signal (Euro/Zuschuss/Foerderhoehe). 'Foerderangebot' meint dort Begabungsfoerderung, nicht Finanzierung. Fuer diesen Katalog semantisch falsch — wuerde 1.098 Fehleintraege erzeugen. Geprueft 18.08.2026."
+      "grund": "Sitemap liefert 1.099 URLs unter /foerderangebote/ — inhaltlich sind das aber KURSANGEBOTE (Seminare, Workshops, Bibliotheksfuehrungen), kein Foerdergeld: auf den Detailseiten kein einziges Geld-Signal (Euro/Zuschuss/Foerderhoehe). 'Foerderangebot' meint dort Begabungsfoerderung, nicht Finanzierung. Fuer diesen Katalog semantisch falsch — wuerde 1.098 Fehleintraege erzeugen. Geprueft 18.08.2026. Unveraendert gueltig, unabhaengig vom Playwright-Crawler: das Problem ist der Inhalt, nicht die Technik."
+    },
+    {
+      "id": "aktion-mensch-foerderangebote",
+      "name": "Aktion Mensch — Förderangebote",
+      "url": "https://www.aktion-mensch.de/foerderung/foerderangebote",
+      "fokus": "Inklusion, junge Menschen, Bildungsangebote — Schulen und Schulfördervereine antragsberechtigt",
+      "typ": "browser",
+      "pfadFilter": "/foerderung/foerderangebote/",
+      "aktiv": true,
+      "grund": "Gemessen 18.08.2026: statischer Fetch liefert 292 Zeichen (nur Geruest), im Browser 8.975 Zeichen mit fuenf Foerderangeboten. robots.txt der Domain sperrt den Pfad nicht und gibt kein Crawl-delay an. Erste Quelle, die ueber typ='browser' laeuft."
     }
   ]
 }
