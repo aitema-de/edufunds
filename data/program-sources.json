@@ -1,13 +1,13 @@
 {
-  "description": "Quellen fuer den woechentlichen Scanner (scripts/auto-pflege-step.ts). typ='sitemap': XML holen, URLs nach pfadFilter sieben, Namen aus dem Slug — deterministisch, ohne LLM. typ='seite': HTML holen, Text an das LLM. Neue Treffer werden gegen foerderprogramme.json gefiltert. Befund 18.08.2026: Uebersichtsseiten werden heute clientseitig gerendert, ein statischer Fetch liefert nur Navigation — deshalb wo immer moeglich die Sitemap nehmen.",
+  "description": "Quellen fuer den woechentlichen Scanner (scripts/auto-pflege-step.ts).\nVERFAHREN: Nicht 'welche Foerderprogramme gibt es' (unbeantwortbar), sondern 'was ist seit letzter Woche neu'. Je Quelle wird der URL-Bestand in data/scan-state/<id>.json fortgeschrieben; nur die Differenz geht in die Extraktion. Erstlauf einer Quelle nimmt nur den Bestand auf. Ein Portal-Umbau (schlagartig >50 neue URLs) wird als Fehler gemeldet statt als Fund.\nTYPEN: 'sitemap' = XML holen, URLs nach pfadFilter sieben (deterministisch, ohne LLM). 'browser' = Seite mit Playwright rendern, dann pfadFilter oder LLM. 'seite' = HTML holen, Text ans LLM.\nREGELN: Vor jedem Abruf wird die robots.txt geprueft und ein Crawl-delay eingehalten; gesperrte Quellen werden nicht abgerufen. Pfade werden dekodiert verglichen, /F%C3%B6rderprogramme/ und /Foerderprogramme/ finden sich also.\nNEUE QUELLE: erst pruefen, dann aktivieren — npx tsx scripts/auto-pflege-step.ts --dry-run --quelle <id> (auch als workflow_dispatch-Eingabe). Jeder Eintrag traegt sein Pruefdatum im Feld 'grund'.",
   "sources": [
     {
       "id": "bildungsserver-foerderung",
       "name": "Deutscher Bildungsserver — Fördermittel fuer Schulen",
-      "url": "https://www.bildungsserver.de/fachportal_suche.html?suchbegriff=schulfoerderung",
+      "url": "https://www.bildungsserver.de/metasuche/metasuche.html",
       "fokus": "Bund, Laender, oeffentliche und private Traeger",
       "aktiv": false,
-      "grund": "Deep-Link seit spaetestens 06/2026 HTTP 404; die Nachfolge-Metasuche (/metasuche/metasuche.html?alle=...) rendert die Trefferliste clientseitig — ein statischer Fetch liefert 58 Zeichen Text. Braucht Playwright oder eine andere Quelle. Geprueft 18.08.2026."
+      "grund": "KORREKTUR 18.08.2026: Die frueher notierten „58 Zeichen Text“ waren kein Render-Problem, sondern eine Fehlerseite — die Metasuche antwortet auf die hinterlegten Parameter mit „Keine Datenbank gewaehlt! Kein Suchbegriff gewaehlt!“, im Browser identisch wie im statischen Fetch. Playwright aendert daran nichts. Offen ist die richtige Parameterkombination der Metasuche (Datenbank-Auswahl + Suchbegriff); die alte Deep-Link-Form ist seit spaetestens 06/2026 weg. Erst wieder aktivieren, wenn eine URL gefunden ist, die im Browser eine echte Trefferliste zeigt."
     },
     {
       "id": "foerderdatenbank-schule",
@@ -15,7 +15,9 @@
       "url": "https://www.foerderdatenbank.de/SiteGlobals/FDB/Forms/Suche/Foerderfinder/Foerderfinder_Formular.html?lv2=8970232&submit=Suchen",
       "fokus": "Bundes- und EU-Programme, verifiziert",
       "aktiv": false,
-      "grund": "Portal steht hinter Radware Bot Manager: 302 auf validate.perfdrive.com. robots.txt setzt Crawl-delay 30 — automatisierter Abruf ist unerwuenscht und wird NICHT umgangen. Wenn die Quelle gebraucht wird: offiziellen Export/API beim BMWK erfragen. Geprueft 18.08.2026."
+      "grund": "ENTSCHIEDEN 18.08.2026 — die Quelle ist zu, ohne Umgehung gibt es keinen Weg hinein. Zwei Messungen mit demselben Ergebnis: von einer Consumer-IP UND vom GitHub-Runner (workflow_dispatch, Run 32135552750) landet auch der echte Browser auf der Sperrseite (302 auf validate.perfdrive.com, Radware Bot Manager). Die urspruengliche Vermutung, es haenge nur an der Reputation des Heimnetzes, ist damit widerlegt — im Juni lief der Abruf vom Runner noch, seither blockt die Domain auch dort. NICHT WEITERVERFOLGEN: Weiterzukommen hiesse Fingerprint-Tarnen, CAPTCHA-Dienst oder Residential-Proxy, also das bewusste Aushebeln einer fremden Schutzmassnahme. Das wird hier nicht gebaut — unabhaengig davon, dass die robots.txt der Domain diesen Pfad ausdruecklich erlaubt (Disallow nur /FDB/SiteGlobals/, Crawl-delay 30): die Sperre ist die tatsaechliche Willensaeusserung des Betreibers. EINZIGER WEG: offiziellen Export/API beim BMWK erfragen. typ und pfadFilter bleiben hinterlegt, damit die Quelle sofort laeuft, falls der Zugang einmal offiziell kommt; pfadFilter aus dem Katalogeintrag hessen-esf-praxis abgeleitet. Nachpruefen (kostet nichts, aendert nichts am Wochenlauf): workflow_dispatch mit dry_run=true, quelle=foerderdatenbank-schule.",
+      "typ": "browser",
+      "pfadFilter": "/FDB/Content/DE/Foerderprogramm/"
     },
     {
       "id": "begabungslotse",
@@ -25,7 +27,162 @@
       "typ": "sitemap",
       "pfadFilter": "/foerderangebote/",
       "aktiv": false,
-      "grund": "Sitemap liefert 1.099 URLs unter /foerderangebote/ — inhaltlich sind das aber KURSANGEBOTE (Seminare, Workshops, Bibliotheksfuehrungen), kein Foerdergeld: auf den Detailseiten kein einziges Geld-Signal (Euro/Zuschuss/Foerderhoehe). 'Foerderangebot' meint dort Begabungsfoerderung, nicht Finanzierung. Fuer diesen Katalog semantisch falsch — wuerde 1.098 Fehleintraege erzeugen. Geprueft 18.08.2026."
+      "grund": "Sitemap liefert 1.099 URLs unter /foerderangebote/ — inhaltlich sind das aber KURSANGEBOTE (Seminare, Workshops, Bibliotheksfuehrungen), kein Foerdergeld: auf den Detailseiten kein einziges Geld-Signal (Euro/Zuschuss/Foerderhoehe). 'Foerderangebot' meint dort Begabungsfoerderung, nicht Finanzierung. Fuer diesen Katalog semantisch falsch — wuerde 1.098 Fehleintraege erzeugen. Geprueft 18.08.2026. Unveraendert gueltig, unabhaengig vom Playwright-Crawler: das Problem ist der Inhalt, nicht die Technik."
+    },
+    {
+      "id": "aktion-mensch-foerderangebote",
+      "name": "Aktion Mensch — Förderangebote",
+      "url": "https://www.aktion-mensch.de/foerderung/foerderangebote",
+      "fokus": "Inklusion, junge Menschen, Bildungsangebote — Schulen und Schulfördervereine antragsberechtigt",
+      "typ": "browser",
+      "pfadFilter": "/foerderung/foerderangebote/",
+      "aktiv": true,
+      "grund": "Gemessen 18.08.2026: statischer Fetch liefert 292 Zeichen (nur Geruest), im Browser 8.975 Zeichen mit fuenf Foerderangeboten. robots.txt der Domain sperrt den Pfad nicht und gibt kein Crawl-delay an. Erste Quelle, die ueber typ='browser' laeuft. ohneTriage: unter dem pfadFilter liegen ausschliesslich Foerderangebote, die Pruefung waere reiner Abruf-Aufwand.",
+      "ohneTriage": true
+    },
+    {
+      "id": "nbank-niedersachsen",
+      "name": "NBank Niedersachsen — Aktuelle Förderprogramme",
+      "url": "https://nbank.de/sitemap.xml",
+      "fokus": "Land Niedersachsen, alle Förderbereiche inkl. Bildung und Soziales",
+      "typ": "sitemap",
+      "pfadFilter": "/Förderprogramme/Aktuelle-Förderprogramme",
+      "aktiv": true,
+      "grund": "Geprueft 18.08.2026: robots.txt deklariert die Sitemap, 870 URLs, davon 144 unter /Foerderprogramme/Aktuelle-Foerderprogramme — genau die laufenden Programme, ohne die 91 ausgelaufenen. Pfad steht im XML prozentkodiert; der Filter wird dekodiert verglichen."
+    },
+    {
+      "id": "nrwbank-foerderung",
+      "name": "NRW.BANK — Förderprogramme",
+      "url": "https://www.nrwbank.de/sitemap.xml",
+      "fokus": "Land Nordrhein-Westfalen, u. a. kommunale und soziale Infrastruktur",
+      "typ": "sitemap",
+      "pfadFilter": "/de/foerderung",
+      "aktiv": true,
+      "grund": "Geprueft 18.08.2026: robots.txt deklariert die Sitemap, 1.114 URLs, davon 457 unter /de/foerderung. Breiter Pfad — der Bestandsvergleich macht ihn handhabbar, weil nur die woechentliche Differenz weitergereicht wird."
+    },
+    {
+      "id": "dbu-foerderung",
+      "name": "Deutsche Bundesstiftung Umwelt — Förderung",
+      "url": "https://www.dbu.de/sitemap.xml",
+      "fokus": "Umwelt- und Nachhaltigkeitsprojekte, Schulen ausdrücklich antragsberechtigt",
+      "typ": "sitemap",
+      "pfadFilter": "/foerderung",
+      "aktiv": true,
+      "grund": "Geprueft 18.08.2026: 1.998 URLs in einer flachen Sitemap, Foerderpfade belegt (/foerderung/projektfoerderung 29, /foerderung/moe-fellowship 28, /foerderung/promotionsstipendien 8)."
+    },
+    {
+      "id": "bmftr-bund",
+      "name": "BMFTR (ehem. BMBF) — Förderung",
+      "url": "https://www.bmftr.bund.de/SiteGlobals/Functions/Sitemap/Sitemap_Index.xml",
+      "fokus": "Bund, Bildung und Forschung",
+      "typ": "sitemap",
+      "aktiv": false,
+      "grund": "NOCH NICHT AKTIV — Sitemap erreichbar (robots.txt deklariert sie, Crawl-delay 30), aber nur 214 URLs und KEIN Foerderpfad darin — die Foerderseiten stehen nicht in der Sitemap. Braucht einen anderen Einstieg (Uebersichtsseite als typ='browser'). Geprueft 18.08.2026."
+    },
+    {
+      "id": "l-bank-bw",
+      "name": "L-Bank Baden-Württemberg — Produkte",
+      "url": "https://l-bank.de/sitemap.xml",
+      "fokus": "Land Baden-Württemberg",
+      "typ": "sitemap",
+      "aktiv": false,
+      "grund": "NOCH NICHT AKTIV — 348 URLs, Foerderpfade belegt (/produkte/wirtschaftsfoerderung 35, /produkte/finanzhilfen 34, /produkte/familienfoerderung 2). Schulbezug aber gering — vor dem Aktivieren pruefen, ob der Ertrag den Pruefaufwand lohnt. Geprueft 18.08.2026."
+    },
+    {
+      "id": "km-bayern",
+      "name": "Kultusministerium Bayern",
+      "url": "https://km.bayern.de/sitemap.xml",
+      "fokus": "Land Bayern, Schulen",
+      "typ": "sitemap",
+      "aktiv": false,
+      "grund": "NOCH NICHT AKTIV — Sitemap erreichbar, 580 URLs, flach. Programmpfad noch nicht bestimmt. Geprueft 18.08.2026."
+    },
+    {
+      "id": "mbjs-brandenburg",
+      "name": "MBJS Brandenburg",
+      "url": "https://mbjs.brandenburg.de/sitemap.xml",
+      "fokus": "Land Brandenburg, Schulen und Jugend",
+      "typ": "sitemap",
+      "aktiv": false,
+      "grund": "NOCH NICHT AKTIV — Sitemap aus robots.txt, 318 URLs. Programmpfad noch nicht bestimmt. Geprueft 18.08.2026."
+    },
+    {
+      "id": "koerber-stiftung",
+      "name": "Körber-Stiftung",
+      "url": "https://www.koerber-stiftung.de/sitemap.xml",
+      "fokus": "Nationale Stiftung, Bildung",
+      "typ": "sitemap",
+      "aktiv": false,
+      "grund": "NOCH NICHT AKTIV — Sitemap erreichbar, aber 26.482 URLs flach in einer Datei — ohne engen pfadFilter unbrauchbar. Geprueft 18.08.2026."
+    },
+    {
+      "id": "bosch-stiftung",
+      "name": "Robert Bosch Stiftung",
+      "url": "https://bosch-stiftung.de/sitemap.xml",
+      "fokus": "Nationale Stiftung, Bildung",
+      "typ": "sitemap",
+      "aktiv": false,
+      "grund": "NOCH NICHT AKTIV — 3.214 URLs, ueberwiegend /en/. Kein sauberer Foerderpfad — Ausschreibungen liegen verstreut unter /projekt/ und /presse/. Braucht einen anderen Einstieg. Geprueft 18.08.2026."
+    },
+    {
+      "id": "stiftung-bildung",
+      "name": "Stiftung Bildung",
+      "url": "https://www.stiftungbildung.org/sitemap_index.xml",
+      "fokus": "Nationale Stiftung, Schulfördervereine",
+      "typ": "sitemap",
+      "aktiv": false,
+      "grund": "NOCH NICHT AKTIV — Sitemap-Index mit 4 Kindern erreichbar; statische Seite liefert 144k Zeichen. Inhaltlich die naechstliegende Quelle fuer Schulfoerdervereine — Programmpfad noch nicht bestimmt. Geprueft 18.08.2026."
+    },
+    {
+      "id": "bertelsmann-stiftung",
+      "name": "Bertelsmann Stiftung",
+      "url": "https://www.bertelsmann-stiftung.de/de/sitemap.xml",
+      "fokus": "Nationale Stiftung, Bildung",
+      "typ": "sitemap",
+      "aktiv": false,
+      "grund": "NOCH NICHT AKTIV — Sitemap-Index mit 7 Kindern, Crawl-delay 1. Programmpfad noch nicht bestimmt. Geprueft 18.08.2026."
+    },
+    {
+      "id": "vodafone-stiftung",
+      "name": "Vodafone Stiftung",
+      "url": "https://www.vodafone-stiftung.de/sitemap_index.xml",
+      "fokus": "Nationale Stiftung, Bildung",
+      "typ": "sitemap",
+      "aktiv": false,
+      "grund": "NOCH NICHT AKTIV — Sitemap-Index mit 4 Kindern erreichbar. Programmpfad noch nicht bestimmt. Geprueft 18.08.2026."
+    },
+    {
+      "id": "karg-stiftung",
+      "name": "Karg-Stiftung",
+      "url": "https://karg-stiftung.de/sitemap.xml",
+      "fokus": "Nationale Stiftung, Begabtenförderung",
+      "typ": "sitemap",
+      "aktiv": false,
+      "grund": "NOCH NICHT AKTIV — Sitemap-Index mit 16 Kindern erreichbar. Programmpfad noch nicht bestimmt. Geprueft 18.08.2026."
+    },
+    {
+      "id": "dkjs",
+      "name": "Deutsche Kinder- und Jugendstiftung",
+      "url": "https://www.dkjs.de/",
+      "fokus": "Nationale Stiftung, Schulentwicklung",
+      "aktiv": false,
+      "grund": "NICHT NUTZBAR — Weder robots.txt noch Seite per fetch erreichbar (fetch failed), auch /programme/ leitet auf die Startseite. Playwright-Kandidat, noch nicht geprueft. 18.08.2026."
+    },
+    {
+      "id": "ilb-brandenburg",
+      "name": "ILB Brandenburg",
+      "url": "https://www.ilb.de/de/",
+      "fokus": "Land Brandenburg",
+      "aktiv": false,
+      "grund": "NICHT NUTZBAR — Startseite statisch 214k Zeichen, aber robots.txt und sitemap.xml nicht abrufbar (fetch failed). Einstieg ueber Uebersichtsseite noetig. 18.08.2026."
+    },
+    {
+      "id": "stiftungen-org",
+      "name": "Bundesverband Deutscher Stiftungen — Stiftungssuche",
+      "url": "https://www.stiftungen.org/stiftungen/stiftungssuche.html",
+      "fokus": "Stiftungsverzeichnis",
+      "aktiv": false,
+      "grund": "NICHT NUTZBAR — HTTP 401 — die Suche liegt hinter einer Anmeldung. Kostenpflichtiges Angebot Dritter; nicht ohne Lizenz nutzen. Geprueft 18.08.2026."
     }
   ]
 }

@@ -10,6 +10,7 @@
  *   --max-programs <N>      maximal N neue Programme pro Lauf extrahieren (Default 5)
  *   --logs-dir <dir>        Verzeichnis fuer Per-Programm-JSON-Logs (Default logs/auto-pflege-<datum>/)
  *   --failure-report <pfad> Pfad fuer das aggregierte Failure-Report-Markdown (Default failure-report.md)
+ *   --quelle <id>           nur diese eine Quelle scannen (Pruefen einer neuen Quelle, mit --dry-run)
  *
  * VORGEHEN:
  *   1. Scan: data/program-sources.json lesen, pro Source generateJson<ScanResult> auf
@@ -38,6 +39,10 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { generateJson, MODEL_INTERVIEW } from "../lib/wizard/llm";
+import { ladeRobots, istErlaubt, pfadMitQuery, type RobotsRegeln } from "../lib/scan/robots";
+import { holeSeiteMitBrowser, bewerteSeite, pfadPasst, nameAusLink } from "../lib/scan/browser-scan";
+import { ladeBestand, speichereBestand, vergleicheBestand } from "../lib/scan/bestand";
+import { bewerteText, type TriageUrteil } from "../lib/scan/triage";
 import { runExtraction } from "./extract-richtlinie";
 import { loadQueue, saveQueue, type QueueItem } from "../lib/wizard/queue";
 
@@ -47,6 +52,7 @@ import { loadQueue, saveQueue, type QueueItem } from "../lib/wizard/queue";
 
 const SOURCES_PATH = path.join(process.cwd(), "data", "program-sources.json");
 const PROGRAMS_PATH = path.join(process.cwd(), "data", "foerderprogramme.json");
+const BESTAND_DIR = path.join(process.cwd(), "data", "scan-state");
 const MAX_HTML_CHARS = 80000;
 
 const TYP_BONUS: Record<string, number> = {
@@ -72,9 +78,38 @@ interface Source {
    *             clientseitig gerendert werden: der Fetch liefert 200 und Navigation,
    *             die Liste selbst steht nicht im HTML (Befund 18.08.2026).
    */
-  typ?: "seite" | "sitemap";
-  /** Nur fuer typ="sitemap": Pfad-Praefix der Angebotsseiten, z. B. "/foerderangebote/". */
+  /**
+   * "browser" — Seite im echten Browser rendern (Playwright), dann wie oben:
+   *             mit `pfadFilter` deterministische Link-Ernte, ohne ihn Text an das LLM.
+   *             Noetig fuer Portale, die ihre Liste erst clientseitig zusammenbauen —
+   *             ein statischer Fetch sieht dort nur Navigation. Loest KEINEN Bot-Schutz,
+   *             siehe lib/scan/browser-scan.ts.
+   */
+  typ?: "seite" | "sitemap" | "browser";
+  /** Fuer typ="sitemap" und typ="browser": Pfad-Praefix der Angebotsseiten, z. B. "/foerderangebote/". */
   pfadFilter?: string;
+  /** Nur typ="browser": Selektor, auf den vor dem Auslesen gewartet wird. */
+  warteAufSelektor?: string;
+  /** Nur typ="browser": Cookie-Hinweis, der die Liste verdeckt, wegklicken. */
+  cookieBannerSelektor?: string;
+  /**
+   * Nur typ="browser": Mindestlaenge des gerenderten Textes (Default 500). Darunter gilt die
+   * Quelle als defekt. Genau das hat 2026 sechs Wochen gefehlt: die Bildungsserver-Suche
+   * lieferte 58 Zeichen ("Keine Datenbank gewaehlt!") und der Lauf meldete "0 gefunden".
+   */
+  mindestTextZeichen?: number;
+  /**
+   * Bestandsvergleich abschalten (Default: an). Mit Vergleich liefert die Quelle nur, was seit
+   * dem letzten Lauf NEU ist — das ist der Regelfall und der Grund, warum grosse Sitemaps
+   * ueberhaupt handhabbar sind. Ohne ihn kaeme jede Woche der volle Bestand.
+   */
+  ohneBestandsvergleich?: boolean;
+  /**
+   * Triage ueberspringen. Nur fuer Quellen, bei denen JEDE Seite unter dem pfadFilter
+   * per Definition ein Foerderangebot ist (z. B. Aktion Mensch) — dort wuerde die Pruefung
+   * nur Abrufe kosten.
+   */
+  ohneTriage?: boolean;
   /** Optional deaktiviert, mit Begruendung im Feld `grund`. */
   aktiv?: boolean;
   grund?: string;
@@ -134,9 +169,11 @@ interface CliOpts {
   maxPrograms: number;
   logsDir: string;
   failureReport: string;
+  /** Nur diese eine Quelle scannen — zum Pruefen einer neuen Quelle vor dem Aktivieren. */
+  nurQuelle?: string;
 }
 
-function parseArgs(argv: string[]): CliOpts {
+export function parseArgs(argv: string[]): CliOpts {
   const o: CliOpts = {
     dryRun: false,
     maxPrograms: 5,
@@ -146,9 +183,16 @@ function parseArgs(argv: string[]): CliOpts {
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--dry-run") o.dryRun = true;
-    else if (a === "--max-programs") o.maxPrograms = parseInt(argv[++i] ?? "5", 10) || 5;
+    else if (a === "--max-programs") {
+      // NICHT `|| 5`: --max-programs 0 ist ein legitimer Wert ("nur scannen, nichts extrahieren")
+      // und wurde davon still zu 5 gemacht — der Lauf extrahierte dann Programme, obwohl er
+      // ausdruecklich keine extrahieren sollte, und schrieb Stubs in den Katalog.
+      const wert = parseInt(argv[++i] ?? "", 10);
+      o.maxPrograms = Number.isFinite(wert) && wert >= 0 ? wert : 5;
+    }
     else if (a === "--logs-dir") o.logsDir = argv[++i] ?? o.logsDir;
     else if (a === "--failure-report") o.failureReport = argv[++i] ?? o.failureReport;
+    else if (a === "--quelle") o.nurQuelle = argv[++i];
   }
   return o;
 }
@@ -252,30 +296,33 @@ interface ScanSourceResult {
   fehler?: string;
 }
 
-/** Slug -> lesbarer Name: "finanz-doppelstunde" -> "Finanz Doppelstunde". */
-function nameAusSlug(url: string): string {
-  const slug = url.replace(/\/+$/, "").split("/").pop() ?? "";
-  return slug
-    .split("-")
-    .filter(Boolean)
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(" ");
+/** Sekunden warten — fuer die Crawl-delay-Angabe einer robots.txt. */
+function warte(sekunden: number): Promise<void> {
+  return new Promise((r) => setTimeout(r, sekunden * 1000));
 }
 
 /** Sitemap-Quelle: deterministisch, kein LLM. Folgt Sitemap-Index-Verweisen eine Ebene. */
-async function scanSitemap(src: Source): Promise<ScanSourceResult> {
+async function scanSitemap(src: Source, crawlDelay: number | null): Promise<ScanSourceResult> {
   const filter = src.pfadFilter ?? "/";
   try {
     let xml = await fetchHtml(src.url);
     const kinder = [...xml.matchAll(/<sitemap>[\s\S]*?<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
     if (kinder.length > 0) {
-      const teile = await Promise.all(kinder.slice(0, 10).map((u) => fetchHtml(u).catch(() => "")));
+      // Sequenziell statt parallel, sobald die Quelle ein Crawl-delay angibt: zehn
+      // gleichzeitige Abrufe sind genau das, was die Angabe verhindern soll.
+      const teile: string[] = [];
+      for (const u of kinder.slice(0, 10)) {
+        teile.push(await fetchHtml(u).catch(() => ""));
+        if (crawlDelay) await warte(crawlDelay);
+      }
       xml = teile.join("\n");
     }
     const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-    const treffer = locs.filter((u) => u.includes(filter));
+    const treffer = locs.filter((u) => pfadPasst(u, filter));
     return {
-      candidates: treffer.map((u) => ({ name: nameAusSlug(u), detailUrl: u })),
+      // nameAusLink statt der frueheren Slug-Formel: strippt Dateiendungen (".html" stand sonst
+      // im Programmnamen) und stellt eindeutige Umlaute wieder her.
+      candidates: treffer.map((u) => ({ name: nameAusLink("", u), detailUrl: u })),
     };
   } catch (err) {
     const msg = (err as Error).message;
@@ -284,13 +331,145 @@ async function scanSitemap(src: Source): Promise<ScanSourceResult> {
   }
 }
 
-async function scanSource(src: Source): Promise<ScanSourceResult> {
+/**
+ * robots.txt je Host nur einmal pro Lauf holen.
+ *
+ * Die Triage ruft anschliessend Dutzende Detailseiten derselben Domain ab — ohne Cache waere
+ * das je Seite ein zusaetzlicher robots.txt-Abruf, also genau die Last, die die Hausordnung
+ * begrenzen soll.
+ */
+const robotsCache = new Map<string, RobotsRegeln>();
+
+async function robotsFuer(url: string): Promise<RobotsRegeln> {
+  const host = new URL(url).host;
+  const bekannt = robotsCache.get(host);
+  if (bekannt) return bekannt;
+  const regeln = await ladeRobots(url);
+  robotsCache.set(host, regeln);
+  return regeln;
+}
+
+/**
+ * Triage eines einzelnen Kandidaten: Detailseite holen, Signale messen.
+ *
+ * Faellt bewusst nach OBEN durch: Wenn die Seite nicht abrufbar oder die robots.txt unklar
+ * ist, wird der Kandidat weitergereicht statt verworfen. Ein verworfenes echtes Programm
+ * waere unsichtbar verloren; ein durchgewinkter Blindgaenger kostet eine Extraktion und
+ * faellt im PR-Review auf.
+ */
+async function triagiereKandidat(c: ScanCandidate): Promise<TriageUrteil> {
+  try {
+    const regeln = await robotsFuer(c.detailUrl);
+    if (!istErlaubt(pfadMitQuery(c.detailUrl), regeln)) {
+      return {
+        weiter: false,
+        begruendung: "robots.txt der Domain sperrt diese Detailseite — nicht abgerufen.",
+        signale: { geld: [], zielgruppe: [], antrag: [], ausschluss: [] },
+      };
+    }
+    if (regeln.crawlDelaySekunden) await warte(regeln.crawlDelaySekunden);
+    const text = stripHtml(await fetchHtml(c.detailUrl)).slice(0, MAX_HTML_CHARS);
+    return bewerteText(text, c.name);
+  } catch (err) {
+    return {
+      weiter: true,
+      begruendung: `Seite nicht pruefbar (${(err as Error).message}) — im Zweifel weitergereicht.`,
+      signale: { geld: [], zielgruppe: [], antrag: [], ausschluss: [] },
+    };
+  }
+}
+
+/**
+ * Browser-Quelle: Seite mit Playwright rendern, dann Links ernten oder Text an das LLM.
+ *
+ * Jede Abbruchstelle liefert einen konkreten Grund statt einer leeren Liste. Der Befund
+ * vom 18.08.2026 hing genau daran: "0 gefunden" sah bei einer kaputten Quelle exakt so
+ * aus wie bei einer Quelle ohne Neuigkeiten.
+ */
+async function scanBrowser(src: Source): Promise<ScanSourceResult> {
+  try {
+    const seite = await holeSeiteMitBrowser({
+      url: src.url,
+      warteAufSelektor: src.warteAufSelektor,
+      cookieBannerSelektor: src.cookieBannerSelektor,
+      userAgent: BROWSER_HEADERS["User-Agent"],
+    });
+    const befund = bewerteSeite(seite, {
+      quellUrl: src.url,
+      pfadFilter: src.pfadFilter,
+      mindestTextZeichen: src.mindestTextZeichen,
+    });
+    if (befund.fehler) return { candidates: [], fehler: befund.fehler };
+    if (befund.candidates) {
+      console.log(
+        `    ${src.id}: gerendert ${seite.text.length} Zeichen, ` +
+          `${befund.candidates.length} Links unter ${src.pfadFilter}`
+      );
+      return { candidates: befund.candidates };
+    }
+
+    const userPrompt = `QUELLE: ${src.name}
+URL: ${src.url}
+FOKUS: ${src.fokus ?? ""}
+
+VOLLTEXT (im Browser gerendert, gekuerzt):
+${(befund.textFuerLlm ?? "").slice(0, MAX_HTML_CHARS)}
+
+Liefere die Liste neuer Programme als JSON-Objekt zurueck.`;
+    const result = await generateJson<ScanResult>(MODEL_INTERVIEW, SCAN_SYSTEM, userPrompt, {
+      maxTokens: 4000,
+    });
+    return { candidates: result.value.programme ?? [] };
+  } catch (err) {
+    const msg = (err as Error).message;
+    console.warn(`  Source ${src.id} fehlgeschlagen: ${msg}`);
+    return { candidates: [], fehler: msg };
+  }
+}
+
+/**
+ * @param erzwungen Quelle wurde per --quelle ausdruecklich benannt. Dann wird sie auch
+ *   geprueft, wenn sie deaktiviert ist — genau dafuer ist das Flag da: eine Quelle
+ *   ansehen, BEVOR man sie aktiv schaltet, oder nachsehen, ob eine abgeschaltete
+ *   inzwischen wieder erreichbar ist. Der Wochenlauf selbst fasst sie nicht an.
+ */
+async function scanSource(src: Source, erzwungen = false): Promise<ScanSourceResult> {
   console.log(`  Scan ${src.id} (${src.url})`);
   if (src.aktiv === false) {
-    console.log(`    ${src.id}: deaktiviert — ${src.grund ?? "ohne Begruendung"}`);
-    return { candidates: [] };
+    if (!erzwungen) {
+      const kurz = (src.grund ?? "ohne Begruendung").replace(/\s+/g, " ");
+      console.log(
+        `    ${src.id}: deaktiviert — ${kurz.length > 140 ? kurz.slice(0, 140) + " […]" : kurz}`
+      );
+      return { candidates: [] };
+    }
+    console.log(
+      `    ${src.id}: deaktiviert, wird auf ausdrueckliche Anforderung (--quelle) trotzdem geprueft.`
+    );
+    console.log(`    Hinterlegter Grund: ${src.grund ?? "ohne Begruendung"}`);
   }
-  if (src.typ === "sitemap") return scanSitemap(src);
+
+  // robots.txt zuerst — und zwar fuer jeden Quellentyp. Ein Crawler, der woechentlich
+  // unbeaufsichtigt laeuft, muss die Hausordnung der Quelle im Code haben, nicht in der Doku.
+  let regeln: RobotsRegeln;
+  try {
+    regeln = await robotsFuer(src.url);
+  } catch (err) {
+    return { candidates: [], fehler: `robots.txt-Pruefung fehlgeschlagen: ${(err as Error).message}` };
+  }
+  if (!istErlaubt(pfadMitQuery(src.url), regeln)) {
+    const grund =
+      regeln.herkunft === "unerreichbar"
+        ? `${regeln.fehler} — ohne lesbare robots.txt wird nicht abgerufen (fail-closed).`
+        : `robots.txt der Domain sperrt ${pfadMitQuery(src.url)}.`;
+    return { candidates: [], fehler: `Nicht abgerufen: ${grund}` };
+  }
+  if (regeln.crawlDelaySekunden) {
+    console.log(`    ${src.id}: robots.txt setzt Crawl-delay ${regeln.crawlDelaySekunden}s — wird eingehalten.`);
+  }
+
+  if (src.typ === "sitemap") return scanSitemap(src, regeln.crawlDelaySekunden);
+  if (src.typ === "browser") return scanBrowser(src);
   try {
     const html = await fetchHtml(src.url);
     const text = stripHtml(html).slice(0, MAX_HTML_CHARS);
@@ -462,6 +641,51 @@ function renderFailureReport(results: ProgrammResult[]): string {
   return lines.join("\n");
 }
 
+/**
+ * Laufbericht — dorthin, wo er ohne Klicken gesehen wird.
+ *
+ * Die Triage verwirft Kandidaten im Normalbetrieb, das ist kein Fehler und darf deshalb kein
+ * Failure-Issue ausloesen. Unsichtbar darf es trotzdem nicht sein: sonst entsteht genau wieder
+ * ein stilles Sieb. GITHUB_STEP_SUMMARY landet direkt auf der Seite des Workflow-Laufs.
+ */
+async function schreibeLaufBericht(
+  opts: CliOpts,
+  quellen: Source[],
+  vorTriage: number,
+  nachTriage: number,
+  verworfen: Array<{ name: string; url: string; quelle: string; grund: string }>
+): Promise<void> {
+  const zeilen: string[] = [];
+  zeilen.push("## Auto-Pflege — Quellen-Lauf");
+  zeilen.push("");
+  const aktive = quellen.filter((q) => q.aktiv !== false);
+  zeilen.push(`Aktive Quellen: **${aktive.length}** von ${quellen.length} eingetragenen.`);
+  zeilen.push("");
+  zeilen.push(`Kandidaten seit letztem Lauf: **${vorTriage}** · nach Triage: **${nachTriage}**`);
+  if (verworfen.length > 0) {
+    zeilen.push("");
+    zeilen.push(`### Von der Triage verworfen (${verworfen.length})`);
+    zeilen.push("");
+    zeilen.push("Steht hier ein echtes Foerderprogramm, fehlt ein Signalwort in `lib/scan/triage.ts`.");
+    zeilen.push("");
+    zeilen.push("| Programm | Quelle | Grund |");
+    zeilen.push("|---|---|---|");
+    for (const v of verworfen) {
+      const name = v.name.replace(/\|/g, "\\|").slice(0, 80);
+      zeilen.push(`| [${name}](${v.url}) | ${v.quelle} | ${v.grund.replace(/\|/g, "\\|")} |`);
+    }
+  }
+  zeilen.push("");
+  const text = zeilen.join("\n");
+
+  if (process.env.GITHUB_STEP_SUMMARY) {
+    await fs.appendFile(process.env.GITHUB_STEP_SUMMARY, text + "\n");
+  }
+  if (!opts.dryRun && opts.failureReport) {
+    await fs.writeFile(opts.failureReport, text + "\n", "utf-8");
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
@@ -484,17 +708,77 @@ async function main(): Promise<void> {
   }
 
   // Phase 1: Scan
-  console.log(`==> Phase 1: Scan (${sources.sources.length} Quellen)`);
+  const zuScannen = opts.nurQuelle
+    ? sources.sources.filter((q) => q.id === opts.nurQuelle)
+    : sources.sources;
+  if (opts.nurQuelle && zuScannen.length === 0) {
+    console.error(`==> Quelle "${opts.nurQuelle}" steht nicht in data/program-sources.json.`);
+    process.exitCode = 1;
+    return;
+  }
+  if (opts.nurQuelle) {
+    console.log(`==> Einzelquelle: ${opts.nurQuelle} (--quelle)`);
+  }
+  console.log(`==> Phase 1: Scan (${zuScannen.length} Quellen)`);
   const allCandidates: Array<{ candidate: ScanCandidate; sourceId: string }> = [];
   const quellenFehler: Array<{ id: string; fehler: string }> = [];
   let quellenMitTreffern = 0;
-  for (const src of sources.sources) {
-    const { candidates: found, fehler } = await scanSource(src);
+  const jetzt = new Date().toISOString();
+  const bestandsBerichte: string[] = [];
+  for (const src of zuScannen) {
+    const { candidates: found, fehler } = await scanSource(src, Boolean(opts.nurQuelle));
     if (fehler) quellenFehler.push({ id: src.id, fehler });
+    // WICHTIG: Diese Zaehlung passiert VOR dem Bestandsvergleich und muss das auch bleiben.
+    // Die Schranke fragt „liefert die Quelle noch?", nicht „gab es diese Woche etwas Neues".
+    // Eine Quelle, die brav ihre 144 bekannten Programme zeigt, ist gesund — wuerde man erst
+    // nach dem Vergleich zaehlen, meldete der Wochenlauf ab dem zweiten Mal „alle Quellen leer".
     if (found.length > 0) quellenMitTreffern++;
-    const unknown = filterUnknown(found, knownNames, knownUrls);
-    console.log(`    ${src.id}: ${found.length} gefunden, ${unknown.length} neu`);
+
+    let seitLetztemLauf = found;
+    if (found.length > 0 && !src.ohneBestandsvergleich) {
+      const alt = await ladeBestand(BESTAND_DIR, src.id);
+      const diff = vergleicheBestand(
+        alt,
+        found.map((c) => c.detailUrl)
+      );
+      if (diff.fehler) {
+        quellenFehler.push({ id: src.id, fehler: diff.fehler });
+        seitLetztemLauf = [];
+      } else if (diff.erstlauf) {
+        console.log(
+          `    ${src.id}: Erstlauf — ${found.length} URLs als Bestand aufgenommen, keine Kandidaten.`
+        );
+        bestandsBerichte.push(`${src.id}: Erstlauf, Bestand ${found.length}`);
+        seitLetztemLauf = [];
+      } else {
+        const neuMenge = new Set(diff.neu);
+        seitLetztemLauf = found.filter((c) => neuMenge.has(c.detailUrl));
+        if (diff.entfallen.length > 0) {
+          console.log(`    ${src.id}: ${diff.entfallen.length} URLs entfallen (Seite entfernt?).`);
+          bestandsBerichte.push(`${src.id}: ${diff.entfallen.length} entfallen`);
+        }
+      }
+      // Bestand auch dann fortschreiben, wenn nichts Neues dabei war — sonst gilt naechste
+      // Woche wieder alles als neu.
+      if (!opts.dryRun && !diff.fehler) {
+        await speichereBestand(
+          BESTAND_DIR,
+          src.id,
+          found.map((c) => c.detailUrl),
+          jetzt
+        );
+      }
+    }
+
+    const unknown = filterUnknown(seitLetztemLauf, knownNames, knownUrls);
+    console.log(
+      `    ${src.id}: ${found.length} in der Quelle, ${seitLetztemLauf.length} seit letztem Lauf neu, ` +
+        `${unknown.length} noch nicht im Katalog`
+    );
     for (const c of unknown) allCandidates.push({ candidate: c, sourceId: src.id });
+  }
+  if (bestandsBerichte.length > 0) {
+    console.log(`==> Bestand: ${bestandsBerichte.join(" · ")}`);
   }
 
   // Befund 18.08.2026: Der Wochenlauf meldete monatelang "0 gefunden, 0 neu" und
@@ -502,7 +786,9 @@ async function main(): Promise<void> {
   // toter LLM-Key, HTTP 404 nach Portal-Umbau). "Nichts gefunden" und "Quelle
   // kaputt" sahen im Log identisch aus. Ein Scanner, der auf KEINER Quelle etwas
   // findet, ist ein defektes Werkzeug und kein Beleg dafuer, dass es nichts gibt.
-  const aktiveQuellen = sources.sources.filter((q) => q.aktiv !== false).length;
+  const aktiveQuellen = opts.nurQuelle
+    ? zuScannen.length
+    : zuScannen.filter((q) => q.aktiv !== false).length;
   const alleQuellenLeer = quellenMitTreffern === 0 && aktiveQuellen > 0;
   // Ein Scanner ohne aktive Quelle laeuft woechentlich, tut nichts und meldet Erfolg —
   // genau die Stille, die diesen Befund sechs Wochen lang verdeckt hat. Deshalb laut.
@@ -513,7 +799,7 @@ async function main(): Promise<void> {
     for (const q of quellenFehler) console.error(`    ✗ ${q.id}: ${q.fehler}`);
     if (keineQuelleAktiv) {
       console.error(
-        `    ✗ KEINE aktive Quelle konfiguriert (${sources.sources.length} eingetragen, alle deaktiviert). ` +
+        `    ✗ KEINE aktive Quelle konfiguriert (${zuScannen.length} eingetragen, alle deaktiviert). ` +
           `Die Programm-Suche findet damit strukturell nichts — neue Quellen eintragen, ` +
           `Begruendungen je Quelle stehen in data/program-sources.json.`
       );
@@ -530,7 +816,7 @@ async function main(): Promise<void> {
         `has_failures=true\nnew_count=0\nskip_count=0\nfailure_count=${Math.max(quellenFehler.length, 1)}\n`
       );
     }
-    if (opts.failureReport) {
+    if (opts.failureReport && !opts.dryRun) {
       const zeilen = [
         "# Auto-Pflege: Quellen-Scan defekt",
         "",
@@ -551,10 +837,62 @@ async function main(): Promise<void> {
     return;
   }
 
+  // Phase 1b: Triage — was lohnt ueberhaupt eine Dossier-Extraktion?
+  const quelleNach = new Map(zuScannen.map((q) => [q.id, q]));
+  const triageVerworfen: Array<{ name: string; url: string; quelle: string; grund: string }> = [];
+  const geprueft: typeof allCandidates = [];
+  if (allCandidates.length > 0) {
+    console.log(`==> Phase 1b: Triage (${allCandidates.length} Kandidaten)`);
+  }
+  for (const eintrag of allCandidates) {
+    if (quelleNach.get(eintrag.sourceId)?.ohneTriage) {
+      geprueft.push(eintrag);
+      continue;
+    }
+    const urteil = await triagiereKandidat(eintrag.candidate);
+    if (urteil.weiter) {
+      console.log(`    ✓ ${eintrag.candidate.name} — ${urteil.begruendung}`);
+      geprueft.push(eintrag);
+    } else {
+      console.log(`    ✗ ${eintrag.candidate.name} — ${urteil.begruendung}`);
+      triageVerworfen.push({
+        name: eintrag.candidate.name,
+        url: eintrag.candidate.detailUrl,
+        quelle: eintrag.sourceId,
+        grund: urteil.begruendung,
+      });
+    }
+  }
+  if (triageVerworfen.length > 0) {
+    console.log(
+      `==> Triage: ${geprueft.length} weiter, ${triageVerworfen.length} verworfen. ` +
+        `Die Verworfenen stehen vollstaendig im Report — wer dort ein echtes Programm findet, ` +
+        `muss ein Signalwort in lib/scan/triage.ts ergaenzen.`
+    );
+  }
+
+  if (opts.dryRun) {
+    console.log(`==> Kandidaten nach Triage (${geprueft.length}):`);
+    for (const { candidate, sourceId } of geprueft) {
+      console.log(`    [${sourceId}] ${candidate.name}`);
+      console.log(`        ${candidate.detailUrl}`);
+    }
+  }
+
+  await schreibeLaufBericht(opts, zuScannen, allCandidates.length, geprueft.length, triageVerworfen);
+
+  if (geprueft.length === 0) {
+    console.log("==> Nach der Triage bleibt nichts zu extrahieren. Done.");
+    if (process.env.GITHUB_OUTPUT) {
+      await fs.appendFile(process.env.GITHUB_OUTPUT, "has_failures=false\nnew_count=0\n");
+    }
+    return;
+  }
+
   // Phase 2: Per-Programm-Loop (max N)
-  const toProcess = allCandidates.slice(0, opts.maxPrograms);
+  const toProcess = geprueft.slice(0, opts.maxPrograms);
   console.log(`==> Phase 2: ${toProcess.length} Programme verarbeiten (Limit ${opts.maxPrograms})`);
-  await fs.mkdir(opts.logsDir, { recursive: true });
+  if (!opts.dryRun) await fs.mkdir(opts.logsDir, { recursive: true });
   const results: ProgrammResult[] = [];
   for (const { candidate, sourceId } of toProcess) {
     console.log(`  -> ${candidate.name}`);
@@ -571,7 +909,9 @@ async function main(): Promise<void> {
   // Phase 3: Report
   const report = renderFailureReport(results);
   if (!opts.dryRun) {
-    await fs.writeFile(opts.failureReport, report);
+    // Anhaengen statt ueberschreiben: der Laufbericht (inkl. der von der Triage verworfenen
+    // Kandidaten) steht schon in der Datei und ist der eigentliche Beleg des Laufs.
+    await fs.appendFile(opts.failureReport, "\n" + report);
   }
   const doneCount = results.filter((r) => r.status === "done").length;
   const skipCount = results.filter((r) => r.status === "skip").length;
@@ -587,7 +927,16 @@ async function main(): Promise<void> {
   }
 }
 
-main().catch((err) => {
-  console.error("FATAL:", err);
-  process.exit(1);
-});
+// Entry-Point-Guard nach dem Muster von scripts/extract-richtlinie.ts: nur ausfuehren, wenn
+// dieses Skript direkt aufgerufen wurde. Ohne den Guard startet schon ein `import` aus einem
+// Test den kompletten Wochenlauf samt Netzabrufen.
+const isEntryPoint = (() => {
+  const arg1 = process.argv[1] ?? "";
+  return arg1.endsWith("auto-pflege-step.ts") || arg1.endsWith("auto-pflege-step.js");
+})();
+if (isEntryPoint) {
+  main().catch((err) => {
+    console.error("FATAL:", err);
+    process.exit(1);
+  });
+}

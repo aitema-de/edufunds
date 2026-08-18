@@ -46,6 +46,13 @@ on:
         required: false
         type: boolean
         default: false
+      quelle:
+        # Zum Pruefen einer neuen Quelle, bevor sie in data/program-sources.json
+        # auf aktiv=true gesetzt wird: zusammen mit dry_run=true laufen lassen.
+        description: "Nur diese eine Quellen-ID scannen (leer = alle)"
+        required: false
+        type: string
+        default: ""
 
 jobs:
   auto-pflege:
@@ -68,6 +75,29 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Chromium kostet rund eine Minute Laufzeit und wird nur gebraucht, wenn
+      # ueberhaupt eine Quelle mit typ="browser" aktiv ist. Die Abfrage steht hier
+      # und nicht im Skript, damit der Workflow ohne Browser-Quelle unveraendert schnell bleibt.
+      - name: Browser-Quellen erkennen
+        id: browserquellen
+        env:
+          QUELLE_INPUT: ${{ github.event.inputs.quelle || '' }}
+        run: |
+          set -euo pipefail
+          if [ -n "${QUELLE_INPUT}" ]; then
+            # Einzelpruefung per --quelle prueft auch deaktivierte Quellen — dann muss
+            # Chromium da sein, obwohl die Quelle nicht aktiv ist.
+            ANZAHL=$(jq --arg q "${QUELLE_INPUT}" '[.sources[] | select(.id == $q and .typ == "browser")] | length' data/program-sources.json)
+          else
+            ANZAHL=$(jq '[.sources[] | select(.typ == "browser" and (.aktiv != false))] | length' data/program-sources.json)
+          fi
+          echo "count=${ANZAHL}" >> "${GITHUB_OUTPUT}"
+          echo "Benoetigte Browser-Quellen: ${ANZAHL}"
+
+      - name: Playwright-Chromium installieren
+        if: steps.browserquellen.outputs.count != '0'
+        run: npx playwright install --with-deps chromium
+
       - name: Run auto-pflege-step
         id: pflege
         env:
@@ -77,6 +107,7 @@ jobs:
           LLM_PROVIDER: ${{ github.event.inputs.llm_provider || 'mistral' }}
           MAX_PROGRAMS_INPUT: ${{ github.event.inputs.max_programs || '5' }}
           DRY_RUN_INPUT: ${{ github.event.inputs.dry_run || 'false' }}
+          QUELLE_INPUT: ${{ github.event.inputs.quelle || '' }}
         run: |
           set -euo pipefail
           if [ -z "${DEEPSEEK_API_KEY}" ] && [ "${LLM_PROVIDER}" = "deepseek" ]; then
@@ -97,13 +128,16 @@ jobs:
           if [ "${DRY_RUN_INPUT}" = "true" ]; then
             ARGS+=(--dry-run)
           fi
+          if [ -n "${QUELLE_INPUT}" ]; then
+            ARGS+=(--quelle "${QUELLE_INPUT}")
+          fi
           npx tsx scripts/auto-pflege-step.ts "${ARGS[@]}"
 
       - name: Detect changes
         id: diff
         run: |
           set -euo pipefail
-          if git diff --quiet data/richtlinien data/richtlinien-prioritaeten.json data/foerderprogramme.json; then
+          if git diff --quiet data/richtlinien data/richtlinien-prioritaeten.json data/foerderprogramme.json data/scan-state; then
             echo "changed=false" >> "${GITHUB_OUTPUT}"
             echo "Keine Aenderungen in data/ — kein PR notwendig."
           else
