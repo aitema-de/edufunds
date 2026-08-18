@@ -99,7 +99,16 @@ describe("Bestandsdatei", () => {
     await speichereBestand(dir, "q", ["https://x.de/a", "https://x.de/b"], "2026-08-18T00:00:00Z");
     const roh = JSON.parse(await fs.readFile(path.join(dir, "q.json"), "utf8"));
     expect(roh.erstlauf).toBe("2026-01-01T00:00:00Z");
-    expect(roh.letzterLauf).toBe("2026-08-18T00:00:00Z");
+    expect(roh.letzteAenderung).toBe("2026-08-18T00:00:00Z");
+  });
+
+  it("schreibt NICHT, wenn sich der Bestand nicht geaendert hat", async () => {
+    // Sonst aendert allein der Zeitstempel die Datei jede Woche — und loest jede Woche
+    // einen leeren Pull Request aus.
+    expect(await speichereBestand(dir, "q", ["https://x.de/a"], "2026-01-01T00:00:00Z")).toBe(true);
+    expect(await speichereBestand(dir, "q", ["https://x.de/a"], "2026-08-18T00:00:00Z")).toBe(false);
+    const roh = JSON.parse(await fs.readFile(path.join(dir, "q.json"), "utf8"));
+    expect(roh.letzteAenderung).toBe("2026-01-01T00:00:00Z");
   });
 
   it("laesst eine Quellen-ID nicht aus dem Bestandsverzeichnis ausbrechen", async () => {

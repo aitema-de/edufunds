@@ -18,7 +18,13 @@ import path from "node:path";
 export interface BestandsDatei {
   quelle: string;
   erstlauf: string;
-  letzterLauf: string;
+  /**
+   * Wann sich der Bestand zuletzt GEAENDERT hat — nicht, wann zuletzt geschaut wurde.
+   * Der Unterschied ist praktisch: ein Zeitstempel je Lauf wuerde die Datei jede Woche
+   * veraendern und damit jede Woche einen leeren Pull Request ausloesen, auch wenn bei der
+   * Quelle nichts passiert ist. Dass geschaut wurde, steht im Lauf-Protokoll.
+   */
+  letzteAenderung: string;
   urlAnzahl: number;
   urls: string[];
 }
@@ -98,23 +104,29 @@ export async function speichereBestand(
   quelle: string,
   urls: string[],
   jetzt: string
-): Promise<void> {
-  await fs.mkdir(dir, { recursive: true });
+): Promise<boolean> {
+  const sortiert = [...new Set(urls)].sort();
   const ziel = pfadFuer(dir, quelle);
   let erstlauf = jetzt;
   try {
     const vorher = JSON.parse(await fs.readFile(ziel, "utf8")) as BestandsDatei;
     if (vorher.erstlauf) erstlauf = vorher.erstlauf;
+    const unveraendert =
+      Array.isArray(vorher.urls) &&
+      vorher.urls.length === sortiert.length &&
+      vorher.urls.every((u, i) => u === sortiert[i]);
+    if (unveraendert) return false;
   } catch {
     /* Erstlauf */
   }
-  const sortiert = [...new Set(urls)].sort();
+  await fs.mkdir(dir, { recursive: true });
   const datei: BestandsDatei = {
     quelle,
     erstlauf,
-    letzterLauf: jetzt,
+    letzteAenderung: jetzt,
     urlAnzahl: sortiert.length,
     urls: sortiert,
   };
   await fs.writeFile(ziel, JSON.stringify(datei, null, 2) + "\n", "utf8");
+  return true;
 }

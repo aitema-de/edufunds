@@ -42,6 +42,7 @@ import { generateJson, MODEL_INTERVIEW } from "../lib/wizard/llm";
 import { ladeRobots, istErlaubt, pfadMitQuery, type RobotsRegeln } from "../lib/scan/robots";
 import { holeSeiteMitBrowser, bewerteSeite, pfadPasst, nameAusLink } from "../lib/scan/browser-scan";
 import { ladeBestand, speichereBestand, vergleicheBestand } from "../lib/scan/bestand";
+import { bewerteText, type TriageUrteil } from "../lib/scan/triage";
 import { runExtraction } from "./extract-richtlinie";
 import { loadQueue, saveQueue, type QueueItem } from "../lib/wizard/queue";
 
@@ -103,6 +104,12 @@ interface Source {
    * ueberhaupt handhabbar sind. Ohne ihn kaeme jede Woche der volle Bestand.
    */
   ohneBestandsvergleich?: boolean;
+  /**
+   * Triage ueberspringen. Nur fuer Quellen, bei denen JEDE Seite unter dem pfadFilter
+   * per Definition ein Foerderangebot ist (z. B. Aktion Mensch) — dort wuerde die Pruefung
+   * nur Abrufe kosten.
+   */
+  ohneTriage?: boolean;
   /** Optional deaktiviert, mit Begruendung im Feld `grund`. */
   aktiv?: boolean;
   grund?: string;
@@ -325,6 +332,54 @@ async function scanSitemap(src: Source, crawlDelay: number | null): Promise<Scan
 }
 
 /**
+ * robots.txt je Host nur einmal pro Lauf holen.
+ *
+ * Die Triage ruft anschliessend Dutzende Detailseiten derselben Domain ab — ohne Cache waere
+ * das je Seite ein zusaetzlicher robots.txt-Abruf, also genau die Last, die die Hausordnung
+ * begrenzen soll.
+ */
+const robotsCache = new Map<string, RobotsRegeln>();
+
+async function robotsFuer(url: string): Promise<RobotsRegeln> {
+  const host = new URL(url).host;
+  const bekannt = robotsCache.get(host);
+  if (bekannt) return bekannt;
+  const regeln = await ladeRobots(url);
+  robotsCache.set(host, regeln);
+  return regeln;
+}
+
+/**
+ * Triage eines einzelnen Kandidaten: Detailseite holen, Signale messen.
+ *
+ * Faellt bewusst nach OBEN durch: Wenn die Seite nicht abrufbar oder die robots.txt unklar
+ * ist, wird der Kandidat weitergereicht statt verworfen. Ein verworfenes echtes Programm
+ * waere unsichtbar verloren; ein durchgewinkter Blindgaenger kostet eine Extraktion und
+ * faellt im PR-Review auf.
+ */
+async function triagiereKandidat(c: ScanCandidate): Promise<TriageUrteil> {
+  try {
+    const regeln = await robotsFuer(c.detailUrl);
+    if (!istErlaubt(pfadMitQuery(c.detailUrl), regeln)) {
+      return {
+        weiter: false,
+        begruendung: "robots.txt der Domain sperrt diese Detailseite — nicht abgerufen.",
+        signale: { geld: [], zielgruppe: [], antrag: [], ausschluss: [] },
+      };
+    }
+    if (regeln.crawlDelaySekunden) await warte(regeln.crawlDelaySekunden);
+    const text = stripHtml(await fetchHtml(c.detailUrl)).slice(0, MAX_HTML_CHARS);
+    return bewerteText(text, c.name);
+  } catch (err) {
+    return {
+      weiter: true,
+      begruendung: `Seite nicht pruefbar (${(err as Error).message}) — im Zweifel weitergereicht.`,
+      signale: { geld: [], zielgruppe: [], antrag: [], ausschluss: [] },
+    };
+  }
+}
+
+/**
  * Browser-Quelle: Seite mit Playwright rendern, dann Links ernten oder Text an das LLM.
  *
  * Jede Abbruchstelle liefert einen konkreten Grund statt einer leeren Liste. Der Befund
@@ -398,7 +453,7 @@ async function scanSource(src: Source, erzwungen = false): Promise<ScanSourceRes
   // unbeaufsichtigt laeuft, muss die Hausordnung der Quelle im Code haben, nicht in der Doku.
   let regeln: RobotsRegeln;
   try {
-    regeln = await ladeRobots(src.url);
+    regeln = await robotsFuer(src.url);
   } catch (err) {
     return { candidates: [], fehler: `robots.txt-Pruefung fehlgeschlagen: ${(err as Error).message}` };
   }
@@ -586,6 +641,51 @@ function renderFailureReport(results: ProgrammResult[]): string {
   return lines.join("\n");
 }
 
+/**
+ * Laufbericht — dorthin, wo er ohne Klicken gesehen wird.
+ *
+ * Die Triage verwirft Kandidaten im Normalbetrieb, das ist kein Fehler und darf deshalb kein
+ * Failure-Issue ausloesen. Unsichtbar darf es trotzdem nicht sein: sonst entsteht genau wieder
+ * ein stilles Sieb. GITHUB_STEP_SUMMARY landet direkt auf der Seite des Workflow-Laufs.
+ */
+async function schreibeLaufBericht(
+  opts: CliOpts,
+  quellen: Source[],
+  vorTriage: number,
+  nachTriage: number,
+  verworfen: Array<{ name: string; url: string; quelle: string; grund: string }>
+): Promise<void> {
+  const zeilen: string[] = [];
+  zeilen.push("## Auto-Pflege — Quellen-Lauf");
+  zeilen.push("");
+  const aktive = quellen.filter((q) => q.aktiv !== false);
+  zeilen.push(`Aktive Quellen: **${aktive.length}** von ${quellen.length} eingetragenen.`);
+  zeilen.push("");
+  zeilen.push(`Kandidaten seit letztem Lauf: **${vorTriage}** · nach Triage: **${nachTriage}**`);
+  if (verworfen.length > 0) {
+    zeilen.push("");
+    zeilen.push(`### Von der Triage verworfen (${verworfen.length})`);
+    zeilen.push("");
+    zeilen.push("Steht hier ein echtes Foerderprogramm, fehlt ein Signalwort in `lib/scan/triage.ts`.");
+    zeilen.push("");
+    zeilen.push("| Programm | Quelle | Grund |");
+    zeilen.push("|---|---|---|");
+    for (const v of verworfen) {
+      const name = v.name.replace(/\|/g, "\\|").slice(0, 80);
+      zeilen.push(`| [${name}](${v.url}) | ${v.quelle} | ${v.grund.replace(/\|/g, "\\|")} |`);
+    }
+  }
+  zeilen.push("");
+  const text = zeilen.join("\n");
+
+  if (process.env.GITHUB_STEP_SUMMARY) {
+    await fs.appendFile(process.env.GITHUB_STEP_SUMMARY, text + "\n");
+  }
+  if (!opts.dryRun && opts.failureReport) {
+    await fs.writeFile(opts.failureReport, text + "\n", "utf-8");
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
@@ -737,16 +837,60 @@ async function main(): Promise<void> {
     return;
   }
 
+  // Phase 1b: Triage — was lohnt ueberhaupt eine Dossier-Extraktion?
+  const quelleNach = new Map(zuScannen.map((q) => [q.id, q]));
+  const triageVerworfen: Array<{ name: string; url: string; quelle: string; grund: string }> = [];
+  const geprueft: typeof allCandidates = [];
+  if (allCandidates.length > 0) {
+    console.log(`==> Phase 1b: Triage (${allCandidates.length} Kandidaten)`);
+  }
+  for (const eintrag of allCandidates) {
+    if (quelleNach.get(eintrag.sourceId)?.ohneTriage) {
+      geprueft.push(eintrag);
+      continue;
+    }
+    const urteil = await triagiereKandidat(eintrag.candidate);
+    if (urteil.weiter) {
+      console.log(`    ✓ ${eintrag.candidate.name} — ${urteil.begruendung}`);
+      geprueft.push(eintrag);
+    } else {
+      console.log(`    ✗ ${eintrag.candidate.name} — ${urteil.begruendung}`);
+      triageVerworfen.push({
+        name: eintrag.candidate.name,
+        url: eintrag.candidate.detailUrl,
+        quelle: eintrag.sourceId,
+        grund: urteil.begruendung,
+      });
+    }
+  }
+  if (triageVerworfen.length > 0) {
+    console.log(
+      `==> Triage: ${geprueft.length} weiter, ${triageVerworfen.length} verworfen. ` +
+        `Die Verworfenen stehen vollstaendig im Report — wer dort ein echtes Programm findet, ` +
+        `muss ein Signalwort in lib/scan/triage.ts ergaenzen.`
+    );
+  }
+
   if (opts.dryRun) {
-    console.log(`==> Gefundene Kandidaten (${allCandidates.length}):`);
-    for (const { candidate, sourceId } of allCandidates) {
+    console.log(`==> Kandidaten nach Triage (${geprueft.length}):`);
+    for (const { candidate, sourceId } of geprueft) {
       console.log(`    [${sourceId}] ${candidate.name}`);
       console.log(`        ${candidate.detailUrl}`);
     }
   }
 
+  await schreibeLaufBericht(opts, zuScannen, allCandidates.length, geprueft.length, triageVerworfen);
+
+  if (geprueft.length === 0) {
+    console.log("==> Nach der Triage bleibt nichts zu extrahieren. Done.");
+    if (process.env.GITHUB_OUTPUT) {
+      await fs.appendFile(process.env.GITHUB_OUTPUT, "has_failures=false\nnew_count=0\n");
+    }
+    return;
+  }
+
   // Phase 2: Per-Programm-Loop (max N)
-  const toProcess = allCandidates.slice(0, opts.maxPrograms);
+  const toProcess = geprueft.slice(0, opts.maxPrograms);
   console.log(`==> Phase 2: ${toProcess.length} Programme verarbeiten (Limit ${opts.maxPrograms})`);
   if (!opts.dryRun) await fs.mkdir(opts.logsDir, { recursive: true });
   const results: ProgrammResult[] = [];
@@ -765,7 +909,9 @@ async function main(): Promise<void> {
   // Phase 3: Report
   const report = renderFailureReport(results);
   if (!opts.dryRun) {
-    await fs.writeFile(opts.failureReport, report);
+    // Anhaengen statt ueberschreiben: der Laufbericht (inkl. der von der Triage verworfenen
+    // Kandidaten) steht schon in der Datei und ist der eigentliche Beleg des Laufs.
+    await fs.appendFile(opts.failureReport, "\n" + report);
   }
   const doneCount = results.filter((r) => r.status === "done").length;
   const skipCount = results.filter((r) => r.status === "skip").length;
