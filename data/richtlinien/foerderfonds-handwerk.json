@@ -1,0 +1,248 @@
+{
+  "version": "2026-08-18",
+  "quellen": [
+    "https://www.stiftungbildung.org/foerderfonds-handwerk"
+  ],
+  "foerderhoehe": {
+    "minEur": 500,
+    "maxEur": 5000,
+    "bemerkung": "Förderung von 500 bis 5.000 Euro pro Projekt"
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Ressourcenschonende Materialien werden besonders gefördert",
+        "Projekt muss handwerkliche Aktivitäten ermöglichen"
+      ],
+      "beispielePasst": [
+        "Werkzeuge und Materialien für handwerkliche Projekte",
+        "Baumaterialien wie recycelte Hölzer oder alternative Baustoffe",
+        "Materialien für Naturbauprojekte wie Vogelhäuschen oder Baumhäuser"
+      ],
+      "beispielePasstNicht": [
+        "Reine Anschaffungen ohne handwerklichen Bezug",
+        "Mittelbeschaffung für Neubau- oder Umbaumaßnahmen"
+      ]
+    },
+    {
+      "kategorie": "personal",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Honorarkosten von externen Fachkräften und Lehrer*innen sind nicht förderfähig"
+      ]
+    },
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Übernachtungskosten für Klassenfahrten oder ähnliche Aktivitäten sind nicht förderfähig"
+      ]
+    },
+    {
+      "kategorie": "sonstiges",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Wirtschaftsunternehmen und andere gemeinnützige Vereine sind nicht antragsberechtigt",
+        "Doppel- und Mehrfachförderung ist nicht erlaubt"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": false,
+    "formenErlaubt": [
+      "finanziell"
+    ],
+    "bemerkung": "Eigenmittel sind nicht verpflichtend, aber Eigeninitiative und Eigenbeteiligung der Kinder und Jugendlichen sind erwünscht"
+  },
+  "kumulierung": {
+    "erlaubt": false,
+    "bedingungen": [
+      "Doppel- und Mehrfachförderung ist nicht erlaubt"
+    ],
+    "unvereinbarMit": [
+      "andere Förderprogramme mit gleichem Förderzweck"
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "projektzusammenfassung",
+        "name": "Projektzusammenfassung",
+        "pflicht": true,
+        "leitfragen": [
+          "Fasse das Projekt kurz und bündig zusammen"
+        ]
+      },
+      {
+        "id": "projektziele",
+        "name": "Projektziele",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Ziele verfolgt das Projekt? Was möchtest du erreichen?"
+        ]
+      },
+      {
+        "id": "aktivitaeten",
+        "name": "Aktivitäten",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Aktivitäten werden durchgeführt, um diese Ziele zu erreichen?"
+        ]
+      },
+      {
+        "id": "handwerkliche_foerderung",
+        "name": "Handwerkliche Förderung",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie können (erste) handwerkliche Fähigkeiten der Kinder und Jugendlichen durch dein Projekt gefördert werden?"
+        ]
+      },
+      {
+        "id": "projektzeitraum",
+        "name": "Projektzeitraum",
+        "pflicht": true,
+        "leitfragen": [
+          "Wann ist der Projektstart und wie lange soll das Projekt dauern?"
+        ]
+      },
+      {
+        "id": "zielgruppen",
+        "name": "Zielgruppen",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Zielgruppen (Altersstufe(n), Anzahl) werden angesprochen?"
+        ]
+      },
+      {
+        "id": "beteiligung",
+        "name": "Beteiligung der Kinder und Jugendlichen",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie werden Kinder und Jugendliche in die Planung und Umsetzung einbezogen?"
+        ]
+      },
+      {
+        "id": "verstetigung",
+        "name": "Verstetigung",
+        "pflicht": true,
+        "leitfragen": [
+          "Ist eine Verstetigung des Projekts auch über den unmittelbaren Projektzeitraum geplant?"
+        ]
+      },
+      {
+        "id": "nachahmung",
+        "name": "Nachahmung und Verbreitung",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie kann das Projekt über deine Kita oder Schule hinaus zur Nachahmung anregen?"
+        ]
+      },
+      {
+        "id": "ressourcen",
+        "name": "Ressourcenbedarf",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche (finanziellen) Ressourcen werden benötigt? Bitte einzelne Bereiche grob aufschlüsseln und die Gesamtsumme benennen."
+        ]
+      },
+      {
+        "id": "foerderpartner",
+        "name": "Förderpartner",
+        "pflicht": false,
+        "leitfragen": [
+          "Hast du weitere Förderpartner*innen (Vereine, Schulen, etc.) und wenn ja, welche?"
+        ]
+      },
+      {
+        "id": "sonstiges",
+        "name": "Sonstiges",
+        "pflicht": false,
+        "leitfragen": [
+          "Gibt es wichtige Aspekte, die wir noch nicht abgefragt haben?"
+        ]
+      }
+    ],
+    "anlagen": [
+      "Freistellungsbescheid des Kita- oder Schulfördervereins"
+    ],
+    "einreichungsweg": "Online-Formular auf der Website der Stiftung Bildung",
+    "bearbeitungsdauer": "4–6 Wochen nach Antragsstellung"
+  },
+  "fristLogik": {
+    "typ": "rolling"
+  },
+  "bestPractices": [
+    {
+      "thema": "Partizipation der Kinder und Jugendlichen",
+      "was_funktionierte": "Projekte, bei denen Kinder und Jugendliche von Anfang an aktiv in Planung und Umsetzung einbezogen wurden",
+      "warum": "Fördert Eigeninitiative und langfristige Begeisterung für handwerkliche Tätigkeiten"
+    },
+    {
+      "thema": "Nachhaltigkeit und Ressourcenschonung",
+      "was_funktionierte": "Verwendung von recycelten Materialien oder alternativen Baustoffen",
+      "warum": "Unterstützt die Ziele der Stiftung Bildung im Bereich Nachhaltigkeit und wird besonders gefördert"
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Projekte ohne Beteiligung von Kindern und Jugendlichen",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Sicherstellen, dass Kinder und Jugendliche aktiv in Planung und Umsetzung eingebunden sind"
+    },
+    {
+      "grund": "Antrag von Wirtschaftsunternehmen oder anderen gemeinnützigen Vereinen (nicht Kita- oder Schulfördervereine)",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Nur Anträge von Kita- oder Schulfördervereinen einreichen"
+    },
+    {
+      "grund": "Doppel- oder Mehrfachförderung",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Keine parallele Förderung durch andere Programme mit gleichem Förderzweck beantragen"
+    },
+    {
+      "grund": "Honorarkosten für externe Fachkräfte oder Lehrer*innen",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Keine Honorarkosten in den Antrag einplanen"
+    },
+    {
+      "grund": "Reine Anschaffungen ohne handwerklichen Bezug",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Nur Projekte mit klaren handwerklichen Aktivitäten und Materialien beantragen"
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "beteiligung",
+      "formulierung": "Die Kinder und Jugendlichen wurden von der Ideenfindung bis zur Umsetzung in alle Entscheidungsprozesse eingebunden. Sie haben selbst Materialien ausgewählt und die Baupläne erstellt.",
+      "kontext": "Beschreibung der Partizipation im Projekt"
+    },
+    {
+      "abschnitt_id": "handwerkliche_foerderung",
+      "formulierung": "Durch das Projekt erwarben die Teilnehmenden grundlegende Fähigkeiten im Umgang mit Werkzeugen wie Säge, Hammer und Bohrmaschine. Sie lernten, einfache Holzverbindungen herzustellen und Oberflächen zu bearbeiten.",
+      "kontext": "Darstellung der handwerklichen Lernziele"
+    },
+    {
+      "abschnitt_id": "nachahmung",
+      "formulierung": "Das Projekt wurde in einer öffentlichen Präsentation in der Schule vorgestellt. Ein Leitfaden zur Umsetzung wurde erstellt und an andere Schulen im Netzwerk weitergegeben.",
+      "kontext": "Nachhaltige Wirkung und Verbreitung des Projekts"
+    },
+    {
+      "abschnitt_id": "verstetigung",
+      "formulierung": "Das Projekt wird als regelmäßige Arbeitsgemeinschaft im Schuljahr 2026/2027 fortgeführt. Die Materialien und Werkzeuge werden im Schulbestand verbleiben.",
+      "kontext": "Planung der langfristigen Umsetzung"
+    },
+    {
+      "abschnitt_id": "ressourcen",
+      "formulierung": "Materialkosten (Holz, Schrauben, Farbe): 1.200 €; Werkzeugnutzung (Leihgabe): 300 €; Transportkosten: 150 €; Gesamt: 1.650 €",
+      "kontext": "Aufschlüsselung der benötigten Ressourcen"
+    }
+  ],
+  "notizen": [
+    "Antragsberechtigt sind nur Kita- oder Schulfördervereine mit aktuellem Freistellungsbescheid.",
+    "Die Stiftung Bildung betont die Bedeutung von Partizipation, Vielfalt & Inklusion sowie Nachhaltigkeit bei der Projektauswahl.",
+    "Die Bearbeitung der Anträge erfolgt durch ein Beschlussgremium aus jungen und engagierten Menschen sowie dem Vorstand der Stiftung Bildung.",
+    "Für Rückfragen steht die E-Mail-Adresse foerderanfrage@stiftungbildung.org zur Verfügung."
+  ]
+}
