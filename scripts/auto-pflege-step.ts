@@ -651,6 +651,7 @@ function renderFailureReport(results: ProgrammResult[]): string {
 async function schreibeLaufBericht(
   opts: CliOpts,
   quellen: Source[],
+  quellenBericht: Array<{ id: string; aktiv: boolean; gefunden: number; neu: number; fehler?: string }>,
   vorTriage: number,
   nachTriage: number,
   verworfen: Array<{ name: string; url: string; quelle: string; grund: string }>
@@ -659,9 +660,25 @@ async function schreibeLaufBericht(
   zeilen.push("## Auto-Pflege — Quellen-Lauf");
   zeilen.push("");
   const aktive = quellen.filter((q) => q.aktiv !== false);
-  zeilen.push(`Aktive Quellen: **${aktive.length}** von ${quellen.length} eingetragenen.`);
+  const gesamtUrls = quellenBericht.reduce((n, q) => n + q.gefunden, 0);
+  zeilen.push(
+    `**${aktive.length}** aktive Quellen von ${quellen.length} eingetragenen · ` +
+      `**${gesamtUrls}** Seiten abgerufen · **${vorTriage}** neu seit letztem Lauf · ` +
+      `**${nachTriage}** nach Triage`
+  );
   zeilen.push("");
-  zeilen.push(`Kandidaten seit letztem Lauf: **${vorTriage}** · nach Triage: **${nachTriage}**`);
+  // Die Zahl je Quelle ist der Lebensnachweis: eine Quelle, die 144 bekannte Programme zeigt,
+  // arbeitet — auch wenn nichts Neues dabei war. Ohne diese Spalte sieht "nichts gefunden"
+  // wieder genauso aus wie "kaputt", und genau das war der Befund vom 18.08.2026.
+  const aktiveZeilen = quellenBericht.filter((q) => q.aktiv);
+  if (aktiveZeilen.length > 0) {
+    zeilen.push("| Quelle | Seiten in der Quelle | davon neu | Zustand |");
+    zeilen.push("|---|---:|---:|---|");
+    for (const q of aktiveZeilen) {
+      const zustand = q.fehler ? `⚠️ ${q.fehler.slice(0, 90)}` : q.gefunden > 0 ? "ok" : "⚠️ leer";
+      zeilen.push(`| ${q.id} | ${q.gefunden} | ${q.neu} | ${zustand} |`);
+    }
+  }
   if (verworfen.length > 0) {
     zeilen.push("");
     zeilen.push(`### Von der Triage verworfen (${verworfen.length})`);
@@ -725,6 +742,13 @@ async function main(): Promise<void> {
   let quellenMitTreffern = 0;
   const jetzt = new Date().toISOString();
   const bestandsBerichte: string[] = [];
+  const quellenBericht: Array<{
+    id: string;
+    aktiv: boolean;
+    gefunden: number;
+    neu: number;
+    fehler?: string;
+  }> = [];
   for (const src of zuScannen) {
     const { candidates: found, fehler } = await scanSource(src, Boolean(opts.nurQuelle));
     if (fehler) quellenFehler.push({ id: src.id, fehler });
@@ -776,6 +800,13 @@ async function main(): Promise<void> {
         `${unknown.length} noch nicht im Katalog`
     );
     for (const c of unknown) allCandidates.push({ candidate: c, sourceId: src.id });
+    quellenBericht.push({
+      id: src.id,
+      aktiv: src.aktiv !== false,
+      gefunden: found.length,
+      neu: seitLetztemLauf.length,
+      fehler,
+    });
   }
   if (bestandsBerichte.length > 0) {
     console.log(`==> Bestand: ${bestandsBerichte.join(" · ")}`);
@@ -829,13 +860,11 @@ async function main(): Promise<void> {
     return;
   }
 
-  if (allCandidates.length === 0) {
-    console.log("==> Keine neuen Programme. Done.");
-    if (process.env.GITHUB_OUTPUT) {
-      await fs.appendFile(process.env.GITHUB_OUTPUT, "has_failures=false\nnew_count=0\n");
-    }
-    return;
-  }
+  // Frueher stand hier ein Ausstieg fuer "keine neuen Kandidaten". Der lag VOR dem
+  // Laufbericht — die ruhige Woche, also der Normalfall, hinterliess damit keine
+  // Zusammenfassung: gruener Haken, kein Wort darueber, ob die Quellen ueberhaupt geantwortet
+  // haben. Genau diese Stille hat den Ausfall sechs Wochen verdeckt. Der Ausstieg passiert
+  // jetzt nach dem Bericht (siehe unten, geprueft.length === 0).
 
   // Phase 1b: Triage — was lohnt ueberhaupt eine Dossier-Extraktion?
   const quelleNach = new Map(zuScannen.map((q) => [q.id, q]));
@@ -879,10 +908,21 @@ async function main(): Promise<void> {
     }
   }
 
-  await schreibeLaufBericht(opts, zuScannen, allCandidates.length, geprueft.length, triageVerworfen);
+  await schreibeLaufBericht(
+    opts,
+    zuScannen,
+    quellenBericht,
+    allCandidates.length,
+    geprueft.length,
+    triageVerworfen
+  );
 
   if (geprueft.length === 0) {
-    console.log("==> Nach der Triage bleibt nichts zu extrahieren. Done.");
+    console.log(
+      allCandidates.length === 0
+        ? "==> Keine neuen Programme bei den aktiven Quellen. Done."
+        : "==> Nach der Triage bleibt nichts zu extrahieren. Done."
+    );
     if (process.env.GITHUB_OUTPUT) {
       await fs.appendFile(process.env.GITHUB_OUTPUT, "has_failures=false\nnew_count=0\n");
     }
