@@ -11,6 +11,7 @@
  *   --logs-dir <dir>        Verzeichnis fuer Per-Programm-JSON-Logs (Default logs/auto-pflege-<datum>/)
  *   --failure-report <pfad> Pfad fuer das aggregierte Failure-Report-Markdown (Default failure-report.md)
  *   --quelle <id>           nur diese eine Quelle scannen (Pruefen einer neuen Quelle, mit --dry-run)
+ *   --erstbestand-als-kandidaten  Bestand einer NEUEN Quelle einlesen statt stumm aufnehmen (Onboarding)
  *
  * VORGEHEN:
  *   1. Scan: data/program-sources.json lesen, pro Source generateJson<ScanResult> auf
@@ -40,7 +41,14 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { generateJson, MODEL_INTERVIEW } from "../lib/wizard/llm";
 import { ladeRobots, istErlaubt, pfadMitQuery, type RobotsRegeln } from "../lib/scan/robots";
-import { holeSeiteMitBrowser, bewerteSeite, pfadPasst, nameAusLink } from "../lib/scan/browser-scan";
+import {
+  holeSeiteMitBrowser,
+  bewerteSeite,
+  pfadPasst,
+  nameAusLink,
+  extrahiereLinksAusHtml,
+  filtereProgrammLinks,
+} from "../lib/scan/browser-scan";
 import { ladeBestand, speichereBestand, vergleicheBestand } from "../lib/scan/bestand";
 import { bewerteText, type TriageUrteil } from "../lib/scan/triage";
 import { runExtraction } from "./extract-richtlinie";
@@ -171,6 +179,14 @@ interface CliOpts {
   failureReport: string;
   /** Nur diese eine Quelle scannen — zum Pruefen einer neuen Quelle vor dem Aktivieren. */
   nurQuelle?: string;
+  /**
+   * Erstbestand einer neuen Quelle als Kandidaten behandeln, statt ihn stumm aufzunehmen.
+   * Zum Onboarding: der vorhandene Bestand einer frisch eingetragenen Quelle IST das, was in
+   * den Katalog soll. Der Bestand wird dabei bewusst NICHT geschrieben — die Buchfuehrung
+   * uebernimmt der Abgleich gegen foerderprogramme.json, sodass mehrere Laeufe mit
+   * --max-programs die Quelle stueckweise einlesen koennen.
+   */
+  erstbestandAlsKandidaten?: boolean;
 }
 
 export function parseArgs(argv: string[]): CliOpts {
@@ -193,6 +209,7 @@ export function parseArgs(argv: string[]): CliOpts {
     else if (a === "--logs-dir") o.logsDir = argv[++i] ?? o.logsDir;
     else if (a === "--failure-report") o.failureReport = argv[++i] ?? o.failureReport;
     else if (a === "--quelle") o.nurQuelle = argv[++i];
+    else if (a === "--erstbestand-als-kandidaten") o.erstbestandAlsKandidaten = true;
   }
   return o;
 }
@@ -472,6 +489,22 @@ async function scanSource(src: Source, erzwungen = false): Promise<ScanSourceRes
   if (src.typ === "browser") return scanBrowser(src);
   try {
     const html = await fetchHtml(src.url);
+
+    // Statische Uebersicht MIT pfadFilter: Links deterministisch ernten, kein LLM, kein Browser.
+    if (src.pfadFilter) {
+      const treffer = filtereProgrammLinks(extrahiereLinksAusHtml(html, src.url), src.pfadFilter);
+      if (treffer.length === 0) {
+        return {
+          candidates: [],
+          fehler:
+            `Seite geladen (${html.length} Zeichen HTML), aber kein Link unter "${src.pfadFilter}" — ` +
+            `Seitenstruktur vermutlich geaendert. pfadFilter in data/program-sources.json pruefen.`,
+        };
+      }
+      console.log(`    ${src.id}: ${treffer.length} Links unter ${src.pfadFilter} (statisch, ohne LLM)`);
+      return { candidates: treffer };
+    }
+
     const text = stripHtml(html).slice(0, MAX_HTML_CHARS);
     const userPrompt = `QUELLE: ${src.name}
 URL: ${src.url}
@@ -492,9 +525,33 @@ Liefere die Liste neuer Programme als JSON-Objekt zurueck.`;
   }
 }
 
-function filterUnknown(
+/** Host einer URL, klein geschrieben und ohne www. — fuer den Namensabgleich. */
+function hostVon(url: string): string {
+  try {
+    return new URL(url).host.toLowerCase().replace(/^www\./, "");
+  } catch {
+    return "";
+  }
+}
+
+/**
+ * Kandidaten gegen den Bestand sieben.
+ *
+ * Die URL entscheidet immer. Der NAME entscheidet nur bei gleichem Host — sonst loescht eine
+ * zufaellige Namensgleichheit ein fremdes Programm aus.
+ *
+ * Gemessen 18.08.2026: Der Katalog kennt einen "Förderfonds Demokratie" unter
+ * foerderfonds-demokratie.de. Der gleichnamige Fonds der Stiftung Bildung ist ein voellig
+ * anderes Programm mit eigenen Bedingungen — beim reinen Namensvergleich waere er dauerhaft
+ * unsichtbar geblieben, ohne dass irgendwo etwas aufgefallen waere.
+ *
+ * Die Richtung des Restrisikos ist bewusst gewaehlt: ein Programm, das auf eine neue DOMAIN
+ * umzieht, taucht jetzt als Dublette auf und faellt im PR-Review auf. Das ist der billigere
+ * Fehler als ein still verschwundenes Programm.
+ */
+export function filterUnknown(
   candidates: ScanCandidate[],
-  knownNames: Set<string>,
+  knownNames: Map<string, Set<string>>,
   knownUrls: Set<string>
 ): ScanCandidate[] {
   const result: ScanCandidate[] = [];
@@ -503,8 +560,9 @@ function filterUnknown(
     if (!c.name || !c.detailUrl) continue;
     const nameLower = c.name.trim().toLowerCase();
     const urlNorm = normalizeUrl(c.detailUrl);
-    if (knownNames.has(nameLower)) continue;
     if (knownUrls.has(urlNorm)) continue;
+    const hosts = knownNames.get(nameLower);
+    if (hosts && hosts.has(hostVon(urlNorm))) continue;
     if (seenInBatch.has(urlNorm)) continue;
     seenInBatch.add(urlNorm);
     result.push({ ...c, detailUrl: urlNorm });
@@ -717,11 +775,15 @@ async function main(): Promise<void> {
   // Sources + Bestand laden
   const sources = JSON.parse(await fs.readFile(SOURCES_PATH, "utf8")) as { sources: Source[] };
   const programme = (JSON.parse(await fs.readFile(PROGRAMS_PATH, "utf8")) as Foerderprogramm[]);
-  const knownNames = new Set<string>();
+  const knownNames = new Map<string, Set<string>>();
   const knownUrls = new Set<string>();
   for (const p of programme) {
-    if (p.name) knownNames.add(p.name.trim().toLowerCase());
     if (p.infoLink) knownUrls.add(normalizeUrl(p.infoLink));
+    if (!p.name) continue;
+    const schluessel = p.name.trim().toLowerCase();
+    const hosts = knownNames.get(schluessel) ?? new Set<string>();
+    hosts.add(hostVon(p.infoLink ?? ""));
+    knownNames.set(schluessel, hosts);
   }
 
   // Phase 1: Scan
@@ -768,6 +830,13 @@ async function main(): Promise<void> {
       if (diff.fehler) {
         quellenFehler.push({ id: src.id, fehler: diff.fehler });
         seitLetztemLauf = [];
+      } else if (diff.erstlauf && opts.erstbestandAlsKandidaten) {
+        console.log(
+          `    ${src.id}: Erstlauf im Onboarding-Modus — ${found.length} URLs werden als ` +
+            `Kandidaten eingelesen, Bestand wird bewusst NICHT geschrieben.`
+        );
+        bestandsBerichte.push(`${src.id}: Onboarding, ${found.length} eingelesen`);
+        seitLetztemLauf = found;
       } else if (diff.erstlauf) {
         console.log(
           `    ${src.id}: Erstlauf — ${found.length} URLs als Bestand aufgenommen, keine Kandidaten.`
@@ -784,7 +853,7 @@ async function main(): Promise<void> {
       }
       // Bestand auch dann fortschreiben, wenn nichts Neues dabei war — sonst gilt naechste
       // Woche wieder alles als neu.
-      if (!opts.dryRun && !diff.fehler) {
+      if (!opts.dryRun && !diff.fehler && !(diff.erstlauf && opts.erstbestandAlsKandidaten)) {
         await speichereBestand(
           BESTAND_DIR,
           src.id,

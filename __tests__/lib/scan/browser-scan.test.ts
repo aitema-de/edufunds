@@ -31,6 +31,20 @@ describe("nameAusLink — Programmname aus Linktext oder Slug", () => {
     );
   });
 
+  it("erkennt Mehr-Informationen-Links als Aufforderung, auch mit Ausrufezeichen", () => {
+    // Gemessen 18.08.2026: Stiftung Bildung verlinkt alle 14 Förderfonds mit genau diesem Text.
+    // Ohne den Fallback hiessen vierzehn verschiedene Programme im Katalog gleich.
+    expect(nameAusLink("Mehr Informationen!", "https://x.de/a/foerderfonds-medienkompetenz")).toBe(
+      "Förderfonds Medienkompetenz"
+    );
+    expect(nameAusLink("Mehr Informationen", "https://x.de/a/foerderfonds-schule-bewegt")).toBe(
+      "Förderfonds Schule Bewegt"
+    );
+    expect(nameAusLink("Erfahren Sie mehr", "https://x.de/a/foerderfonds-frieden")).toBe(
+      "Förderfonds Frieden"
+    );
+  });
+
   it("faellt bei reinen Aufforderungen auf den Slug zurueck", () => {
     expect(nameAusLink("Mehr erfahren", "https://x.de/a/digitalpakt-schule")).toBe(
       "Digitalpakt Schule"
