@@ -92,7 +92,7 @@ describe("stripe/webhook — org_quota (B3)", () => {
       creditCode: "EDU-AAAA-BBBB",
       credits: 5,
       packId: "pack5",
-      packLabel: "5 Antraege",
+      packLabel: "5 Anträge",
       amountCents: 13990,
       orgName: "Stadt X",
       email: "buyer@example.com",
@@ -114,7 +114,7 @@ describe("stripe/webhook — org_quota (B3)", () => {
       creditCode: "EDU-AAAA-BBBB",
       credits: 5,
       packId: "pack5",
-      packLabel: "5 Antraege",
+      packLabel: "5 Anträge",
       amountCents: 13990,
       alreadyExisted: true,
     });

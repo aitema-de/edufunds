@@ -17,7 +17,7 @@ type Outline = NonNullable<GenerationArtefacts["outline"]>;
 const STANDARD_ABSCHNITTE: Outline["abschnitte"] = [
   {
     name: "Antragsteller und Schule",
-    fokus: "Stellt Schule, Traeger und antragstellende Stelle vor — Profil, Standort, Schuelerzahl, relevante Vorerfahrungen.",
+    fokus: "Stellt Schule, Träger und antragstellende Stelle vor — Profil, Standort, Schülerzahl, relevante Vorerfahrungen.",
   },
   {
     name: "Vorhaben und Anliegen",
@@ -25,23 +25,23 @@ const STANDARD_ABSCHNITTE: Outline["abschnitte"] = [
   },
   {
     name: "Bedarfsbegruendung",
-    fokus: "Belegt den Bedarf an der Massnahme — Status quo, identifizierte Luecke, warum gerade jetzt, warum mit dieser Foerderung.",
+    fokus: "Belegt den Bedarf an der Maßnahme — Status quo, identifizierte Lücke, warum gerade jetzt, warum mit dieser Förderung.",
   },
   {
     name: "Zielgruppe und Beteiligte",
-    fokus: "Definiert die Schueler, Lehrkraefte, externen Partner — Anzahl, Charakteristika, Auswahlkriterien, geplante Rollen.",
+    fokus: "Definiert die Schüler, Lehrkräfte, externen Partner — Anzahl, Charakteristika, Auswahlkriterien, geplante Rollen.",
   },
   {
-    name: "Massnahmen und Zeitplan",
-    fokus: "Listet die konkreten Aktivitaeten in Reihenfolge mit Meilensteinen und Verantwortlichkeiten.",
+    name: "Maßnahmen und Zeitplan",
+    fokus: "Listet die konkreten Aktivitäten in Reihenfolge mit Meilensteinen und Verantwortlichkeiten.",
   },
   {
     name: "Erwartete Wirkung und Nachhaltigkeit",
-    fokus: "Beschreibt, was sich durch das Projekt aendern soll, woran man Erfolg misst, und wie das Ergebnis nach Foerderende fortbesteht.",
+    fokus: "Beschreibt, was sich durch das Projekt ändern soll, woran man Erfolg misst, und wie das Ergebnis nach Förderende fortbesteht.",
   },
   {
     name: "Finanzierung und Eigenanteil",
-    fokus: "Fasst Kostenstruktur, beantragte Foerdersumme und Eigenanteil zusammen. Verweist auf detaillierten Finanzplan.",
+    fokus: "Fasst Kostenstruktur, beantragte Fördersumme und Eigenanteil zusammen. Verweist auf detaillierten Finanzplan.",
   },
 ];
 

@@ -22,45 +22,45 @@ import foerderprogrammeData from "@/data/foerderprogramme.json";
 const programme = foerderprogrammeData as Array<{ id: string; status?: string; bundeslaender?: string[] }>;
 
 describe("selectCutCandidates — Cut-Auswahl", () => {
-  it("liefert hoechstens CUT_SIZE Kandidaten", () => {
-    const sel = selectCutCandidates({ anliegen: "Wir wollen Tablets und Digitalisierung im Unterricht foerdern." });
+  it("liefert höchstens CUT_SIZE Kandidaten", () => {
+    const sel = selectCutCandidates({ anliegen: "Wir wollen Tablets und Digitalisierung im Unterricht fördern." });
     expect(sel.cut.length).toBeLessThanOrEqual(CUT_SIZE);
     expect(sel.cut.length).toBeGreaterThan(0);
   });
 
-  it("cut = die ersten CUT_SIZE Eintraege von ranked (gleiche Reihenfolge)", () => {
+  it("cut = die ersten CUT_SIZE Einträge von ranked (gleiche Reihenfolge)", () => {
     const sel = selectCutCandidates({ anliegen: "Schulgarten mit Hochbeeten und Umweltbildung anlegen." });
     const cutFromRanked = sel.ranked.slice(0, CUT_SIZE).map((c) => c.programm.id);
     expect(sel.cut.map((p) => p.id)).toEqual(cutFromRanked);
   });
 
   it("ranked ist absteigend nach sortScore sortiert", () => {
-    const sel = selectCutCandidates({ anliegen: "Lesefoerderung und Sprachbildung fuer Grundschueler." });
+    const sel = selectCutCandidates({ anliegen: "Leseförderung und Sprachbildung für Grundschüler." });
     for (let i = 1; i < sel.ranked.length; i++) {
       expect(sel.ranked[i - 1].sortScore).toBeGreaterThanOrEqual(sel.ranked[i].sortScore);
     }
   });
 
-  it("sortScore = queueScore + themeBoost (Aufschluesselung konsistent)", () => {
+  it("sortScore = queueScore + themeBoost (Aufschlüsselung konsistent)", () => {
     const sel = selectCutCandidates({ anliegen: "Wir wollen was mit Tablets und Medienbildung machen." });
     for (const c of sel.ranked) {
       expect(c.sortScore).toBeCloseTo(c.queueScore + c.themeBoost, 5);
     }
   });
 
-  it("prefilter: kein archiviertes/review_needed-Programm ueberlebt", () => {
-    const sel = selectCutCandidates({ anliegen: "Irgendein foerderfaehiges Schulprojekt mit Budget." });
+  it("prefilter: kein archiviertes/review_needed-Programm überlebt", () => {
+    const sel = selectCutCandidates({ anliegen: "Irgendein förderfähiges Schulprojekt mit Budget." });
     for (const c of sel.ranked) {
       const status = (c.programm as { status?: string }).status;
       expect(status === "archiviert" || status === "review_needed").toBe(false);
     }
   });
 
-  it("prefilter (FP-GS-3): kein kiAntragGeeignet=false-Programm ueberlebt", () => {
+  it("prefilter (FP-GS-3): kein kiAntragGeeignet=false-Programm überlebt", () => {
     // Lese-/Sprach-Anliegen wuerde sonst "Post und Schule" (deutsche-post-schule,
     // kiAntragGeeignet=false, "keine direkte Foerderung") thematisch hochspuelen.
     const sel = selectCutCandidates({
-      anliegen: "Digitale Lese-Apps, Lizenzen und Kopfhoerer fuer die Lesefoerderung in der Grundschule.",
+      anliegen: "Digitale Lese-Apps, Lizenzen und Kopfhörer für die Leseförderung in der Grundschule.",
     });
     for (const c of sel.ranked) {
       expect((c.programm as { kiAntragGeeignet?: boolean }).kiAntragGeeignet).not.toBe(false);
@@ -68,7 +68,7 @@ describe("selectCutCandidates — Cut-Auswahl", () => {
     expect(sel.ranked.map((c) => c.programm.id)).not.toContain("deutsche-post-schule");
   });
 
-  it("Bundesland-Filter: Landesprogramm eines anderen Landes faellt raus", () => {
+  it("Bundesland-Filter: Landesprogramm eines anderen Landes fällt raus", () => {
     // Ein Programm finden, das explizit auf genau ein Land (nicht 'alle') gebunden ist.
     const landesProg = programme.find(
       (p) =>
@@ -81,13 +81,13 @@ describe("selectCutCandidates — Cut-Auswahl", () => {
     expect(landesProg).toBeDefined();
     const fremdesLand = landesProg!.bundeslaender!.some((b) => b.toUpperCase() === "DE-BY") ? "Hamburg" : "Bayern";
     const sel = selectCutCandidates({
-      anliegen: "Ein passendes Schulprojekt mit klarem Anliegen und genuegend Text.",
+      anliegen: "Ein passendes Schulprojekt mit klarem Anliegen und genügend Text.",
       bundesland: fremdesLand,
     });
     expect(sel.ranked.find((c) => c.programm.id === landesProg!.id)).toBeUndefined();
   });
 
-  it("themeBoost > 0 fuer Programm mit thematisch passendem Anliegen", () => {
+  it("themeBoost > 0 für Programm mit thematisch passendem Anliegen", () => {
     const sel = selectCutCandidates({ anliegen: "Wir wollen Tablets, WLAN und digitale Medien im Unterricht." });
     const boosted = sel.ranked.filter((c) => c.themeBoost > 0);
     expect(boosted.length).toBeGreaterThan(0);

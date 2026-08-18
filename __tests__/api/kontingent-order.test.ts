@@ -58,19 +58,19 @@ describe("POST /api/kontingent/order", () => {
     expect(mCreate).not.toHaveBeenCalled();
   });
 
-  it("400 bei ungueltiger E-Mail", async () => {
+  it("400 bei ungültiger E-Mail", async () => {
     const res = await POST(req({ ...validBody, email: "keine-mail" }));
     expect(res.status).toBe(400);
     expect(mCreate).not.toHaveBeenCalled();
   });
 
-  it("422 fuer einen Foerderverein — Rechnungskauf ist Schulen/Traegern vorbehalten (AGB § 4a)", async () => {
+  it("422 für einen Förderverein — Rechnungskauf ist Schulen/Trägern vorbehalten (AGB § 4a)", async () => {
     const res = await POST(req({ ...validBody, email: "kasse@foerderverein-muster.de" }));
     expect(res.status).toBe(422);
     expect(mCreate).not.toHaveBeenCalled();
   });
 
-  it("422 fuer eine private Freemail-Adresse — es wird keine Bestellung angelegt", async () => {
+  it("422 für eine private Freemail-Adresse — es wird keine Bestellung angelegt", async () => {
     const res = await POST(req({ ...validBody, email: "privat@gmx.de" }));
     expect(res.status).toBe(422);
     expect(mCreate).not.toHaveBeenCalled();
@@ -91,7 +91,7 @@ describe("POST /api/kontingent/order", () => {
   // Missbrauchsbremse (14.07.2026): Der Rechnungskauf schaltet SOFORT frei, bevor
   // Geld geflossen ist — beim 20er-Paket sind das 459,90 EUR. Ohne Grenze koennte
   // jemand beliebig viele Kontingente ziehen und nie zahlen.
-  it("409, wenn fuer die E-Mail bereits zu viele Rechnungen offen sind", async () => {
+  it("409, wenn für die E-Mail bereits zu viele Rechnungen offen sind", async () => {
     mOffen.mockResolvedValueOnce(2); // = MAX_OPEN_INVOICE_ORDERS
     const res = await POST(req(validBody));
     expect(res.status).toBe(409);
@@ -100,7 +100,7 @@ describe("POST /api/kontingent/order", () => {
     expect(body.error).toMatch(/bereits Rechnungen offen/i);
   });
 
-  it("laesst bestellen, solange die Grenze nicht erreicht ist", async () => {
+  it("lässt bestellen, solange die Grenze nicht erreicht ist", async () => {
     mCreate.mockResolvedValue(fakeOrder);
     mOffen.mockResolvedValueOnce(1); // unter der Grenze
     const res = await POST(req(validBody));
@@ -108,7 +108,7 @@ describe("POST /api/kontingent/order", () => {
     expect(mCreate).toHaveBeenCalled();
   });
 
-  it("Honeypot gefuellt -> stiller Erfolg ohne Bestellung", async () => {
+  it("Honeypot gefüllt -> stiller Erfolg ohne Bestellung", async () => {
     const res = await POST(req({ ...validBody, website: "http://spam.example" }));
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual({ ok: true });
@@ -121,7 +121,7 @@ describe("POST /api/kontingent/order", () => {
     expect(mCreate).not.toHaveBeenCalled();
   });
 
-  it("Erfolg: legt Bestellung an und gibt Code + Betrag zurueck", async () => {
+  it("Erfolg: legt Bestellung an und gibt Code + Betrag zurück", async () => {
     mCreate.mockResolvedValue(fakeOrder);
     const res = await POST(req(validBody));
     expect(res.status).toBe(200);

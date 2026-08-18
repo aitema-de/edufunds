@@ -24,21 +24,21 @@ const programm: Foerderprogramm = {
 } as unknown as Foerderprogramm;
 
 const FINAL_TEXT = `Bedarf
-Die Schule braucht Unterstuetzung fuer die Projekttage im kommenden Schuljahr.
+Die Schule braucht Unterstützung für die Projekttage im kommenden Schuljahr.
 
-Massnahmen
-Wir fuehren zwei Projekttage durch und binden die Klassen aktiv ein.`;
+Maßnahmen
+Wir führen zwei Projekttage durch und binden die Klassen aktiv ein.`;
 
 // Der belegte Fall aus pv-005: korrektes "Schaetzung:"-Praefix UND die in
 // FINANZPLAN_SYSTEM woertlich verbotene Tarif-Splittung.
 const POSTEN_MIT_TARIF = [
   {
     kategorie: "personal",
-    bezeichnung: "Freistellung Lehrkraefte",
+    bezeichnung: "Freistellung Lehrkräfte",
     betragEur: 1792,
     eigenanteil: false,
     begruendung:
-      "Schaetzung: 2 Lehrkraefte × 2 Projekttage × 8 Std/Tag × 56 EUR/Std (TV-L E11, Mittelwert)",
+      "Schätzung: 2 Lehrkräfte × 2 Projekttage × 8 Std/Tag × 56 EUR/Std (TV-L E11, Mittelwert)",
   },
 ];
 
@@ -70,7 +70,7 @@ describe("Pipeline — Verbots-Gate auf dem Finanzplan", () => {
     jest.clearAllMocks();
   });
 
-  it("entfernt die erfundene Tarifgruppe aus der Begruendung, ohne den Betrag anzufassen", async () => {
+  it("entfernt die erfundene Tarifgruppe aus der Begründung, ohne den Betrag anzufassen", async () => {
     const { runPipeline } = require("@/lib/wizard/pipeline");
     mockLlm(POSTEN_MIT_TARIF);
 
@@ -93,7 +93,7 @@ describe("Pipeline — Verbots-Gate auf dem Finanzplan", () => {
     expect((plan.hinweise ?? []).join(" ")).toMatch(/nicht aus Ihren Angaben/);
   });
 
-  it("erzeugt fuer eine Preis-Bewerbung GAR KEINEN Finanzplan", async () => {
+  it("erzeugt für eine Preis-Bewerbung GAR KEINEN Finanzplan", async () => {
     // Architektur-Umbau 03.08.2026: Die Antragsart entscheidet ueber die Artefakte.
     // Belegt an pv-004 (Deutscher Schulpreis): mit angehaengtem Finanzplan faellt
     // das Gutachterurteil bei gemini von 4,18 auf 2,40.
@@ -126,7 +126,7 @@ describe("Pipeline — Verbots-Gate auf dem Finanzplan", () => {
     expect(res.artefacts.finalText).toBeTruthy();
   });
 
-  it("laesst einen sauberen Finanzplan unveraendert und setzt keinen Hinweis", async () => {
+  it("lässt einen sauberen Finanzplan unverändert und setzt keinen Hinweis", async () => {
     const { runPipeline } = require("@/lib/wizard/pipeline");
     mockLlm([
       {
@@ -134,7 +134,7 @@ describe("Pipeline — Verbots-Gate auf dem Finanzplan", () => {
         bezeichnung: "Material",
         betragEur: 800,
         eigenanteil: false,
-        begruendung: "Schaetzung: Verbrauchsmaterial fuer die Projekttage, Menge noch festzulegen.",
+        begruendung: "Schätzung: Verbrauchsmaterial für die Projekttage, Menge noch festzulegen.",
       },
     ]);
 

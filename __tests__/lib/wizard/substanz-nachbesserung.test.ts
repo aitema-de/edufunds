@@ -13,11 +13,11 @@ import type { Richtlinie } from "@/lib/wizard/richtlinien-schema";
 
 // Begruendeter Text: Theorie-Marker (Selbstwirksamkeit) + 2 Konnektive (weil, daher).
 const BEGRUENDET =
-  "Wir bauen eine Holzwerkstatt auf, weil Selbstwirksamkeit nach praktischen Erfolgserlebnissen waechst — " +
-  "daher verankern wir woechentliche Projektzeiten fuer alle Klassen.";
+  "Wir bauen eine Holzwerkstatt auf, weil Selbstwirksamkeit nach praktischen Erfolgserlebnissen wächst — " +
+  "daher verankern wir wöchentliche Projektzeiten für alle Klassen.";
 // Beschreibender Text ohne Begruendungs-Signale.
 const BESCHREIBEND =
-  "Die Schule kauft zehn Werkbaenke und richtet einen Raum im Erdgeschoss ein. " +
+  "Die Schule kauft zehn Werkbänke und richtet einen Raum im Erdgeschoss ein. " +
   "Die Klassen nutzen den Raum im Wechsel. Ein Plan regelt die Belegung.";
 
 const RICHTLINIE = {
@@ -38,7 +38,7 @@ describe("findeKandidaten", () => {
     expect(k[0].maxZeichen).toBe(750);
   });
 
-  it("gibt leere Liste, wenn alle Abschnitte begruenden", () => {
+  it("gibt leere Liste, wenn alle Abschnitte begründen", () => {
     const text = `## Ausgangslage\n${BEGRUENDET}`;
     expect(findeKandidaten(text, RICHTLINIE)).toEqual([]);
   });
@@ -56,15 +56,15 @@ describe("findeAbschnittsLimit", () => {
 describe("akzeptiereVorschlag (Never-Worse)", () => {
   const kandidat = { name: "Projektbeschreibung", text: BESCHREIBEND };
 
-  it("akzeptiert messbar begruendete Vorschlaege", () => {
+  it("akzeptiert messbar begründete Vorschläge", () => {
     expect(akzeptiereVorschlag(kandidat, BESCHREIBEND + " " + BEGRUENDET)).toBe(true);
   });
 
-  it("verwirft Vorschlaege ohne Substanz-Signale", () => {
+  it("verwirft Vorschläge ohne Substanz-Signale", () => {
     expect(akzeptiereVorschlag(kandidat, BESCHREIBEND + " Der Raum ist hell.")).toBe(false);
   });
 
-  it("verwirft Vorschlaege ueber dem belegten Zeichenlimit", () => {
+  it("verwirft Vorschläge über dem belegten Zeichenlimit", () => {
     const mitLimit = { ...kandidat, maxZeichen: 100 };
     expect(akzeptiereVorschlag(mitLimit, BEGRUENDET)).toBe(false); // ~190 Zeichen > 100
   });
@@ -77,11 +77,11 @@ describe("akzeptiereVorschlag (Never-Worse)", () => {
 });
 
 describe("spliceAbschnitte", () => {
-  const text = `Praeambel\n\n## Eins\nAlter Text eins.\n\n## Zwei\nAlter Text zwei.\n\n## Drei\nAlter Text drei.`;
+  const text = `Präambel\n\n## Eins\nAlter Text eins.\n\n## Zwei\nAlter Text zwei.\n\n## Drei\nAlter Text drei.`;
 
-  it("ersetzt nur die genannten Abschnitte, Praeambel und Reihenfolge bleiben", () => {
+  it("ersetzt nur die genannten Abschnitte, Präambel und Reihenfolge bleiben", () => {
     const out = spliceAbschnitte(text, new Map([["zwei", "NEUER Text zwei."]]));
-    expect(out).toContain("Praeambel");
+    expect(out).toContain("Präambel");
     expect(out).toContain("Alter Text eins.");
     expect(out).toContain("NEUER Text zwei.");
     expect(out).not.toContain("Alter Text zwei.");
@@ -90,7 +90,7 @@ describe("spliceAbschnitte", () => {
     expect(out.indexOf("## Zwei")).toBeLessThan(out.indexOf("## Drei"));
   });
 
-  it("laesst Text ohne Ueberschriften unveraendert", () => {
+  it("lässt Text ohne Überschriften unverändert", () => {
     expect(spliceAbschnitte("nur Prosa", new Map([["x", "y"]]))).toBe("nur Prosa");
   });
 });
@@ -105,7 +105,7 @@ describe("substanzNachbesserung (Ende-zu-Ende mit Mock-LLM)", () => {
     expect(generate).not.toHaveBeenCalled();
   });
 
-  it("uebernimmt akzeptierte Vorschlaege und protokolliert den Rest", async () => {
+  it("übernimmt akzeptierte Vorschläge und protokolliert den Rest", async () => {
     const generate = jest.fn().mockResolvedValue({
       value: {
         abschnitte: [{ name: "Projektbeschreibung", text: BESCHREIBEND + " " + BEGRUENDET }],
@@ -121,7 +121,7 @@ describe("substanzNachbesserung (Ende-zu-Ende mit Mock-LLM)", () => {
     expect(res?.finalText).toContain(BEGRUENDET);
   });
 
-  it("behaelt das Original, wenn der Vorschlag substanzlos bleibt", async () => {
+  it("behält das Original, wenn der Vorschlag substanzlos bleibt", async () => {
     const generate = jest.fn().mockResolvedValue({
       value: { abschnitte: [{ name: "Projektbeschreibung", text: BESCHREIBEND + " Noch ein Satz." }] },
     });
@@ -131,7 +131,7 @@ describe("substanzNachbesserung (Ende-zu-Ende mit Mock-LLM)", () => {
     expect(res?.finalText).toBe(text);
   });
 
-  it("behaelt das Original bei kaputtem LLM-JSON", async () => {
+  it("behält das Original bei kaputtem LLM-JSON", async () => {
     const generate = jest.fn().mockResolvedValue({ value: "kein json" });
     const res = await substanzNachbesserung(text, RICHTLINIE, { generate });
     expect(res?.verbleibend).toEqual(["Projektbeschreibung"]);

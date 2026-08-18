@@ -317,7 +317,7 @@ export function analysiereTiefe(facts: WizardFacts): TiefeBefund[] {
       status,
       nachfrage:
         "Gibt es vom Schulträger (Bezirk, Kommune, Verein) etwas Schriftliches — Beschluss, Zusage, Vereinbarung? Auch ein 'noch nicht, aber Gespräch läuft' ist eine verwertbare Angabe.",
-      beleg: positiv ? "Traeger-/Beschlussbezug gefunden" : geklaert ? "vom Nutzer verneint" : "kein Bezug",
+      beleg: positiv ? "Träger-/Beschlussbezug gefunden" : geklaert ? "vom Nutzer verneint" : "kein Bezug",
     });
   }
 

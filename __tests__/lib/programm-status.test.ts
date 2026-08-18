@@ -19,7 +19,7 @@ function programm(over: Partial<Foerderprogramm> = {}): Foerderprogramm {
 }
 
 describe("isStatusNichtAnbietbar — Allowlist, fail-closed", () => {
-  it("laesst genau 'aktiv' durch", () => {
+  it("lässt genau 'aktiv' durch", () => {
     expect(isStatusNichtAnbietbar(programm({ status: "aktiv" }))).toBe(false);
   });
 
@@ -74,7 +74,7 @@ describe("isProgrammAbgelaufen", () => {
     expect(isProgrammAbgelaufen(programm({ bewerbungsfristEnde: "demnaechst" }), HEUTE)).toBe(false);
   });
 
-  it("nutzt per Default die echte Uhr (kein Test-Datum noetig)", () => {
+  it("nutzt per Default die echte Uhr (kein Test-Datum nötig)", () => {
     expect(isProgrammAbgelaufen(programm({ bewerbungsfristEnde: "1999-01-01" }))).toBe(true);
   });
 });
@@ -83,7 +83,7 @@ describe("Regression: der reale Fall vom 17.07.2026", () => {
   // Kein Test kann die fehlende Frist erfinden — aber er haelt fest, WAS die
   // Luecke ist: ohne bewerbungsfristEnde ist das Programm nicht von einem
   // rollenden zu unterscheiden. Der Schutz muss deshalb aus den Daten kommen.
-  it("ohne Fristende laesst das Gate ein totes Programm durch (dokumentierte Luecke)", () => {
+  it("ohne Fristende lässt das Gate ein totes Programm durch (dokumentierte Lücke)", () => {
     const foerderfondsDemokratie = programm({ id: "foerderfonds-demokratie", status: "aktiv" });
     expect(isProgrammAbgelaufen(foerderfondsDemokratie, HEUTE)).toBe(false);
   });
@@ -111,7 +111,7 @@ describe("fristZustand: fail-closed auch bei kaputten Daten", () => {
     expect(isProgrammAbgelaufen(p, HEUTE)).toBe(true);
   });
 
-  it("eine spaeter ergaenzte, hier unbekannte Variante sperrt", () => {
+  it("eine später ergänzte, hier unbekannte Variante sperrt", () => {
     expect(isProgrammAbgelaufen(mitZustand({ art: "rollend_ab", quelle: "q" }), HEUTE)).toBe(true);
   });
 
@@ -126,7 +126,7 @@ describe("fristZustand: fail-closed auch bei kaputten Daten", () => {
     expect(isProgrammAbgelaufen(p, HEUTE)).toBe(true);
   });
 
-  it("null als fristZustand faellt auf den Legacy-Weg (Feld gilt als nicht gesetzt)", () => {
+  it("null als fristZustand fällt auf den Legacy-Weg (Feld gilt als nicht gesetzt)", () => {
     expect(isProgrammAbgelaufen(mitZustand(null), HEUTE)).toBe(false);
   });
 
@@ -139,7 +139,7 @@ describe("fristZustand: fail-closed auch bei kaputten Daten", () => {
     expect(isProgrammAbgelaufen(p, new Date("2026-07-18T00:30:00Z"))).toBe(true);
   });
 
-  it("der spaeteste Stichtag entscheidet, unabhaengig von der Reihenfolge", () => {
+  it("der späteste Stichtag entscheidet, unabhängig von der Reihenfolge", () => {
     const p = mitZustand({
       art: "stichtag",
       stichtage: ["2026-12-01", "2019-09-30"],
@@ -166,13 +166,13 @@ describe("geschlossen vs. unbekannt — die Entscheidung vom 22.07.2026", () => 
     expect(isProgrammAbgelaufen(p, HEUTE)).toBe(true);
   });
 
-  it("unbekannt bleibt verkaeuflich — aber nur mit Hinweis-Pflicht", () => {
+  it("unbekannt bleibt verkäuflich — aber nur mit Hinweis-Pflicht", () => {
     const p = mitZustand({ art: "unbekannt", quelle: "Seite nennt keine Fristen (22.07.2026)" });
     expect(isProgrammAbgelaufen(p, HEUTE)).toBe(false);
     expect(brauchtFristHinweis(p.fristZustand)).toBe(true);
   });
 
-  it("belegte Zustaende brauchen keinen Hinweis", () => {
+  it("belegte Zustände brauchen keinen Hinweis", () => {
     expect(brauchtFristHinweis({ art: "keine", quelle: "q" })).toBe(false);
     expect(brauchtFristHinweis({ art: "stichtag", stichtage: ["2026-12-01"], quelle: "q" })).toBe(false);
   });

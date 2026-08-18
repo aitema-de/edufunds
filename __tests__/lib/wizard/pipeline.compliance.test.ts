@@ -41,8 +41,8 @@ Die Schule hat einen hohen Bedarf.
 Projektziele
 Das Projekt zielt auf Verbesserung.
 
-Massnahmen
-Wir fuehren folgende Massnahmen durch.
+Maßnahmen
+Wir führen folgende Maßnahmen durch.
 
 Finanzierung
 Die Finanzierung erfolgt anteilig.
@@ -57,8 +57,8 @@ Die Schule hat einen hohen Bedarf.
 Projektziele
 Das Projekt zielt auf Verbesserung.
 
-Massnahmen
-Wir fuehren folgende Massnahmen durch.`;
+Maßnahmen
+Wir führen folgende Maßnahmen durch.`;
 
 // Minimal-Mock-Setup fuer generateJson und generateText
 function setupLlmMocks() {
@@ -150,7 +150,7 @@ describe("Compliance-Stage Pipeline-Integration", () => {
     expect(result).toBeDefined();
   });
 
-  it("Test 3: PIPELINE_COMPLIANCE_STAGE=1 + 5 Pflicht-Abschnitte + Output enthaelt nur 3 → 1× compliance-check, violations.length >= 1, 1× zusaetzlicher Revision-Call", async () => {
+  it("Test 3: PIPELINE_COMPLIANCE_STAGE=1 + 5 Pflicht-Abschnitte + Output enthält nur 3 → 1× compliance-check, violations.length >= 1, 1× zusätzlicher Revision-Call", async () => {
     process.env.PIPELINE_COMPLIANCE_STAGE = "1";
     jest.resetModules();
     const { runPipeline } = require("@/lib/wizard/pipeline");
@@ -256,7 +256,7 @@ describe("Compliance-Stage Pipeline-Integration", () => {
     expect(complianceEvents).toHaveLength(1);
   });
 
-  it("Test 5: richtlinie=null → Compliance-Stage wird komplett uebersprungen (kein Crash)", async () => {
+  it("Test 5: richtlinie=null → Compliance-Stage wird komplett übersprungen (kein Crash)", async () => {
     process.env.PIPELINE_COMPLIANCE_STAGE = "1";
     jest.resetModules();
     const { runPipeline } = require("@/lib/wizard/pipeline");

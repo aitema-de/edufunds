@@ -87,7 +87,7 @@ describe("Pipeline Feature-Flag Env-Var-Parsing (D-22)", () => {
 
   // --- Env-Var-Abschaltung (Override auf false) ---
 
-  it("PIPELINE_COMPLIANCE_STAGE='1' → complianceStageEnabled=true (opt-in moeglich)", () => {
+  it("PIPELINE_COMPLIANCE_STAGE='1' → complianceStageEnabled=true (opt-in möglich)", () => {
     process.env.PIPELINE_COMPLIANCE_STAGE = "1";
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const { PIPELINE_CONFIG } = require("@/lib/wizard/config");

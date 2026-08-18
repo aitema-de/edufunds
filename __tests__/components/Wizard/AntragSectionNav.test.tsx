@@ -14,12 +14,12 @@ describe("slugifyHeading — D-02", () => {
     expect(slugifyHeading("Vorhaben und Anliegen")).toBe("vorhaben-und-anliegen");
   });
 
-  it("mapped Umlaute: 'massnahmen-und-foerderung' aus 'Maßnahmen und Förderung' — D-02", () => {
+  it("mapped Umlaute: 'maßnahmen-und-förderung' aus 'Maßnahmen und Förderung' — D-02", () => {
     expect(slugifyHeading("Maßnahmen und Förderung")).toBe("massnahmen-und-foerderung");
   });
 
-  it("kuerzt auf 60 Zeichen — D-02", () => {
-    const long = "Lange Ueberschrift " + "x".repeat(100);
+  it("kürzt auf 60 Zeichen — D-02", () => {
+    const long = "Lange Überschrift " + "x".repeat(100);
     expect(slugifyHeading(long).length).toBeLessThanOrEqual(60);
   });
 });

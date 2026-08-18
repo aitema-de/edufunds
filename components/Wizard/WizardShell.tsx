@@ -644,7 +644,7 @@ export function WizardShell({ programm, einreichung, foerderhoehe, dokumentLabel
   if (state.phase === "failed") {
     return (
       <WizardErrorBlock
-        message={error ?? "Die Generierung ist fehlgeschlagen. Pruefen Sie Ihre Verbindung und versuchen Sie es erneut."}
+        message={error ?? "Die Generierung ist fehlgeschlagen. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut."}
         onRetry={() => {
           setError(null);
           setState((s) => s ? { ...s, phase: "ready_to_generate" } : s);

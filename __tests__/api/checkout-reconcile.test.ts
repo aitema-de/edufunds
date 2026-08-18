@@ -71,7 +71,7 @@ describe("POST /api/wizard/checkout/reconcile", () => {
 
   // Der wichtigste Sicherheitstest: Die cs steht in der Redirect-URL und ist damit
   // kein Geheimnis. Wer eine FREMDE bezahlte cs kennt, darf damit nichts anfangen.
-  it("404, wenn die Zahlung zu einem ANDEREN Antrag gehoert (fremde cs)", async () => {
+  it("404, wenn die Zahlung zu einem ANDEREN Antrag gehört (fremde cs)", async () => {
     stripeReturning({
       id: CS,
       payment_status: "paid",

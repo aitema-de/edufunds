@@ -98,8 +98,8 @@ export function computeAutofixes({ posten, richtlinie }: AutofixContext): Autofi
     const diff = foerder - maxEur;
     actions.push({
       id: "cap-foerder-max-eur",
-      label: `Foerderung auf ${fmtEur(maxEur)} kappen`,
-      description: `Reduziert die geforderten Posten anteilig, sodass die Gesamt-Foerdersumme ${fmtEur(maxEur)} nicht ueberschreitet (Differenz: ${fmtEur(diff)}).`,
+      label: `Förderung auf ${fmtEur(maxEur)} kappen`,
+      description: `Reduziert die geforderten Posten anteilig, sodass die Gesamt-Fördersumme ${fmtEur(maxEur)} nicht überschreitet (Differenz: ${fmtEur(diff)}).`,
       apply: (p) => scaleAllFoerderPosten(p, maxEur),
     });
   }
@@ -114,8 +114,8 @@ export function computeAutofixes({ posten, richtlinie }: AutofixContext): Autofi
       const targetFoerder = maxProz < 100 ? (eigen * maxProz) / (100 - maxProz) : foerder;
       actions.push({
         id: "cap-foerder-max-prozent",
-        label: `Foerderanteil auf ${maxProz} % kappen`,
-        description: `Reduziert geforderte Posten so, dass der Foerderanteil maximal ${maxProz} % der Gesamtkosten betraegt (aktuell ${aktuellProz.toFixed(1)} %).`,
+        label: `Förderanteil auf ${maxProz} % kappen`,
+        description: `Reduziert geforderte Posten so, dass der Förderanteil maximal ${maxProz} % der Gesamtkosten beträgt (aktuell ${aktuellProz.toFixed(1)} %).`,
         apply: (p) => scaleAllFoerderPosten(p, Math.round(targetFoerder)),
       });
     }
@@ -133,15 +133,15 @@ export function computeAutofixes({ posten, richtlinie }: AutofixContext): Autofi
           actions.push({
             id: "add-eigenanteil-posten",
             label: `Eigenanteil um ${fmtEur(fehlbetrag)} aufstocken`,
-            description: `Fuegt einen neuen Eigenanteil-Posten ueber ${fmtEur(fehlbetrag)} hinzu, sodass die Eigenmittel den geforderten Mindestanteil von ${min} % erreichen. Bezeichnung kannst du danach noch anpassen.`,
+            description: `Fügt einen neuen Eigenanteil-Posten über ${fmtEur(fehlbetrag)} hinzu, sodass die Eigenmittel den geforderten Mindestanteil von ${min} % erreichen. Bezeichnung kannst du danach noch anpassen.`,
             apply: (p) => [
               ...p,
               {
                 id: genId("eigenanteil"),
                 kategorie: "sonstiges",
-                bezeichnung: `Eigenanteil Schultraeger (Aufstockung auf ${min} %)`,
+                bezeichnung: `Eigenanteil Schulträger (Aufstockung auf ${min} %)`,
                 betragEur: fehlbetrag,
-                begruendung: "Erfuellt die Eigenmittel-Pflicht der Foerderrichtlinie.",
+                begruendung: "Erfüllt die Eigenmittel-Pflicht der Förderrichtlinie.",
                 eigenanteil: true,
                 // Vom Nutzer aktiv per Auto-Fix-Klick hinzugefuegt + deterministisch
                 // aus der Richtlinie berechnet → bestaetigt, kein offener Vorschlag.
@@ -167,8 +167,8 @@ export function computeAutofixes({ posten, richtlinie }: AutofixContext): Autofi
       const kats = [...new Set(verbotenePostenAlsFoerderung.map((p) => p.kategorie))].join(", ");
       actions.push({
         id: "flag-verbotene-kategorien-als-eigenanteil",
-        label: `${verbotenePostenAlsFoerderung.length} nicht foerderfaehige Posten als Eigenanteil markieren`,
-        description: `Die Richtlinie schliesst die Kategorie(n) ${kats} aus der Foerderung aus. Aktion verschiebt ${verbotenePostenAlsFoerderung.length} Posten (${fmtEur(summe)}) auf Eigenanteil — sie bleiben im Plan, zaehlen aber nicht mehr zur Foerdersumme.`,
+        label: `${verbotenePostenAlsFoerderung.length} nicht förderfähige Posten als Eigenanteil markieren`,
+        description: `Die Richtlinie schliesst die Kategorie(n) ${kats} aus der Förderung aus. Aktion verschiebt ${verbotenePostenAlsFoerderung.length} Posten (${fmtEur(summe)}) auf Eigenanteil — sie bleiben im Plan, zählen aber nicht mehr zur Fördersumme.`,
         apply: (p) =>
           p.map((it) =>
             verbotene.has(it.kategorie) && !it.eigenanteil ? { ...it, eigenanteil: true } : it
@@ -189,7 +189,7 @@ export function computeAutofixes({ posten, richtlinie }: AutofixContext): Autofi
       actions.push({
         id: `cap-kategorie-max-eur-${regel.kategorie}`,
         label: `Kategorie "${regel.kategorie}" auf ${fmtEur(regel.maxEur)} kappen`,
-        description: `Reduziert die geforderten Posten der Kategorie "${regel.kategorie}" anteilig, sodass deren Foerdersumme ${fmtEur(regel.maxEur)} nicht ueberschreitet (Differenz: ${fmtEur(diff)}).`,
+        description: `Reduziert die geforderten Posten der Kategorie "${regel.kategorie}" anteilig, sodass deren Fördersumme ${fmtEur(regel.maxEur)} nicht überschreitet (Differenz: ${fmtEur(diff)}).`,
         apply: (p) => scaleFoerderPostenInKategorie(p, regel.kategorie, regel.maxEur!),
       });
     }

@@ -5,11 +5,11 @@ describe("secureEquals", () => {
     expect(secureEquals("geheim-123", "geheim-123")).toBe(true);
   });
 
-  it("gibt false bei abweichendem Inhalt gleicher Laenge", () => {
+  it("gibt false bei abweichendem Inhalt gleicher Länge", () => {
     expect(secureEquals("geheim-123", "geheim-124")).toBe(false);
   });
 
-  it("gibt false bei unterschiedlicher Laenge", () => {
+  it("gibt false bei unterschiedlicher Länge", () => {
     expect(secureEquals("kurz", "viel-laenger")).toBe(false);
   });
 

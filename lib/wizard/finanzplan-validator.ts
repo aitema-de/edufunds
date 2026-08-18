@@ -50,7 +50,7 @@ export function validateFinanzplan(
     if (richtlinie.foerderhoehe.maxEur && foerder > richtlinie.foerderhoehe.maxEur) {
       warnungen.push({
         level: "error",
-        message: `Geforderte Foerdersumme ${foerder.toLocaleString("de-DE")} EUR ueberschreitet die max. Foerderhoehe von ${richtlinie.foerderhoehe.maxEur.toLocaleString("de-DE")} EUR.`,
+        message: `Geforderte Fördersumme ${foerder.toLocaleString("de-DE")} EUR überschreitet die max. Förderhöhe von ${richtlinie.foerderhoehe.maxEur.toLocaleString("de-DE")} EUR.`,
       });
     }
     if (
@@ -59,7 +59,7 @@ export function validateFinanzplan(
     ) {
       warnungen.push({
         level: "error",
-        message: `Foerderanteil ${foerderProzent.toFixed(1)} % ueberschreitet max. ${richtlinie.foerderhoehe.maxProzentGesamtkosten} % der Gesamtkosten.`,
+        message: `Foerderanteil ${foerderProzent.toFixed(1)} % überschreitet max. ${richtlinie.foerderhoehe.maxProzentGesamtkosten} % der Gesamtkosten.`,
       });
     }
 
@@ -99,7 +99,7 @@ export function validateFinanzplan(
       if (!regel.foerderfaehig) {
         warnungen.push({
           level: "error",
-          message: `Kategorie "${kat}" ist laut Richtlinie NICHT foerderfaehig. ${regel.bedingungen?.join(" ") ?? ""}`,
+          message: `Kategorie "${kat}" ist laut Richtlinie NICHT förderfähig. ${regel.bedingungen?.join(" ") ?? ""}`,
           kategorie: kat,
         });
         continue;
@@ -108,7 +108,7 @@ export function validateFinanzplan(
       if (regel.maxEur && foerderKat > regel.maxEur) {
         warnungen.push({
           level: "error",
-          message: `Kategorie "${kat}": Foerderanteil ${foerderKat.toLocaleString("de-DE")} EUR ueberschreitet Max ${regel.maxEur.toLocaleString("de-DE")} EUR.`,
+          message: `Kategorie "${kat}": Förderanteil ${foerderKat.toLocaleString("de-DE")} EUR überschreitet Max ${regel.maxEur.toLocaleString("de-DE")} EUR.`,
           kategorie: kat,
         });
       }
@@ -129,13 +129,13 @@ export function validateFinanzplan(
     if (richtlinie.kumulierung.erlaubt === false) {
       warnungen.push({
         level: "info",
-        message: "Dieses Programm erlaubt keine Doppelfoerderung derselben Massnahme aus anderen Mitteln.",
+        message: "Dieses Programm erlaubt keine Doppelförderung derselben Maßnahme aus anderen Mitteln.",
       });
     }
   } else {
     warnungen.push({
       level: "info",
-      message: "Keine Richtlinie erfasst — Plan wird nicht gegen Foerderregeln validiert.",
+      message: "Keine Richtlinie erfasst — Plan wird nicht gegen Förderregeln validiert.",
     });
   }
 

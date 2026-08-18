@@ -10,7 +10,7 @@ import { MatchResultList, type MatchEntry } from '@/components/Wizard/MatchResul
 const SAMPLE_ENTRY: MatchEntry = {
   id: 'bmbf-digitalpakt-2',
   score: 88,
-  passt_weil: 'Bundesweite Foerderung digitaler Schulinfrastruktur.',
+  passt_weil: 'Bundesweite Förderung digitaler Schulinfrastruktur.',
   achtung_bei: 'Antragsfrist naht.',
   programm: {
     id: 'bmbf-digitalpakt-2',

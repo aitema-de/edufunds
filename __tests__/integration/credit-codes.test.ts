@@ -62,7 +62,7 @@ describe("createCreditCode", () => {
 });
 
 describe("consumeCredit", () => {
-  it("zaehlt das Guthaben runter und meldet den Rest", async () => {
+  it("zählt das Guthaben runter und meldet den Rest", async () => {
     const c = await createCreditCode({ creditsTotal: 3 });
 
     expect(await consumeCredit(c.code)).toEqual({ ok: true, creditsRemaining: 2 });
@@ -72,7 +72,7 @@ describe("consumeCredit", () => {
     expect(await codeRow(c.code)).toMatchObject({ credits_used: 3 });
   });
 
-  it("laesst einen Code NICHT ueberziehen", async () => {
+  it("lässt einen Code NICHT überziehen", async () => {
     const c = await createCreditCode({ creditsTotal: 2 });
     await consumeCredit(c.code);
     await consumeCredit(c.code);
@@ -82,7 +82,7 @@ describe("consumeCredit", () => {
     expect(await codeRow(c.code)).toMatchObject({ credits_used: 2 });
   });
 
-  it("vergibt bei PARALLELER Einloesung nicht mehr Credits als vorhanden", async () => {
+  it("vergibt bei PARALLELER Einlösung nicht mehr Credits als vorhanden", async () => {
     const c = await createCreditCode({ creditsTotal: 3 });
 
     // 10 Lehrkraefte loesen gleichzeitig denselben Schul-Code ein.
@@ -99,7 +99,7 @@ describe("consumeCredit", () => {
     expect(await codeRow(c.code)).toMatchObject({ credits_used: 3 });
   });
 
-  it("weist einen abgelaufenen Code zurueck", async () => {
+  it("weist einen abgelaufenen Code zurück", async () => {
     const c = await createCreditCode({
       creditsTotal: 5,
       expiresAt: new Date(Date.now() - 86_400_000).toISOString(),
@@ -109,13 +109,13 @@ describe("consumeCredit", () => {
     expect(await codeRow(c.code)).toMatchObject({ credits_used: 0 });
   });
 
-  it("weist einen unbekannten Code zurueck", async () => {
+  it("weist einen unbekannten Code zurück", async () => {
     expect(await consumeCredit("EDU-XXXX-XXXX")).toEqual({ ok: false, reason: "unknown" });
   });
 });
 
 describe("refundCredit", () => {
-  it("gibt einen Credit zurueck, wenn die Freischaltung scheitert", async () => {
+  it("gibt einen Credit zurück, wenn die Freischaltung scheitert", async () => {
     const c = await createCreditCode({ creditsTotal: 2 });
     await consumeCredit(c.code);
     expect(await codeRow(c.code)).toMatchObject({ credits_used: 1 });
@@ -124,7 +124,7 @@ describe("refundCredit", () => {
     expect(await codeRow(c.code)).toMatchObject({ credits_used: 0 });
   });
 
-  it("laeuft nicht ins Negative (doppelte Rueckgabe verschenkt kein Guthaben)", async () => {
+  it("läuft nicht ins Negative (doppelte Rückgabe verschenkt kein Guthaben)", async () => {
     const c = await createCreditCode({ creditsTotal: 2 });
     await consumeCredit(c.code);
 

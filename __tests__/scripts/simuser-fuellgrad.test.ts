@@ -30,8 +30,8 @@ const VOLL = {
   budget: { beantragt_eur: 5000, hauptposten: ["Buecher", "Honorar"] },
 };
 
-describe("Fuellgrad der Zielfelder", () => {
-  it("zaehlt belegte Felder ueber alle Interviews", () => {
+describe("Füllgrad der Zielfelder", () => {
+  it("zählt belegte Felder über alle Interviews", () => {
     const a = berechneAusbeute([eintrag(VOLL), eintrag(VOLL), eintrag({ schule: {} })]);
     expect(a.n).toBe(3);
     expect(a.fuellgrad["budget.beantragt_eur"]).toBe(2);
@@ -44,7 +44,7 @@ describe("Fuellgrad der Zielfelder", () => {
     expect(a.fuellgrad["budget.hauptposten"]).toBe(0);
   });
 
-  it("wertet 0 EUR und 0 Schueler NICHT als Angabe", () => {
+  it("wertet 0 EUR und 0 Schüler NICHT als Angabe", () => {
     const a = berechneAusbeute([
       eintrag({ schule: { schuelerzahl: 0 }, budget: { beantragt_eur: 0 } }),
     ]);
@@ -62,7 +62,7 @@ describe("Fuellgrad der Zielfelder", () => {
     expect(a.fuellgrad["schule.schuelerzahl"]).toBe(0);
   });
 
-  it("laesst fehlgeschlagene Interviews aussen vor", () => {
+  it("lässt fehlgeschlagene Interviews aussen vor", () => {
     const a = berechneAusbeute([eintrag(VOLL), eintrag(VOLL, { fehler: "timeout" })]);
     expect(a.n).toBe(1);
     expect(a.fuellgrad["budget.beantragt_eur"]).toBe(1);

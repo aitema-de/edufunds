@@ -200,7 +200,7 @@ export async function getInvoiceDocumentFileId(invoiceId: string): Promise<strin
     }
     await delay(800);
   }
-  throw new Error(`lexoffice: kein documentFileId fuer Rechnung ${invoiceId}`);
+  throw new Error(`lexoffice: kein documentFileId für Rechnung ${invoiceId}`);
 }
 
 /** Laedt eine Datei (PDF) als Buffer herunter. */

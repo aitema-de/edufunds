@@ -63,12 +63,12 @@ describe("POST /api/wizard/invoice", () => {
     expect(mMarkPaid).not.toHaveBeenCalled();
   });
 
-  it("400 bei ungueltiger E-Mail", async () => {
+  it("400 bei ungültiger E-Mail", async () => {
     const res = await POST(req({ ...validBody, email: "keine-mail" }));
     expect(res.status).toBe(400);
   });
 
-  it("422 fuer einen Foerderverein — Rechnungskauf ist Schulen/Traegern vorbehalten (AGB § 4a)", async () => {
+  it("422 für einen Förderverein — Rechnungskauf ist Schulen/Trägern vorbehalten (AGB § 4a)", async () => {
     mGetSession.mockResolvedValue({ paidToken: undefined });
     const res = await POST(req({ ...validBody, email: "vorstand@foerderverein-muster.de" }));
     expect(res.status).toBe(422);
@@ -76,14 +76,14 @@ describe("POST /api/wizard/invoice", () => {
     expect(mMarkPaid).not.toHaveBeenCalled();
   });
 
-  it("422 fuer eine private Freemail-Adresse — und schaltet NICHT frei", async () => {
+  it("422 für eine private Freemail-Adresse — und schaltet NICHT frei", async () => {
     mGetSession.mockResolvedValue({ paidToken: undefined });
     const res = await POST(req({ ...validBody, email: "lehrerin@gmail.com" }));
     expect(res.status).toBe(422);
     expect(mMarkPaid).not.toHaveBeenCalled();
   });
 
-  it("Honeypot gefuellt -> stiller Erfolg ohne Freischaltung", async () => {
+  it("Honeypot gefüllt -> stiller Erfolg ohne Freischaltung", async () => {
     const res = await POST(req({ ...validBody, website: "http://spam.example" }));
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual({ ok: true });

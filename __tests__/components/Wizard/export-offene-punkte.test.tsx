@@ -22,8 +22,8 @@ const programm = { id: "test-prog", name: "Test-Programm" } as unknown as Foerde
 
 const MIT_MARKERN = `## Bestandsaufnahme
 
-Die Schule hat 10 Whiteboards. [TODO: Stueckzahl der Tablets erfassen]
-[Annahme: Das WLAN reicht in allen Raeumen.] Damit ist die Basis gelegt.`;
+Die Schule hat 10 Whiteboards. [TODO: Stückzahl der Tablets erfassen]
+[Annahme: Das WLAN reicht in allen Räumen.] Damit ist die Basis gelegt.`;
 
 function gen(over: Partial<GenerationArtefacts> = {}): GenerationArtefacts {
   return { finalText: MIT_MARKERN, ...over } as GenerationArtefacts;
@@ -46,14 +46,14 @@ describe("Export: Arbeitsliste vor dem Antrag", () => {
     expect(text.indexOf("Offene Punkte")).toBeLessThan(text.indexOf("Bestandsaufnahme"));
   });
 
-  it("nimmt die Marker aus dem Antragskoerper — aber KEINEN Inhalt aus dem Dokument", async () => {
+  it("nimmt die Marker aus dem Antragskörper — aber KEINEN Inhalt aus dem Dokument", async () => {
     const text = await kopierterText(gen());
     const koerper = text.slice(text.indexOf("## Bestandsaufnahme"));
     expect(koerper).not.toMatch(/\[TODO:/);
     expect(koerper).not.toMatch(/\[Annahme:/);
     // Beides muss weiter im Dokument stehen — oben in der Arbeitsliste.
-    expect(text).toMatch(/Stueckzahl der Tablets erfassen/);
-    expect(text).toMatch(/Das WLAN reicht in allen Raeumen\./);
+    expect(text).toMatch(/Stückzahl der Tablets erfassen/);
+    expect(text).toMatch(/Das WLAN reicht in allen Räumen\./);
   });
 
   it("sagt im Export, dass die Arbeitsliste nicht eingereicht wird", async () => {
@@ -61,8 +61,8 @@ describe("Export: Arbeitsliste vor dem Antrag", () => {
     expect(text).toMatch(/NICHT in die Einreichung/);
   });
 
-  it("haengt ohne offene Punkte keinen Vorspann an", async () => {
-    const text = await kopierterText(gen({ finalText: "## Antrag\n\nAlles vollstaendig." }));
+  it("hängt ohne offene Punkte keinen Vorspann an", async () => {
+    const text = await kopierterText(gen({ finalText: "## Antrag\n\nAlles vollständig." }));
     expect(text).not.toMatch(/Offene Punkte/);
     expect(text.trimStart().startsWith("## Antrag")).toBe(true);
   });
@@ -84,7 +84,7 @@ describe("Hinweis auf der Ergebnisseite", () => {
     render(
       <AntragResult
         programm={programm}
-        generation={gen({ finalText: "## Antrag\n\nAlles vollstaendig." })}
+        generation={gen({ finalText: "## Antrag\n\nAlles vollständig." })}
         paidToken="tok"
       />
     );

@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
     const res = await markOrderPaid(orderNumber);
     if (!res.order) return NextResponse.json({ error: "Bestellung unbekannt" }, { status: 404 });
     console.log(
-      `[admin/orders] ${auth.admin.email ?? "admin"} verbucht Zahlung fuer ${orderNumber} ` +
+      `[admin/orders] ${auth.admin.email ?? "admin"} verbucht Zahlung für ${orderNumber} ` +
         `(changed=${res.changed})`
     );
     return NextResponse.json({ ok: true, changed: res.changed, order: res.order });

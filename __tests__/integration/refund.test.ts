@@ -63,7 +63,7 @@ describe("revokeSessionAccess", () => {
     expect(row.refunded_at).toBeInstanceOf(Date);
   });
 
-  it("schliesst ALLE Tueren: der Token ist das einzige Zugangsmerkmal (auch fuer die Finanzplan-Routen)", async () => {
+  it("schliesst ALLE Türen: der Token ist das einzige Zugangsmerkmal (auch für die Finanzplan-Routen)", async () => {
     const { sessionToken, paidToken } = await bezahlteSession();
     await revokeSessionAccess(sessionToken);
 
@@ -97,7 +97,7 @@ describe("revokeSessionAccess", () => {
     expect(res.rows[0].status).toBe("refunded");
   });
 
-  it("haelt paralleler Doppelzustellung stand (genau eine Entwertung)", async () => {
+  it("hält paralleler Doppelzustellung stand (genau eine Entwertung)", async () => {
     const { sessionToken } = await bezahlteSession();
 
     const results = await Promise.all([
@@ -108,14 +108,14 @@ describe("revokeSessionAccess", () => {
     expect(results.filter((r) => r.revoked)).toHaveLength(1);
   });
 
-  it("meldet revoked=false fuer eine nie bezahlte oder unbekannte Session", async () => {
+  it("meldet revoked=false für eine nie bezahlte oder unbekannte Session", async () => {
     const s = await createWizardSession("digitalpakt", "DigitalPakt Schule");
     expect(await revokeSessionAccess(s.sessionToken)).toEqual({ revoked: false });
     expect(await revokeSessionAccess("gibt-es-nicht")).toEqual({ revoked: false });
   });
 });
 
-describe("isRefundedToken (Erklaerung statt nackter 404)", () => {
+describe("isRefundedToken (Erklärung statt nackter 404)", () => {
   it("erkennt den entwerteten Token wieder", async () => {
     const { sessionToken, paidToken } = await bezahlteSession();
     expect(await isRefundedToken(paidToken)).toBe(false);
@@ -127,7 +127,7 @@ describe("isRefundedToken (Erklaerung statt nackter 404)", () => {
     expect(await isRefundedToken(paidToken)).toBe(true);
   });
 
-  it("bleibt bei einem frei erfundenen Token false (keine Auskunft ueber Fremdtokens)", async () => {
+  it("bleibt bei einem frei erfundenen Token false (keine Auskunft über Fremdtokens)", async () => {
     expect(await isRefundedToken("beliebiger-quatsch")).toBe(false);
   });
 });
@@ -153,7 +153,7 @@ describe("revokeQuotaCodeByStripeSession (Kontingent-Kartenkauf)", () => {
     expect(await consumeCredit(bought.creditCode)).toEqual({ ok: false, reason: "revoked" });
   });
 
-  it("laesst bereits eingeloeste Credits protokolliert (GoBD/Audit)", async () => {
+  it("lässt bereits eingelöste Credits protokolliert (GoBD/Audit)", async () => {
     const bought = await fulfillQuotaCardPurchase({ stripeSessionId: "cs_q2", packId: "pack5" });
     await consumeCredit(bought.creditCode);
     await revokeQuotaCodeByStripeSession("cs_q2");

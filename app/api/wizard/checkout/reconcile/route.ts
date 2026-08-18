@@ -95,8 +95,8 @@ export async function POST(req: NextRequest) {
       // (falsche Domain im Dashboard, abgelaufenes whsec, Traefik-Regel).
       console.warn(
         `[checkout/reconcile] Zahlung ${cs} war bezahlt, aber NICHT freigeschaltet — ` +
-          `der Webhook ist ausgeblieben. Nachtraeglich freigeschaltet. ` +
-          `Stripe-Webhook-Endpoint pruefen!`,
+          `der Webhook ist ausgeblieben. Nachträglich freigeschaltet. ` +
+          `Stripe-Webhook-Endpoint prüfen!`,
       );
     }
 

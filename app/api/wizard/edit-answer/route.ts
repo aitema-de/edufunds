@@ -122,7 +122,7 @@ export async function POST(req: NextRequest) {
       ));
     } catch (stepErr) {
       console.error(
-        "[wizard/edit-answer] nextStep fehlgeschlagen (Aenderung gesichert):",
+        "[wizard/edit-answer] nextStep fehlgeschlagen (Änderung gesichert):",
         stepErr
       );
       return NextResponse.json(

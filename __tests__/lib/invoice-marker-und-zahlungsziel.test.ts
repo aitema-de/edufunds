@@ -59,12 +59,12 @@ describe("Zahlungsbedingung: die Rechnung ist bereits bezahlt", () => {
     expect(pc.paymentTermLabel).toBe(ZAHLUNGSBEDINGUNG_BEREITS_BEZAHLT);
   });
 
-  it("der Standardtext sagt klar, dass NICHT zu ueberweisen ist", () => {
+  it("der Standardtext sagt klar, dass NICHT zu überweisen ist", () => {
     expect(ZAHLUNGSBEDINGUNG_BEREITS_BEZAHLT).toMatch(/bereits bezahlt/i);
     expect(ZAHLUNGSBEDINGUNG_BEREITS_BEZAHLT).toMatch(/nicht zu überweisen/i);
   });
 
-  it("laesst sich fuer einen kuenftigen Rechnungskauf ueberschreiben", () => {
+  it("lässt sich für einen künftigen Rechnungskauf überschreiben", () => {
     const body = buildInvoiceBody(
       {
         address: { name: "X" },
@@ -82,7 +82,7 @@ describe("Zahlungsbedingung: die Rechnung ist bereits bezahlt", () => {
   });
 });
 
-describe("Erledigt-Marker nur bei tatsaechlich erzeugter Rechnung", () => {
+describe("Erledigt-Marker nur bei tatsächlich erzeugter Rechnung", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     // isProcessed() -> noch nicht verarbeitet
@@ -100,7 +100,7 @@ describe("Erledigt-Marker nur bei tatsaechlich erzeugter Rechnung", () => {
     expect(markerGesetzt()).toBe(true);
   });
 
-  it("REGRESSION: lexoffice scheitert -> KEIN Marker, der Nachlauf bleibt moeglich", async () => {
+  it("REGRESSION: lexoffice scheitert -> KEIN Marker, der Nachlauf bleibt möglich", async () => {
     (lex.createInvoice as jest.Mock).mockRejectedValue(
       new Error("lexoffice POST /v1/invoices?finalize=true -> 401: Unauthorized")
     );
@@ -116,7 +116,7 @@ describe("Erledigt-Marker nur bei tatsaechlich erzeugter Rechnung", () => {
     await expect(runInvoiceJob(params)).resolves.toBeUndefined();
   });
 
-  it("§312i: die Bestaetigungsmail geht auch ohne Rechnung raus", async () => {
+  it("§312i: die Bestätigungsmail geht auch ohne Rechnung raus", async () => {
     const { sendMail } = jest.requireMock("@/lib/mail");
     (lex.createInvoice as jest.Mock).mockRejectedValue(new Error("lexoffice down"));
 
@@ -129,7 +129,7 @@ describe("Erledigt-Marker nur bei tatsaechlich erzeugter Rechnung", () => {
     expect(anKaeufer[0][0].attachments).toBeUndefined(); // kein PDF ohne Rechnung
   });
 
-  it("bereits verarbeitet -> laeuft gar nicht erst los (Doppel-Rechnung verhindert)", async () => {
+  it("bereits verarbeitet -> läuft gar nicht erst los (Doppel-Rechnung verhindert)", async () => {
     (query as jest.Mock).mockResolvedValue({ rows: [{ done: true }], rowCount: 1 });
 
     await runInvoiceJob(params);

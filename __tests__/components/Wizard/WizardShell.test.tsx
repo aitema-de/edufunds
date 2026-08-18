@@ -121,7 +121,7 @@ describe('WizardShell — Phase-Dispatch + Polling (D-12, D-15)', () => {
   });
 
   // SKIP: interviewing-Render braucht vollstaendige Message-Mock-Kette
-  it.skip('rendert letzte Frage bei phase=interviewing — D-12 (Reload waehrend Interview)', () => {
+  it.skip('rendert letzte Frage bei phase=interviewing — D-12 (Reload während Interview)', () => {
     // Deferred: WizardShell-Rendering bei interviewing braucht QuestionCard-Mock-Kette.
     // Plan 02.1-06 legt it.skip mit Begruendung ab.
   });

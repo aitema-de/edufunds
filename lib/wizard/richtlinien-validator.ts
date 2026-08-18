@@ -61,7 +61,7 @@ const FristLogikSchema = z.discriminatedUnion("typ", [
             "stichtag muss ISO-Format YYYY-MM-DD haben (z. B. 2026-04-10)"
           )
       )
-      .min(1, "fixe_stichtage benoetigt mindestens einen Stichtag"),
+      .min(1, "fixe_stichtage benötigt mindestens einen Stichtag"),
     jaehrlich_wiederkehrend: z.boolean().optional(),
   }),
 ]);

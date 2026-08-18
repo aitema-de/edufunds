@@ -29,7 +29,7 @@ const mockGenerateText = generateText as jest.MockedFunction<typeof generateText
 
 const baseInput = {
   anliegen:
-    "Wir wollen die Schul-Bibliothek mit digitalen Medien ausstatten und brauchen einen Foerder-Tipp.",
+    "Wir wollen die Schul-Bibliothek mit digitalen Medien ausstatten und brauchen einen Förder-Tipp.",
 };
 
 beforeEach(() => {
@@ -43,7 +43,7 @@ beforeEach(() => {
 describe("runMatch — CLARIFY-Dispatch", () => {
   it("liefert kind=clarification wenn erste Zeile mit CLARIFY| beginnt — D-05/D-08", async () => {
     mockGenerateText.mockResolvedValueOnce({
-      value: "CLARIFY|Fuer welches Bundesland sucht ihr?",
+      value: "CLARIFY|Für welches Bundesland sucht ihr?",
       usage: { promptTokens: 100, candidatesTokens: 50 },
     });
     const result = await runMatch(baseInput);
@@ -53,7 +53,7 @@ describe("runMatch — CLARIFY-Dispatch", () => {
     }
   });
 
-  it("extrahiert question-Text rechts vom CLARIFY|-Praefix — D-05", async () => {
+  it("extrahiert question-Text rechts vom CLARIFY|-Präfix — D-05", async () => {
     mockGenerateText.mockResolvedValueOnce({
       value: "CLARIFY|Welcher Schwerpunkt steht im Vordergrund?",
       usage: { promptTokens: 100, candidatesTokens: 50 },
@@ -81,7 +81,7 @@ describe("runMatch — CLARIFY-Dispatch", () => {
     }
   });
 
-  it("ignoriert CLARIFY in spaeteren Zeilen (nur erste Zeile zaehlt) — D-05", async () => {
+  it("ignoriert CLARIFY in späteren Zeilen (nur erste Zeile zählt) — D-05", async () => {
     mockGenerateText.mockResolvedValueOnce({
       value: `${FIRST_VALID_ID}|85|Match.|\nCLARIFY|spaeter`,
       usage: { promptTokens: 100, candidatesTokens: 50 },
@@ -110,7 +110,7 @@ describe("runMatch — forceRanking-Override", () => {
     expect(result.kind).toBe("clarification");
   });
 
-  it("buildUserPrompt fuegt forceRanking-Hinweis-Block an wenn forceRanking=true", async () => {
+  it("buildUserPrompt fügt forceRanking-Hinweis-Block an wenn forceRanking=true", async () => {
     mockGenerateText.mockResolvedValueOnce({
       value: `${FIRST_VALID_ID}|85|Match.|`,
       usage: { promptTokens: 100, candidatesTokens: 50 },
@@ -122,24 +122,24 @@ describe("runMatch — forceRanking-Override", () => {
     expect(userPromptArg).toContain("KEIN CLARIFY");
   });
 
-  it("buildUserPrompt fuegt previousAnliegen-Block an wenn previousAnliegen gesetzt — D-09", async () => {
+  it("buildUserPrompt fügt previousAnliegen-Block an wenn previousAnliegen gesetzt — D-09", async () => {
     mockGenerateText.mockResolvedValueOnce({
       value: `${FIRST_VALID_ID}|85|Match.|`,
       usage: { promptTokens: 100, candidatesTokens: 50 },
     });
     await runMatch({
       ...baseInput,
-      previousAnliegen: "alt: ursprueengliche Eingabe vor Praezisierung",
+      previousAnliegen: "alt: ursprüengliche Eingabe vor Präzisierung",
     });
     expect(mockGenerateText).toHaveBeenCalled();
     const userPromptArg = mockGenerateText.mock.calls[0][2];
-    expect(userPromptArg).toContain("URSPRUENGLICHES ANLIEGEN");
-    expect(userPromptArg).toContain("alt: ursprueengliche Eingabe");
+    expect(userPromptArg).toContain("URSPRÜNGLICHES ANLIEGEN");
+    expect(userPromptArg).toContain("alt: ursprüengliche Eingabe");
   });
 });
 
 describe("runMatch — costs-Feldname", () => {
-  it("ranking-Result enthaelt Feld 'costs' (nicht 'cost') — Codebase-Konvention", async () => {
+  it("ranking-Result enthält Feld 'costs' (nicht 'cost') — Codebase-Konvention", async () => {
     mockGenerateText.mockResolvedValueOnce({
       value: `${FIRST_VALID_ID}|85|Match.|`,
       usage: { promptTokens: 100, candidatesTokens: 50 },
@@ -151,7 +151,7 @@ describe("runMatch — costs-Feldname", () => {
     expect((result as unknown as { cost?: unknown }).cost).toBeUndefined();
   });
 
-  it("clarification-Result enthaelt Feld 'costs' (nicht 'cost') — Codebase-Konvention", async () => {
+  it("clarification-Result enthält Feld 'costs' (nicht 'cost') — Codebase-Konvention", async () => {
     mockGenerateText.mockResolvedValueOnce({
       value: "CLARIFY|Welches Bundesland?",
       usage: { promptTokens: 100, candidatesTokens: 50 },
@@ -175,7 +175,7 @@ describe("runMatch — Plan 02-10 Drift-Score-Cap", () => {
   };
   const digitalFreeBaseInput = {
     anliegen:
-      "Wir wollen Theaterauffuehrungen einueben und brauchen Kostueme und Buehnenbild fuer die AG.",
+      "Wir wollen Theateraufführungen einüben und brauchen Kostüme und Bühnenbild für die AG.",
   };
 
   it("cappt aktion-mensch-schulkooperation auf <50 wenn kein Inklusions-Anker — Plan 02-10", async () => {
@@ -198,7 +198,7 @@ describe("runMatch — Plan 02-10 Drift-Score-Cap", () => {
     });
     const result = await runMatch({
       anliegen:
-        "Wir wollen die Inklusion an unserer Schule staerken — Kinder mit Foerderbedarf besser einbinden.",
+        "Wir wollen die Inklusion an unserer Schule stärken — Kinder mit Förderbedarf besser einbinden.",
     });
     expect(result.kind).toBe("ranking");
     if (result.kind === "ranking") {
@@ -209,13 +209,13 @@ describe("runMatch — Plan 02-10 Drift-Score-Cap", () => {
 
   it("cappt aktion-mensch NICHT wenn Inklusions-Anker im previousAnliegen — D-09", async () => {
     mockGenerateText.mockResolvedValueOnce({
-      value: "aktion-mensch-schulkooperation|85|Inklusion aus Praezisierung.|",
+      value: "aktion-mensch-schulkooperation|85|Inklusion aus Präzisierung.|",
       usage: { promptTokens: 100, candidatesTokens: 50 },
     });
     const result = await runMatch({
-      anliegen: "Mehr Foerderprogramme fuer unsere Kinder.",
+      anliegen: "Mehr Förderprogramme für unsere Kinder.",
       previousAnliegen:
-        "Inklusion und Migrationshintergrund unterstuetzen — Kinder mit Foerderbedarf.",
+        "Inklusion und Migrationshintergrund unterstützen — Kinder mit Förderbedarf.",
     });
     expect(result.kind).toBe("ranking");
     if (result.kind === "ranking") {
@@ -244,7 +244,7 @@ describe("runMatch — Plan 02-10 Drift-Score-Cap", () => {
     });
     const result = await runMatch({
       anliegen:
-        "Wir wollen Tablets fuer Klasse 5-7 anschaffen und das Whiteboard erneuern.",
+        "Wir wollen Tablets für Klasse 5-7 anschaffen und das Whiteboard erneuern.",
     });
     expect(result.kind).toBe("ranking");
     if (result.kind === "ranking") {
@@ -253,7 +253,7 @@ describe("runMatch — Plan 02-10 Drift-Score-Cap", () => {
     }
   });
 
-  it("cappt nur Drift-Defaults, andere Programme bleiben unveraendert — Plan 02-10", async () => {
+  it("cappt nur Drift-Defaults, andere Programme bleiben unverändert — Plan 02-10", async () => {
     mockGenerateText.mockResolvedValueOnce({
       value: `${FIRST_VALID_ID}|85|Score bleibt.|`,
       usage: { promptTokens: 100, candidatesTokens: 50 },

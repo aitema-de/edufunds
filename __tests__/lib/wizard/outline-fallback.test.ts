@@ -11,7 +11,7 @@ describe("buildFallbackOutline", () => {
       "Vorhaben und Anliegen",
       "Bedarfsbegruendung",
       "Zielgruppe und Beteiligte",
-      "Massnahmen und Zeitplan",
+      "Maßnahmen und Zeitplan",
       "Erwartete Wirkung und Nachhaltigkeit",
       "Finanzierung und Eigenanteil",
     ]);
@@ -30,7 +30,7 @@ describe("buildFallbackOutline", () => {
     const ohne = buildFallbackOutline(PROGRAMM, {});
     expect(mit.titel).not.toBe(ohne.titel);
     expect(mit.titel).toContain("GS Mustertown");
-    expect(ohne.titel).toBe("Antrag auf Foerderung: DigitalPakt 2.0");
+    expect(ohne.titel).toBe("Antrag auf Förderung: DigitalPakt 2.0");
   });
 
   it("liefert frische Abschnitt-Objekte (keine geteilten Referenzen)", () => {

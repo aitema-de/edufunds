@@ -114,7 +114,7 @@ export function applyStatedEigenanteil(
   const eigenPosten: Finanzposten = {
     id: randomUUID(),
     kategorie: "sonstiges",
-    bezeichnung: "Eigenanteil Schultraeger",
+    bezeichnung: "Eigenanteil Schulträger",
     betragEur: round,
     begruendung: "Vom Antragsteller zugesagte Eigenmittel.",
     eigenanteil: true,
@@ -122,7 +122,7 @@ export function applyStatedEigenanteil(
     istVorschlag: false,
   };
   hinweise.push(
-    `Eigenanteil von ${round.toLocaleString("de-DE")} EUR aus deinen Angaben als separater Posten ergaenzt.`
+    `Eigenanteil von ${round.toLocaleString("de-DE")} EUR aus deinen Angaben als separater Posten ergänzt.`
   );
   return [...foerderPosten, eigenPosten];
 }

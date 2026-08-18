@@ -36,7 +36,7 @@ it("100 % Coverage, wenn alle Pflichtabschnitte im finalText stehen", () => {
   expect(r.shortAbschnitte).toEqual([]);
 });
 
-it("faengt den Kollaps: finalText mit nur 2 Abschnitten trotz vollstaendiger sections[]", () => {
+it("fängt den Kollaps: finalText mit nur 2 Abschnitten trotz vollständiger sections[]", () => {
   // sections[] enthaelt alle 4 (WIZ-01 waere 100 %), finalText nur 2 → WIZ-01b muss failen.
   const finalText = ["# Titel", "## Ausgangslage", fullBody, "## Maßnahmen", fullBody].join("\n\n");
   const r = scoreWiz01FinalText(
@@ -55,7 +55,7 @@ it("flaggt vorhandene, aber zu kurze Abschnitte (< minZeichen)", () => {
   expect(r.shortAbschnitte.map((s) => s.name)).toContain("Ziele und Wirkung");
 });
 
-it("tolerante Zuordnung: '## Ziele & Wirkung' zaehlt als 'Ziele und Wirkung'", () => {
+it("tolerante Zuordnung: '## Ziele & Wirkung' zählt als 'Ziele und Wirkung'", () => {
   const finalText = ["# Titel", "## Ausgangslage", fullBody, "## Ziele & Wirkung", fullBody, "## Maßnahmen", fullBody, "## Nachhaltigkeit", fullBody].join("\n\n");
   const r = scoreWiz01FinalText(artefacts(finalText), richtlinie);
   expect(r.missingAbschnitte).toEqual([]);

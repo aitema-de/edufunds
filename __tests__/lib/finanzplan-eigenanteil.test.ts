@@ -35,7 +35,7 @@ function plan(posten: Finanzposten[]): Finanzplan {
 }
 
 describe("applyStatedEigenanteil", () => {
-  it("ergaenzt einen Eigenanteil-Posten, wenn der Nutzer Eigenmittel nannte und keiner markiert ist", () => {
+  it("ergänzt einen Eigenanteil-Posten, wenn der Nutzer Eigenmittel nannte und keiner markiert ist", () => {
     const hinweise: string[] = [];
     const out = applyStatedEigenanteil(foerderPosten(), factsMit, hinweise);
     const eigen = out.filter((p) => p.eigenanteil);
@@ -46,7 +46,7 @@ describe("applyStatedEigenanteil", () => {
     expect(hinweise.join(" ")).toMatch(/Eigenanteil/);
   });
 
-  it("macht die Freigabe moeglich (okFuerFreigabe), wo sie vorher an 0 % Eigenanteil scheiterte", () => {
+  it("macht die Freigabe möglich (okFuerFreigabe), wo sie vorher an 0 % Eigenanteil scheiterte", () => {
     // Vorher: ohne Normalisierung -> 0 % Eigenanteil -> error -> blockiert
     const vorher = validateFinanzplan(plan(foerderPosten()), richtlinie);
     expect(vorher.okFuerFreigabe).toBe(false);
@@ -72,13 +72,13 @@ describe("applyStatedEigenanteil", () => {
     expect(eigen[0].betragEur).toBe(2200);
   });
 
-  it("laesst den Plan unveraendert, wenn der Nutzer keine Eigenmittel nannte", () => {
+  it("lässt den Plan unverändert, wenn der Nutzer keine Eigenmittel nannte", () => {
     const inPosten = foerderPosten();
     const out = applyStatedEigenanteil(inPosten, factsOhne, []);
     expect(out).toEqual(inPosten);
   });
 
-  it("laesst einen bereits korrekt markierten Eigenanteil in Ruhe (Toleranz)", () => {
+  it("lässt einen bereits korrekt markierten Eigenanteil in Ruhe (Toleranz)", () => {
     const mitKorrekt = [
       ...foerderPosten(),
       { id: "y", kategorie: "sonstiges", bezeichnung: "Eigenanteil", betragEur: 2200, eigenanteil: true } as Finanzposten,

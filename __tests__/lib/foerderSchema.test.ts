@@ -1,7 +1,7 @@
 import { Foerderprogramm } from '@/lib/foerderSchema';
 import testData from '@/mocks/test-programme.json';
 
-describe('Foerderprogramm Schema', () => {
+describe('Förderprogramm Schema', () => {
   describe('Validierung gültiger Programme', () => {
     it('sollte ein vollständiges gültiges Programm akzeptieren', () => {
       const programm: Foerderprogramm = testData.gueltigeProgramme[0];

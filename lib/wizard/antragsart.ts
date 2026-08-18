@@ -115,7 +115,7 @@ export function bestimmeAntragsart(
     return {
       art: "projektfoerderung",
       brauchtFinanzplan: true,
-      grund: "Antragsstruktur enthaelt einen Finanzabschnitt",
+      grund: "Antragsstruktur enthält einen Finanzabschnitt",
     };
   }
   if (finanzAbschnitt === null) {
@@ -127,7 +127,7 @@ export function bestimmeAntragsart(
     return {
       art: "projektfoerderung",
       brauchtFinanzplan: true,
-      grund: "Preis-Signal im Namen, aber keine Antragsstruktur zur Bestaetigung",
+      grund: "Preis-Signal im Namen, aber keine Antragsstruktur zur Bestätigung",
     };
   }
 

@@ -16,7 +16,15 @@ Kurz-Briefing fuer Claude-Code-Sitzungen. Funktionale Uebersicht steht in [READM
 
 ## Konventionen
 
-- **Sprache:** Deutsch in allen Dokumenten, Texten, UI-Strings, Commit-Messages und Logs. Umlaute (ae/oe/ue/ss) sind in Code-/Tooling-Identifiers erlaubt — in JSON-Datenfeldern, die durch Tooling laufen, ASCII bevorzugen, um Encoding-Probleme zu vermeiden.
+- **Sprache:** Deutsch in allen Dokumenten, Texten, UI-Strings, Commit-Messages und Logs.
+  **Jeder Text, den ein Nutzer sieht, traegt echte Umlaute (ä, ö, ü) und ß** — auch in
+  `data/foerderprogramme.json` und `data/richtlinien/*.json`. Die frueher hier empfohlene
+  ASCII-Ersatzschreibung in JSON-Datenfeldern gilt NICHT mehr (umgestellt 18.08.2026,
+  ~1.300 Stellen in Daten + ~700 in Code/Prompts).
+  ASCII bleibt Pflicht fuer: JSON-**Schluessel**, IDs, Slugs (`heinrich-boell-bildung`),
+  Enum-Werte (`haeufig`, `foerderverein`), SQL-Namen (`ki_antraege`), Dateinamen, CSS-Klassen.
+  Wer Text maschinell umstellt: Domains, `${...}`-Ausdruecke, Escape-Sequenzen und englische
+  Woerter (`blue`, `issue`, `value`) muessen geschuetzt werden — siehe Commit-Text.
 - **Branchen-Workflow:** `feature/*` → `staging` → `main`. Nie direkt auf `main` mergen.
 - **Commits:** Conventional-Commit-Praefixe (`feat`, `fix`, `chore`, `docs`). Kurze deutsche Subject-Line, Body mit Begruendung und Stichworten zu betroffenen Dateien.
 - **Daten-Mutationen:** `data/foerderprogramme.json` und `data/richtlinien-prioritaeten.json` sind leitend. Bei Aenderungen am Katalog Queue mit `npx tsx scripts/rebuild-queue.ts` regenerieren.

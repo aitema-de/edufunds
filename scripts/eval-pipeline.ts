@@ -143,7 +143,7 @@ Flags:
   --single <entry-id>       evaluiert nur diesen Korpus-Eintrag
   --korpus <pfad>           anderer Korpus (Gate wird dann warning-only)
 
-Konflikt: --snapshot und --replay koennen nicht gleichzeitig verwendet werden.
+Konflikt: --snapshot und --replay können nicht gleichzeitig verwendet werden.
 
 Exit-Codes:
   0  Gate PASSED (oder keine Baseline)
@@ -180,7 +180,7 @@ export function parseFlags(argv: string[]): Flags {
     } else if (a === "--replay") {
       const next = argv[i + 1];
       if (!next || next.startsWith("--")) {
-        console.error(`${LOG_PREFIX} --replay benoetigt ein Verzeichnis als Argument.`);
+        console.error(`${LOG_PREFIX} --replay benötigt ein Verzeichnis als Argument.`);
         printUsage();
         process.exit(2);
       }
@@ -189,7 +189,7 @@ export function parseFlags(argv: string[]): Flags {
     } else if (a === "--single") {
       const next = argv[i + 1];
       if (!next || next.startsWith("--")) {
-        console.error(`${LOG_PREFIX} --single benoetigt eine Entry-ID als Argument.`);
+        console.error(`${LOG_PREFIX} --single benötigt eine Entry-ID als Argument.`);
         printUsage();
         process.exit(2);
       }
@@ -198,7 +198,7 @@ export function parseFlags(argv: string[]): Flags {
     } else if (a === "--korpus") {
       const next = argv[i + 1];
       if (!next || next.startsWith("--")) {
-        console.error(`${LOG_PREFIX} --korpus benoetigt einen Pfad als Argument.`);
+        console.error(`${LOG_PREFIX} --korpus benötigt einen Pfad als Argument.`);
         printUsage();
         process.exit(2);
       }
@@ -223,7 +223,7 @@ export function parseFlags(argv: string[]): Flags {
 
   // Konflikt-Check: --snapshot + --replay gleichzeitig
   if (flags.snapshot && flags.replay) {
-    console.error(`${LOG_PREFIX} --snapshot und --replay koennen nicht gleichzeitig verwendet werden.`);
+    console.error(`${LOG_PREFIX} --snapshot und --replay können nicht gleichzeitig verwendet werden.`);
     printUsage();
     process.exit(2);
   }
@@ -286,7 +286,7 @@ async function loadKorpusAndValidate(
     }
     if (!validGeberGruppen.has(entry.expected_geber_gruppe)) {
       console.error(
-        `${LOG_PREFIX} Eintrag ${entry.id}: expected_geber_gruppe "${entry.expected_geber_gruppe}" ist kein gueltiger Wert (${[...validGeberGruppen].join(", ")})`
+        `${LOG_PREFIX} Eintrag ${entry.id}: expected_geber_gruppe "${entry.expected_geber_gruppe}" ist kein gültiger Wert (${[...validGeberGruppen].join(", ")})`
       );
       process.exit(2);
     }
@@ -341,7 +341,7 @@ export async function loadReplaySnapshot(
     }
     if (!fallback) {
       console.error(
-        `${LOG_PREFIX} Snapshot-Datei nicht gefunden: ${snapPath} (kein Run fuer ${entryId} vorhanden)`
+        `${LOG_PREFIX} Snapshot-Datei nicht gefunden: ${snapPath} (kein Run für ${entryId} vorhanden)`
       );
       process.exit(2);
     }
@@ -470,7 +470,7 @@ async function evaluateEntry(
     snap = await runPipelineForKorpus(entry, runIndex, programme, snapshotDir);
   } else {
     console.error(
-      `${LOG_PREFIX} Weder --live noch --replay angegeben. Bitte einen Modus waehlen.`
+      `${LOG_PREFIX} Weder --live noch --replay angegeben. Bitte einen Modus wählen.`
     );
     process.exit(2);
   }
@@ -742,7 +742,7 @@ export function pruefeMessgeraet(metrics: AggregateMetrics): string[] {
       befunde.push(
         `WIZ-03-Judge antwortete in ${metrics.wiz03JudgeFehler} von ${metrics.wiz03Bewertet} Runs nicht ` +
           `(${(anteil * 100).toFixed(0)} %). Die betroffenen Runs stehen als 0 im Mittel — die Zahl ist ` +
-          `KEIN Qualitaetsurteil. Ursache pruefen (API-Key des Judge-Modells, Netz, Modell-ID); ` +
+          `KEIN Qualitätsurteil. Ursache prüfen (API-Key des Judge-Modells, Netz, Modell-ID); ` +
           `in CI: gibt der Workflow den Key des Judge-Providers weiter?`
       );
     }
@@ -758,8 +758,8 @@ export function pruefeMessgeraet(metrics: AggregateMetrics): string[] {
   for (const [name, stat] of metrikPaare) {
     if (stat.runs.length > 1 && stat.mean === 0 && stat.stddev === 0) {
       befunde.push(
-        `${name} ist ueber alle ${stat.runs.length} Eintraege exakt 0,0 bei σ 0,0. Eine Metrik ohne ` +
-          `jede Streuung ist ein defektes Messgeraet, kein Ergebnis.`
+        `${name} ist über alle ${stat.runs.length} Einträge exakt 0,0 bei σ 0,0. Eine Metrik ohne ` +
+          `jede Streuung ist ein defektes Messgerät, kein Ergebnis.`
       );
     }
   }
@@ -815,7 +815,7 @@ function buildMdReport(iso: string, m: AggregateMetrics, flags: Flags): string {
     `|-------|------|--------|`,
     `| WIZ-01 (Pflichtabschnitte) | ${m.wiz01.mean.toFixed(1)} | ${m.wiz01.stddev.toFixed(1)} |`,
     `| WIZ-02 (Halluzinations-Detection) | ${m.wiz02.mean.toFixed(1)} | ${m.wiz02.stddev.toFixed(1)} |`,
-    `| WIZ-03 (Tonalitaets-Passung) | ${m.wiz03.mean.toFixed(1)} | ${m.wiz03.stddev.toFixed(1)} |`,
+    `| WIZ-03 (Tonalitäts-Passung) | ${m.wiz03.mean.toFixed(1)} | ${m.wiz03.stddev.toFixed(1)} |`,
     `| Finanzplan-Validity (Sub) | ${m.finanzplan.mean.toFixed(1)} | ${m.finanzplan.stddev.toFixed(1)} |`,
     ``,
   ];
@@ -900,11 +900,11 @@ function printConsoleTable(metrics: AggregateMetrics): void {
   console.log(
     `${LOG_PREFIX}   WIZ-03:  mean=${metrics.wiz03.mean.toFixed(1)}  stddev=${metrics.wiz03.stddev.toFixed(1)}` +
       (metrics.wiz03JudgeFehler > 0 || metrics.wiz03Uebersprungen > 0
-        ? `  [Judge-Fehler ${metrics.wiz03JudgeFehler}, uebersprungen ${metrics.wiz03Uebersprungen} von ${metrics.wiz03Bewertet}]`
+        ? `  [Judge-Fehler ${metrics.wiz03JudgeFehler}, übersprungen ${metrics.wiz03Uebersprungen} von ${metrics.wiz03Bewertet}]`
         : "")
   );
   console.log(
-    `${LOG_PREFIX}   WIZ-04:  mean=${metrics.wiz04.mean.toFixed(1)}  stddev=${metrics.wiz04.stddev.toFixed(1)}  (Begruendungs-Substanz)`
+    `${LOG_PREFIX}   WIZ-04:  mean=${metrics.wiz04.mean.toFixed(1)}  stddev=${metrics.wiz04.stddev.toFixed(1)}  (Begründungs-Substanz)`
   );
   console.log(
     `${LOG_PREFIX}   Finanzp: mean=${metrics.finanzplan.mean.toFixed(1)}  stddev=${metrics.finanzplan.stddev.toFixed(1)}`
@@ -994,7 +994,7 @@ async function main() {
   const messgeraetBefunde = pruefeMessgeraet(metrics);
   if (messgeraetBefunde.length > 0) {
     console.error(`${LOG_PREFIX}`);
-    console.error(`${LOG_PREFIX} ===== MESSGERAET DEFEKT =====`);
+    console.error(`${LOG_PREFIX} ===== MESSGERÄT DEFEKT =====`);
     for (const b of messgeraetBefunde) console.error(`${LOG_PREFIX}   ✗ ${b}`);
     console.error(
       `${LOG_PREFIX} Abbruch ohne Gate-Urteil — die Zahlen dieses Laufs sind nicht auswertbar.`
@@ -1032,7 +1032,7 @@ async function main() {
       );
     } else {
       console.log(
-        `${LOG_PREFIX}   WIZ-04:                kein Baseline-Eintrag — Gate inaktiv (BASELINE.md ergaenzen)`
+        `${LOG_PREFIX}   WIZ-04:                kein Baseline-Eintrag — Gate inaktiv (BASELINE.md ergänzen)`
       );
     }
 
@@ -1046,7 +1046,7 @@ async function main() {
       // aussagekraeftig, aber nur GEGEN EINEN LAUF DESSELBEN KORPUS.
       console.log(
         `${LOG_PREFIX}   ⚠️  --korpus gesetzt (${flags.korpus}) — Gate ist warning-only.` +
-          ` Die Baseline-Schwellwerte gelten fuer data/eval/pipeline-korpus.json;` +
+          ` Die Baseline-Schwellwerte gelten für data/eval/pipeline-korpus.json;` +
           ` vergleiche diesen Lauf nur mit einem anderen Lauf DESSELBEN Korpus.`
       );
       console.log(`${LOG_PREFIX} [GATE ${verletzt ? "WARN" : "OK"} — nicht blockierend]`);
@@ -1058,7 +1058,7 @@ async function main() {
     }
   } else {
     console.log(
-      `${LOG_PREFIX} Kein Phase-5-Baseline-Eintrag in BASELINE.md gefunden — Gate-Check uebersprungen.`
+      `${LOG_PREFIX} Kein Phase-5-Baseline-Eintrag in BASELINE.md gefunden — Gate-Check übersprungen.`
     );
   }
 

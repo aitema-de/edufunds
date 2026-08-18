@@ -77,7 +77,7 @@ describe("POST /api/wizard/redeem-code", () => {
     expect(res.status).toBe(410);
   });
 
-  it("200 + paidToken + Protokoll bei erfolgreicher Einloesung", async () => {
+  it("200 + paidToken + Protokoll bei erfolgreicher Einlösung", async () => {
     mGetSession.mockResolvedValue({ paidToken: undefined });
     mConsume.mockResolvedValue({ ok: true, creditsRemaining: 4 });
     mTryPaid.mockResolvedValue({ session: { paidToken: "pt-new" }, didSet: true });

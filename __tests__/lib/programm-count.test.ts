@@ -33,13 +33,13 @@ describe("PROGRAMM_COUNT gegen den echten Katalog", () => {
   const hinweis = () =>
     `Finder zeigt ${aktivImFinder()} Programme => PROGRAMM_COUNT_ROUNDED muss ${sollWert()} sein ` +
     `(steht auf ${PROGRAMM_COUNT_ROUNDED}). In lib/programm-count.ts EINMAL anpassen; ` +
-    `alle Anzeigen haengen daran.`;
+    `alle Anzeigen hängen daran.`;
 
   // Jest kennt kein Message-Argument an expect() — deshalb wird der Hinweis
   // selbst zum Assertion-Wert. So steht im Fehlerbericht der Soll-Wert drin
   // und niemand muss ihn nachrechnen.
 
-  it("ueberzeichnet nicht, was der Finder liefert", () => {
+  it("überzeichnet nicht, was der Finder liefert", () => {
     // Kernregel der Doku: "die Zahl darf nicht ueberzeichnen, was der Finder
     // tatsaechlich liefert". "150+" bei 153 sichtbaren Programmen ist ehrlich,
     // "189" waere es nicht. Diese Richtung ist die gefaehrliche: Sie verspricht
@@ -48,23 +48,23 @@ describe("PROGRAMM_COUNT gegen den echten Katalog", () => {
     expect(problem).toBeNull();
   });
 
-  it("ist auf die naechste Zehnerstelle abgerundet", () => {
+  it("ist auf die nächste Zehnerstelle abgerundet", () => {
     expect(PROGRAMM_COUNT_ROUNDED % 10).toBe(0);
   });
 
-  it("ist nicht unnoetig bescheiden (Pflege-Erinnerung bei Wachstum)", () => {
+  it("ist nicht unnötig bescheiden (Pflege-Erinnerung bei Wachstum)", () => {
     // Schlaegt an, sobald der aktive Katalog die naechste Zehnerstelle reisst —
     // dann gehoert die Konstante EINMAL erhoeht (so steht es im PFLEGE-Hinweis).
     const problem = aktivImFinder() >= PROGRAMM_COUNT_ROUNDED + 10 ? hinweis() : null;
     expect(problem).toBeNull();
   });
 
-  it("das Label haengt an der Konstante", () => {
+  it("das Label hängt an der Konstante", () => {
     expect(PROGRAMM_COUNT_LABEL).toBe(`${PROGRAMM_COUNT_ROUNDED}+`);
   });
 });
 
-describe("Keine hartkodierte Programm-Anzahl auf nutzerseitigen Flaechen", () => {
+describe("Keine hartkodierte Programm-Anzahl auf nutzerseitigen Flächen", () => {
   /**
    * WARUM DIESE WURZELN: Der Waechter deckte bis 22.07.2026 nur `app` und
    * `components` ab. Damit sah er die statischen Alt-Seiten unter

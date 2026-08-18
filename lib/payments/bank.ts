@@ -49,7 +49,7 @@ export function bankConfigProblems(): string[] {
   const probleme: string[] = [];
   const iban = (process.env.BANK_IBAN ?? "").trim();
   if (!iban) probleme.push("BANK_IBAN fehlt");
-  else if (!isValidIban(iban)) probleme.push("BANK_IBAN hat eine ungueltige Pruefsumme");
+  else if (!isValidIban(iban)) probleme.push("BANK_IBAN hat eine ungültige Prüfsumme");
   if (!(process.env.BANK_ACCOUNT_HOLDER ?? "").trim()) probleme.push("BANK_ACCOUNT_HOLDER fehlt");
   return probleme;
 }
@@ -59,7 +59,7 @@ export function getBankDetails(): BankDetails {
   if (probleme.length > 0) {
     throw new Error(
       `Bankverbindung nicht konfiguriert (${probleme.join(", ")}). ` +
-        `Der Rechnungskauf nennt die IBAN als Zahlungsziel — ohne gueltige Angabe wird ` +
+        `Der Rechnungskauf nennt die IBAN als Zahlungsziel — ohne gültige Angabe wird ` +
         `keine Rechnung versendet.`
     );
   }

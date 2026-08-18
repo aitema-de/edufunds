@@ -77,7 +77,7 @@ export function buildFallbackTitle(
   programm: Pick<Foerderprogramm, "name">,
   facts: WizardFacts
 ): string {
-  const programmName = trim(programm.name) || "Foerderprogramm";
+  const programmName = trim(programm.name) || "Förderprogramm";
 
   // 1. Bereits gesetzter Titel
   const explicit = trim(facts.projekt?.titel);
@@ -115,7 +115,7 @@ export function buildFallbackTitle(
 
   // 4. Schule allein + Programm
   if (schule) {
-    return shorten(`Foerdervorhaben an der ${schule} — Antrag bei ${programmName}`, MAX_LEN);
+    return shorten(`Fördervorhaben an der ${schule} — Antrag bei ${programmName}`, MAX_LEN);
   }
 
   // 5. Kurzbeschreibung als Notnagel
@@ -125,5 +125,5 @@ export function buildFallbackTitle(
   }
 
   // 6. Generischer Fallback
-  return shorten(`Antrag auf Foerderung: ${programmName}`, MAX_LEN);
+  return shorten(`Antrag auf Förderung: ${programmName}`, MAX_LEN);
 }

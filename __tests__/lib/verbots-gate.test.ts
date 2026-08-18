@@ -16,9 +16,9 @@ describe("detectVerbote — Antragstext", () => {
   const quellen =
     "Wir wollen Tablets anschaffen, so 20 bis 30 vielleicht. Start nach den Sommerferien.";
 
-  it("faengt die erfundene Laufzeit aus pv-res-002", () => {
+  it("fängt die erfundene Laufzeit aus pv-res-002", () => {
     const text =
-      "1. **Netzwerkinfrastruktur und Server** (kurzfristig, 01.01.2025–31.12.2025)\nEin leistungsfaehiger Schulserver wird beschafft.";
+      "1. **Netzwerkinfrastruktur und Server** (kurzfristig, 01.01.2025–31.12.2025)\nEin leistungsfähiger Schulserver wird beschafft.";
     const treffer = detectVerbote(text, quellen);
     expect(treffer.map((t) => t.klasse)).toContain("datum");
     expect(treffer.map((t) => t.fund)).toEqual(
@@ -29,16 +29,16 @@ describe("detectVerbote — Antragstext", () => {
     expect(treffer[0].zitat).toContain("Netzwerkinfrastruktur");
   });
 
-  it("faengt Tarif-Eingruppierungen breiter als nur TV-L", () => {
+  it("fängt Tarif-Eingruppierungen breiter als nur TV-L", () => {
     for (const code of ["TV-L E11", "TVöD E9", "EG 13", "TV-L E9a"]) {
       const treffer = detectVerbote(`Die Stelle wird nach ${code} eingruppiert.`, quellen);
       expect(treffer.map((t) => t.klasse)).toContain("tarif");
     }
   });
 
-  it("faengt Aktenzeichen und Haushaltsstellen", () => {
+  it("fängt Aktenzeichen und Haushaltsstellen", () => {
     const text =
-      "Der Beschluss (Az. 123/2026) liegt vor. Die Mittel laufen ueber Haushaltsstelle 1234/56789.";
+      "Der Beschluss (Az. 123/2026) liegt vor. Die Mittel laufen über Haushaltsstelle 1234/56789.";
     const klassen = detectVerbote(text, quellen).map((t) => t.klasse);
     expect(klassen).toContain("aktenzeichen");
     expect(klassen).toContain("haushaltsstelle");
@@ -46,7 +46,7 @@ describe("detectVerbote — Antragstext", () => {
 
   // --- Gegenprobe: was NICHT anschlagen darf ------------------------------
 
-  it("laesst ein Datum in Ruhe, das der Nutzer selbst genannt hat", () => {
+  it("lässt ein Datum in Ruhe, das der Nutzer selbst genannt hat", () => {
     const treffer = detectVerbote(
       "Die Gesamtkonferenz hat am 12.05.2026 zugestimmt.",
       "Wir hatten die Gesamtkonferenz am 12.05.2026, da wurde das beschlossen."
@@ -54,7 +54,7 @@ describe("detectVerbote — Antragstext", () => {
     expect(treffer).toHaveLength(0);
   });
 
-  it("laesst eine Antragsfrist aus der Richtlinie in Ruhe", () => {
+  it("lässt eine Antragsfrist aus der Richtlinie in Ruhe", () => {
     // Der Grund fuer die weitere Quellenbasis: Programm-Konditionen sind
     // legitim, stehen aber NICHT in der Nutzer-Ground-Truth.
     const treffer = detectVerbote(
@@ -64,17 +64,17 @@ describe("detectVerbote — Antragstext", () => {
     expect(treffer).toHaveLength(0);
   });
 
-  it("laesst eine vom Nutzer genannte Eingruppierung in Ruhe", () => {
+  it("lässt eine vom Nutzer genannte Eingruppierung in Ruhe", () => {
     const treffer = detectVerbote(
       "Die Koordinationsstelle ist nach TV-L E11 eingruppiert.",
-      "Die Kollegin ist nach TV-L E11 eingruppiert, das weiss ich."
+      "Die Kollegin ist nach TV-L E11 eingruppiert, das weiß ich."
     );
     expect(treffer).toHaveLength(0);
   });
 
-  it("schlaegt bei Jahreszahlen und Schuljahren NICHT an", () => {
+  it("schlägt bei Jahreszahlen und Schuljahren NICHT an", () => {
     const treffer = detectVerbote(
-      "Ab dem Schuljahr 2026/27 laeuft das Vorhaben; im Herbst 2026 beginnt die Planung.",
+      "Ab dem Schuljahr 2026/27 läuft das Vorhaben; im Herbst 2026 beginnt die Planung.",
       quellen
     );
     expect(treffer).toHaveLength(0);
@@ -89,7 +89,7 @@ describe("detectVerbote — Antragstext", () => {
   });
 });
 
-describe("geschaetzte Betraege sind KEINE Halluzination", () => {
+describe("geschätzte Beträge sind KEINE Halluzination", () => {
   /**
    * Gegenprobe zur verworfenen Klasse "Einheitssatz". Ein als "Schaetzung:"
    * gekennzeichneter Betrag ist das vom Produkt vorgeschriebene Ehrlichkeits-Mittel
@@ -98,17 +98,17 @@ describe("geschaetzte Betraege sind KEINE Halluzination", () => {
    * fast alle legitim; der Detektor haette den Finanzplan entkernt.
    */
   it.each([
-    "Schaetzung: 24 Teilnehmende × 300 EUR fuer 10 Tage",
-    "Schaetzung: Fluege, 500 EUR pro Person",
-    "Voraussichtlich rund 60 EUR/Std (Schaetzung, vor Einreichung zu belegen).",
-  ])("laesst %s unangetastet", (satz) => {
+    "Schätzung: 24 Teilnehmende × 300 EUR für 10 Tage",
+    "Schätzung: Flüge, 500 EUR pro Person",
+    "Voraussichtlich rund 60 EUR/Std (Schätzung, vor Einreichung zu belegen).",
+  ])("lässt %s unangetastet", (satz) => {
     expect(detectVerbote(satz, "keine Angaben zu Kosten")).toHaveLength(0);
   });
 
-  it("faengt an demselben Satz aber die erfundene Tarifgruppe (pv-005)", () => {
+  it("fängt an demselben Satz aber die erfundene Tarifgruppe (pv-005)", () => {
     const treffer = detectVerbote(
-      "Schaetzung: 2 Lehrkräfte × 2 Projekttage × 8 Std/Tag × 56 EUR/Std (TV-L E11, Mittelwert)",
-      "Wir schaetzen 300 bis 400 Euro pro Schueler."
+      "Schätzung: 2 Lehrkräfte × 2 Projekttage × 8 Std/Tag × 56 EUR/Std (TV-L E11, Mittelwert)",
+      "Wir schätzen 300 bis 400 Euro pro Schüler."
     );
     expect(treffer).toHaveLength(1);
     expect(treffer[0].klasse).toBe("tarif");
@@ -117,16 +117,16 @@ describe("geschaetzte Betraege sind KEINE Halluzination", () => {
 });
 
 describe("bereinigeFinanzplanBegruendungen", () => {
-  const quellen = "Wir schaetzen 300 bis 400 Euro pro Schueler.";
+  const quellen = "Wir schätzen 300 bis 400 Euro pro Schüler.";
 
-  it("rettet den Satz, wenn der Verstoss im Klammerzusatz steckt", () => {
+  it("rettet den Satz, wenn der Verstoß im Klammerzusatz steckt", () => {
     const { posten, entfernt } = bereinigeFinanzplanBegruendungen(
       [
         {
           bezeichnung: "Koordination",
           betragEur: 4000,
           begruendung:
-            "Schaetzung: Koordinationsaufwand fuer die Projektsteuerung ueber das Schuljahr (TV-L E11, Mittelwert)",
+            "Schätzung: Koordinationsaufwand für die Projektsteuerung über das Schuljahr (TV-L E11, Mittelwert)",
         },
       ],
       quellen
@@ -136,7 +136,7 @@ describe("bereinigeFinanzplanBegruendungen", () => {
     expect(posten[0].begruendung).not.toContain("TV-L");
   });
 
-  it("nimmt bei pv-005 die Tarifgruppe heraus und laesst die Schaetzung stehen", () => {
+  it("nimmt bei pv-005 die Tarifgruppe heraus und lässt die Schätzung stehen", () => {
     const { posten, entfernt, betroffen } = bereinigeFinanzplanBegruendungen(
       [
         {
@@ -145,7 +145,7 @@ describe("bereinigeFinanzplanBegruendungen", () => {
           betragEur: 1792,
           eigenanteil: false,
           begruendung:
-            "Schaetzung: 2 Lehrkräfte × 2 Projekttage × 8 Std/Tag × 56 EUR/Std (TV-L E11, Mittelwert)",
+            "Schätzung: 2 Lehrkräfte × 2 Projekttage × 8 Std/Tag × 56 EUR/Std (TV-L E11, Mittelwert)",
         },
       ],
       quellen
@@ -163,13 +163,13 @@ describe("bereinigeFinanzplanBegruendungen", () => {
     expect(posten[0].eigenanteil).toBe(false);
   });
 
-  it("faellt auf die ehrliche Pauschale zurueck, wenn der Verstoss nicht isolierbar ist", () => {
+  it("fällt auf die ehrliche Pauschale zurück, wenn der Verstoß nicht isolierbar ist", () => {
     const { posten } = bereinigeFinanzplanBegruendungen(
       [
         {
           bezeichnung: "Koordinationsstelle",
           betragEur: 4000,
-          begruendung: "Eingruppierung nach TV-L E11 ueber zwoelf Monate.",
+          begruendung: "Eingruppierung nach TV-L E11 über zwölf Monate.",
         },
       ],
       quellen
@@ -179,12 +179,12 @@ describe("bereinigeFinanzplanBegruendungen", () => {
     expect(posten[0].betragEur).toBe(4000);
   });
 
-  it("laesst saubere Posten unveraendert (Identitaet, kein Neu-Objekt noetig)", () => {
+  it("lässt saubere Posten unverändert (Identität, kein Neu-Objekt nötig)", () => {
     const input = [
       {
         bezeichnung: "Tablets",
         betragEur: 9000,
-        begruendung: "Schaetzung: Klassensatz Tablets, Stueckzahl noch festzulegen.",
+        begruendung: "Schätzung: Klassensatz Tablets, Stückzahl noch festzulegen.",
       },
     ];
     const { posten, entfernt, betroffen } = bereinigeFinanzplanBegruendungen(input, quellen);

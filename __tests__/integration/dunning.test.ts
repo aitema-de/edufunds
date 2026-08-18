@@ -60,7 +60,7 @@ describe("Stufe 1 — Zahlungserinnerung", () => {
     expect(mSendMail).not.toHaveBeenCalled();
   });
 
-  it("erinnert eine ueberfaellige Bestellung — ohne Folgen fuer das Kontingent", async () => {
+  it("erinnert eine überfällige Bestellung — ohne Folgen für das Kontingent", async () => {
     const o = await createOrder(ORDER);
     await faelligVor(o.orderNumber, 1);
 
@@ -76,7 +76,7 @@ describe("Stufe 1 — Zahlungserinnerung", () => {
     expect(await consumeCredit(o.creditCode)).toEqual({ ok: true, creditsRemaining: 4 });
   });
 
-  it("erinnert nur EINMAL (ein Cron, der zweimal laeuft, mahnt nicht doppelt)", async () => {
+  it("erinnert nur EINMAL (ein Cron, der zweimal läuft, mahnt nicht doppelt)", async () => {
     const o = await createOrder(ORDER);
     await faelligVor(o.orderNumber, 1);
 
@@ -122,7 +122,7 @@ describe("Stufe 2 — Mahnung + Sperre", () => {
     expect(mSendMail).not.toHaveBeenCalled();
   });
 
-  it("mahnt NICHT im selben Lauf, in dem erinnert wurde — auch bei laengst ueberfaelliger Rechnung", async () => {
+  it("mahnt NICHT im selben Lauf, in dem erinnert wurde — auch bei längst überfälliger Rechnung", async () => {
     // Sonst bekaeme der Kunde zwei Mails in derselben Minute und waere gesperrt,
     // bevor er die Erinnerung gelesen hat. Die Kulanzfrist laeuft ab der
     // ERINNERUNG, nicht ab dem Zahlungsziel.
@@ -152,7 +152,7 @@ describe("Stufe 2 — Mahnung + Sperre", () => {
     expect((await getOrder(o.orderNumber))?.status).toBe("payment_pending");
   });
 
-  it("nimmt bereits erstellte Antraege NICHT zurueck (erbrachte Leistung)", async () => {
+  it("nimmt bereits erstellte Anträge NICHT zurück (erbrachte Leistung)", async () => {
     const o = await reifFuerMahnung();
     await consumeCredit(o.creditCode); // 1 Antrag ist raus
     await consumeCredit(o.creditCode); // 2 Antraege sind raus
@@ -199,7 +199,7 @@ describe("Stufe 2 — Mahnung + Sperre", () => {
 });
 
 describe("Niemand wird still gesperrt", () => {
-  it("aendert NICHTS, wenn der Mailversand scheitert — der naechste Lauf versucht es erneut", async () => {
+  it("ändert NICHTS, wenn der Mailversand scheitert — der nächste Lauf versucht es erneut", async () => {
     const o = await createOrder(ORDER);
     await faelligVor(o.orderNumber, 1);
 
@@ -237,7 +237,7 @@ describe("Niemand wird still gesperrt", () => {
   });
 });
 
-describe("Wer zahlt, bekommt sein Kontingent zurueck", () => {
+describe("Wer zahlt, bekommt sein Kontingent zurück", () => {
   it("hebt die Sperre nach dem Zahlungseingang auf", async () => {
     const o = await createOrder(ORDER);
     await faelligVor(o.orderNumber, DUNNING_GRACE_DAYS + 1);

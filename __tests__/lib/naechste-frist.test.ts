@@ -11,7 +11,7 @@ import { naechsteFrist, formatFristDatum, type FristZustand } from "@/lib/foerde
 const HEUTE = new Date(Date.UTC(2026, 6, 22, 12, 0, 0));
 
 describe("naechsteFrist", () => {
-  it("liefert null fuer keine/unbekannt/fehlend (kein Stichtag-Programm)", () => {
+  it("liefert null für keine/unbekannt/fehlend (kein Stichtag-Programm)", () => {
     expect(naechsteFrist(undefined, HEUTE)).toBeNull();
     expect(naechsteFrist({ art: "keine", quelle: "q" }, HEUTE)).toBeNull();
     expect(naechsteFrist({ art: "unbekannt" }, HEUTE)).toBeNull();
@@ -20,17 +20,17 @@ describe("naechsteFrist", () => {
     ).toBeNull();
   });
 
-  it("liefert den kuenftigen Stichtag unveraendert", () => {
+  it("liefert den künftigen Stichtag unverändert", () => {
     const fz: FristZustand = { art: "stichtag", stichtage: ["2026-10-02"], quelle: "q" };
     expect(naechsteFrist(fz, HEUTE)).toBe("2026-10-02");
   });
 
-  it("ein Stichtag HEUTE zaehlt noch als kuenftig (Gate-Lehre 17.07.2026)", () => {
+  it("ein Stichtag HEUTE zählt noch als künftig (Gate-Lehre 17.07.2026)", () => {
     const fz: FristZustand = { art: "stichtag", stichtage: ["2026-07-22"], quelle: "q" };
     expect(naechsteFrist(fz, HEUTE)).toBe("2026-07-22");
   });
 
-  it("rollt vergangene Stichtage NUR bei jaehrlichWiederkehrend ins naechste Jahr", () => {
+  it("rollt vergangene Stichtage NUR bei jaehrlichWiederkehrend ins nächste Jahr", () => {
     // 12.02. ist vorbei -> 12.02. naechsten Jahres (Akzeptanzkriterium #109)
     const wiederkehrend: FristZustand = {
       art: "stichtag",
@@ -45,7 +45,7 @@ describe("naechsteFrist", () => {
     expect(naechsteFrist(einmalig, HEUTE)).toBeNull();
   });
 
-  it("waehlt bei mehreren Stichtagen den zeitlich naechsten", () => {
+  it("wählt bei mehreren Stichtagen den zeitlich nächsten", () => {
     // Berliner Projektfonds-Muster: drei Saeulen-Termine, jaehrlich wiederkehrend.
     // 08.01. und 12.02. sind 2026 vorbei (-> 2027), 02.10.2026 steht bevor.
     const fz: FristZustand = {
@@ -80,7 +80,7 @@ describe("formatFristDatum", () => {
     expect(formatFristDatum("2026-10-02")).toBe("02.10.2026");
   });
 
-  it("gibt Nicht-ISO-Eingaben unveraendert zurueck", () => {
+  it("gibt Nicht-ISO-Eingaben unverändert zurück", () => {
     expect(formatFristDatum("quatsch")).toBe("quatsch");
   });
 });

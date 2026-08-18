@@ -48,7 +48,7 @@ export async function readJsonBody<T>(req: Request): Promise<JsonBodyErgebnis<T>
   } catch {
     return {
       ok: false,
-      response: NextResponse.json({ error: "Ungueltiges JSON im Anfrage-Inhalt." }, { status: 400 }),
+      response: NextResponse.json({ error: "Ungültiges JSON im Anfrage-Inhalt." }, { status: 400 }),
     };
   }
 }

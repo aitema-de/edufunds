@@ -164,11 +164,11 @@ export function anchorClaims(raw: unknown, finalText: string): FactClaim[] {
 const RECHTSFOLGEN_MUSTER: ReadonlyArray<{ re: RegExp; warum: string }> = [
   {
     re: /(?:ist|sind|wurde)(?:\s+\w+){0,3}\s+als\s+gemeinn(?:ue|ü)tzig\s+anerkannt/gi,
-    warum: "Gemeinnuetzigkeits-Anerkennung als feststehend behauptet — Rechtsfolge ohne Nutzerbeleg.",
+    warum: "Gemeinnützigkeits-Anerkennung als feststehend behauptet — Rechtsfolge ohne Nutzerbeleg.",
   },
   {
     re: /Gemeinn(?:ue|ü)tzigkeit[^.\n]{0,60}?(?:ist\s+gegeben|liegt\s+vor|ist\s+anerkannt|wird\s+nachgewiesen|ist\s+nachgewiesen)/gi,
-    warum: "Gemeinnuetzigkeit als gegeben/nachgewiesen behauptet — Rechtsfolge ohne Nutzerbeleg.",
+    warum: "Gemeinnützigkeit als gegeben/nachgewiesen behauptet — Rechtsfolge ohne Nutzerbeleg.",
   },
   {
     re: /Freistellungsbescheid[^.\n]{0,60}?(?:liegt\s+(?:aktuell\s+)?vor|ist\s+vorhanden|wird\s+nachgewiesen|ist\s+nachgewiesen)/gi,
@@ -184,7 +184,7 @@ const RECHTSFOLGEN_MUSTER: ReadonlyArray<{ re: RegExp; warum: string }> = [
   },
   {
     re: /(?:m(?:ue|ü)ndliche|schriftliche)\s+Zusage/gi,
-    warum: "Muendliche/schriftliche Zusage behauptet — Zusage ohne Nutzerbeleg.",
+    warum: "Mündliche/schriftliche Zusage behauptet — Zusage ohne Nutzerbeleg.",
   },
 ];
 

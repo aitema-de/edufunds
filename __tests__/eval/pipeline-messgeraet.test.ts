@@ -37,7 +37,7 @@ function metrics(over: Partial<AggregateMetrics> = {}): AggregateMetrics {
 describe("istWiz03Skip", () => {
   it("erkennt die beabsichtigten Auslassungen", () => {
     expect(istWiz03Skip("leerer finalText")).toBe(true);
-    expect(istWiz03Skip("Geber-Gruppe unbekannt — WIZ-03 uebersprungen")).toBe(true);
+    expect(istWiz03Skip("Geber-Gruppe unbekannt — WIZ-03 übersprungen")).toBe(true);
   });
 
   it("zählt echte Judge-Fehler NICHT als Auslassung", () => {
@@ -55,7 +55,7 @@ describe("pruefeMessgeraet — der echte CI-Fall vom 17.08.", () => {
     );
     expect(befunde).toHaveLength(2); // Judge-Quote UND Null-Streuung
     expect(befunde.join(" ")).toContain("25 von 25");
-    expect(befunde.join(" ")).toContain("KEIN Qualitaetsurteil");
+    expect(befunde.join(" ")).toContain("KEIN Qualitätsurteil");
     expect(befunde.join(" ")).toContain("σ 0,0");
   });
 

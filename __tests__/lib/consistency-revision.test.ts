@@ -34,7 +34,7 @@ it("ist ein No-op ohne Inkonsistenzen (kein LLM-Call)", async () => {
   expect(deps.recheck).not.toHaveBeenCalled();
 });
 
-it("revidiert den Text und prueft erneut, wenn Inkonsistenzen vorliegen", async () => {
+it("revidiert den Text und prüft erneut, wenn Inkonsistenzen vorliegen", async () => {
   const deps = makeDeps();
   const res = await reviseForConsistency("# Antrag\n\nGesamt 55.000 EUR.", fp, [issue], deps);
 
@@ -51,14 +51,14 @@ it("revidiert den Text und prueft erneut, wenn Inkonsistenzen vorliegen", async 
   expect(res.usages.map((u) => u.model)).toEqual(["pro", "flash"]);
 });
 
-it("behaelt den Originaltext, wenn die Revision leer zurueckkommt", async () => {
+it("behält den Originaltext, wenn die Revision leer zurückkommt", async () => {
   const deps = makeDeps({ reviseText: jest.fn(async () => ({ value: "   ", usage })) });
   const res = await reviseForConsistency("# Originaltext", fp, [issue], deps);
   expect(res.finalText).toBe("# Originaltext");
   expect(res.revised).toBe(true);
 });
 
-it("gibt verbleibende Inkonsistenzen aus dem Re-Check zurueck", async () => {
+it("gibt verbleibende Inkonsistenzen aus dem Re-Check zurück", async () => {
   const rest = { issues: [issue] };
   const deps = makeDeps({ recheck: jest.fn(async () => ({ value: rest, usage })) });
   const res = await reviseForConsistency("# Antrag", fp, [issue], deps);

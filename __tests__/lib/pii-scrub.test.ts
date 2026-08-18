@@ -5,7 +5,7 @@
  */
 import { scrubPiiForLlm, findPii } from "@/lib/wizard/pii-scrub";
 
-describe("scrubPiiForLlm — schwaerzt Identifikatoren", () => {
+describe("scrubPiiForLlm — schwärzt Identifikatoren", () => {
   it("E-Mail", () => {
     const r = scrubPiiForLlm("Kontakt: lmende@lsb-niedersachsen.de bitte melden");
     expect(r.text).toBe("Kontakt: [E-Mail entfernt] bitte melden");
@@ -36,19 +36,19 @@ describe("scrubPiiForLlm — schwaerzt Identifikatoren", () => {
   });
 });
 
-describe("scrubPiiForLlm — laesst legitime Inhalte UNVERAENDERT", () => {
+describe("scrubPiiForLlm — lässt legitime Inhalte UNVERÄNDERT", () => {
   const unveraendert = [
-    "Budget von 25000 EUR fuer Tablets",
-    "Wir foerdern 10 000 Euro Eigenanteil",
+    "Budget von 25000 EUR für Tablets",
+    "Wir fördern 10 000 Euro Eigenanteil",
     "Projektzeitraum 2025 bis 2026",
-    "120 Fuenft- und Sechstklaessler, 80 % Migrationshintergrund",
+    "120 Fünft- und Sechstklässler, 80 % Migrationshintergrund",
     "Treffen am 01.02.2026 um 08:00 Uhr",
     "Betreuung von 08-15 Uhr im Ganztag",
     "Mehr Infos: https://www.sportjugend-nds.de/schule-kita-verein",
     "5.000 Euro pro Jahr, max. 80 Bewegungseinheiten",
-    "Calliope-Mini fuer den MINT-Unterricht",
+    "Calliope-Mini für den MINT-Unterricht",
   ];
-  it.each(unveraendert)("unveraendert: %s", (text) => {
+  it.each(unveraendert)("unverändert: %s", (text) => {
     const r = scrubPiiForLlm(text);
     expect(r.text).toBe(text);
     expect(r.redactions).toBe(0);
@@ -61,7 +61,7 @@ describe("scrubPiiForLlm — Robustheit", () => {
     expect(scrubPiiForLlm("nur normaler Text").redactions).toBe(0);
   });
 
-  it("IBAN wird vor Telefon geschwaerzt (kein Teiltreffer in der IBAN)", () => {
+  it("IBAN wird vor Telefon geschwärzt (kein Teiltreffer in der IBAN)", () => {
     const r = scrubPiiForLlm("DE89 3704 0044 0532 0130 00");
     expect(r.text).toBe("[IBAN entfernt]");
     expect(r.redactions).toBe(1);

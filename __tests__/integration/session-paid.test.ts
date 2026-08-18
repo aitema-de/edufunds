@@ -62,7 +62,7 @@ describe("tryMarkSessionPaid — Erstfreischaltung", () => {
     expect(r.entitlement_source).toBe("card");
   });
 
-  it("macht den Antrag ueber den paid_token abrufbar (das ist der Download-Zugriff)", async () => {
+  it("macht den Antrag über den paid_token abrufbar (das ist der Download-Zugriff)", async () => {
     const s = await newSession();
     const { session } = await tryMarkSessionPaid(s.sessionToken, { source: "card" });
 
@@ -70,7 +70,7 @@ describe("tryMarkSessionPaid — Erstfreischaltung", () => {
     expect(found?.sessionToken).toBe(s.sessionToken);
   });
 
-  it("schreibt bei Quelle 'code' den eingeloesten Kontingent-Code in die Zeile", async () => {
+  it("schreibt bei Quelle 'code' den eingelösten Kontingent-Code in die Zeile", async () => {
     const s = await newSession();
     await tryMarkSessionPaid(s.sessionToken, { source: "code", creditCode: "EDU-ABCD-2345" });
 
@@ -109,7 +109,7 @@ describe("tryMarkSessionPaid — Idempotenz", () => {
     expect(r.paid_token).toBe(first.session.paidToken);
   });
 
-  it("ueberschreibt die erste Zahlungsquelle nicht (paid_at bleibt der Erstzeitpunkt)", async () => {
+  it("überschreibt die erste Zahlungsquelle nicht (paid_at bleibt der Erstzeitpunkt)", async () => {
     const s = await newSession();
     const first = await tryMarkSessionPaid(s.sessionToken, {
       source: "code",
@@ -130,7 +130,7 @@ describe("tryMarkSessionPaid — Idempotenz", () => {
 });
 
 describe("tryMarkSessionPaid — Race (Webhook und Reconcile treffen gleichzeitig ein)", () => {
-  it("laesst bei zwei parallelen Aufrufen genau EINEN freischalten — beide sehen denselben Token", async () => {
+  it("lässt bei zwei parallelen Aufrufen genau EINEN freischalten — beide sehen denselben Token", async () => {
     const s = await newSession();
 
     const [a, b] = await Promise.all([
@@ -149,7 +149,7 @@ describe("tryMarkSessionPaid — Race (Webhook und Reconcile treffen gleichzeiti
     expect(r.paid_token).toBe(a.session.paidToken);
   });
 
-  it("haelt auch 10 gleichzeitigen Zustellungen stand (nur eine Freischaltung)", async () => {
+  it("hält auch 10 gleichzeitigen Zustellungen stand (nur eine Freischaltung)", async () => {
     const s = await newSession();
 
     const results = await Promise.all(
@@ -162,8 +162,8 @@ describe("tryMarkSessionPaid — Race (Webhook und Reconcile treffen gleichzeiti
   });
 });
 
-describe("tryMarkSessionPaid — Bindung an die Kaeufer-E-Mail", () => {
-  it("bindet den Antrag an die Stripe-E-Mail, sodass er unter 'Meine Antraege' auftaucht", async () => {
+describe("tryMarkSessionPaid — Bindung an die Käufer-E-Mail", () => {
+  it("bindet den Antrag an die Stripe-E-Mail, sodass er unter 'Meine Anträge' auftaucht", async () => {
     const s = await newSession();
     // Stripe liefert die Adresse so, wie der Kunde sie getippt hat.
     await tryMarkSessionPaid(s.sessionToken, {
@@ -179,7 +179,7 @@ describe("tryMarkSessionPaid — Bindung an die Kaeufer-E-Mail", () => {
     expect(mine.map((m) => m.sessionToken)).toContain(s.sessionToken);
   });
 
-  it("ueberschreibt eine zuvor per Magic-Link gesetzte author_email NICHT", async () => {
+  it("überschreibt eine zuvor per Magic-Link gesetzte author_email NICHT", async () => {
     const s = await newSession();
     await query(`UPDATE ki_antraege SET author_email = $1 WHERE session_token = $2`, [
       "eigentuemerin@schule.de",
@@ -199,7 +199,7 @@ describe("tryMarkSessionPaid — Bindung an die Kaeufer-E-Mail", () => {
 });
 
 describe("getWizardSession", () => {
-  it("liefert null fuer eine unbekannte Session (statt zu werfen)", async () => {
+  it("liefert null für eine unbekannte Session (statt zu werfen)", async () => {
     expect(await getWizardSession("00000000-0000-0000-0000-000000000000")).toBeNull();
   });
 });

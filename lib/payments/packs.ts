@@ -49,7 +49,7 @@ export const PACKS: Pack[] = [
     credits: 1,
     priceCents: EINZELPREIS_CENTS,
     label: "Einzelantrag",
-    description: "Ein KI-generierter Foerderantrag inkl. Finanzplan.",
+    description: "Ein KI-generierter Förderantrag inkl. Finanzplan.",
     isQuota: false,
   },
   {

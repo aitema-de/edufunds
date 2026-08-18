@@ -38,7 +38,7 @@ export const FristZustandSchema = z.discriminatedUnion("art", [
             .string()
             .regex(ISO_DATE_REGEX, "stichtag muss ISO-Format YYYY-MM-DD haben")
         )
-        .min(1, "stichtag benoetigt mindestens einen Termin"),
+        .min(1, "stichtag benötigt mindestens einen Termin"),
       jaehrlichWiederkehrend: z.boolean().optional(),
       quelle: QuellePflicht,
     })
@@ -73,7 +73,7 @@ export const EinreichungsFormSchema = z
   .object({
     kanaele: z
       .array(z.enum(["online-formular", "online-portal", "email", "post", "unbekannt"]))
-      .min(1, "mindestens ein Kanal noetig"),
+      .min(1, "mindestens ein Kanal nötig"),
     adresse: z.string().optional(),
     hinweis: z.string().optional(),
     quelle: z.string().optional(),
@@ -88,14 +88,14 @@ export const EinreichungsFormSchema = z
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: ["quelle"],
-        message: "quelle ist Pflicht, sobald kanaele nicht nur ['unbekannt'] ist",
+        message: "quelle ist Pflicht, sobald kanäle nicht nur ['unbekannt'] ist",
       });
     }
     if (v.kanaele.includes("unbekannt") && v.kanaele.length > 1) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: ["kanaele"],
-        message: "'unbekannt' ist ein Allein-Zustand und nicht mit belegten Kanaelen kombinierbar",
+        message: "'unbekannt' ist ein Allein-Zustand und nicht mit belegten Kanälen kombinierbar",
       });
     }
   });

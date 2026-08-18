@@ -98,7 +98,7 @@ function buildRequest(
   });
 }
 
-describe("stripe/webhook — Signatur-Pruefung (D-07)", () => {
+describe("stripe/webhook — Signatur-Prüfung (D-07)", () => {
   const ORIG_ENV = process.env;
 
   beforeEach(() => {
@@ -110,7 +110,7 @@ describe("stripe/webhook — Signatur-Pruefung (D-07)", () => {
     process.env = ORIG_ENV;
   });
 
-  it("gibt 503 zurueck wenn STRIPE_WEBHOOK_SECRET fehlt — D-07", async () => {
+  it("gibt 503 zurück wenn STRIPE_WEBHOOK_SECRET fehlt — D-07", async () => {
     (stripeConfigured as jest.Mock).mockReturnValue(false);
     delete process.env.STRIPE_WEBHOOK_SECRET;
 
@@ -121,7 +121,7 @@ describe("stripe/webhook — Signatur-Pruefung (D-07)", () => {
     expect(json.error).toBeTruthy();
   });
 
-  it("gibt 400 zurueck wenn stripe-signature Header fehlt — D-07", async () => {
+  it("gibt 400 zurück wenn stripe-signature Header fehlt — D-07", async () => {
     (stripeConfigured as jest.Mock).mockReturnValue(true);
     process.env.STRIPE_WEBHOOK_SECRET = "whsec_test";
 
@@ -133,7 +133,7 @@ describe("stripe/webhook — Signatur-Pruefung (D-07)", () => {
     expect(json.error).toMatch(/stripe-signature/i);
   });
 
-  it("gibt 400 zurueck bei ungueltiger Signatur — D-07", async () => {
+  it("gibt 400 zurück bei ungültiger Signatur — D-07", async () => {
     (stripeConfigured as jest.Mock).mockReturnValue(true);
     process.env.STRIPE_WEBHOOK_SECRET = "whsec_test";
 
@@ -248,7 +248,7 @@ describe("stripe/webhook — Signatur-Pruefung (D-07)", () => {
     expect(markSessionPaid).not.toHaveBeenCalled();
   });
 
-  it("gibt 500 zurueck wenn markSessionPaid wirft — D-07 + T-02.1.02-06 (Stripe-retry-Pfad)", async () => {
+  it("gibt 500 zurück wenn markSessionPaid wirft — D-07 + T-02.1.02-06 (Stripe-retry-Pfad)", async () => {
     (stripeConfigured as jest.Mock).mockReturnValue(true);
     process.env.STRIPE_WEBHOOK_SECRET = "whsec_test";
     (markSessionPaid as jest.Mock).mockRejectedValue(new Error("Session not found"));
