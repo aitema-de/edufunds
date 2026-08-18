@@ -284,6 +284,48 @@ export function extrahiereLinksAusHtml(html: string, basisUrl: string): RohLink[
   return links;
 }
 
+/**
+ * Den Programmnamen aus der Detailseite lesen.
+ *
+ * Der Slug ist die schlechteste aller Namensquellen: er hat die Umlaute verloren
+ * ("foerderfonds-ernaehrung"), und Portale verlinken ihre Programme haeufig nur mit
+ * "Mehr Informationen". Die Detailseite kennt den richtigen Namen — "Förderfonds Ernährung" —
+ * und wird bei der Triage ohnehin geladen. Katalognamen sind sichtbarer Text und tragen
+ * deshalb echte Umlaute (CLAUDE.md).
+ *
+ * Reihenfolge: h1 vor og:title vor <title>. Der <title> traegt meist noch Claim und
+ * Seitenname ("… - Iss besser, mach's besser! | Stiftung Bildung"), die abgeschnitten werden.
+ */
+export function titelAusHtml(html: string): string | null {
+  const sauber = (roh: string) =>
+    roh
+      .replace(/<[^>]*>/g, " ")
+      .replace(/&nbsp;/gi, " ")
+      .replace(/&amp;/gi, "&")
+      .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+      .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCharCode(parseInt(n, 16)))
+      .replace(/\s+/g, " ")
+      .trim();
+
+  const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+  if (h1) {
+    const t = sauber(h1[1]);
+    if (t.length >= 4 && t.length <= 160) return t;
+  }
+  const og = html.match(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)["']/i);
+  if (og) {
+    const t = sauber(og[1]);
+    if (t.length >= 4 && t.length <= 160) return t;
+  }
+  const titel = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+  if (titel) {
+    // Alles ab dem Seitennamen-Trenner wegschneiden.
+    const t = sauber(titel[1]).split(/\s+[|–—]\s+/)[0].trim();
+    if (t.length >= 4 && t.length <= 160) return t;
+  }
+  return null;
+}
+
 /** Chromium besorgen — mit verständlicher Meldung statt Stacktrace, wenn er fehlt. */
 async function ladeChromium() {
   try {

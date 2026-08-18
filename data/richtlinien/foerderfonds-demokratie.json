@@ -1,182 +1,284 @@
 {
-  "version": "2026-08-18",
+  "version": "2026-06-01",
   "quellen": [
-    "https://www.stiftungbildung.org/foerderfonds-demokratie"
+    "https://www.förderfonds-demokratie.de/ausschreibung",
+    "https://www.förderfonds-demokratie.de/startseite",
+    "https://www.förderfonds-demokratie.de/fileadmin/Inhalte/Dokumente/ausschreibung_förderrichtlinien_r1_2019.pdf",
+    "https://www.stiftungen.org/themen/förderfonds-demokratie.html"
   ],
   "foerderhoehe": {
-    "minEur": 500,
     "maxEur": 5000,
-    "bemerkung": "Fördersumme pro Projekt"
+    "bemerkung": "Einmalige Förderung (Anschubfinanzierung) bis maximal 5.000 EUR pro ausgewähltem Projekt. Keine feste Mindestsumme; auch kleinere Beträge möglich. Förderfähig sind ausschließlich Kosten, die nach Ausstellung der Bewilligung anfallen. Förderzeitraum max. 9 Monate."
   },
   "kostenpositionen": [
     {
-      "kategorie": "personal",
+      "kategorie": "honorare",
       "foerderfaehig": true,
       "bedingungen": [
-        "Nur wenn Kinder und Jugendliche aktiv beteiligt sind"
+        "Bezug zur Projektumsetzung muss erkennbar sein",
+        "Nur Kosten nach Bewilligung"
       ],
       "beispielePasst": [
-        "Honorare für jugendliche Projektleiter*innen",
-        "Aufwandsentschädigungen für ehrenamtliche Teammitglieder"
+        "Honorar für Workshop-Moderation zu Demokratiebildung",
+        "Referent für Planspiel oder Beteiligungswerkstatt"
       ],
       "beispielePasstNicht": [
-        "Gehaltszahlungen an Erwachsene (z.B. Lehrkräfte)"
+        "Dauerhafte Personalstellen außerhalb des Projektzeitraums"
       ]
     },
     {
       "kategorie": "sachkosten",
       "foerderfaehig": true,
       "bedingungen": [
-        "Ressourcenschonende Materialien bevorzugt",
-        "Keine reinen Anschaffungen"
+        "Projektbezogen und im Förderzeitraum",
+        "Keine bestehende Infrastruktur"
       ],
       "beispielePasst": [
-        "Materialien für partizipative Projekte",
-        "Verbrauchsmaterialien für Workshops"
+        "Material für eine Schüler-Demokratiewerkstatt",
+        "Druck von Beteiligungs- und Aktionsmaterial"
       ],
       "beispielePasstNicht": [
-        "Neubau- oder Umbaumaßnahmen"
+        "Laufende Betriebskosten der Schule",
+        "Kosten für bestehende Infrastruktur"
       ]
     },
     {
       "kategorie": "investitionen",
       "foerderfaehig": false,
-      "bemerkung": "Nicht förderfähig"
-    },
-    {
-      "kategorie": "honorare",
-      "foerderfaehig": false,
-      "bemerkung": "Nur förderfähig, wenn Honorare an jugendliche Projektleiter*innen gezahlt werden",
+      "bedingungen": [
+        "Bau- und Sanierungsmaßnahmen ausgeschlossen"
+      ],
       "beispielePasstNicht": [
-        "Honorarkosten von externen Fachkräften und Lehrer*innen"
+        "Umbau eines Klassenraums",
+        "Anschaffung dauerhafter Geräte-Infrastruktur"
       ]
     },
     {
       "kategorie": "reisekosten",
-      "foerderfaehig": false,
-      "bemerkung": "Nicht förderfähig",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Nur innerhalb der Bundesrepublik Deutschland",
+        "Aktivitäten außerhalb Deutschlands sind ausgeschlossen"
+      ],
+      "beispielePasst": [
+        "Fahrt zu einem Vernetzungstreffen mit Partnerinitiative in Deutschland"
+      ],
       "beispielePasstNicht": [
-        "Übernachtungskosten für Klassenfahrten"
+        "Internationale Austauschfahrt ins Ausland"
       ]
     },
     {
-      "kategorie": "overhead",
-      "foerderfaehig": false,
-      "bemerkung": "Nicht explizit erwähnt, daher nicht förderfähig"
-    },
-    {
       "kategorie": "sonstiges",
-      "foerderfaehig": false,
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Muss dem demokratischen Mehrwert des Projekts dienen"
+      ],
+      "beispielePasst": [
+        "Kosten für eine öffentliche Abschlussveranstaltung des Projekts"
+      ],
       "beispielePasstNicht": [
-        "Mittelbeschaffung",
-        "Weiterbildungen/Schulungen für Erwachsene"
+        "Aktivitäten, die nicht zur Demokratiestärkung beitragen"
       ]
     }
   ],
   "eigenmittel": {
     "pflicht": false,
     "formenErlaubt": [
-      "finanziell"
+      "finanziell",
+      "eigenarbeit",
+      "drittmittel"
     ],
-    "bemerkung": "Keine Pflicht zu Eigenmitteln erwähnt, aber Eigenbeteiligung der Projektträger wird erwartet (z.B. durch Schul- oder Kita-Förderverein)"
+    "bemerkung": "Es gibt keine formale Verpflichtung, Eigen- oder Drittmittel einzubringen. Da die Arbeit ganz oder in Teilen durch freiwilliges bürgerschaftliches Engagement getragen sein soll, wird ehrenamtliche Eigenarbeit positiv gesehen."
   },
   "kumulierung": {
-    "erlaubt": false,
+    "erlaubt": true,
     "bedingungen": [
-      "Keine Doppel- oder Mehrfachförderung"
-    ],
-    "bemerkung": "Projekte dürfen nicht an anderen Förderprogrammen teilnehmen"
+      "Eigen- oder Drittmittel können im Kosten- und Finanzierungsplan ausgewiesen werden",
+      "Klare Abgrenzung, welche Kosten aus dem Förderfonds finanziert werden"
+    ]
   },
   "antragsstruktur": {
     "abschnitte": [
       {
-        "id": "projektbeschreibung",
-        "name": "Projektbeschreibung",
+        "id": "projektidee-demokratiebeitrag",
+        "name": "Projektidee und Beitrag zur Demokratie",
         "pflicht": true,
         "leitfragen": [
-          "Worum geht es in eurem Projekt?",
-          "Wie setzt ihr euch für eine vielfältige und inklusive Gesellschaft ein?",
-          "Wie sind Kinder und Jugendliche an der Planung und Umsetzung beteiligt?"
-        ]
+          "Was trägt Ihr Projekt zur Stärkung der Demokratie bei?",
+          "Welche demokratischen Impulse und welchen demokratischen Mehrwert entfaltet das Vorhaben im jeweiligen Wirkungskreis?",
+          "Worin besteht der innovative oder übertragbare Ansatz?"
+        ],
+        "stilhinweis": "Konkret und anschaulich entlang der Leitfrage argumentieren, kein Förder-Jargon."
       },
       {
-        "id": "zielgruppe",
-        "name": "Zielgruppe",
+        "id": "ausgangslage-zielgruppe",
+        "name": "Ausgangslage und Zielgruppe",
         "pflicht": true,
         "leitfragen": [
-          "Wer sind die Projektbeteiligten?",
-          "Wie wird Vielfalt und Inklusion in eurem Projekt gelebt?"
-        ]
+          "An welche Zielgruppe (z.B. Schülerinnen und Schüler, Jugendliche) richtet sich das Projekt?",
+          "Welches gesellschaftliche oder lokale Problem greift das Vorhaben auf?",
+          "Wie viele Menschen werden erreicht?"
+        ],
+        "stilhinweis": "Bedarf und Wirkungskreis nachvollziehbar belegen."
       },
       {
-        "id": "zeitplan_umsetzung",
+        "id": "maßnahmen-beteiligung",
+        "name": "Geplante Maßnahmen und Beteiligung",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche konkreten Aktivitäten sind geplant?",
+          "Wie werden die Teilnehmenden aktiv beteiligt und übernehmen Mitverantwortung?",
+          "Wie wird demokratisches Handeln im gemeinsamen Lernprozess geübt?"
+        ],
+        "stilhinweis": "Beteiligung der Zielgruppe als roten Faden sichtbar machen."
+      },
+      {
+        "id": "vernetzung-kooperation",
+        "name": "Vernetzung und Kooperationspartner",
+        "pflicht": false,
+        "leitfragen": [
+          "Mit welchen Partnern aus Zivilgesellschaft, Politik, Verwaltung oder Wirtschaft wird kooperiert?",
+          "Wie trägt die Schule oder der Förderverein das Projekt?",
+          "Wie wird das Vorhaben über die Förderung hinaus verstetigt?"
+        ],
+        "stilhinweis": "Kooperationen sind ausdrücklich erwünscht, daher benennen."
+      },
+      {
+        "id": "zeitplan",
         "name": "Zeitplan und Umsetzung",
         "pflicht": true,
         "leitfragen": [
-          "Wie sieht der zeitliche Ablauf eures Projekts aus?",
-          "Wann startet das Projekt und wann endet es?"
-        ]
+          "Wann startet das Projekt und wie ist der Ablauf?",
+          "Wie passt das Vorhaben in den maximalen Förderzeitraum von 9 Monaten?"
+        ],
+        "stilhinweis": "Realistischen, an den 9 Monaten orientierten Ablauf skizzieren."
       },
       {
-        "id": "kostenplan",
-        "name": "Kostenplan",
+        "id": "kosten-finanzierungsplan",
+        "name": "Kosten- und Finanzierungsplan",
         "pflicht": true,
         "leitfragen": [
-          "Welche Kosten entstehen durch euer Projekt?",
-          "Wie hoch ist der beantragte Förderbetrag?"
-        ]
+          "Welche Kosten werden in welchem Zeitraum mit der Förderung finanziert?",
+          "Werden Eigen- oder Drittmittel hinzugezogen?",
+          "Bleiben alle Kosten unter 5.000 EUR und fallen sie nach Bewilligung an?"
+        ],
+        "stilhinweis": "Darstellung darf relativ offen sein; mindestens eine grobe Voreinschätzung der Sachzusammenhänge."
       },
       {
-        "id": "nachhaltigkeit",
-        "name": "Nachhaltigkeit",
+        "id": "träger-antragsteller",
+        "name": "Träger und Antragsteller",
         "pflicht": true,
         "leitfragen": [
-          "Wie soll euer Projekt nach der Förderung weiterbestehen?",
-          "Wie wirkt euer Projekt über die Laufzeit hinaus?"
-        ]
+          "Wer ist die antragstellende Organisation (z.B. gemeinnütziger Schulförderverein)?",
+          "Ist die Gemeinnützigkeit gegeben?",
+          "Wie ist das Projekt an der Schule verankert?"
+        ],
+        "stilhinweis": "Schulen reichen über einen gemeinnützigen Träger bzw. Förderverein ein; Rolle klar benennen."
       }
     ],
     "anlagen": [
-      "Freistellungsbescheid des Schul- oder Kita-Fördervereins"
+      "Kosten- und Finanzierungsplan",
+      "ggf. Nachweis der Gemeinnützigkeit des Trägers/Fördervereins"
     ],
-    "einreichungsweg": "Online-Formular auf der Website der Stiftung Bildung",
-    "bearbeitungsdauer": "4–6 Wochen nach Antragsstellung"
+    "einreichungsweg": "Schriftlich über das Webformular auf förderfonds-demokratie.de; alternativ postalisch an Stiftung Mitarbeit, Ellerstr. 67, 53119 Bonn (bei Post gilt der Poststempel).",
+    "bearbeitungsdauer": "Auswahl durch Jury; bei Stichtagsrunden Bewilligung einige Wochen nach Fristende"
   },
   "notizen": [
-    "Antragstellung ist fortlaufend möglich (rolling)",
-    "Entscheidung über Förderung trifft ein Beschlussgremium aus jungen Menschen und dem Vorstand der Stiftung Bildung",
-    "Projektträger muss ein gemeinnütziger Schul- oder Kita-Förderverein sein"
+    "Programmname wird von zwei Fördergebern genutzt: Stiftung Mitarbeit / Bundesverband Deutscher Stiftungen (dieses Dossier) und Stiftung Bildung (rollend, explizit über Schulförderverein). Vor Einreichung prüfen, welche Ausschreibung aktuell offen ist.",
+    "Schulen sind nicht direkt antragsberechtigt - Einreichung über gemeinnützigen Schulförderverein oder anderen gemeinnützigen Träger.",
+    "Vorhaben dürfen bereits vor Förderbeginn gestartet sein; förderfähig sind aber nur Kosten nach Bewilligung."
   ],
-  "bestPractices": [],
-  "rejectGruende": [
+  "bestPractices": [
     {
-      "grund": "Projekt ist nicht partizipativ gestaltet (Kinder und Jugendliche nicht aktiv beteiligt)",
-      "haeufigkeit": "gelegentlich",
-      "vermeidung": "Klar darlegen, wie Kinder und Jugendliche in Planung und Umsetzung eingebunden sind"
+      "thema": "Demokratischer Mehrwert klar herausarbeiten",
+      "was_funktionierte": "Das Projekt beantwortete die Leitfrage explizit und benannte den konkreten demokratischen Mehrwert für die Schulgemeinschaft.",
+      "warum": "Die Jury bewertet primär den Beitrag zur Stärkung der Demokratie - Vorhaben ohne klaren Bezug fallen durch."
     },
     {
-      "grund": "Projekt ist nicht inklusiv (Vielfalt und Inklusion nicht berücksichtigt)",
-      "haeufigkeit": "gelegentlich",
-      "vermeidung": "Beschreiben, wie das Projekt Vielfalt und Inklusion fördert"
+      "thema": "Echte Beteiligung der Zielgruppe",
+      "was_funktionierte": "Schülerinnen und Schüler gestalteten das Vorhaben selbst mit und übernahmen Verantwortung statt nur teilzunehmen.",
+      "warum": "Demokratisches Handeln soll im gemeinsamen Lernprozess geübt werden; Partizipation ist ein Kernkriterium."
     },
     {
-      "grund": "Projekt ist nicht nachhaltig (keine Pläne zur Verstetigung)",
-      "haeufigkeit": "gelegentlich",
-      "vermeidung": "Konkrete Maßnahmen zur langfristigen Wirkung des Projekts aufzeigen"
+      "thema": "Übertragbarkeit und Innovation betonen",
+      "was_funktionierte": "Der Antrag zeigte, dass die erprobte Idee auf andere Schulen oder Standorte transferierbar ist.",
+      "warum": "Innovative wie transferierbare Ansätze können ausdrücklich eine Anschubfinanzierung erhalten."
     },
     {
-      "grund": "Projekt nimmt bereits an anderen Förderprogrammen teil (Doppel- oder Mehrfachförderung)",
-      "haeufigkeit": "gelegentlich",
-      "vermeidung": "Keine Teilnahme an anderen Förderprogrammen im Antrag angeben"
-    },
-    {
-      "grund": "Projektträger ist kein gemeinnütziger Schul- oder Kita-Förderverein",
-      "haeufigkeit": "gelegentlich",
-      "vermeidung": "Antrag nur über einen Schul- oder Kita-Förderverein einreichen"
+      "thema": "Vernetzung sichtbar machen",
+      "was_funktionierte": "Das Projekt benannte konkrete Kooperationspartner aus Zivilgesellschaft und Kommune.",
+      "warum": "Die Förderer wünschen ausdrücklich Vernetzung und Kooperation über das eigene Vorhaben hinaus."
     }
   ],
-  "vorbildFormulierungen": [],
+  "rejectGruende": [
+    {
+      "grund": "Kein erkennbarer Beitrag zur Stärkung der Demokratie",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Den demokratischen Mehrwert entlang der Leitfrage explizit und konkret formulieren."
+    },
+    {
+      "grund": "Antrag enthält ausgeschlossene Kosten wie Bau-/Sanierungsmaßnahmen oder Infrastruktur",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Nur projektbezogene Aktivitätskosten ansetzen; Investitionen und bestehende Infrastruktur weglassen."
+    },
+    {
+      "grund": "Aktivitäten außerhalb Deutschlands eingeplant",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Vorhaben auf das Bundesgebiet beschränken; internationale Aktivitäten sind ausgeschlossen."
+    },
+    {
+      "grund": "Keine eigenständige Beteiligung der Zielgruppe, nur passive Veranstaltung",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Partizipative Formate mit aktiver Mitgestaltung der Teilnehmenden vorsehen."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "projektidee-demokratiebeitrag",
+      "formulierung": "Unser Projekt stärkt die Demokratie, indem es Schülerinnen und Schülern ermöglicht, selbst Verantwortung zu übernehmen: In einer Beteiligungswerkstatt entwickeln sie eigene Regeln für das Schulleben und erproben demokratische Aushandlung im Alltag.",
+      "kontext": "Antwort auf die Leitfrage 'Was trägt Ihr Projekt zur Stärkung der Demokratie bei?'"
+    },
+    {
+      "abschnitt_id": "maßnahmen-beteiligung",
+      "formulierung": "In sechs moderierten Werkstätten erarbeiten die Jugendlichen eigenständig Themen, führen Abstimmungen durch und setzen einen selbst gewählten Schwerpunkt um - die Lehrkräfte begleiten nur, entscheiden aber nicht.",
+      "kontext": "Verdeutlicht aktive Beteiligung und Mitverantwortung der Zielgruppe."
+    },
+    {
+      "abschnitt_id": "kosten-finanzierungsplan",
+      "formulierung": "Die beantragten 4.200 EUR finanzieren ausschließlich Honorare für die Werkstattmoderation sowie Materialkosten; alle Ausgaben fallen im Förderzeitraum nach Bewilligung an, ehrenamtliche Eigenleistung der Lehrkräfte wird zusätzlich eingebracht.",
+      "kontext": "Zeigt förderfähige Kosten unter 5.000 EUR und ehrenamtliche Eigenleistung."
+    },
+    {
+      "abschnitt_id": "träger-antragsteller",
+      "formulierung": "Antragstellerin ist der gemeinnützige Förderverein der Schule; er trägt das Projekt rechtlich und organisatorisch, während die Umsetzung in enger Abstimmung mit der Schulgemeinschaft erfolgt.",
+      "kontext": "Macht die Antragstellung über den gemeinnützigen Förderverein transparent."
+    }
+  ],
   "fristLogik": {
-    "typ": "rolling"
+    "typ": "fixe_stichtage",
+    "stichtage": [
+      "2019-09-30"
+    ],
+    "jaehrlich_wiederkehrend": false
+  },
+  "fristZustand": {
+    "art": "stichtag",
+    "stichtage": [
+      "2019-09-30"
+    ],
+    "jaehrlichWiederkehrend": false,
+    "quelle": "Foerderrichtlinien-PDF Runde 1 (ausschreibung_foerderrichtlinien_r1_2019.pdf): einziger belegter Stichtag 30.09.2019, 'zunaechst auf drei Foerderrunden festgelegt'. Website /ausschreibung (Stand 01/2026): 'Momentan sind keine Antraege moeglich'."
+  },
+  "umfangZustand": {
+    "art": "unbekannt"
+  },
+  "einreichungsForm": {
+    "kanaele": [
+      "online-formular",
+      "post"
+    ],
+    "adresse": "Webformular auf foerderfonds-demokratie.de; alternativ postalisch: Stiftung Mitarbeit, Ellerstr. 67, 53119 Bonn",
+    "hinweis": "Bei Post gilt der Poststempel. Einreichung über gemeinnützigen Schulförderverein/Träger, nicht direkt durch die Schule.",
+    "quelle": "einreichungsweg dieses Dossiers (Ausschreibung + Foerderrichtlinien-PDF Runde 1)"
   }
 }
