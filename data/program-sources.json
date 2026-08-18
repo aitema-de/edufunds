@@ -15,7 +15,9 @@
       "url": "https://www.foerderdatenbank.de/SiteGlobals/FDB/Forms/Suche/Foerderfinder/Foerderfinder_Formular.html?lv2=8970232&submit=Suchen",
       "fokus": "Bundes- und EU-Programme, verifiziert",
       "aktiv": false,
-      "grund": "Portal steht hinter Radware Bot Manager: 302 auf validate.perfdrive.com. GEGENPROBE MIT PLAYWRIGHT 18.08.2026: auch der echte Browser wird abgewiesen und landet auf der CAPTCHA-Seite („your activity and behavior on this site made us think that you are a bot“). Der Playwright-Crawler loest diese Quelle also NICHT — sie zu oeffnen wuerde bedeuten, den Browser zu verschleiern, und das ist bewusstes Umgehen einer fremden Schutzmassnahme. Einziger tragfaehiger Weg: offiziellen Export/API beim BMWK erfragen. robots.txt setzt zusaetzlich Crawl-delay 30."
+      "grund": "Portal steht hinter Radware Bot Manager: 302 auf validate.perfdrive.com. GEGENPROBE MIT PLAYWRIGHT 18.08.2026 von einer Consumer-IP: auch der echte Browser landet auf der CAPTCHA-Seite. Der Crawler loest die Sperre NICHT, und sie wird auch nicht umgangen — kein Fingerprint-Tarnen, kein CAPTCHA-Dienst. OFFENE MESSUNG: Die Sperrmeldung nennt ausdruecklich die Reputation des benutzten Netzes, und im Juni lief der Abruf vom GitHub-Runner durch. robots.txt der Domain ERLAUBT diesen Pfad ausdruecklich (Disallow nur /FDB/SiteGlobals/) und setzt Crawl-delay 30, den ein Abruf pro Woche trivial einhaelt. Deshalb typ/pfadFilter hier bereits hinterlegt, aber aktiv=false: Probe von der CI aus mit workflow_dispatch, dry_run=true, quelle=foerderdatenbank-schule. Liefert der Runner die Seite normal aus, kann die Quelle aktiv geschaltet werden; kommt dieselbe CAPTCHA-Seite, bleibt nur der offizielle Export/API beim BMWK. pfadFilter abgeleitet aus dem Katalogeintrag hessen-esf-praxis (/FDB/Content/DE/Foerderprogramm/Land/Hessen/praxis-und-schule.html).",
+      "typ": "browser",
+      "pfadFilter": "/FDB/Content/DE/Foerderprogramm/"
     },
     {
       "id": "begabungslotse",

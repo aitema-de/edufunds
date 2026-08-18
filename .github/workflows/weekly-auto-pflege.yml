@@ -80,11 +80,19 @@ jobs:
       # und nicht im Skript, damit der Workflow ohne Browser-Quelle unveraendert schnell bleibt.
       - name: Browser-Quellen erkennen
         id: browserquellen
+        env:
+          QUELLE_INPUT: ${{ github.event.inputs.quelle || '' }}
         run: |
           set -euo pipefail
-          ANZAHL=$(jq '[.sources[] | select(.typ == "browser" and (.aktiv != false))] | length' data/program-sources.json)
+          if [ -n "${QUELLE_INPUT}" ]; then
+            # Einzelpruefung per --quelle prueft auch deaktivierte Quellen — dann muss
+            # Chromium da sein, obwohl die Quelle nicht aktiv ist.
+            ANZAHL=$(jq --arg q "${QUELLE_INPUT}" '[.sources[] | select(.id == $q and .typ == "browser")] | length' data/program-sources.json)
+          else
+            ANZAHL=$(jq '[.sources[] | select(.typ == "browser" and (.aktiv != false))] | length' data/program-sources.json)
+          fi
           echo "count=${ANZAHL}" >> "${GITHUB_OUTPUT}"
-          echo "Aktive Browser-Quellen: ${ANZAHL}"
+          echo "Benoetigte Browser-Quellen: ${ANZAHL}"
 
       - name: Playwright-Chromium installieren
         if: steps.browserquellen.outputs.count != '0'

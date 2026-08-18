@@ -366,11 +366,23 @@ Liefere die Liste neuer Programme als JSON-Objekt zurueck.`;
   }
 }
 
-async function scanSource(src: Source): Promise<ScanSourceResult> {
+/**
+ * @param erzwungen Quelle wurde per --quelle ausdruecklich benannt. Dann wird sie auch
+ *   geprueft, wenn sie deaktiviert ist — genau dafuer ist das Flag da: eine Quelle
+ *   ansehen, BEVOR man sie aktiv schaltet, oder nachsehen, ob eine abgeschaltete
+ *   inzwischen wieder erreichbar ist. Der Wochenlauf selbst fasst sie nicht an.
+ */
+async function scanSource(src: Source, erzwungen = false): Promise<ScanSourceResult> {
   console.log(`  Scan ${src.id} (${src.url})`);
   if (src.aktiv === false) {
-    console.log(`    ${src.id}: deaktiviert — ${src.grund ?? "ohne Begruendung"}`);
-    return { candidates: [] };
+    if (!erzwungen) {
+      console.log(`    ${src.id}: deaktiviert — ${src.grund ?? "ohne Begruendung"}`);
+      return { candidates: [] };
+    }
+    console.log(
+      `    ${src.id}: deaktiviert, wird auf ausdrueckliche Anforderung (--quelle) trotzdem geprueft.`
+    );
+    console.log(`    Hinterlegter Grund: ${src.grund ?? "ohne Begruendung"}`);
   }
 
   // robots.txt zuerst — und zwar fuer jeden Quellentyp. Ein Crawler, der woechentlich
@@ -603,7 +615,7 @@ async function main(): Promise<void> {
   const quellenFehler: Array<{ id: string; fehler: string }> = [];
   let quellenMitTreffern = 0;
   for (const src of zuScannen) {
-    const { candidates: found, fehler } = await scanSource(src);
+    const { candidates: found, fehler } = await scanSource(src, Boolean(opts.nurQuelle));
     if (fehler) quellenFehler.push({ id: src.id, fehler });
     if (found.length > 0) quellenMitTreffern++;
     const unknown = filterUnknown(found, knownNames, knownUrls);
@@ -616,7 +628,9 @@ async function main(): Promise<void> {
   // toter LLM-Key, HTTP 404 nach Portal-Umbau). "Nichts gefunden" und "Quelle
   // kaputt" sahen im Log identisch aus. Ein Scanner, der auf KEINER Quelle etwas
   // findet, ist ein defektes Werkzeug und kein Beleg dafuer, dass es nichts gibt.
-  const aktiveQuellen = zuScannen.filter((q) => q.aktiv !== false).length;
+  const aktiveQuellen = opts.nurQuelle
+    ? zuScannen.length
+    : zuScannen.filter((q) => q.aktiv !== false).length;
   const alleQuellenLeer = quellenMitTreffern === 0 && aktiveQuellen > 0;
   // Ein Scanner ohne aktive Quelle laeuft woechentlich, tut nichts und meldet Erfolg —
   // genau die Stille, die diesen Befund sechs Wochen lang verdeckt hat. Deshalb laut.
