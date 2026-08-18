@@ -39,12 +39,12 @@ describe("publicAppUrl", () => {
     process.env.NEXT_PUBLIC_APP_URL = "https://staging.edufunds.org/";
     expect(publicAppUrl()).toBe("https://staging.edufunds.org");
   });
-  it("faellt auf die kanonische Apex-Domain zurueck, nie auf null", () => {
+  it("fällt auf die kanonische Apex-Domain zurück, nie auf null", () => {
     delete process.env.NEXT_PUBLIC_APP_URL;
     expect(publicAppUrl()).toBe(CANONICAL_APP_URL);
     expect(CANONICAL_APP_URL).toBe("https://edufunds.org");
   });
-  it("faellt auch bei unbrauchbarem Wert auf die kanonische Domain zurueck", () => {
+  it("fällt auch bei unbrauchbarem Wert auf die kanonische Domain zurück", () => {
     process.env.NEXT_PUBLIC_APP_URL = "edufunds.org"; // Schema fehlt
     expect(publicAppUrl()).toBe(CANONICAL_APP_URL);
   });

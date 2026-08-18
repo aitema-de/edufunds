@@ -49,7 +49,7 @@ describe("berechneProRata (reine Rechnung)", () => {
 });
 
 describe("settleProRata", () => {
-  it("reduziert die Forderung und laesst die offenen Credits verfallen", async () => {
+  it("reduziert die Forderung und lässt die offenen Credits verfallen", async () => {
     const o = await createOrder(ORDER);
     await consumeCredit(o.creditCode);
     await consumeCredit(o.creditCode);
@@ -71,7 +71,7 @@ describe("settleProRata", () => {
     expect(await consumeCredit(o.creditCode)).toEqual({ ok: false, reason: "revoked" });
   });
 
-  it("laesst die Forderung bestehen — abgerechnet heisst nicht erlassen", async () => {
+  it("lässt die Forderung bestehen — abgerechnet heißt nicht erlassen", async () => {
     const o = await createOrder(ORDER);
     await consumeCredit(o.creditCode);
 
@@ -81,7 +81,7 @@ describe("settleProRata", () => {
     expect((await getOrder(o.orderNumber))?.status).toBe("payment_pending");
   });
 
-  it("storniert statt abzurechnen, wenn KEIN Antrag eingeloest wurde", async () => {
+  it("storniert statt abzurechnen, wenn KEIN Antrag eingelöst wurde", async () => {
     const o = await createOrder(ORDER); // 0 genutzt
 
     const res = await settleProRata(o.orderNumber);
@@ -133,13 +133,13 @@ describe("settleProRata", () => {
     expect((await getOrder(o.orderNumber))?.settledAmountCents).toBeNull();
   });
 
-  it("meldet changed=false fuer eine unbekannte Bestellung", async () => {
+  it("meldet changed=false für eine unbekannte Bestellung", async () => {
     expect(await settleProRata("EDU-GIBTS-NICHT")).toEqual({ changed: false, order: null });
   });
 });
 
 describe("Zahlung nach anteiliger Abrechnung", () => {
-  it("laesst sich verbuchen — hebt aber die Sperre der verfallenen Credits NICHT auf", async () => {
+  it("lässt sich verbuchen — hebt aber die Sperre der verfallenen Credits NICHT auf", async () => {
     const o = await createOrder(ORDER);
     await consumeCredit(o.creditCode);
     await settleProRata(o.orderNumber);

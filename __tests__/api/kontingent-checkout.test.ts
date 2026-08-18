@@ -29,7 +29,7 @@ describe("POST /api/kontingent/checkout", () => {
     expect(res.status).toBe(400);
   });
 
-  it("400 bei ungueltiger E-Mail", async () => {
+  it("400 bei ungültiger E-Mail", async () => {
     const res = await POST(req({ ...valid, email: "keine-mail" }));
     expect(res.status).toBe(400);
   });

@@ -45,7 +45,7 @@ describe("Freemail wird abgewiesen", () => {
     if (!r.ok) expect(r.grund).toBe("freemail");
   });
 
-  it("wirkt unabhaengig von Gross-/Kleinschreibung und Leerzeichen", () => {
+  it("wirkt unabhängig von Groß-/Kleinschreibung und Leerzeichen", () => {
     expect(pruefeRechnungsAdresse("Lehrer@GMail.COM ").ok).toBe(false);
   });
 });
@@ -61,7 +61,7 @@ describe("Wegwerfadressen werden abgewiesen", () => {
   );
 });
 
-describe("Echte Schulen und Traeger kommen durch", () => {
+describe("Echte Schulen und Träger kommen durch", () => {
   // Der teuerste Fehler waere, einen echten Kunden auszusperren.
   it.each([
     "sekretariat@gymnasium-musterstadt.de",
@@ -80,7 +80,7 @@ describe("Echte Schulen und Traeger kommen durch", () => {
   });
 });
 
-describe("Vereine werden abgewiesen — Rechnungskauf ist Schulen und Traegern vorbehalten", () => {
+describe("Vereine werden abgewiesen — Rechnungskauf ist Schulen und Trägern vorbehalten", () => {
   // Entscheidung Kolja 14.07.2026: Foerdervereine gehen ueber den Stripe-Checkout.
   it.each([
     "kasse@foerderverein-schule-x.de",
@@ -101,7 +101,7 @@ describe("Vereine werden abgewiesen — Rechnungskauf ist Schulen und Traegern v
     expect(text).toMatch(/§ 4a/);
   });
 
-  it("sperrt eine SCHULE mit aehnlicher Domain nicht versehentlich aus", () => {
+  it("sperrt eine SCHULE mit ähnlicher Domain nicht versehentlich aus", () => {
     // Der teuerste Fehler waere ein Fehlalarm gegen einen echten Kunden.
     expect(istVerein("sekretariat@gesamtschule-bochum.de")).toBe(false);
     expect(istVerein("verwaltung@schulen.koeln.de")).toBe(false);
@@ -109,22 +109,22 @@ describe("Vereine werden abgewiesen — Rechnungskauf ist Schulen und Traegern v
     expect(pruefeRechnungsAdresse("sekretariat@gesamtschule-bochum.de").ok).toBe(true);
   });
 
-  it("⚠️ erkennt einen Verein mit NEUTRALER Domain NICHT — das traegt die AGB-Klausel", () => {
+  it("⚠️ erkennt einen Verein mit NEUTRALER Domain NICHT — das trägt die AGB-Klausel", () => {
     // Grenze der Technik, bewusst festgehalten: kontakt@musterverein-nord.de faellt
     // auf, kontakt@bildungswerk-nord.de nicht. § 4a erlaubt dann das Storno.
     expect(pruefeRechnungsAdresse("kontakt@bildungswerk-nord.de").ok).toBe(true);
   });
 });
 
-describe("istInstitutionell — Signal fuer die Admin-Ansicht, kein Tor", () => {
-  it("erkennt eindeutige Schul-/Behoerdenmuster", () => {
+describe("istInstitutionell — Signal für die Admin-Ansicht, kein Tor", () => {
+  it("erkennt eindeutige Schul-/Behördenmuster", () => {
     expect(istInstitutionell("a@gs-nord.schule")).toBe(true);
     expect(istInstitutionell("a@gymnasium-musterstadt.de")).toBe(true);
     expect(istInstitutionell("a@schulen.koeln.de")).toBe(true);
     expect(istInstitutionell("a@stadt-koeln.de")).toBe(true);
   });
 
-  it("meldet unauffaellige Domains als NICHT institutionell — die duerfen trotzdem bestellen", () => {
+  it("meldet unauffällige Domains als NICHT institutionell — die dürfen trotzdem bestellen", () => {
     expect(istInstitutionell("kontakt@traegerwerk-mueller-gbr.de")).toBe(false);
     // Entscheidend: kein Tor. Die Bestellung geht durch, taucht im Admin nur als
     // "lohnt einen Blick" auf.
@@ -133,7 +133,7 @@ describe("istInstitutionell — Signal fuer die Admin-Ansicht, kein Tor", () => 
 });
 
 describe("Env-Overrides", () => {
-  it("ALLOWLIST schlaegt die Freemail-Sperre (Einzelfall-Freigabe)", () => {
+  it("ALLOWLIST schlägt die Freemail-Sperre (Einzelfall-Freigabe)", () => {
     // Foerderverein mit web.de-Adresse, telefonisch bekannt.
     process.env.INVOICE_DOMAIN_ALLOWLIST = "web.de, bekannter-verein.org";
     const r = pruefeRechnungsAdresse("kasse@web.de");
@@ -141,7 +141,7 @@ describe("Env-Overrides", () => {
     if (r.ok) expect(r.institutionell).toBe(true);
   });
 
-  it("BLOCKLIST sperrt eine zusaetzliche Domain", () => {
+  it("BLOCKLIST sperrt eine zusätzliche Domain", () => {
     process.env.INVOICE_DOMAIN_BLOCKLIST = "betrueger.de";
     const r = pruefeRechnungsAdresse("x@betrueger.de");
     expect(r.ok).toBe(false);
@@ -150,7 +150,7 @@ describe("Env-Overrides", () => {
 });
 
 describe("Kaputte Eingaben", () => {
-  it.each(["", "keine-mail", "a@", "a@localhost"])("%s -> ungueltig", (email) => {
+  it.each(["", "keine-mail", "a@", "a@localhost"])("%s -> ungültig", (email) => {
     const r = pruefeRechnungsAdresse(email);
     expect(r.ok).toBe(false);
     if (!r.ok) expect(r.grund).toBe("ungueltig");
@@ -162,7 +162,7 @@ describe("Kaputte Eingaben", () => {
 });
 
 describe("Ablehnungstext", () => {
-  it("zeigt den Weg, statt nur die Tuer zuzuschlagen", () => {
+  it("zeigt den Weg, statt nur die Tür zuzuschlagen", () => {
     const text = ablehnungsText("freemail");
     // Muss den Kartenweg anbieten und den Ausweg fuer Einrichtungen ohne Domain.
     expect(text).toMatch(/Karte/);

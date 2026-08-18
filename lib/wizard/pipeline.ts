@@ -123,7 +123,7 @@ function renderCritique(c: Critique): string {
   if (c.findings.some((f) => f.kategorie === "substanz")) {
     lines.push("");
     lines.push(
-      "HINWEIS: Die mit PFLICHT markierten substanz-Findings werden nach deiner Ueberarbeitung maschinell nachgemessen. Setze sie ZUERST um — sie duerfen nicht zugunsten anderer Findings entfallen."
+      "HINWEIS: Die mit PFLICHT markierten substanz-Findings werden nach deiner Überarbeitung maschinell nachgemessen. Setze sie ZUERST um — sie dürfen nicht zugunsten anderer Findings entfallen."
     );
   }
   return lines.join("\n");
@@ -271,7 +271,7 @@ async function runComplianceCheck(
         violations.push({
           abschnittId: abschnitt.id,
           art: "nur-platzhalter",
-          detail: `Abschnitt "${abschnitt.name}" hat nur ${sectionText.length} Zeichen — moeglicherweise nur Platzhalter.`,
+          detail: `Abschnitt "${abschnitt.name}" hat nur ${sectionText.length} Zeichen — möglicherweise nur Platzhalter.`,
         });
       }
     }
@@ -296,12 +296,12 @@ function buildComplianceRevisionPrompt(
       return `- FEHLT: Abschnitt "${v.abschnittId}" — ${v.detail}`;
     }
     if (v.art === "ueberlaenge") {
-      return `- UEBERLAENGE: Abschnitt "${v.abschnittId}" — ${v.detail} Bitte kuezen.`;
+      return `- ÜBERLÄNGE: Abschnitt "${v.abschnittId}" — ${v.detail} Bitte küzen.`;
     }
-    return `- NUR-PLATZHALTER: Abschnitt "${v.abschnittId}" — ${v.detail} Bitte inhaltlich fuellen.`;
+    return `- NUR-PLATZHALTER: Abschnitt "${v.abschnittId}" — ${v.detail} Bitte inhaltlich füllen.`;
   }).join("\n");
 
-  return `Du hast folgenden Antragstext erhalten, der die Pflichtstruktur der Foerderrichtlinie NICHT vollstaendig erfuellt.
+  return `Du hast folgenden Antragstext erhalten, der die Pflichtstruktur der Förderrichtlinie NICHT vollständig erfüllt.
 
 FESTGESTELLTE VERSTÖSSE:
 ${violationLines}
@@ -309,12 +309,12 @@ ${violationLines}
 ANTRAGSTEXT (zu korrigieren):
 ${currentText}
 
-AUFGABE: Ueberarbeite den Antragstext so, dass alle genannten Verstösse behoben sind:
+AUFGABE: Überarbeite den Antragstext so, dass alle genannten Verstöße behoben sind:
 - Fehlende Abschnitte mit einem inhaltlich passenden Text ergänzen (basierend auf dem vorhandenen Kontext).
 - Zu lange Abschnitte kürzen ohne inhaltlichen Verlust.
-- Zu duenne Abschnitte aus dem vorhandenen Kontext inhaltlich fuellen, ohne neue Fakten zu erfinden. Vorhandene "[TODO: …]"- und "[Annahme: …]"-Marker bleiben erhalten.
+- Zu dünne Abschnitte aus dem vorhandenen Kontext inhaltlich füllen, ohne neue Fakten zu erfinden. Vorhandene "[TODO: …]"- und "[Annahme: …]"-Marker bleiben erhalten.
 
-Gib NUR den vollständigen, korrigierten Antragstext zurueck (kein JSON, keine Erklaerung).`;
+Gib NUR den vollständigen, korrigierten Antragstext zurück (kein JSON, keine Erklärung).`;
 }
 
 export interface PipelineEvent {
@@ -371,7 +371,7 @@ export async function runPipeline(
             : a.stilhinweis ?? `Pflichtabschnitt ${a.id}`,
         })),
     };
-    await emit({ stage: "outline", message: "Uebernehme Gliederung aus Foerderrichtlinie" });
+    await emit({ stage: "outline", message: "Übernehme Gliederung aus Förderrichtlinie" });
   } else {
     await emit({ stage: "outline", message: "Erstelle Gliederung" });
     try {
@@ -458,7 +458,7 @@ export async function runPipeline(
       finalRes = { value: guard.text, usage: finalRes.usage };
       await emit({
         stage: "revision",
-        message: `Struktur-Guard: ${guard.reinjected.length} fehlende(r) Abschnitt(e) ergaenzt`,
+        message: `Struktur-Guard: ${guard.reinjected.length} fehlende(r) Abschnitt(e) ergänzt`,
       });
       console.log(
         `[pipeline] Struktur-Guard: ${guard.reinjected.length} Abschnitt(e) re-injiziert (${guard.reinjected.join(", ")})`
@@ -837,7 +837,7 @@ export async function runPipeline(
   // Retry-Pfad) als ein zahlendes Leer-Dokument.
   if (!(finalRes.value ?? "").trim()) {
     throw new Error(
-      "Pipeline ergab einen leeren Antragstext — vermutlich ein voruebergehender KI-Ausfall. Bitte erneut generieren."
+      "Pipeline ergab einen leeren Antragstext — vermutlich ein vorübergehender KI-Ausfall. Bitte erneut generieren."
     );
   }
 

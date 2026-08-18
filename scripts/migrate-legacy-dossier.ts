@@ -76,7 +76,9 @@ function stripHtml(html: string): string {
 
 const SYSTEM_PROMPT = `Du erweiterst ein bestehendes Foerderrichtlinien-Dossier um VIER neue Felder. Alle BESTEHENDEN Felder bleiben unveraendert — du widersprichst NICHT, ueberschreibst NICHT, ergaenzt NICHTS ausserhalb der vier Zielfelder.
 
-Sprache: deutsch. Identifier-Konvention: ASCII in JSON-Schluesseln, Umlaute (ae/oe/ue/ss) in Werten erlaubt.
+Sprache: deutsch mit KORREKTEN UMLAUTEN (ä, ö, ü) und ß in allen Textwerten — die
+Ersatzschreibung ae/oe/ue/ss ist dort NICHT zulaessig. JSON-Schluessel, IDs, Slugs und
+Enum-Werte bleiben dagegen exakt wie im Schema in ASCII.
 
 ZIELFELDER (alle vier MUESSEN geliefert werden, leeres Array ist erlaubt wenn die Quelle nichts hergibt):
 

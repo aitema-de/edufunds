@@ -98,19 +98,19 @@ const VERBOTS_MUSTER: ReadonlyArray<Muster> = [
     klasse: "tarif",
     re: TARIF_RE,
     warum:
-      "Tarif-/Besoldungs-Eingruppierung ohne Beleg in Nutzerangaben oder Richtlinie — laut Verbotsliste immer erfunden. Eingruppierung streichen und die Kostenart ohne Tarifbezug benennen; die Eingruppierung ist beim Schultraeger noch zu erfragen.",
+      "Tarif-/Besoldungs-Eingruppierung ohne Beleg in Nutzerangaben oder Richtlinie — laut Verbotsliste immer erfunden. Eingruppierung streichen und die Kostenart ohne Tarifbezug benennen; die Eingruppierung ist beim Schulträger noch zu erfragen.",
   },
   {
     klasse: "datum",
     re: DATUM_RE,
     warum:
-      "Tagesgenaues Datum ohne Beleg in Nutzerangaben oder Richtlinie — erfundene Praezision. Ersetze es durch die vom Nutzer genannte grobe Zeitangabe (z. B. \"nach den Sommerferien\", \"im Schuljahr\") oder streiche die Datumsangabe; keine Ersatz-Datierung erfinden.",
+      "Tagesgenaues Datum ohne Beleg in Nutzerangaben oder Richtlinie — erfundene Präzision. Ersetze es durch die vom Nutzer genannte grobe Zeitangabe (z. B. \"nach den Sommerferien\", \"im Schuljahr\") oder streiche die Datumsangabe; keine Ersatz-Datierung erfinden.",
   },
   {
     klasse: "aktenzeichen",
     re: AKTENZEICHEN_RE,
     warum:
-      "Aktenzeichen/Geschaeftszeichen ohne Nutzerbeleg — Schulen geben praktisch nie welche an, jedes solche Zeichen ist erfunden. Ersatzlos streichen.",
+      "Aktenzeichen/Geschäftszeichen ohne Nutzerbeleg — Schulen geben praktisch nie welche an, jedes solche Zeichen ist erfunden. Ersatzlos streichen.",
   },
   {
     klasse: "haushaltsstelle",
@@ -263,7 +263,7 @@ export function bereinigeFinanzplanBegruendungen<T extends FinanzplanPostenLike>
 
     const begruendungNeu = geheilt
       ? kandidat
-      : `Schaetzung: ${p.bezeichnung} — Pauschale ohne belegte Kalkulationsgrundlage; Saetze und Mengen vor Einreichung durch Angebote bzw. Auskunft des Schultraegers belegen.`;
+      : `Schätzung: ${p.bezeichnung} — Pauschale ohne belegte Kalkulationsgrundlage; Sätze und Mengen vor Einreichung durch Angebote bzw. Auskunft des Schulträgers belegen.`;
     return { ...p, begruendung: begruendungNeu } as T;
   });
 
@@ -272,4 +272,4 @@ export function bereinigeFinanzplanBegruendungen<T extends FinanzplanPostenLike>
 
 /** Hinweis-Zeile fuer den bereinigten Plan (macht die Kuerzung fuer den Nutzer sichtbar). */
 export const FINANZPLAN_BEREINIGT_HINWEIS =
-  "Einzelne Begruendungen enthielten Kalkulationsgrundlagen (Tarif-Stufen, Stunden-/Tagessaetze), die nicht aus Ihren Angaben stammen. Sie wurden zu ehrlichen Pauschalen zurueckgenommen — bitte vor Einreichung durch Angebote oder eine Auskunft des Schultraegers belegen.";
+  "Einzelne Begründungen enthielten Kalkulationsgrundlagen (Tarif-Stufen, Stunden-/Tagessätze), die nicht aus Ihren Angaben stammen. Sie wurden zu ehrlichen Pauschalen zurückgenommen — bitte vor Einreichung durch Angebote oder eine Auskunft des Schulträgers belegen.";

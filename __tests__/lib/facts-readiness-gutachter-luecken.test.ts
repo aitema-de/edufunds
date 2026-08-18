@@ -78,7 +78,7 @@ describe("Readiness: Schülerzahl", () => {
 });
 
 describe("Readiness: Gesamtstatus bleibt benutzbar", () => {
-  it("vollstaendige Angaben ergeben Status ok", () => {
+  it("vollständige Angaben ergeben Status ok", () => {
     expect(evaluateFactsReadiness(basisFacts()).status).toBe("ok");
   });
 

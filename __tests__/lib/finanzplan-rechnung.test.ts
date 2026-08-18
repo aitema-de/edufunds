@@ -39,7 +39,7 @@ describe("checkRechnungGehtAuf — feuert bei den echten harten Fällen", () => 
   it("pv-003: Rechnung ergibt 30 EUR, ausgewiesen 300 EUR (Faktor 10)", () => {
     const hinweise: string[] = [];
     checkRechnungGehtAuf(
-      [posten(300, "Schaetzung: 6 Feedbackbögen à 5 EUR = 30 EUR", "Feedbackbögen")],
+      [posten(300, "Schätzung: 6 Feedbackbögen à 5 EUR = 30 EUR", "Feedbackbögen")],
       hinweise
     );
     expect(hinweise).toHaveLength(1);
@@ -51,7 +51,7 @@ describe("checkRechnungGehtAuf — feuert bei den echten harten Fällen", () => 
   it("pv-002: Rechnung ergibt 18.000 EUR, ausgewiesen 6.000 EUR", () => {
     const hinweise: string[] = [];
     checkRechnungGehtAuf(
-      [posten(6000, "Schaetzung: 12 Termine à 1.500 EUR = 18.000 EUR", "Theaterpädagogische Leitung")],
+      [posten(6000, "Schätzung: 12 Termine à 1.500 EUR = 18.000 EUR", "Theaterpädagogische Leitung")],
       hinweise
     );
     expect(hinweise).toHaveLength(1);
@@ -60,14 +60,14 @@ describe("checkRechnungGehtAuf — feuert bei den echten harten Fällen", () => 
 
   it("pv-006: Rechnung ergibt 50.000 EUR, ausgewiesen 100.000 EUR (Faktor 0,5)", () => {
     const hinweise: string[] = [];
-    checkRechnungGehtAuf([posten(100000, "156 Geraete × 320 EUR = 50.000 EUR")], hinweise);
+    checkRechnungGehtAuf([posten(100000, "156 Geräte × 320 EUR = 50.000 EUR")], hinweise);
     expect(hinweise).toHaveLength(1);
   });
 
   it("pv-007: kein ausgewiesenes Ergebnis trifft den Betrag (20/280 gegen 3.600)", () => {
     const hinweise: string[] = [];
     checkRechnungGehtAuf(
-      [posten(3600, "14 Naechte à 20 EUR = 280 EUR pro Person")],
+      [posten(3600, "14 Nächte à 20 EUR = 280 EUR pro Person")],
       hinweise
     );
     expect(hinweise).toHaveLength(1);
@@ -110,7 +110,7 @@ describe("checkRechnungGehtAuf — schweigt, wo es schweigen muss", () => {
       [
         posten(
           8000,
-          "Schaetzung: 0,5 Stelle × 32.000 EUR/Jahr = 16.000 EUR/Jahr; Eigenanteil 22 % abzgl. Foerderung = 8.000 EUR Foerderanteil"
+          "Schätzung: 0,5 Stelle × 32.000 EUR/Jahr = 16.000 EUR/Jahr; Eigenanteil 22 % abzgl. Förderung = 8.000 EUR Förderanteil"
         ),
       ],
       hinweise
@@ -121,7 +121,7 @@ describe("checkRechnungGehtAuf — schweigt, wo es schweigen muss", () => {
   it("Mengengerüst ohne ausgewiesene Endsumme ist erlaubt", () => {
     const hinweise: string[] = [];
     checkRechnungGehtAuf(
-      [posten(12000, "Klassensatz Tablets für 312 Schüler:innen, 1 Geraet je 2 Kinder, marktueblich ca. 400 EUR je Geraet")],
+      [posten(12000, "Klassensatz Tablets für 312 Schüler:innen, 1 Gerät je 2 Kinder, marktüblich ca. 400 EUR je Gerät")],
       hinweise
     );
     expect(hinweise).toEqual([]);
@@ -130,7 +130,7 @@ describe("checkRechnungGehtAuf — schweigt, wo es schweigen muss", () => {
   it("nackte Pauschale ohne Rechnung bleibt unbeanstandet (dafür ist flagEstimatedAmounts da)", () => {
     const hinweise: string[] = [];
     checkRechnungGehtAuf(
-      [posten(1500, "Schaetzung: Pauschale ohne belegte Kalkulationsgrundlage; vor Einreichung belegen.")],
+      [posten(1500, "Schätzung: Pauschale ohne belegte Kalkulationsgrundlage; vor Einreichung belegen.")],
       hinweise
     );
     expect(hinweise).toEqual([]);

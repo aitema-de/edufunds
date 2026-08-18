@@ -153,25 +153,25 @@ export function substanzFindings(
     if (!b.relevant || b.hatSubstanz) continue;
     const fehlt =
       b.theorieMarker < SUBSTANZ_MIN_THEORIE && b.konnektive < SUBSTANZ_MIN_KONNEKTIVE
-        ? "fachliche Einordnung UND Begruendungslogik"
+        ? "fachliche Einordnung UND Begründungslogik"
         : b.theorieMarker < SUBSTANZ_MIN_THEORIE
-          ? "fachliche Einordnung (paedagogisches Konzept/Modell)"
-          : "Begruendungslogik (Kausalverbindungen)";
+          ? "fachliche Einordnung (pädagogisches Konzept/Modell)"
+          : "Begründungslogik (Kausalverbindungen)";
     findings.push({
       abschnitt: s.name,
       zitat: "FEHLT" as const,
       schwere: "mittel" as const,
       kategorie: "substanz" as const,
       vorschlag:
-        `Der Abschnitt beschreibt, aber begruendet nicht — es fehlt: ${fehlt}. ` +
-        `ERWEITERE den Abschnitt um 2-4 Saetze Begruendung (NICHT stattdessen anderes kuerzen): ` +
-        `Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage) ` +
-        `mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, ` +
-        `Teilhabe, Praxislernen — passend zum Vorhaben gewaehlt und am Vorhaben erklaert, nicht als Etikett). ` +
+        `Der Abschnitt beschreibt, aber begründet nicht — es fehlt: ${fehlt}. ` +
+        `ERWEITERE den Abschnitt um 2-4 Sätze Begründung (NICHT stattdessen anderes kürzen): ` +
+        `Verbinde das beschriebene Vorhaben über Kausalsätze (weil / daher / auf dieser Grundlage) ` +
+        `mit dem pädagogischen Konzept, das seine NOTWENDIGKEIT trägt (z. B. Selbstwirksamkeit, ` +
+        `Teilhabe, Praxislernen — passend zum Vorhaben gewählt und am Vorhaben erklärt, nicht als Etikett). ` +
         `Muster: "Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>." ` +
-        `Der Abschnitt DARF dafuer laenger werden; die Laengenvorgabe ist dieser Ergaenzung nachgeordnet. ` +
-        `Diese theoretische Rahmung ist erwuenschte Fachlichkeit, KEINE Halluzination — ` +
-        `erfunden waeren nur neue Tatsachen ueber die Schule.`,
+        `Der Abschnitt DARF dafür länger werden; die Längenvorgabe ist dieser Ergänzung nachgeordnet. ` +
+        `Diese theoretische Rahmung ist erwünschte Fachlichkeit, KEINE Halluzination — ` +
+        `erfunden wären nur neue Tatsachen über die Schule.`,
     });
   }
   return findings;

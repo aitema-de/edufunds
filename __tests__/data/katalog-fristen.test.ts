@@ -57,7 +57,7 @@ describe("Katalog x Dossier: kein Verkauf mit belegt totem Stichtag", () => {
   // wenn jemand die DATEN aendert. Beim Anheben faellt auf, was neu ablaeuft.
   const JETZT = new Date("2026-07-17T00:00:00Z");
 
-  it("kein verkaeufliches Programm hat einen abgelaufenen, nicht wiederkehrenden Stichtag", () => {
+  it("kein verkäufliches Programm hat einen abgelaufenen, nicht wiederkehrenden Stichtag", () => {
     const verstoesse: string[] = [];
 
     for (const p of KATALOG) {
@@ -80,7 +80,7 @@ describe("Katalog x Dossier: kein Verkauf mit belegt totem Stichtag", () => {
     expect(verstoesse).toEqual([]);
   });
 
-  it("die vier am 17.07.2026 belegten Faelle sind nicht mehr verkaeuflich", () => {
+  it("die vier am 17.07.2026 belegten Fälle sind nicht mehr verkäuflich", () => {
     const faelle = [
       "foerderfonds-demokratie",
       "ferry-porsche-challenge",
@@ -95,7 +95,7 @@ describe("Katalog x Dossier: kein Verkauf mit belegt totem Stichtag", () => {
   });
 });
 
-describe("Katalog: dokumentierte Luecke, die dieser Test NICHT schliesst", () => {
+describe("Katalog: dokumentierte Lücke, die dieser Test NICHT schliesst", () => {
   const JETZT = new Date("2026-07-17T00:00:00Z");
 
   /**
@@ -116,7 +116,7 @@ describe("Katalog: dokumentierte Luecke, die dieser Test NICHT schliesst", () =>
    * 89 offenen Programme pauschal auf "unbekannt" setzt, ohne eine einzige
    * Quelle gelesen zu haben. Der Zaehler misst VERIFIKATION, nicht Befuellung.
    */
-  it("haelt fest, wie viele verkaeufliche Programme keine VERIFIZIERTE Frist haben", () => {
+  it("hält fest, wie viele verkäufliche Programme keine VERIFIZIERTE Frist haben", () => {
     const verkaeuflich = KATALOG.filter((p) => istVerkaeuflich(p, JETZT));
     const belegt = (p: Foerderprogramm) => {
       const fz = (p as { fristZustand?: { art?: string } }).fristZustand;
@@ -156,7 +156,7 @@ describe("Katalog: dokumentierte Luecke, die dieser Test NICHT schliesst", () =>
   });
 });
 
-describe("Fail-closed: expliziter fristZustand entscheidet ueber Verkauf", () => {
+describe("Fail-closed: expliziter fristZustand entscheidet über Verkauf", () => {
   const JETZT = new Date("2026-07-17T00:00:00Z");
 
   // Minimales Programm; das Gate liest nur status, kiAntragGeeignet, fristZustand,
@@ -170,7 +170,7 @@ describe("Fail-closed: expliziter fristZustand entscheidet ueber Verkauf", () =>
     } as Foerderprogramm;
   }
 
-  it("Frist unbekannt => verkaeuflich MIT Hinweis (Entscheidung 22.07.2026)", () => {
+  it("Frist unbekannt => verkäuflich MIT Hinweis (Entscheidung 22.07.2026)", () => {
     // Bis 22.07.2026 sperrte "unbekannt". Das warf "Quelle schweigt" mit
     // "belegt geschlossen" zusammen und haette bei der Migration von 89
     // Programmen einen grossen Teil des Katalogs verschrottet. Seitdem:
@@ -181,7 +181,7 @@ describe("Fail-closed: expliziter fristZustand entscheidet ueber Verkauf", () =>
     expect(brauchtFristHinweis(p.fristZustand)).toBe(true);
   });
 
-  it("Frist geschlossen (belegt keine offene Runde) => NICHT verkaeuflich", () => {
+  it("Frist geschlossen (belegt keine offene Runde) => NICHT verkäuflich", () => {
     const p = prog({
       fristZustand: {
         art: "geschlossen",
@@ -191,14 +191,14 @@ describe("Fail-closed: expliziter fristZustand entscheidet ueber Verkauf", () =>
     expect(istVerkaeuflich(p, JETZT)).toBe(false);
   });
 
-  it("Frist keine (belegt rollend) => verkaeuflich", () => {
+  it("Frist keine (belegt rollend) => verkäuflich", () => {
     const p = prog({
       fristZustand: { art: "keine", quelle: "Website: laufende Antragstellung" },
     } as Partial<Foerderprogramm>);
     expect(istVerkaeuflich(p, JETZT)).toBe(true);
   });
 
-  it("Stichtag in der Vergangenheit, nicht wiederkehrend => NICHT verkaeuflich", () => {
+  it("Stichtag in der Vergangenheit, nicht wiederkehrend => NICHT verkäuflich", () => {
     const p = prog({
       fristZustand: {
         art: "stichtag",
@@ -210,7 +210,7 @@ describe("Fail-closed: expliziter fristZustand entscheidet ueber Verkauf", () =>
     expect(istVerkaeuflich(p, JETZT)).toBe(false);
   });
 
-  it("Stichtag in der Zukunft => verkaeuflich; wiederkehrend => verkaeuflich", () => {
+  it("Stichtag in der Zukunft => verkäuflich; wiederkehrend => verkäuflich", () => {
     const zukunft = prog({
       fristZustand: {
         art: "stichtag",
@@ -223,14 +223,14 @@ describe("Fail-closed: expliziter fristZustand entscheidet ueber Verkauf", () =>
         art: "stichtag",
         stichtage: ["2020-06-30"],
         jaehrlichWiederkehrend: true,
-        quelle: "Website: jaehrlich bis 30.06.",
+        quelle: "Website: jährlich bis 30.06.",
       },
     } as Partial<Foerderprogramm>);
     expect(istVerkaeuflich(zukunft, JETZT)).toBe(true);
     expect(istVerkaeuflich(wiederkehrend, JETZT)).toBe(true);
   });
 
-  it("foerderfonds-demokratie ist ueber den fristZustand-Pfad tot (Stichtag 2019, nicht wiederkehrend)", () => {
+  it("förderfonds-demokratie ist über den fristZustand-Pfad tot (Stichtag 2019, nicht wiederkehrend)", () => {
     const p = KATALOG.find((x) => x.id === "foerderfonds-demokratie");
     expect(p).toBeDefined();
     // Daten belegen es (unabhaengig vom redaktionellen status="archiviert"):

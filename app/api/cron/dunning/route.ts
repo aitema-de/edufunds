@@ -52,8 +52,8 @@ async function handle(request: Request): Promise<NextResponse> {
     if (run.fehlgeschlagen.length > 0) {
       // Kein stiller Ausfall: hier wurde NICHT gemahnt und NICHT gesperrt.
       console.warn(
-        `[cron/dunning] Mailversand fehlgeschlagen fuer: ${run.fehlgeschlagen.join(", ")} — ` +
-          `Zustand unveraendert, naechster Lauf versucht es erneut.`
+        `[cron/dunning] Mailversand fehlgeschlagen für: ${run.fehlgeschlagen.join(", ")} — ` +
+          `Zustand unverändert, nächster Lauf versucht es erneut.`
       );
     }
     return NextResponse.json(run);

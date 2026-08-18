@@ -26,7 +26,7 @@ describe("getClientIP — X-Forwarded-For-Spoofing", () => {
     expect(getClientIP(req({ "x-forwarded-for": "1.2.3.4, 203.0.113.7" }))).toBe("203.0.113.7");
   });
 
-  it("liefert fuer zwei gefaelschte Praefixe DIESELBE IP (kein frisches Budget)", () => {
+  it("liefert für zwei gefälschte Präfixe DIESELBE IP (kein frisches Budget)", () => {
     const a = getClientIP(req({ "x-forwarded-for": "11.11.11.11, 203.0.113.7" }));
     const b = getClientIP(req({ "x-forwarded-for": "22.22.22.22, 203.0.113.7" }));
     expect(a).toBe(b);
@@ -39,12 +39,12 @@ describe("getClientIP — X-Forwarded-For-Spoofing", () => {
     expect(a).not.toBe(b);
   });
 
-  it("ueberspringt interne Proxy-IPs am Kettenende (Wartungs-nginx davor)", () => {
+  it("überspringt interne Proxy-IPs am Kettenende (Wartungs-nginx davor)", () => {
     // Coming-Soon: Client → Traefik → nginx → App. nginx haengt 172.x an.
     expect(getClientIP(req({ "x-forwarded-for": "203.0.113.7, 172.18.0.5" }))).toBe("203.0.113.7");
   });
 
-  it("laesst sich nicht durch selbst angehaengte private IPs austricksen", () => {
+  it("lässt sich nicht durch selbst angehängte private IPs austricksen", () => {
     // Angreifer haengt private Adressen an, um das Ueberspringen auszunutzen —
     // die letzte OEFFENTLICHE bleibt trotzdem die echte Peer-IP.
     expect(getClientIP(req({ "x-forwarded-for": "1.2.3.4, 203.0.113.7, 10.0.0.1, 192.168.1.1" })))
@@ -56,7 +56,7 @@ describe("getClientIP — X-Forwarded-For-Spoofing", () => {
     expect(getClientIP(req({ "x-forwarded-for": "10.0.0.1, 172.20.0.3" }))).toBe("172.20.0.3");
   });
 
-  it("faellt auf X-Real-IP zurueck, wenn kein XFF gesetzt ist", () => {
+  it("fällt auf X-Real-IP zurück, wenn kein XFF gesetzt ist", () => {
     expect(getClientIP(req({ "x-real-ip": "203.0.113.7" }))).toBe("203.0.113.7");
   });
 

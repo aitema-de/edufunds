@@ -23,7 +23,7 @@ import {
 } from "@/lib/payments/bank";
 
 describe("packs — Definitionen (D-8)", () => {
-  it("enthaelt Einzel + drei Kontingent-Pakete mit gelockten Preisen", () => {
+  it("enthält Einzel + drei Kontingent-Pakete mit gelockten Preisen", () => {
     expect(getPack("einzel")?.priceCents).toBe(2990);
     expect(getPack("pack5")?.priceCents).toBe(13990);
     expect(getPack("pack10")?.priceCents).toBe(24990);
@@ -37,7 +37,7 @@ describe("packs — Definitionen (D-8)", () => {
     expect(ids).not.toContain("einzel");
   });
 
-  it("getPack liefert undefined fuer unbekannte id", () => {
+  it("getPack liefert undefined für unbekannte id", () => {
     expect(getPack("pack999")).toBeUndefined();
   });
 
@@ -50,7 +50,7 @@ describe("packs — Definitionen (D-8)", () => {
     }
   });
 
-  it("Mengenrabatt ist monoton: groesseres Kontingent = guenstiger pro Antrag", () => {
+  it("Mengenrabatt ist monoton: größeres Kontingent = günstiger pro Antrag", () => {
     const quota = quotaPacks();
     for (let i = 1; i < quota.length; i++) {
       expect(pricePerCreditCents(quota[i])).toBeLessThan(pricePerCreditCents(quota[i - 1]));
@@ -61,7 +61,7 @@ describe("packs — Definitionen (D-8)", () => {
     }
   });
 
-  it("20er-Paket ist guenstiger als 2x 10er (kein Splitten lohnt sich)", () => {
+  it("20er-Paket ist günstiger als 2x 10er (kein Splitten lohnt sich)", () => {
     const pack10 = getPack("pack10")!;
     const pack20 = getPack("pack20")!;
     expect(pack20.priceCents).toBeLessThan(2 * pack10.priceCents);
@@ -74,7 +74,7 @@ describe("packs — Geld-Helfer", () => {
     expect(formatEur(2990)).toMatch(/29,90/);
   });
 
-  it("vatBreakdown: Brutto = Netto + MwSt (brutto fuehrend)", () => {
+  it("vatBreakdown: Brutto = Netto + MwSt (brutto führend)", () => {
     for (const p of PACKS) {
       const b = vatBreakdown(p.priceCents);
       expect(b.netCents + b.vatCents).toBe(p.priceCents);

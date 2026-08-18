@@ -18,18 +18,18 @@ const TEXT = `# Medienkonzept
 
 ## Bestandsaufnahme
 
-Die Schule verfuegt ueber 10 Whiteboards. [TODO: genaue Stueckzahl und Alter der Tablets vor Einreichung erfassen]
-[Annahme: Die WLAN-Abdeckung reicht in allen Unterrichtsraeumen aus.] Damit ist die Grundlage gelegt.
+Die Schule verfügt über 10 Whiteboards. [TODO: genaue Stückzahl und Alter der Tablets vor Einreichung erfassen]
+[Annahme: Die WLAN-Abdeckung reicht in allen Unterrichtsräumen aus.] Damit ist die Grundlage gelegt.
 
 ## Finanzen
 
-Die Kosten verteilen sich auf drei Posten. [TODO: Honorarsaetze beim Traeger erfragen]`;
+Die Kosten verteilen sich auf drei Posten. [TODO: Honorarsätze beim Träger erfragen]`;
 
 describe("sammleOffenePunkte", () => {
   it("findet TODOs und Annahmen getrennt", () => {
     const p = sammleOffenePunkte(TEXT);
     expect(p.todos).toHaveLength(2);
-    expect(p.todos[0]).toMatch(/Stueckzahl und Alter der Tablets/);
+    expect(p.todos[0]).toMatch(/Stückzahl und Alter der Tablets/);
     expect(p.annahmen).toHaveLength(1);
     expect(p.annahmen[0]).toMatch(/WLAN-Abdeckung/);
   });
@@ -48,27 +48,27 @@ describe("sammleOffenePunkte", () => {
 describe("bereinigeAntragstext", () => {
   const sauber = bereinigeAntragstext(TEXT);
 
-  it("entfernt die TODO-Klammern vollstaendig", () => {
+  it("entfernt die TODO-Klammern vollständig", () => {
     expect(sauber).not.toMatch(/\[TODO:/);
   });
 
-  it("behaelt den Inhalt der Annahme, entfernt nur die Klammer", () => {
+  it("behält den Inhalt der Annahme, entfernt nur die Klammer", () => {
     expect(sauber).not.toMatch(/\[Annahme:/);
-    expect(sauber).toMatch(/Die WLAN-Abdeckung reicht in allen Unterrichtsraeumen aus\./);
+    expect(sauber).toMatch(/Die WLAN-Abdeckung reicht in allen Unterrichtsräumen aus\./);
   });
 
-  it("laesst den uebrigen Text unangetastet", () => {
-    expect(sauber).toMatch(/Die Schule verfuegt ueber 10 Whiteboards\./);
+  it("lässt den übrigen Text unangetastet", () => {
+    expect(sauber).toMatch(/Die Schule verfügt über 10 Whiteboards\./);
     expect(sauber).toMatch(/# Medienkonzept/);
     expect(sauber).toMatch(/## Finanzen/);
   });
 
-  it("laesst keine doppelten Leerzeichen oder Leerzeichen vor Satzzeichen zurueck", () => {
+  it("lässt keine doppelten Leerzeichen oder Leerzeichen vor Satzzeichen zurück", () => {
     expect(sauber).not.toMatch(/ {2,}/);
     expect(sauber).not.toMatch(/\s+[.,;:]/);
   });
 
-  it("erfindet nichts — der bereinigte Text ist nie laenger als das Original", () => {
+  it("erfindet nichts — der bereinigte Text ist nie länger als das Original", () => {
     expect(sauber.length).toBeLessThanOrEqual(TEXT.length);
   });
 });
@@ -78,15 +78,15 @@ describe("baueOffenePunkteBlock", () => {
     expect(baueOffenePunkteBlock({ todos: [], annahmen: [] })).toBe("");
   });
 
-  it("sagt unmissverstaendlich, dass die Seite nicht eingereicht wird", () => {
+  it("sagt unmissverständlich, dass die Seite nicht eingereicht wird", () => {
     const block = baueOffenePunkteBlock({ todos: ["A"], annahmen: [] });
     expect(block).toMatch(/NICHT in die Einreichung/);
   });
 
-  it("fuehrt TODOs und Annahmen getrennt und mit Anzahl", () => {
+  it("führt TODOs und Annahmen getrennt und mit Anzahl", () => {
     const block = baueOffenePunkteBlock({ todos: ["A", "B"], annahmen: ["C"] }, "Medienkonzept");
     expect(block).toMatch(/Diese Angaben fehlen noch \(2\)/);
-    expect(block).toMatch(/Diese Annahmen bitte pruefen \(1\)|Diese Annahmen bitte prüfen \(1\)/);
+    expect(block).toMatch(/Diese Annahmen bitte prüfen \(1\)|Diese Annahmen bitte prüfen \(1\)/);
     expect(block).toMatch(/- \[ \] A/);
     expect(block).toMatch(/- \[ \] C/);
   });
@@ -115,13 +115,13 @@ describe("baueExportText — das Zusammenspiel", () => {
     }
   });
 
-  it("der Antragskoerper selbst traegt keine Marker mehr", () => {
+  it("der Antragskörper selbst trägt keine Marker mehr", () => {
     const koerper = exportText.slice(exportText.indexOf("# Medienkonzept"));
     expect(koerper).not.toMatch(/\[TODO:/);
     expect(koerper).not.toMatch(/\[Annahme:/);
   });
 
-  it("haengt die Fusszeile ans Ende", () => {
+  it("hängt die Fusszeile ans Ende", () => {
     expect(exportText.endsWith("FUSSNOTE")).toBe(true);
   });
 

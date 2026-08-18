@@ -46,7 +46,7 @@ describe("Die Bremse löst sich wieder (der eigentliche Bug)", () => {
     expect(await countOpenInvoiceOrders(ORDER.email)).toBe(0);
   });
 
-  it("zaehlt eine stornierte Bestellung nicht mehr als offen", async () => {
+  it("zählt eine stornierte Bestellung nicht mehr als offen", async () => {
     const a = await createOrder(ORDER);
     expect(await countOpenInvoiceOrders(ORDER.email)).toBe(1);
 
@@ -65,7 +65,7 @@ describe("markOrderPaid", () => {
     expect(res.order?.paidAt).toBeTruthy();
   });
 
-  it("ist idempotent (Doppelklick im Admin aendert nichts)", async () => {
+  it("ist idempotent (Doppelklick im Admin ändert nichts)", async () => {
     const o = await createOrder(ORDER);
 
     const first = await markOrderPaid(o.orderNumber);
@@ -76,7 +76,7 @@ describe("markOrderPaid", () => {
     expect(second.order?.status).toBe("paid");
   });
 
-  it("hebt eine Credit-Sperre wieder auf — wer nach der Mahnung zahlt, bekommt sein Kontingent zurueck", async () => {
+  it("hebt eine Credit-Sperre wieder auf — wer nach der Mahnung zahlt, bekommt sein Kontingent zurück", async () => {
     const o = await createOrder(ORDER);
     await suspendOrderCredits(o.orderNumber);
     expect(await consumeCredit(o.creditCode)).toEqual({ ok: false, reason: "revoked" });
@@ -88,14 +88,14 @@ describe("markOrderPaid", () => {
     expect((await getOrder(o.orderNumber))?.creditsGesperrt).toBe(false);
   });
 
-  it("meldet changed=false fuer eine unbekannte Bestellung", async () => {
+  it("meldet changed=false für eine unbekannte Bestellung", async () => {
     const res = await markOrderPaid("EDU-GIBTS-NICHT");
     expect(res).toEqual({ changed: false, order: null });
   });
 });
 
 describe("suspendOrderCredits (Mahnstufe — Forderung bleibt bestehen)", () => {
-  it("sperrt die offenen Credits, laesst den Status aber auf 'offen'", async () => {
+  it("sperrt die offenen Credits, lässt den Status aber auf 'offen'", async () => {
     const o = await createOrder(ORDER);
     const res = await suspendOrderCredits(o.orderNumber);
 
@@ -106,7 +106,7 @@ describe("suspendOrderCredits (Mahnstufe — Forderung bleibt bestehen)", () => 
     expect(await consumeCredit(o.creditCode)).toEqual({ ok: false, reason: "revoked" });
   });
 
-  it("laesst bereits erstellte Antraege unangetastet (erbrachte Leistung)", async () => {
+  it("lässt bereits erstellte Anträge unangetastet (erbrachte Leistung)", async () => {
     const o = await createOrder(ORDER);
     await consumeCredit(o.creditCode); // 1 Antrag ist raus
     await consumeCredit(o.creditCode); // 2 Antraege sind raus
@@ -132,7 +132,7 @@ describe("suspendOrderCredits (Mahnstufe — Forderung bleibt bestehen)", () => 
   });
 });
 
-describe("cancelOrder (Storno — Forderung faellt weg)", () => {
+describe("cancelOrder (Storno — Forderung fällt weg)", () => {
   it("sperrt die offenen Credits des Kontingents", async () => {
     const o = await createOrder(ORDER);
     await cancelOrder(o.orderNumber, "Nicht bezahlt");
@@ -172,7 +172,7 @@ describe("cancelOrder (Storno — Forderung faellt weg)", () => {
 });
 
 describe("listOrders", () => {
-  it("liefert Bestellungen mit Ueberfaelligkeit und Sperr-Status", async () => {
+  it("liefert Bestellungen mit Überfälligkeit und Sperr-Status", async () => {
     const o = await createOrder(ORDER);
     await query(`UPDATE org_orders SET due_date = CURRENT_DATE - 3 WHERE order_number = $1`, [
       o.orderNumber,
@@ -205,7 +205,7 @@ describe("Schema (Migration 013)", () => {
     ).rejects.toThrow(/org_orders_status_check/);
   });
 
-  it("verknuepft den Einzelantrag ueber eine echte Spalte statt ueber Freitext", async () => {
+  it("verknüpft den Einzelantrag über eine echte Spalte statt über Freitext", async () => {
     const o = await createEinzelInvoiceOrder({
       ...ORDER,
       sessionToken: "sess-real-column",

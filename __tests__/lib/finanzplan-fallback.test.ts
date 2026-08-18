@@ -73,7 +73,7 @@ describe("generateFinanzplan — Fall-6-Robustheit", () => {
 });
 
 describe("buildUnbezifferterFallback", () => {
-  it("nutzt Projektaktivitaeten, wenn keine Hauptposten vorliegen", () => {
+  it("nutzt Projektaktivitäten, wenn keine Hauptposten vorliegen", () => {
     const facts = { projekt: { aktivitaeten: ["Leseclub", "Autorenlesung"] } } as never;
     const plan = buildUnbezifferterFallback(facts);
     expect(plan.unbeziffert).toBe(true);
@@ -81,13 +81,13 @@ describe("buildUnbezifferterFallback", () => {
     expect(plan.posten).toEqual([]);
   });
 
-  it("generischer Rahmen, wenn weder Hauptposten noch Aktivitaeten vorliegen", () => {
+  it("generischer Rahmen, wenn weder Hauptposten noch Aktivitäten vorliegen", () => {
     const plan = buildUnbezifferterFallback({} as never);
     expect(plan.kostenrahmen?.length).toBe(1);
     expect(plan.kostenrahmen?.[0]).toMatch(/vor Einreichung/i);
   });
 
-  it("haengt LLM-Hinweise an den Pflicht-Hinweis an", () => {
+  it("hängt LLM-Hinweise an den Pflicht-Hinweis an", () => {
     const plan = buildUnbezifferterFallback({} as never, ["Förderquote 80 %"]);
     expect(plan.hinweise).toContain("Förderquote 80 %");
     expect(plan.hinweise?.[0]).toMatch(/kein bezifferter Finanzplan/i);

@@ -21,12 +21,12 @@ afterAll(() => {
 });
 
 describe("isValidIban", () => {
-  it("erkennt die frueher hartkodierte Fallback-IBAN als UNGUELTIG", () => {
+  it("erkennt die früher hartkodierte Fallback-IBAN als UNGÜLTIG", () => {
     // Genau der Wert, der bis 14.07.2026 als Default im Code stand.
     expect(isValidIban("DE91 4306 0967 1250 4734 00")).toBe(false);
   });
 
-  it("akzeptiert gueltige IBANs (Pruefsumme mod 97 == 1)", () => {
+  it("akzeptiert gültige IBANs (Prüfsumme mod 97 == 1)", () => {
     expect(isValidIban("DE89 3704 0044 0532 0130 00")).toBe(true); // klassische Beispiel-IBAN
     expect(isValidIban("DE89370400440532013000")).toBe(true); // ohne Leerzeichen
     expect(isValidIban("de89370400440532013000")).toBe(true); // klein geschrieben
@@ -48,7 +48,7 @@ describe("bankConfigProblems", () => {
     expect(p).toContain("BANK_ACCOUNT_HOLDER fehlt");
   });
 
-  it("verlangt KEINE BIC — in SEPA genuegt die IBAN (IBAN-only seit 2016)", () => {
+  it("verlangt KEINE BIC — in SEPA genügt die IBAN (IBAN-only seit 2016)", () => {
     // Eine BIC zu erzwingen wuerde den Rechnungskauf blockieren, ohne dass jemandem
     // geholfen waere. Und eine GERATENE BIC waere so schaedlich wie eine falsche IBAN.
     process.env.BANK_IBAN = "DE87 1001 8000 0113 7349 60";
@@ -60,19 +60,19 @@ describe("bankConfigProblems", () => {
     expect(b.bic).toBeUndefined(); // -> Zeile faellt in der Mail weg, kein "undefined"
   });
 
-  it("akzeptiert die ECHTE aitema-IBAN (Pruefsumme geprueft, 14.07.2026)", () => {
+  it("akzeptiert die ECHTE aitema-IBAN (Prüfsumme geprüft, 14.07.2026)", () => {
     expect(isValidIban("DE87 1001 8000 0113 7349 60")).toBe(true);
   });
 
-  it("meldet eine gesetzte, aber ungueltige IBAN", () => {
+  it("meldet eine gesetzte, aber ungültige IBAN", () => {
     process.env.BANK_IBAN = "DE91 4306 0967 1250 4734 00";
     process.env.BANK_ACCOUNT_HOLDER = "aitema GmbH";
     process.env.BANK_BIC = "GENODEM1GLS";
 
-    expect(bankConfigProblems()).toEqual(["BANK_IBAN hat eine ungueltige Pruefsumme"]);
+    expect(bankConfigProblems()).toEqual(["BANK_IBAN hat eine ungültige Prüfsumme"]);
   });
 
-  it("ist zufrieden, wenn alles gesetzt und gueltig ist", () => {
+  it("ist zufrieden, wenn alles gesetzt und gültig ist", () => {
     process.env.BANK_IBAN = "DE89 3704 0044 0532 0130 00";
     process.env.BANK_ACCOUNT_HOLDER = "aitema GmbH";
     process.env.BANK_BIC = "GENODEM1GLS";
@@ -87,12 +87,12 @@ describe("getBankDetails — fail-closed", () => {
     expect(() => getBankDetails()).toThrow(/Bankverbindung nicht konfiguriert/);
   });
 
-  it("wirft auch bei gesetzter, aber ungueltiger IBAN", () => {
+  it("wirft auch bei gesetzter, aber ungültiger IBAN", () => {
     process.env.BANK_IBAN = "DE91 4306 0967 1250 4734 00";
     process.env.BANK_ACCOUNT_HOLDER = "aitema GmbH";
     process.env.BANK_BIC = "GENODEM1GLS";
 
-    expect(() => getBankDetails()).toThrow(/ungueltige Pruefsumme/);
+    expect(() => getBankDetails()).toThrow(/ungültige Prüfsumme/);
   });
 
   it("liefert die konfigurierten Daten, wenn sie stimmen", () => {

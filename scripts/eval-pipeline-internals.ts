@@ -635,6 +635,24 @@ export function extractContext(haystack: string, match: string, contextLen: numb
 }
 
 /**
+ * Befund 18.08.2026: Der Korpus haelt 429 Marker in ASCII-Ersatzschreibung
+ * ("Foerdersatz 70 EUR pro Reisetag"), die Pipeline schreibt seit der
+ * Umlaut-Umstellung aber "Fördersatz". Ein exakter Teilstring-Vergleich haette
+ * diese Halluzinationen ab sofort NICHT mehr gefunden — WIZ-02 waere bei 100,0
+ * geblieben und dabei blind gewesen. Deshalb wird vor dem Vergleich auf einer
+ * gemeinsamen Form normalisiert (ä→ae, ö→oe, ü→ue, ß→ss, klein).
+ * Das ist strikt zusaetzliche Toleranz: alles, was vorher matchte, matcht weiter.
+ */
+export function normSchreibweise(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/ä/g, "ae")
+    .replace(/ö/g, "oe")
+    .replace(/ü/g, "ue")
+    .replace(/ß/g, "ss");
+}
+
+/**
  * Erkennt in welcher Quelle ein Marker-Treffer vorliegt.
  */
 function detectMarkerSource(
@@ -642,18 +660,18 @@ function detectMarkerSource(
   marker: string,
   artefacts: GenerationArtefacts
 ): MarkerHit["foundIn"] {
-  const lowerMarker = marker.toLowerCase();
+  const lowerMarker = normSchreibweise(marker);
   // Finanzplan-Quellen
   for (const p of artefacts.finanzplan?.posten ?? []) {
-    if (p.bezeichnung?.toLowerCase().includes(lowerMarker)) return "finanzplan-bezeichnung";
-    if (p.begruendung?.toLowerCase().includes(lowerMarker)) return "finanzplan-begruendung";
+    if (p.bezeichnung && normSchreibweise(p.bezeichnung).includes(lowerMarker)) return "finanzplan-bezeichnung";
+    if (p.begruendung && normSchreibweise(p.begruendung).includes(lowerMarker)) return "finanzplan-begruendung";
   }
   // Sections
   for (const s of artefacts.sections ?? []) {
-    if (s.text.toLowerCase().includes(lowerMarker)) return "section";
+    if (normSchreibweise(s.text).includes(lowerMarker)) return "section";
   }
   // finalText
-  if ((artefacts.finalText ?? "").toLowerCase().includes(lowerMarker)) return "finalText";
+  if (normSchreibweise(artefacts.finalText ?? "").includes(lowerMarker)) return "finalText";
   return "finalText";
 }
 
@@ -864,7 +882,7 @@ export function scoreWiz02(
   // === Layer 1: Marker-Hits ===
   const layer1Hits: Array<MarkerHit> = [];
   for (const m of expectedForbidden) {
-    if (haystack.toLowerCase().includes(m.marker.toLowerCase())) {
+    if (normSchreibweise(haystack).includes(normSchreibweise(m.marker))) {
       layer1Hits.push({
         marker: m.marker,
         snippet: extractContext(haystack, m.marker, 60),

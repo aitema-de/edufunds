@@ -86,7 +86,7 @@ describe('content-collector', () => {
   it('kürzt verbose/rollende Fristen für das Badge', () => {
     expect(conciseDeadline('laufend (vor Projektbeginn)')).toBe('laufend');
     expect(conciseDeadline('Fortlaufend - keine feste Frist; jederzeit')).toBe('laufend');
-    expect(conciseDeadline('Bewerbungszyklus jaehrlich (zuletzt Frist 22.02.2026)')).toBe('Frist: 22.02.2026');
+    expect(conciseDeadline('Bewerbungszyklus jährlich (zuletzt Frist 22.02.2026)')).toBe('Frist: 22.02.2026');
     expect(conciseDeadline('Antrag bis 30. März 2026 einreichen')).toBe('Frist: 30. März 2026');
     expect(conciseDeadline('')).toBe('laufend');
     expect(conciseDeadline('Ein sehr langer Fristtext der definitiv über zweiundvierzig Zeichen liegt').length).toBeLessThanOrEqual(43);

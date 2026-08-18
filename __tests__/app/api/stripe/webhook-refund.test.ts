@@ -105,7 +105,7 @@ describe("charge.refunded — Einzelantrag", () => {
     expect(mRetrievePI).not.toHaveBeenCalled();
   });
 
-  it("laedt den PaymentIntent nach, wenn der Charge keine Metadaten traegt", async () => {
+  it("lädt den PaymentIntent nach, wenn der Charge keine Metadaten trägt", async () => {
     // Wir verlassen uns NICHT darauf, dass der Charge die PI-Metadaten erbt.
     mockCharge({ id: "ch_2", amount: 2990, amount_refunded: 2990, payment_intent: "pi_2", metadata: {} });
     mRetrievePI.mockResolvedValue({ metadata: { wizard_session_token: "sess-xyz" } });
@@ -119,7 +119,7 @@ describe("charge.refunded — Einzelantrag", () => {
 });
 
 describe("charge.refunded — Teilerstattung", () => {
-  it("entwertet NICHTS bei einer Teilerstattung (Kulanz-Rueckzahlung)", async () => {
+  it("entwertet NICHTS bei einer Teilerstattung (Kulanz-Rückzahlung)", async () => {
     mockCharge({
       id: "ch_3",
       amount: 2990,
@@ -135,7 +135,7 @@ describe("charge.refunded — Teilerstattung", () => {
     expect(mRevokeQuota).not.toHaveBeenCalled();
   });
 
-  it("entwertet, sobald der volle Betrag zurueckgezahlt ist (auch in Raten)", async () => {
+  it("entwertet, sobald der volle Betrag zurückgezahlt ist (auch in Raten)", async () => {
     mockCharge({
       id: "ch_4",
       amount: 2990,
@@ -150,7 +150,7 @@ describe("charge.refunded — Teilerstattung", () => {
 });
 
 describe("charge.refunded — Kontingent-Kartenkauf", () => {
-  it("findet ueber den PaymentIntent die Checkout-Session und entwertet den Code", async () => {
+  it("findet über den PaymentIntent die Checkout-Session und entwertet den Code", async () => {
     // Der Kontingent-Checkout setzt KEINE PaymentIntent-Metadaten — deshalb der Umweg.
     mockCharge({ id: "ch_5", amount: 13990, amount_refunded: 13990, payment_intent: "pi_5", metadata: {} });
     mRetrievePI.mockResolvedValue({ metadata: {} });
@@ -164,7 +164,7 @@ describe("charge.refunded — Kontingent-Kartenkauf", () => {
     expect(mRevokeSession).not.toHaveBeenCalled();
   });
 
-  it("quittiert 200, wenn sich der Charge nirgends zuordnen laesst (kein Stripe-Retry-Sturm)", async () => {
+  it("quittiert 200, wenn sich der Charge nirgends zuordnen lässt (kein Stripe-Retry-Sturm)", async () => {
     mockCharge({ id: "ch_6", amount: 999, amount_refunded: 999, payment_intent: "pi_6", metadata: {} });
     mRetrievePI.mockResolvedValue({ metadata: {} });
     mListSessions.mockResolvedValue({ data: [] });

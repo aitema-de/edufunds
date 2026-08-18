@@ -16,38 +16,38 @@ describe("umfangsDirektive", () => {
     const d = umfangsDirektive(5000);
     expect(d).toContain("Maximal 5000 Zeichen");
     expect(d).toContain("3500–4500 Zeichen"); // 70–90 %
-    expect(d).toContain("ERSETZT die Standard-Laengenvorgabe");
+    expect(d).toContain("ERSETZT die Standard-Längenvorgabe");
   });
 
-  it("verlangt bei grosszuegigem Platz (>= 2000) die fachliche Begruendung", () => {
+  it("verlangt bei großzügigem Platz (>= 2000) die fachliche Begründung", () => {
     const d = umfangsDirektive(5000);
-    expect(d).toMatch(/BEGRUENDUNG/);
-    expect(d).toMatch(/sozialpaedagogisch/);
+    expect(d).toMatch(/BEGRÜNDUNG/);
+    expect(d).toMatch(/sozialpädagogisch/);
     expect(d).toMatch(/KEINE Halluzination/);
   });
 
-  it("verlangt bei knappem Platz (< 2000) KEINE Theorie — dort zaehlt Dichte", () => {
+  it("verlangt bei knappem Platz (< 2000) KEINE Theorie — dort zählt Dichte", () => {
     const d = umfangsDirektive(800);
-    expect(d).not.toMatch(/BEGRUENDUNG/);
+    expect(d).not.toMatch(/BEGRÜNDUNG/);
     expect(d).toContain("Maximal 800 Zeichen");
     // Korridor gerundet auf 50er: 550–700
     expect(d).toContain("550–700 Zeichen");
   });
 
-  it("stellt klar, dass das Limit eine TEXTTIEFE-Wahl schlaegt", () => {
+  it("stellt klar, dass das Limit eine TEXTTIEFE-Wahl schlägt", () => {
     // Sonst kann "AUSFUEHRLICH" (300–550 Woerter ≈ 2100–3850 Zeichen) ein
     // 1500-Zeichen-Formularfeld sprengen — der Foerderer schneidet dann ab.
     expect(umfangsDirektive(1500)).toContain("TEXTTIEFE");
   });
 
-  it("haengt am Abschnitt, sobald maxZeichen belegt ist", () => {
+  it("hängt am Abschnitt, sobald maxZeichen belegt ist", () => {
     const mit = abschnittPrompt({ id: "x", name: "Konzept", pflicht: true, maxZeichen: 3000 });
     expect(mit).toContain("ZIEL-UMFANG");
     const ohne = abschnittPrompt({ id: "x", name: "Konzept", pflicht: true });
     expect(ohne).not.toContain("ZIEL-UMFANG");
   });
 
-  it("SECTION_SYSTEM erklaert die Standard-Vorgabe zur Ausnahme-Regel", () => {
+  it("SECTION_SYSTEM erklärt die Standard-Vorgabe zur Ausnahme-Regel", () => {
     // Beide Seiten muessen dieselbe Vorrang-Regel nennen, sonst konkurrieren
     // zwei Laengenvorgaben im selben Prompt und die kuerzere gewinnt still.
     expect(SECTION_SYSTEM).toContain("ZIEL-UMFANG");

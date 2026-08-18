@@ -46,7 +46,7 @@ describe("extractAnliegenThemes — Alias-Cluster (C3)", () => {
     expect(t.has("soziales")).toBe(true);
   });
 
-  it("gesundes Essen → Gesundheit/Ernaehrung-Cluster", () => {
+  it("gesundes Essen → Gesundheit/Ernährung-Cluster", () => {
     const t = extractAnliegenThemes("Gesundes Essen zum Thema machen.");
     expect(t.has("gesundheit")).toBe(true);
     expect(t.has("ernaehrung")).toBe(true);
@@ -61,14 +61,14 @@ describe("extractAnliegenThemes — Alias-Cluster (C3)", () => {
   });
 
   it("Konzert(fahrten) → Kultur-Cluster (ev-027)", () => {
-    const t = extractAnliegenThemes("Schulchor und Konzertfahrten foerdern.");
+    const t = extractAnliegenThemes("Schulchor und Konzertfahrten fördern.");
     expect(t.has("kultur")).toBe(true);
     expect(t.has("musik")).toBe(true);
   });
 
-  it("Erasmus+/Schulpartnerschaft/Schueleraustausch → Europa/International-Cluster (ev-007)", () => {
+  it("Erasmus+/Schulpartnerschaft/Schüleraustausch → Europa/International-Cluster (ev-007)", () => {
     const t = extractAnliegenThemes(
-      "Erasmus+ Schulpartnerschaft mit Polen, drei Schueleraustausche pro Jahr."
+      "Erasmus+ Schulpartnerschaft mit Polen, drei Schüleraustausche pro Jahr."
     );
     expect(t.has("europa")).toBe(true);
     expect(t.has("international")).toBe(true);
@@ -82,13 +82,13 @@ describe("extractAnliegenThemes — Alias-Cluster (C3)", () => {
   });
 
   it("Synonym-Split: 'digital' zieht auch 'digitalisierung' (20× vs 4×)", () => {
-    const t = extractAnliegenThemes("Wir moechten den digitalen Unterricht staerken.");
+    const t = extractAnliegenThemes("Wir möchten den digitalen Unterricht stärken.");
     expect(t.has("digital")).toBe(true);
     expect(t.has("digitalisierung")).toBe(true);
   });
 
   it("exakter Kategorie-Match bleibt erhalten (lesen)", () => {
-    const t = extractAnliegenThemes("Wir wollen das Lesen foerdern.");
+    const t = extractAnliegenThemes("Wir wollen das Lesen fördern.");
     expect(t.has("lesen")).toBe(true);
     expect(t.has("sprache")).toBe(true);
   });
@@ -138,7 +138,7 @@ describe("prefilter — Status-Filter (C1)", () => {
     expect(erwartet).toBeLessThan(nurStatus); // d. h. mind. ein Programm ist abgelaufen
 
     const res = await runMatch({
-      anliegen: "Wir wollen die Schulbibliothek mit neuen Buechern ausstatten und Lesen foerdern.",
+      anliegen: "Wir wollen die Schulbibliothek mit neuen Büchern ausstatten und Lesen fördern.",
     });
 
     expect(res.kind).toBe("ranking");

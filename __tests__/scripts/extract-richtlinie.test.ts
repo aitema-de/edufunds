@@ -4,7 +4,7 @@ import path from "path";
 const SRC_PATH = path.join(__dirname, "..", "..", "scripts", "extract-richtlinie.ts");
 const src = fs.readFileSync(SRC_PATH, "utf8");
 
-describe("scripts/extract-richtlinie.ts (FETCH-01 + FETCH-03 Migrations-Konformitaet)", () => {
+describe("scripts/extract-richtlinie.ts (FETCH-01 + FETCH-03 Migrations-Konformität)", () => {
   describe("Wrapper-Migration (FETCH-01)", () => {
     it("sollte generateJson aus lib/wizard/llm importieren", () => {
       expect(src).toMatch(

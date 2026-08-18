@@ -56,17 +56,17 @@ describe("questionSimilarity / countSimilarQuestions", () => {
     const q = "Was ist das konkrete Bewegungsziel der Sport-AG?";
     expect(questionSimilarity(q, q)).toBe(1);
     expect(
-      questionSimilarity(q, "Wie viele Schuelerinnen nehmen voraussichtlich teil?")
+      questionSimilarity(q, "Wie viele Schülerinnen nehmen voraussichtlich teil?")
     ).toBeLessThan(0.8);
   });
 
-  it("zaehlt nur ausreichend aehnliche Vorfragen", () => {
+  it("zählt nur ausreichend ähnliche Vorfragen", () => {
     const prior = [
       "Was ist das konkrete Bewegungsziel der Sport-AG?",
       "Welche Altersgruppe nimmt teil?",
     ];
     expect(countSimilarQuestions(prior, "Was ist das konkrete Bewegungsziel der Sport-AG?")).toBe(1);
-    expect(countSimilarQuestions(prior, "Welches Budget steht zur Verfuegung?")).toBe(0);
+    expect(countSimilarQuestions(prior, "Welches Budget steht zur Verfügung?")).toBe(0);
   });
 });
 
@@ -80,7 +80,7 @@ describe("nextStep Anti-Wiederholungs-Guard", () => {
   });
 
   it("stellt eine NEUE Frage normal", async () => {
-    mockModel("Welches Budget steht fuer das Projekt zur Verfuegung?", "question");
+    mockModel("Welches Budget steht für das Projekt zur Verfügung?", "question");
     const { step } = await nextStep(
       programm,
       askedQuestions(["Was ist das konkrete Bewegungsziel der Sport-AG?"]),
@@ -95,7 +95,7 @@ describe("nextStep Anti-Wiederholungs-Guard", () => {
     }
   });
 
-  it("respektiert das Modell-'ready' unveraendert", async () => {
+  it("respektiert das Modell-'ready' unverändert", async () => {
     mockModel("Wir haben genug Informationen.", "ready");
     const { step } = await nextStep(programm, askedQuestions(["irgendwas?"]), FACTS_KOMPLETT, 3, 12, null);
     expect(step.kind).toBe("ready");
@@ -117,10 +117,10 @@ describe("nextStep Anti-Wiederholungs-Guard", () => {
  * und Fragenbudget da ist, wird der Abschluss in eine gezielte Nachfrage
  * umgewandelt — egal, auf welchem Weg er zustande kam.
  */
-describe("nextStep × Abschluss-Autoritaet", () => {
+describe("nextStep × Abschluss-Autorität", () => {
   const LUECKENHAFT = { schule: { name: "Testschule" } };
 
-  it("verwandelt das Modell-'ready' in eine Nachfrage, wenn die Foerdersumme fehlt", async () => {
+  it("verwandelt das Modell-'ready' in eine Nachfrage, wenn die Fördersumme fehlt", async () => {
     mockModel("Wir haben genug Informationen.", "ready");
     const { step } = await nextStep(programm, askedQuestions(["irgendwas?"]), LUECKENHAFT, 3, 12, null);
     expect(step.kind).toBe("question");
@@ -135,7 +135,7 @@ describe("nextStep × Abschluss-Autoritaet", () => {
     if (step.kind === "question") expect(step.question).not.toBe(frage);
   });
 
-  it("laesst am Fragendeckel enden, auch wenn Luecken offen sind", async () => {
+  it("lässt am Fragendeckel enden, auch wenn Lücken offen sind", async () => {
     const { step, usage: u } = await nextStep(programm, [], LUECKENHAFT, 12, 12, null);
     expect(step.kind).toBe("ready");
     expect(u).toBeNull();

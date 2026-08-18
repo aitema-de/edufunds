@@ -11,7 +11,7 @@ const EMPTY_FACTS: WizardFacts = {};
 describe("WIZ-02 Layer-1 Marker-Detection", () => {
   it("positiver Hit: forbidden_marker 'Az 123/2026' im finalText gefunden → layer1MarkerHits=1", () => {
     const artefacts: GenerationArtefacts = {
-      finalText: "Wir beantragen unter Az 123/2026 Foerderung fuer unser Projekt.",
+      finalText: "Wir beantragen unter Az 123/2026 Förderung für unser Projekt.",
       sections: [],
     };
     const result = scoreWiz02(
@@ -28,7 +28,7 @@ describe("WIZ-02 Layer-1 Marker-Detection", () => {
     const artefacts: GenerationArtefacts = {
       finalText: "Allgemeiner Text ohne Marker.",
       sections: [
-        { name: "Bedarfsanalyse", text: "Gemaess TV-L E9 Eingruppierung des Personals." },
+        { name: "Bedarfsanalyse", text: "Gemäß TV-L E9 Eingruppierung des Personals." },
       ],
     };
     const result = scoreWiz02(
@@ -40,7 +40,7 @@ describe("WIZ-02 Layer-1 Marker-Detection", () => {
     expect(result.layer1MarkerHits).toBe(1);
   });
 
-  it("Marker in finanzplan-Begruendung → Hit (multi-source haystack)", () => {
+  it("Marker in finanzplan-Begründung → Hit (multi-source haystack)", () => {
     const artefacts: GenerationArtefacts = {
       finalText: "Normaler Antragstext.",
       sections: [],
@@ -51,7 +51,7 @@ describe("WIZ-02 Layer-1 Marker-Detection", () => {
             kategorie: "personal",
             bezeichnung: "Lehrkraft",
             betragEur: 5000,
-            begruendung: "Honorar nach MDM-Loesung gemaess Rahmenvertrag",
+            begruendung: "Honorar nach MDM-Lösung gemäß Rahmenvertrag",
           },
         ],
         generiertAm: new Date().toISOString(),
@@ -59,7 +59,7 @@ describe("WIZ-02 Layer-1 Marker-Detection", () => {
     };
     const result = scoreWiz02(
       artefacts,
-      [{ marker: "MDM-Loesung", description: "MDM-Loesung ist erfunden" }],
+      [{ marker: "MDM-Lösung", description: "MDM-Lösung ist erfunden" }],
       [],
       EMPTY_FACTS
     );

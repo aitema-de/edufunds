@@ -1,7 +1,7 @@
 import { markdownToRtf } from "@/lib/export/rtf";
 
 describe("markdownToRtf", () => {
-  it("erzeugt einen gueltigen RTF-Rahmen", () => {
+  it("erzeugt einen gültigen RTF-Rahmen", () => {
     const rtf = markdownToRtf("Hallo Welt");
     expect(rtf.startsWith("{\\rtf1")).toBe(true);
     expect(rtf.trim().endsWith("}")).toBe(true);
@@ -25,7 +25,7 @@ describe("markdownToRtf", () => {
     expect(rtf).toContain("\\b wichtig\\b0");
   });
 
-  it("uebernimmt Ueberschriften und Listen", () => {
+  it("übernimmt Überschriften und Listen", () => {
     const rtf = markdownToRtf("# Titel\n\n## Abschnitt\n\n- Punkt eins\n- Punkt zwei");
     expect(rtf).toContain("\\fs36 Titel");
     expect(rtf).toContain("\\fs30 Abschnitt");
@@ -51,7 +51,7 @@ describe("markdownToRtf", () => {
 
   // AI-Act Art. 50(2): Die maschinenlesbare Kennzeichnung muss im RTF-\info-Block
   // stehen (Dokumenteigenschaften), nicht nur als sichtbarer Text im Dokument.
-  it("traegt die KI-Kennzeichnung maschinenlesbar im \\info-Block (Art. 50(2))", () => {
+  it("trägt die KI-Kennzeichnung maschinenlesbar im \\info-Block (Art. 50(2))", () => {
     const rtf = markdownToRtf("Inhalt", "Mein Antrag");
     expect(rtf).toContain("{\\info");
     expect(rtf).toContain("{\\subject KI-generierter Antragsentwurf (AI-generated content)}");
@@ -61,7 +61,7 @@ describe("markdownToRtf", () => {
     expect(rtf).toContain("{\\title Mein Antrag}");
   });
 
-  it("laesst den \\info-Titel bei fehlendem Titel weg, Kennzeichnung bleibt", () => {
+  it("lässt den \\info-Titel bei fehlendem Titel weg, Kennzeichnung bleibt", () => {
     const rtf = markdownToRtf("Inhalt");
     expect(rtf).not.toContain("{\\title");
     expect(rtf).toContain("{\\info");

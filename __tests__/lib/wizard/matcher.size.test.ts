@@ -27,16 +27,16 @@ function prog(min: number | null, max: number | null) {
 }
 
 describe("sizeAchtung (C5)", () => {
-  it("kein Budget: markiert Grossprojekt-Schiene (min >= 100k)", () => {
-    expect(sizeAchtung(prog(100000, 400000))).toMatch(/Grossprojekt-Foerderung/);
+  it("kein Budget: markiert Großprojekt-Schiene (min >= 100k)", () => {
+    expect(sizeAchtung(prog(100000, 400000))).toMatch(/Großprojekt-Förderung/);
   });
 
-  it("kein Budget: kein Hinweis fuer normales Programm (min < 100k)", () => {
+  it("kein Budget: kein Hinweis für normales Programm (min < 100k)", () => {
     expect(sizeAchtung(prog(1000, 20000))).toBe("");
   });
 
-  it("Budget bekannt: Programm-Min > Budget × 3 → Ueberdimensionierungs-Hinweis", () => {
-    expect(sizeAchtung(prog(100000, 400000), 9500)).toMatch(/deutlich groesser/);
+  it("Budget bekannt: Programm-Min > Budget × 3 → Überdimensionierungs-Hinweis", () => {
+    expect(sizeAchtung(prog(100000, 400000), 9500)).toMatch(/deutlich größer/);
   });
 
   it("Budget bekannt: passendes Programm → kein Hinweis", () => {
@@ -47,7 +47,7 @@ describe("sizeAchtung (C5)", () => {
     expect(sizeAchtung(prog(1000, 20000), 80000)).toMatch(/kleiner als euer Vorhaben/);
   });
 
-  it("ohne Foerdersummen-Daten: kein Hinweis (kein Fehlalarm)", () => {
+  it("ohne Fördersummen-Daten: kein Hinweis (kein Fehlalarm)", () => {
     expect(sizeAchtung(prog(null, null), 9500)).toBe("");
     expect(sizeAchtung(prog(null, null))).toBe("");
   });
@@ -56,7 +56,7 @@ describe("sizeAchtung (C5)", () => {
 describe("runMatch — C5 Integration", () => {
   beforeEach(() => jest.clearAllMocks());
 
-  it("kein Budget: Grossprojekt-Programm erhaelt Grossprojekt-Hinweis in achtung_bei, KEINE Demotion", async () => {
+  it("kein Budget: Großprojekt-Programm erhält Großprojekt-Hinweis in achtung_bei, KEINE Demotion", async () => {
     mockGenerateText.mockResolvedValue({
       value: `${DBU_ID}|70|Thematisch passend zum Nachhaltigkeitsanliegen der Schule.|`,
       usage: { promptTokens: 100, candidatesTokens: 50 },
@@ -68,12 +68,12 @@ describe("runMatch — C5 Integration", () => {
     if (res.kind === "ranking") {
       const hit = res.matches.find((m) => m.id === DBU_ID)!;
       expect(hit).toBeDefined();
-      expect(hit.achtung_bei).toMatch(/Grossprojekt-Foerderung/);
+      expect(hit.achtung_bei).toMatch(/Großprojekt-Förderung/);
       expect(hit.score).toBe(70); // unveraendert ohne Budget
     }
   });
 
-  it("Budget 9.500: Grossprojekt-Programm wird demotet (<=58) + Ueberdimensionierungs-Hinweis", async () => {
+  it("Budget 9.500: Großprojekt-Programm wird demotet (<=58) + Überdimensionierungs-Hinweis", async () => {
     mockGenerateText.mockResolvedValue({
       value: `${DBU_ID}|85|Thematisch passend zum Nachhaltigkeitsanliegen der Schule.|`,
       usage: { promptTokens: 100, candidatesTokens: 50 },
@@ -87,7 +87,7 @@ describe("runMatch — C5 Integration", () => {
       const hit = res.matches.find((m) => m.id === DBU_ID)!;
       expect(hit).toBeDefined();
       expect(hit.score).toBeLessThanOrEqual(58);
-      expect(hit.achtung_bei).toMatch(/deutlich groesser/);
+      expect(hit.achtung_bei).toMatch(/deutlich größer/);
     }
   });
 });

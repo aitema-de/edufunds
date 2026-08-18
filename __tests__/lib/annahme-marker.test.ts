@@ -59,7 +59,7 @@ describe("wrapAnnahmen", () => {
 describe("resolveAnnahme", () => {
   const text = "Vorher. [Annahme: die Aula steht zur Verfügung] Nachher.";
 
-  it("uebernehmen: löst den Marker auf, Inhalt bleibt", () => {
+  it("übernehmen: löst den Marker auf, Inhalt bleibt", () => {
     expect(resolveAnnahme(text, "die Aula steht zur Verfügung", "uebernehmen")).toBe(
       "Vorher. die Aula steht zur Verfügung Nachher."
     );

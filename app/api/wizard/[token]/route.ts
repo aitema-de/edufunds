@@ -61,7 +61,7 @@ export async function PATCH(
   try {
     body = (await req.json()) as typeof body;
   } catch {
-    return NextResponse.json({ error: "ungueltiger Body" }, { status: 400 });
+    return NextResponse.json({ error: "ungültiger Body" }, { status: 400 });
   }
   const { section, key, value } = body;
   if (!section || !key || typeof section !== "string" || typeof key !== "string") {
@@ -87,7 +87,7 @@ export async function PATCH(
   // damit kein fertiger Antrag und seine Fakten auseinanderlaufen.
   if (session.paidToken || session.data.phase === "complete" || session.data.phase === "generating") {
     return NextResponse.json(
-      { error: "Fakten koennen nach dem Schreiben des Antrags nicht mehr geaendert werden." },
+      { error: "Fakten können nach dem Schreiben des Antrags nicht mehr geändert werden." },
       { status: 409 }
     );
   }

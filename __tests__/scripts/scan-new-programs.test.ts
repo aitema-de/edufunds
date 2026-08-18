@@ -4,7 +4,7 @@ import path from "path";
 const SRC_PATH = path.join(__dirname, "..", "..", "scripts", "scan-new-programs.ts");
 const src = fs.readFileSync(SRC_PATH, "utf8");
 
-describe("scripts/scan-new-programs.ts (FETCH-01 Migrations-Konformitaet)", () => {
+describe("scripts/scan-new-programs.ts (FETCH-01 Migrations-Konformität)", () => {
   it("sollte generateJson aus lib/wizard/llm importieren", () => {
     expect(src).toMatch(
       /import\s*\{[^}]*generateJson[^}]*\}\s*from\s+["']\.\.\/lib\/wizard\/llm["']/

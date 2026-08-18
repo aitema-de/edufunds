@@ -46,7 +46,7 @@ async function orderRow(orderNumber: string) {
 }
 
 describe("createOrder (Kontingent auf Rechnung)", () => {
-  it("persistiert die Bestellung mit korrektem Betrag, Kontingent und Faelligkeit", async () => {
+  it("persistiert die Bestellung mit korrektem Betrag, Kontingent und Fälligkeit", async () => {
     const o = await createOrder(ORDER);
 
     expect(o.credits).toBe(5);
@@ -119,7 +119,7 @@ describe("createEinzelInvoiceOrder (Einzelantrag auf Rechnung)", () => {
 });
 
 describe("fulfillQuotaCardPurchase (Kontingent per Karte, Stripe-Webhook)", () => {
-  it("erzeugt einen Kontingent-Code fuer die bezahlte Session", async () => {
+  it("erzeugt einen Kontingent-Code für die bezahlte Session", async () => {
     const r = await fulfillQuotaCardPurchase({
       stripeSessionId: "cs_quota_1",
       packId: "pack10",
@@ -148,7 +148,7 @@ describe("fulfillQuotaCardPurchase (Kontingent per Karte, Stripe-Webhook)", () =
     expect(res.rows[0].count).toBe("1");
   });
 
-  it("haelt auch der GLEICHZEITIGEN Doppelzustellung stand (Race zwischen SELECT und INSERT)", async () => {
+  it("hält auch der GLEICHZEITIGEN Doppelzustellung stand (Race zwischen SELECT und INSERT)", async () => {
     const [a, b] = await Promise.all([
       fulfillQuotaCardPurchase({ stripeSessionId: "cs_quota_3", packId: "pack5" }),
       fulfillQuotaCardPurchase({ stripeSessionId: "cs_quota_3", packId: "pack5" }),
@@ -173,7 +173,7 @@ describe("fulfillQuotaCardPurchase (Kontingent per Karte, Stripe-Webhook)", () =
 });
 
 describe("countOpenInvoiceOrders (Bremse gegen unbezahlte Sofort-Freischaltungen)", () => {
-  it("zaehlt nur offene Bestellungen — bezahlte und stornierte nicht", async () => {
+  it("zählt nur offene Bestellungen — bezahlte und stornierte nicht", async () => {
     const a = await createOrder(ORDER);
     const b = await createOrder(ORDER);
     await createOrder({ ...ORDER, email: "andere@schule.de" });
@@ -187,7 +187,7 @@ describe("countOpenInvoiceOrders (Bremse gegen unbezahlte Sofort-Freischaltungen
     expect(await countOpenInvoiceOrders(ORDER.email)).toBe(0);
   });
 
-  it("zaehlt E-Mail-Adressen unabhaengig von Gross-/Kleinschreibung", async () => {
+  it("zählt E-Mail-Adressen unabhängig von Groß-/Kleinschreibung", async () => {
     await createOrder({ ...ORDER, email: "Sekretariat@Gym.DE" });
     expect(await countOpenInvoiceOrders("sekretariat@gym.de")).toBe(1);
   });
@@ -206,7 +206,7 @@ describe("countOpenInvoiceOrders (Bremse gegen unbezahlte Sofort-Freischaltungen
 describe("Bestellnummer-Kollision", () => {
   afterEach(() => jest.restoreAllMocks());
 
-  it("laesst zwei Bestellungen mit derselben Nummer nicht zu", async () => {
+  it("lässt zwei Bestellungen mit derselben Nummer nicht zu", async () => {
     // generateOrderNumber = EDU-<base36(ms)>-<3 Zufallszeichen>. Zwei Bestellungen
     // in derselben Millisekunde kollidieren mit p=1/46656. Selten, aber real —
     // hier deterministisch erzwungen.

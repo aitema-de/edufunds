@@ -40,7 +40,7 @@ const FELDER = [
   { name: "einreichungsForm", schema: EinreichungsFormSchema },
 ] as const;
 
-describe("Katalog: explizite Zustaende sind strukturell gueltig", () => {
+describe("Katalog: explizite Zustände sind strukturell gültig", () => {
   it.each(FELDER)("$name entspricht dem Schema (oder fehlt)", ({ name, schema }) => {
     const fehler: string[] = [];
 

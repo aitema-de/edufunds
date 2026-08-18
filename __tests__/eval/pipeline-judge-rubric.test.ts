@@ -20,14 +20,14 @@ describe("WIZ-03 Judge-Rubric Score-Logik", () => {
     jest.clearAllMocks();
   });
 
-  it("Schema-Check fuer Judge-JSON-Output: kriterien[], gesamt, summary vorhanden", async () => {
+  it("Schema-Check für Judge-JSON-Output: kriterien[], gesamt, summary vorhanden", async () => {
     (generateJson as jest.Mock).mockResolvedValue({
       value: STUB_JUDGE_RESPONSE_OEFFENTLICH,
       usage: { promptTokens: 100, candidatesTokens: 200 },
     });
 
     const result = await scoreWiz03(
-      "Ein Foerderantrag-Text fuer Bildung.",
+      "Ein Förderantrag-Text für Bildung.",
       "oeffentlich",
       "deepseek-chat"
     );
@@ -44,7 +44,7 @@ describe("WIZ-03 Judge-Rubric Score-Logik", () => {
     });
 
     const result = await scoreWiz03(
-      "Ein Foerderantrag-Text.",
+      "Ein Förderantrag-Text.",
       "oeffentlich",
       "deepseek-chat"
     );
@@ -57,7 +57,7 @@ describe("WIZ-03 Judge-Rubric Score-Logik", () => {
     expect(result.score).toBe(expectedScore);
   });
 
-  it("Rubric-Lookup gibt korrekte Rubric fuer alle 5 Geber-Gruppen", () => {
+  it("Rubric-Lookup gibt korrekte Rubric für alle 5 Geber-Gruppen", () => {
     expect(RUBRICS["oeffentlich"].gruppe).toBe("oeffentlich");
     expect(RUBRICS["stiftung"].gruppe).toBe("stiftung");
     expect(RUBRICS["eu"].gruppe).toBe("eu");

@@ -75,7 +75,7 @@ describe("WIZ-01 FK-Match Score-Logik", () => {
     expect(result.maxZeichenOK).toBeNull();
   });
 
-  it("maxZeichen-Violation: Section ueber Limit zaehlt in violations[]", () => {
+  it("maxZeichen-Violation: Section über Limit zählt in violations[]", () => {
     const richtlinie = makeRichtlinie([
       { id: "abs-1", name: "Projektbeschreibung", pflicht: true, maxZeichen: 100 },
     ]);

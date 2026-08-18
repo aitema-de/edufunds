@@ -38,40 +38,40 @@ const profil = (nichtWissen: string[], hintergrund: string[] = []) =>
   }) as never;
 
 describe("pruefeProfil — erfundenes Nichtwissen", () => {
-  it("flaggt eine Verweigerung zu einem Thema, das der Korpus nie beruehrt", () => {
+  it("flaggt eine Verweigerung zu einem Thema, das der Korpus nie berührt", () => {
     // Genau der Befund: das Interview spricht nur ueber Medienkonzepte, das Profil
     // behauptet trotzdem, die Person kenne die Foerdersumme nicht.
     const e = korpusEintrag([
       ["Wie ist euer Medienkonzept im Schulprogramm verankert?", "Da steht eigentlich nichts Konkretes."],
     ]);
     const pr = pruefeProfil(
-      profil(["Weiss nicht, wie hoch das Budget fuer das Vorhaben waere."]),
+      profil(["Weiß nicht, wie hoch das Budget für das Vorhaben wäre."]),
       e
     );
     expect(pr.unbelegteNichtwissen).toHaveLength(1);
     expect(pr.unbelegteNichtwissen[0]).toMatch(/Budget/);
   });
 
-  it("laesst eine Verweigerung stehen, die der Korpus belegt", () => {
+  it("lässt eine Verweigerung stehen, die der Korpus belegt", () => {
     // pv-002 im echten Korpus: die Frage nach dem Budget wurde gestellt und mit
     // "Budget weiss ich nicht" beantwortet — das gehoert ins Profil.
     const e = korpusEintrag([
-      ["Welches Budget haben Sie im Kopf?", "Budget weiss ich nicht, irgendwas was reicht."],
+      ["Welches Budget haben Sie im Kopf?", "Budget weiß ich nicht, irgendwas was reicht."],
     ]);
-    const pr = pruefeProfil(profil(["Weiss nicht, wie hoch das Budget waere."]), e);
+    const pr = pruefeProfil(profil(["Weiß nicht, wie hoch das Budget wäre."]), e);
     expect(pr.unbelegteNichtwissen).toHaveLength(0);
   });
 
-  it("meldet weiterhin Widersprueche zwischen Hintergrund und Nichtwissen", () => {
+  it("meldet weiterhin Widersprüche zwischen Hintergrund und Nichtwissen", () => {
     // Regressionsschutz: der Widerspruchs-Check ist die aeltere, HARTE Sicherung und
     // darf durch die neue Gegenrichtung nicht stumpf werden.
     const e = korpusEintrag([
-      ["Welches Budget haben Sie fuer die Theaterarbeit im Kopf?", "Budget weiss ich nicht."],
+      ["Welches Budget haben Sie für die Theaterarbeit im Kopf?", "Budget weiß ich nicht."],
     ]);
     const pr = pruefeProfil(
       profil(
-        ["Weiss nicht, welches Budget die Theaterarbeit braucht."],
-        ["Das Budget fuer die Theaterarbeit betraegt rund fuenftausend."]
+        ["Weiß nicht, welches Budget die Theaterarbeit braucht."],
+        ["Das Budget für die Theaterarbeit beträgt rund fünftausend."]
       ),
       e
     );

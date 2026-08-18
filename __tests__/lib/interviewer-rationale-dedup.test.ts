@@ -25,15 +25,15 @@ function mock(content: string, rationale: string) {
 
 beforeEach(() => jest.clearAllMocks());
 
-it("unterdrueckt eine (fast) woertlich wiederholte Begruendung", async () => {
+it("unterdrückt eine (fast) wörtlich wiederholte Begründung", async () => {
   const prev = priorQuestion(
     "Wie viele Kinder nehmen an dem Projekt teil?",
-    "Damit der Antrag die Zielgruppe konkret und glaubwuerdig benennt."
+    "Damit der Antrag die Zielgruppe konkret und glaubwürdig benennt."
   );
   // Neue, thematisch andere Frage — aber identische Begruendung.
   mock(
     "Welche konkreten Ziele verfolgt das Vorhaben?",
-    "Damit der Antrag die Zielgruppe konkret und glaubwuerdig benennt."
+    "Damit der Antrag die Zielgruppe konkret und glaubwürdig benennt."
   );
   const { step } = await nextStep(programm, [prev], {}, 1, 12, null);
   expect(step.kind).toBe("question");
@@ -43,13 +43,13 @@ it("unterdrueckt eine (fast) woertlich wiederholte Begruendung", async () => {
   }
 });
 
-it("behaelt eine echte neue Begruendung", async () => {
+it("behält eine echte neue Begründung", async () => {
   const prev = priorQuestion(
     "Wie viele Kinder nehmen an dem Projekt teil?",
     "Damit der Antrag die Zielgruppe konkret benennt."
   );
   mock(
-    "Wie soll das Angebot nach der Foerderung weiterlaufen?",
+    "Wie soll das Angebot nach der Förderung weiterlaufen?",
     "Stiftungen bewerten die dauerhafte Verstetigung besonders streng."
   );
   const { step } = await nextStep(programm, [prev], {}, 1, 12, null);

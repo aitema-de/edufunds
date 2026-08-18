@@ -18,7 +18,7 @@ describe("buildFallbackTitle", () => {
     expect(t).toBe("Tablets");
   });
 
-  it("kombiniert erste Aktivitaet mit Schule und Programm", () => {
+  it("kombiniert erste Aktivität mit Schule und Programm", () => {
     const t = buildFallbackTitle(
       PROGRAMM,
       facts({
@@ -29,7 +29,7 @@ describe("buildFallbackTitle", () => {
     expect(t).toBe("15 Tablets anschaffen — Grundschule Musterhausen (DigitalPakt 2.0)");
   });
 
-  it("faellt auf hauptposten zurueck, wenn keine Aktivitaet vorhanden", () => {
+  it("fällt auf hauptposten zurück, wenn keine Aktivität vorhanden", () => {
     const t = buildFallbackTitle(
       PROGRAMM,
       facts({
@@ -48,17 +48,17 @@ describe("buildFallbackTitle", () => {
     expect(t).toBe("Schulgarten anlegen: Antrag bei DigitalPakt 2.0");
   });
 
-  it("nimmt Schule allein, wenn keine Aktivitaeten/Hauptposten", () => {
+  it("nimmt Schule allein, wenn keine Aktivitäten/Hauptposten", () => {
     const t = buildFallbackTitle(PROGRAMM, facts({ schule: { name: "GS Musterhausen" } }));
-    expect(t).toBe("Foerdervorhaben an der GS Musterhausen — Antrag bei DigitalPakt 2.0");
+    expect(t).toBe("Fördervorhaben an der GS Musterhausen — Antrag bei DigitalPakt 2.0");
   });
 
-  it("entfernt Klammer-Suffix aus Aktivitaet (z.B. (ca. 6h, 12-14 Lehrkraefte))", () => {
+  it("entfernt Klammer-Suffix aus Aktivität (z.B. (ca. 6h, 12-14 Lehrkräfte))", () => {
     const t = buildFallbackTitle(
       PROGRAMM,
       facts({
         projekt: {
-          aktivitaeten: ["Tablets anschaffen (ca. 32 Geraete fuer Klassen 5/6)"],
+          aktivitaeten: ["Tablets anschaffen (ca. 32 Geräte für Klassen 5/6)"],
         },
         schule: { name: "GS X" },
       })
@@ -66,7 +66,7 @@ describe("buildFallbackTitle", () => {
     expect(t).toBe("Tablets anschaffen — GS X (DigitalPakt 2.0)");
   });
 
-  it("springt zu Schule+Programm, wenn Subject Einzelaktivitaet ist und mehrere Aktivitaeten vorliegen", () => {
+  it("springt zu Schule+Programm, wenn Subject Einzelaktivität ist und mehrere Aktivitäten vorliegen", () => {
     // UAT-Reproducer 28.04.: zwei Fortbildungen als Aktivitaeten — die erste taugt
     // nicht als vorhaben-uebergreifender Antragstitel.
     const t = buildFallbackTitle(
@@ -74,23 +74,23 @@ describe("buildFallbackTitle", () => {
       facts({
         projekt: {
           aktivitaeten: [
-            "Fortbildung 'Apps im DaZ-Unterricht' (ca. 6h, 12-14 Lehrkraefte)",
-            "Fortbildung 'Interaktives Whiteboard und Tablet im Sachunterricht' (ca. 6h, 12-14 Lehrkraefte)",
+            "Fortbildung 'Apps im DaZ-Unterricht' (ca. 6h, 12-14 Lehrkräfte)",
+            "Fortbildung 'Interaktives Whiteboard und Tablet im Sachunterricht' (ca. 6h, 12-14 Lehrkräfte)",
           ],
         },
         schule: { name: "Borsigwalder Grundschule" },
       })
     );
-    expect(t).toBe("Foerdervorhaben an der Borsigwalder Grundschule — Antrag bei DigitalPakt 2.0");
+    expect(t).toBe("Fördervorhaben an der Borsigwalder Grundschule — Antrag bei DigitalPakt 2.0");
   });
 
-  it("nimmt Einzel-Fortbildung als Titel, wenn nur eine Aktivitaet vorliegt", () => {
+  it("nimmt Einzel-Fortbildung als Titel, wenn nur eine Aktivität vorliegt", () => {
     // Wenn nur EINE Aktivitaet existiert, IST sie das Vorhaben — auch wenn sie
     // mit "Fortbildung" beginnt. Klammer-Suffix wird trotzdem entfernt.
     const t = buildFallbackTitle(
       PROGRAMM,
       facts({
-        projekt: { aktivitaeten: ["Fortbildung Mediendidaktik (10 Lehrkraefte)"] },
+        projekt: { aktivitaeten: ["Fortbildung Mediendidaktik (10 Lehrkräfte)"] },
         schule: { name: "GS Y" },
       })
     );
@@ -113,9 +113,9 @@ describe("buildFallbackTitle", () => {
     expect(t).toBe("Tablets anschaffen — GS X (DigitalPakt 2.0)");
   });
 
-  it("kuerzt sehr lange Titel auf <= 100 Zeichen", () => {
+  it("kürzt sehr lange Titel auf <= 100 Zeichen", () => {
     const langeAktivitaet =
-      "Anschaffung eines kompletten Klassen-Sets aus Tablets, Tablet-Koffern, Software-Lizenzen und Schulungen fuer 28 Schuelerinnen";
+      "Anschaffung eines kompletten Klassen-Sets aus Tablets, Tablet-Koffern, Software-Lizenzen und Schulungen für 28 Schülerinnen";
     const t = buildFallbackTitle(
       PROGRAMM,
       facts({ projekt: { aktivitaeten: [langeAktivitaet] }, schule: { name: "Grundschule" } })
@@ -126,11 +126,11 @@ describe("buildFallbackTitle", () => {
 
   it("benutzt generischen Fallback wenn nichts brauchbares vorhanden", () => {
     const t = buildFallbackTitle(PROGRAMM, facts());
-    expect(t).toBe("Antrag auf Foerderung: DigitalPakt 2.0");
+    expect(t).toBe("Antrag auf Förderung: DigitalPakt 2.0");
   });
 
   it("ist robust gegen leeren programm.name", () => {
     const t = buildFallbackTitle({ name: "" }, facts());
-    expect(t).toBe("Antrag auf Foerderung: Foerderprogramm");
+    expect(t).toBe("Antrag auf Förderung: Förderprogramm");
   });
 });

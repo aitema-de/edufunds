@@ -48,7 +48,7 @@ describe("WIZ-02 Layer-2 Regex + False-Positive-Schutz", () => {
 
   it("False-Positive: Wert aus Facts (facts-stated) → kein Penalty", () => {
     const artefacts: GenerationArtefacts = {
-      finalText: "Die Schule plant bis 12.06.2026 abzuschliessen.",
+      finalText: "Die Schule plant bis 12.06.2026 abzuschließen.",
       sections: [],
     };
     const facts: WizardFacts = {
@@ -68,7 +68,7 @@ describe("WIZ-02 Layer-2 Regex + False-Positive-Schutz", () => {
       sections: [],
     };
     // kein TV-L E9 in userAnswers oder facts
-    const result = scoreWiz02(artefacts, [], ["Wir haben 3 Lehrkraefte"], EMPTY_FACTS);
+    const result = scoreWiz02(artefacts, [], ["Wir haben 3 Lehrkräfte"], EMPTY_FACTS);
     const tvlHit = result.layer2RegexHitsDetail.find((h) => h.pattern === "tv_l_code");
     expect(tvlHit?.falsePositiveCheck).toBe("neither");
     expect(result.layer2RegexHits).toBeGreaterThan(0);

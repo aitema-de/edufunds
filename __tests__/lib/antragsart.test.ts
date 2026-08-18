@@ -54,7 +54,7 @@ describe("bestimmeAntragsart", () => {
     expect(u.brauchtFinanzplan).toBe(true);
   });
 
-  it("GEGENBEISPIEL Kostenpositionen: sind KEIN verlaessliches Budget-Signal", () => {
+  it("GEGENBEISPIEL Kostenpositionen: sind KEIN verlässliches Budget-Signal", () => {
     // Der Bosch-Dossier fuehrt EINE Kostenposition "sonstiges", deren Bemerkung
     // lautet "keine Einzelposten-Pruefung". Eine Regel "kostenpositionen vorhanden
     // ⇒ Budget erwartet" liest genau dieses Dossier verkehrt herum.
@@ -65,7 +65,7 @@ describe("bestimmeAntragsart", () => {
     expect(bestimmeAntragsart(prog("Deutscher Schulpreis"), richtlinie).art).toBe("preis");
   });
 
-  it("Preisname mit Finanzabschnitt bleibt Projektfoerderung", () => {
+  it("Preisname mit Finanzabschnitt bleibt Projektförderung", () => {
     const u = bestimmeAntragsart(
       prog("Innovations-Wettbewerb Schule"),
       struktur("Vorhaben", "Kostenplan")
@@ -84,7 +84,7 @@ describe("bestimmeAntragsart", () => {
     expect(u.grund).toMatch(/Eigenanteil/);
   });
 
-  it("ohne Struktur wird NICHT unterdrueckt — Risiko-Asymmetrie", () => {
+  it("ohne Struktur wird NICHT unterdrückt — Risiko-Asymmetrie", () => {
     // Ein fehlender Finanzplan macht den Antrag unvollstaendig; ein ueberfluessiger
     // kostet nur Punkte. Ohne Beleg bleibt es deshalb bei Projektfoerderung.
     const u = bestimmeAntragsart(prog("Känguru der Mathematik (Wettbewerb)"), null);
@@ -92,7 +92,7 @@ describe("bestimmeAntragsart", () => {
     expect(u.grund).toMatch(/keine Antragsstruktur/);
   });
 
-  it("ohne Preis-Signal bleibt es bei Projektfoerderung", () => {
+  it("ohne Preis-Signal bleibt es bei Projektförderung", () => {
     expect(bestimmeAntragsart(prog("DigitalPakt Schule 2.0"), null).brauchtFinanzplan).toBe(true);
   });
 });

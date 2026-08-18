@@ -13,33 +13,33 @@ import {
  */
 
 const BEGRUENDET = `Die zwei Praxistage folgen dem Ansatz des Praxislernens:
-Jugendliche mit Abschlussgefaehrdung erleben Selbstwirksamkeit zuerst im
+Jugendliche mit Abschlussgefährdung erleben Selbstwirksamkeit zuerst im
 betrieblichen Handeln, weil dort Erfolg unmittelbar sichtbar wird — daher
-koppeln wir jede Praxisphase an ein Reflexionsgespraech. Auf dieser Grundlage
-waechst die Lernmotivation auch im schulischen Teil.`;
+koppeln wir jede Praxisphase an ein Reflexionsgespräch. Auf dieser Grundlage
+wächst die Lernmotivation auch im schulischen Teil.`;
 
 const DESKRIPTIV = `Wir kaufen 20 Tablets und richten eine Robotik-AG ein. Die
-AG findet dienstags statt. Teilnehmen koennen 15 Kinder der Klassen 3 und 4.
-Die Geraete werden im Medienraum gelagert. Eine Lehrkraft betreut die AG.`;
+AG findet dienstags statt. Teilnehmen können 15 Kinder der Klassen 3 und 4.
+Die Geräte werden im Medienraum gelagert. Eine Lehrkraft betreut die AG.`;
 
 describe("pruefeSubstanz", () => {
-  it("begruendeter Text besteht, deskriptiver faellt durch", () => {
-    expect(pruefeSubstanz("Paedagogisches Konzept", BEGRUENDET).hatSubstanz).toBe(true);
+  it("begründeter Text besteht, deskriptiver fällt durch", () => {
+    expect(pruefeSubstanz("Pädagogisches Konzept", BEGRUENDET).hatSubstanz).toBe(true);
     expect(pruefeSubstanz("Unsere Robotik-AG", DESKRIPTIV).hatSubstanz).toBe(false);
   });
 
-  it("Theorie-Etikett OHNE Begruendungslogik reicht nicht", () => {
+  it("Theorie-Etikett OHNE Begründungslogik reicht nicht", () => {
     // Genau der Leerformel-Fall: Konzeptname als Schmuckwort, kein WARUM.
-    const etikett = `Unser innovatives Projekt foerdert Teilhabe und
-    Selbstwirksamkeit. Die AG findet woechentlich statt und nutzt moderne Tablets.`;
+    const etikett = `Unser innovatives Projekt fördert Teilhabe und
+    Selbstwirksamkeit. Die AG findet wöchentlich statt und nutzt moderne Tablets.`;
     const b = pruefeSubstanz("Konzept", etikett);
     expect(b.theorieMarker).toBeGreaterThanOrEqual(1);
     expect(b.hatSubstanz).toBe(false); // Konnektive fehlen
   });
 
-  it("Formal-Abschnitte sind nicht relevant — dort waere das Gate Rauschen", () => {
+  it("Formal-Abschnitte sind nicht relevant — dort wäre das Gate Rauschen", () => {
     for (const name of [
-      "Finanzplan / Kosten- und Finanzierungsuebersicht",
+      "Finanzplan / Kosten- und Finanzierungsübersicht",
       "Arbeits- und Zeitplan",
       "Antragsteller und Institution",
       "Budget und Ressourcen",
@@ -48,16 +48,16 @@ describe("pruefeSubstanz", () => {
     }
   });
 
-  it("Wirkmechanismus-Sprache zaehlt als Begruendung (pv-011-Lektion)", () => {
+  it("Wirkmechanismus-Sprache zählt als Begründung (pv-011-Lektion)", () => {
     // pv-011-run3: Die Revision begruendete ueber "indem/sodass/da", der
     // Resolutions-Judge schloss die Findings zu Recht — WIZ-04 mass trotzdem 0,
     // weil das Lexikon diese Konnektive nicht kannte. Repraesentativer Auszug
     // aus dem echten Final-Text (Startchancen Berlin):
-    const wirkmechanismus = `Die Massnahmen zielen darauf ab, die
-    Selbstwirksamkeit der Kinder zu staerken, indem sie gezielt an den
-    individuellen Lernstaenden ansetzen. Die Kleingruppen-Struktur ist
-    besonders wirksam, da sie eine individuelle Foerderung ermoeglicht und
-    die soziale Teilhabe staerkt, sodass die Lesekompetenz messbar steigt.`;
+    const wirkmechanismus = `Die Maßnahmen zielen darauf ab, die
+    Selbstwirksamkeit der Kinder zu stärken, indem sie gezielt an den
+    individuellen Lernständen ansetzen. Die Kleingruppen-Struktur ist
+    besonders wirksam, da sie eine individuelle Förderung ermöglicht und
+    die soziale Teilhabe stärkt, sodass die Lesekompetenz messbar steigt.`;
     const b = pruefeSubstanz("Umsetzungskonzept", wirkmechanismus);
     expect(b.konnektive).toBeGreaterThanOrEqual(3); // zielen darauf ab + indem + da sie + sodass
     expect(b.hatSubstanz).toBe(true);
@@ -67,14 +67,14 @@ describe("pruefeSubstanz", () => {
     // Trennschaerfe-Anker: Der alte (banale) Baseline-Korpus stieg durch die
     // Lexikon-Erweiterung nur von 0,5 % auf 7,3 % — ein einzelnes
     // konsekutives "sodass" ohne Theorie bleibt unter jeder Schwelle.
-    const banal = `Wir kaufen 20 Tablets, sodass jede Klasse ein Geraet hat.
-    Die AG findet dienstags statt. Die Geraete werden im Medienraum gelagert.`;
+    const banal = `Wir kaufen 20 Tablets, sodass jede Klasse ein Gerät hat.
+    Die AG findet dienstags statt. Die Geräte werden im Medienraum gelagert.`;
     const b = pruefeSubstanz("Unsere Robotik-AG", banal);
     expect(b.konnektive).toBe(1);
     expect(b.hatSubstanz).toBe(false);
   });
 
-  it("kreative Ueberschriften gelten als inhaltlich (Ausschluss- statt Einschlussliste)", () => {
+  it("kreative Überschriften gelten als inhaltlich (Ausschluss- statt Einschlussliste)", () => {
     // Die Pipeline erzeugt solche Titel; eine Schluesselwort-Einschlussliste
     // verlor im Kalibrierlauf 240/413 Abschnitte aus der Messung.
     expect(pruefeSubstanz("Unsere Schule: Ein MINT-Leuchtturm in Fellbach", DESKRIPTIV).relevant).toBe(true);
@@ -83,7 +83,7 @@ describe("pruefeSubstanz", () => {
 });
 
 describe("substanzQuote", () => {
-  it("misst den Anteil begruendeter Inhaltsabschnitte", () => {
+  it("misst den Anteil begründeter Inhaltsabschnitte", () => {
     const q = substanzQuote([
       { name: "Konzept", text: BEGRUENDET },
       { name: "Aktivitaeten", text: DESKRIPTIV },
@@ -116,15 +116,15 @@ describe("substanzFindings — Anschluss an die Revisions-Schleife", () => {
     expect(f[0].vorschlag).toMatch(/KEINE Halluzination/);
   });
 
-  it("benennt, WAS fehlt (Theorie vs. Konnektive), statt pauschal zu ruegen", () => {
-    const nurEtikett = `Das Projekt staerkt Teilhabe und Inklusion. Es finden
-    woechentliche Treffen statt. Wir kaufen Material.`;
+  it("benennt, WAS fehlt (Theorie vs. Konnektive), statt pauschal zu rügen", () => {
+    const nurEtikett = `Das Projekt stärkt Teilhabe und Inklusion. Es finden
+    wöchentliche Treffen statt. Wir kaufen Material.`;
     const f = substanzFindings([{ name: "Ziele", text: nurEtikett }]);
-    expect(f[0].vorschlag).toContain("Begruendungslogik");
+    expect(f[0].vorschlag).toContain("Begründungslogik");
     expect(f[0].vorschlag).not.toContain("fachliche Einordnung UND");
   });
 
-  it("laesst vollstaendige Antraege in Ruhe", () => {
+  it("lässt vollständige Anträge in Ruhe", () => {
     expect(substanzFindings([{ name: "Konzept", text: BEGRUENDET }])).toHaveLength(0);
   });
 });

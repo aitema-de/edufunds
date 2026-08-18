@@ -13,7 +13,7 @@ function makeFinanzplan(posten: Finanzplan["posten"]): Finanzplan {
 }
 
 describe("Finanzplan-Sub-Metrik", () => {
-  it("gueltiger Finanzplan ohne Errors → score=100", () => {
+  it("gültiger Finanzplan ohne Errors → score=100", () => {
     const finanzplan = makeFinanzplan([
       {
         id: "p1",

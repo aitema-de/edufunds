@@ -2,18 +2,18 @@ import { mergeFacts } from "@/lib/wizard/facts-extractor";
 import type { WizardFacts } from "@/lib/wizard/types";
 
 describe("mergeFacts", () => {
-  it("gibt base zurueck, wenn Update undefined ist", () => {
+  it("gibt base zurück, wenn Update undefined ist", () => {
     const base: WizardFacts = { schule: { name: "Borsigwalder Grundschule" } };
     expect(mergeFacts(base, undefined)).toEqual(base);
   });
 
-  it("merged neue Felder in bestehenden Schule-Slot, ohne Bestand zu loeschen", () => {
+  it("merged neue Felder in bestehenden Schule-Slot, ohne Bestand zu löschen", () => {
     const base: WizardFacts = { schule: { name: "Borsigwalder Grundschule" } };
     const out = mergeFacts(base, { schule: { schuelerzahl: 312 } });
     expect(out.schule).toEqual({ name: "Borsigwalder Grundschule", schuelerzahl: 312 });
   });
 
-  it("ignoriert leere Strings im Update — loescht keinen bestehenden Wert", () => {
+  it("ignoriert leere Strings im Update — löscht keinen bestehenden Wert", () => {
     const base: WizardFacts = { schule: { name: "Borsigwalder Grundschule", typ: "Grundschule" } };
     const out = mergeFacts(base, { schule: { typ: "" } });
     expect(out.schule).toEqual({ name: "Borsigwalder Grundschule", typ: "Grundschule" });
@@ -27,7 +27,7 @@ describe("mergeFacts", () => {
 
   it("ersetzt Arrays komplett (Extractor-Output ist autoritativ)", () => {
     const base: WizardFacts = {
-      projekt: { aktivitaeten: ["alte Aktivitaet"] },
+      projekt: { aktivitaeten: ["alte Aktivität"] },
     };
     const out = mergeFacts(base, {
       projekt: { aktivitaeten: ["Tablet-Anschaffung", "Lehrerfortbildung"] },
@@ -37,7 +37,7 @@ describe("mergeFacts", () => {
     });
   });
 
-  it("ueberschreibt Skalare mit neuen Werten", () => {
+  it("überschreibt Skalare mit neuen Werten", () => {
     const base: WizardFacts = { schule: { schuelerzahl: 380 } };
     const out = mergeFacts(base, { schule: { schuelerzahl: 312 } });
     expect(out.schule).toEqual({ schuelerzahl: 312 });
@@ -52,7 +52,7 @@ describe("mergeFacts", () => {
     expect(out.schule).toEqual({ name: "Borsigwalder Grundschule" });
   });
 
-  it("UAT-Reproducer: kumuliert Schul-Profil ueber mehrere Update-Runden", () => {
+  it("UAT-Reproducer: kumuliert Schul-Profil über mehrere Update-Runden", () => {
     let facts: WizardFacts = {};
     // Erste Antwort: Name + Schuelerzahl
     facts = mergeFacts(facts, {
@@ -62,7 +62,7 @@ describe("mergeFacts", () => {
     facts = mergeFacts(facts, {
       schule: {
         bundesland: "Berlin",
-        besonderheiten: "44 % nicht-deutsche Familiensprache, dreizuegig, Ganztag",
+        besonderheiten: "44 % nicht-deutsche Familiensprache, dreizügig, Ganztag",
       },
     });
     // Dritte Antwort: Aktivitaeten
@@ -73,14 +73,14 @@ describe("mergeFacts", () => {
       name: "Borsigwalder Grundschule",
       schuelerzahl: 312,
       bundesland: "Berlin",
-      besonderheiten: "44 % nicht-deutsche Familiensprache, dreizuegig, Ganztag",
+      besonderheiten: "44 % nicht-deutsche Familiensprache, dreizügig, Ganztag",
     });
     expect(facts.projekt).toEqual({
       aktivitaeten: ["Apps im DaZ-Unterricht", "Lehrerfortbildung"],
     });
   });
 
-  it("ignoriert leeres Top-Level-Update-Objekt — base bleibt unveraendert", () => {
+  it("ignoriert leeres Top-Level-Update-Objekt — base bleibt unverändert", () => {
     const base: WizardFacts = { schule: { name: "Borsigwalder Grundschule" } };
     const out = mergeFacts(base, {});
     expect(out).toEqual(base);

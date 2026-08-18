@@ -13,7 +13,7 @@ describe("isRetryableLlmError", () => {
     expect(isRetryableLlmError(new Error("read ECONNRESET"))).toBe(true);
     expect(isRetryableLlmError(new Error("socket hang up"))).toBe(true);
     expect(isRetryableLlmError(new Error("KI-Aufruf an deepseek-chat lieferte eine leere Antwort."))).toBe(true);
-    expect(isRetryableLlmError(new Error("hat das Zeitlimit von 120 s ueberschritten"))).toBe(true);
+    expect(isRetryableLlmError(new Error("hat das Zeitlimit von 120 s überschritten"))).toBe(true);
     expect(isRetryableLlmError(new Error("DeepSeek lieferte kein valides JSON"))).toBe(true);
     expect(isRetryableLlmError(new Error("model is overloaded"))).toBe(true);
   });
@@ -55,7 +55,7 @@ describe("withRetry", () => {
     expect(fn).toHaveBeenCalledTimes(1);
   });
 
-  it("gibt beim ersten Erfolg sofort zurueck", async () => {
+  it("gibt beim ersten Erfolg sofort zurück", async () => {
     const fn = jest.fn(async () => "sofort");
     expect(await withRetry(fn, "test-model", { baseDelayMs: 0 })).toBe("sofort");
     expect(fn).toHaveBeenCalledTimes(1);

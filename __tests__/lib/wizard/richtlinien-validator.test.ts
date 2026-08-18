@@ -37,7 +37,7 @@ const MIN_STRICT_NEW_FIELDS = {
     {
       thema: "Zielgruppen-Schaerfe",
       was_funktionierte:
-        "Klare Definition der Schueler-Zielgruppe nach Klassenstufe",
+        "Klare Definition der Schüler-Zielgruppe nach Klassenstufe",
     },
   ],
   rejectGruende: [
@@ -50,7 +50,7 @@ const MIN_STRICT_NEW_FIELDS = {
     {
       abschnitt_id: "konzept",
       formulierung:
-        "Das Projekt foerdert nachhaltig die digitale Souveraenitaet der Klassen 7-9.",
+        "Das Projekt fördert nachhaltig die digitale Souveränität der Klassen 7-9.",
     },
   ],
   fristLogik: { typ: "rolling" as const },
@@ -124,13 +124,13 @@ describe("RichtlinieLegacySchema", () => {
     expect(result.success).toBe(true);
   });
 
-  it("sollte ein Dossier mit teilweise gefuellten neuen Feldern akzeptieren", () => {
+  it("sollte ein Dossier mit teilweise gefüllten neuen Feldern akzeptieren", () => {
     const d = {
       ...MIN_BASE,
       bestPractices: [
         {
           thema: "Test-Thema",
-          was_funktionierte: "Funktionierende Massnahme A",
+          was_funktionierte: "Funktionierende Maßnahme A",
         },
       ],
       // rejectGruende, vorbildFormulierungen, fristLogik fehlen — Legacy erlaubt das
@@ -153,7 +153,7 @@ describe("validateForeignKeys", () => {
     expect(issues[0].reason).toMatch(/FK-Verletzung/);
   });
 
-  it("sollte leere Issues-Liste zurueckgeben bei vollstaendig konsistentem Dossier", () => {
+  it("sollte leere Issues-Liste zurückgeben bei vollständig konsistentem Dossier", () => {
     const dossier = {
       antragsstruktur: MIN_ANTRAGSSTRUKTUR,
       vorbildFormulierungen: [

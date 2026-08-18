@@ -46,7 +46,7 @@ const minimalProgramm: Foerderprogramm = {
 } as unknown as Foerderprogramm;
 
 describe("pipeline — PipelineEvents (D-04, D-13)", () => {
-  it("ruft onEvent fuer jede Stage in korrekter Reihenfolge auf — D-04", async () => {
+  it("ruft onEvent für jede Stage in korrekter Reihenfolge auf — D-04", async () => {
     const events: PipelineEvent["stage"][] = [];
     try {
       await runPipeline(

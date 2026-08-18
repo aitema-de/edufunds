@@ -64,7 +64,7 @@ beforeEach(() => {
   (extractFacts as jest.Mock).mockResolvedValue({ facts: {}, usage: null });
 });
 
-it("persistiert die Antwort VOR dem LLM-Call und gibt bei nextStep-Fehler 503 retryable zurueck", async () => {
+it("persistiert die Antwort VOR dem LLM-Call und gibt bei nextStep-Fehler 503 retryable zurück", async () => {
   (getWizardSession as jest.Mock).mockResolvedValue(
     baseSession([{ id: "q1", role: "ai", kind: "question", content: "Frage 1" }])
   );

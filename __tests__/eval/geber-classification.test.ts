@@ -16,7 +16,7 @@ import { readdirSync } from "node:fs";
 import { resolve } from "node:path";
 
 describe("Geber-Klassifikation 11-Dossier-Mapping (D-28)", () => {
-  it("bmbf-digitalpakt-2 → 'oeffentlich' (bundesfoerderung)", () => {
+  it("bmbf-digitalpakt-2 → 'öffentlich' (bundesförderung)", () => {
     expect(getGeberGruppe("bmbf-digitalpakt-2")).toBe("oeffentlich");
   });
 

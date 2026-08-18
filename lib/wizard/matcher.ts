@@ -86,16 +86,16 @@ export function sizeAchtung(p: Foerderprogramm, budget?: number): string {
   const max = (p as { foerdersummeMax?: number | null }).foerdersummeMax;
   if (typeof budget === "number" && budget > 0) {
     if (typeof min === "number" && min > 0 && min > budget * OVERSIZE_FACTOR) {
-      return `Foerderung ab ${fmtEur(min)} — deutlich groesser als euer geschaetztes Vorhaben (~${fmtEur(budget)}); ggf. ein niedrigschwelligeres Programm pruefen.`;
+      return `Förderung ab ${fmtEur(min)} — deutlich größer als euer geschätztes Vorhaben (~${fmtEur(budget)}); ggf. ein niedrigschwelligeres Programm prüfen.`;
     }
     if (typeof max === "number" && max > 0 && budget > max * UNDERSIZE_FACTOR) {
-      return `Foerderhoehe bis ${fmtEur(max)} — kleiner als euer Vorhaben (~${fmtEur(budget)}); ggf. ergaenzende Foerderquelle noetig.`;
+      return `Förderhöhe bis ${fmtEur(max)} — kleiner als euer Vorhaben (~${fmtEur(budget)}); ggf. ergänzende Förderquelle nötig.`;
     }
     return "";
   }
   // Kein Budget bekannt: nur die klar grossskalige Schiene markieren (keine Demotion).
   if (typeof min === "number" && min >= GROSSPROJEKT_MIN_EUR) {
-    return `Grossprojekt-Foerderung (ab ${fmtEur(min)}, meist mit hohem Eigenanteil) — passt nur bei entsprechend grossem, mehrjaehrigem Vorhaben.`;
+    return `Großprojekt-Förderung (ab ${fmtEur(min)}, meist mit hohem Eigenanteil) — passt nur bei entsprechend großem, mehrjährigem Vorhaben.`;
   }
   return "";
 }
@@ -453,80 +453,80 @@ function toCard(p: Foerderprogramm): CompactProgrammCard {
   };
 }
 
-const MATCHER_SYSTEM = `Du bist Foerdermittel-Berater fuer Schulen in Deutschland.
-Aufgabe: Anliegen + Liste von Foerderprogrammen → entweder die ${MAX_MATCHES} BESTEN Treffer
-oder eine kurze Klaerungsfrage, falls das Anliegen zu vage ist.
+const MATCHER_SYSTEM = `Du bist Fördermittel-Berater für Schulen in Deutschland.
+Aufgabe: Anliegen + Liste von Förderprogrammen → entweder die ${MAX_MATCHES} BESTEN Treffer
+oder eine kurze Klärungsfrage, falls das Anliegen zu vage ist.
 
 ## Kriterien (Reihenfolge = Gewicht) — kein thematischer Drift
 1. Thematische Passung — domain-spezifisch hat IMMER Vorrang vor allgemein
    (z.B. "Mathe-Wettbewerbe" → Mathe-spezifische Programme schlagen
    generische Schul-Wettbewerbe; "NABU-Standort" → NABU/Natur-Programme
-   schlagen Klima/Inklusion; "Mehrsprachige Buecher" → Sprache/Lesen-Programme
+   schlagen Klima/Inklusion; "Mehrsprachige Bücher" → Sprache/Lesen-Programme
    schlagen allgemeine Bibliotheks-Programme)
 2. Formale Passung (Schultyp, Bundesland, Summe)
-3. Praktikabilitaet  4. Wirkungstiefe
+3. Praktikabilität  4. Wirkungstiefe
 
 ## Wichtig — KEIN Drift in Defaults
 - Bei klar thematischer Anfrage NICHT auf "aktion-mensch-schulkooperation"
-  zurueckfallen, wenn das Anliegen keinen Inklusions-Bezug hat
-- Bei klar thematischer Anfrage NICHT auf "bmbf-digitalpakt-2" zurueckfallen,
+  zurückfallen, wenn das Anliegen keinen Inklusions-Bezug hat
+- Bei klar thematischer Anfrage NICHT auf "bmbf-digitalpakt-2" zurückfallen,
   wenn das Anliegen keinen Digital/Hardware-Bezug hat
 - Bei klar thematischer Anfrage (Mathe/Sport/Kultur/Sprache/Natur) IMMER
   mind. ein Domain-spezifisches Programm im Top-3, falls eines existiert
 - Wenn ein Programm thematisch klar passt, Score >= 60 setzen — NICHT
-  kuenstlich niedrig, weil andere formale Aspekte fehlen (BL/Schultyp).
-  Lieber Score 65 mit "achtung_bei: Bundesland im Profil ergaenzen" als
+  künstlich niedrig, weil andere formale Aspekte fehlen (BL/Schultyp).
+  Lieber Score 65 mit "achtung_bei: Bundesland im Profil ergänzen" als
   leere Liste.
 
 ## Verboten
 - Programme erfinden (nur IDs aus der Liste)
-- Score < 50 (lieber leere Liste als Gefaelligkeit)
+- Score < 50 (lieber leere Liste als Gefälligkeit)
 - Pipe-Char \`|\` im Inhalt von passt_weil/achtung_bei
 
-## AUSGABE — zwei moegliche Formen:
+## AUSGABE — zwei mögliche Formen:
 
 ### Form A — wenn Anliegen VAGE (≥2 Pflicht-Slots fehlen ODER Multi-Thema):
 CLARIFY|<konkrete Frage mit konkreten Optionen>
 
-ZUERST Slots zaehlen, DANN entscheiden — auch wenn die Programmliste klare
-thematische Treffer enthaelt: thematische Passung ersetzt nicht die Klaerung
+ZUERST Slots zählen, DANN entscheiden — auch wenn die Programmliste klare
+thematische Treffer enthält: thematische Passung ersetzt nicht die Klärung
 fehlender Slots.
 
 Pflicht-Slots:
-- Bundesland: gilt als gefuellt, wenn das Anliegen ODER das Schul-Profil ein konkretes Bundesland nennt
-- Zielgruppe/Schultyp: gilt als gefuellt, wenn ein Schultyp/Klassenstufe/Schuelergruppe genannt ist
-- Thematischer Fokus: gilt als gefuellt, wenn das Anliegen GENAU EIN klares
+- Bundesland: gilt als gefüllt, wenn das Anliegen ODER das Schul-Profil ein konkretes Bundesland nennt
+- Zielgruppe/Schultyp: gilt als gefüllt, wenn ein Schultyp/Klassenstufe/Schülergruppe genannt ist
+- Thematischer Fokus: gilt als gefüllt, wenn das Anliegen GENAU EIN klares
   Themenfeld nennt (z.B. "digital", "Sport", "Lesen", "Inklusion", "Kultur").
-  Gilt als FEHLEND in folgenden Faellen:
+  Gilt als FEHLEND in folgenden Fällen:
   (a) keines genannt
-  (b) mehrere widerspruechliche genannt ("Sport, Kultur und Digitales")
+  (b) mehrere widersprüchliche genannt ("Sport, Kultur und Digitales")
   (c) drei oder mehr unentschiedene Optionen ("Theater, MINT-AG oder
       Austausch — was passt wirtschaftlich?")
   (d) Phrasen wie "irgendwas zwischen X und Y", "wir wissen noch nicht
-      wo der Hebel am groessten ist", "viele Ideen, aber nichts Konkretes"
+      wo der Hebel am größten ist", "viele Ideen, aber nichts Konkretes"
 
 ZUSATZ-REGEL — Multi-Thema triggert IMMER CLARIFY:
-Wenn der Thema-Slot in (b) oder (c) faellt (≥2 widerspruechliche Themen oder
+Wenn der Thema-Slot in (b) oder (c) fällt (≥2 widersprüchliche Themen oder
 ≥3 unentschiedene Optionen), IMMER Form A — selbst wenn Bundesland und
-Schultyp beide gefuellt sind. Der Schwerpunkt MUSS geklaert sein, weil
-Foerderschienen sich nicht beliebig kombinieren lassen.
+Schultyp beide gefüllt sind. Der Schwerpunkt MUSS geklärt sein, weil
+Förderschienen sich nicht beliebig kombinieren lassen.
 
 Beispiel CLARIFY (BL fehlt + Thema fehlt):
-CLARIFY|Fuer welches Bundesland sucht ihr und welcher Schwerpunkt steht im Vordergrund — z.B. Digitalisierung, Sport, Kultur oder etwas anderes?
+CLARIFY|Für welches Bundesland sucht ihr und welcher Schwerpunkt steht im Vordergrund — z.B. Digitalisierung, Sport, Kultur oder etwas anderes?
 
-Beispiel CLARIFY (mehrere widerspruechliche Themen — auch bei vollen Slots):
-CLARIFY|Ihr nennt Theater, MINT-AG und Austausch — das sind sehr verschiedene Foerderschienen. Welcher Bereich steht fuer euch im Vordergrund?
+Beispiel CLARIFY (mehrere widersprüchliche Themen — auch bei vollen Slots):
+CLARIFY|Ihr nennt Theater, MINT-AG und Austausch — das sind sehr verschiedene Förderschienen. Welcher Bereich steht für euch im Vordergrund?
 
 Beispiel CLARIFY (unentschiedene Strategie):
 CLARIFY|"Irgendwas zwischen Inklusion, Demokratielernen und Internationalisierung" ist zu breit. Welcher der drei Bereiche soll der Schwerpunkt sein?
 
 Beispiel CLARIFY (Thema vorhanden, aber Schultyp + BL fehlen):
-Anliegen "Wir wuerden gern etwas im Bereich Bewegung oder Sport starten" (Schultyp leer, BL leer):
-CLARIFY|Fuer welche Schulform und welches Bundesland? Bei Sport-Foerderung gibt es starke landesspezifische Programme — ohne BL koennen wir nicht zielsicher empfehlen.
+Anliegen "Wir würden gern etwas im Bereich Bewegung oder Sport starten" (Schultyp leer, BL leer):
+CLARIFY|Für welche Schulform und welches Bundesland? Bei Sport-Förderung gibt es starke landesspezifische Programme — ohne BL können wir nicht zielsicher empfehlen.
 
 Beispiel CLARIFY (Thema generisch, Schultyp + BL fehlen):
-Anliegen "Projekt fuer Kinder, kreativer Bereich" (Schultyp leer, BL leer):
-CLARIFY|Welche Schulform und welches Bundesland? "Kreativer Bereich" ist breit — Theater/Musik/Kunst-AG haben jeweils eigene Foerderschienen.
+Anliegen "Projekt für Kinder, kreativer Bereich" (Schultyp leer, BL leer):
+CLARIFY|Welche Schulform und welches Bundesland? "Kreativer Bereich" ist breit — Theater/Musik/Kunst-AG haben jeweils eigene Förderschienen.
 
 ### Form B — wenn Anliegen KLAR genug (exakt ${MAX_MATCHES} oder weniger Zeilen):
 id|score|passt_weil|achtung_bei
@@ -534,14 +534,14 @@ id|score|passt_weil|achtung_bei
 Regeln Form B:
 - id: exakt aus der Liste, kein Whitespace drum
 - score: ganze Zahl 50-100
-- passt_weil: max ~25 Worte, sachlich, mit konkretem Bezug zum Anliegen. ALLTAGSSPRACHLICH — kein Foerder-/Verwaltungsfachjargon. Statt "ausserschulischer Charakter" schreibe "freiwilliges Angebot neben dem Unterricht"; statt "Letztzuwendungsempfaenger" o. Ae. konkrete, verstaendliche Worte. Eine Schulleitung muss den Satz ohne Nachschlagen verstehen.
+- passt_weil: max ~25 Worte, sachlich, mit konkretem Bezug zum Anliegen. ALLTAGSSPRACHLICH — kein Förder-/Verwaltungsfachjargon. Statt "außerschulischer Charakter" schreibe "freiwilliges Angebot neben dem Unterricht"; statt "Letztzuwendungsempfänger" o. Ae. konkrete, verständliche Worte. Eine Schulleitung muss den Satz ohne Nachschlagen verstehen.
 - achtung_bei: max ~20 Worte, kann LEER sein — dann Trailing-Pipe (\`id|score|text|\`). Ebenfalls alltagssprachlich, kein Fachjargon.
 - Genau 4 Spalten — bei leerem achtung_bei: Trailing-Pipe ist PFLICHT, sonst wird die Zeile verworfen
 - Pipe-Char \`|\` im Text VERBOTEN
 
 Beispiele Form B:
-bmbf-digitalpakt-2|92|Bundesweite Foerderung digitaler Schulinfrastruktur, deckt Hardware ab.|Antragsfrist naht — Einreichung vor Juli pruefen.
-kultur-macht-stark|75|Foerdert freiwillige Kulturangebote neben dem Unterricht, etwa Theater- oder Musik-AGs.|
+bmbf-digitalpakt-2|92|Bundesweite Förderung digitaler Schulinfrastruktur, deckt Hardware ab.|Antragsfrist naht — Einreichung vor Juli prüfen.
+kultur-macht-stark|75|Fördert freiwillige Kulturangebote neben dem Unterricht, etwa Theater- oder Musik-AGs.|
 
 ### NEGATIVBEISPIELE — was NICHT erlaubt ist:
 CLARIFY|Was wollt ihr genau?                       <- zu vage, keine Optionen
@@ -551,13 +551,13 @@ prog-x|70|Text mit | im Inhalt.|Achtung.           <- Pipe im Text verboten
 
 ## NEGATIVBEISPIELE — was NICHT erlaubt ist (Drift):
 Anliegen "Mathe-Wettbewerbe ausbauen" -> Top-3 mit playmobil-hobpreis|ferry-porsche-challenge|claussen-simon
-  <- FALSCH: kaenguru-der-mathematik / mathe-im-advent / bundeswettbewerb-mathematik haetten Vorrang
+  <- FALSCH: känguru-der-mathematik / mathe-im-advent / bundeswettbewerb-mathematik hätten Vorrang
 Anliegen "Schul-Aquarium und NABU-Standort" -> Top-3 mit kultur-macht-stark|klimalab|aktion-mensch
   <- FALSCH: nabu-schulen / bfn-artenvielfalt / stiftung-kinder-forschen sind Domain-spezifisch
-Anliegen "Mehrsprachige Bibliothek (600 Buecher Tuerkisch/Arabisch)" -> leere Liste
+Anliegen "Mehrsprachige Bibliothek (600 Bücher Türkisch/Arabisch)" -> leere Liste
   <- FALSCH: lesen-macht-stark / sprache-macht-stark / mercator-integration passen klar
 
-KEINE Vorrede, KEINE Markdown-Bullets/Fences, KEINE Erklaerung danach.
+KEINE Vorrede, KEINE Markdown-Bullets/Fences, KEINE Erklärung danach.
 Sortiert nach Score absteigend. Wenn weniger als ${MAX_MATCHES} Programme passen, weniger Zeilen ausgeben.`;
 
 function buildUserPrompt(input: MatchInput, cards: CompactProgrammCard[]): string {
@@ -568,7 +568,7 @@ function buildUserPrompt(input: MatchInput, cards: CompactProgrammCard[]): strin
   if (input.schultyp) profile.push(`Schultyp: ${input.schultyp}`);
   if (input.bundesland) profile.push(`Bundesland: ${input.bundesland}`);
   if (input.geschaetztesBudgetEur)
-    profile.push(`Geschaetztes Budget: ${input.geschaetztesBudgetEur.toLocaleString("de-DE")} EUR`);
+    profile.push(`Geschätztes Budget: ${input.geschaetztesBudgetEur.toLocaleString("de-DE")} EUR`);
   if (profile.length) ctx.push(`\nSCHUL-PROFIL:\n${profile.join("\n")}`);
   ctx.push(`\nKANDIDATENLISTE (${cards.length} Programme):\n${JSON.stringify(cards)}`);
   ctx.push(`\nLiefere die ${MAX_MATCHES} besten Treffer im Pipe-Format. IDs exakt wie in der Liste.`);
@@ -581,7 +581,7 @@ function buildUserPrompt(input: MatchInput, cards: CompactProgrammCard[]): strin
   }
   if (input.previousAnliegen) {
     ctx.push(
-      `\nURSPRUENGLICHES ANLIEGEN (Kontext-Referenz):\n${input.previousAnliegen.trim()}`
+      `\nURSPRÜNGLICHES ANLIEGEN (Kontext-Referenz):\n${input.previousAnliegen.trim()}`
     );
   }
   return ctx.join("\n");
@@ -683,7 +683,7 @@ export function classifyApplicant(input: MatchInput): {
 
   // Foerderverein ist ein zulaessiges Antrags-Vehikel FUER eine Schule.
   if (/f[oö]rderverein/.test(hay)) {
-    return { eligible: true, typ: "foerderverein", grund: "Foerderverein (Schulfoerderung)" };
+    return { eligible: true, typ: "foerderverein", grund: "Förderverein (Schulförderung)" };
   }
 
   // Reine Kita/Kindergarten ohne Schulkontext → nicht antragsberechtigt.
@@ -708,7 +708,7 @@ export function classifyApplicant(input: MatchInput): {
 export async function runMatch(input: MatchInput): Promise<MatchResult> {
   if (!input.anliegen || input.anliegen.trim().length < 20) {
     throw new Error(
-      "Bitte beschreibe dein Anliegen etwas ausfuehrlicher (mind. 20 Zeichen)."
+      "Bitte beschreibe dein Anliegen etwas ausführlicher (mind. 20 Zeichen)."
     );
   }
 
@@ -722,17 +722,17 @@ export async function runMatch(input: MatchInput): Promise<MatchResult> {
   const elig = classifyApplicant(input);
   if (!elig.eligible) {
     const wofuer = elig.typ === "kita"
-      ? "Kitas und Kindergaerten"
+      ? "Kitas und Kindergärten"
       : elig.typ === "privatunternehmen"
         ? "Privatunternehmen"
         : "dieser Antragstellertyp";
     return {
       kind: "clarification",
       question:
-        `EduFunds vermittelt Foerderprogramme fuer SCHULEN. Antragsberechtigt sind ` +
-        `Schulen, Schultraeger und Foerdervereine — fuer ${wofuer} koennen wir keine ` +
-        `passenden Schulprogramme vorschlagen. Falls ein Foerderverein oder Schultraeger ` +
-        `stellvertretend fuer eine Schule beantragt, gib bitte die Schule an.`,
+        `EduFunds vermittelt Förderprogramme für SCHULEN. Antragsberechtigt sind ` +
+        `Schulen, Schulträger und Fördervereine — für ${wofuer} können wir keine ` +
+        `passenden Schulprogramme vorschlagen. Falls ein Förderverein oder Schulträger ` +
+        `stellvertretend für eine Schule beantragt, gib bitte die Schule an.`,
       costs: emptyLedger(),
     };
   }

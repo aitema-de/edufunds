@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     }
     if (finalText === undefined && vorschlaege === undefined) {
       return NextResponse.json(
-        { error: "finalText und/oder vorschlaege erforderlich" },
+        { error: "finalText und/oder vorschläge erforderlich" },
         { status: 400 }
       );
     }
@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
     let newVorschlaege = generation.factVerification?.vorschlaege;
     if (vorschlaege !== undefined) {
       if (!Array.isArray(vorschlaege) || vorschlaege.length > MAX_VORSCHLAEGE) {
-        return NextResponse.json({ error: "vorschlaege ungültig" }, { status: 400 });
+        return NextResponse.json({ error: "vorschläge ungültig" }, { status: 400 });
       }
       newVorschlaege = vorschlaege
         .filter((v): v is string => typeof v === "string")

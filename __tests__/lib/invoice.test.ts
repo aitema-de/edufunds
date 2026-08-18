@@ -52,7 +52,7 @@ describe("buildInvoiceBody", () => {
     "2026-06-12T08:00:00.000Z"
   );
 
-  it("taxType gross + 19 % brutto im lineItem", () => {
+  it("taxType groß + 19 % brutto im lineItem", () => {
     expect(body.taxConditions.taxType).toBe("gross");
     expect(body.lineItems[0].unitPrice.grossAmount).toBe(29.9);
     expect(body.lineItems[0].unitPrice.taxRatePercentage).toBe(19);

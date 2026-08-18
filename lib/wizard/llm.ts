@@ -34,8 +34,8 @@ function resolveProvider(): LlmProvider {
   // harter Riegel statt eines Kommentars: lieber Startfehler als Drittlandtransfer.
   if (process.env.NODE_ENV === "production" && p && p !== "mistral") {
     throw new Error(
-      `LLM_PROVIDER="${p}" ist in Produktion unzulaessig: nur "mistral" (EU/EWR) ist erlaubt. ` +
-        `Andere Provider wuerden die Zusage aus Datenschutzerklaerung und AGB verletzen.`
+      `LLM_PROVIDER="${p}" ist in Produktion unzulässig: nur "mistral" (EU/EWR) ist erlaubt. ` +
+        `Andere Provider würden die Zusage aus Datenschutzerklärung und AGB verletzen.`
     );
   }
 
@@ -87,7 +87,7 @@ const REQUEST_TIMEOUT_MS = 120_000;
 class LlmTimeoutError extends Error {
   status = 504 as const;
   constructor(model: string) {
-    super(`KI-Aufruf an ${model} hat das Zeitlimit von ${REQUEST_TIMEOUT_MS / 1000} s ueberschritten.`);
+    super(`KI-Aufruf an ${model} hat das Zeitlimit von ${REQUEST_TIMEOUT_MS / 1000} s überschritten.`);
     this.name = "LlmTimeoutError";
   }
 }
@@ -470,10 +470,10 @@ export async function generateText(model: string, system: string, user: string, 
 
 if (process.env.NODE_ENV !== "test") {
   if (PROVIDER === "deepseek" && !DEEPSEEK_API_KEY) {
-    console.warn("[wizard/llm] LLM_PROVIDER=deepseek aktiv, aber DEEPSEEK_API_KEY ist leer — KI-Calls werden 401 zurueckgeben.");
+    console.warn("[wizard/llm] LLM_PROVIDER=deepseek aktiv, aber DEEPSEEK_API_KEY ist leer — KI-Calls werden 401 zurückgeben.");
   } else if (PROVIDER === "gemini" && !GEMINI_API_KEY) {
-    console.warn("[wizard/llm] LLM_PROVIDER=gemini aktiv, aber GEMINI_API_KEY ist leer — KI-Calls werden 401 zurueckgeben.");
+    console.warn("[wizard/llm] LLM_PROVIDER=gemini aktiv, aber GEMINI_API_KEY ist leer — KI-Calls werden 401 zurückgeben.");
   } else if (PROVIDER === "mistral" && !MISTRAL_API_KEY) {
-    console.warn("[wizard/llm] LLM_PROVIDER=mistral aktiv, aber MISTRAL_API_KEY ist leer — KI-Calls werden 401 zurueckgeben.");
+    console.warn("[wizard/llm] LLM_PROVIDER=mistral aktiv, aber MISTRAL_API_KEY ist leer — KI-Calls werden 401 zurückgeben.");
   }
 }

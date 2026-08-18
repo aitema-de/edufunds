@@ -14,7 +14,7 @@ import { ClarificationCard } from '@/components/Wizard/ClarificationCard';
 const SAMPLE: MatchEntry = {
   id: 'bmbf-digitalpakt-2',
   score: 88,
-  passt_weil: 'Bundesweite Foerderung digitaler Schulinfrastruktur.',
+  passt_weil: 'Bundesweite Förderung digitaler Schulinfrastruktur.',
   achtung_bei: 'Antragsfrist naht.',
   programm: {
     id: 'bmbf-digitalpakt-2',
@@ -28,7 +28,7 @@ describe('MatchResultList — Ranking-Branch', () => {
     render(<MatchResultList matches={[SAMPLE]} onStartAntrag={() => {}} />);
     expect(screen.getByText(/Passt, weil:/)).toBeInTheDocument();
     expect(
-      screen.getByText('Bundesweite Foerderung digitaler Schulinfrastruktur.')
+      screen.getByText('Bundesweite Förderung digitaler Schulinfrastruktur.')
     ).toBeInTheDocument();
   });
 
@@ -78,7 +78,7 @@ describe('MatchResultList — Ranking-Branch', () => {
 });
 
 describe('ClarificationCard', () => {
-  const QUESTION = 'Fuer welches Bundesland sucht ihr und welcher Schwerpunkt steht im Vordergrund?';
+  const QUESTION = 'Für welches Bundesland sucht ihr und welcher Schwerpunkt steht im Vordergrund?';
 
   it('rendert question-Text als h2 — D-11', () => {
     render(

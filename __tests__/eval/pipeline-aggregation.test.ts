@@ -51,7 +51,7 @@ function makeScore(wiz01: number, wiz02: number, wiz03: number): EntryScores {
 }
 
 describe("Per-Geber-Gruppe + Per-Dossier Aggregation", () => {
-  it("Per-Geber-Gruppe-Breakdown: 3 Eintraege mit 'stiftung' → korrekte Aggregation fuer Gruppe", () => {
+  it("Per-Geber-Gruppe-Breakdown: 3 Einträge mit 'stiftung' → korrekte Aggregation für Gruppe", () => {
     const allResults = new Map([
       ["s1", { entry: makeEntry("s1", "aktion-mensch-schulkooperation", "stiftung"), scores: [makeScore(80, 90, 70)] }],
       ["s2", { entry: makeEntry("s2", "aktion-mensch-schulkooperation", "stiftung"), scores: [makeScore(70, 80, 60)] }],
@@ -84,7 +84,7 @@ describe("Per-Geber-Gruppe + Per-Dossier Aggregation", () => {
     expect(kulturStats?.n).toBe(1);
   });
 
-  it("n-Counter pro Cluster korrekt: 3 Eintraege fuer 'wirtschaftspreis' → n=3 in Breakdown", () => {
+  it("n-Counter pro Cluster korrekt: 3 Einträge für 'wirtschaftspreis' → n=3 in Breakdown", () => {
     const allResults = new Map([
       ["w1", { entry: makeEntry("w1", "bosch-schulpreis", "wirtschaftspreis"), scores: [makeScore(70, 80, 60)] }],
       ["w2", { entry: makeEntry("w2", "ferry-porsche-challenge-2025", "wirtschaftspreis"), scores: [makeScore(80, 90, 70)] }],

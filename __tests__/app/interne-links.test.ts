@@ -86,7 +86,7 @@ describe("Interne Links zeigen auf existierende Routen", () => {
     return true;
   });
 
-  it("findet ueberhaupt Links (der Test darf nicht leer durchlaufen)", () => {
+  it("findet überhaupt Links (der Test darf nicht leer durchlaufen)", () => {
     expect(links.length).toBeGreaterThan(20);
   });
 

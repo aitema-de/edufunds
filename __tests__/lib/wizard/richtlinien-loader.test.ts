@@ -25,7 +25,7 @@ describe("richtlinien-loader", () => {
     expect(r!.fristLogik).toBeDefined();
   });
 
-  it("sollte null zurueckgeben fuer ein nicht existierendes Dossier (kein Crash)", async () => {
+  it("sollte null zurückgeben für ein nicht existierendes Dossier (kein Crash)", async () => {
     const r = await loadRichtlinie("dieses-dossier-existiert-definitiv-nicht-2099");
     expect(r).toBeNull();
   });

@@ -68,7 +68,7 @@ async function handleChargeRefunded(ch: Stripe.Charge): Promise<void> {
     console.log(
       `[stripe/webhook] charge.refunded ${ch.id}: Session ${token} ` +
         (r.revoked
-          ? `entwertet (paid_token ${r.revokedToken} ungueltig)`
+          ? `entwertet (paid_token ${r.revokedToken} ungültig)`
           : `war bereits entwertet oder nie bezahlt`)
     );
     return;
@@ -96,7 +96,7 @@ async function handleChargeRefunded(ch: Stripe.Charge): Promise<void> {
   // ohne dass ein Zugriff entzogen wurde.
   console.warn(
     `[stripe/webhook] charge.refunded ${ch.id}: WEDER Antrag NOCH Kontingent zugeordnet — ` +
-      `nichts entwertet. Bitte manuell pruefen (payment_intent=${pi ?? "unbekannt"}).`
+      `nichts entwertet. Bitte manuell prüfen (payment_intent=${pi ?? "unbekannt"}).`
   );
 }
 
@@ -129,7 +129,7 @@ export async function POST(req: NextRequest) {
       process.env.STRIPE_WEBHOOK_SECRET!
     );
   } catch (err) {
-    console.error("[stripe/webhook] Signatur-Pruefung fehlgeschlagen:", err);
+    console.error("[stripe/webhook] Signatur-Prüfung fehlgeschlagen:", err);
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
   }
 
@@ -224,7 +224,7 @@ export async function POST(req: NextRequest) {
       case "checkout.session.expired": {
         const cs = event.data.object as Stripe.Checkout.Session;
         const token = (cs.metadata?.wizard_session_token as string | undefined) ?? null;
-        console.log(`[stripe/webhook] checkout.session.expired fuer ${token ?? "unknown"}`);
+        console.log(`[stripe/webhook] checkout.session.expired für ${token ?? "unknown"}`);
         // TODO PAY-03 (State-Hook): Session-Hinweis "Zahlung abgebrochen — neu starten?" im UI rendern.
         break;
       }
@@ -236,7 +236,7 @@ export async function POST(req: NextRequest) {
       case "checkout.session.async_payment_failed": {
         const cs = event.data.object as Stripe.Checkout.Session;
         const token = (cs.metadata?.wizard_session_token as string | undefined) ?? null;
-        console.log(`[stripe/webhook] async_payment_failed fuer ${token ?? "unknown"}`);
+        console.log(`[stripe/webhook] async_payment_failed für ${token ?? "unknown"}`);
         // TODO PAY-03 (Mail-Hook): User benachrichtigen, Retry-Pfad anbieten.
         break;
       }

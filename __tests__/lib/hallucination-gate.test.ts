@@ -29,14 +29,14 @@ describe("buildAllowedCorpus", () => {
 
 describe("detectIntroduced — Zahlen", () => {
   it("flaggt einen erfundenen Euro-Betrag, der nirgends in der Quelle steht", () => {
-    const corpus = "Wir wollen Tablets anschaffen und einen Leseclub gruenden.";
+    const corpus = "Wir wollen Tablets anschaffen und einen Leseclub gründen.";
     const text = "Die Anschaffung kostet 8.000 EUR und wird beantragt.";
     const res = detectIntroduced(text, corpus);
     expect(res.numbers.some((n) => n.includes("8.000"))).toBe(true);
   });
 
   it("flaggt KEINEN Betrag, der im Entwurf/Quelle gedeckt ist (auch andere Schreibweise)", () => {
-    const corpus = "Der Eigenanteil betraegt 8000 Euro.";
+    const corpus = "Der Eigenanteil beträgt 8000 Euro.";
     const text = "Wir bringen 8.000 EUR Eigenanteil ein."; // gleiche Zahl, Tausenderpunkt
     const res = detectIntroduced(text, corpus);
     expect(res.numbers).toHaveLength(0);
@@ -44,21 +44,21 @@ describe("detectIntroduced — Zahlen", () => {
 
   it("ignoriert kleine bare Zahlen (Ordnungszahlen, wenige Wochen)", () => {
     const corpus = "Ein Projekt.";
-    const text = "In 3 Schritten ueber 2 Wochen mit 4 Zielen.";
+    const text = "In 3 Schritten über 2 Wochen mit 4 Zielen.";
     const res = detectIntroduced(text, corpus);
     expect(res.numbers).toHaveLength(0);
   });
 
-  it("flaggt eine erfundene Prozentzahl unabhaengig von der Groesse", () => {
+  it("flaggt eine erfundene Prozentzahl unabhängig von der Größe", () => {
     const corpus = "Ein Projekt ohne Quoten.";
     const text = "Die Beteiligung steigt um 5 %.";
     const res = detectIntroduced(text, corpus);
     expect(res.numbers.some((n) => n.includes("5"))).toBe(true);
   });
 
-  it("flaggt eine erfundene groessere Stueckzahl (>= Schwelle)", () => {
+  it("flaggt eine erfundene größere Stückzahl (>= Schwelle)", () => {
     const corpus = "Wir haben eine Grundschule.";
-    const text = "Insgesamt nehmen 25 Schueler teil.";
+    const text = "Insgesamt nehmen 25 Schüler teil.";
     const res = detectIntroduced(text, corpus);
     expect(res.numbers.some((n) => n.includes("25"))).toBe(true);
   });
@@ -66,7 +66,7 @@ describe("detectIntroduced — Zahlen", () => {
 
 describe("detectIntroduced — Eigennamen", () => {
   it("flaggt einen erfundenen Verein mit Rechtsform e.V.", () => {
-    const corpus = "Wir kooperieren mit der oertlichen Stadtbuecherei.";
+    const corpus = "Wir kooperieren mit der örtlichen Stadtbücherei.";
     const text = "In Kooperation mit dem Verein KinderZukunft e.V. setzen wir das um.";
     const res = detectIntroduced(text, corpus);
     // Sowohl der CamelCase-Name als auch die Rechtsform-Phrase sind starke Signale.
@@ -76,34 +76,34 @@ describe("detectIntroduced — Eigennamen", () => {
 
   it("flaggt KEINEN Partner, den der Nutzer selbst genannt hat", () => {
     const corpus = "Wir arbeiten mit der Bildungsbande e.V. zusammen.";
-    const text = "Die Bildungsbande e.V. unterstuetzt das Vorhaben.";
+    const text = "Die Bildungsbande e.V. unterstützt das Vorhaben.";
     const res = detectIntroduced(text, corpus);
     expect(res.entities).toHaveLength(0);
   });
 
   it("flaggt eine erfundene Kontaktperson mit Anrede", () => {
-    const corpus = "Die Schulleitung traegt das Projekt.";
+    const corpus = "Die Schulleitung trägt das Projekt.";
     const text = "Ansprechpartnerin ist Frau Dr. Sommerfeld.";
     const res = detectIntroduced(text, corpus);
     expect(res.entities.join(" ")).toMatch(/Sommerfeld/);
   });
 
-  it("flaggt KEINE normale deutsche Grossschreibung (Substantive)", () => {
+  it("flaggt KEINE normale deutsche Großschreibung (Substantive)", () => {
     const corpus = "x";
-    const text = "Die Schule foerdert die Lesekompetenz der Kinder im Unterricht.";
+    const text = "Die Schule fördert die Lesekompetenz der Kinder im Unterricht.";
     const res = detectIntroduced(text, corpus);
     expect(res.entities).toHaveLength(0);
   });
 });
 
 describe("repairIntroduced — Akzeptanz-Gate", () => {
-  const corpus = "Wir wollen einen Leseclub gruenden.";
+  const corpus = "Wir wollen einen Leseclub gründen.";
   const revised = "Der Leseclub kostet 8.000 EUR und wird von KinderZukunft e.V. begleitet.";
   const introduced = detectIntroduced(revised, corpus);
 
-  it("uebernimmt den Repair, wenn er die Treffer strikt reduziert", async () => {
+  it("übernimmt den Repair, wenn er die Treffer strikt reduziert", async () => {
     const cleaned =
-      "Der Leseclub wird in noch zu bestimmender Hoehe gefoerdert und von einer noch zu gewinnenden Partnerorganisation begleitet.";
+      "Der Leseclub wird in noch zu bestimmender Höhe gefördert und von einer noch zu gewinnenden Partnerorganisation begleitet.";
     const res = await repairIntroduced(revised, introduced, corpus, {
       revise: async () => ({ value: cleaned, usage: { promptTokens: 1, candidatesTokens: 1 } }),
       model: "fake",
@@ -126,7 +126,7 @@ describe("repairIntroduced — Akzeptanz-Gate", () => {
     expect(res.finalText).toBe(revised); // Originalrevision bleibt
   });
 
-  it("verwirft einen Repair, der den Text massiv kuerzt (Anti-Truncation)", async () => {
+  it("verwirft einen Repair, der den Text massiv kürzt (Anti-Truncation)", async () => {
     const res = await repairIntroduced(revised, introduced, corpus, {
       revise: async () => ({ value: "Leseclub.", usage: { promptTokens: 1, candidatesTokens: 1 } }),
       model: "fake",

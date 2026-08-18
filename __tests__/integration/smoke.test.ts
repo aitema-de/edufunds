@@ -13,7 +13,7 @@ describe("Test-Datenbank", () => {
     expect(res.rows[0].ok).toBe(1);
   });
 
-  it("laeuft gegen die Wegwerf-DB, nicht gegen Dev/Prod", async () => {
+  it("läuft gegen die Wegwerf-DB, nicht gegen Dev/Prod", async () => {
     const res = await query<{ db: string }>("SELECT current_database() AS db");
     expect(res.rows[0].db).toBe("edufunds_test");
   });

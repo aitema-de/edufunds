@@ -37,7 +37,7 @@ describe("markVorschlaege", () => {
     const r = markVorschlaege(
       [
         posten({ bezeichnung: "Tablets", begruendung: "20 Tablets laut Nutzerangabe à 400 EUR" }),
-        posten({ bezeichnung: "Honorar", begruendung: "Schaetzung: übliche Tagessätze" }),
+        posten({ bezeichnung: "Honorar", begruendung: "Schätzung: übliche Tagessätze" }),
       ],
       true
     );

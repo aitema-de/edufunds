@@ -79,8 +79,8 @@ export function logSecretStatusOnce(): void {
     console.error(
       `[secret-check] 🔴 BANKVERBINDUNG: ${bank.join(", ")} — der Kauf auf Rechnung ` +
         `nennt die IBAN als Zahlungsziel in Rechnungs- UND Mahnmails. Solange sie fehlt ` +
-        `oder ungueltig ist, schlaegt der Rechnungskauf fehl (fail-closed), statt eine ` +
-        `nicht ueberweisbare Kontoverbindung zu versenden.`
+        `oder ungültig ist, schlägt der Rechnungskauf fehl (fail-closed), statt eine ` +
+        `nicht überweisbare Kontoverbindung zu versenden.`
     );
   }
 }

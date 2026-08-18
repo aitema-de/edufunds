@@ -27,7 +27,7 @@ describe("2σ-Threshold-Gate pro Achse", () => {
     expect(result.passed).toBe(false);
   });
 
-  it("WIZ-03 warning-only: beliebig grosser Score-Drop → passed=true (nie FAIL)", () => {
+  it("WIZ-03 warning-only: beliebig großer Score-Drop → passed=true (nie FAIL)", () => {
     // WIZ-03 ist immer warning-only
     const baseline: ScoreStat = { mean: 80, stddev: 5, runs: [] };
     const current: ScoreStat = { mean: 0, stddev: 0, runs: [] };

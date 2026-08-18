@@ -17,7 +17,7 @@ const VOLL: WizardFacts = {
   schule: { name: "Astrid-Lindgren-Grundschule", typ: "grundschule", schuelerzahl: 240 },
   projekt: {
     titel: "Leseclub",
-    kurzbeschreibung: "Woechentliche Lesestunden",
+    kurzbeschreibung: "Wöchentliche Lesestunden",
     zielgruppe: "Jahrgang 2 und 3",
     ziele: ["mehr Lesefreude"],
     aktivitaeten: ["Lesestunden"],
@@ -26,7 +26,7 @@ const VOLL: WizardFacts = {
   wirkung: {
     erwartete_ergebnisse: ["mehr Ausleihen"],
     messbare_indikatoren: ["Ausleihzahlen"],
-    nachhaltigkeit: "Foerderverein traegt weiter",
+    nachhaltigkeit: "Förderverein trägt weiter",
   },
   budget: { beantragt_eur: 5000, hauptposten: ["Buecher", "Honorar"] },
 };
@@ -35,18 +35,18 @@ const VOLL: WizardFacts = {
 const OHNE_SUMME: WizardFacts = { ...VOLL, budget: { hauptposten: ["Buecher"] } };
 
 describe("offeneNachfassLuecken", () => {
-  it("meldet nichts bei vollstaendigen Angaben", () => {
+  it("meldet nichts bei vollständigen Angaben", () => {
     expect(offeneNachfassLuecken(VOLL, null, [])).toHaveLength(0);
   });
 
-  it("sortiert nach Gutachter-Gewicht — die Foerdersumme zuerst", () => {
+  it("sortiert nach Gutachter-Gewicht — die Fördersumme zuerst", () => {
     const leer: WizardFacts = {};
     const luecken = offeneNachfassLuecken(leer, null, []);
     expect(luecken[0].feld).toBe("budget.beantragt_eur");
     expect(luecken.every((l) => l.nachfrage.trim().length > 0)).toBe(true);
   });
 
-  it("fasst nur Felder nach, fuer die eine Nachfrage hinterlegt ist", () => {
+  it("fasst nur Felder nach, für die eine Nachfrage hinterlegt ist", () => {
     // projekt.titel fehlt zwar und ist "hoch", hat aber keine Nachfrage —
     // eine Frage nach dem Titel wuerde der Interviewer ohnehin stellen.
     const luecken = offeneNachfassLuecken({}, null, []);
@@ -55,13 +55,13 @@ describe("offeneNachfassLuecken", () => {
 });
 
 describe("beurteileAbschluss", () => {
-  it("laesst enden, wenn keine nachfassbare Luecke offen ist", () => {
+  it("lässt enden, wenn keine nachfassbare Lücke offen ist", () => {
     const u = beurteileAbschluss(VOLL, null, [], [], 6, 12);
     expect(u.darfEnden).toBe(true);
     expect(u.grund).toBe("keine-luecke");
   });
 
-  it("verweigert den Abschluss bei offener Foerdersumme und liefert die Nachfrage", () => {
+  it("verweigert den Abschluss bei offener Fördersumme und liefert die Nachfrage", () => {
     const u = beurteileAbschluss(OHNE_SUMME, null, [], [], 6, 12);
     expect(u.darfEnden).toBe(false);
     expect(u.grund).toBe("nachfassen");
@@ -71,14 +71,14 @@ describe("beurteileAbschluss", () => {
 
   // --- Die vier Sicherungen ------------------------------------------------
 
-  it("SICHERUNG 1: fragt dieselbe Luecke nur EINMAL", () => {
+  it("SICHERUNG 1: fragt dieselbe Lücke nur EINMAL", () => {
     const erste = beurteileAbschluss(OHNE_SUMME, null, [], [], 6, 12);
     expect(erste.darfEnden).toBe(false);
     // Der Nutzer hat geantwortet ("weiss ich nicht") — das Feld bleibt leer.
     const zweite = beurteileAbschluss(
       OHNE_SUMME,
       null,
-      ["weiss ich nicht"],
+      ["weiß ich nicht"],
       [erste.nachfrage!.nachfrage],
       7,
       12
@@ -87,7 +87,7 @@ describe("beurteileAbschluss", () => {
     expect(zweite.nachfrage?.feld).not.toBe("budget.beantragt_eur");
   });
 
-  it("SICHERUNG 1b: gibt auf, wenn alle offenen Luecken schon erfragt wurden", () => {
+  it("SICHERUNG 1b: gibt auf, wenn alle offenen Lücken schon erfragt wurden", () => {
     const alle = offeneNachfassLuecken(OHNE_SUMME, null, []);
     const u = beurteileAbschluss(
       OHNE_SUMME,
@@ -101,7 +101,7 @@ describe("beurteileAbschluss", () => {
     expect(u.grund).toBe("bereits-gefragt");
   });
 
-  it("SICHERUNG 2: haelt das Nachfass-Kontingent ein", () => {
+  it("SICHERUNG 2: hält das Nachfass-Kontingent ein", () => {
     // Ohne Richtlinie gibt es genau MAX_NACHFASSEN Luecken — das Kontingent bindet
     // erst, wenn der Eigenanteil als vierte dazukommt. Genau dieser Fall wird hier
     // geprueft, sonst waere die Sicherung nie scharf.
@@ -116,13 +116,13 @@ describe("beurteileAbschluss", () => {
     expect(u.bereitsGefragt).toBe(MAX_NACHFASSEN);
   });
 
-  it("SICHERUNG 3: der harte Fragendeckel schlaegt das Gate", () => {
+  it("SICHERUNG 3: der harte Fragendeckel schlägt das Gate", () => {
     const u = beurteileAbschluss(OHNE_SUMME, null, [], [], 12, 12);
     expect(u.darfEnden).toBe(true);
     expect(u.grund).toBe("fragenbudget");
   });
 
-  it("SICHERUNG 4: freie Interviewer-Fragen zaehlen nicht aufs Kontingent", () => {
+  it("SICHERUNG 4: freie Interviewer-Fragen zählen nicht aufs Kontingent", () => {
     const fremde = [
       "Wie ist euer Medienkonzept im Schulprogramm verankert?",
       "Welche Fortbildungen habt ihr bisher gemacht?",
@@ -140,7 +140,7 @@ describe("beurteileAbschluss", () => {
       else process.env.EDUFUNDS_EVAL_ABSCHLUSS_GATE = vorher;
     });
 
-    it("laesst mit \"aus\" auch bei offener Luecke enden", () => {
+    it("lässt mit \"aus\" auch bei offener Lücke enden", () => {
       process.env.EDUFUNDS_EVAL_ABSCHLUSS_GATE = "aus";
       const u = beurteileAbschluss(OHNE_SUMME, null, [], [], 6, 12);
       expect(u.darfEnden).toBe(true);
@@ -151,7 +151,7 @@ describe("beurteileAbschluss", () => {
     // Die Richtung der Vorgabe ist die eigentliche Sicherung: nur ein einziger
     // Wert schaltet ab. Alles andere — auch ein Tippfehler — laesst das Gate an.
     it.each(["an", "0", "false", "AUS", " aus", ""])(
-      "laesst das Gate bei %p aktiv",
+      "lässt das Gate bei %p aktiv",
       (wert) => {
         process.env.EDUFUNDS_EVAL_ABSCHLUSS_GATE = wert;
         const u = beurteileAbschluss(OHNE_SUMME, null, [], [], 6, 12);
@@ -160,7 +160,7 @@ describe("beurteileAbschluss", () => {
       }
     );
 
-    it("laesst das Gate aktiv, wenn die Variable fehlt", () => {
+    it("lässt das Gate aktiv, wenn die Variable fehlt", () => {
       delete process.env.EDUFUNDS_EVAL_ABSCHLUSS_GATE;
       const u = beurteileAbschluss(OHNE_SUMME, null, [], [], 6, 12);
       expect(u.darfEnden).toBe(false);
@@ -195,11 +195,11 @@ describe("beurteileAbschluss", () => {
  * wuerde legitime Erstfragen unterdruecken und den Fuellgrad SENKEN — schlimmer
  * als der Defekt, den sie behebt.
  */
-describe("bereits verneinte Luecken werden nicht nachgefasst", () => {
+describe("bereits verneinte Lücken werden nicht nachgefasst", () => {
   const luecken = (antworten: string[]) =>
     offeneNachfassLuecken(OHNE_SUMME, null, antworten).map((l) => l.feld);
 
-  it("laesst die Foerdersumme aus, wenn der Nutzer sie schon verneint hat", () => {
+  it("lässt die Fördersumme aus, wenn der Nutzer sie schon verneint hat", () => {
     const echt =
       "Also, da müssen wir wohl erst noch klären – ich weiß nicht genau, ob der " +
       "Förderverein da einspringen könnte, und wie hoch der Betrag wäre, das haben wir noch nicht.";
@@ -223,7 +223,7 @@ describe("bereits verneinte Luecken werden nicht nachgefasst", () => {
 
   // pv-edge-004: verneint ohne Summenwort. Die Frage brachte immerhin
   // Materialkosten von 1.500-2.000 EUR — deshalb ist `kosten` kein Themenwort.
-  it("FALSCH-POSITIV: \"noch nicht durchgerechnet\" allein unterdrueckt nicht", () => {
+  it("FALSCH-POSITIV: \"noch nicht durchgerechnet\" allein unterdrückt nicht", () => {
     const echt =
       "Also da wird's jetzt ein bisschen schwierig, weil wir da noch nicht alles " +
       "durchgerechnet haben, muss ich ehrlich sagen.";
@@ -245,7 +245,7 @@ describe("bereits verneinte Luecken werden nicht nachgefasst", () => {
     expect(felder).toContain("budget.beantragt_eur");
   });
 
-  it("unterdrueckt auch den Eigenanteil, wenn er schon verneint wurde", () => {
+  it("unterdrückt auch den Eigenanteil, wenn er schon verneint wurde", () => {
     const richtlinie = { eigenmittel: { pflicht: true } } as never;
     const mit = offeneNachfassLuecken(VOLL, richtlinie, [
       "Ob wir einen Eigenanteil stemmen können, kann ich Ihnen nicht sagen.",
@@ -253,7 +253,7 @@ describe("bereits verneinte Luecken werden nicht nachgefasst", () => {
     expect(mit.map((l) => l.feld)).not.toContain("budget.eigenmittel_eur");
   });
 
-  it("laesst das Gate enden, wenn nur verneinte Luecken offen sind", () => {
+  it("lässt das Gate enden, wenn nur verneinte Lücken offen sind", () => {
     const u = beurteileAbschluss(OHNE_SUMME, null, ["Wie hoch die Summe wäre, weiß ich nicht."], [], 6, 12);
     expect(u.darfEnden).toBe(true);
     expect(u.grund).toBe("keine-luecke");

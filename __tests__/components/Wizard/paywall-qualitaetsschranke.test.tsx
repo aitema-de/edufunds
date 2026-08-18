@@ -30,7 +30,7 @@ afterEach(() => {
   jest.resetAllMocks();
 });
 
-describe("Qualitaetsschranke vor der Zahlung", () => {
+describe("Qualitätsschranke vor der Zahlung", () => {
   it("benennt die fehlenden Angaben konkret", async () => {
     mockReadiness({
       status: "hinweise",
@@ -67,7 +67,7 @@ describe("Qualitaetsschranke vor der Zahlung", () => {
     expect(screen.queryByText(/fehlt noch|fehlen noch/i)).not.toBeInTheDocument();
   });
 
-  it("blendet Randnotizen der Schwere 'niedrig' aus — an der teuersten Stelle zaehlt nur Relevantes", async () => {
+  it("blendet Randnotizen der Schwere 'niedrig' aus — an der teuersten Stelle zählt nur Relevantes", async () => {
     mockReadiness({
       status: "hinweise",
       issues: [{ feld: "projekt.zeitraum", label: "Projektzeitraum", schwere: "niedrig" }],
@@ -77,7 +77,7 @@ describe("Qualitaetsschranke vor der Zahlung", () => {
     expect(screen.queryByText(/Projektzeitraum/)).not.toBeInTheDocument();
   });
 
-  it("bleibt stumm, wenn der Readiness-Abruf scheitert — eine Nebenpruefung darf den Bezahlweg nie stoeren", async () => {
+  it("bleibt stumm, wenn der Readiness-Abruf scheitert — eine Nebenprüfung darf den Bezahlweg nie stören", async () => {
     global.fetch = jest.fn().mockRejectedValue(new Error("offline")) as unknown as typeof fetch;
     renderGate();
     await waitFor(() => expect(global.fetch).toHaveBeenCalled());

@@ -17,10 +17,10 @@ jest.mock("@/lib/wizard/llm", () => {
         return {
           value: {
             kostenrahmen: [
-              "Anschaffung von Tablets fuer den Klasseneinsatz",
-              "Honorar fuer eine externe Fortbildung zur Mediendidaktik",
+              "Anschaffung von Tablets für den Klasseneinsatz",
+              "Honorar für eine externe Fortbildung zur Mediendidaktik",
             ],
-            hinweise: ["Konkrete Betraege werden ueber Angebote vor Einreichung ermittelt."],
+            hinweise: ["Konkrete Beträge werden über Angebote vor Einreichung ermittelt."],
           },
           usage: { promptTokens: 10, candidatesTokens: 10 },
         };
@@ -36,9 +36,9 @@ jest.mock("@/lib/wizard/llm", () => {
 const programm = { id: "p", name: "Test", foerdergeberTyp: "bund" } as never;
 
 describe("hasUserKostenbasis", () => {
-  it("false bei spaerlichem Input ohne Geldangabe", () => {
+  it("false bei spärlichem Input ohne Geldangabe", () => {
     const facts: WizardFacts = { schule: { name: "GS", typ: "Grundschule" }, projekt: {} } as never;
-    expect(hasUserKostenbasis(facts, ["So ungefaehr 200 Kinder", "20 Tablets vielleicht"])).toBe(false);
+    expect(hasUserKostenbasis(facts, ["So ungefähr 200 Kinder", "20 Tablets vielleicht"])).toBe(false);
   });
   it("true wenn Budget in den Facts steht", () => {
     const facts = { budget: { beantragt_eur: 15000 } } as never;
@@ -46,12 +46,12 @@ describe("hasUserKostenbasis", () => {
   });
   it("true wenn eine Antwort einen Euro-Betrag nennt", () => {
     const facts = {} as never;
-    expect(hasUserKostenbasis(facts, ["wir haetten so 10.000 Euro Eigenanteil"])).toBe(true);
-    expect(hasUserKostenbasis(facts, ["ca. 500 € pro Geraet"])).toBe(true);
+    expect(hasUserKostenbasis(facts, ["wir hätten so 10.000 Euro Eigenanteil"])).toBe(true);
+    expect(hasUserKostenbasis(facts, ["ca. 500 € pro Gerät"])).toBe(true);
   });
-  it("Mengen ohne Euro zaehlen NICHT als Kostenbasis", () => {
+  it("Mengen ohne Euro zählen NICHT als Kostenbasis", () => {
     const facts = {} as never;
-    expect(hasUserKostenbasis(facts, ["200 Kinder, 15 Lehrkraefte, 8 Klassen"])).toBe(false);
+    expect(hasUserKostenbasis(facts, ["200 Kinder, 15 Lehrkräfte, 8 Klassen"])).toBe(false);
   });
 });
 
@@ -61,7 +61,7 @@ describe("hasUserKostenbasis", () => {
 describe("generateFinanzplan Vorschlags-Routing", () => {
   it("ohne Kostenbasis: bezifferte Posten, alle als Vorschlag markiert + Hinweis", async () => {
     const facts = { schule: { name: "GS", typ: "Grundschule" }, projekt: {} } as never;
-    const { plan } = await generateFinanzplan(programm, facts, null, ["200 Kinder", "20 Tablets ungefaehr"]);
+    const { plan } = await generateFinanzplan(programm, facts, null, ["200 Kinder", "20 Tablets ungefähr"]);
     expect(plan.unbeziffert).toBeUndefined();
     expect(plan.posten.length).toBeGreaterThan(0);
     expect(plan.posten.every((p) => p.istVorschlag)).toBe(true);

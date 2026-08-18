@@ -13,10 +13,10 @@ it("markiert alle Cluster als offen bei leeren Facts", () => {
   expect(block).toContain("Budget/Kosten");
 });
 
-it("erkennt einen befuellten Cluster als abgedeckt (Nachhaltigkeit gefuellt)", () => {
+it("erkennt einen befüllten Cluster als abgedeckt (Nachhaltigkeit gefüllt)", () => {
   const facts: WizardFacts = {
     schule: { name: "GS Test", schuelerzahl: 180 },
-    wirkung: { nachhaltigkeit: "Die Schule uebernimmt die Betriebskosten ab 2028." },
+    wirkung: { nachhaltigkeit: "Die Schule übernimmt die Betriebskosten ab 2028." },
   };
   const block = factsCoverageBlock(facts);
   // Nachhaltigkeit ist gefuellt → NICHT mehr in OFFENE BEREICHE.
@@ -30,7 +30,7 @@ it("erkennt einen befuellten Cluster als abgedeckt (Nachhaltigkeit gefuellt)", (
   expect(abgedeckt).toContain("Schule/Kontext");
 });
 
-it("wertet ein leeres schuelerzahl=0 nicht als befuellt", () => {
+it("wertet ein leeres schülerzahl=0 nicht als befüllt", () => {
   const block = factsCoverageBlock({ budget: { beantragt_eur: 0 } } as WizardFacts);
   const offeneZeile = block.split("\n").find((l) => l.startsWith("OFFENE BEREICHE"))!;
   expect(offeneZeile).toContain("Budget/Kosten"); // 0 zaehlt nicht als Angabe
@@ -60,7 +60,7 @@ describe("Tiefen-Abschnitt", () => {
     jest.resetModules();
   });
 
-  it("listet bei leeren Facts alle fuenf Tiefenpunkte als FEHLT", () => {
+  it("listet bei leeren Facts alle fünf Tiefenpunkte als FEHLT", () => {
     const block = factsCoverageBlock({} as WizardFacts);
     expect(block).toContain("TIEFE DER ANGABEN");
     expect(block).toContain("FEHLT — Ist-Zahlen zum Bedarf");
@@ -81,7 +81,7 @@ describe("Tiefen-Abschnitt", () => {
 
   it("markiert einen vom Nutzer verneinten Punkt als nicht erneut zu fragen", () => {
     const block = factsCoverageBlock({
-      programmpassung: { offene_luecken: ["Kein Beschluss des Traegers vorhanden"] },
+      programmpassung: { offene_luecken: ["Kein Beschluss des Trägers vorhanden"] },
     } as WizardFacts);
     expect(block).toMatch(/BEREITS VERNEINT[^\n]*Beschlüsse und Zusagen des Trägers/);
     expect(block).not.toContain("FEHLT — Beschlüsse und Zusagen des Trägers");
@@ -141,7 +141,7 @@ describe("Schalter WIZARD_FACTS_TIEFE", () => {
     expect(standard.system).not.toContain("geh in die TIEFE");
   });
 
-  it("laesst den System-Prompt nie auf einen fehlenden Abschnitt verweisen", () => {
+  it("lässt den System-Prompt nie auf einen fehlenden Abschnitt verweisen", () => {
     for (const wert of ["true", "false", undefined]) {
       const s = ladeMit(wert);
       if (s.system.includes("TIEFE DER ANGABEN")) {

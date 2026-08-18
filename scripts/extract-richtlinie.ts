@@ -56,7 +56,11 @@ interface Queue {
 
 const SYSTEM_PROMPT = `Du extrahierst aus dem Volltext einer Foerderrichtlinie ein strukturiertes JSON-Dossier. Bleibe eng am Text, erfinde keine Zahlen oder Regeln. Wenn etwas nicht eindeutig ist, nutze "bemerkung" / "notizen"-Felder und lasse spezifische Felder weg statt zu raten.
 
-Sprache: deutsch. Zahlen in EUR als number (ohne Punkte, ohne Komma). Prozente als number 0..100.
+Sprache: deutsch, mit KORREKTEN UMLAUTEN (ä, ö, ü) und ß in allen Textwerten — niemals
+ae/oe/ue/ss ersatzweise schreiben (also "Förderfähigkeit", nicht "Foerderfaehigkeit").
+AUSNAHME: Feldnamen, IDs, Slugs und Enum-Werte des Schemas bleiben exakt wie unten
+angegeben in ASCII ("foerderhoehe", "haeufig", "foerderfaehig") — dort NICHTS ändern.
+Zahlen in EUR als number (ohne Punkte, ohne Komma). Prozente als number 0..100.
 
 JSON-Schema (exakte Feldnamen):
 {

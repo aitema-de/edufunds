@@ -146,7 +146,7 @@ export async function nextStep(
       return { step, usage: { model: MODEL_FLASH, usage } };
     }
     console.log(
-      `[interviewer] Abschluss verweigert — Luecke "${urteil.nachfrage.feld}" offen ` +
+      `[interviewer] Abschluss verweigert — Lücke "${urteil.nachfrage.feld}" offen ` +
         `(${urteil.bereitsGefragt}/${MAX_NACHFASSEN} Nachfragen gestellt)`
     );
     const step: NextStepQuestion = {
@@ -165,7 +165,7 @@ export async function nextStep(
   // mit den vorhandenen Angaben generiert (offene Stellen sind nachher editierbar).
   if (raw.kind === "question" && countSimilarQuestions(askedQuestions, raw.content) >= 1) {
     return alsAbschluss(
-      "Einige Punkte liessen sich trotz Nachfrage nicht weiter praezisieren — der Antrag wird mit den vorhandenen Angaben erstellt. Offene Stellen kannst du anschliessend ergaenzen."
+      "Einige Punkte liessen sich trotz Nachfrage nicht weiter präzisieren — der Antrag wird mit den vorhandenen Angaben erstellt. Offene Stellen kannst du anschließend ergänzen."
     );
   }
 

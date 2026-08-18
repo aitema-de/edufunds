@@ -31,11 +31,11 @@ describe("offeneMaengel", () => {
   // Der Kern des Defekts: erfundenes Nichtwissen muss die Schleife ueberhaupt
   // erst anwerfen. Zaehlte es nicht mit, liefe der Bau daran vorbei und broeche
   // danach ab.
-  it("zaehlt erfundenes Nichtwissen mit", () => {
-    expect(offeneMaengel(pruefung({ unbelegteNichtwissen: ["Weiss nicht, wie hoch das Budget ist."] }))).toBe(1);
+  it("zählt erfundenes Nichtwissen mit", () => {
+    expect(offeneMaengel(pruefung({ unbelegteNichtwissen: ["Weiß nicht, wie hoch das Budget ist."] }))).toBe(1);
   });
 
-  it("zaehlt alle drei harten Klassen zusammen", () => {
+  it("zählt alle drei harten Klassen zusammen", () => {
     const pr = pruefung({
       widersprueche: [{ hintergrund: "h", nichtWissen: "n" }],
       unbelegteNichtwissen: ["a", "b"],
@@ -47,7 +47,7 @@ describe("offeneMaengel", () => {
   // `fehlendeNichtwissen` ist bewusst nur ein Hinweis: eine Korpus-Aeusserung ohne
   // Entsprechung macht die Person aermer, nicht unwahr. Sie darf keine
   // Nachbesserung ausloesen.
-  it("laesst den blossen Hinweis fehlendeNichtwissen aussen vor", () => {
+  it("lässt den blossen Hinweis fehlendeNichtwissen aussen vor", () => {
     expect(offeneMaengel(pruefung({ fehlendeNichtwissen: ["zur Frage: ..."] }))).toBe(0);
   });
 });
@@ -59,17 +59,17 @@ describe("buildReparaturPrompt", () => {
     stil: "knapp",
     belegt: [],
     hintergrund: [],
-    nichtWissen: ["Weiss nicht, wie hoch das Budget ist."],
+    nichtWissen: ["Weiß nicht, wie hoch das Budget ist."],
   } as never;
 
-  it("nennt die erfundenen Punkte woertlich und verlangt ihre Streichung", () => {
+  it("nennt die erfundenen Punkte wörtlich und verlangt ihre Streichung", () => {
     const p = buildReparaturPrompt(
       eintrag,
       profil,
-      pruefung({ unbelegteNichtwissen: ["Weiss nicht, wie hoch das Budget ist."] })
+      pruefung({ unbelegteNichtwissen: ["Weiß nicht, wie hoch das Budget ist."] })
     );
     expect(p).toContain("ERFUNDENES NICHTWISSEN");
-    expect(p).toContain("Weiss nicht, wie hoch das Budget ist.");
+    expect(p).toContain("Weiß nicht, wie hoch das Budget ist.");
     expect(p).toMatch(/ersatzlos/);
   });
 
@@ -80,11 +80,11 @@ describe("buildReparaturPrompt", () => {
     expect(p).toMatch(/NICHT durch Hintergrundwissen/);
   });
 
-  it("haelt nichtWissen unangetastet, solange nichts erfunden ist", () => {
+  it("hält nichtWissen unangetastet, solange nichts erfunden ist", () => {
     const p = buildReparaturPrompt(
       eintrag,
       profil,
-      pruefung({ widersprueche: [{ hintergrund: "etwa 30 Tablets", nichtWissen: "Weiss nicht, wie viele Tablets" }] })
+      pruefung({ widersprueche: [{ hintergrund: "etwa 30 Tablets", nichtWissen: "Weiß nicht, wie viele Tablets" }] })
     );
     expect(p).not.toContain("ERFUNDENES NICHTWISSEN");
     expect(p).toContain("WIDERSPRUECHE");

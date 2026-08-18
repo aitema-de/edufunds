@@ -27,7 +27,7 @@ describe("isOriginAllowed (Production-Policy)", () => {
     expect(isOriginAllowed("https://foo.edufunds.de")).toBe(false);
   });
 
-  it("lehnt fremde/aehnliche Domains und null ab", () => {
+  it("lehnt fremde/ähnliche Domains und null ab", () => {
     expect(isOriginAllowed("https://evil-edufunds.org")).toBe(false);
     expect(isOriginAllowed("https://edufunds.org.attacker.com")).toBe(false);
     expect(isOriginAllowed(null)).toBe(false);

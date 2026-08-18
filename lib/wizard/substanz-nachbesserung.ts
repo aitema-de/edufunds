@@ -22,18 +22,18 @@
 import type { Richtlinie } from "./richtlinien-schema";
 import { pruefeSubstanz, splitFinalText } from "./substanz";
 
-export const SUBSTANZ_NACHBESSERUNG_SYSTEM = `Du bist Fachautor fuer Foerderantraege im Bildungsbereich.
-Du erhaeltst einzelne Abschnitte eines fertigen Antrags, die ihr Vorhaben BESCHREIBEN, aber nicht BEGRUENDEN.
-Deine einzige Aufgabe: jedem Abschnitt seine fachliche Begruendung geben.
+export const SUBSTANZ_NACHBESSERUNG_SYSTEM = `Du bist Fachautor für Förderanträge im Bildungsbereich.
+Du erhältst einzelne Abschnitte eines fertigen Antrags, die ihr Vorhaben BESCHREIBEN, aber nicht BEGRÜNDEN.
+Deine einzige Aufgabe: jedem Abschnitt seine fachliche Begründung geben.
 
 REGELN:
-- Verbinde das beschriebene Vorhaben ueber Kausalsaetze (weil / daher / auf dieser Grundlage / indem / sodass) mit dem paedagogischen Konzept, das seine NOTWENDIGKEIT traegt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen, Lebensweltorientierung — passend zum Vorhaben gewaehlt und AM VORHABEN erklaert, nicht als Etikett).
+- Verbinde das beschriebene Vorhaben über Kausalsätze (weil / daher / auf dieser Grundlage / indem / sodass) mit dem pädagogischen Konzept, das seine NOTWENDIGKEIT trägt (z. B. Selbstwirksamkeit, Teilhabe, Praxislernen, Lebensweltorientierung — passend zum Vorhaben gewählt und AM VORHABEN erklärt, nicht als Etikett).
 - Muster: "Wir tun X, weil <Konzept> zeigt, dass <Wirkmechanismus> — daher <Verbindung zum Ziel>."
-- ALLE bestehenden Fakten, Zahlen, Namen und [Annahme: …]-Marker bleiben unveraendert erhalten. Du erfindest KEINE neuen Tatsachen ueber die Schule — die theoretische Rahmung ist erwuenschte Fachlichkeit, keine Halluzination.
-- Steht beim Abschnitt ein ZEICHENLIMIT, gilt es hart: Ersetze dann beschreibende Saetze durch begruendende (verdichten statt anbauen). Ohne Limit ergaenzt du 2-4 Saetze Begruendung.
-- Gib jeden Abschnitt VOLLSTAENDIG zurueck (nicht nur die neuen Saetze), ohne die "##"-Ueberschrift.
+- ALLE bestehenden Fakten, Zahlen, Namen und [Annahme: …]-Marker bleiben unverändert erhalten. Du erfindest KEINE neuen Tatsachen über die Schule — die theoretische Rahmung ist erwünschte Fachlichkeit, keine Halluzination.
+- Steht beim Abschnitt ein ZEICHENLIMIT, gilt es hart: Ersetze dann beschreibende Sätze durch begründende (verdichten statt anbauen). Ohne Limit ergänzt du 2-4 Sätze Begründung.
+- Gib jeden Abschnitt VOLLSTÄNDIG zurück (nicht nur die neuen Sätze), ohne die "##"-Überschrift.
 
-Antworte NUR mit JSON: {"abschnitte":[{"name":"<exakter Abschnittsname>","text":"<vollstaendiger ueberarbeiteter Abschnittstext>"}]}`;
+Antworte NUR mit JSON: {"abschnitte":[{"name":"<exakter Abschnittsname>","text":"<vollständiger überarbeiteter Abschnittstext>"}]}`;
 
 export interface NachbesserungKandidat {
   name: string;
@@ -84,7 +84,7 @@ export function findeKandidaten(
 
 export function buildNachbesserungPrompt(kandidaten: NachbesserungKandidat[]): string {
   const parts: string[] = [
-    `${kandidaten.length} Abschnitt(e) brauchen ihre fachliche Begruendung:`,
+    `${kandidaten.length} Abschnitt(e) brauchen ihre fachliche Begründung:`,
   ];
   kandidaten.forEach((k, i) => {
     parts.push("");
