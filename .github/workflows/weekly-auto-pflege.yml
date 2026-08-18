@@ -53,6 +53,14 @@ on:
         required: false
         type: string
         default: ""
+      erstbestand_als_kandidaten:
+        # Onboarding einer NEUEN Quelle: ihr vorhandener Bestand IST das, was in den Katalog
+        # soll. Ohne diese Option nimmt der Erstlauf ihn stumm als Ausgangsstand auf, und die
+        # vorhandenen Programme wuerden nie zu Kandidaten. Nur zusammen mit "quelle" sinnvoll.
+        description: "Erstbestand der Quelle einlesen statt stumm aufnehmen (Onboarding)"
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   auto-pflege:
@@ -82,6 +90,7 @@ jobs:
         id: browserquellen
         env:
           QUELLE_INPUT: ${{ github.event.inputs.quelle || '' }}
+          ERSTBESTAND_INPUT: ${{ github.event.inputs.erstbestand_als_kandidaten || 'false' }}
         run: |
           set -euo pipefail
           if [ -n "${QUELLE_INPUT}" ]; then
@@ -108,6 +117,7 @@ jobs:
           MAX_PROGRAMS_INPUT: ${{ github.event.inputs.max_programs || '5' }}
           DRY_RUN_INPUT: ${{ github.event.inputs.dry_run || 'false' }}
           QUELLE_INPUT: ${{ github.event.inputs.quelle || '' }}
+          ERSTBESTAND_INPUT: ${{ github.event.inputs.erstbestand_als_kandidaten || 'false' }}
         run: |
           set -euo pipefail
           if [ -z "${DEEPSEEK_API_KEY}" ] && [ "${LLM_PROVIDER}" = "deepseek" ]; then
@@ -130,6 +140,9 @@ jobs:
           fi
           if [ -n "${QUELLE_INPUT}" ]; then
             ARGS+=(--quelle "${QUELLE_INPUT}")
+          fi
+          if [ "${ERSTBESTAND_INPUT}" = "true" ]; then
+            ARGS+=(--erstbestand-als-kandidaten)
           fi
           npx tsx scripts/auto-pflege-step.ts "${ARGS[@]}"
 

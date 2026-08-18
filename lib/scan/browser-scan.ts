@@ -86,9 +86,15 @@ function slugUmlauteZurueck(text: string): string {
   return out;
 }
 
-/** Reine Aufforderungen ohne eigenen Inhalt — daraus wird kein Programmname. */
+/**
+ * Reine Aufforderungen ohne eigenen Inhalt — daraus wird kein Programmname.
+ *
+ * Gemessen 18.08.2026: Stiftung Bildung verlinkt alle 14 Foerderfonds mit dem Text
+ * "Mehr Informationen" bzw. "Mehr Informationen!". Ohne diese Liste hiessen im Katalog
+ * vierzehn verschiedene Programme gleich.
+ */
 const NUR_AUFFORDERUNG =
-  /^(mehr( erfahren| dazu| infos?)?|weiterlesen|weitere infos?|hier( klicken)?|details?|jetzt (antrag|bewerben|starten)|alle ansehen|angebot|uebersicht|übersicht)$/i;
+  /^(mehr( erfahren| dazu| lesen| infos?| informationen?)?|weiterlesen|weitere (infos?|informationen?)|hier( klicken| informieren)?|details?|jetzt (antrag|bewerben|starten|informieren)|alle ansehen|erfahren sie mehr|zum (programm|angebot)|angebot|uebersicht|übersicht)$/i;
 
 /**
  * Aus Linktext und URL einen lesbaren Programmnamen machen.
@@ -101,7 +107,11 @@ const NUR_AUFFORDERUNG =
  */
 export function nameAusLink(linkText: string, url: string): string {
   const roh = (linkText ?? "").replace(/\s+/g, " ").trim();
-  const ohneNavi = roh.replace(/^(zu den|zu der|zum|zur|zu)\s+/i, "").trim();
+  const ohneNavi = roh
+    .replace(/^(zu den|zu der|zum|zur|zu)\s+/i, "")
+    // Schluss-Satzzeichen abschneiden, sonst rutscht "Mehr Informationen!" an der Liste vorbei.
+    .replace(/[!.:…»>\s]+$/, "")
+    .trim();
   const brauchbar =
     ohneNavi.length >= 6 && ohneNavi.length <= 120 && !NUR_AUFFORDERUNG.test(ohneNavi);
   if (brauchbar) {
@@ -243,6 +253,35 @@ export function bewerteSeite(seite: GeholteSeite, cfg: BewertungsConfig): Seiten
     };
   }
   return { candidates: treffer };
+}
+
+/**
+ * Links aus rohem HTML ziehen — fuer statische Seiten, die keinen Browser brauchen.
+ *
+ * Ergaenzt die Luecke zwischen den Quellentypen: "sitemap" erntet Links aus XML, "browser"
+ * aus einer gerenderten Seite. Eine statische HTML-Uebersicht mit sauberen Links (Stiftung
+ * Bildung listet dort ihre 14 Foerderfonds) brauchte bisher unnoetig Chromium.
+ *
+ * Relative Ziele werden gegen die Seiten-URL aufgeloest, damit der Pfadfilter greift.
+ */
+export function extrahiereLinksAusHtml(html: string, basisUrl: string): RohLink[] {
+  const links: RohLink[] = [];
+  for (const m of html.matchAll(/<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)) {
+    let href: string;
+    try {
+      href = new URL(m[1], basisUrl).toString();
+    } catch {
+      continue;
+    }
+    const text = m[2]
+      .replace(/<[^>]*>/g, " ")
+      .replace(/&[a-z]+;/gi, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, 200);
+    links.push({ href, text });
+  }
+  return links;
 }
 
 /** Chromium besorgen — mit verständlicher Meldung statt Stacktrace, wenn er fehlt. */

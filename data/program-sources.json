@@ -126,12 +126,13 @@
     },
     {
       "id": "stiftung-bildung",
-      "name": "Stiftung Bildung",
-      "url": "https://www.stiftungbildung.org/sitemap_index.xml",
-      "fokus": "Nationale Stiftung, Schulfördervereine",
-      "typ": "sitemap",
-      "aktiv": false,
-      "grund": "NOCH NICHT AKTIV — Sitemap-Index mit 4 Kindern erreichbar; statische Seite liefert 144k Zeichen. Inhaltlich die naechstliegende Quelle fuer Schulfoerdervereine — Programmpfad noch nicht bestimmt. Geprueft 18.08.2026."
+      "name": "Stiftung Bildung — Förderfonds",
+      "url": "https://www.stiftungbildung.org/foerderfonds/",
+      "fokus": "Kita- und Schulfördervereine bundesweit — thematische Förderfonds, je einzeln beantragbar",
+      "typ": "seite",
+      "aktiv": true,
+      "grund": "Geprueft 18.08.2026. Einstieg ist die Uebersichtsseite /foerderfonds/, NICHT die Sitemap: die Sitemap enthaelt neben den 14 Programmseiten noch 12 Blog-Archiv-Dubletten unter /blog/stiftung-bildung/foerderung/foerderfonds-*. Die Uebersicht verlinkt nur die echten 14. pfadFilter '/foerderfonds-' trifft genau die einzelnen Fonds und laesst sowohl die Uebersichtsseite /foerderfonds/ als auch die 13 Schaufenster-Seiten bereits gefoerderter Projekte (/projekte-*) draussen. Seite ist statisch abrufbar — typ='seite' mit pfadFilter erntet die Links ohne Browser und ohne LLM. LUECKE: Die drei weiteren Programme der Stiftung stehen NICHT unter diesem Pfad (/foerderpreis/, /youclub2030/, /youstartn/) und werden von dieser Quelle nicht erfasst.",
+      "pfadFilter": "/foerderfonds-"
     },
     {
       "id": "bertelsmann-stiftung",
