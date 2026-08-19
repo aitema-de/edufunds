@@ -1,4 +1,5 @@
 import {
+  titelAusHtml,
   nameAusLink,
   filtereProgrammLinks,
   bewerteSeite,
@@ -185,5 +186,37 @@ describe("bewerteSeite — die Schranken, die 2026 gefehlt haben", () => {
       mindestTextZeichen: 10,
     });
     expect(b.fehler).toBeUndefined();
+  });
+});
+
+describe("titelAusHtml — Programmname von der Detailseite", () => {
+  it("nimmt die h1 und liefert damit echte Umlaute statt Slug-Ersatzschreibung", () => {
+    // Gemessen 18.08.2026: aus dem Slug "foerderfonds-ernaehrung" wurde "Förderfonds
+    // Ernaehrung" — die Seite selbst sagt "Förderfonds Ernährung".
+    expect(titelAusHtml("<html><body><h1>Förderfonds Ernährung</h1></body></html>")).toBe(
+      "Förderfonds Ernährung"
+    );
+  });
+
+  it("faellt auf og:title zurueck, wenn keine h1 da ist", () => {
+    expect(
+      titelAusHtml('<meta property="og:title" content="Förderfonds Persönlichkeitsentwicklung">')
+    ).toBe("Förderfonds Persönlichkeitsentwicklung");
+  });
+
+  it("schneidet Claim und Seitennamen aus dem title", () => {
+    expect(
+      titelAusHtml("<title>Förderfonds Ernährung | Stiftung Bildung</title>")
+    ).toBe("Förderfonds Ernährung");
+  });
+
+  it("loest HTML-Entities auf", () => {
+    expect(titelAusHtml("<h1>Kunst &amp; Kultur f&#246;rdern</h1>")).toBe("Kunst & Kultur fördern");
+  });
+
+  it("ignoriert leere oder unsinnig lange Titel", () => {
+    expect(titelAusHtml("<h1> </h1>")).toBeNull();
+    expect(titelAusHtml(`<h1>${"x".repeat(200)}</h1>`)).toBeNull();
+    expect(titelAusHtml("<html><body>ohne Titel</body></html>")).toBeNull();
   });
 });

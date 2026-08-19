@@ -25,7 +25,10 @@
  * wettbewerb = 12. Runde seit 05/2024 beendet) -> Finder-sichtbar 129 -> "120+";
  * 23.07.2026: hopp-foundation-schulpreis geschlossen (Bestaetigung: verliehener
  * Preis bei Jugend-forscht-Landeswettbewerben, kein Bewerbungsverfahren) ->
- * Finder-sichtbar 128 -> "120+" unveraendert).
+ * Finder-sichtbar 128 -> "120+" unveraendert;
+ * 19.08.2026: Primaerquellen-Review der 14 Stiftung-Bildung-Themenfonds (PR #125) ->
+ * 8 belegt antragsoffen und freigeschaltet, 6 als 'bald verfuegbar' fail-closed gesperrt
+ * -> Finder-sichtbar 135 -> "130+").
  *
  * WICHTIG: Bewusst KEIN Import von data/foerderprogramme.json hier — diese
  * Konstante wird auch in Client-Komponenten (Header, Footer, Hero) genutzt,
@@ -48,7 +51,7 @@
  * Wird von __tests__/lib/programm-count.test.ts gegen den echten Katalog
  * geprueft — sowohl gegen Ueberzeichnen als auch gegen unnoetige Bescheidenheit.
  */
-export const PROGRAMM_COUNT_ROUNDED = 120;
+export const PROGRAMM_COUNT_ROUNDED = 130;
 
 /** Marketing-Label, z. B. "180+" — fuer Stats-Karten/Badges. */
 export const PROGRAMM_COUNT_LABEL = `${PROGRAMM_COUNT_ROUNDED}+`;

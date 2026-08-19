@@ -124,6 +124,7 @@
     "bearbeitungsdauer": "Preisverleihung im November 2026 in Berlin; Auswahl durch eine unabhängige Jury nach Bewerbungsschluss."
   },
   "notizen": [
+    "Kein zentraler Stichtag: Die Ausschreibungsseite verweist für Bewerbungsfristen auf den jeweiligen Landesverband. Der frühere Eintrag 30.06. war nicht primärquellen-belegt. fristLogik kennt keinen Zustand „Frist unbekannt“ — maßgeblich ist fristZustand.",
     "Antragsteller ist der Kita- oder Schulförderverein, nicht die Schule selbst - die Kooperation mit der Einrichtung ist Pflicht.",
     "Bewerbung erfolgt formlos und kurz (Richtwert: eine A4-Seite); kein detaillierter Finanzplan gefordert.",
     "Bewerbungsschluss bundesweit 30. Juni 2026; konkrete Modalitäten variieren je Landesverband.",
@@ -198,19 +199,11 @@
     }
   ],
   "fristLogik": {
-    "typ": "fixe_stichtage",
-    "stichtage": [
-      "2026-06-30"
-    ],
-    "jaehrlich_wiederkehrend": true
+    "typ": "rolling"
   },
-  "version": "2026-06-01",
+  "version": "2026-08-19",
   "fristZustand": {
-    "art": "stichtag",
-    "stichtage": [
-      "2026-06-30"
-    ],
-    "jaehrlichWiederkehrend": true,
-    "quelle": "Primaerquelle stiftungbildung.org/foerderpreis, geprueft 22.07.2026: Jaehrliche Vergabe mit wechselndem Thema belegt; die Runde 2026 laeuft zum Thema 'Medienkompetenz: Buecher bis KI'. ⚠️ Die Seite nennt KEIN Datum - der Stichtag 30.06. stammt aus dem Dossier/Katalog-Fristtext, nicht aus der Primaerquelle."
+    "art": "unbekannt",
+    "quelle": "Primärquellen https://www.stiftungbildung.org/foerderpreis und /foerderpreis/foerderpreis2026/, geprüft 19.08.2026: Die Runde 2026 läuft (Thema „Medienkompetenz: Bücher bis KI“), aber KEINE der beiden Seiten nennt ein Bewerbungsdatum — wörtlich: „Bewerben Sie sich bei Ihrem (Landes)Verband. Ihre Ansprechpartner*innen sowie weitere Informationen zu Bewerbungsfristen finden Sie hier.“ Der zuvor eingetragene Stichtag 30.06.2026 stammte nicht aus der Quelle (so schon im Prüfvermerk vom 22.07.2026 vermerkt) und ist entfernt. Fristen liegen dezentral bei den Landesverbänden — Antragstellende müssen dort nachfragen."
   }
 }

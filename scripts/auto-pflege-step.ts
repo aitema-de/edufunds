@@ -48,6 +48,7 @@ import {
   nameAusLink,
   extrahiereLinksAusHtml,
   filtereProgrammLinks,
+  titelAusHtml,
 } from "../lib/scan/browser-scan";
 import { ladeBestand, speichereBestand, vergleicheBestand } from "../lib/scan/bestand";
 import { bewerteText, type TriageUrteil } from "../lib/scan/triage";
@@ -279,6 +280,51 @@ function slugifyName(name: string): string {
     .slice(0, 60);
 }
 
+/**
+ * Eine Programm-ID vergeben, die kein fremdes Programm ueberschreibt.
+ *
+ * GEMESSENER SCHADEN 18.08.2026: Der Onboarding-Lauf fuer Stiftung Bildung erzeugte aus
+ * "Förderfonds Demokratie" die ID "foerderfonds-demokratie". Die war bereits vergeben — an ein
+ * gleichnamiges, aber voellig anderes Programm unter foerderfonds-demokratie.de. Der Katalog
+ * blieb unveraendert (die ID war belegt), aber die Extraktion schrieb
+ * data/richtlinien/foerderfonds-demokratie.json NEU: aus "fixe_stichtage 2019-09-30,
+ * nicht wiederkehrend" wurde "rolling".
+ *
+ * Genau dieser Stichtag ist der Grund, warum es __tests__/data/katalog-fristen.test.ts gibt:
+ * am 17.07.2026 wurde fuer dieses tote Programm ein Antrag verkauft. Der Lauf haette die
+ * Schranke dagegen lautlos entfernt.
+ *
+ * Regel: Gleiche ID ist nur dann dasselbe Programm, wenn auch der Host gleich ist. Sonst
+ * bekommt der Neuling einen eigenen, lesbaren Namensraum.
+ */
+export function eindeutigeProgrammId(
+  name: string,
+  detailUrl: string,
+  vergeben: Map<string, string | undefined>
+): string {
+  const basis = slugifyName(name);
+  const belegtVon = vergeben.get(basis);
+  if (!vergeben.has(basis)) return basis;
+  if (belegtVon && hostVon(belegtVon) === hostVon(detailUrl)) return basis;
+
+  // Host als lesbares Unterscheidungsmerkmal: "foerderfonds-demokratie-stiftungbildung".
+  const marke = hostVon(detailUrl).split(".")[0] ?? "";
+  const kandidat = slugifyName(`${basis} ${marke}`);
+  if (kandidat && !vergeben.has(kandidat)) return kandidat;
+  for (let n = 2; n < 50; n++) {
+    const weiterer = `${kandidat || basis}-${n}`;
+    if (!vergeben.has(weiterer)) return weiterer;
+  }
+  return `${basis}-${Math.abs(hashCode(detailUrl))}`;
+}
+
+/** Kleiner stabiler Hash — nur als allerletzter Ausweg fuer die ID-Vergabe. */
+function hashCode(text: string): number {
+  let h = 0;
+  for (let i = 0; i < text.length; i++) h = (Math.imul(31, h) + text.charCodeAt(i)) | 0;
+  return h;
+}
+
 // ---------------------------------------------------------------------------
 // Scan-System-Prompt (uebernommen aus scan-new-programs.ts)
 // ---------------------------------------------------------------------------
@@ -374,24 +420,32 @@ async function robotsFuer(url: string): Promise<RobotsRegeln> {
  * waere unsichtbar verloren; ein durchgewinkter Blindgaenger kostet eine Extraktion und
  * faellt im PR-Review auf.
  */
-async function triagiereKandidat(c: ScanCandidate): Promise<TriageUrteil> {
+async function triagiereKandidat(
+  c: ScanCandidate
+): Promise<{ urteil: TriageUrteil; titel?: string }> {
+  const leer = { geld: [], zielgruppe: [], antrag: [], ausschluss: [] };
   try {
     const regeln = await robotsFuer(c.detailUrl);
     if (!istErlaubt(pfadMitQuery(c.detailUrl), regeln)) {
       return {
-        weiter: false,
-        begruendung: "robots.txt der Domain sperrt diese Detailseite — nicht abgerufen.",
-        signale: { geld: [], zielgruppe: [], antrag: [], ausschluss: [] },
+        urteil: {
+          weiter: false,
+          begruendung: "robots.txt der Domain sperrt diese Detailseite — nicht abgerufen.",
+          signale: leer,
+        },
       };
     }
     if (regeln.crawlDelaySekunden) await warte(regeln.crawlDelaySekunden);
-    const text = stripHtml(await fetchHtml(c.detailUrl)).slice(0, MAX_HTML_CHARS);
-    return bewerteText(text, c.name);
+    const html = await fetchHtml(c.detailUrl);
+    const text = stripHtml(html).slice(0, MAX_HTML_CHARS);
+    return { urteil: bewerteText(text, c.name), titel: titelAusHtml(html) ?? undefined };
   } catch (err) {
     return {
-      weiter: true,
-      begruendung: `Seite nicht pruefbar (${(err as Error).message}) — im Zweifel weitergereicht.`,
-      signale: { geld: [], zielgruppe: [], antrag: [], ausschluss: [] },
+      urteil: {
+        weiter: true,
+        begruendung: `Seite nicht pruefbar (${(err as Error).message}) — im Zweifel weitergereicht.`,
+        signale: leer,
+      },
     };
   }
 }
@@ -587,9 +641,22 @@ function estimateScore(c: ScanCandidate): number {
 // Programm-Eintrag in foerderprogramme.json einfuegen (Minimal-Stub fuer Queue-Score)
 // ---------------------------------------------------------------------------
 
+/**
+ * @param geber Klartextname des Foerdergebers, aus der Quelle abgeleitet.
+ *
+ * Der Stub trug bis 18.08.2026 nur fuenf Felder. app/page.tsx leitet seinen Typ per
+ * `(typeof foerderprogramme)[number]` direkt aus dem Katalog ab — sobald ein Eintrag
+ * `foerdergeber` nicht kennt, wird die Eigenschaft im ganzen Union-Typ optional und der
+ * Typecheck bricht. Jeder Auto-Pflege-PR waere damit rot gewesen; gemerkt hat es nie jemand,
+ * weil der Scanner nie einen Kandidaten geliefert hat.
+ *
+ * Die Felder bleiben inhaltlich leer, wo wir nichts wissen — der Stub ist ein Platzhalter fuer
+ * den Review, kein Datensatz. Aber er ist ein vollstaendig geformter Platzhalter.
+ */
 async function appendProgrammIfMissing(
   programmId: string,
-  c: ScanCandidate
+  c: ScanCandidate,
+  geber: string
 ): Promise<void> {
   const raw = await fs.readFile(PROGRAMS_PATH, "utf8");
   const all = JSON.parse(raw) as Foerderprogramm[];
@@ -597,10 +664,25 @@ async function appendProgrammIfMissing(
   all.push({
     id: programmId,
     name: c.name,
-    infoLink: c.detailUrl,
+    foerdergeber: geber,
     foerdergeberTyp: "sonst",
-    kiAntragGeeignet: true,
-  } as Foerderprogramm);
+    kurzbeschreibung: c.kurznotiz ?? "",
+    foerdersummeText: "",
+    // Kein leerer String: der Katalog garantiert, dass JEDES Programm einen menschenlesbaren
+    // Fristtext traegt (__tests__/data/katalog-fristen.test.ts). Der Platzhalter behauptet
+    // bewusst keine Frist, sondern benennt, dass sie fehlt.
+    bewerbungsfristText: "Noch nicht geprüft — Frist im Review aus der Primärquelle eintragen.",
+    bewerbungsart: "",
+    kategorien: [],
+    bundeslaender: [],
+    infoLink: c.detailUrl,
+    bemerkung: "Automatisch angelegter Platzhalter — im PR-Review pruefen und ausfuellen.",
+    // BEWUSST false. Ein automatisch angelegter Platzhalter ohne verifizierte Frist darf nicht
+    // verkaeuflich sein: genau daran wurde am 17.07.2026 ein Antrag fuer ein seit 2019 totes
+    // Programm verkauft (siehe __tests__/data/katalog-fristen.test.ts). Der PR-Review schaltet
+    // frei, nicht der Scanner.
+    kiAntragGeeignet: false,
+  } as unknown as Foerderprogramm);
   await fs.writeFile(PROGRAMS_PATH, JSON.stringify(all, null, 2) + "\n");
 }
 
@@ -611,9 +693,18 @@ async function appendProgrammIfMissing(
 async function processProgramm(
   c: ScanCandidate,
   sourceId: string,
-  dryRun: boolean
+  dryRun: boolean,
+  vergeben: Map<string, string | undefined>,
+  geber: string
 ): Promise<ProgrammResult> {
-  const programmId = slugifyName(c.name);
+  const programmId = eindeutigeProgrammId(c.name, c.detailUrl, vergeben);
+  if (programmId !== slugifyName(c.name)) {
+    console.warn(
+      `    ID-Kollision: "${slugifyName(c.name)}" ist an ein anderes Programm vergeben — ` +
+        `dieses laeuft als "${programmId}".`
+    );
+  }
+  vergeben.set(programmId, c.detailUrl);
   const base: ProgrammResult = {
     programmId,
     name: c.name,
@@ -636,7 +727,7 @@ async function processProgramm(
 
   // 2) Foerderprogramm-Stub anlegen, damit Queue-Score Logik einen Programm-Eintrag findet
   try {
-    await appendProgrammIfMissing(programmId, c);
+    await appendProgrammIfMissing(programmId, c, geber);
   } catch (err) {
     return { ...base, failureKlasse: "queue-write-error", detail: (err as Error).message };
   }
@@ -777,6 +868,19 @@ async function main(): Promise<void> {
   const programme = (JSON.parse(await fs.readFile(PROGRAMS_PATH, "utf8")) as Foerderprogramm[]);
   const knownNames = new Map<string, Set<string>>();
   const knownUrls = new Set<string>();
+  // Belegte IDs: Katalogeintraege UND bereits vorhandene Dossiers. Letztere zaehlen mit,
+  // weil ein Dossier ohne Katalogeintrag sonst ueberschrieben wuerde, ohne dass es auffaellt.
+  const vergebeneIds = new Map<string, string | undefined>();
+  for (const p of programme) vergebeneIds.set(p.id, p.infoLink);
+  try {
+    for (const datei of await fs.readdir(path.join(process.cwd(), "data", "richtlinien"))) {
+      if (!datei.endsWith(".json")) continue;
+      const id = datei.slice(0, -5);
+      if (!vergebeneIds.has(id)) vergebeneIds.set(id, undefined);
+    }
+  } catch {
+    /* kein Richtlinien-Verzeichnis — dann gibt es auch nichts zu ueberschreiben */
+  }
   for (const p of programme) {
     if (p.infoLink) knownUrls.add(normalizeUrl(p.infoLink));
     if (!p.name) continue;
@@ -947,7 +1051,11 @@ async function main(): Promise<void> {
       geprueft.push(eintrag);
       continue;
     }
-    const urteil = await triagiereKandidat(eintrag.candidate);
+    const { urteil, titel } = await triagiereKandidat(eintrag.candidate);
+    // Der Seitentitel schlaegt den aus dem Slug abgeleiteten Namen: er traegt die echten
+    // Umlaute ("Förderfonds Ernährung" statt "Foerderfonds Ernaehrung") und die richtige
+    // Schreibweise. Katalognamen sind sichtbarer Text.
+    if (titel) eintrag.candidate.name = titel;
     if (urteil.weiter) {
       console.log(`    ✓ ${eintrag.candidate.name} — ${urteil.begruendung}`);
       geprueft.push(eintrag);
@@ -1005,7 +1113,9 @@ async function main(): Promise<void> {
   const results: ProgrammResult[] = [];
   for (const { candidate, sourceId } of toProcess) {
     console.log(`  -> ${candidate.name}`);
-    const r = await processProgramm(candidate, sourceId, opts.dryRun);
+    // Foerdergeber aus dem Quellennamen: "Stiftung Bildung — Förderfonds" -> "Stiftung Bildung".
+    const geber = (quelleNach.get(sourceId)?.name ?? sourceId).split(/\s+[—–-]\s+/)[0].trim();
+    const r = await processProgramm(candidate, sourceId, opts.dryRun, vergebeneIds, geber);
     results.push(r);
     if (!opts.dryRun) {
       await fs.writeFile(

@@ -1,0 +1,165 @@
+{
+  "version": "2026-08-19",
+  "quellen": [
+    "https://www.stiftungbildung.org/foerderfonds-persoenlichkeitsentwicklung"
+  ],
+  "foerderhoehe": {
+    "minEur": 500,
+    "maxEur": 5000,
+    "bemerkung": "Fördersumme von 500 bis 5.000 Euro"
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "personal",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Projektmitarbeitende müssen aus Kitas, Grundschulen oder weiterführenden Schulen stammen oder deren Fördervereine angehören"
+      ]
+    },
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Ressourcenschonende Materialien werden bevorzugt",
+        "Keine reinen Anschaffungen"
+      ]
+    },
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": false,
+      "beispielePasstNicht": [
+        "Honorarkosten von externen Fachkräften und Lehrer*innen"
+      ]
+    },
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": false,
+      "beispielePasstNicht": [
+        "Übernachtungskosten für Klassenfahrten oder ähnliches"
+      ]
+    },
+    {
+      "kategorie": "sonstiges",
+      "foerderfaehig": false,
+      "beispielePasstNicht": [
+        "Wirtschaftsunternehmen",
+        "andere gemeinnützige Vereine",
+        "Einzelpersonen",
+        "Mittelbeschaffung (z.B. Neubau- / Umbaumaßnahmen)",
+        "Weiterbildungen / Schulungen für Erwachsene"
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": false,
+    "formenErlaubt": [
+      "finanziell"
+    ],
+    "bemerkung": "Eigenmittel sind nicht explizit gefordert, aber Doppel- und Mehrfachförderung ist ausgeschlossen"
+  },
+  "kumulierung": {
+    "erlaubt": false,
+    "bedingungen": [
+      "Doppel- und Mehrfachförderung ist ausgeschlossen"
+    ],
+    "unvereinbarMit": [
+      "andere Förderprogramme"
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "antragsformular",
+        "name": "Online-Antragsformular",
+        "pflicht": true,
+        "stilhinweis": "formlos möglich"
+      },
+      {
+        "id": "projektbeschreibung",
+        "name": "Projektbeschreibung",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche sozial-emotionalen Kompetenzen sollen gestärkt werden?",
+          "Wie sind Kinder und Jugendliche an Planung und Umsetzung beteiligt?",
+          "Wie wird Vielfalt und Inklusion im Projekt berücksichtigt?",
+          "Wie wird das Projekt nachhaltig wirken und weitergeführt?"
+        ]
+      },
+      {
+        "id": "kostenplan",
+        "name": "Kostenplan",
+        "pflicht": true
+      },
+      {
+        "id": "freistellungsbescheid",
+        "name": "Freistellungsbescheid des Kita- oder Schulfördervereins",
+        "pflicht": true
+      }
+    ],
+    "anlagen": [
+      "Freistellungsbescheid des Kita- oder Schulfördervereins"
+    ],
+    "einreichungsweg": "Online-Formular auf der Website der Stiftung Bildung",
+    "bearbeitungsdauer": "4–6 Wochen nach Antragsstellung"
+  },
+  "fristLogik": {
+    "typ": "rolling"
+  },
+  "notizen": [
+    "NOCH NICHT ANTRAGSOFFEN (Stand 19.08.2026): Die Fondsseite sagt „Dieser Förderfonds ist mit Ihrer Hilfe bald verfügbar“ und trägt kein Antragsformular. Das Feld fristLogik=„rolling“ stammt aus dem FAQ-Baustein der Seite und gilt erst ab Öffnung — maßgeblich ist fristZustand=„geschlossen“.",
+    "Anträge können fortlaufend und jederzeit gestellt werden.",
+    "Über die Förderung entscheidet ein Beschlussgremium aus jungen und engagierten Menschen sowie der Vorstand der Stiftung Bildung.",
+    "Der Fokus des Förderfonds liegt auf der Stärkung sozial-emotionaler Kompetenzen, psychosozialer Gesundheit und Resilienz mit einem klaren Bezug zu Selbstreflexion, Selbstwahrnehmung und innerem Erleben."
+  ],
+  "bestPractices": [
+    {
+      "thema": "Partizipation",
+      "was_funktionierte": "Projekte, bei denen Kinder und Jugendliche von Anfang an aktiv beteiligt sind und Eigeninitiative zeigen",
+      "warum": "Die Planung und Umsetzung des Projekts soll möglichst partizipativ gestaltet sein."
+    },
+    {
+      "thema": "Nachhaltigkeit",
+      "was_funktionierte": "Projekte, die auch nach der Anschubfinanzierung weitergeführt werden",
+      "warum": "Das Projekt soll möglichst auch nach der Anschubfinanzierung verstetigt und weitergeführt werden."
+    }
+  ],
+  "rejectGruende": [
+    {
+      "grund": "Projekte, die nicht von Kitas, Grundschulen oder weiterführenden Schulen oder deren Fördervereinen eingereicht werden",
+      "haeufigkeit": "haeufig",
+      "vermeidung": "Antragstellung nur über den jeweiligen Kita- oder Schulförderverein mit aktuellem Freistellungsbescheid."
+    },
+    {
+      "grund": "Projekte, die bereits an anderen Förderprogrammen teilnehmen",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Prüfung der Teilnahme an anderen Förderprogrammen vor Antragstellung."
+    },
+    {
+      "grund": "Projekte, bei denen junge Menschen nicht selbst beteiligt sind",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Sicherstellung, dass Kinder und Jugendliche aktiv in Planung und Umsetzung eingebunden sind."
+    },
+    {
+      "grund": "Projekte mit Fokus auf Weiterbildungen oder Schulungen für Erwachsene",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Fokus auf Projekte, die sozial-emotionale Kompetenzen von Kindern und Jugendlichen stärken."
+    }
+  ],
+  "vorbildFormulierungen": [
+    {
+      "abschnitt_id": "projektbeschreibung",
+      "formulierung": "Das Projekt fördert die Selbstwahrnehmung der teilnehmenden Kinder durch regelmäßige Reflexionsrunden und kreative Methoden.",
+      "kontext": "Beispiel für die Umsetzung des Fokus auf sozial-emotionale Kompetenzen."
+    },
+    {
+      "abschnitt_id": "projektbeschreibung",
+      "formulierung": "Alle Kinder und Jugendlichen werden unabhängig von ihren Fähigkeiten oder Bedürfnissen aktiv in die Projektplanung einbezogen.",
+      "kontext": "Beispiel für die Berücksichtigung von Vielfalt und Inklusion."
+    }
+  ],
+  "fristZustand": {
+    "art": "geschlossen",
+    "quelle": "Primärquelle https://www.stiftungbildung.org/foerderfonds-persoenlichkeitsentwicklung, geprüft 19.08.2026, wörtlich: „Dieser Förderfonds ist mit Ihrer Hilfe bald verfügbar.“ Kein Antragsformular auf der Seite; die Übersicht https://www.stiftungbildung.org/foerderfonds führt den Fonds unter „In Bewegung — Diese Förderfonds sind mit Ihrer Hilfe bald verfügbar“. Der FAQ-Baustein „fortlaufend und jeder Zeit“ steht zwar auf der Seite, gilt aber erst ab Öffnung.",
+    "wiedereroeffnungErwartet": "Angekündigt, aber undatiert — die Stiftung sammelt für diesen Fonds zunächst Spenden („bald verfügbar“). Bei Öffnung: status=aktiv, fristZustand.art=keine, kiAntragGeeignet=true."
+  }
+}

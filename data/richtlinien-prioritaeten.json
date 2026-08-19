@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-23T11:18:52.894Z",
+  "generatedAt": "2026-08-19T10:33:37.357Z",
   "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
   "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
-  "total": 97,
+  "total": 105,
   "items": [
     {
       "programmId": "bmbf-digitalpakt-2",
@@ -325,16 +325,6 @@
       "status": "done"
     },
     {
-      "programmId": "stiftung-bildung-youstartn",
-      "name": "Förderpreis youstartN",
-      "foerdergeberTyp": "stiftung",
-      "foerdersummeMax": 12000,
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftungbildung.org/foerderpreis-youstartn",
-      "score": 70.8,
-      "status": "done"
-    },
-    {
       "programmId": "ideeninitiative-kulturelle-vielfalt-mit-musik",
       "name": "Ideeninitiative Kulturelle Vielfalt mit Musik",
       "foerdergeberTyp": "stiftung",
@@ -411,6 +401,16 @@
       "foerdersummeMax": 5000,
       "reichweite": "DE-TH",
       "infoLink": "https://www.klimastiftung-thueringen.de/projekte-foerderung/",
+      "score": 69,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderfonds-antisemitismus-rassismus",
+      "name": "Förderfonds Aktiv gegen Antisemitismus, Rassismus und Rechtsextremismus",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderfonds-antisemitismus-rassismus",
       "score": 69,
       "status": "done"
     },
@@ -501,6 +501,76 @@
       "foerdersummeMax": 5000,
       "reichweite": "alle",
       "infoLink": "https://www.telekom-stiftung.de",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderfonds-glanztag",
+      "name": "Förderfonds G(l)anztag",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderfonds-glanztag",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderfonds-medienkompetenz",
+      "name": "Förderfonds Medienkompetenz",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderfonds-medienkompetenz",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderfonds-frieden",
+      "name": "Förderfonds Frieden",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderfonds-frieden",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderfonds-handwerk",
+      "name": "Förderfonds Handwerk",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderfonds-handwerk",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderfonds-klimaschutz",
+      "name": "Förderfonds Klimaschutz",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderfonds-klimaschutz",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderfonds-entrepreneurship-education",
+      "name": "Förderfonds Entrepreneurship Education",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderfonds-entrepreneurship-education",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderfonds-vielfalt",
+      "name": "Förderfonds Vielfältig l(i)eben",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderfonds-vielfalt",
       "score": 67,
       "status": "done"
     },
@@ -753,6 +823,16 @@
       "reichweite": "DE-BY",
       "infoLink": "https://www.baywastiftung.de/projekte/waldschule",
       "score": 61,
+      "status": "done"
+    },
+    {
+      "programmId": "stiftung-bildung-youstartn",
+      "name": "youstartN — Förderung für nachhaltige Schüler*innenfirmen",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 1000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/youstartn",
+      "score": 60,
       "status": "done"
     },
     {

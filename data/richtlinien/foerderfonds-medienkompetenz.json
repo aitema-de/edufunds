@@ -1,0 +1,228 @@
+{
+  "version": "2026-08-19",
+  "quellen": [
+    "https://www.stiftungbildung.org/foerderfonds-medienkompetenz"
+  ],
+  "foerderhoehe": {
+    "minEur": 500,
+    "maxEur": 5000,
+    "bemerkung": "Die Fördersumme beträgt zwischen 500 und 5.000 Euro. Eine Auszahlung soll innerhalb von 4 bis 6 Wochen nach Antragsstellung erfolgen."
+  },
+  "kostenpositionen": [
+    {
+      "kategorie": "personal",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Reine Honorarkosten von externen Fachkräften und Lehrer*innen werden nicht gefördert."
+      ]
+    },
+    {
+      "kategorie": "sachkosten",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Projekte sollen ressourcenschonende Materialien verwenden."
+      ]
+    },
+    {
+      "kategorie": "investitionen",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Reine Anschaffungen werden nicht gefördert."
+      ]
+    },
+    {
+      "kategorie": "honorare",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Honorarkosten von externen Fachkräften und Lehrer*innen werden nicht gefördert."
+      ]
+    },
+    {
+      "kategorie": "reisekosten",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Übernachtungskosten für Klassenfahrten oder ähnliches werden nicht gefördert."
+      ]
+    },
+    {
+      "kategorie": "overhead",
+      "foerderfaehig": true,
+      "bedingungen": [
+        "Finanzielle Ressourcen müssen im Antrag aufgeschlüsselt werden."
+      ]
+    },
+    {
+      "kategorie": "sonstiges",
+      "foerderfaehig": false,
+      "bedingungen": [
+        "Wirtschaftsunternehmen und andere gemeinnützige Vereine werden nicht gefördert.",
+        "Mittelbeschaffung, z.B. Neubau- / Umbaumaßnahmen, wird nicht gefördert.",
+        "Weiterbildungen / Schulungen für Erwachsene (z.B. Lehrkräfte, Eltern) werden nicht gefördert.",
+        "Vereine, die keine Schul- / Kita-Fördervereine sind, werden nicht gefördert."
+      ]
+    }
+  ],
+  "eigenmittel": {
+    "pflicht": false,
+    "formenErlaubt": [
+      "finanziell"
+    ],
+    "bemerkung": "Eigenmittel sind nicht explizit als Pflicht genannt, jedoch wird die Einbindung von Drittmitteln im Antrag abgefragt."
+  },
+  "kumulierung": {
+    "erlaubt": false,
+    "bedingungen": [
+      "Doppel- und Mehrfachförderung ist nicht erlaubt."
+    ],
+    "unvereinbarMit": [
+      "Doppel- und Mehrfachförderung"
+    ]
+  },
+  "antragsstruktur": {
+    "abschnitte": [
+      {
+        "id": "projektzusammenfassung",
+        "name": "Projektzusammenfassung",
+        "pflicht": true,
+        "leitfragen": [
+          "Fasse das Projekt kurz und bündig zusammen."
+        ]
+      },
+      {
+        "id": "projektziele",
+        "name": "Projektziele",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Ziele verfolgt das Projekt? Was möchtest du erreichen?"
+        ]
+      },
+      {
+        "id": "projektaktivitaeten",
+        "name": "Projektaktivitäten",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Aktivitäten werden durchgeführt, um diese Ziele zu erreichen?"
+        ]
+      },
+      {
+        "id": "medienumgang",
+        "name": "Vermittlung eines gewissenhaften Umgangs mit digitalen Medien",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie wird den Teilnehmenden ein gewissenhafter Umgang mit digitalen Medien nähergebracht?"
+        ]
+      },
+      {
+        "id": "zeitplan",
+        "name": "Zeitplan",
+        "pflicht": true,
+        "leitfragen": [
+          "Wann ist der Projektstart und wie lange soll das Projekt dauern?"
+        ]
+      },
+      {
+        "id": "zielgruppen",
+        "name": "Zielgruppen",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche Zielgruppen (Altersstufe(n), Anzahl) werden angesprochen?"
+        ]
+      },
+      {
+        "id": "beteiligung",
+        "name": "Einbindung von Kindern und Jugendlichen",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie werden Kinder und Jugendliche in die Planung und Umsetzung einbezogen?"
+        ]
+      },
+      {
+        "id": "verstetigung",
+        "name": "Verstetigung des Projekts",
+        "pflicht": true,
+        "leitfragen": [
+          "Ist eine Verstetigung des Projekts auch über den unmittelbaren Projektzeitraum geplant?"
+        ]
+      },
+      {
+        "id": "nachahmung",
+        "name": "Nachahmung des Projekts",
+        "pflicht": true,
+        "leitfragen": [
+          "Wie kann das Projekt über deine Kita oder Schule hinaus zur Nachahmung anregen?"
+        ]
+      },
+      {
+        "id": "finanzielle_ressourcen",
+        "name": "Finanzielle Ressourcen",
+        "pflicht": true,
+        "leitfragen": [
+          "Welche (finanziellen) Ressourcen werden benötigt? Bitte einzelne Bereiche grob aufschlüsseln und die Gesamtsumme benennen."
+        ]
+      },
+      {
+        "id": "foerderpartner",
+        "name": "Förderpartner",
+        "pflicht": false,
+        "leitfragen": [
+          "Hast du weitere Förderpartner*innen (Vereine, Schulen, etc.) und wenn ja, welche?"
+        ]
+      },
+      {
+        "id": "sonstiges_aspekte",
+        "name": "Sonstige Aspekte",
+        "pflicht": false,
+        "leitfragen": [
+          "Gibt es wichtige Aspekte, die wir noch nicht abgefragt haben?"
+        ]
+      }
+    ],
+    "anlagen": [
+      "Freistellungsbescheid des Kita- oder Schulfördervereins"
+    ],
+    "einreichungsweg": "Online-Formular auf der Website der Stiftung Bildung",
+    "bearbeitungsdauer": "4 bis 6 Wochen nach Antragsstellung"
+  },
+  "notizen": [
+    "Anträge können fortlaufend und jederzeit gestellt werden.",
+    "Über die Förderung entscheidet ein Beschlussgremium aus jungen und engagierten Menschen sowie der Vorstand der Stiftung Bildung.",
+    "Die Entscheidungen orientieren sich an den Kriterien zur Auswahl und Bewertung von Projekten (PDF-Datei).",
+    "Für Rückfragen steht die E-Mail-Adresse foerderanfrage@stiftungbildung.org zur Verfügung."
+  ],
+  "bestPractices": [],
+  "rejectGruende": [
+    {
+      "grund": "Honorarkosten von externen Fachkräften und Lehrer*innen",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Projektideen sollten keine reinen Honorarkosten für externe Fachkräfte enthalten."
+    },
+    {
+      "grund": "Reine Anschaffungen",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Projekte sollten keine reinen Anschaffungen umfassen, sondern nachhaltige und partizipative Ansätze verfolgen."
+    },
+    {
+      "grund": "Weiterbildungen / Schulungen für Erwachsene",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Projekte sollten sich auf die Zielgruppe Kinder und Jugendliche konzentrieren."
+    },
+    {
+      "grund": "Doppel- und Mehrfachförderung",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Projekte sollten keine parallele Förderung durch andere Programme anstreben."
+    },
+    {
+      "grund": "Projekte ohne Beteiligung von Kindern und Jugendlichen",
+      "haeufigkeit": "gelegentlich",
+      "vermeidung": "Projekte müssen die aktive Einbindung der Zielgruppe sicherstellen."
+    }
+  ],
+  "vorbildFormulierungen": [],
+  "fristLogik": {
+    "typ": "rolling"
+  },
+  "fristZustand": {
+    "art": "keine",
+    "quelle": "Primärquelle https://www.stiftungbildung.org/foerderfonds-medienkompetenz, geprüft 19.08.2026, wörtlich: „Anträge können fortlaufend und jeder Zeit formlos gestellt werden.“ Antragsformular auf der Seite vorhanden; die Übersicht https://www.stiftungbildung.org/foerderfonds führt den Fonds unter „Aktuelle Förderfonds“."
+  }
+}
