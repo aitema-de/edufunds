@@ -8,6 +8,7 @@ import {
 } from "@/lib/wizard/session";
 import { nextStep } from "@/lib/wizard/interviewer";
 import { extractFacts } from "@/lib/wizard/facts-extractor";
+import { withPromptCacheKey, cacheKeyFromSession } from "@/lib/wizard/llm";
 import { addUsage, emptyLedger } from "@/lib/wizard/pricing";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
 import { readJsonBody } from "@/lib/json-body";
@@ -115,7 +116,14 @@ export async function POST(req: NextRequest) {
     // Stage 1: dedizierte Fakten-Extraktion ueber den gesamten Verlauf.
     // Faellt sie aus, behaelt der Aufrufer den alten Stand — der Interviewer arbeitet dann
     // wie zuvor mit teilbefuellten Facts, aber stuerzt nicht ab.
-    const extracted = await extractFacts(data.messages, data.facts);
+    // Auch das Interview laeuft im Cache-Kontext: Beide Stufen schicken die
+    // wachsende Gespraechs-Chronik jedes Mal komplett mit, und sie zaehlt gegen
+    // dasselbe Minutenkontingent wie die Generierung. Session 37 verbrauchte im
+    // Interview allein 265.573 Tokens.
+    const cacheKey = cacheKeyFromSession(sessionToken);
+    const extracted = await withPromptCacheKey(cacheKey, () =>
+      extractFacts(data.messages, data.facts)
+    );
     data = { ...data, facts: extracted.facts };
     if (extracted.usage) {
       data = {
@@ -129,13 +137,15 @@ export async function POST(req: NextRequest) {
     let step: Awaited<ReturnType<typeof nextStep>>["step"];
     let usage: Awaited<ReturnType<typeof nextStep>>["usage"];
     try {
-      ({ step, usage } = await nextStep(
-        programm,
-        data.messages,
-        data.facts,
-        data.interviewer.totalQuestions,
-        data.interviewer.maxQuestions,
-        richtlinie
+      ({ step, usage } = await withPromptCacheKey(cacheKey, () =>
+        nextStep(
+          programm,
+          data.messages,
+          data.facts,
+          data.interviewer.totalQuestions,
+          data.interviewer.maxQuestions,
+          richtlinie
+        )
       ));
     } catch (stepErr) {
       // nextStep konnte keine valide Frage erzeugen (z. B. abgeschnittenes JSON).

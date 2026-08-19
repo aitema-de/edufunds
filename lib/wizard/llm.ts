@@ -17,6 +17,8 @@
  * Prompts deutlich laenger als Gemini, daher das eher grosszuegige Limit.
  */
 
+import { AsyncLocalStorage } from "node:async_hooks";
+import { createHash } from "node:crypto";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import OpenAI from "openai";
 import type { Usage } from "./pricing";
@@ -252,6 +254,65 @@ export async function withRetry<T>(
 }
 
 // ---------------------------------------------------------------------------
+// Prompt-Caching (Mistral)
+// ---------------------------------------------------------------------------
+// Mistral cached Prompt-Praefixe, wenn Aufrufe denselben `prompt_cache_key`
+// tragen. Der Gewinn ist nicht nur Geld (gecachte Tokens kosten 10 % des
+// Input-Preises), sondern vor allem DURCHSATZ: Am 19.08.2026 mit identischem
+// Prompt gemessen faellt der Preis gegen das Minutenkontingent
+// (Header `x-ratelimit-tokens-query-cost`) von 7.534 auf 30 — Faktor 250.
+// Genau dieses Kontingent ist der Engpass, an dem am 13.08.2026 eine
+// Generierung starb (100.000 Tokens/min gegen ~260.000 Tokens je Antrag).
+//
+// Der Schluessel wird bewusst NICHT durch jede Signatur gereicht: Die Pipeline
+// ruft aus pipeline.ts, finanzplan-generator.ts, substanz-nachbesserung und
+// fact-verification heraus auf. Ein AsyncLocalStorage traegt ihn durch den
+// ganzen Lauf, ohne eine einzige Aufrufstelle zu aendern — und bleibt unter
+// Nebenlaeufigkeit korrekt: Zwei gleichzeitige Antraege koennen sich nie
+// gegenseitig den Schluessel unterschieben, was ein Modul-Level-`let` nicht
+// garantieren koennte.
+const cacheKeyStore = new AsyncLocalStorage<string>();
+
+/**
+ * Fuehrt `fn` so aus, dass alle LLM-Aufrufe darin denselben Prompt-Cache-Schluessel
+ * tragen. Ein Schluessel pro Antrag: Aufrufe verschiedener Antraege haben ohnehin
+ * verschiedene Praefixe (andere Fakten) und koennen sich nichts teilen.
+ */
+export function withPromptCacheKey<T>(key: string, fn: () => Promise<T>): Promise<T> {
+  return cacheKeyStore.run(key, fn);
+}
+
+/**
+ * Leitet aus einem Session-Token einen stabilen, nichtssagenden Cache-Schluessel ab.
+ *
+ * Bewusst gehasht: Der Session-Token ist das Zugriffsgeheimnis fuer den Antrag
+ * (wer ihn hat, kommt an die Daten). Als Klartext-Metadatum an einen externen
+ * Anbieter zu schicken, waere unnoetig freigiebig — der Cache braucht nur
+ * "derselbe Vorgang wie eben", nicht "welcher".
+ */
+export function cacheKeyFromSession(sessionToken: string): string {
+  return "edufunds-" + createHash("sha256").update(sessionToken).digest("hex").slice(0, 32);
+}
+
+/** Aktueller Cache-Schluessel, falls gesetzt. Exportiert fuer Tests. */
+export function currentPromptCacheKey(): string | undefined {
+  return cacheKeyStore.getStore();
+}
+
+/**
+ * Haengt `prompt_cache_key` an die Anfrage, wenn ein Schluessel im Kontext liegt —
+ * sonst bleibt das Objekt unveraendert, das Verhalten also exakt wie vorher.
+ *
+ * Generisch statt Cast: `as Parameters<create>[0]` wuerde die Overload-Aufloesung
+ * auf die Union aus Streaming- und Nicht-Streaming-Variante aufweiten, und
+ * `res.choices` waere danach nicht mehr typisiert.
+ */
+function withCache<T extends object>(params: T): T {
+  const key = cacheKeyStore.getStore();
+  return key ? ({ ...params, prompt_cache_key: key } as T) : params;
+}
+
+// ---------------------------------------------------------------------------
 // Optionaler Client-seitiger Rate-Limiter
 // ---------------------------------------------------------------------------
 // Erzwingt einen Mindestabstand zwischen ausgehenden Requests. Default 0 (AUS)
@@ -409,16 +470,16 @@ function getMistral(): OpenAI {
 
 async function mistralGenerateJson<T>(model: string, system: string, user: string, opts: LlmOptions): Promise<LlmResult<T>> {
   const res = await withTimeout(
-    getMistral().chat.completions.create({
+    getMistral().chat.completions.create(withCache({
       model,
       messages: [
         { role: "system", content: system },
         { role: "user", content: user },
       ],
-      response_format: { type: "json_object" },
+      response_format: { type: "json_object" as const },
       ...(opts.maxTokens ? { max_tokens: opts.maxTokens } : {}),
       ...(opts.temperature !== undefined ? { temperature: opts.temperature } : {}),
-    }),
+    })),
     model
   );
   const text = (res.choices[0]?.message?.content ?? "").trim();
@@ -435,7 +496,7 @@ async function mistralGenerateJson<T>(model: string, system: string, user: strin
 
 async function mistralGenerateText(model: string, system: string, user: string, opts: LlmOptions): Promise<LlmResult<string>> {
   const res = await withTimeout(
-    getMistral().chat.completions.create({
+    getMistral().chat.completions.create(withCache({
       model,
       messages: [
         { role: "system", content: system },
@@ -443,7 +504,7 @@ async function mistralGenerateText(model: string, system: string, user: string, 
       ],
       ...(opts.maxTokens ? { max_tokens: opts.maxTokens } : {}),
       ...(opts.temperature !== undefined ? { temperature: opts.temperature } : {}),
-    }),
+    })),
     model
   );
   const text = (res.choices[0]?.message?.content ?? "").trim();
