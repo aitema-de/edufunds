@@ -1,5 +1,5 @@
 {
-  "version": "2026-08-18",
+  "version": "2026-08-19",
   "quellen": [
     "https://www.stiftungbildung.org/foerderfonds-persoenlichkeitsentwicklung"
   ],
@@ -106,6 +106,7 @@
     "typ": "rolling"
   },
   "notizen": [
+    "NOCH NICHT ANTRAGSOFFEN (Stand 19.08.2026): Die Fondsseite sagt „Dieser Förderfonds ist mit Ihrer Hilfe bald verfügbar“ und trägt kein Antragsformular. Das Feld fristLogik=„rolling“ stammt aus dem FAQ-Baustein der Seite und gilt erst ab Öffnung — maßgeblich ist fristZustand=„geschlossen“.",
     "Anträge können fortlaufend und jederzeit gestellt werden.",
     "Über die Förderung entscheidet ein Beschlussgremium aus jungen und engagierten Menschen sowie der Vorstand der Stiftung Bildung.",
     "Der Fokus des Förderfonds liegt auf der Stärkung sozial-emotionaler Kompetenzen, psychosozialer Gesundheit und Resilienz mit einem klaren Bezug zu Selbstreflexion, Selbstwahrnehmung und innerem Erleben."
@@ -155,5 +156,10 @@
       "formulierung": "Alle Kinder und Jugendlichen werden unabhängig von ihren Fähigkeiten oder Bedürfnissen aktiv in die Projektplanung einbezogen.",
       "kontext": "Beispiel für die Berücksichtigung von Vielfalt und Inklusion."
     }
-  ]
+  ],
+  "fristZustand": {
+    "art": "geschlossen",
+    "quelle": "Primärquelle https://www.stiftungbildung.org/foerderfonds-persoenlichkeitsentwicklung, geprüft 19.08.2026, wörtlich: „Dieser Förderfonds ist mit Ihrer Hilfe bald verfügbar.“ Kein Antragsformular auf der Seite; die Übersicht https://www.stiftungbildung.org/foerderfonds führt den Fonds unter „In Bewegung — Diese Förderfonds sind mit Ihrer Hilfe bald verfügbar“. Der FAQ-Baustein „fortlaufend und jeder Zeit“ steht zwar auf der Seite, gilt aber erst ab Öffnung.",
+    "wiedereroeffnungErwartet": "Angekündigt, aber undatiert — die Stiftung sammelt für diesen Fonds zunächst Spenden („bald verfügbar“). Bei Öffnung: status=aktiv, fristZustand.art=keine, kiAntragGeeignet=true."
+  }
 }

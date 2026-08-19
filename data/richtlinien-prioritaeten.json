@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-23T11:18:52.894Z",
+  "generatedAt": "2026-08-19T10:26:12.232Z",
   "description": "Priorisierte Queue für Richtlinien-Dossier-Extraktion. Wird vom Extraction-Tool (--next-Modus) und geplantem wöchentlichen Cronjob konsumiert. Status: open = Dossier fehlt; done = Dossier in data/richtlinien/; skip = Kolja hat manuell deprioritisiert.",
   "criteria": "Score = log10(foerdersummeMax)*10 + Reichweite(bundesweit=18, sonst 2 pro BL) + Typ(bund=20, eu=15, stiftung=10) + min(kategorien,5)*2 + min(schulformen,5)*2. Nur kiAntragGeeignet=true.",
-  "total": 97,
+  "total": 105,
   "items": [
     {
       "programmId": "bmbf-digitalpakt-2",
@@ -415,6 +415,16 @@
       "status": "done"
     },
     {
+      "programmId": "foerderfonds-antisemitismus-rassismus",
+      "name": "Förderfonds Aktiv gegen Antisemitismus, Rassismus und Rechtsextremismus",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderfonds-antisemitismus-rassismus",
+      "score": 69,
+      "status": "done"
+    },
+    {
       "programmId": "deine-idee-deine-schule-dein",
       "name": "Deine Idee? Deine Schule. Dein Klima!",
       "foerdergeberTyp": "stiftung",
@@ -501,6 +511,76 @@
       "foerdersummeMax": 5000,
       "reichweite": "alle",
       "infoLink": "https://www.telekom-stiftung.de",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderfonds-glanztag",
+      "name": "Förderfonds G(l)anztag",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderfonds-glanztag",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderfonds-medienkompetenz",
+      "name": "Förderfonds Medienkompetenz",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderfonds-medienkompetenz",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderfonds-frieden",
+      "name": "Förderfonds Frieden",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderfonds-frieden",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderfonds-handwerk",
+      "name": "Förderfonds Handwerk",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderfonds-handwerk",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderfonds-klimaschutz",
+      "name": "Förderfonds Klimaschutz",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderfonds-klimaschutz",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderfonds-entrepreneurship-education",
+      "name": "Förderfonds Entrepreneurship Education",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderfonds-entrepreneurship-education",
+      "score": 67,
+      "status": "done"
+    },
+    {
+      "programmId": "foerderfonds-vielfalt",
+      "name": "Förderfonds Vielfältig l(i)eben",
+      "foerdergeberTyp": "stiftung",
+      "foerdersummeMax": 5000,
+      "reichweite": "alle",
+      "infoLink": "https://www.stiftungbildung.org/foerderfonds-vielfalt",
       "score": 67,
       "status": "done"
     },
@@ -973,132 +1053,6 @@
       "reichweite": "DE-ST",
       "infoLink": "https://lpb.sachsen-anhalt.de/service/foerderung",
       "score": 20,
-      "status": "done"
-    },
-    {
-      "programmId": "foerderfonds-glanztag",
-      "name": "Förderfonds G(l)anztag",
-      "foerdergeberTyp": "sonst",
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftungbildung.org/foerderfonds-glanztag",
-      "score": 30,
-      "status": "done"
-    },
-    {
-      "programmId": "foerderfonds-medienkompetenz",
-      "name": "Förderfonds Medienkompetenz",
-      "foerdergeberTyp": "sonst",
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftungbildung.org/foerderfonds-medienkompetenz",
-      "score": 30,
-      "status": "done"
-    },
-    {
-      "programmId": "foerderfonds-frieden",
-      "name": "Förderfonds Frieden",
-      "foerdergeberTyp": "sonst",
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftungbildung.org/foerderfonds-frieden",
-      "score": 30,
-      "status": "done"
-    },
-    {
-      "programmId": "foerderfonds-antisemitismus-rassismus",
-      "name": "Förderfonds Aktiv gegen Antisemitismus, Rassismus und Rechtsextremismus",
-      "foerdergeberTyp": "sonst",
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftungbildung.org/foerderfonds-antisemitismus-rassismus",
-      "score": 30,
-      "status": "done"
-    },
-    {
-      "programmId": "foerderfonds-handwerk",
-      "name": "Förderfonds Handwerk",
-      "foerdergeberTyp": "sonst",
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftungbildung.org/foerderfonds-handwerk",
-      "score": 30,
-      "status": "done"
-    },
-    {
-      "programmId": "foerderfonds-klimaschutz",
-      "name": "Förderfonds Klimaschutz",
-      "foerdergeberTyp": "sonst",
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftungbildung.org/foerderfonds-klimaschutz",
-      "score": 30,
-      "status": "done"
-    },
-    {
-      "programmId": "foerderfonds-entrepreneurship-education",
-      "name": "Förderfonds Entrepreneurship Education",
-      "foerdergeberTyp": "sonst",
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftungbildung.org/foerderfonds-entrepreneurship-education",
-      "score": 30,
-      "status": "done"
-    },
-    {
-      "programmId": "foerderfonds-vielfalt",
-      "name": "Förderfonds Vielfältig l(i)eben",
-      "foerdergeberTyp": "sonst",
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftungbildung.org/foerderfonds-vielfalt",
-      "score": 30,
-      "status": "done"
-    },
-    {
-      "programmId": "foerderfonds-chancengerechtigkeit",
-      "name": "Förderfonds Chancengerechtigkeit",
-      "foerdergeberTyp": "sonst",
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftungbildung.org/foerderfonds-chancengerechtigkeit",
-      "score": 30,
-      "status": "done"
-    },
-    {
-      "programmId": "foerderfonds-kunst-und-kultur",
-      "name": "Förderfonds Kunst und Kultur",
-      "foerdergeberTyp": "sonst",
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftungbildung.org/foerderfonds-kunst-und-kultur",
-      "score": 30,
-      "status": "done"
-    },
-    {
-      "programmId": "foerderfonds-ernaehrung",
-      "name": "Förderfonds Ernährung",
-      "foerdergeberTyp": "sonst",
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftungbildung.org/foerderfonds-ernaehrung",
-      "score": 30,
-      "status": "done"
-    },
-    {
-      "programmId": "foerderfonds-persoenlichkeitsentwicklung",
-      "name": "Förderfonds Persönlichkeitsentwicklung",
-      "foerdergeberTyp": "sonst",
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftungbildung.org/foerderfonds-persoenlichkeitsentwicklung",
-      "score": 30,
-      "status": "done"
-    },
-    {
-      "programmId": "foerderfonds-schule-bewegt",
-      "name": "Förderfonds Kita und Schule bewegt",
-      "foerdergeberTyp": "sonst",
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftungbildung.org/foerderfonds-schule-bewegt",
-      "score": 30,
-      "status": "done"
-    },
-    {
-      "programmId": "foerderfonds-demokratie-stiftungbildung",
-      "name": "Förderfonds Demokratie",
-      "foerdergeberTyp": "sonst",
-      "reichweite": "alle",
-      "infoLink": "https://www.stiftungbildung.org/foerderfonds-demokratie",
-      "score": 30,
       "status": "done"
     }
   ]

@@ -1,5 +1,5 @@
 {
-  "version": "2026-08-18",
+  "version": "2026-08-19",
   "quellen": [
     "https://www.stiftungbildung.org/foerderfonds-ernaehrung"
   ],
@@ -128,6 +128,7 @@
     "bearbeitungsdauer": "4–6 Wochen nach Antragsstellung"
   },
   "notizen": [
+    "NOCH NICHT ANTRAGSOFFEN (Stand 19.08.2026): Die Fondsseite sagt „Dieser Förderfonds ist mit Ihrer Hilfe bald verfügbar“ und trägt kein Antragsformular. Das Feld fristLogik=„rolling“ stammt aus dem FAQ-Baustein der Seite und gilt erst ab Öffnung — maßgeblich ist fristZustand=„geschlossen“.",
     "Anträge können fortlaufend und jederzeit formlos gestellt werden.",
     "Entscheidungen trifft ein Beschlussgremium aus jungen und engagierten Menschen sowie der Vorstand der Stiftung Bildung.",
     "Die Stiftung Bildung ist gemeinnützig anerkannt (Freistellungsbescheid vom 01.03.2024)."
@@ -185,5 +186,10 @@
   ],
   "fristLogik": {
     "typ": "rolling"
+  },
+  "fristZustand": {
+    "art": "geschlossen",
+    "quelle": "Primärquelle https://www.stiftungbildung.org/foerderfonds-ernaehrung, geprüft 19.08.2026, wörtlich: „Dieser Förderfonds ist mit Ihrer Hilfe bald verfügbar.“ Kein Antragsformular auf der Seite; die Übersicht https://www.stiftungbildung.org/foerderfonds führt den Fonds unter „In Bewegung — Diese Förderfonds sind mit Ihrer Hilfe bald verfügbar“. Der FAQ-Baustein „fortlaufend und jeder Zeit“ steht zwar auf der Seite, gilt aber erst ab Öffnung.",
+    "wiedereroeffnungErwartet": "Angekündigt, aber undatiert — die Stiftung sammelt für diesen Fonds zunächst Spenden („bald verfügbar“). Bei Öffnung: status=aktiv, fristZustand.art=keine, kiAntragGeeignet=true."
   }
 }
