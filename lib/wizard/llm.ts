@@ -135,9 +135,59 @@ function withTimeout<T>(p: Promise<T>, model: string): Promise<T> {
 const MAX_LLM_ATTEMPTS = 3;
 const RETRY_BASE_DELAY_MS = 600;
 
+/**
+ * Basis-Wartezeit nach einem 429. Bewusst zwei Groessenordnungen ueber
+ * RETRY_BASE_DELAY_MS: Ein 429 ist kein Schluckauf, sondern ein erschoepftes
+ * Kontingent — bei Mistral pro MINUTE (100.000 Tokens / 100 Requests). Mit
+ * 600 ms Backoff sind alle drei Versuche verbraucht, bevor sich das Fenster
+ * auch nur messbar nachgefuellt hat; genau daran starb Antrag 37 am 13.08.2026.
+ */
+const RATE_LIMIT_BASE_DELAY_MS = 15_000;
+/** Obergrenze, damit ein absurdes Retry-After die Generierung nicht endlos haengen laesst. */
+const RATE_LIMIT_MAX_DELAY_MS = 90_000;
+
 export interface RetryOptions {
   /** Basis-Verzoegerung in ms (exponentieller Backoff). Tests setzen 0. */
   baseDelayMs?: number;
+  /** Basis-Wartezeit nach einem 429 (s. RATE_LIMIT_BASE_DELAY_MS). Tests setzen 0. */
+  rateLimitDelayMs?: number;
+}
+
+/** Liest `Retry-After` (Sekunden oder HTTP-Datum) aus einem Provider-Fehler. Exportiert fuer Tests. */
+export function retryAfterMs(err: unknown): number | null {
+  const h = (err as { headers?: unknown } | null)?.headers;
+  if (!h) return null;
+  let raw: string | null = null;
+  if (typeof (h as Headers).get === "function") raw = (h as Headers).get("retry-after");
+  else if (typeof h === "object") {
+    const rec = h as Record<string, unknown>;
+    const v = rec["retry-after"] ?? rec["Retry-After"];
+    if (typeof v === "string" || typeof v === "number") raw = String(v);
+  }
+  if (raw === null || raw.trim() === "") return null;
+  const secs = Number(raw);
+  if (Number.isFinite(secs)) return Math.max(0, secs * 1000);
+  const date = Date.parse(raw);
+  if (Number.isFinite(date)) return Math.max(0, date - Date.now());
+  return null;
+}
+
+/** Ist der Fehler ein Rate-Limit (429)? Exportiert fuer Tests. */
+export function isRateLimitError(err: unknown): boolean {
+  if ((err as { status?: number } | null)?.status === 429) return true;
+  const msg = (err instanceof Error ? err.message : String(err)).toLowerCase();
+  return msg.includes("429") || msg.includes("too many requests") || msg.includes("rate limit");
+}
+
+/**
+ * Wartezeit fuer einen 429 — `Retry-After` schlaegt den Standardplan.
+ * Gibt `null` zurueck, wenn der Fehler kein Rate-Limit ist. Exportiert fuer Tests.
+ */
+export function rateLimitWaitMs(err: unknown, attempt: number, baseMs = RATE_LIMIT_BASE_DELAY_MS): number | null {
+  if (!isRateLimitError(err)) return null;
+  const vomProvider = retryAfterMs(err);
+  const geplant = baseMs * attempt; // 15 s, 30 s, …
+  return Math.min(vomProvider ?? geplant, RATE_LIMIT_MAX_DELAY_MS);
 }
 
 /** Entscheidet deterministisch, ob ein Fehler einen erneuten Versuch lohnt. Exportiert fuer Tests. */
@@ -174,17 +224,26 @@ export async function withRetry<T>(
   opts: RetryOptions = {}
 ): Promise<T> {
   const base = opts.baseDelayMs ?? RETRY_BASE_DELAY_MS;
+  const rlBase = opts.rateLimitDelayMs ?? RATE_LIMIT_BASE_DELAY_MS;
   let lastErr: unknown;
   for (let attempt = 1; attempt <= MAX_LLM_ATTEMPTS; attempt++) {
     try {
+      // Gate JE VERSUCH — vorher stand es einmal vor withRetry, sodass gerade die
+      // Wiederholungen nach einem 429 ungebremst in dasselbe Limit liefen.
+      await rateGate();
       return await fn();
     } catch (err) {
       lastErr = err;
       if (attempt >= MAX_LLM_ATTEMPTS || !isRetryableLlmError(err)) throw err;
-      const delay = base * 2 ** (attempt - 1);
+      const rlDelay = rateLimitWaitMs(err, attempt, rlBase);
+      const delay = rlDelay ?? base * 2 ** (attempt - 1);
+      // Bei 429 die globale Sperre setzen: Auch parallele Pipelines muessen warten,
+      // sonst halten sie das Minuten-Kontingent gemeinsam leer.
+      if (rlDelay !== null) noteRateLimit(rlDelay);
       console.warn(
         `[wizard/llm] ${model} Versuch ${attempt}/${MAX_LLM_ATTEMPTS} fehlgeschlagen ` +
-          `(${err instanceof Error ? err.message : String(err)}) — neuer Versuch in ${delay} ms`
+          `(${err instanceof Error ? err.message : String(err)}) — neuer Versuch in ${delay} ms` +
+          (rlDelay !== null ? " [Rate-Limit, globale Sperre gesetzt]" : "")
       );
       if (delay > 0) await new Promise((r) => setTimeout(r, delay));
     }
@@ -204,9 +263,43 @@ export async function withRetry<T>(
 const MIN_REQUEST_INTERVAL_MS = Math.max(0, Number(process.env.LLM_MIN_REQUEST_INTERVAL_MS) || 0);
 let rateChain: Promise<void> = Promise.resolve();
 let lastRequestStart = 0;
+
+/**
+ * Globale Sperre nach einem 429. Bis zu diesem Zeitpunkt geht KEIN Aufruf raus —
+ * auch nicht aus einer anderen, parallel laufenden Pipeline.
+ *
+ * Warum global und nicht pro Aufruf: Mistrals bindendes Limit ist ein
+ * MINUTEN-Kontingent (x-ratelimit-limit-tokens-minute, 100.000). Ist es leer,
+ * laeuft JEDER weitere Call der Pipeline in denselben 429 — ein Backoff, der nur
+ * den einzelnen Aufruf bremst, wandert dann nur von Stufe zu Stufe weiter. Erst
+ * eine gemeinsame Pause laesst das Kontingent tatsaechlich nachfuellen.
+ *
+ * Sichtbar geworden am 13.08.2026: Antrag 37 auf pilot.edufunds.org starb nach
+ * 6 geschriebenen Abschnitten am 429, weil die drei Versuche mit 600/1200 ms
+ * Backoff zusammen in gut zwei Sekunden verbrannt waren.
+ */
+let cooldownUntil = 0;
+
+/** Meldet ein erkanntes Rate-Limit an die globale Sperre (nur verlaengern, nie verkuerzen). */
+function noteRateLimit(waitMs: number): void {
+  const until = Date.now() + waitMs;
+  if (until > cooldownUntil) cooldownUntil = until;
+}
+
+/** Nur fuer Tests: Sperre zuruecksetzen bzw. auslesen. */
+export function _resetRateLimitCooldown(): void {
+  cooldownUntil = 0;
+}
+export function _rateLimitCooldownMs(): number {
+  return Math.max(0, cooldownUntil - Date.now());
+}
+
 function rateGate(): Promise<void> {
-  if (MIN_REQUEST_INTERVAL_MS <= 0) return Promise.resolve();
+  if (MIN_REQUEST_INTERVAL_MS <= 0 && cooldownUntil <= Date.now()) return Promise.resolve();
   const next = rateChain.then(async () => {
+    // Erst die globale 429-Sperre abwarten, dann den optionalen Mindestabstand.
+    const cool = cooldownUntil - Date.now();
+    if (cool > 0) await new Promise((r) => setTimeout(r, cool));
     const wait = lastRequestStart + MIN_REQUEST_INTERVAL_MS - Date.now();
     if (wait > 0) await new Promise((r) => setTimeout(r, wait));
     lastRequestStart = Date.now();
@@ -438,7 +531,6 @@ function minimize(user: string, model: string): string {
 
 export async function generateJson<T>(model: string, system: string, user: string, opts: LlmOptions = {}): Promise<LlmResult<T>> {
   const safeUser = minimize(user, model);
-  await rateGate();
   return withRetry(
     () =>
       PROVIDER === "gemini"
@@ -452,7 +544,6 @@ export async function generateJson<T>(model: string, system: string, user: strin
 
 export async function generateText(model: string, system: string, user: string, opts: LlmOptions = {}): Promise<LlmResult<string>> {
   const safeUser = minimize(user, model);
-  await rateGate();
   return withRetry(
     () =>
       PROVIDER === "gemini"

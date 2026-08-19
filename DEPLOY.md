@@ -18,7 +18,7 @@
 ### 1. Repository klonen
 
 ```bash
-git clone https://github.com/Aitema-gmbh/edufunds.git
+git clone https://github.com/aitema-de/edufunds.git
 cd edufunds
 ```
 

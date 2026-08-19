@@ -1,7 +1,7 @@
 # EduFunds — Lokaler Dev-Workflow
 
 ## Einmaliges Setup (bereits erledigt)
-- Repo: `/home/kolja/edufunds-app/` (GitHub: `Aitema-gmbh/edufunds`)
+- Repo: `/home/kolja/edufunds-app/` (GitHub: `aitema-de/edufunds`)
 - Abhängigkeiten: `npm install`
 - `.env.local` → Dev-Config inkl. `GEMINI_API_KEY`
 - SSH-Tunnel-Skript: `scripts/dev-db-tunnel.sh`

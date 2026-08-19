@@ -486,7 +486,7 @@ EduFunds/
 ### 2. Installation
 
 ```bash
-git clone https://github.com/Aitema-gmbh/edufunds.git
+git clone https://github.com/aitema-de/edufunds.git
 cd edufunds
 npm install
 ```
