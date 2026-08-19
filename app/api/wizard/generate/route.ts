@@ -6,6 +6,7 @@ import {
   updateWizardSession,
 } from "@/lib/wizard/session";
 import { runPipeline } from "@/lib/wizard/pipeline";
+import { withPromptCacheKey, cacheKeyFromSession } from "@/lib/wizard/llm";
 import type { WizardSessionData } from "@/lib/wizard/types";
 import type { PipelineStage } from "@/lib/wizard/types";
 import { addUsage, emptyLedger } from "@/lib/wizard/pricing";
@@ -106,13 +107,23 @@ export async function POST(req: NextRequest) {
           console.warn("[wizard/generate] Stage-Heartbeat fehlgeschlagen:", e);
         }
       };
-      const { artefacts, usages } = await runPipeline(
-        programm,
-        session.data.facts,
-        richtlinie,
-        onEvent,
-        session.data.messages,
-        { texttiefe }
+      // Alle Aufrufe dieses Laufs teilen einen Prompt-Cache-Schluessel. Die
+      // Pipeline schickt denselben Block (Dossier, Fakten, Nutzerantworten,
+      // stehende Regeln) ueber ihre Stufen hinweg immer wieder mit — gemessen
+      // am 19.08.2026 sind 77 % des Prompt-Volumens Wiederholung. Gecachte
+      // Tokens kosten das Minutenkontingent praktisch nichts (7.534 -> 30),
+      // und genau dieses Kontingent ist der Engpass.
+      const { artefacts, usages } = await withPromptCacheKey(
+        cacheKeyFromSession(sessionToken),
+        () =>
+          runPipeline(
+            programm,
+            session.data.facts,
+            richtlinie,
+            onEvent,
+            session.data.messages,
+            { texttiefe }
+          )
       );
       let costs = generatingData.costs ?? emptyLedger();
       for (const u of usages) costs = addUsage(costs, u.model, u.usage);
