@@ -45,9 +45,18 @@ export async function POST(req: NextRequest) {
         generation: session.data.generation ?? null,
       });
     }
+    // "failed" MUSS hier stehen. Der Fehlerpfad unten schreibt genau diese Phase —
+    // stand sie nicht in der Erlaubnisliste, sperrte sich die Session mit dem
+    // eigenen Fehlschlag selbst aus: Jeder Klick auf „Erneut versuchen" bekam
+    // 409 zurueck, dauerhaft, ohne Ausweg. Genau so ist es am 13.08.2026 einem
+    // Tester ergangen (Antrag 37, pilot.edufunds.org): ein 500 um 12:05:38, danach
+    // sieben 409 in acht Minuten, dann hat er aufgegeben. Das Frontend setzte beim
+    // Retry nur seinen EIGENEN Zustand auf "ready_to_generate" zurueck — der Server
+    // wusste davon nichts.
     if (
       session.data.phase !== "ready_to_generate" &&
-      session.data.phase !== "interviewing"
+      session.data.phase !== "interviewing" &&
+      session.data.phase !== "failed"
     ) {
       return NextResponse.json(
         { error: `Session ist in Phase ${session.data.phase}` },
@@ -66,6 +75,8 @@ export async function POST(req: NextRequest) {
     const generatingData: WizardSessionData = {
       ...session.data,
       phase: "generating",
+      // Neuer Anlauf — der Fehler des letzten Versuchs ist Geschichte.
+      lastError: undefined,
     };
     await updateWizardSession(sessionToken, generatingData, "in_progress");
 
@@ -120,17 +131,26 @@ export async function POST(req: NextRequest) {
       });
     } catch (pipelineErr) {
       console.error("[wizard/generate] Pipeline-Fehler:", pipelineErr);
-      const failedData: WizardSessionData = { ...generatingData, phase: "failed" };
-      await updateWizardSession(sessionToken, failedData);
-      return NextResponse.json(
-        {
-          error:
-            pipelineErr instanceof Error
-              ? pipelineErr.message
-              : "Pipeline-Fehler",
+      const meldung =
+        pipelineErr instanceof Error ? pipelineErr.message : "Pipeline-Fehler";
+
+      // Frisch lesen statt `generatingData` zu recyceln: Waehrend die Pipeline
+      // lief, hat der Stage-Heartbeat (onEvent) `generation.stage` in die DB
+      // geschrieben. Der alte Code schrieb den VOR-Pipeline-Stand zurueck und
+      // loeschte damit die einzige Spur, wie weit die Generierung gekommen war.
+      const aktuell = await getWizardSession(sessionToken);
+      const basis = aktuell?.data ?? generatingData;
+      const failedData: WizardSessionData = {
+        ...basis,
+        phase: "failed",
+        lastError: {
+          message: meldung,
+          at: new Date().toISOString(),
+          stage: basis.generation?.stage,
         },
-        { status: 500 }
-      );
+      };
+      await updateWizardSession(sessionToken, failedData);
+      return NextResponse.json({ error: meldung }, { status: 500 });
     }
   } catch (err) {
     console.error("[wizard/generate] Fehler:", err);

@@ -9,7 +9,12 @@
  * ENV-Vars (alle optional — bei fehlendem Token wird die jeweilige Aktion
  * uebersprungen, Success ist solange `notified || github || clickup`):
  * - GITHUB_TOKEN: Personal Access Token (Repo-Issues-Scope)
- * - GITHUB_REPO: "Aitema-gmbh/edufunds" (Default)
+ * - GITHUB_REPO: "aitema-de/edufunds" (Default). Der Default hiess bis 19.08.2026
+ *   "Aitema-gmbh/edufunds" — die Organisation wurde umbenannt. Das fiel nicht auf,
+ *   weil GitHub bei umbenannten Repos umleitet und dabei fuer POST die Methode
+ *   erhaelt: Issues landeten weiter richtig (am 19.08.2026 durchgestochen und
+ *   belegt). Verlassen sollte man sich darauf nicht — die Weiterleitung bricht,
+ *   sobald jemand den alten Namen neu belegt.
  * - CLICKUP_TOKEN: ClickUp API-Token
  * - CLICKUP_LIST_ID: Ziel-Liste fuer Pilot-Feedback-Tasks
  * - RESEND_API_KEY: Mail-Versand-Bestaetigung + Office-Notification
@@ -20,7 +25,7 @@ import { query } from "@/lib/db";
 import { getClientIP } from "@/lib/rate-limit";
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || "";
-const GITHUB_REPO = process.env.GITHUB_REPO || "Aitema-gmbh/edufunds";
+const GITHUB_REPO = process.env.GITHUB_REPO || "aitema-de/edufunds";
 const CLICKUP_TOKEN = process.env.CLICKUP_TOKEN || "";
 const CLICKUP_LIST_ID = process.env.CLICKUP_LIST_ID || "";
 const RESEND_API_KEY = process.env.RESEND_API_KEY || "";

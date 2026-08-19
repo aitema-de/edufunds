@@ -240,6 +240,21 @@ export interface WizardSessionData {
   generation?: GenerationArtefacts;
   /** Token-Ledger der Gemini-Calls (siehe lib/wizard/pricing.ts). */
   costs?: import("./pricing").CostLedger;
+  /**
+   * Letzter Generierungs-Fehler. Bis 19.08.2026 landete der Grund NUR in
+   * `console.error` — und Container-Logs ueberleben keinen Neustart. Als am
+   * 13.08.2026 bei einem Tester die Generierung scheiterte, stand in der
+   * Datenbank deshalb ausschliesslich `phase: "failed"`, ohne eine Silbe dazu,
+   * woran. Ohne dieses Feld ist jeder Fehlschlag nach dem naechsten Deploy
+   * unaufklaerbar.
+   */
+  lastError?: {
+    message: string;
+    /** ISO-Zeitpunkt des Fehlschlags. */
+    at: string;
+    /** Pipeline-Stufe, die zuletzt gemeldet wurde (aus dem Stage-Heartbeat). */
+    stage?: PipelineStage;
+  };
 }
 
 export interface WizardSession {

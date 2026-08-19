@@ -31,7 +31,7 @@ Daten der Förderprogramme liegen statisch in `data/foerderprogramme.json`. Post
 ## Setup lokal (WSL/macOS/Linux)
 
 ```bash
-git clone https://github.com/Aitema-gmbh/edufunds.git
+git clone https://github.com/aitema-de/edufunds.git
 cd edufunds
 npm install
 cp .env.local.example .env.local   # GEMINI_API_KEY etc. eintragen
