@@ -51,7 +51,21 @@ export async function POST(req: NextRequest) {
     // beendet, aber der Nutzer klickt "Noch mehr ergänzen" und reicht zusätzliche
     // Angaben nach. Beide Phasen akzeptieren eine Antwort (nextStep re-evaluiert
     // und liefert eine Folgefrage oder erneut ready).
-    if (session.data.phase !== "interviewing" && session.data.phase !== "ready_to_generate") {
+    //
+    // "failed" MUSS ebenfalls durch — dieselbe Falle wie in der generate-Route
+    // (13.08.2026, Antrag 37). Nach einem Fehlschlag zeigt das Frontend den
+    // Fehlerblock; ein Klick auf "Erneut versuchen" setzt NUR den lokalen Zustand
+    // auf "ready_to_generate" zurueck und rendert wieder den normalen Wizard —
+    // samt "Noch mehr ergaenzen" (WizardShell.tsx). Wer dort erst noch etwas
+    // nachtraegt, statt sofort neu zu generieren, landete ohne diesen Zweig wieder
+    // im 409, obwohl die generate-Route ihn inzwischen durchlaesst. Fachlich ist
+    // das unbedenklich: nextStep re-evaluiert und setzt die Phase unten sauber
+    // auf "interviewing" bzw. "ready_to_generate".
+    if (
+      session.data.phase !== "interviewing" &&
+      session.data.phase !== "ready_to_generate" &&
+      session.data.phase !== "failed"
+    ) {
       return NextResponse.json(
         { error: `Session ist in Phase ${session.data.phase}, keine Antwort erwartet` },
         { status: 409 }
@@ -159,8 +173,23 @@ export async function POST(req: NextRequest) {
           totalQuestions: data.interviewer.totalQuestions + 1,
         },
       };
+      // Dieser Zweig setzte die Phase bisher GAR NICHT — aus "interviewing" und
+      // "ready_to_generate" heraus war das unauffaellig, weil beide stehenbleiben
+      // durften. Kommt die Antwort aber aus "failed" (s. Guard oben), bliebe die
+      // Session auf "failed" stehen und der Nutzer saesse sofort wieder fest.
+      // Nur diesen Fall normalisieren, damit die beiden bewaehrten Pfade
+      // unveraendert bleiben.
+      if (data.phase === "failed") {
+        data = { ...data, phase: "interviewing" };
+      }
     } else {
       data = { ...data, phase: "ready_to_generate" };
+    }
+
+    // Der Fehler des letzten Generierungsversuchs ist mit der neuen Angabe
+    // ueberholt — sonst klebt er an einer Session, die laengst weiterlaeuft.
+    if (data.lastError) {
+      data = { ...data, lastError: undefined };
     }
 
     const updated = await updateWizardSession(sessionToken, data);

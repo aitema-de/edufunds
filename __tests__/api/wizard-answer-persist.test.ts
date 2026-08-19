@@ -124,3 +124,74 @@ it("ersetzt bei Retry die unverarbeitete Antwort statt sie zu doppeln", async ()
   expect(userAnswers[0].content).toBe("korrigierte Antwort");
   expect(data.messages.some((m) => m.content === "alte Antwort")).toBe(false);
 });
+
+/**
+ * 19.08.2026 — Nachzug zum Vorfall vom 13.08.: Die generate-Route liess "failed"
+ * inzwischen wieder durch, die answer-Route nicht. Der Weg dahin ist real: Nach
+ * dem Fehlschlag klickt der Nutzer „Erneut versuchen", das Frontend setzt NUR
+ * seinen lokalen Zustand auf "ready_to_generate" und rendert wieder den normalen
+ * Wizard samt „Noch mehr ergaenzen" (WizardShell.tsx). Wer dort erst etwas
+ * nachtraegt, statt sofort neu zu generieren, lief in denselben 409.
+ */
+describe("answer aus Phase 'failed' — die zweite Tuer aus der Sackgasse", () => {
+  function failedSession(messages: unknown[]) {
+    const s = baseSession(messages) as { data: Record<string, unknown> };
+    s.data.phase = "failed";
+    s.data.lastError = { message: "429 status code (no body)", at: "2026-08-13T12:05:38Z" };
+    return s;
+  }
+
+  it("nimmt die Antwort an, statt sie mit 409 abzuweisen", async () => {
+    (getWizardSession as jest.Mock).mockResolvedValue(failedSession([]));
+    (extractFacts as jest.Mock).mockResolvedValue({ facts: {}, usage: null });
+    (nextStep as jest.Mock).mockResolvedValue({
+      step: { kind: "question", question: "Und wie finanzieren Sie den Eigenanteil?", updatedFacts: {} },
+      usage: null,
+    });
+
+    const res = await POST(req("Noch eine Angabe"));
+
+    expect(res.status).not.toBe(409);
+    expect(res.status).toBe(200);
+  });
+
+  it("normalisiert die Phase zurück auf 'interviewing' — sonst bleibt die Session auf 'failed' stehen", async () => {
+    (getWizardSession as jest.Mock).mockResolvedValue(failedSession([]));
+    (extractFacts as jest.Mock).mockResolvedValue({ facts: {}, usage: null });
+    (nextStep as jest.Mock).mockResolvedValue({
+      step: { kind: "question", question: "Folgefrage?", updatedFacts: {} },
+      usage: null,
+    });
+
+    await POST(req("Antwort"));
+
+    const geschrieben = (updateWizardSession as jest.Mock).mock.calls.at(-1)![1];
+    expect(geschrieben.phase).toBe("interviewing");
+    expect(geschrieben.lastError).toBeUndefined();
+  });
+
+  it("führt 'failed' auch nach 'ready_to_generate', wenn das Interview fertig ist", async () => {
+    (getWizardSession as jest.Mock).mockResolvedValue(failedSession([]));
+    (extractFacts as jest.Mock).mockResolvedValue({ facts: {}, usage: null });
+    (nextStep as jest.Mock).mockResolvedValue({
+      step: { kind: "ready", summary: "alles da", updatedFacts: {} },
+      usage: null,
+    });
+
+    await POST(req("Letzte Angabe"));
+
+    const geschrieben = (updateWizardSession as jest.Mock).mock.calls.at(-1)![1];
+    expect(geschrieben.phase).toBe("ready_to_generate");
+    expect(geschrieben.lastError).toBeUndefined();
+  });
+
+  it("lässt 'complete' weiterhin nicht antworten", async () => {
+    const s = baseSession([]) as { data: Record<string, unknown> };
+    s.data.phase = "complete";
+    (getWizardSession as jest.Mock).mockResolvedValue(s);
+
+    const res = await POST(req("zu spät"));
+
+    expect(res.status).toBe(409);
+  });
+});
