@@ -34,6 +34,20 @@ interface RawPosten {
   bezeichnung?: string;
   betragEur?: number;
   begruendung?: string;
+  /**
+   * Umlaut-Variante desselben Feldes. Am 18.08.2026 hat ein Sweep "echte
+   * Umlaute statt ae/oe/ue" (1187efe) im Ausgabeschema des Prompts den
+   * SCHLUESSEL mit umgestellt — aus "begruendung" wurde "begründung". Der
+   * Parser las weiter ASCII, also kam ab da KEINE einzige Begruendung mehr an:
+   * ueber die Baseline gemessen 386 von 386 Posten mit Begruendung davor,
+   * 0 von 237 danach. Sichtbar wurde es erst, als eine spaetere Stufe die
+   * leeren Begruendungen markierte.
+   *
+   * Der Prompt ist wieder ASCII. Dieses Feld bleibt trotzdem: Ein Modell darf
+   * jederzeit die deutsche Schreibweise zurueckgeben, und ein still
+   * verschwindendes Feld ist der teuerste Fehler dieser Klasse.
+   */
+  "begründung"?: string;
   eigenanteil?: boolean;
 }
 
@@ -65,7 +79,7 @@ function normalize(p: RawPosten): Finanzposten | null {
     kategorie,
     bezeichnung: p.bezeichnung.trim(),
     betragEur: Math.round(p.betragEur),
-    begruendung: p.begruendung?.trim() || undefined,
+    begruendung: (p.begruendung ?? p["begründung"])?.trim() || undefined,
     eigenanteil: Boolean(p.eigenanteil),
   };
 }
