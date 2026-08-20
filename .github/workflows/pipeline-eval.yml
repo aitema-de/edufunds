@@ -81,6 +81,31 @@ jobs:
           fi
           echo "Baseline-Snapshots vorhanden: $COUNT Dateien"
 
+      # Der PR-Trigger faehrt immer Replay — und Replay bewertet aufgezeichnete
+      # Artefakte neu, ruft also kein Modell auf. Aenderungen an dem, was ANS
+      # MODELL GEHT, kann er strukturell nicht sehen. Aufgefallen am 19.08.2026:
+      # Der Prompt-Caching-Umbau haette hier einen gruenen Haken bekommen, ohne
+      # dass irgendetwas davon geprueft worden waere. Kein Blocker (sonst steht
+      # jede Prompt-Arbeit still), aber es muss laut im Log stehen.
+      - name: Warnen, wenn Replay die Änderung gar nicht beurteilen kann
+        if: github.event_name == 'pull_request'
+        env:
+          BASIS: ${{ github.base_ref }}
+        run: |
+          set -euo pipefail
+          GEAENDERT=$(git diff --name-only "origin/${BASIS}...HEAD" || true)
+          RELEVANT=$(echo "$GEAENDERT" | grep -E '^lib/wizard/(prompts|pipeline|llm|config)\.ts$' || true)
+          if [ -n "$RELEVANT" ]; then
+            echo "::warning title=Replay ist für diese Änderung blind::Diese PR ändert, WAS ans Modell geht:"
+            echo "$RELEVANT" | sed 's/^/::warning::  /'
+            echo "::warning::Der Replay-Lauf unten bewertet aufgezeichnete Artefakte neu und ruft kein Modell auf."
+            echo "::warning::Ein grüner Haken belegt hier KEINE Qualität. Vor dem Merge einen Live-Lauf fahren:"
+            echo "::warning::  npx tsx --env-file=.env.local scripts/eval-pipeline.ts --live --N=3 --md-summary"
+            echo "::warning::  (oder diesen Workflow manuell mit mode=live starten)"
+          else
+            echo "Keine Datei geändert, die beeinflusst, was ans Modell geht — Replay ist hier aussagekräftig."
+          fi
+
       - name: Run Pipeline-Eval
         id: eval
         env:

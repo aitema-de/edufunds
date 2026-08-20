@@ -953,6 +953,26 @@ async function main() {
   const korpus = await loadKorpusAndValidate(flags.single, flags.korpus);
   console.log(`${LOG_PREFIX} Korpus geladen: ${korpus.length} Eintraege`);
 
+  // Was der Replay-Modus NICHT beurteilen kann — bitte nicht wegkuerzen.
+  //
+  // Befund 19.08.2026: Beim Prompt-Caching-Umbau (Umsortierung in
+  // buildSectionPrompt) lief der CI-Gate gruen durch, OHNE die Aenderung
+  // ueberhaupt sehen zu koennen. Der PR-Trigger dieses Workflows feuert bei
+  // `lib/wizard/**`, faehrt dort aber immer `--replay` — und Replay bewertet
+  // AUFGEZEICHNETE Artefakte neu, ruft also kein Modell auf. Alles, was sich
+  // auf das auswirkt, was ANS MODELL GEHT (Prompts, Pipeline-Logik, Provider,
+  // Modellwahl), ist fuer Replay unsichtbar. Ein gruener Haken heisst dann nur:
+  // "die Bewertungslogik ist unveraendert" — nicht "die Qualitaet stimmt noch".
+  if (flags.replay) {
+    console.log(
+      `${LOG_PREFIX} ⚠️  REPLAY misst die Bewertungs-Logik gegen gespeicherte Artefakte — ` +
+        `es laeuft KEIN Modell.\n` +
+        `${LOG_PREFIX}    Damit ist dieser Lauf BLIND fuer alles, was aendert, was ans Modell geht: ` +
+        `Prompts (lib/wizard/prompts.ts), Pipeline-Logik, Provider, Modellwahl.\n` +
+        `${LOG_PREFIX}    Wer daran etwas geaendert hat, braucht --live. Ein gruenes Replay belegt es NICHT.`
+    );
+  }
+
   // Programme laden (fuer Live-Modus)
   const programmeRaw = await readFile(PROGRAMME_PATH, "utf-8");
   const programme = JSON.parse(programmeRaw) as Foerderprogramm[];
