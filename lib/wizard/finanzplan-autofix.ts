@@ -13,6 +13,7 @@
 
 import type { Finanzposten } from "./types";
 import type { Richtlinie } from "./richtlinien-schema";
+import { lesProzentsatz } from "./finanzplan-arithmetik";
 
 /** Serialisierbare Variante einer AutofixAction (ohne apply-Funktion). */
 export interface AutofixMeta {
@@ -175,6 +176,31 @@ export function computeAutofixes({ posten, richtlinie }: AutofixContext): Autofi
           ),
       });
     }
+  }
+
+  // --- 4b. Prozent-Posten stimmt rechnerisch nicht ------------------------
+  //
+  // Tester-Feedback #008 (19.08.2026): Die Verwaltungspauschale stand mit
+  // 2.940 EUR im Plan, 7 % der uebrigen Posten (40.200 EUR) sind aber 2.814 EUR.
+  // Der Tester hat es von Hand nachgerechnet — genau diese Arbeit soll das
+  // Werkzeug abnehmen ("Zahlen nicht nur generieren, sondern am Ende konsequent
+  // gegeneinander pruefen").
+  //
+  // Bewusst als Autofix und nicht nur als Fehlermeldung: Die Fehlerwarnung
+  // sperrt die Freigabe (okFuerFreigabe), und ohne eine Korrektur mit einem Klick
+  // muesste der Nutzer den Rechenfehler der KI von Hand ausbuegeln.
+  for (const p of posten) {
+    const satz = lesProzentsatz(p.bezeichnung ?? "");
+    if (satz === null) continue;
+    const grundlage = posten.filter((x) => x.id !== p.id).reduce((s, x) => s + x.betragEur, 0);
+    const soll = Math.round((grundlage * satz) / 100);
+    if (Math.abs(p.betragEur - soll) <= 1) continue;
+    actions.push({
+      id: `korrigiere-prozent-posten-${p.id}`,
+      label: `"${p.bezeichnung}" auf ${fmtEur(soll)} korrigieren`,
+      description: `${satz} % von ${fmtEur(grundlage)} ergibt ${fmtEur(soll)}, im Plan stehen ${fmtEur(p.betragEur)}. Aktion setzt den Betrag auf den rechnerisch richtigen Wert.`,
+      apply: (list) => list.map((it) => (it.id === p.id ? { ...it, betragEur: soll } : it)),
+    });
   }
 
   // --- 5. Pro-Kategorie maxEur ueberschritten -----------------------------

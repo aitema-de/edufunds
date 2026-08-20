@@ -37,6 +37,7 @@ import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type { WizardFacts, WizardMessage } from "@/lib/wizard/types";
 import { runPipeline } from "@/lib/wizard/pipeline";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
+import { bestimmeAntragsart } from "@/lib/wizard/antragsart";
 import { getGeberGruppe, ALL_GEBER_GRUPPEN } from "@/lib/wizard/geber-classification";
 import { PIPELINE_CONFIG } from "@/lib/wizard/config";
 import { MODEL_FLASH, MODEL_PRO } from "@/lib/wizard/llm";
@@ -637,8 +638,15 @@ export function aggregate(
       validScores.reduce((s, x) => s + x.wiz02.score, 0) / validScores.length;
     const entryWiz03Mean =
       validScores.reduce((s, x) => s + x.wiz03.score, 0) / validScores.length;
+    // Finanzplan: nur Runs mit bewertbarem Plan (score != null). Ein Preis kennt
+    // keinen Finanzteil — er fliesst nicht als 0 ein, sondern gar nicht.
+    const finanzplanValid = validScores
+      .map((x) => x.finanzplan?.score)
+      .filter((v): v is number => typeof v === "number");
     const entryFinanzplanMean =
-      validScores.reduce((s, x) => s + x.finanzplan.score, 0) / validScores.length;
+      finanzplanValid.length > 0
+        ? finanzplanValid.reduce((s, x) => s + x, 0) / finanzplanValid.length
+        : null;
 
     // WIZ-04: nur Runs mit messbarer Quote (score != null); ein Eintrag ganz
     // ohne relevante Abschnitte fliesst nicht ein (statt als 0 oder 100 zu luegen).
@@ -652,7 +660,7 @@ export function aggregate(
     wiz01Scores.push(entryWiz01Mean);
     wiz02Scores.push(entryWiz02Mean);
     wiz03Scores.push(entryWiz03Mean);
-    finanzplanScores.push(entryFinanzplanMean);
+    if (entryFinanzplanMean !== null) finanzplanScores.push(entryFinanzplanMean);
 
     // Per-Geber-Gruppe
     const gruppe = getGeberGruppe(entry.programmId);

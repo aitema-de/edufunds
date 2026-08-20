@@ -7,6 +7,53 @@
 
 # Eval-Pipeline Baseline (Phase 5)
 
+## 2026-08-20 — Finanzplan-Metrik: zwei Korrekturen am MESSGERÄT (kein Pipeline-Regress)
+
+**Anlass:** Tester-Feedback #008 (19.08.2026) zu Antrag 37. Der Tester fand von Hand drei
+Widersprüche im fertigen Finanzplan, die das Tool selbst hätte finden müssen. Die Nachanalyse
+legte zwei unabhängige Messfehler frei.
+
+### 1. „Nicht bewertbar" zählte als „schlecht"
+
+`scoreFinanzplan()` gab bei fehlendem Finanzplan pauschal **0** zurück. Ein PREIS
+(`bosch-schulpreis`) hat aber per Definition keinen Finanzteil — `bestimmeAntragsart()` erzeugt
+dort bewusst keinen Plan. Zwei Korpus-Einträge (`pv-004`, `pv-edge-007`) bekamen deshalb in
+JEDEM Lauf eine 0.
+
+| | mean | stddev |
+|---|---|---|
+| mit den zwei Preis-Einträgen | 79,2 | 28,0 |
+| ohne sie | **86,1** | **16,1** |
+
+Behoben analog zu WIZ-04: `score: number \| null`, `null` fliesst nicht in den Mittelwert ein.
+Ein fehlender Plan, obwohl das Programm einen verlangt, bleibt weiterhin 0.
+
+### 2. Der Score sieht jetzt Rechenfehler, die er vorher nicht sah
+
+Neu: `lib/wizard/finanzplan-arithmetik.ts`, aufgerufen aus `validateFinanzplan()`. Prüft
+deterministisch (ohne LLM) Prozent-Posten, Summenabgleich gegen `hinweise`/Antragstext und
+Selbstwidersprüche bei der Förderfähigkeit.
+
+⚠️ **Dadurch sinkt der Finanzplan-Wert im Replay von 89,6 auf 83,2 (stddev 14,0 → 16,7).**
+Das ist KEIN Pipeline-Regress: Die Artefakte sind unverändert, die Prüfung ist strenger. Die
+Fehler waren immer da — sie wurden nur nicht gemessen.
+
+**Wie verbreitet:** Über die 75 Baseline-Snapshots geprüft:
+
+| Befund | betroffen |
+|---|---|
+| Rechenbefund insgesamt | **47 von 75 = 63 %** |
+| Prozent-Posten rechnerisch falsch | 9 Einträge |
+| Summen-Widerspruch | 16 Einträge |
+| Selbstwiderspruch Förderfähigkeit | 3 Einträge |
+| Dubletten im Text | 4 Einträge |
+
+🔑 Das Problem des Testers war kein Einzelfall, sondern die Regel. Wer diesen Wert künftig mit
+Zahlen VOR dem 20.08.2026 vergleicht, vergleicht zwei verschiedene Messgeräte.
+
+Finanzplan-Validität ist keine gegatete Achse — WIZ-01/02/04 sind unberührt, Gate PASSED.
+
+
 > Phase-5-Pipeline-Baseline: Separate Eval-Schicht fuer Generate-Pipeline (lib/wizard/pipeline.ts).
 > Metriken: WIZ-01 (Pflichtabschnitt-Coverage), WIZ-02 (Halluzinations-Detection),
 > WIZ-03 (Tonalitaets-Passung via LLM-as-Judge), WIZ-04 (Begruendungs-Substanz, deterministisch),
