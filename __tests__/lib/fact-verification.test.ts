@@ -145,6 +145,12 @@ describe("verifyFacts — Neutralisierung mit Never-Worse-Gate", () => {
     });
     expect(res.repaired).toBe(false);
     expect(res.finalText).toBe(finalText);
+    // Buchführung (Feedback #008): Ein verworfener Repair hat NICHTS
+    // neutralisiert. Vorher stand dasselbe Zitat gleichzeitig unter
+    // `neutralisiert` und `remaining` — entschärft UND noch da.
+    expect(res.neutralisiert).toHaveLength(0);
+    expect(res.remaining.length).toBeGreaterThan(0);
+    for (const z of res.neutralisiert) expect(res.remaining).not.toContain(z);
   });
 
   it("verwirft einen Repair, der den Text massiv kürzt (Anti-Truncation)", async () => {

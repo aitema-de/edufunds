@@ -618,7 +618,13 @@ export async function runPipeline(
         );
         finalRes = { value: fv.finalText, usage: finalRes.usage };
         usages.push(...fv.usages);
-        if (fv.neutralisiert.length > 0 || fv.vorschlaege.length > 0) {
+        // `remaining` MUSS mit in die Bedingung: Seit der Buchfuehrungs-Korrektur
+        // vom 20.08.2026 ist `neutralisiert` bei einem verworfenen Repair leer.
+        // Ohne diesen Zweig bliebe `factVerification` dann ungesetzt — und die
+        // noch im Text stehenden Behauptungen wuerden weiter unten NICHT mehr
+        // als "[Annahme: …]" markiert. Genau die Saetze, die der Repair nicht
+        // entschaerfen konnte, verloeren so ihre Kennzeichnung.
+        if (fv.neutralisiert.length > 0 || fv.vorschlaege.length > 0 || fv.remaining.length > 0) {
           factVerification = {
             neutralisiert: fv.neutralisiert,
             vorschlaege: fv.vorschlaege,
