@@ -303,7 +303,7 @@ genauso falsch wie die Zahl zu erfinden.
 
   Antwort: "Wir wollen so ungefähr 30 oder 40 Kinder erreichen, mit Lesepatinnen aus dem
             Seniorenheim, zweimal die Woche in der Lernzeit."
-  RICHTIG: aktivitäten = ["Lesepatinnen aus dem Seniorenheim, zweimal wöchentlich in der
+  RICHTIG: aktivitaeten = ["Lesepatinnen aus dem Seniorenheim, zweimal wöchentlich in der
            Lernzeit"], zielgruppe = "Kinder in der Lernzeit"  —  die schwankende Zahl 30/40
            bleibt weg.
   FALSCH:  \`{}\` ausgeben, weil die Zahl unsicher war.
@@ -317,12 +317,12 @@ genauso falsch wie die Zahl zu erfinden.
 
 ## Subgruppe ist nicht Gesamtgruppe (häufiger Fehler!)
 NEGATIVBEISPIEL: User sagt "130 Kinder lernen in den Klassen 5 und 6". Das ist EINE TEILGRUPPE der Schule, NICHT die Gesamtschülerzahl.
-- FALSCH: schule.schülerzahl = 130
-- RICHTIG: schule.schülerzahl bleibt leer; "130 Kinder in Klassen 5/6" gehört in projekt.zielgruppe.
+- FALSCH: schule.schuelerzahl = 130
+- RICHTIG: schule.schuelerzahl bleibt leer; "130 Kinder in Klassen 5/6" gehört in projekt.zielgruppe.
 
-Generell: schule.schülerzahl darf NUR gesetzt werden, wenn der User explizit eine GESAMTZAHL für die ganze Schule nennt (z. B. "wir haben 312 Schülerinnen", "die Schule hat 480 Kinder"). Eine projektbezogene Teilzahl ("30 Kinder im Pilot", "die 60 Drittklässler") gehört NIE in schule.schülerzahl.
+Generell: schule.schuelerzahl darf NUR gesetzt werden, wenn der User explizit eine GESAMTZAHL für die ganze Schule nennt (z. B. "wir haben 312 Schülerinnen", "die Schule hat 480 Kinder"). Eine projektbezogene Teilzahl ("30 Kinder im Pilot", "die 60 Drittklässler") gehört NIE in schule.schuelerzahl.
 
-WICHTIG — auch die SUMME mehrerer Teilgruppen ist NICHT die Gesamtschülerzahl: Sagt der User "Jahrgang 2 hat 60, Jahrgang 3 hat 42", dann ist 102 die Zahl der Projekt-Kinder, NICHT die Schulgröße. Rechne genannte Teilgruppen NICHT zur Gesamtschülerzahl zusammen — schule.schülerzahl bleibt leer, die Teilzahlen gehören in projekt.zielgruppe.
+WICHTIG — auch die SUMME mehrerer Teilgruppen ist NICHT die Gesamtschülerzahl: Sagt der User "Jahrgang 2 hat 60, Jahrgang 3 hat 42", dann ist 102 die Zahl der Projekt-Kinder, NICHT die Schulgröße. Rechne genannte Teilgruppen NICHT zur Gesamtschülerzahl zusammen — schule.schuelerzahl bleibt leer, die Teilzahlen gehören in projekt.zielgruppe.
 
 Analog gilt: lehrer-Gesamtzahl vs. nur-Projekt-Lehrer; Klassenanzahl-Gesamt vs. nur-Klassen-im-Projekt. Im Zweifel bleibt die GESAMTZAHL leer — die genannte Teilzahl gehört aber in projekt.zielgruppe, sie geht nicht verloren. Diese Zweifelsregel gilt nur für Gesamtzahlen, nicht als allgemeine Zurückhaltung.
 
@@ -332,7 +332,7 @@ Analog gilt: lehrer-Gesamtzahl vs. nur-Projekt-Lehrer; Klassenanzahl-Gesamt vs. 
     "name": string,                          // exakt wie der User sie nennt
     "typ": string,                           // z. B. "Grundschule", "Gymnasium"
     "bundesland": string,                    // nur wenn explizit genannt
-    "schülerzahl": number,                  // GESAMTSCHÜLERZAHL der Schule, nicht eine Subgruppe.
+    "schuelerzahl": number,                  // GESAMTSCHÜLERZAHL der Schule, nicht eine Subgruppe.
                                              // Wenn der User nur "130 Kinder in Klassen 5/6" sagt, ist
                                              // das KEINE Gesamtschülerzahl — Slot leer lassen.
     "besonderheiten": string                 // freitext-Profil der Schule: alles, was sie konkret macht
@@ -349,7 +349,7 @@ Analog gilt: lehrer-Gesamtzahl vs. nur-Projekt-Lehrer; Klassenanzahl-Gesamt vs. 
     "kurzbeschreibung": string,              // 1–2 Sätze, was das Vorhaben tut
     "ziele": string[],                       // konkrete Ziele aus den Antworten
     "zielgruppe": string,                    // wen das Projekt erreicht
-    "aktivitäten": string[],                // konkrete Maßnahmen
+    "aktivitaeten": string[],                // konkrete Maßnahmen
     "zeitraum": string                       // z. B. "Schuljahr 2026/27", "ab Sommer 2026"
   },
   "wirkung": {
@@ -391,7 +391,7 @@ gehören dazu und sind KEIN Grund, eine Antwort zu verwerfen:
   {
     "projekt": {
       "kurzbeschreibung": "Herrichtung der Leseecke",
-      "aktivitäten": ["Leseecke herrichten", "Anschaffung von rund 200 Büchern"],
+      "aktivitaeten": ["Leseecke herrichten", "Anschaffung von rund 200 Büchern"],
       "zeitraum": "Beschluss auf der Gesamtkonferenz im März"
     },
     "budget": { "hauptposten": ["rund 200 Bücher über den Förderverein"], "eigenmittel_eur": 3000 },
@@ -777,7 +777,7 @@ GELDBETRÄGE UND MENGEN IM TEXT: Jeden Euro-Betrag, jede Stückzahl und jeden Te
 const CRITIQUE_SYSTEM_BASE = `Du bist ein strenger Gutachter für Förderanträge. Dein Ziel: konkrete, umsetzbare Findings für die Revision — keine Allgemeinplätze, keine Wiederholung des Textes.
 
 ## ERSTE Pflicht-Prüfung — HALLUZINATIONS-AUDIT
-Du bekommst zusätzlich zum ANTRAGSENTWURF die ROHEN USER-ANTWORTEN und die EXTRAHIERTEN FAKTEN. **Jede konkrete Tatsache im Entwurf MUSS sich auf User-Antworten ODER Fakten zurückführen lassen.** Wenn nicht: Halluzination, Schwere "hoch", Kategorie "beleglücke".
+Du bekommst zusätzlich zum ANTRAGSENTWURF die ROHEN USER-ANTWORTEN und die EXTRAHIERTEN FAKTEN. **Jede konkrete Tatsache im Entwurf MUSS sich auf User-Antworten ODER Fakten zurückführen lassen.** Wenn nicht: Halluzination, Schwere "hoch", Kategorie "belegluecke".
 
 Verdächtige Halluzinations-Marker — bei JEDEM solchen Element prüfen, ob es im User-Input steht:
 - **Aktenzeichen, Az., Geschäftszeichen** (z. B. "Az. 123/2026") — Schulen geben fast nie Aktenzeichen an. Wenn nicht im User-Input: ERFUNDEN.
@@ -823,7 +823,7 @@ AUSSCHLIESSLICH valides JSON, keine Markdown-Fences:
       "abschnitt": "Name des Abschnitts ODER 'global' ODER 'finanzplan'",
       "zitat": "WÖRTLICHES Kurzzitat (max 120 Zeichen) der problematischen Stelle. Wenn Inhalt ganz fehlt: 'FEHLT'",
       "schwere": "hoch" | "mittel" | "niedrig",
-      "kategorie": "floskel" | "redundanz" | "beleglücke" | "richtlinie" | "inkonsistenz" | "sonstiges",
+      "kategorie": "floskel" | "redundanz" | "belegluecke" | "richtlinie" | "inkonsistenz" | "sonstiges",
       "vorschlag": "Was soll die Revision stattdessen tun? 1–3 konkrete Sätze."
     }
   ]
@@ -831,7 +831,7 @@ AUSSCHLIESSLICH valides JSON, keine Markdown-Fences:
 
 ## Regeln
 - **Mindestens 5 Findings, max 15.** Lieber zu viele als zu wenige — der Antrag durchläuft danach noch eine Revision.
-- **Halluzinations-Findings sind IMMER "schwere: hoch", Kategorie "beleglücke".** Sie sind das wichtigste Output dieser Stufe.
+- **Halluzinations-Findings sind IMMER "schwere: hoch", Kategorie "belegluecke".** Sie sind das wichtigste Output dieser Stufe.
 - Zitat ist WÖRTLICH, keine Paraphrase.
 - Keine Findings, die nur den Text loben.
 - Wenn ein Abschnitt mehrere Halluzinationen enthält, liste sie als getrennte Findings (eines pro erfundener Tatsache).`;
@@ -859,7 +859,7 @@ ${userAnswers?.length
 EXTRAHIERTE FAKTEN (für Halluzinations-Audit):
 ${facts ? JSON.stringify(facts, null, 2) : "(keine Fakten übergeben)"}
 
-WICHTIG: Jede konkrete Tatsache im ANTRAGSENTWURF muss sich auf die obigen USER-ANTWORTEN oder FAKTEN zurückführen lassen. Alles, was nur im Entwurf auftaucht, ist eine Halluzination — Schwere "hoch", Kategorie "beleglücke".`
+WICHTIG: Jede konkrete Tatsache im ANTRAGSENTWURF muss sich auf die obigen USER-ANTWORTEN oder FAKTEN zurückführen lassen. Alles, was nur im Entwurf auftaucht, ist eine Halluzination — Schwere "hoch", Kategorie "belegluecke".`
     : "";
   return `PROGRAMM:
 ${programmBlock(programm)}
@@ -944,7 +944,7 @@ Ausgabe: AUSSCHLIESSLICH valides JSON, keine Fences:
       "kategorie": "...",
       "bezeichnung": "Kurzname des Postens",
       "betragEur": 1234,
-      "begründung": "1 Satz, wie sich der Betrag zusammensetzt",
+      "begruendung": "1 Satz, wie sich der Betrag zusammensetzt",
       "eigenanteil": false
     }
   ],

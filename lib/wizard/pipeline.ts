@@ -84,8 +84,12 @@ function normalizeCritique(raw: unknown): Critique {
       const schwere = SCHWERE_VALID.includes(f.schwere as CritiqueSchwere)
         ? (f.schwere as CritiqueSchwere)
         : "mittel";
-      const kategorie = KATEGORIE_VALID.includes(f.kategorie as CritiqueKategorie)
-        ? (f.kategorie as CritiqueKategorie)
+      // "beleglücke" ist derselbe Wert wie "belegluecke" — der Umlaut-Sweep vom
+      // 18.08.2026 hat den ENUM-WERT im Prompt mit umgestellt, worauf jedes
+      // Halluzinations-Finding still als "sonstiges" einsortiert wurde.
+      const rohKategorie = f.kategorie === "beleglücke" ? "belegluecke" : f.kategorie;
+      const kategorie = KATEGORIE_VALID.includes(rohKategorie as CritiqueKategorie)
+        ? (rohKategorie as CritiqueKategorie)
         : "sonstiges";
       const vorschlag = typeof f.vorschlag === "string" && f.vorschlag.trim() ? f.vorschlag.trim() : "";
       if (!vorschlag) continue;
