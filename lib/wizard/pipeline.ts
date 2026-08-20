@@ -48,6 +48,7 @@ import {
 } from "./verbots-gate";
 import { bestimmeAntragsart } from "./antragsart";
 import { extractAnnahmen, wrapAnnahmen } from "./annahme-marker";
+import { ergaenzeHerleitungsMarker } from "./finanzplan-herleitung";
 import type { Usage } from "./pricing";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
 import { generateFinanzplan, buildBeantragtConsistencyIssue } from "./finanzplan-generator";
@@ -709,6 +710,17 @@ export async function runPipeline(
     const ber = bereinigeFinanzplanBegruendungen(finanzRes.plan.posten, verbotsQuellen);
     if (ber.entfernt.length > 0) {
       finanzRes.plan.posten = ber.posten;
+
+      // Die Bereinigung nimmt eine erfundene Rechnung zu einer Pauschale zurueck
+      // — und erzeugt damit genau den Zustand, fuer den der Herleitungs-Marker da
+      // ist: ein grosser Posten ohne sichtbaren Rechenweg. `generateFinanzplan`
+      // hat den Posten vorher ueberspringen MUESSEN, weil dort noch eine Rechnung
+      // stand. Ohne dieses Nachziehen bleibt eine Luecke, die keine Stufe mehr
+      // sieht (gemessen im Lauf 2026-08-20T11-51-31: pv-010-run3, 15.000 EUR
+      // Personalposten, 1 von 273).
+      const nachgezogen = ergaenzeHerleitungsMarker(finanzRes.plan.posten);
+      finanzRes.plan.posten = nachgezogen.posten;
+
       const hinweise = finanzRes.plan.hinweise ?? [];
       if (!hinweise.includes(FINANZPLAN_BEREINIGT_HINWEIS)) {
         finanzRes.plan.hinweise = [...hinweise, FINANZPLAN_BEREINIGT_HINWEIS];
