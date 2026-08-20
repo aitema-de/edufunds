@@ -45,7 +45,7 @@ export async function extractFacts(
       user,
       { temperature: 0 }
     );
-    const merged = mergeFacts(currentFacts, value);
+    const merged = mergeFacts(currentFacts, normalisiereSchluessel(value));
     return { facts: merged, usage: { model: MODEL_INTERVIEW, usage } };
   } catch (err) {
     // Extraktion ist nice-to-have — der Interviewer-Pfad geht weiter mit dem
@@ -53,6 +53,44 @@ export async function extractFacts(
     console.warn("[wizard/facts-extractor] Extraktion fehlgeschlagen, behalte bisherigen Stand:", err);
     return { facts: currentFacts, usage: null };
   }
+}
+
+/**
+ * Zieht deutsche Schluessel-Schreibweisen auf die ASCII-Namen des Schemas.
+ *
+ * WARUM: Am 18.08.2026 hat ein Sweep "echte Umlaute statt ae/oe/ue" (1187efe)
+ * im FACTS-Schema des Prompts die SCHLUESSEL mit umgestellt — aus
+ * "schuelerzahl" wurde "schülerzahl", aus "aktivitaeten" wurde "aktivitäten".
+ * `WizardFacts` und die 25 Stellen, die diese Slots lesen, blieben ASCII. Die
+ * Werte kamen also weiter an, nur unter einem Namen, den niemand liest: still
+ * verlorene Schulgroesse und Projekt-Aktivitaeten.
+ *
+ * Der Prompt ist wieder ASCII. Diese Normalisierung bleibt als Fangnetz — ein
+ * Modell darf jederzeit die deutsche Schreibweise liefern, und ein Slot, der
+ * lautlos ins Leere laeuft, faellt erst Wochen spaeter auf. Exportiert fuer Tests.
+ */
+export const FACTS_SCHLUESSEL_ALIAS: Readonly<Record<string, string>> = {
+  "schülerzahl": "schuelerzahl",
+  "aktivitäten": "aktivitaeten",
+  "größe": "groesse",
+  "begründung": "begruendung",
+  "zugehörigkeit": "zugehoerigkeit",
+};
+
+export function normalisiereSchluessel<T>(wert: T): T {
+  if (Array.isArray(wert)) {
+    return wert.map((v) => normalisiereSchluessel(v)) as unknown as T;
+  }
+  if (wert === null || typeof wert !== "object") return wert;
+  const out: Record<string, unknown> = {};
+  for (const [k, v] of Object.entries(wert as Record<string, unknown>)) {
+    const ziel = FACTS_SCHLUESSEL_ALIAS[k] ?? k;
+    // Ein bereits vorhandener ASCII-Schluessel gewinnt — sonst ueberschreibt
+    // eine leere Umlaut-Variante einen gefuellten Wert.
+    if (ziel in out && (v === null || v === undefined || v === "")) continue;
+    out[ziel] = normalisiereSchluessel(v);
+  }
+  return out as unknown as T;
 }
 
 /**
