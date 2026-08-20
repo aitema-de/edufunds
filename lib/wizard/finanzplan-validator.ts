@@ -1,5 +1,6 @@
 import type { Finanzplan, Finanzposten } from "./types";
 import type { Richtlinie, Kostenposition } from "./richtlinien-schema";
+import { pruefeArithmetik } from "./finanzplan-arithmetik";
 
 export type WarnungsLevel = "error" | "warning" | "info";
 
@@ -28,7 +29,13 @@ export interface ValidationResult {
 
 export function validateFinanzplan(
   plan: Finanzplan,
-  richtlinie: Richtlinie | null | undefined
+  richtlinie: Richtlinie | null | undefined,
+  /**
+   * Antragstext, falls vorhanden. Nur für den Summenabgleich: Nennt der Text
+   * eine Gesamt-/Fördersumme, die nicht zur Postensumme passt, ist das ein
+   * Widerspruch, den sonst niemand findet (Tester-Feedback #008).
+   */
+  antragstext?: string
 ): ValidationResult {
   const warnungen: Warnung[] = [];
   const gesamt = sum(plan.posten, () => true);
@@ -138,6 +145,12 @@ export function validateFinanzplan(
       message: "Keine Richtlinie erfasst — Plan wird nicht gegen Förderregeln validiert.",
     });
   }
+
+  // Rechenprüfung (deterministisch, s. finanzplan-arithmetik.ts): Prozent-Posten,
+  // Summenabgleich gegen `hinweise`/Antragstext, Selbstwiderspruch bei der
+  // Förderfähigkeit. Bewusst NACH den Richtlinien-Regeln, damit die Reihenfolge
+  // der Meldungen stabil bleibt.
+  warnungen.push(...pruefeArithmetik(plan, richtlinie, antragstext));
 
   const okFuerFreigabe = !warnungen.some((w) => w.level === "error") && gesamt > 0;
 

@@ -166,7 +166,15 @@ export interface FinanzplanSubResult {
     gesamtEur: number;
   };
   hallu_marker_in_finanzplan: number;
-  score: number;
+  /**
+   * `null` = NICHT BEWERTBAR (das Programm kennt gar keinen Finanzteil, z. B.
+   * ein Preis). Solche Eintraege fliessen nicht in den Mittelwert ein — analog
+   * zu wiz04. Vorher gab es hier eine 0, und die hat wie ein schlechter
+   * Finanzplan ausgesehen, obwohl es gar keinen geben durfte.
+   */
+  score: number | null;
+  /** Warum nicht bewertbar (nur gesetzt, wenn score === null). */
+  nichtBewertbarGrund?: string;
 }
 
 export interface ScoreStat {
@@ -1003,11 +1011,35 @@ export async function scoreWiz03(
 export function scoreFinanzplan(
   finanzplan: Finanzplan | undefined,
   richtlinie: Richtlinie | null,
-  hallu_marker_in_finanzplan: number
+  hallu_marker_in_finanzplan: number,
+  /**
+   * Erwartet dieses Programm ueberhaupt einen Finanzplan? Kommt aus
+   * `bestimmeAntragsart().brauchtFinanzplan` — derselben Funktion, nach der die
+   * Pipeline entscheidet, ob sie einen erzeugt. Default `true` haelt Altaufrufe
+   * verhaltensgleich.
+   */
+  brauchtFinanzplan = true
 ): FinanzplanSubResult {
+  const leer = { okFuerFreigabe: false, errorCount: 0, warningCount: 0, gesamtEur: 0 };
+
+  // Kein Finanzplan, weil das Programm keinen kennt (Preis-Bewerbung): NICHT
+  // BEWERTBAR, nicht "schlecht". Befund 20.08.2026: `bosch-schulpreis` bekam in
+  // allen Laeufen eine 0 und zog die Metrik von 86,1 auf 79,2, die Streuung von
+  // 16,1 auf 28,0 — eine Kennzahl, die etwas misst, was es nicht geben darf,
+  // misst Rauschen.
+  if (!brauchtFinanzplan) {
+    return {
+      vorAutofix: leer,
+      hallu_marker_in_finanzplan,
+      score: null,
+      nichtBewertbarGrund: "Programm kennt keinen Finanzteil (z. B. Preis-Bewerbung)",
+    };
+  }
+
+  // Finanzplan fehlt, OBWOHL das Programm einen verlangt: echter Mangel -> 0.
   if (!finanzplan) {
     return {
-      vorAutofix: { okFuerFreigabe: false, errorCount: 0, warningCount: 0, gesamtEur: 0 },
+      vorAutofix: leer,
       hallu_marker_in_finanzplan,
       score: 0,
     };

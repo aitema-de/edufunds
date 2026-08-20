@@ -85,3 +85,45 @@ describe("Finanzplan-Sub-Metrik", () => {
     expect(result.score).toBe(90); // 100 - 0 errors - 2*5 = 90
   });
 });
+
+/**
+ * Befund 20.08.2026 (Tester-Feedback #008, Nachanalyse): `bosch-schulpreis` bekam
+ * in JEDEM Lauf eine 0, weil ein Preis keinen Finanzteil kennt und
+ * `scoreFinanzplan` "kein Finanzplan" pauschal als "schlecht" verbucht hat.
+ * Zwei solche Korpus-Einträge zogen die Metrik von 86,1 auf 79,2 und die
+ * Streuung von 16,1 auf 28,0.
+ *
+ * Eine Kennzahl, die etwas misst, das es gar nicht geben darf, misst Rauschen —
+ * und verdeckt damit echte Verschlechterungen. Deshalb dieselbe Trennung wie bei
+ * wiz04: nicht bewertbar => null (fliesst nicht in den Mittelwert), nicht 0.
+ */
+describe("Finanzplan-Metrik: nicht bewertbar ist nicht dasselbe wie schlecht", () => {
+  it("Programm ohne Finanzteil (Preis) → score=null, nicht 0", () => {
+    const r = scoreFinanzplan(undefined, null, 0, false);
+    expect(r.score).toBeNull();
+    expect(r.nichtBewertbarGrund).toMatch(/Preis|Finanzteil/i);
+  });
+
+  it("Finanzplan FEHLT, obwohl das Programm einen verlangt → weiterhin 0", () => {
+    // Das ist ein echter Mangel und muss wehtun.
+    const r = scoreFinanzplan(undefined, null, 0, true);
+    expect(r.score).toBe(0);
+    expect(r.nichtBewertbarGrund).toBeUndefined();
+  });
+
+  it("Default bleibt verhaltensgleich: ohne das neue Argument zählt ein fehlender Plan als 0", () => {
+    const r = scoreFinanzplan(undefined, null, 0);
+    expect(r.score).toBe(0);
+  });
+
+  it("ein vorhandener Plan wird normal bewertet, auch wenn brauchtFinanzplan=false", () => {
+    // Verteidigt die Reihenfolge der Prüfung nicht — aber dokumentiert sie:
+    // Liegt trotz Preis-Programm ein Plan vor, ist das nicht bewertbar (die
+    // Antragsart entscheidet, nicht die Anwesenheit des Objekts).
+    const plan = makeFinanzplan([
+      { id: "p1", kategorie: "sachkosten", bezeichnung: "Material", betragEur: 500 },
+    ]);
+    expect(scoreFinanzplan(plan, null, 0, false).score).toBeNull();
+    expect(scoreFinanzplan(plan, null, 0, true).score).toBe(100);
+  });
+});

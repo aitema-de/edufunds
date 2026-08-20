@@ -52,6 +52,7 @@ import type { Usage } from "./pricing";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
 import { generateFinanzplan, buildBeantragtConsistencyIssue } from "./finanzplan-generator";
 import { ensureSectionsPresent } from "./struktur-guard";
+import { findeDubletten, entferneDubletten } from "./dubletten";
 import { buildFallbackTitle } from "./title-fallback";
 import { buildFallbackOutline } from "./outline-fallback";
 import { PIPELINE_CONFIG } from "./config";
@@ -839,6 +840,42 @@ export async function runPipeline(
     throw new Error(
       "Pipeline ergab einen leeren Antragstext — vermutlich ein vorübergehender KI-Ausfall. Bitte erneut generieren."
     );
+  }
+
+  // =========================================================================
+  // Dubletten-Bereinigung (Tester-Feedback #008, 19.08.2026)
+  //
+  // Die chirurgischen Reparaturstufen oben (Halluzinations-Gate,
+  // Fakt-Verifikation, Konsistenz-Revision) sollen Saetze ERSETZEN. Ein
+  // Sprachmodell kann dabei aber anfuegen statt ersetzen — im gemeldeten Fall
+  // stand die entschaerfte Fassung ("Ein moeglicher Ansatz ist …") neben dem
+  // stehengebliebenen Original.
+  //
+  // Bewusst am ENDE und ueber das Ergebnis, statt jede Stufe einzeln zu haerten:
+  // Drei Prompts zu aendern kostet drei Eval-Laeufe, und die naechste neue Stufe
+  // haette das Problem wieder. Deterministisch, ohne LLM, ohne Umformulieren.
+  // =========================================================================
+  {
+    const dubletten = findeDubletten(finalRes.value ?? "");
+    if (dubletten.length > 0) {
+      const bereinigt = entferneDubletten(finalRes.value ?? "", dubletten);
+      // Schutzschranke: Wuerde die Bereinigung mehr als ein Zehntel des Textes
+      // entfernen, stimmt etwas nicht — dann lieber die Dopplung stehen lassen
+      // als einen ausgeduennten Antrag ausliefern.
+      const anteil = 1 - bereinigt.length / Math.max(1, (finalRes.value ?? "").length);
+      if (anteil <= 0.1) {
+        console.log(
+          `[pipeline] Dubletten-Bereinigung: ${dubletten.length} redundante(r) Satz/Saetze entfernt ` +
+            `(${dubletten.map((d) => d.abschnitt).join(", ")})`
+        );
+        finalRes = { value: bereinigt, usage: finalRes.usage };
+      } else {
+        console.warn(
+          `[pipeline] Dubletten-Bereinigung UEBERSPRUNGEN — haette ${Math.round(anteil * 100)} % ` +
+            `des Textes entfernt (${dubletten.length} Befunde). Text bleibt unveraendert.`
+        );
+      }
+    }
   }
 
   await emit({ stage: "done", message: "Fertig" });
