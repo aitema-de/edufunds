@@ -91,3 +91,40 @@ it("rechnet die Pauschale nach und markiert unhergeleitete Posten", async () => 
     plan.hinweise!.some((h) => h.includes("Honorarposten") && h.includes("nicht erfinden"))
   ).toBe(true);
 });
+
+/**
+ * Die Sackgassen-Regel (Feedback #008): Ein `error` sperrt die Freigabe
+ * (okFuerFreigabe) und darf deshalb nur stehen, wo der Nutzer einen Ausweg
+ * hat. Eine fehlende Herleitung ist eine Ermessensfrage des Antragstellers —
+ * sie meldet, sie sperrt nicht.
+ */
+import { validateFinanzplan } from "@/lib/wizard/finanzplan-validator";
+import type { Finanzplan } from "@/lib/wizard/types";
+
+it("eine fehlende Herleitung meldet, aber sperrt die Freigabe nicht", () => {
+  const plan = {
+    posten: [
+      {
+        id: "a",
+        kategorie: "sachkosten",
+        bezeichnung: "Ausstattung",
+        betragEur: 9000,
+        begruendung: "Ausstattung für das Projekt.",
+      },
+      {
+        id: "b",
+        kategorie: "honorare",
+        bezeichnung: "Referentin",
+        betragEur: 900,
+        begruendung: "Honorar für die Fortbildung.",
+      },
+    ],
+    generiertAm: "x",
+  } as unknown as Finanzplan;
+
+  const res = validateFinanzplan(plan, null);
+  const herleitung = res.warnungen.filter((w) => /Herleitung|Stundensatz|zustande kommt/.test(w.message));
+  expect(herleitung).toHaveLength(2);
+  expect(herleitung.every((w) => w.level === "warning")).toBe(true);
+  expect(res.okFuerFreigabe).toBe(true);
+});
