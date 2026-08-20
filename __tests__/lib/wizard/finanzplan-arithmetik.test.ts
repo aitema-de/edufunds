@@ -9,6 +9,7 @@
 import {
   pruefeArithmetik,
   findeBetraege,
+  korrigiereProzentPosten,
   lesProzentsatz,
 } from "@/lib/wizard/finanzplan-arithmetik";
 import type { Finanzplan } from "@/lib/wizard/types";
@@ -228,5 +229,142 @@ describe("Regel: ein blockierender Fehler braucht einen Ausweg", () => {
     for (const x of w.filter((y) => !y.postenId)) {
       expect(x.level).not.toBe("error");
     }
+  });
+});
+
+/**
+ * Paket 4 (20.08.2026): Die Prozent-Korrektur läuft jetzt in der Pipeline, nicht
+ * mehr nur auf Knopfdruck im Editor. Damit sie das darf, muss sie die
+ * Bezugsgröße richtig lesen — ein "korrigierter" richtiger Betrag wäre schlimmer
+ * als der ursprüngliche Befund.
+ */
+describe("korrigiereProzentPosten", () => {
+  it("rechnet den Tester-Fall still richtig (2.940 → 2.814)", () => {
+    const plan = planAusAntrag37();
+    const { posten, korrekturen } = korrigiereProzentPosten(plan.posten);
+
+    expect(korrekturen).toHaveLength(1);
+    expect(korrekturen[0].alt).toBe(2940);
+    expect(korrekturen[0].neu).toBe(2814);
+    expect(korrekturen[0].satz).toBe(7);
+    expect(posten.find((p) => p.id === "p7")!.betragEur).toBe(2814);
+  });
+
+  it("nach der Korrektur meldet die Prüfung keinen Prozent-Fehler mehr", () => {
+    const plan = planAusAntrag37();
+    const { posten } = korrigiereProzentPosten(plan.posten);
+    const warnungen = pruefeArithmetik({ ...plan, posten } as unknown as Finanzplan, RICHTLINIE);
+    expect(warnungen.some((w) => w.level === "error")).toBe(false);
+  });
+
+  it("lässt einen stimmigen Plan unangetastet", () => {
+    const posten = [
+      { id: "a", kategorie: "sachkosten", bezeichnung: "Material", betragEur: 1000 },
+      { id: "b", kategorie: "overhead", bezeichnung: "Verwaltungspauschale (10 %)", betragEur: 100 },
+    ] as unknown as Parameters<typeof korrigiereProzentPosten>[0];
+    const ergebnis = korrigiereProzentPosten(posten);
+    expect(ergebnis.korrekturen).toHaveLength(0);
+    expect(ergebnis.posten).toBe(posten);
+  });
+});
+
+describe("Die Bezugsgröße richtig lesen", () => {
+  it('"% der Gesamtkosten" schliesst den Posten selbst ein', () => {
+    // 20 % der Gesamtkosten bei 8.000 EUR übrigen Posten sind 2.000 EUR
+    // (Gesamt 10.000), NICHT 1.600 EUR. Mit der Aufschlag-Formel hätte die
+    // Prüfung einen richtigen Betrag als Fehler gemeldet.
+    const plan = {
+      posten: [
+        { id: "a", kategorie: "sachkosten", bezeichnung: "Material", betragEur: 8000 },
+        { id: "b", kategorie: "overhead", bezeichnung: "Trägerpauschale (20 % der Gesamtkosten)", betragEur: 2000 },
+      ],
+      generiertAm: "x",
+    } as unknown as Finanzplan;
+    expect(pruefeArithmetik(plan, RICHTLINIE)).toHaveLength(0);
+    expect(korrigiereProzentPosten(plan.posten).korrekturen).toHaveLength(0);
+  });
+
+  it('"% der Personalkosten" bezieht sich nur auf diese Kategorie', () => {
+    const plan = {
+      posten: [
+        { id: "a", kategorie: "personal", bezeichnung: "Projektleitung", betragEur: 10000 },
+        { id: "b", kategorie: "sachkosten", bezeichnung: "Material", betragEur: 5000 },
+        { id: "c", kategorie: "overhead", bezeichnung: "Gemeinkosten (10 % der Personalkosten)", betragEur: 1000 },
+      ],
+      generiertAm: "x",
+    } as unknown as Finanzplan;
+    expect(pruefeArithmetik(plan, RICHTLINIE)).toHaveLength(0);
+  });
+
+  it("fehlt die Bezugsgröße im Plan, wird geschwiegen statt geraten", () => {
+    const plan = {
+      posten: [
+        { id: "a", kategorie: "sachkosten", bezeichnung: "Material", betragEur: 5000 },
+        { id: "c", kategorie: "overhead", bezeichnung: "Gemeinkosten (10 % der Personalkosten)", betragEur: 700 },
+      ],
+      generiertAm: "x",
+    } as unknown as Finanzplan;
+    expect(pruefeArithmetik(plan, RICHTLINIE)).toHaveLength(0);
+    expect(korrigiereProzentPosten(plan.posten).korrekturen).toHaveLength(0);
+  });
+
+  it("Eigenanteil-Posten mit Prozentsatz im Namen werden nicht angefasst", () => {
+    // Der Autofix legt sie als "Eigenanteil Schulträger (Aufstockung auf 20 %)"
+    // an, ihr Betrag ist ein FEHLBETRAG — die Prüfung hätte den eigenen Autofix
+    // als Rechenfehler gemeldet.
+    const plan = {
+      posten: [
+        { id: "a", kategorie: "sachkosten", bezeichnung: "Material", betragEur: 10000 },
+        { id: "e", kategorie: "sonstiges", bezeichnung: "Eigenanteil Schulträger (Aufstockung auf 20 %)", betragEur: 1500, eigenanteil: true },
+      ],
+      generiertAm: "x",
+    } as unknown as Finanzplan;
+    expect(pruefeArithmetik(plan, RICHTLINIE)).toHaveLength(0);
+    expect(korrigiereProzentPosten(plan.posten).korrekturen).toHaveLength(0);
+  });
+});
+
+/**
+ * Zwei echte Falsch-Positive aus der Probe über die 75 Baseline-Anträge
+ * (20.08.2026). Beide hätte die naive Lesart still "korrigiert" — der erste
+ * Fall um 9.000 EUR, der zweite um 16.000 EUR. Sie sind der Grund, warum
+ * lesProzentBezug im Zweifel null liefert.
+ */
+describe("Prozentzahlen, die keine Bemessungsgrundlage sind", () => {
+  it("ein Stellenanteil im Namen ist kein Prozent-Posten", () => {
+    const plan = {
+      posten: [
+        { id: "a", kategorie: "sachkosten", bezeichnung: "Material", betragEur: 6000 },
+        { id: "b", kategorie: "personal", bezeichnung: "Teilzeit-Klimaschutzbeauftragte (50%)", betragEur: 12000 },
+      ],
+      generiertAm: "x",
+    } as unknown as Finanzplan;
+    expect(pruefeArithmetik(plan, RICHTLINIE)).toHaveLength(0);
+    expect(korrigiereProzentPosten(plan.posten).korrekturen).toHaveLength(0);
+  });
+
+  it("eine unbekannte Bezugsgrösse wird nicht geraten", () => {
+    const plan = {
+      posten: [
+        { id: "a", kategorie: "sachkosten", bezeichnung: "Projektmittel", betragEur: 320000 },
+        { id: "b", kategorie: "personal", bezeichnung: "Projektmanagement (20 % der Pauschale)", betragEur: 80000 },
+      ],
+      generiertAm: "x",
+    } as unknown as Finanzplan;
+    expect(pruefeArithmetik(plan, RICHTLINIE)).toHaveLength(0);
+    expect(korrigiereProzentPosten(plan.posten).korrekturen).toHaveLength(0);
+  });
+
+  it("die echte Verwaltungspauschale bleibt erkannt", () => {
+    const plan = {
+      posten: [
+        { id: "a", kategorie: "sachkosten", bezeichnung: "Material", betragEur: 10600 },
+        { id: "b", kategorie: "overhead", bezeichnung: "Verwaltungspauschale (7 %)", betragEur: 1010 },
+      ],
+      generiertAm: "x",
+    } as unknown as Finanzplan;
+    const { korrekturen } = korrigiereProzentPosten(plan.posten);
+    expect(korrekturen).toHaveLength(1);
+    expect(korrekturen[0].neu).toBe(742);
   });
 });
