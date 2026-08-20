@@ -714,21 +714,30 @@ export function buildSectionPrompt(
 ${userAnswers.map((a, i) => `[Antwort ${i + 1}] ${a}`).join("\n\n")}`
     : "";
 
+  // ORDNUNG IST HIER FUNKTIONAL, NICHT KOSMETISCH (19.08.2026):
+  // Alles, was fuer ALLE Abschnitte eines Antrags gleich ist, steht vorn;
+  // alles Abschnitts-Spezifische am Ende. Grund ist Mistrals Prompt-Cache, der
+  // auf dem gemeinsamen PRAEFIX greift: Vorher standen `detailblock`, ABSCHNITT
+  // und FOKUS zwischen den invarianten Bloecken, sodass der Praefix schon nach
+  // ~4.800 Tokens abriss — obwohl rund 18.000 der ~20.700 Tokens je Aufruf
+  // identisch sind. Gecachte Tokens kosten das Minutenkontingent fast nichts
+  // (gemessen 7.534 -> 30), und dieses Kontingent ist der Engpass der
+  // Generierung. Wer hier etwas Abschnitts-Spezifisches nach oben zieht,
+  // zerstoert den Cache-Treffer fuer alle folgenden Abschnitte.
+  //
+  // Der TEXT ist derselbe wie vorher — nur die Reihenfolge nicht.
   const basePrompt = `PROGRAMM:
 ${programmBlock(programm)}
 
 TONALITÄT FÜR DIESEN FÖRDERGEBER-TYP (${guidance.label}):
 ${guidance.sectionStyle}
-${detailblock}
-ANTRAGSTITEL: ${titel}
 
-ABSCHNITT: ${abschnitt.name}
-FOKUS: ${abschnitt.fokus}
+ANTRAGSTITEL: ${titel}
 
 FAKTEN:
 ${JSON.stringify(facts, null, 2)}${userAnswersBlock}
 
-Schreibe den Abschnitt. Erfinde KEINE Aktenzeichen, Beschluss-Daten, Tarif-Berechnungen, Phasen-Quartale, MDM-Lösungen, Rahmenverträge oder Strategie-Zitate, die nicht im User-Input belegt sind. Lieber kürzer als erfunden.
+Erfinde KEINE Aktenzeichen, Beschluss-Daten, Tarif-Berechnungen, Phasen-Quartale, MDM-Lösungen, Rahmenverträge oder Strategie-Zitate, die nicht im User-Input belegt sind. Lieber kürzer als erfunden.
 
 KONKRETHEIT richtig: Deine Konkretheit speist sich aus den ECHTEN Angaben des Users (genannte Szenen, Namen, Zahlen, Beispiele) — greife genau diese als wiederkehrende, glaubwürdige Anker auf. Wo der User KEINE Angabe gemacht hat, hast du drei erlaubte Optionen: (a) den Punkt weglassen/knapp halten, (b) einen sichtbaren Lücken-Marker \`[TODO: … vor Einreichung ergänzen]\` setzen (für Angaben, die nur der User beschaffen kann), oder (c) eine plausible Annahme sichtbar markiert als \`[Annahme: …]\` formulieren (für Ist-Zustände/Rahmenbedingungen, die der User nur bestätigen muss). NICHT erlaubt: die Lücke mit UNMARKIERT erfundenen Konkreta füllen ODER mit nichtssagenden Floskeln überdecken. Eine vom User offen gelassene Frage ("weiß ich nicht", "müssten wir klären") darf NIE als feststehende Tatsache oder erteilte Zusage formuliert werden.
 
@@ -736,9 +745,16 @@ PROGRAMM-KONDITIONEN SIND TABU FÜR SCHÄTZUNG UND ANNAHME: Fördersummen/-grenz
 
 GELDBETRÄGE UND MENGEN IM TEXT: Jeden Euro-Betrag, jede Stückzahl und jeden Termin, den der User NICHT selbst genannt hat, kennzeichne im Fließtext sichtbar als Schätzung — z. B. "voraussichtlich rund 15.000 € (Schätzung, vor Einreichung durch Angebote zu belegen)" oder "ca. 25 Geräte (Anzahl noch festzulegen)". NIE als feststehende Kalkulation oder beschlossene Summe formulieren. Der Fließtext muss bei Zahlen genauso ehrlich sein wie der Finanzplan — keine Asymmetrie, bei der die Tabelle "Schätzung" sagt und der Text dieselbe Zahl als Fakt behauptet.${buildAusschlussBlock(facts)}`;
 
+  // Abschnitts-spezifischer Schluss — steht bewusst GANZ hinten (s. o.).
+  const abschnittsTeil = `${detailblock}
+ABSCHNITT: ${abschnitt.name}
+FOKUS: ${abschnitt.fokus}
+
+Schreibe den Abschnitt.`;
+
   // Hebel 3: Dossier-Injection (PIPELINE_USE_VORBILD_FORMULIERUNGEN)
   if (!PIPELINE_CONFIG.useVorbildFormulierungen || !richtlinie) {
-    return basePrompt;
+    return `${basePrompt}\n\n${abschnittsTeil}`;
   }
 
   const abschnittId = richtlinieAbschnitt?.id;
@@ -749,13 +765,17 @@ GELDBETRÄGE UND MENGEN IM TEXT: Jeden Euro-Betrag, jede Stückzahl und jeden Te
   const rejectGruende = richtlinie.rejectGruende ?? [];
 
   if (vorbilder.length === 0 && bestPractices.length === 0 && rejectGruende.length === 0) {
-    return basePrompt;
+    return `${basePrompt}\n\n${abschnittsTeil}`;
   }
 
+  // Getrennt gesammelt: Best Practices und Reject-Gruende gelten fuer den ganzen
+  // Antrag (invariant, gehoeren nach vorn), die Vorbild-Formulierungen sind nach
+  // abschnitt_id gefiltert (variabel, gehoeren nach hinten).
   const injectionParts: string[] = [];
+  const vorbildParts: string[] = [];
   if (vorbilder.length > 0) {
-    injectionParts.push(`## Vorbild-Formulierungen für "${abschnitt.name}" (aus erfolgreichem Antrag, Stil-Inspiration)`);
-    injectionParts.push(vorbilder.map((v) => `- "${v.formulierung}"${v.kontext ? ` [Kontext: ${v.kontext}]` : ""}`).join("\n"));
+    vorbildParts.push(`## Vorbild-Formulierungen für "${abschnitt.name}" (aus erfolgreichem Antrag, Stil-Inspiration)`);
+    vorbildParts.push(vorbilder.map((v) => `- "${v.formulierung}"${v.kontext ? ` [Kontext: ${v.kontext}]` : ""}`).join("\n"));
   }
   if (bestPractices.length > 0) {
     injectionParts.push(`\n## Best Practices erfolgreicher Anträge (Programm-spezifisch)`);
@@ -767,7 +787,9 @@ GELDBETRÄGE UND MENGEN IM TEXT: Jeden Euro-Betrag, jede Stückzahl und jeden Te
   }
 
   const injectionBlock = injectionParts.join("\n");
-  return `${basePrompt}\n\n${injectionBlock}`;
+  const vorbildBlock = vorbildParts.length ? `\n\n${vorbildParts.join("\n")}` : "";
+  const kopf = injectionBlock ? `${basePrompt}\n\n${injectionBlock}` : basePrompt;
+  return `${kopf}${vorbildBlock}\n\n${abschnittsTeil}`;
 }
 
 // ============================================================================
