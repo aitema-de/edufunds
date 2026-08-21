@@ -7,6 +7,62 @@
 
 # Eval-Pipeline Baseline (Phase 5)
 
+## 2026-08-21 — Evidenz-Detektor (Lauf `2026-08-21T07-00-07`), und was der Prompt-Cache NICHT gebracht hat
+
+**[GATE PASSED]** — WIZ-01 100,0 (σ 0,0) · WIZ-02 97,3 (σ 5,1) · WIZ-03 64,3 (σ 15,5) ·
+WIZ-04 88,3 (σ 14,9) · Finanzplan 80,0 (σ 27,6). Alle Abweichungen weit innerhalb der
+Schwellen; die Achsen liegen auf dem Niveau der beiden Läufe vom 20.08.
+
+### Der Detektor tut, was er soll
+
+`lib/wizard/evidenz-rhetorik.ts` streicht die belegbehauptenden Adverbien deterministisch.
+In diesem Lauf **39-mal angeschlagen, 82 Behauptungen entschärft**:
+
+| Evidenz-Rhetorik im fertigen Antrag | ohne alles (P4) | Prompt-Verbot (P5) | + Detektor |
+|---|---|---|---|
+| „nachweislich" | 75 | 63 | **0** |
+| Fundstellen gesamt | 84 | 66 | **14** |
+| betroffene Anträge | 42 / 75 | 29 / 75 | **10 / 75** |
+
+Die verbleibenden 14 sind ausschliesslich die **Satzformen** („Studien zeigen, dass …"),
+die der Detektor bewusst nicht anfasst — sie brauchen einen neuen Hauptsatz. Sie sind damit
+der ganze Rest des Problems und der nächste Hebel.
+
+### 🚫 Der Prompt-Cache im Eval hat NICHT beschleunigt
+
+| Lauf | Prompt-Cache | Dauer |
+|---|---|---|
+| Paket 4 (20.08.) | nein | 9.793 s |
+| Paket 5 (20.08.) | nein | 9.731 s |
+| Evidenz (21.08.) | **ja** | **10.484 s** |
+
+Die beiden Läufe ohne Cache liegen 62 s auseinander (0,6 %), der Lauf mit Cache ist 7 %
+langsamer. Erklärung, nicht Ausrede: Dieser Lauf hatte **3 Rate-Limit-Ereignisse** (die
+beiden anderen: 0), und die Arbeitsmenge war identisch (357 Pipeline-Meldungen minus
+39 neue Evidenz-Zeilen = 318 gegen 319).
+
+**Der Mechanismus greift im Eval schlicht nicht:** Der Cache spart Kontingent
+(7.534 → 30 Tokens je Anfrage), und das Kontingent ist der Engpass, wenn mehrere Anträge
+gleichzeitig laufen. Der Eval läuft sequenziell und stösst kaum an das Minutenlimit —
+da ist nichts zu sparen. Die Änderung bleibt trotzdem richtig, aber aus dem Grund, mit dem
+sie eingecheckt wurde: **Betriebstreue, nicht Tempo.**
+
+### ⚠️ Zur Belastbarkeit der Schachtelsatz-Kennzahl
+
+| Lauf | Satzbau-Direktive | Schachtelsätze |
+|---|---|---|
+| Paket 4 | nein | 304 |
+| Paket 5 | ja | 303 |
+| Evidenz | ja | 243 |
+
+Drei Läufe, dieselbe Direktive in zweien — und die Zahl schwankt um 20 %. Die Aussage vom
+20.08. („unverändert") war zu bestimmt formuliert. Belastbar ist nur: **ein grosser Effekt
+ist nicht sichtbar**, und die Kennzahl braucht mehr als einen gepaarten Vergleich, um
+kleinere Effekte aufzulösen.
+
+---
+
+
 ## 2026-08-20 (abends) — Paket 4 + 5 (Feedback #008), und ein Schlüssel-Drift, der die Messung entwertet hat
 
 **Zwei Live-Läufe à N=3 × 25, beide [GATE PASSED].** Dazwischen liegt ein Fund, ohne den
