@@ -36,6 +36,7 @@ import { resolve } from "node:path";
 import type { Foerderprogramm } from "@/lib/foerderSchema";
 import type { WizardFacts, WizardMessage } from "@/lib/wizard/types";
 import { runPipeline } from "@/lib/wizard/pipeline";
+import { withPromptCacheKey } from "@/lib/wizard/llm";
 import { loadRichtlinie } from "@/lib/wizard/richtlinien-loader";
 import { bestimmeAntragsart } from "@/lib/wizard/antragsart";
 import { getGeberGruppe, ALL_GEBER_GRUPPEN } from "@/lib/wizard/geber-classification";
@@ -398,12 +399,25 @@ async function runPipelineForKorpus(
   }));
 
   const startMs = Date.now();
-  const pipelineResult = await runPipeline(
-    programm,
-    entry.facts,
-    richtlinie,
-    undefined,
-    messages
+  // Prompt-Cache wie im Produktionsbetrieb: EIN Schluessel je Lauf.
+  //
+  // Ohne ihn misst der Eval etwas anderes, als der Kunde bekommt — und zwar
+  // teurer und langsamer. Die Pipeline schickt denselben Block (Dossier, Fakten,
+  // Nutzerantworten, stehende Regeln) ueber ihre Stufen hinweg immer wieder mit;
+  // gemessen am 19.08.2026 sind 77 % des Prompt-Volumens Wiederholung, und
+  // gecachte Tokens kosten das Minutenkontingent praktisch nichts (7.534 -> 30).
+  // Genau dieses Kontingent ist der Engpass: Die beiden Laeufe vom 20.08. brauchten
+  // je 2,7 h fuer 75 Durchgaenge, weit ueber der Schaetzung.
+  //
+  // 🚫 Bewusst je LAUF und nicht je Korpus-Eintrag: In der Produktion hat jeder
+  // Antrag seinen eigenen Schluessel (app/api/wizard/generate/route.ts,
+  // cacheKeyFromSession). Ein Schluessel ueber alle N Wiederholungen eines
+  // Eintrags waere schneller, wuerde aber eine Cache-Trefferquote vortaeuschen,
+  // die es im Betrieb nie gibt — der Eval soll die Produktion abbilden, nicht
+  // sich selbst optimieren.
+  const pipelineResult = await withPromptCacheKey(
+    `edufunds-eval-${entry.id}-run${runIndex}`,
+    () => runPipeline(programm, entry.facts, richtlinie, undefined, messages)
   );
   const latencyMs = Date.now() - startMs;
 
