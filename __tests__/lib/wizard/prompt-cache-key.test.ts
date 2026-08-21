@@ -9,6 +9,8 @@
  * bei einer Modulvariablen gegenseitig den Schluessel unterschieben — und damit
  * Cache-Treffer auf FREMDEN Praefixen provozieren.
  */
+import { readFileSync } from "fs";
+import { join } from "path";
 import {
   withPromptCacheKey,
   currentPromptCacheKey,
@@ -88,5 +90,28 @@ describe("withPromptCacheKey", () => {
 
   it("ohne Kontext bleibt alles wie vorher (kein Schlüssel, kein Zusatzfeld)", () => {
     expect(currentPromptCacheKey()).toBeUndefined();
+  });
+});
+
+/**
+ * Der Eval muss denselben Cache-Schlüssel setzen wie der Produktionsbetrieb.
+ *
+ * Bis 21.08.2026 rief `scripts/eval-pipeline.ts` `runPipeline` nackt auf. Der
+ * Eval lief damit ohne Prompt-Cache — teurer, langsamer (2,7 h je Lauf statt
+ * ~1,7 h) und in einer Betriebsart, die es in der Produktion nicht gibt. Eine
+ * Messung, die anders läuft als das gemessene System, misst das falsche System.
+ */
+describe("eval-pipeline.ts setzt den Prompt-Cache-Schlüssel", () => {
+  const quelle = readFileSync(join(process.cwd(), "scripts/eval-pipeline.ts"), "utf8");
+
+  it("umschliesst den runPipeline-Aufruf mit withPromptCacheKey", () => {
+    expect(quelle).toContain('import { withPromptCacheKey }');
+    expect(quelle).toMatch(/withPromptCacheKey\([\s\S]{0,200}?runPipeline\(/);
+  });
+
+  it("vergibt EINEN Schlüssel je Lauf, nicht je Korpus-Eintrag", () => {
+    // Ein Schlüssel über alle N Wiederholungen wäre schneller, täuschte aber
+    // eine Trefferquote vor, die im Betrieb nie entsteht.
+    expect(quelle).toMatch(/`edufunds-eval-\$\{entry\.id\}-run\$\{runIndex\}`/);
   });
 });
