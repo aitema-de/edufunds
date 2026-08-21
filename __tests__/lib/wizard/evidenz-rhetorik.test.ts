@@ -237,3 +237,13 @@ it("🔑 «An unserer Schule …, weil die Partizipationsforschung zeigt» — d
     "An unserer Schule ist Verantwortungsübernahme gelebte Praxis, weil Einbindung die Identifikation erhöht."
   );
 });
+
+it("Bindestrich-Komposita: «weil formative Assessment-Forschung zeigt, dass …»", () => {
+  // Echter Satz, pv-004-run2 aus dem Smoke-Lauf 2026-08-21T15-16-51. Der Repair
+  // hatte ihn als Kandidat erkannt und trotzdem stehen lassen.
+  const t =
+    "Wir haben eine Antwort gefunden: das Feedback-Portfolio, weil formative Assessment-Forschung zeigt, dass Lernende durch aktive Reflexion profitieren.";
+  expect(entferneEvidenzFloskeln(t).text).toBe(
+    "Wir haben eine Antwort gefunden: das Feedback-Portfolio, weil Lernende durch aktive Reflexion profitieren."
+  );
+});

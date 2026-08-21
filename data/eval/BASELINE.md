@@ -7,6 +7,84 @@
 
 # Eval-Pipeline Baseline (Phase 5)
 
+## 2026-08-21 — Evidenz-Satzformen (Lauf `2026-08-21T12-16-38`), und warum die erste Null falsch war
+
+**[GATE PASSED]** — WIZ-01 100,0 (σ 0,0) · WIZ-02 98,9 (σ 2,6) · WIZ-03 64,1 (σ 15,5) ·
+WIZ-04 91,3 (σ 12,5) · Finanzplan 80,5 (σ 27,1). n=25, Fehler=0, 10.218 s.
+Gegen den Lauf `07-00-07` bewegt sich keine Achse nennenswert (WIZ-02 +1,6, WIZ-04 +3,0,
+WIZ-03 −0,2) — die Änderung ist eine Nachbearbeitung, kein Eingriff in die Generierung.
+
+### Was der Lauf belegt
+
+| Evidenz-Rhetorik im fertigen Antrag | P4 | P5 (Prompt) | + Adverb-Detektor | + Satzformen |
+|---|---|---|---|---|
+| „nachweislich" | 75 | 63 | 0 | **0** |
+| Nebensatz-Einleitungen („weil Studien zeigen, dass …") | — | — | 8 | **0** |
+| Satzformen gesamt | 84 | 66 | 9 | **0** |
+| betroffene Anträge | 42 / 75 | 29 / 75 | 11 / 75 | **0 / 75** |
+| Forschungsbehauptungen in der Bestätigungsliste | — | — | **5** | **0** |
+
+Die Zeile „Bestätigungsliste" ist die wichtigste: Bis zum 21.08. legte die UI dem Nutzer
+Forschungsbehauptungen mit den Knöpfen *Übernehmen / Anpassen / Streichen* vor — etwas,
+das er aus eigenem Wissen nicht bestätigen kann. Details:
+`gotcha-kennzeichnung-ohne-handlungsmoeglichkeit`.
+
+Der Text wird dabei kaum angefasst: **8 von 75 Snapshots, 259 Zeichen im ganzen Korpus.**
+
+### 🔴 Die erste Messung meldete 0 — und war falsch
+
+Direkt nach dem Lauf zeigte die Auswertung **alle Zeilen auf 0**, auch die Komposita.
+Ein roher `grep` auf „nachweislich|Studien zeigen|Forschung zeigt" gegen dieselben
+Snapshots fand dagegen weiter Treffer. Ursache: Gemessen wurde mit **demselben Detektor**,
+dessen Wirkung geprüft werden sollte. Was er nicht kennt, zählt er auch in der Messung
+nicht — das Modell war auf „die **Partizipations**forschung zeigt, dass …" ausgewichen,
+und `\bForschung\b` fängt kein Kompositum.
+
+Echte Zahl war **5 → 2**, nicht 5 → 0. Erst der Nachtrag (`f9c7ca5`) bringt sie auf 0.
+
+🔑 **Ein Detektor darf nie das Messgerät seiner eigenen Wirkung sein.** Die Gegenprobe
+muss von etwas kommen, das die Klassifikation nicht teilt — hier ein roher Wortsuchlauf
+mit anschliessender Sichtung der Subjekte vor „zeigt, dass".
+→ [[gotcha-eval-misst-still-leere-artefakte]]
+
+### Zwei Befunde für die Bauart
+
+**Die Hälfte der „nicht deterministisch lösbaren" Fälle war lösbar.** 8 von 11 Fundstellen
+standen als Nebensatz-Einleitung („weil Studien zeigen, dass X"). Weil `weil`-Satz und
+`dass`-Satz beide Verbletztstellung haben, ist das eine Streichung, kein Satzumbau.
+Nur 3 waren echte Hauptsatzformen und brauchten den LLM-Repair.
+
+**Der Eigenbeleg ist das Gegenteil des Problems.** „Unsere externen Evaluationen zeigen,
+dass …" ist die belegteste Aussage im Antrag und stand in pv-004-run3 einen Halbsatz
+neben einer echten Fremdbehauptung. Der Ausschluss dafür muss am Beleg-Substantiv hängen:
+Eine Fassung, die den ganzen Satz prüfte, liess „An **unserer** Schule …, weil die
+Partizipationsforschung zeigt, dass …" fälschlich durch.
+
+### Smoke `2026-08-21T15-16-51` (pv-004, N=3) — und die dritte Wortvariante
+
+**[GATE PASSED]**, n=1, Fehler=0. Gezielt auf dem Eintrag, der die Komposita hatte.
+Run 2 meldete eine übrig gebliebene Satzform: „…, weil **formative Assessment-Forschung**
+zeigt, dass Lernende durch aktive Reflexion profitieren." Ein **Bindestrich**-Kompositum —
+`[A-Za-zÄÖÜäöüß]*forschung` deckt keinen Bindestrich ab. Aufgenommen.
+
+🚫 **Zwei Lehren, die grösser sind als der Fix:**
+
+1. **Die Wortliste bleibt unvollständig.** Erst Komposita, dann Bindestrich-Komposita.
+   Jede neue Wortbildung des Modells ist eine neue Lücke. „0 Fundstellen" heisst immer
+   „0 auf dem gemessenen Korpus", nie „gelöst".
+2. **Die Zweitlinie hat versagt.** Genau dieser Satz wurde vom LLM-Repair als Kandidat
+   erkannt und blieb trotzdem stehen (`11 neutralisiert → 3 verbleibend, repaired=true`).
+   Das Never-Worse-Gate übernimmt einen Repair schon, wenn EIN Zitat verschwindet — der
+   Rest darf stehen bleiben. Der deterministische Teil trägt die Arbeit, der Repair ist
+   kein Sicherheitsnetz, auf das man sich verlassen kann.
+
+### Repair-Last
+
+Der LLM-Repair bekam 5 Claims über 75 Anträge (Lauf 07-00-07), nach der Bereinigung
+2 (Lauf 12-16-38). Die Stufe ist billig — der deterministische Teil trägt die Arbeit.
+
+---
+
 ## 2026-08-21 — Evidenz-Detektor (Lauf `2026-08-21T07-00-07`), und was der Prompt-Cache NICHT gebracht hat
 
 **[GATE PASSED]** — WIZ-01 100,0 (σ 0,0) · WIZ-02 97,3 (σ 5,1) · WIZ-03 64,3 (σ 15,5) ·

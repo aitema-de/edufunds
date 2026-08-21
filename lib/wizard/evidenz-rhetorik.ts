@@ -45,7 +45,16 @@
  * „die Partizipationsforschung zeigt, dass …" aus — „Netzwerkforschung",
  * „Implementationsforschung", „Schulqualitaetsforschung". `\bForschung\b` faengt
  * davon nichts, weil vor dem Kompositum keine Wortgrenze steht. Die Wortliste ist
- * deshalb auf `[A-Za-zÄÖÜäöüß]*forschung` / `*studien` geoeffnet.
+ * deshalb auf `[A-Za-zÄÖÜäöüß-]*forschung` / `*studien` geoeffnet.
+ *
+ * 🚫 UND DIE LISTE BLEIBT UNVOLLSTAENDIG. Nach den Komposita kam „formative
+ * Assessment-Forschung zeigt, dass …" — ein BINDESTRICH-Kompositum, das die
+ * Zeichenklasse wieder nicht kannte (jetzt aufgenommen). Das Muster ist offen:
+ * Jede neue Wortbildung ist eine neue Luecke. Deshalb ist der LLM-Repair
+ * (fact-verification.ts) die zweite Linie und nicht bloss ein Anhaengsel — bei
+ * diesem Fall hat er allerdings AUCH nicht gegriffen (Lauf `2026-08-21T15-16-51`,
+ * pv-004-run2: als Kandidat erkannt, in `remaining` gelandet). Wer hier Nullen
+ * meldet, meint immer „null auf dem gemessenen Korpus".
  *
  * ⚠️ Gefunden wurde die Luecke NICHT vom Detektor, sondern von einem rohen grep auf
  * „nachweislich|Studien zeigen|Forschung zeigt" gegen die Snapshots. Wer die Wirkung
@@ -106,14 +115,14 @@ const ADVERB_RE =
  * Die Konjunktion wird in Gruppe 1 festgehalten und bleibt stehen.
  */
 const EINLEITUNG_RE =
-  /\b(weil|da|zumal|denn|obwohl)\s+(?:[A-Za-zÄÖÜäöüß]+e\s+)?(?:[A-Za-zÄÖÜäöüß]*forschung|[A-Za-zÄÖÜäöüß]*studien|Untersuchungen|Forschungsergebnisse|Metaanalysen|Evaluationen|Befunde|Erhebungen)\s+(?:zeigen|zeigt|belegen|belegt|weisen\s+darauf\s+hin|legen\s+nahe|nahelegen)\s*,\s*dass\s+/gi;
+  /\b(weil|da|zumal|denn|obwohl)\s+(?:[A-Za-zÄÖÜäöüß]+e\s+)?(?:[A-Za-zÄÖÜäöüß-]*forschung|[A-Za-zÄÖÜäöüß-]*studien|Untersuchungen|Forschungsergebnisse|Metaanalysen|Evaluationen|Befunde|Erhebungen)\s+(?:zeigen|zeigt|belegen|belegt|weisen\s+darauf\s+hin|legen\s+nahe|nahelegen)\s*,\s*dass\s+/gi;
 
 /**
  * Satzformen, die eine Quelle behaupten. Zum ZÄHLEN — bewusst weit gefasst, damit
  * die Kennzahl mit den Läufen vor dem 21.08.2026 vergleichbar bleibt.
  */
 const AUSSAGE_RE =
-  /\b(?:[A-Za-zÄÖÜäöüß]*forschung|[A-Za-zÄÖÜäöüß]*studien|Untersuchungen|Forschungsergebnisse|Metaanalysen|Evaluationen|Befunde|Erhebungen)\s+(?:zeigen|belegen|weisen|belegt|zeigt)\b|\bwissenschaftlich\s+(?:erwiesen|belegt|fundiert)\b|\bempirisch\s+(?:belegt|erwiesen)\b|\bes\s+ist\s+(?:wissenschaftlich\s+)?belegt\b/gi;
+  /\b(?:[A-Za-zÄÖÜäöüß-]*forschung|[A-Za-zÄÖÜäöüß-]*studien|Untersuchungen|Forschungsergebnisse|Metaanalysen|Evaluationen|Befunde|Erhebungen)\s+(?:zeigen|belegen|weisen|belegt|zeigt)\b|\bwissenschaftlich\s+(?:erwiesen|belegt|fundiert)\b|\bempirisch\s+(?:belegt|erwiesen)\b|\bes\s+ist\s+(?:wissenschaftlich\s+)?belegt\b/gi;
 
 /**
  * Dieselben Satzformen, aber nur mit folgendem „, dass"-Satz — die Teilmenge, bei
@@ -127,7 +136,7 @@ const AUSSAGE_RE =
  * verschlechtern. Zum Zählen ist die Unschärfe egal, zum Anfassen nicht.
  */
 const AUSSAGE_DASS_RE =
-  /\b(?:[A-Za-zÄÖÜäöüß]+e\s+)?(?:[A-Za-zÄÖÜäöüß]*forschung|[A-Za-zÄÖÜäöüß]*studien|Untersuchungen|Forschungsergebnisse|Metaanalysen|Evaluationen|Befunde|Erhebungen)\s+(?:zeigen|zeigt|belegen|belegt|weisen\s+darauf\s+hin)\s*,\s*dass\b|\b(?:wissenschaftlich|empirisch)\s+(?:erwiesen|belegt)\s+\w*\s*,?\s*dass\b|\bes\s+ist\s+(?:wissenschaftlich\s+)?belegt\s*,\s*dass\b/gi;
+  /\b(?:[A-Za-zÄÖÜäöüß]+e\s+)?(?:[A-Za-zÄÖÜäöüß-]*forschung|[A-Za-zÄÖÜäöüß-]*studien|Untersuchungen|Forschungsergebnisse|Metaanalysen|Evaluationen|Befunde|Erhebungen)\s+(?:zeigen|zeigt|belegen|belegt|weisen\s+darauf\s+hin)\s*,\s*dass\b|\b(?:wissenschaftlich|empirisch)\s+(?:erwiesen|belegt)\s+\w*\s*,?\s*dass\b|\bes\s+ist\s+(?:wissenschaftlich\s+)?belegt\s*,\s*dass\b/gi;
 
 /**
  * Zeichen dafür, dass der Satz seine Quelle NENNT. Dann ist die Behauptung
@@ -150,7 +159,7 @@ const AUSSAGE_DASS_RE =
  * dass …" als Eigenbeleg durch — die Fremdbehauptung waere stehen geblieben.
  */
 const EIGENBELEG_RE =
-  /\b(?:unsere|eigene|meine|bisherige|hiesige|schulinterne|unserer)[nrms]?\s+(?:[A-Za-zÄÖÜäöüß]+e[nrms]?\s+)?(?:[A-Za-zÄÖÜäöüß]*forschung|[A-Za-zÄÖÜäöüß]*studien|Untersuchungen|Forschungsergebnisse|Metaanalysen|Evaluationen|Befunde|Erhebungen)\b/i;
+  /\b(?:unsere|eigene|meine|bisherige|hiesige|schulinterne|unserer)[nrms]?\s+(?:[A-Za-zÄÖÜäöüß]+e[nrms]?\s+)?(?:[A-Za-zÄÖÜäöüß-]*forschung|[A-Za-zÄÖÜäöüß-]*studien|Untersuchungen|Forschungsergebnisse|Metaanalysen|Evaluationen|Befunde|Erhebungen)\b/i;
 
 const QUELLENANGABE_RE =
   /\b(laut|gem(?:ä|ae)(?:ß|ss)|zufolge|nach\s+Angaben|nach\s+der\s+Studie|Quelle\s*:|vgl\.|siehe)\b|\(\s*(?:[A-ZÄÖÜ][a-zäöüß]+\s+)?(?:19|20)\d{2}\s*\)|https?:\/\//i;
