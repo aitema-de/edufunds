@@ -25,7 +25,11 @@
  * 🚫 Die SATZ-Formen („Studien zeigen, dass …") werden NICHT automatisch
  * umgeschrieben. Sie brauchen einen neuen Hauptsatz, und eine deterministische
  * Operation, die Sätze umbaut, richtet mehr Schaden an als der Befund wert ist.
- * Sie werden gezählt und gemeldet — die Reparatur bleibt beim Prompt.
+ * Sie werden gezählt und in `verbleibend` zurückgegeben; die Pipeline schreibt
+ * die Zahl ins Log. 🚫 Sie sind derzeit NICHT nutzersichtbar: Für einen Hinweis
+ * am Antragstext gibt es keinen Kanal (die `hinweise` hängen am Finanzplan, und
+ * dort gehören sie nicht hin). Wer die Satzformen sichtbar machen will, muss
+ * diesen Kanal zuerst bauen — nicht andersherum.
  *
  * 🚫 Ein `[Annahme: …]`-Marker heilt eine Forschungsbehauptung NICHT: Der Nutzer
  * kann einen Forschungsstand nicht aus eigenem Wissen bestätigen. Deshalb wird
@@ -143,15 +147,4 @@ export function entferneEvidenzAdverbien(text: string): EvidenzBereinigung {
   out += text.slice(gelesen);
 
   return { text: out, entfernt, verbleibend };
-}
-
-/** Hinweis für die Satzformen, die stehen bleiben — sichtbar, aber nicht repariert. */
-export function baueEvidenzHinweis(verbleibend: EvidenzTreffer[]): string | null {
-  if (verbleibend.length === 0) return null;
-  return (
-    `${verbleibend.length} Stelle${verbleibend.length === 1 ? "" : "n"} im Text beruft sich auf ` +
-    `Studien oder Forschung, ohne eine Quelle zu nennen (z. B. „${verbleibend[0].fund}"). ` +
-    `Fördergeber lesen so etwas als Behauptung — bitte eine Quelle ergänzen oder die Aussage ` +
-    `als Annahme des Vorhabens formulieren.`
-  );
 }

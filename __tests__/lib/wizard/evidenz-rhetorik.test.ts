@@ -6,7 +6,6 @@
  * Formulierung trotzdem enthielten.
  */
 import {
-  baueEvidenzHinweis,
   entferneEvidenzAdverbien,
   findeEvidenzBehauptungen,
 } from "@/lib/wizard/evidenz-rhetorik";
@@ -71,18 +70,5 @@ describe("Was stehen bleiben muss", () => {
   it("leerer Text wirft nicht", () => {
     expect(entferneEvidenzAdverbien("").text).toBe("");
     expect(findeEvidenzBehauptungen("")).toEqual([]);
-  });
-});
-
-describe("baueEvidenzHinweis", () => {
-  it("meldet die verbliebenen Satzformen", () => {
-    const r = entferneEvidenzAdverbien("Studien zeigen, dass X wirkt. Untersuchungen belegen Y.");
-    const h = baueEvidenzHinweis(r.verbleibend)!;
-    expect(h).toContain("2 Stellen");
-    expect(h).toContain("Quelle");
-  });
-
-  it("schweigt, wenn nichts offen ist", () => {
-    expect(baueEvidenzHinweis([])).toBeNull();
   });
 });
