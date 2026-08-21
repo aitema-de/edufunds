@@ -22,24 +22,64 @@
  * Beleg wird eine Aussage. Das ist, was die Testerin verlangt hat („entweder es
  * gibt eine belastbare Quelle, oder sie formuliert vorsichtiger").
  *
- * 🚫 Die SATZ-Formen („Studien zeigen, dass …") werden NICHT automatisch
- * umgeschrieben. Sie brauchen einen neuen Hauptsatz, und eine deterministische
- * Operation, die Sätze umbaut, richtet mehr Schaden an als der Befund wert ist.
- * Sie werden gezählt und in `verbleibend` zurückgegeben; die Pipeline schreibt
- * die Zahl ins Log. 🚫 Sie sind derzeit NICHT nutzersichtbar: Für einen Hinweis
- * am Antragstext gibt es keinen Kanal (die `hinweise` hängen am Finanzplan, und
- * dort gehören sie nicht hin). Wer die Satzformen sichtbar machen will, muss
- * diesen Kanal zuerst bauen — nicht andersherum.
+ * NACHTRAG 21.08.2026 — die Satzformen, zweiter Anlauf
+ * ----------------------------------------------------
+ * Die erste Fassung liess ALLE Satzformen („Studien zeigen, dass …") stehen, mit
+ * der Begruendung, sie brauchten einen neuen Hauptsatz. Das stimmt nur fuer die
+ * Haelfte. Am Lauf `2026-08-21T07-00-07` nachgezaehlt (15 Fundstellen):
+ *
+ *   - 8 stehen als EINLEITUNG eines Nebensatzes: „weil Studien zeigen, dass X".
+ *     Die sind streichbar, ohne etwas umzubauen — `weil`-Satz und `dass`-Satz
+ *     haben beide Verbletztstellung, der Inhalt rueckt unveraendert nach vorn.
+ *     → `entferneEvidenzFloskeln` erledigt sie deterministisch.
+ *   - 3 sind echte Hauptsatz-Formen. Die gehen an den LLM-Repair der
+ *     Fakt-Verifikation (`findeEvidenzSatzformen` → fact-verification.ts).
+ *   - 3 sind gar keine Belegbehauptungen, sondern Aussagen ueber das eigene
+ *     Vorhaben („sodass die Ergebnisse wissenschaftlich fundiert sind"). Die
+ *     bleiben unangetastet — deshalb greift der Repair nur bei `, dass`-Formen.
+ *
+ * ⚠️ Die Kennzahl schwankt stark: 14 → 5 → 15 ueber drei Laeufe bei unveraendertem
+ * Verhalten. Wer hier einen Prompt-Effekt messen will, misst Rauschen.
+ *
+ * 🔑 KOMPOSITA (Nachtrag nach dem Lauf `2026-08-21T12-16-38`): Das Modell weicht auf
+ * „die Partizipationsforschung zeigt, dass …" aus — „Netzwerkforschung",
+ * „Implementationsforschung", „Schulqualitaetsforschung". `\bForschung\b` faengt
+ * davon nichts, weil vor dem Kompositum keine Wortgrenze steht. Die Wortliste ist
+ * deshalb auf `[A-Za-zÄÖÜäöüß-]*forschung` / `*studien` geoeffnet.
+ *
+ * 🚫 UND DIE LISTE BLEIBT UNVOLLSTAENDIG. Nach den Komposita kam „formative
+ * Assessment-Forschung zeigt, dass …" — ein BINDESTRICH-Kompositum, das die
+ * Zeichenklasse wieder nicht kannte (jetzt aufgenommen). Das Muster ist offen:
+ * Jede neue Wortbildung ist eine neue Luecke. Deshalb ist der LLM-Repair
+ * (fact-verification.ts) die zweite Linie und nicht bloss ein Anhaengsel — bei
+ * diesem Fall hat er allerdings AUCH nicht gegriffen (Lauf `2026-08-21T15-16-51`,
+ * pv-004-run2: als Kandidat erkannt, in `remaining` gelandet). Wer hier Nullen
+ * meldet, meint immer „null auf dem gemessenen Korpus".
+ *
+ * ⚠️ Gefunden wurde die Luecke NICHT vom Detektor, sondern von einem rohen grep auf
+ * „nachweislich|Studien zeigen|Forschung zeigt" gegen die Snapshots. Wer die Wirkung
+ * eines Detektors mit demselben Detektor misst, bekommt zuverlaessig eine Null:
+ * Was er nicht kennt, zaehlt er auch in der Messung nicht.
+ * → [[gotcha-eval-misst-still-leere-artefakte]]
  *
  * 🚫 Ein `[Annahme: …]`-Marker heilt eine Forschungsbehauptung NICHT: Der Nutzer
  * kann einen Forschungsstand nicht aus eigenem Wissen bestätigen. Deshalb wird
  * hier entschärft und nicht markiert — dieselbe Logik wie bei
  * Programm-Konditionen (prompts.ts).
  *
+ * 🔴 Diese Regel stand hier ab dem 21.08.2026 — und wurde verletzt, weil sie
+ * niemand nachprüfte. `pipeline.ts` wickelte `factVerification.remaining` per
+ * `wrapAnnahmen` ein und baute die Bestätigungsliste aus ALLEN Markern im Text.
+ * Am Lauf `2026-08-21T07-00-07` landeten so 5 Forschungsbehauptungen in der
+ * Liste, die der Nutzer mit „Übernehmen / Anpassen / Streichen" bearbeitet —
+ * darunter „weil Studien zeigen, dass Jugendliche besonders anfällig für
+ * Desinformation sind". Genau das, was der Absatz oben ausschliesst.
+ * → `istEvidenzBehauptung` ist die Nachprüfung dazu.
+ *
  * Alle Funktionen sind pur/deterministisch (kein LLM) und client-sicher.
  */
 
-export type EvidenzForm = "adverb" | "aussage";
+export type EvidenzForm = "adverb" | "einleitung" | "aussage";
 
 export interface EvidenzTreffer {
   form: EvidenzForm;
@@ -57,16 +97,70 @@ const ADVERB_RE =
   /\b(nachweislich|erwiesenerma(?:ß|ss)en|nachgewiesenerma(?:ß|ss)en|bekanntlich|unbestritten)\b/gi;
 
 /**
- * Satzformen, die eine Quelle behaupten. Nur zählen, nicht anfassen — sie
- * brauchen einen neuen Hauptsatz.
+ * Belegbehauptung als EINLEITUNG eines Nebensatzes: „weil Studien zeigen, dass X".
+ *
+ * 🔑 Diese Form IST deterministisch streichbar — anders als die Hauptsatzform.
+ * Der Grund ist die deutsche Verbstellung: Sowohl der `weil`-Satz als auch der
+ * `dass`-Satz haben das Verb am Ende. Wird die Einleitung samt „, dass" entfernt,
+ * rückt der Inhalt des dass-Satzes unverändert an die Stelle des weil-Satzes und
+ * bleibt grammatisch korrekt:
+ *
+ *   „weil Studien zeigen, dass Jugendliche anfällig für Desinformation sind"
+ *   → „weil Jugendliche anfällig für Desinformation sind"
+ *
+ * Das ist dieselbe Operation wie beim Adverb — kein Satzumbau, eine Streichung.
+ * Gemessen am Lauf `2026-08-21T07-00-07`: 8 der 11 echten Fundstellen sind so
+ * gebaut, überwiegend mit „weil".
+ *
+ * Die Konjunktion wird in Gruppe 1 festgehalten und bleibt stehen.
+ */
+const EINLEITUNG_RE =
+  /\b(weil|da|zumal|denn|obwohl)\s+(?:[A-Za-zÄÖÜäöüß]+e\s+)?(?:[A-Za-zÄÖÜäöüß-]*forschung|[A-Za-zÄÖÜäöüß-]*studien|Untersuchungen|Forschungsergebnisse|Metaanalysen|Evaluationen|Befunde|Erhebungen)\s+(?:zeigen|zeigt|belegen|belegt|weisen\s+darauf\s+hin|legen\s+nahe|nahelegen)\s*,\s*dass\s+/gi;
+
+/**
+ * Satzformen, die eine Quelle behaupten. Zum ZÄHLEN — bewusst weit gefasst, damit
+ * die Kennzahl mit den Läufen vor dem 21.08.2026 vergleichbar bleibt.
  */
 const AUSSAGE_RE =
-  /\b(?:Studien|Untersuchungen|Forschung(?:sergebnisse)?|die\s+Forschung)\s+(?:zeigen|belegen|weisen|belegt|zeigt)\b|\bwissenschaftlich\s+(?:erwiesen|belegt|fundiert)\b|\bempirisch\s+(?:belegt|erwiesen)\b|\bes\s+ist\s+(?:wissenschaftlich\s+)?belegt\b/gi;
+  /\b(?:[A-Za-zÄÖÜäöüß-]*forschung|[A-Za-zÄÖÜäöüß-]*studien|Untersuchungen|Forschungsergebnisse|Metaanalysen|Evaluationen|Befunde|Erhebungen)\s+(?:zeigen|belegen|weisen|belegt|zeigt)\b|\bwissenschaftlich\s+(?:erwiesen|belegt|fundiert)\b|\bempirisch\s+(?:belegt|erwiesen)\b|\bes\s+ist\s+(?:wissenschaftlich\s+)?belegt\b/gi;
+
+/**
+ * Dieselben Satzformen, aber nur mit folgendem „, dass"-Satz — die Teilmenge, bei
+ * der ein EINGRIFF vertretbar ist.
+ *
+ * 🔑 Warum enger als AUSSAGE_RE: Über den Lauf `2026-08-21T07-00-07` sind 3 der
+ * 15 Treffer von AUSSAGE_RE gar keine Fremdbeleg-Behauptungen, sondern Aussagen
+ * über das eigene Vorhaben — „sodass die Ergebnisse sowohl wissenschaftlich
+ * fundiert als auch praxisnah sind", „sodass die Wirksamkeit des Projekts
+ * empirisch belegt werden kann". Die sind legitim; ein Repair würde sie
+ * verschlechtern. Zum Zählen ist die Unschärfe egal, zum Anfassen nicht.
+ */
+const AUSSAGE_DASS_RE =
+  /\b(?:[A-Za-zÄÖÜäöüß]+e\s+)?(?:[A-Za-zÄÖÜäöüß-]*forschung|[A-Za-zÄÖÜäöüß-]*studien|Untersuchungen|Forschungsergebnisse|Metaanalysen|Evaluationen|Befunde|Erhebungen)\s+(?:zeigen|zeigt|belegen|belegt|weisen\s+darauf\s+hin)\s*,\s*dass\b|\b(?:wissenschaftlich|empirisch)\s+(?:erwiesen|belegt)\s+\w*\s*,?\s*dass\b|\bes\s+ist\s+(?:wissenschaftlich\s+)?belegt\s*,\s*dass\b/gi;
 
 /**
  * Zeichen dafür, dass der Satz seine Quelle NENNT. Dann ist die Behauptung
  * belegt und bleibt unangetastet — auch „nachweislich".
  */
+/**
+ * EIGENER Beleg — der Antragsteller verweist auf seine eigene Erfahrung, nicht auf
+ * fremde Forschung: „Unsere externen Evaluationen zeigen, dass …", „Die bisherige
+ * Praxis zeigt, dass …".
+ *
+ * 🔑 Das ist das Gegenteil des gemeldeten Problems. Die Testerin störte sich an
+ * Behauptungen, deren Herkunft die Leserin nicht kennt. Eine eigene Evaluation ist
+ * die belegteste Aussage im ganzen Antrag — sie zu streichen würde dem Antrag seine
+ * stärkste Substanz nehmen. Gefunden an pv-004-run3: dort stand „Unsere externen
+ * Evaluationen zeigen, dass …" einen Halbsatz neben einer echten Fremdbehauptung.
+ *
+ * ⚠️ Das Possessivpronomen muss DIREKT am Beleg-Substantiv haengen, nicht bloss
+ * irgendwo im Satz stehen. Erste Fassung prüfte den ganzen Satz und liess damit
+ * „An UNSERER Schule ist … gelebte Praxis, weil die Partizipationsforschung zeigt,
+ * dass …" als Eigenbeleg durch — die Fremdbehauptung waere stehen geblieben.
+ */
+const EIGENBELEG_RE =
+  /\b(?:unsere|eigene|meine|bisherige|hiesige|schulinterne|unserer)[nrms]?\s+(?:[A-Za-zÄÖÜäöüß]+e[nrms]?\s+)?(?:[A-Za-zÄÖÜäöüß-]*forschung|[A-Za-zÄÖÜäöüß-]*studien|Untersuchungen|Forschungsergebnisse|Metaanalysen|Evaluationen|Befunde|Erhebungen)\b/i;
+
 const QUELLENANGABE_RE =
   /\b(laut|gem(?:ä|ae)(?:ß|ss)|zufolge|nach\s+Angaben|nach\s+der\s+Studie|Quelle\s*:|vgl\.|siehe)\b|\(\s*(?:[A-ZÄÖÜ][a-zäöüß]+\s+)?(?:19|20)\d{2}\s*\)|https?:\/\//i;
 
@@ -84,67 +178,142 @@ function satzUm(text: string, index: number): string {
   return text.slice(start, ende).trim();
 }
 
-/** Alle Evidenz-Behauptungen ohne Quellenangabe im Satz. */
+/** Spannen aller Einleitungs-Treffer — um Doppelzählung mit AUSSAGE_RE zu vermeiden. */
+function einleitungsSpannen(text: string): Array<[number, number]> {
+  const frisch = new RegExp(EINLEITUNG_RE.source, EINLEITUNG_RE.flags);
+  const out: Array<[number, number]> = [];
+  let m: RegExpExecArray | null;
+  while ((m = frisch.exec(text)) !== null) out.push([m.index, m.index + m[0].length]);
+  return out;
+}
+
+/** Alle Evidenz-Behauptungen ohne Quellenangabe im Text. */
 export function findeEvidenzBehauptungen(text: string): EvidenzTreffer[] {
   const out: EvidenzTreffer[] = [];
   if (!text?.trim()) return out;
+  const spannen = einleitungsSpannen(text);
 
   for (const [form, re] of [
     ["adverb", ADVERB_RE],
+    ["einleitung", EINLEITUNG_RE],
     ["aussage", AUSSAGE_RE],
   ] as Array<[EvidenzForm, RegExp]>) {
     const frisch = new RegExp(re.source, re.flags);
     let m: RegExpExecArray | null;
     while ((m = frisch.exec(text)) !== null) {
       const zitat = satzUm(text, m.index);
-      if (QUELLENANGABE_RE.test(zitat)) continue; // belegt — bleibt stehen
-      out.push({ form, fund: m[0], zitat });
+      if (QUELLENANGABE_RE.test(zitat) || EIGENBELEG_RE.test(zitat)) continue; // belegt — bleibt stehen
+      // Eine Einleitung matcht auch AUSSAGE_RE. Nur einmal zählen, als "einleitung".
+      if (form === "aussage" && spannen.some(([s, e]) => m!.index >= s && m!.index < e)) continue;
+      out.push({ form, fund: m[0].trim(), zitat });
     }
   }
   return out;
 }
 
+/**
+ * Belegbehauptungen, die deterministisch NICHT streichbar sind und deshalb an den
+ * LLM-Repair der Fakt-Verifikation gehen (fact-verification.ts). Nur die
+ * „, dass"-Formen — siehe AUSSAGE_DASS_RE für den Grund.
+ */
+export function findeEvidenzSatzformen(text: string): EvidenzTreffer[] {
+  const out: EvidenzTreffer[] = [];
+  if (!text?.trim()) return out;
+  const spannen = einleitungsSpannen(text);
+  const frisch = new RegExp(AUSSAGE_DASS_RE.source, AUSSAGE_DASS_RE.flags);
+  let m: RegExpExecArray | null;
+  while ((m = frisch.exec(text)) !== null) {
+    const zitat = satzUm(text, m.index);
+    if (QUELLENANGABE_RE.test(zitat) || EIGENBELEG_RE.test(zitat)) continue;
+    // Streichbare Einleitungen erledigt entferneEvidenzFloskeln selbst.
+    if (spannen.some(([s, e]) => m!.index >= s && m!.index < e)) continue;
+    out.push({ form: "aussage", fund: m[0].trim(), zitat });
+  }
+  return out;
+}
+
+/**
+ * Trägt ein Textstück (z. B. ein `[Annahme: …]`-Inhalt) eine Belegbehauptung
+ * ohne Quelle?
+ *
+ * 🚫 Gebraucht für die Bestätigungsliste: Eine Forschungsbehauptung darf dem
+ * Nutzer NICHT zum Bestätigen vorgelegt werden — er kann einen Forschungsstand
+ * nicht aus eigenem Wissen bestätigen. Siehe den Kopf dieser Datei.
+ */
+export function istEvidenzBehauptung(zitat: string): boolean {
+  if (!zitat?.trim()) return false;
+  if (QUELLENANGABE_RE.test(zitat) || EIGENBELEG_RE.test(zitat)) return false;
+  for (const re of [EINLEITUNG_RE, AUSSAGE_DASS_RE, AUSSAGE_RE]) {
+    if (new RegExp(re.source, re.flags).test(zitat)) return true;
+  }
+  return false;
+}
+
 export interface EvidenzBereinigung {
   text: string;
-  /** Gestrichene Adverbien. */
+  /** Gestrichene Adverbien und Nebensatz-Einleitungen. */
   entfernt: EvidenzTreffer[];
-  /** Erkannte Satzformen, die absichtlich stehen bleiben. */
+  /** Erkannte Hauptsatz-Formen, die absichtlich stehen bleiben. */
   verbleibend: EvidenzTreffer[];
 }
 
 /**
- * Streicht die belegbehauptenden ADVERBIEN aus dem Text. Sonst wird nichts
- * angefasst: keine Umstellung, keine Ersetzung, keine neue Formulierung.
+ * Streicht die belegbehauptenden ADVERBIEN und die streichbaren NEBENSATZ-
+ * EINLEITUNGEN aus dem Text. Sonst wird nichts angefasst: keine Umstellung,
+ * keine Ersetzung, keine neue Formulierung.
  *
  * Das Adverb wird samt EINEM angrenzenden Leerzeichen entfernt, damit keine
- * doppelten Leerzeichen entstehen. Sätze mit Quellenangabe bleiben unberührt.
+ * doppelten Leerzeichen entstehen. Bei der Einleitung bleibt die Konjunktion
+ * („weil", „da", …) stehen. Sätze mit Quellenangabe bleiben unberührt.
  */
-export function entferneEvidenzAdverbien(text: string): EvidenzBereinigung {
+export function entferneEvidenzFloskeln(text: string): EvidenzBereinigung {
   const entfernt: EvidenzTreffer[] = [];
-  const verbleibend = findeEvidenzBehauptungen(text).filter((t) => t.form === "aussage");
-  if (!text?.trim()) return { text: text ?? "", entfernt, verbleibend };
-
-  const frisch = new RegExp(ADVERB_RE.source, ADVERB_RE.flags);
-  let out = "";
-  let gelesen = 0;
-  let m: RegExpExecArray | null;
-  while ((m = frisch.exec(text)) !== null) {
-    const zitat = satzUm(text, m.index);
-    if (QUELLENANGABE_RE.test(zitat)) continue; // belegt — stehen lassen
-    entfernt.push({ form: "adverb", fund: m[0], zitat });
-
-    // Das Wort samt GENAU EINEM angrenzenden Leerzeichen herausnehmen, bevorzugt
-    // dem davor. Sonst bleibt eine doppelte Luecke oder ein Leerzeichen vor dem
-    // Satzzeichen stehen.
-    let von = m.index;
-    let bis = m.index + m[0].length;
-    if (text[von - 1] === " ") von -= 1;
-    else if (text[bis] === " ") bis += 1;
-
-    out += text.slice(gelesen, von);
-    gelesen = bis;
+  if (!text?.trim()) {
+    return { text: text ?? "", entfernt, verbleibend: [] };
   }
-  out += text.slice(gelesen);
 
+  // 1. Nebensatz-Einleitungen: „weil Studien zeigen, dass X" → „weil X".
+  let zwischen = "";
+  {
+    const frisch = new RegExp(EINLEITUNG_RE.source, EINLEITUNG_RE.flags);
+    let gelesen = 0;
+    let m: RegExpExecArray | null;
+    while ((m = frisch.exec(text)) !== null) {
+      const zitat = satzUm(text, m.index);
+      if (QUELLENANGABE_RE.test(zitat) || EIGENBELEG_RE.test(zitat)) continue; // belegt — stehen lassen
+      entfernt.push({ form: "einleitung", fund: m[0].trim(), zitat });
+      zwischen += text.slice(gelesen, m.index) + `${m[1]} `;
+      gelesen = m.index + m[0].length;
+    }
+    zwischen += text.slice(gelesen);
+  }
+
+  // 2. Adverbien — unverändert gegenüber der Fassung vom 21.08.2026.
+  let out = "";
+  {
+    const frisch = new RegExp(ADVERB_RE.source, ADVERB_RE.flags);
+    let gelesen = 0;
+    let m: RegExpExecArray | null;
+    while ((m = frisch.exec(zwischen)) !== null) {
+      const zitat = satzUm(zwischen, m.index);
+      if (QUELLENANGABE_RE.test(zitat) || EIGENBELEG_RE.test(zitat)) continue; // belegt — stehen lassen
+      entfernt.push({ form: "adverb", fund: m[0].trim(), zitat });
+
+      // Das Wort samt GENAU EINEM angrenzenden Leerzeichen herausnehmen, bevorzugt
+      // dem davor. Sonst bleibt eine doppelte Luecke oder ein Leerzeichen vor dem
+      // Satzzeichen stehen.
+      let von = m.index;
+      let bis = m.index + m[0].length;
+      if (zwischen[von - 1] === " ") von -= 1;
+      else if (zwischen[bis] === " ") bis += 1;
+
+      out += zwischen.slice(gelesen, von);
+      gelesen = bis;
+    }
+    out += zwischen.slice(gelesen);
+  }
+
+  // Was JETZT noch dasteht, ist die nicht-streichbare Hauptsatzform.
+  const verbleibend = findeEvidenzBehauptungen(out).filter((t) => t.form === "aussage");
   return { text: out, entfernt, verbleibend };
 }
