@@ -154,3 +154,86 @@ describe("istEvidenzBehauptung — der Filter für die Bestätigungsliste", () =
     expect(istEvidenzBehauptung("laut Schulstatistik 2024 sind 40 % der Kinder betroffen")).toBe(false);
   });
 });
+
+/**
+ * Komposita — die Lücke, die erst der Lauf `2026-08-21T12-16-38` zeigte.
+ *
+ * Das Modell weicht auf zusammengesetzte Formen aus. `\bForschung\b` fängt davon
+ * nichts, weil vor dem Kompositum keine Wortgrenze steht. Gefunden hat das ein
+ * roher grep gegen die Snapshots, nicht der Detektor selbst — der zählt nur, was
+ * er kennt.
+ */
+describe("Komposita auf -forschung / -studien", () => {
+  it.each([
+    "die Partizipationsforschung zeigt",
+    "die Netzwerkforschung zeigt",
+    "die Implementationsforschung zeigt",
+    "die Schulqualitätsforschung belegt",
+  ])("erkennt «%s» als Belegbehauptung", (fund) => {
+    expect(istEvidenzBehauptung(`weil ${fund}, dass es wirkt`)).toBe(true);
+  });
+
+  it("streicht das Kompositum in der Nebensatzform", () => {
+    // Echter Satz, pv-edge-003-run3.
+    const t =
+      "Die Maßnahmen werden im regulären Schulbetrieb umgesetzt, weil die Implementationsforschung zeigt, dass Innovationen nur in bestehenden Strukturen wirken.";
+    expect(entferneEvidenzFloskeln(t).text).toBe(
+      "Die Maßnahmen werden im regulären Schulbetrieb umgesetzt, weil Innovationen nur in bestehenden Strukturen wirken."
+    );
+  });
+
+  it("die Hauptsatzform des Kompositums geht an den Repair", () => {
+    const t = "Die Partizipationsforschung belegt, dass Mitbestimmung die Motivation erhöht.";
+    expect(findeEvidenzSatzformen(t)).toHaveLength(1);
+  });
+
+  it("🚫 „Forschung“ als normales Wort ist kein Treffer", () => {
+    const t = "Die Schule kooperiert mit der Forschung an der Universität Hannover.";
+    expect(entferneEvidenzFloskeln(t).text).toBe(t);
+    expect(istEvidenzBehauptung(t)).toBe(false);
+  });
+});
+
+/**
+ * Eigener Beleg gegen fremde Forschung — die Grenze, die zählt.
+ *
+ * Beide Sätze standen in pv-004-run3 wenige Zeilen auseinander. Der eine ist das
+ * gemeldete Problem, der andere die stärkste Substanz des Antrags.
+ */
+describe("Eigenbeleg bleibt unangetastet", () => {
+  it("🚫 «Unsere externen Evaluationen zeigen, dass …» ist ein eigener Beleg", () => {
+    const t = "Unsere externen Evaluationen zeigen, dass die Portfolio-Praxis zu messbaren Fortschritten führte.";
+    expect(entferneEvidenzFloskeln(t).text).toBe(t);
+    expect(findeEvidenzSatzformen(t)).toHaveLength(0);
+    expect(istEvidenzBehauptung(t)).toBe(false);
+  });
+
+  it("aber «weil formative Evaluationen zeigen, dass …» ist eine Fremdbehauptung", () => {
+    const t = "Eine Vorher-Nachher-Erhebung wird durchgeführt, weil formative Evaluationen zeigen, dass nur systematische Daten die Entwicklung sichtbar machen.";
+    expect(entferneEvidenzFloskeln(t).text).toBe(
+      "Eine Vorher-Nachher-Erhebung wird durchgeführt, weil nur systematische Daten die Entwicklung sichtbar machen."
+    );
+  });
+
+  it("«empirische Befunde zeigen, dass …» wird erfasst", () => {
+    const t = "Das Projekt ist darauf ausgerichtet, weil empirische Befunde zeigen, dass partizipative Formate die Handlungskompetenz stärken.";
+    expect(entferneEvidenzFloskeln(t).text).toBe(
+      "Das Projekt ist darauf ausgerichtet, weil partizipative Formate die Handlungskompetenz stärken."
+    );
+  });
+
+  it("🚫 «Die bisherige Praxis zeigt, dass …» bleibt — eigene Erfahrung", () => {
+    const t = "Die bisherige Praxis zeigt, dass die Zielgruppe klassisch kaum erreicht wird.";
+    expect(entferneEvidenzFloskeln(t).text).toBe(t);
+  });
+});
+
+it("🔑 «An unserer Schule …, weil die Partizipationsforschung zeigt» — das Possessiv gehört zur Schule, nicht zum Beleg", () => {
+  // Echter Satz, pv-004-run3. Ein Eigenbeleg-Ausschluss, der den ganzen Satz prüft,
+  // lässt diese Fremdbehauptung durch.
+  const t =
+    "An unserer Schule ist Verantwortungsübernahme gelebte Praxis, weil die Partizipationsforschung zeigt, dass Einbindung die Identifikation erhöht.";
+  expect(entferneEvidenzFloskeln(t).text).toBe(
+    "An unserer Schule ist Verantwortungsübernahme gelebte Praxis, weil Einbindung die Identifikation erhöht."
+  );
+});

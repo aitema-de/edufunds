@@ -897,6 +897,14 @@ export async function runPipeline(
       aufgeloest.push(inhalt);
     }
 
+    // Nach dem Aufloesen ERNEUT streichen. Ein Marker zwischen Konjunktion und
+    // Behauptung — "weil [Annahme: die Partizipationsforschung zeigt, dass X]" —
+    // blockiert die Streichung oben, weil zwischen "weil" und der Behauptung
+    // "[Annahme: " steht. Erst ohne Klammern ist der Satz wieder zusammenhaengend.
+    // Gemessen im Lauf 2026-08-21T12-16-38: genau so lagen die letzten 2 Reste.
+    const ev2 = aufgeloest.length > 0 ? entferneEvidenzFloskeln(text) : null;
+    if (ev2) text = ev2.text;
+
     if (ev.entfernt.length > 0 || aufgeloest.length > 0) {
       finalRes = { value: text, usage: finalRes.usage };
       // Text und Bestaetigungsliste muessen zeichengleich bleiben, sonst findet
@@ -920,7 +928,7 @@ export async function runPipeline(
         };
       }
       console.log(
-        `[pipeline] Evidenz-Rhetorik: ${ev.entfernt.length} Beleg-Behauptung(en) ohne Quelle entschaerft` +
+        `[pipeline] Evidenz-Rhetorik: ${ev.entfernt.length + (ev2?.entfernt.length ?? 0)} Beleg-Behauptung(en) ohne Quelle entschaerft` +
           (aufgeloest.length > 0 ? `, ${aufgeloest.length} Annahme-Marker aufgeloest` : "") +
           (ev.verbleibend.length > 0 ? `, ${ev.verbleibend.length} Satzform(en) bleiben stehen` : "")
       );

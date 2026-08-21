@@ -41,6 +41,18 @@
  * ⚠️ Die Kennzahl schwankt stark: 14 → 5 → 15 ueber drei Laeufe bei unveraendertem
  * Verhalten. Wer hier einen Prompt-Effekt messen will, misst Rauschen.
  *
+ * 🔑 KOMPOSITA (Nachtrag nach dem Lauf `2026-08-21T12-16-38`): Das Modell weicht auf
+ * „die Partizipationsforschung zeigt, dass …" aus — „Netzwerkforschung",
+ * „Implementationsforschung", „Schulqualitaetsforschung". `\bForschung\b` faengt
+ * davon nichts, weil vor dem Kompositum keine Wortgrenze steht. Die Wortliste ist
+ * deshalb auf `[A-Za-zÄÖÜäöüß]*forschung` / `*studien` geoeffnet.
+ *
+ * ⚠️ Gefunden wurde die Luecke NICHT vom Detektor, sondern von einem rohen grep auf
+ * „nachweislich|Studien zeigen|Forschung zeigt" gegen die Snapshots. Wer die Wirkung
+ * eines Detektors mit demselben Detektor misst, bekommt zuverlaessig eine Null:
+ * Was er nicht kennt, zaehlt er auch in der Messung nicht.
+ * → [[gotcha-eval-misst-still-leere-artefakte]]
+ *
  * 🚫 Ein `[Annahme: …]`-Marker heilt eine Forschungsbehauptung NICHT: Der Nutzer
  * kann einen Forschungsstand nicht aus eigenem Wissen bestätigen. Deshalb wird
  * hier entschärft und nicht markiert — dieselbe Logik wie bei
@@ -94,14 +106,14 @@ const ADVERB_RE =
  * Die Konjunktion wird in Gruppe 1 festgehalten und bleibt stehen.
  */
 const EINLEITUNG_RE =
-  /\b(weil|da|zumal|denn|obwohl)\s+(?:(?:aktuelle|neuere|empirische|zahlreiche|verschiedene|internationale|p(?:ä|ae)dagogische|wissenschaftliche|viele|mehrere)\s+)?(?:Studien|Untersuchungen|Forschungsergebnisse|Forschung|Metaanalysen|Evaluationen)\s+(?:zeigen|zeigt|belegen|belegt|weisen\s+darauf\s+hin|legen\s+nahe|nahelegen)\s*,\s*dass\s+/gi;
+  /\b(weil|da|zumal|denn|obwohl)\s+(?:[A-Za-zÄÖÜäöüß]+e\s+)?(?:[A-Za-zÄÖÜäöüß]*forschung|[A-Za-zÄÖÜäöüß]*studien|Untersuchungen|Forschungsergebnisse|Metaanalysen|Evaluationen|Befunde|Erhebungen)\s+(?:zeigen|zeigt|belegen|belegt|weisen\s+darauf\s+hin|legen\s+nahe|nahelegen)\s*,\s*dass\s+/gi;
 
 /**
  * Satzformen, die eine Quelle behaupten. Zum ZÄHLEN — bewusst weit gefasst, damit
  * die Kennzahl mit den Läufen vor dem 21.08.2026 vergleichbar bleibt.
  */
 const AUSSAGE_RE =
-  /\b(?:Studien|Untersuchungen|Forschung(?:sergebnisse)?|die\s+Forschung)\s+(?:zeigen|belegen|weisen|belegt|zeigt)\b|\bwissenschaftlich\s+(?:erwiesen|belegt|fundiert)\b|\bempirisch\s+(?:belegt|erwiesen)\b|\bes\s+ist\s+(?:wissenschaftlich\s+)?belegt\b/gi;
+  /\b(?:[A-Za-zÄÖÜäöüß]*forschung|[A-Za-zÄÖÜäöüß]*studien|Untersuchungen|Forschungsergebnisse|Metaanalysen|Evaluationen|Befunde|Erhebungen)\s+(?:zeigen|belegen|weisen|belegt|zeigt)\b|\bwissenschaftlich\s+(?:erwiesen|belegt|fundiert)\b|\bempirisch\s+(?:belegt|erwiesen)\b|\bes\s+ist\s+(?:wissenschaftlich\s+)?belegt\b/gi;
 
 /**
  * Dieselben Satzformen, aber nur mit folgendem „, dass"-Satz — die Teilmenge, bei
@@ -115,12 +127,31 @@ const AUSSAGE_RE =
  * verschlechtern. Zum Zählen ist die Unschärfe egal, zum Anfassen nicht.
  */
 const AUSSAGE_DASS_RE =
-  /\b(?:(?:aktuelle|neuere|empirische|zahlreiche|verschiedene|internationale|p(?:ä|ae)dagogische|wissenschaftliche|viele|mehrere)\s+)?(?:Studien|Untersuchungen|Forschungsergebnisse|Forschung|Metaanalysen)\s+(?:zeigen|zeigt|belegen|belegt|weisen\s+darauf\s+hin)\s*,\s*dass\b|\b(?:wissenschaftlich|empirisch)\s+(?:erwiesen|belegt)\s+\w*\s*,?\s*dass\b|\bes\s+ist\s+(?:wissenschaftlich\s+)?belegt\s*,\s*dass\b/gi;
+  /\b(?:[A-Za-zÄÖÜäöüß]+e\s+)?(?:[A-Za-zÄÖÜäöüß]*forschung|[A-Za-zÄÖÜäöüß]*studien|Untersuchungen|Forschungsergebnisse|Metaanalysen|Evaluationen|Befunde|Erhebungen)\s+(?:zeigen|zeigt|belegen|belegt|weisen\s+darauf\s+hin)\s*,\s*dass\b|\b(?:wissenschaftlich|empirisch)\s+(?:erwiesen|belegt)\s+\w*\s*,?\s*dass\b|\bes\s+ist\s+(?:wissenschaftlich\s+)?belegt\s*,\s*dass\b/gi;
 
 /**
  * Zeichen dafür, dass der Satz seine Quelle NENNT. Dann ist die Behauptung
  * belegt und bleibt unangetastet — auch „nachweislich".
  */
+/**
+ * EIGENER Beleg — der Antragsteller verweist auf seine eigene Erfahrung, nicht auf
+ * fremde Forschung: „Unsere externen Evaluationen zeigen, dass …", „Die bisherige
+ * Praxis zeigt, dass …".
+ *
+ * 🔑 Das ist das Gegenteil des gemeldeten Problems. Die Testerin störte sich an
+ * Behauptungen, deren Herkunft die Leserin nicht kennt. Eine eigene Evaluation ist
+ * die belegteste Aussage im ganzen Antrag — sie zu streichen würde dem Antrag seine
+ * stärkste Substanz nehmen. Gefunden an pv-004-run3: dort stand „Unsere externen
+ * Evaluationen zeigen, dass …" einen Halbsatz neben einer echten Fremdbehauptung.
+ *
+ * ⚠️ Das Possessivpronomen muss DIREKT am Beleg-Substantiv haengen, nicht bloss
+ * irgendwo im Satz stehen. Erste Fassung prüfte den ganzen Satz und liess damit
+ * „An UNSERER Schule ist … gelebte Praxis, weil die Partizipationsforschung zeigt,
+ * dass …" als Eigenbeleg durch — die Fremdbehauptung waere stehen geblieben.
+ */
+const EIGENBELEG_RE =
+  /\b(?:unsere|eigene|meine|bisherige|hiesige|schulinterne|unserer)[nrms]?\s+(?:[A-Za-zÄÖÜäöüß]+e[nrms]?\s+)?(?:[A-Za-zÄÖÜäöüß]*forschung|[A-Za-zÄÖÜäöüß]*studien|Untersuchungen|Forschungsergebnisse|Metaanalysen|Evaluationen|Befunde|Erhebungen)\b/i;
+
 const QUELLENANGABE_RE =
   /\b(laut|gem(?:ä|ae)(?:ß|ss)|zufolge|nach\s+Angaben|nach\s+der\s+Studie|Quelle\s*:|vgl\.|siehe)\b|\(\s*(?:[A-ZÄÖÜ][a-zäöüß]+\s+)?(?:19|20)\d{2}\s*\)|https?:\/\//i;
 
@@ -162,7 +193,7 @@ export function findeEvidenzBehauptungen(text: string): EvidenzTreffer[] {
     let m: RegExpExecArray | null;
     while ((m = frisch.exec(text)) !== null) {
       const zitat = satzUm(text, m.index);
-      if (QUELLENANGABE_RE.test(zitat)) continue; // belegt — bleibt stehen
+      if (QUELLENANGABE_RE.test(zitat) || EIGENBELEG_RE.test(zitat)) continue; // belegt — bleibt stehen
       // Eine Einleitung matcht auch AUSSAGE_RE. Nur einmal zählen, als "einleitung".
       if (form === "aussage" && spannen.some(([s, e]) => m!.index >= s && m!.index < e)) continue;
       out.push({ form, fund: m[0].trim(), zitat });
@@ -184,7 +215,7 @@ export function findeEvidenzSatzformen(text: string): EvidenzTreffer[] {
   let m: RegExpExecArray | null;
   while ((m = frisch.exec(text)) !== null) {
     const zitat = satzUm(text, m.index);
-    if (QUELLENANGABE_RE.test(zitat)) continue;
+    if (QUELLENANGABE_RE.test(zitat) || EIGENBELEG_RE.test(zitat)) continue;
     // Streichbare Einleitungen erledigt entferneEvidenzFloskeln selbst.
     if (spannen.some(([s, e]) => m!.index >= s && m!.index < e)) continue;
     out.push({ form: "aussage", fund: m[0].trim(), zitat });
@@ -202,7 +233,7 @@ export function findeEvidenzSatzformen(text: string): EvidenzTreffer[] {
  */
 export function istEvidenzBehauptung(zitat: string): boolean {
   if (!zitat?.trim()) return false;
-  if (QUELLENANGABE_RE.test(zitat)) return false;
+  if (QUELLENANGABE_RE.test(zitat) || EIGENBELEG_RE.test(zitat)) return false;
   for (const re of [EINLEITUNG_RE, AUSSAGE_DASS_RE, AUSSAGE_RE]) {
     if (new RegExp(re.source, re.flags).test(zitat)) return true;
   }
@@ -240,7 +271,7 @@ export function entferneEvidenzFloskeln(text: string): EvidenzBereinigung {
     let m: RegExpExecArray | null;
     while ((m = frisch.exec(text)) !== null) {
       const zitat = satzUm(text, m.index);
-      if (QUELLENANGABE_RE.test(zitat)) continue; // belegt — stehen lassen
+      if (QUELLENANGABE_RE.test(zitat) || EIGENBELEG_RE.test(zitat)) continue; // belegt — stehen lassen
       entfernt.push({ form: "einleitung", fund: m[0].trim(), zitat });
       zwischen += text.slice(gelesen, m.index) + `${m[1]} `;
       gelesen = m.index + m[0].length;
@@ -256,7 +287,7 @@ export function entferneEvidenzFloskeln(text: string): EvidenzBereinigung {
     let m: RegExpExecArray | null;
     while ((m = frisch.exec(zwischen)) !== null) {
       const zitat = satzUm(zwischen, m.index);
-      if (QUELLENANGABE_RE.test(zitat)) continue; // belegt — stehen lassen
+      if (QUELLENANGABE_RE.test(zitat) || EIGENBELEG_RE.test(zitat)) continue; // belegt — stehen lassen
       entfernt.push({ form: "adverb", fund: m[0].trim(), zitat });
 
       // Das Wort samt GENAU EINEM angrenzenden Leerzeichen herausnehmen, bevorzugt
