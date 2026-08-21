@@ -203,7 +203,8 @@ export interface GenerationArtefacts {
   /**
    * Fakt-Verifikations-Pass (dreistufig, Produktvision 2026-06-10): prueft
    * konkrete Behauptungen gegen die Nutzer-Ground-Truth. `neutralisiert` =
-   * Widersprueche/falsche Tatsachen, die entschaerft wurden; `vorschlaege` =
+   * Widersprueche/falsche Tatsachen, die im Ergebnis tatsaechlich nicht mehr
+   * vorkommen (disjunkt zu `remaining`); `vorschlaege` =
    * sinnvolle Ausgestaltungen, die im Text BLEIBEN und dem Nutzer zur Bestaetigung
    * vorgelegt werden; `remaining` = nach dem Repair noch vorhandene
    * Neutralisierungs-Zitate; `repaired` = ob der Repair uebernommen wurde. Nur

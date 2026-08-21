@@ -65,9 +65,201 @@ export function lesProzentsatz(bezeichnung: string): number | null {
   return Number.isFinite(wert) && wert > 0 && wert < 100 ? wert : null;
 }
 
-/** Summe aller Posten, die NICHT der übergebene Posten sind (= Bemessungsgrundlage). */
-function summeOhne(posten: Finanzposten[], id: string): number {
-  return posten.filter((p) => p.id !== id).reduce((s, p) => s + p.betragEur, 0);
+/**
+ * Worauf bezieht sich der Prozentsatz — und ist er überhaupt einer?
+ *
+ * Die Frage entscheidet über die richtige Zahl, nicht über eine Nuance:
+ *  - "7 % der anerkannten Ausgaben"  → alle ÜBRIGEN Posten (Aufschlag).
+ *  - "20 % der Gesamtkosten"         → Die Grundlage schliesst den Posten
+ *    SELBST ein. Dann ist er nicht 20 % der übrigen, sondern
+ *    übrige × 20/(100−20) = übrige × 0,25.
+ *  - "7 % der Personalkosten"        → nur die Posten dieser Kategorie.
+ *
+ * 🚫 UND: Nicht jede Prozentzahl in einer Bezeichnung ist eine
+ * Bemessungsgrundlage. Die Probe auf den 75 Baseline-Anträgen (20.08.2026) hat
+ * zwei Fälle gefunden, in denen die naive Lesart einen RICHTIGEN Betrag
+ * zerstört hätte:
+ *   - "Teilzeit-Klimaschutzbeauftragte (50%)" — das ist ein STELLENANTEIL.
+ *     Die naive Rechnung hätte 12.000 EUR auf 3.000 EUR gekürzt.
+ *   - "Projektmanagement (20 % der Pauschale)" — Bezug ist "die Pauschale",
+ *     eine Grösse, die der Code nicht kennt. Die naive Rechnung hätte
+ *     80.000 EUR auf 64.000 EUR gekürzt.
+ * Solange das nur eine Warnung war, kostete der Fehlalarm Vertrauen; seit die
+ * Pipeline still korrigiert (korrigiereProzentPosten), kostet er Geld im
+ * Antrag. Deshalb gilt:
+ *   - Ist eine Bezugsgrösse GENANNT, muss sie erkannt sein — sonst null.
+ *   - Ist KEINE genannt ("Verwaltungspauschale (7 %)"), wird die übliche
+ *     Aufschlag-Lesart nur bei einem Pauschalen-/Overhead-Posten unterstellt.
+ * Im Zweifel schweigt die Prüfung: Ein übersehener Rechenfehler ist ein
+ * Hinweis weniger — ein falsch "korrigierter" Betrag ist ein falscher Antrag.
+ */
+export type ProzentBezugsArt = "uebrige" | "gesamt" | "kategorie";
+
+export interface ProzentBezug {
+  satz: number;
+  art: ProzentBezugsArt;
+  kategorie?: Finanzposten["kategorie"];
+  /** Menschenlesbare Bezeichnung der Grundlage, für Meldungen. */
+  label: string;
+}
+
+const KATEGORIE_STICHWORT: Array<[RegExp, Finanzposten["kategorie"], string]> = [
+  [/personal(kosten|ausgaben)\b/i, "personal", "die Personalkosten"],
+  [/honorar(e|kosten|ausgaben)\b/i, "honorare", "die Honorare"],
+  [/sach(kosten|mittel|ausgaben)\b/i, "sachkosten", "die Sachkosten"],
+  [/investitions(kosten|ausgaben)\b|\binvestitionen\b/i, "investitionen", "die Investitionen"],
+  [/(reise|fahrt)kosten\b/i, "reisekosten", "die Reisekosten"],
+];
+
+/** Bezugsgrössen, die den Posten selbst einschliessen. */
+const GESAMT_RE =
+  /gesamt(kosten|volumen|summe|ausgaben|budget)|projekt(kosten|volumen|budget)|f(ö|oe)rder(summe|h(ö|oe)he|volumen)|zuwendung/i;
+
+/** Bezugsgrössen, auf die aufgeschlagen wird (Posten selbst NICHT enthalten). */
+const AUSGABEN_RE =
+  /(anerkannte|zuwendungsf(ä|ae)hige|f(ö|oe)rderf(ä|ae)hige|direkte|(ü|ue)brige)n?\s+(ausgaben|kosten)|^[\s.,;:)-]*(der|des)?\s*(ausgaben|kosten)\b/i;
+
+/** Posten, bei denen eine nackte Prozentangabe üblicherweise ein Aufschlag ist. */
+const PAUSCHALEN_POSTEN_RE =
+  /pauschale|overhead|gemeinkosten|verwaltungskosten|verwaltungsaufwand|verwaltungsgemeinkosten/i;
+
+export function lesProzentBezug(
+  bezeichnung: string,
+  kategorie?: Finanzposten["kategorie"]
+): ProzentBezug | null {
+  const satz = lesProzentsatz(bezeichnung);
+  if (satz === null) return null;
+
+  const treffer = bezeichnung.match(/\d{1,2}(?:[.,]\d{1,2})?\s*%/);
+  const nachDemSatz = treffer ? bezeichnung.slice((treffer.index ?? 0) + treffer[0].length) : "";
+
+  for (const [re, kat, label] of KATEGORIE_STICHWORT) {
+    if (re.test(nachDemSatz)) return { satz, art: "kategorie", kategorie: kat, label };
+  }
+  if (GESAMT_RE.test(nachDemSatz)) return { satz, art: "gesamt", label: "die Gesamtkosten" };
+  if (AUSGABEN_RE.test(nachDemSatz)) return { satz, art: "uebrige", label: "alle übrigen Posten" };
+
+  // Steht nach dem Prozentzeichen noch ein Wort, ist eine Bezugsgrösse genannt,
+  // die wir nicht kennen ("20 % der Pauschale") → nicht prüfbar.
+  if (/[A-Za-zÄÖÜäöüß]{3,}/.test(nachDemSatz)) return null;
+
+  // Gar kein Bezug genannt: Die Aufschlag-Lesart gilt nur, wenn der Posten sie
+  // trägt — sonst ist die Zahl womöglich ein Stellenanteil.
+  const istPauschale = kategorie === "overhead" || PAUSCHALEN_POSTEN_RE.test(bezeichnung);
+  if (!istPauschale) return null;
+  return { satz, art: "uebrige", label: "alle übrigen Posten" };
+}
+
+
+export interface ProzentAbweichung {
+  posten: Finanzposten;
+  bezug: ProzentBezug;
+  /** Die Bezugsgrösse in EUR, wie sie im Plan tatsächlich dasteht. */
+  grundlage: number;
+  /** Der rechnerisch richtige Betrag. */
+  soll: number;
+}
+
+/**
+ * Die EINE Stelle, an der Prozent-Posten nachgerechnet werden. Prüfung
+ * (pruefeArithmetik), Pipeline-Korrektur (korrigiereProzentPosten) und der
+ * Autofix-Knopf im Editor lesen alle hier — sonst korrigiert die eine Stelle
+ * etwas, das die andere gleich wieder anmahnt.
+ *
+ * Eigenanteil-Posten bleiben bewusst aussen vor. Ihr Prozentsatz bezieht sich
+ * auf die Richtlinien-Quote, die `validateFinanzplan` und `checkFoerderquote`
+ * ohnehin prüfen — und der Autofix legt Eigenanteil-Posten mit einer
+ * Bezeichnung wie "Eigenanteil Schulträger (Aufstockung auf 20 %)" an, deren
+ * Betrag ein Fehlbetrag ist und gerade NICHT 20 % der übrigen Posten. Ohne
+ * diese Ausnahme meldet die Prüfung den eigenen Autofix als Rechenfehler.
+ */
+export function findeProzentAbweichungen(posten: Finanzposten[]): ProzentAbweichung[] {
+  const out: ProzentAbweichung[] = [];
+  for (const p of posten ?? []) {
+    if (p.eigenanteil) continue;
+    const bezug = lesProzentBezug(p.bezeichnung ?? "", p.kategorie);
+    if (!bezug) continue;
+
+    const andere =
+      bezug.art === "kategorie"
+        ? posten.filter((x) => x.id !== p.id && x.kategorie === bezug.kategorie)
+        : posten.filter((x) => x.id !== p.id);
+    const grundlage = andere.reduce((s, x) => s + x.betragEur, 0);
+    // Grundlage nicht im Plan vorhanden (z. B. "% der Personalkosten" ohne
+    // Personalposten) → nicht prüfbar. Lieber schweigen als raten.
+    if (grundlage <= 0) continue;
+
+    const soll =
+      bezug.art === "gesamt"
+        ? Math.round((grundlage * bezug.satz) / (100 - bezug.satz))
+        : Math.round((grundlage * bezug.satz) / 100);
+    if (Math.abs(p.betragEur - soll) <= RUNDUNGS_TOLERANZ_EUR) continue;
+    out.push({ posten: p, bezug, grundlage, soll });
+  }
+  return out;
+}
+
+/** Höchstzahl der Korrektur-Runden (mehrere Prozent-Posten hängen voneinander ab). */
+const MAX_KORREKTUR_RUNDEN = 5;
+
+export interface ProzentKorrektur {
+  postenId: string;
+  bezeichnung: string;
+  satz: number;
+  grundlage: number;
+  alt: number;
+  neu: number;
+  label: string;
+}
+
+/**
+ * Rechnet Prozent-Posten in der Pipeline still richtig — Paket 4 aus
+ * Tester-Feedback #008.
+ *
+ * Bis 20.08.2026 gab es dafür nur einen Autofix-Knopf im Editor. Der Wunsch
+ * des Testers war ausdrücklich, den Fehler gar nicht erst zu sehen: Die
+ * Bezeichnung nennt den Satz ("7 % der anerkannten Ausgaben"), die übrigen
+ * Posten stehen im selben Plan — der richtige Betrag ist damit vollständig
+ * bestimmt, es gibt nichts zu raten und nichts zu erfinden. Genau das ist der
+ * Unterschied zur Herleitung grosser Posten, wo die fehlende Grösse NUR der
+ * Antragsteller kennt (siehe finanzplan-herleitung.ts).
+ *
+ * Mehrere Prozent-Posten beziehen sich aufeinander; deshalb wird bis zur
+ * Stabilität iteriert. Konvergiert es nicht (Sonderfall zweier sich
+ * gegenseitig aufschaukelnder Sätze), bleibt der letzte Stand stehen und
+ * `pruefeArithmetik` meldet die Restabweichung wie bisher.
+ */
+export function korrigiereProzentPosten(posten: Finanzposten[]): {
+  posten: Finanzposten[];
+  korrekturen: ProzentKorrektur[];
+} {
+  const urspruenglich = new Map((posten ?? []).map((p) => [p.id, p.betragEur]));
+  let aktuell = posten ?? [];
+  const gesehen = new Map<string, ProzentKorrektur>();
+
+  for (let runde = 0; runde < MAX_KORREKTUR_RUNDEN; runde++) {
+    const abweichungen = findeProzentAbweichungen(aktuell);
+    if (abweichungen.length === 0) break;
+    for (const a of abweichungen) {
+      aktuell = aktuell.map((x) => (x.id === a.posten.id ? { ...x, betragEur: a.soll } : x));
+      gesehen.set(a.posten.id, {
+        postenId: a.posten.id,
+        bezeichnung: a.posten.bezeichnung,
+        satz: a.bezug.satz,
+        grundlage: a.grundlage,
+        alt: urspruenglich.get(a.posten.id) ?? a.posten.betragEur,
+        neu: a.soll,
+        label: a.bezug.label,
+      });
+    }
+  }
+
+  // Korrekturen, die sich über die Runden zur Nulländerung aufgehoben haben,
+  // sind keine — sonst behauptet der Hinweis eine Änderung, die nicht stattfand.
+  const korrekturen = [...gesehen.values()]
+    .map((k) => ({ ...k, neu: aktuell.find((p) => p.id === k.postenId)?.betragEur ?? k.neu }))
+    .filter((k) => k.alt !== k.neu);
+  return { posten: aktuell, korrekturen };
 }
 
 /**
@@ -100,26 +292,22 @@ export function pruefeArithmetik(
   // -------------------------------------------------------------------------
   // 1. Prozent-Posten nachrechnen (Verwaltungspauschale & Co.)
   // -------------------------------------------------------------------------
-  for (const p of posten) {
-    const satz = lesProzentsatz(p.bezeichnung ?? "");
-    if (satz === null) continue;
-
-    const grundlage = summeOhne(posten, p.id);
-    const soll = Math.round((grundlage * satz) / 100);
-    const abweichung = Math.abs(p.betragEur - soll);
-    if (abweichung <= RUNDUNGS_TOLERANZ_EUR) continue;
-
+  for (const a of findeProzentAbweichungen(posten)) {
+    const { posten: p, bezug, grundlage, soll } = a;
     // Was WÄRE die Bezugsgröße, die den angesetzten Betrag erklärt? Diese Zahl
     // macht den Fehler nachvollziehbar, statt nur "stimmt nicht" zu sagen.
-    const impliziert = satz > 0 ? Math.round((p.betragEur * 100) / satz) : 0;
+    const impliziert =
+      bezug.art === "gesamt"
+        ? Math.round((p.betragEur * (100 - bezug.satz)) / bezug.satz)
+        : Math.round((p.betragEur * 100) / bezug.satz);
     warnungen.push({
       level: "error",
       message:
-        `Posten "${p.bezeichnung}": ${satz} % von ${grundlage.toLocaleString("de-DE")} EUR ` +
-        `ergibt ${soll.toLocaleString("de-DE")} EUR, angesetzt sind aber ` +
+        `Posten "${p.bezeichnung}": ${bezug.satz} % von ${grundlage.toLocaleString("de-DE")} EUR ` +
+        `(${bezug.label}) ergibt ${soll.toLocaleString("de-DE")} EUR, angesetzt sind aber ` +
         `${p.betragEur.toLocaleString("de-DE")} EUR (Differenz ` +
         `${(p.betragEur - soll).toLocaleString("de-DE")} EUR). ` +
-        `Der angesetzte Betrag entspräche ${satz} % von ${impliziert.toLocaleString("de-DE")} EUR — ` +
+        `Der angesetzte Betrag entspräche ${bezug.satz} % von ${impliziert.toLocaleString("de-DE")} EUR — ` +
         `diese Bezugsgröße kommt im Finanzplan nicht vor.`,
       kategorie: p.kategorie,
       postenId: p.id,

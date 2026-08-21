@@ -4,6 +4,8 @@ import type { ConsistencyIssue, Finanzplan, Finanzposten, WizardFacts } from "./
 import type { Richtlinie } from "./richtlinien-schema";
 import { MODEL_PRO, generateJson } from "./llm";
 import { FINANZPLAN_SYSTEM, buildFinanzplanPrompt } from "./prompts";
+import { korrigiereProzentPosten } from "./finanzplan-arithmetik";
+import { baueHerleitungsHinweis, ergaenzeHerleitungsMarker } from "./finanzplan-herleitung";
 import type { Usage } from "./pricing";
 
 /**
@@ -664,13 +666,40 @@ export async function generateFinanzplan(
   // Posten erscheint, unabhaengig davon, ob das LLM das Flag gesetzt hat.
   const hinweise = value.hinweise?.length ? [...value.hinweise] : [];
   const postenMitEigenanteil = applyStatedEigenanteil(posten, facts, hinweise);
+
+  // Paket 4 (Tester-Feedback #008, 20.08.2026): Prozent-Posten werden jetzt in
+  // der PIPELINE gerechnet, nicht erst auf Knopfdruck im Editor. Der Wunsch des
+  // Testers war ausdrücklich, den Rechenfehler gar nicht erst zu sehen — und
+  // hier ist nichts zu raten: Der Satz steht in der Bezeichnung, die
+  // Bezugsgrösse im selben Plan. Die Änderung wird im Hinweis offengelegt,
+  // damit niemand einen still veränderten Betrag im Plan findet.
+  const { posten: postenGerechnet, korrekturen } = korrigiereProzentPosten(postenMitEigenanteil);
+  for (const k of korrekturen) {
+    hinweise.push(
+      `Der Posten „${k.bezeichnung}" wurde von ${k.alt.toLocaleString("de-DE")} EUR auf ` +
+        `${k.neu.toLocaleString("de-DE")} EUR korrigiert — ${k.satz} % von ` +
+        `${k.grundlage.toLocaleString("de-DE")} EUR (${k.label}). Bitte prüfen, ob die ` +
+        `Bezugsgröße so gemeint war.`
+    );
+  }
+
+  // Paket 4: Herleitungs-Pflicht. Grosse Posten und JEDES Honorar müssen
+  // sichtbar hergeleitet sein — entweder mit einer Rechnung aus Nutzerangaben
+  // (die setzt der Prompt) oder mit einem ehrlichen `[TODO: …]`-Marker (den
+  // setzt diese Stelle). Erfundene Faktoren sind in beiden Fällen verboten;
+  // deshalb markiert die Software die Lücke, statt sie zu füllen.
+  const { posten: postenHergeleitet, befunde: herleitungsBefunde } =
+    ergaenzeHerleitungsMarker(postenGerechnet);
+  const herleitungsHinweis = baueHerleitungsHinweis(herleitungsBefunde);
+  if (herleitungsHinweis) hinweise.push(herleitungsHinweis);
+
   // QA-02: Posten mit eingestandenermaßen geschätztem Betrag warnend markieren.
-  flagEstimatedAmounts(postenMitEigenanteil, hinweise);
+  flagEstimatedAmounts(postenHergeleitet, hinweise);
 
   // Vorschlags-Markierung: nicht am Nutzerinput verankerte Beträge als
   // bestätigbare Vorschläge kennzeichnen (statt löschen). Die UI zeigt sie als
   // "Vorschlag — bestätigen/anpassen".
-  const postenMarkiert = markVorschlaege(postenMitEigenanteil, hasBasis);
+  const postenMarkiert = markVorschlaege(postenHergeleitet, hasBasis);
 
   // Prominenter Sammelhinweis, sobald Vorschläge enthalten sind — macht
   // transparent, welche Beträge der Nutzer noch bestätigen sollte.

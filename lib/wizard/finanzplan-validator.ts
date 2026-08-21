@@ -1,6 +1,7 @@
 import type { Finanzplan, Finanzposten } from "./types";
 import type { Richtlinie, Kostenposition } from "./richtlinien-schema";
 import { pruefeArithmetik } from "./finanzplan-arithmetik";
+import { HERLEITUNGS_SCHWELLE_EUR, pruefeHerleitung } from "./finanzplan-herleitung";
 
 export type WarnungsLevel = "error" | "warning" | "info";
 
@@ -151,6 +152,32 @@ export function validateFinanzplan(
   // Förderfähigkeit. Bewusst NACH den Richtlinien-Regeln, damit die Reihenfolge
   // der Meldungen stabil bleibt.
   warnungen.push(...pruefeArithmetik(plan, richtlinie, antragstext));
+
+  // Herleitungs-Pflicht (Paket 4, Feedback #008): Bei der Generierung setzt die
+  // Pipeline für jeden unbelegten grossen Posten einen `[TODO: …]`-Marker, hier
+  // ist also normalerweise nichts zu melden. Die Prüfung greift, wenn der
+  // Nutzer im Editor Beträge erhöht oder eine Begründung samt Marker
+  // überschreibt — dann steht wieder eine nackte Zahl im Plan.
+  //
+  // Bewusst `warning`, nie `error`: Es ist der Antragsteller, der entscheidet,
+  // ob er den Posten so einreicht. Ein `error` würde die Freigabe sperren,
+  // obwohl der Plan rechnerisch stimmt (die Sackgassen-Regel aus
+  // finanzplan-arithmetik.ts).
+  for (const b of pruefeHerleitung(plan.posten ?? [])) {
+    warnungen.push({
+      level: "warning",
+      message:
+        b.grund === "honorar-ohne-zeitgeruest"
+          ? `Honorar „${b.bezeichnung}" (${b.betragEur.toLocaleString("de-DE")} EUR) ist nicht über ` +
+            `Stundenzahl × Stundensatz aufgeschlüsselt. Fördergeber fragen genau danach — ` +
+            `Umfang und Satz ergänzen oder als offenen Punkt markieren.`
+          : `Der Posten „${b.bezeichnung}" (${b.betragEur.toLocaleString("de-DE")} EUR) liegt über ` +
+            `${HERLEITUNGS_SCHWELLE_EUR.toLocaleString("de-DE")} EUR, ohne dass die Begründung zeigt, ` +
+            `wie der Betrag zustande kommt (Menge × Einzelpreis).`,
+      kategorie: plan.posten.find((p) => p.id === b.postenId)?.kategorie,
+      postenId: b.postenId,
+    });
+  }
 
   const okFuerFreigabe = !warnungen.some((w) => w.level === "error") && gesamt > 0;
 

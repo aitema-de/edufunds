@@ -243,7 +243,16 @@ export interface FactVerificationDeps {
 export interface FactVerificationResult {
   /** Bereinigter (oder unveraenderter) Antragstext. */
   finalText: string;
-  /** Neutralisierte Widersprueche/falsche Tatsachen (Zitate, vor dem Repair). */
+  /**
+   * Zitate, die im Ergebnis TATSAECHLICH nicht mehr vorkommen.
+   *
+   * Feedback #008 (19.08.2026): Bis zum 20.08. stand hier die Liste der zur
+   * Neutralisierung VORGESEHENEN Zitate — unabhaengig davon, ob der Repair
+   * uebernommen wurde. Bei `repaired: false` standen dieselben Saetze deshalb
+   * gleichzeitig unter `neutralisiert` und unter `remaining`, was sich
+   * widerspricht: entschaerft UND noch da. Jetzt gilt
+   * `neutralisiert` ∩ `remaining` = ∅ per Konstruktion.
+   */
   neutralisiert: string[];
   /** Sinnvolle Ausgestaltungen, die im Text BLEIBEN — dem Nutzer zur Bestaetigung vorgelegt. */
   vorschlaege: string[];
@@ -370,7 +379,8 @@ export async function verifyFacts(
 
   return {
     finalText: result,
-    neutralisiert: zuNeutralisieren.map((c) => c.zitat),
+    // Nur, was wirklich verschwunden ist — nicht, was verschwinden sollte.
+    neutralisiert: zuNeutralisieren.filter((c) => !quotePresent(result, c.zitat)).map((c) => c.zitat),
     vorschlaege: vorschlagClaimsImText.map((c) => c.zitat),
     vorschlaegeBegruendung: vorschlagClaimsImText.map((c) => ({ zitat: c.zitat, warum: c.warum })),
     remaining: zuNeutralisieren.filter((c) => quotePresent(result, c.zitat)).map((c) => c.zitat),

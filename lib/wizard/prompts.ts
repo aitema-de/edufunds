@@ -928,6 +928,15 @@ Ein Gutachter bewertet nicht nur, OB Posten dastehen, sondern ob sie sichtbar au
 - Ist keine Menge ableitbar und keine Grundlage belegt: ehrliche Pauschale mit "Grundlage noch einzuholen" (wie bisher).
 - **Erfundene Personal-/Partner-Posten, die der User-Aussage widersprechen** — sagte der User z. B. "macht eine Kollegin nebenher / nicht offiziell", darf daraus KEIN bezahlter Personalposten werden. Sagte er "erstmal nur die Lehrkräfte", keine externe Honorarkraft erfinden.
 
+## Herleitungs-Pflicht ab 2.000 EUR und für JEDES Honorar (HART)
+Ein Gutachter greift zuerst die großen Posten an. Deshalb zusätzlich zum Herleitungs-Gebot:
+- **Jeder Posten ab 2.000 EUR** und **jeder Honorar-Posten, unabhängig vom Betrag**, braucht in der \`begründung\` eine von GENAU ZWEI Formen:
+  1. **Rechnung aus belegten Angaben:** Menge × Einzelbetrag, die zu \`betragEur\` aufgeht, jede Zahl belegt oder einzeln als Annahme gekennzeichnet — z. B. "2 Fachkräfte × 60 Std. × 150 EUR/Std. (Sätze vom Träger genannt) = 18.000 EUR".
+  2. **Sichtbarer Lücken-Marker**, wenn ein Faktor fehlt — z. B. "Honorar für die Projektwoche mit externen Fachkräften. [TODO: Stundenzahl und Stundensatz vor Einreichung belegen]". Der Marker gehört ans Ende der Begründung und nennt genau die fehlende Größe.
+- **Honorare IMMER über Zeit × Satz** (Stunden, Tage, Termine, Workshops) — auch bei kleinen Beträgen und auch dann, wenn der User eine Pauschale nannte. Ein Honorar ohne Zeitgerüst ist die erste Stelle, an der der Geber nachfragt. Fehlt eine der beiden Größen: Form 2.
+- **Eine dritte Form gibt es nicht.** Eine nackte Zahl mit allgemeiner Begründung ("Kosten für externe Fachkräfte", "Ausstattung für das Projekt") ist bei diesen Posten unzulässig.
+- **Erfinde NIEMALS einen Faktor, nur um Form 1 zu erreichen.** Ein erfundener Stundensatz ist schlimmer als ein offener \`[TODO: …]\`, weil er belegt aussieht und niemand ihn mehr nachfragt. Im Zweifel immer Form 2.
+
 ## Schätz-Ehrlichkeit (HART — wichtigster Punkt bei vagem Input)
 Ein Finanzplan MUSS Beträge enthalten — aber er darf erfundene Beträge nicht als belegte Kalkulation tarnen.
 - Hat der User für einen Posten KEINEN Betrag/Preis/keine Menge genannt, ist der Betrag eine **Schätzung**. Beginne die \`begründung\` solcher Posten dann mit dem Wort **"Schätzung:"** (z. B. "Schätzung: Klassensatz Tablets, üblicher Gerätepreis, Stückzahl noch festzulegen").
@@ -1004,7 +1013,7 @@ ${rlBlock}
 PROJEKTFAKTEN:
 ${JSON.stringify(facts, null, 2)}${userAnswersBlock}${buildAusschlussBlock(facts)}
 
-Erstelle den Finanzplan. Erfinde keine Tarif-Stufen, Honorarsätze oder Marken-/Modellnamen, die nicht im User-Input belegt sind. Leite Mengen sichtbar aus den belegten Fakten ab (Herleitungs-Gebot) und kennzeichne jede Annahme; wo keine Ableitung möglich ist, ehrliche Pauschale statt erfundener Splittung.`;
+Erstelle den Finanzplan. Erfinde keine Tarif-Stufen, Honorarsätze oder Marken-/Modellnamen, die nicht im User-Input belegt sind. Leite Mengen sichtbar aus den belegten Fakten ab (Herleitungs-Gebot) und kennzeichne jede Annahme; wo keine Ableitung möglich ist, ehrliche Pauschale statt erfundener Splittung. Jeder Posten ab 2.000 EUR und JEDES Honorar braucht entweder eine aufgehende Rechnung oder einen \`[TODO: …]\`-Marker mit der fehlenden Größe — nie eine nackte Zahl, nie einen erfundenen Faktor.`;
 }
 
 // ============================================================================
@@ -1120,6 +1129,7 @@ export const CONSISTENCY_SYSTEM = `Du prüfst, ob der Antragstext und der Finanz
 - Synonym-Unterschiede ("iPads" vs. "Tablets", "Referent" vs. "Trainer").
 - Der Antrag summiert zusammen, Finanzplan splittet auf (oder umgekehrt) — solange Summen passen.
 - Der Finanzplan nennt übliche Nebenposten (z. B. Overhead), die der Text nicht explizit auflistet.
+- Ein \`[TODO: …]\`-Marker in einer Finanzplan-Begründung: Er kennzeichnet eine bewusst offene Angabe (z. B. einen noch zu belegenden Stundensatz) und ist kein Widerspruch.
 
 ## Ausgabe
 AUSSCHLIESSLICH valides JSON, keine Markdown-Fences:

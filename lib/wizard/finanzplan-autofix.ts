@@ -13,7 +13,7 @@
 
 import type { Finanzposten } from "./types";
 import type { Richtlinie } from "./richtlinien-schema";
-import { lesProzentsatz } from "./finanzplan-arithmetik";
+import { findeProzentAbweichungen } from "./finanzplan-arithmetik";
 
 /** Serialisierbare Variante einer AutofixAction (ohne apply-Funktion). */
 export interface AutofixMeta {
@@ -189,16 +189,18 @@ export function computeAutofixes({ posten, richtlinie }: AutofixContext): Autofi
   // Bewusst als Autofix und nicht nur als Fehlermeldung: Die Fehlerwarnung
   // sperrt die Freigabe (okFuerFreigabe), und ohne eine Korrektur mit einem Klick
   // muesste der Nutzer den Rechenfehler der KI von Hand ausbuegeln.
-  for (const p of posten) {
-    const satz = lesProzentsatz(p.bezeichnung ?? "");
-    if (satz === null) continue;
-    const grundlage = posten.filter((x) => x.id !== p.id).reduce((s, x) => s + x.betragEur, 0);
-    const soll = Math.round((grundlage * satz) / 100);
-    if (Math.abs(p.betragEur - soll) <= 1) continue;
+  //
+  // Seit 20.08.2026 rechnet die Pipeline Prozent-Posten schon bei der
+  // Generierung richtig (korrigiereProzentPosten). Der Knopf bleibt trotzdem:
+  // Er greift, wenn der Nutzer im Editor Beträge ändert und die Pauschale
+  // dadurch wieder schief steht. Beide lesen dieselbe Erkennung, damit der
+  // Knopf nichts "korrigiert", was die Prüfung anschliessend anmahnt.
+  for (const a of findeProzentAbweichungen(posten)) {
+    const { posten: p, bezug, grundlage, soll } = a;
     actions.push({
       id: `korrigiere-prozent-posten-${p.id}`,
       label: `"${p.bezeichnung}" auf ${fmtEur(soll)} korrigieren`,
-      description: `${satz} % von ${fmtEur(grundlage)} ergibt ${fmtEur(soll)}, im Plan stehen ${fmtEur(p.betragEur)}. Aktion setzt den Betrag auf den rechnerisch richtigen Wert.`,
+      description: `${bezug.satz} % von ${fmtEur(grundlage)} (${bezug.label}) ergibt ${fmtEur(soll)}, im Plan stehen ${fmtEur(p.betragEur)}. Aktion setzt den Betrag auf den rechnerisch richtigen Wert.`,
       apply: (list) => list.map((it) => (it.id === p.id ? { ...it, betragEur: soll } : it)),
     });
   }
