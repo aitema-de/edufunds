@@ -47,9 +47,9 @@ import {
   FINANZPLAN_BEREINIGT_HINWEIS,
 } from "./verbots-gate";
 import { bestimmeAntragsart } from "./antragsart";
-import { extractAnnahmen, wrapAnnahmen } from "./annahme-marker";
+import { extractAnnahmen, resolveAnnahme, wrapAnnahmen } from "./annahme-marker";
 import { ergaenzeHerleitungsMarker } from "./finanzplan-herleitung";
-import { entferneEvidenzAdverbien } from "./evidenz-rhetorik";
+import { entferneEvidenzFloskeln, istEvidenzBehauptung } from "./evidenz-rhetorik";
 import type { Usage } from "./pricing";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
 import { generateFinanzplan, buildBeantragtConsistencyIssue } from "./finanzplan-generator";
@@ -823,10 +823,16 @@ export async function runPipeline(
   // Umformulierungen die deterministische Verankerung nicht zerreissen.
   // =========================================================================
   {
+    // 🚫 Forschungsbehauptungen werden NICHT eingehuellt. Ein [Annahme: …]-Marker
+    // legt dem Nutzer etwas zum Bestaetigen vor; einen Forschungsstand kann er
+    // aus eigenem Wissen nicht bestaetigen. Bis zum 21.08.2026 landeten sie ueber
+    // `remaining` genau dort — gemessen 5 Stueck im Lauf 2026-08-21T07-00-07.
+    // Sie gehen stattdessen an den Repair (fact-verification.ts) und, was der
+    // nicht faengt, an die Streichung unten.
     const fvZitate = [
       ...(factVerification?.vorschlaege ?? []),
       ...(factVerification?.remaining ?? []),
-    ];
+    ].filter((z) => !istEvidenzBehauptung(z));
     const wrapped = wrapAnnahmen(finalRes.value ?? "", fvZitate);
     if (wrapped.marked.length > 0) {
       finalRes = { value: wrapped.text, usage: finalRes.usage };
@@ -876,25 +882,46 @@ export async function runPipeline(
   // brauchen einen neuen Hauptsatz; die bleiben stehen und werden gezaehlt.
   // =========================================================================
   {
-    const ev = entferneEvidenzAdverbien(finalRes.value ?? "");
-    if (ev.entfernt.length > 0) {
-      finalRes = { value: ev.text, usage: finalRes.usage };
+    const ev = entferneEvidenzFloskeln(finalRes.value ?? "");
+    let text = ev.text;
+
+    // Marker, die immer noch eine Belegbehauptung tragen: Marker AUFLOESEN —
+    // Klammern weg, Inhalt bleibt als normaler Text. Das trifft die vom Modell
+    // selbst gesetzten Marker, die weder die Streichung oben noch der Repair
+    // erwischt hat. Ein Marker, der nicht in der Bestaetigungsliste steht, waere
+    // fuer den Nutzer eine Markierung ohne Knopf — sichtbar, aber unbearbeitbar.
+    const aufgeloest: string[] = [];
+    for (const inhalt of extractAnnahmen(text)) {
+      if (!istEvidenzBehauptung(inhalt)) continue;
+      text = resolveAnnahme(text, inhalt, "uebernehmen");
+      aufgeloest.push(inhalt);
+    }
+
+    if (ev.entfernt.length > 0 || aufgeloest.length > 0) {
+      finalRes = { value: text, usage: finalRes.usage };
       // Text und Bestaetigungsliste muessen zeichengleich bleiben, sonst findet
       // die UI das Zitat nicht mehr, das sie uebernehmen oder streichen soll.
+      // Die Liste wird deshalb NEU aus dem Text gebaut — er ist nach Streichung
+      // und Marker-Aufloesung die einzige Wahrheit.
       if (factVerification) {
-        const zieh = (z: string) => entferneEvidenzAdverbien(z).text;
+        const zieh = (z: string) => entferneEvidenzFloskeln(z).text;
+        const beg = new Map(
+          (factVerification.vorschlaegeBegruendung ?? []).map((b) => [zieh(b.zitat), b.warum])
+        );
+        const annahmen = extractAnnahmen(text);
         factVerification = {
           ...factVerification,
-          vorschlaege: factVerification.vorschlaege.map(zieh),
-          vorschlaegeBegruendung: (factVerification.vorschlaegeBegruendung ?? []).map((b) => ({
-            ...b,
-            zitat: zieh(b.zitat),
+          vorschlaege: annahmen,
+          vorschlaegeBegruendung: annahmen.map((z) => ({
+            zitat: z,
+            warum: beg.get(z) ?? "nicht durch Nutzerangaben gedeckt",
           })),
           remaining: factVerification.remaining.map(zieh),
         };
       }
       console.log(
         `[pipeline] Evidenz-Rhetorik: ${ev.entfernt.length} Beleg-Behauptung(en) ohne Quelle entschaerft` +
+          (aufgeloest.length > 0 ? `, ${aufgeloest.length} Annahme-Marker aufgeloest` : "") +
           (ev.verbleibend.length > 0 ? `, ${ev.verbleibend.length} Satzform(en) bleiben stehen` : "")
       );
     } else if (ev.verbleibend.length > 0) {

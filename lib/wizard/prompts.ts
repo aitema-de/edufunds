@@ -1346,6 +1346,7 @@ export const FACT_VERIFICATION_REPAIR_SYSTEM = `Du überarbeitest einen fertigen
   - benannter Partner als gesichert → "ein noch zu gewinnender Kooperationspartner".
   - erfundene Beleg-Quelle ("laut Sprachstandserhebung", "7% gemäß Richtlinie") → die Quelle/den Beleg streichen oder als "noch zu belegen" kennzeichnen.
   - abgeschlossenes Ereignis/Datum → "voraussichtlich / noch festzulegen".
+  - behaupteter Forschungsbeleg ohne Quelle ("Studien zeigen, dass …", "wissenschaftlich erwiesen, dass …") → als eigene Einschätzung umformulieren ("… kann … fördern", "… gilt als …") oder die Belegbehauptung streichen und die Aussage selbst stehen lassen. NIEMALS eine Quelle erfinden, um die Behauptung zu stützen.
 - Eine erfundene Angabe behebt man durch Streichen oder einen ehrlichen Vorbehalt — NIEMALS durch eine andere Erfindung.
 
 ## WICHTIG — was du NICHT anfasst

@@ -3,6 +3,7 @@ import type { WizardFacts } from "./types";
 import type { Usage } from "./pricing";
 import { detectIntroduced } from "./hallucination-gate";
 import { detectVerbote } from "./verbots-gate";
+import { findeEvidenzSatzformen } from "./evidenz-rhetorik";
 import {
   FACT_VERIFICATION_DETECT_SYSTEM,
   FACT_VERIFICATION_REPAIR_SYSTEM,
@@ -229,6 +230,44 @@ export function detectRechtsfolgen(finalText: string, groundTruth: string): Fact
 }
 
 // ---------------------------------------------------------------------------
+// Evidenz-Rhetorik, die deterministisch nicht streichbar ist (Feedback #008)
+// ---------------------------------------------------------------------------
+
+/**
+ * Belegbehauptungen in HAUPTSATZ-Form ("Studien zeigen, dass X") an den Repair
+ * geben.
+ *
+ * Die Adverbien ("nachweislich") und die Nebensatz-Einleitungen ("weil Studien
+ * zeigen, dass X") erledigt evidenz-rhetorik.ts deterministisch am Ende der
+ * Pipeline. Was dort NICHT geht, ist die Hauptsatzform: Sie braucht ein neues
+ * Verb an neuer Stelle. Genau dafuer gibt es diese Stufe — sie schreibt nicht
+ * selbst, sie gibt dem chirurgischen Repair einen praezisen Auftrag.
+ *
+ * 🔑 Warum hier und nicht per Prompt: Paket 5 hat das Verbot in den Prompt
+ * geschrieben, gemessen ueber 75 Antraege ging es zu zwei Dritteln durch. Das ist
+ * derselbe Fall wie in verbots-gate.ts — ein Verbot ohne Nachpruefung.
+ *
+ * ⚠️ Immer "tatsache", nie "vorschlag": Ein `[Annahme: …]`-Marker heilt eine
+ * Forschungsbehauptung nicht, weil der Nutzer einen Forschungsstand nicht aus
+ * eigenem Wissen bestaetigen kann.
+ */
+export function detectEvidenzSatzformen(finalText: string): FactClaim[] {
+  const out: FactClaim[] = [];
+  const seen = new Set<string>();
+  for (const t of findeEvidenzSatzformen(finalText)) {
+    const key = normalizeWs(t.zitat);
+    if (key.length < MIN_ZITAT_LEN || seen.has(key)) continue;
+    seen.add(key);
+    out.push({
+      zitat: t.zitat,
+      art: "tatsache",
+      warum: `Behauptet einen Forschungsbeleg ("${t.fund}"), ohne eine Quelle zu nennen. Als eigene Einschaetzung formulieren (z. B. "… kann … foerdern") oder die Belegbehauptung streichen — KEINE Quelle erfinden.`,
+    });
+  }
+  return out;
+}
+
+// ---------------------------------------------------------------------------
 // Pass (LLM injiziert)
 // ---------------------------------------------------------------------------
 
@@ -344,7 +383,16 @@ export async function verifyFacts(
     belegt.add(key);
     verbote.push({ zitat: v.zitat, art: "tatsache", warum: v.warum });
   }
-  const claims = [...llmClaims, ...rechtsfolgen, ...verbote];
+  // Evidenz-Rhetorik in Hauptsatzform — der dritte deterministische Einspeiser
+  // neben Rechtsfolgen und Verboten. Siehe detectEvidenzSatzformen.
+  const evidenz: FactClaim[] = [];
+  for (const e of detectEvidenzSatzformen(finalText)) {
+    const key = normalizeWs(e.zitat);
+    if (belegt.has(key)) continue;
+    belegt.add(key);
+    evidenz.push(e);
+  }
+  const claims = [...llmClaims, ...rechtsfolgen, ...verbote, ...evidenz];
   const zuNeutralisieren = claims.filter((c) => NEUTRALISIEREN.includes(c.art));
   const vorschlagClaims = claims.filter((c) => c.art === "vorschlag");
   const vorschlaege = vorschlagClaims.map((c) => c.zitat);
