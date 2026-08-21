@@ -7,6 +7,95 @@
 
 # Eval-Pipeline Baseline (Phase 5)
 
+## 2026-08-20 (abends) — Paket 4 + 5 (Feedback #008), und ein Schlüssel-Drift, der die Messung entwertet hat
+
+**Zwei Live-Läufe à N=3 × 25, beide [GATE PASSED].** Dazwischen liegt ein Fund, ohne den
+beide Läufe wertlos gewesen wären.
+
+### 🚫 Zuerst: Der erste Anlauf hat einen kaputten Baum gemessen
+
+Der Umlaut-Sweep vom 18.08. (`1187efe`) hatte die **JSON-Schlüssel** der Ausgabeschemata
+mit umgestellt — `"begruendung"` → `"begründung"`, `"schuelerzahl"` → `"schülerzahl"`,
+`"aktivitaeten"` → `"aktivitäten"`, Enum `"belegluecke"` → `"beleglücke"`. Die Parser lasen
+ASCII weiter. Nichts hat geworfen.
+
+| | Posten mit Begründung |
+|---|---|
+| Baseline-Korpus (vor dem Sweep) | 386 / 386 |
+| erster Anlauf (nach dem Sweep) | **0 / 237** |
+
+Der Lauf wurde bei 45/75 abgebrochen, der Fehler behoben (PR #135/#136), dann neu gemessen.
+**Merke: Ein Eval, dessen Eingangsartefakte still leer sind, liefert trotzdem plausible
+Zahlen.** Aufgefallen ist es nur, weil eine neue Stufe die leeren Begründungen markierte
+und in 151 von 152 Posten anschlug — eine Quote, die zu hoch war, um Modellverhalten zu sein.
+
+### Paket 4 — Herleitung großer Posten (Lauf `2026-08-20T11-51-31`)
+
+| Achse | mean | stddev | Referenz | Gate |
+|---|---|---|---|---|
+| WIZ-01 Pflichtabschnitte | 100,0 | 0,0 | 100,0 | PASSED |
+| WIZ-02 Halluzination | 98,9 | 2,6 | 98,9 | PASSED (Schwelle 14,69) |
+| WIZ-03 Tonalität | 65,7 | 16,3 | 64,6 | warning-only |
+| WIZ-04 Begründungs-Substanz | 91,6 | 13,4 | 85,6 | PASSED (Schwelle 28,60) |
+| Finanzplan | 83,7 | 27,0 | 83,2 | keine gegatete Achse |
+
+⚠️ Der Lauf enthält Paket 4 **und** den Schlüssel-Fix. Das Plus bei WIZ-04 ist deshalb
+nicht Paket 4 zuzuschreiben.
+
+Inhaltlich, über 273 qualifizierte Posten (ab 2.000 EUR oder Honorar):
+**79 % mit nachvollziehbarer Rechnung, 20 % mit `[TODO: …]`-Marker, 1 ohne beides.**
+Honorare: 61 von 73 (84 %) mit Zeit-Rechnung. **159 Marker setzt das Modell selbst,
+25 zieht die deterministische Stufe nach** — der Prompt trägt die Regel, das Netz fängt den Rest.
+
+Der eine Posten ohne beides war eine Reihenfolge, keine Erkennungslücke: Das Verbots-Gate
+nimmt in `pipeline.ts` eine erfundene Kalkulationsgrundlage NACH der Markierung zurück.
+Behoben, Test in beide Richtungen.
+
+### Paket 5 — Sprache (Lauf `2026-08-20T14-40-26`)
+
+| Achse | mean | stddev | Gate |
+|---|---|---|---|
+| WIZ-01 | 100,0 | 0,0 | PASSED |
+| WIZ-02 | 98,1 | 6,7 | PASSED (drop 0,77) |
+| WIZ-03 | 66,3 | 15,9 | warning-only |
+| WIZ-04 | 90,0 | 15,0 | PASSED (drop −4,36) |
+| Finanzplan | 81,9 | 27,6 | — |
+
+**Gepaart über alle 75 identischen Läufe** (`scripts/probe-sprachmuster.ts`, deterministisch,
+kein Judge) gegen den Paket-4-Lauf als Kontrolle — gleiches Messgerät, gleicher Tag,
+einziger Unterschied sind die zwei Direktiven:
+
+| Kennzahl | Kontrolle (P4) | mit Paket 5 |
+|---|---|---|
+| Sätze gesamt | 3.915 | 4.292 (+9,6 %) |
+| Sätze über 300 Zeichen | 17,7 % | **14,5 %** |
+| Schachtelsätze „weil … — daher" je Antrag | 4,05 | **4,04** |
+| Anträge mit Schachtelsätzen | 45 / 75 | 37 / 75 |
+| Evidenz-Treffer je Antrag | 1,12 | **0,88** |
+| davon „nachweislich" | 75 | 63 |
+| Anträge mit Evidenz-Rhetorik | 42 / 75 | 29 / 75 |
+
+**Halb gewonnen.** Der Text wird in mehr und kürzere Sätze zerlegt (+9,6 % Sätze,
+lange Sätze −18 % relativ), aber das Schachtel-MUSTER selbst ist unverändert: 304 → 303.
+Es reist jetzt nur in kürzeren Sätzen mit. Die Evidenz-Rhetorik geht um ein Fünftel zurück,
+**63 „nachweislich" bleiben aber in 29 von 75 Anträgen stehen.**
+
+🚫 **Bei 34 von 75 Läufen sah dieselbe gepaarte Messung völlig anders aus** (Schachtelsätze
+4,88 → 2,15, also „mehr als halbiert"). Über den vollen Lauf ist davon nichts übrig. Die
+ersten 12 Korpus-Einträge sind keine Zufallsstichprobe — eine Zwischenauswertung ist als
+Fortschrittsanzeige brauchbar und als Befund wertlos.
+
+### Folgerung
+
+Das Verbot der Evidenz-Rhetorik gehört deterministisch nachgeprüft, analog `verbots-gate.ts`
+(Tarif-Stufen, Daten): Ein Prompt-Verbot, das zu zwei Dritteln durchgeht, ist genau der
+dort dokumentierte Fall. Zwei Grenzen dabei: Nennt der NUTZER eine Quelle, darf die Aussage
+stehen bleiben — und ein `[Annahme: …]`-Marker heilt eine Forschungsbehauptung NICHT,
+weil der Nutzer sie nicht aus eigenem Wissen bestätigen kann.
+
+---
+
+
 ## 2026-08-20 — Finanzplan-Metrik: zwei Korrekturen am MESSGERÄT (kein Pipeline-Regress)
 
 **Anlass:** Tester-Feedback #008 (19.08.2026) zu Antrag 37. Der Tester fand von Hand drei

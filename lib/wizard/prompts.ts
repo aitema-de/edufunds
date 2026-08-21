@@ -27,6 +27,19 @@ Erwähne NIE folgende Dinge, wenn sie nicht aus den User-Antworten explizit herv
 - **Erhebungen/Studien/Belege als Faktum** (VERA-Vergleichsarbeiten, Bedarfsanalysen,
   Schulstatistiken, "Sekretariatseinschätzung", "sozialräumliche Belastung") — wenn der
   User keine Erhebung nannte, ist jede Evidenz-Behauptung erfunden.
+- **Allgemeine Wirkungs-Behauptungen mit Beleg-Anspruch**: "nachweislich", "Studien zeigen",
+  "Untersuchungen belegen", "wissenschaftlich erwiesen/fundiert", "erwiesenermaßen", "empirisch
+  belegt", "bekanntlich". Anders als der Punkt davor geht es hier nicht um Daten DER SCHULE,
+  sondern um einen behaupteten Forschungsstand ("weil projektbasiertes Lernen nachweislich die
+  Selbstwirksamkeit stärkt"). Über 75 erzeugte Anträge gemessen ist das die häufigste unbelegte
+  Aussage im Text: 80 Fundstellen in 32 Anträgen, davon 70× "nachweislich".
+  Ein \`[Annahme: …]\`-Marker heilt das NICHT — einen Forschungsstand kann der Nutzer nicht aus
+  eigenem Wissen bestätigen (dieselbe Regel wie bei Programm-Konditionen).
+  Die fachliche Begründung BLEIBT, sie wird als Wirkannahme des Vorhabens formuliert:
+  SCHLECHT: "weil projektbasiertes Lernen nachweislich die Selbstwirksamkeit stärkt"
+  GUT: "Das Vorhaben setzt darauf, dass die Kinder durch eigene Produktionen Selbstwirksamkeit erfahren."
+  GUT: "Der Ansatz folgt der Überlegung, dass handlungsorientiertes Arbeiten die Motivation trägt."
+  Nennt der USER selbst eine Studie oder Quelle, darf sie mit dieser Quellenangabe stehen bleiben.
 - **Marken-, Produkt- oder App-Namen** (Anton, Bettermarks, iPad 10. Gen, Antolin, …) —
   wenn der User nur allgemein "Lern-Apps", "Tablets", "Instrumente" sagte: NICHT spezifizieren.
 - **Externe Partner / Vereine / Kooperationen / Fördervereine / Honorarkräfte** (Medienpädagoge,
@@ -649,6 +662,13 @@ Verboten sind LEERE Floskeln OHNE Substanz — als Etikett, das nichts erklärt:
 ## Ziele & Wirkung konkret (wenn dieser Abschnitt Ziele/Wirkung/Nachhaltigkeit behandelt)
 Formuliere Ziele wirkungsorientiert statt vage: benenne, WAS sich für WEN beobachtbar ändert — entlang der Wirkungslogik Maßnahme → unmittelbares Ergebnis (Output) → angestrebte Wirkung (Outcome). Hat der User messbare Indikatoren/Kennzahlen genannt, nimm sie auf. Wo nicht, biete 1–2 realistische, zum Vorhaben passende Indikatoren als klar erkennbaren VORSCHLAG an ("messbar machen ließe sich das z. B. an …", "ein möglicher Indikator wäre …") — OHNE konkrete Baselines/Zielzahlen zu erfinden, die der User nicht nannte. Vermeide richtungslose Ziel-Floskeln ("die Kinder werden gefördert"): jedes Ziel braucht Zielgruppe, Richtung und ein beobachtbares Ergebnis.
 
+## Satzbau — ein Gedanke je Satz (gemessen, nicht Geschmack)
+Über 75 erzeugte Anträge sind 16 % der Sätze länger als 300 Zeichen, der längste 1.580 — und in 41 von 75 Anträgen steckt immer dasselbe Muster: Aussage, "weil" + Begründung, Gedankenstrich, "daher" + Folge, alles in EINEM Satz. Das liest sich generiert, und genau dort steigt der Gutachter aus.
+- Ein Satz = ein Gedanke. Höchstens EINE Begründung je Satz.
+- Die Kette "…, weil … — daher …" wird geteilt: Aussage in den ersten Satz, Begründung in den zweiten, Folge in den dritten. Gedankenstriche sparsam und nie als Ersatz für einen Punkt.
+- Richtwert: meist unter 35 Wörtern; über 300 Zeichen nur, wenn der Inhalt es wirklich verlangt.
+- Kürzen heißt TEILEN, nicht STREICHEN. Das WARUM bleibt vollständig erhalten und bekommt einen eigenen Satz. Ein Abschnitt, der nur noch beschreibt, WAS geschieht, ist schlechter geworden.
+
 ## Form
 - Keine Überschrift, keine Markdown-Formatierung, kein # oder **.
 - Fließtext, keine Listen (außer wenn die Fakten eindeutig auflistbar sind, z. B. Hauptposten im Budget).
@@ -1100,6 +1120,9 @@ Arbeite alle "redundanz"-Findings konsequent ab und tilge auch selbst erkannte W
 - Jeder Abschnitt behält seinen eigenen Fokus (Ausgangslage = Problem + Zahlen; Ziele = was sich messbar ändert; Maßnahmen = konkrete Schritte; Wirkung/Nachhaltigkeit = was nach der Förderung bleibt).
 - WICHTIG: Verdichten heißt umformulieren, nicht ausdünnen. ALLE Pflichtabschnitte bleiben erhalten und inhaltlich tragfähig — kein Abschnitt wird gestrichen oder auf einen bloßen Verweis reduziert. Struktur, Titel und Abschnittsreihenfolge bleiben unverändert.
 - **Kausale Begründungen sind tragende Substanz, NIE Streichkandidaten:** Sätze, die das Vorhaben mit einem pädagogischen Konzept oder einer Wirkannahme verbinden (erkennbar an weil / daher / auf dieser Grundlage / dem Ansatz X folgend), bleiben beim Verdichten VOLLSTÄNDIG erhalten. Wenn ein Abschnitt kürzer werden muss, streiche beschreibende Wiederholung — niemals das WARUM. Ein Antrag, der nur noch beschreibt, WAS geschieht, ist durch die Revision schlechter geworden.
+
+## Satzbau — ein Gedanke je Satz
+Teile Schachtelsätze nach dem Muster "Aussage, weil Begründung — daher Folge" in zwei bis drei Sätze; Richtwert meist unter 35 Wörtern, über 300 Zeichen nur mit Grund. Teilen, nicht streichen: Die kausale Begründung bleibt vollständig erhalten (siehe Redundanz-Verbot) und bekommt einen eigenen Satz. Vorhandene "[TODO: …]"- und "[Annahme: …]"-Marker bleiben dabei unverändert.
 
 ## Ausgabeformat (Markdown)
 - Antragstitel als erste Zeile als H1: "# Titel"
