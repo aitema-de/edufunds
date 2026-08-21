@@ -49,6 +49,7 @@ import {
 import { bestimmeAntragsart } from "./antragsart";
 import { extractAnnahmen, wrapAnnahmen } from "./annahme-marker";
 import { ergaenzeHerleitungsMarker } from "./finanzplan-herleitung";
+import { entferneEvidenzAdverbien } from "./evidenz-rhetorik";
 import type { Usage } from "./pricing";
 import type { Richtlinie, AntragsAbschnitt } from "./richtlinien-schema";
 import { generateFinanzplan, buildBeantragtConsistencyIssue } from "./finanzplan-generator";
@@ -852,6 +853,57 @@ export async function runPipeline(
       }
     }
   }
+
+  // =========================================================================
+  // Evidenz-Rhetorik entschaerfen (Tester-Feedback #008, 21.08.2026)
+  //
+  // Die Testerin: "Wenn die KI dafuer keine Quelle hat, sollte sie solche
+  // wissenschaftlich klingenden Tatsachenbehauptungen vermeiden." Paket 5 hat das
+  // Verbot in den Prompt geschrieben; gemessen ueber 75 Antraege blieben trotzdem
+  // 63 "nachweislich" in 29 Antraegen stehen. Ein Verbot, das zu zwei Dritteln
+  // durchgeht, braucht eine Nachpruefung — dieselbe Lehre wie in verbots-gate.ts.
+  //
+  // Laeuft ganz am Ende der Textkette: Jede LLM-Stufe davor (Revision, Compliance,
+  // Konsistenz) kann die Formulierung neu einbringen.
+  //
+  // 🚫 UND ZWAR NACH der Annahmen-Markierung. wrapAnnahmen sucht seine Zitate
+  // WOERTLICH im Text — ein vorher gestrichenes Adverb laesst das Zitat ins Leere
+  // laufen, und ausgerechnet eine ungedeckte Wirkungsbehauptung verloere so ihre
+  // Kennzeichnung. Die bereits eingesammelte Annahmen-Liste wird deshalb unten
+  // durch dieselbe Bereinigung gezogen, damit Text und Liste zeichengleich bleiben.
+  //
+  // 🚫 Nur die ADVERBIEN werden gestrichen. Satzformen ("Studien zeigen, dass …")
+  // brauchen einen neuen Hauptsatz; die bleiben stehen und werden gezaehlt.
+  // =========================================================================
+  {
+    const ev = entferneEvidenzAdverbien(finalRes.value ?? "");
+    if (ev.entfernt.length > 0) {
+      finalRes = { value: ev.text, usage: finalRes.usage };
+      // Text und Bestaetigungsliste muessen zeichengleich bleiben, sonst findet
+      // die UI das Zitat nicht mehr, das sie uebernehmen oder streichen soll.
+      if (factVerification) {
+        const zieh = (z: string) => entferneEvidenzAdverbien(z).text;
+        factVerification = {
+          ...factVerification,
+          vorschlaege: factVerification.vorschlaege.map(zieh),
+          vorschlaegeBegruendung: (factVerification.vorschlaegeBegruendung ?? []).map((b) => ({
+            ...b,
+            zitat: zieh(b.zitat),
+          })),
+          remaining: factVerification.remaining.map(zieh),
+        };
+      }
+      console.log(
+        `[pipeline] Evidenz-Rhetorik: ${ev.entfernt.length} Beleg-Behauptung(en) ohne Quelle entschaerft` +
+          (ev.verbleibend.length > 0 ? `, ${ev.verbleibend.length} Satzform(en) bleiben stehen` : "")
+      );
+    } else if (ev.verbleibend.length > 0) {
+      console.log(
+        `[pipeline] Evidenz-Rhetorik: ${ev.verbleibend.length} Satzform(en) ohne Quelle erkannt (nicht automatisch reparierbar)`
+      );
+    }
+  }
+
 
   // Final-Guard (Probe 09.06., Fall 3): Nach allen Stufen darf der Antragstext
   // niemals leer sein. Ein leerer finalText entsteht aus einer transienten,
